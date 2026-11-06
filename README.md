@@ -12,6 +12,7 @@
 - [白盒操作、預覽與重建](docs/WHITEBOX.md)
 - [遊走原型操作與驗證](docs/WALK.md)
 - [風格樣片、比較圖與驗證](docs/STYLE_SAMPLE.md)
+- [JSR／BRC 製作規範](docs/JSR-BRC-style-reference.md)與[專案對照](docs/JSR-BRC-project-application.zh-TW.md)
 - [飛機掠過原型與新截圖](docs/FLYBY.md)
 - [天空樣片與比較圖](docs/SKY_SAMPLE.zh-TW.md)
 - [角色與低清街景貼圖](docs/CHARACTER_TEXTURES.zh-TW.md)

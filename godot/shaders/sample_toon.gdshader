@@ -2,6 +2,9 @@ shader_type spatial;
 render_mode diffuse_lambert, specular_disabled;
 uniform vec4 base_color : source_color = vec4(1.0);
 uniform sampler2D base_texture : source_color, filter_linear_mipmap;
+// World-projected environment tiles use crisp pixel sampling, while imported
+// character and prop textures retain their existing filtering.
+uniform sampler2D world_texture : source_color, filter_nearest_mipmap, repeat_enable;
 uniform bool use_texture = false;
 uniform bool use_world_uv = false;
 uniform vec3 texture_scale = vec3(1.0);
@@ -20,7 +23,11 @@ void fragment() {
         tex_uv = world_normal.y > max(world_normal.x, world_normal.z) ? point.xz :
                  (world_normal.x > world_normal.z ? point.zy : point.xy);
     }
-    ALBEDO = base_color.rgb * (use_texture ? texture(base_texture, tex_uv).rgb : vec3(1.0));
+    vec3 tex_color = vec3(1.0);
+    if (use_texture) {
+        tex_color = use_world_uv ? texture(world_texture, tex_uv).rgb : texture(base_texture, tex_uv).rgb;
+    }
+    ALBEDO = base_color.rgb * tex_color;
     ROUGHNESS = 1.0;
     SPECULAR = 0.0;
 }

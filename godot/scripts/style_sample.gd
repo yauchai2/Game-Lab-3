@@ -98,6 +98,7 @@ func _enroll(target: MeshInstance3D, aircraft := false) -> void:
         replacement.set_shader_parameter("use_texture",source.albedo_texture != null)
         if source.albedo_texture != null:
             replacement.set_shader_parameter("base_texture",source.albedo_texture)
+            replacement.set_shader_parameter("world_texture",source.albedo_texture)
     affected.append(target)
     originals.append(target.material_override)
     replacements.append(replacement)

@@ -134,3 +134,9 @@ Godot 4.6.3 headless 13 項新場景檢查、28 遊走、12 風格、7 天空、
 使用者明確選圖片天空、提供 `character-1.glb` 和 Hinata 參考影片。圖片天空現在為預設，N 可比較程序天空。角色原始 GLB 不改，含 65 骨骼、1,664 三角面、0 動畫；包裝縮放 1.75，使用速度驅動暫用步態。原始骨架與材質、影片識別及取樣範圍、貼圖與局限見 [CHARACTER_TEXTURES.zh-TW.md](CHARACTER_TEXTURES.zh-TW.md)。
 
 環境新增 128×128 程序路面／行人道／牆面貼圖、生成塗鴉、招牌支架及飛機自陰影斑點修正；保留獨立 S1。headless 九組場景檢查均通過，角色與街景截圖由 llvmpipe 擷取。這不是人工試玩或目標 GPU 驗收；正式角色動畫、聲音、性能仍待處理。使用者可在 GitHub Desktop 同步 `codex/flight-street-handoff`，以 Godot 開主場景。
+
+## JSR／BRC 製作規範（2026-11-06，最新）
+
+收到使用者 `jsr_brc_3d.md`，原檔保存於 `references/guidelines/`（SHA-256 `7547594616f67916d3d35c6c1211bf46f8731ba337c1c2a48793b0c0c287b0de`）；另將其他對話提交於 `origin/main` 的 `docs/JSR-BRC-style-reference.md`（提交 `54a520d`）原樣複製至本分支，未合併整個 main。規範作製作目標，非已獨立驗證的原遊戲技術事實。
+
+現有角色 1,664 tris，入口牆與道路 32 texels/m；卡通牆面 Shader 原本線性過濾與標準材質不一致，現改用 nearest+mipmaps，角色／道具 UV 取樣不變。具體對照、保留 mipmaps 的取捨、未實作清單與圖像檢查見 [專案對照](JSR-BRC-project-application.zh-TW.md)。

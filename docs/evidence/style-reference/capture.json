@@ -1,0 +1,12 @@
+{
+  "comparison": "Only toon world-texture filter changes; same camera and scene.",
+  "display_driver": "X11",
+  "hardware_gpu_verified": false,
+  "human_playtest": false,
+  "plane_frozen": true,
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "screen_size": [
+    1280,
+    720
+  ]
+}
