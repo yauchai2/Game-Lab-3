@@ -14,8 +14,10 @@ func _ready() -> void:
     var world: WorldEnvironment = street.get_node("WorldEnvironment")
     world.environment = world.environment.duplicate(true)
     world.environment.ambient_light_energy = .35
+    world.environment.background_color = Color("41b3dc")
     var sun: DirectionalLight3D = street.get_node("Sun")
-    sun.light_energy = .55
+    sun.light_energy = .62
+    sun.light_color = Color("ffe4c4")
     two_sided_shader = Shader.new()
     two_sided_shader.code = ToonShader.code.replace("specular_disabled;", "specular_disabled, cull_disabled;")
     for child in street.get_node("BuildingMasses").get_children():
@@ -30,6 +32,8 @@ func _ready() -> void:
     for asset_id in ["PROP_HYDRANT_A01", "VEH_VAN_A01"]:
         for child in street.get_node("Props/"+asset_id).find_children("*","MeshInstance3D",true,false):
             _enroll(child)
+    for child in street.get_node("AircraftProxy").find_children("*","MeshInstance3D",true,false):
+        _enroll(child)
     details = Node3D.new()
     details.name = "SampleDetails"
     add_child(details)
@@ -102,6 +106,29 @@ func _build_details() -> void:
         _box("ACVent",Vector3(-5.57,4.25,z),Vector3(.06,.35,.58),dark)
     _box("LeftVerticalPipe",Vector3(-5.82,8,-11.7),Vector3(.10,15,.10),dark)
     _box("SmallSign",Vector3(-5.50,4.4,-11.5),Vector3(1.0,1.0,.12),amber)
+    # Window frames add depth without changing the underlying whitebox collision.
+    for floor_index in range(1,5):
+        var y := floor_index*3.3+1.8
+        for z in [-11.1,-6.0,-.9]:
+            for x in [-5.80,5.80]:
+                _box("WindowSash",Vector3(x,y,z),Vector3(.10,1.55,.08),pale)
+                for edge in [-1,1]:
+                    _box("WindowFrame",Vector3(x,y,z+edge*1.52),Vector3(.10,1.65,.10),dark)
+    # Two distant fictional signs provide depth cues above the walking route.
+    _box("CrossStreetSign",Vector3(.3,8.0,-28),Vector3(4.0,1.0,.18),teal)
+    _box("CrossStreetSignTrim",Vector3(.3,8.55,-28),Vector3(4.15,.10,.22),amber)
+    _box("FarStreetSign",Vector3(-.6,6.7,-39),Vector3(3.0,.8,.16),pale)
+    var small_label := Label3D.new()
+    small_label.name = "CrossStreetLabel"
+    small_label.text = "街角茶室"
+    small_label.font_size = 64
+    small_label.pixel_size = .009
+    small_label.modulate = Color("f1c55d")
+    small_label.position = Vector3(.3,8,-27.87)
+    var small_font := SystemFont.new()
+    small_font.font_names = PackedStringArray(["Noto Sans CJK TC","Microsoft JhengHei","PingFang TC","sans-serif"])
+    small_label.font = small_font
+    details.add_child(small_label)
     # Label uses system font fallback; exact glyph availability depends on client fonts.
     var label := Label3D.new()
     label.name = "OriginalSignText"

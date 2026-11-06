@@ -34,7 +34,7 @@ godot --headless --path godot --script res://verify.gd
 ## 尚未驗證
 
 - Godot GPU 實際畫面、目標硬體效能與輸出包。
-- 遊走控制器的人工手感、更多相機角落、真實桌面輸入與飛機事件（S2 自動檢查另見下方）。
+- 遊走控制器的人工手感、更多相機角落、真實桌面輸入與飛機事件的人工視聽（自動檢查另見下方）。
 - 最終 toon 材質及與參考照片／影片的畫面一致性。
 - 全資產封閉拓樸。消防栓的診斷有開放邊，原型使用獨立簡化碰撞，未將來源網格強行修補。
 
@@ -73,3 +73,7 @@ Godot 4.6.3 headless，60 Hz 模擬，28 項檢查通過。包含實際角色移
 Godot 4.6.3 Compatibility 透過 Xorg dummy／Mesa llvmpipe 軟體 OpenGL 4.5 實際擷取同鏡頭畫面；這不是硬體 GPU 效能測試。12 項樣片材質／切換檢查、S2 28 項遊走回歸與六件原始 GLB 雜湊檢查通過。投影開關及兩／三段畫面像素比較見 [STYLE_SAMPLE.md](STYLE_SAMPLE.md) 與其 evidence/style 紀錄。
 
 最終風格、人為遊走感受、實體 GPU／效能及字型跨平台仍待驗收。
+
+## S4 飛機事件與樣片調整
+
+11 項 headless 事件檢查、28 項遊走回歸、12 項風格回歸與六件 GLB 載入／SHA-256 均通過。事件測試在退出時仍有 ObjectDB 清理警告。Godot Compatibility、Mesa llvmpipe 固定入口鏡頭擷取三個事件凍結位置；並非硬體 GPU、動態實機或音訊實聽測試。操作、證據與限制見 [FLYBY.md](FLYBY.md)。舊 S3 圖片是調整前的歷史快照。

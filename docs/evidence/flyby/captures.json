@@ -1,0 +1,22 @@
+{
+  "camera": "01_entry",
+  "captures_are_frozen_poses_not_runtime_video": true,
+  "display_driver": "X11",
+  "hardware_gpu_verified": false,
+  "human_playtest": false,
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "shots": [
+    {
+      "name": "01_arrival.png",
+      "ratio": 0.43
+    },
+    {
+      "name": "02_overhead.png",
+      "ratio": 0.5
+    },
+    {
+      "name": "03_departure.png",
+      "ratio": 0.57
+    }
+  ]
+}

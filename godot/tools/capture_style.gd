@@ -4,6 +4,7 @@ func _initialize() -> void:
 func capture() -> void:
     var scene := (load("res://scenes/street_walk.tscn") as PackedScene).instantiate()
     root.add_child(scene)
+    scene.get_node("AircraftFlyby").freeze_for_capture()
     scene.select_reference(0)
     scene.get_node("Player/Visual").visible = false
     scene.get_node("Street/Overlay").visible = false

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 [ext_resource type="PackedScene" path="res://scenes/street_whitebox.tscn" id="1_street"]
 [ext_resource type="PackedScene" path="res://scenes/actors/test_player.tscn" id="2_player"]
 [ext_resource type="Script" path="res://scripts/walk_session.gd" id="3_session"]
 [ext_resource type="Script" path="res://scripts/style_sample.gd" id="4_style"]
+[ext_resource type="Script" path="res://scripts/aircraft_flyby.gd" id="5_flyby"]
 [node name="StreetWalk" type="Node3D"]
 script = ExtResource("3_session")
 [node name="Street" parent="." instance=ExtResource("1_street")]
@@ -11,3 +12,6 @@ position = Vector3(0, 0.08, 5.5)
 
 [node name="StyleSample" type="Node3D" parent="."]
 script = ExtResource("4_style")
+
+[node name="AircraftFlyby" type="Node3D" parent="."]
+script = ExtResource("5_flyby")

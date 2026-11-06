@@ -22,7 +22,7 @@ func update_help() -> void:
     var mode := "WALK / FIRST PERSON" if player.first_person else "WALK / THIRD PERSON"
     if not walking:
         mode = "REFERENCE / "+str($Street/ReferenceCameras.get_child(street.active_view).get_meta("label"))
-    $Street/Overlay/Help.text = mode+"   |   STYLE: "+$StyleSample.mode_label()+"\nWASD / Arrows: move   Shift: faster   Space: jump   Mouse: look\n0: walk   1-5 / Tab: reference views   V: first/third person\nB: compare materials   R: reset   Esc: release mouse   Click: capture"
+    $Street/Overlay/Help.text = mode+"   |   STYLE: "+$StyleSample.mode_label()+"\nWASD / Arrows: move   Shift: faster   Space: jump   Mouse: look\n0: walk   1-5 / Tab: reference views   V: first/third person\nB: compare materials   P: replay flyby   R: reset   Esc: release mouse   Click: capture"
 func _unhandled_key_input(event: InputEvent) -> void:
     if not event.is_pressed() or event.is_echo():
         return
@@ -35,6 +35,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
     elif event.keycode == KEY_B:
         $StyleSample.set_mode($StyleSample.mode+1)
         update_help()
+    elif event.keycode == KEY_P:
+        $AircraftFlyby.restart()
     elif event.keycode == KEY_R:
         player.reset_to_spawn()
         activate_walk()
