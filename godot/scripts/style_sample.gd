@@ -42,6 +42,8 @@ func _ready() -> void:
     for asset_id in ["PROP_HYDRANT_A01", "VEH_VAN_A01"]:
         for child in street.get_node("Props/"+asset_id).find_children("*","MeshInstance3D",true,false):
             _enroll(child)
+    for child in get_parent().get_node("ParkedCar").find_children("*","MeshInstance3D",true,false):
+        _enroll(child)
     for child in street.get_node("AircraftProxy").find_children("*","MeshInstance3D",true,false):
         _enroll(child)
     details = Node3D.new()

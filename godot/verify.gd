@@ -1,6 +1,6 @@
 extends SceneTree
 func _initialize():
-    var expected = {"PROP_HYDRANT_A01": 1477, "PROP_BIN_A01": 1456, "VEH_VAN_A01": 1582, "PROP_SHOP_STOOL_A01": 1513, "PROP_CRATES_A01": 1491, "PROP_MAILBOX_A01": 1440}
+    var expected = {"PROP_HYDRANT_A01": 1477, "PROP_BIN_A01": 1456, "VEH_VAN_A01": 1582, "VEH_CAR_A01": 1524, "PROP_SHOP_STOOL_A01": 1513, "PROP_CRATES_A01": 1491, "PROP_MAILBOX_A01": 1440}
     var results = []
     for asset_id in expected:
         var packed = load("res://scenes/" + asset_id + ".tscn") as PackedScene

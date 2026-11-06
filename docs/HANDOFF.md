@@ -104,3 +104,11 @@ Godot 4.6.3 headless 的 7 項天空邏輯、12 項風格、28 項遊走及 11 �
 使用者詢問還可用 Tripo 生成甚麼；建議先選原有參考但未收到 GLB 的靜態港式轎車，作為廂型車之外的第二款車輛。AI 根據 repo 既有三視圖拼版生成獨立的左前斜角單車圖 [VEH_CAR_A01_ref_v002_3quarter.png](../references/assets/VEH_CAR_A01_ref_v002_3quarter.png)，用於單圖測試；原拼版保留。生成、匯出規格與回傳後檢查詳見 [TRIPO_CAR.zh-TW.md](TRIPO_CAR.zh-TW.md)。
 
 建議沿用 P1.0、先生成 1 個候選、三角面 1,500 作起點、GLB 1K；車輛靜態無需拆分。這些是建議非使用者已執行的操作，具體可選設定與費用須以其網頁為準。目前尚未收到轎車模型，未匯入／未驗證，既有六件與遊戲程式未改；天空、建築等仍可由 AI 製作。
+
+## 轎車整合與下一個 Tripo 候選（最新）
+
+收到使用者轎車原始 GLB，SHA-256、面數 1,524、1024×1024 貼圖與尺度見 [資產清單](../assets-manifest.json) 及 [完整性證據](evidence/car/integrity.json)。檔案直接複製，未修改來源；在 `street_walk.tscn` 以 `VEH_CAR_A01.tscn` 包裝為長 4.2 m 靜態碰撞物，放在街道左側，原 `street_whitebox.tscn` 與六件展示場景不變。轎車包含在 B 材質比較中。使用者未提供此檔實際 P1/P2 設定，不能從檔案推定。
+
+Godot Compatibility／llvmpipe 的[街道正面](evidence/car/01_front_street.png)與[背面](evidence/car/02_back_street.png)顯示車輛輪廓可辨；車身在陰影下較暗，等待人工評估。headless 6 項轎車／碰撞檢查、28 項遊走、12 項樣片、11 項飛機回歸及 7 件載入檢查通過；退出仍有既存 ObjectDB 音訊清理警告。未進行硬體 GPU／人工試玩或聲音驗收。遊戲資產製作 skill 建議的 `game-dev` CLI 此環境不可用，本次使用現有 Godot 與靜態檢查流程，未執行 CLI 正規化或建立 canonical package。
+
+依使用者詢問，建議可選下一個 Tripo 候選為箱式貨車，單車參考圖及設定見 [TRIPO_TRUCK.zh-TW.md](TRIPO_TRUCK.zh-TW.md)；尚未收到貨車 GLB，費用及生成由使用者控制。
