@@ -34,7 +34,7 @@ godot --headless --path godot --script res://verify.gd
 ## 尚未驗證
 
 - Godot GPU 實際畫面、目標硬體效能與輸出包。
-- 遊走控制器、相機、碰撞手感與飛機事件。
+- 遊走控制器的人工手感、更多相機角落、真實桌面輸入與飛機事件（S2 自動檢查另見下方）。
 - 最終 toon 材質及與參考照片／影片的畫面一致性。
 - 全資產封閉拓樸。消防栓的診斷有開放邊，原型使用獨立簡化碰撞，未將來源網格強行修補。
 
@@ -61,3 +61,9 @@ godot --headless --path godot --script res://verify.gd
 - [五張預覽及重現步驟](WHITEBOX.md)
 
 預覽為 Godot 幾何快照的 Blender Cycles CPU 渲染，光照另設；不代表 Godot GPU 畫面驗證。S1 沒有玩家控制器，八個射線取樣不能代替玩家碰撞與整條路的人工遊玩。
+
+## S2 遊走物理／邏輯檢查
+
+Godot 4.6.3 headless，60 Hz 模擬，28 項檢查通過。包含實際角色移動、斜向速度、跳躍落地、人行道跳躍、超過 50 m 的連續主街通行、側巷、建築／廂型車／郵箱阻擋、牆邊相機臂縮短，以及相機模式、游標請求、重設及掉落回復。完整測量見 [verification.json](evidence/walk/verification.json) 及 [verification.log](evidence/walk/verification.log)。重現方式及未驗證範圍見 [WALK.md](WALK.md)。
+
+本次測試注入應用程式輸入並跨 Godot 物理幀執行，不是人工操作。headless 不支援真實桌面游標鎖定，僅核對鎖定請求及輸入邏輯；GPU、手感和硬體效能仍待驗證。

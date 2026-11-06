@@ -11,7 +11,7 @@
 
 ## 現有成果
 
-`godot/` 已包含六件資產展示及 S1 街道白盒。主場景為 `scenes/street_whitebox.tscn`（1–5／Tab 切換），原 `scenes/review.tscn` 保留。尚無可操作角色。所有 GLB 原始資料未改動；尺寸與簡化碰撞在各包裝 .tscn。`assets-manifest.json` 記錄來源雜湊與狀態；`references/assets/` 包含七種資產的參考圖；`docs/evidence/` 有原型預覽與載入紀錄。
+`godot/` 已包含六件資產展示及 S1 街道白盒。主場景為 S2 `scenes/street_walk.tscn`，已可操作測試角色；1–5／Tab 為固定視角、0 返回角色。原 S1 `street_whitebox.tscn` 與資產展示 `review.tscn` 保留。所有 GLB 原始資料未改動；尺寸與簡化碰撞在各包裝 .tscn。`assets-manifest.json` 記錄來源雜湊與狀態；`references/assets/` 包含七種資產的參考圖；`docs/evidence/` 有原型預覽與載入紀錄。
 
 已確認的偏好與取捨見 [DECISIONS.md](DECISIONS.md)。設計基準見 [DESIGN.md](DESIGN.md)。完整原聊天計劃保留於 [archive/chat-plan.zh-TW.md](archive/chat-plan.zh-TW.md)，其中歷史工作區附件路徑不可當成 repo 檔案。
 
@@ -21,7 +21,7 @@
 2. 重跑 Godot 匯入與 `verify.gd`，確認當前環境能使用六件資產。
 3. 讀取 [WHITEBOX.md](WHITEBOX.md)，查看 S1 的四個固定視角與俯視布局；白盒已實作，等待使用者構圖回饋。
 4. 保留 `godot/scenes/review.tscn` 作資產對照；新街道另建場景。
-5. 下一個實作階段為 S2 基本遊走；S1／S2 確認後再精修 10–15 m 街段及飛機事件。先不要求使用者追加付費道具生成。
+5. S2 控制器與 28 項無視窗檢查已完成，詳見 WALK.md。下一步是人工操作回饋與 S3 的 10–15 m 風格樣片，再接飛機事件。先不要求使用者追加付費道具生成。
 
 ## 驗證與缺口
 
@@ -52,3 +52,9 @@
 現有環境沒有 Xvfb 顯示服務，未取得 Godot GPU 畫面；改用 Godot 匯出的同一份幾何在 Blender Cycles CPU 產生五張預覽。操作與重現步驟見 WHITEBOX.md。尚未完成玩家控制器、事件聲音、最終 toon 或硬體效能。
 
 五張 CPU 預覽已完成並檢查，側巷缺少地面基底的問題已修正；入口保留道路與現有道具前景。新白盒檢查涵蓋 1–5 鍵、Tab 循環、八個地面射線取樣與配置指紋，結果見 docs/evidence/whitebox/。下一步等待構圖回饋並實作 S2，勿將 S1 固定相機當成行走控制器。
+
+## S2 遊走更新
+
+新增獨立遊走組裝場景與比例替身控制器，保留 S1 幾何、固定相機及六件來源 GLB。已實作第三人稱預設、V 切第一人稱、走／加速／跳、滑鼠視角、SpringArm 碰撞縮短、0／1–5／Tab 相機切換、R 重設及掉落回復。游標釋放或失焦時暫停移動輸入，點擊恢復。
+
+Godot 4.6.3 在 headless 模式以實際物理幀測試 28 項情境通過，包括超過 50 m 的主街移動、人行道跳躍、側巷與主要障礙碰撞。游標鎖定僅驗證應用程式要求，無視窗環境不能驗證真實桌面游標。未新增 S2 畫面或人工試玩證據，操作與範圍見 WALK.md。

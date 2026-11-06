@@ -1,10 +1,10 @@
 # S1 街道白盒
 
-本版完成參數化街道量體、四個固定視角與俯視布局，供構圖與尺度審查。此為白盒，尚未完成 S2 步行控制器、S3 toon 材質或 S4 飛機掠過事件。
+本版完成參數化街道量體、四個固定視角與俯視布局，供構圖與尺度審查。S1 場景維持固定相機用途；S2 遊走已另建場景，詳見 [WALK.md](WALK.md)。S3 toon 材質與 S4 飛機掠過事件仍待製作。
 
 ## 開啟與操作
 
-用 Godot 4.6.3 開啟 `godot/project.godot`，主場景為 `scenes/street_whitebox.tscn`。
+用 Godot 4.6.3 開啟 `godot/project.godot`，若要單獨查看 S1，執行 `scenes/street_whitebox.tscn`；專案預設主場景已改為 S2 `scenes/street_walk.tscn`。
 
 - `1`：入口仰角。
 - `2`：街道中段。
@@ -13,7 +13,7 @@
 - `5`：俯視布局，隱藏飛機，方便看路寬與道具位置。
 - `Tab`：依序切換。
 
-此版本沒有 WASD 行走。既有 `scenes/review.tscn` 保留作六件資產的對照展示。
+單獨執行 S1 場景沒有 WASD 行走；S2 主場景已提供遊走控制器。既有 `scenes/review.tscn` 保留作六件資產的對照展示。
 
 ## 場景內容
 
@@ -64,4 +64,4 @@ blender --background --python tools/render_whitebox_previews.py
 
 [verification.json](evidence/whitebox/verification.json) 記錄：六件道具存在、1–5 快捷鍵、Tab 循環切換與相機方向、道路尺寸、四個引擎／開口、251 個 mesh 節點，以及道路／兩側人行道／側巷八個垂直射線取樣命中。主場景無視窗啟動通過，來源 GLB 雜湊維持一致。
 
-這些檢查不等於玩家行走、碰撞手感、GPU 圖像、幀率或任意場景位置均無問題。下一步為使用者構圖回饋及 S2 基本遊走。
+這些檢查不等於玩家行走、碰撞手感、GPU 圖像、幀率或任意場景位置均無問題。S2 已實作，構圖、桌面操作及手感仍待使用者回饋，詳見 WALK.md。
