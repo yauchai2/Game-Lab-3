@@ -15,6 +15,7 @@
 - [飛機掠過原型與新截圖](docs/FLYBY.md)
 - [天空樣片與比較圖](docs/SKY_SAMPLE.zh-TW.md)
 - [GitHub Desktop 同步及 Godot 查看](docs/GITHUB_DESKTOP.zh-TW.md)
+- [Tripo 轎車候選圖片及設定](docs/TRIPO_CAR.zh-TW.md)
 - [設計基準](docs/DESIGN.md) 與 [下一階段規格](docs/design/next-phase.zh-TW.md)
 - [重要決策](docs/DECISIONS.md)
 - [驗證結果與限制](docs/VALIDATION.md)
