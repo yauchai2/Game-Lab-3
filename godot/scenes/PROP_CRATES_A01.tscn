@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://assets/PROP_CRATES_A01.glb" id="1_model"]
+[sub_resource type="BoxShape3D" id="Body"]
+size = Vector3(0.5463796477495108, 0.8, 0.5526419264463063)
+[node name="PROP_CRATES_A01" type="StaticBody3D"]
+metadata/asset_id = "PROP_CRATES_A01"
+metadata/scale_target_axis = 1
+metadata/scale_target_value = 0.8
+[node name="Visual" parent="." instance=ExtResource("1_model")]
+scale = Vector3(0.8015655577299413, 0.8015655577299413, 0.8015655577299413)
+[node name="Collision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.4, 0)
+shape = SubResource("Body")

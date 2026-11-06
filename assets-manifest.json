@@ -1,0 +1,137 @@
+{
+  "engine_version_verified": "Godot 4.6.3",
+  "default_generation_preference": "P1.0 (web)",
+  "source_geometry_status": "six_assets_received_and_inspected",
+  "assets": [
+    {
+      "asset_id": "PROP_BIN_A01",
+      "model": "godot/assets/PROP_BIN_A01.glb",
+      "scene": "godot/scenes/PROP_BIN_A01.tscn",
+      "reference": "references/assets/PROP_BIN_A01_ref_v001.png",
+      "triangles": 1456,
+      "materials": 1,
+      "texture_pixels": [
+        512,
+        512
+      ],
+      "bytes": 90720,
+      "sha256": "df6efc5267d9f94f955b93286412a926e4a7d06a1ac0744b905ed2ebb4a09cc2",
+      "scale": 1.0019569471624266,
+      "status": "accepted_for_prototype_pending_in_scene_review",
+      "provenance": "User-uploaded Tripo web export; generated image reference supplied in this chat.",
+      "user_reported_generation_model": "P1.0"
+    },
+    {
+      "asset_id": "PROP_CRATES_A01",
+      "model": "godot/assets/PROP_CRATES_A01.glb",
+      "scene": "godot/scenes/PROP_CRATES_A01.tscn",
+      "reference": "references/assets/PROP_CRATES_A01_ref_v001.png",
+      "triangles": 1491,
+      "materials": 1,
+      "texture_pixels": [
+        512,
+        512
+      ],
+      "bytes": 156384,
+      "sha256": "8f620aaf28cc09091de7afc5989d13f5419c5039abfbf46e319f5e56ba890692",
+      "scale": 0.8015655577299413,
+      "status": "accepted_for_prototype_pending_in_scene_review",
+      "provenance": "User-uploaded Tripo web export; generated image reference supplied in this chat.",
+      "scaled_bounds_xyz_m": [
+        0.5463796477495108,
+        0.8,
+        0.5526419264463063
+      ],
+      "visual_review": "接受為一組三箱靜態道具，輪廓與黃／藍綠配色清楚。槽紋較柔和。暫不拆分；獨立擺放時再另行處理。"
+    },
+    {
+      "asset_id": "PROP_HYDRANT_A01",
+      "model": "godot/assets/PROP_HYDRANT_A01.glb",
+      "scene": "godot/scenes/PROP_HYDRANT_A01.tscn",
+      "reference": "references/assets/PROP_HYDRANT_A01_ref_v001.png",
+      "triangles": 1477,
+      "materials": 1,
+      "texture_pixels": [
+        512,
+        512
+      ],
+      "bytes": 102036,
+      "sha256": "091fb06d4cfcf52620f62d80ec392e3f97caee103d6687ce51a6e9e27f0e5d78",
+      "scale": 0.9004396678065462,
+      "status": "accepted_for_prototype_pending_in_scene_review",
+      "provenance": "User-uploaded Tripo web export; generated image reference supplied in this chat."
+    },
+    {
+      "asset_id": "PROP_MAILBOX_A01",
+      "model": "godot/assets/PROP_MAILBOX_A01.glb",
+      "scene": "godot/scenes/PROP_MAILBOX_A01.tscn",
+      "reference": "references/assets/PROP_MAILBOX_A01_ref_v001.png",
+      "triangles": 1440,
+      "materials": 1,
+      "texture_pixels": [
+        512,
+        512
+      ],
+      "bytes": 106288,
+      "sha256": "4d86307ba149a4375d9b5f97ecb31862f53e262b2cd10460eaf56cfc02c110fe",
+      "scale": 1.1021526418786693,
+      "status": "accepted_for_prototype_pending_in_scene_review",
+      "provenance": "User-uploaded Tripo web export; generated image reference supplied in this chat.",
+      "scaled_bounds_xyz_m": [
+        0.6005871498421448,
+        1.1,
+        0.6996087419543482
+      ],
+      "visual_review": "接受為靜態郵箱。投遞口、前門、支柱及底座保留。先不要求開門或互動。"
+    },
+    {
+      "asset_id": "PROP_SHOP_STOOL_A01",
+      "model": "godot/assets/PROP_SHOP_STOOL_A01.glb",
+      "scene": "godot/scenes/PROP_SHOP_STOOL_A01.tscn",
+      "reference": "references/assets/PROP_SHOP_STOOL_A01_ref_v001.png",
+      "triangles": 1513,
+      "materials": 1,
+      "texture_pixels": [
+        512,
+        512
+      ],
+      "bytes": 71932,
+      "sha256": "b096aa7250a983df7ff9be5dfa1a0ccbf48366dec268fa5cf290079e7e503c1b",
+      "scale": 0.489171974522293,
+      "status": "accepted_for_prototype_pending_in_scene_review",
+      "provenance": "User-uploaded Tripo web export; generated image reference supplied in this chat.",
+      "scaled_bounds_xyz_m": [
+        0.45955425675507566,
+        0.45,
+        0.48821667713724126
+      ],
+      "visual_review": "接受為靜態膠凳，四腳及主要間隙可辨識。1513 三角面略高於 1500 目標，不影響本案原型，不需為此重生成。"
+    },
+    {
+      "asset_id": "VEH_VAN_A01",
+      "model": "godot/assets/VEH_VAN_A01.glb",
+      "scene": "godot/scenes/VEH_VAN_A01.tscn",
+      "reference": "references/assets/VEH_VAN_A01_ref_v001.png",
+      "triangles": 1582,
+      "materials": 1,
+      "texture_pixels": [
+        1024,
+        1024
+      ],
+      "bytes": 225192,
+      "sha256": "d07862f84eb4e02386b2b248d9283b875075e0bb17ce1d66d9419ee84c585926",
+      "scale": 4.202051281928957,
+      "status": "accepted_for_prototype_pending_in_scene_review",
+      "provenance": "User-uploaded Tripo web export; generated image reference supplied in this chat.",
+      "scaled_bounds_xyz_m": [
+        2.1810454226739227,
+        2.6201267026480846,
+        4.2
+      ],
+      "visual_review": "接受為停放街景車。輪廓、車輪、前後端均可辨識；表面較圓順，後門增加窗面，側面有貼圖陰影。暫不要求增加面數或重新生成；駕駛、車門及車輪動畫未驗收。"
+    }
+  ],
+  "pending_reference_only": [
+    "references/assets/VEH_CAR_A01_ref_v001.png"
+  ]
+}
