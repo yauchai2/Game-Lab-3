@@ -1,8 +1,11 @@
 extends Node3D
 ## Runtime-only flyby for the walk scene; the S1 whitebox remains static.
-const DURATION := 9.0
+const DURATION := 12.0
 const DISTANCE := 540.0
 const COOLDOWN := 30.0
+# Walk-scene framing only; S1 static whitebox remains unchanged.
+const WALK_ANCHOR_OFFSET := Vector3(-3,-4,8)
+const WALK_YAW_DEGREES := -150.0
 var anchor: Vector3
 var direction: Vector3
 var elapsed := 0.0
@@ -14,6 +17,8 @@ var sound: AudioStreamPlayer3D
 
 func _ready() -> void:
     plane = get_parent().get_node("Street/AircraftProxy")
+    plane.global_position += WALK_ANCHOR_OFFSET
+    plane.rotation_degrees.y = WALK_YAW_DEGREES
     anchor = plane.global_position
     direction = -plane.global_basis.z.normalized()
     _add_detail()
@@ -84,6 +89,11 @@ func _add_detail() -> void:
     metal.albedo_color = Color("8d999e")
     var rubber := StandardMaterial3D.new()
     rubber.albedo_color = Color("202b35")
+    var green := StandardMaterial3D.new()
+    green.albedo_color = Color("248b78")
+    green.roughness = 1.0
+    green.cull_mode = BaseMaterial3D.CULL_DISABLED
+    _make_livery(green)
     for side in [-1,1]:
         _box("AdditionalGearStrut",Vector3(side*2.0,-3.6,14),Vector3(.3,3,.3),metal)
         for axle in 2:
@@ -113,3 +123,47 @@ func _box(title: String, at: Vector3, size: Vector3, mat: Material) -> void:
     part.material_override = mat
     part.layers = 2
     plane.add_child(part)
+
+func _make_livery(material: Material) -> void:
+    # Livery wraps the cylindrical fuselage and the tapered nose rather than
+    # floating as flat decals. Original S1 geometry remains intact.
+    var surface := SurfaceTool.new()
+    surface.begin(Mesh.PRIMITIVE_TRIANGLES)
+    for side in [-1.0,1.0]:
+        for z_index in range(18):
+            var z0 := lerpf(-25.0,20.0,float(z_index)/18.0)
+            var z1 := lerpf(-25.0,20.0,float(z_index+1)/18.0)
+            var p00 := _band_point(side,-.48,z0)
+            var p01 := _band_point(side,-.16,z0)
+            var p10 := _band_point(side,-.48,z1)
+            var p11 := _band_point(side,-.16,z1)
+            for point in [p00,p10,p11,p00,p11,p01]:
+                surface.add_vertex(point)
+    # Upper and side portions of a green nose cap, retaining the white belly.
+    for z_index in range(6):
+        var z0 := lerpf(-32.85,-29.0,float(z_index)/6.0)
+        var z1 := lerpf(-32.85,-29.0,float(z_index+1)/6.0)
+        for ring in range(16):
+            var t0 := lerpf(-.38,PI+.38,float(ring)/16.0)
+            var t1 := lerpf(-.38,PI+.38,float(ring+1)/16.0)
+            var p00 := _nose_point(z0,t0)
+            var p01 := _nose_point(z0,t1)
+            var p10 := _nose_point(z1,t0)
+            var p11 := _nose_point(z1,t1)
+            for point in [p00,p10,p11,p00,p11,p01]:
+                surface.add_vertex(point)
+    surface.generate_normals()
+    var livery := MeshInstance3D.new()
+    livery.name = "GreenLiveryDetail"
+    livery.mesh = surface.commit()
+    livery.material_override = material
+    livery.layers = 2
+    plane.add_child(livery)
+
+func _band_point(side: float, angle: float, z: float) -> Vector3:
+    return Vector3(side*2.70*cos(angle),2.70*sin(angle),z)
+
+func _nose_point(z: float, angle: float) -> Vector3:
+    var normalized_z := clampf((z+26.0)/7.0,-.999,.999)
+    var radius := 2.74*sqrt(1.0-normalized_z*normalized_z)
+    return Vector3(radius*cos(angle),radius*sin(angle),z)

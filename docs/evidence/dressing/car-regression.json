@@ -1,0 +1,51 @@
+{
+  "checks": [
+    {
+      "check": "car_mesh_triangle_count",
+      "details": {
+        "triangles": 1524
+      },
+      "passed": true
+    },
+    {
+      "check": "car_has_simple_collision",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "target_length_4_2m",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "car_participates_in_style_toggle",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "player_is_blocked_by_car",
+      "details": {
+        "car_right_edge": -1.83204698562622,
+        "player_x": -1.54833364486694
+      },
+      "passed": true
+    },
+    {
+      "check": "player_remains_on_road",
+      "details": {
+
+      },
+      "passed": true
+    }
+  ],
+  "display_driver": "headless",
+  "engine": "4.6.3-stable (official)",
+  "human_playtest": false,
+  "passed": true
+}

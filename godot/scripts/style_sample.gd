@@ -14,6 +14,8 @@ var originals: Array[Material] = []
 var replacements: Array[ShaderMaterial] = []
 var glyphs: Array[Node3D] = []
 var details: Node3D
+var detail_groups: Dictionary = {}
+var detail_instance_count := 0
 var two_sided_shader: Shader
 @onready var street: Node3D = get_parent().get_node("Street")
 func _ready() -> void:
@@ -61,6 +63,7 @@ func _ready() -> void:
     details.name = "SampleDetails"
     add_child(details)
     _build_details()
+    _flush_detail_groups()
     set_mode(mode)
 func _enroll(target: MeshInstance3D) -> void:
     var source := target.get_active_material(0)
@@ -81,27 +84,39 @@ func _flat(color: Color) -> StandardMaterial3D:
     m.albedo_color = color
     m.roughness = 1.0
     return m
-func _box(title: String, at: Vector3, size: Vector3, mat: Material) -> void:
-    var shape := BoxMesh.new()
-    shape.size = size
-    var part := MeshInstance3D.new()
-    part.name = title
-    part.mesh = shape
-    part.material_override = mat
-    part.position = at
-    details.add_child(part)
+func _queue_detail(kind: String, at: Vector3, size: Vector3, mat: Material) -> void:
+    var key := kind+"_"+str(mat.get_instance_id())
+    if not detail_groups.has(key):
+        detail_groups[key] = {"kind":kind,"material":mat,"transforms":[]}
+    detail_groups[key].transforms.append(Transform3D(Basis.from_scale(size),at))
+    detail_instance_count += 1
+func _box(_title: String, at: Vector3, size: Vector3, mat: Material) -> void:
+    _queue_detail("box",at,size,mat)
 func _bulb(at: Vector3, mat: Material) -> void:
-    var shape := SphereMesh.new()
-    shape.radius = .12
-    shape.height = .24
-    shape.radial_segments = 8
-    shape.rings = 4
-    var part := MeshInstance3D.new()
-    part.name = "BalconyBulb"
-    part.mesh = shape
-    part.position = at
-    part.material_override = mat
-    details.add_child(part)
+    _queue_detail("bulb",at,Vector3.ONE,mat)
+func _flush_detail_groups() -> void:
+    var box := BoxMesh.new()
+    box.size = Vector3.ONE
+    var sphere := SphereMesh.new()
+    sphere.radius = .12
+    sphere.height = .24
+    sphere.radial_segments = 8
+    sphere.rings = 4
+    for key in detail_groups:
+        var group: Dictionary = detail_groups[key]
+        var transforms: Array = group.transforms
+        var batch := MultiMesh.new()
+        batch.transform_format = MultiMesh.TRANSFORM_3D
+        batch.mesh = box if group.kind == "box" else sphere
+        batch.instance_count = transforms.size()
+        for i in transforms.size():
+            batch.set_instance_transform(i,transforms[i])
+        var instance := MultiMeshInstance3D.new()
+        instance.name = "SampleBatch_"+group.kind
+        instance.multimesh = batch
+        instance.material_override = group.material
+        details.add_child(instance,true)
+    detail_groups.clear()
 func _build_details() -> void:
     var dark := _flat(Color("273b46"))
     var pale := _flat(Color("f2dfb9"))

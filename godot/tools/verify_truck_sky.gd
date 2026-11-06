@@ -20,7 +20,7 @@ func run() -> void:
     var scene = (load("res://scenes/street_walk.tscn") as PackedScene).instantiate()
     root.add_child(scene)
     var truck: StaticBody3D = scene.get_node("ParkedTruck")
-    var meshes = truck.find_children("*","MeshInstance3D",true,false)
+    var meshes = truck.get_node("Visual").find_children("*","MeshInstance3D",true,false)
     var triangles := 0
     for mesh in meshes:
         triangles += mesh.mesh.get_faces().size() / 3

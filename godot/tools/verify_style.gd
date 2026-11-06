@@ -25,7 +25,7 @@ func run_checks() -> void:
     var sample = scene.get_node("StyleSample")
     check(sample.mode == 1,"initial_two_band_mode")
     check(sample.affected.size() > 30 and sample.affected.size() == sample.originals.size(),"sample_has_reversible_materials",{"count":sample.affected.size()})
-    check(sample.details.visible and sample.details.get_child_count() > 50,"sample_details_exist",{"count":sample.details.get_child_count()})
+    check(sample.details.visible and sample.detail_instance_count > 50,"sample_details_exist",{"instances":sample.detail_instance_count,"batches":sample.details.get_child_count()})
     check(not sample.glyphs[0].visible,"sample_uses_new_sign")
     var textured := 0
     for i in sample.replacements.size():
