@@ -121,3 +121,5 @@ Godot Compatibility／Mesa llvmpipe 截圖與 60 Hz 模擬、20 fps 無聲角色
 ## JSR／BRC 風格規範對照（2026-11-06）
 
 使用者原始檔 SHA-256 為 `7547594616f67916d3d35c6c1211bf46f8731ba337c1c2a48793b0c0c287b0de`；與 `origin/main` 提交 `54a520d` 整理版皆已保留。Godot 4.6.3 headless 11 項取樣與材質切換檢查、既有風格 12 項回歸通過。固定場景、相同相機使用 Godot Compatibility／Mesa llvmpipe 比較線性及最近鄰；約 5.29% 畫面像素有差異，不能以差異量判定美術品質；[截圖及測試記錄](evidence/style-reference/)。未進行實機移動閃爍測試、硬體 GPU、人工驗收或官方技術規格查證。
+
+從提交 `8b13d3d` 的乾淨 Git archive 副本重新匯入並執行取樣測試，兩者退出碼為 0；日誌見 [clean-import.log](evidence/style-reference/clean-import.log) 與 [clean-verify.log](evidence/style-reference/clean-verify.log)。這不是目標 GPU 測試。
