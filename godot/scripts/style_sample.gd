@@ -1,6 +1,9 @@
 extends Node3D
 ## Small reversible style experiment layered on the S1 scene.
 const ToonShader = preload("res://shaders/sample_toon.gdshader")
+const SkyShader = preload("res://shaders/stylized_sky.gdshader")
+var clouds_enabled := true
+var sample_environment: Environment
 var mode := 1 # 0 original, 1 two bands, 2 three bands
 var affected: Array[MeshInstance3D] = []
 var originals: Array[Material] = []
@@ -15,6 +18,13 @@ func _ready() -> void:
     world.environment = world.environment.duplicate(true)
     world.environment.ambient_light_energy = .35
     world.environment.background_color = Color("41b3dc")
+    sample_environment = world.environment
+    var sky_material := ShaderMaterial.new()
+    sky_material.shader = SkyShader
+    var sample_sky := Sky.new()
+    sample_sky.sky_material = sky_material
+    sample_environment.sky = sample_sky
+    set_clouds(true)
     var sun: DirectionalLight3D = street.get_node("Sun")
     sun.light_energy = .62
     sun.light_color = Color("ffe4c4")
@@ -158,3 +168,10 @@ func set_mode(value: int) -> void:
             affected[i].material_override = replacements[i]
 func mode_label() -> String:
     return ["Original materials", "Two bands", "Three bands"][mode]
+
+func set_clouds(enabled: bool) -> void:
+    clouds_enabled = enabled
+    sample_environment.background_mode = Environment.BG_SKY if enabled else Environment.BG_COLOR
+
+func sky_label() -> String:
+    return "Clouds" if clouds_enabled else "Flat sky"

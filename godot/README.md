@@ -1,6 +1,6 @@
 # Godot 道具展示專案
 
-驗證版本：Godot 4.6.3。以編輯器開啟 project.godot，匯入後執行主場景 scenes/street_walk.tscn。WASD 移動、Space 跳躍、V 切換第一／第三人稱，1–5／Tab 查看固定視角，0 回到角色，R 重設，P 重播飛機，Esc 釋放游標。原資產展示為 scenes/review.tscn。
+驗證版本：Godot 4.6.3。以編輯器開啟 project.godot，匯入後執行主場景 scenes/street_walk.tscn。WASD 移動、Space 跳躍、V 切換第一／第三人稱，1–5／Tab 查看固定視角，0 回到角色，R 重設，P 重播飛機，C 比較天空，Esc 釋放游標。原資產展示為 scenes/review.tscn。
 
 六件模型保留來源 GLB；尺寸與簡化碰撞位於 scenes/ 的同名包裝場景。主場景已有街道與四引擎客機白盒；已加入測試玩家控制器，已加入掠過事件及合成測試音；入口樣片支援可逆卡通明暗。白盒說明及五張 CPU 預覽見 ../docs/WHITEBOX.md。
 
@@ -18,3 +18,5 @@ S2 操作、28 項物理／邏輯檢查及人工試玩範圍見 ../docs/WALK.md�
 S4 飛機事件、截圖與驗證範圍見 ../docs/FLYBY.md。
 
 S3 入口風格樣片按 B 比較原始材質、兩段與三段明暗；細節與 Godot 軟體渲染結果見 ../docs/STYLE_SAMPLE.md。
+
+可切換的程序天空與驗證見 ../docs/SKY_SAMPLE.zh-TW.md。
