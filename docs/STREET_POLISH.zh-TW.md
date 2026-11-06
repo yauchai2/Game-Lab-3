@@ -18,6 +18,7 @@ Godot 主場景按 **1** 看入口，**0** 返回遊走，**P** 重播飛機，*
 - 13 項新場景／操作／路燈碰撞檢查，及原有 28 項遊走、12 項材質、7 項天空、11 項飛機、6 項轎車、11 項貨車／天空回歸均通過；原 S1 與八件資產載入及來源雜湊通過。[檢查結果](evidence/dressing/verification.json)與同目錄回歸紀錄可重現。部分 headless 測試退出時仍有既存 ObjectDB 音訊清理警告。
 - 新裝飾 542 個盒形／線段實例合併為 13 個材質批次；既有風格樣片的 165 個細節實例也以共享批次繪製。相同 800×450 鏡頭與軟體渲染條件下，包含陰影等渲染工作的 Godot 計數由 **1,871 降至 1,131 次繪製呼叫**；兩次包含少量後續細節差異，見 [前](evidence/dressing/render_metrics_before_batching.json)／[後](evidence/dressing/render_metrics.json)。這不是 FPS、GPU 記憶體或硬體效能承諾。
 - 同一入口鏡頭、1280×720 的 [輪廓比較](evidence/outline/pixel_comparison.json)顯示效果有可見差異，主招牌的金色字樣保留。這只檢查指定軟體渲染和單一視角，不能保證所有透明物件或所有硬體都正確。
+- 以提交 `9eff39c` 的乾淨 Git archive 重建專案，Godot 4.6.3 headless 匯入及啟動成功，沒有腳本或 shader 錯誤；啟動退出仍有 ObjectDB 音訊清理警告。見 [乾淨匯入](evidence/dressing/clean-import.log)／[啟動](evidence/dressing/clean-start.log)。
 - 人工遊玩、真實桌面輸入、GPU 效能、音效實聽，以及中文字型跨平台仍待使用者驗收。方向以使用者參考為基礎，但最終美術未視為已完成。
 
 重現範例：
