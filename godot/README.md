@@ -14,3 +14,5 @@ godot --headless --path godot --script res://verify.gd
 最終 toon 畫面、操作手感及 GPU 效能需另行驗收。詳細紀錄見 ../docs/VALIDATION.md。
 
 S2 操作、28 項物理／邏輯檢查及人工試玩範圍見 ../docs/WALK.md。
+
+S3 入口風格樣片按 B 比較原始材質、兩段與三段明暗；細節與 Godot 軟體渲染結果見 ../docs/STYLE_SAMPLE.md。

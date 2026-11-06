@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 [ext_resource type="PackedScene" path="res://scenes/street_whitebox.tscn" id="1_street"]
 [ext_resource type="PackedScene" path="res://scenes/actors/test_player.tscn" id="2_player"]
 [ext_resource type="Script" path="res://scripts/walk_session.gd" id="3_session"]
+[ext_resource type="Script" path="res://scripts/style_sample.gd" id="4_style"]
 [node name="StreetWalk" type="Node3D"]
 script = ExtResource("3_session")
 [node name="Street" parent="." instance=ExtResource("1_street")]
 [node name="Player" parent="." instance=ExtResource("2_player")]
 position = Vector3(0, 0.08, 5.5)
+
+[node name="StyleSample" type="Node3D" parent="."]
+script = ExtResource("4_style")
