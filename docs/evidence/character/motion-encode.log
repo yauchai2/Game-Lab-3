@@ -26,9 +26,10 @@ Output #0, mp4, to 'docs/evidence/character/character_walk_silent.mp4':
         encoder         : Lavc61.19.101 libx264
       Side data:
         cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
-frame=   13 fps=0.0 q=26.0 size=       0KiB time=00:00:00.55 bitrate=   0.7kbits/s speed= 1.1x    [mp4 @ 0x55b575702f80] Starting second pass: moving the moov atom to the beginning of the file
+frame=   13 fps=0.0 q=26.0 size=       0KiB time=00:00:00.55 bitrate=   0.7kbits/s speed= 1.1x
+[mp4 @ 0x55b575702f80] Starting second pass: moving the moov atom to the beginning of the file
 [out#0/mp4 @ 0x55b575702e80] video:281KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.504496%
-frame=   51 fps=0.0 q=-1.0 Lsize=     282KiB time=00:00:02.45 bitrate= 943.9kbits/s speed=2.65x    
+frame=   51 fps=0.0 q=-1.0 Lsize=     282KiB time=00:00:02.45 bitrate= 943.9kbits/s speed=2.65x
 [libx264 @ 0x55b575702180] frame I:1     Avg QP:17.90  size: 19559
 [libx264 @ 0x55b575702180] frame P:15    Avg QP:20.15  size:  8279
 [libx264 @ 0x55b575702180] frame B:35    Avg QP:22.60  size:  4091

@@ -115,3 +115,5 @@ AI 依既有三視圖拼版製作單輛斜角參考圖，圖片已保存，尚�
 [來源雜湊](evidence/character/integrity.json)確認使用者 GLB 與 repo 位元相同；影片僅抽看約 5.6、31.9、43.2 秒的影格。Godot 4.6.3 headless：角色與貼圖 14 項，以及風格、天空、貨車、街道、遊走、轎車、飛機與 S1 回歸均通過；各原始報告與日誌見 [regression](evidence/textured/regression/)。部分既有測試退出有 ObjectDB 音訊清理警告。
 
 Godot Compatibility／Mesa llvmpipe 截圖與 60 Hz 模擬、20 fps 無聲角色步態錄影不是人工遊玩、目標 GPU 或實際效能測試。更多方法與限制見 [CHARACTER_TEXTURES.zh-TW.md](CHARACTER_TEXTURES.zh-TW.md)。
+
+以本提交的乾淨 `git archive` 副本重新執行 Godot 4.6.3 headless editor 匯入及角色／貼圖 14 項測試，兩者退出碼均為 0；[匯入日誌](evidence/character/clean-import.log)、[驗證日誌](evidence/character/clean-verify.log)。乾淨匯入不代表使用者本機 GPU 測試。
