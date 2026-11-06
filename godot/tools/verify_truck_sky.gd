@@ -31,6 +31,9 @@ func run() -> void:
     var camera := root.get_viewport().get_camera_3d()
     var env: Environment = scene.get_node("Street/WorldEnvironment").environment
     var ambient := env.ambient_light_energy
+    check(sample.image_sky_enabled and env.sky==sample.generated_sky,"image_sky_is_default")
+    key(scene,KEY_N)
+    check(not sample.image_sky_enabled and env.sky==sample.procedural_sky,"n_switches_to_procedural")
     key(scene,KEY_N)
     check(sample.image_sky_enabled and env.background_mode==Environment.BG_SKY and env.sky==sample.generated_sky,"n_enables_image_sky")
     check(root.get_viewport().get_camera_3d()==camera and env.ambient_light_energy==ambient,"sky_preserves_camera_ambient")

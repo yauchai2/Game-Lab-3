@@ -3,10 +3,24 @@ render_mode diffuse_lambert, specular_disabled;
 uniform vec4 base_color : source_color = vec4(1.0);
 uniform sampler2D base_texture : source_color, filter_linear_mipmap;
 uniform bool use_texture = false;
+uniform bool use_world_uv = false;
+uniform vec3 texture_scale = vec3(1.0);
+uniform vec3 texture_offset = vec3(0.0);
+varying vec3 world_position;
+void vertex() {
+    world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+}
 uniform int bands : hint_range(2, 3) = 2;
 uniform vec3 shadow_tint : source_color = vec3(0.50, 0.65, 0.78);
 void fragment() {
-    ALBEDO = base_color.rgb * (use_texture ? texture(base_texture, UV).rgb : vec3(1.0));
+    vec2 tex_uv = UV * texture_scale.xy + texture_offset.xy;
+    if (use_world_uv) {
+        vec3 world_normal = abs(normalize((INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz));
+        vec3 point = world_position * texture_scale + texture_offset;
+        tex_uv = world_normal.y > max(world_normal.x, world_normal.z) ? point.xz :
+                 (world_normal.x > world_normal.z ? point.zy : point.xy);
+    }
+    ALBEDO = base_color.rgb * (use_texture ? texture(base_texture, tex_uv).rgb : vec3(1.0));
     ROUGHNESS = 1.0;
     SPECULAR = 0.0;
 }

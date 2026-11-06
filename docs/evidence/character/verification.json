@@ -1,0 +1,108 @@
+{
+  "checks": [
+    {
+      "check": "character_skeleton_loaded",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "character_mesh_triangles",
+      "details": {
+        "count": 1664
+      },
+      "passed": true
+    },
+    {
+      "check": "character_scale_and_forward",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "character_replaces_placeholder_visually",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "character_uses_toon_material_modes",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "walking_updates_bones_and_position",
+      "details": {
+        "max_bone_angle": 0.35998597741127,
+        "z": -3.11515879631042
+      },
+      "passed": true
+    },
+    {
+      "check": "gait_returns_to_idle",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "first_person_hides_character",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "third_person_restores_character",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "image_sky_is_default",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "environment_textures_applied",
+      "details": {
+        "count": 14
+      },
+      "passed": true
+    },
+    {
+      "check": "toon_wall_uses_world_texture",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "mural_import_is_low_resolution",
+      "details": {
+        "height": 131,
+        "width": 256
+      },
+      "passed": true
+    },
+    {
+      "check": "mural_does_not_block_player",
+      "details": {
+
+      },
+      "passed": true
+    }
+  ],
+  "display_driver": "headless",
+  "engine": "4.6.3-stable (official)",
+  "human_playtest": false,
+  "passed": true
+}

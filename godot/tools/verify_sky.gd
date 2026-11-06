@@ -20,7 +20,7 @@ func run() -> void:
     var sample = scene.get_node("StyleSample")
     var env: Environment = scene.get_node("Street/WorldEnvironment").environment
     var camera: Camera3D = root.get_viewport().get_camera_3d()
-    check(sample.clouds_enabled and env.background_mode == Environment.BG_SKY and env.sky.sky_material.shader != null,"cloud_sky_enabled_by_default")
+    check(sample.image_sky_enabled and env.background_mode == Environment.BG_SKY and env.sky == sample.generated_sky,"image_sky_enabled_by_default")
     var original = (load("res://scenes/street_whitebox.tscn") as PackedScene).instantiate()
     var original_env: Environment = original.get_node("WorldEnvironment").environment
     check(original_env != env and original_env.background_mode == Environment.BG_COLOR,"whitebox_environment_unchanged")

@@ -109,3 +109,9 @@ AI 依既有三視圖拼版製作單輛斜角參考圖，圖片已保存，尚�
 13 項新場景／碰撞／功能檢查與遊走、風格、天空、飛機、轎車、貨車、S1 及八件資產載入／原始雜湊回歸通過。Godot Compatibility／Mesa llvmpipe 在 1280×720 擷取五個視角及描邊對照，並錄製固定 30 fps 模擬、10 fps 無聲影片。指定 800×450 測試場景的繪製呼叫由 1,871 降至 1,131，前後有少量幾何細節差異；不是硬體效能或 FPS。詳見 [STREET_POLISH.zh-TW.md](STREET_POLISH.zh-TW.md)。既存 ObjectDB 音訊清理警告、人工試玩與真實桌面／硬體仍待驗證。
 
 此外，以提交 `9eff39c` 的乾淨 Git archive 在獨立目錄重新匯入並無視窗啟動成功；未見腳本或 shader 錯誤，退出仍有既存 ObjectDB 音訊清理警告。這是 Godot 匯入／啟動驗證，不代表使用者桌面試玩。
+
+## 圖片天空、角色及低清貼圖（2026-11-06）
+
+[來源雜湊](evidence/character/integrity.json)確認使用者 GLB 與 repo 位元相同；影片僅抽看約 5.6、31.9、43.2 秒的影格。Godot 4.6.3 headless：角色與貼圖 14 項，以及風格、天空、貨車、街道、遊走、轎車、飛機與 S1 回歸均通過；各原始報告與日誌見 [regression](evidence/textured/regression/)。部分既有測試退出有 ObjectDB 音訊清理警告。
+
+Godot Compatibility／Mesa llvmpipe 截圖與 60 Hz 模擬、20 fps 無聲角色步態錄影不是人工遊玩、目標 GPU 或實際效能測試。更多方法與限制見 [CHARACTER_TEXTURES.zh-TW.md](CHARACTER_TEXTURES.zh-TW.md)。

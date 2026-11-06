@@ -177,5 +177,25 @@
       "visual_review": "Cab, cargo box and visible wheels are recognizable; cargo rear is a plain panel without detailed door hardware."
     }
   ],
-  "pending_reference_only": []
+  "pending_reference_only": [],
+  "characters": [
+    {
+      "asset_id": "CHAR_PLAYER_A01",
+      "model": "godot/assets/CHAR_PLAYER_A01.glb",
+      "scene": "godot/scenes/actors/test_player.tscn",
+      "original_filename": "character-1.glb",
+      "bytes": 358444,
+      "sha256": "12bb38212d67c8b28eeb6bbb64e3c354e2e9841d5fca51bdc1860e48691150ad",
+      "triangles": 1664,
+      "skeleton_joints": 65,
+      "animation_clips": 0,
+      "texture_pixels": [
+        1024,
+        1024
+      ],
+      "visual_scale": 1.75,
+      "status": "prototype_with_procedural_gait",
+      "provenance": "User-uploaded GLB; generation service/model not established."
+    }
+  ]
 }

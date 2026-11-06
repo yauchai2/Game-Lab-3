@@ -1,5 +1,7 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=10 format=3]
 [ext_resource type="Script" path="res://scripts/test_player.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://assets/CHAR_PLAYER_A01.glb" id="2_character"]
+[ext_resource type="Script" path="res://scripts/character_pose_driver.gd" id="3_pose"]
 [sub_resource type="CapsuleShape3D" id="BodyShape"]
 radius = 0.28
 height = 1.75
@@ -26,13 +28,20 @@ position = Vector3(0, 0.875, 0)
 shape = SubResource("BodyShape")
 [node name="Visual" type="Node3D" parent="."]
 [node name="Body" type="MeshInstance3D" parent="Visual"]
+visible = false
 position = Vector3(0, 0.82, 0)
 mesh = SubResource("BodyMesh")
 material_override = SubResource("BodyMaterial")
 [node name="Head" type="MeshInstance3D" parent="Visual"]
+visible = false
 position = Vector3(0, 1.55, 0)
 mesh = SubResource("HeadMesh")
 material_override = SubResource("HeadMaterial")
+[node name="CharacterModel" parent="Visual" instance=ExtResource("2_character")]
+rotation = Vector3(0, 3.14159265, 0)
+scale = Vector3(1.75, 1.75, 1.75)
+[node name="PoseDriver" type="Node" parent="Visual"]
+script = ExtResource("3_pose")
 [node name="ViewPivot" type="Node3D" parent="."]
 position = Vector3(0, 1.6, 0)
 [node name="SpringArm3D" type="SpringArm3D" parent="ViewPivot"]

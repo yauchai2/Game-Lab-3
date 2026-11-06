@@ -17,6 +17,8 @@ var details: Node3D
 var detail_groups: Dictionary = {}
 var detail_instance_count := 0
 var two_sided_shader: Shader
+var aircraft_shader: Shader
+var aircraft_two_sided_shader: Shader
 @onready var street: Node3D = get_parent().get_node("Street")
 func _ready() -> void:
     # Per-instance environment: keep highlights readable without changing S1 resources.
@@ -35,12 +37,27 @@ func _ready() -> void:
     panorama.panorama = GeneratedSkyTexture
     generated_sky.sky_material = panorama
     sample_environment.sky = procedural_sky
-    set_clouds(true)
+    set_image_sky(true)
     var sun: DirectionalLight3D = street.get_node("Sun")
     sun.light_energy = .62
     sun.light_color = Color("ffe4c4")
+    # Bring the landmark sign slightly into the street and warm its face;
+    # the standalone S1 whitebox remains untouched.
+    for title in ["VerticalSignFrame","VerticalSignFace"]:
+        var sign: MeshInstance3D = street.get_node("Landmarks/"+title)
+        sign.position.x += .8
+        var original: BaseMaterial3D = sign.get_active_material(0)
+        var styled: BaseMaterial3D = original.duplicate(true)
+        styled.albedo_color = Color("dbab3c") if title == "VerticalSignFrame" else Color("59402d")
+        sign.material_override = styled
     two_sided_shader = Shader.new()
     two_sided_shader.code = ToonShader.code.replace("specular_disabled;", "specular_disabled, cull_disabled;")
+    # Thin aircraft details produced shadow acne on the white fuselage. The plane
+    # still casts street shadows, but its stylized surface does not receive them.
+    aircraft_shader = Shader.new()
+    aircraft_shader.code = ToonShader.code.replace("specular_disabled;", "specular_disabled, shadows_disabled;")
+    aircraft_two_sided_shader = Shader.new()
+    aircraft_two_sided_shader.code = ToonShader.code.replace("specular_disabled;", "specular_disabled, shadows_disabled, cull_disabled;")
     for child in street.get_node("BuildingMasses").get_children():
         if child is MeshInstance3D and (child.name.begins_with("OrangeFront") or child.name.begins_with("BlueFront")):
             _enroll(child)
@@ -53,26 +70,31 @@ func _ready() -> void:
     for asset_id in ["PROP_HYDRANT_A01", "VEH_VAN_A01"]:
         for child in street.get_node("Props/"+asset_id).find_children("*","MeshInstance3D",true,false):
             _enroll(child)
+    for child in get_parent().get_node("Player/Visual/CharacterModel").find_children("*","MeshInstance3D",true,false):
+        _enroll(child)
     for child in get_parent().get_node("ParkedCar").find_children("*","MeshInstance3D",true,false):
         _enroll(child)
     for child in get_parent().get_node("ParkedTruck").find_children("*","MeshInstance3D",true,false):
         _enroll(child)
     for child in street.get_node("AircraftProxy").find_children("*","MeshInstance3D",true,false):
-        _enroll(child)
+        _enroll(child,true)
     details = Node3D.new()
     details.name = "SampleDetails"
     add_child(details)
     _build_details()
     _flush_detail_groups()
     set_mode(mode)
-func _enroll(target: MeshInstance3D) -> void:
+func _enroll(target: MeshInstance3D, aircraft := false) -> void:
     var source := target.get_active_material(0)
     var replacement := ShaderMaterial.new()
-    replacement.shader = ToonShader
+    replacement.shader = aircraft_shader if aircraft else ToonShader
     if source is BaseMaterial3D:
         if source.cull_mode == BaseMaterial3D.CULL_DISABLED:
-            replacement.shader = two_sided_shader
+            replacement.shader = aircraft_two_sided_shader if aircraft else two_sided_shader
         replacement.set_shader_parameter("base_color",source.albedo_color)
+        replacement.set_shader_parameter("use_world_uv",source.uv1_triplanar and source.uv1_world_triplanar)
+        replacement.set_shader_parameter("texture_scale",source.uv1_scale)
+        replacement.set_shader_parameter("texture_offset",source.uv1_offset)
         replacement.set_shader_parameter("use_texture",source.albedo_texture != null)
         if source.albedo_texture != null:
             replacement.set_shader_parameter("base_texture",source.albedo_texture)
@@ -174,7 +196,7 @@ func _build_details() -> void:
     label.font_size = 96
     label.pixel_size = .012
     label.modulate = Color("f4c75d")
-    label.position = Vector3(-4.8,10.7,-14.72)
+    label.position = Vector3(-4.0,10.7,-14.72)
     var font := SystemFont.new()
     font.font_names = PackedStringArray(["Noto Sans CJK TC","Microsoft JhengHei","PingFang TC","sans-serif"])
     font.font_weight = 700

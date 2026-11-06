@@ -128,3 +128,9 @@ Godot headless 11 項貨車／天空切換測試、28 項遊走、12 項風格�
 Godot 4.6.3 headless 13 項新場景檢查、28 遊走、12 風格、7 天空、11 飛機、6 轎車、11 貨車及 S1／八件載入／雜湊回歸均通過。Godot Compatibility／llvmpipe 擷取 16:9 前後對比、輪廓對照與 12.1 秒無聲連續飛越影片。指定 800×450 鏡頭的渲染繪製呼叫從 1,871 降至 1,131，兩次含少量細節差異，非 FPS 數據。方法與[證據](STREET_POLISH.zh-TW.md)；音效未實聽、目標 GPU 未測、ObjectDB 退出清理警告未解決。最終風格及人工操作仍需使用者回饋。
 
 乾淨副本驗證：從提交 `9eff39c` 的 Git archive 在另一目錄重新匯入並 headless 啟動成功，未見腳本或 shader 錯誤；退出的 ObjectDB 音訊清理警告仍存在。詳見 STREET_POLISH.zh-TW.md。
+
+## 角色、圖片天空與低清街景（2026-11-06，最新）
+
+使用者明確選圖片天空、提供 `character-1.glb` 和 Hinata 參考影片。圖片天空現在為預設，N 可比較程序天空。角色原始 GLB 不改，含 65 骨骼、1,664 三角面、0 動畫；包裝縮放 1.75，使用速度驅動暫用步態。原始骨架與材質、影片識別及取樣範圍、貼圖與局限見 [CHARACTER_TEXTURES.zh-TW.md](CHARACTER_TEXTURES.zh-TW.md)。
+
+環境新增 128×128 程序路面／行人道／牆面貼圖、生成塗鴉、招牌支架及飛機自陰影斑點修正；保留獨立 S1。headless 九組場景檢查均通過，角色與街景截圖由 llvmpipe 擷取。這不是人工試玩或目標 GPU 驗收；正式角色動畫、聲音、性能仍待處理。使用者可在 GitHub Desktop 同步 `codex/flight-street-handoff`，以 Godot 開主場景。

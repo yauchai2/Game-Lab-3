@@ -157,6 +157,8 @@ func _make_livery(material: Material) -> void:
     livery.name = "GreenLiveryDetail"
     livery.mesh = surface.commit()
     livery.material_override = material
+    # Thin color surfaces must not self-shadow onto the fuselage.
+    livery.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
     livery.layers = 2
     plane.add_child(livery)
 

@@ -1,6 +1,7 @@
 extends Node3D
 ## Reversible scene dressing; storefronts are visual, lamp poles use simple collision.
 ## Boxes sharing a material are batched to keep the number of draw submissions modest.
+const GRAFFITI = preload("res://assets/art/graffiti_swift_A01.png")
 var groups: Dictionary = {}
 var material_colors := {
     "frame": Color("273c45"),
@@ -39,8 +40,10 @@ func _ready() -> void:
     _make_corner_facades()
     _make_upper_facades()
     _make_signs()
+    _make_landmark_scaffold()
     _make_street_furniture()
     _make_cables()
+    _make_graffiti()
     _make_background()
     _flush_groups()
 
@@ -237,6 +240,22 @@ func _make_signs() -> void:
         _box("ivory",Vector3(side*5.15,y,z),Vector3(1.25,1.1,.12))
         _box(spec[3],Vector3(side*5.15,y,z+.08),Vector3(1.1,.95,.06))
 
+func _make_landmark_scaffold() -> void:
+    # Pale metal bracing supports the moved landmark sign; geometry is overhead.
+    var z := -15.04
+    var left := -5.94
+    var right := -5.04
+    for x in [left,right]:
+        _box("cream",Vector3(x,10.7,z),Vector3(.075,8.8,.075))
+    for y in [6.35,8.5,10.7,12.9,15.05]:
+        _box("cream",Vector3((left+right)*.5,y,z),Vector3(right-left,.075,.075))
+    for i in 4:
+        var y := 6.35+i*2.175
+        _segment("cream",Vector3(left,y,z+.02),Vector3(right,y+2.175,z+.02),.055)
+        _segment("cream",Vector3(right,y,z-.02),Vector3(left,y+2.175,z-.02),.055)
+    for y in [7.2,14.2]:
+        _segment("frame",Vector3(-6.0,y,-16.1),Vector3(-5.0,y,-15.0),.09)
+
 func _make_street_furniture() -> void:
     # Slender lamps on the sidewalk, visual only. The original collision corridor remains unchanged.
     for spec in [[-1,-.5],[-1,-21.5],[1,-26.0],[1,-52.0]]:
@@ -272,6 +291,24 @@ func _make_cables() -> void:
             var point := Vector3(lerpf(-5.8,5.8,t),12.3-.85*4.0*t*(1.0-t),z)
             _segment("frame",last,point,.025)
             last = point
+
+func _make_graffiti() -> void:
+    # One original graphic in the side alley, away from the photo's main view.
+    var surface := QuadMesh.new()
+    surface.size = Vector2(4.4,2.25)
+    var mat := StandardMaterial3D.new()
+    mat.albedo_texture = GRAFFITI
+    mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+    mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+    mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+    mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
+    var art := MeshInstance3D.new()
+    art.name = "AlleyGraffiti"
+    art.mesh = surface
+    art.material_override = mat
+    art.position = Vector3(-10.5,3.2,-33.90)
+    art.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+    add_child(art)
 
 func _make_background() -> void:
     # The far whitebox remains a collision boundary; layered signs/windows give it depth.

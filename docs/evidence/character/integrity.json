@@ -1,0 +1,14 @@
+{
+  "source_filename": "character-1.glb",
+  "source_sha256": "12bb38212d67c8b28eeb6bbb64e3c354e2e9841d5fca51bdc1860e48691150ad",
+  "repository_sha256": "12bb38212d67c8b28eeb6bbb64e3c354e2e9841d5fca51bdc1860e48691150ad",
+  "byte_identical": true,
+  "source_bytes": 358444,
+  "reference_video_filename": "Hinata takes on Bomb Rush CyberFunk (๑╹ω╹๑ )★彡.mp4",
+  "reference_video_sha256": "6009d88127e86f13cdc60a277ad30f9cbf97a41ddb565495c6bc480886b43c87",
+  "video_sample_seconds": [
+    5.6,
+    31.9,
+    43.2
+  ]
+}
