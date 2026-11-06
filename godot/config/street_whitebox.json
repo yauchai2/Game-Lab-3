@@ -1,0 +1,100 @@
+{
+  "street_length": 64.0,
+  "road_width": 8.0,
+  "sidewalk_width": 2.0,
+  "floor_height": 3.3,
+  "sidewalk_height": 0.16,
+  "aircraft_position": [
+    -3,
+    45,
+    -60
+  ],
+  "aircraft_yaw_degrees": -155,
+  "sign_position": [
+    -4.8,
+    10.7,
+    -15.0
+  ],
+  "sign_size": [
+    2.1,
+    8.0,
+    0.35
+  ],
+  "cameras": [
+    {
+      "id": "01_entry",
+      "label": "入口仰角",
+      "position": [
+        0,
+        1.1,
+        8
+      ],
+      "target": [
+        0,
+        13,
+        -24
+      ],
+      "fov": 75
+    },
+    {
+      "id": "02_midstreet",
+      "label": "街道中段",
+      "position": [
+        0,
+        1.6,
+        -25
+      ],
+      "target": [
+        0,
+        14,
+        -48
+      ],
+      "fov": 75
+    },
+    {
+      "id": "03_alley",
+      "label": "側巷回望",
+      "position": [
+        -12,
+        1.6,
+        -32
+      ],
+      "target": [
+        3,
+        6,
+        -30
+      ],
+      "fov": 75
+    },
+    {
+      "id": "04_sidewalk",
+      "label": "右側看招牌與飛機",
+      "position": [
+        5.1,
+        1.6,
+        -9
+      ],
+      "target": [
+        -3,
+        20,
+        -21
+      ],
+      "fov": 75
+    },
+    {
+      "id": "05_layout",
+      "label": "俯視布局（隱藏飛機）",
+      "position": [
+        0,
+        105,
+        -28
+      ],
+      "target": [
+        0,
+        0,
+        -28
+      ],
+      "orthographic_size": 84
+    }
+  ]
+}

@@ -11,7 +11,7 @@
 
 ## 現有成果
 
-`godot/` 是六件資產的展示專案，並非街道白盒或可玩場景。所有 GLB 原始資料未改動；尺寸與簡化碰撞在各包裝 .tscn。`assets-manifest.json` 記錄來源雜湊與狀態；`references/assets/` 包含七種資產的參考圖；`docs/evidence/` 有原型預覽與載入紀錄。
+`godot/` 已包含六件資產展示及 S1 街道白盒。主場景為 `scenes/street_whitebox.tscn`（1–5／Tab 切換），原 `scenes/review.tscn` 保留。尚無可操作角色。所有 GLB 原始資料未改動；尺寸與簡化碰撞在各包裝 .tscn。`assets-manifest.json` 記錄來源雜湊與狀態；`references/assets/` 包含七種資產的參考圖；`docs/evidence/` 有原型預覽與載入紀錄。
 
 已確認的偏好與取捨見 [DECISIONS.md](DECISIONS.md)。設計基準見 [DESIGN.md](DESIGN.md)。完整原聊天計劃保留於 [archive/chat-plan.zh-TW.md](archive/chat-plan.zh-TW.md)，其中歷史工作區附件路徑不可當成 repo 檔案。
 
@@ -19,9 +19,9 @@
 
 1. 讀取 AGENTS.md、README.md、本文件、TODO、DESIGN、DECISIONS 和 VALIDATION，確認最新分支與修改。
 2. 重跑 Godot 匯入與 `verify.gd`，確認當前環境能使用六件資產。
-3. 執行 S1：依 [design/next-phase.zh-TW.md](design/next-phase.zh-TW.md) 建立參數化街道白盒、四個固定視角與俯視布局。
+3. 讀取 [WHITEBOX.md](WHITEBOX.md)，查看 S1 的四個固定視角與俯視布局；白盒已實作，等待使用者構圖回饋。
 4. 保留 `godot/scenes/review.tscn` 作資產對照；新街道另建場景。
-5. S1／S2 成立後精修 10–15 m 街段，再擴展與製作飛機事件。先不要求使用者追加付費道具生成。
+5. 下一個實作階段為 S2 基本遊走；S1／S2 確認後再精修 10–15 m 街段及飛機事件。先不要求使用者追加付費道具生成。
 
 ## 驗證與缺口
 
@@ -44,3 +44,11 @@
 - 首次完整同步提交：`532670dadee274a643d8faea88b1484714354ae8`。本節連結為後續補充紀錄；以遠端分支最新提交為準。
 
 目前未合併 main、未發佈。若後續要接續本成果，先讀任務分支或 PR 的最新內容，不要只讀尚未合併的 main。
+
+## S1 街道白盒更新
+
+已讀取任務分支最新規範並保留六件來源資產及原展示。新增參數配置、生成器、街道場景、四個固定相機與俯視相機、1–5／Tab 切換，以及 Godot 結構／相機／物理射線檢查。飛機位置與朝向經入口預覽調整，屬美術構圖參數，非航空實測。
+
+現有環境沒有 Xvfb 顯示服務，未取得 Godot GPU 畫面；改用 Godot 匯出的同一份幾何在 Blender Cycles CPU 產生五張預覽。操作與重現步驟見 WHITEBOX.md。尚未完成玩家控制器、事件聲音、最終 toon 或硬體效能。
+
+五張 CPU 預覽已完成並檢查，側巷缺少地面基底的問題已修正；入口保留道路與現有道具前景。新白盒檢查涵蓋 1–5 鍵、Tab 循環、八個地面射線取樣與配置指紋，結果見 docs/evidence/whitebox/。下一步等待構圖回饋並實作 S2，勿將 S1 固定相機當成行走控制器。

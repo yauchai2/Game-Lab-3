@@ -1,8 +1,8 @@
 # Godot 道具展示專案
 
-驗證版本：Godot 4.6.3。以編輯器開啟 project.godot，匯入後執行 scenes/review.tscn。
+驗證版本：Godot 4.6.3。以編輯器開啟 project.godot，匯入後執行主場景 scenes/street_whitebox.tscn，按 1–5／Tab 切換固定視角。原資產展示為 scenes/review.tscn。
 
-六件模型保留來源 GLB；尺寸與簡化碰撞位於 scenes/ 的同名包裝場景。這是資產展示場景，沒有玩家控制器、街道或飛機事件，材質仍是來源 PBR。
+六件模型保留來源 GLB；尺寸與簡化碰撞位於 scenes/ 的同名包裝場景。主場景已有街道與四引擎客機白盒；沒有玩家控制器或掠過事件，現有道具材質仍是來源 PBR。白盒說明及五張 CPU 預覽見 ../docs/WHITEBOX.md。
 
 從 repo 根目錄可執行：
 

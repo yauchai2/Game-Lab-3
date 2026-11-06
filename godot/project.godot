@@ -1,9 +1,9 @@
 config_version=5
 [application]
-config/name="Game Lab 3 — Flight Street Asset Library"
-run/main_scene="res://scenes/review.tscn"
+config/name="Game Lab 3 — Flight Street Whitebox"
+run/main_scene="res://scenes/street_whitebox.tscn"
 [display]
-window/size/viewport_width=960
+window/size/viewport_width=1280
 window/size/viewport_height=720
 [rendering]
 renderer/rendering_method="gl_compatibility"

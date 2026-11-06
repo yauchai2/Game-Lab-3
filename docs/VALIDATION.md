@@ -49,3 +49,15 @@ godot --headless --path godot --script res://verify.gd
 - [來源完整性與文件檢查](evidence/repository-integrity.json)
 
 以上仍不包含 GPU 畫面、實際遊玩或效能驗證。
+
+## S1 街道白盒
+
+已生成街道場景，完成五個相機切換與方向檢查、64 m／8 m 基準尺寸、四個引擎與開口、六件來源道具、251 個 mesh 節點及八個地面射線取樣檢查。原始六件 GLB 的 SHA-256 維持一致。主場景無視窗啟動通過。
+
+- [白盒生成紀錄](evidence/whitebox/build.log)
+- [檢查紀錄](evidence/whitebox/verification.log) 與 [結構化結果](evidence/whitebox/verification.json)
+- [啟動紀錄](evidence/whitebox/startup.log)
+- [來源資產回歸檢查](evidence/whitebox/source-assets-verification.log)
+- [五張預覽及重現步驟](WHITEBOX.md)
+
+預覽為 Godot 幾何快照的 Blender Cycles CPU 渲染，光照另設；不代表 Godot GPU 畫面驗證。S1 沒有玩家控制器，八個射線取樣不能代替玩家碰撞與整條路的人工遊玩。
