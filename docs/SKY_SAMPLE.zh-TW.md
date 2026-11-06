@@ -36,3 +36,14 @@ godot --headless --path godot --fixed-fps 60 --audio-driver Dummy --script res:/
 ```
 
 `res://tools/capture_sky.gd` 需可用的圖形顯示環境；截圖比較時第一和第二張使用同一相機與飛機固定位置。
+
+
+## 新生成的圖片天空與箱式貨車
+
+依使用者提供的 Jet Set Radio／Bomb Rush Cyberfunk 畫面作風格參考，使用 ImageGen 製作原創 [2:1 天空圖](../godot/assets/SKY_BLUE_A01.png)，尺寸 1774×887；使用者提供的遊戲截圖原檔未存入 repo。主場景維持程序天空為預設，按 **N** 切換到圖片天空、再按 N 返回程序天空；**C** 仍可切程序天空／純色。圖片天空水平旋轉 90° 作入口構圖；兩者可在同鏡頭下比較：[程序](evidence/truck-sky/01_procedural.png)／[圖片](evidence/truck-sky/02_image_sky.png)。飛機是固定姿態截圖，非播放影片。
+
+圖片用於 PanoramaSkyMaterial 作全景**測試候選**，並非已證實完美 360° 素材。原圖左右邊緣每色通道平均差約 0.72／255、最大差 6／255；在 Godot Compatibility／Mesa llvmpipe、指定相機下，0° 與 360° 像素相同，+180° 與 −180° 有 109／409,600 個像素不同。見[八方向](evidence/truck-sky/image-rotation/contact.png)與[數據](evidence/truck-sky/image-rotation/pixel-report.json)。這不保證所有 GPU、俯仰或動畫時都無接縫；玩家體驗和最終方向尚未驗收。
+
+生成時的精確提示詞：
+
+> Create a single original wide blue-sky background image for a stylized 3D street game, using the attached game screenshots only as visual guidance for the skies: rich saturated cobalt/azure blue, sharply graphic cel-shaded cumulus clouds with irregular chunky wind-sculpted edges, clean broad white highlights and pale cyan/sky-blue shadow planes. Aim for energetic 2000s urban arcade game atmosphere. A sparse-to-moderate arrangement of differently sized clouds around the lower-middle band, with generous open blue sky above so an aircraft remains legible. Sky and clouds only, no buildings, landscape, ground, horizon line, sun, people, aircraft, text, logos or interface. Wide panoramic 2:1 equirectangular environment-map candidate, uniform blue at top and bottom, clouds away from left and right edges, try to match the left and right edge colors for a potential 360-degree wrap. Hard-edged 2D illustration, no photorealism, no gradients inside clouds, no border.

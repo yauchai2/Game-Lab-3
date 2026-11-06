@@ -1,0 +1,17 @@
+{
+  "source_sha256": "b15a7535ab7f2f173472ffe002ead8e246883ff9252cc11efb6769cc09b83228",
+  "copied_sha256": "b15a7535ab7f2f173472ffe002ead8e246883ff9252cc11efb6769cc09b83228",
+  "matches": true,
+  "triangles": 1510,
+  "texture": [
+    1024,
+    1024
+  ],
+  "scaled_length_m": 5.5,
+  "generation_model": "not reported",
+  "sky_sha256": "a2d11528d41244210b7827d4bf26c3136858dcb7c823f078c899a61c7fcd1095",
+  "sky_size": [
+    1774,
+    887
+  ]
+}

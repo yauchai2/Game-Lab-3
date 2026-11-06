@@ -1,7 +1,7 @@
 {
   "engine_version_verified": "Godot 4.6.3",
   "default_generation_preference": "P1.0 (web)",
-  "source_geometry_status": "seven_assets_received_and_inspected",
+  "source_geometry_status": "eight_assets_received_and_inspected",
   "assets": [
     {
       "asset_id": "PROP_BIN_A01",
@@ -152,9 +152,30 @@
       "status": "accepted_for_static_prototype_pending_human_review",
       "provenance": "User-uploaded GLB named tripo_convert_e1f6c188-5759-4b47-bfcb-7db7a9eeec01.glb; model version not reported for this upload.",
       "visual_review": "Godot scene captures show recognizable front, rear, windows and visible wheels; shadowed body is dark and final style awaits review."
+    },
+    {
+      "asset_id": "VEH_TRUCK_A01",
+      "model": "godot/assets/VEH_TRUCK_A01.glb",
+      "scene": "godot/scenes/VEH_TRUCK_A01.tscn",
+      "reference": "references/assets/VEH_TRUCK_A01_ref_v001.png",
+      "triangles": 1510,
+      "materials": 1,
+      "texture_pixels": [
+        1024,
+        1024
+      ],
+      "bytes": 282288,
+      "sha256": "b15a7535ab7f2f173472ffe002ead8e246883ff9252cc11efb6769cc09b83228",
+      "scale": 5.502685874380189,
+      "scaled_bounds_xyz_m": [
+        2.6519295067030426,
+        2.8883727123821794,
+        5.5
+      ],
+      "status": "accepted_for_static_prototype_pending_human_review",
+      "provenance": "User-uploaded GLB named tripo_convert_8e7c67cc-8882-42c4-9474-56e4cb8c677c.glb; model version not reported for this upload.",
+      "visual_review": "Cab, cargo box and visible wheels are recognizable; cargo rear is a plain panel without detailed door hardware."
     }
   ],
-  "pending_reference_only": [
-    "references/assets/VEH_TRUCK_A01_ref_v001.png"
-  ]
+  "pending_reference_only": []
 }

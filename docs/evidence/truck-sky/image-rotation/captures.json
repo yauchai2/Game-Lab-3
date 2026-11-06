@@ -1,0 +1,36 @@
+{
+  "display_driver": "X11",
+  "fov": 60,
+  "hardware_gpu_verified": false,
+  "headings_degrees": [
+    0.0,
+    45.0,
+    90.0,
+    135.0,
+    180.0,
+    225.0,
+    270.0,
+    315.0,
+    360.0,
+    -180.0,
+    179.75,
+    -179.75
+  ],
+  "human_playtest": false,
+  "images": [
+    "yaw_000.png",
+    "yaw_045.png",
+    "yaw_090.png",
+    "yaw_135.png",
+    "yaw_180.png",
+    "yaw_225.png",
+    "yaw_270.png",
+    "yaw_315.png",
+    "yaw_360.png",
+    "yaw_minus180.png",
+    "yaw_179_75.png",
+    "yaw_minus179_75.png"
+  ],
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "sky_only_camera_height_m": 1000
+}

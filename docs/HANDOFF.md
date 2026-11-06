@@ -112,3 +112,11 @@ Godot 4.6.3 headless 的 7 項天空邏輯、12 項風格、28 項遊走及 11 �
 Godot Compatibility／llvmpipe 的[街道正面](evidence/car/01_front_street.png)與[背面](evidence/car/02_back_street.png)顯示車輛輪廓可辨；車身在陰影下較暗，等待人工評估。headless 6 項轎車／碰撞檢查、28 項遊走、12 項樣片、11 項飛機回歸及 7 件載入檢查通過；退出仍有既存 ObjectDB 音訊清理警告。未進行硬體 GPU／人工試玩或聲音驗收。遊戲資產製作 skill 建議的 `game-dev` CLI 此環境不可用，本次使用現有 Godot 與靜態檢查流程，未執行 CLI 正規化或建立 canonical package。
 
 依使用者詢問，建議可選下一個 Tripo 候選為箱式貨車，單車參考圖及設定見 [TRIPO_TRUCK.zh-TW.md](TRIPO_TRUCK.zh-TW.md)；尚未收到貨車 GLB，費用及生成由使用者控制。
+
+## 使用者貨車與生成圖片天空（最新）
+
+收到 `tripo_convert_8e7c67cc-8882-42c4-9474-56e4cb8c677c.glb`，原始 SHA-256 `b15a7535ab7f2f173472ffe002ead8e246883ff9252cc11efb6769cc09b83228`，1,510 三角面、1K 貼圖，生成版本未由使用者明示。原始檔未改，新增 5.5 m 盒碰撞包裝並放在主遊走場景右側 `Vector3(2.6,0,-36)`，包括在 B 材質樣片；原 S1 白盒不變。Godot llvmpipe [前](evidence/truck-sky/03_truck_front.png)／[後](evidence/truck-sky/04_truck_back.png)顯示駕駛室及箱體可辨，背面為平面、無明顯門件，待人工評估。
+
+依使用者提供遊戲畫面，生成原創 1774×887 圖片 `godot/assets/SKY_BLUE_A01.png`，N 切換該圖片／程序天空，C 仍控制純色／程序。截圖及原圖邊界／指定視角檢查見 [天空文件](SKY_SAMPLE.zh-TW.md)，原參考截圖僅在聊天中，並非 repo 素材；圖片全景尚待人工、其他角度及目標硬體驗收。
+
+Godot headless 11 項貨車／天空切換測試、28 項遊走、12 項風格、7 項天空、11 項飛機、6 項轎車及八件資產載入回歸通過；部分測試退出仍有既存 ObjectDB 音訊清理警告。未進行人工試玩、實際音效或硬體 GPU／效能測試。

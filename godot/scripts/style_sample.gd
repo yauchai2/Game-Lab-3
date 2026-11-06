@@ -2,6 +2,10 @@ extends Node3D
 ## Small reversible style experiment layered on the S1 scene.
 const ToonShader = preload("res://shaders/sample_toon.gdshader")
 const SkyShader = preload("res://shaders/stylized_sky.gdshader")
+const GeneratedSkyTexture = preload("res://assets/SKY_BLUE_A01.png")
+var generated_sky: Sky
+var procedural_sky: Sky
+var image_sky_enabled := false
 var clouds_enabled := true
 var sample_environment: Environment
 var mode := 1 # 0 original, 1 two bands, 2 three bands
@@ -23,7 +27,12 @@ func _ready() -> void:
     sky_material.shader = SkyShader
     var sample_sky := Sky.new()
     sample_sky.sky_material = sky_material
-    sample_environment.sky = sample_sky
+    procedural_sky = sample_sky
+    generated_sky = Sky.new()
+    var panorama := PanoramaSkyMaterial.new()
+    panorama.panorama = GeneratedSkyTexture
+    generated_sky.sky_material = panorama
+    sample_environment.sky = procedural_sky
     set_clouds(true)
     var sun: DirectionalLight3D = street.get_node("Sun")
     sun.light_energy = .62
@@ -43,6 +52,8 @@ func _ready() -> void:
         for child in street.get_node("Props/"+asset_id).find_children("*","MeshInstance3D",true,false):
             _enroll(child)
     for child in get_parent().get_node("ParkedCar").find_children("*","MeshInstance3D",true,false):
+        _enroll(child)
+    for child in get_parent().get_node("ParkedTruck").find_children("*","MeshInstance3D",true,false):
         _enroll(child)
     for child in street.get_node("AircraftProxy").find_children("*","MeshInstance3D",true,false):
         _enroll(child)
@@ -172,8 +183,23 @@ func mode_label() -> String:
     return ["Original materials", "Two bands", "Three bands"][mode]
 
 func set_clouds(enabled: bool) -> void:
+    image_sky_enabled = false
     clouds_enabled = enabled
+    sample_environment.sky = procedural_sky
+    sample_environment.sky_rotation = Vector3.ZERO
     sample_environment.background_mode = Environment.BG_SKY if enabled else Environment.BG_COLOR
 
+func set_image_sky(enabled: bool) -> void:
+    if not enabled:
+        set_clouds(true)
+        return
+    image_sky_enabled = true
+    clouds_enabled = true
+    sample_environment.sky = generated_sky
+    sample_environment.sky_rotation = Vector3(0,deg_to_rad(90),0)
+    sample_environment.background_mode = Environment.BG_SKY
+
 func sky_label() -> String:
+    if image_sky_enabled:
+        return "Image sky"
     return "Clouds" if clouds_enabled else "Flat sky"

@@ -1,0 +1,86 @@
+{
+  "checks": [
+    {
+      "check": "truck_mesh_triangle_count",
+      "details": {
+        "triangles": 1510
+      },
+      "passed": true
+    },
+    {
+      "check": "truck_has_5_5m_collision",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "truck_uses_style_sample",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "n_enables_image_sky",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "sky_preserves_camera_ambient",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "n_returns_to_procedural",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "c_still_toggles_flat",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "n_works_from_flat",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "c_works_from_image",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "player_blocked_by_truck",
+      "details": {
+        "left_edge": 1.27403509616852,
+        "player_x": 0.985000014305115
+      },
+      "passed": true
+    },
+    {
+      "check": "player_stays_on_road",
+      "details": {
+
+      },
+      "passed": true
+    }
+  ],
+  "display_driver": "headless",
+  "engine": "4.6.3-stable (official)",
+  "human_playtest": false,
+  "passed": true
+}
