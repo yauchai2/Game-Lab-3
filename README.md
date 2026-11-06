@@ -13,6 +13,7 @@
 - [遊走原型操作與驗證](docs/WALK.md)
 - [風格樣片、比較圖與驗證](docs/STYLE_SAMPLE.md)
 - [飛機掠過原型與新截圖](docs/FLYBY.md)
+- [GitHub Desktop 同步及 Godot 查看](docs/GITHUB_DESKTOP.zh-TW.md)
 - [設計基準](docs/DESIGN.md) 與 [下一階段規格](docs/design/next-phase.zh-TW.md)
 - [重要決策](docs/DECISIONS.md)
 - [驗證結果與限制](docs/VALIDATION.md)
