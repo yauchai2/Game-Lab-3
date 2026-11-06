@@ -29,3 +29,5 @@
 - 客機先由 AI 程序分件製作白盒，確認機腹與四引擎輪廓，再決定精修方式。
 
 完整下一階段規格見 [next-phase.zh-TW.md](design/next-phase.zh-TW.md)。
+
+使用者後續提供的兩張新風格參考與建議轉譯，見 [style-references-2026-11-06.zh-TW.md](design/style-references-2026-11-06.zh-TW.md)。其中風格結合方式是待確認的建議，不是已完成的最終美術決策。
