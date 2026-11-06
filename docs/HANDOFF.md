@@ -36,3 +36,11 @@
 ## 此次 repo 重新驗證
 
 六件原始 GLB 與來源 SHA-256 一致；Godot 4.6.3 在本 repo 重新匯入和載入成功。模型、場景、參考圖及非歷史文件的本地連結均核對存在。證據見 VALIDATION.md 的「任務分支重新驗證」。
+
+## 遠端接續位置
+
+- 任務分支：[codex/flight-street-handoff](https://github.com/yauchai2/Game-Lab-3/tree/codex/flight-street-handoff)
+- 草稿 PR：[#1](https://github.com/yauchai2/Game-Lab-3/pull/1)
+- 首次完整同步提交：`532670dadee274a643d8faea88b1484714354ae8`。本節連結為後續補充紀錄；以遠端分支最新提交為準。
+
+目前未合併 main、未發佈。若後續要接續本成果，先讀任務分支或 PR 的最新內容，不要只讀尚未合併的 main。
