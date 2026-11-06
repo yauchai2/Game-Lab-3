@@ -2,6 +2,12 @@ extends SceneTree
 func _initialize() -> void:
     call_deferred("capture")
 func capture() -> void:
+    var output_dir := "res://../docs/evidence/sky/"
+    var metadata_name := "captures.json"
+    for arg in OS.get_cmdline_user_args():
+        if arg.begins_with("--output-dir="):
+            output_dir = arg.trim_prefix("--output-dir=").path_join("")
+            metadata_name = "street-captures.json"
     var scene := (load("res://scenes/street_walk.tscn") as PackedScene).instantiate()
     root.add_child(scene)
     scene.select_reference(0)
@@ -20,12 +26,12 @@ func capture() -> void:
         for frame in 12:
             await process_frame
         await RenderingServer.frame_post_draw
-        if root.get_texture().get_image().save_png("res://../docs/evidence/sky/"+shots[i]) != OK:
+        if root.get_texture().get_image().save_png(output_dir.path_join(shots[i])) != OK:
             push_error("Failed to save "+shots[i])
             quit(1)
             return
     var report := {"renderer":RenderingServer.get_video_adapter_name(),"display_driver":DisplayServer.get_name(),"hardware_gpu_verified":false,"human_playtest":false,"plane_frozen":true,"entry_comparison_same_camera":true,"shots":shots}
-    var out := FileAccess.open("res://../docs/evidence/sky/captures.json",FileAccess.WRITE)
+    var out := FileAccess.open(output_dir.path_join(metadata_name),FileAccess.WRITE)
     out.store_string(JSON.stringify(report,"  "))
     print("SKY_CAPTURED ",JSON.stringify(report))
     scene.queue_free()

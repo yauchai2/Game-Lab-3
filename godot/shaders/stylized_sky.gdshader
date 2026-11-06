@@ -10,6 +10,7 @@ float oval(vec2 p, vec2 pos, vec2 size) {
     return 1.0 - step(1.0, length((p - pos) / size));
 }
 float cloud(vec2 p) {
+    if (abs(p.x) > 0.40 || abs(p.y) > 0.28) { return 0.0; }
     float shape = oval(p, vec2(-0.27, -0.030), vec2(0.085, 0.050));
     shape = max(shape, oval(p, vec2(-0.19, 0.015), vec2(0.09, 0.073)));
     shape = max(shape, oval(p, vec2(-0.12, 0.070), vec2(0.10, 0.095)));
@@ -27,17 +28,25 @@ vec2 local_cloud(float azimuth, float altitude, float center, float height, floa
     float delta = atan(sin(azimuth-center), cos(azimuth-center));
     return vec2(delta, altitude-height) / scale;
 }
+float cloud_coverage(float azimuth, float altitude, float layer_offset) {
+    vec2 offset = vec2(0.0, layer_offset);
+    vec2 a = local_cloud(azimuth, altitude, 0.02, 0.36, 0.50) - offset;
+    vec2 b = local_cloud(azimuth, altitude, 1.6, 0.19, 0.58) - offset;
+    vec2 c = local_cloud(azimuth, altitude, -1.35, 0.26, 0.55) - offset;
+    // The rear cloud deliberately straddles the angular wrap.
+    vec2 d = local_cloud(azimuth, altitude, 3.11, 0.32, 0.57) - offset;
+    vec2 e = local_cloud(azimuth, altitude, -0.14, 0.75, 0.16) - offset;
+    vec2 f = local_cloud(azimuth, altitude, 0.10, 0.85, 0.15) - offset;
+    e *= vec2(1.15, 0.82);
+    f *= vec2(0.82, 1.15);
+    return max(max(max(cloud(a), cloud(b)), max(cloud(c), cloud(d))), max(cloud(e), cloud(f)));
+}
 void sky() {
     float azimuth = atan(EYEDIR.x, -EYEDIR.z);
     float altitude = atan(EYEDIR.y, length(EYEDIR.xz));
-    vec2 a = local_cloud(azimuth, altitude, 0.02, 0.36, 0.50);
-    vec2 b = local_cloud(azimuth, altitude, 1.6, 0.19, 0.58);
-    vec2 c = local_cloud(azimuth, altitude, -1.35, 0.26, 0.55);
-    vec2 d = local_cloud(azimuth, altitude, 2.9, 0.28, 0.65);
-    float silhouette = max(max(cloud(a), cloud(b)), max(cloud(c), cloud(d)));
-    // A vertically offset copy yields a separate, crisp lower color layer.
-    float white_part = max(max(cloud(a - vec2(0.0, 0.075)), cloud(b - vec2(0.0, 0.075))),
-                           max(cloud(c - vec2(0.0, 0.075)), cloud(d - vec2(0.0, 0.075))));
+    float silhouette = cloud_coverage(azimuth, altitude, 0.0);
+    // Offset the same silhouettes vertically for a crisp lower color layer.
+    float white_part = cloud_coverage(azimuth, altitude, 0.075);
     vec3 color = mix(blue.rgb, cloud_shadow.rgb, silhouette);
     color = mix(color, cloud_light.rgb, silhouette * white_part);
     COLOR = color;
