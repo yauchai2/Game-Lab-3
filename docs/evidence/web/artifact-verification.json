@@ -3,6 +3,7 @@
   "inline_scripts_parse": true,
   "lossless_web_decompression": true,
   "wasm_compiles": true,
+  "exported_fetch_adapter_stream_compiles": true,
   "wasm_bytes": 37700666,
   "wasm_import_count": 338,
   "threads": false,

@@ -9,17 +9,62 @@ Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
 [  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
 [92m[ DONE ][39m [1mfirst_scan_filesystem[22m
 [0m
-[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (1 steps)[39m[0m
-[   0% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
-[   0% ] [90m[1mreimport[22m | Executing pre-reimport operations...[39m[0m
-[   0% ] [90m[1mreimport[22m | cover.webp[39m[0m
-[  50% ] [90m[1mreimport[22m | Finalizing Asset Import...[39m[0m
-[92m[ DONE ][39m [1mreimport[22m
-[0m
-[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (1 steps)[39m[0m
-[   0% ] [90m[1mreimport[22m | Executing post-reimport operations...[39m[0m
-[92m[ DONE ][39m [1mreimport[22m
-[0m
+WARNING: Missing .uid file for path "res://scripts/screen_outline.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://scripts/street_dressing.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://scripts/truck_rear_details.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://shaders/screen_outline.gdshader". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_aircraft_detail.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_car_scene.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_character_motion.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_dressing.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_flyby.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_image_sky_rotation.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_live_flyby.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_outline.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_plane_grid.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_plane_options.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_residential.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_sky.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_sky_rotation.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_texture_filter.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_truck_sky.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/measure_dressing.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_car_scene.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_character_textures.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_dressing.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_environment_mipmaps.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_flyby.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_sky.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_texture_filter.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_truck_sky.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
 [   0% ] [90m[1msavepack[22m | Started Packing (102 steps)[39m[0m
 [   1% ] [90m[1msavepack[22m | Storing File: res://assets/animations/quaternius_combat.json[39m[0m
 [   2% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/graffiti_swift_A01.png-a284772f7b53f2ba5d58ee9f5c5f9400.ctex[39m[0m
@@ -137,8 +182,8 @@ Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
 [  92% ] [90m[1msavepack[22m | Storing File: res://shaders/sample_toon.gdshader[39m[0m
 [  93% ] [90m[1msavepack[22m | Storing File: res://shaders/screen_outline.gdshader[39m[0m
 [  95% ] [90m[1msavepack[22m | Storing File: res://shaders/stylized_sky.gdshader[39m[0m
-[  96% ] [90m[1msavepack[22m | Storing File: res://audio/open/LICENSE-Kenney.txt[39m[0m
-[  97% ] [90m[1msavepack[22m | Storing File: res://audio/open/LICENSE-Juhani.txt[39m[0m
+[  96% ] [90m[1msavepack[22m | Storing File: res://audio/open/LICENSE-Juhani.txt[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://audio/open/LICENSE-Kenney.txt[39m[0m
 [  97% ] [90m[1msavepack[22m | Storing File: res://scenes/actors/test_player.tscn.remap[39m[0m
 [  97% ] [90m[1msavepack[22m | Storing File: res://scenes/combat/street_fight.tscn.remap[39m[0m
 [  97% ] [90m[1msavepack[22m | Storing File: res://scenes/PROP_BIN_A01.tscn.remap[39m[0m
@@ -175,4 +220,4 @@ Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
 [  97% ] [90m[1msavepack[22m | Storing File: res://project.binary[39m[0m
 [92m[ DONE ][39m [1msavepack[22m
 [0m
-WEB_BUILD {"directory": "/workspace/sites/afterhours-playtest/dist", "files": 16, "total_bytes": 18689784, "source_commit": "c4b35ed334a3efa8123b77e269a82c5220b12c44"}
+WEB_BUILD {"directory": "/workspace/sites/afterhours-playtest/dist", "files": 16, "total_bytes": 18689832, "source_commit": "77c00267b3fa7d72bf9ea61a18d6f29ecbd1135d"}

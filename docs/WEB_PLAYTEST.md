@@ -1,5 +1,7 @@
 # 網頁試玩版
 
+**試玩網址：[https://afterhours-street-fight.beamingladybird1.chatgpt.site](https://afterhours-street-fight.beamingladybird1.chatgpt.site)**
+
 2026-11-07，使用者要求一條網址可分享朋友直接試玩。使用現有 Godot 遊戲匯出，沒有重寫成另一款網頁遊戲。
 
 ## 試玩方式
@@ -33,3 +35,9 @@ Web release 匯出成功；實際匯出的 PCK 在 Godot native runtime 完成 8
 環境的 Sites helper 腳本及 cua_repl.js 未提供，`sites-preview status` 回傳 `preview relay unavailable: No such file or directory`。按 Sites 技能指示不另起預覽或另裝瀏覽器替代；因此瀏覽器 QA 未驗證。使用普通 Git 同步此新 Site 的精確來源狀態與 native Sites 存檔／發佈工具，憑證只經記憶體及隱藏 stdin 傳入，沒有寫入 repo。
 
 日誌見 [Web 證據](evidence/web/)。實機瀏覽器的啟動、音訊、速度和手機仍需朋友試玩確認；不將 Native PCK 測試或部署成功宣稱為硬體效能／真人驗收。
+
+## 公開發佈結果
+
+Sites version 1 已發佈成功，current_live_url 與分享權限 public 均由 native API 確認。Site source commit `3dcb8dc567a733c0bab481c17a6a98432344f80f`，對應 GitHub 遊戲來源 `77c00267b3fa7d72bf9ea61a18d6f29ecbd1135d`。部署及資產雜湊見 [紀錄](evidence/web/deployment.json)、[release manifest](evidence/web/release-manifest.json)。
+
+匿名 HTTP 自動下載的每件資產均回應 Cloudflare 403 / error code 1010，未取得實際內容，不能當作資產線上驗證成功；沒有繞過防機器人檢查。`tools/verify_web_url.py` 可在正常連線環境按 manifest 再查。平台公開發佈成功與自動 HTTP／實際瀏覽器驗證是不同證據。瀏覽器啟動和聲音仍待實機確認。

@@ -196,3 +196,9 @@ Godot 4.6.3 headless verbose 飛機測試 11 項通過，但退出仍提示 `Aud
 已按使用者要求加入 Godot Web preset、分享入口、載入／失敗提示、全螢幕、複製連結及授權頁。桌面鍵盤單人對 AI，保留 F6 原街景。單執行緒 Compatibility，不要求跨來源隔離；動作 JSON 明確打包。Wasm 無損壓縮，總下載約 19 MB，Sites ID 與更新方法見 [WEB_PLAYTEST.md](WEB_PLAYTEST.md)。
 
 Web 匯出、匯出包 8 項 Native 資源／玩法／F6 往返，以及 Wasm 編譯、Web Streams 解壓和檔案雜湊通過。Sites preview relay 及 cua_repl.js 不可用，瀏覽器實際遊玩未驗證；發佈結果另補紀錄，不把預期網址當作已上線。
+
+## Web 公開發佈完成（2026-11-07）
+
+試玩網址：https://afterhours-street-fight.beamingladybird1.chatgpt.site 。Sites version 1、部署 `appgdep_6aee954c0f3c8191866e36096a914642` 成功，native get_site 確認 public 及同一 current_live_url。GitHub 遊戲來源 `77c0026`，Site source `3dcb8dc`。分享頁、遊戲及授權共約 19 MB。
+
+實際匯出的 PCK 8/8、WebAssembly／Web Streams／實際 fetch adapter compileStreaming、HTML 語法及本機資產雜湊通過。匿名 HTTP 下載被 Cloudflare 403／1010 阻擋，未驗證線上資產內容；預覽服務仍不可用，沒有宣稱完成瀏覽器遊玩或實聽。更多來源與重現見 WEB_PLAYTEST.md 和 evidence/web/。

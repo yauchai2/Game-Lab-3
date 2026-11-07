@@ -1,0 +1,39 @@
+{
+  "checks": [
+    {
+      "name": "raw animation JSON is present in exported pack",
+      "passed": true
+    },
+    {
+      "name": "exported animation JSON parses",
+      "passed": true
+    },
+    {
+      "name": "exported main scene builds both animated fighters",
+      "passed": true
+    },
+    {
+      "name": "exported panorama and red car load",
+      "passed": true
+    },
+    {
+      "name": "exported music and impact resources load",
+      "passed": true
+    },
+    {
+      "name": "exported simulation attacks and consumes retargeted animation",
+      "passed": true
+    },
+    {
+      "name": "exported F6 destination street loads",
+      "passed": true
+    },
+    {
+      "name": "exported street returns to fight title",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "method": "native Godot runtime using exported Web PCK; not browser rendering",
+  "passed": 8
+}

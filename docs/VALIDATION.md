@@ -171,3 +171,9 @@ Godot 4.6.3 headless 街景及遊走回歸通過；Compatibility／llvmpipe 固�
 ## Web 匯出驗證（2026-11-07）
 
 Godot 4.6.3 Web release 成功，單執行緒 Compatibility。實際 Web PCK 在 Native runtime 完成 8/8 檢查：JSON 存在／解析、動畫角色、天空／紅車、音訊、攻擊傷害、F6 原街景及返回。Node WebAssembly.compile 與原生 Web Streams 無損解壓、HTML JS 語法及資產雜湊檢查通過。不是瀏覽器 GPU、真人遊玩或實聽驗收；Sites preview relay 不可用，依技能未另起替代瀏覽器。日誌及後續部署結果見 `evidence/web/`、[WEB_PLAYTEST.md](WEB_PLAYTEST.md)。
+
+## Web 公開發佈完成（2026-11-07）
+
+試玩網址：https://afterhours-street-fight.beamingladybird1.chatgpt.site 。Sites version 1、部署 `appgdep_6aee954c0f3c8191866e36096a914642` 成功，native get_site 確認 public 及同一 current_live_url。GitHub 遊戲來源 `77c0026`，Site source `3dcb8dc`。分享頁、遊戲及授權共約 19 MB。
+
+實際匯出的 PCK 8/8、WebAssembly／Web Streams／實際 fetch adapter compileStreaming、HTML 語法及本機資產雜湊通過。匿名 HTTP 下載被 Cloudflare 403／1010 阻擋，未驗證線上資產內容；預覽服務仍不可用，沒有宣稱完成瀏覽器遊玩或實聽。更多來源與重現見 WEB_PLAYTEST.md 和 evidence/web/。

@@ -1,0 +1,13 @@
+{
+  "project_id": "appgprj_6aee92bb6674819187ce9ab3477fd56b",
+  "version_id": "appgprj_6aee92bb6674819187ce9ab3477fd56b~appgver_b4a65304b20481918b0a2d4fdcbfd04a",
+  "deployment_id": "appgdep_6aee954c0f3c8191866e36096a914642",
+  "status": "succeeded",
+  "url": "https://afterhours-street-fight.beamingladybird1.chatgpt.site",
+  "access_mode": "public",
+  "source_commit": "3dcb8dc567a733c0bab481c17a6a98432344f80f",
+  "upstream_commit": "77c00267b3fa7d72bf9ea61a18d6f29ecbd1135d",
+  "verified_by": "Native Sites deployment status and current site configuration",
+  "browser_qa": "unverified: preview relay unavailable",
+  "anonymous_http": "blocked: Cloudflare 403 / error code 1010 from automated client"
+}
