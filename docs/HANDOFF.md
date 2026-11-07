@@ -140,3 +140,7 @@ Godot 4.6.3 headless 13 項新場景檢查、28 遊走、12 風格、7 天空、
 收到使用者 `jsr_brc_3d.md`，原檔保存於 `references/guidelines/`（SHA-256 `7547594616f67916d3d35c6c1211bf46f8731ba337c1c2a48793b0c0c287b0de`）；另將其他對話提交於 `origin/main` 的 `docs/JSR-BRC-style-reference.md`（提交 `54a520d`）原樣複製至本分支，未合併整個 main。規範作製作目標，非已獨立驗證的原遊戲技術事實。
 
 現有角色 1,664 tris，入口牆與道路 32 texels/m；卡通牆面 Shader 原本線性過濾與標準材質不一致，現改用 nearest+mipmaps，角色／道具 UV 取樣不變。具體對照、保留 mipmaps 的取捨、未實作清單與圖像檢查見 [專案對照](JSR-BRC-project-application.zh-TW.md)。
+
+## 環境貼圖 mipmap 匯入修正（2026-11-07，最新）
+
+前次材質選 nearest+mipmaps，但三張貼圖匯入實為 `mipmaps/generate=false`；已將道路、行人道和牆面的 `.import` 設為 true，不改原圖。Godot 實測每張 128×128 的 mipmap 數量為 7 層（不含原圖），材質切換回歸通過。未進行移動畫面與硬體 GPU 驗收，舊比較截圖為修正前。詳見 [專案對照](JSR-BRC-project-application.zh-TW.md)。

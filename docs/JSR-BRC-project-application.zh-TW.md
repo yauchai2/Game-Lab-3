@@ -20,3 +20,7 @@
 
 - [線性](evidence/style-reference/01_linear.png)及[最近鄰](evidence/style-reference/02_nearest.png)為同鏡頭固定截圖，只改卡通世界貼圖的過濾。Godot Compatibility／llvmpipe、1280×720；[像素統計](evidence/style-reference/pixel-difference.json)記錄畫面差異，不代表比較完成或喜好判定。
 - [11 項取樣驗證](evidence/style-reference/verification.json)與[既有風格回歸](evidence/style-reference/style-regression.json)通過。未測目標 GPU、真人操作、移動閃爍、整場景法線、效能或其他範圍。
+
+## 2026-11-07 修正
+
+上次雖然設定 nearest+mipmaps，但三張環境貼圖的 Godot 匯入設定實際為 `mipmaps/generate=false`，因此先前「保留 mipmaps」的說法不準確。現已開啟產生，三張 128×128 貼圖各確認含 7 層 mipmap（不含原圖），見 [驗證紀錄](evidence/mipmaps/verification.log)。先前固定鏡頭圖像屬修正前的歷史記錄；移動閃爍及 GPU 尚未驗證。
