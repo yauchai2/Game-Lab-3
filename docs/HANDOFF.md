@@ -156,3 +156,7 @@ Godot 4.6.3 headless verbose 飛機測試 11 項通過，但退出仍提示 `Aud
 ## 中段街道店面層次（2026-11-07）
 
 依使用者希望增加場景複雜度，在遊走場景加入四處淺遮篷、兩處捲閘及外牆管線，使用現有 MultiMesh 材質分組、不新增碰撞。S1 與原 GLB 保留。Godot Compatibility／llvmpipe 截圖與 headless 街景、遊走回歸見 [streetfront](evidence/streetfront/)；未作目標 GPU 或人工驗收。下一步仍是逐段提升立面差異、遠近景深及角色描邊，同時維持可走性與效能。
+
+## 舊樓陽台與天線（2026-11-07）
+
+在遊走場景五個舊樓位置加入三層外伸陽台、欄杆及簡化晾曬色塊，四處加天線；均使用現有批次及高處非碰撞裝飾。原始 GLB 和 S1 保留。Godot llvmpipe 仰視圖見 [住宅立面](evidence/residential/03_left_facade.png)，街景與遊走測試通過。相同 800×450 固定鏡頭軟體渲染，開啟街景細節時的 draw calls 前後均為 1,131，primitives 為 86,297→88,181；不是 FPS 或目標硬體效能測試。

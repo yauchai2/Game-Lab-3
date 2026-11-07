@@ -139,3 +139,7 @@ Godot 4.6.3 headless 的街景及遊走回歸通過，紀錄見 [balconies](evid
 ## 店面遮篷、捲閘及管線（2026-11-07）
 
 Godot 4.6.3 headless 街景與遊走回歸通過；Godot Compatibility／llvmpipe 擷取中段和人行道畫面，日誌與圖片見 [streetfront](evidence/streetfront/)。未驗證目標 GPU、硬體效能及真人遊玩。
+
+## 住宅陽台與天線（2026-11-07）
+
+Godot 4.6.3 headless 街景及遊走回歸通過；Compatibility／llvmpipe 固定鏡頭前後 draw calls 1,131→1,131、primitives 86,297→88,181；測量、方法和仰視截圖見 [residential](evidence/residential/)。未驗證真實 GPU、FPS、真人遊玩或風格定案。

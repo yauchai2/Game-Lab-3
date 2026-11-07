@@ -40,6 +40,7 @@ func _ready() -> void:
     _make_streetfront_layers()
     _make_corner_facades()
     _make_upper_facades()
+    _make_residential_balconies()
     _make_balcony_planters()
     _make_signs()
     _make_landmark_scaffold()
@@ -240,6 +241,32 @@ func _make_upper_facades() -> void:
         _box("frame",Vector3(side*5.45,y,z),Vector3(.035,.34,.52))
         for dz in [-.18,0.0,.18]:
             _box("cream",Vector3(side*5.42,y,z+dz),Vector3(.03,.30,.025))
+
+func _make_residential_balconies() -> void:
+    # Projecting balconies introduce an irregular silhouette to older tenements.
+    # These shallow details stay above head height and use existing material batches.
+    for spec in [[-1,-17.4],[-1,-23.4],[-1,-42.0],[1,-23.3],[1,-43.3]]:
+        var side: int = spec[0]
+        var z: float = spec[1]
+        for floor_index in [1,2,3]:
+            var y: float = floor_index * 3.3 + .2
+            _box("cream", Vector3(side*5.58,y,z), Vector3(.55,.13,2.45))
+            _box("frame", Vector3(side*5.30,y+.94,z), Vector3(.075,.08,2.45))
+            for dz in [-1.12,-.56,0.0,.56,1.12]:
+                _box("frame", Vector3(side*5.30,y+.51,z+dz), Vector3(.06,.82,.055))
+            for dz in [-1.16,1.16]:
+                _box("frame", Vector3(side*5.55,y+.94,z+dz), Vector3(.52,.08,.06))
+            # Recessed laundry panels are graphic, not rigid moving clothing.
+            if floor_index == 2:
+                _box("ivory", Vector3(side*5.32,y+.48,z-.42), Vector3(.025,.56,.58))
+                _box("teal", Vector3(side*5.32,y+.46,z+.28), Vector3(.025,.52,.48))
+    # Rooftop silhouettes break the continuous horizontal parapet line.
+    for spec in [[-1,-20.0],[-1,-44.0],[1,-41.0],[1,-55.0]]:
+        var side: int = spec[0]
+        var z: float = spec[1]
+        _box("frame", Vector3(side*6.0,17.1,z), Vector3(.08,2.1,.08))
+        _box("frame", Vector3(side*6.0,17.7,z), Vector3(.08,.06,1.4))
+        _box("frame", Vector3(side*6.0,17.1,z), Vector3(.08,.06,.9))
 
 func _make_balcony_planters() -> void:
     # The reference's orange building uses long planted balcony edges.
