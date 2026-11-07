@@ -144,3 +144,7 @@ Godot 4.6.3 headless 13 項新場景檢查、28 遊走、12 風格、7 天空、
 ## 環境貼圖 mipmap 匯入修正（2026-11-07，最新）
 
 前次材質選 nearest+mipmaps，但三張貼圖匯入實為 `mipmaps/generate=false`；已將道路、行人道和牆面的 `.import` 設為 true，不改原圖。Godot 實測每張 128×128 的 mipmap 數量為 7 層（不含原圖），材質切換回歸通過。未進行移動畫面與硬體 GPU 驗收，舊比較截圖為修正前。詳見 [專案對照](JSR-BRC-project-application.zh-TW.md)。
+
+## 飛機音效退出警告調查（2026-11-07）
+
+Godot 4.6.3 headless verbose 飛機測試 11 項通過，但退出仍提示 `AudioStreamWAV` 和 `AudioStreamPlaybackWAV` 未釋放；臨時測試停止後把 `sound.stream` 設為 null，警告仍存在，該實驗沒有保留於程式。原始及實驗紀錄位於 `docs/evidence/audio-diagnostics/`。這只定位測試退出時的現象，尚未證實原因或修復，未聆聽音效。

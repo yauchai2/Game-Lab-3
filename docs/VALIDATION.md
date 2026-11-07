@@ -127,3 +127,7 @@ Godot Compatibility／Mesa llvmpipe 截圖與 60 Hz 模擬、20 fps 無聲角色
 ## 環境 mipmap 匯入修正（2026-11-07）
 
 三張 128×128 貼圖重新匯入後，Godot `Image.has_mipmaps()` 為 true，`get_mipmap_count()` 各為 7（不含原圖）；[紀錄](evidence/mipmaps/verification.log)。11 項既有材質取樣檢查再次通過；[紀錄](evidence/mipmaps/filter-regression.log)。未測試移動時閃爍、GPU 效能或真人遊玩。
+
+## 飛機音效清理警告定位（2026-11-07）
+
+飛機回歸 11 項通過，verbose 顯示退出時保留 `AudioStreamWAV` 與 `AudioStreamPlaybackWAV`；停止並清空 stream 的臨時實驗未排除警告。詳見 [原始日誌](evidence/audio-diagnostics/flyby-verbose.log) 和 [實驗日誌](evidence/audio-diagnostics/flyby-clear-stream-verbose.log)。無法由此確定記憶體洩漏根因或實際遊戲音訊表現。
