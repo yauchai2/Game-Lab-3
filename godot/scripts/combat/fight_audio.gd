@@ -1,36 +1,74 @@
 extends Node
-## Original synthesized placeholders. No external recordings or licensed music.
+## CC0 music / physical impacts plus original low-frequency energy layers.
 var muted := false
+var music_muted := false
 var voices: Array[AudioStreamPlayer] = []
 var sounds: Dictionary = {}
 var voice_index := 0
+var music: AudioStreamPlayer
+var context := "title"
+var duck_time := 0.0
+const OPEN := "res://audio/open/"
 
 func _ready() -> void:
-    sounds["hit"] = _tone(0.10, 180.0, 55.0, 0.3)
-    sounds["block"] = _tone(0.08, 580.0, 130.0, 0.14)
-    sounds["charge"] = _tone(0.28, 65.0, 120.0, 0.08)
-    sounds["release"] = _tone(0.17, 100.0, 30.0, 0.26)
-    sounds["swing"] = _tone(0.05, 310.0, 100.0, 0.04)
-    sounds["ko"] = _tone(0.45, 90.0, 22.0, 0.28)
-    for i in 6:
+    var files := {
+        "hit":["impactPunch_medium_000","impactPunch_medium_001","impactPunch_medium_002"],
+        "heavy":["impactPunch_heavy_000","impactPunch_heavy_001"],
+        "block":["impactMetal_light_000"], "parry":["impactBell_heavy_003"],
+        "guard_break":["impactGlass_heavy_000"], "swing":["impactSoft_medium_001"],
+        "dash":["impactSoft_heavy_000"], "step":["footstep_concrete_000","footstep_concrete_003"],
+        "land":["footstep_concrete_003"], "jump":["footstep_concrete_000"],
+        "release":["impactTin_medium_001"], "ko":["impactMetal_heavy_003"]}
+    for kind in files:
+        sounds[kind] = []
+        for filename in files[kind]: sounds[kind].append(load(OPEN+filename+".ogg"))
+    sounds["charge"] = [_tone(0.28,65.0,120.0,0.08)]
+    sounds["sub"] = [_tone(0.17,100.0,30.0,0.20)]
+    for i in 10:
         var voice := AudioStreamPlayer.new()
         add_child(voice)
-        voice.volume_db = -9.0
+        voice.volume_db = -8.0
         voices.append(voice)
+    music = AudioStreamPlayer.new()
+    music.name = "BackgroundMusic"
+    var track: AudioStreamOggVorbis = load(OPEN+"level1.ogg").duplicate(true)
+    track.loop = true
+    music.stream = track
+    music.volume_db = -19.0
+    add_child(music)
+    music.play()
 
-func play_sound(kind: String, pitch := 1.0) -> void:
-    if muted or not sounds.has(kind):
-        return
+func _process(delta: float) -> void:
+    duck_time = maxf(0.0,duck_time-delta)
+    if not is_instance_valid(music): return
+    music.stream_paused = muted or music_muted or context=="pause"
+    var target_db := (-13.0 if context=="play" else -19.0) - (4.0 if duck_time>0 else 0.0)
+    music.volume_db = lerpf(music.volume_db,target_db,1.0-exp(-delta*9.0))
+
+func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
+    if muted or not sounds.has(kind): return
     var voice: AudioStreamPlayer = voices[voice_index % voices.size()]
-    voice_index += 1
+    var variants: Array = sounds[kind]
     voice.stop()
-    voice.stream = sounds[kind]
-    voice.pitch_scale = pitch
+    voice.stream = variants[voice_index % variants.size()]
+    voice_index += 1
+    voice.volume_db = -8.0+level_db
+    voice.pitch_scale = clampf(pitch,0.65,1.55)
     voice.play()
+    if kind in ["hit","heavy","parry","guard_break"]: duck_time = 0.18
 
 func stop_all() -> void:
+    for voice in voices: voice.stop()
+
+func _exit_tree() -> void:
     for voice in voices:
         voice.stop()
+        voice.stream = null
+    if is_instance_valid(music):
+        music.stream_paused = false
+        if music.has_stream_playback(): music.get_stream_playback().stop()
+        music.stop()
+        music.stream = null
 
 func _tone(duration: float, start: float, end: float, noise: float) -> AudioStreamWAV:
     var rate := 22050

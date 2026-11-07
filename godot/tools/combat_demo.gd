@@ -4,20 +4,21 @@ var scene: Node3D
 var frame := 0
 var hit_count := 0
 var guard_count := 0
+var finishing := false
 func _initialize() -> void:
     call_deferred("start")
 func start() -> void:
     scene = preload("res://scenes/combat/street_fight.tscn").instantiate()
     root.add_child(scene)
     scene.start_match()
-    scene.audio.muted = true
+    scene.audio.muted = not OS.get_cmdline_user_args().has("--with-audio")
     scene.set_physics_process(false)
     scene.sim.phase = "fight"
     scene.sim.fighters[0].x = -1.1
     scene.sim.fighters[1].x = 1.1
     scene.sim.fighters[0].meter = 60
 func _process(_delta: float) -> bool:
-    if not is_instance_valid(scene): return false
+    if finishing or not is_instance_valid(scene): return false
     frame += 1
     var a: Dictionary = scene.sim.fighters[0]
     var b: Dictionary = scene.sim.fighters[1]
@@ -44,6 +45,17 @@ func _process(_delta: float) -> bool:
         scene._handle_event(event)
     if frame >= 420:
         print("DEMO_COMPLETE scripted_frames=",frame," hits=",hit_count," blocks=",guard_count," adapter=",RenderingServer.get_video_adapter_name())
-        scene.queue_free()
-        quit()
+        finishing = true
+        call_deferred("finish")
     return false
+
+func finish() -> void:
+    # Give the asynchronous audio mixer time to release stopped playback.
+    scene.set_process(false)
+    scene.audio.set_process(false)
+    scene.audio.stop_all()
+    scene.audio.music.stream_paused = false
+    scene.audio.music.stop()
+    scene.audio.music.stream = null
+    await create_timer(0.10).timeout
+    quit()

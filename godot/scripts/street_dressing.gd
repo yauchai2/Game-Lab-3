@@ -61,8 +61,8 @@ func _segment(group: String, start: Vector3, end: Vector3, width: float) -> void
     if not groups.has(group):
         groups[group] = []
     var delta := end-start
-    var rotation := Basis(Quaternion(Vector3.UP,delta.normalized()))
-    groups[group].append(Transform3D(rotation.scaled_local(Vector3(width,delta.length(),width)),(start+end)*.5))
+    var segment_basis := Basis(Quaternion(Vector3.UP,delta.normalized()))
+    groups[group].append(Transform3D(segment_basis.scaled_local(Vector3(width,delta.length(),width)),(start+end)*.5))
     box_count += 1
 
 func _material(color: Color) -> StandardMaterial3D:
@@ -93,17 +93,17 @@ func _flush_groups() -> void:
 
 func _label(text: String, at: Vector3, rotation_y: float, font_size: int, pixel_size: float, color: Color) -> void:
     if not show_sign_text: return
-    var sign := Label3D.new()
-    sign.name = "SignText_"+str(labels.get_child_count())
-    sign.text = text
-    sign.font_size = font_size
-    sign.pixel_size = pixel_size
-    sign.modulate = color
-    sign.outline_size = 0
-    sign.position = at
-    sign.rotation.y = rotation_y
-    sign.font = shared_font
-    labels.add_child(sign)
+    var sign_label := Label3D.new()
+    sign_label.name = "SignText_"+str(labels.get_child_count())
+    sign_label.text = text
+    sign_label.font_size = font_size
+    sign_label.pixel_size = pixel_size
+    sign_label.modulate = color
+    sign_label.outline_size = 0
+    sign_label.position = at
+    sign_label.rotation.y = rotation_y
+    sign_label.font = shared_font
+    labels.add_child(sign_label)
 
 func _make_road() -> void:
     # A pedestrian crossing at the entrance; paint is visual only and sits above the road surface.

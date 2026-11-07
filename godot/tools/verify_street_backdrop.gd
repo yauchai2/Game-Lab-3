@@ -126,6 +126,8 @@ func run() -> void:
     scene.queue_free()
     await process_frame
     await process_frame
+    # AudioServer releases stopped playbacks on its mixer thread.
+    await create_timer(0.10).timeout
     var failed := checks.filter(func(c: Dictionary)->bool: return not c.passed).size()
     var file := FileAccess.open("res://../docs/evidence/playtest-fixes/verification.json",FileAccess.WRITE)
     file.store_string(JSON.stringify({"checks":checks,"metrics":metrics,"passed":checks.size()-failed,"failed":failed,"method":"headless scene, actual skeleton poses, perspective framing and authored animation data checks; not human playtesting"},"  "))

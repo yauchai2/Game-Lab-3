@@ -149,6 +149,8 @@ func run() -> void:
     scene.queue_free()
     await process_frame
     await process_frame
+    # AudioServer releases stopped playbacks on its mixer thread.
+    await create_timer(0.10).timeout
     var failed := checks.filter(func(c: Dictionary)->bool: return not c.passed).size()
     var file := FileAccess.open("res://../docs/evidence/combat/verification.json",FileAccess.WRITE)
     file.store_string(JSON.stringify({"engine":Engine.get_version_info().string,"checks":checks,"passed":checks.size()-failed,"failed":failed,"evidence":"headless gameplay and scene checks; not human playtesting or hardware GPU validation"},"  "))

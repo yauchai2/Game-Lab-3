@@ -5,6 +5,7 @@ var notice := ""
 var notice_time := 0.0
 var font: Font
 var bold: Font
+var vfx_renderer := preload("res://scripts/combat/fight_vfx.gd").new()
 const INK := Color("121a2d")
 const PAPER := Color("f4efda")
 const YELLOW := Color("eaf078")
@@ -62,7 +63,7 @@ func rebuild_menu() -> void:
     sub.add_theme_font_size_override("font_size", 13)
     stack.add_child(sub)
     var help := Label.new()
-    help.text = "A / D     Move        SPACE     Jump\nJ             Light / 3-hit chain\nK            Heavy     W + K     Launcher\nL             Special (50 energy)\nSHIFT    Guard       E              Dodge\nESC        Pause       F6           Explore street"
+    help.text = "A / D     Move        SPACE     Jump\nJ             Light / 3-hit chain\nK            Heavy     W + K     Launcher\nL             Special (50 energy)\nSHIFT    Guard / timed parry\nE             Dodge\nESC        Pause       F6           Explore street"
     help.add_theme_color_override("font_color", PAPER)
     help.add_theme_font_size_override("font_size", 15)
     stack.add_child(help)
@@ -86,6 +87,12 @@ func rebuild_menu() -> void:
         rebuild_menu())
     _button(stack,"REDUCED FLASH & SHAKE: %s  /  F2" % ("ON" if session.reduced_effects else "OFF"),func():
         session.reduced_effects = not session.reduced_effects
+        rebuild_menu())
+    _button(stack,"MUSIC: %s  /  F4" % ("OFF" if session.audio.music_muted else "ON"),func():
+        session.audio.music_muted = not session.audio.music_muted
+        rebuild_menu())
+    _button(stack,"SCENE EDGES: %s  /  O" % ("ON" if session.ink_pass.visible else "OFF"),func():
+        session.ink_pass.visible = not session.ink_pass.visible
         rebuild_menu())
     _button(stack,"EXPLORE THE STREET  /  F6",func(): session.return_to_street())
     for child in stack.get_children():
@@ -128,8 +135,8 @@ func _button(parent: Node, text: String, callback: Callable, primary := false) -
 func _process(delta: float) -> void:
     notice_time = maxf(0.0, notice_time-delta)
 
-func _text(at: Vector2, value: String, size: int, color := PAPER, heavy := false) -> void:
-    draw_string(bold if heavy else font, at, value, HORIZONTAL_ALIGNMENT_LEFT,-1,size,color)
+func _text(at: Vector2, value: String, font_size: int, color := PAPER, heavy := false) -> void:
+    draw_string(bold if heavy else font, at, value, HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,color)
 
 func _rect(at: Vector2, extent: Vector2, color: Color) -> void:
     draw_rect(Rect2(at,extent),color)
@@ -138,6 +145,9 @@ func _draw() -> void:
     if not is_instance_valid(session):
         return
     draw_set_transform(Vector2.ZERO,0,size / Vector2(1280,720))
+    for effect in session.effects:
+        if effect.age >= 0:
+            _effect(effect)
     var sim = session.sim
     var a: Dictionary = sim.fighters[0]
     var b: Dictionary = sim.fighters[1]
@@ -159,10 +169,7 @@ func _draw() -> void:
     _text(Vector2(38,684),"J  LIGHT    K  HEAVY    W+K  LAUNCH    L  SPECIAL",14,PAPER,true)
     _text(Vector2(38,707),"A/D  MOVE     SPACE  JUMP     SHIFT  GUARD     E  DODGE",12,Color("9cabb8"))
     _text(Vector2(924,684),"ESC  PAUSE     F6  STREET",13,YELLOW)
-    _text(Vector2(924,707),"M  SOUND     F2  REDUCE FX",12,Color("9cabb8"))
-    for effect in session.effects:
-        if effect.age >= 0:
-            _effect(effect)
+    _text(Vector2(924,707),"M SOUND   F2 SOFT FX   O EDGES",12,Color("9cabb8"))
     if session.hitboxes_visible:
         _draw_hitboxes()
     if sim.combo_hits >= 2 and sim.fighters[1-sim.combo_owner].state == "stun":
@@ -193,38 +200,10 @@ func _health(x: float, fighter: Dictionary, color: Color, reverse: bool) -> void
     _rect(Vector2(x,71),Vector2(484*fighter.meter/100.0,5),YELLOW)
     draw_line(Vector2(x+242,68),Vector2(x+242,79),PAPER,2)
     _text(Vector2(x,91),"ENERGY %03d  /  GUARD %03d" % [fighter.meter,fighter.guard],11,Color("a6b0c0"))
+    if not reverse: _text(Vector2(x+350,91),"PARRY READY" if fighter.parry_cd==0 else "PARRY %.1fs" % (float(fighter.parry_cd)/60.0),10,Color("a6d8d1"))
 
-func _effect(e: Dictionary) -> void:
-    var at: Vector2 = session.project(e.at)
-    var t: float = clampf(e.age/e.life,0,1)
-    var stepped := floorf(t*5)/5.0
-    var color: Color = e.color
-    if e.kind == "swing":
-        var radius := 55.0 * (1.0 - stepped*0.5)
-        draw_arc(at,radius,-2.0,1.6,12,color,10.0*(1.0-t))
-        draw_arc(at,radius-9,-2.0,1.6,12,PAPER,5.0*(1.0-t))
-    elif e.kind == "dust":
-        for i in 6:
-            var shift := Vector2((i-2.5)*15*(t+0.3),-sin(t*PI)*12)
-            var radius := (1.0-t)*8
-            _rect(at+shift-Vector2.ONE*radius,Vector2.ONE*radius*2,color)
-    else:
-        var radius: float = lerpf(28,100,stepped) * (0.7+e.strength*0.5)
-        draw_arc(at,radius,0,TAU,12,color,5*(1.0-t)+1)
-        if e.kind == "block":
-            draw_arc(at,radius*0.65,-1.2,1.2,8,PAPER,7)
-            return
-        for i in 8:
-            var angle := i*TAU/8+0.2
-            var direction := Vector2(cos(angle),sin(angle))
-            var tangent := direction.orthogonal()
-            var points := PackedVector2Array([at+direction*12+tangent*7,at+direction*radius*(1.3 if i%2==0 else 0.8),at+direction*12-tangent*7])
-            draw_colored_polygon(points,color)
-        if t < 0.5:
-            draw_circle(at,12*(1-t),PAPER)
-        if e.strength > 0.8 and t < 0.22 and not session.reduced_effects:
-            draw_line(at-Vector2(130,0),at+Vector2(130,0),PAPER,5)
-            draw_line(at-Vector2(0,85),at+Vector2(0,85),PAPER,5)
+func _effect(effect: Dictionary) -> void:
+    vfx_renderer.draw_effect(self,session,effect)
 
 func _draw_hitboxes() -> void:
     for i in 2:

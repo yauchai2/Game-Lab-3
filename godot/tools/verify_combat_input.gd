@@ -58,6 +58,8 @@ func run() -> void:
     check("walk F6 returns to fight title",current_scene.name=="StreetFight" and current_scene.screen=="title")
     current_scene.queue_free()
     await frames(3)
+    # AudioServer releases stopped playbacks on its mixer thread.
+    await create_timer(0.10).timeout
     var failed := checks.filter(func(c: Dictionary)->bool: return not c.passed).size()
     var file := FileAccess.open("res://../docs/evidence/combat/input-verification.json",FileAccess.WRITE)
     file.store_string(JSON.stringify({"checks":checks,"passed":checks.size()-failed,"failed":failed,"method":"Input.parse_input_event through native viewport; automated, not human keyboard playtest"},"  "))

@@ -13,6 +13,10 @@ var pending: Dictionary = {}
 var effects: Array[Dictionary] = []
 var elapsed := 0.0
 var trauma := 0.0
+var last_impact_strength := 0.0
+var step_distance := [0.0,0.0]
+var trail_clock := 0.0
+var ink_pass: MeshInstance3D
 var reduced_effects := false
 var practice := false
 var hitboxes_visible := false
@@ -55,6 +59,10 @@ func _build_stage() -> void:
     camera.position = base_camera
     camera.look_at(camera_focus)
     camera.make_current()
+    ink_pass = MeshInstance3D.new()
+    ink_pass.name = "OptionalSceneEdges"
+    ink_pass.set_script(preload("res://scripts/screen_outline.gd"))
+    add_child(ink_pass)
     for i in 2:
         var shadow := MeshInstance3D.new()
         var mesh := CylinderMesh.new()
@@ -104,8 +112,9 @@ func _physics_process(_delta: float) -> void:
     input["up"] = Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)
     var previous_stop := sim.hitstop
     sim.tick(input)
-    if previous_stop == 1 and sim.hitstop == 0:
+    if previous_stop == 1 and sim.hitstop == 0 and last_impact_strength>0.45:
         audio.play_sound("release", 1.0 + sim.combo_hits * 0.06)
+        audio.play_sound("sub",0.9,-4.0)
     for event in sim.events:
         _handle_event(event)
     if sim.phase in ["round_over", "match_over"]:
@@ -114,37 +123,69 @@ func _physics_process(_delta: float) -> void:
         audio.play_sound("ko")
         hud.rebuild_menu()
 
+func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}) -> void:
+    if reduced_effects and kind in ["speed","trail"]: return
+    if effects.size()>=64: effects.pop_front()
+    var effect := {"kind":kind,"at":at,"age":0.0,"life":life,"strength":0.5,"face":1,"color":COLORS[0]}
+    effect.merge(options,true)
+    effects.append(effect)
+
 func _handle_event(event: Dictionary) -> void:
     var kind: String = event.kind
-    if kind in ["hit", "block", "guard_break"]:
+    if kind in ["hit","block","parry","guard_break"]:
         var target: Dictionary = sim.fighters[event.target]
-        var position_2d := Vector2(target.x, target.y + 1.2)
-        effects.append({"kind": kind, "at": position_2d, "age": 0.0, "life": 0.34, "strength": event.get("strength",0.25), "color": COLORS[event.get("attacker",0)]})
-        trauma = maxf(trauma, event.get("strength",0.2) * 0.6)
-        audio.play_sound("block" if kind == "block" else "hit", 1.0 + sim.combo_hits * 0.07)
-        if kind == "hit":
-            audio.play_sound("charge", 0.8 + event.strength * 0.4)
-    elif kind == "swing":
-        var f: Dictionary = sim.fighters[event.target]
-        effects.append({"kind": "swing", "at": Vector2(f.x + f.face * 1.0, f.y + 1.15), "age": -float(Simulation.MOVES[event.move].startup) / 60.0, "life": 0.13, "strength": 0.5, "face": f.face, "color": COLORS[event.target]})
-        audio.play_sound("swing")
-    elif kind in ["land", "dash", "jump"]:
-        var f: Dictionary = sim.fighters[event.target]
-        effects.append({"kind": "dust", "at": Vector2(f.x,0.08), "age": 0.0, "life": 0.22, "strength": 0.3, "color": Color("f1edcf")})
-    elif kind == "fight":
+        var strength: float = event.get("strength",0.8 if kind in ["parry","guard_break"] else 0.25)
+        var tint: Color = Color("eaf078") if kind in ["parry","guard_break"] else COLORS[event.get("attacker",0)]
+        _spawn_vfx(kind,Vector2(target.x,target.y+1.2),0.38,{"strength":strength,"color":tint})
+        last_impact_strength = strength
+        trauma = maxf(trauma,strength*0.6)
+        audio.play_sound(("heavy" if strength>0.55 else "hit") if kind=="hit" else kind,1.0+sim.combo_hits*0.04)
+        if kind=="hit" and strength>0.55: audio.play_sound("sub",0.9,-5.0)
+        if kind=="parry" or kind=="guard_break" or event.get("counter",false):
+            hud.notice = "PERFECT GUARD" if kind=="parry" else ("GUARD BREAK" if kind=="guard_break" else "COUNTER HIT")
+            hud.notice_time = 0.8
+    elif kind=="swing":
+        var fighter: Dictionary = sim.fighters[event.target]
+        var startup: float = float(Simulation.MOVES[event.move].startup)/60.0
+        _spawn_vfx("swing",Vector2(fighter.x+fighter.face*0.9,fighter.y+1.15),0.13,{"age":-startup,"face":fighter.face,"color":COLORS[event.target]})
+        audio.play_sound("swing",1.0,-8.0)
+        if event.move=="special":
+            _spawn_vfx("charge",Vector2(fighter.x,fighter.y+1.2),startup,{"color":COLORS[event.target]})
+            _spawn_vfx("wave",Vector2(fighter.x+fighter.face*0.6,fighter.y+1.2),0.26,{"age":-startup,"face":fighter.face,"color":COLORS[event.target]})
+            audio.play_sound("charge",1.0,-4.0)
+    elif kind in ["land","dash","jump"]:
+        var fighter: Dictionary = sim.fighters[event.target]
+        _spawn_vfx("dust",Vector2(fighter.x,0.08),0.22,{"color":Color("f1edcf")})
+        audio.play_sound(kind,1.0,-6.0)
+        if kind=="dash":
+            _spawn_vfx("speed",Vector2(fighter.x,fighter.y+0.9),0.2,{"face":signf(fighter.vx),"color":COLORS[event.target]})
+    elif kind=="fight":
         hud.notice = "FIGHT!"
         hud.notice_time = 0.7
-    elif kind == "no_meter":
+    elif kind=="no_meter":
         hud.notice = "SPECIAL NEEDS 50 ENERGY"
         hud.notice_time = 1.5
 
 func _process(delta: float) -> void:
+    audio.context = screen
     if screen != "pause" and screen != "help":
         elapsed += delta
         for effect in effects:
             effect.age += delta
         effects = effects.filter(func(e: Dictionary) -> bool: return e.age < e.life)
         trauma = move_toward(trauma, 0.0, delta * 2.0)
+    if screen=="play" and sim.hitstop==0:
+        trail_clock += delta
+        for i in 2:
+            var fighter: Dictionary = sim.fighters[i]
+            if fighter.state=="idle" and fighter.y<=0.01 and absf(fighter.vx)>2:
+                step_distance[i] += absf(fighter.vx)*delta
+                if step_distance[i]>1.25:
+                    step_distance[i] = 0.0
+                    audio.play_sound("step",1.0,-12.0)
+            if fighter.state=="stun" and absf(fighter.vx)>6 and trail_clock>0.06:
+                _spawn_vfx("trail",Vector2(fighter.x,fighter.y+1),0.15,{"face":signf(fighter.vx),"color":COLORS[i]})
+        if trail_clock>0.06: trail_clock = 0.0
     backdrop.present(delta, screen in ["pause", "help", "result"])
     _present(delta if screen in ["play", "title", "result"] else 0.0)
     hud.queue_redraw()
@@ -201,6 +242,12 @@ func _unhandled_key_input(event: InputEvent) -> void:
     elif event.keycode == KEY_M:
         audio.muted = not audio.muted
         audio.stop_all()
+        hud.rebuild_menu()
+    elif event.keycode == KEY_F4:
+        audio.music_muted = not audio.music_muted
+        hud.rebuild_menu()
+    elif event.keycode == KEY_O:
+        ink_pass.visible = not ink_pass.visible
         hud.rebuild_menu()
     elif event.keycode == KEY_F2:
         reduced_effects = not reduced_effects

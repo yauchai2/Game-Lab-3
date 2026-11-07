@@ -15,6 +15,8 @@ func capture() -> void:
     await save(scene,"01_title")
     scene.start_match(true)
     scene.sim.phase = "fight"
+    for i in 20: scene._present(1.0/60.0)
+    await save(scene,"00_restored_overview")
     scene.sim.fighters[0].x = -1.0
     scene.sim.fighters[1].x = 1.0
     for i in 20: scene._present(1.0/60.0)
@@ -70,9 +72,38 @@ func capture() -> void:
     scene.sim.fighters[0].vy = 3.0
     for i in 15: scene._present(1.0/60.0)
     await save(scene,"10_jump")
+    scene.sim.fighters[0].y = 0.0
+    scene.sim.fighters[0].vy = 0.0
+    scene.sim.fighters[0].state = "idle"
+    scene.sim.fighters[0].x = -1.1
+    scene.sim.fighters[1].x = 1.1
+    scene.effects.clear()
+    for i in 90: scene._present(1.0/60.0)
+    scene.ink_pass.visible = false
+    await save(scene,"11_scene_edges_off")
+    scene.ink_pass.visible = true
+    await save(scene,"12_scene_edges_on")
+    scene.ink_pass.visible = false
+    scene._handle_event({"kind":"parry","target":0,"attacker":1})
+    for effect in scene.effects: effect.age = 0.035
+    await save(scene,"13_perfect_guard")
+    scene.effects.clear()
+    scene.hud.notice = ""
+    scene._handle_event({"kind":"swing","target":0,"move":"special"})
+    for effect in scene.effects: effect.age = 0.07
+    scene.sim.fighters[0].state = "attack"
+    scene.sim.fighters[0].move = "special"
+    scene.sim.fighters[0].frame = 19
+    for i in 8: scene._present(1.0/60.0)
+    await save(scene,"14_energy_wave")
+    scene.effects.clear()
+    scene._handle_event({"kind":"guard_break","target":1,"attacker":0})
+    for effect in scene.effects: effect.age = 0.08
+    await save(scene,"15_guard_break")
     scene.queue_free()
     await process_frame
     await process_frame
+    await create_timer(0.10).timeout
     quit()
 func save(scene: Node, label: String) -> void:
     scene.hud.queue_redraw()

@@ -39,7 +39,7 @@ func reset_round() -> void:
             "face": 1 if i == 0 else -1, "health": MAX_HEALTH, "meter": 0.0, "guard": 100.0,
             "state": "idle", "move": "", "frame": 0, "stun": 0, "connected": false,
             "buffer": "", "buffer_ttl": 0, "chain": 0, "chain_ttl": 0, "dash_cd": 0,
-            "invuln": 0, "flash": 0, "guarding": false})
+            "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true})
     phase = "ready"
     countdown = 72
     remaining = ROUND_SECONDS
@@ -65,7 +65,7 @@ func ai_command() -> Dictionary:
     var a: Dictionary = fighters[1]
     var b: Dictionary = fighters[0]
     var distance: float = absf(a.x - b.x)
-    var command := {"axis": signf(b.x - a.x) if distance > 1.45 else 0.0}
+    var command := {"axis": signf(b.x - a.x) if distance > 1.45 else 0.0, "allow_parry":false}
     # Deliberate reaction windows and punishable heavy attacks, not perfect reads.
     if ai_tick % 22 < 12 and b.state == "attack" and distance < 2.8:
         command["guard"] = true
@@ -115,6 +115,9 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
 func _advance_fighter(i: int, command: Dictionary) -> void:
     var f: Dictionary = fighters[i]
     var other: Dictionary = fighters[1-i]
+    f.parry_allowed = command.get("allow_parry",true)
+    var was_guarding: bool = f.guarding
+    f.parry_cd = maxi(0,f.parry_cd-1)
     f.dash_cd = maxi(0, f.dash_cd - 1)
     f.invuln = maxi(0, f.invuln - 1)
     f.chain_ttl = maxi(0, f.chain_ttl - 1)
@@ -167,6 +170,7 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
         f.vy = 0.0
         if previous_y > 0.0:
             events.append({"kind": "land", "target": i})
+    f.guard_frames = f.guard_frames+1 if f.guarding and was_guarding else (1 if f.guarding else 0)
     f.guard = minf(100.0, f.guard + (0.06 if f.guarding else 0.30))
     if f.buffer_ttl > 0:
         f.buffer_ttl -= 1
@@ -224,6 +228,17 @@ func _resolve_hit(i: int) -> void:
     var m: Dictionary = MOVES[move_name]
     a.connected = true
     if b.guarding and (a.x - b.x) * b.face > 0:
+        if b.parry_allowed and b.guard_frames<=6 and b.parry_cd==0 and b.guard>=25:
+            b.parry_cd = 90
+            b.meter = minf(100.0,b.meter+12.0)
+            b.guard = maxf(0.0,b.guard-8.0)
+            a.state = "stun"
+            a.stun = 18
+            a.vx = -a.face*5.0
+            hitstop = maxi(hitstop,8)
+            hitstop_total = hitstop
+            events.append({"kind":"parry","target":1-i,"attacker":i})
+            return
         b.guard = maxf(0.0, b.guard - m.damage * 2.8)
         b.state = "blockstun"
         b.stun = 10
@@ -241,8 +256,10 @@ func _resolve_hit(i: int) -> void:
         combo_owner = i
         combo_hits = 0
         combo_damage = 0
+    var counter: bool = b.state=="attack" and b.frame<MOVES[b.move].startup
     combo_hits += 1
     var damage: int = maxi(3, roundi(m.damage * maxf(0.45, 1.0 - (combo_hits - 1) * 0.12)))
+    if counter: damage = roundi(damage*1.15)
     combo_damage += damage
     b.health = maxi(0, b.health - damage)
     b.state = "stun"
@@ -259,7 +276,7 @@ func _resolve_hit(i: int) -> void:
     a.chain_ttl = 45
     hitstop = maxi(hitstop, m.stop)
     hitstop_total = hitstop
-    events.append({"kind": "hit", "target": 1-i, "attacker": i, "damage": damage, "move": move_name, "strength": float(m.damage) / 27.0})
+    events.append({"kind": "hit", "target": 1-i, "attacker": i, "damage": damage, "move": move_name, "strength": float(m.damage) / 27.0, "counter": counter})
 
 func _finish_round() -> void:
     phase = "round_over"
