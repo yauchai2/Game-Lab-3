@@ -152,3 +152,7 @@ Godot 4.6.3 headless verbose 飛機測試 11 項通過，但退出仍提示 `Aud
 ## 陽台花槽與外伸架（2026-11-07）
 
 依原照片右側橙色立面，遊走場景增添三層低面數花槽、綠色植物與數個外伸金屬架；全部使用既有 MultiMesh 批次、位於高處且不加碰撞，獨立 S1 及原 GLB 不改。[入口畫面](evidence/balconies/01_entry.png)、[側面畫面](evidence/balconies/02_sidewalk.png)為 Godot Compatibility／llvmpipe 軟體渲染；場景結構與遊走測試通過，硬體 GPU、人工操作與最後美術仍待驗證。
+
+## 中段街道店面層次（2026-11-07）
+
+依使用者希望增加場景複雜度，在遊走場景加入四處淺遮篷、兩處捲閘及外牆管線，使用現有 MultiMesh 材質分組、不新增碰撞。S1 與原 GLB 保留。Godot Compatibility／llvmpipe 截圖與 headless 街景、遊走回歸見 [streetfront](evidence/streetfront/)；未作目標 GPU 或人工驗收。下一步仍是逐段提升立面差異、遠近景深及角色描邊，同時維持可走性與效能。

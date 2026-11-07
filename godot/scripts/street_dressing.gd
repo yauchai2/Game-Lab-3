@@ -37,6 +37,7 @@ func _ready() -> void:
     _make_road()
     _make_manholes()
     _make_storefronts()
+    _make_streetfront_layers()
     _make_corner_facades()
     _make_upper_facades()
     _make_balcony_planters()
@@ -175,6 +176,34 @@ func _make_storefronts() -> void:
     _shop(1,-21.0,4.5,"blue","飛雲商店")
     _shop(1,-29.0,4.0,"red","樂記雜貨")
     _shop(1,-46.0,4.2,"teal","早安冰室")
+
+func _make_streetfront_layers() -> void:
+    # Shallow awnings, shutters and utility pipes add depth while leaving the
+    # clear sidewalk and the original whitebox collision untouched.
+    for spec in [[-1,-19.0,4.0],[-1,-42.0,4.1],[1,-21.0,4.1],[1,-46.0,3.9]]:
+        var side: int = spec[0]
+        var z: float = spec[1]
+        var width: float = spec[2]
+        _box("awning_red" if side < 0 else "teal", Vector3(side*5.57,2.82,z), Vector3(.52,.12,width))
+        _box("ivory", Vector3(side*5.29,2.73,z), Vector3(.07,.18,width))
+        for dz in [-width*.40, 0.0, width*.40]:
+            _segment("frame", Vector3(side*5.80,3.00,z+dz), Vector3(side*5.29,2.76,z+dz), .045)
+    # Two closed shopfronts provide contrasting rhythms between glass shops.
+    for spec in [[-1,-35.0],[1,-39.0]]:
+        var side: int = spec[0]
+        var z: float = spec[1]
+        _box("frame", Vector3(side*5.79,1.45,z), Vector3(.10,2.70,3.0))
+        _box("cream", Vector3(side*5.72,1.45,z), Vector3(.06,2.55,2.83))
+        for i in 9:
+            _box("road_dark", Vector3(side*5.67,.34+i*.27,z), Vector3(.035,.035,2.77))
+        _box("red", Vector3(side*5.67,2.91,z), Vector3(.08,.30,3.0))
+    # Pipes follow the facade, safely above the pavement edges.
+    for spec in [[-1,-15.4],[1,-17.0],[-1,-47.4],[1,-50.5]]:
+        var side: int = spec[0]
+        var z: float = spec[1]
+        _box("frame", Vector3(side*5.74,4.45,z), Vector3(.10,8.5,.10))
+        for y in [1.2, 4.2, 7.2]:
+            _box("cream", Vector3(side*5.66,y,z), Vector3(.09,.08,.23))
 
 func _make_corner_facades() -> void:
     # The entrance-facing gables are visible from the photo-aligned camera.
