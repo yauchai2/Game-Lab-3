@@ -1,0 +1,3 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ENVIRONMENT_MIPMAPS {"passed":true,"textures":[{"height":128,"mipmap_levels_excluding_base":7,"passed":true,"path":"res://assets/textures/road_asphalt_128.png","width":128},{"height":128,"mipmap_levels_excluding_base":7,"passed":true,"path":"res://assets/textures/sidewalk_tiles_128.png","width":128},{"height":128,"mipmap_levels_excluding_base":7,"passed":true,"path":"res://assets/textures/painted_concrete_128.png","width":128}]}

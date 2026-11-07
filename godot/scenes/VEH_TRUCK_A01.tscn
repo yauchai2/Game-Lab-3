@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="PackedScene" path="res://assets/VEH_TRUCK_A01.glb" id="1_model"]
+[ext_resource type="Script" path="res://scripts/truck_rear_details.gd" id="2_details"]
+[sub_resource type="BoxShape3D" id="Body"]
+size = Vector3(2.65192951, 2.88837271, 5.5)
+[node name="VEH_TRUCK_A01" type="StaticBody3D"]
+metadata/asset_id = "VEH_TRUCK_A01"
+metadata/scale_target_axis = 2
+metadata/scale_target_value = 5.5
+[node name="Visual" parent="." instance=ExtResource("1_model")]
+scale = Vector3(5.50268587, 5.50268587, 5.50268587)
+[node name="Collision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 1.44418636, 0)
+shape = SubResource("Body")
+
+[node name="RearDoorDetails" type="Node3D" parent="."]
+script = ExtResource("2_details")

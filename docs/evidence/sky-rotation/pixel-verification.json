@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": {
+    "full_rotation_same_view": true,
+    "opposite_wrap_same_view": true,
+    "test_area_contains_cloud": true,
+    "across_wrap_registered_mismatch_under_1_percent": true,
+    "registration_improves_match": true
+  },
+  "registered_mismatch_fraction": 0.002113095238095238,
+  "unregistered_mismatch_fraction": 0.016636904761904762,
+  "cloud_fraction": 0.13169642857142858,
+  "registration_pixels": -5,
+  "capture_resolution": [
+    640,
+    640
+  ],
+  "fov_degrees": 60,
+  "renderer": "Godot Compatibility / Mesa llvmpipe",
+  "scope": "specific sky-only camera positions and one azimuth wrap; not real hardware or human playtest"
+}

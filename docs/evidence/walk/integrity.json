@@ -1,0 +1,11 @@
+{
+  "source_assets_unchanged": true,
+  "canonical_document_links_exist": true,
+  "controller_checks_passed": 28,
+  "legacy_asset_checks_passed": true,
+  "legacy_whitebox_checks_passed": true,
+  "startup_passed": true,
+  "hardware_fps_measured": false,
+  "os_cursor_capture_verified": false,
+  "human_playtest": false
+}

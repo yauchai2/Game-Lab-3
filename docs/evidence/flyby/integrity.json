@@ -1,0 +1,29 @@
+{
+  "assets": [
+    {
+      "asset_id": "PROP_BIN_A01",
+      "matches": true
+    },
+    {
+      "asset_id": "PROP_CRATES_A01",
+      "matches": true
+    },
+    {
+      "asset_id": "PROP_HYDRANT_A01",
+      "matches": true
+    },
+    {
+      "asset_id": "PROP_MAILBOX_A01",
+      "matches": true
+    },
+    {
+      "asset_id": "PROP_SHOP_STOOL_A01",
+      "matches": true
+    },
+    {
+      "asset_id": "VEH_VAN_A01",
+      "matches": true
+    }
+  ],
+  "passed": true
+}

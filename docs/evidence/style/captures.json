@@ -1,0 +1,39 @@
+{
+  "captures": [
+    {
+      "height": 800,
+      "image": "01_original.png",
+      "mode": 0,
+      "width": 800
+    },
+    {
+      "height": 800,
+      "image": "02_two_bands.png",
+      "mode": 1,
+      "width": 800
+    },
+    {
+      "height": 800,
+      "image": "03_three_bands.png",
+      "mode": 2,
+      "width": 800
+    },
+    {
+      "image": "05_two_detail.png",
+      "mode": 1,
+      "view": "hydrant detail"
+    },
+    {
+      "image": "06_three_detail.png",
+      "mode": 2,
+      "view": "hydrant detail"
+    }
+  ],
+  "compatibility_renderer": true,
+  "detail_comparison_same_camera": true,
+  "display_driver": "X11",
+  "entry_comparison_same_camera": true,
+  "hardware_gpu_verified": false,
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "shadow_control_image": "04_shadow_off.png"
+}

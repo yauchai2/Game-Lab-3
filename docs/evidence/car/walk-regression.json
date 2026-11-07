@@ -1,0 +1,219 @@
+{
+  "checks": [
+    {
+      "check": "spawn_settles_on_road",
+      "details": {
+        "feet_y": 0.000193137675523758
+      },
+      "passed": true
+    },
+    {
+      "check": "walk_camera_is_default",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "camera_excludes_player_layer",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "forward_input_moves_along_street",
+      "details": {
+        "distance_m": 4.11499881744385
+      },
+      "passed": true
+    },
+    {
+      "check": "movement_stops_after_release",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "diagonal_has_no_speed_boost",
+      "details": {
+        "diagonal_m": 4.2389874458313,
+        "straight_m": 4.11499881744385
+      },
+      "passed": true
+    },
+    {
+      "check": "sprint_is_faster",
+      "details": {
+        "distance_m": 6.03666853904724
+      },
+      "passed": true
+    },
+    {
+      "check": "jump_and_land",
+      "details": {
+        "land_feet_y": 0.00838493555784225,
+        "peak_feet_y": 0.958385109901428
+      },
+      "passed": true
+    },
+    {
+      "check": "jump_onto_sidewalk",
+      "details": {
+        "feet": [
+          5.07597732543945,
+          0.159903526306152,
+          -12.0
+        ]
+      },
+      "passed": true
+    },
+    {
+      "check": "walk_over_50m_without_falling",
+      "details": {
+        "end_z": -48.1154327392578,
+        "respawns": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "sidewalk_to_side_alley",
+      "details": {
+        "feet": [
+          -13.6243829727173,
+          0.00074218213558197,
+          -32.0
+        ]
+      },
+      "passed": true
+    },
+    {
+      "check": "building_wall_blocks_player",
+      "details": {
+        "stop_x": -5.71166563034058
+      },
+      "passed": true
+    },
+    {
+      "check": "parked_van_blocks_player",
+      "details": {
+        "stop_z": -5.6149959564209
+      },
+      "passed": true
+    },
+    {
+      "check": "mailbox_blocks_player",
+      "details": {
+        "stop_z": -17.3616809844971
+      },
+      "passed": true
+    },
+    {
+      "check": "spring_arm_retracts_at_wall",
+      "details": {
+        "actual_m": 0.810156285762787,
+        "requested_m": 3.4
+      },
+      "passed": true
+    },
+    {
+      "check": "mouse_look_and_pitch_limit",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "first_person_toggle",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "third_person_toggle",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "reference_camera_disables_movement",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "no_player_drift_in_reference_view",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "reference_tab_wrap",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "return_to_walk_camera",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "escape_requests_cursor_release",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "cursor_release_pauses_movement",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "click_requests_cursor_capture",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "focus_loss_releases_input",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "reset_returns_to_start",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "fall_recovery",
+      "details": {
+
+      },
+      "passed": true
+    }
+  ],
+  "display_driver": "headless",
+  "engine": "4.6.3-stable (official)",
+  "godot_gpu_capture": false,
+  "human_playtest": false,
+  "os_cursor_capture_verified": false,
+  "passed": true,
+  "physics_hz": 60
+}

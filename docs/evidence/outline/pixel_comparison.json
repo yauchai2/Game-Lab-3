@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": {
+    "outline_changes_some_pixels": true,
+    "outline_does_not_cover_the_majority": true,
+    "gold_sign_remains_visible": true
+  },
+  "changed_pixels_over_8": 24595,
+  "gold_pixels_before": 999,
+  "gold_pixels_after": 968,
+  "gold_retention_ratio": 0.968968968968969,
+  "scope": "same fixed 1280x720 entry view, Godot Compatibility / Mesa llvmpipe; not a hardware GPU or all-camera guarantee"
+}
