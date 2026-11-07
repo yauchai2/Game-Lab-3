@@ -1,0 +1,178 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (1 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[   0% ] [90m[1mreimport[22m | Executing pre-reimport operations...[39m[0m
+[   0% ] [90m[1mreimport[22m | cover.webp[39m[0m
+[  50% ] [90m[1mreimport[22m | Finalizing Asset Import...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (1 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | Executing post-reimport operations...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1msavepack[22m | Started Packing (102 steps)[39m[0m
+[   1% ] [90m[1msavepack[22m | Storing File: res://assets/animations/quaternius_combat.json[39m[0m
+[   2% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/graffiti_swift_A01.png-a284772f7b53f2ba5d58ee9f5c5f9400.ctex[39m[0m
+[   2% ] [90m[1msavepack[22m | Storing File: res://assets/art/graffiti_swift_A01.png.import[39m[0m
+[   3% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/painted_concrete_128.png-a40506574473020cac60481f5c9416f1.ctex[39m[0m
+[   3% ] [90m[1msavepack[22m | Storing File: res://assets/textures/painted_concrete_128.png.import[39m[0m
+[   4% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/road_asphalt_128.png-8419c7086fa44e2c77606ddfe0b242d9.ctex[39m[0m
+[   4% ] [90m[1msavepack[22m | Storing File: res://assets/textures/road_asphalt_128.png.import[39m[0m
+[   6% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/sidewalk_tiles_128.png-7f17613fdca0d2a1eed196448973d81a.ctex[39m[0m
+[   6% ] [90m[1msavepack[22m | Storing File: res://assets/textures/sidewalk_tiles_128.png.import[39m[0m
+[   7% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/CHAR_PLAYER_A01.glb-518956f91aca74d55da5a6b4c1e345a8.scn[39m[0m
+[   7% ] [90m[1msavepack[22m | Storing File: res://assets/CHAR_PLAYER_A01.glb.import[39m[0m
+[   8% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/CHAR_PLAYER_A01_stylized_3d_character_basecolor.jpg-ec219d0107e9c8a8a62759bb96c3cbf1.ctex[39m[0m
+[   8% ] [90m[1msavepack[22m | Storing File: res://assets/CHAR_PLAYER_A01_stylized_3d_character_basecolor.jpg.import[39m[0m
+[   9% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/PROP_BIN_A01.glb-1ad4606efe2e456a553d6c913eb16937.scn[39m[0m
+[   9% ] [90m[1msavepack[22m | Storing File: res://assets/PROP_BIN_A01.glb.import[39m[0m
+[  11% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg-e016496386dd0f364bac2daa608d46a1.ctex[39m[0m
+[  11% ] [90m[1msavepack[22m | Storing File: res://assets/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg.import[39m[0m
+[  12% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/PROP_CRATES_A01.glb-351dca0e178713f7a1933bf488e4adf9.scn[39m[0m
+[  12% ] [90m[1msavepack[22m | Storing File: res://assets/PROP_CRATES_A01.glb.import[39m[0m
+[  13% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg-7cf18af2b2407ccbede59237102989fd.ctex[39m[0m
+[  13% ] [90m[1msavepack[22m | Storing File: res://assets/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg.import[39m[0m
+[  14% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/PROP_HYDRANT_A01.glb-726df1253135847fc834381f41f31d4c.scn[39m[0m
+[  14% ] [90m[1msavepack[22m | Storing File: res://assets/PROP_HYDRANT_A01.glb.import[39m[0m
+[  16% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg-e0dc938f13d5b5e34b31d9827f38e3a0.ctex[39m[0m
+[  16% ] [90m[1msavepack[22m | Storing File: res://assets/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg.import[39m[0m
+[  17% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/PROP_MAILBOX_A01.glb-c965e072e821df1d51ab09fb7ccf7b0f.scn[39m[0m
+[  17% ] [90m[1msavepack[22m | Storing File: res://assets/PROP_MAILBOX_A01.glb.import[39m[0m
+[  18% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg-8ca2ca862cb68d603d2ca672e415b127.ctex[39m[0m
+[  18% ] [90m[1msavepack[22m | Storing File: res://assets/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg.import[39m[0m
+[  19% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/PROP_SHOP_STOOL_A01.glb-82b3d46beab3e0fb3e84eb76feff46ee.scn[39m[0m
+[  19% ] [90m[1msavepack[22m | Storing File: res://assets/PROP_SHOP_STOOL_A01.glb.import[39m[0m
+[  21% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg-170ac8f8b9734de12bc8232bc4a6690d.ctex[39m[0m
+[  21% ] [90m[1msavepack[22m | Storing File: res://assets/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg.import[39m[0m
+[  22% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/SKY_BLUE_A01.png-879322509cb93cae73ca6a61c3e02f41.ctex[39m[0m
+[  22% ] [90m[1msavepack[22m | Storing File: res://assets/SKY_BLUE_A01.png.import[39m[0m
+[  23% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/VEH_CAR_A01.glb-527c955c709cd507d017b61d6302b1d1.scn[39m[0m
+[  23% ] [90m[1msavepack[22m | Storing File: res://assets/VEH_CAR_A01.glb.import[39m[0m
+[  25% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/VEH_CAR_A01_car_3d_model_basecolor.jpg-2cfd519ce788daea4842f09f547fd94f.ctex[39m[0m
+[  25% ] [90m[1msavepack[22m | Storing File: res://assets/VEH_CAR_A01_car_3d_model_basecolor.jpg.import[39m[0m
+[  26% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/VEH_TRUCK_A01.glb-059d49b85b9dd68b388a5a722f5cb151.scn[39m[0m
+[  26% ] [90m[1msavepack[22m | Storing File: res://assets/VEH_TRUCK_A01.glb.import[39m[0m
+[  27% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg-24213b95b47126054305e56503e74a45.ctex[39m[0m
+[  27% ] [90m[1msavepack[22m | Storing File: res://assets/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg.import[39m[0m
+[  28% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/VEH_VAN_A01.glb-b4052da69b546fa3cc830a7573d08264.scn[39m[0m
+[  28% ] [90m[1msavepack[22m | Storing File: res://assets/VEH_VAN_A01.glb.import[39m[0m
+[  30% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/VEH_VAN_A01_van_3d_model_basecolor.jpg-adc9b97991aeb27f2ff54c5e9df3f605.ctex[39m[0m
+[  30% ] [90m[1msavepack[22m | Storing File: res://assets/VEH_VAN_A01_van_3d_model_basecolor.jpg.import[39m[0m
+[  31% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/footstep_concrete_000.ogg-c6a116d00fb37d5f41fee222b3b3c712.oggvorbisstr[39m[0m
+[  31% ] [90m[1msavepack[22m | Storing File: res://audio/open/footstep_concrete_000.ogg.import[39m[0m
+[  32% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/footstep_concrete_003.ogg-55fdd8cecdbc7a9df3d1a3d298f5c92e.oggvorbisstr[39m[0m
+[  32% ] [90m[1msavepack[22m | Storing File: res://audio/open/footstep_concrete_003.ogg.import[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/impactBell_heavy_003.ogg-bcabe78cf315cee3333e153358960b0a.oggvorbisstr[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://audio/open/impactBell_heavy_003.ogg.import[39m[0m
+[  34% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/impactGlass_heavy_000.ogg-7bcbeeef978c6a02449a9bfc62b0177f.oggvorbisstr[39m[0m
+[  34% ] [90m[1msavepack[22m | Storing File: res://audio/open/impactGlass_heavy_000.ogg.import[39m[0m
+[  35% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/impactMetal_heavy_003.ogg-b61003713425988b2fc56fe2275314ae.oggvorbisstr[39m[0m
+[  35% ] [90m[1msavepack[22m | Storing File: res://audio/open/impactMetal_heavy_003.ogg.import[39m[0m
+[  36% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/impactMetal_light_000.ogg-1fdeed698ca8c58ae09764ed762ffa99.oggvorbisstr[39m[0m
+[  36% ] [90m[1msavepack[22m | Storing File: res://audio/open/impactMetal_light_000.ogg.import[39m[0m
+[  37% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/impactPunch_heavy_000.ogg-1921e5f7324029a89bd1379f76b7d645.oggvorbisstr[39m[0m
+[  37% ] [90m[1msavepack[22m | Storing File: res://audio/open/impactPunch_heavy_000.ogg.import[39m[0m
+[  39% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/impactPunch_heavy_001.ogg-5d6d7f0d9d6bda1c5670f84540d647c3.oggvorbisstr[39m[0m
+[  39% ] [90m[1msavepack[22m | Storing File: res://audio/open/impactPunch_heavy_001.ogg.import[39m[0m
+[  40% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/impactPunch_medium_000.ogg-656cbff178810cd574e1bb61a69c899c.oggvorbisstr[39m[0m
+[  40% ] [90m[1msavepack[22m | Storing File: res://audio/open/impactPunch_medium_000.ogg.import[39m[0m
+[  41% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/impactPunch_medium_001.ogg-aedf14171205fbdc069a91a7d9d9c1e7.oggvorbisstr[39m[0m
+[  41% ] [90m[1msavepack[22m | Storing File: res://audio/open/impactPunch_medium_001.ogg.import[39m[0m
+[  43% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/impactPunch_medium_002.ogg-ef99d271b35ea1e87b8414af832ebc80.oggvorbisstr[39m[0m
+[  43% ] [90m[1msavepack[22m | Storing File: res://audio/open/impactPunch_medium_002.ogg.import[39m[0m
+[  44% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/impactSoft_heavy_000.ogg-cd102d30a558e32ed8a7876b68241bb8.oggvorbisstr[39m[0m
+[  44% ] [90m[1msavepack[22m | Storing File: res://audio/open/impactSoft_heavy_000.ogg.import[39m[0m
+[  45% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/impactSoft_medium_001.ogg-6bded28b444e16a74c703ed79ac53e1e.oggvorbisstr[39m[0m
+[  45% ] [90m[1msavepack[22m | Storing File: res://audio/open/impactSoft_medium_001.ogg.import[39m[0m
+[  46% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/impactTin_medium_001.ogg-1c3cb7f3f4573f6ede9fa04020053996.oggvorbisstr[39m[0m
+[  46% ] [90m[1msavepack[22m | Storing File: res://audio/open/impactTin_medium_001.ogg.import[39m[0m
+[  48% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/level1.ogg-109665a854816bd04d30f73f652fe09a.oggvorbisstr[39m[0m
+[  48% ] [90m[1msavepack[22m | Storing File: res://audio/open/level1.ogg.import[39m[0m
+[  49% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/engine_placeholder.wav-c7c5a6a7f7ab9b702940be82d7446758.sample[39m[0m
+[  49% ] [90m[1msavepack[22m | Storing File: res://audio/engine_placeholder.wav.import[39m[0m
+[  50% ] [90m[1msavepack[22m | Storing File: res://config/street_whitebox.json[39m[0m
+[  51% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-bdc8cd2e6dfd30e8b626293cbef30421-test_player.scn[39m[0m
+[  53% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-cf8d669de48b6bafa4a0a00a77345f6e-street_fight.scn[39m[0m
+[  54% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-af29e3333d000d983a50c5616df343b4-PROP_BIN_A01.scn[39m[0m
+[  55% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-4da0c9ccf6b7c8e27f6d31b5966fcffb-PROP_CRATES_A01.scn[39m[0m
+[  56% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-3364041c5f6144f3e4856cd569cb73ed-PROP_HYDRANT_A01.scn[39m[0m
+[  58% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-e376ee3e8fb176a1f415b1ebb5982a4d-PROP_MAILBOX_A01.scn[39m[0m
+[  59% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-c385c17dfd90a98404da0ee59e7e3d0f-PROP_SHOP_STOOL_A01.scn[39m[0m
+[  60% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-bf31a4505a4e0c25aaab210c5c556c63-review.scn[39m[0m
+[  62% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-38221528fb369dbe2771c5ff7432d0ca-street_walk.scn[39m[0m
+[  63% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-1510bcd7c4caa6d5857f6da7729cb60f-street_whitebox.scn[39m[0m
+[  64% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-7f131e601ca6eb709f6045abeb40f101-VEH_CAR_A01.scn[39m[0m
+[  65% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-39aef5adfc6bc38afb2dc1790d8cd7e1-VEH_TRUCK_A01.scn[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-33e5bd735741f026b00d74b4cca059cc-VEH_VAN_A01.scn[39m[0m
+[  67% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/combat_motions.gdc[39m[0m
+[  68% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/fighter_visual.gdc[39m[0m
+[  69% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/fight_audio.gdc[39m[0m
+[  71% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/fight_hud.gdc[39m[0m
+[  72% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/fight_session.gdc[39m[0m
+[  73% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/fight_simulation.gdc[39m[0m
+[  74% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/fight_vfx.gdc[39m[0m
+[  76% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/street_backdrop.gdc[39m[0m
+[  77% ] [90m[1msavepack[22m | Storing File: res://scripts/aircraft_flyby.gdc[39m[0m
+[  78% ] [90m[1msavepack[22m | Storing File: res://scripts/character_pose_driver.gdc[39m[0m
+[  80% ] [90m[1msavepack[22m | Storing File: res://scripts/environment_textures.gdc[39m[0m
+[  81% ] [90m[1msavepack[22m | Storing File: res://scripts/screen_outline.gdc[39m[0m
+[  82% ] [90m[1msavepack[22m | Storing File: res://scripts/street_dressing.gdc[39m[0m
+[  83% ] [90m[1msavepack[22m | Storing File: res://scripts/style_sample.gdc[39m[0m
+[  85% ] [90m[1msavepack[22m | Storing File: res://scripts/test_player.gdc[39m[0m
+[  86% ] [90m[1msavepack[22m | Storing File: res://scripts/truck_rear_details.gdc[39m[0m
+[  87% ] [90m[1msavepack[22m | Storing File: res://scripts/walk_session.gdc[39m[0m
+[  88% ] [90m[1msavepack[22m | Storing File: res://scripts/whitebox_views.gdc[39m[0m
+[  90% ] [90m[1msavepack[22m | Storing File: res://shaders/fighter_outline.gdshader[39m[0m
+[  91% ] [90m[1msavepack[22m | Storing File: res://shaders/fighter_toon.gdshader[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://shaders/sample_toon.gdshader[39m[0m
+[  93% ] [90m[1msavepack[22m | Storing File: res://shaders/screen_outline.gdshader[39m[0m
+[  95% ] [90m[1msavepack[22m | Storing File: res://shaders/stylized_sky.gdshader[39m[0m
+[  96% ] [90m[1msavepack[22m | Storing File: res://audio/open/LICENSE-Kenney.txt[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://audio/open/LICENSE-Juhani.txt[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/actors/test_player.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/combat/street_fight.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/PROP_BIN_A01.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/PROP_CRATES_A01.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/PROP_HYDRANT_A01.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/PROP_MAILBOX_A01.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/PROP_SHOP_STOOL_A01.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/review.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/street_walk.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/street_whitebox.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/VEH_CAR_A01.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/VEH_TRUCK_A01.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scenes/VEH_VAN_A01.tscn.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/combat_motions.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/fighter_visual.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/fight_audio.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/fight_hud.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/fight_session.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/fight_simulation.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/fight_vfx.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/combat/street_backdrop.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/aircraft_flyby.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/character_pose_driver.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/environment_textures.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/screen_outline.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/street_dressing.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/style_sample.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/test_player.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/truck_rear_details.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/walk_session.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/whitebox_views.gd.remap[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://.godot/global_script_class_cache.cfg[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://.godot/uid_cache.bin[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://project.binary[39m[0m
+[92m[ DONE ][39m [1msavepack[22m
+[0m
+WEB_BUILD {"directory": "/workspace/sites/afterhours-playtest/dist", "files": 16, "total_bytes": 18689784, "source_commit": "c4b35ed334a3efa8123b77e269a82c5220b12c44"}

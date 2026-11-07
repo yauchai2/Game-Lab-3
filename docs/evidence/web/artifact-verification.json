@@ -1,0 +1,10 @@
+{
+  "files_verified": 15,
+  "inline_scripts_parse": true,
+  "lossless_web_decompression": true,
+  "wasm_compiles": true,
+  "wasm_bytes": 37700666,
+  "wasm_import_count": 338,
+  "threads": false,
+  "method": "Node WebAssembly and Web Streams plus artifact hashes; not a browser rendering test"
+}

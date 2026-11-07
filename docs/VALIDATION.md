@@ -167,3 +167,7 @@ Godot 4.6.3 headless 街景及遊走回歸通過；Compatibility／llvmpipe 固�
 新場景／音訊／VFX 33/33、警告編譯 3/3、格鬥 34/34、動畫與透視 30/30、自動 viewport 輸入 11/11、遊走 28/28、街道 13/13、固定 60 fps 飛機 11/11，共 163 項通過。四項截圖警告由三類警告提高為編譯錯誤覆核。來源場景比例、天空原圖、車輛、細節、貼圖 world UV、機鼻與速度同向、航道高度、CC0 音訊資源與開關、精準防禦與起手反擊均有自動檢查。
 
 16 張 Godot Compatibility／llvmpipe 畫面已檢視構圖與描邊比較。7.1 秒含聲示範是腳本輸入；音軌 AAC 立體聲，FFmpeg peak -7.7 dBFS，不是真人實聽。獨立飛機／街道回歸仍有音訊退出 ObjectDB 警告；新格鬥擷取與影片另有清理檢查。來源及完整範圍見 [SCENE_AUDIO_VFX.md](SCENE_AUDIO_VFX.md)，日誌見 [本輪證據](evidence/scene-audio-vfx/)。未作真人試玩、目標硬體 FPS 或完整美術驗收。
+
+## Web 匯出驗證（2026-11-07）
+
+Godot 4.6.3 Web release 成功，單執行緒 Compatibility。實際 Web PCK 在 Native runtime 完成 8/8 檢查：JSON 存在／解析、動畫角色、天空／紅車、音訊、攻擊傷害、F6 原街景及返回。Node WebAssembly.compile 與原生 Web Streams 無損解壓、HTML JS 語法及資產雜湊檢查通過。不是瀏覽器 GPU、真人遊玩或實聽驗收；Sites preview relay 不可用，依技能未另起替代瀏覽器。日誌及後續部署結果見 `evidence/web/`、[WEB_PLAYTEST.md](WEB_PLAYTEST.md)。

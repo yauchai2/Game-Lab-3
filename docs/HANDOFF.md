@@ -190,3 +190,9 @@ Godot 4.6.3 headless verbose 飛機測試 11 項通過，但退出仍提示 `Aud
 加入 Juhani Junkala CC0 電子樂、Kenney CC0 14 個音效，以及原創分段幾何 VFX。Shift 前六幀精準防禦及起手反擊已接入；F4 獨立音樂、M 靜音、F2 減少演出。四項使用者截圖警告已修正，三份相關腳本在提高警告為錯誤後通過。
 
 163 項相關檢查及含聲腳本示範已完成，細節、來源和限制見 [本輪文件](SCENE_AUDIO_VFX.md)。來源 GLB／白盒及歷史證據保留。仍需真人調手感、實聽混音與目標硬體驗收；原獨立飛機測試的音訊退出警告按本輪日誌記錄，不宣稱全面排除。
+
+## Web 分享試玩準備（2026-11-07）
+
+已按使用者要求加入 Godot Web preset、分享入口、載入／失敗提示、全螢幕、複製連結及授權頁。桌面鍵盤單人對 AI，保留 F6 原街景。單執行緒 Compatibility，不要求跨來源隔離；動作 JSON 明確打包。Wasm 無損壓縮，總下載約 19 MB，Sites ID 與更新方法見 [WEB_PLAYTEST.md](WEB_PLAYTEST.md)。
+
+Web 匯出、匯出包 8 項 Native 資源／玩法／F6 往返，以及 Wasm 編譯、Web Streams 解壓和檔案雜湊通過。Sites preview relay 及 cua_repl.js 不可用，瀏覽器實際遊玩未驗證；發佈結果另補紀錄，不把預期網址當作已上線。
