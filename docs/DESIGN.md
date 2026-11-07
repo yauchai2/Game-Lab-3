@@ -31,3 +31,7 @@
 完整下一階段規格見 [next-phase.zh-TW.md](design/next-phase.zh-TW.md)。
 
 使用者後續提供的兩張新風格參考與建議轉譯，見 [style-references-2026-11-06.zh-TW.md](design/style-references-2026-11-06.zh-TW.md)。其中風格結合方式是待確認的建議，不是已完成的最終美術決策。
+
+## 2026-11-07 玩法決定更新
+
+本聊天使用者選擇「類 Lethal League Blaze 但不是擊球，而是打鬥」。先前主玩法未選定的紀錄保留作歷史；目前在獨立 `codex/street-combat` 分支開發單機 2.5D 近身格鬥，以既有街景作背景。詳細已完成／待辦、招式數值與驗收方式見 [COMBAT.md](COMBAT.md)。格鬥角色對決取代擊球假設，原街景遊走保留。

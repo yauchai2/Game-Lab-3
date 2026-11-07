@@ -1,0 +1,12 @@
+{
+  "url": "https://yauchai2.github.io/Game-Lab-3/",
+  "http_status": 404,
+  "pages_configuration": "POST /repos/yauchai2/Game-Lab-3/pages returned 403 Resource not accessible by integration",
+  "status": "awaiting repository owner to enable Pages",
+  "deployment_branch": "gh-pages",
+  "deployment_commit": "c663ec5f8fbe77b99bfa311823d300b9aedaa5dc",
+  "source": "/ (root)",
+  "settings_url": "https://github.com/yauchai2/Game-Lab-3/settings/pages",
+  "game_export_upstream_commit": "77c00267b3fa7d72bf9ea61a18d6f29ecbd1135d",
+  "static_payload": "Existing verified Godot Web export; no gameplay or binary changes"
+}

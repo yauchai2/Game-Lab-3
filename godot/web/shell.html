@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101826">
+<meta name="description" content="Afterhours 街口格鬥試玩版。直接在瀏覽器走進街口，挑戰 AI 或練習連招。">
+<title>AFTERHOURS · 街口格鬥</title>
+$GODOT_HEAD_INCLUDE
+<style>
+:root{color-scheme:dark;--paper:#f4efda;--ink:#101826;--teal:#65e9de;--yellow:#eaf078;--muted:#a7b6c7}*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--paper);font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif}button,a{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid var(--teal);outline-offset:5px}.wrap{width:min(1440px,100%);margin:auto;padding:22px 28px}header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}.brand{font-weight:900;font-size:23px;letter-spacing:-.04em}.brand span{color:var(--teal)}.edition{font-size:11px;letter-spacing:.15em;color:var(--muted);margin-top:3px}.actions{display:flex;gap:10px}.quiet{color:var(--paper);border:1px solid #405068;background:transparent;padding:9px 14px;font-size:13px;min-height:40px}.quiet:hover{border-color:var(--teal)}main{display:flex;flex-direction:column;align-items:center}.stage{position:relative;width:min(100%,calc((100svh - 218px)*16/9));min-width:min(100%,560px);aspect-ratio:16/9;background:#07101c;border:1px solid #354153;overflow:hidden;isolation:isolate}canvas{display:block;width:100%;height:100%;object-fit:contain;outline:none;background:#101826}.stage:fullscreen{width:100vw;height:100vh;border:0;aspect-ratio:auto}.gate{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;background:linear-gradient(90deg,#08121aeb,#08121abd),url('cover.webp') center/cover}.gate[hidden]{display:none}.gate-inner{max-width:550px}.eyebrow{color:var(--teal);font-size:12px;font-weight:700;letter-spacing:.2em;margin:0 0 14px}h1{font-size:clamp(30px,4vw,64px);letter-spacing:-.07em;line-height:1;margin:0 0 16px}h1 em{font-style:normal;color:var(--yellow)}.lead{color:#d0dae2;font-size:15px;line-height:1.7;margin:0 0 22px}.start{background:var(--yellow);border:0;color:var(--ink);font-size:16px;font-weight:850;padding:15px 38px;min-width:200px}.start:hover{background:#f6ff95}.start:disabled{cursor:wait;opacity:.6}.small{font-size:12px;color:var(--muted);line-height:1.6;margin:14px 0 0}.loading{margin-top:18px}progress{width:min(360px,85%);height:6px;accent-color:var(--teal)}.status{font-size:13px;color:var(--teal);margin:10px 0;min-height:20px}.controls{width:100%;display:flex;justify-content:center;gap:12px 24px;flex-wrap:wrap;padding:17px 0 13px;font-size:12px;color:var(--muted)}.controls b{font-weight:750;color:var(--paper);margin-right:5px}kbd{font:inherit;color:var(--paper)}footer{display:flex;justify-content:space-between;gap:12px;width:100%;color:#7f91a6;font-size:11px;border-top:1px solid #293648;padding-top:12px}footer a{color:#a7b6c7;text-decoration:none}footer a:hover{color:var(--teal)}.error{white-space:pre-wrap;color:#ffb59b;max-height:110px;overflow:auto;font-size:12px}body.playing .stage{background:#101826}@media(max-width:700px){.wrap{padding:14px 12px}.brand{font-size:20px}.edition{font-size:9px}.actions{gap:6px}.quiet{padding:8px;font-size:11px}.stage{width:100%}.gate{padding:14px}h1{font-size:32px}.eyebrow{margin-bottom:8px}.lead{font-size:12px;margin-bottom:12px}.start{padding:10px 20px;min-height:42px}.small{font-size:10px;margin-top:8px}.controls{gap:8px 14px;padding:14px 0}footer{flex-wrap:wrap}.loading{margin-top:8px}}@media(max-height:600px) and (min-width:701px){.wrap{padding:10px 18px}header{margin-bottom:10px}.stage{width:calc((100svh - 170px)*16/9)}.controls{padding:10px 0}h1{font-size:36px}.lead{margin-bottom:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div><div class="brand">AFTER<span>HOURS</span></div><div class="edition">STREET FIGHT / WEB PLAYTEST</div></div><nav class="actions" aria-label="試玩工具"><button class="quiet" id="share">複製試玩網址</button><button class="quiet" id="fullscreen">全螢幕 ↗</button></nav></header>
+<main>
+<div class="stage" id="stage">
+<canvas id="canvas" width="1280" height="720" tabindex="0" aria-label="街口格鬥遊戲；按 Enter 開始對戰，A D 移動，J K 攻擊">你的瀏覽器需要支援 WebGL 2 才能試玩。</canvas>
+<div class="gate" id="gate"><div class="gate-inner"><p class="eyebrow">THE STREET IS YOURS</p><h1>落街。<em>打場先。</em></h1><p class="lead">在斑馬線上迎戰 AI，或進入練習模式試連招。<br>一條街，兩個人，直接開打。</p><button class="start" id="start">開始試玩 →</button><p class="small">電腦鍵盤 · 建議 Chrome / Edge / Firefox<br>首次載入需要下載遊戲；點擊開始後啟用聲音。</p><div class="loading" id="loading" hidden><progress id="progress" aria-label="遊戲載入進度"></progress></div><p class="status" id="status" aria-live="polite"></p><div class="error" id="error" hidden></div></div></div>
+</div>
+<div class="controls" aria-label="遊戲操作"><span><b>A / D</b> 移動</span><span><b>Space</b> 跳躍</span><span><b>J / K</b> 輕拳 / 重踢</span><span><b>W + K</b> 挑空</span><span><b>L</b> 能量技</span><span><b>Shift</b> 防禦</span><span><b>E</b> 閃避</span><span><b>Esc</b> 暫停</span><span><b>M</b> 靜音</span></div>
+<footer><span>開發中試玩版 · 單人對 AI · Enter 開始對戰 · F6 探索街道</span><span><a href="credits.html" target="_blank" rel="noopener">素材鳴謝與授權 ↗</a> · <span id="build">BUILD __BUILD_ID__</span></span></footer>
+</main>
+</div>
+<script src="$GODOT_URL"></script>
+<script>
+'use strict';
+const config = $GODOT_CONFIG;
+config.canvas = document.getElementById('canvas');
+config.canvasResizePolicy = 0;
+config.focusCanvas = true;
+config.ensureCrossOriginIsolationHeaders = false;
+const engine = new Engine(config);
+const start = document.getElementById('start');
+const status = document.getElementById('status');
+const gate = document.getElementById('gate');
+const progress = document.getElementById('progress');
+const canvas = config.canvas;
+let running = false;
+// The static host has a per-file size limit. The build ships a lossless gzip
+// engine and exposes an ordinary Wasm Response to Godot after decompression.
+const nativeFetch = window.fetch.bind(window);
+const wasmURL = new URL(config.executable + '.wasm', location.href);
+window.fetch = async (input, options) => {
+ const url = new URL(typeof input === 'string' ? input : (input instanceof URL ? input.href : input.url), location.href);
+ if (url.href !== wasmURL.href) return nativeFetch(input, options);
+ const response = await nativeFetch(wasmURL.href + '.gz', options);
+ if (!response.ok) throw new Error('遊戲引擎下載失敗（' + response.status + '）');
+ const bytes = new Uint8Array(await response.arrayBuffer());
+ const gzip = bytes[0] === 31 && bytes[1] === 139;
+ if (gzip && typeof DecompressionStream === 'undefined') throw new Error('請更新瀏覽器至最新版本再試。');
+ const body = gzip ? new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip')) : bytes;
+ return new Response(body, {headers:{'Content-Type':'application/wasm'}});
+};
+start.addEventListener('click', async () => {
+ if (start.dataset.retry) { location.reload(); return; }
+ start.disabled = true;
+ start.textContent = '載入中…';
+ status.textContent = '正在下載遊戲，首次啟動可能需要一會。';
+ document.getElementById('loading').hidden = false;
+ try {
+  const missing = Engine.getMissingFeatures({threads:false});
+  if (missing.length) throw new Error('瀏覽器未支援：' + missing.join(', '));
+  await engine.startGame({
+   onProgress(current,total) {
+    if(total > 0) { progress.max = total; progress.value = current; status.textContent = '載入遊戲 ' + Math.min(100,Math.round(current/total*100)) + '%'; }
+   },
+   onExit(code) {
+    running=false;gate.hidden=false;start.disabled=false;start.dataset.retry='1';start.textContent='重新試玩';status.textContent=code ? '遊戲已停止，請重新載入。' : '多謝試玩。';
+   }
+  });
+  running = true;
+  document.body.classList.add('playing');
+  gate.hidden = true;
+  canvas.focus();
+ } catch(error) {
+  console.error(error);
+  status.textContent = '未能啟動，請使用更新的電腦瀏覽器或重新載入。';
+  const detail=document.getElementById('error');detail.hidden=false;detail.textContent=error.message||String(error);
+  start.disabled=false;start.dataset.retry='1';start.textContent='重新載入';
+  document.getElementById('loading').hidden=true;
+ }
+});
+canvas.addEventListener('pointerdown',()=>canvas.focus());
+window.addEventListener('keydown',event=>{
+ if(running && document.activeElement===canvas && !event.ctrlKey && !event.metaKey && ['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','F2','F4','F6'].includes(event.code)) event.preventDefault();
+},true);
+document.getElementById('fullscreen').addEventListener('click',async()=>{
+ try { if(document.fullscreenElement) await document.exitFullscreen(); else await document.getElementById('stage').requestFullscreen(); if(running) canvas.focus(); }
+ catch { status.textContent='這個瀏覽器未能進入全螢幕，仍可直接試玩。'; }
+});
+document.getElementById('share').addEventListener('click',async event=>{
+ const button=event.currentTarget;
+ try { await navigator.clipboard.writeText(location.origin + location.pathname); button.textContent='已複製 ✓'; }
+ catch { button.textContent='請複製瀏覽器網址'; }
+ setTimeout(()=>button.textContent='複製試玩網址',2400);
+});
+</script>
+</body>
+</html>

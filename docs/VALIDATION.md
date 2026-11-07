@@ -143,3 +143,41 @@ Godot 4.6.3 headless 街景與遊走回歸通過；Godot Compatibility／llvmpip
 ## 住宅陽台與天線（2026-11-07）
 
 Godot 4.6.3 headless 街景及遊走回歸通過；Compatibility／llvmpipe 固定鏡頭前後 draw calls 1,131→1,131、primitives 86,297→88,181；測量、方法和仰視截圖見 [residential](evidence/residential/)。未驗證真實 GPU、FPS、真人遊玩或風格定案。
+
+## 近身格鬥第一版（2026-11-07）
+
+- Godot 4.6.3，34/34 headless 格鬥邏輯與場景檢查：包括三段連擊、縮放傷害、朝向／高度／範圍、同時命中交換、衝刺無敵、頓幀和輸入緩衝、防禦破防、能量、挑空、KO／時間用盡／平手／重賽與暫停。
+- Xorg dummy / Mesa llvmpipe，960×540，11/11 自動輸入檢查：以 `Input.parse_input_event` 經 viewport 驗證開始、移動、跳躍、重招、暫停、靜音、減少演出和雙向 F6 場景切換。不是真人鍵盤試玩。
+- 既有 28/28 遊走及 13/13 街景回歸通過；後者仍有既存 ObjectDB 音訊清理警告。新格鬥檢查未見腳本錯誤或該清理警告。
+- 1280×720 Godot Compatibility 軟體渲染截圖：主選單、戰場、命中、挑空和暫停；自動輸入示範另外標記為 scripted。
+- 原始角色與場景來源不改。尚未驗證真人手感、實聽混音、目標硬體 GPU、幀時間、最終美術或獨立匯出。
+
+證據與重現工具見 [COMBAT.md](COMBAT.md) 及 [combat 證據目錄](evidence/combat/)。
+
+## 街口透視格鬥背景（2026-11-07）
+
+14/14 新背景邏輯檢查、34/34 格鬥回歸及 11/11 Xorg/llvmpipe 自動輸入與場景切換通過。1280×720 及 960×540 的 Godot Compatibility 畫面已擷取查看。最終截圖和輸入日誌未見腳本、shader 或材質錯誤；試作時的材質清理問題在修正材質覆寫並保留資源後未再出現。詳細參數及影片抽樣限制見 [背景文件](STREET_COMBAT_BACKGROUND.md)，證據見 `evidence/street-angle/`。未做目標 GPU 效能、真人遊玩或音效驗收。
+
+## 五點試玩回饋回歸（2026-11-07）
+
+30/30 新實際骨架／動畫／統一透視／鏡頭／留白檢查、34/34 格鬥、11/11 原生 viewport 輸入與場景往返、28/28 遊走、13/13 街景通過，共 116 項。拳頭由架勢位置向對手伸出約 0.75 m（含視覺踏步），重踢足部向前、骨架取樣有限且正規化；這些是腳本量測，不代表真人手感評分。新日誌、畫面及授權來源見 `evidence/playtest-fixes/` 和 [PLAYTEST_FIXES.md](PLAYTEST_FIXES.md)。格鬥原始 GLB 和街道白盒無修改，既存遊走音訊退出警告仍在。軟體渲染不是目標硬體 FPS 證據。
+
+## 場景接回、開放音訊與 VFX（2026-11-07）
+
+新場景／音訊／VFX 33/33、警告編譯 3/3、格鬥 34/34、動畫與透視 30/30、自動 viewport 輸入 11/11、遊走 28/28、街道 13/13、固定 60 fps 飛機 11/11，共 163 項通過。四項截圖警告由三類警告提高為編譯錯誤覆核。來源場景比例、天空原圖、車輛、細節、貼圖 world UV、機鼻與速度同向、航道高度、CC0 音訊資源與開關、精準防禦與起手反擊均有自動檢查。
+
+16 張 Godot Compatibility／llvmpipe 畫面已檢視構圖與描邊比較。7.1 秒含聲示範是腳本輸入；音軌 AAC 立體聲，FFmpeg peak -7.7 dBFS，不是真人實聽。獨立飛機／街道回歸仍有音訊退出 ObjectDB 警告；新格鬥擷取與影片另有清理檢查。來源及完整範圍見 [SCENE_AUDIO_VFX.md](SCENE_AUDIO_VFX.md)，日誌見 [本輪證據](evidence/scene-audio-vfx/)。未作真人試玩、目標硬體 FPS 或完整美術驗收。
+
+## Web 匯出驗證（2026-11-07）
+
+Godot 4.6.3 Web release 成功，單執行緒 Compatibility。實際 Web PCK 在 Native runtime 完成 8/8 檢查：JSON 存在／解析、動畫角色、天空／紅車、音訊、攻擊傷害、F6 原街景及返回。Node WebAssembly.compile 與原生 Web Streams 無損解壓、HTML JS 語法及資產雜湊檢查通過。不是瀏覽器 GPU、真人遊玩或實聽驗收；Sites preview relay 不可用，依技能未另起替代瀏覽器。日誌及後續部署結果見 `evidence/web/`、[WEB_PLAYTEST.md](WEB_PLAYTEST.md)。
+
+## Web 公開發佈完成（2026-11-07）
+
+試玩網址：https://afterhours-street-fight.beamingladybird1.chatgpt.site 。Sites version 1、部署 `appgdep_6aee954c0f3c8191866e36096a914642` 成功，native get_site 確認 public 及同一 current_live_url。GitHub 遊戲來源 `77c0026`，Site source `3dcb8dc`。分享頁、遊戲及授權共約 19 MB。
+
+實際匯出的 PCK 8/8、WebAssembly／Web Streams／實際 fetch adapter compileStreaming、HTML 語法及本機資產雜湊通過。匿名 HTTP 下載被 Cloudflare 403／1010 阻擋，未驗證線上資產內容；預覽服務仍不可用，沒有宣稱完成瀏覽器遊玩或實聽。更多來源與重現見 WEB_PLAYTEST.md 和 evidence/web/。
+
+## GitHub Pages 準備及權限阻礙（2026-11-07，香港時間）
+
+同一 Web 匯出已推送 gh-pages c663ec5；15 件資產 SHA-256 通過，實際匯出 fetch adapter 在根路徑及 /Game-Lab-3/ 下的 WebAssembly.compileStreaming 通過。repo API public / admin=true / has_pages=false；POST 啟用 Pages 回應 403 Resource not accessible by integration，目標網址回應 404。尚未有 GitHub Pages 線上部署或瀏覽器驗證，未以成功推送分支冒充發佈成功。來源、API 訊息和檢查見 evidence/github-pages/ 及 WEB_PLAYTEST.md；等擁有人於設定頁啟用。

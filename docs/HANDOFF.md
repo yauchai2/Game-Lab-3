@@ -160,3 +160,51 @@ Godot 4.6.3 headless verbose 飛機測試 11 項通過，但退出仍提示 `Aud
 ## 舊樓陽台與天線（2026-11-07）
 
 在遊走場景五個舊樓位置加入三層外伸陽台、欄杆及簡化晾曬色塊，四處加天線；均使用現有批次及高處非碰撞裝飾。原始 GLB 和 S1 保留。Godot llvmpipe 仰視圖見 [住宅立面](evidence/residential/03_left_facade.png)，街景與遊走測試通過。相同 800×450 固定鏡頭軟體渲染，開啟街景細節時的 draw calls 前後均為 1,131，primitives 為 86,297→88,181；不是 FPS 或目標硬體效能測試。
+
+## 角色近身格鬥：第一個可玩里程碑（2026-11-07）
+
+依使用者本聊天指定「類 Lethal League Blaze 但不是擊球，而是打鬥」，從 `codex/flight-street-handoff` 的 `f9cd82d` 建立 `codex/street-combat`，復用現有街景與角色，加入玩家對 AI、固定對手練習、三段輕連擊、重擊、挑空、防禦破防、衝刺、能量技、動態頓幀、輸入緩衝、計分、兩勝賽制、暫停和重賽。主場景改為格鬥主選單，遊戲內 F6 在格鬥／原遊走之間切換。
+
+原始 GLB 不改；近側街牆和道具僅在格鬥組裝場景隱藏以保護戰鬥可見性。外掛 toon、程序姿勢、2D 幾何特效、鏡頭及合成音。這些不是完成的手繪特效、正式角色動畫或最終音效。
+
+34 項 headless 格鬥檢查、11 項 Xorg/llvmpipe 自動輸入與場景往返、28 遊走及 13 街景回歸通過。新格鬥測試無退出 ObjectDB 警告；街景回歸仍有既存音訊清理警告。截圖及自動示範見 `docs/evidence/combat/`，並非真人試玩或硬體效能證據。下一步先真人調校手感與正式動作／特效，再擴充格鬥深度。完整操作、架構與後續順序見 [COMBAT.md](COMBAT.md)。
+
+## 使用者指定的街口仰角背景（2026-11-07）
+
+依本聊天三張圖片改用沿街望入、向上仰視的構圖：雙側冷暖街牆、直立招牌、深藍天空和斜向四引擎客機。背景在獨立 SubViewport world 渲染，前景正交角色與原格鬥判定保留；相機追隨不改背景仰角，暫停會凍結飛機。頂部 HUD 收窄、臨時大牌和凸起舞台正面移除。原街景與 GLB 無改動。
+
+已讀取使用者 Drive 影片並抽查六張等距畫面，未完整觀看或量測原遊戲幀數。14 項新背景檢查、34 格鬥與 11 自動輸入回歸通過，1280×720／960×540 的 Godot llvmpipe 畫面與自動示範見 `docs/evidence/street-angle/`。下一步是使用者確認構圖，再精修建築／客機與正式角色動作；目標 GPU 和真人手感未驗證。完整來源及參數見 [背景文件](STREET_COMBAT_BACKGROUND.md)。
+
+## 五點試玩回饋修正（2026-11-07）
+
+修正模型 +Z 朝向與 gameplay facing 的相反轉換，雙方現在面向彼此且能換邊。匯入 Quaternius CC0 Standard 的 14 段拳擊／移動／跳躍／翻滾／受擊／KO／發力動畫，使用休止姿態轉接和肢體校正；重踢與挑空另作方向疊加。來源、授權、雜湊與可重現抽取器均已保存，角色 GLB 無改動。
+
+依使用者澄清，移除雙 world 合成，角色 Z=3 在現有斑馬線上戰鬥，使用同一個透視世界、陰影和相機；相機依雙方中點與距離平滑追蹤，左右輕微環繞。兩種模式的場景文字／舊字形均隱藏，招牌面板留白。
+
+30 項新回歸、34 格鬥、11 自動鍵盤、28 遊走和 13 街景通過，共 116 項；新畫面與示範見 `docs/evidence/playtest-fixes/`。既存遊走音訊清理警告仍在；真人手感及目標硬體未驗收。詳細來源、轉接方式和剩餘限制見 [PLAYTEST_FIXES.md](PLAYTEST_FIXES.md)。接續優先看真人試玩對接觸節奏、腳步、鏡頭及素材整合的回饋。
+
+## 場景接回、音訊與戰鬥演出（2026-11-07，最新）
+
+已重新核對指定街景對話及來源分支 `f9cd82d`，補回前版漏載的圖片天空、紅車、箱式貨車、原世界 UV 環境貼圖和 style_sample 細節。取消全街 X=2.4 拉伸，只延伸入口斑馬線漆。飛機沿本地 -Z 機鼻飛行並移高避開屋頂。角色黑邊保留，場景額外描邊預設關，O 比較；招牌仍留白。
+
+加入 Juhani Junkala CC0 電子樂、Kenney CC0 14 個音效，以及原創分段幾何 VFX。Shift 前六幀精準防禦及起手反擊已接入；F4 獨立音樂、M 靜音、F2 減少演出。四項使用者截圖警告已修正，三份相關腳本在提高警告為錯誤後通過。
+
+163 項相關檢查及含聲腳本示範已完成，細節、來源和限制見 [本輪文件](SCENE_AUDIO_VFX.md)。來源 GLB／白盒及歷史證據保留。仍需真人調手感、實聽混音與目標硬體驗收；原獨立飛機測試的音訊退出警告按本輪日誌記錄，不宣稱全面排除。
+
+## Web 分享試玩準備（2026-11-07）
+
+已按使用者要求加入 Godot Web preset、分享入口、載入／失敗提示、全螢幕、複製連結及授權頁。桌面鍵盤單人對 AI，保留 F6 原街景。單執行緒 Compatibility，不要求跨來源隔離；動作 JSON 明確打包。Wasm 無損壓縮，總下載約 19 MB，Sites ID 與更新方法見 [WEB_PLAYTEST.md](WEB_PLAYTEST.md)。
+
+Web 匯出、匯出包 8 項 Native 資源／玩法／F6 往返，以及 Wasm 編譯、Web Streams 解壓和檔案雜湊通過。Sites preview relay 及 cua_repl.js 不可用，瀏覽器實際遊玩未驗證；發佈結果另補紀錄，不把預期網址當作已上線。
+
+## Web 公開發佈完成（2026-11-07）
+
+試玩網址：https://afterhours-street-fight.beamingladybird1.chatgpt.site 。Sites version 1、部署 `appgdep_6aee954c0f3c8191866e36096a914642` 成功，native get_site 確認 public 及同一 current_live_url。GitHub 遊戲來源 `77c0026`，Site source `3dcb8dc`。分享頁、遊戲及授權共約 19 MB。
+
+實際匯出的 PCK 8/8、WebAssembly／Web Streams／實際 fetch adapter compileStreaming、HTML 語法及本機資產雜湊通過。匿名 HTTP 下載被 Cloudflare 403／1010 阻擋，未驗證線上資產內容；預覽服務仍不可用，沒有宣稱完成瀏覽器遊玩或實聽。更多來源與重現見 WEB_PLAYTEST.md 和 evidence/web/。
+
+## GitHub Pages 已準備，待啟用（2026-11-07，香港時間）
+
+使用者改要 GitHub 遊戲網址。`gh-pages` 分支 `c663ec5` 已推送同一份 Web 遊戲及 `.nojekyll`，期望網址 https://yauchai2.github.io/Game-Lab-3/ 。GitHub repo public、帳戶 admin，但 integration 啟用 Pages 的 API 回傳 403；目前 has_pages=false、網址 404，尚未上線。請擁有人在 Settings/Pages 選 Deploy from a branch → gh-pages → /(root) → Save。主分支及既有 Sites 不刪改。
+
+已驗證 15 件靜態資產雜湊，實際 fetch adapter 在根路徑及 /Game-Lab-3/ 皆可 compileStreaming；不是線上瀏覽器實測。設定完成後接續執行 HTTP 資產及瀏覽器鍵盤／音訊檢查。API 失敗和準備提交見 docs/evidence/github-pages/；完整指引見 WEB_PLAYTEST.md。

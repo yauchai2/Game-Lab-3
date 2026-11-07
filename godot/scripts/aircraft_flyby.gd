@@ -27,7 +27,7 @@ func _ready() -> void:
     var stream: AudioStreamWAV = load("res://audio/engine_placeholder.wav").duplicate()
     stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
     stream.loop_begin = 0
-    stream.loop_end = stream.data.size() / 2
+    stream.loop_end = stream.data.size() >> 1 # mono 16-bit PCM sample count
     sound.stream = stream
     sound.unit_size = 100.0
     sound.max_distance = 650.0
@@ -169,3 +169,9 @@ func _nose_point(z: float, angle: float) -> Vector3:
     var normalized_z := clampf((z+26.0)/7.0,-.999,.999)
     var radius := 2.74*sqrt(1.0-normalized_z*normalized_z)
     return Vector3(radius*cos(angle),radius*sin(angle),z)
+
+func _exit_tree() -> void:
+    if is_instance_valid(sound):
+        sound.stream_paused = false
+        sound.stop()
+        sound.stream = null
