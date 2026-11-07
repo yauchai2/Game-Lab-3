@@ -39,6 +39,7 @@ func _ready() -> void:
     _make_storefronts()
     _make_corner_facades()
     _make_upper_facades()
+    _make_balcony_planters()
     _make_signs()
     _make_landmark_scaffold()
     _make_street_furniture()
@@ -210,6 +211,27 @@ func _make_upper_facades() -> void:
         _box("frame",Vector3(side*5.45,y,z),Vector3(.035,.34,.52))
         for dz in [-.18,0.0,.18]:
             _box("cream",Vector3(side*5.42,y,z+dz),Vector3(.03,.30,.025))
+
+func _make_balcony_planters() -> void:
+    # The reference's orange building uses long planted balcony edges.
+    # All details remain shallow and above the walkable sidewalk.
+    for floor_index in [1, 2, 3]:
+        var base_y: float = floor_index * 3.3
+        for z in [-10.0, -6.5, -3.0]:
+            _box("frame", Vector3(5.43, base_y + .40, z), Vector3(.30, .36, 2.2))
+            _box("warm", Vector3(5.25, base_y + .40, z), Vector3(.08, .30, 2.12))
+            for i in 5:
+                var leaf_z: float = z - .83 + i * .41
+                var leaf_height := .30 + float((floor_index + i) % 3) * .09
+                _box("leaf", Vector3(5.32, base_y + .66 + leaf_height * .5, leaf_z), Vector3(.28, leaf_height, .36))
+    # A few window-mounted cages echo the real street's projecting metalwork.
+    for spec in [[-10.0, 8.6], [-4.0, 11.9], [-21.0, 8.6]]:
+        var z: float = spec[0]
+        var y: float = spec[1]
+        for dz in [-.42, .42]:
+            _box("frame", Vector3(5.50, y, z + dz), Vector3(.62, .055, .055))
+            _box("frame", Vector3(5.19, y + .24, z + dz), Vector3(.055, .48, .055))
+        _box("frame", Vector3(5.19, y + .48, z), Vector3(.055, .055, .90))
 
 func _projecting_sign(side: int, z: float, y: float, panel: String, text: String) -> void:
     var x := side*5.08

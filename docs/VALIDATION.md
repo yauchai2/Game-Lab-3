@@ -131,3 +131,7 @@ Godot Compatibility／Mesa llvmpipe 截圖與 60 Hz 模擬、20 fps 無聲角色
 ## 飛機音效清理警告定位（2026-11-07）
 
 飛機回歸 11 項通過，verbose 顯示退出時保留 `AudioStreamWAV` 與 `AudioStreamPlaybackWAV`；停止並清空 stream 的臨時實驗未排除警告。詳見 [原始日誌](evidence/audio-diagnostics/flyby-verbose.log) 和 [實驗日誌](evidence/audio-diagnostics/flyby-clear-stream-verbose.log)。無法由此確定記憶體洩漏根因或實際遊戲音訊表現。
+
+## 立面花槽與外伸架（2026-11-07）
+
+Godot 4.6.3 headless 的街景及遊走回歸通過，紀錄見 [balconies](evidence/balconies/)；1280×720 畫面透過 Xorg／Mesa llvmpipe 擷取，不是硬體效能或人工試玩。

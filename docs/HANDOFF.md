@@ -148,3 +148,7 @@ Godot 4.6.3 headless 13 項新場景檢查、28 遊走、12 風格、7 天空、
 ## 飛機音效退出警告調查（2026-11-07）
 
 Godot 4.6.3 headless verbose 飛機測試 11 項通過，但退出仍提示 `AudioStreamWAV` 和 `AudioStreamPlaybackWAV` 未釋放；臨時測試停止後把 `sound.stream` 設為 null，警告仍存在，該實驗沒有保留於程式。原始及實驗紀錄位於 `docs/evidence/audio-diagnostics/`。這只定位測試退出時的現象，尚未證實原因或修復，未聆聽音效。
+
+## 陽台花槽與外伸架（2026-11-07）
+
+依原照片右側橙色立面，遊走場景增添三層低面數花槽、綠色植物與數個外伸金屬架；全部使用既有 MultiMesh 批次、位於高處且不加碰撞，獨立 S1 及原 GLB 不改。[入口畫面](evidence/balconies/01_entry.png)、[側面畫面](evidence/balconies/02_sidewalk.png)為 Godot Compatibility／llvmpipe 軟體渲染；場景結構與遊走測試通過，硬體 GPU、人工操作與最後美術仍待驗證。
