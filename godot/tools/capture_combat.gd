@@ -17,7 +17,7 @@ func capture() -> void:
     scene.sim.phase = "fight"
     scene.sim.fighters[0].x = -1.0
     scene.sim.fighters[1].x = 1.0
-    scene._present(0.016)
+    for i in 20: scene._present(1.0/60.0)
     await save(scene,"02_fight")
     scene.sim.fighters[0].meter = 85
     scene.sim.fighters[0].x = -0.75
@@ -25,19 +25,51 @@ func capture() -> void:
     scene.sim.tick({"attack":"heavy","up":true})
     for i in 14:
         scene.sim.tick()
+        scene._present(1.0/60.0)
         for event in scene.sim.events:
             scene._handle_event(event)
     for effect in scene.effects:
         effect.age = 0.035
     scene._present(0.05)
     await save(scene,"03_impact")
-    for i in 19: scene.sim.tick()
+    for i in 19:
+        scene.sim.tick()
+        scene._present(1.0/60.0)
     scene.effects.clear()
     scene._present(0.05)
     await save(scene,"04_launcher")
     scene.screen = "pause"
     scene.hud.rebuild_menu()
     await save(scene,"05_pause")
+    scene.screen = "play"
+    scene.hud.rebuild_menu()
+    scene.effects.clear()
+    scene.sim.reset_round()
+    scene.sim.phase = "fight"
+    scene.sim.fighters[0].x = -7
+    scene.sim.fighters[1].x = -3
+    for i in 90: scene._present(1.0/60.0)
+    await save(scene,"06_camera_left")
+    scene.sim.fighters[0].x = 3
+    scene.sim.fighters[1].x = 7
+    for i in 150: scene._present(1.0/60.0)
+    await save(scene,"07_camera_right")
+    scene.sim.fighters[0].x = -1.1
+    scene.sim.fighters[1].x = 1.1
+    scene.sim.fighters[0].state = "attack"
+    scene.sim.fighters[0].move = "heavy"
+    scene.sim.fighters[0].frame = 18
+    for i in 90: scene._present(1.0/60.0)
+    await save(scene,"08_heavy_kick")
+    scene.sim.fighters[0].state = "dash"
+    scene.sim.fighters[0].frame = 7
+    for i in 12: scene._present(1.0/60.0)
+    await save(scene,"09_dodge_roll")
+    scene.sim.fighters[0].state = "idle"
+    scene.sim.fighters[0].y = 1.5
+    scene.sim.fighters[0].vy = 3.0
+    for i in 15: scene._present(1.0/60.0)
+    await save(scene,"10_jump")
     scene.queue_free()
     await process_frame
     await process_frame

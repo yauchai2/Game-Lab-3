@@ -1,6 +1,7 @@
 extends Node3D
 ## Reversible scene dressing; storefronts are visual, lamp poles use simple collision.
 ## Boxes sharing a material are batched to keep the number of draw submissions modest.
+@export var show_sign_text := false
 const GRAFFITI = preload("res://assets/art/graffiti_swift_A01.png")
 var groups: Dictionary = {}
 var material_colors := {
@@ -91,6 +92,7 @@ func _flush_groups() -> void:
     groups.clear()
 
 func _label(text: String, at: Vector3, rotation_y: float, font_size: int, pixel_size: float, color: Color) -> void:
+    if not show_sign_text: return
     var sign := Label3D.new()
     sign.name = "SignText_"+str(labels.get_child_count())
     sign.text = text
@@ -371,6 +373,7 @@ func _make_cables() -> void:
             last = point
 
 func _make_graffiti() -> void:
+    if not show_sign_text: return
     # One original graphic in the side alley, away from the photo's main view.
     var surface := QuadMesh.new()
     surface.size = Vector2(4.4,2.25)

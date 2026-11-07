@@ -7,6 +7,7 @@ func _ready() -> void:
     # S1 camera shortcuts remain available when its scene runs on its own.
     street.set_process_unhandled_key_input(false)
     $Street/Overlay/Help.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    preload("res://scripts/combat/street_backdrop.gd").strip_scene_text(self)
     activate_walk()
 func activate_walk(capture_mouse := true) -> void:
     walking = true

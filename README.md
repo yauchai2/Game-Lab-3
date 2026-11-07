@@ -1,6 +1,6 @@
 # Afterhours / Game-Lab-3
 
-本分支在既有風格化街區上加入 **2.5D 近身格鬥**：玩家對 AI、連擊、挑空、防禦、能量技、動態頓幀和回合勝負。[操作與完整開發狀態](docs/COMBAT.md)。背景已改用使用者指定的[街口仰角與客機掠過](docs/STREET_COMBAT_BACKGROUND.md)。
+本分支在既有風格化街區上加入 **2.5D 近身格鬥**：玩家對 AI、連擊、挑空、防禦、能量技、動態頓幀和回合勝負。[操作與完整開發狀態](docs/COMBAT.md)。最新已按試玩回饋修正朝向、接入 14 段 CC0 動畫，改用[斑馬線上的統一透視與追鏡](docs/PLAYTEST_FIXES.md)，場景招牌先留白。
 
 以 Godot 4 製作風格化低空航道街區。AI 主導製作，使用者透過 Tripo 網頁生成與回傳模型，並提供美術及遊玩回饋。
 
@@ -31,7 +31,7 @@
 
 ## 開啟專案
 
-驗證版本為 Godot 4.6.3，以編輯器開啟 `godot/project.godot`，匯入後按 F5 進入格鬥主選單 `scenes/combat/street_fight.tscn`。J 輕攻擊、K 重攻擊、W+K 挑空、L 能量技、Shift 防禦、E 衝刺、Space 跳躍；遊戲內 F6 返回原街景 `scenes/street_walk.tscn`，再按 F6 回格鬥。
+驗證版本為 Godot 4.6.3，以編輯器開啟 `godot/project.godot`，匯入後按 F5 進入格鬥主選單 `scenes/combat/street_fight.tscn`。J 輕攻擊、K 重攻擊、W+K 挑空、L 能量技、Shift 防禦、E 翻滾閃避、Space 跳躍；遊戲內 F6 返回原街景 `scenes/street_walk.tscn`，再按 F6 回格鬥。
 
 原街景操作：WASD 移動、滑鼠轉向、Space 跳躍、V 切換第一／第三人稱；按 `1–5`／`Tab` 查看固定視角，`0` 回到角色，`R` 重設，`B` 比較樣片材質，`P` 重播飛機，`C` 切換程序雲朵／純色天空，`N` 比較生成的天空圖片，`O` 開關實驗性描邊。原資產展示仍保留於 `scenes/review.tscn`。
 

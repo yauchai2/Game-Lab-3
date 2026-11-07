@@ -22,7 +22,11 @@ func _process(_delta: float) -> bool:
     var a: Dictionary = scene.sim.fighters[0]
     var b: Dictionary = scene.sim.fighters[1]
     var command := {"axis":signf(b.x-a.x) if absf(b.x-a.x)>1.35 else 0.0}
-    if frame % 16 == 0:
+    if frame < 60:
+        command["axis"] = -1.0
+    elif frame < 120:
+        command["axis"] = 1.0
+    if frame >= 120 and frame % 16 == 0:
         command["attack"] = "light"
     if frame == 135:
         command["attack"] = "heavy"

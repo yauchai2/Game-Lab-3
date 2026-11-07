@@ -62,7 +62,7 @@ func rebuild_menu() -> void:
     sub.add_theme_font_size_override("font_size", 13)
     stack.add_child(sub)
     var help := Label.new()
-    help.text = "A / D     Move        SPACE     Jump\nJ             Light / 3-hit chain\nK            Heavy     W + K     Launcher\nL             Special (50 energy)\nSHIFT    Guard       E              Dash\nESC        Pause       F6           Explore street"
+    help.text = "A / D     Move        SPACE     Jump\nJ             Light / 3-hit chain\nK            Heavy     W + K     Launcher\nL             Special (50 energy)\nSHIFT    Guard       E              Dodge\nESC        Pause       F6           Explore street"
     help.add_theme_color_override("font_color", PAPER)
     help.add_theme_font_size_override("font_size", 15)
     stack.add_child(help)
@@ -157,7 +157,7 @@ func _draw() -> void:
             draw_circle(at,6,session.COLORS[i] if sim.wins[i]>pip else Color("354354"))
     _rect(Vector2(0,660),Vector2(1280,60),INK)
     _text(Vector2(38,684),"J  LIGHT    K  HEAVY    W+K  LAUNCH    L  SPECIAL",14,PAPER,true)
-    _text(Vector2(38,707),"A/D  MOVE     SPACE  JUMP     SHIFT  GUARD     E  DASH",12,Color("9cabb8"))
+    _text(Vector2(38,707),"A/D  MOVE     SPACE  JUMP     SHIFT  GUARD     E  DODGE",12,Color("9cabb8"))
     _text(Vector2(924,684),"ESC  PAUSE     F6  STREET",13,YELLOW)
     _text(Vector2(924,707),"M  SOUND     F2  REDUCE FX",12,Color("9cabb8"))
     for effect in session.effects:

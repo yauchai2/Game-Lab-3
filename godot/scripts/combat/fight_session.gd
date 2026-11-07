@@ -18,7 +18,9 @@ var practice := false
 var hitboxes_visible := false
 var backdrop: Node
 var stage_environment: Environment
-var base_camera := Vector3(0, 6.5, 24)
+var base_camera := Vector3(0, 1.7, 16.5)
+var camera_focus := Vector3(0,2.45,3.0)
+const FIGHT_Z := 3.0
 var silhouettes: Array[MeshInstance3D] = []
 const COLORS := [Color("65e9de"), Color("ff7659")]
 
@@ -43,47 +45,15 @@ func _build_stage() -> void:
     backdrop = preload("res://scripts/combat/street_backdrop.gd").new()
     backdrop.name = "StreetBackdrop"
     add_child(backdrop)
-    var world := WorldEnvironment.new()
-    stage_environment = Environment.new()
-    stage_environment.background_mode = Environment.BG_CANVAS
-    stage_environment.background_canvas_max_layer = -1
-    stage_environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-    stage_environment.ambient_light_color = Color("b5c9e7")
-    stage_environment.ambient_light_energy = 0.7
-    world.environment = stage_environment
-    add_child(world)
-    var sun := DirectionalLight3D.new()
-    sun.rotation_degrees = Vector3(-55,-30,0)
-    sun.light_color = Color("ffe8c9")
-    sun.light_energy = 0.85
-    sun.shadow_enabled = true
-    sun.shadow_blur = 0.0
-    add_child(sun)
-    # A flush road surface continues to the camera; no raised arena front wall.
-    _box(Vector3(0,0.015,48.85), Vector3(50,0.04,102.3), Color("68777d"))
-    for side in [-1,1]:
-        _box(Vector3(side*9.15,0.06,0), Vector3(0.14,0.07,4.8), COLORS[0 if side < 0 else 1], true)
-        for x in 6:
-            _box(Vector3(side*(5.6+x*0.45),0.05,1.8), Vector3(0.18,0.035,0.5), Color("e7c34d"))
-    for x in [-3.0,3.0]:
-        var ring := MeshInstance3D.new()
-        var mesh := TorusMesh.new()
-        mesh.inner_radius = 0.63
-        mesh.outer_radius = 0.68
-        mesh.rings = 24
-        mesh.ring_segments = 6
-        ring.mesh = mesh
-        ring.position = Vector3(x,0.07,0)
-        ring.material_override = _material(COLORS[0 if x < 0 else 1], true)
-        add_child(ring)
+    stage_environment = backdrop.environment
     camera = Camera3D.new()
-    camera.projection = Camera3D.PROJECTION_ORTHOGONAL
-    camera.size = 9.0
+    camera.projection = Camera3D.PROJECTION_PERSPECTIVE
+    camera.fov = 48.0
     camera.near = 0.1
     camera.far = 220.0
     add_child(camera)
     camera.position = base_camera
-    camera.look_at(Vector3(0,2.5,0))
+    camera.look_at(camera_focus)
     camera.make_current()
     for i in 2:
         var shadow := MeshInstance3D.new()
@@ -176,22 +146,29 @@ func _process(delta: float) -> void:
         effects = effects.filter(func(e: Dictionary) -> bool: return e.age < e.life)
         trauma = move_toward(trauma, 0.0, delta * 2.0)
     backdrop.present(delta, screen in ["pause", "help", "result"])
-    _present(delta if screen in ["play", "title"] else 0.0)
+    _present(delta if screen in ["play", "title", "result"] else 0.0)
     hud.queue_redraw()
 
 func _present(delta: float) -> void:
     for i in fighters.size():
-        fighters[i].present(sim.fighters[i], delta, sim.hitstop > 0, reduced_effects)
-        silhouettes[i].position = Vector3(sim.fighters[i].x,0.09,0)
+        fighters[i].present(sim.fighters[i], delta, sim.hitstop > 0 and screen=="play", reduced_effects, sim.fighters[1-i].x)
+        silhouettes[i].position = Vector3(fighters[i].model.global_position.x,0.03,FIGHT_Z)
         silhouettes[i].scale = Vector3.ONE * clampf(1.0 - sim.fighters[i].y * 0.08, 0.5, 1.0)
     var shake := 0.0 if reduced_effects else trauma * trauma * 0.35
     var midpoint: float = (sim.fighters[0].x + sim.fighters[1].x) * 0.5
     var separation: float = absf(sim.fighters[0].x - sim.fighters[1].x)
-    camera.size = lerpf(camera.size, clampf(separation * 0.5 + 7.0, 9.0, 12.6), 1.0 - exp(-delta * 4.0))
-    camera.position = base_camera + Vector3(midpoint * 0.6 + sin(elapsed*91)*shake,cos(elapsed*77)*shake*0.4,0)
+    var distance := clampf(11.4 + separation * 0.35,13.5,17.2)
+    var yaw := clampf(midpoint * 0.018,-0.10,0.10)
+    var target_focus := Vector3(midpoint*0.8,2.45 + maxf(sim.fighters[0].y,sim.fighters[1].y)*0.15,FIGHT_Z)
+    var target_position := Vector3(target_focus.x+sin(yaw)*distance,1.7,FIGHT_Z+cos(yaw)*distance)
+    var blend := 1.0-exp(-delta*4.0)
+    camera_focus = camera_focus.lerp(target_focus,blend)
+    base_camera = base_camera.lerp(target_position,blend)
+    camera.position = base_camera + Vector3(sin(elapsed*91)*shake,cos(elapsed*77)*shake*0.4,0)
+    camera.look_at(camera_focus)
 
 func project(point: Vector2) -> Vector2:
-    return camera.unproject_position(Vector3(point.x,point.y,0)) * Vector2(1280,720) / get_viewport().get_visible_rect().size
+    return camera.unproject_position(Vector3(point.x,point.y,FIGHT_Z)) * Vector2(1280,720) / get_viewport().get_visible_rect().size
 
 func pause_game() -> void:
     if screen == "play":
