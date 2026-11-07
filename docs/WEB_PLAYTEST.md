@@ -1,6 +1,6 @@
 # 網頁試玩版
 
-**試玩網址：[https://afterhours-street-fight.beamingladybird1.chatgpt.site](https://afterhours-street-fight.beamingladybird1.chatgpt.site)**
+**GitHub Pages 預期試玩網址：https://yauchai2.github.io/Game-Lab-3/ （待擁有人啟用 Pages，目前 404）**
 
 2026-11-07，使用者要求一條網址可分享朋友直接試玩。使用現有 Godot 遊戲匯出，沒有重寫成另一款網頁遊戲。
 
@@ -41,3 +41,24 @@ Web release 匯出成功；實際匯出的 PCK 在 Godot native runtime 完成 8
 Sites version 1 已發佈成功，current_live_url 與分享權限 public 均由 native API 確認。Site source commit `3dcb8dc567a733c0bab481c17a6a98432344f80f`，對應 GitHub 遊戲來源 `77c00267b3fa7d72bf9ea61a18d6f29ecbd1135d`。部署及資產雜湊見 [紀錄](evidence/web/deployment.json)、[release manifest](evidence/web/release-manifest.json)。
 
 匿名 HTTP 自動下載的每件資產均回應 Cloudflare 403 / error code 1010，未取得實際內容，不能當作資產線上驗證成功；沒有繞過防機器人檢查。`tools/verify_web_url.py` 可在正常連線環境按 manifest 再查。平台公開發佈成功與自動 HTTP／實際瀏覽器驗證是不同證據。瀏覽器啟動和聲音仍待實機確認。
+
+## 改用 GitHub Pages（2026-11-07，香港時間）
+
+使用者要求使用 GitHub 的遊戲網址，取代 ChatGPT 網址作主要分享入口。已將同一份經驗證 Web export 推送至 `gh-pages`，提交 `c663ec5f8fbe77b99bfa311823d300b9aedaa5dc`，根目錄有 `index.html`、原遊戲 PCK、壓縮引擎、音訊 worklet、素材授權與 `.nojekyll`。分支與遊戲原始碼分開，沒有合併或改動 main。未刪除舊 Sites 發佈，前面章節保留其歷史結果。
+
+儲存庫為 public，API 顯示帳戶對 repo 有 admin，但目前 integration 無權設定 Pages：`POST /repos/yauchai2/Game-Lab-3/pages` 回應 `403 Resource not accessible by integration`。Pages 尚未啟用，網址實測 404；不能聲稱已上線。API 訊息與分支來源記錄於 [部署準備](evidence/github-pages/deployment-readiness.json)。這是連接授權範圍限制，沒有索取 token、繞過權限或改動其他帳戶設定。
+
+帳戶擁有人只需：
+
+1. 開啟 [Settings → Pages](https://github.com/yauchai2/Game-Lab-3/settings/pages)。
+2. Build and deployment 的 Source 選 **Deploy from a branch**。
+3. Branch 選 **gh-pages**，資料夾 **/(root)**，按 **Save**。
+4. 等待 GitHub 顯示發佈成功，再分享 https://yauchai2.github.io/Game-Lab-3/ 。
+
+之後更新 `gh-pages` 的靜態輸出，GitHub 會按此設定重新部署。使用專案子路徑 `/Game-Lab-3/`；已對實際匯出 fetch adapter 在根路徑和此子路徑各執行 WebAssembly.compileStreaming，並核對 15 件資產雜湊。未改動遊戲程式或二進位，原匯出包 8 項檢查仍適用。此結果不是 GitHub 線上啟動或瀏覽器遊玩驗證。
+
+Pages 啟用後可執行：
+
+```sh
+python tools/verify_web_url.py https://yauchai2.github.io/Game-Lab-3/ docs/evidence/web/release-manifest.json
+```

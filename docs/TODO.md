@@ -126,3 +126,12 @@
 - [ ] 線上資產 HTTP 驗證：本環境機器請求均被 Cloudflare 403 / 1010 攔截，未冒充成功。
 - [ ] 朋友實機瀏覽器啟動、聲音及手感驗收；現環境預覽服務不可用。
 - [ ] 手機觸控／效能、手柄與線上雙人未納入本次。
+
+## GitHub Pages 分享（2026-11-07，香港時間）
+
+- [x] 依使用者要求推送獨立 gh-pages 發佈分支、index.html 及 .nojekyll。
+- [x] 原 Web 資產 15 件雜湊及根路徑／/Game-Lab-3/ 實際引擎載入 adapter 檢查。
+- [ ] 帳戶擁有人於 Settings/Pages 選 Deploy from a branch → gh-pages → /(root) → Save；integration API 403，無法代為啟用。
+- [ ] 啟用後確認 GitHub Pages build、公開資產和實際瀏覽器鍵盤／音訊。
+
+期望 https://yauchai2.github.io/Game-Lab-3/ 現為 404，尚未宣稱可供朋友試玩。

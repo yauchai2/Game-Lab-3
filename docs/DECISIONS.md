@@ -72,3 +72,5 @@
 
 | D049 | 匯出現有 Godot 遊戲為公開網址試玩，不另寫玩法 | 使用者要求朋友打開網址直接試玩；以桌面鍵盤單人對 AI 為範圍，使用 Sites 新 Site，無需登入或安裝 |
 | D050 | Web 採 Compatibility、單執行緒和無損 gzip 引擎 | 避免 SharedArrayBuffer／隔離標頭需求及單檔大小上限；JSON 動畫明確打包，保留 F6；方法與限制見 WEB_PLAYTEST.md |
+
+| D051 | 依使用者要求改用 GitHub Pages 作主要分享入口 | 同一份 Web 匯出放於獨立 gh-pages 分支及 .nojekyll；Pages 設定 API 403，等帳戶擁有人選分支啟用，不把待啟用網址當作已上線 |

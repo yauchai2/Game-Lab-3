@@ -1,6 +1,6 @@
 # Afterhours / Game-Lab-3
 
-**[直接在瀏覽器試玩](https://afterhours-street-fight.beamingladybird1.chatgpt.site)** · 電腦鍵盤、單人對 AI／練習、首次約 19 MB。按「開始試玩」，載入後 Enter 開打。[Web 操作與更新方法](docs/WEB_PLAYTEST.md)。
+**GitHub Pages 試玩版已備妥，待帳戶擁有人啟用一次 Pages。** [前往設定](https://github.com/yauchai2/Game-Lab-3/settings/pages)，選 `Deploy from a branch` → `gh-pages` → `/(root)` → Save。啟用後網址為 https://yauchai2.github.io/Game-Lab-3/ 。[操作、狀態與更新方法](docs/WEB_PLAYTEST.md)。
 
 本分支在既有風格化街區上加入 **2.5D 近身格鬥**：玩家對 AI、連擊、挑空、防禦、能量技、動態頓幀和回合勝負。[操作與完整開發狀態](docs/COMBAT.md)。最新已按試玩回饋修正朝向、接入 14 段 CC0 動畫，改用[斑馬線上的統一透視與追鏡](docs/PLAYTEST_FIXES.md)，場景招牌先留白。最新已[接回原圖片天空、車輛與街景細節](docs/SCENE_AUDIO_VFX.md)，修正倒飛與街道拉伸，加入 CC0 音樂／音效、精準防禦及更多局部 VFX。
 

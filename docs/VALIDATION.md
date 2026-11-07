@@ -177,3 +177,7 @@ Godot 4.6.3 Web release 成功，單執行緒 Compatibility。實際 Web PCK 在
 試玩網址：https://afterhours-street-fight.beamingladybird1.chatgpt.site 。Sites version 1、部署 `appgdep_6aee954c0f3c8191866e36096a914642` 成功，native get_site 確認 public 及同一 current_live_url。GitHub 遊戲來源 `77c0026`，Site source `3dcb8dc`。分享頁、遊戲及授權共約 19 MB。
 
 實際匯出的 PCK 8/8、WebAssembly／Web Streams／實際 fetch adapter compileStreaming、HTML 語法及本機資產雜湊通過。匿名 HTTP 下載被 Cloudflare 403／1010 阻擋，未驗證線上資產內容；預覽服務仍不可用，沒有宣稱完成瀏覽器遊玩或實聽。更多來源與重現見 WEB_PLAYTEST.md 和 evidence/web/。
+
+## GitHub Pages 準備及權限阻礙（2026-11-07，香港時間）
+
+同一 Web 匯出已推送 gh-pages c663ec5；15 件資產 SHA-256 通過，實際匯出 fetch adapter 在根路徑及 /Game-Lab-3/ 下的 WebAssembly.compileStreaming 通過。repo API public / admin=true / has_pages=false；POST 啟用 Pages 回應 403 Resource not accessible by integration，目標網址回應 404。尚未有 GitHub Pages 線上部署或瀏覽器驗證，未以成功推送分支冒充發佈成功。來源、API 訊息和檢查見 evidence/github-pages/ 及 WEB_PLAYTEST.md；等擁有人於設定頁啟用。

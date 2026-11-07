@@ -202,3 +202,9 @@ Web 匯出、匯出包 8 項 Native 資源／玩法／F6 往返，以及 Wasm �
 試玩網址：https://afterhours-street-fight.beamingladybird1.chatgpt.site 。Sites version 1、部署 `appgdep_6aee954c0f3c8191866e36096a914642` 成功，native get_site 確認 public 及同一 current_live_url。GitHub 遊戲來源 `77c0026`，Site source `3dcb8dc`。分享頁、遊戲及授權共約 19 MB。
 
 實際匯出的 PCK 8/8、WebAssembly／Web Streams／實際 fetch adapter compileStreaming、HTML 語法及本機資產雜湊通過。匿名 HTTP 下載被 Cloudflare 403／1010 阻擋，未驗證線上資產內容；預覽服務仍不可用，沒有宣稱完成瀏覽器遊玩或實聽。更多來源與重現見 WEB_PLAYTEST.md 和 evidence/web/。
+
+## GitHub Pages 已準備，待啟用（2026-11-07，香港時間）
+
+使用者改要 GitHub 遊戲網址。`gh-pages` 分支 `c663ec5` 已推送同一份 Web 遊戲及 `.nojekyll`，期望網址 https://yauchai2.github.io/Game-Lab-3/ 。GitHub repo public、帳戶 admin，但 integration 啟用 Pages 的 API 回傳 403；目前 has_pages=false、網址 404，尚未上線。請擁有人在 Settings/Pages 選 Deploy from a branch → gh-pages → /(root) → Save。主分支及既有 Sites 不刪改。
+
+已驗證 15 件靜態資產雜湊，實際 fetch adapter 在根路徑及 /Game-Lab-3/ 皆可 compileStreaming；不是線上瀏覽器實測。設定完成後接續執行 HTTP 資產及瀏覽器鍵盤／音訊檢查。API 失敗和準備提交見 docs/evidence/github-pages/；完整指引見 WEB_PLAYTEST.md。
