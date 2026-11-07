@@ -141,19 +141,19 @@ func _draw() -> void:
     var sim = session.sim
     var a: Dictionary = sim.fighters[0]
     var b: Dictionary = sim.fighters[1]
-    _rect(Vector2.ZERO,Vector2(1280,120),Color(0.05,0.08,0.14,0.95))
-    _text(Vector2(38,28),"AFTERHOURS",17,YELLOW,true)
-    _text(Vector2(1010,28),"STREET FIGHT  /  PROTOTYPE",12,Color("a6b0c0"))
+    _rect(Vector2.ZERO,Vector2(1280,96),Color(0.05,0.08,0.14,0.95))
+    _text(Vector2(38,20),"AFTERHOURS",17,YELLOW,true)
+    _text(Vector2(1010,20),"STREET FIGHT  /  PROTOTYPE",12,Color("a6b0c0"))
     _health(38,a,session.COLORS[0],false)
     _health(758,b,session.COLORS[1],true)
-    _text(Vector2(38,52),"01 / YOU",15,session.COLORS[0],true)
-    _text(Vector2(1050,52),"02 / RIVAL" if not session.practice else "02 / PRACTICE",15,session.COLORS[1],true)
-    _rect(Vector2(592,33),Vector2(96,66),YELLOW)
-    _text(Vector2(611,77),"%02d" % ceili(sim.remaining),34,INK,true)
-    _text(Vector2(600,116),"ROUND %02d" % sim.round_number,11,PAPER)
+    _text(Vector2(38,39),"01 / YOU",15,session.COLORS[0],true)
+    _text(Vector2(1050,39),"02 / RIVAL" if not session.practice else "02 / PRACTICE",15,session.COLORS[1],true)
+    _rect(Vector2(592,16),Vector2(96,62),YELLOW)
+    _text(Vector2(611,60),"%02d" % ceili(sim.remaining),34,INK,true)
+    _text(Vector2(600,94),"ROUND %02d" % sim.round_number,11,PAPER)
     for i in 2:
         for pip in 2:
-            var at := Vector2(538+pip*20 if i==0 else 708+pip*20,43)
+            var at := Vector2(538+pip*20 if i==0 else 708+pip*20,30)
             draw_circle(at,6,session.COLORS[i] if sim.wins[i]>pip else Color("354354"))
     _rect(Vector2(0,660),Vector2(1280,60),INK)
     _text(Vector2(38,684),"J  LIGHT    K  HEAVY    W+K  LAUNCH    L  SPECIAL",14,PAPER,true)
@@ -180,19 +180,19 @@ func _draw() -> void:
         _rect(Vector2(446,554),Vector2(388,36),INK)
         _text(Vector2(464,579),notice,16,YELLOW)
     if session.screen != "play":
-        _rect(Vector2(0,120),Vector2(1280,540),Color(0.025,0.04,0.08,0.72))
+        _rect(Vector2(0,96),Vector2(1280,564),Color(0.025,0.04,0.08,0.72))
     if session.practice and session.screen == "play":
-        _text(Vector2(50,148),"PRACTICE / AI OFF",14,YELLOW)
+        _text(Vector2(50,120),"PRACTICE / AI OFF",14,YELLOW)
 
 func _health(x: float, fighter: Dictionary, color: Color, reverse: bool) -> void:
-    _rect(Vector2(x,61),Vector2(484,23),Color("334055"))
+    _rect(Vector2(x,46),Vector2(484,18),Color("334055"))
     var width: float = 484.0 * fighter.health / 100.0
-    _rect(Vector2(x+484-width if reverse else x,61),Vector2(width,23),color)
-    _text(Vector2(x+8,79),str(fighter.health),15,PAPER if reverse else INK,true)
-    _rect(Vector2(x,91),Vector2(484,5),Color("334055"))
-    _rect(Vector2(x,91),Vector2(484*fighter.meter/100.0,5),YELLOW)
-    draw_line(Vector2(x+242,88),Vector2(x+242,99),PAPER,2)
-    _text(Vector2(x,113),"ENERGY %03d  /  GUARD %03d" % [fighter.meter,fighter.guard],11,Color("a6b0c0"))
+    _rect(Vector2(x+484-width if reverse else x,46),Vector2(width,18),color)
+    _text(Vector2(x+8,61),str(fighter.health),15,PAPER if reverse else INK,true)
+    _rect(Vector2(x,71),Vector2(484,5),Color("334055"))
+    _rect(Vector2(x,71),Vector2(484*fighter.meter/100.0,5),YELLOW)
+    draw_line(Vector2(x+242,68),Vector2(x+242,79),PAPER,2)
+    _text(Vector2(x,91),"ENERGY %03d  /  GUARD %03d" % [fighter.meter,fighter.guard],11,Color("a6b0c0"))
 
 func _effect(e: Dictionary) -> void:
     var at: Vector2 = session.project(e.at)

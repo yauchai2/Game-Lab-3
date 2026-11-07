@@ -96,3 +96,7 @@ DISPLAY=:94 LIBGL_ALWAYS_SOFTWARE=1 godot --path godot --rendering-method gl_com
 結果見 `docs/evidence/combat/`。Headless 只證明邏輯／載入；llvmpipe 圖只證明特定軟體繪圖路徑。尚未做真人手感、實際聲音或目標 GPU 驗收。
 
 自動示範 `evidence/combat/scripted-demo.mp4` 為 7 秒、420 個固定時脈幀，含 4 次命中與 1 次格擋；輸入由 `combat_demo.gd` 提供，輸出為靜音，不是人工試玩或即時硬體效能影片。另保留 960×540 選單與戰場截圖。
+
+## 使用者街口仰角背景更新（2026-11-07）
+
+格鬥背景改用雙側街牆、直立招牌、深藍天與斜向客機機腹的低角度透視；前景角色保持正交格鬥平面。取代第一版沿店面的背景，原遊走和來源資產保留。來源、影片抽樣範圍、相機參數、飛越及新驗證見 [街口格鬥背景](STREET_COMBAT_BACKGROUND.md)。

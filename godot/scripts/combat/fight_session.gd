@@ -16,6 +16,7 @@ var trauma := 0.0
 var reduced_effects := false
 var practice := false
 var hitboxes_visible := false
+var backdrop: Node
 var stage_environment: Environment
 var base_camera := Vector3(0, 6.5, 24)
 var silhouettes: Array[MeshInstance3D] = []
@@ -39,53 +40,27 @@ func _ready() -> void:
     _present(0.0)
 
 func _build_stage() -> void:
-    var background := preload("res://scenes/street_whitebox.tscn").instantiate()
-    background.name = "Street"
-    add_child(background)
-    background.set_process_unhandled_key_input(false)
-    background.get_node("Overlay").hide()
-    background.position = Vector3(30, -0.35, -4)
-    background.rotation.y = PI * 0.5
-    for node in background.get_node("ReferenceCameras").get_children():
-        node.current = false
-    # Use the far facades as a backdrop; the near row would occlude the arena.
-    for mesh in background.get_node("BuildingMasses").get_children():
-        if mesh is MeshInstance3D and mesh.position.x < 0:
-            mesh.hide()
-    background.get_node("Landmarks").hide()
-    background.get_node("Props").hide()
-    background.get_node("AircraftProxy").hide()
-    var dressing := Node3D.new()
-    dressing.set_script(preload("res://scripts/street_dressing.gd"))
-    background.add_child(dressing)
-    for batch in dressing.static_batches.get_children():
-        if batch is MultiMeshInstance3D:
-            for index in batch.multimesh.instance_count:
-                var transform: Transform3D = batch.multimesh.get_instance_transform(index)
-                if transform.origin.x < 0:
-                    transform.origin.y -= 200.0
-                    batch.multimesh.set_instance_transform(index, transform)
-    for label in dressing.labels.get_children():
-        if label is Node3D and label.position.x < 0:
-            label.hide()
-    var world: WorldEnvironment = background.get_node("WorldEnvironment")
-    world.environment = world.environment.duplicate(true)
-    stage_environment = world.environment
-    stage_environment.background_mode = Environment.BG_SKY
-    var sky := Sky.new()
-    var panorama := PanoramaSkyMaterial.new()
-    panorama.panorama = preload("res://assets/SKY_BLUE_A01.png")
-    sky.sky_material = panorama
-    stage_environment.sky = sky
+    backdrop = preload("res://scripts/combat/street_backdrop.gd").new()
+    backdrop.name = "StreetBackdrop"
+    add_child(backdrop)
+    var world := WorldEnvironment.new()
+    stage_environment = Environment.new()
+    stage_environment.background_mode = Environment.BG_CANVAS
+    stage_environment.background_canvas_max_layer = -1
     stage_environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-    stage_environment.ambient_light_color = Color("a5b8e3")
-    stage_environment.ambient_light_energy = 0.62
-    var sun: DirectionalLight3D = background.get_node("Sun")
-    sun.light_energy = 1.0
+    stage_environment.ambient_light_color = Color("b5c9e7")
+    stage_environment.ambient_light_energy = 0.7
+    world.environment = stage_environment
+    add_child(world)
+    var sun := DirectionalLight3D.new()
+    sun.rotation_degrees = Vector3(-55,-30,0)
+    sun.light_color = Color("ffe8c9")
+    sun.light_energy = 0.85
+    sun.shadow_enabled = true
     sun.shadow_blur = 0.0
-    _box(Vector3(0,-0.3,0), Vector3(20,0.6,5.5), Color("20253d"))
-    _box(Vector3(0,0.015,0), Vector3(18.6,0.04,4.6), Color("657179"))
-    _box(Vector3(0,0.05,2.35), Vector3(18.8,0.05,0.08), Color("e9efaf"), true)
+    add_child(sun)
+    # A flush road surface continues to the camera; no raised arena front wall.
+    _box(Vector3(0,0.015,48.85), Vector3(50,0.04,102.3), Color("68777d"))
     for side in [-1,1]:
         _box(Vector3(side*9.15,0.06,0), Vector3(0.14,0.07,4.8), COLORS[0 if side < 0 else 1], true)
         for x in 6:
@@ -101,15 +76,6 @@ func _build_stage() -> void:
         ring.position = Vector3(x,0.07,0)
         ring.material_override = _material(COLORS[0 if x < 0 else 1], true)
         add_child(ring)
-    _box(Vector3(0,3.6,-6.6), Vector3(11.8,1.8,0.2), Color("161d32"))
-    var sign := Label3D.new()
-    sign.text = "AFTERHOURS / FIGHT CLUB"
-    sign.font_size = 100
-    sign.pixel_size = 0.004
-    sign.modulate = Color("f2edb0")
-    sign.position = Vector3(0,3.6,-6.45)
-    sign.outline_size = 8
-    add_child(sign)
     camera = Camera3D.new()
     camera.projection = Camera3D.PROJECTION_ORTHOGONAL
     camera.size = 9.0
@@ -209,6 +175,7 @@ func _process(delta: float) -> void:
             effect.age += delta
         effects = effects.filter(func(e: Dictionary) -> bool: return e.age < e.life)
         trauma = move_toward(trauma, 0.0, delta * 2.0)
+    backdrop.present(delta, screen in ["pause", "help", "result"])
     _present(delta if screen in ["play", "title"] else 0.0)
     hud.queue_redraw()
 

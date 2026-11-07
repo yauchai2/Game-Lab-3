@@ -11,6 +11,7 @@ func capture() -> void:
     scene.set_physics_process(false)
     scene.set_process(false)
     scene.audio.muted = true
+    scene.backdrop.freeze_for_capture()
     await save(scene,"01_title")
     scene.start_match(true)
     scene.sim.phase = "fight"
