@@ -1,7 +1,7 @@
 {
   "engine": "Godot 4.6.3",
   "upstream_repository": "https://github.com/yauchai2/Game-Lab-3",
-  "upstream_commit": "1836abc5f97cd22853376cee99d774731c1df82c",
+  "upstream_commit": "e2c7e10468329badbeb71aebf3a237e13cf0ae1e",
   "source_dirty": false,
   "threads": false,
   "renderer": "gl_compatibility",
@@ -46,8 +46,8 @@
     },
     {
       "file": "game.pck",
-      "bytes": 8766800,
-      "sha256": "3eee2f386e8636cf1858cb02ec89ed5662f975a94a3fd35234920fd4be14ca16"
+      "bytes": 8767312,
+      "sha256": "99cf8ec4d5d375cd8b786873e09a666212233f12c424662a3fd617fdede9c7fb"
     },
     {
       "file": "game.png",
@@ -62,7 +62,7 @@
     {
       "file": "index.html",
       "bytes": 10380,
-      "sha256": "b5baedaf80bfaee0694f54e562c2eb8cfc7aa5f4e844259700fa92a769e6ecc6"
+      "sha256": "eeadd26c3f3bf17833452fc58b03af9116f630dbb215d3b1ef6528d09ec870e3"
     },
     {
       "file": "licenses/Godot-COPYRIGHT.txt",
@@ -85,5 +85,5 @@
       "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
     }
   ],
-  "total_bytes": 18697053
+  "total_bytes": 18697565
 }
