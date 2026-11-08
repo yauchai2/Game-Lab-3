@@ -218,6 +218,8 @@ func _draw() -> void:
     if session.screen != "play":
         _rect(Vector2(0,96),Vector2(1280,564),Color(0.025,0.04,0.08,0.72))
     if session.practice and session.screen == "play":
+        _rect(Vector2(28,102),Vector2(500,52),Color(0.05,0.08,0.14,0.88))
+        _rect(Vector2(956,102),Vector2(296,46+session.input_history.size()*18),Color(0.05,0.08,0.14,0.88))
         _text(Vector2(38,120),"TRAINING / %s / F5 RESET / F7 PARTNER" % ["STANDING","GUARDING","SPARRING"][sim.partner_mode],12,YELLOW)
         _text(Vector2(38,142),"LAST COMBO: %d HITS / %d DAMAGE" % [sim.last_combo_hits,sim.last_combo_damage],12,PAPER)
         _text(Vector2(1020,120),"INPUT HISTORY",12,YELLOW)
