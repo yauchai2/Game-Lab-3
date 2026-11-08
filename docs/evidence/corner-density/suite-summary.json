@@ -1,0 +1,56 @@
+{
+  "suites": [
+    {
+      "suite": "walk.json",
+      "passed": 28,
+      "failed": 0
+    },
+    {
+      "suite": "dressing.json",
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "suite": "backdrop.json",
+      "passed": 30,
+      "failed": 0
+    },
+    {
+      "suite": "combat.json",
+      "passed": 34,
+      "failed": 0
+    },
+    {
+      "suite": "combat-polish.json",
+      "passed": 35,
+      "failed": 0
+    },
+    {
+      "suite": "scene-audio.json",
+      "passed": 33,
+      "failed": 0
+    },
+    {
+      "suite": "texture-filter.json",
+      "passed": 11,
+      "failed": 0
+    },
+    {
+      "suite": "native-input.json",
+      "passed": 11,
+      "failed": 0
+    },
+    {
+      "suite": "editor-warnings.json",
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "suite": "corner-density",
+      "passed": 28,
+      "failed": 0
+    }
+  ],
+  "passed": 226,
+  "scope": "Godot headless rules/resources/geometry and native X11 viewport input. Separate software-rendered captures; not human playtest or hardware FPS."
+}

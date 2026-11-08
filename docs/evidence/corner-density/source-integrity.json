@@ -1,0 +1,26 @@
+{
+  "base_commit": "40b4a635e1d1c2529169771c39b7468021b70fd4",
+  "source_hashes": {
+    "godot/scripts/corner_streetscape.gd": "35cc8484f537c3a7edcaa17d06004387fbc51df23ea3bc7b3a5586b183afb41d",
+    "godot/scripts/combat/street_backdrop.gd": "1307bfe649d0735bae48a2aaa5e6777ef550b0b0827a0ae1de03e74aa124d338",
+    "godot/shaders/sample_toon.gdshader": "fc34b43ad37844e67831863d88ad539e8d00d1efb44bd23ae77016af38a69aab",
+    "godot/scenes/street_walk.tscn": "e2136f4b788bd8aa64ff4df34977a9c6bf7f953944ea58aeab066debc3b705f7",
+    "godot/tools/capture_corner_density.gd": "d6d1602bf155c7a97dbbdacad96f1a5ee470a530fa934597aa0e8f91fb2e114e",
+    "godot/scenes/street_whitebox.tscn": "2571d1e828af84f399c36fb60a97dd10f10ef3b66f1a1a38db211c365edb9f29"
+  },
+  "original_models_byte_identical": [
+    "godot/assets/CHAR_PLAYER_A01.glb",
+    "godot/assets/PROP_BIN_A01.glb",
+    "godot/assets/PROP_CRATES_A01.glb",
+    "godot/assets/PROP_HYDRANT_A01.glb",
+    "godot/assets/PROP_MAILBOX_A01.glb",
+    "godot/assets/PROP_SHOP_STOOL_A01.glb",
+    "godot/assets/VEH_CAR_A01.glb",
+    "godot/assets/VEH_TRUCK_A01.glb",
+    "godot/assets/VEH_VAN_A01.glb"
+  ],
+  "unmodified_baseline_render_when_layer_hidden": true,
+  "public_site_updated": false,
+  "local_user_computer_synced": false,
+  "validation_machine": "Managed Linux workspace; Godot 4.6.3 Compatibility / Mesa llvmpipe"
+}

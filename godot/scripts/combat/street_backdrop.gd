@@ -35,6 +35,8 @@ func _ready() -> void:
     dressing.set_script(preload("res://scripts/street_dressing.gd"))
     street.add_child(dressing)
     _restore_style_details()
+    var corner := preload("res://scripts/corner_streetscape.gd").new()
+    street.add_child(corner)
     strip_scene_text(street)
     two_sided_shader = Shader.new()
     two_sided_shader.code = Toon.code.replace("specular_disabled;","specular_disabled, cull_disabled;")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=12 format=3]
 [ext_resource type="PackedScene" path="res://scenes/street_whitebox.tscn" id="1_street"]
 [ext_resource type="PackedScene" path="res://scenes/actors/test_player.tscn" id="2_player"]
 [ext_resource type="Script" path="res://scripts/walk_session.gd" id="3_session"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/street_dressing.gd" id="8_dressing"]
 [ext_resource type="Script" path="res://scripts/screen_outline.gd" id="9_outline"]
 [ext_resource type="Script" path="res://scripts/environment_textures.gd" id="10_textures"]
+[ext_resource type="Script" path="res://scripts/corner_streetscape.gd" id="11_corner"]
 [node name="StreetWalk" type="Node3D"]
 script = ExtResource("3_session")
 [node name="Street" parent="." instance=ExtResource("1_street")]
@@ -35,3 +36,6 @@ script = ExtResource("8_dressing")
 
 [node name="OutlinePass" type="MeshInstance3D" parent="."]
 script = ExtResource("9_outline")
+
+[node name="CornerStreetscape" type="Node3D" parent="."]
+script = ExtResource("11_corner")

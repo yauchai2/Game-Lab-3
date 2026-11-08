@@ -191,3 +191,11 @@ GitHub Pages built，舊版匿名 HTTP 15/15 及 Chromium WebGL／Enter、D、J�
 https://yauchai2.github.io/Game-Lab-3/ ：Pages 2908503 / 遊戲來源 e2c7e10，公開 built；15/15 資產雜湊。新邏輯 35 + 格鬥 34 + 場景／音訊 33 + 骨架／透視 30 + 警告 3 + headless viewport 11 + Web PCK 8 = 154 項通過。最新 Chromium WebGL／F5／F7／AudioContext／IndexedDB／全螢幕／重載 7/7 通過，JS 與 console 錯誤空白；軟體 GPU，不是真人／聆聽／硬體效能驗收。
 
 T 進無限練習、F5 重置、F7 切對手；正常對局 Enter。挑空僅在未被防禦的命中後允許 Space 追擊；前三次浮空命中後落地。模式／難度／演出與聲音保存在本機。所有目前狀態與後續限制見 COMBAT_POLISH.md；最新證據在 evidence/combat-polish/。舊音訊退出警告、投技、第二角色、手柄與手機觸控仍待後續。
+
+## 原生 Godot 街角加密（2026-11-08，香港時間）
+
+新 28 + 遊走 28 + 街景 13 + 骨架／相機 30 + 格鬥 34 + 練習 35 + 場景／音訊 33 + 材質 11 + X11 viewport 輸入 11 + 舊警告編譯 3 = 226 項通過。3,001 新實例、10 批次、8 材質、六棟鄰樓，三張 128×128 貼圖各 7 層 mipmaps；新增幾何／碰撞與戰鬥保留範圍交集為零。
+
+七角度同鏡頭 baseline／candidate 是 Godot 4.6.3 Compatibility／llvmpipe 實際擷取，另保留原程式最初畫面。關閉新層的中央影像與最初中央影像完全相同。中央 draw calls 963→978，寬景 1053→1075；不是 FPS／目標硬體或美術品質評分。原 GLB 位元不變，保留舊音訊退出警告，擷取無腳本／shader 錯誤。來源、方法、日誌與限制見 CORNER_DENSITY.md 和 evidence/corner-density/。
+
+依使用者規則本輪僅推送原始碼，不更新公開試玩；gh-pages 維持 2908503。未聲稱已同步或測試使用者電腦。

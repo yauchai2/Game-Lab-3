@@ -218,3 +218,11 @@ GitHub Pages 已由擁有人啟用，API built，舊版 HTTP 資產 15/15 及真
 https://yauchai2.github.io/Game-Lab-3/ ：Pages 2908503 / 遊戲來源 e2c7e10，公開 built；15/15 資產雜湊。新邏輯 35 + 格鬥 34 + 場景／音訊 33 + 骨架／透視 30 + 警告 3 + headless viewport 11 + Web PCK 8 = 154 項通過。最新 Chromium WebGL／F5／F7／AudioContext／IndexedDB／全螢幕／重載 7/7 通過，JS 與 console 錯誤空白；軟體 GPU，不是真人／聆聽／硬體效能驗收。
 
 T 進無限練習、F5 重置、F7 切對手；正常對局 Enter。挑空僅在未被防禦的命中後允許 Space 追擊；前三次浮空命中後落地。模式／難度／演出與聲音保存在本機。所有目前狀態與後續限制見 COMBAT_POLISH.md；最新證據在 evidence/combat-polish/。舊音訊退出警告、投技、第二角色、手柄與手機觸控仍待後續。
+
+## 街角加密與日常同步規則（2026-11-08，香港時間，最新）
+
+使用者明確更正：平時只更新 GitHub 原始碼供 Desktop 同步，只有點名時更新公開試玩版。已寫入 AGENTS.md；本輪未更新 gh-pages，仍為 2908503。這裡只有雲端 /workspace 存取，沒有操作使用者電腦或替其 Desktop Pull，不能聲稱本機已同步。
+
+依最新寬幅照片，新 `corner_streetscape.gd` 共用於格鬥與遊走：藍／橙正立面、左右六棟鄰樓、窗籠冷氣／風扇、陽台燈球、店面遮篷／捲閘、路面／人行道、兩輛程序摩托車、兩輛既有轎車及街邊物件。3,001 實例以 10 批次、8 材質呈現；新增三張 128×128 原創低清貼圖。來源模型、白盒、圖片天空及飛行／相機規則保留，招牌無文字。保留 X±8.8、Y0.04–4.3、Z2.4–4.4 的戰鬥淨空。
+
+226 項檢查通過，七視角原生 Godot／llvmpipe 前後對照已檢視。不是使用者電腦／GPU、真人或效能驗收。Desktop 當前應選 codex/street-combat，Pull 後 Godot F5；F6 遊走。見 CORNER_DENSITY.md 與更新的 GITHUB_DESKTOP.zh-TW.md。
