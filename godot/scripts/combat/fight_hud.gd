@@ -383,6 +383,9 @@ func _draw() -> void:
     if not is_instance_valid(session):return
     draw_set_transform(Vector2.ZERO,0,size/Vector2(1280,720))
     if session.screen=="title":
+        if menu_page!="main":
+            _plate(Vector2.ZERO,Vector2(1280,720),Color(Tokens.NIGHT,.62))
+            return
         draw_colored_polygon(PackedVector2Array([Vector2.ZERO,Vector2(540,0),Vector2(592,720),Vector2(0,720)]),Color(Tokens.NIGHT,.94))
         _text(Vector2(66,100),"AFTERHOURS",57,Tokens.TEAL,true)
         _text(Vector2(66,145),tr_text("subtitle"),29)

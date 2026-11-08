@@ -14,6 +14,17 @@ var active := false
 var preview := false
 var plane: Node3D
 var sound: AudioStreamPlayer3D
+var effects_level:=1.0
+var muted:=false
+
+func set_audio_options(silent: bool, level: float) -> void:
+    muted=silent
+    effects_level=clampf(level,0,1)
+    if not is_instance_valid(sound):return
+    # 3D playback can still be queued until the next physics frame. Stop also
+    # cancels that pending start; pausing an uncreated playback does not.
+    if muted or effects_level<=0:sound.stop()
+    elif active and not sound.playing:sound.play()
 
 func _ready() -> void:
     plane = get_parent().get_node("Street/AircraftProxy")
@@ -58,13 +69,13 @@ func restart() -> void:
     plane.visible = true
     _place(0.0)
     sound.volume_db = -60.0
-    sound.play()
+    if not muted and effects_level>0:sound.play()
 
 func _process(delta: float) -> void:
     if active:
         elapsed = minf(DURATION,elapsed+delta)
         _place(elapsed / DURATION)
-        sound.volume_db = linear_to_db(maxf(.001,minf(1.0,minf(elapsed/2.0,(DURATION-elapsed)/2.0))))
+        sound.volume_db = linear_to_db(maxf(.001,minf(1.0,minf(elapsed/2.0,(DURATION-elapsed)/2.0))*effects_level))
         if elapsed >= DURATION:
             active = false
             cooldown = COOLDOWN

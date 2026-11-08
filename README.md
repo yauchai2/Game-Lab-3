@@ -2,7 +2,9 @@
 
 **[在 GitHub 直接試玩](https://yauchai2.github.io/Game-Lab-3/)** · 電腦鍵盤、單人對 AI／無限練習、首次約 19 MB。GitHub Pages 已啟用。[操作與更新方法](docs/WEB_PLAYTEST.md)。
 
-最新[借勢街鬥核心原型](docs/PRESSURE_EXCHANGE.md)：三階壓力、高壓重踢 0.4 秒對峙、J 頂進／Shift 卸勢／E 抽身。主選單選 PRESSURE DRILL，或 T → F8 → K 直接試；只更新開發分支。
+最新[原生 UI 與近身交鋒完善](docs/EXTENDED_POLISH.md)：移除藍樓遮窗大牌，繁中／英文選單、可點按對峙、獨立音量、G 投技／拆投、E 場邊受身、較近的交手追鏡及靜態批次繪圖。只更新 `codex/street-combat` 原始碼，**公開試玩網址仍是舊版**。
+
+[借勢街鬥核心原型](docs/PRESSURE_EXCHANGE.md)：三階壓力、高壓重踢 0.4 秒對峙、J 頂進／Shift 卸勢／E 抽身。主選單選「交鋒教室」，或 T → F8 → K 直接試。
 
 前輪[分段打擊演出](docs/IMPACT_STAGING.md)：六種攻擊弧、頓幀接觸核心、釋放氣浪／碎片及方向反衝；只更新開發分支。
 

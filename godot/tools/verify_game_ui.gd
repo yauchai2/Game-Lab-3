@@ -135,6 +135,17 @@ func run() -> void:
     DirAccess.remove_absolute(path)
     scene.queue_free()
     await frames()
+    var departing=preload("res://scenes/combat/street_fight.tscn").instantiate()
+    departing.preferences_path=path
+    root.add_child(departing)
+    departing.audio.muted=true
+    departing.set_volume("music",.35)
+    departing.set_volume("sound",.45)
+    departing.queue_free()
+    await frames()
+    options=prefs.read_options(path)
+    check("leaving a scene immediately flushes pending slider preferences",is_equal_approx(options.music_level,.35) and is_equal_approx(options.effects_level,.45))
+    DirAccess.remove_absolute(path)
     await create_timer(.15).timeout
     var failed:=checks.filter(func(c:Dictionary)->bool:return not c.passed).size()
     var file:=FileAccess.open("res://../docs/evidence/extended-polish/ui-verification.json",FileAccess.WRITE)

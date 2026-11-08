@@ -22,6 +22,8 @@ Traditional Chinese is the default; English is selectable and persisted. Transla
 
 Music/effects levels update immediately in the native sliders; writes debounce rather than rebuilding the page on each drag. Language changes rebuild the page while retaining focus and scroll. Muting and reduced effects stay available via existing shortcuts.
 
+Leaving a scene flushes a pending volume write. F6 exploration shares language, mute and effects volume; H expands its compact controls. Escape frees the pointer, and the native return button or F6 returns to the fight title. M in exploration also persists the shared mute state and cancels pending 3D flyby playback.
+
 ## Evidence boundary
 
 The frontend-design-premium static audit primarily recognizes web source formats. It is recorded as an auxiliary static check, not proof of native accessibility. Godot import, GDScript strict compilation, project integration checks, real X11 viewport input, pointer callbacks, popup captures and native long-run telemetry provide the runtime evidence. Linux software rendering does not establish user-PC or target-GPU performance. No public site is updated by this work.

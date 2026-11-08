@@ -1,5 +1,11 @@
 # 接續工作交接
 
+## 最新接續：原生 UI 與近身交鋒（2026-11-09，香港時間）
+
+目前主場景是 `godot/scenes/combat/street_fight.tscn`，最新規格見 [EXTENDED_POLISH.md](EXTENDED_POLISH.md)、根目錄 DESIGN.md／UX-CONTRACT.md。以下早期段落保留歷史，不能以早期「街景主場景／尚無無限練習」描述覆蓋目前狀態。
+
+藍樓大直牌已移除，窗戶補回，`BlueCornerShopSign` 留待使用者貼圖。已加入繁中／英文原生 UI、可點按對峙、G 投技／拆投、E 場邊受身、AI 預選假動作、近身追鏡與靜態批次繪圖。F6 遊走也換成共用 UI 與音量偏好。長時間觀察結果及最終驗證將在本輪結束補入。只推送 `codex/street-combat`；不可更新公開 Web，亦未操作使用者電腦。
+
 更新日期：2026-11-06（Asia/Taipei）。本紀錄只根據本聊天與實際檔案，不假設其他對話內容。
 
 ## 同步前讀取範圍

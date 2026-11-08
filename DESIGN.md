@@ -8,7 +8,7 @@ A street fight should remain visible. Menus feel like the printed match card at 
 
 ## Runtime owner
 
-`godot/scripts/combat/ui/ui_theme.gd` owns the palette, type and native control theme. `fight_hud.gd` owns layout in a 1280×720 logical coordinate system, scaling to the native viewport. `ui_text.gd` owns keyed Traditional Chinese / English copy. This is a native game, not an HTML application; no CSS or browser UI is added for this work.
+`godot/scripts/combat/ui/ui_theme.gd` owns the palette, type and native control theme. `fight_hud.gd` owns fight layout and `ui/street_hud.gd` owns exploration layout in a 1280×720 logical coordinate system, scaling to the native viewport. `ui_text.gd` owns keyed Traditional Chinese / English copy. This is a native game, not an HTML application; no CSS or browser UI is added for this work.
 
 | Token | Hex | Role |
 | --- | --- | --- |

@@ -298,9 +298,9 @@ func _present(delta: float) -> void:
     var shake := 0.0 if reduced_effects else trauma * trauma * 0.35
     var midpoint: float = (sim.fighters[0].x + sim.fighters[1].x) * 0.5
     var separation: float = absf(sim.fighters[0].x - sim.fighters[1].x)
-    var distance := clampf(11.4 + separation * 0.35,13.5,17.2)
+    var distance := clampf(10.0 + separation * 0.35,10.7,17.2)
     var yaw := clampf(midpoint * 0.018,-0.10,0.10)
-    var target_focus := Vector3(midpoint*0.8,2.45 + maxf(sim.fighters[0].y,sim.fighters[1].y)*0.15,FIGHT_Z)
+    var target_focus := Vector3(midpoint*0.8,2.1 + maxf(sim.fighters[0].y,sim.fighters[1].y)*0.15,FIGHT_Z)
     var target_position := Vector3(target_focus.x+sin(yaw)*distance,1.7,FIGHT_Z+cos(yaw)*distance)
     if screen=="title" and sim.phase=="ready":
         target_focus=Vector3(.6,2.5,FIGHT_Z)
@@ -426,6 +426,12 @@ func set_volume(kind: String, value: float) -> void:
         audio.effects_level=clampf(value,0,1)
         if audio.effects_level<=0:audio.stop_all()
     settings_save_clock=.35
+
+func _exit_tree() -> void:
+    # A scene switch or immediate quit can happen before the slider debounce.
+    if settings_save_clock>=0 and is_instance_valid(audio) and is_instance_valid(ink_pass):
+        save_options()
+        settings_save_clock=-1.0
 
 func _notification(what: int) -> void:
     if what == NOTIFICATION_APPLICATION_FOCUS_OUT and is_instance_valid(hud):
