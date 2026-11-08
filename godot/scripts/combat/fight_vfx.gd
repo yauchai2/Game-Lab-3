@@ -1,5 +1,6 @@
 extends RefCounted
 ## Original hard-edged, staged canvas effects projected from the shared fight world.
+var impact_shapes = preload("res://scripts/combat/impact_shapes.gd").new()
 func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     var at: Vector2 = session.project(effect.at)
     var time: float = clampf(effect.age/effect.life,0,1)
@@ -11,10 +12,15 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     var paper := Color("fff8dc")
     var ink := Color("111a32")
     match effect.kind:
-        "swing":
-            var radius := 62.0*(1.0-stage*0.45)
-            _crescent(canvas,at,radius,19.0*(1.0-time),face,tint)
-            _crescent(canvas,at,radius-6.0,7.0*(1.0-time),face,paper)
+        "swing","hit","release":
+            var phase: float = fmod(effect.age,0.15)/0.15 if effect.kind=="hit" and effect.get("held",false) else time
+            var shapes: Array[Dictionary] = impact_shapes.build(effect.kind,effect.get("move","jab"),phase,tint,face,reduced)
+            var pixels_per_meter: float = (session.project(effect.at+Vector2(1,0))-at).length()
+            var perspective_scale := clampf(pixels_per_meter/56.0,.65,1.3)
+            for shape in shapes:
+                var points: PackedVector2Array=shape.points.duplicate()
+                for i in points.size(): points[i]=at+points[i]*perspective_scale
+                canvas.draw_colored_polygon(points,shape.color)
         "dust":
             for i in (3 if reduced else 6):
                 var spread := Vector2((i-2.5)*17.0*(time+0.3),-sin(time*PI)*13.0)

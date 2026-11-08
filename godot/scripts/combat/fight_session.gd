@@ -13,7 +13,9 @@ var pending: Dictionary = {}
 var effects: Array[Dictionary] = []
 var elapsed := 0.0
 var trauma := 0.0
-var last_impact_strength := 0.0
+var impact_queue: Array[Dictionary] = []
+var recoil := Vector2.ZERO
+var recoil_age := 1.0
 var step_distance := [0.0,0.0]
 var trail_clock := 0.0
 var ink_pass: MeshInstance3D
@@ -104,6 +106,7 @@ func start_match(training := false) -> void:
     input_history.clear()
     sim.ai_enabled = not practice
     effects.clear()
+    _clear_impacts()
     pending.clear()
     trauma = 0
     screen = "play"
@@ -119,12 +122,12 @@ func _physics_process(_delta: float) -> void:
     input["up"] = Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)
     var previous_stop := sim.hitstop
     sim.tick(input)
-    if previous_stop == 1 and sim.hitstop == 0 and last_impact_strength>0.45:
-        audio.play_sound("release", 1.0 + sim.combo_hits * 0.06)
-        audio.play_sound("sub",0.9,-4.0)
+    if previous_stop>0 and sim.hitstop==0:
+        _release_impacts()
     for event in sim.events:
         _handle_event(event)
     if sim.phase in ["round_over", "match_over"]:
+        _release_impacts(false)
         screen = "result"
         audio.stop_all()
         audio.play_sound("ko")
@@ -143,8 +146,15 @@ func _handle_event(event: Dictionary) -> void:
         var target: Dictionary = sim.fighters[event.target]
         var strength: float = event.get("strength",0.8 if kind in ["parry","guard_break"] else 0.25)
         var tint: Color = Color("eaf078") if kind in ["parry","guard_break"] else COLORS[event.get("attacker",0)]
-        _spawn_vfx(kind,Vector2(target.x,target.y+1.2),0.38,{"strength":strength,"color":tint})
-        last_impact_strength = strength
+        var attacker: int = event.get("attacker",0)
+        var move: String = event.get("move","jab")
+        var face: float = sim.fighters[attacker].face
+        var point := Vector2(target.x,target.y+1.2)
+        _spawn_vfx(kind,point,0.38,{"strength":strength,"color":tint,"move":move,"face":face,"held":kind=="hit" and sim.hitstop>0})
+        if kind=="hit":
+            if impact_queue.size()>=4:impact_queue.pop_front()
+            impact_queue.append({"at":point,"strength":strength,"color":tint,"move":move,"face":face})
+            if sim.hitstop==0:_release_impacts()
         trauma = maxf(trauma,strength*0.6)
         audio.play_sound(("heavy" if strength>0.55 else "hit") if kind=="hit" else kind,1.0+sim.combo_hits*0.04)
         if kind=="hit" and strength>0.55: audio.play_sound("sub",0.9,-5.0)
@@ -154,7 +164,7 @@ func _handle_event(event: Dictionary) -> void:
     elif kind=="swing":
         var fighter: Dictionary = sim.fighters[event.target]
         var startup: float = float(Simulation.MOVES[event.move].startup)/60.0
-        _spawn_vfx("swing",Vector2(fighter.x+fighter.face*0.9,fighter.y+1.15),0.13,{"age":-startup,"face":fighter.face,"color":COLORS[event.target]})
+        _spawn_vfx("swing",Vector2(fighter.x+fighter.face*0.9,fighter.y+1.15),0.15,{"age":-startup,"face":fighter.face,"color":COLORS[event.target],"move":event.move})
         audio.play_sound("swing",1.0,-8.0)
         if event.move=="special":
             _spawn_vfx("charge",Vector2(fighter.x,fighter.y+1.2),startup,{"color":COLORS[event.target]})
@@ -176,13 +186,35 @@ func _handle_event(event: Dictionary) -> void:
         hud.notice = "SPECIAL NEEDS 50 ENERGY"
         hud.notice_time = 1.5
 
+func _clear_impacts() -> void:
+    impact_queue.clear()
+    recoil=Vector2.ZERO
+    recoil_age=1.0
+
+func _release_impacts(with_audio := true) -> void:
+    if impact_queue.is_empty():return
+    effects=effects.filter(func(e:Dictionary)->bool:return not e.get("held",false))
+    var strongest:=0.0
+    for impact in impact_queue:
+        _spawn_vfx("release",impact.at,0.18 if impact.strength<0.5 else 0.24,impact)
+        if impact.strength>=strongest:
+            strongest=impact.strength
+            recoil=Vector2(-impact.face,-0.55 if impact.move=="launcher" else 0.12)*minf(.18,impact.strength*.18)
+            recoil_age=0.0
+    if with_audio and strongest>0.45:
+        audio.play_sound("release",1.0+minf(sim.combo_hits*.06,.3),-3.0)
+        audio.play_sound("sub",0.9,-7.0)
+    impact_queue.clear()
+
 func _process(delta: float) -> void:
     audio.context = screen
     if screen != "pause" and screen != "help":
         elapsed += delta
         for effect in effects:
             effect.age += delta
+            if effect.get("held",false) and sim.hitstop>0:effect.life=maxf(effect.life,effect.age+0.1)
         effects = effects.filter(func(e: Dictionary) -> bool: return e.age < e.life)
+        recoil_age += delta
         trauma = move_toward(trauma, 0.0, delta * 2.0)
     if screen=="play" and sim.hitstop==0:
         trail_clock += delta
@@ -215,7 +247,10 @@ func _present(delta: float) -> void:
     var blend := 1.0-exp(-delta*4.0)
     camera_focus = camera_focus.lerp(target_focus,blend)
     base_camera = base_camera.lerp(target_position,blend)
-    camera.position = base_camera + Vector3(sin(elapsed*91)*shake,cos(elapsed*77)*shake*0.4,0)
+    var punch := Vector2.ZERO
+    if not reduced_effects and recoil_age<0.24:
+        punch=recoil*exp(-recoil_age*18.0)*cos(recoil_age*23.0)
+    camera.position = base_camera + Vector3(sin(elapsed*91)*shake+punch.x,cos(elapsed*77)*shake*0.4+punch.y,0)
     camera.look_at(camera_focus)
 
 func project(point: Vector2) -> Vector2:
@@ -236,6 +271,7 @@ func resume_game() -> void:
 func advance_round() -> void:
     sim.next_round()
     effects.clear()
+    _clear_impacts()
     pending.clear()
     screen = "play"
     hud.rebuild_menu()
@@ -306,6 +342,7 @@ func reset_training() -> void:
     if not practice: return
     sim.reset_training()
     effects.clear()
+    _clear_impacts()
     pending.clear()
     input_history.clear()
     trauma=0.0
@@ -347,5 +384,6 @@ func return_to_title() -> void:
     screen="title"
     pending.clear()
     effects.clear()
+    _clear_impacts()
     audio.stop_all()
     hud.rebuild_menu()

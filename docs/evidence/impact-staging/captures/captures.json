@@ -1,0 +1,439 @@
+[
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": -0.00000000000000000693889390390723,
+        "at": "(0.1, 1.15)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1,
+        "kind": "swing",
+        "life": 0.15,
+        "move": "jab",
+        "strength": 0.5
+      },
+      {
+        "age": 0.0166666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "held": true,
+        "kind": "hit",
+        "life": 0.38,
+        "move": "jab",
+        "strength": 0.259259259259259
+      }
+    ],
+    "hitstop": 5,
+    "png_error": 0,
+    "queue_size": 1,
+    "shot": "jab_contact"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": 0.123333333333333,
+        "at": "(0.1, 1.15)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1,
+        "kind": "swing",
+        "life": 0.15,
+        "move": "jab",
+        "strength": 0.5
+      },
+      {
+        "age": 0.0566666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "kind": "release",
+        "life": 0.18,
+        "move": "jab",
+        "strength": 0.259259259259259
+      }
+    ],
+    "hitstop": 0,
+    "png_error": 0,
+    "queue_size": 0,
+    "shot": "jab_release"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": -0.0000000000000000208166817117217,
+        "at": "(0.1, 1.15)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1,
+        "kind": "swing",
+        "life": 0.15,
+        "move": "cross",
+        "strength": 0.5
+      },
+      {
+        "age": 0.0166666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "held": true,
+        "kind": "hit",
+        "life": 0.38,
+        "move": "cross",
+        "strength": 0.333333333333333
+      }
+    ],
+    "hitstop": 6,
+    "png_error": 0,
+    "queue_size": 1,
+    "shot": "cross_contact"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": 0.14,
+        "at": "(0.1, 1.15)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1,
+        "kind": "swing",
+        "life": 0.15,
+        "move": "cross",
+        "strength": 0.5
+      },
+      {
+        "age": 0.0566666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "kind": "release",
+        "life": 0.18,
+        "move": "cross",
+        "strength": 0.333333333333333
+      }
+    ],
+    "hitstop": 0,
+    "png_error": 0,
+    "queue_size": 0,
+    "shot": "cross_release"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": -0.0000000000000000208166817117217,
+        "at": "(0.1, 1.15)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1,
+        "kind": "swing",
+        "life": 0.15,
+        "move": "finisher",
+        "strength": 0.5
+      },
+      {
+        "age": 0.0166666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "held": true,
+        "kind": "hit",
+        "life": 0.38,
+        "move": "finisher",
+        "strength": 0.481481481481481
+      }
+    ],
+    "hitstop": 9,
+    "png_error": 0,
+    "queue_size": 1,
+    "shot": "finisher_contact"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": 0.0566666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "kind": "release",
+        "life": 0.18,
+        "move": "finisher",
+        "strength": 0.481481481481481
+      },
+      {
+        "age": 0.04,
+        "at": "(0.8, 1.0)",
+        "color": "(1.0, 0.4627, 0.349, 1.0)",
+        "face": 1.0,
+        "kind": "trail",
+        "life": 0.15,
+        "strength": 0.5
+      }
+    ],
+    "hitstop": 0,
+    "png_error": 0,
+    "queue_size": 0,
+    "shot": "finisher_release"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": -0.0000000000000000485722573273506,
+        "at": "(0.1, 1.15)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1,
+        "kind": "swing",
+        "life": 0.15,
+        "move": "heavy",
+        "strength": 0.5
+      },
+      {
+        "age": 0.0166666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "held": true,
+        "kind": "hit",
+        "life": 0.38,
+        "move": "heavy",
+        "strength": 0.666666666666667
+      }
+    ],
+    "hitstop": 11,
+    "png_error": 0,
+    "queue_size": 1,
+    "shot": "heavy_contact"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": 0.0566666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "kind": "release",
+        "life": 0.24,
+        "move": "heavy",
+        "strength": 0.666666666666667
+      },
+      {
+        "age": 0.0,
+        "at": "(0.8, 1.0)",
+        "color": "(1.0, 0.4627, 0.349, 1.0)",
+        "face": 1.0,
+        "kind": "trail",
+        "life": 0.15,
+        "strength": 0.5
+      }
+    ],
+    "hitstop": 0,
+    "png_error": 0,
+    "queue_size": 0,
+    "shot": "heavy_release"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": -0.0000000000000000485722573273506,
+        "at": "(0.1, 1.15)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1,
+        "kind": "swing",
+        "life": 0.15,
+        "move": "launcher",
+        "strength": 0.5
+      },
+      {
+        "age": 0.0166666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "held": true,
+        "kind": "hit",
+        "life": 0.38,
+        "move": "launcher",
+        "strength": 0.518518518518518
+      }
+    ],
+    "hitstop": 10,
+    "png_error": 0,
+    "queue_size": 1,
+    "shot": "launcher_contact"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": 0.0566666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "kind": "release",
+        "life": 0.24,
+        "move": "launcher",
+        "strength": 0.518518518518518
+      }
+    ],
+    "hitstop": 0,
+    "png_error": 0,
+    "queue_size": 0,
+    "shot": "launcher_release"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": -0.0000000000000000485722573273506,
+        "at": "(0.1, 1.15)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1,
+        "kind": "swing",
+        "life": 0.15,
+        "move": "special",
+        "strength": 0.5
+      },
+      {
+        "age": -0.0000000000000000485722573273506,
+        "at": "(-0.2, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1,
+        "kind": "wave",
+        "life": 0.26,
+        "strength": 0.5
+      },
+      {
+        "age": 0.0166666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "held": true,
+        "kind": "hit",
+        "life": 0.38,
+        "move": "special",
+        "strength": 1.0
+      }
+    ],
+    "hitstop": 17,
+    "png_error": 0,
+    "queue_size": 1,
+    "shot": "special_contact"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": 0.0566666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "kind": "release",
+        "life": 0.24,
+        "move": "special",
+        "strength": 1.0
+      }
+    ],
+    "hitstop": 0,
+    "png_error": 0,
+    "queue_size": 0,
+    "shot": "special_release"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": 0.0333333333333333,
+        "at": "(0.1, 1.15)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1,
+        "kind": "swing",
+        "life": 0.15,
+        "move": "heavy",
+        "strength": 0.5
+      }
+    ],
+    "hitstop": 0,
+    "png_error": 0,
+    "queue_size": 0,
+    "shot": "heavy_whiff"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": 0.0333333333333333,
+        "at": "(-1.7, 1.15)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": -1,
+        "kind": "swing",
+        "life": 0.15,
+        "move": "launcher",
+        "strength": 0.5
+      }
+    ],
+    "hitstop": 0,
+    "png_error": 0,
+    "queue_size": 0,
+    "shot": "launcher_mirrored_whiff"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": -0.0000000000000000485722573273506,
+        "at": "(0.1, 1.15)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1,
+        "kind": "swing",
+        "life": 0.15,
+        "move": "special",
+        "strength": 0.5
+      },
+      {
+        "age": -0.0000000000000000485722573273506,
+        "at": "(-0.2, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1,
+        "kind": "wave",
+        "life": 0.26,
+        "strength": 0.5
+      },
+      {
+        "age": 0.0166666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "held": true,
+        "kind": "hit",
+        "life": 0.38,
+        "move": "special",
+        "strength": 1.0
+      }
+    ],
+    "hitstop": 17,
+    "png_error": 0,
+    "queue_size": 1,
+    "shot": "special_reduced_contact"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": [
+      {
+        "age": 0.0566666666666667,
+        "at": "(0.8, 1.2)",
+        "color": "(0.3961, 0.9137, 0.8706, 1.0)",
+        "face": 1.0,
+        "kind": "release",
+        "life": 0.24,
+        "move": "special",
+        "strength": 1.0
+      }
+    ],
+    "hitstop": 0,
+    "png_error": 0,
+    "queue_size": 0,
+    "shot": "special_reduced_release"
+  }
+]

@@ -30,11 +30,11 @@ func run() -> void:
     check("sun and ambient lighting remain fixed",sun.transform==sun_pose and env.ambient_light_energy==light)
     bg.frozen=false
     scene.reduced_effects=true
-    scene._present(1.0)
+    scene._process(1.0)
     check("F2 session state reaches sky controller",is_equal_approx(env.sky_rotation.y,yaw))
     scene.reduced_effects=false
     scene.screen="pause"
-    scene._present(1.0)
+    scene._process(1.0)
     check("pause session state reaches sky controller",is_equal_approx(env.sky_rotation.y,yaw))
     var motion=preload("res://scripts/sky_drift.gd").new()
     motion.advance(env,1e8,PI*.5)
