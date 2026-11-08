@@ -178,6 +178,12 @@ func _action(parent: Node, key: String, shortcut: String, callback: Callable, pr
         badge.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
         badge.mouse_filter=Control.MOUSE_FILTER_IGNORE
         button.add_child(badge)
+        var highlight:=func():badge.add_theme_color_override("font_color",INK)
+        var restore:=func():badge.add_theme_color_override("font_color",INK if primary or button.is_hovered() else Tokens.MUTED)
+        button.mouse_entered.connect(highlight)
+        button.mouse_exited.connect(restore)
+        button.button_down.connect(highlight)
+        button.button_up.connect(restore)
     button.pressed.connect(callback)
     parent.add_child(button)
     return button

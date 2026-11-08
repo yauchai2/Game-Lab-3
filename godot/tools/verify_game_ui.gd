@@ -2,6 +2,7 @@ extends SceneTree
 const Tokens=preload("res://scripts/combat/ui/ui_theme.gd")
 const Copy=preload("res://scripts/combat/ui/ui_text.gd")
 var checks: Array[Dictionary]=[]
+var skipped: Array[Dictionary]=[]
 func _initialize() -> void:call_deferred("run")
 func check(label: String, passed: bool) -> void:
     checks.append({"name":label,"passed":passed})
@@ -13,6 +14,12 @@ func control(hud: Node, key: String) -> Control:
 func frames() -> void:
     await process_frame
     await process_frame
+func contrast(a: Color, b: Color) -> float:
+    a=a.srgb_to_linear()
+    b=b.srgb_to_linear()
+    var la: float=a.r*.2126+a.g*.7152+a.b*.0722
+    var lb: float=b.r*.2126+b.g*.7152+b.b*.0722
+    return (maxf(la,lb)+.05)/(minf(la,lb)+.05)
 func run() -> void:
     var glyphs:=true
     var missing: Array[int]=[]
@@ -35,19 +42,29 @@ func run() -> void:
     scene.set_physics_process(false)
     scene.audio.muted=true
     var hud=scene.hud
-    var old_billboard:=false
-    var dressing=scene.backdrop.street.find_children("BatchedGeometry","Node3D",true,false)[0]
-    for batch in dressing.get_children():
-        if not batch is MultiMeshInstance3D:continue
-        for i in batch.multimesh.instance_count:
-            var pose: Transform3D=batch.multimesh.get_instance_transform(i)
-            if absf(pose.origin.x+9.0)<.2 and pose.origin.z>2 and pose.basis.get_scale().y>7:old_billboard=true
-    check("the misplaced eight metre residential billboard is removed",not old_billboard)
+    if DisplayServer.get_name()=="headless":
+        skipped.append({"name":"residential billboard transform readback","reason":"Dummy renderer returns identity MultiMesh transforms; requires native GL verification"})
+    else:
+        var old_billboard:=false
+        var dressing=scene.backdrop.street.find_children("BatchedGeometry","Node3D",true,false)[0]
+        for batch in dressing.get_children():
+            if not batch is MultiMeshInstance3D:continue
+            for i in batch.multimesh.instance_count:
+                var pose: Transform3D=batch.multimesh.get_instance_transform(i)
+                if absf(pose.origin.x+9.0)<.2 and pose.origin.z>2 and pose.basis.get_scale().y>7:old_billboard=true
+        check("the misplaced eight metre residential billboard is removed",not old_billboard)
     check("replacement shop fascia has a stable artwork anchor",scene.backdrop.street.has_node("CornerStreetscape/BlueCornerShopSign") and scene.backdrop.street.get_node("CornerStreetscape/BlueCornerShopSign").position.y<4)
     check("arena has two visible edge barriers outside the running envelope",scene.backdrop.street.get_node("CornerStreetscape").find_children("ArenaBarrier_*","StaticBody3D",true,false).size()==2)
     await frames()
     check("Traditional Chinese is the default",scene.language=="zh" and control(hud,"fight").text=="街頭對戰")
     check("title has separate fight training and dojo actions",control(hud,"fight")!=null and control(hud,"training")!=null and control(hud,"drill")!=null)
+    var training: Button=control(hud,"training")
+    var badge: Label=training.get_child(0)
+    training.mouse_entered.emit()
+    check("shortcut text keeps readable contrast on hover",contrast(badge.get_theme_color("font_color"),training.get_theme_stylebox("hover").bg_color)>=4.5)
+    training.button_down.emit()
+    check("shortcut text keeps readable contrast while pressed",contrast(badge.get_theme_color("font_color"),training.get_theme_stylebox("pressed").bg_color)>=4.5)
+    training.mouse_exited.emit()
     check("title main actions fit without mandatory scroll",hud.menu_scroll.get_v_scroll_bar().max_value<=hud.menu_scroll.size.y+2)
     control(hud,"settings").grab_focus()
     hud.open_page("settings")
@@ -149,6 +166,6 @@ func run() -> void:
     await create_timer(.15).timeout
     var failed:=checks.filter(func(c:Dictionary)->bool:return not c.passed).size()
     var file:=FileAccess.open("res://../docs/evidence/extended-polish/ui-verification.json",FileAccess.WRITE)
-    file.store_string(JSON.stringify({"checks":checks,"passed":checks.size()-failed,"failed":failed,"missing_glyphs":missing},"  "))
+    file.store_string(JSON.stringify({"checks":checks,"passed":checks.size()-failed,"failed":failed,"missing_glyphs":missing,"skipped":skipped,"display":DisplayServer.get_name()},"  "))
     print("GAME_UI_CHECKS ",checks.size()-failed,"/",checks.size())
     quit(0 if failed==0 else 1)

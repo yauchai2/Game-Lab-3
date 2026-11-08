@@ -49,6 +49,18 @@ func run() -> void:
     scene.set_physics_process(false)
     scene.audio.muted=true
     await frames(4)
+    var training: Button=control(scene.hud,"training")
+    var motion:=InputEventMouseMotion.new()
+    motion.position=root.get_screen_transform()*training.get_global_rect().get_center()
+    motion.global_position=motion.position
+    Input.parse_input_event(motion)
+    await frames(3)
+    var badge: Label=training.get_child(0)
+    var foreground: Color=badge.get_theme_color("font_color").srgb_to_linear()
+    var background: Color=training.get_theme_stylebox("hover").bg_color.srgb_to_linear()
+    var fg: float=foreground.r*.2126+foreground.g*.7152+foreground.b*.0722
+    var bg: float=background.r*.2126+background.g*.7152+background.b*.0722
+    check("real pointer hover keeps shortcut contrast above 4.5",training.is_hovered() and (maxf(fg,bg)+.05)/(minf(fg,bg)+.05)>=4.5)
     await click(control(scene.hud,"settings"))
     check("pointer opens settings from title",scene.hud.menu_page=="settings")
     var language: OptionButton=control(scene.hud,"language")
