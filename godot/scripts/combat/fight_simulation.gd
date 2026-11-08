@@ -45,7 +45,7 @@ func reset_round() -> void:
             "face": 1 if i == 0 else -1, "health": MAX_HEALTH, "meter": 0.0, "guard": 100.0,
             "state": "idle", "move": "", "frame": 0, "stun": 0, "connected": false,
             "buffer": "", "buffer_ttl": 0, "chain": 0, "chain_ttl": 0, "dash_cd": 0,
-            "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "jump_buffer":0, "juggle":0})
+            "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "jump_buffer":0, "juggle":0, "hit_confirmed":false})
     phase = "ready"
     countdown = 72
     remaining = ROUND_SECONDS
@@ -157,7 +157,7 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
         var move: Dictionary = MOVES[f.move]
         var end: int = move.startup + move.active + move.recovery
         # Confirm a grounded launcher, then buffer Space during its hitstop to chase.
-        if f.connected and f.move=="launcher" and f.jump_buffer>0 and f.y<=0.01:
+        if f.hit_confirmed and f.move=="launcher" and f.jump_buffer>0 and f.y<=0.01:
             f.state = "idle"
             f.vy = 10.3
             f.jump_buffer = 0
@@ -227,6 +227,7 @@ func _start_attack(i: int, requested: String) -> void:
     f.move = name
     f.frame = 0
     f.connected = false
+    f.hit_confirmed = false
     f.buffer = ""
     f.buffer_ttl = 0
     f.vx = f.vx*0.75 if f.y>0.01 else 0.0
@@ -284,6 +285,7 @@ func _resolve_hit(i: int) -> void:
             b.guarding = false
             events.append({"kind": "guard_break", "target": 1-i})
         return
+    a.hit_confirmed = true
     if combo_owner != i or b.state != "stun":
         combo_owner = i
         combo_hits = 0

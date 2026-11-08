@@ -90,6 +90,11 @@ func run() -> void:
     for i in 25: sim.tick({"jump":true} if i==15 else {})
     check("whiffed launcher cannot jump-cancel its recovery",sim.fighters[0].y==0)
     sim=setup()
+    for i in 26:
+        var input: Dictionary={"attack":"heavy","up":true} if i==0 else ({"jump":true} if i==15 else {})
+        sim.tick(input,{"guard":true})
+    check("blocked launcher cannot claim a confirmed air chase",sim.fighters[0].y==0 and sim.fighters[1].health==100 and not sim.fighters[0].hit_confirmed)
+    sim=setup()
     sim.fighters[0].y=1.3
     sim.fighters[1].y=1.3
     sim.fighters[1].juggle=2
