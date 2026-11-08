@@ -212,3 +212,9 @@ Web 匯出、匯出包 8 項 Native 資源／玩法／F6 往返，以及 Wasm �
 ## 戰鬥完善（2026-11-08，香港時間）
 
 GitHub Pages 已由擁有人啟用，API built，舊版 HTTP 資產 15/15 及真實 Chromium WebGL／鍵盤測試成功。新增無限練習、站立／防禦／陪練、F5 重置、F7 切換、六筆輸入及上次連段統計；挑空命中 Space → J 追擊、三次浮空後落地；三段 AI、本機設定保存及可捲動選單。新 32 項與相關回歸共 143 項通過，新版 Web 發佈與公開測試另補記。詳見 COMBAT_POLISH.md；原 GLB／場景及歷史不覆寫。
+
+## 戰鬥完善版已上線（2026-11-08，香港時間）
+
+https://yauchai2.github.io/Game-Lab-3/ ：Pages 2908503 / 遊戲來源 e2c7e10，公開 built；15/15 資產雜湊。新邏輯 35 + 格鬥 34 + 場景／音訊 33 + 骨架／透視 30 + 警告 3 + headless viewport 11 + Web PCK 8 = 154 項通過。最新 Chromium WebGL／F5／F7／AudioContext／IndexedDB／全螢幕／重載 7/7 通過，JS 與 console 錯誤空白；軟體 GPU，不是真人／聆聽／硬體效能驗收。
+
+T 進無限練習、F5 重置、F7 切對手；正常對局 Enter。挑空僅在未被防禦的命中後允許 Space 追擊；前三次浮空命中後落地。模式／難度／演出與聲音保存在本機。所有目前狀態與後續限制見 COMBAT_POLISH.md；最新證據在 evidence/combat-polish/。舊音訊退出警告、投技、第二角色、手柄與手機觸控仍待後續。

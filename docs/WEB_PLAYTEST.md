@@ -66,3 +66,7 @@ python tools/verify_web_url.py https://yauchai2.github.io/Game-Lab-3/ docs/evide
 ## 2026-11-08 接續確認
 
 GitHub Pages 現已啟用：branch gh-pages / root、status built、HTTPS。舊版匿名 HTTP 資產 15/15 雜湊通過，Chromium WebGL 實際啟動與鍵盤畫面驗證通過；前述 404／待啟用是歷史狀態。這輪練習、追擊及 Web 操作改善見 COMBAT_POLISH.md，新版公開驗證另補記。
+
+## 最新遊戲完善版（2026-11-08）
+
+已公開更新：Pages 2908503 / 遊戲來源 e2c7e10。Enter 對戰、T 無限練習；F5 重置、F7 對手，挑空命中後 Space → J，難度／音效／演出設定保存在本機。15/15 線上資產、154 項 native／匯出檢查及 7/7 真實 Chromium WebGL 自動流程通過，IndexedDB 寫入與重新載入已驗證。這取代早期「瀏覽器尚未驗證」的目前狀態；歷史失敗紀錄保留。詳見 COMBAT_POLISH.md。

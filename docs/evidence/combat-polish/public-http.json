@@ -1,0 +1,129 @@
+{
+  "base_url": "https://yauchai2.github.io/Game-Lab-3/",
+  "anonymous_http": true,
+  "passed": 15,
+  "total": 15,
+  "files": [
+    {
+      "file": "cover.webp",
+      "http": 200,
+      "bytes": 62476,
+      "content_type": "image/webp",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/cover.webp",
+      "hash_matches": true
+    },
+    {
+      "file": "credits.html",
+      "http": 200,
+      "bytes": 2109,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/credits.html",
+      "hash_matches": true
+    },
+    {
+      "file": "game.apple-touch-icon.png",
+      "http": 200,
+      "bytes": 11952,
+      "content_type": "image/png",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/game.apple-touch-icon.png",
+      "hash_matches": true
+    },
+    {
+      "file": "game.audio.position.worklet.js",
+      "http": 200,
+      "bytes": 2973,
+      "content_type": "application/javascript; charset=utf-8",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/game.audio.position.worklet.js",
+      "hash_matches": true
+    },
+    {
+      "file": "game.audio.worklet.js",
+      "http": 200,
+      "bytes": 7298,
+      "content_type": "application/javascript; charset=utf-8",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/game.audio.worklet.js",
+      "hash_matches": true
+    },
+    {
+      "file": "game.icon.png",
+      "http": 200,
+      "bytes": 5702,
+      "content_type": "image/png",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/game.icon.png",
+      "hash_matches": true
+    },
+    {
+      "file": "game.js",
+      "http": 200,
+      "bytes": 315759,
+      "content_type": "application/javascript; charset=utf-8",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/game.js",
+      "hash_matches": true
+    },
+    {
+      "file": "game.pck",
+      "http": 200,
+      "bytes": 8767312,
+      "content_type": "application/octet-stream",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/game.pck",
+      "hash_matches": true
+    },
+    {
+      "file": "game.png",
+      "http": 200,
+      "bytes": 21443,
+      "content_type": "image/png",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/game.png",
+      "hash_matches": true
+    },
+    {
+      "file": "game.wasm.gz",
+      "http": 200,
+      "bytes": 9382282,
+      "content_type": "application/gzip",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/game.wasm.gz",
+      "hash_matches": true
+    },
+    {
+      "file": "index.html",
+      "http": 200,
+      "bytes": 10380,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/index.html",
+      "hash_matches": true
+    },
+    {
+      "file": "licenses/Godot-COPYRIGHT.txt",
+      "http": 200,
+      "bytes": 99790,
+      "content_type": "text/plain; charset=utf-8",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/licenses/Godot-COPYRIGHT.txt",
+      "hash_matches": true
+    },
+    {
+      "file": "licenses/LICENSE-Juhani.txt",
+      "http": 200,
+      "bytes": 455,
+      "content_type": "text/plain; charset=utf-8",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/licenses/LICENSE-Juhani.txt",
+      "hash_matches": true
+    },
+    {
+      "file": "licenses/LICENSE-Kenney.txt",
+      "http": 200,
+      "bytes": 586,
+      "content_type": "text/plain; charset=utf-8",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/licenses/LICENSE-Kenney.txt",
+      "hash_matches": true
+    },
+    {
+      "file": "licenses/LICENSE-Quaternius.txt",
+      "http": 200,
+      "bytes": 7048,
+      "content_type": "text/plain; charset=utf-8",
+      "final_url": "https://yauchai2.github.io/Game-Lab-3/licenses/LICENSE-Quaternius.txt",
+      "hash_matches": true
+    }
+  ],
+  "scope": "Anonymous HTTP downloads and hashes, not browser rendering or input"
+}

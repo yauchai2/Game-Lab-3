@@ -1,0 +1,35 @@
+{
+  "error": "Browser check failure; see report",
+  "errors": [],
+  "messages": [],
+  "checks": [
+    {
+      "name": "actual Web engine boots",
+      "passed": true
+    },
+    {
+      "name": "training F5 does not refresh browser",
+      "passed": true
+    },
+    {
+      "name": "training F7 does not navigate browser",
+      "passed": true
+    },
+    {
+      "name": "browser audio context runs after user input",
+      "passed": true
+    },
+    {
+      "name": "preferences persisted to real browser IndexedDB",
+      "passed": false
+    },
+    {
+      "name": "fullscreen preserves 16:9 canvas input rectangle",
+      "passed": true
+    },
+    {
+      "name": "browser reload boots with saved preferences",
+      "passed": true
+    }
+  ]
+}

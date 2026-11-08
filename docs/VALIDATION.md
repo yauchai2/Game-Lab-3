@@ -185,3 +185,9 @@ Godot 4.6.3 Web release 成功，單執行緒 Compatibility。實際 Web PCK 在
 ## 2026-11-08 戰鬥完善基線與邏輯
 
 GitHub Pages built，舊版匿名 HTTP 15/15 及 Chromium WebGL／Enter、D、J、K、Esc 畫面通過，JS pageerror 為空。新 32/32、格鬥 34/34、場景／音訊 33/33、骨架／相機 30/30、警告 3/3、headless viewport 輸入 11/11，共 143 項通過。保留音訊退出清理警告；本機 Web 預覽被代理 Loopback targets forbidden 阻擋，改在公開發佈後驗證，未繞過限制。新版公開驗證完成後另補；詳見 COMBAT_POLISH.md 和 evidence/combat-polish/。
+
+## 戰鬥完善版已上線（2026-11-08，香港時間）
+
+https://yauchai2.github.io/Game-Lab-3/ ：Pages 2908503 / 遊戲來源 e2c7e10，公開 built；15/15 資產雜湊。新邏輯 35 + 格鬥 34 + 場景／音訊 33 + 骨架／透視 30 + 警告 3 + headless viewport 11 + Web PCK 8 = 154 項通過。最新 Chromium WebGL／F5／F7／AudioContext／IndexedDB／全螢幕／重載 7/7 通過，JS 與 console 錯誤空白；軟體 GPU，不是真人／聆聽／硬體效能驗收。
+
+T 進無限練習、F5 重置、F7 切對手；正常對局 Enter。挑空僅在未被防禦的命中後允許 Space 追擊；前三次浮空命中後落地。模式／難度／演出與聲音保存在本機。所有目前狀態與後續限制見 COMBAT_POLISH.md；最新證據在 evidence/combat-polish/。舊音訊退出警告、投技、第二角色、手柄與手機觸控仍待後續。

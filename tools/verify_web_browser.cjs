@@ -15,7 +15,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');const fs
   await page.keyboard.press('F5');await page.waitForTimeout(500);checks.push({name:'training F5 does not refresh browser',passed:navigations===1 && await page.locator('#gate').isHidden()});await page.screenshot({path:out+'/04_reset.png'});
   await page.keyboard.press('F7');await page.waitForTimeout(500);checks.push({name:'training F7 does not navigate browser',passed:navigations===1});await page.screenshot({path:out+'/05_guarding.png'});
   await page.keyboard.press('Escape');await page.waitForTimeout(500);await page.screenshot({path:out+'/06_pause.png'});
-  await page.keyboard.press('KeyM');await page.keyboard.press('F2');await page.waitForTimeout(8000);
+  await page.locator('#canvas').focus();await page.keyboard.press('KeyM',{delay:180});await page.waitForTimeout(700);await page.locator('#canvas').focus();await page.keyboard.press('F2',{delay:180});await page.waitForTimeout(10000);await page.mouse.move(650,530);await page.mouse.wheel(0,850);await page.waitForTimeout(700);await page.screenshot({path:out+'/06b_saved_options.png'});
   const audio=await page.evaluate(()=>window.__audioContexts.map(a=>({state:a.state,sampleRate:a.sampleRate})));checks.push({name:'browser audio context runs after user input',passed:audio.some(a=>a.state==='running')});
   const prefs=await page.evaluate(async()=>{
    const dbs=await indexedDB.databases(),found=[];

@@ -1,0 +1,89 @@
+{
+  "engine": "Godot 4.6.3",
+  "upstream_repository": "https://github.com/yauchai2/Game-Lab-3",
+  "upstream_commit": "e2c7e10468329badbeb71aebf3a237e13cf0ae1e",
+  "source_dirty": false,
+  "threads": false,
+  "renderer": "gl_compatibility",
+  "wasm_uncompressed_bytes": 37700666,
+  "wasm_uncompressed_sha256": "26b61ce95247012ab3dca3ff51e96d1cdbff44ee91a8c20a83e150afca83f1b6",
+  "wasm_gzip_bytes": 9382282,
+  "files": [
+    {
+      "file": "cover.webp",
+      "bytes": 62476,
+      "sha256": "8f51aad865459e75fd96275d810016c160dafa73f5b146bd0f8ee1511a462120"
+    },
+    {
+      "file": "credits.html",
+      "bytes": 2109,
+      "sha256": "3a97a359de4faa09236351c2fcb99a9bee1f5693ceee6508881deb71cce97546"
+    },
+    {
+      "file": "game.apple-touch-icon.png",
+      "bytes": 11952,
+      "sha256": "9b374ecbc8558f480421e646f38aaa8a69d5b1d65ff7b48d0735da214c46773a"
+    },
+    {
+      "file": "game.audio.position.worklet.js",
+      "bytes": 2973,
+      "sha256": "be33985bc7160d6bf9646f259cd86b259cd67b02ccb297ee5c44f8ac84327bc8"
+    },
+    {
+      "file": "game.audio.worklet.js",
+      "bytes": 7298,
+      "sha256": "5b476a9c9ce642c0ee4256436d1bc31d9c38f868aca0f9a8e2a57c18d2dec2a3"
+    },
+    {
+      "file": "game.icon.png",
+      "bytes": 5702,
+      "sha256": "08808dd5397e9a502cb3624944151f87a9705b5b66b5c365c5ca4c6ab51525f5"
+    },
+    {
+      "file": "game.js",
+      "bytes": 315759,
+      "sha256": "e3f56ee40e6f84371053db06692cfac15e2c8659547b11c6b2dfa1996dabd981"
+    },
+    {
+      "file": "game.pck",
+      "bytes": 8767312,
+      "sha256": "99cf8ec4d5d375cd8b786873e09a666212233f12c424662a3fd617fdede9c7fb"
+    },
+    {
+      "file": "game.png",
+      "bytes": 21443,
+      "sha256": "3cb4495c0b98dfbe4b663cbf2b6836473572339beb66d902367893162a70be0e"
+    },
+    {
+      "file": "game.wasm.gz",
+      "bytes": 9382282,
+      "sha256": "9352825a316f4449b81d326706e78be95ed5a81c0e797f35879ef8b39bc505bd"
+    },
+    {
+      "file": "index.html",
+      "bytes": 10380,
+      "sha256": "eeadd26c3f3bf17833452fc58b03af9116f630dbb215d3b1ef6528d09ec870e3"
+    },
+    {
+      "file": "licenses/Godot-COPYRIGHT.txt",
+      "bytes": 99790,
+      "sha256": "b3330849267d56ddd3d62a513817506606c2195034411fe05859f0140bff9d8a"
+    },
+    {
+      "file": "licenses/LICENSE-Juhani.txt",
+      "bytes": 455,
+      "sha256": "c3b5e22c2d48475f82676df063a35dad8ea5b0120ea84246efc8aef9fb22a9ab"
+    },
+    {
+      "file": "licenses/LICENSE-Kenney.txt",
+      "bytes": 586,
+      "sha256": "94283f9120e58e6a1cae5762053df42ee280d37fe34be22589c92b7dbc7b2d39"
+    },
+    {
+      "file": "licenses/LICENSE-Quaternius.txt",
+      "bytes": 7048,
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    }
+  ],
+  "total_bytes": 18697565
+}
