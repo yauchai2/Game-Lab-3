@@ -20,6 +20,7 @@ func frames(count: int) -> void:
     for i in count: await physics_frame
 func run() -> void:
     var scene := preload("res://scenes/combat/street_fight.tscn").instantiate()
+    scene.preferences_path=""
     root.add_child(scene)
     current_scene = scene
     await frames(3)

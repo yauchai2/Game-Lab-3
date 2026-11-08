@@ -133,6 +133,7 @@ func run() -> void:
         if sim.phase=="round_over": break
     check("AI engages and damages player",sim.fighters[0].health<100)
     var scene := preload("res://scenes/combat/street_fight.tscn").instantiate()
+    scene.preferences_path=""
     root.add_child(scene)
     await process_frame
     scene.start_match(true)

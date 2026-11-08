@@ -7,6 +7,7 @@ func capture() -> void:
     if not args.is_empty(): output_dir = args[0]
     DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(output_dir))
     var scene := preload("res://scenes/combat/street_fight.tscn").instantiate()
+    scene.preferences_path=""
     root.add_child(scene)
     scene.set_physics_process(false)
     scene.set_process(false)

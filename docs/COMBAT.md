@@ -104,3 +104,7 @@ DISPLAY=:94 LIBGL_ALWAYS_SOFTWARE=1 godot --path godot --rendering-method gl_com
 ## 目前版本：五點試玩回饋修正
 
 面向對手已修正；現在接入 14 段 CC0 動畫，雙方在斑馬線上使用同一個透視世界。相機左右小角度追蹤，場景招牌留白。先前正交前景／分離背景及臨時程序姿勢是歷史實作；最新操作、來源、轉接細節與驗證以 [PLAYTEST_FIXES.md](PLAYTEST_FIXES.md) 為準。
+
+## 2026-11-08 練習與空中追擊更新
+
+前述「練習仍使用完整回合規則」已由 [COMBAT_POLISH.md](COMBAT_POLISH.md) 的無限練習取代。新增 F5 重置、F7 對手、輸入紀錄、三段難度、挑空命中後 Space → J 追擊及本機設定保存；先前原型數值與驗證歷史保留。

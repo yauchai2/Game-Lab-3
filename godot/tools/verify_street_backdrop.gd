@@ -13,6 +13,7 @@ func hand_forward(actor: Node3D) -> float:
     return maxf(left.x,right.x)
 func run() -> void:
     var scene := preload("res://scenes/combat/street_fight.tscn").instantiate()
+    scene.preferences_path=""
     root.add_child(scene)
     scene.set_process(false)
     scene.set_physics_process(false)

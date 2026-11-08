@@ -208,3 +208,7 @@ Web 匯出、匯出包 8 項 Native 資源／玩法／F6 往返，以及 Wasm �
 使用者改要 GitHub 遊戲網址。`gh-pages` 分支 `c663ec5` 已推送同一份 Web 遊戲及 `.nojekyll`，期望網址 https://yauchai2.github.io/Game-Lab-3/ 。GitHub repo public、帳戶 admin，但 integration 啟用 Pages 的 API 回傳 403；目前 has_pages=false、網址 404，尚未上線。請擁有人在 Settings/Pages 選 Deploy from a branch → gh-pages → /(root) → Save。主分支及既有 Sites 不刪改。
 
 已驗證 15 件靜態資產雜湊，實際 fetch adapter 在根路徑及 /Game-Lab-3/ 皆可 compileStreaming；不是線上瀏覽器實測。設定完成後接續執行 HTTP 資產及瀏覽器鍵盤／音訊檢查。API 失敗和準備提交見 docs/evidence/github-pages/；完整指引見 WEB_PLAYTEST.md。
+
+## 戰鬥完善（2026-11-08，香港時間）
+
+GitHub Pages 已由擁有人啟用，API built，舊版 HTTP 資產 15/15 及真實 Chromium WebGL／鍵盤測試成功。新增無限練習、站立／防禦／陪練、F5 重置、F7 切換、六筆輸入及上次連段統計；挑空命中 Space → J 追擊、三次浮空後落地；三段 AI、本機設定保存及可捲動選單。新 32 項與相關回歸共 143 項通過，新版 Web 發佈與公開測試另補記。詳見 COMBAT_POLISH.md；原 GLB／場景及歷史不覆寫。

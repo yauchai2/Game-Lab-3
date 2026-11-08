@@ -11,6 +11,7 @@ func run() -> void:
     var library: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://assets/animations/quaternius_combat.json"))
     check("exported animation JSON parses",library is Dictionary)
     var scene: Node3D = load("res://scenes/combat/street_fight.tscn").instantiate()
+    scene.preferences_path=""
     root.add_child(scene)
     current_scene = scene
     await process_frame

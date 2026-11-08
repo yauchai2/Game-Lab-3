@@ -25,6 +25,9 @@ assert gzip.decompress(compressed) == raw
 (output / 'game.wasm.gz').write_bytes(compressed)
 wasm.unlink()
 commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
+# Evidence/log edits do not change the game; report uncommitted runtime sources.
+changes = subprocess.check_output(['git','status','--porcelain','--untracked-files=all','--','godot','tools/build_web.py'],cwd=ROOT,text=True).splitlines()
+source_dirty = any(not line.endswith('.uid') for line in changes)
 html = (output / 'game.html').read_text().replace('__BUILD_ID__', commit[:7])
 assert '$GODOT_' not in html
 (output / 'index.html').write_text(html)
@@ -49,6 +52,6 @@ for path in sorted(output.rglob('*')):
     if path.is_file() and path.name != 'release-manifest.json':
         assert path.stat().st_size < 25 * 1024 * 1024, f'Hosting per-file limit: {path}'
         files.append({'file': path.relative_to(output).as_posix(), 'bytes': path.stat().st_size, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()})
-manifest = {'engine': 'Godot 4.6.3', 'upstream_repository': 'https://github.com/yauchai2/Game-Lab-3', 'upstream_commit': commit, 'threads': False, 'renderer': 'gl_compatibility', 'wasm_uncompressed_bytes': len(raw), 'wasm_uncompressed_sha256': hashlib.sha256(raw).hexdigest(), 'wasm_gzip_bytes': len(compressed), 'files': files, 'total_bytes': sum(p['bytes'] for p in files)}
+manifest = {'engine': 'Godot 4.6.3', 'upstream_repository': 'https://github.com/yauchai2/Game-Lab-3', 'upstream_commit': commit, 'source_dirty': source_dirty, 'threads': False, 'renderer': 'gl_compatibility', 'wasm_uncompressed_bytes': len(raw), 'wasm_uncompressed_sha256': hashlib.sha256(raw).hexdigest(), 'wasm_gzip_bytes': len(compressed), 'files': files, 'total_bytes': sum(p['bytes'] for p in files)}
 (output / 'release-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
 print('WEB_BUILD', json.dumps({'directory': str(output), 'files': len(files) + 1, 'total_bytes': manifest['total_bytes'], 'source_commit': commit}))

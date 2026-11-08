@@ -28,6 +28,12 @@ var combo_hits := 0
 var combo_owner := -1
 var combo_damage := 0
 var ai_tick := 0
+var difficulty := 1
+var training := false
+var partner_mode := 0 # 0 standing, 1 guard, 2 sparring
+var training_rest := 0
+var last_combo_hits := 0
+var last_combo_damage := 0
 
 func _init() -> void:
     reset_round()
@@ -39,7 +45,7 @@ func reset_round() -> void:
             "face": 1 if i == 0 else -1, "health": MAX_HEALTH, "meter": 0.0, "guard": 100.0,
             "state": "idle", "move": "", "frame": 0, "stun": 0, "connected": false,
             "buffer": "", "buffer_ttl": 0, "chain": 0, "chain_ttl": 0, "dash_cd": 0,
-            "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true})
+            "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "jump_buffer":0, "juggle":0})
     phase = "ready"
     countdown = 72
     remaining = ROUND_SECONDS
@@ -50,6 +56,11 @@ func reset_round() -> void:
     combo_owner = -1
     events.clear()
     ai_tick = 0
+    training_rest = 0
+    last_combo_hits = 0
+    last_combo_damage = 0
+    if training:
+        for fighter in fighters: fighter.meter = 100.0
 
 func restart_match() -> void:
     wins = [0, 0]
@@ -67,12 +78,15 @@ func ai_command() -> Dictionary:
     var distance: float = absf(a.x - b.x)
     var command := {"axis": signf(b.x - a.x) if distance > 1.45 else 0.0, "allow_parry":false}
     # Deliberate reaction windows and punishable heavy attacks, not perfect reads.
-    if ai_tick % 22 < 12 and b.state == "attack" and distance < 2.8:
+    var level := clampi(difficulty,0,2)
+    var reaction_period: int = [36,22,14][level]
+    var attack_period: int = [40,25,18][level]
+    if ai_tick % reaction_period < [4,12,8][level] and b.state == "attack" and distance < 2.8:
         command["guard"] = true
         command["axis"] = 0.0
-    if ai_tick % 25 == 0 and distance < 2.5:
+    if ai_tick % attack_period == 0 and distance < 2.5:
         command["attack"] = "special" if a.meter >= 50 and ai_tick % 100 == 0 else ("heavy" if ai_tick % 75 == 0 else "light")
-    if b.y > 1.0 and ai_tick % 48 == 0:
+    if b.y > 1.0 and ai_tick % [72,48,36][level] == 0:
         command["jump"] = true
     return command
 
@@ -87,10 +101,15 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         return
     if phase != "fight":
         return
-    var commands := [player, ai_command() if ai_enabled else opponent]
+    var partner: Dictionary = ai_command() if ai_enabled else opponent
+    if training:
+        if partner_mode==1: partner={"guard":true,"allow_parry":false}
+        elif partner_mode==2: partner=ai_command()
+    var commands := [player,partner]
     for i in 2:
         var f: Dictionary = fighters[i]
         f.flash = maxi(0, f.flash - 1)
+        if commands[i].get("jump",false): f.jump_buffer=8
         if commands[i].has("attack"):
             f.buffer = "launcher" if commands[i].attack == "heavy" and commands[i].get("up", false) else commands[i].attack
             f.buffer_ttl = 10
@@ -98,7 +117,7 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         hitstop -= 1
         return
     ai_tick += 1
-    remaining = maxf(0.0, remaining - STEP)
+    if not training: remaining = maxf(0.0, remaining - STEP)
     for i in 2:
         _advance_fighter(i, commands[i])
     _separate_bodies()
@@ -109,6 +128,9 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
             contacts.append(i)
     for i in contacts:
         _resolve_hit(i)
+    if training:
+        _update_training()
+        return
     if fighters[0].health <= 0 or fighters[1].health <= 0 or remaining <= 0:
         _finish_round()
 
@@ -134,6 +156,13 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
         f.frame += 1
         var move: Dictionary = MOVES[f.move]
         var end: int = move.startup + move.active + move.recovery
+        # Confirm a grounded launcher, then buffer Space during its hitstop to chase.
+        if f.connected and f.move=="launcher" and f.jump_buffer>0 and f.y<=0.01:
+            f.state = "idle"
+            f.vy = 10.3
+            f.jump_buffer = 0
+            events.append({"kind":"jump","target":i})
+            events.append({"kind":"air_chase","target":i})
         # Confirmed light attacks cancel into the next light during recovery.
         if f.connected and f.move in ["jab", "cross"] and f.frame >= move.startup + move.active and f.buffer == "light" and f.buffer_ttl > 0:
             _start_attack(i, "light")
@@ -155,8 +184,9 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
         else:
             f.guarding = command.get("guard", false) and f.y <= 0.01 and f.guard > 0
             f.vx = float(command.get("axis", 0.0)) * (1.6 if f.guarding else 5.8)
-            if command.get("jump", false) and f.y <= 0.01 and not f.guarding:
+            if f.jump_buffer>0 and f.y <= 0.01 and not f.guarding:
                 f.vy = 10.3
+                f.jump_buffer = 0
                 events.append({"kind": "jump", "target": i})
             if f.buffer_ttl > 0 and not f.guarding:
                 _start_attack(i, f.buffer)
@@ -169,9 +199,11 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
     if f.y == 0:
         f.vy = 0.0
         if previous_y > 0.0:
+            f.juggle = 0
             events.append({"kind": "land", "target": i})
     f.guard_frames = f.guard_frames+1 if f.guarding and was_guarding else (1 if f.guarding else 0)
     f.guard = minf(100.0, f.guard + (0.06 if f.guarding else 0.30))
+    f.jump_buffer = maxi(0,f.jump_buffer-1)
     if f.buffer_ttl > 0:
         f.buffer_ttl -= 1
     if f.buffer_ttl == 0:
@@ -197,7 +229,7 @@ func _start_attack(i: int, requested: String) -> void:
     f.connected = false
     f.buffer = ""
     f.buffer_ttl = 0
-    f.vx = 0.0
+    f.vx = f.vx*0.75 if f.y>0.01 else 0.0
     events.append({"kind": "swing", "target": i, "move": name})
 
 func _separate_bodies() -> void:
@@ -213,7 +245,7 @@ func _separate_bodies() -> void:
 func _can_hit(i: int) -> bool:
     var a: Dictionary = fighters[i]
     var b: Dictionary = fighters[1-i]
-    if a.state != "attack" or a.connected or b.invuln > 0:
+    if a.state != "attack" or a.connected or b.invuln > 0 or (b.y>0.1 and b.juggle>=3):
         return false
     var m: Dictionary = MOVES[a.move]
     if a.frame < m.startup or a.frame >= m.startup + m.active:
@@ -261,11 +293,14 @@ func _resolve_hit(i: int) -> void:
     var damage: int = maxi(3, roundi(m.damage * maxf(0.45, 1.0 - (combo_hits - 1) * 0.12)))
     if counter: damage = roundi(damage*1.15)
     combo_damage += damage
+    last_combo_hits = combo_hits
+    last_combo_damage = combo_damage
     b.health = maxi(0, b.health - damage)
     b.state = "stun"
     b.stun = m.stun
     b.vx = a.face * m.push
-    b.vy = maxf(b.vy, m.lift)
+    if b.y>0.1: b.juggle += 1
+    b.vy = minf(b.vy,-3.5) if b.juggle>=3 else maxf(b.vy,m.lift)
     b.flash = m.stop + 7
     b.buffer = ""
     b.buffer_ttl = 0
@@ -288,3 +323,26 @@ func _finish_round() -> void:
     if wins[0] >= 2 or wins[1] >= 2:
         phase = "match_over"
     events.append({"kind": "ko", "winner": winner})
+
+func _update_training() -> void:
+    # Never end a practice round, even on a lethal hit or timer expiry.
+    for fighter in fighters:
+        fighter.health = maxi(1,fighter.health)
+        fighter.meter = 100.0
+    var settled := true
+    for fighter in fighters:
+        if fighter.state!="idle" or fighter.y>0.01: settled=false
+    training_rest = training_rest+1 if settled else 0
+    if training_rest>=90:
+        for fighter in fighters:
+            fighter.health=MAX_HEALTH
+            fighter.guard=100.0
+        combo_hits=0
+        combo_damage=0
+        combo_owner=-1
+        training_rest=0
+
+func reset_training() -> void:
+    if not training: return
+    reset_round()
+    phase="fight"

@@ -36,12 +36,13 @@ func _ready() -> void:
     music.stream = track
     music.volume_db = -19.0
     add_child(music)
-    music.play()
 
 func _process(delta: float) -> void:
     duck_time = maxf(0.0,duck_time-delta)
     if not is_instance_valid(music): return
     music.stream_paused = muted or music_muted or context=="pause"
+    # Start only after session preferences have been restored, avoiding a startup blip.
+    if not music.stream_paused and not music.playing: music.play()
     var target_db := (-13.0 if context=="play" else -19.0) - (4.0 if duck_time>0 else 0.0)
     music.volume_db = lerpf(music.volume_db,target_db,1.0-exp(-delta*9.0))
 

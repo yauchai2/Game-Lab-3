@@ -1,6 +1,6 @@
 # 網頁試玩版
 
-**GitHub Pages 預期試玩網址：https://yauchai2.github.io/Game-Lab-3/ （待擁有人啟用 Pages，目前 404）**
+**GitHub 試玩網址：https://yauchai2.github.io/Game-Lab-3/ （已啟用並建置成功，2026-11-08 核對）**
 
 2026-11-07，使用者要求一條網址可分享朋友直接試玩。使用現有 Godot 遊戲匯出，沒有重寫成另一款網頁遊戲。
 
@@ -62,3 +62,7 @@ Pages 啟用後可執行：
 ```sh
 python tools/verify_web_url.py https://yauchai2.github.io/Game-Lab-3/ docs/evidence/web/release-manifest.json
 ```
+
+## 2026-11-08 接續確認
+
+GitHub Pages 現已啟用：branch gh-pages / root、status built、HTTPS。舊版匿名 HTTP 資產 15/15 雜湊通過，Chromium WebGL 實際啟動與鍵盤畫面驗證通過；前述 404／待啟用是歷史狀態。這輪練習、追擊及 Web 操作改善見 COMBAT_POLISH.md，新版公開驗證另補記。

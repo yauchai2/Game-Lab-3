@@ -9,6 +9,7 @@ func _initialize() -> void:
     call_deferred("start")
 func start() -> void:
     scene = preload("res://scenes/combat/street_fight.tscn").instantiate()
+    scene.preferences_path=""
     root.add_child(scene)
     scene.start_match()
     scene.audio.muted = not OS.get_cmdline_user_args().has("--with-audio")

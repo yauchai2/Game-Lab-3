@@ -1,6 +1,7 @@
 extends Control
 var session: Node3D
 var menu: CenterContainer
+var menu_scroll: ScrollContainer
 var notice := ""
 var notice_time := 0.0
 var font: Font
@@ -41,9 +42,15 @@ func rebuild_menu() -> void:
     style.content_margin_top = 24
     style.content_margin_bottom = 24
     panel.add_theme_stylebox_override("panel", style)
+    menu_scroll = ScrollContainer.new()
+    menu_scroll.custom_minimum_size=Vector2(420,clampf(get_viewport_rect().size.y-144,280,560))
+    menu_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+    menu_scroll.follow_focus=true
+    panel.add_child(menu_scroll)
     var stack := VBoxContainer.new()
+    stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL
     stack.add_theme_constant_override("separation", 12)
-    panel.add_child(stack)
+    menu_scroll.add_child(stack)
     menu.add_child(panel)
     var title := "STEP INTO THE CIRCLE"
     if session.screen == "title":
@@ -59,20 +66,21 @@ func rebuild_menu() -> void:
     heading.add_theme_font_override("font", bold)
     stack.add_child(heading)
     var sub := Label.new()
-    sub.text = "STREET FIGHT / FIRST TO 2 ROUNDS"
+    sub.text = "TRAINING / UNLIMITED TIME & ENERGY" if session.practice and session.screen!="title" else "STREET FIGHT / FIRST TO 2 ROUNDS"
     sub.add_theme_font_size_override("font_size", 13)
     stack.add_child(sub)
     var help := Label.new()
-    help.text = "A / D     Move        SPACE     Jump\nJ             Light / 3-hit chain\nK            Heavy     W + K     Launcher\nL             Special (50 energy)\nSHIFT    Guard / timed parry\nE             Dodge\nESC        Pause       F6           Explore street"
+    help.text = "A / D     Move        SPACE     Jump\nJ             Light / 3-hit chain\nK            Heavy     W + K     Launcher\nL             Special (50 energy)\nSHIFT    Guard / timed parry\nE             Dodge\nESC        Pause       F6           Explore street\nLauncher hit → SPACE → J: air chase"
     help.add_theme_color_override("font_color", PAPER)
     help.add_theme_font_size_override("font_size", 15)
     stack.add_child(help)
     if session.screen == "title":
         _button(stack,"FIGHT THE RIVAL  /  ENTER",func(): session.start_match(false),true)
-        _button(stack,"PRACTICE  /  STATIONARY PARTNER",func(): session.start_match(true))
+        _button(stack,"TRAINING  /  UNLIMITED PRACTICE",func(): session.start_match(true))
     elif session.screen == "pause":
         _button(stack,"BACK TO THE FIGHT",func(): session.resume_game(),true)
-        _button(stack,"RESTART MATCH",func(): session.start_match(session.practice))
+        _button(stack,"RESET TRAINING  /  F5" if session.practice else "RESTART MATCH",func(): session.reset_training() if session.practice else session.start_match(false))
+        _button(stack,"MAIN MENU",func(): session.return_to_title())
     elif session.screen == "result":
         var result := Label.new()
         result.text = "%d : %d   /   %s" % [session.sim.wins[0],session.sim.wins[1],"MATCH COMPLETE" if session.sim.phase == "match_over" else "ROUND COMPLETE"]
@@ -81,24 +89,45 @@ func rebuild_menu() -> void:
         _button(stack,"REMATCH  /  ENTER" if session.sim.phase == "match_over" else "NEXT ROUND  /  ENTER",func():
             if session.sim.phase == "match_over": session.start_match(session.practice)
             else: session.advance_round(),true)
+    if session.screen in ["title","pause"]:
+        _choice(stack,"RIVAL DIFFICULTY",["RELAXED","STANDARD","CHALLENGING"],session.sim.difficulty,session.set_difficulty)
+        if session.practice or session.screen=="title":
+            _choice(stack,"TRAINING PARTNER / F7",["STANDING","GUARDING","SPARRING"],session.sim.partner_mode,session.set_partner_mode)
     _button(stack,"SOUND: %s  /  M" % ("OFF" if session.audio.muted else "ON"),func():
         session.audio.muted = not session.audio.muted
         session.audio.stop_all()
+        session.save_options()
         rebuild_menu())
     _button(stack,"REDUCED FLASH & SHAKE: %s  /  F2" % ("ON" if session.reduced_effects else "OFF"),func():
         session.reduced_effects = not session.reduced_effects
+        session.save_options()
         rebuild_menu())
     _button(stack,"MUSIC: %s  /  F4" % ("OFF" if session.audio.music_muted else "ON"),func():
         session.audio.music_muted = not session.audio.music_muted
+        session.save_options()
         rebuild_menu())
     _button(stack,"SCENE EDGES: %s  /  O" % ("ON" if session.ink_pass.visible else "OFF"),func():
         session.ink_pass.visible = not session.ink_pass.visible
+        session.save_options()
         rebuild_menu())
     _button(stack,"EXPLORE THE STREET  /  F6",func(): session.return_to_street())
     for child in stack.get_children():
         if child is Button:
             call_deferred("_focus_button", child)
             break
+
+func _choice(parent: Node, label: String, items: Array, selected: int, callback: Callable) -> void:
+    var caption := Label.new()
+    caption.text=label
+    caption.add_theme_font_size_override("font_size",12)
+    caption.add_theme_color_override("font_color",Color("a6b0c0"))
+    parent.add_child(caption)
+    var choice := OptionButton.new()
+    choice.custom_minimum_size.y=40
+    for item in items: choice.add_item(item)
+    choice.select(selected)
+    choice.item_selected.connect(callback)
+    parent.add_child(choice)
 
 func _focus_button(button: Node) -> void:
     if is_instance_valid(button) and button.is_inside_tree():
@@ -159,7 +188,7 @@ func _draw() -> void:
     _text(Vector2(38,39),"01 / YOU",15,session.COLORS[0],true)
     _text(Vector2(1050,39),"02 / RIVAL" if not session.practice else "02 / PRACTICE",15,session.COLORS[1],true)
     _rect(Vector2(592,16),Vector2(96,62),YELLOW)
-    _text(Vector2(611,60),"%02d" % ceili(sim.remaining),34,INK,true)
+    _text(Vector2(602 if session.practice else 611,60),"FREE" if session.practice else "%02d" % ceili(sim.remaining),28 if session.practice else 34,INK,true)
     _text(Vector2(600,94),"ROUND %02d" % sim.round_number,11,PAPER)
     for i in 2:
         for pip in 2:
@@ -189,7 +218,11 @@ func _draw() -> void:
     if session.screen != "play":
         _rect(Vector2(0,96),Vector2(1280,564),Color(0.025,0.04,0.08,0.72))
     if session.practice and session.screen == "play":
-        _text(Vector2(50,120),"PRACTICE / AI OFF",14,YELLOW)
+        _text(Vector2(38,120),"TRAINING / %s / F5 RESET / F7 PARTNER" % ["STANDING","GUARDING","SPARRING"][sim.partner_mode],12,YELLOW)
+        _text(Vector2(38,142),"LAST COMBO: %d HITS / %d DAMAGE" % [sim.last_combo_hits,sim.last_combo_damage],12,PAPER)
+        _text(Vector2(1020,120),"INPUT HISTORY",12,YELLOW)
+        for i in session.input_history.size():
+            _text(Vector2(970,142+i*18),session.input_history[i],11,Color("bdcbd8"))
 
 func _health(x: float, fighter: Dictionary, color: Color, reverse: bool) -> void:
     _rect(Vector2(x,46),Vector2(484,18),Color("334055"))

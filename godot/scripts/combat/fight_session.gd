@@ -19,6 +19,9 @@ var trail_clock := 0.0
 var ink_pass: MeshInstance3D
 var reduced_effects := false
 var practice := false
+@export var preferences_path := "user://afterhours.cfg"
+var preferences := preload("res://scripts/combat/fight_preferences.gd").new()
+var input_history: Array[String] = []
 var hitboxes_visible := false
 var backdrop: Node
 var stage_environment: Environment
@@ -38,6 +41,7 @@ func _ready() -> void:
         fighters.append(fighter)
     audio = FightAudio.new()
     add_child(audio)
+    _restore_options()
     var canvas := CanvasLayer.new()
     add_child(canvas)
     hud = FightHUD.new()
@@ -94,7 +98,10 @@ func _material(color: Color, unlit: bool) -> StandardMaterial3D:
 
 func start_match(training := false) -> void:
     practice = training
+    sim.training = training
     sim.restart_match()
+    if practice: sim.phase="fight"
+    input_history.clear()
     sim.ai_enabled = not practice
     effects.clear()
     pending.clear()
@@ -159,6 +166,9 @@ func _handle_event(event: Dictionary) -> void:
         audio.play_sound(kind,1.0,-6.0)
         if kind=="dash":
             _spawn_vfx("speed",Vector2(fighter.x,fighter.y+0.9),0.2,{"face":signf(fighter.vx),"color":COLORS[event.target]})
+    elif kind=="air_chase":
+        hud.notice="AIR CHASE / J TO FOLLOW UP"
+        hud.notice_time=0.7
     elif kind=="fight":
         hud.notice = "FIGHT!"
         hud.notice_time = 0.7
@@ -242,16 +252,24 @@ func _unhandled_key_input(event: InputEvent) -> void:
     elif event.keycode == KEY_M:
         audio.muted = not audio.muted
         audio.stop_all()
+        save_options()
         hud.rebuild_menu()
     elif event.keycode == KEY_F4:
         audio.music_muted = not audio.music_muted
+        save_options()
         hud.rebuild_menu()
     elif event.keycode == KEY_O:
         ink_pass.visible = not ink_pass.visible
+        save_options()
         hud.rebuild_menu()
     elif event.keycode == KEY_F2:
         reduced_effects = not reduced_effects
+        save_options()
         hud.rebuild_menu()
+    elif event.keycode==KEY_F5 and practice and screen=="play":
+        reset_training()
+    elif event.keycode==KEY_F7 and practice and screen=="play":
+        set_partner_mode((sim.partner_mode+1)%3)
     elif event.keycode == KEY_F3:
         hitboxes_visible = not hitboxes_visible
     elif event.keycode == KEY_ESCAPE:
@@ -270,6 +288,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
     elif event.keycode == KEY_R and screen in ["pause", "result"]:
         start_match(practice)
     elif screen == "play":
+        if practice: _record_training_input(event.physical_keycode)
         match event.physical_keycode:
             KEY_J: pending["attack"] = "light"
             KEY_K: pending["attack"] = "heavy"
@@ -280,3 +299,51 @@ func _unhandled_key_input(event: InputEvent) -> void:
 func _notification(what: int) -> void:
     if what == NOTIFICATION_APPLICATION_FOCUS_OUT and is_instance_valid(hud):
         pause_game()
+
+func reset_training() -> void:
+    if not practice: return
+    sim.reset_training()
+    effects.clear()
+    pending.clear()
+    input_history.clear()
+    trauma=0.0
+    screen="play"
+    hud.notice="TRAINING RESET"
+    hud.notice_time=0.7
+    hud.rebuild_menu()
+
+func set_partner_mode(value: int) -> void:
+    sim.partner_mode=clampi(value,0,2)
+    if practice: reset_training()
+    save_options()
+
+func set_difficulty(value: int) -> void:
+    sim.difficulty=clampi(value,0,2)
+    save_options()
+
+func _record_training_input(code: int) -> void:
+    var labels := {KEY_J:"J  LIGHT",KEY_K:"K  HEAVY",KEY_L:"L  SPECIAL",KEY_SPACE:"SPACE  JUMP",KEY_E:"E  DODGE",KEY_SHIFT:"SHIFT  GUARD",KEY_A:"A  LEFT",KEY_D:"D  RIGHT"}
+    if not labels.has(code): return
+    var label: String = labels[code]
+    if code==KEY_K and (Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)): label="W+K  LAUNCH"
+    input_history.append("%04d  %s" % [sim.tick_count%10000,label])
+    if input_history.size()>6: input_history.pop_front()
+
+func _restore_options() -> void:
+    var options: Dictionary = preferences.read_options(preferences_path)
+    audio.muted=options.muted
+    audio.music_muted=options.music_muted
+    reduced_effects=options.reduced_effects
+    ink_pass.visible=options.scene_edges
+    sim.difficulty=options.difficulty
+    sim.partner_mode=options.partner_mode
+
+func save_options() -> void:
+    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"scene_edges":ink_pass.visible,"difficulty":sim.difficulty,"partner_mode":sim.partner_mode})
+
+func return_to_title() -> void:
+    screen="title"
+    pending.clear()
+    effects.clear()
+    audio.stop_all()
+    hud.rebuild_menu()

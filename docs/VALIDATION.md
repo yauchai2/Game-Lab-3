@@ -181,3 +181,7 @@ Godot 4.6.3 Web release 成功，單執行緒 Compatibility。實際 Web PCK 在
 ## GitHub Pages 準備及權限阻礙（2026-11-07，香港時間）
 
 同一 Web 匯出已推送 gh-pages c663ec5；15 件資產 SHA-256 通過，實際匯出 fetch adapter 在根路徑及 /Game-Lab-3/ 下的 WebAssembly.compileStreaming 通過。repo API public / admin=true / has_pages=false；POST 啟用 Pages 回應 403 Resource not accessible by integration，目標網址回應 404。尚未有 GitHub Pages 線上部署或瀏覽器驗證，未以成功推送分支冒充發佈成功。來源、API 訊息和檢查見 evidence/github-pages/ 及 WEB_PLAYTEST.md；等擁有人於設定頁啟用。
+
+## 2026-11-08 戰鬥完善基線與邏輯
+
+GitHub Pages built，舊版匿名 HTTP 15/15 及 Chromium WebGL／Enter、D、J、K、Esc 畫面通過，JS pageerror 為空。新 32/32、格鬥 34/34、場景／音訊 33/33、骨架／相機 30/30、警告 3/3、headless viewport 輸入 11/11，共 143 項通過。保留音訊退出清理警告；本機 Web 預覽被代理 Loopback targets forbidden 阻擋，改在公開發佈後驗證，未繞過限制。新版公開驗證完成後另補；詳見 COMBAT_POLISH.md 和 evidence/combat-polish/。
