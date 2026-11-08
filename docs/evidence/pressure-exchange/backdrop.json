@@ -1,0 +1,131 @@
+{
+  "checks": [
+    {
+      "name": "street and fighters share the same 3D world",
+      "passed": true
+    },
+    {
+      "name": "no independent viewport or flat background composite remains",
+      "passed": true
+    },
+    {
+      "name": "gameplay uses one perspective camera",
+      "passed": true
+    },
+    {
+      "name": "both street walls remain visible",
+      "passed": true
+    },
+    {
+      "name": "fighters stand on the crossing depth",
+      "passed": true
+    },
+    {
+      "name": "source street stays unrotated",
+      "passed": true
+    },
+    {
+      "name": "street inspection shortcuts do not consume combat keys",
+      "passed": true
+    },
+    {
+      "name": "left fighter mesh faces the opponent",
+      "passed": true
+    },
+    {
+      "name": "right fighter mesh faces the opponent",
+      "passed": true
+    },
+    {
+      "name": "crossing sides reverses the visual facing",
+      "passed": true
+    },
+    {
+      "name": "leftward travel gently changes camera angle",
+      "passed": true
+    },
+    {
+      "name": "rightward travel changes the angle in the opposite direction",
+      "passed": true
+    },
+    {
+      "name": "both fighters remain inside the camera frame",
+      "passed": true
+    },
+    {
+      "name": "no scene-space text is visible",
+      "passed": true
+    },
+    {
+      "name": "legacy geometric text proxies are hidden",
+      "passed": true
+    },
+    {
+      "name": "blank sign panels remain for future textures",
+      "passed": true
+    },
+    {
+      "name": "combat HUD remains available",
+      "passed": true
+    },
+    {
+      "name": "aircraft maintains a straight constant-speed path",
+      "passed": true
+    },
+    {
+      "name": "pause freezes aircraft",
+      "passed": true
+    },
+    {
+      "name": "aircraft hides during cooldown",
+      "passed": true
+    },
+    {
+      "name": "capture restores the fixed aircraft pose",
+      "passed": true
+    },
+    {
+      "name": "14 authored CC0 clips are loaded",
+      "passed": true
+    },
+    {
+      "name": "body and finger bones are retargeted",
+      "passed": true
+    },
+    {
+      "name": "boxing stance raises the hands above the hips",
+      "passed": true
+    },
+    {
+      "name": "jab visibly extends a fist toward the opponent",
+      "passed": true
+    },
+    {
+      "name": "hitstop holds the authored animation pose",
+      "passed": true
+    },
+    {
+      "name": "heavy attack extends the kicking leg forward",
+      "passed": true
+    },
+    {
+      "name": "all imported clip rotation samples are finite and normalized",
+      "passed": true
+    },
+    {
+      "name": "KO can play the death clip after hitstop",
+      "passed": true
+    },
+    {
+      "name": "walk mode also hides generated scene text",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "method": "headless scene, actual skeleton poses, perspective framing and authored animation data checks; not human playtesting",
+  "metrics": {
+    "guard_hand_x": -2.695317029953,
+    "jab_hand_x": -1.94083666801453
+  },
+  "passed": 30
+}

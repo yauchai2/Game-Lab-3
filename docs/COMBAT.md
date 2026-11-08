@@ -108,3 +108,7 @@ DISPLAY=:94 LIBGL_ALWAYS_SOFTWARE=1 godot --path godot --rendering-method gl_com
 ## 2026-11-08 練習與空中追擊更新
 
 前述「練習仍使用完整回合規則」已由 [COMBAT_POLISH.md](COMBAT_POLISH.md) 的無限練習取代。新增 F5 重置、F7 對手、輸入紀錄、三段難度、挑空命中後 Space → J 追擊及本機設定保存；先前原型數值與驗證歷史保留。
+
+## 最新核心方向：交鋒壓力（2026-11-09）
+
+已依使用者同意加入三階壓力及高壓重踢三選對峙，詳見 [PRESSURE_EXCHANGE.md](PRESSURE_EXCHANGE.md)。正常命中／擋格／精準防禦累積，拉開距離及停止交鋒降壓；對峙時 J 頂進、Shift 卸勢、E 抽身，固定 0.4 秒鎖一次選擇。主選單 PRESSURE DRILL 或 T → F8 → K 可直接試，F5 回普通練習。此後的新規則優先於本檔較早的純扣血玩法說明；原普通操作保留。僅開發分支更新，公開 Pages 未同步。

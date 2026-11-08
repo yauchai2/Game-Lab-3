@@ -26,3 +26,7 @@ AI 會在已授權範圍內推送任務分支並告知更新；桌面端需使�
 ## 2026-11-08 街角加密
 
 本輪補上兩側六棟相連舊樓、藍／橙正立面、窗籠冷氣、陽台燈球、空白店面、遮篷、捲閘、摩托車、車輛及低清表面。詳見 CORNER_DENSITY.md。F6 遊走也使用同一模組；原獨立白盒不改。公開 GitHub 試玩版沒有隨這輪更新，須在本機 Pull 後用 Godot 看新場景。
+
+## 最新玩法試法（2026-11-09）
+
+Pull `codex/street-combat` 後 Godot F5，主選單選 PRESSURE DRILL；或 T 進練習、F8 準備。可先不限時閱讀提示，按 K 才進 0.4 秒對峙，再選 J 頂進／Shift 卸勢／E 抽身。F8 重試，F5 退出此練習。完整規則見 [PRESSURE_EXCHANGE.md](PRESSURE_EXCHANGE.md)。這是原始碼版本，公開試玩版本輪不更新。

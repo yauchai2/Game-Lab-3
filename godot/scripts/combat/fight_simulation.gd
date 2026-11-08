@@ -12,6 +12,7 @@ const MOVES := {
     "launcher": {"startup": 13, "active": 7, "recovery": 27, "damage": 14, "reach": 1.8, "stun": 39, "push": 3.0, "lift": 10.0, "stop": 10},
     "special": {"startup": 18, "active": 10, "recovery": 31, "damage": 27, "reach": 3.4, "stun": 40, "push": 14.0, "lift": 5.0, "stop": 17}
 }
+var exchange = preload("res://scripts/combat/pressure_exchange.gd").new()
 var fighters: Array[Dictionary] = []
 var events: Array[Dictionary] = []
 var phase := "ready"
@@ -30,6 +31,7 @@ var combo_damage := 0
 var ai_tick := 0
 var difficulty := 1
 var training := false
+var pressure_drill := false
 var partner_mode := 0 # 0 standing, 1 guard, 2 sparring
 var training_rest := 0
 var last_combo_hits := 0
@@ -39,6 +41,8 @@ func _init() -> void:
     reset_round()
 
 func reset_round() -> void:
+    exchange.reset()
+    pressure_drill=false
     fighters.clear()
     for i in 2:
         fighters.append({"x": -3.0 if i == 0 else 3.0, "y": 0.0, "vx": 0.0, "vy": 0.0,
@@ -105,7 +109,15 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
     if training:
         if partner_mode==1: partner={"guard":true,"allow_parry":false}
         elif partner_mode==2: partner=ai_command()
+    if training and pressure_drill:partner={}
     var commands := [player,partner]
+    if exchange.active():
+        var automated: bool=ai_enabled or training
+        if exchange.tick(commands,automated,8+clampi(difficulty,0,2)*3):
+            _resolve_exchange()
+            if training:_update_training()
+            elif fighters[0].health<=0 or fighters[1].health<=0:_finish_round()
+        return
     for i in 2:
         var f: Dictionary = fighters[i]
         f.flash = maxi(0, f.flash - 1)
@@ -116,6 +128,8 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
     if hitstop > 0:
         hitstop -= 1
         return
+    if pressure_drill:exchange.quiet_ticks=0
+    exchange.advance_idle(absf(fighters[0].x-fighters[1].x)>3.8)
     ai_tick += 1
     if not training: remaining = maxf(0.0, remaining - STEP)
     for i in 2:
@@ -126,8 +140,17 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
     for i in 2:
         if _can_hit(i):
             contacts.append(i)
+    # Decide a clash from the simultaneous contact snapshot, before either hit
+    # can stun the other participant or raise pressure within this same frame.
+    var exchange_contact := -1
     for i in contacts:
-        _resolve_hit(i)
+        if _can_open_exchange(i):
+            exchange_contact=i
+            break
+    if exchange_contact>=0:
+        _resolve_hit(exchange_contact)
+    else:
+        for i in contacts:_resolve_hit(i,false)
     if training:
         _update_training()
         return
@@ -254,12 +277,29 @@ func _can_hit(i: int) -> bool:
     var dx: float = b.x - a.x
     return dx * a.face >= -0.15 and absf(dx) <= m.reach and absf(b.y - a.y) <= (2.4 if a.move == "launcher" else 1.65)
 
-func _resolve_hit(i: int) -> void:
+func _can_open_exchange(i: int) -> bool:
+    var a: Dictionary=fighters[i]
+    var b: Dictionary=fighters[1-i]
+    return a.state=="attack" and a.move=="heavy" and exchange.pressure>=exchange.THRESHOLD and exchange.cooldown==0 and a.y<=.01 and b.y<=.01 and b.state in ["idle","attack"]
+
+func _resolve_hit(i: int, allow_exchange := true) -> void:
     var a: Dictionary = fighters[i]
     var b: Dictionary = fighters[1-i]
     var move_name: String = a.move
     var m: Dictionary = MOVES[move_name]
     a.connected = true
+    if allow_exchange and _can_open_exchange(i):
+        var intent: String=exchange.CHOICES[(exchange.serial+clampi(difficulty,0,2))%3]
+        if training and partner_mode in [0,1]:intent=exchange.CHOICES[partner_mode]
+        exchange.begin(i,intent)
+        pressure_drill=false
+        hitstop=0
+        for fighter in fighters:
+            fighter.buffer=""
+            fighter.buffer_ttl=0
+            fighter.jump_buffer=0
+        events.append({"kind":"clash_start","attacker":i})
+        return
     if b.guarding and (a.x - b.x) * b.face > 0:
         if b.parry_allowed and b.guard_frames<=6 and b.parry_cd==0 and b.guard>=25:
             b.parry_cd = 90
@@ -270,6 +310,7 @@ func _resolve_hit(i: int) -> void:
             a.vx = -a.face*5.0
             hitstop = maxi(hitstop,8)
             hitstop_total = hitstop
+            exchange.contact(16)
             events.append({"kind":"parry","target":1-i,"attacker":i})
             return
         b.guard = maxf(0.0, b.guard - m.damage * 2.8)
@@ -278,6 +319,7 @@ func _resolve_hit(i: int) -> void:
         b.vx = a.face * 2.2
         hitstop = maxi(hitstop, 4)
         hitstop_total = hitstop
+        exchange.contact(8)
         events.append({"kind": "block", "target": 1-i, "attacker": i})
         if b.guard <= 0:
             b.state = "stun"
@@ -285,6 +327,7 @@ func _resolve_hit(i: int) -> void:
             b.guarding = false
             events.append({"kind": "guard_break", "target": 1-i})
         return
+    exchange.contact(10)
     a.hit_confirmed = true
     if combo_owner != i or b.state != "stun":
         combo_owner = i
@@ -314,6 +357,66 @@ func _resolve_hit(i: int) -> void:
     hitstop = maxi(hitstop, m.stop)
     hitstop_total = hitstop
     events.append({"kind": "hit", "target": 1-i, "attacker": i, "damage": damage, "move": move_name, "strength": float(m.damage) / 27.0, "counter": counter})
+
+func _resolve_exchange() -> void:
+    var result: Dictionary=exchange.last_result
+    var winner_index: int=result.winner
+    # Flush buffered normal moves; a clash decision cannot become a later attack.
+    for fighter in fighters:
+        fighter.buffer=""
+        fighter.buffer_ttl=0
+        fighter.jump_buffer=0
+        fighter.guarding=false
+        fighter.flash=0
+        fighter.connected=true
+        fighter.hit_confirmed=false
+    combo_hits=0
+    combo_damage=0
+    combo_owner=-1
+    events.append({"kind":"clash_end","winner":winner_index,"choice":result.choice})
+    if winner_index<0:
+        for i in 2:
+            fighters[i].state="stun"
+            fighters[i].stun=8
+            fighters[i].vx=-signf(fighters[1-i].x-fighters[i].x)*4
+        hitstop=4
+    else:
+        var a: Dictionary=fighters[winner_index]
+        var b: Dictionary=fighters[1-winner_index]
+        a.face=1 if b.x>=a.x else -1
+        b.face=-a.face
+        if result.choice=="slip":
+            a.state="dash"
+            a.frame=6
+            a.vx=-a.face*11.0
+            a.invuln=8
+            a.dash_cd=maxi(a.dash_cd,42)
+            b.state="stun"
+            b.stun=10
+            b.vx=0.0
+            hitstop=0
+            events.append({"kind":"dash","target":winner_index})
+        else:
+            var damage: int=22 if result.choice=="press" else 16
+            b.health=maxi(0,b.health-damage)
+            b.state="stun"
+            b.stun=28 if result.choice=="press" else 32
+            b.vx=a.face*(13.0 if result.choice=="press" else 9.0)
+            b.vy=3.0 if result.choice=="press" else 4.0
+            b.flash=15
+            a.state="attack"
+            a.move="heavy"
+            a.frame=23
+            a.vx=0.0
+            a.meter=minf(100,a.meter+12)
+            combo_owner=winner_index
+            combo_hits=1
+            combo_damage=damage
+            last_combo_hits=1
+            last_combo_damage=damage
+            hitstop=8
+            events.append({"kind":"hit","target":1-winner_index,"attacker":winner_index,"move":"heavy","damage":damage,"strength":.8,"counter":result.choice=="turn","exchange":true})
+    hitstop_total=maxi(1,hitstop)
 
 func _finish_round() -> void:
     phase = "round_over"

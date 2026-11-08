@@ -142,7 +142,22 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
 
 func _handle_event(event: Dictionary) -> void:
     var kind: String = event.kind
-    if kind in ["hit","block","parry","guard_break"]:
+    if kind=="clash_start":
+        pending.clear()
+        effects.clear()
+        _clear_impacts()
+        var midpoint: float=(sim.fighters[0].x+sim.fighters[1].x)*.5
+        _spawn_vfx("clash",Vector2(midpoint,1.2),.5,{"held":true,"color":Color("eaf078"),"move":"heavy"})
+        audio.play_sound("block",.85,-3)
+        audio.play_sound("charge",1.0,-7)
+        hud.notice_time=0
+    elif kind=="clash_end":
+        effects=effects.filter(func(e:Dictionary)->bool:return e.kind!="clash")
+        var result: String=event.choice
+        hud.notice=("YOU / " if event.winner==0 else "RIVAL / ")+result.to_upper() if event.winner>=0 else "EVEN / PRESSURE RELEASED"
+        hud.notice_time=1.2
+        if result=="turn":audio.play_sound("parry",1.0,-3)
+    elif kind in ["hit","block","parry","guard_break"]:
         var target: Dictionary = sim.fighters[event.target]
         var strength: float = event.get("strength",0.8 if kind in ["parry","guard_break"] else 0.25)
         var tint: Color = Color("eaf078") if kind in ["parry","guard_break"] else COLORS[event.get("attacker",0)]
@@ -158,7 +173,7 @@ func _handle_event(event: Dictionary) -> void:
         trauma = maxf(trauma,strength*0.6)
         audio.play_sound(("heavy" if strength>0.55 else "hit") if kind=="hit" else kind,1.0+sim.combo_hits*0.04)
         if kind=="hit" and strength>0.55: audio.play_sound("sub",0.9,-5.0)
-        if kind=="parry" or kind=="guard_break" or event.get("counter",false):
+        if kind=="parry" or kind=="guard_break" or (event.get("counter",false) and not event.get("exchange",false)):
             hud.notice = "PERFECT GUARD" if kind=="parry" else ("GUARD BREAK" if kind=="guard_break" else "COUNTER HIT")
             hud.notice_time = 0.8
     elif kind=="swing":
@@ -212,11 +227,11 @@ func _process(delta: float) -> void:
         elapsed += delta
         for effect in effects:
             effect.age += delta
-            if effect.get("held",false) and sim.hitstop>0:effect.life=maxf(effect.life,effect.age+0.1)
+            if effect.get("held",false) and (sim.hitstop>0 or sim.exchange.active()):effect.life=maxf(effect.life,effect.age+0.1)
         effects = effects.filter(func(e: Dictionary) -> bool: return e.age < e.life)
         recoil_age += delta
         trauma = move_toward(trauma, 0.0, delta * 2.0)
-    if screen=="play" and sim.hitstop==0:
+    if screen=="play" and sim.hitstop==0 and not sim.exchange.active():
         trail_clock += delta
         for i in 2:
             var fighter: Dictionary = sim.fighters[i]
@@ -234,7 +249,12 @@ func _process(delta: float) -> void:
 
 func _present(delta: float) -> void:
     for i in fighters.size():
-        fighters[i].present(sim.fighters[i], delta, sim.hitstop > 0 and screen=="play", reduced_effects, sim.fighters[1-i].x)
+        var pose: Dictionary=sim.fighters[i].duplicate()
+        if sim.exchange.active():
+            var choice: String=sim.exchange.clash.choices[i]
+            if i==1:choice=sim.exchange.clash.intent
+            pose["exchange_choice"]=choice
+        fighters[i].present(pose, delta, (sim.hitstop>0 or sim.exchange.active()) and screen=="play", reduced_effects, sim.fighters[1-i].x)
         silhouettes[i].position = Vector3(fighters[i].model.global_position.x,0.03,FIGHT_Z)
         silhouettes[i].scale = Vector3.ONE * clampf(1.0 - sim.fighters[i].y * 0.08, 0.5, 1.0)
     var shake := 0.0 if reduced_effects else trauma * trauma * 0.35
@@ -304,6 +324,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
         hud.rebuild_menu()
     elif event.keycode==KEY_F5 and practice and screen=="play":
         reset_training()
+    elif event.keycode==KEY_F8 and practice and screen=="play":
+        prime_pressure_drill()
     elif event.keycode==KEY_F7 and practice and screen=="play":
         set_partner_mode((sim.partner_mode+1)%3)
     elif event.keycode == KEY_F3:
@@ -326,6 +348,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
     elif event.keycode == KEY_R and screen in ["pause", "result"]:
         start_match(practice)
     elif screen == "play":
+        if sim.exchange.active():
+            var choices := {KEY_J:"press",KEY_SHIFT:"turn",KEY_E:"slip"}
+            if choices.has(event.physical_keycode) and not pending.has("clash_choice"):pending["clash_choice"]=choices[event.physical_keycode]
+            return
         if practice: _record_training_input(event.physical_keycode)
         match event.physical_keycode:
             KEY_J: pending["attack"] = "light"
@@ -350,6 +376,16 @@ func reset_training() -> void:
     hud.notice="TRAINING RESET"
     hud.notice_time=0.7
     hud.rebuild_menu()
+
+func prime_pressure_drill() -> void:
+    if not practice:return
+    reset_training()
+    sim.fighters[0].x=-.8
+    sim.fighters[1].x=.8
+    sim.pressure_drill=true
+    sim.exchange.pressure=sim.exchange.THRESHOLD
+    hud.notice="PRESSURE READY / K TO START"
+    hud.notice_time=2.0
 
 func set_partner_mode(value: int) -> void:
     sim.partner_mode=clampi(value,0,2)
@@ -381,6 +417,8 @@ func save_options() -> void:
     preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"scene_edges":ink_pass.visible,"difficulty":sim.difficulty,"partner_mode":sim.partner_mode})
 
 func return_to_title() -> void:
+    sim.pressure_drill=false
+    sim.exchange.reset()
     screen="title"
     pending.clear()
     effects.clear()

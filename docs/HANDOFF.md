@@ -115,7 +115,7 @@ Godot Compatibility／llvmpipe 的[街道正面](evidence/car/01_front_street.pn
 
 ## 使用者貨車與生成圖片天空（最新）
 
-收到 `tripo_convert_8e7c67cc-8882-42c4-9474-56e4cb8c677c.glb`，原始 SHA-256 `b15a7535ab7f2f173472ffe002ead8e246883ff9252cc11efb6769cc09b83228`，1,510 三角面、1K 貼圖，生成版本未由使用者明示。原始檔未改，新增 5.5 m 盒碰撞包裝並放在主遊走場景右側 `Vector3(2.6,0,-36)`，包括在 B 材質樣片；原 S1 白盒不變。Godot llvmpipe [前](evidence/truck-sky/03_truck_front.png)／[後](evidence/truck-sky/04_truck_back.png)顯示駕駛室及箱體可辨，背面為平面、無明顯門件，待人工評估。
+收到 `tripo_convert_8e7c67cc-8882-42c4-9474-56e4cb8c677c.glb`，原始 SHA-256 `b15a7535ab7f2f173472ffe002ead8e246883ff9255cc11efb6769cc09b83228`，1,510 三角面、1K 貼圖，生成版本未由使用者明示。原始檔未改，新增 5.5 m 盒碰撞包裝並放在主遊走場景右側 `Vector3(2.6,0,-36)`，包括在 B 材質樣片；原 S1 白盒不變。Godot llvmpipe [前](evidence/truck-sky/03_truck_front.png)／[後](evidence/truck-sky/04_truck_back.png)顯示駕駛室及箱體可辨，背面為平面、無明顯門件，待人工評估。
 
 依使用者提供遊戲畫面，生成原創 1774×887 圖片 `godot/assets/SKY_BLUE_A01.png`，N 切換該圖片／程序天空，C 仍控制純色／程序。截圖及原圖邊界／指定視角檢查見 [天空文件](SKY_SAMPLE.zh-TW.md)，原參考截圖僅在聊天中，並非 repo 素材；圖片全景尚待人工、其他角度及目標硬體驗收。
 
@@ -234,3 +234,9 @@ T 進無限練習、F5 重置、F7 切對手；正常對局 Enter。挑空僅在
 ## 分段打擊演出（2026-11-09，香港時間，最新）
 
 六招原創硬邊向量畫格；命中核心保持到 hitstop 結束，再放氣浪／碎片，依方向鏡頭回彈與既有聲庫釋放音同步。保留雙向／交換命中、暫停、重置、換回合及 KO 清理；F2 降低形狀密度並停反衝。simulation 位元不變。新 24 + 回歸共 155 項通過，16 原生畫面與重擊固定步進 GIF 見 IMPACT_STAGING.md。修正天空測試使用真正的 _process，18 項重跑通過。只推開發分支，不更新公開 Web；本機 Pull、真人手感和混音仍待驗收。
+
+## 借勢街鬥原型（2026-11-09，香港時間，最新）
+
+使用者已接受新核心，實作 pressure_exchange.gd：命中／擋格／精準防禦累積共用三階壓力，第三階地面重踢與可應對對手接觸開 24 tick 對峙。J PRESS 剋 SLIP、Shift TURN 剋 PRESS、E SLIP 剋 TURN；鎖首個選擇、固定期限、平手／超時處理。PRESS 22 傷害及強擊退、TURN 16 傷害及硬直、SLIP 無傷後撤；結算清壓並冷卻。AI 在開始前決定意圖，不窺讀選擇，有明示站姿／文字。三階表、選擇倒數、原有 VFX 和清理路徑已接上。
+
+主選單 PRESSURE DRILL 或 T→F8；先不限時看相剋提示，按 K 才開始，對峙按 J／Shift／E，F5 退出普通練習。正常對戰自然累積壓力。新核心 59、原生輸入 11，加回歸共 255 項通過；20,000 步雙實例重播有界、一致，混合戰鬥自然出現 20 次對峙。原生畫面及短 GIF 見 PRESSURE_EXCHANGE.md。只推 codex/street-combat，未部署 Web；真人對窗口、提示明顯程度、冒險回報的驗收尚待使用者。本輪未加投技／彈射牆／Tripo 模型。

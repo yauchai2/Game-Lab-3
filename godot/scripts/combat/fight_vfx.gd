@@ -12,9 +12,9 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     var paper := Color("fff8dc")
     var ink := Color("111a32")
     match effect.kind:
-        "swing","hit","release":
-            var phase: float = fmod(effect.age,0.15)/0.15 if effect.kind=="hit" and effect.get("held",false) else time
-            var shapes: Array[Dictionary] = impact_shapes.build(effect.kind,effect.get("move","jab"),phase,tint,face,reduced)
+        "swing","hit","release","clash":
+            var phase: float = fmod(effect.age,0.15)/0.15 if effect.kind in ["hit","clash"] and effect.get("held",false) else time
+            var shapes: Array[Dictionary] = impact_shapes.build("hit" if effect.kind=="clash" else effect.kind,effect.get("move","jab"),phase,tint,face,reduced)
             var pixels_per_meter: float = (session.project(effect.at+Vector2(1,0))-at).length()
             var perspective_scale := clampf(pixels_per_meter/56.0,.65,1.3)
             for shape in shapes:

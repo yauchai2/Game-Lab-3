@@ -48,6 +48,10 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         lunge = amount * (0.60 if f.move in ["heavy","finisher"] else 0.45)
         if is_finite(opponent_x): lunge = minf(lunge,maxf(0.0,absf(opponent_x-f.x)-0.8))
     model.position = Vector3(sin(elapsed * 137.0) * shake,0,lunge)
+    var exchange_choice: String=f.get("exchange_choice","")
+    model.rotation.x={"press":-.12,"turn":.10,"slip":.22}.get(exchange_choice,0.0)
+    if exchange_choice!="":
+        model.position.z += {"press":.12,"turn":-.06,"slip":-.18}.get(exchange_choice,0.0)
     for mat in materials:
         mat.set_shader_parameter("flash", 1.0 if f.flash > 0 and not reduced else 0.0)
     if skeleton:

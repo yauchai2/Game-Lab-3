@@ -1,0 +1,28 @@
+{
+  "base_commit": "1733616920f038f1f5b56cd6f95b93165e7a970e",
+  "authored_by": "Original pressure rules, HUD and Godot presentation; existing character and CC0 sound/animation resources retained. No Tripo job.",
+  "source_files": {
+    "godot/scripts/combat/pressure_exchange.gd": "28afc5e7bc1f1273e65a4ac8605d69ca919feeef9ed0550fb46e3b267298f20c",
+    "godot/scripts/combat/fight_simulation.gd": "08b83303f2b510aaa82e228bba6e4da7f843784bf830eaacfb10c2b5bf5ac643",
+    "godot/scripts/combat/fight_session.gd": "8c5d49b212370ca94795ed8560065a15d455a7febeb8f3bcae83fe2f50924286",
+    "godot/scripts/combat/fight_hud.gd": "524721f718d7b4c306fd2e62dd4693c009a4bb8f7c0b0d7db8b653e3ca41fb27",
+    "godot/scripts/combat/fight_vfx.gd": "933b24abc53b00b8daed3b1f93905f278e45559839d87a3d9a03cb4447070ab8",
+    "godot/scripts/combat/fighter_visual.gd": "96a58f67e4c9e0f9a43a046f1cceca39c5d47b033d49e2e054e2e7bbecf4c5f5",
+    "godot/tools/verify_pressure_exchange.gd": "956c18b1616ff2fc289f10e39b30e9b76d1b32e178725f11327b43f44921d88e",
+    "godot/tools/verify_pressure_input.gd": "7065fe9611ad370e4f07e8c70faefe5070f8dbd8e0de3206c28da358cb6e2a82",
+    "godot/tools/capture_pressure_exchange.gd": "8b0acc91c29398e1f436f11fea47ac5cab0f4e1770acd7a66689f3548f8063cb"
+  },
+  "images": {
+    "main_captures": 10,
+    "compact_captures": 2,
+    "sequence_frames": 27,
+    "simulation_hz": 60,
+    "capture_every_ticks": 3,
+    "gif_final_hold_ms": 300,
+    "method": "Native Godot Compatibility llvmpipe; viewport input tests use Input.parse_input_event; fixed-step GIF is not realtime FPS telemetry.",
+    "gif_sha256": "77560c934bdf832982adc30ad8dabefbcc2d223144e9bfcbb3ce37f686312b60"
+  },
+  "pages_ref_before": "2908503295c24b918b293b463ec962797a7ccb06",
+  "public_web_updated": false,
+  "user_computer_synced": false
+}

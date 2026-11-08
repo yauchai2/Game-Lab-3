@@ -70,16 +70,21 @@ func rebuild_menu() -> void:
     sub.add_theme_font_size_override("font_size", 13)
     stack.add_child(sub)
     var help := Label.new()
-    help.text = "A / D     Move        SPACE     Jump\nJ             Light / 3-hit chain\nK            Heavy     W + K     Launcher\nL             Special (50 energy)\nSHIFT    Guard / timed parry\nE             Dodge\nESC        Pause       F6           Explore street\nOn launcher hit: SPACE, then J"
+    help.text = "A / D     Move        SPACE     Jump\nJ             Light / 3-hit chain\nK            Heavy     W + K     Launcher\nL             Special (50 energy)\nSHIFT    Guard / timed parry\nE             Dodge\nESC        Pause       F6           Explore street\nOn launcher hit: SPACE, then J\nHigh pressure + grounded K: stance clash\nDuring clash: J PRESS / SHIFT TURN / E SLIP"
     help.add_theme_color_override("font_color", PAPER)
     help.add_theme_font_size_override("font_size", 15)
     stack.add_child(help)
     if session.screen == "title":
         _button(stack,"FIGHT THE RIVAL  /  ENTER",func(): session.start_match(false),true)
         _button(stack,"TRAINING  /  T",func(): session.start_match(true))
+        _button(stack,"PRESSURE DRILL",func():
+            session.start_match(true)
+            session.prime_pressure_drill())
     elif session.screen == "pause":
         _button(stack,"BACK TO THE FIGHT",func(): session.resume_game(),true)
         _button(stack,"RESET TRAINING  /  F5" if session.practice else "RESTART MATCH",func(): session.reset_training() if session.practice else session.start_match(false))
+        if session.practice:_button(stack,"PRESSURE DRILL  /  F8",func():
+            session.prime_pressure_drill())
         _button(stack,"MAIN MENU",func(): session.return_to_title())
     elif session.screen == "result":
         var result := Label.new()
@@ -212,19 +217,47 @@ func _draw() -> void:
     if sim.phase == "ready" and session.screen == "play":
         _text(Vector2(460,300),"ROUND %02d" % sim.round_number,50,YELLOW,true)
         _text(Vector2(532,341),"GET READY",24,PAPER,true)
-    if notice_time > 0:
+    if notice_time > 0 and not sim.exchange.active() and not sim.pressure_drill:
         _rect(Vector2(446,554),Vector2(388,36),INK)
         _text(Vector2(464,579),notice,16,YELLOW)
+    _pressure_hud()
     if session.screen != "play":
         _rect(Vector2(0,96),Vector2(1280,564),Color(0.025,0.04,0.08,0.72))
     if session.practice and session.screen == "play":
         _rect(Vector2(28,102),Vector2(500,52),Color(0.05,0.08,0.14,0.88))
         _rect(Vector2(956,102),Vector2(296,46+session.input_history.size()*18),Color(0.05,0.08,0.14,0.88))
         _text(Vector2(38,120),"TRAINING / %s / F5 RESET / F7 PARTNER" % ["STANDING","GUARDING","SPARRING"][sim.partner_mode],12,YELLOW)
-        _text(Vector2(38,142),"LAST COMBO: %d HITS / %d DAMAGE" % [sim.last_combo_hits,sim.last_combo_damage],12,PAPER)
+        _text(Vector2(38,142),"F8 PRESSURE DRILL  /  LAST: %d HITS / %d DAMAGE" % [sim.last_combo_hits,sim.last_combo_damage],12,PAPER)
         _text(Vector2(1020,120),"INPUT HISTORY",12,YELLOW)
         for i in session.input_history.size():
             _text(Vector2(970,142+i*18),session.input_history[i],11,Color("bdcbd8"))
+
+func _pressure_hud() -> void:
+    var exchange= session.sim.exchange
+    _rect(Vector2(530,104),Vector2(220,46),INK)
+    var tint: Color=[session.COLORS[0],YELLOW,Color("ff9865")][exchange.tier()-1]
+    _text(Vector2(540,121),"PRESSURE %d/3%s" % [exchange.tier()," / READY" if exchange.pressure>=exchange.THRESHOLD and exchange.cooldown==0 else ""],12,tint,true)
+    for i in 3:
+        _rect(Vector2(540+i*68,132),Vector2(62,7),Color("354354"))
+        _rect(Vector2(540+i*68,132),Vector2(62*clampf((exchange.pressure-i*30)/30.0,0,1),7),tint)
+    if not exchange.active() and not session.sim.pressure_drill:return
+    var choices: Array=exchange.clash.choices if exchange.active() else ["",""]
+    _rect(Vector2(330,530),Vector2(620,116),INK)
+    _text(Vector2(346,552),"STANCE CLASH" if exchange.active() else "DRILL / K TO BEGIN",20,YELLOW,true)
+    var intent: String=exchange.clash.intent if exchange.active() else "press"
+    var cues := {"press":"RIVAL LEANS IN","turn":"RIVAL BRACES","slip":"RIVAL LOADS BACK FOOT"}
+    _text(Vector2(600,552),cues[intent] if exchange.active() else "READ FIRST / NO TIME LIMIT",13,PAPER)
+    _rect(Vector2(346,562),Vector2(588,4),Color("354354"))
+    _rect(Vector2(346,562),Vector2(588*(float(exchange.clash.remaining)/exchange.WINDOW if exchange.active() else 1.0),4),YELLOW)
+    var labels := ["J / PRESS","SHIFT / TURN","E / SLIP"]
+    var rules := ["CHASES SLIP","COUNTERS PRESS","ESCAPES TURN"]
+    for i in 3:
+        var x := 346+i*198
+        var selected: bool=choices[0]==exchange.CHOICES[i]
+        _rect(Vector2(x,577),Vector2(190,40),session.COLORS[0] if selected else Color("27364b"))
+        _text(Vector2(x+8,594),labels[i]+(" *" if selected else ""),14,INK if selected else PAPER,true)
+        _text(Vector2(x+8,610),rules[i],10,INK if selected else Color("b5c2ce"))
+    _text(Vector2(346,636),"TAP K WHEN READY / F5 EXITS DRILL" if session.sim.pressure_drill else ("LOCKED / WAIT FOR RELEASE" if choices[0]!="" else "TAP ONE KEY / ONE COMMITMENT"),12,YELLOW)
 
 func _health(x: float, fighter: Dictionary, color: Color, reverse: bool) -> void:
     _rect(Vector2(x,46),Vector2(484,18),Color("334055"))
