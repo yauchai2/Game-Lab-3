@@ -70,13 +70,13 @@ func rebuild_menu() -> void:
     sub.add_theme_font_size_override("font_size", 13)
     stack.add_child(sub)
     var help := Label.new()
-    help.text = "A / D     Move        SPACE     Jump\nJ             Light / 3-hit chain\nK            Heavy     W + K     Launcher\nL             Special (50 energy)\nSHIFT    Guard / timed parry\nE             Dodge\nESC        Pause       F6           Explore street\nLauncher hit → SPACE → J: air chase"
+    help.text = "A / D     Move        SPACE     Jump\nJ             Light / 3-hit chain\nK            Heavy     W + K     Launcher\nL             Special (50 energy)\nSHIFT    Guard / timed parry\nE             Dodge\nESC        Pause       F6           Explore street\nOn launcher hit: SPACE, then J"
     help.add_theme_color_override("font_color", PAPER)
     help.add_theme_font_size_override("font_size", 15)
     stack.add_child(help)
     if session.screen == "title":
         _button(stack,"FIGHT THE RIVAL  /  ENTER",func(): session.start_match(false),true)
-        _button(stack,"TRAINING  /  UNLIMITED PRACTICE",func(): session.start_match(true))
+        _button(stack,"TRAINING  /  T",func(): session.start_match(true))
     elif session.screen == "pause":
         _button(stack,"BACK TO THE FIGHT",func(): session.resume_game(),true)
         _button(stack,"RESET TRAINING  /  F5" if session.practice else "RESTART MATCH",func(): session.reset_training() if session.practice else session.start_match(false))

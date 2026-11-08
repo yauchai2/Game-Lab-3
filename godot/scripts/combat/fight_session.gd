@@ -277,6 +277,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
             pause_game()
         elif screen in ["pause", "help"]:
             resume_game()
+    elif event.keycode==KEY_T and screen=="title":
+        start_match(true)
     elif event.keycode == KEY_ENTER:
         if screen == "title":
             start_match()

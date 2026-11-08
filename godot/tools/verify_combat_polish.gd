@@ -121,10 +121,13 @@ func run() -> void:
     file.save(path)
     check("malformed preference types fall back safely",not prefs.read_options(path).muted and prefs.read_options(path).difficulty==1)
     DirAccess.remove_absolute(path)
+    prefs.write_options(path,{"muted":true})
     var scene=preload("res://scenes/combat/street_fight.tscn").instantiate()
     scene.preferences_path=path
     root.add_child(scene)
     scene.set_physics_process(false)
+    scene.audio._process(0.02)
+    check("saved startup mute prevents the music player starting",not scene.audio.music.playing)
     scene.start_match(true)
     check("practice menu enters an unlimited ready-to-train session",scene.practice and scene.sim.training and scene.sim.phase=="fight")
     check("expanded menu uses a bounded scroll container",scene.hud.menu_scroll.custom_minimum_size.y<=560)
@@ -145,6 +148,9 @@ func run() -> void:
     scene.save_options()
     scene.return_to_title()
     check("main menu returns without reloading the world",scene.screen=="title" and scene.audio.music_muted)
+    key.keycode=KEY_T
+    scene._unhandled_key_input(key)
+    check("T starts training directly from the main menu",scene.practice and scene.sim.phase=="fight")
     scene.start_match(false)
     check("leaving training restores normal round rules",not scene.sim.training and scene.sim.ai_enabled and scene.sim.phase=="ready")
     scene.queue_free()

@@ -40,9 +40,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     duck_time = maxf(0.0,duck_time-delta)
     if not is_instance_valid(music): return
-    music.stream_paused = muted or music_muted or context=="pause"
-    # Start only after session preferences have been restored, avoiding a startup blip.
-    if not music.stream_paused and not music.playing: music.play()
+    var pause_requested := muted or music_muted or context=="pause"
+    # An idle AudioStreamPlayer does not retain stream_paused: use the requested
+    # state when deciding to start, then pause/resume an existing playback.
+    if not pause_requested and not music.playing: music.play()
+    music.stream_paused = pause_requested
     var target_db := (-13.0 if context=="play" else -19.0) - (4.0 if duck_time>0 else 0.0)
     music.volume_db = lerpf(music.volume_db,target_db,1.0-exp(-delta*9.0))
 

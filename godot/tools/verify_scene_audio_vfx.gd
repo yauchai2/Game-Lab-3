@@ -57,15 +57,15 @@ func run() -> void:
     check("downloaded physical hit and parry clips are loaded",audio.sounds.hit[0] is AudioStreamOggVorbis and audio.sounds.parry[0] is AudioStreamOggVorbis)
     audio.muted = true
     audio._process(0.02)
-    check("master mute pauses music",audio.music.stream_paused)
+    check("master mute pauses or prevents music playback",not audio.music.playing or audio.music.stream_paused)
     audio.muted = false
     audio.music_muted = true
     audio._process(0.02)
-    check("music can be disabled independently",audio.music.stream_paused and not audio.muted)
+    check("music can be disabled independently",(not audio.music.playing or audio.music.stream_paused) and not audio.muted)
     audio.music_muted = false
     audio.context = "pause"
     audio._process(0.02)
-    check("pause suspends music without rewinding",audio.music.stream_paused)
+    check("pause suspends or prevents music playback",not audio.music.playing or audio.music.stream_paused)
     audio.context = "play"
     audio._process(0.02)
     check("resume enables music",not audio.music.stream_paused)
