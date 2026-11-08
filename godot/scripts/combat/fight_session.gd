@@ -196,7 +196,7 @@ func _process(delta: float) -> void:
             if fighter.state=="stun" and absf(fighter.vx)>6 and trail_clock>0.06:
                 _spawn_vfx("trail",Vector2(fighter.x,fighter.y+1),0.15,{"face":signf(fighter.vx),"color":COLORS[i]})
         if trail_clock>0.06: trail_clock = 0.0
-    backdrop.present(delta, screen in ["pause", "help", "result"])
+    backdrop.present(delta, screen in ["pause", "help", "result"], reduced_effects)
     _present(delta if screen in ["play", "title", "result"] else 0.0)
     hud.queue_redraw()
 

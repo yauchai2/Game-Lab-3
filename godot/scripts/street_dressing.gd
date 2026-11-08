@@ -312,6 +312,11 @@ func _make_signs() -> void:
         _box("ivory",Vector3(x,y,z),Vector3(3.0,.82,.13))
         _box(spec[3],Vector3(x,y,z+.08),Vector3(2.85,.68,.06))
         _label(spec[4],Vector3(x,y,z+.125),0,48,.007,Color("f7d575"))
+        var side := -1 if x<0 else 1
+        var edge := x+side*1.5
+        _segment("frame",Vector3(side*5.88,y+.48,z),Vector3(edge,y+.48,z),.055)
+        _segment("frame",Vector3(side*5.88,y+1.05,z),Vector3(edge,y+.48,z),.045)
+        _segment("frame",Vector3(edge,y+.48,z),Vector3(edge,y+.14,z),.045)
     # Additional sign silhouettes add depth without spanning the full street.
     for spec in [[-1,-29.0,7.9,"yellow"],[1,-43.0,8.2,"teal"],[-1,-48.0,6.3,"red"]]:
         var side: int = spec[0]

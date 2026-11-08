@@ -1,0 +1,155 @@
+{
+  "checks": [
+    {
+      "name": "new scene builder compiles with relevant warnings treated as errors",
+      "passed": true
+    },
+    {
+      "name": "both front facades gain substantial detail",
+      "passed": true
+    },
+    {
+      "name": "both sides have a connected old-building frontage",
+      "passed": true
+    },
+    {
+      "name": "six neighboring building masses added",
+      "passed": true
+    },
+    {
+      "name": "neighboring blocks keep plausible six-storey heights",
+      "passed": true
+    },
+    {
+      "name": "new buildings have individual solid collision",
+      "passed": true
+    },
+    {
+      "name": "original car asset reused twice at the street edges",
+      "passed": true
+    },
+    {
+      "name": "parked cars stay beyond the fight space",
+      "passed": true
+    },
+    {
+      "name": "two parked scooters use simple blockers",
+      "passed": true
+    },
+    {
+      "name": "new outer sidewalks have matching collision",
+      "passed": true
+    },
+    {
+      "name": "details are batched by mesh and material",
+      "passed": true
+    },
+    {
+      "name": "tints share role materials instead of per-object material copies",
+      "passed": true
+    },
+    {
+      "name": "all new geometry clears the full running and jumping fight envelope",
+      "passed": true
+    },
+    {
+      "name": "new collision never enters the fighting corridor",
+      "passed": true
+    },
+    {
+      "name": "no generated scene text or new real-time lights",
+      "passed": true
+    },
+    {
+      "name": "multi-instance color shader enabled only on new batches",
+      "passed": true
+    },
+    {
+      "name": "new objects remain opaque",
+      "passed": true
+    },
+    {
+      "name": "structural solids cast shadows while tiny details do not",
+      "passed": true
+    },
+    {
+      "name": "round props have flat per-triangle normals",
+      "passed": true
+    },
+    {
+      "name": "low-resolution texture imports with mipmaps: corner_plaster_128.png",
+      "passed": true
+    },
+    {
+      "name": "low-resolution texture imports with mipmaps: corner_tiles_128.png",
+      "passed": true
+    },
+    {
+      "name": "low-resolution texture imports with mipmaps: corner_shutter_128.png",
+      "passed": true
+    },
+    {
+      "name": "existing toon materials keep per-instance tint disabled",
+      "passed": true
+    },
+    {
+      "name": "independent whitebox is preserved",
+      "passed": true
+    },
+    {
+      "name": "combat assembly receives the shared street-corner module",
+      "passed": true
+    },
+    {
+      "name": "combat street scale and accepted sky remain unchanged",
+      "passed": true
+    },
+    {
+      "name": "walk assembly receives the same module",
+      "passed": true
+    },
+    {
+      "name": "existing walk road and lamp layout remain intact",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "method": "Godot 4.6.3 headless geometry bounds, collision, batching, textures, normals and both runtime scene assemblies; no GPU performance claim",
+  "metrics": {
+    "batches": 10,
+    "building_count": 6,
+    "collider_count": 10,
+    "collision_infringements": 0,
+    "fight_envelope_infringements": 0,
+    "instances": 3025,
+    "materials": 8,
+    "textures": [
+      {
+        "mipmaps": 7,
+        "path": "res://assets/textures/corner_plaster_128.png",
+        "sha256": "a26ed0cadfa1d175b0af4683ddf3338d6fb40fe94f677d04531f96e334fe6c18"
+      },
+      {
+        "mipmaps": 7,
+        "path": "res://assets/textures/corner_tiles_128.png",
+        "sha256": "acc47e8fa5bbe83cf6cc9e3f558dfdb6d3d83d020d58c764628afe00c17fa180"
+      },
+      {
+        "mipmaps": 7,
+        "path": "res://assets/textures/corner_shutter_128.png",
+        "sha256": "654a7a847a4b96b680901202349342dae219f8a6d3da168cb6b1207ac326655c"
+      }
+    ],
+    "zone_counts": {
+      "front_left": 411,
+      "front_right": 268,
+      "neighbors_left": 1063,
+      "neighbors_right": 1145,
+      "road_finish": 44,
+      "sidewalks": 6,
+      "signs": 24,
+      "street_objects": 64
+    }
+  },
+  "passed": 28
+}

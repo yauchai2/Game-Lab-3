@@ -199,3 +199,7 @@ T 進無限練習、F5 重置、F7 切對手；正常對局 Enter。挑空僅在
 七角度同鏡頭 baseline／candidate 是 Godot 4.6.3 Compatibility／llvmpipe 實際擷取，另保留原程式最初畫面。關閉新層的中央影像與最初中央影像完全相同。中央 draw calls 963→978，寬景 1053→1075；不是 FPS／目標硬體或美術品質評分。原 GLB 位元不變，保留舊音訊退出警告，擷取無腳本／shader 錯誤。來源、方法、日誌與限制見 CORNER_DENSITY.md 和 evidence/corner-density/。
 
 依使用者規則本輪僅推送原始碼，不更新公開試玩；gh-pages 維持 2908503。未聲稱已同步或測試使用者電腦。
+
+## 招牌與動態天空（2026-11-09，香港時間）
+
+新 18 + 街角 28 + 骨架場景 30 + 天空切換 7 + 場景音訊 33 + 街景 13 + 遊走 28 = 157 項通過。角度漂移／暫停／F2 的 session 接線、環境光不變、長時間 wrap、圖片／程序雲切換及四個空白牌皆已檢查。七角度 Godot Compatibility／llvmpipe 擷取及同相機 0/60 秒雲圖見 evidence/scene-composition/；時點對照非連續錄影。保留既有音訊 ObjectDB／resource 退出訊息；非真人或硬體效能驗收。未部署 Web，gh-pages 保持 2908503。

@@ -6,6 +6,7 @@ var plane: Node3D
 var environment: Environment
 var elapsed := 0.0
 var frozen := false
+var sky_motion = preload("res://scripts/sky_drift.gd").new()
 var flight_direction := Vector3.FORWARD
 var vehicle_nodes: Array[Node3D] = []
 var environment_textures: Node
@@ -109,8 +110,9 @@ func _style_surfaces(root: Node) -> void:
             mesh.set_surface_override_material(surface,material)
             retained_materials.append(material)
 
-func present(delta: float, paused: bool) -> void:
+func present(delta: float, paused: bool, reduced := false) -> void:
     if frozen or paused: return
+    sky_motion.advance(environment,delta,PI*0.5,reduced)
     elapsed = fmod(elapsed+delta,cycle)
     var phase := fmod(elapsed+FLIGHT_SECONDS*0.5,cycle)
     plane.visible = phase<=FLIGHT_SECONDS

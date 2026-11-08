@@ -2,7 +2,9 @@
 
 **[在 GitHub 直接試玩](https://yauchai2.github.io/Game-Lab-3/)** · 電腦鍵盤、單人對 AI／無限練習、首次約 19 MB。GitHub Pages 已啟用。[操作與更新方法](docs/WEB_PLAYTEST.md)。
 
-最新[街角立面與兩側街區加密](docs/CORNER_DENSITY.md)只更新 Godot 原始碼，**公開試玩版未同步此輪場景**。在 GitHub Desktop 選 `codex/street-combat` 拉取後 F5 查看。
+最新[招牌整理、動態天空與新版 LLB 參考](docs/SCENE_COMPOSITION.md)：保留圖片天空並加入緩慢雲圖漂移，重整空白招牌及支架；只更新開發分支。
+
+前輪[街角立面與兩側街區加密](docs/CORNER_DENSITY.md)只更新 Godot 原始碼，**公開試玩版未同步此輪場景**。在 GitHub Desktop 選 `codex/street-combat` 拉取後 F5 查看。
 
 本分支在既有風格化街區上加入 **2.5D 近身格鬥**：玩家對 AI、連擊、挑空、防禦、能量技、動態頓幀和回合勝負。[操作與完整開發狀態](docs/COMBAT.md)。最新已按試玩回饋修正朝向、接入 14 段 CC0 動畫，改用[斑馬線上的統一透視與追鏡](docs/PLAYTEST_FIXES.md)，場景招牌先留白。[最新戰鬥完善](docs/COMBAT_POLISH.md)：無限練習、對手切換、快速重置、挑空跳躍追擊、AI 難度及設定保存。最新已[接回原圖片天空、車輛與街景細節](docs/SCENE_AUDIO_VFX.md)，修正倒飛與街道拉伸，加入 CC0 音樂／音效、精準防禦及更多局部 VFX。
 

@@ -27,6 +27,7 @@ func _ready() -> void:
     _front_left()
     _front_right()
     _neighbors()
+    _corner_signs()
     _street_objects()
     _road_finish()
     _flush()
@@ -290,6 +291,28 @@ func _street_objects() -> void:
             var b:=start+Vector3(side*(i+1)*1.6,-sin((i+1)*PI/5)*.34,0)
             _bar(a,b,.027)
         _box("solid",Vector3(side*15.7,3.85,2.22),Vector3(.50,.76,.22),Color("8b9c94"))
+
+func _corner_signs() -> void:
+    # Deliberately sparse silhouettes; these anchors accept user artwork later.
+    zone="signs"
+    for spec in [[-17.4,5.6,2.0,1.0,1.8,"LeftCornerBlade",Color("936d43")],[-26.4,4.6,1.65,1.35,.85,"LeftOuterBlade",Color("527b76")],[17.5,5.0,1.95,1.1,1.35,"RightCornerBlade",Color("547679")],[26.6,5.4,1.6,1.3,.9,"RightOuterBlade",Color("99634e")]]:
+        var x: float=spec[0]
+        var y: float=spec[1]
+        var face: float=spec[2]
+        var width: float=spec[3]
+        var height: float=spec[4]
+        var front:=face+1.02
+        _box("solid",Vector3(x,y,front),Vector3(width+.12,height+.12,.16),IVORY)
+        _box("solid",Vector3(x,y,front+.095),Vector3(width,height,.04),spec[6])
+        for dx in [-width*.32,width*.32]:
+            _bar(Vector3(x+dx,y+height*.5,face+.05),Vector3(x+dx,y+height*.5,front),.055)
+            _bar(Vector3(x+dx,y+height*.5+.42,face+.05),Vector3(x+dx,y+height*.5,front),.045)
+        var anchor:=Node3D.new()
+        anchor.name=spec[5]
+        anchor.position=Vector3(x,y,front+.12)
+        anchor.set_meta("artwork_size_m",Vector2(width,height))
+        anchor.set_meta("texture_status","blank_pending_user_artwork")
+        add_child(anchor)
 
 func _road_finish() -> void:
     zone="road_finish"
