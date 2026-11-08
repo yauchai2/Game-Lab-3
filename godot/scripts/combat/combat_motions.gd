@@ -175,6 +175,10 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         if f.move in ["heavy","finisher"]:
             _aim_limb("RightUpLeg","RightLeg",model_forward+model_up*0.15,attack_weight)
             _aim_limb("RightLeg","RightFoot",model_forward-model_up*0.1,attack_weight)
+        elif f.move=="grab":
+            for side in ["Left","Right"]:
+                _aim_limb(side+"Arm",side+"ForeArm",model_forward+model_up*.10,attack_weight)
+                _aim_limb(side+"ForeArm",side+"Hand",model_forward+model_up*.18,attack_weight)
         elif f.move == "launcher":
             _aim_limb("RightArm","RightForeArm",model_up+model_forward*0.35,attack_weight)
             _aim_limb("RightForeArm","RightHand",model_up+model_forward*0.65,attack_weight)

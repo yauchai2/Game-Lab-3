@@ -29,9 +29,9 @@ func advance_idle(separated: bool) -> void:
     quiet_ticks+=1
     if separated and quiet_ticks>30:pressure=maxf(0,pressure-.5)
     elif quiet_ticks>90:pressure=maxf(0,pressure-.35)
-func begin(attacker: int, intent: String) -> void:
+func begin(attacker: int, intent: String, cue := "") -> void:
     serial+=1
-    clash={"attacker":attacker,"remaining":WINDOW,"choices":["",""],"intent":intent}
+    clash={"attacker":attacker,"remaining":WINDOW,"choices":["",""],"intent":intent,"cue":cue if cue in CHOICES else intent}
     last_result.clear()
 func choose(side: int, choice: String) -> void:
     if active() and side in [0,1] and choice in CHOICES and clash.choices[side]=="":clash.choices[side]=choice
@@ -43,7 +43,7 @@ func tick(commands: Array, automate_rival: bool, delay: int) -> bool:
     var a: String=clash.choices[0]
     var b: String=clash.choices[1]
     var winner: int=resolve(a,b)
-    last_result={"winner":winner,"choice":clash.choices[winner] if winner>=0 else "tie","choices":clash.choices.duplicate(),"attacker":clash.attacker}
+    last_result={"winner":winner,"choice":clash.choices[winner] if winner>=0 else "tie","choices":clash.choices.duplicate(),"attacker":clash.attacker,"rival_feint":clash.cue!=clash.intent}
     clash.clear()
     pressure=0.0
     cooldown=90

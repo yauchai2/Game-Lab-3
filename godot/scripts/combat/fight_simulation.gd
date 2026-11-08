@@ -5,6 +5,7 @@ const EDGE := 8.2
 const MAX_HEALTH := 100
 const ROUND_SECONDS := 75.0
 const MOVES := {
+    "grab": {"startup":11,"active":3,"recovery":25,"damage":12,"reach":1.15,"stun":24,"push":8.0,"lift":5.0,"stop":9},
     "jab": {"startup": 5, "active": 5, "recovery": 13, "damage": 7, "reach": 1.65, "stun": 18, "push": 3.0, "lift": 0.0, "stop": 5},
     "cross": {"startup": 6, "active": 5, "recovery": 15, "damage": 9, "reach": 1.85, "stun": 21, "push": 4.0, "lift": 0.0, "stop": 6},
     "finisher": {"startup": 9, "active": 6, "recovery": 23, "damage": 13, "reach": 2.1, "stun": 28, "push": 9.0, "lift": 3.8, "stop": 9},
@@ -49,7 +50,7 @@ func reset_round() -> void:
             "face": 1 if i == 0 else -1, "health": MAX_HEALTH, "meter": 0.0, "guard": 100.0,
             "state": "idle", "move": "", "frame": 0, "stun": 0, "connected": false,
             "buffer": "", "buffer_ttl": 0, "chain": 0, "chain_ttl": 0, "dash_cd": 0,
-            "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "jump_buffer":0, "juggle":0, "hit_confirmed":false})
+            "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "jump_buffer":0, "juggle":0, "hit_confirmed":false,"throw_cd":0,"tech_window":0,"wall_bounces":0,"wall_tech_window":0,"wall_tech_buffer":0})
     phase = "ready"
     countdown = 72
     remaining = ROUND_SECONDS
@@ -80,16 +81,22 @@ func ai_command() -> Dictionary:
     var a: Dictionary = fighters[1]
     var b: Dictionary = fighters[0]
     var distance: float = absf(a.x - b.x)
-    var command := {"axis": signf(b.x - a.x) if distance > 1.45 else 0.0, "allow_parry":false}
+    var desired_distance := .95 if b.guarding and a.throw_cd==0 else 1.45
+    var command := {"axis": signf(b.x - a.x) if distance > desired_distance else 0.0, "allow_parry":false}
     # Deliberate reaction windows and punishable heavy attacks, not perfect reads.
     var level := clampi(difficulty,0,2)
     var reaction_period: int = [36,22,14][level]
     var attack_period: int = [40,25,18][level]
     if ai_tick % reaction_period < [4,12,8][level] and b.state == "attack" and distance < 2.8:
-        command["guard"] = true
-        command["axis"] = 0.0
+        if b.move=="grab" and b.frame>=4 and a.dash_cd==0:
+            command["dash"]=true
+            command["axis"]=-signf(b.x-a.x)
+        else:
+            command["guard"] = true
+            command["axis"] = 0.0
     if ai_tick % attack_period == 0 and distance < 2.5:
-        command["attack"] = "special" if a.meter >= 50 and ai_tick % 100 == 0 else ("heavy" if ai_tick % 75 == 0 else "light")
+        command["attack"] = "grab" if b.guarding and distance<1.15 and a.throw_cd==0 else ("special" if a.meter >= 50 and ai_tick % 100 == 0 else ("heavy" if ai_tick % 75 == 0 else "light"))
+    if a.wall_tech_window>0 and a.wall_tech_window<=(6 if level==1 else 9) and a.meter>=20 and level>0:command["dash"]=true
     if b.y > 1.0 and ai_tick % [72,48,36][level] == 0:
         command["jump"] = true
     return command
@@ -122,9 +129,11 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         var f: Dictionary = fighters[i]
         f.flash = maxi(0, f.flash - 1)
         if commands[i].get("jump",false): f.jump_buffer=8
+        if commands[i].get("dash",false) and f.state=="stun":f.wall_tech_buffer=8
         if commands[i].has("attack"):
             f.buffer = "launcher" if commands[i].attack == "heavy" and commands[i].get("up", false) else commands[i].attack
             f.buffer_ttl = 10
+            if commands[i].attack=="grab":f.tech_window=7
     if hitstop > 0:
         hitstop -= 1
         return
@@ -140,6 +149,8 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
     for i in 2:
         if _can_hit(i):
             contacts.append(i)
+    # Ordinary strikes interrupt a simultaneous throw on either player side.
+    if contacts.size()==2 and fighters[contacts[0]].move=="grab" and fighters[contacts[1]].move!="grab":contacts.reverse()
     # Decide a clash from the simultaneous contact snapshot, before either hit
     # can stun the other participant or raise pressure within this same frame.
     var exchange_contact := -1
@@ -162,6 +173,13 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
     var other: Dictionary = fighters[1-i]
     f.parry_allowed = command.get("allow_parry",true)
     var was_guarding: bool = f.guarding
+    f.throw_cd=maxi(0,f.throw_cd-1)
+    f.tech_window=maxi(0,f.tech_window-1)
+    if f.state=="stun" and f.wall_tech_window>0 and f.wall_tech_buffer>0 and f.meter>=20:
+        _wall_tech(i)
+    f.wall_tech_window=maxi(0,f.wall_tech_window-1)
+    f.wall_tech_buffer=maxi(0,f.wall_tech_buffer-1)
+    if f.state=="idle" and f.y<=.01:f.wall_bounces=0
     f.parry_cd = maxi(0,f.parry_cd-1)
     f.dash_cd = maxi(0, f.dash_cd - 1)
     f.invuln = maxi(0, f.invuln - 1)
@@ -211,11 +229,23 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
                 f.vy = 10.3
                 f.jump_buffer = 0
                 events.append({"kind": "jump", "target": i})
-            if f.buffer_ttl > 0 and not f.guarding:
+            if f.buffer_ttl > 0 and (not f.guarding or f.buffer=="grab"):
                 _start_attack(i, f.buffer)
     if f.state != "idle" and f.state != "dash":
         f.vx = move_toward(f.vx, 0.0, STEP * 18.0)
-    f.x = clampf(f.x + f.vx * STEP, -EDGE, EDGE)
+    var next_x: float=f.x+f.vx*STEP
+    if absf(next_x)>EDGE and f.state=="stun" and absf(f.vx)>6 and f.wall_bounces==0:
+        f.wall_bounces=1
+        f.wall_tech_window=12
+        if f.wall_tech_buffer>0 and f.meter>=20:
+            f.x=clampf(next_x,-EDGE,EDGE)
+            _wall_tech(i)
+        else:
+            f.vx=-signf(next_x)*absf(f.vx)*.60
+            f.vy=maxf(f.vy,4.0)
+            f.stun=maxi(f.stun,18)
+            events.append({"kind":"wall_bounce","target":i})
+    f.x=clampf(next_x,-EDGE,EDGE)
     f.vy -= 26.0 * STEP
     var previous_y: float = f.y
     f.y = maxf(0.0, f.y + f.vy * STEP)
@@ -239,6 +269,12 @@ func _start_attack(i: int, requested: String) -> void:
         name = ["jab", "cross", "finisher"][mini(f.chain, 2)]
     if not MOVES.has(name):
         return
+    if name=="grab":
+        if f.throw_cd>0 or f.y>.01:
+            f.buffer=""
+            f.buffer_ttl=0
+            return
+        f.throw_cd=60
     if name == "special":
         if f.meter < 50:
             f.buffer = ""
@@ -247,6 +283,7 @@ func _start_attack(i: int, requested: String) -> void:
             return
         f.meter -= 50
     f.state = "attack"
+    f.guarding=false
     f.move = name
     f.frame = 0
     f.connected = false
@@ -272,10 +309,30 @@ func _can_hit(i: int) -> bool:
     if a.state != "attack" or a.connected or b.invuln > 0 or (b.y>0.1 and b.juggle>=3):
         return false
     var m: Dictionary = MOVES[a.move]
+    if a.move=="grab" and (a.y>.01 or b.y>.01 or b.state in ["stun","blockstun"]):return false
     if a.frame < m.startup or a.frame >= m.startup + m.active:
         return false
     var dx: float = b.x - a.x
     return dx * a.face >= -0.15 and absf(dx) <= m.reach and absf(b.y - a.y) <= (2.4 if a.move == "launcher" else 1.65)
+
+func _wall_tech(i: int) -> void:
+    var f: Dictionary=fighters[i]
+    f.meter=maxf(0,f.meter-20)
+    f.state="dash"
+    f.frame=6
+    f.invuln=10
+    f.vx=-signf(f.x)*8.0
+    f.vy=6.5
+    f.wall_tech_window=0
+    f.wall_tech_buffer=0
+    f.wall_bounces=1
+    f.dash_cd=maxi(f.dash_cd,42)
+    f.juggle=0
+    f.buffer=""
+    f.buffer_ttl=0
+    f.jump_buffer=0
+    f.stun=0
+    events.append({"kind":"wall_tech","target":i})
 
 func _can_open_exchange(i: int) -> bool:
     var a: Dictionary=fighters[i]
@@ -287,11 +344,31 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     var b: Dictionary = fighters[1-i]
     var move_name: String = a.move
     var m: Dictionary = MOVES[move_name]
+    if move_name=="grab" and (a.connected or a.state!="attack"):return
     a.connected = true
+    if move_name=="grab" and (b.tech_window>0 or (b.state=="attack" and b.move=="grab" and b.frame<=MOVES.grab.startup+MOVES.grab.active)):
+        for side in 2:
+            var fighter: Dictionary=fighters[side]
+            fighter.connected=true
+            fighter.state="blockstun"
+            fighter.stun=10
+            fighter.vx=-signf(fighters[1-side].x-fighter.x)*4.0
+            fighter.buffer=""
+            fighter.buffer_ttl=0
+            fighter.tech_window=0
+        hitstop=6
+        hitstop_total=6
+        exchange.contact(12)
+        events.append({"kind":"throw_tech","target":1-i})
+        return
     if allow_exchange and _can_open_exchange(i):
         var intent: String=exchange.CHOICES[(exchange.serial+clampi(difficulty,0,2))%3]
         if training and partner_mode in [0,1]:intent=exchange.CHOICES[partner_mode]
-        exchange.begin(i,intent)
+        var cue: String=intent
+        if ai_enabled and not training and difficulty>0:
+            var feint: bool=exchange.serial%4==3 if difficulty==1 else exchange.serial%2==1
+            if feint:cue=exchange.CHOICES[(exchange.CHOICES.find(intent)+1)%3]
+        exchange.begin(i,intent,cue)
         pressure_drill=false
         hitstop=0
         for fighter in fighters:
@@ -300,7 +377,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
             fighter.jump_buffer=0
         events.append({"kind":"clash_start","attacker":i})
         return
-    if b.guarding and (a.x - b.x) * b.face > 0:
+    if move_name!="grab" and b.guarding and (a.x - b.x) * b.face > 0:
         if b.parry_allowed and b.guard_frames<=6 and b.parry_cd==0 and b.guard>=25:
             b.parry_cd = 90
             b.meter = minf(100.0,b.meter+12.0)
@@ -333,7 +410,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
         combo_owner = i
         combo_hits = 0
         combo_damage = 0
-    var counter: bool = b.state=="attack" and b.frame<MOVES[b.move].startup
+    var counter: bool = move_name!="grab" and b.state=="attack" and b.frame<MOVES[b.move].startup
     combo_hits += 1
     var damage: int = maxi(3, roundi(m.damage * maxf(0.45, 1.0 - (combo_hits - 1) * 0.12)))
     if counter: damage = roundi(damage*1.15)
@@ -373,7 +450,7 @@ func _resolve_exchange() -> void:
     combo_hits=0
     combo_damage=0
     combo_owner=-1
-    events.append({"kind":"clash_end","winner":winner_index,"choice":result.choice})
+    events.append({"kind":"clash_end","winner":winner_index,"choice":result.choice,"feint":result.rival_feint})
     if winner_index<0:
         for i in 2:
             fighters[i].state="stun"

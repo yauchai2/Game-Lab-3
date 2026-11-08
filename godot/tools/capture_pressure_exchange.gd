@@ -37,6 +37,7 @@ func run() -> void:
     await shot("04_turn_wins")
     begin()
     scene.sim.exchange.clash.intent="slip"
+    scene.sim.exchange.clash.cue="slip"
     scene.pending["clash_choice"]="press"
     for i in 12:step()
     await shot("05_rival_slip_cue")
@@ -45,6 +46,7 @@ func run() -> void:
     await shot("06_press_chases")
     begin()
     scene.sim.exchange.clash.intent="turn"
+    scene.sim.exchange.clash.cue="turn"
     scene.pending["clash_choice"]="slip"
     for i in 24:step()
     for i in 6:step()

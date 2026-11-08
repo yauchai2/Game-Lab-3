@@ -1,0 +1,13 @@
+{
+  "source": "https://github.com/notofonts/noto-cjk",
+  "package": "fonts-noto-cjk 1:20240730+repack1-1",
+  "source_collection_sha256": "b76b0433203017ca80401b2ee0dd69350349871c4b19d504c34dbdd80541690a",
+  "font_collection_index": 4,
+  "derivative_family": "Afterhours UI HK",
+  "license": "SIL OFL 1.1",
+  "generator": "tools/subset_ui_font.py",
+  "output": "godot/assets/fonts/AfterhoursUIHK.otf",
+  "output_sha256": "fc510f96a998c6d1059b51e245400eebb9dec7a48242af7badfa1145c4cce031",
+  "characters_requested": 350,
+  "bytes": 160804
+}

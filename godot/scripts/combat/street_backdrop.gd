@@ -1,6 +1,8 @@
 extends Node3D
 ## Street, actors, shadows and camera share one perspective world.
 const Toon = preload("res://shaders/sample_toon.gdshader")
+var static_batches_enabled := true
+var static_batch_stats: Dictionary={}
 var street: Node3D
 var plane: Node3D
 var environment: Environment
@@ -75,6 +77,8 @@ func _ready() -> void:
     plane.position = anchor
     plane.rotation_degrees.y = -145
     flight_direction = -plane.basis.z.normalized()
+    if static_batches_enabled:
+        static_batch_stats=preload("res://scripts/combat/static_street_batches.gd").bake(street,[Toon,two_sided_shader])
 
 static func strip_scene_text(root: Node) -> void:
     for label in root.find_children("*","Label3D",true,false):

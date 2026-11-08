@@ -30,6 +30,7 @@ func _ready() -> void:
     _corner_signs()
     _street_objects()
     _road_finish()
+    _arena_barriers()
     _flush()
 
 func _emit(role: String, shape: String, at: Vector3, size: Vector3, tint: Color, angles := Vector3.ZERO) -> void:
@@ -159,7 +160,7 @@ func _aerial(x: float,y: float,z: float) -> void:
 
 func _front_left() -> void:
     zone="front_left"
-    for x in [-14.6,-12.2,-7.0]:
+    for x in [-14.6,-12.2,-9.5,-7.0]:
         for floor_index in 4:
             var y := 5.6+floor_index*3.05
             _window(x,y,2.035,1.28,1.42,x<-10 or floor_index%2==0,floor_index+int(absf(x)))
@@ -169,11 +170,18 @@ func _front_left() -> void:
     for x in [-14.25,-11.6,-7.12]:
         _shop(x,2.035,2.16,x<-13,Color("395f66") if x<-10 else Color("a16a4b"))
         _awning(x,2.035,2.30,1.00 if x<-10 else .24,Color("aa6b50") if x<-13 else Color("6c887b"))
+    _shop(-9.5,2.035,1.85,false,Color("49746d"))
+    _awning(-9.5,2.035,1.98,.24,Color("688777"))
+    var sign_anchor:=Node3D.new()
+    sign_anchor.name="BlueCornerShopSign"
+    sign_anchor.position=Vector3(-9.5,3.46,2.302)
+    sign_anchor.set_meta("artwork_size_m",Vector2(1.81,.43))
+    sign_anchor.set_meta("texture_status","blank_pending_user_artwork")
+    add_child(sign_anchor)
     for x in [-15.77,-10.72,-6.25]: _pipe(x,15.5,2.035,Color("607c7d"))
     for i in 13:
         var x := -15.4+float((i*19)%41)*.21
         var y := 1.4+float((i*13)%29)*.41
-        if x>-10.3 and x<-7.8 and y>5: continue
         _box("solid",Vector3(x,y,2.042),Vector3(.12+(i%3)*.10,.32+(i%4)*.14,.012),Color("6c9296") if i%2 else Color("497e8c"))
     _box("plaster",Vector3(-13.2,16.58,-1.1),Vector3(4.3,.20,5.9),Color("9bad9f"))
     for x in [-14.4,-7.3]: _aerial(x,16.7,-1.3)
@@ -327,6 +335,17 @@ func _road_finish() -> void:
         _box("solid",Vector3(x,.014,3.92),Vector3(.85,.024,.33),INK)
         for i in 7:
             _box("solid",Vector3(x-.33+i*.11,.032,3.92),Vector3(.035,.012,.28),Color("8d998f"))
+
+func _arena_barriers() -> void:
+    zone="arena_edges"
+    for side in [-1,1]:
+        var x: float=side*8.98
+        for z in [2.5,3.7]:
+            _box("solid",Vector3(x,.70,z),Vector3(.12,1.4,.12),Color("526d70"))
+            _box("solid",Vector3(x,.09,z),Vector3(.26,.18,.36),INK)
+        for y in [.52,1.18]:_box("solid",Vector3(x,y,3.1),Vector3(.12,.10,1.35),Color("82938a"))
+        for i in 7:_box("solid",Vector3(x,1.18,2.55+i*.18),Vector3(.128,.105,.085),Color("cbb476") if i%2 else INK)
+        _collision("ArenaBarrier_"+str(side),Vector3(x,.7,3.1),Vector3(.24,1.4,1.60))
 
 func _flat_mesh(primitive: PrimitiveMesh) -> ArrayMesh:
     var arrays:=primitive.surface_get_arrays(0)

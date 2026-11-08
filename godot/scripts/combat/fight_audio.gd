@@ -2,6 +2,8 @@ extends Node
 ## CC0 music / physical impacts plus original low-frequency energy layers.
 var muted := false
 var music_muted := false
+var music_level := 0.75
+var effects_level := 0.85
 var voices: Array[AudioStreamPlayer] = []
 var sounds: Dictionary = {}
 var voice_index := 0
@@ -40,22 +42,22 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     duck_time = maxf(0.0,duck_time-delta)
     if not is_instance_valid(music): return
-    var pause_requested := muted or music_muted or context=="pause"
+    var pause_requested := muted or music_muted or music_level<=0 or context in ["pause","help"]
     # An idle AudioStreamPlayer does not retain stream_paused: use the requested
     # state when deciding to start, then pause/resume an existing playback.
     if not pause_requested and not music.playing: music.play()
     music.stream_paused = pause_requested
-    var target_db := (-13.0 if context=="play" else -19.0) - (4.0 if duck_time>0 else 0.0)
+    var target_db := (-13.0 if context=="play" else -19.0) - (4.0 if duck_time>0 else 0.0) + linear_to_db(maxf(.001,music_level))
     music.volume_db = lerpf(music.volume_db,target_db,1.0-exp(-delta*9.0))
 
 func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
-    if muted or not sounds.has(kind): return
+    if muted or effects_level<=0 or not sounds.has(kind): return
     var voice: AudioStreamPlayer = voices[voice_index % voices.size()]
     var variants: Array = sounds[kind]
     voice.stop()
     voice.stream = variants[voice_index % variants.size()]
     voice_index += 1
-    voice.volume_db = -8.0+level_db
+    voice.volume_db = -8.0+level_db+linear_to_db(maxf(.001,effects_level))
     voice.pitch_scale = clampf(pitch,0.65,1.55)
     voice.play()
     if kind in ["hit","heavy","parry","guard_break"]: duck_time = 0.18

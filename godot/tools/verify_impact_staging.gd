@@ -32,7 +32,7 @@ func run() -> void:
                         for j in points.size():
                             valid=valid and points[j].is_finite() and points[j].length()<160
                             mirrored=mirrored and points[j].is_equal_approx(Vector2(-right[i].points[j].x,right[i].points[j].y))
-    check("all 432 vector cels triangulate with finite bounded geometry",valid)
+    check("all %d vector cels triangulate with finite bounded geometry"%(shapes.PROFILES.size()*72),valid)
     check("all new cels remain fully opaque",opaque)
     check("every attack mirrors correctly after swapping sides",mirrored)
     check("jab heavy launcher and special have distinct silhouettes",shapes.build("swing","jab",0,Color.CYAN,1,false)!=shapes.build("swing","heavy",0,Color.CYAN,1,false) and shapes.PROFILES.launcher.z<-.5 and shapes.PROFILES.special.x>shapes.PROFILES.heavy.x)
@@ -109,6 +109,6 @@ func run() -> void:
     await create_timer(.15).timeout
     var failed:=checks.filter(func(c:Dictionary)->bool:return not c.passed).size()
     var file:=FileAccess.open("res://../docs/evidence/impact-staging/verification.json",FileAccess.WRITE)
-    file.store_string(JSON.stringify({"checks":checks,"passed":checks.size()-failed,"failed":failed,"geometry_cels_checked":432},"  "))
+    file.store_string(JSON.stringify({"checks":checks,"passed":checks.size()-failed,"failed":failed,"geometry_cels_checked":shapes.PROFILES.size()*72},"  "))
     print("IMPACT_STAGING_CHECKS ",checks.size()-failed,"/",checks.size())
     quit(0 if failed==0 else 1)

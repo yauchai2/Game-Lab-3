@@ -26,9 +26,10 @@ var shared_font: SystemFont
 var box_count := 0
 
 func _ready() -> void:
-    shared_font = SystemFont.new()
-    shared_font.font_names = PackedStringArray(["Noto Sans CJK TC","Microsoft JhengHei","PingFang TC","sans-serif"])
-    shared_font.font_weight = 700
+    if show_sign_text:
+        shared_font = SystemFont.new()
+        shared_font.font_names = PackedStringArray(["Noto Sans CJK TC","Microsoft JhengHei","PingFang TC","sans-serif"])
+        shared_font.font_weight = 700
     labels = Node3D.new()
     labels.name = "Lettering"
     add_child(labels)
@@ -210,10 +211,8 @@ func _make_streetfront_layers() -> void:
 
 func _make_corner_facades() -> void:
     # The entrance-facing gables are visible from the photo-aligned camera.
-    _box("blue",Vector3(-9.0,10.5,2.07),Vector3(2.35,8.2,.16))
-    _box("ivory",Vector3(-9.0,10.5,2.17),Vector3(2.18,8.05,.08))
-    _box("teal",Vector3(-9.0,10.5,2.23),Vector3(1.95,7.8,.06))
-    _label("新\n興\n茶\n室",Vector3(-9.0,10.5,2.28),0,100,.011,Color("c4e88e"))
+    # Removed the old eight-metre billboard. The shared corner builder supplies
+    # residential windows and a shop fascia in the same bay, without duplication.
     # A vertical edge band and shallow vent windows articulate the orange corner.
     _box("warm",Vector3(6.35,10.0,2.08),Vector3(.32,19.5,.12))
     for y in [5.1,8.4,11.7,15.0]:

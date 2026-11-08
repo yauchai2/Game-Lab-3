@@ -12,15 +12,20 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     var paper := Color("fff8dc")
     var ink := Color("111a32")
     match effect.kind:
-        "swing","hit","release","clash":
+        "swing","hit","release","clash","wall":
             var phase: float = fmod(effect.age,0.15)/0.15 if effect.kind in ["hit","clash"] and effect.get("held",false) else time
-            var shapes: Array[Dictionary] = impact_shapes.build("hit" if effect.kind=="clash" else effect.kind,effect.get("move","jab"),phase,tint,face,reduced)
+            var shapes: Array[Dictionary] = impact_shapes.build("hit" if effect.kind=="clash" else ("release" if effect.kind=="wall" else effect.kind),effect.get("move","jab"),phase,tint,face,reduced)
             var pixels_per_meter: float = (session.project(effect.at+Vector2(1,0))-at).length()
             var perspective_scale := clampf(pixels_per_meter/56.0,.65,1.3)
             for shape in shapes:
                 var points: PackedVector2Array=shape.points.duplicate()
                 for i in points.size(): points[i]=at+points[i]*perspective_scale
                 canvas.draw_colored_polygon(points,shape.color)
+        "grab_tell":
+            var radius:=18.0+stage*6.0
+            for side in [-1,1]:
+                var center:=at+Vector2(side*12.0,0)
+                canvas.draw_arc(center,radius,(-PI*.5 if side>0 else PI*.5),(PI*.5 if side>0 else PI*1.5),6,tint,3)
         "dust":
             for i in (3 if reduced else 6):
                 var spread := Vector2((i-2.5)*17.0*(time+0.3),-sin(time*PI)*13.0)

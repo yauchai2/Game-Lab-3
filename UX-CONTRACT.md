@@ -1,0 +1,27 @@
+# Native game UI contract
+
+Authoritative gameplay rules: docs/PRESSURE_EXCHANGE.md and simulation. This contract describes interface behavior; it does not override gameplay.
+
+| Capability | Canonical owner | Source of truth | Allowed variants | Verification |
+| --- | --- | --- | --- | --- |
+| Select/Listbox | Godot OptionButton with shared Theme | ui_theme.gd / ui_text.gd | language, difficulty, partner | native keyboard and popup capture |
+| Scrollbar | Shared Godot Theme | ui_theme.gd | bounded help/settings/practice panels | narrow capture, keyboard focus |
+| Toast | HUD notice / localized event mapping | fight_hud.gd / ui_text.gd | outcome, information, unavailable energy | simulation-to-HUD integration |
+
+## Flow ownership
+
+Title offers Fight, Free training and Pressure dojo. Help and Settings use one page mechanism. From play, opening either pauses first; Escape returns to pause, then Escape resumes. From title or result, Back returns to that originating screen. Option popups consume their own Escape before page navigation. Back retains the originating action's focus. All settings have the same native control, label and persistence behavior regardless of entry screen.
+
+A clash choice is committed through fight_session.commit_clash_choice by both keyboard and native Button. The first valid pending choice wins; subsequent keys/clicks cannot replace it. Read-first controls are disabled until K or Start triggers the actual heavy. Non-clash actions cannot be buffered through the decision window.
+
+The pause menu's Restart names the affected scope; Reset training is separate. All are reversible game/session actions, not external publication. No extra approval dialog is added. Leaving play clears the correct simulation and presentation state.
+
+## Locale and persistence
+
+Traditional Chinese is the default; English is selectable and persisted. Translation is view-owned; simulation keys, log fields and game input identifiers remain stable. Fixed user-event notices are translated when rendered. Unknown diagnostic strings are not invented as translated game rules.
+
+Music/effects levels update immediately in the native sliders; writes debounce rather than rebuilding the page on each drag. Language changes rebuild the page while retaining focus and scroll. Muting and reduced effects stay available via existing shortcuts.
+
+## Evidence boundary
+
+The frontend-design-premium static audit primarily recognizes web source formats. It is recorded as an auxiliary static check, not proof of native accessibility. Godot import, GDScript strict compilation, project integration checks, real X11 viewport input, pointer callbacks, popup captures and native long-run telemetry provide the runtime evidence. Linux software rendering does not establish user-PC or target-GPU performance. No public site is updated by this work.

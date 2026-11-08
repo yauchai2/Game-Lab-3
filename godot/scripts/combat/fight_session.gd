@@ -12,6 +12,7 @@ var screen := "title"
 var pending: Dictionary = {}
 var effects: Array[Dictionary] = []
 var elapsed := 0.0
+var result_clock := 0.0
 var trauma := 0.0
 var impact_queue: Array[Dictionary] = []
 var recoil := Vector2.ZERO
@@ -20,7 +21,11 @@ var step_distance := [0.0,0.0]
 var trail_clock := 0.0
 var ink_pass: MeshInstance3D
 var reduced_effects := false
+var language := "zh"
+var training_details := false
+var settings_save_clock := -1.0
 var practice := false
+@export var static_batches_enabled := true
 @export var preferences_path := "user://afterhours.cfg"
 var preferences := preload("res://scripts/combat/fight_preferences.gd").new()
 var input_history: Array[String] = []
@@ -54,6 +59,7 @@ func _ready() -> void:
 func _build_stage() -> void:
     backdrop = preload("res://scripts/combat/street_backdrop.gd").new()
     backdrop.name = "StreetBackdrop"
+    backdrop.static_batches_enabled=static_batches_enabled
     add_child(backdrop)
     stage_environment = backdrop.environment
     camera = Camera3D.new()
@@ -99,6 +105,7 @@ func _material(color: Color, unlit: bool) -> StandardMaterial3D:
     return mat
 
 func start_match(training := false) -> void:
+    result_clock=0.0
     practice = training
     sim.training = training
     sim.restart_match()
@@ -142,7 +149,19 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
 
 func _handle_event(event: Dictionary) -> void:
     var kind: String = event.kind
-    if kind=="clash_start":
+    if kind in ["wall_bounce","wall_tech","throw_tech"]:
+        var fighter: Dictionary=sim.fighters[event.target]
+        var point:=Vector2(fighter.x,fighter.y+1.0)
+        if kind=="wall_bounce":
+            _spawn_vfx("wall",point,.22,{"color":Color("eebd4c"),"face":-signf(fighter.x),"move":"heavy"})
+            trauma=maxf(trauma,.25)
+            audio.play_sound("heavy",.85,-8)
+        else:
+            _spawn_vfx("parry",point,.22,{"color":COLORS[event.target]})
+            audio.play_sound("parry",1.1,-8)
+            hud.notice="WALL TECH" if kind=="wall_tech" else "THROW TECH"
+            hud.notice_time=.7
+    elif kind=="clash_start":
         pending.clear()
         effects.clear()
         _clear_impacts()
@@ -155,6 +174,7 @@ func _handle_event(event: Dictionary) -> void:
         effects=effects.filter(func(e:Dictionary)->bool:return e.kind!="clash")
         var result: String=event.choice
         hud.notice=("YOU / " if event.winner==0 else "RIVAL / ")+result.to_upper() if event.winner>=0 else "EVEN / PRESSURE RELEASED"
+        if event.get("feint",false):hud.notice="FEINT / "+hud.notice
         hud.notice_time=1.2
         if result=="turn":audio.play_sound("parry",1.0,-3)
     elif kind in ["hit","block","parry","guard_break"]:
@@ -173,6 +193,10 @@ func _handle_event(event: Dictionary) -> void:
         trauma = maxf(trauma,strength*0.6)
         audio.play_sound(("heavy" if strength>0.55 else "hit") if kind=="hit" else kind,1.0+sim.combo_hits*0.04)
         if kind=="hit" and strength>0.55: audio.play_sound("sub",0.9,-5.0)
+        if kind=="hit" and move=="grab":
+            hud.notice="THROW"
+            hud.notice_time=.7
+            audio.play_sound("heavy",.85,-7)
         if kind=="parry" or kind=="guard_break" or (event.get("counter",false) and not event.get("exchange",false)):
             hud.notice = "PERFECT GUARD" if kind=="parry" else ("GUARD BREAK" if kind=="guard_break" else "COUNTER HIT")
             hud.notice_time = 0.8
@@ -181,6 +205,7 @@ func _handle_event(event: Dictionary) -> void:
         var startup: float = float(Simulation.MOVES[event.move].startup)/60.0
         _spawn_vfx("swing",Vector2(fighter.x+fighter.face*0.9,fighter.y+1.15),0.15,{"age":-startup,"face":fighter.face,"color":COLORS[event.target],"move":event.move})
         audio.play_sound("swing",1.0,-8.0)
+        if event.move=="grab":_spawn_vfx("grab_tell",Vector2(fighter.x+fighter.face*.55,fighter.y+1.25),startup,{"face":fighter.face,"color":Color("eebd4c")})
         if event.move=="special":
             _spawn_vfx("charge",Vector2(fighter.x,fighter.y+1.2),startup,{"color":COLORS[event.target]})
             _spawn_vfx("wave",Vector2(fighter.x+fighter.face*0.6,fighter.y+1.2),0.26,{"age":-startup,"face":fighter.face,"color":COLORS[event.target]})
@@ -222,6 +247,10 @@ func _release_impacts(with_audio := true) -> void:
     impact_queue.clear()
 
 func _process(delta: float) -> void:
+    if settings_save_clock>=0:
+        settings_save_clock-=delta
+        if settings_save_clock<0:save_options()
+    if screen=="result":result_clock+=delta
     audio.context = screen
     if screen != "pause" and screen != "help":
         elapsed += delta
@@ -250,13 +279,22 @@ func _process(delta: float) -> void:
 func _present(delta: float) -> void:
     for i in fighters.size():
         var pose: Dictionary=sim.fighters[i].duplicate()
+        if screen=="result":
+            pose.y=maxf(0,pose.y-maxf(0,result_clock-.15)*5.0)
+            if i==sim.winner and result_clock>.45:
+                pose.state="idle"
+                pose.vx=0.0
+                pose.vy=0.0
+        if screen=="title" and sim.phase=="ready":
+            pose.x=1.2 if i==0 else 4.0
+            pose.face=1 if i==0 else -1
         if sim.exchange.active():
             var choice: String=sim.exchange.clash.choices[i]
-            if i==1:choice=sim.exchange.clash.intent
+            if i==1:choice=sim.exchange.clash.cue
             pose["exchange_choice"]=choice
         fighters[i].present(pose, delta, (sim.hitstop>0 or sim.exchange.active()) and screen=="play", reduced_effects, sim.fighters[1-i].x)
         silhouettes[i].position = Vector3(fighters[i].model.global_position.x,0.03,FIGHT_Z)
-        silhouettes[i].scale = Vector3.ONE * clampf(1.0 - sim.fighters[i].y * 0.08, 0.5, 1.0)
+        silhouettes[i].scale = Vector3.ONE * clampf(1.0 - pose.y * 0.08, 0.5, 1.0)
     var shake := 0.0 if reduced_effects else trauma * trauma * 0.35
     var midpoint: float = (sim.fighters[0].x + sim.fighters[1].x) * 0.5
     var separation: float = absf(sim.fighters[0].x - sim.fighters[1].x)
@@ -264,6 +302,10 @@ func _present(delta: float) -> void:
     var yaw := clampf(midpoint * 0.018,-0.10,0.10)
     var target_focus := Vector3(midpoint*0.8,2.45 + maxf(sim.fighters[0].y,sim.fighters[1].y)*0.15,FIGHT_Z)
     var target_position := Vector3(target_focus.x+sin(yaw)*distance,1.7,FIGHT_Z+cos(yaw)*distance)
+    if screen=="title" and sim.phase=="ready":
+        target_focus=Vector3(.6,2.5,FIGHT_Z)
+        target_position=Vector3(-.6,2.3,FIGHT_Z+9.7)
+        if not reduced_effects:target_position.x+=sin(elapsed*.23)*.07
     var blend := 1.0-exp(-delta*4.0)
     camera_focus = camera_focus.lerp(target_focus,blend)
     base_camera = base_camera.lerp(target_position,blend)
@@ -303,6 +345,7 @@ func return_to_street() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if not event.is_pressed() or event.is_echo():
         return
+    if hud.handle_shortcut(event):return
     if event.keycode == KEY_F6:
         return_to_street()
     elif event.keycode == KEY_M:
@@ -324,6 +367,13 @@ func _unhandled_key_input(event: InputEvent) -> void:
         hud.rebuild_menu()
     elif event.keycode==KEY_F5 and practice and screen=="play":
         reset_training()
+    elif event.keycode==KEY_F8 and screen=="title":
+        start_match(true)
+        prime_pressure_drill()
+    elif event.keycode==KEY_F9:
+        training_details=not training_details
+        save_options()
+        hud.rebuild_menu()
     elif event.keycode==KEY_F8 and practice and screen=="play":
         prime_pressure_drill()
     elif event.keycode==KEY_F7 and practice and screen=="play":
@@ -350,29 +400,47 @@ func _unhandled_key_input(event: InputEvent) -> void:
     elif screen == "play":
         if sim.exchange.active():
             var choices := {KEY_J:"press",KEY_SHIFT:"turn",KEY_E:"slip"}
-            if choices.has(event.physical_keycode) and not pending.has("clash_choice"):pending["clash_choice"]=choices[event.physical_keycode]
+            if choices.has(event.physical_keycode):commit_clash_choice(choices[event.physical_keycode])
             return
         if practice: _record_training_input(event.physical_keycode)
         match event.physical_keycode:
             KEY_J: pending["attack"] = "light"
             KEY_K: pending["attack"] = "heavy"
             KEY_L: pending["attack"] = "special"
+            KEY_G: pending["attack"] = "grab"
             KEY_SPACE: pending["jump"] = true
             KEY_E: pending["dash"] = true
+
+func commit_clash_choice(choice: String) -> void:
+    if screen=="play" and sim.exchange.active() and choice in sim.exchange.CHOICES and not pending.has("clash_choice"):
+        pending["clash_choice"]=choice
+
+func set_language(value: String) -> void:
+    language=value if value in ["zh","en"] else "zh"
+    save_options()
+    hud.rebuild_menu()
+
+func set_volume(kind: String, value: float) -> void:
+    if kind=="music":audio.music_level=clampf(value,0,1)
+    else:
+        audio.effects_level=clampf(value,0,1)
+        if audio.effects_level<=0:audio.stop_all()
+    settings_save_clock=.35
 
 func _notification(what: int) -> void:
     if what == NOTIFICATION_APPLICATION_FOCUS_OUT and is_instance_valid(hud):
         pause_game()
 
-func reset_training() -> void:
+func reset_training(keep_screen := false) -> void:
     if not practice: return
+    var previous_screen := screen
     sim.reset_training()
     effects.clear()
     _clear_impacts()
     pending.clear()
     input_history.clear()
     trauma=0.0
-    screen="play"
+    screen=previous_screen if keep_screen and previous_screen in ["pause","help"] else "play"
     hud.notice="TRAINING RESET"
     hud.notice_time=0.7
     hud.rebuild_menu()
@@ -389,7 +457,7 @@ func prime_pressure_drill() -> void:
 
 func set_partner_mode(value: int) -> void:
     sim.partner_mode=clampi(value,0,2)
-    if practice: reset_training()
+    if practice: reset_training(true)
     save_options()
 
 func set_difficulty(value: int) -> void:
@@ -397,7 +465,7 @@ func set_difficulty(value: int) -> void:
     save_options()
 
 func _record_training_input(code: int) -> void:
-    var labels := {KEY_J:"J  LIGHT",KEY_K:"K  HEAVY",KEY_L:"L  SPECIAL",KEY_SPACE:"SPACE  JUMP",KEY_E:"E  DODGE",KEY_SHIFT:"SHIFT  GUARD",KEY_A:"A  LEFT",KEY_D:"D  RIGHT"}
+    var labels := {KEY_J:"J  LIGHT",KEY_K:"K  HEAVY",KEY_L:"L  SPECIAL",KEY_SPACE:"SPACE  JUMP",KEY_E:"E  DODGE",KEY_G:"G  THROW",KEY_SHIFT:"SHIFT  GUARD",KEY_A:"A  LEFT",KEY_D:"D  RIGHT"}
     if not labels.has(code): return
     var label: String = labels[code]
     if code==KEY_K and (Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)): label="W+K  LAUNCH"
@@ -410,13 +478,18 @@ func _restore_options() -> void:
     audio.music_muted=options.music_muted
     reduced_effects=options.reduced_effects
     ink_pass.visible=options.scene_edges
+    language=options.language
+    training_details=options.training_details
+    audio.music_level=options.music_level
+    audio.effects_level=options.effects_level
     sim.difficulty=options.difficulty
     sim.partner_mode=options.partner_mode
 
 func save_options() -> void:
-    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"scene_edges":ink_pass.visible,"difficulty":sim.difficulty,"partner_mode":sim.partner_mode})
+    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"scene_edges":ink_pass.visible,"difficulty":sim.difficulty,"partner_mode":sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level})
 
 func return_to_title() -> void:
+    sim.reset_round()
     sim.pressure_drill=false
     sim.exchange.reset()
     screen="title"

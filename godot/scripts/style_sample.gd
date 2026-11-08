@@ -177,18 +177,7 @@ func _build_details() -> void:
                 for edge in [-1,1]:
                     _box("WindowFrame",Vector3(x,y,z+edge*1.52),Vector3(.10,1.65,.10),dark)
     # StreetDressing owns the receding signs, avoiding duplicate panels at -39 m.
-    var label := Label3D.new()
-    label.name = "OriginalSignText"
-    label.text = "高\n空\n航\n道"
-    label.font_size = 96
-    label.pixel_size = .012
-    label.modulate = Color("f4c75d")
-    label.position = Vector3(-4.0,10.7,-14.72)
-    var font := SystemFont.new()
-    font.font_names = PackedStringArray(["Noto Sans CJK TC","Microsoft JhengHei","PingFang TC","sans-serif"])
-    font.font_weight = 700
-    label.font = font
-    details.add_child(label)
+    # Scene lettering is supplied later as user artwork; do not create hidden fonts.
 func set_mode(value: int) -> void:
     mode = posmod(value,3)
     if not is_instance_valid(details):
