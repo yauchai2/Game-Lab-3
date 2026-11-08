@@ -39,11 +39,16 @@ static func build() -> Theme:
     theme.set_stylebox("panel","PopupMenu",plate(NIGHT,TEAL,1))
     theme.set_color("font_hover_color","PopupMenu",INK)
     theme.set_stylebox("hover","PopupMenu",plate(TEAL))
-    theme.set_stylebox("scroll","VScrollBar",plate(NIGHT))
-    theme.set_stylebox("grabber","VScrollBar",plate(EDGE))
-    theme.set_stylebox("grabber_highlight","VScrollBar",plate(TEAL))
-    theme.set_stylebox("grabber_pressed","VScrollBar",plate(GOLD))
-    theme.set_constant("scrollbar_width","VScrollBar",9)
+    # Scrollbars need their own margins: menu-panel padding makes a 36 px thumb.
+    for state in ["scroll","grabber","grabber_highlight","grabber_pressed"]:
+        var tint: Color={"scroll":NIGHT,"grabber":MUTED.darkened(.25),"grabber_highlight":TEAL,"grabber_pressed":GOLD}[state]
+        var scrollbar:=StyleBoxFlat.new()
+        scrollbar.bg_color=tint
+        scrollbar.content_margin_left=8
+        scrollbar.content_margin_right=8
+        scrollbar.content_margin_top=0 if state=="scroll" else 12
+        scrollbar.content_margin_bottom=0 if state=="scroll" else 12
+        theme.set_stylebox(state,"VScrollBar",scrollbar)
     theme.set_stylebox("slider","HSlider",plate(EDGE))
     theme.set_stylebox("grabber_area","HSlider",plate(TEAL))
     theme.set_stylebox("grabber_area_highlight","HSlider",plate(GOLD))

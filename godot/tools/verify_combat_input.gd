@@ -57,6 +57,39 @@ func run() -> void:
     await tap(KEY_F6)
     await frames(4)
     check("walk F6 returns to fight title",current_scene.name=="StreetFight" and current_scene.screen=="title")
+    var arena=current_scene
+    arena.set_process(false)
+    arena.set_physics_process(false)
+    arena.audio.muted=true
+    arena.start_match(true)
+    arena.sim.fighters[0].x=-.45
+    arena.sim.fighters[1].x=.45
+    await tap(KEY_G)
+    check("viewport G queues a throw",arena.pending.get("attack","")=="grab")
+    for i in 12:arena._physics_process(1.0/60)
+    check("native throw input reaches the real contact and damage rule",arena.sim.fighters[1].health==88)
+    arena.reset_training()
+    arena.sim.fighters[0].x=-.45
+    arena.sim.fighters[1].x=.45
+    arena.sim.fighters[1].state="attack"
+    arena.sim.fighters[1].move="grab"
+    arena.sim.fighters[1].frame=10
+    await tap(KEY_G)
+    arena._physics_process(1.0/60)
+    check("viewport G also breaks an incoming throw without damage",arena.sim.fighters[0].health==100 and arena.sim.fighters[1].health==100 and arena.sim.events.any(func(e:Dictionary)->bool:return e.kind=="throw_tech"))
+    arena.reset_training()
+    arena.sim.training=false # Resource checks must not use infinite practice energy.
+    var player: Dictionary=arena.sim.fighters[0]
+    player.x=8.19
+    player.y=.4
+    player.vx=10
+    player.state="stun"
+    player.stun=30
+    player.meter=40
+    arena._physics_process(1.0/60)
+    await tap(KEY_E)
+    arena._physics_process(1.0/60)
+    check("viewport E performs edge recovery and spends exactly twenty energy",player.state=="dash" and player.meter==20 and player.vx<0 and arena.sim.events.any(func(e:Dictionary)->bool:return e.kind=="wall_tech"))
     current_scene.queue_free()
     await frames(3)
     # AudioServer releases stopped playbacks on its mixer thread.

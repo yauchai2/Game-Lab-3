@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import re
 import subprocess
+import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,15 +45,17 @@ def main() -> int:
     parser.add_argument("--mode", choices=["headless", "native"], default="headless")
     parser.add_argument("--godot", default="godot")
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--only", help="Comma-separated case names for a focused recheck")
     args = parser.parse_args()
-    if args.mode == "native" and os.name != "nt" and not os.environ.get("DISPLAY"):
-        parser.error("Native mode requires DISPLAY; headless mode cannot validate rendered MultiMesh transforms.")
+    if args.mode == "native" and sys.platform.startswith("linux") and not (os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY")):
+        parser.error("Native Linux mode requires DISPLAY or WAYLAND_DISPLAY; headless mode cannot validate rendered MultiMesh transforms.")
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     out = (args.output or ROOT / "docs/evidence/local-runs" / stamp / args.mode).resolve()
     out.mkdir(parents=True, exist_ok=True)
     results = []
+    selected=set(args.only.split(",")) if args.only else None
     for name, report_name, mode in CASES:
-        if mode != args.mode:
+        if mode != args.mode or (selected is not None and name not in selected):
             continue
         report = ROOT / "docs/evidence" / report_name
         previous = report.read_bytes() if report.exists() else None
@@ -100,7 +103,7 @@ def main() -> int:
                 report.write_bytes(previous)
     summary = {"created_utc": stamp, "source_commit": subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
-        "mode": args.mode, "all_assertions_passed": all(r["success"] for r in results),
+        "mode": args.mode, "all_assertions_passed": bool(results) and all(r["success"] for r in results),
         "passed": sum(r["passed"] for r in results), "failed": sum(r["failed"] for r in results),
         "cases": results,
         "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."}

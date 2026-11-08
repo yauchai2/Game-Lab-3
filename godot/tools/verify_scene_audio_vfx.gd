@@ -113,7 +113,8 @@ func run() -> void:
     await create_timer(0.10).timeout
     scene.queue_free()
     await process_frame
-    await create_timer(0.10).timeout
+    var cleanup_started:=Time.get_ticks_msec()
+    while Time.get_ticks_msec()-cleanup_started<500:await process_frame
     var failed := checks.filter(func(result: Dictionary)->bool: return not result.passed).size()
     var file := FileAccess.open("res://../docs/evidence/scene-audio-vfx/verification.json",FileAccess.WRITE)
     file.store_string(JSON.stringify({"checks":checks,"passed":checks.size()-failed,"failed":failed,"method":"headless source inventory, proportions, flight geometry, audio resources/controls and combat/VFX regressions; no human listening or hardware FPS claim"},"  "))

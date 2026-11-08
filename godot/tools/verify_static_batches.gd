@@ -15,6 +15,7 @@ func run() -> void:
     scene.set_process(false)
     scene.set_physics_process(false)
     scene.audio.muted=true
+    await RenderingServer.frame_post_draw
     var bg=scene.backdrop
     var stats: Dictionary=bg.static_batch_stats
     check("hundreds of static boxes are grouped into a smaller material set",stats.source_boxes>100 and stats.batches<stats.source_boxes/3.0)
@@ -64,17 +65,23 @@ func run() -> void:
     source.set_process(false)
     source.set_physics_process(false)
     source.audio.muted=true
+    await RenderingServer.frame_post_draw
     check("debug opt-out retains original drawing route",source.backdrop.static_batch_stats.is_empty() and not source.backdrop.street.has_node("StaticStreetBatches") and source.backdrop.street.get_node("BuildingMasses/BlueFront").layers>0)
     check("colliders are preserved independently of render batching",bg.street.find_children("*","CollisionShape3D",true,false).size()==source.backdrop.street.find_children("*","CollisionShape3D",true,false).size())
     var walk=preload("res://scenes/street_walk.tscn").instantiate()
     root.add_child(walk)
+    await RenderingServer.frame_post_draw
     check("walk mode retains interactive material comparison",not walk.get_node("Street").has_node("StaticStreetBatches") and walk.has_node("StyleSample"))
     walk.queue_free()
     source.queue_free()
     scene.queue_free()
-    await process_frame
-    await create_timer(.15).timeout
     var failed:=checks.filter(func(c:Dictionary)->bool:return not c.passed).size()
+    # Leave this scope before the final draw fence so local material/mesh
+    # references are released while the renderer still has frames to drain.
+    call_deferred("finish",failed,stats)
+func finish(failed: int, stats: Dictionary) -> void:
+    for i in 4:await process_frame
+    await RenderingServer.frame_post_draw
     var file:=FileAccess.open("res://../docs/evidence/extended-polish/static-batches/verification.json",FileAccess.WRITE)
     DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://../docs/evidence/extended-polish/static-batches"))
     if not file:file=FileAccess.open("res://../docs/evidence/extended-polish/static-batches/verification.json",FileAccess.WRITE)

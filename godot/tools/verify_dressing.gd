@@ -54,5 +54,6 @@ func run() -> void:
     print("DRESSING_VERIFIED ",JSON.stringify(report))
     scene.get_node("AircraftFlyby").sound.stop()
     scene.queue_free()
-    await process_frame
+    var cleanup_started:=Time.get_ticks_msec()
+    while Time.get_ticks_msec()-cleanup_started<100:await process_frame
     quit(1 if failed else 0)

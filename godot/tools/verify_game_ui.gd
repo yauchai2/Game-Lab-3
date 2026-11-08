@@ -156,6 +156,8 @@ func run() -> void:
     departing.preferences_path=path
     root.add_child(departing)
     departing.audio.muted=true
+    await frames()
+    if DisplayServer.get_name()!="headless":await RenderingServer.frame_post_draw
     departing.set_volume("music",.35)
     departing.set_volume("sound",.45)
     departing.queue_free()
