@@ -152,7 +152,11 @@ func rebuild_menu(requested_focus := "") -> void:
         _sync_choices()
         _sync_air_controls()
         return
-    if menu_page!="main":
+    back_button.position=Vector2(52,184) if menu_page=="roster" else Vector2(360,28)
+    if menu_page=="roster":
+        menu.position=Vector2(52,230)
+        menu.size=Vector2(450,434)
+    elif menu_page!="main":
         menu.position=Vector2(360,74)
         menu.size=Vector2(560,572)
     elif session.screen=="title":
@@ -162,6 +166,7 @@ func rebuild_menu(requested_focus := "") -> void:
         menu.position=Vector2(420,126)
         menu.size=Vector2(440,480 if session.screen in ["pause","help"] else 398)
     if menu_page=="settings":_settings_page()
+    elif menu_page=="roster":_roster_page()
     elif menu_page=="help":_help_page()
     elif session.screen=="title":_title_page()
     elif session.screen in ["pause","help"]:_pause_page()
@@ -263,9 +268,10 @@ func _title_page() -> void:
     var row:=HBoxContainer.new()
     row.add_theme_constant_override("separation",8)
     menu_stack.add_child(row)
-    for key in ["controls","settings"]:
-        var page: String="help" if key=="controls" else "settings"
-        var button:=_action(row,key,"H" if key=="controls" else "F1",func():open_page(page))
+    for key in ["roster","controls","settings"]:
+        var page: String="help" if key=="controls" else key
+        var shortcut:String={"controls":"H","settings":"F1"}.get(key,"")
+        var button:=_action(row,key,shortcut,func():open_page(page))
         button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
         button.add_theme_font_size_override("font_size",15)
         button.custom_minimum_size.y=38
@@ -302,7 +308,7 @@ func _result_page() -> void:
 
 func open_page(page: String) -> void:
     if session.screen=="play":session.pause_game()
-    page_return_focus="controls" if page=="help" else "settings"
+    page_return_focus="controls" if page=="help" else page
     menu_page=page
     focus_key="back"
     rebuild_menu("back")
@@ -389,6 +395,15 @@ func _settings_page() -> void:
         session.save_options())
     _caption("settings_saved")
 
+func _roster_page() -> void:
+    _heading("roster")
+    var labels:Array=[]
+    for entry in preload("res://scripts/combat/fighter_roster.gd").ENTRIES:labels.append(entry.label)
+    _choice("player_character",labels,session.character_choices[0],func(index:int):session.set_character(0,index))
+    _choice("rival_character",labels,session.character_choices[1],func(index:int):session.set_character(1,index))
+    _caption("roster_hint")
+    _action(menu_stack,"fight","Enter",func():session.start_match(false),true)
+
 func _help_page() -> void:
     _heading("controls")
     for key in ["move_help","combo_help","air_help","defense_help","throw_help","wall_help","special_help","pressure_help","clash_help","air_lab_help"]:
@@ -464,13 +479,13 @@ func _draw() -> void:
     if not is_instance_valid(session):return
     draw_set_transform(Vector2.ZERO,0,size/Vector2(1280,720))
     if session.screen=="title":
-        if menu_page!="main":
+        if menu_page not in ["main","roster"]:
             _plate(Vector2.ZERO,Vector2(1280,720),Color(Tokens.NIGHT,.62))
             return
         draw_colored_polygon(PackedVector2Array([Vector2.ZERO,Vector2(540,0),Vector2(592,720),Vector2(0,720)]),Color(Tokens.NIGHT,.94))
         _text(Vector2(66,100),"AFTERHOURS",57,Tokens.TEAL,true)
         _text(Vector2(66,145),tr_text("subtitle"),29)
-        _text(Vector2(66,188),tr_text("intro"),15,Tokens.MUTED)
+        if menu_page!="roster":_text(Vector2(66,188),tr_text("intro"),15,Tokens.MUTED)
         _text(Vector2(66,694),tr_text("local")+"  /  ↑↓  Enter",12,Tokens.MUTED)
         _text(Vector2(940,686),tr_text("stage"),18,PAPER)
         return

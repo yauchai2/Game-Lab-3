@@ -1,19 +1,32 @@
 extends Node3D
-const Model = preload("res://assets/CHAR_PLAYER_A01.glb")
+const Roster = preload("res://scripts/combat/fighter_roster.gd")
 const Toon = preload("res://shaders/fighter_toon.gdshader")
 const Outline = preload("res://shaders/fighter_outline.gdshader")
 var model: Node3D
 var skeleton: Skeleton3D
 var materials: Array[ShaderMaterial] = []
 var team := Color("66e5db")
+var character_index := 0
+var model_scale := 2.1
 var oversized_bones: Array[int]=[]
 var elapsed := 0.0
 var motions := preload("res://scripts/combat/combat_motions.gd").new()
 
-func setup(color: Color) -> void:
+func setup(color: Color, selection := 0) -> void:
     team = color
-    model = Model.instantiate()
-    model.scale = Vector3.ONE * 2.1
+    character_index=clampi(selection,0,Roster.ENTRIES.size()-1)
+    var entry:Dictionary=Roster.entry(character_index)
+    if is_instance_valid(model):
+        remove_child(model)
+        model.queue_free()
+    skeleton=null
+    materials.clear()
+    oversized_bones.clear()
+    motions=preload("res://scripts/combat/combat_motions.gd").new()
+    elapsed=0.0
+    model_scale=entry.scale
+    model = (load(entry.path) as PackedScene).instantiate()
+    model.scale = Vector3.ONE * model_scale
     add_child(model)
     for mesh in model.find_children("*", "MeshInstance3D", true, false):
         for surface in mesh.mesh.get_surface_count():
@@ -80,7 +93,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         if f.health<=0:model.rotation.z=sin(pose_time*PI/.64)*.55
         stretch*=Vector3(1.18,.92,1.18)
     else:model.rotation.z=0.0
-    model.scale=Vector3.ONE*2.1*stretch
+    model.scale=Vector3.ONE*model_scale*stretch
     for mat in materials:
         mat.set_shader_parameter("flash", 1.0 if f.flash > 0 and not reduced else 0.0)
     if skeleton:

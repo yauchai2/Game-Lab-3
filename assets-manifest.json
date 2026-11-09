@@ -1,7 +1,7 @@
 {
   "engine_version_verified": "Godot 4.6.3",
   "default_generation_preference": "P1.0 (web)",
-  "source_geometry_status": "eight_assets_received_and_inspected",
+  "source_geometry_status": "prototype_library_and_four_combat_characters_indexed",
   "assets": [
     {
       "asset_id": "PROP_BIN_A01",
@@ -175,6 +175,81 @@
       "status": "accepted_for_static_prototype_pending_human_review",
       "provenance": "User-uploaded GLB named tripo_convert_8e7c67cc-8882-42c4-9474-56e4cb8c677c.glb; model version not reported for this upload.",
       "visual_review": "Cab, cargo box and visible wheels are recognizable; cargo rear is a plain panel without detailed door hardware."
+    },
+    {
+      "asset_id": "CHAR_FIGHTER_1",
+      "model": "godot/assets/characters/CHAR_FIGHTER_1.glb",
+      "runtime_adapter": "godot/scripts/combat/fighter_visual.gd",
+      "triangles": 1502,
+      "materials": 1,
+      "texture_pixels": [
+        1024,
+        1024
+      ],
+      "bytes": 253324,
+      "sha256": "a507c9f842ff7c1c804050f2f4e473e604f1413f55d1a8bff4da8a4b844c7f6f",
+      "scale": 2.1,
+      "skeleton_bones": 65,
+      "embedded_animations": 0,
+      "status": "integrated_shared_combat_roster_pending_human_review",
+      "provenance": "User supplied GLB in this conversation. No source rewrite or paid provider operation. No independent generator/license claim.",
+      "source_record": "references/characters/uploads-2026-11-09.json"
+    },
+    {
+      "asset_id": "CHAR_FIGHTER_3",
+      "model": "godot/assets/characters/CHAR_FIGHTER_3.glb",
+      "runtime_adapter": "godot/scripts/combat/fighter_visual.gd",
+      "triangles": 1535,
+      "materials": 1,
+      "texture_pixels": [
+        1024,
+        1024
+      ],
+      "bytes": 284188,
+      "sha256": "bac90f34f9d55d3d407a57dd47a6d55844f002a02e6fff42b9c5ac4c8f60b704",
+      "scale": 2.1,
+      "skeleton_bones": 65,
+      "embedded_animations": 0,
+      "status": "integrated_shared_combat_roster_pending_human_review",
+      "provenance": "User supplied GLB in this conversation. No source rewrite or paid provider operation. No independent generator/license claim.",
+      "source_record": "references/characters/uploads-2026-11-09.json"
+    },
+    {
+      "asset_id": "CHAR_FIGHTER_4",
+      "model": "godot/assets/characters/CHAR_FIGHTER_4.glb",
+      "runtime_adapter": "godot/scripts/combat/fighter_visual.gd",
+      "triangles": 1548,
+      "materials": 1,
+      "texture_pixels": [
+        1024,
+        1024
+      ],
+      "bytes": 255880,
+      "sha256": "c443bad6aa0a9d0ab49741fc0e7ee36cddab7b7271ff1e95342993a27df68941",
+      "scale": 2.1,
+      "skeleton_bones": 65,
+      "embedded_animations": 0,
+      "status": "integrated_shared_combat_roster_pending_human_review",
+      "provenance": "User supplied GLB in this conversation. No source rewrite or paid provider operation. No independent generator/license claim.",
+      "source_record": "references/characters/uploads-2026-11-09.json"
+    },
+    {
+      "asset_id": "CHAR_PLAYER_A01",
+      "model": "godot/assets/CHAR_PLAYER_A01.glb",
+      "runtime_adapter": "godot/scripts/combat/fighter_visual.gd",
+      "triangles": 1664,
+      "materials": 1,
+      "texture_pixels": [
+        1024,
+        1024
+      ],
+      "bytes": 358444,
+      "sha256": "12bb38212d67c8b28eeb6bbb64e3c354e2e9841d5fca51bdc1860e48691150ad",
+      "scale": 2.1,
+      "skeleton_bones": 65,
+      "embedded_animations": 0,
+      "status": "existing_shared_combat_roster",
+      "provenance": "Previously supplied user character-1.glb, preserved unchanged. See docs/CHARACTER_TEXTURES.zh-TW.md."
     }
   ],
   "pending_reference_only": [],

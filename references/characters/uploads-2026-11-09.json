@@ -1,0 +1,134 @@
+{
+  "inspection": "Python GLB binary/JSON/embedded image inspection; native validation is separate. game-dev CLI unavailable.",
+  "assets": [
+    {
+      "asset_id": "CHAR_FIGHTER_1",
+      "source_filename": "1.glb",
+      "source_file_id": "file_00000000b54c82118597d128862622e1",
+      "model": "godot/assets/characters/CHAR_FIGHTER_1.glb",
+      "bytes": 253324,
+      "sha256": "a507c9f842ff7c1c804050f2f4e473e604f1413f55d1a8bff4da8a4b844c7f6f",
+      "triangles": 1502,
+      "mesh_count": 1,
+      "joint_counts": [
+        65
+      ],
+      "animation_count": 0,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "1_basecolor",
+          "mime": "image/jpeg",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "47e0010fc98c5560b0983bc320eee8261fefdf43edc868f7140ec3b1922ea8c4"
+        }
+      ],
+      "local_position_bounds": [
+        {
+          "min": [
+            -0.26635754108428955,
+            -2.890551797918306e-07,
+            -0.1687011569738388
+          ],
+          "max": [
+            0.266357421875,
+            0.9995115995407104,
+            0.16870121657848358
+          ]
+        }
+      ],
+      "runtime_scale": 2.1,
+      "provenance": "User supplied GLB in this conversation. No source rewrite or paid provider operation. No independent generator/license claim.",
+      "runtime_status": "Shared combat retargeting, original material base color with existing toon/outline overrides; no character-specific moves yet."
+    },
+    {
+      "asset_id": "CHAR_FIGHTER_3",
+      "source_filename": "3.glb",
+      "source_file_id": "file_000000009eb88207b6997de6f2b31445",
+      "model": "godot/assets/characters/CHAR_FIGHTER_3.glb",
+      "bytes": 284188,
+      "sha256": "bac90f34f9d55d3d407a57dd47a6d55844f002a02e6fff42b9c5ac4c8f60b704",
+      "triangles": 1535,
+      "mesh_count": 1,
+      "joint_counts": [
+        65
+      ],
+      "animation_count": 0,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "stylized_3d_character_basecolor",
+          "mime": "image/jpeg",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "b88b66d63e64f2cc4b5d242fe8cc2ab880085aa26d8504ea880aa91338ecc95e"
+        }
+      ],
+      "local_position_bounds": [
+        {
+          "min": [
+            -0.23608407378196716,
+            -1.7865572488062753e-07,
+            -0.14086918532848358
+          ],
+          "max": [
+            0.23608389496803284,
+            0.9995117783546448,
+            0.14086918532848358
+          ]
+        }
+      ],
+      "runtime_scale": 2.1,
+      "provenance": "User supplied GLB in this conversation. No source rewrite or paid provider operation. No independent generator/license claim.",
+      "runtime_status": "Shared combat retargeting, original material base color with existing toon/outline overrides; no character-specific moves yet."
+    },
+    {
+      "asset_id": "CHAR_FIGHTER_4",
+      "source_filename": "4.glb",
+      "source_file_id": "file_00000000d050821185f2637b0649b76c",
+      "model": "godot/assets/characters/CHAR_FIGHTER_4.glb",
+      "bytes": 255880,
+      "sha256": "c443bad6aa0a9d0ab49741fc0e7ee36cddab7b7271ff1e95342993a27df68941",
+      "triangles": 1548,
+      "mesh_count": 1,
+      "joint_counts": [
+        65
+      ],
+      "animation_count": 0,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "4_basecolor",
+          "mime": "image/jpeg",
+          "size": [
+            1024,
+            1024
+          ],
+          "sha256": "cbf5d08f02412e3625a22e7c8c78a4e7483607b10ea155a0f06d3852ff167a16"
+        }
+      ],
+      "local_position_bounds": [
+        {
+          "min": [
+            -0.24877914786338806,
+            -1.1194529747626802e-08,
+            -0.14868159592151642
+          ],
+          "max": [
+            0.2487793266773224,
+            0.9995115399360657,
+            0.1486816704273224
+          ]
+        }
+      ],
+      "runtime_scale": 2.1,
+      "provenance": "User supplied GLB in this conversation. No source rewrite or paid provider operation. No independent generator/license claim.",
+      "runtime_status": "Shared combat retargeting, original material base color with existing toon/outline overrides; no character-specific moves yet."
+    }
+  ]
+}

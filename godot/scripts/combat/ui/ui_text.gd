@@ -2,6 +2,9 @@ extends RefCounted
 ## Product copy is keyed; simulation events and save identifiers stay language-independent.
 var language := "zh"
 const COPY := {
+"roster":["角色配搭","FIGHTERS"],"player_character":["你的角色","YOUR FIGHTER"],"rival_character":["對手角色","RIVAL FIGHTER"],
+"fighter_original":["原角色","ORIGINAL"],"fighter_1":["角色 1","FIGHTER 1"],"fighter_3":["角色 3","FIGHTER 3"],"fighter_4":["角色 4","FIGHTER 4"],
+"roster_hint":["左右角色即時預覽。對戰、練習與 AI Demo 沿用此配搭；目前共用招式與能力。","Live preview on the right. Fight, practice and AI demo use this pair; moves and stats are shared."],
 "demo_hits":["次命中","HITS"],"rush_controls":["按住 J 連擊 · K 挑空／暴扣 · L 爆發","HOLD J: RUSH / K: LAUNCH-SLAM / L: BURST"],
 "counter_ready":["格擋成功！J 反擊","PARRY! J TO COUNTER"],
 "rival_parry":["對手擋住了 · 重新找機會","RIVAL PARRIED / FIND AN OPENING"],

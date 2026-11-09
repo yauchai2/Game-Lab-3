@@ -1,5 +1,10 @@
 # Afterhours — interface design
 
+## Four-character roster — 2026-11-09
+
+The title now offers Fighters, with independent player/rival OptionButtons, a live world preview and saved choices. Preview uses the existing left-side match-card layout, leaves the right side undimmed and moves the camera slightly closer. These are shared-moveset character models; character-specific abilities and a full cinematic selection flow remain future work. See [docs/CHARACTER_ROSTER.md](docs/CHARACTER_ROSTER.md).
+
+
 ## Current combat update — 2026-11-09
 
 [docs/RUSH_REWORK.md](docs/RUSH_REWORK.md) is the current main-game contract: hold J for confirmed ground/air strings and paid pursuit, K launch/slam, L burst. The pressure-choice system remains in its dedicated lab. F12 is an endless live duel, with compact restart/exit controls and no chapters. Red-stage skills, BREAK and KO use actual actors against a temporary flat environment; KO removes the HUD and changes the camera. F2 restores the ordinary street presentation. Older lab-only/chapter descriptions below are historical.

@@ -1,5 +1,8 @@
 # Afterhours / Game-Lab-3
 
+最新[四角色配搭](docs/CHARACTER_ROSTER.md)：已加入你提供的 **1、3、4** 三個 GLB，主選單「**角色配搭**」可選自己及對手，即時預覽並保存；對戰／練習／F12 Demo 沿用。四位目前共用招式與能力，公開 Web 未更新。
+
+
 最新[**Rush 街鬥大改**](docs/RUSH_REWORK.md)：正式對戰 **按住 J 連段＋空中追擊、K 挑空／暴扣、L 爆發**；**F12** 看不會完結的雙 AI 自由交戰，R 重開、Esc 暫停。新增紅幕技能、BREAK 及近鏡環繞 KO。[15 秒無剪接 Demo](docs/evidence/rush-rework/endless-demo.mp4)／[紅幕 KO](docs/evidence/rush-rework/red-ko.mp4)。只更新原始碼，公開 Web 維持舊版。
 
 本節為最新操作；以下先前的「23 段技巧／N 下一段、空戰只限 F11、正式模式不改」均已由這輪取代，保留歷史可追溯。wev 音樂仍已接入。

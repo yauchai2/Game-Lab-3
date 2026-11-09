@@ -30,6 +30,7 @@ var trail_clock := 0.0
 var ink_pass: MeshInstance3D
 var reduced_effects := false
 var language := "zh"
+var character_choices := [0,1]
 var training_details := false
 var settings_save_clock := -1.0
 var practice := false
@@ -54,7 +55,7 @@ func _ready() -> void:
     for i in 2:
         var fighter := FighterVisual.new()
         add_child(fighter)
-        fighter.setup(COLORS[i])
+        fighter.setup(COLORS[i],character_choices[i])
         fighters.append(fighter)
     audio = FightAudio.new()
     add_child(audio)
@@ -583,6 +584,7 @@ func _present(delta: float) -> void:
         punch=recoil*exp(-recoil_age*18.0)*cos(recoil_age*23.0)
     var cinematic:=spectacle.camera_punch(reduced_effects)
     var desired_fov:=48.0-finish_zoom*6.0
+    if screen=="title" and hud.menu_page=="roster":desired_fov=40.0
     if not reduced_effects and screen=="play":
         if sim.rally.active() and sim.rally.phase=="compress":desired_fov=48.0-sim.rally.tier*.6
         desired_fov-=cinematic*3.0
@@ -852,9 +854,20 @@ func _restore_options() -> void:
     audio.effects_level=options.effects_level
     sim.difficulty=options.difficulty
     sim.partner_mode=options.partner_mode
+    character_choices=[options.player_character,options.rival_character]
+    for i in 2:
+        if fighters[i].character_index!=character_choices[i]:fighters[i].setup(COLORS[i],character_choices[i])
+
+func set_character(side:int,index:int) -> void:
+    if screen!="title" or side not in [0,1]:return
+    var selected:=clampi(index,0,FighterVisual.Roster.ENTRIES.size()-1)
+    if character_choices[side]==selected:return
+    character_choices[side]=selected
+    fighters[side].setup(COLORS[side],selected)
+    save_options()
 
 func save_options() -> void:
-    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"scene_edges":ink_pass.visible,"difficulty":sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level})
+    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"scene_edges":ink_pass.visible,"difficulty":sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":character_choices[1]})
 
 func return_to_title() -> void:
     if demo!=null:sim.partner_mode=demo_partner

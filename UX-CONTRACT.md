@@ -1,5 +1,10 @@
 # Native game UI contract
 
+## Roster — 2026-11-09
+
+Title → Fighters opens two native four-item selectors with live model previews and persistence. Back returns focus to Fighters; the Fight action starts the chosen pair. Fight, practice and endless Demo retain those choices; changing a model is rejected outside the title. Both sides may select the same model. New GLBs use the existing moves and stats; the copy says so. Exploration keeps the original model. Model replacement clears per-instance materials, active limb scaling and retarget caches; combat simulation is untouched.
+
+
 ## Current Rush flow — 2026-11-09
 
 Main gameplay authority is now [docs/RUSH_REWORK.md](docs/RUSH_REWORK.md) plus simulation; pressure choices remain a specialist lab. Hold J chains only confirmed legal attacks, K selects grounded launcher or aerial meteor, L queues a paid burst even while J is held. First-round energy allows L immediately. Landing protection and finite aerial limits preserve an escape.

@@ -1,5 +1,10 @@
 # 使用 GitHub Desktop 查看最新 Godot 場景
 
+## 新增三個角色
+
+Pull `codex/street-combat` 後等待新 GLB 匯入，F5 → **角色配搭**，分別選原角色／角色 1／3／4，即時看右方預覽。所選配搭保存並用於對戰、練習與 F12 Demo。目前共用招式與能力，詳見 [CHARACTER_ROSTER.md](CHARACTER_ROSTER.md)。
+
+
 ## 最新 Rush 版查看方法
 
 在 `codex/street-combat` **Fetch／Pull** 後，用 Godot 4.6.3 匯入／F5。Enter 對戰：**按住 J**、**K** 挑空或暴扣、**L** 爆發。主選單 **F12** 看無限雙 AI，R 重開、Esc 暫停、F12 退出，F2 比較減少演出。這輪有紅幕攻擊、BREAK／KO；N 不再換章。[新功能與影片](RUSH_REWORK.md)。只有來源分支更新，公開試玩網址保持舊版；雲端無法代你操作 Desktop。

@@ -1,5 +1,18 @@
 # 驗證紀錄與證據範圍
 
+## 最新：三個 GLB／四角色配搭（2026-11-09）
+
+功能見 [CHARACTER_ROSTER.md](CHARACTER_ROSTER.md)，靜態資料見 [uploads manifest](../references/characters/uploads-2026-11-09.json)。三個來源 GLB 不改位元組，各 1,502／1,535／1,548 tris、65 joints、1024² Base Color、零內嵌動畫。Python 檢查 GLB magic／version／長度、JSON／binary chunk、三角形模式、材質與圖片可解碼；這不是 `game-dev` receipt。該 CLI 缺少，未安裝或改用遠端生成。
+
+- [原生回歸 107/107](evidence/character-roster/native/summary.json)：新 roster 29、紅幕 18、Demo 28、UI 17、戰鬥輸入 15。四個實際 Skeleton3D 皆 65 骨骼且至少 50 個映射，判定期雙手放大、有限非退化骨矩陣及 F2 復原；切換模型不改 simulation。三位新角色各實際空連到 meteor 並勝出真回合，無限 Demo 保留指定不同配搭及真命中。驗證兩個四選項的原生 OptionButton 回呼、兩語言／三尺寸、儲存及非法編號限制。
+- 最後移除預覽頁返回鈕上方重疊提示，補 24 次反覆換角只保留一件模型及一份重定向快取，再跑 [新 roster 30/30](evidence/character-roster/final-native/summary.json)；上一輪 29 項不重複加總。
+- [無視窗回歸 104/104](evidence/character-roster/headless/summary.json)：Rush 21、戰鬥完善／偏好 35、UI 35、構圖 13。沒有改 simulation 規則，未無故重跑全部舊測試。本輪不同檢查合計 **212**。
+- [角色 4／3 預覽](evidence/character-roster/01_fighter_4_vs_3.png)、[角色 1／3 預覽](evidence/character-roster/02_fighter_1_vs_3.png)、[KO](evidence/character-roster/03_new_fighter_ko.png)及[Demo](evidence/character-roster/04_demo_pair.png)為原生引擎擷取，已實際檢視。原生輸入測試以固定步進／注入按鍵和選單回呼操作，不是人手試玩或完整美術驗收。較早 29 項成功報告亦保留，非首跑失敗。
+- [來源與擷取雜湊](evidence/character-roster/source-manifest.json)保存基線 135515f、候選程式／新素材 SHA-256；43 件既有模型／圖片／音訊不變，只重建 UI OFL 衍生字體。Godot 自動抽出新 GLB 的內嵌 JPG，不覆寫舊貼圖。
+
+Godot 4.6.3／Compatibility／Mesa llvmpipe／Dummy 音訊，最終日誌只有預期 VSync 提示，無腳本／資源退出錯誤。四位共用招式、判定及能力；角色專屬設計未做。未宣稱目標 GPU、人手手感或使用者電腦同步，公開 Web 未更新。
+
+
 ## 最新：Rush 主玩法／無限交戰／紅幕技能及 KO（2026-11-09）
 
 功能見 [RUSH_REWORK.md](RUSH_REWORK.md)，兩部影片的實際取樣範圍見 [COMBAT_VISUAL_STUDY.md](COMBAT_VISUAL_STUDY.md)。本輪改了正式規則與 Demo，不將上一輪的章節展示結果冒充這輪自由交戰。
