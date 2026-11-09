@@ -135,6 +135,7 @@ func _physics_process(_delta: float) -> void:
         _handle_event(event)
     if sim.phase in ["round_over", "match_over"]:
         _release_impacts(false)
+        result_clock=0.0
         screen = "result"
         audio.stop_all()
         audio.play_sound("ko")
@@ -280,6 +281,7 @@ func _present(delta: float) -> void:
     for i in fighters.size():
         var pose: Dictionary=sim.fighters[i].duplicate()
         if screen=="result":
+            if result_clock>.18:pose.flash=0
             pose.y=maxf(0,pose.y-maxf(0,result_clock-.15)*5.0)
             if i==sim.winner and result_clock>.45:
                 pose.state="idle"

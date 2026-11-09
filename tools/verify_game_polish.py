@@ -7,6 +7,7 @@ Native mode needs an available DISPLAY and Compatibility rendering.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import datetime as dt
 import json
 import os
@@ -51,9 +52,12 @@ def main() -> int:
         parser.error("Native Linux mode requires DISPLAY or WAYLAND_DISPLAY; headless mode cannot validate rendered MultiMesh transforms.")
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     out = (args.output or ROOT / "docs/evidence/local-runs" / stamp / args.mode).resolve()
+    selected=set(args.only.split(",")) if args.only else None
+    available={name for name,_,mode in CASES if mode==args.mode}
+    if selected is not None and not selected<=available:
+        parser.error("Unavailable cases for this mode: "+", ".join(sorted(selected-available)))
     out.mkdir(parents=True, exist_ok=True)
     results = []
-    selected=set(args.only.split(",")) if args.only else None
     for name, report_name, mode in CASES:
         if mode != args.mode or (selected is not None and name not in selected):
             continue
@@ -68,6 +72,7 @@ def main() -> int:
         if name == "verify_flyby":
             command += ["--fixed-fps", "60"]
         command += ["--script", f"res://tools/{name}.gd"]
+        case_sha=hashlib.sha256((ROOT/"godot/tools"/(name+".gd")).read_bytes()).hexdigest()
         started = time.monotonic()
         try:
             try:
@@ -88,6 +93,7 @@ def main() -> int:
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(report.read_bytes())
             result = {"name": name, "mode": mode, "exit_code": code,
+                      "harness_sha256": case_sha,
                       "seconds": round(time.monotonic() - started, 3),
                       "command": command, "report_written": written,
                       "passed": len(checks) - failed, "failed": failed,
@@ -103,6 +109,7 @@ def main() -> int:
                 report.write_bytes(previous)
     summary = {"created_utc": stamp, "source_commit": subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "tracked_runtime_changes": subprocess.check_output(["git","diff","HEAD","--name-only","--","godot/scripts","godot/scenes","godot/assets","godot/audio","godot/shaders","godot/project.godot"],cwd=ROOT,text=True).splitlines(),
         "mode": args.mode, "all_assertions_passed": bool(results) and all(r["success"] for r in results),
         "passed": sum(r["passed"] for r in results), "failed": sum(r["failed"] for r in results),
         "cases": results,
