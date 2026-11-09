@@ -1,5 +1,19 @@
 # 驗證紀錄與證據範圍
 
+## 最新：wev 官方音樂接入（2026-11-09）
+
+使用者確認可用並指示自行下載，官方 Bandcamp 免費下載成功取得 family ties (wev edit) MP3 320，全曲 225.802 秒；不是 SoundCloud 串流擷取，未購買付費 OST。官方下載的最初 URL 回傳 Download Expired，依官方頁面 JS 的 statdownload／伺服器 retry_url 流程取得 HTTP 200 audio/mpeg。未登入、提交 email 或繞驗證；沒有將短期下載簽章寫入 repo。
+
+- [音訊來源／SHA-256／量測](../references/audio-sources/worldwidewev/admitted.json)：9,075,311 bytes 原 MP3（不提交），4,047,248 bytes 遊戲 OGG。全曲首尾淡化；FFmpeg 量測衍生 −18.02 LUFS-I／−10.01 dBTP，未宣稱實聽或小節無縫循環。
+- [本輪原玩法回歸](evidence/wev-integration/headless/summary.json) **103/103**：場景音訊 33、戰鬥完善 35、介面 35。退出釋放修正後另重跑 [場景音訊 33/33](evidence/wev-integration/final-audio-regression/summary.json)，不重複加總。
+- [新音訊流程 20/20](evidence/wev-integration/final-audio/summary.json)：實際 OGG 解碼／完整長度、實例隔離、缺檔 fallback、持續播放頭、duck 恢復、音量零／mute／暫停、20 次導覽循環、實際 seek 近曲末並跨端點循環、十聲道上限。Master AudioEffectCapture 得到 7,680 frames 並檢查當次輸出未削波；這是短取樣，不是全曲硬體或人工混音驗收。
+- [原生介面輸入 17/17](evidence/wev-integration/native/summary.json)；同摘要亦含初版音訊 19 項，其後完整 20 項以上方 final-audio 為準。本輪不同檢查合計 **140**，不把重跑重複計數。
+- [設定頁原生擷取](evidence/wev-integration/settings-credit.png) 已檢視，曲名／作者及獨立音量可見。匯入成功；新衍生檔不覆蓋原 CC0 資源。
+
+首次音訊工具 19/19 但退出有 OGG 音效播放實例未釋放警告，保留 runtime-first.log／json。補上播放實例明確 stop 及工具等待清理後，final-audio／final-native-mix 日誌只剩預期軟體 VSync 提示，沒有腳本錯誤／退出資源警告。這是實際問題修正，不以通過斷言掩蓋診斷。
+
+環境 Godot 4.6.3 Compatibility／Mesa llvmpipe／Dummy audio。實際解碼與混音取樣不等於真人聆聽，未宣稱耳機／喇叭、目標 GPU 或使用者電腦驗收。只更新來源分支，未更新 gh-pages／公開 Web。
+
 ## 最新：wev 可用狀態更新（2026-11-09，僅文件）
 
 使用者確認「wev 音樂已可用」已記錄；工作區檔案搜尋只找到既有音訊，未找到 wev 音檔，未附新素材連結。本輪只更新交接／待辦／決策與接入狀態，未更換音檔或執行程式，未重跑遊戲測試；沒有聲稱完成聆聽、混音或獨立授權查驗。公開 Web 不變。

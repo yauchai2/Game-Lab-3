@@ -19,6 +19,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES = [
+    ("verify_wev_audio", "wev-integration/runtime.json", "native"),
     ("verify_air_counter", "air-reversal/rules.json", "headless"),
     ("verify_air_counter_input", "air-reversal/input.json", "native"),
     ("verify_aerial_street", "aerial-street/rules.json", "headless"),

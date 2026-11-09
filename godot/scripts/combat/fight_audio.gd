@@ -1,5 +1,5 @@
 extends Node
-## CC0 music / physical impacts plus original low-frequency energy layers.
+## User-approved wev music, CC0 impacts and original energy layers.
 var muted := false
 var music_muted := false
 var music_level := 0.75
@@ -11,6 +11,9 @@ var music: AudioStreamPlayer
 var context := "title"
 var duck_time := 0.0
 const OPEN := "res://audio/open/"
+const WEV := "res://audio/wev/family_ties_game.ogg"
+var music_credit := ""
+var music_trim_db := 0.0
 
 func _ready() -> void:
     var files := {
@@ -35,11 +38,21 @@ func _ready() -> void:
         voices.append(voice)
     music = AudioStreamPlayer.new()
     music.name = "BackgroundMusic"
-    var track: AudioStreamOggVorbis = load(OPEN+"level1.ogg").duplicate(true)
-    track.loop = true
-    music.stream = track
-    music.volume_db = -19.0
+    music.stream = music_stream(WEV)
+    music.volume_db = -19.0+music_trim_db
     add_child(music)
+
+func music_stream(path: String) -> AudioStreamOggVorbis:
+    var selected:=path if ResourceLoader.exists(path,"AudioStreamOggVorbis") else OPEN+"level1.ogg"
+    var source:=load(selected) as AudioStreamOggVorbis
+    if source==null:
+        selected=OPEN+"level1.ogg"
+        source=load(selected) as AudioStreamOggVorbis
+    music_trim_db=7.0 if selected==WEV else 0.0
+    music_credit="wev / family ties (wev edit)" if selected==WEV else "Juhani Junkala / Level 1 (CC0)"
+    var track: AudioStreamOggVorbis=source.duplicate(true)
+    track.loop=true
+    return track
 
 func _process(delta: float) -> void:
     duck_time = maxf(0.0,duck_time-delta)
@@ -49,7 +62,7 @@ func _process(delta: float) -> void:
     # state when deciding to start, then pause/resume an existing playback.
     if not pause_requested and not music.playing: music.play()
     music.stream_paused = pause_requested
-    var target_db := (-13.0 if context=="play" else -19.0) - (4.0 if duck_time>0 else 0.0) + linear_to_db(maxf(.001,music_level))
+    var target_db := (-13.0 if context=="play" else -19.0) - (4.0 if duck_time>0 else 0.0) + music_trim_db + linear_to_db(maxf(.001,music_level))
     music.volume_db = lerpf(music.volume_db,target_db,1.0-exp(-delta*9.0))
 
 func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
@@ -69,6 +82,8 @@ func stop_all() -> void:
 
 func _exit_tree() -> void:
     for voice in voices:
+        voice.stream_paused = false
+        if voice.has_stream_playback(): voice.get_stream_playback().stop()
         voice.stop()
         voice.stream = null
     if is_instance_valid(music):

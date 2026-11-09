@@ -1,0 +1,192 @@
+{
+  "baseline": "70ded9998c1091bc8cc09033a345e5053a37fb25",
+  "original_assets": [
+    {
+      "path": "godot/assets/CHAR_PLAYER_A01.glb",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/CHAR_PLAYER_A01_stylized_3d_character_basecolor.jpg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_BIN_A01.glb",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_CRATES_A01.glb",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_HYDRANT_A01.glb",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_MAILBOX_A01.glb",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_SHOP_STOOL_A01.glb",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/SKY_BLUE_A01.png",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_CAR_A01.glb",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_CAR_A01_car_3d_model_basecolor.jpg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_TRUCK_A01.glb",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_VAN_A01.glb",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_VAN_A01_van_3d_model_basecolor.jpg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/art/graffiti_swift_A01.png",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/corner_plaster_128.png",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/corner_shutter_128.png",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/corner_tiles_128.png",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/painted_concrete_128.png",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/road_asphalt_128.png",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/sidewalk_tiles_128.png",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/engine_placeholder.wav",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/footstep_concrete_000.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/footstep_concrete_003.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactBell_heavy_003.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactGlass_heavy_000.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactMetal_heavy_003.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactMetal_light_000.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_heavy_000.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_heavy_001.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_000.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_001.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_002.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactSoft_heavy_000.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactSoft_medium_001.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactTin_medium_001.ogg",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/level1.ogg",
+      "unchanged": true
+    }
+  ],
+  "all_original_unchanged": true,
+  "candidate_runtime": [
+    {
+      "path": "godot/scripts/combat/fight_audio.gd",
+      "sha256": "f0eb72da04629a79ae616202e4932746db3bc1bbc881fa9e85da1e9a29132012"
+    },
+    {
+      "path": "godot/scripts/combat/fight_hud.gd",
+      "sha256": "aae00d86c16978949434ba703d1ccc462f2441bf4c111304022d470985b68477"
+    },
+    {
+      "path": "godot/tools/verify_wev_audio.gd",
+      "sha256": "88ad9ef0be5fe7d6a338eed5da85df0a158eee5e83f371b69631af8dccf380ff"
+    },
+    {
+      "path": "godot/audio/wev/family_ties_game.ogg",
+      "sha256": "a4c11da48bb3c2e11bbb15bc5f6dc11b0802f7aa391390ae90dc1b591514bbc3"
+    }
+  ]
+}

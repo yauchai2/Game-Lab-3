@@ -1,5 +1,15 @@
 # wev／worldwidewev：選曲與音訊接入計劃
 
+## 最新接入：官方免費下載已取得（2026-11-09）
+
+使用者其後明確要求自行尋找下載方法並使用 wev 音樂。已經藝術家官方 Bandcamp 免費下載流程取得 [family ties (wev edit)](https://worldwidewev.bandcamp.com/track/family-ties-wev-edit) 的完整 MP3 320（225.802 秒），HTTP 200 audio/mpeg；經官方 statdownload 及伺服器提供的過期連結重試完成，不是 SoundCloud 串流轉錄。未登入、提供 email、購買、聯絡藝術家或下載付費《OST》曲目。
+
+已加入遊戲衍生 `godot/audio/wev/family_ties_game.ogg`，約 4.05 MB；原始 MP3 不提交。原檔與衍生雜湊、來源／量測見 [admitted.json](../references/audio-sources/worldwidewev/admitted.json)。使用者確認可用及下載／使用指示為本次接入依據，不將作品改標 CC0，也不推定 wev 單獨擁有 edit 的所有底層權利。
+
+目前選單、練習、戰鬥及結果共用持續播放頭；選單較輕、戰鬥提高 6 dB，重擊／格擋時另壓低 4 dB。原曲 −6.94 LUFS-I／+0.04 dBTP，衍生 −18.02 LUFS-I／−10.01 dBTP；採二階段量測處理、完整曲首尾短淡化，再全曲循環，未聲稱無縫小節循環或量測 BPM。設定頁顯示實際作者／曲名、音樂／音效獨立音量；缺檔保留 CC0 fallback。現有打擊聲與原創合成音保留，不從歌曲抽取音效。
+
+執行期驗證與原生介面見 [VALIDATION.md](VALIDATION.md)／[設定畫面](evidence/wev-integration/settings-credit.png)。僅更新來源分支供 Desktop Pull，不更新公開 Web；未操作使用者電腦，真人聆聽仍待驗收。以下為前輪歷史狀態，不覆蓋這次已接入的結果。
+
 ## 最新狀態：使用者確認可用（2026-11-09）
 
 使用者最新明確表示「wev 音樂已可用」，後續按此確認推進遊戲選曲／接入，不再沿用「尚未取得、只能規劃」作為阻塞。此為使用者提供的可用狀態，未聲稱獨立查驗授權文件或整個藝術家目錄。

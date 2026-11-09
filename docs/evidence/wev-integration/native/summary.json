@@ -1,0 +1,73 @@
+{
+  "created_utc": "20261109T062243Z",
+  "source_commit": "70ded9998c1091bc8cc09033a345e5053a37fb25",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/fight_audio.gd",
+    "godot/scripts/combat/fight_hud.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 36,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_wev_audio",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "21739dad04ce86a92c3042aa6d5176ae69150123711f69409b1d43f0d7f24dfa",
+      "seconds": 1.169,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_wev_audio.gd"
+      ],
+      "report_written": true,
+      "passed": 19,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+        "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_ui_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "13b18f0f153fdca5e7f7b3656a97d6f512bec0843952a62e491dd53037672be8",
+      "seconds": 12.706,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_ui_input.gd"
+      ],
+      "report_written": true,
+      "passed": 17,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

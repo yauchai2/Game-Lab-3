@@ -354,6 +354,7 @@ func _settings_page() -> void:
     _toggle("music_enable",not session.audio.music_muted,func(value:bool):
         session.audio.music_muted=not value
         session.save_options())
+    menu_stack.add_child(_label(session.audio.music_credit,14,Tokens.MUTED))
     _volume("music",session.audio.music_level)
     _volume("sound",session.audio.effects_level)
     _toggle("reduced",session.reduced_effects,func(value:bool):

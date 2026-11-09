@@ -1,0 +1,52 @@
+Input #0, mp3, from '/tmp/wev-masters/family-ties-wev-edit.mp3':
+  Metadata:
+    title           : family ties (wev edit)
+    artist          : wev
+    comment         : Visit https://worldwidewev.bandcamp.com
+    date            : 2023
+  Duration: 00:03:45.80, start: 0.025056, bitrate: 321 kb/s
+  Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, stereo, fltp, 320 kb/s
+      Metadata:
+        encoder         : LAME3.99r
+      Side data:
+        replaygain: track gain - -7.700000, track peak - unknown, album gain - unknown, album peak - unknown, 
+  Stream #0:1: Video: mjpeg (Baseline), yuvj444p(pc, bt470bg/unknown/unknown), 700x700 [SAR 72:72 DAR 1:1], 90k tbr, 90k tbn (attached pic)
+      Metadata:
+        title           : cover
+        comment         : Cover (front)
+Stream mapping:
+  Stream #0:1 -> #0:0 (mjpeg (native) -> wrapped_avframe (native))
+  Stream #0:0 -> #0:1 (mp3 (mp3float) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    title           : family ties (wev edit)
+    artist          : wev
+    comment         : Visit https://worldwidewev.bandcamp.com
+    date            : 2023
+    encoder         : Lavf61.7.103
+  Stream #0:0: Video: wrapped_avframe, yuvj444p(pc, bt470bg/unknown/unknown, progressive), 700x700 [SAR 72:72 DAR 1:1], q=2-31, 200 kb/s, 90k fps, 90k tbn (attached pic)
+      Metadata:
+        title           : cover
+        comment         : Cover (front)
+        encoder         : Lavc61.19.101 wrapped_avframe
+  Stream #0:1: Audio: pcm_s16le, 192000 Hz, stereo, s16, 6144 kb/s
+      Metadata:
+        encoder         : Lavc61.19.101 pcm_s16le
+      Side data:
+        replaygain: track gain - -7.700000, track peak - unknown, album gain - unknown, album peak - unknown, 
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.2e-05x    frame=    1 fps=1.0 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=1.1e-05x    frame=    1 fps=0.7 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=7.33e-06x    frame=    1 fps=0.5 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=5.5e-06x    frame=    1 fps=0.4 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=4.4e-06x    frame=    1 fps=0.3 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=3.67e-06x    frame=    1 fps=0.3 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=3.14e-06x    frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.75e-06x    frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.44e-06x    frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.2e-06x    frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2e-06x    frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=1.83e-06x    [Parsed_loudnorm_0 @ 0x7f718c002080] 
+{
+	"input_i" : "-6.94",
+	"input_tp" : "0.04",
+	"input_lra" : "3.80",
+	"input_thresh" : "-17.07",
+	"output_i" : "-17.17",
+	"output_tp" : "-6.24",
+	"output_lra" : "3.60",
+	"output_thresh" : "-27.24",
+	"normalization_type" : "dynamic",
+	"target_offset" : "-0.83"
+}
+[out#0/null @ 0x5602680e1200] video:0KiB audio:169314KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.2 q=-0.0 Lsize=N/A time=00:00:00.00 bitrate=N/A speed=1.81e-06x    

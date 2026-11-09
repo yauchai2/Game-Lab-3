@@ -27,7 +27,7 @@
 - 2026-11-09 使用者其後已授權開始優化及誇張視覺；F10 練習換手原型及漫畫爆發已落地，詳見 docs/KINETIC_OVERDRIVE.md。正式壓力三選保持；持鍵蓄力／選角等仍待做。所有強演出保留 F2 及重開清理。
 
 - 2026-11-09 新參考與後續訊息將跳躍、空連及誇張姿態列為下一輪優先，見 docs/AERIAL_ACTION_AUDIO_PLAN.zh-TW.md。先有界空中原型，原文數值／LLB 內部實作不是已核實事實。
-- 使用者指定 wev／worldwidewev 並允許更換音訊；其後確認「尚未取得，先完成選曲及接入規劃」。見 docs/WEV_MUSIC_PLAN.md，使用者其後確認「wev 音樂已可用」；按此最新狀態推進，目前待提供音檔／素材連結，音檔到位前保留 CC0 fallback，不把候選曲或下載旗標視為已錄用，不擅自聯絡藝術家。
+- 使用者指定 wev／worldwidewev 並允許更換音訊；其後確認「尚未取得，先完成選曲及接入規劃」。見 docs/WEV_MUSIC_PLAN.md，使用者其後確認「wev 音樂已可用」；按此最新狀態推進，其後使用者要求自行下載，已從官方免費下載接入 family ties (wev edit)，詳見 WEV_MUSIC_PLAN.md 最新段／admitted.json；保留 CC0 缺檔 fallback，不把候選曲或下載旗標視為已錄用，不擅自聯絡藝術家。
 
 - 使用者其後「繼續」已落地 F11 空中訓練，見 docs/AERIAL_STREET.md。新跳躍／追擊／空連只在該練習；正式模式保持。新姿態為程序疊加；空中反制其後已落地 docs/AIR_REVERSAL.md（F11 → F8 教室）；完整角色選角仍待做，不把本輪當整份路線已完成。
 
