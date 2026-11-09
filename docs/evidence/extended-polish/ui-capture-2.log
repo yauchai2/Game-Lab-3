@@ -1,0 +1,40 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+SCRIPT ERROR: Parse Error: Cannot infer the type of "preserve_scroll" variable because the value doesn't have a set type.
+          at: GDScript::reload (res://scripts/combat/fight_hud.gd:87)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/fight_session.gd:0)
+ERROR: Failed to load script "res://scripts/combat/fight_session.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript.cpp:2907)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+          at: _ready (res://scripts/combat/fight_session.gd:52)
+          GDScript backtrace (most recent call first):
+              [0] _ready (res://scripts/combat/fight_session.gd:52)
+              [1] run (res://tools/capture_extended_polish.gd:12)
+SCRIPT ERROR: Invalid call. Nonexistent function 'queue_redraw' in base 'Nil'.
+          at: shot (res://tools/capture_extended_polish.gd:78)
+          GDScript backtrace (most recent call first):
+              [0] shot (res://tools/capture_extended_polish.gd:78)
+              [1] run (res://tools/capture_extended_polish.gd:18)
+SCRIPT ERROR: Invalid call. Nonexistent function 'rebuild_menu' in base 'Nil'.
+          at: set_language (res://scripts/combat/fight_session.gd:391)
+          GDScript backtrace (most recent call first):
+              [0] set_language (res://scripts/combat/fight_session.gd:391)
+              [1] run (res://tools/capture_extended_polish.gd:19)
+SCRIPT ERROR: Invalid call. Nonexistent function 'queue_redraw' in base 'Nil'.
+          at: shot (res://tools/capture_extended_polish.gd:78)
+          GDScript backtrace (most recent call first):
+              [0] shot (res://tools/capture_extended_polish.gd:78)
+              [1] run (res://tools/capture_extended_polish.gd:20)
+SCRIPT ERROR: Invalid call. Nonexistent function 'rebuild_menu' in base 'Nil'.
+          at: set_language (res://scripts/combat/fight_session.gd:391)
+          GDScript backtrace (most recent call first):
+              [0] set_language (res://scripts/combat/fight_session.gd:391)
+              [1] run (res://tools/capture_extended_polish.gd:21)
+SCRIPT ERROR: Invalid call. Nonexistent function 'open_page' in base 'Nil'.
+          at: run (res://tools/capture_extended_polish.gd:22)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/capture_extended_polish.gd:22)

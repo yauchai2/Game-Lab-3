@@ -1,0 +1,11 @@
+{
+  "source_commit": "b6e439b",
+  "duration_seconds_requested": 3600,
+  "method": "native rendering and bot simulation driven by Timer callbacks; includes settings/language cycles",
+  "audio": "muted Dummy driver",
+  "renderer": "Godot 4.6.3 Compatibility / Mesa llvmpipe; not a target GPU benchmark",
+  "counter_note": "Legacy matches counts result/restart cycles, not complete first-to-two matches.",
+  "environment_interrupted": true,
+  "interruption_observed_utc": "2026-11-08T20:05:40.989256+00:00",
+  "completed": false
+}

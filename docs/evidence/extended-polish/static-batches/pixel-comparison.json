@@ -1,0 +1,34 @@
+[
+  {
+    "camera": "fight",
+    "changed_pixels": 467,
+    "total_pixels": 921600,
+    "max_channel_difference": 236,
+    "mean_channel_difference": 0.010380859375,
+    "pixels_difference_gt_8": 158
+  },
+  {
+    "camera": "wide",
+    "changed_pixels": 1288,
+    "total_pixels": 921600,
+    "max_channel_difference": 234,
+    "mean_channel_difference": 0.03963686342592593,
+    "pixels_difference_gt_8": 1059
+  },
+  {
+    "camera": "left",
+    "changed_pixels": 54,
+    "total_pixels": 921600,
+    "max_channel_difference": 211,
+    "mean_channel_difference": 0.0008206741898148148,
+    "pixels_difference_gt_8": 4
+  },
+  {
+    "camera": "right",
+    "changed_pixels": 55,
+    "total_pixels": 921600,
+    "max_channel_difference": 229,
+    "mean_channel_difference": 0.0014876302083333334,
+    "pixels_difference_gt_8": 12
+  }
+]

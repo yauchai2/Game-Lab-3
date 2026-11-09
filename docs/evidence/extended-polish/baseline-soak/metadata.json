@@ -1,0 +1,10 @@
+{
+  "source_commit": "dcd004971e0d45667da2d54fe0abd0260118ab42",
+  "method": "10800-second wall-time native rendering with pure simulation driven by Timer callbacks",
+  "audio": "muted, Dummy driver",
+  "renderer": "Godot 4.6.3 Compatibility / Mesa llvmpipe; concurrent processes on 3 CPU cores, not a target GPU benchmark",
+  "counter_note": "Legacy matches counts result/restart cycles, not complete first-to-two matches.",
+  "environment_interrupted": true,
+  "interruption_observed_utc": "2026-11-08T20:05:40.988965+00:00",
+  "completed": false
+}

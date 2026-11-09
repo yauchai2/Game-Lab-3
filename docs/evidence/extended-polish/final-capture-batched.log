@@ -1,0 +1,27 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+EXTENDED_CAPTURE 01_title_zh error=0
+EXTENDED_CAPTURE 02_title_en error=0
+EXTENDED_CAPTURE 03_settings_top error=0
+EXTENDED_CAPTURE 03a_language_popup error=0
+EXTENDED_CAPTURE 04_settings_bottom error=0
+EXTENDED_CAPTURE 05_help error=0
+EXTENDED_CAPTURE 06_training error=0
+EXTENDED_CAPTURE 07_training_details error=0
+EXTENDED_CAPTURE 08_drill_ready error=0
+EXTENDED_CAPTURE 09_clash error=0
+EXTENDED_CAPTURE 10_locked error=0
+EXTENDED_CAPTURE 11_counter error=0
+EXTENDED_CAPTURE 12_pause error=0
+EXTENDED_CAPTURE 12a_throw_startup error=0
+EXTENDED_CAPTURE 12b_throw_hit error=0
+EXTENDED_CAPTURE 12bb_throw_release error=0
+EXTENDED_CAPTURE 12c_edge_bounce error=0
+EXTENDED_CAPTURE 12d_recovery_prompt error=0
+EXTENDED_CAPTURE 12e_recovery error=0
+EXTENDED_CAPTURE 13_result error=0
+EXTENDED_CAPTURE 14_street_front error=0
+EXTENDED_CAPTURE 15_blue_facade error=0

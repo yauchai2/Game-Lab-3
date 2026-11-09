@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "name": "hundreds of static boxes are grouped into a smaller material set",
+      "passed": true
+    },
+    {
+      "name": "every source has exactly one batch slot",
+      "passed": true
+    },
+    {
+      "name": "world-space box bounds are unchanged",
+      "passed": true
+    },
+    {
+      "name": "hard face normals survive nonuniform instance scaling",
+      "passed": true
+    },
+    {
+      "name": "all supported shader uniforms textures and colors are identical",
+      "passed": true
+    },
+    {
+      "name": "unit cube UVs equal original BoxMesh UVs",
+      "passed": true
+    },
+    {
+      "name": "source draws and shadows are suppressed while batches preserve masks",
+      "passed": true
+    },
+    {
+      "name": "animated aircraft remains outside static batch root",
+      "passed": true
+    },
+    {
+      "name": "character skin geometry remains unbatched",
+      "passed": true
+    },
+    {
+      "name": "existing colored corner MultiMeshes remain intact",
+      "passed": true
+    },
+    {
+      "name": "debug opt-out retains original drawing route",
+      "passed": true
+    },
+    {
+      "name": "colliders are preserved independently of render batching",
+      "passed": true
+    },
+    {
+      "name": "walk mode retains interactive material comparison",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 13,
+  "stats": {
+    "batches": 16,
+    "primitive": "unit BoxMesh",
+    "source_boxes": 219,
+    "source_nodes_preserved": true,
+    "walk_material_comparison_unmodified": true
+  }
+}

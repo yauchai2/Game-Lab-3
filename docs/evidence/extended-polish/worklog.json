@@ -1,0 +1,58 @@
+{
+  "started_utc": "2026-11-08T17:21:33Z",
+  "minimum_finish_utc": "2026-11-08T20:21:33Z",
+  "timezone": "Asia/Hong_Kong",
+  "source_branch": "codex/street-combat",
+  "public_web_updates_authorized": false,
+  "milestones": [
+    {
+      "at_utc": "2026-11-08T18:51:51.458275+00:00",
+      "source_checkpoint": "0d759fc",
+      "status": "Native UI and framing checks passed; starting final-candidate 100-minute soak, baseline 3-hour observation continues."
+    },
+    {
+      "at_utc": "2026-11-08T19:08:49.255025+00:00",
+      "source_checkpoint": "0d3f852",
+      "status": "Final UI contrast adjustment. Previous candidate observations preserved as smoke runs, not completed soaks. Starting final-candidate 80-minute observation; three-hour baseline and native gameplay input soak continue."
+    },
+    {
+      "at_utc": "2026-11-08T19:19:21.165722+00:00",
+      "status": "Native input observation completed: 1200.097 seconds, 31 rounds, 13 matches, 6698 injected key transitions, 27670 actual physics ticks. Not human playtesting or target hardware FPS."
+    },
+    {
+      "at_utc": "2026-11-08T19:32:07.443471+00:00",
+      "source_checkpoint": "b6e439b",
+      "status": "Final settings scrollbar refinement verified. Previous candidate snapshots kept as smoke observations. Final runtime frozen; starting a 60-minute native observation. No gameplay rules changed after the 20-minute input soak."
+    },
+    {
+      "at_utc": "2026-11-08T19:55:08.652615+00:00",
+      "status": "Final runtime b6e439b frozen. Native focus changes 7/7, final UI target checks 53/53, and final settings/animation captures completed. Observation runs remain in progress."
+    },
+    {
+      "at_utc": "2026-11-08T20:05:40.989350+00:00",
+      "status": "Environment reconnect terminated Xorg and native test processes. Files retained. Baseline and current candidate marked interrupted; no completed long-run claim. Starting a new 30-minute native observation of unchanged b6e439b runtime on a fresh X11 display."
+    },
+    {
+      "at_utc": "2026-11-09T00:40:38.016648+00:00",
+      "status": "User resumed the task after an idle gap. Completed resumed observation found on disk (1800.025 seconds). Added a presentation-only fix for KO flash and stale per-round result animation time; 15 headless regression checks pass. The idle gap is not counted as active work."
+    },
+    {
+      "at_utc": "2026-11-09T00:46:33.221094+00:00",
+      "source_checkpoint": "a238e3e6734f4b9bd63a1447cd01dc0c3c4c55dc",
+      "status": "Result presentation checks passed in headless and native modes (15 each). Resumed 30-minute observation completed with 21 result restarts, 7 menu cycles and 5 recoveries. Final runtime regression subset passed 69 checks. Preparing source-only publication; earlier interrupted runs remain explicitly incomplete."
+    }
+  ],
+  "active_work_segments": [
+    {
+      "started_utc": "2026-11-08T17:21:33Z",
+      "ended_utc": "2026-11-08T20:21:28Z",
+      "basis": "first and last recorded tool times before the later Continue message; conservative lower bound"
+    },
+    {
+      "started_utc": "2026-11-09T00:38:09Z",
+      "ended_utc": "2026-11-09T00:46:33.221094+00:00",
+      "basis": "resumed interactive work after the user asked to continue"
+    }
+  ],
+  "finished_verification_utc": "2026-11-09T00:46:33.221094+00:00"
+}

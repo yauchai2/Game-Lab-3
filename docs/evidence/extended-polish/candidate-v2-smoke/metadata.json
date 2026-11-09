@@ -1,0 +1,8 @@
+{
+  "source_commit": "0d759fc2fbe444e0190ad096ebd8e9e977b978be",
+  "duration_requested_seconds": 6000,
+  "completed": false,
+  "interrupted_for_iteration": true,
+  "last_observed_elapsed_seconds": 963.526,
+  "counter_note": "Legacy matches counts result/restart cycles, not complete first-to-two matches."
+}

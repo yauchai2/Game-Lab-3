@@ -1,0 +1,82 @@
+{
+  "checks": [
+    {
+      "passed": true,
+      "path": "res://scripts/aircraft_flyby.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/combat_motions.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/fight_audio.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/fight_hud.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/fight_preferences.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/fight_session.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/fight_simulation.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/fight_vfx.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/impact_shapes.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/pressure_exchange.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/static_street_batches.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/street_backdrop.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/ui/street_hud.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/ui/ui_text.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/combat/ui/ui_theme.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/corner_streetscape.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/street_dressing.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/style_sample.gd"
+    },
+    {
+      "passed": true,
+      "path": "res://scripts/walk_session.gd"
+    }
+  ],
+  "failed": 0,
+  "passed": 19
+}

@@ -1,0 +1,9 @@
+{
+  "source_commit": "b6e439b208dc7941e6b364cf6b5cdf3290f49c65",
+  "duration_requested_seconds": 1800,
+  "started_after_environment_reconnect_utc": "2026-11-08T20:06:07.052111+00:00",
+  "method": "fresh native render/Timer observation, separate from the interrupted earlier run",
+  "counter_note": "Legacy matches counts result/restart cycles, not complete first-to-two matches.",
+  "audio": "muted Dummy driver",
+  "renderer": "Godot 4.6.3 Compatibility / Mesa llvmpipe; not target hardware FPS"
+}
