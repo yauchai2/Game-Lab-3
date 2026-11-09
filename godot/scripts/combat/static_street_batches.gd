@@ -40,8 +40,8 @@ static func bake(root: Node3D, supported: Array) -> Dictionary:
         for i in group.transforms.size():multimesh.set_instance_transform(i,group.transforms[i])
         var instance:=MultiMeshInstance3D.new()
         instance.name="Batch_%02d"%group.id
-        instance.multimesh=multimesh
         instance.material_override=group.material
+        instance.multimesh=multimesh
         instance.layers=group.layers
         instance.cast_shadow=group.shadow
         container.add_child(instance)

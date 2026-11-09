@@ -127,7 +127,7 @@ func _ready() -> void:
     menu.add_child(menu_scroll)
     menu_stack=VBoxContainer.new()
     menu_stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-    menu_stack.add_theme_constant_override("separation",9)
+    menu_stack.add_theme_constant_override("separation",14)
     menu_scroll.add_child(menu_stack)
     back_button=Button.new()
     back_button.position=Vector2(360,28)
@@ -142,19 +142,17 @@ func _ready() -> void:
     layout_root.add_child(back_button)
     audio_restore=Button.new()
     audio_restore.text="SOUND OFF / RESTORE"
-    audio_restore.position=Vector2(976,605);audio_restore.size=Vector2(265,38)
-    audio_restore.add_theme_font_size_override("font_size",18)
+    audio_restore.position=Vector2(906,600);audio_restore.size=Vector2(334,54)
+    audio_restore.add_theme_font_size_override("font_size",28)
     audio_restore.pressed.connect(_restore_sound)
     layout_root.add_child(audio_restore)
     pause_button=Button.new()
-    pause_button.text="Ⅱ  PAUSE"
-    pause_button.position=Vector2(1152,93);pause_button.size=Vector2(98,27)
+    pause_button.text="II  PAUSE"
+    pause_button.position=Vector2(1094,94);pause_button.size=Vector2(150,42)
     pause_button.add_theme_font_override("font",Tokens.DISPLAY)
-    pause_button.add_theme_font_size_override("font_size",20)
-    var pause_skin:=StyleBoxTexture.new()
-    pause_skin.texture=preload("res://assets/ui/replica/pause.png")
-    for state in ["normal","hover","pressed"]:pause_button.add_theme_stylebox_override(state,pause_skin)
-    for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color"]:pause_button.add_theme_color_override(state,Color.TRANSPARENT)
+    pause_button.add_theme_font_size_override("font_size",Tokens.ACTION_SIZE)
+    for state in ["normal","hover","pressed"]:pause_button.add_theme_stylebox_override(state,Tokens.plate(PAPER,INK,2))
+    for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color"]:pause_button.add_theme_color_override(state,INK)
     pause_button.add_theme_constant_override("outline_size",0)
     pause_button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
     pause_button.pressed.connect(session.pause_game)
@@ -207,14 +205,14 @@ func rebuild_menu(requested_focus := "") -> void:
         menu.position=Vector2(52,230)
         menu.size=Vector2(450,434)
     elif menu_page!="main":
-        menu.position=Vector2(330,139)
-        menu.size=Vector2(610,490)
+        menu.position=Vector2(250,133)
+        menu.size=Vector2(780,510)
     elif session.screen=="title":
         menu.position=Vector2(52,230)
         menu.size=Vector2(450,434)
     else:
-        menu.position=Vector2(420,145)
-        menu.size=Vector2(440,480 if session.screen in ["pause","help"] else 398)
+        menu.position=Vector2(340,141)
+        menu.size=Vector2(600,500 if session.screen in ["pause","help"] else 440)
     menu.add_theme_stylebox_override("panel",Tokens.plate(Color.TRANSPARENT if session.screen=="title" and menu_page=="main" else Color(INK,.96),Tokens.LIME if menu_page!="main" else Color.TRANSPARENT,2 if menu_page!="main" else 0))
     if menu_page=="settings":_settings_page()
     elif menu_page=="roster":_roster_page()
@@ -249,7 +247,8 @@ func _restore_focus() -> void:
 func _label(value: String, point_size: int, tint := PAPER, display := false) -> Label:
     var label:=Label.new()
     label.text=value
-    label.add_theme_font_size_override("font_size",point_size)
+    label.add_theme_font_size_override("font_size",maxi(Tokens.CAPTION_SIZE,point_size))
+    label.add_theme_constant_override("line_spacing",6)
     label.add_theme_color_override("font_color",tint)
     if display:label.add_theme_font_override("font",bold)
     label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
@@ -274,9 +273,9 @@ func _action(parent: Node, key: String, shortcut: String, callback: Callable, pr
         button.expand_icon=true
         button.add_theme_constant_override("icon_max_width",28)
     button.alignment=HORIZONTAL_ALIGNMENT_LEFT
-    button.custom_minimum_size=Vector2(0,48)
+    button.custom_minimum_size=Vector2(0,60)
     button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
-    button.add_theme_font_size_override("font_size",20)
+    button.add_theme_font_size_override("font_size",Tokens.ACTION_SIZE)
     button.set_meta("ui_key",key)
     if primary:
         button.add_theme_stylebox_override("normal",Tokens.plate(Tokens.LIME,INK,2))
@@ -404,7 +403,7 @@ func _choice(key: String, items: Array, selected: int, callback: Callable) -> vo
     var caption:=_label(tr_text(key),15,Tokens.MUTED)
     menu_stack.add_child(caption)
     var control:=OptionButton.new()
-    control.custom_minimum_size.y=42
+    control.custom_minimum_size.y=58
     control.set_meta("ui_key",key)
     control.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
     for item in items:control.add_item(tr_text(item))
@@ -416,7 +415,7 @@ func _toggle(key: String, enabled: bool, callback: Callable) -> void:
     var button:=CheckButton.new()
     button.text=tr_text(key)
     button.button_pressed=enabled
-    button.custom_minimum_size.y=40
+    button.custom_minimum_size.y=56
     button.set_meta("ui_key",key)
     button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
     button.toggled.connect(callback)
@@ -430,7 +429,7 @@ func _volume(key: String, value: float) -> void:
     slider.max_value=1
     slider.step=.05
     slider.value=value
-    slider.custom_minimum_size.y=32
+    slider.custom_minimum_size.y=42
     slider.set_meta("ui_key",key+"_volume")
     slider.value_changed.connect(func(level:float):
         label.text=tr_text(key)+"  %d%%"%roundi(level*100)
@@ -536,11 +535,11 @@ func _sync_choices() -> void:
             button.remove_theme_color_override("font_disabled_color")
 
 func _text(at: Vector2, value: String, point_size: int, color := PAPER, display := false) -> void:
-    draw_string(bold if display else font,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,point_size,color)
+    draw_string(bold if display else font,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(Tokens.CAPTION_SIZE,point_size),color)
 
 func _center(at: Vector2, value: String, point_size: int, color := PAPER, display := false) -> void:
     var face: Font=bold if display else font
-    _text(at-Vector2(face.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,point_size).x*.5,0),value,point_size,color,display)
+    _text(at-Vector2(face.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(Tokens.CAPTION_SIZE,point_size)).x*.5,0),value,point_size,color,display)
 
 func _plate(at: Vector2, extent: Vector2, color: Color) -> void:
     draw_colored_polygon(PackedVector2Array([at,at+Vector2(extent.x,0),at+extent,at+Vector2(0,extent.y)]),color)
@@ -649,13 +648,14 @@ func _pressure_hud() -> void:
     elif drill:_text(Vector2(34,690),tr_text("drill_exit"),12,Tokens.MUTED)
 
 func _demo_hud() -> void:
+    _plate(Vector2(28,78),Vector2(270,38),INK)
     _text(Vector2(37,105),"AI DEMO  /  LIVE",14,PAPER)
 
 func _arcade_hud() -> void:
     if session.sim.air_counter.active():
         _air_hud()
         return
-    # Fixed English ribbon is cropped from the approved reference art.
+    # Shared HUD draws the larger native English shortcut row.
 
 func _air_hud() -> void:
     if session.sim.air_counter.active():
@@ -746,6 +746,7 @@ func _rally_hud() -> void:
 
 func _practice_hud() -> void:
     if session.sim.arcade_enabled:
+        _plate(Vector2(28,95),Vector2(244,38),INK)
         _text(Vector2(40,122),tr_text("training_title"),13,Tokens.TEAL)
         return
     if session.sim.is_aerial():

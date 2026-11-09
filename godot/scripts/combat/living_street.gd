@@ -62,7 +62,11 @@ func _material(color:Color) -> Material:
     if material_cache.has(key):return material_cache[key]
     var m:=ShaderMaterial.new();m.shader=Toon;m.set_shader_parameter("base_color",color);m.set_shader_parameter("shadow_tint",Vector3(.35,.50,.58));material_cache[key]=m;return m
 func _mesh(resource:Mesh,at:Vector3,color:Color,parent:Node3D=self) -> MeshInstance3D:
-    var node:=MeshInstance3D.new();node.mesh=resource;node.position=at;node.material_override=_material(color);node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;parent.add_child(node);decoration_count+=1;return node
+    var material:Material=_material(color)
+    if resource is PrimitiveMesh:resource.material=material
+    elif resource is ArrayMesh:
+        for index in resource.get_surface_count():resource.surface_set_material(index,material)
+    var node:=MeshInstance3D.new();node.material_override=material;node.mesh=resource;node.position=at;node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;parent.add_child(node);decoration_count+=1;return node
 func react() -> void:
     if reaction_cooldown<=0:reaction=.55;reaction_cooldown=22.0
 func advance(delta:float,paused:bool,reduced:bool) -> void:

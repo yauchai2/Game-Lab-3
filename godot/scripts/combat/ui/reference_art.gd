@@ -1,10 +1,10 @@
 extends RefCounted
 ## Approved image composition; fixed art is raster, live game state remains native.
 const T=preload("res://scripts/combat/ui/ui_theme.gd")
+const LARGE_TYPE=preload("res://assets/fonts/RadioPixelDisplay.fnt")
 const TITLE=preload("res://assets/ui/replica/title.png")
 const BOARD=preload("res://assets/ui/replica/roster-backplate.png")
 const HEAD=preload("res://assets/ui/replica/headphones.png")
-const RIBBON=preload("res://assets/ui/replica/controls.png")
 const MAIN_RECTS=[Rect2(150,351,468,155),Rect2(160,500,443,107),Rect2(158,607,448,96),Rect2(145,701,478,117),Rect2(49,838,286,86)]
 const CARD_RECTS=[Rect2(198,155,300,349),Rect2(485,159,301,345),Rect2(191,509,298,332),Rect2(491,510,304,330)]
 var roster_side:=0
@@ -20,12 +20,13 @@ func fit(rect:Rect2) -> Rect2:
 func polygon(c:Control,pts:Array,color:Color) -> void:
     c.draw_colored_polygon(PackedVector2Array(pts),color)
 func text(c:Control,at:Vector2,value:String,size:int,color:Color=T.INK) -> void:
-    c.draw_string(T.DISPLAY,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,size,color)
+    c.draw_string(LARGE_TYPE if size>=40 else T.DISPLAY,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,size,color)
 func plate(c:Control,rect:Rect2,color:Color,cut:=14.0) -> void:
     var p:Vector2=rect.position;var e:Vector2=rect.end
     polygon(c,[p+Vector2(cut,0),Vector2(e.x,p.y),e-Vector2(cut,0),Vector2(p.x,e.y)],color)
 func title(c:Control) -> void:
     c.draw_texture_rect(TITLE,Rect2(0,0,1280,720),false)
+    hints(c)
     var keys:Array=["fight","roster","training","settings","demo"]
     var index:int=keys.find(focused_key)
     if index>=0:
@@ -57,11 +58,18 @@ func roster(c:Control,s:Node) -> void:
     plate(c,label,T.PAPER,18)
     text(c,label.position+Vector2(39,125),["A","1","3","4"][choice],139)
     var name:String=["BOXER / BALANCED","DANCER / AIR REACH","BASS / HEAVY HITS","SPARK / FAST ENERGY"][choice]
-    plate(c,Rect2(675,674,313,29),T.PAPER,8)
-    text(c,Vector2(686,697),name,21)
+    plate(c,Rect2(672,666,250,38),T.PAPER,8)
+    text(c,Vector2(686,697),name,26)
+    hints(c)
     var fight_rect:Rect2=fit(Rect2(849,773,550,100))
     if focused_key=="roster_fight":c.draw_rect(fight_rect,T.LIME,false,3)
     elif focused_key=="back":c.draw_rect(fit(Rect2(1507,875,145,50)),T.LIME,false,3)
+func hints(c:Control) -> void:
+    c.draw_rect(Rect2(924,658,356,62),T.INK)
+    plate(c,Rect2(932,665,178,40),T.PAPER,8)
+    text(c,Vector2(944,695),"ENTER SELECT",28)
+    plate(c,Rect2(1118,665,132,40),T.PAPER,8)
+    text(c,Vector2(1130,695),"ESC BACK",28)
 func secondary(c:Control,heading:String) -> void:
     c.draw_texture_rect(BOARD,Rect2(0,0,1280,720),false)
     plate(c,Rect2(330,15,460,100),T.PAPER,35)
@@ -85,8 +93,8 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
         if ratio>0:plate(c,Rect2(x,bar.position.y,bar.size.x*ratio,bar.size.y),T.CORAL if side else T.TEAL,7)
         var tab:Rect2=Rect2(1130 if reverse else 117,27,49,28)
         plate(c,tab,T.PAPER,5)
-        text(c,Vector2(1137 if reverse else 124,50),"P2" if reverse else "P1",29)
-        text(c,Vector2(1070 if reverse else 177,50),str(f.health),29,T.PAPER)
+        text(c,Vector2(1137 if reverse else 124,50),"P2" if reverse else "P1",32)
+        text(c,Vector2(1070 if reverse else 177,50),str(f.health),36,T.PAPER)
         var meter:Rect2=Rect2(start+117,65,254,6)
         plate(c,Rect2(meter.position-Vector2(3,3),meter.size+Vector2(6,6)),T.INK,4)
         plate(c,meter,T.LIME.darkened(.7),3)
@@ -97,9 +105,17 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
         c.draw_texture_rect(HEAD,Rect2(58 if side==0 else 1163,15,58,61),false)
     c.draw_circle(Vector2(640,44),35,T.INK);c.draw_circle(Vector2(640,44),32,T.PAPER);c.draw_circle(Vector2(640,44),29,T.GOLD)
     var clock:String="∞" if s.practice or s.demo!=null else "%02d"%ceili(s.sim.remaining)
-    var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,43).x
-    text(c,Vector2(640-width*.5,59),clock,43)
-    c.draw_texture_rect(RIBBON,Rect2(274,650,731,45),false)
+    var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,48).x
+    text(c,Vector2(640-width*.5,59),clock,48)
+    plate(c,Rect2(150,644,980,60),T.INK,20)
+    plate(c,Rect2(154,646,972,54),T.PAPER,20)
+    var shortcuts:Array=[["J","RUSH",174],["K","LAUNCH",382],["L","BURST",616],["W+L","CANNON",820]]
+    for entry in shortcuts:
+        var key_width:float=72 if entry[0]=="W+L" else 44
+        plate(c,Rect2(entry[2],655,key_width,34),T.INK,6)
+        text(c,Vector2(entry[2]+7,683),entry[0],32,T.PAPER)
+        text(c,Vector2(entry[2]+key_width+10,683),entry[1],30)
+
     if s.sim.combo_hits>=2 and s.sim.combo_owner>=0 and s.sim.fighters[1-s.sim.combo_owner].state=="stun":
         var x:float=39 if s.sim.combo_owner==0 else 1104
         plate(c,Rect2(x,146,118,49),T.PAPER,15)

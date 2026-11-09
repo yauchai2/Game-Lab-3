@@ -418,3 +418,7 @@ T 進無限練習、F5 重置、F7 切對手；正常對局 Enter。挑空僅在
 ## 2026-11-10 統一像素及無聲恢復
 
 144條戰鬥回歸、37條native操作、15條新呈現及6條PCM檢查通過；19條招式路由真命中擷取。4.6.3 Compatibility／llvmpipe，Dummy音訊混音，不宣稱目標4.7.2／Mac喇叭驗證。環境GLB編輯器VK匯入失敗及批次擷取退出ObjectDB警告有記錄。 詳見 [實作及證據](UNIFIED_PIXEL_RUNTIME.zh-TW.md)。Web不變。
+
+## 2026-11-10 UI文字可讀性及4.7.2覆核
+
+Godot4.7.2 Linux Compatibility：22條呈現／材質、37條原生操作、144條戰鬥回歸及6條PCM測試通過。壓力測試已重現截圖4類材質錯誤；frame_post_draw保留舊材質及延遲hero初始化後，6項材質生命週期嚴格回歸零engine error、pending歸零。Mac硬件仍待覆核。首次退出8個ObjectDB警告、最終verbose未重現，保留追蹤。 詳見 [本輪紀錄](UI_READABILITY.zh-TW.md)，Web不變。

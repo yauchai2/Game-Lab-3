@@ -359,6 +359,7 @@ func _flat_mesh(primitive: PrimitiveMesh) -> ArrayMesh:
     var source_normals: PackedVector3Array=arrays[Mesh.ARRAY_NORMAL]
     var result:=SurfaceTool.new()
     result.begin(Mesh.PRIMITIVE_TRIANGLES)
+    result.set_material(_material("solid"))
     for i in range(0,indices.size(),3):
         var a:=vertices[indices[i]]
         var b:=vertices[indices[i+1]]
@@ -394,6 +395,7 @@ func _material(role: String) -> ShaderMaterial:
 func _flush() -> void:
     var box:=BoxMesh.new()
     box.size=Vector3.ONE
+    box.material=_material("solid")
     var sphere:=SphereMesh.new()
     sphere.radius=.5
     sphere.height=1.0
@@ -418,8 +420,8 @@ func _flush() -> void:
             multimesh.set_instance_color(i,entries[i].tint)
         var instance:=MultiMeshInstance3D.new()
         instance.name="CornerBatch_"+key.replace("/","_")
-        instance.multimesh=multimesh
         instance.material_override=_material(parts[0])
+        instance.multimesh=multimesh
         instance.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_ON if parts[0]=="plaster" else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
         add_child(instance)
         batch_count+=1

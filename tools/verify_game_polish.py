@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # UI replica replaces old dropdown/Chinese-menu and pause-silence harnesses.
 # Their source and historical evidence remain; verify_reference_ui covers the new contract.
 CASES = [
+    ("verify_material_lifecycle", "readable-ui/material-lifecycle.json", "native"),
     ("verify_reference_ui", "ui-replica/checks.json", "native"),
     ("verify_cannon_input", "charged-cannon/input.json", "native"),
     ("verify_charged_cannon", "charged-cannon/rules.json", "headless"),
@@ -115,7 +116,11 @@ def main() -> int:
                       "passed": len(checks) - failed, "failed": failed,
                       "skipped": data.get("skipped", []),
                       "diagnostics": re.findall(r"^(?:ERROR|WARNING|SCRIPT ERROR):.*", log, re.M)}
-            result["success"] = code == 0 and written and bool(checks) and failed == 0
+            # A state-only report can pass while the renderer emits invalid-RID
+            # errors. Those errors must fail the suite rather than disappear
+            # inside a diagnostic list (warnings remain visible but nonfatal).
+            result["engine_errors"] = re.findall(r"^(?:ERROR|SCRIPT ERROR):.*", log, re.M)
+            result["success"] = code == 0 and written and bool(checks) and failed == 0 and not result["engine_errors"]
             results.append(result)
             print(f"{name}: {result['passed']}/{len(checks)}; exit {code}", flush=True)
         finally:

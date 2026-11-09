@@ -1,9 +1,13 @@
 extends RefCounted
 ## Shared native Godot UI tokens. See DESIGN.md and UX-CONTRACT.md.
+## Logical sizes are halved by the shared 640x360 framebuffer.
+const CAPTION_SIZE:=24
+const BODY_SIZE:=28
+const ACTION_SIZE:=32
 const INK := Color("20102f")
 const NIGHT := Color("160c23")
 const PAPER := Color("fff1d0")
-const MUTED := Color("d1becb")
+const MUTED := Color("e4d8d1")
 const TEAL := Color("4acfe0")
 const CORAL := Color("ff765e")
 const GOLD := Color("ff6a00")
@@ -12,8 +16,8 @@ const LIME := Color("d7f400")
 const FRAMES = preload("res://assets/ui/jsr/ui-frames.png")
 const LOGO = preload("res://assets/ui/jsr/afterhours-logo.png")
 const ICONS = preload("res://assets/ui/jsr/action-icons.png")
-const BODY = preload("res://assets/fonts/RadioPixelBody.fnt")
-const DISPLAY = preload("res://assets/fonts/RadioPixelDisplay.fnt")
+const BODY = preload("res://assets/fonts/RadioPixelBodyReadable.fnt")
+const DISPLAY = preload("res://assets/fonts/RadioPixelDisplayReadable.fnt")
 static func plate(color: Color, border := Color.TRANSPARENT, width := 0) -> StyleBoxFlat:
     var style:=StyleBoxFlat.new()
     style.bg_color=color
@@ -62,7 +66,7 @@ static func icon(index: int) -> AtlasTexture:
 static func build() -> Theme:
     var theme:=Theme.new()
     theme.default_font=BODY
-    theme.default_font_size=17
+    theme.default_font_size=BODY_SIZE
     theme.set_color("font_color","Label",PAPER)
     for type_name in ["Button","OptionButton","CheckButton","PopupMenu"]:
         theme.set_color("font_color",type_name,PAPER)
@@ -93,7 +97,7 @@ static func build() -> Theme:
         theme.set_color("font_pressed_color",native_type,PAPER)
         theme.set_color("font_focus_color",native_type,PAPER)
         theme.set_constant("outline_size",native_type,0)
-    theme.set_color("font_pressed_color","Button",PAPER)
+    theme.set_color("font_pressed_color","Button",INK)
     theme.set_stylebox("panel","PopupMenu",plate(NIGHT,TEAL,1))
     theme.set_color("font_color","PopupMenu",PAPER)
     theme.set_color("font_hover_color","PopupMenu",INK)

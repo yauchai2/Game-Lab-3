@@ -18,13 +18,20 @@ func _ready() -> void:
         var env:=WorldEnvironment.new();env.environment=Environment.new();env.environment.background_mode=Environment.BG_COLOR;env.environment.background_color=Color(0,0,0,0);env.environment.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR;env.environment.ambient_light_color=Color.WHITE;env.environment.ambient_light_energy=.85;vp.add_child(env)
         var light:=DirectionalLight3D.new();light.rotation_degrees=Vector3(-35,-30,0);light.light_energy=1.1;light.shadow_enabled=false;vp.add_child(light)
         var camera:=Camera3D.new();camera.projection=Camera3D.PROJECTION_ORTHOGONAL;camera.size=2.3 if slot==4 else 2.8;camera.position=Vector3(0,1.05 if slot==4 else 1.25,5);vp.add_child(camera);camera.look_at(Vector3(0,1.05 if slot==4 else 1.2,0));camera.current=true
-        var visual:=Visual.new();vp.add_child(visual);visual.setup(Color.WHITE,slot%4);models.append(visual)
+        var visual:=Visual.new();vp.add_child(visual)
+        # The large preview is initialized with the actual choice on first use.
+        # Replacing its eager default before the first Compatibility draw leaves
+        # a stale renderer material dependency in Godot4.7.2.
+        if slot<4:visual.setup(Color.WHITE,slot)
+        models.append(visual)
 func update_preview(active:bool,choice:int,delta:float,reduced:bool) -> void:
     if not active:
         for vp in viewports:vp.render_target_update_mode=SubViewport.UPDATE_DISABLED
         return
     if choice!=selected:
-        selected=choice;models[4].setup(Color.WHITE,choice);confirmation=.45;sample_clock=1.0
+        selected=choice
+        if models[4].model==null or models[4].character_index!=choice:models[4].setup(Color.WHITE,choice)
+        confirmation=.45;sample_clock=1.0
     elapsed+=delta;confirmation=maxf(0,confirmation-delta);sample_clock+=delta
     if sample_clock<1.0/15:return
     sample_clock=0.0

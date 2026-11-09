@@ -1,0 +1,19 @@
+{
+  "phase": "Before material-lifetime fix; same Godot4.7.2 Compatibility engine",
+  "renderer_errors": [
+    "ERROR: Parameter \"material\" is null.",
+    "ERROR: Parameter \"material\" is null.",
+    "ERROR: Parameter \"material\" is null.",
+    "ERROR: Parameter \"material\" is null.",
+    "ERROR: Parameter \"material\" is null.",
+    "ERROR: Parameter \"material\" is null.",
+    "ERROR: Parameter \"material\" is null.",
+    "ERROR: Parameter \"material\" is null.",
+    "ERROR: Parameter \"material\" is null.",
+    "ERROR: Parameter \"material\" is null.",
+    "ERROR: Parameter \"material\" is null.",
+    "ERROR: Parameter \"material\" is null."
+  ],
+  "error_count": 12,
+  "note": "Surface objects were non-null, but their outgoing renderer material RIDs were retired before the first draw. State-only assertions previously missed these errors."
+}

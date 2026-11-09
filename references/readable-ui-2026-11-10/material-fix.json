@@ -1,0 +1,14 @@
+{
+  "engine": "4.7.2-stable.ed1daf0bf",
+  "before_renderer_error_count": 12,
+  "after_renderer_errors": 0,
+  "before_core_source_sha256": {
+    "godot/scripts/combat/fighter_visual.gd": "c1928d5571878c394c1f8db8129a099b9120439ae333cdf3d9c72d487dbd0551",
+    "godot/scripts/combat/ui/roster_preview.gd": "b423236e8cff7129c90f9590ba3d968a140327cc6c6d23c62d8128458c84ad45"
+  },
+  "after_core_source_sha256": {
+    "godot/scripts/combat/fighter_visual.gd": "fb85c658315e904a1aa34a0d8f759c79c01841ac04ed56e8c9e3470566770368",
+    "godot/scripts/combat/ui/roster_preview.gd": "c4f339fb4a0ba1a3eadffb336ce6597a76823ee2618a4c665cf23fe09f2302fb"
+  },
+  "method": "Native Compatibility reproducer, three scene lifecycles and24 roster selections. Keep outgoing material references until frame_post_draw; initialize hero on first actual selection. Strict runner rejects ERROR and SCRIPT ERROR."
+}

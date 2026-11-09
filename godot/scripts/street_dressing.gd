@@ -75,18 +75,21 @@ func _material(color: Color) -> StandardMaterial3D:
 func _flush_groups() -> void:
     var box := BoxMesh.new()
     box.size = Vector3.ONE
+    box.material=_material(Color.WHITE)
     for key in groups:
         var transforms: Array = groups[key]
         var batch := MultiMesh.new()
         batch.transform_format = MultiMesh.TRANSFORM_3D
-        batch.mesh = preload("res://scripts/combat/street_art_meshes.gd").leaf_cluster() if key=="leaf" else box
+        var geometry:Mesh=box
+        if key=="leaf":geometry=preload("res://scripts/combat/street_art_meshes.gd").leaf_cluster()
+        batch.mesh=geometry
         batch.instance_count = transforms.size()
         for i in transforms.size():
             batch.set_instance_transform(i,transforms[i])
         var instance := MultiMeshInstance3D.new()
         instance.name = "Batch_"+key
-        instance.multimesh = batch
         instance.material_override = _material(material_colors[key])
+        instance.multimesh = batch
         # Fine, uncollidable details do not need hundreds of separate shadow casters.
         instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
         static_batches.add_child(instance)

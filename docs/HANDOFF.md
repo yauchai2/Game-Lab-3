@@ -1,5 +1,10 @@
 # 接續工作交接
 
+## 2026-11-10：UI可讀性及Godot4.7.2覆核
+
+使用者回報字太細與6項診斷。已放大設定／按鈕／HUD提示，面板擴闊與增加行距；採新14px body／16px display bitmap衍生，常用邏輯字級24／28／32（內部12／14／16），大標題保留較高解析來源。底部操作列、Pause及Enter／Esc提示改為原生清楚文字。修正swap變數作用域與ArrayMesh／BoxMesh三元警告，新增幾何基礎材質並先完成surface替換才釋放override。詳見 [UI_READABILITY.zh-TW.md](UI_READABILITY.zh-TW.md)。已用與截圖相同Godot4.7.2 Linux Compatibility覆核；已重現首幀換模過早釋放材質並修正：舊材質保留至frame_post_draw，3次場景／24次選角嚴格測試零renderer error且佇列歸零；Mac硬件仍待覆核。原模型／圖／音檔不改，Web不動。
+
+
 ## 2026-11-10：統一像素、活街景及音訊恢復已接入
 
 本輪開始執行 [統一美術計劃](UNIFIED_PIXEL_ART_PLAN.zh-TW.md)，實作與界限見 [UNIFIED_PIXEL_RUNTIME.zh-TW.md](UNIFIED_PIXEL_RUNTIME.zh-TW.md)。全畫面640×360整數放大、兩款衍生bitmap字體、5個隔離3D選角viewport／四人不同姿態、分級放大的向量技能、低解析路面貼圖／不齊立面／植物剪影／28件路邊垃圾、4位背景人物及遠景車／樹葉／紙片／燈光動態已接入。新增音訊bus、可見靜音恢復及測試入口，音樂繼續播放且暫停只降低音量。原始GLB／音樂／UI來源圖保留，Web不變。

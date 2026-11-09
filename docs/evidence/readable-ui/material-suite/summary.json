@@ -1,0 +1,55 @@
+{
+  "created_utc": "20261109T165654Z",
+  "source_commit": "e457043b718aa6092fbbbaf982996c2e320907e7",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/fight_audio.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fighter_visual.gd",
+    "godot/scripts/combat/living_street.gd",
+    "godot/scripts/combat/static_street_batches.gd",
+    "godot/scripts/combat/street_art_meshes.gd",
+    "godot/scripts/combat/street_backdrop.gd",
+    "godot/scripts/combat/ui/reference_art.gd",
+    "godot/scripts/combat/ui/roster_preview.gd",
+    "godot/scripts/combat/ui/street_hud.gd",
+    "godot/scripts/combat/ui/ui_theme.gd",
+    "godot/scripts/corner_streetscape.gd",
+    "godot/scripts/street_dressing.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 6,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_material_lifecycle",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "10c88c08a17733663c2fe1f9f9671d60b32b7be615aee5a478613e2015dcdc60",
+      "seconds": 6.479,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_material_lifecycle.gd"
+      ],
+      "report_written": true,
+      "passed": 6,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

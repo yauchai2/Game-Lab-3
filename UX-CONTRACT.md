@@ -1,5 +1,10 @@
 # Native game UI contract
 
+## Current override: readable pixel typography (2026-11-10)
+
+Keep the640×360 shared framebuffer. Minimum authored copy is24logical pixels; default body controls28, primary actions32 (12/14/16 internal pixel nominal sizes). `ui_theme.gd` owns these tokens. Use the14px/16px readable bitmap derivatives for body/small display text; large headings retain the original24px display source. The secondary panel is780×510 logical with14px item gaps and6px label line spacing. Source reference art remains; native large shortcuts, Pause and Enter/Esc hints replace the tiny baked text in those regions. Never solve readability by shrinking labels to fit: widen, wrap and scroll. See docs/UI_READABILITY.zh-TW.md for actual captures and hardware limits.
+
+
 ## Current override: unified pixel runtime (2026-11-10)
 
 The complete world, UI, fonts and VFX composite at 640×360 with nearest integer viewport scaling. Controls retain 1280×720 authoring coordinates mapped to the internal framebuffer; pointer/keyboard mapping is tested at three window sizes. The former world-only retro toggle is retired. Display/body use locally generated binary-alpha BMFont derivatives of bundled Barlow Condensed Black Italic and DejaVu Sans Condensed Bold; these are JSR-inspired adaptations, not the official JSR font. Reference title art stays intact. Roster cards and hero use five isolated, bounded, low-resolution real-model SubViewports, updated at15Hz only on the roster page, with four different showcase poses. Menu focus has a short stepped pointer kick; reduced effects removes it. Audio has exactly two music decks plus ten effects voices, with named buses. Settings exposes Test Sound, Restore Sound and output status; silent title preferences show a recovery action. Transport continues through pause and mute. Details/evidence: docs/UNIFIED_PIXEL_RUNTIME.zh-TW.md. Earlier contradictory descriptions below are historical.

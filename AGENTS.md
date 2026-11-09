@@ -59,3 +59,5 @@
 - 付費生成與帳戶操作依當次明確授權及適用工具規範處理；不要索取或提交帳戶密鑰。
 
 - 2026-11-10 使用者授權執行統一像素計劃並回報無聲：現況見 docs/UNIFIED_PIXEL_RUNTIME.zh-TW.md。640×360整個viewport／bitmap字體／真3D選角與4種pose／活街景已接入，覆蓋先前world-only pixel toggle。持續音樂規則不變；可見恢復聲音／獨立音訊bus，不擅自覆蓋有意靜音。雲端Dummy混音驗證不等於使用者音效裝置驗證。Web不更新。
+
+- 2026-11-10 使用者回報字太細與4.7.2材質錯誤：現行UI字級／布局見 docs/UI_READABILITY.zh-TW.md，覆蓋前輪細小字體。共用CAPTION_SIZE24／BODY_SIZE28／ACTION_SIZE32，12／14／16內部像素。字體與控制項需同步放大，不提高全局解析度。Godot4.7.2 Linux已覆核，已重現並修正首次繪製前換模的材質生命週期：FighterVisual在frame_post_draw後才釋放舊材質，預覽hero延遲首次setup；回歸runner遇ERROR／SCRIPT ERROR必須失敗，不可只看state JSON。Mac硬件仍待覆核；Web不更新。

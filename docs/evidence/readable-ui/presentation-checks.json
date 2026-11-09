@@ -1,0 +1,122 @@
+{
+  "checks": [
+    {
+      "check": "Shared framebuffer 640x360",
+      "detail": "(640.0, 360.0)",
+      "pass": true
+    },
+    {
+      "check": "World-only pixel filter retired",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Live hero selection 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Live hero selection 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Live hero selection 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Live hero selection 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Four different pose rotations",
+      "detail": [
+        "(-0.642128, -0.02327, 0.551503, -0.531954)",
+        "(-0.551253, 0.109568, 0.576503, -0.593093)",
+        "(-0.583878, -0.052358, 0.690961, -0.422988)",
+        "(-0.472404, 0.018775, 0.392019, -0.789179)"
+      ],
+      "pass": true
+    },
+    {
+      "check": "Roster viewports bounded",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hidden roster rendering disabled",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Background respects pause",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Distant car moves",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Crowd reactions rate limited",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Decoration count bounded",
+      "detail": 48,
+      "pass": true
+    },
+    {
+      "check": "Silent title recovery visible",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Recovery restores audible settings",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Body controls at least 14 internal pixels",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Wide menu fits logical frame",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Settings captions at least 12 internal pixels",
+      "detail": 24,
+      "pass": true
+    },
+    {
+      "check": "Readable sound action 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Readable sound action 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Both sound actions present",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "All rendered surfaces have live materials",
+      "detail": 0,
+      "pass": true
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "renderer": "Native Compatibility / llvmpipe",
+  "scope": "Native GPU screenshots and state assertions, not human play or FPS"
+}

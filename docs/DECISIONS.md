@@ -154,3 +154,9 @@
 ## 2026-11-10 統一像素及無聲恢復
 
 採用640×360整個viewport合成；字體為授權來源的bitmap衍生；真3D選角取代靜態大圖，活街景為展示層；保留使用者靜音偏好並提供顯式恢復。 詳見 [實作及證據](UNIFIED_PIXEL_RUNTIME.zh-TW.md)。Web不變。
+
+## 2026-11-10 UI文字可讀性及4.7.2覆核
+
+保留640×360合成，將正文／按鈕加大並擴闊頁面，使用14／16px新衍生bitmap；大標題仍24px來源。修正作用域／三元警告，確保surface替換完成後才釋放override，原始資產不改。 詳見 [本輪紀錄](UI_READABILITY.zh-TW.md)，Web不變。
+
+補充重現結果：4.7.2首幀換模會過早釋放舊材質RID；FighterVisual以單一frame_post_draw回呼清空共用短暫保留佇列，預覽hero延遲初始化。3次場景／24次選角後pending=0且無engine error。新增runner對ERROR／SCRIPT ERROR的失敗判斷，避免state-only假陽性。

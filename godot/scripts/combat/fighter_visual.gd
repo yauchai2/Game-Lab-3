@@ -2,6 +2,7 @@ extends Node3D
 const Roster = preload("res://scripts/combat/fighter_roster.gd")
 const Toon = preload("res://shaders/fighter_toon.gdshader")
 const Outline = preload("res://shaders/fighter_outline.gdshader")
+static var retired_materials:Array[ShaderMaterial]=[]
 var model: Node3D
 var skeleton: Skeleton3D
 var materials: Array[ShaderMaterial] = []
@@ -17,6 +18,13 @@ func setup(color: Color, selection := 0) -> void:
     character_index=clampi(selection,0,Roster.ENTRIES.size()-1)
     var entry:Dictionary=Roster.entry(character_index)
     if is_instance_valid(model):
+        # Compatibility may still process dependencies for an outgoing instance
+        # on this frame, especially before its first draw. Keep its materials
+        # alive until that draw completes rather than leave stale renderer RIDs.
+        if DisplayServer.get_name()!="headless" and not materials.is_empty():
+            retired_materials.append_array(materials)
+            if not RenderingServer.frame_post_draw.is_connected(_release_retired_materials):
+                RenderingServer.frame_post_draw.connect(_release_retired_materials,CONNECT_ONE_SHOT)
         remove_child(model)
         model.queue_free()
     skeleton=null
@@ -46,6 +54,9 @@ func setup(color: Color, selection := 0) -> void:
     if not list.is_empty():
         skeleton = list[0]
         motions.setup(skeleton,model)
+
+static func _release_retired_materials() -> void:
+    retired_materials.clear()
 
 func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent_x := INF) -> void:
     for bone in oversized_bones:skeleton.set_bone_pose_scale(bone,Vector3.ONE)

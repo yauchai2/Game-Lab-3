@@ -97,8 +97,8 @@ func _process(delta: float) -> void:
 
 func _switch_track(path:String) -> void:
     if fading_music.playing and path==fading_track:
-        var swap:AudioStreamPlayer=music
-        music=fading_music;fading_music=swap
+        var reversal_deck:AudioStreamPlayer=music
+        music=fading_music;fading_music=reversal_deck
         var old:String=current_track;current_track=fading_track;fading_track=old
         crossfade=1.0-crossfade
         music_credit="Berlin" if current_track==BERLIN else "Starjunk 95 / Groove District"

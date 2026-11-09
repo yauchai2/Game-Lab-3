@@ -94,10 +94,16 @@ func _style_surfaces(root: Node) -> void:
     for mesh in root.find_children("*","MeshInstance3D",true,false):
         var sources: Array[Material] = []
         for surface in mesh.mesh.get_surface_count(): sources.append(mesh.get_active_material(surface))
-        mesh.material_override = null
         for surface in mesh.mesh.get_surface_count():
             var source: Material = sources[surface]
-            if not source is BaseMaterial3D: continue
+            if not source is BaseMaterial3D:
+                # Install replacements before releasing an old instance override.
+                # Every surface remains backed by a live resource during a style change.
+                if source!=null:mesh.set_surface_override_material(surface,source)
+                else:
+                    var fallback:=ShaderMaterial.new();fallback.shader=Toon
+                    mesh.set_surface_override_material(surface,fallback);retained_materials.append(fallback)
+                continue
             var material := ShaderMaterial.new()
             var is_aircraft: bool = mesh.name.begins_with("Aircraft_") or mesh.find_parent("AircraftProxy") != null
             if is_aircraft:
@@ -116,6 +122,7 @@ func _style_surfaces(root: Node) -> void:
                 material.set_shader_parameter("world_texture",source.albedo_texture)
             mesh.set_surface_override_material(surface,material)
             retained_materials.append(material)
+        if mesh.material_override!=null:mesh.material_override=null
 
 func present(delta: float, paused: bool, reduced := false) -> void:
     if frozen or paused: return
