@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新[爽感與完整演出優化計劃](docs/GAME_FEEL_ROADMAP.zh-TW.md)：已吸收並保存兩份使用者參考，規劃有限格擋換手、蓄力、分層演出、選角／VS／KO 及驗收次序。**本輪只有文件更新，新系統尚未實作；現行三選對峙保留。公開試玩版不更新。**
+
 **[在 GitHub 直接試玩](https://yauchai2.github.io/Game-Lab-3/)** · 電腦鍵盤、單人對 AI／無限練習、首次約 19 MB。GitHub Pages 已啟用。[操作與更新方法](docs/WEB_PLAYTEST.md)。
 
 最新[原生 UI 與近身交鋒完善](docs/EXTENDED_POLISH.md)：移除藍樓遮窗大牌，繁中／英文選單、可點按對峙、獨立音量、G 投技／拆投、E 場邊受身、較近的交手追鏡及靜態批次繪圖。只更新 `codex/street-combat` 原始碼，**公開試玩網址仍是舊版**。

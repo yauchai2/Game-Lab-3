@@ -1,5 +1,13 @@
 # 接續工作交接
 
+## 最新接續：爽感規劃與來源保存（2026-11-09）
+
+本輪使用者要求吸收兩份貼上文字並詳細規劃，沒有實作新機制。完整規格見 [GAME_FEEL_ROADMAP.zh-TW.md](GAME_FEEL_ROADMAP.zh-TW.md)，原始來源、大小及雜湊見 [references/feel-2026-11-09](../references/feel-2026-11-09/README.md)。已完整閱讀文字；未獨立觀看 YouTube 原片或量測時間碼／FOV／速度門檻，不可將筆記當官方實作證據。
+
+推薦下一輪先做 P0／P1a：練習內互斥的有限格擋換手原型，先只有快反與簡單效果。既有三階壓力／三選對峙仍是正式基線，未決定替換。新模式的持放蓄力、AI 再格擋、選角、VS、KO 鏡頭皆是後續計劃；沒有球、不直接套範例 Autoload。本輪無需 Tripo 或新增美術資產。只推送開發分支文件，未更新公開 Web，未存取使用者電腦。
+
+以下為上一輪已實作成果；不要把其測試數量當成新規劃已驗證。
+
 ## 最新接續：原生 UI 與近身交鋒（2026-11-09，香港時間）
 
 目前主場景是 `godot/scenes/combat/street_fight.tscn`，最新規格見 [EXTENDED_POLISH.md](EXTENDED_POLISH.md)、根目錄 DESIGN.md／UX-CONTRACT.md。以下早期段落保留歷史，不能以早期「街景主場景／尚無無限練習」描述覆蓋目前狀態。
