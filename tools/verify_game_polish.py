@@ -19,6 +19,8 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES = [
+    ("verify_aerial_street", "aerial-street/rules.json", "headless"),
+    ("verify_aerial_input", "aerial-street/input.json", "native"),
     ("verify_kinetic_rally", "kinetic-overdrive/rules.json", "headless"),
     ("verify_kinetic_presentation", "kinetic-overdrive/presentation/verification.json", "native"),
     ("verify_result_presentation", "extended-polish/result-presentation.json", "headless"),

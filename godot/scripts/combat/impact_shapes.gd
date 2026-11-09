@@ -3,6 +3,8 @@ extends RefCounted
 const PAPER := Color("fff8dc")
 const INK := Color("111a32")
 const PROFILES := {
+    "air_jab":Vector3(43,13,-.15),"air_kick":Vector3(64,22,.4),
+    "air_finisher":Vector3(75,24,.65),"meteor":Vector3(82,27,1.3),
     "grab": Vector3(32,8,0),
     "jab": Vector3(39,12,0), "cross": Vector3(49,15,-.12),
     "finisher": Vector3(59,19,.20), "heavy": Vector3(71,24,.12),

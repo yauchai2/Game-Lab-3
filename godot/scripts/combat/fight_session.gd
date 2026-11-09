@@ -1,4 +1,5 @@
 extends Node3D
+signal combat_event(event: Dictionary)
 const Simulation = preload("res://scripts/combat/fight_simulation.gd")
 const FighterVisual = preload("res://scripts/combat/fighter_visual.gd")
 const FightHUD = preload("res://scripts/combat/fight_hud.gd")
@@ -145,7 +146,8 @@ func _physics_process(_delta: float) -> void:
     input["axis"] = float(Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT)) - float(Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT))
     input["guard_pressed"] = input.get("guard_pressed",false)
     input["guard"] = Input.is_physical_key_pressed(KEY_SHIFT)
-    input["up"] = Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)
+    input["down"] = input.get("down",Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN))
+    input["up"] = input.get("up",Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP))
     var previous_stop := sim.hitstop
     sim.tick(input)
     if previous_stop>0 and sim.hitstop==0:
@@ -171,8 +173,37 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
     effects.append(effect)
 
 func _handle_event(event: Dictionary) -> void:
+    combat_event.emit(event)
     var kind: String = event.kind
-    if kind=="rally_contact":
+    if kind in ["fast_fall","air_land","ground_bounce","homing_chase","chase_arrive","air_escape","no_chase_meter","chase_unavailable"]:
+        var fighter: Dictionary=sim.fighters[event.target]
+        var point:=Vector2(fighter.x,fighter.y+.8)
+        if kind in ["air_land","ground_bounce"]:
+            _spawn_vfx("ground_ring",Vector2(fighter.x,.04),.30,{"color":COLORS[event.target]})
+            _spawn_vfx("dust",Vector2(fighter.x,.08),.22,{"color":Color("fff5db")})
+            if kind=="ground_bounce" or event.get("hard",false):
+                trauma=maxf(trauma,.28)
+                audio.play_sound("sub",.85,-7)
+            audio.play_sound("land",.85,-6)
+        elif kind=="homing_chase":
+            _spawn_vfx("chase_path",point,.24,{"points":fighter.air.points.duplicate(),"color":COLORS[event.target]})
+            audio.play_sound("chase",1.0,-6)
+            hud.notice="CHASE"
+            hud.notice_time=.6
+        elif kind=="fast_fall":
+            _spawn_vfx("speed",point,.22,{"face":fighter.face,"color":COLORS[event.target]})
+            audio.play_sound("swing",.8,-8)
+        elif kind=="air_escape":
+            _spawn_vfx("parry",point,.22,{"color":COLORS[event.target]})
+            hud.notice="AIR ESCAPE"
+            hud.notice_time=.8
+        elif kind=="chase_unavailable":
+            hud.notice="CHASE UNAVAILABLE"
+            hud.notice_time=.8
+        elif kind=="no_chase_meter":
+            hud.notice="CHASE NEEDS 20"
+            hud.notice_time=.8
+    elif kind=="rally_contact":
         pending.clear()
         _clear_impacts()
         effects=effects.filter(func(e:Dictionary)->bool:return e.kind!="rally_core")
@@ -340,7 +371,7 @@ func _process(delta: float) -> void:
             echo_clock=0.0
             for side in 2:
                 var state: Dictionary=sim.fighters[side]
-                if (state.state=="dash" or (state.state=="stun" and absf(state.vx)>6) or (state.state=="attack" and state.move in ["special","heavy","finisher"])) and sim.hitstop==0:
+                if (state.state in ["dash","chase"] or (state.state=="stun" and absf(state.vx)>6) or (state.state=="attack" and state.move in ["special","heavy","finisher","air_kick","air_finisher","meteor"])) and sim.hitstop==0:
                     var bones: Array=fighters[side].capture_echo()
                     _spawn_vfx("echo",Vector2.ZERO,.18,{"bones":bones,"color":COLORS[side],"face":state.face})
     backdrop.present(delta, screen in ["pause", "help", "result"], reduced_effects)
@@ -367,6 +398,7 @@ func _grade_world() -> void:
 func _present(delta: float) -> void:
     for i in fighters.size():
         var pose: Dictionary=sim.fighters[i].duplicate()
+        pose["air_enabled"]=sim.is_aerial()
         if screen=="result":
             if result_clock>.18:pose.flash=0
             pose.y=maxf(0,pose.y-maxf(0,result_clock-.15)*5.0)
@@ -399,7 +431,16 @@ func _present(delta: float) -> void:
     var distance := clampf(10.0 + separation * 0.35,10.7,17.2)
     var yaw := clampf(midpoint * 0.018,-0.10,0.10)
     var target_focus := Vector3(midpoint*0.8,2.1 + maxf(sim.fighters[0].y,sim.fighters[1].y)*0.15,FIGHT_Z)
-    var target_position := Vector3(target_focus.x+sin(yaw)*distance,1.7,FIGHT_Z+cos(yaw)*distance)
+    if sim.is_aerial():
+        var aspect: float=get_viewport().get_visible_rect().size.x/maxf(1,get_viewport().get_visible_rect().size.y)
+        distance=maxf(distance,(separation+.9)/(2.0*tan(deg_to_rad(24.0))*aspect*.90))
+        var bottom: float=minf(sim.fighters[0].y,sim.fighters[1].y)
+        var top: float=maxf(sim.fighters[0].y+maxf(0,sim.fighters[0].vy)*.08,sim.fighters[1].y+maxf(0,sim.fighters[1].vy)*.08)+2.4
+        target_focus.y=maxf(2.1,(bottom+top)*.5-.35)
+        distance=maxf(distance,(top-bottom+.35)/(2.0*tan(deg_to_rad(24.0))*.58))
+        distance=minf(distance,22.0)
+    var camera_height:=1.7+maxf(0,target_focus.y-2.1)*.8 if sim.is_aerial() else 1.7
+    var target_position := Vector3(target_focus.x+sin(yaw)*distance,camera_height,FIGHT_Z+cos(yaw)*distance)
     if screen=="title" and sim.phase=="ready":
         target_focus=Vector3(.6,2.5,FIGHT_Z)
         target_position=Vector3(-.6,2.3,FIGHT_Z+9.7)
@@ -478,6 +519,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
         hud.rebuild_menu()
     elif event.keycode==KEY_F5 and practice and screen=="play":
         reset_training()
+    elif event.keycode==KEY_F11 and screen in ["title","play"]:
+        if screen=="title":start_match(true)
+        if practice:prime_air_drill()
     elif event.keycode==KEY_F10 and screen in ["title","play"]:
         if screen=="title":start_match(true)
         if practice:prime_rally_drill()
@@ -518,9 +562,13 @@ func _unhandled_key_input(event: InputEvent) -> void:
             return
         if practice: _record_training_input(event.physical_keycode)
         match event.physical_keycode:
+            KEY_S,KEY_DOWN: pending["down_pressed"] = true
             KEY_SHIFT: pending["guard_pressed"] = true
             KEY_J: pending["attack"] = "light"
-            KEY_K: pending["attack"] = "heavy"
+            KEY_K:
+                pending["attack"] = "heavy"
+                pending["up"] = Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)
+                pending["down"] = Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN)
             KEY_L: pending["attack"] = "special"
             KEY_G: pending["attack"] = "grab"
             KEY_SPACE: pending["jump"] = true
@@ -566,9 +614,25 @@ func reset_training(keep_screen := false) -> void:
     hud.notice_time=0.7
     hud.rebuild_menu()
 
+func prime_air_drill() -> void:
+    if not practice:return
+    reset_training()
+    sim.partner_mode=0
+    _configure_air_lab()
+    hud.notice="AIR LAB READY"
+    hud.notice_time=1.0
+    hud.rebuild_menu()
+
+func _configure_air_lab() -> void:
+    sim.practice_scenario="air"
+    sim.fighters[0].x=-.75
+    sim.fighters[1].x=.75
+    for fighter in sim.fighters:fighter.meter=100.0
+
 func prime_rally_drill() -> void:
     if not practice:return
     reset_training()
+    sim.practice_scenario="rally"
     sim.rally_enabled=true
     sim.rally_drill=true
     sim.fighters[0].x=-.65
@@ -582,6 +646,7 @@ func prime_pressure_drill() -> void:
     reset_training()
     sim.fighters[0].x=-.8
     sim.fighters[1].x=.8
+    sim.practice_scenario="pressure"
     sim.pressure_drill=true
     sim.exchange.pressure=sim.exchange.THRESHOLD
     hud.notice="PRESSURE READY / K TO START"
@@ -589,7 +654,10 @@ func prime_pressure_drill() -> void:
 
 func set_partner_mode(value: int) -> void:
     sim.partner_mode=clampi(value,0,2)
-    if practice: reset_training(true)
+    if practice:
+        var air_lab: bool=sim.is_aerial()
+        reset_training(true)
+        if air_lab:_configure_air_lab()
     save_options()
 
 func set_difficulty(value: int) -> void:

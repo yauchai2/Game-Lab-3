@@ -2,6 +2,22 @@ extends RefCounted
 ## Product copy is keyed; simulation events and save identifiers stay language-independent.
 var language := "zh"
 const COPY := {
+"air_lab_help":["F11 空中訓練限定：三幀蓄勢起跳、S 急降；挑空後 E 追擊花 20 能量，再按 J 接空連，↓ + K 暴扣。","F11 Air lab: three-tick jump load, S fast fall. After launch, E chases for 20 energy; J chains and ↓ + K meteors."],
+"chase_unavailable":["距離或狀態不適合追擊","CHASE OUT OF RANGE OR UNAVAILABLE"],
+"rally_short":["動能換手","Rally lab"],"air_lab":["空中訓練","Air lab"],
+"air_exit":["F11 再試 · F5 回自由練習","F11 RETRY / F5 FREE TRAINING"],
+"air_jump_help":["Space 起跳 · S / ↓ 急降 · A / D 空中移動","Space jump / S or ↓ fast fall / A or D air steer"],
+"air_combo_help":["W + K 挑空 → E 追擊 → J 三連 · ↓ + K 暴扣","W + K launch → E chase → J chain / ↓ + K meteor"],
+"air_chase_ready":["E 追擊可用 · 20 能量 · 每次一次","E CHASE READY / 20 ENERGY / ONCE PER FLIGHT"],
+"air_stall":["滯空餘量","AIR STALL"],
+"air_phase_ground":["地面","GROUNDED"],"air_phase_squat":["蓄勢","LOAD"],
+"air_phase_rise":["升空","RISING"],"air_phase_apex":["頂點","APEX"],
+"air_phase_fall":["下墜","FALLING"],"air_phase_fast":["急降","FAST FALL"],
+"air_phase_stall":["空中出招","AIR ATTACK"],"air_phase_land":["落地","LANDING"],
+"air_phase_chase":["追擊","CHASE"],
+"air_lab_ready":["空中訓練 · 挑空後試試 E 追擊","AIR LAB / LAUNCH THEN E TO CHASE"],
+"chase_notice":["瞬步追擊","HOMING CHASE"],"air_escape_notice":["空連上限 · 脫離","AIR LIMIT / ESCAPE"],
+"chase_meter_notice":["追擊需要 20 能量","CHASE NEEDS 20 ENERGY"],
 "rally_lab":["動能換手 · 實驗練習","KINETIC RALLY / LAB"],
 "rally_wait":["等對手出拳，接觸前輕按 Shift。","Tap Shift just before the rival's punch connects."],
 "rally_exit":["F10 再試 · F5 回自由練習","F10 RETRY / F5 FREE TRAINING"],
@@ -83,7 +99,7 @@ func text(key: String) -> String:
     return values[0 if language=="zh" else 1]
 func notice(raw: String) -> String:
     if raw.begins_with("FEINT / "):return text("feint")+" · "+notice(raw.trim_prefix("FEINT / "))
-    var notices := {"RALLY READY":"rally_ready","LIMIT":"rally_end_limit","TIMEOUT":"rally_end_timeout","NO_INPUT":"rally_end_no_input","WHIFF":"rally_end_whiff","BLOCKED":"rally_end_blocked","HIT":"rally_end_hit","THROW":"throw_notice","THROW TECH":"throw_tech","WALL TECH":"wall_tech","PERFECT GUARD":"perfect_guard","GUARD BREAK":"guard_break","COUNTER HIT":"counter","AIR CHASE / J TO FOLLOW UP":"air_chase","FIGHT!":"fight_start","SPECIAL NEEDS 50 ENERGY":"no_meter","TRAINING RESET":"reset_notice","EVEN / PRESSURE RELEASED":"tie"}
+    var notices := {"CHASE UNAVAILABLE":"chase_unavailable","AIR LAB READY":"air_lab_ready","CHASE":"chase_notice","AIR ESCAPE":"air_escape_notice","CHASE NEEDS 20":"chase_meter_notice","RALLY READY":"rally_ready","LIMIT":"rally_end_limit","TIMEOUT":"rally_end_timeout","NO_INPUT":"rally_end_no_input","WHIFF":"rally_end_whiff","BLOCKED":"rally_end_blocked","HIT":"rally_end_hit","THROW":"throw_notice","THROW TECH":"throw_tech","WALL TECH":"wall_tech","PERFECT GUARD":"perfect_guard","GUARD BREAK":"guard_break","COUNTER HIT":"counter","AIR CHASE / J TO FOLLOW UP":"air_chase","FIGHT!":"fight_start","SPECIAL NEEDS 50 ENERGY":"no_meter","TRAINING RESET":"reset_notice","EVEN / PRESSURE RELEASED":"tie"}
     if notices.has(raw):return text(notices[raw])
     for choice in ["press","turn","slip"]:
         if raw.ends_with("/ "+choice.to_upper()):return text("your_result" if raw.begins_with("YOU") else "rival_result")+" · "+text("result_"+choice)

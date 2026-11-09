@@ -1,5 +1,7 @@
 # 場景設計基準
 
+最新可試玩版本見 [AERIAL_STREET.md](AERIAL_STREET.md)：F11 練習限定分段跳躍、曲線追擊、空連與暴扣；正式仍保留原玩法。變形／短旋身和程序姿態只動展示層，F2 可減少演出，wev 音訊仍未錄用。
+
 最新空中戰與聲畫方向見 [AERIAL_ACTION_AUDIO_PLAN.zh-TW.md](AERIAL_ACTION_AUDIO_PLAN.zh-TW.md)。使用者強調跳起／空連／誇張動作，優先完成有界的空中原型。指定音樂為 wev／worldwidewev，但使用者確認尚未授權，先選曲及接入規劃，保留既有合法音訊；詳見 [WEV_MUSIC_PLAN.md](WEV_MUSIC_PLAN.md)。
 
 最新實作見 [KINETIC_OVERDRIVE.md](KINETIC_OVERDRIVE.md)：使用者已授權誇張爆發演出，並新增練習限定有限快反換手；正式仍為壓力三選。硬邊月牙／骨架殘影／世界三色階和短 KO 遵循 F2，來源場景及無文字招牌保留。

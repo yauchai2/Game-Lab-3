@@ -25,6 +25,7 @@ func _ready() -> void:
         sounds[kind] = []
         for filename in files[kind]: sounds[kind].append(load(OPEN+filename+".ogg"))
     sounds["charge"] = [_tone(0.28,65.0,120.0,0.08)]
+    sounds["chase"] = [_tone(.16,180.0,540.0,.05)]
     sounds["rally"] = [_tone(0.14,360.0,105.0,0.10)]
     sounds["sub"] = [_tone(0.17,100.0,30.0,0.20)]
     for i in 10:

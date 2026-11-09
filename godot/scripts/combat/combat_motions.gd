@@ -19,6 +19,8 @@ var previous_state := ""
 var previous_y := 0.0
 var land_time := 1.0
 var air_time := 0.0
+var air_poses:=preload("res://scripts/combat/aerial_poses.gd").new()
+var air_pose_name:=""
 var model_forward := Vector3.BACK
 var model_up := Vector3.UP
 
@@ -85,7 +87,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     if f.health <= 0:
         selected = "Death01"
     elif f.state == "attack":
-        selected = "Punch_Jab" if f.move=="jab" else "Punch_Cross"
+        selected = "Punch_Jab" if f.move in ["jab","air_jab"] else "Punch_Cross"
         if f.move == "special": selected = "Spell_Simple_Shoot"
     elif f.state == "stun":
         selected = "Hit_Head" if f.vy > 2.0 else "Hit_Chest"
@@ -197,6 +199,9 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
                 _aim_limb(side+"Arm",side+"ForeArm",model_forward*.4+model_up*.3,.65)
                 _aim_limb(side+"ForeArm",side+"Hand",model_up+model_forward*.3,.75)
 
+    air_pose_name=""
+    if f.get("air_enabled",false):air_pose_name=air_poses.apply(self,f)
+
 func _aim_limb(bone_name: String, child_name: String, direction: Vector3, weight: float) -> void:
     var bone := skeleton.find_bone("mixamorig_"+bone_name)
     var child := skeleton.find_bone("mixamorig_"+child_name)
@@ -240,9 +245,11 @@ func _interval(track: Dictionary, time: float) -> Array:
     return [lower,upper,weight]
 func _sample_quat(track: Dictionary, time: float) -> Quaternion:
     var interval := _interval(track,time)
+    if track.get("interpolation","LINEAR")=="STEP":return _quat(track.values[interval[1] if interval[2]>=1.0 else interval[0]])
     return _quat(track.values[interval[0]]).slerp(_quat(track.values[interval[1]]),interval[2])
 func _sample_vector(track: Dictionary, time: float) -> Vector3:
     var interval := _interval(track,time)
+    if track.get("interpolation","LINEAR")=="STEP":return _vec(track.values[interval[1] if interval[2]>=1.0 else interval[0]])
     return _vec(track.values[interval[0]]).lerp(_vec(track.values[interval[1]]),interval[2])
 func _quat(value: Array) -> Quaternion:
     return Quaternion(value[0],value[1],value[2],value[3]).normalized()

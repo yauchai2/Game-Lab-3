@@ -4,7 +4,14 @@ const STEP := 1.0 / 60.0
 const EDGE := 8.2
 const MAX_HEALTH := 100
 const ROUND_SECONDS := 75.0
+const AirMotion=preload("res://scripts/combat/aerial_motion.gd")
+var air_motion:=AirMotion.new()
+var practice_scenario:="free"
 const MOVES := {
+    "air_jab":{"startup":6,"active":3,"recovery":12,"damage":6,"reach":1.7,"stun":22,"push":1.2,"lift":1.0,"stop":4},
+    "air_kick":{"startup":8,"active":3,"recovery":16,"damage":8,"reach":2.0,"stun":25,"push":1.8,"lift":1.0,"stop":5},
+    "air_finisher":{"startup":12,"active":4,"recovery":22,"damage":12,"reach":2.2,"stun":28,"push":8.0,"lift":2.0,"stop":8},
+    "meteor":{"startup":14,"active":4,"recovery":22,"damage":14,"reach":2.1,"stun":30,"push":2.0,"lift":-16.0,"stop":9},
     "grab": {"startup":11,"active":3,"recovery":25,"damage":12,"reach":1.15,"stun":24,"push":8.0,"lift":5.0,"stop":9},
     "jab": {"startup": 5, "active": 5, "recovery": 13, "damage": 7, "reach": 1.65, "stun": 18, "push": 3.0, "lift": 0.0, "stop": 5},
     "cross": {"startup": 6, "active": 5, "recovery": 15, "damage": 9, "reach": 1.85, "stun": 21, "push": 4.0, "lift": 0.0, "stop": 6},
@@ -47,6 +54,7 @@ func _init() -> void:
 
 func reset_round() -> void:
     exchange.reset()
+    practice_scenario="free"
     rally.reset()
     rally_enabled=false
     rally_drill=false
@@ -55,7 +63,7 @@ func reset_round() -> void:
     fighters.clear()
     for i in 2:
         fighters.append({"x": -3.0 if i == 0 else 3.0, "y": 0.0, "vx": 0.0, "vy": 0.0,
-            "face": 1 if i == 0 else -1, "health": MAX_HEALTH, "meter": 0.0, "guard": 100.0,
+            "air":AirMotion.fresh(), "face": 1 if i == 0 else -1, "health": MAX_HEALTH, "meter": 0.0, "guard": 100.0,
             "state": "idle", "move": "", "frame": 0, "stun": 0, "connected": false,
             "buffer": "", "buffer_ttl": 0, "chain": 0, "chain_ttl": 0, "dash_cd": 0,
             "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "entry_parry_window":0, "jump_buffer":0, "juggle":0, "hit_confirmed":false,"throw_cd":0,"tech_window":0,"wall_bounces":0,"wall_tech_window":0,"wall_tech_buffer":0})
@@ -138,6 +146,12 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
             var aim: int=rally.WINDUP-2 if rally.tier<4 else rally.WINDUP+5
             partner={"guard":rally.age>=aim,"guard_pressed":rally.age==aim}
     var commands := [player.duplicate(),partner.duplicate()]
+    if is_aerial():
+        _advance_air_limits()
+        for side in 2:
+            var air: Dictionary=fighters[side].air
+            if commands[side].get("down_pressed",false) and fighters[side].state in ["idle","dash"]:air.drop_buffer=6
+            if commands[side].get("dash",false) and air.chase_window>0:air.chase_buffer=8
     for side in 2:
         var down: bool=commands[side].get("guard",false)
         if not commands[side].has("guard_pressed"):
@@ -160,7 +174,7 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         if commands[i].get("jump",false): f.jump_buffer=8
         if commands[i].get("dash",false) and f.state=="stun":f.wall_tech_buffer=8
         if commands[i].has("attack"):
-            f.buffer = "launcher" if commands[i].attack == "heavy" and commands[i].get("up", false) else commands[i].attack
+            f.buffer = "meteor" if is_aerial() and fighters[i].y>.01 and commands[i].attack=="heavy" and commands[i].get("down",false) else ("launcher" if commands[i].attack == "heavy" and commands[i].get("up", false) else commands[i].attack)
             f.buffer_ttl = 10
             if commands[i].attack=="grab":f.tech_window=7
     if hitstop > 0:
@@ -217,6 +231,16 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
     if f.chain_ttl == 0:
         f.chain = 0
     f.guarding = false
+    if is_aerial():
+        if f.air.chase_buffer>0 and f.air.chase_window>0 and f.state in ["idle","attack"]:
+            command=command.duplicate()
+            command["dash"]=false
+            var outcome: String=air_motion.start_chase(f,other,EDGE)
+            f.air.chase_buffer=0
+            if outcome=="started":events.append({"kind":"homing_chase","target":i,"cost":AirMotion.CHASE_COST})
+            elif outcome=="no_meter":events.append({"kind":"no_chase_meter","target":i})
+            else:events.append({"kind":"chase_unavailable","target":i})
+        if f.state=="landing" and f.air.land<=0:f.state="idle"
     if f.state in ["stun", "blockstun"]:
         if f.state == "blockstun":
             f.guarding = command.get("guard", false) and f.y <= 0.01 and f.guard > 0
@@ -230,12 +254,16 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
         # Confirm a grounded launcher, then buffer Space during its hitstop to chase.
         if f.hit_confirmed and f.move=="launcher" and f.jump_buffer>0 and f.y<=0.01:
             f.state = "idle"
-            f.vy = 10.3
-            f.jump_buffer = 0
-            events.append({"kind":"jump","target":i})
+            if is_aerial():air_motion.request_jump(f)
+            else:
+                f.vy = 10.3
+                f.jump_buffer = 0
+                events.append({"kind":"jump","target":i})
             events.append({"kind":"air_chase","target":i})
         # Confirmed light attacks cancel into the next light during recovery.
-        if f.connected and f.move in ["jab", "cross"] and f.frame >= move.startup + move.active and f.buffer == "light" and f.buffer_ttl > 0:
+        if f.hit_confirmed and f.move in ["air_jab","air_kick"] and f.frame>=move.startup+move.active and f.buffer=="light" and f.buffer_ttl>0:
+            _start_attack(i,"light")
+        elif f.connected and f.move in ["jab", "cross"] and f.frame >= move.startup + move.active and f.buffer == "light" and f.buffer_ttl > 0:
             _start_attack(i, "light")
         elif f.frame >= end:
             f.state = "idle"
@@ -256,10 +284,12 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
             f.guarding = command.get("guard", false) and f.y <= 0.01 and f.guard > 0
             f.vx = float(command.get("axis", 0.0)) * (1.6 if f.guarding else 5.8)
             if f.jump_buffer>0 and f.y <= 0.01 and not f.guarding:
-                f.vy = 10.3
-                f.jump_buffer = 0
-                events.append({"kind": "jump", "target": i})
-            if f.buffer_ttl > 0 and (not f.guarding or f.buffer=="grab"):
+                if is_aerial():air_motion.request_jump(f)
+                else:
+                    f.vy = 10.3
+                    f.jump_buffer = 0
+                    events.append({"kind": "jump", "target": i})
+            if f.state=="idle" and f.buffer_ttl > 0 and (not f.guarding or f.buffer=="grab"):
                 _start_attack(i, f.buffer)
     if f.state != "idle" and f.state != "dash":
         f.vx = move_toward(f.vx, 0.0, STEP * 18.0)
@@ -276,14 +306,22 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
             f.stun=maxi(f.stun,18)
             events.append({"kind":"wall_bounce","target":i})
     f.x=clampf(next_x,-EDGE,EDGE)
-    f.vy -= 26.0 * STEP
-    var previous_y: float = f.y
-    f.y = maxf(0.0, f.y + f.vy * STEP)
-    if f.y == 0:
-        f.vy = 0.0
-        if previous_y > 0.0:
-            f.juggle = 0
-            events.append({"kind": "land", "target": i})
+    if is_aerial():
+        var signal_kind: String=air_motion.integrate(f,EDGE)
+        if signal_kind!="":
+            events.append({"kind":signal_kind,"target":i,"hard":f.air.hard_land})
+            if signal_kind=="ground_bounce":
+                hitstop=maxi(hitstop,6)
+                hitstop_total=hitstop
+    else:
+        f.vy -= 26.0 * STEP
+        var previous_y: float = f.y
+        f.y = maxf(0.0, f.y + f.vy * STEP)
+        if f.y == 0:
+            f.vy = 0.0
+            if previous_y > 0.0:
+                f.juggle = 0
+                events.append({"kind": "land", "target": i})
     f.guard_frames = f.guard_frames+1 if f.guarding and was_guarding else (1 if f.guarding else 0)
     f.guard = minf(100.0, f.guard + (0.06 if f.guarding else 0.30))
     f.jump_buffer = maxi(0,f.jump_buffer-1)
@@ -296,7 +334,7 @@ func _start_attack(i: int, requested: String) -> void:
     var f: Dictionary = fighters[i]
     var name := requested
     if requested == "light":
-        name = ["jab", "cross", "finisher"][mini(f.chain, 2)]
+        name = (["air_jab","air_kick","air_finisher"] if is_aerial() and f.y>.01 else ["jab", "cross", "finisher"])[mini(f.chain, 2)]
     if not MOVES.has(name):
         return
     if name=="grab":
@@ -312,6 +350,7 @@ func _start_attack(i: int, requested: String) -> void:
             events.append({"kind": "no_meter", "target": i})
             return
         f.meter -= 50
+    if is_aerial():air_motion.attack_stall(f)
     f.state = "attack"
     f.guarding=false
     f.move = name
@@ -367,7 +406,7 @@ func _wall_tech(i: int) -> void:
 func _can_open_exchange(i: int) -> bool:
     var a: Dictionary=fighters[i]
     var b: Dictionary=fighters[1-i]
-    return not (training and rally_enabled) and a.state=="attack" and a.move=="heavy" and exchange.pressure>=exchange.THRESHOLD and exchange.cooldown==0 and a.y<=.01 and b.y<=.01 and b.state in ["idle","attack"]
+    return not is_aerial() and not (training and rally_enabled) and a.state=="attack" and a.move=="heavy" and exchange.pressure>=exchange.THRESHOLD and exchange.cooldown==0 and a.y<=.01 and b.y<=.01 and b.state in ["idle","attack"]
 
 func _resolve_hit(i: int, allow_exchange := true) -> void:
     var a: Dictionary = fighters[i]
@@ -453,22 +492,33 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     last_combo_hits = combo_hits
     last_combo_damage = combo_damage
     b.health = maxi(0, b.health - damage)
+    if is_aerial():
+        air_motion.cancel_stall(b)
+        b.air.fast=false
+        if b.air.combo_left==0 and (b.y>.1 or m.lift>0):b.air.combo_left=AirMotion.COMBO_TICKS
+        if move_name=="launcher":a.air.chase_window=30
     b.state = "stun"
     b.stun = m.stun
     b.vx = a.face * m.push
     if b.y>0.1: b.juggle += 1
     b.vy = minf(b.vy,-3.5) if b.juggle>=3 else maxf(b.vy,m.lift)
+    if is_aerial() and move_name in ["air_jab","air_kick"] and b.y>.1:
+        b.air.saved_vy=b.vy
+        b.air.stall=8
+    if is_aerial() and move_name=="meteor":
+        b.vy=-16.0
+        b.air.bounce_granted=not b.air.bounce_used and b.wall_bounces==0
     b.flash = m.stop + 7
     b.buffer = ""
     b.buffer_ttl = 0
     b.chain = 0
     a.meter = minf(100.0, a.meter + damage * 1.1)
     b.meter = minf(100.0, b.meter + damage * 0.5)
-    a.chain = (a.chain + 1) % 3 if move_name in ["jab", "cross", "finisher"] else 0
+    a.chain = (a.chain + 1) % 3 if move_name in ["jab", "cross", "finisher","air_jab","air_kick","air_finisher"] else 0
     a.chain_ttl = 45
     hitstop = maxi(hitstop, m.stop)
     hitstop_total = hitstop
-    events.append({"kind": "hit", "target": 1-i, "attacker": i, "damage": damage, "move": move_name, "strength": float(m.damage) / 27.0, "counter": counter})
+    events.append({"kind": "hit", "target": 1-i, "attacker": i, "damage": damage, "move": move_name, "strength": (.95 if move_name=="meteor" else .8) if is_aerial() and move_name in ["air_finisher","meteor"] else float(m.damage) / 27.0, "counter": counter})
 
 
 func _begin_rally(side: int) -> void:
@@ -651,7 +701,7 @@ func _update_training() -> void:
     # Never end a practice round, even on a lethal hit or timer expiry.
     for fighter in fighters:
         fighter.health = maxi(1,fighter.health)
-        fighter.meter = 100.0
+        if not is_aerial():fighter.meter = 100.0
     var settled := true
     for fighter in fighters:
         if fighter.state!="idle" or fighter.y>0.01: settled=false
@@ -660,6 +710,7 @@ func _update_training() -> void:
         for fighter in fighters:
             fighter.health=MAX_HEALTH
             fighter.guard=100.0
+            if is_aerial():fighter.meter=100.0
         combo_hits=0
         combo_damage=0
         combo_owner=-1
@@ -669,3 +720,26 @@ func reset_training() -> void:
     if not training: return
     reset_round()
     phase="fight"
+
+func is_aerial() -> bool:
+    return training and practice_scenario=="air"
+
+func _advance_air_limits() -> void:
+    for i in 2:
+        var f: Dictionary=fighters[i]
+        if f.air.combo_left<=0:continue
+        if f.state!="stun":
+            f.air.combo_left=0
+            continue
+        f.air.combo_left-=1
+        if f.air.combo_left==0:
+            air_motion.cancel_stall(f)
+            f.state="idle"
+            f.vy=minf(f.vy,-4.0)
+            f.vx=-f.face*4.0
+            f.invuln=maxi(f.invuln,18)
+            f.buffer=""
+            f.buffer_ttl=0
+            f.air.bounce_granted=false
+            hitstop=0
+            events.append({"kind":"air_escape","target":i})

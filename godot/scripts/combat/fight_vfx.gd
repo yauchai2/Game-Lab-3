@@ -12,6 +12,17 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     var paper := Color("fff8dc")
     var ink := Color("111a32")
     match effect.kind:
+        "chase_path":
+            if reduced:return
+            var p: Array=effect.get("points",[])
+            if p.size()!=4:return
+            for i in 12:
+                if i%3==int(time*3)%3:continue
+                var points:=PackedVector2Array()
+                for t in [float(i)/12.0,float(i+1)/12.0]:
+                    var world: Vector2=p[0]*pow(1-t,3)+p[1]*3*pow(1-t,2)*t+p[2]*3*(1-t)*t*t+p[3]*t*t*t
+                    points.append(session.project(world+Vector2(0,.9)))
+                canvas.draw_line(points[0],points[1],tint,5.0 if time<.5 else 2.0)
         "echo":
             if reduced:return
             for bone in effect.get("bones",[]):

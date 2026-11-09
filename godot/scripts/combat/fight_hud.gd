@@ -193,9 +193,19 @@ func _title_page() -> void:
     _caption("fight_hint")
     _action(menu_stack,"training","T",func():session.start_match(true))
     _caption("training_hint")
-    _action(menu_stack,"rally_lab","F10",func():
+    var labs:=HBoxContainer.new()
+    labs.add_theme_constant_override("separation",8)
+    menu_stack.add_child(labs)
+    var rally_button:=_action(labs,"rally_lab","F10",func():
         session.start_match(true)
         session.prime_rally_drill())
+    rally_button.text=tr_text("rally_short")
+    var air_button:=_action(labs,"air_lab","F11",func():
+        session.start_match(true)
+        session.prime_air_drill())
+    for button in [rally_button,air_button]:
+        button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+        button.add_theme_font_size_override("font_size",17)
     _action(menu_stack,"drill","F8",func():
         session.start_match(true)
         session.prime_pressure_drill())
@@ -320,7 +330,7 @@ func _settings_page() -> void:
 
 func _help_page() -> void:
     _heading("controls")
-    for key in ["move_help","combo_help","air_help","defense_help","throw_help","wall_help","special_help","pressure_help","clash_help"]:
+    for key in ["move_help","combo_help","air_help","defense_help","throw_help","wall_help","special_help","pressure_help","clash_help","air_lab_help"]:
         var label:=_label(tr_text(key),17,PAPER)
         menu_stack.add_child(label)
         var spacer:=Control.new()
@@ -417,9 +427,10 @@ func _draw() -> void:
             draw_colored_polygon(PackedVector2Array([at+Vector2(0,-6),at+Vector2(6,0),at+Vector2(0,6),at+Vector2(-6,0)]),color)
     if session.sim.combo_hits>=2 and session.sim.fighters[1-session.sim.combo_owner].state=="stun":
         var x:=40 if session.sim.combo_owner==0 else 1090
-        _text(Vector2(x,171),"%02d"%session.sim.combo_hits,42,Tokens.GOLD,true)
-        _text(Vector2(x+61,169),tr_text("hits"),16,PAPER)
-        _text(Vector2(x,194),"%d "%session.sim.combo_damage+tr_text("damage"),13,Tokens.MUTED)
+        var baseline:=210.0 if session.sim.is_aerial() else 171.0
+        _text(Vector2(x,baseline),"%02d"%session.sim.combo_hits,42,Tokens.GOLD,true)
+        _text(Vector2(x+61,baseline-2),tr_text("hits"),16,PAPER)
+        _text(Vector2(x,baseline+23),"%d "%session.sim.combo_damage+tr_text("damage"),13,Tokens.MUTED)
     if session.sim.phase=="ready" and session.screen=="play":
         _center(Vector2(640,280),tr_text("round")+" %d"%session.sim.round_number,40)
         _center(Vector2(640,316),"準備" if session.language=="zh" else "GET READY",22,Tokens.GOLD)
@@ -432,7 +443,8 @@ func _draw() -> void:
         at.x=clampf(at.x,120,1160)
         _plate(at+Vector2(-100,-26),Vector2(200,32),INK)
         _center(at+Vector2(0,-3),"E "+tr_text("recover"),13,Tokens.TEAL)
-    if session.sim.rally_enabled:_rally_hud()
+    if session.sim.is_aerial():_air_hud()
+    elif session.sim.rally_enabled:_rally_hud()
     else:_pressure_hud()
     if session.practice:_practice_hud()
     if not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
@@ -485,6 +497,17 @@ func _pressure_hud() -> void:
     if active and exchange.clash.choices[0]!="":_center(Vector2(640,682),tr_text("locked")+" · "+tr_text(exchange.clash.choices[0]),14,Tokens.TEAL)
     elif drill:_text(Vector2(34,690),tr_text("drill_exit"),12,Tokens.MUTED)
 
+func _air_hud() -> void:
+    var f: Dictionary=session.sim.fighters[0]
+    _plate(Vector2(330,548),Vector2(620,108),Color(INK,.96))
+    _text(Vector2(348,575),tr_text("air_lab"),18,Tokens.TEAL)
+    _text(Vector2(744,575),tr_text("air_phase_"+f.air.phase),14,Tokens.GOLD)
+    _center(Vector2(640,600),tr_text("air_jump_help"),14,PAPER)
+    _center(Vector2(640,623),tr_text("air_combo_help"),14,PAPER)
+    if f.air.chase_window>0 and not f.air.chase_used:
+        _center(Vector2(640,646),tr_text("air_chase_ready"),13,Tokens.GOLD)
+    else:_center(Vector2(640,646),tr_text("air_stall")+" %d / 12"%f.air.stall_left,12,Tokens.MUTED)
+
 func _rally_hud() -> void:
     var rally=session.sim.rally
     var tint: Color=session.COLORS[rally.owner] if rally.active() else Tokens.GOLD
@@ -505,6 +528,10 @@ func _rally_hud() -> void:
     _center(Vector2(640,645),tr_text("rally_hold" if rally.phase=="compress" else "rally_live"),12,Tokens.MUTED)
 
 func _practice_hud() -> void:
+    if session.sim.is_aerial():
+        _text(Vector2(40,122),tr_text("air_lab"),12,Tokens.TEAL)
+        _text(Vector2(40,143),tr_text("air_exit"),11,Tokens.MUTED)
+        return
     var lab: bool=session.sim.rally_enabled
     _text(Vector2(40,122),tr_text("rally_lab") if lab else tr_text("training_title")+" · "+tr_text(["standing","guarding","sparring"][session.sim.partner_mode]),12,Tokens.MUTED)
     _text(Vector2(40,143),tr_text("rally_exit") if lab else "F5 "+tr_text("reset_training")+"   F8 "+tr_text("drill")+"   F9 "+tr_text("training_details"),11,Tokens.MUTED)

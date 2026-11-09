@@ -67,6 +67,10 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         var attacking: bool=f.get("rally_owner",false)
         model.rotation.x=(-.12-amount*.12 if attacking else .12) if rally_phase=="compress" else 0.0
         if rally_phase=="compress" and not reduced:stretch=Vector3(1.05,.93,1.08)
+    if f.get("air_enabled",false):stretch*=motions.air_poses.stretch(f,reduced)
+    model.rotation.y=0.0
+    if f.get("air_enabled",false) and not reduced and f.state=="idle" and f.air.phase=="rise" and f.air.air_ticks<=8:
+        model.rotation.y=TAU*float(f.air.air_ticks)/8.0
     model.scale=Vector3.ONE*2.1*stretch
     for mat in materials:
         mat.set_shader_parameter("flash", 1.0 if f.flash > 0 and not reduced else 0.0)

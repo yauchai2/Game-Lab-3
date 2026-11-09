@@ -1,6 +1,8 @@
 # Afterhours / Game-Lab-3
 
-最新規劃：[空中戰、誇張動作及聲畫整合](docs/AERIAL_ACTION_AUDIO_PLAN.zh-TW.md)／[wev 選曲與接入](docs/WEV_MUSIC_PLAN.md)。吸收新 R&D 參考並核對跳躍尺度，下一輪優先起跳、有限滯空與空連；**本輪未改遊戲**。wev 尚未取得授權，先完成候選曲／架構規劃，現有 CC0 音訊保留。
+最新[空中街鬥原型](docs/AERIAL_STREET.md)：主選單 **F11 空中訓練**，Space 蓄勢起跳、S 急降、W＋K 挑空 → E 追擊 → J 空中三連、↓＋K 暴扣及一次反彈。新增程序姿態、空中構圖及快速組合鍵修正；F2 減少演出。正式模式保留原玩法，**公開 Web 不更新**。
+
+前輪規劃：[空中戰、誇張動作及聲畫整合](docs/AERIAL_ACTION_AUDIO_PLAN.zh-TW.md)／[wev 選曲與接入](docs/WEV_MUSIC_PLAN.md)。吸收新 R&D 參考並核對跳躍尺度，下一輪優先起跳、有限滯空與空連；**本輪未改遊戲**。wev 尚未取得授權，先完成候選曲／架構規劃，現有 CC0 音訊保留。
 
 最新[動能換手與漫畫爆發演出](docs/KINETIC_OVERDRIVE.md)：**F10** 進有限格擋換手練習，Shift 接拳 → J 反擊 → 再格擋升級。正式對戰新增月牙衝擊弧、骨架殘影、三色階爆發、鏡頭反衝及可跳過的 KO 演出。F2 減少演出。只更新開發分支，**公開 Web 不更新**。
 

@@ -1,0 +1,670 @@
+{
+  "checks": [
+    {
+      "name": "viewport F11 enters exclusive aerial practice",
+      "passed": true
+    },
+    {
+      "name": "viewport Space begins the three tick load",
+      "passed": true
+    },
+    {
+      "name": "load stays on ground for all three ticks",
+      "passed": true
+    },
+    {
+      "name": "fourth physical tick takes off",
+      "passed": true
+    },
+    {
+      "name": "holding native Space cannot auto repeat jumps",
+      "passed": true
+    },
+    {
+      "name": "pause preserves air budgets and positions",
+      "passed": true
+    },
+    {
+      "name": "S pressed while paused is not an automatic fast fall",
+      "passed": true
+    },
+    {
+      "name": "new viewport S activates fast fall",
+      "passed": true
+    },
+    {
+      "name": "viewport W K selects launcher in air lab",
+      "passed": true
+    },
+    {
+      "name": "native launcher actually confirms",
+      "passed": true
+    },
+    {
+      "name": "viewport E buffers into ten tick physical chase",
+      "passed": true
+    },
+    {
+      "name": "native chase arrives without a free hit",
+      "passed": true
+    },
+    {
+      "name": "viewport J chooses air jab",
+      "passed": true
+    },
+    {
+      "name": "native chain contacts air_jab",
+      "passed": true
+    },
+    {
+      "name": "native chain contacts air_kick",
+      "passed": true
+    },
+    {
+      "name": "native chain contacts air_finisher",
+      "passed": true
+    },
+    {
+      "name": "native chain records real combo damage",
+      "passed": true
+    },
+    {
+      "name": "viewport down K selects meteor",
+      "passed": true
+    },
+    {
+      "name": "original apex key pose is presented",
+      "passed": true
+    },
+    {
+      "name": "F2 removes exaggerated air stretch",
+      "passed": true
+    },
+    {
+      "name": "F2 preserves a readable key pose",
+      "passed": true
+    },
+    {
+      "name": "partner setting keeps air scenario and pause",
+      "passed": true
+    },
+    {
+      "name": "F5 exits experiment and clears all air budgets",
+      "passed": true
+    },
+    {
+      "name": "existing F10 lab remains available",
+      "passed": true
+    },
+    {
+      "name": "switching F10 to F11 clears the rally",
+      "passed": true
+    },
+    {
+      "name": "air camera keeps both envelopes visible (1280, 720)",
+      "passed": false
+    },
+    {
+      "name": "air camera keeps both envelopes visible (960, 540)",
+      "passed": false
+    },
+    {
+      "name": "air camera keeps both envelopes visible (960, 720)",
+      "passed": false
+    },
+    {
+      "name": "five title entries still fit without forced scrolling zh",
+      "passed": true
+    },
+    {
+      "name": "five title entries still fit without forced scrolling en",
+      "passed": true
+    }
+  ],
+  "display": "X11",
+  "failed": 3,
+  "framing": [
+    {
+      "altitude": 0.0,
+      "pair": [
+        -8.2,
+        -7.4
+      ],
+      "points": [
+        "(488.863, 522.0655)",
+        "(490.1507, 336.4031)",
+        "(551.2306, 521.0646)",
+        "(551.9812, 336.8083)"
+      ],
+      "safe": true,
+      "viewport": "(1280, 720)"
+    },
+    {
+      "altitude": 2.18,
+      "pair": [
+        -8.2,
+        -7.4
+      ],
+      "points": [
+        "(489.876, 378.3412)",
+        "(491.352, 195.4017)",
+        "(551.0246, 546.5281)",
+        "(551.9005, 361.6748)"
+      ],
+      "safe": false,
+      "viewport": "(1280, 720)"
+    },
+    {
+      "altitude": 4.5,
+      "pair": [
+        -8.2,
+        -7.4
+      ],
+      "points": [
+        "(526.6759, 278.2365)",
+        "(527.5045, 140.5193)",
+        "(572.3846, 541.1482)",
+        "(572.8829, 400.3803)"
+      ],
+      "safe": true,
+      "viewport": "(1280, 720)"
+    },
+    {
+      "altitude": 0.0,
+      "pair": [
+        -8.2,
+        8.2
+      ],
+      "points": [
+        "(217.4654, 468.1752)",
+        "(219.1008, 344.6062)",
+        "(1062.535, 468.1752)",
+        "(1060.899, 344.6062)"
+      ],
+      "safe": true,
+      "viewport": "(1280, 720)"
+    },
+    {
+      "altitude": 2.18,
+      "pair": [
+        -8.2,
+        8.2
+      ],
+      "points": [
+        "(218.7498, 372.6833)",
+        "(220.6397, 249.9404)",
+        "(1062.982, 485.1376)",
+        "(1061.076, 361.3859)"
+      ],
+      "safe": true,
+      "viewport": "(1280, 720)"
+    },
+    {
+      "altitude": 4.5,
+      "pair": [
+        -8.2,
+        8.2
+      ],
+      "points": [
+        "(220.4871, 288.4278)",
+        "(222.8998, 166.8499)",
+        "(1064.113, 520.2189)",
+        "(1061.647, 395.9681)"
+      ],
+      "safe": true,
+      "viewport": "(1280, 720)"
+    },
+    {
+      "altitude": 0.0,
+      "pair": [
+        -0.75,
+        0.75
+      ],
+      "points": [
+        "(582.9459, 519.6401)",
+        "(583.4231, 337.385)",
+        "(697.0541, 519.6401)",
+        "(696.5769, 337.385)"
+      ],
+      "safe": true,
+      "viewport": "(1280, 720)"
+    },
+    {
+      "altitude": 2.18,
+      "pair": [
+        -0.75,
+        0.75
+      ],
+      "points": [
+        "(583.321, 378.6487)",
+        "(583.8682, 199.0164)",
+        "(697.1852, 544.8767)",
+        "(696.6284, 362.0367)"
+      ],
+      "safe": true,
+      "viewport": "(1280, 720)"
+    },
+    {
+      "altitude": 4.5,
+      "pair": [
+        -0.75,
+        0.75
+      ],
+      "points": [
+        "(597.0223, 279.8481)",
+        "(597.3322, 144.0135)",
+        "(683.5711, 539.9296)",
+        "(683.2526, 400.3323)"
+      ],
+      "safe": true,
+      "viewport": "(1280, 720)"
+    },
+    {
+      "altitude": 0.0,
+      "pair": [
+        7.4,
+        8.2
+      ],
+      "points": [
+        "(728.7694, 521.0646)",
+        "(728.0188, 336.8083)",
+        "(791.137, 522.0655)",
+        "(789.8493, 336.4031)"
+      ],
+      "safe": true,
+      "viewport": "(1280, 720)"
+    },
+    {
+      "altitude": 2.18,
+      "pair": [
+        7.4,
+        8.2
+      ],
+      "points": [
+        "(728.1791, 378.468)",
+        "(727.3186, 196.8931)",
+        "(791.4902, 547.6883)",
+        "(789.9874, 361.4206)"
+      ],
+      "safe": false,
+      "viewport": "(1280, 720)"
+    },
+    {
+      "altitude": 4.5,
+      "pair": [
+        7.4,
+        8.2
+      ],
+      "points": [
+        "(706.687, 278.8997)",
+        "(706.2021, 141.9572)",
+        "(754.911, 542.0005)",
+        "(754.0591, 400.4139)"
+      ],
+      "safe": true,
+      "viewport": "(1280, 720)"
+    },
+    {
+      "altitude": 0.0,
+      "pair": [
+        -8.2,
+        -7.4
+      ],
+      "points": [
+        "(488.863, 522.0655)",
+        "(490.1507, 336.4031)",
+        "(551.2306, 521.0646)",
+        "(551.9812, 336.8083)"
+      ],
+      "safe": true,
+      "viewport": "(960, 540)"
+    },
+    {
+      "altitude": 2.18,
+      "pair": [
+        -8.2,
+        -7.4
+      ],
+      "points": [
+        "(489.876, 378.3412)",
+        "(491.352, 195.4017)",
+        "(551.0246, 546.5281)",
+        "(551.9005, 361.6748)"
+      ],
+      "safe": false,
+      "viewport": "(960, 540)"
+    },
+    {
+      "altitude": 4.5,
+      "pair": [
+        -8.2,
+        -7.4
+      ],
+      "points": [
+        "(526.6759, 278.2365)",
+        "(527.5045, 140.5193)",
+        "(572.3846, 541.1482)",
+        "(572.8829, 400.3803)"
+      ],
+      "safe": true,
+      "viewport": "(960, 540)"
+    },
+    {
+      "altitude": 0.0,
+      "pair": [
+        -8.2,
+        8.2
+      ],
+      "points": [
+        "(217.4654, 468.1752)",
+        "(219.1008, 344.6062)",
+        "(1062.535, 468.1752)",
+        "(1060.899, 344.6062)"
+      ],
+      "safe": true,
+      "viewport": "(960, 540)"
+    },
+    {
+      "altitude": 2.18,
+      "pair": [
+        -8.2,
+        8.2
+      ],
+      "points": [
+        "(218.7498, 372.6833)",
+        "(220.6397, 249.9404)",
+        "(1062.982, 485.1376)",
+        "(1061.076, 361.3859)"
+      ],
+      "safe": true,
+      "viewport": "(960, 540)"
+    },
+    {
+      "altitude": 4.5,
+      "pair": [
+        -8.2,
+        8.2
+      ],
+      "points": [
+        "(220.4871, 288.4278)",
+        "(222.8998, 166.8499)",
+        "(1064.113, 520.2189)",
+        "(1061.647, 395.9681)"
+      ],
+      "safe": true,
+      "viewport": "(960, 540)"
+    },
+    {
+      "altitude": 0.0,
+      "pair": [
+        -0.75,
+        0.75
+      ],
+      "points": [
+        "(582.9459, 519.6401)",
+        "(583.4231, 337.385)",
+        "(697.0541, 519.6401)",
+        "(696.5769, 337.385)"
+      ],
+      "safe": true,
+      "viewport": "(960, 540)"
+    },
+    {
+      "altitude": 2.18,
+      "pair": [
+        -0.75,
+        0.75
+      ],
+      "points": [
+        "(583.321, 378.6487)",
+        "(583.8682, 199.0164)",
+        "(697.1852, 544.8767)",
+        "(696.6284, 362.0367)"
+      ],
+      "safe": true,
+      "viewport": "(960, 540)"
+    },
+    {
+      "altitude": 4.5,
+      "pair": [
+        -0.75,
+        0.75
+      ],
+      "points": [
+        "(597.0223, 279.8481)",
+        "(597.3322, 144.0135)",
+        "(683.5711, 539.9296)",
+        "(683.2526, 400.3323)"
+      ],
+      "safe": true,
+      "viewport": "(960, 540)"
+    },
+    {
+      "altitude": 0.0,
+      "pair": [
+        7.4,
+        8.2
+      ],
+      "points": [
+        "(728.7694, 521.0646)",
+        "(728.0188, 336.8083)",
+        "(791.137, 522.0655)",
+        "(789.8493, 336.4031)"
+      ],
+      "safe": true,
+      "viewport": "(960, 540)"
+    },
+    {
+      "altitude": 2.18,
+      "pair": [
+        7.4,
+        8.2
+      ],
+      "points": [
+        "(728.1791, 378.468)",
+        "(727.3186, 196.8931)",
+        "(791.4902, 547.6883)",
+        "(789.9874, 361.4206)"
+      ],
+      "safe": false,
+      "viewport": "(960, 540)"
+    },
+    {
+      "altitude": 4.5,
+      "pair": [
+        7.4,
+        8.2
+      ],
+      "points": [
+        "(706.687, 278.8997)",
+        "(706.2021, 141.9572)",
+        "(754.911, 542.0005)",
+        "(754.0591, 400.4139)"
+      ],
+      "safe": true,
+      "viewport": "(960, 540)"
+    },
+    {
+      "altitude": 0.0,
+      "pair": [
+        -8.2,
+        -7.4
+      ],
+      "points": [
+        "(488.863, 522.0655)",
+        "(490.1507, 336.4031)",
+        "(551.2306, 521.0646)",
+        "(551.9812, 336.8083)"
+      ],
+      "safe": true,
+      "viewport": "(960, 720)"
+    },
+    {
+      "altitude": 2.18,
+      "pair": [
+        -8.2,
+        -7.4
+      ],
+      "points": [
+        "(489.876, 378.3412)",
+        "(491.352, 195.4017)",
+        "(551.0246, 546.5281)",
+        "(551.9005, 361.6748)"
+      ],
+      "safe": false,
+      "viewport": "(960, 720)"
+    },
+    {
+      "altitude": 4.5,
+      "pair": [
+        -8.2,
+        -7.4
+      ],
+      "points": [
+        "(526.6759, 278.2365)",
+        "(527.5045, 140.5193)",
+        "(572.3846, 541.1482)",
+        "(572.8829, 400.3803)"
+      ],
+      "safe": true,
+      "viewport": "(960, 720)"
+    },
+    {
+      "altitude": 0.0,
+      "pair": [
+        -8.2,
+        8.2
+      ],
+      "points": [
+        "(217.4654, 468.1752)",
+        "(219.1008, 344.6062)",
+        "(1062.535, 468.1752)",
+        "(1060.899, 344.6062)"
+      ],
+      "safe": true,
+      "viewport": "(960, 720)"
+    },
+    {
+      "altitude": 2.18,
+      "pair": [
+        -8.2,
+        8.2
+      ],
+      "points": [
+        "(218.7498, 372.6833)",
+        "(220.6397, 249.9404)",
+        "(1062.982, 485.1376)",
+        "(1061.076, 361.3859)"
+      ],
+      "safe": true,
+      "viewport": "(960, 720)"
+    },
+    {
+      "altitude": 4.5,
+      "pair": [
+        -8.2,
+        8.2
+      ],
+      "points": [
+        "(220.4871, 288.4278)",
+        "(222.8998, 166.8499)",
+        "(1064.113, 520.2189)",
+        "(1061.647, 395.9681)"
+      ],
+      "safe": true,
+      "viewport": "(960, 720)"
+    },
+    {
+      "altitude": 0.0,
+      "pair": [
+        -0.75,
+        0.75
+      ],
+      "points": [
+        "(582.9459, 519.6401)",
+        "(583.4231, 337.385)",
+        "(697.0541, 519.6401)",
+        "(696.5769, 337.385)"
+      ],
+      "safe": true,
+      "viewport": "(960, 720)"
+    },
+    {
+      "altitude": 2.18,
+      "pair": [
+        -0.75,
+        0.75
+      ],
+      "points": [
+        "(583.321, 378.6487)",
+        "(583.8682, 199.0164)",
+        "(697.1852, 544.8767)",
+        "(696.6284, 362.0367)"
+      ],
+      "safe": true,
+      "viewport": "(960, 720)"
+    },
+    {
+      "altitude": 4.5,
+      "pair": [
+        -0.75,
+        0.75
+      ],
+      "points": [
+        "(597.0223, 279.8481)",
+        "(597.3322, 144.0135)",
+        "(683.5711, 539.9296)",
+        "(683.2526, 400.3323)"
+      ],
+      "safe": true,
+      "viewport": "(960, 720)"
+    },
+    {
+      "altitude": 0.0,
+      "pair": [
+        7.4,
+        8.2
+      ],
+      "points": [
+        "(728.7694, 521.0646)",
+        "(728.0188, 336.8083)",
+        "(791.137, 522.0655)",
+        "(789.8493, 336.4031)"
+      ],
+      "safe": true,
+      "viewport": "(960, 720)"
+    },
+    {
+      "altitude": 2.18,
+      "pair": [
+        7.4,
+        8.2
+      ],
+      "points": [
+        "(728.1791, 378.468)",
+        "(727.3186, 196.8931)",
+        "(791.4902, 547.6883)",
+        "(789.9874, 361.4206)"
+      ],
+      "safe": false,
+      "viewport": "(960, 720)"
+    },
+    {
+      "altitude": 4.5,
+      "pair": [
+        7.4,
+        8.2
+      ],
+      "points": [
+        "(706.687, 278.8997)",
+        "(706.2021, 141.9572)",
+        "(754.911, 542.0005)",
+        "(754.0591, 400.4139)"
+      ],
+      "safe": true,
+      "viewport": "(960, 720)"
+    }
+  ],
+  "method": "viewport Input.parse_input_event plus manual 60Hz actual session steps; not human play or realtime performance",
+  "passed": 27
+}
