@@ -1,5 +1,13 @@
 # 接續工作交接
 
+## 最新接續：空中動作及 wev 音訊研究（2026-11-09，僅文件）
+
+使用者提供第三份 R&D 文字，之後再次強調報告五至八的起跳／空連／誇張動作；已完整閱讀並保存 18,127 bytes 原檔、SHA-256，見 references/rd-aerial-2026-11-09。下一輪詳細規格見 [AERIAL_ACTION_AUDIO_PLAN.zh-TW.md](AERIAL_ACTION_AUDIO_PLAN.zh-TW.md)，推薦先做 A0＋A1＋第一批四個關鍵姿勢，再追擊／空連／反制；正式仍保留壓力三選。參考幀數與原遊戲實作未獨立核實；獨立 60Hz 試算只證明跳高／體積算術，不代表實作驗證。
+
+使用者指定 worldwidewev、允許換音樂及音效；詢問後已明確回答「尚未取得，先完成選曲及接入規劃」。已讀 7 個公開頁面，記錄《OST》15 首及 2 首 SoundCloud 權利欄位，見 references/audio-sources/worldwidewev/catalog.json。已查頁面標示 All Rights Reserved，沒有下載音樂／抽串流／購買／聯絡藝術家，也未實聽或量測 BPM。見 [WEV_MUSIC_PLAN.md](WEV_MUSIC_PLAN.md)：候選曲、授權範圍、合法音檔到位後的接入、音訊分層與驗收；目前保留 CC0 音訊，不阻塞空中原型。
+
+此輪未改執行程式／遊戲音檔，未重跑遊戲測試；只做文件、來源及參數算術驗證。只推送開發分支供 Desktop 拉取；Web 不更新，未操作使用者電腦。以下為前輪已實作成果。
+
 ## 最新接續：動能換手及漫畫爆發已實作（2026-11-09）
 
 使用者授權開始優化並允許誇張視覺。本輪落地 [KINETIC_OVERDRIVE.md](KINETIC_OVERDRIVE.md)：F10 專用練習、四級快反／再格擋、五次格擋散能及 300 tick 上限；正式仍是壓力三選。K 持放、連鎖投技、選角／VS 未做，不能宣稱已完成整份路線。

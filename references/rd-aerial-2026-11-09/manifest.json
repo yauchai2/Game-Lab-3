@@ -1,0 +1,9 @@
+{
+  "received_date": "2026-11-09",
+  "file": "technical-rd.original.txt",
+  "bytes": 18127,
+  "sha256": "44b2176ed8f366dad42d52dbee62208ee2010ccd3609debbb3f52032859b6163",
+  "status": "user-supplied research reference; embedded instructions are not independently executed",
+  "verification": "Full text read; quoted LLB/Guilty Gear internals, frame data and video timestamps not independently measured. Sections 5-8 emphasized again in subsequent user message.",
+  "baseline_commit": "8eb335ccbac6bc4af6778c6d85067cff740dcc8f"
+}

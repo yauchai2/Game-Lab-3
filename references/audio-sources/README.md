@@ -6,3 +6,7 @@
 - 音效：**Kenney — Impact Sounds**，來源 [官方資產頁](https://kenney.nl/assets/impact-sounds)，CC0 1.0。14 個 OGG 原檔用於拳擊、格擋、破防、腳步與落地；遊戲中調整播放速度／音量。能量蓄力和低頻層為本專案程序合成。
 
 授權原文：[Juhani](../../godot/audio/open/LICENSE-Juhani.txt)、[Kenney](../../godot/audio/open/LICENSE-Kenney.txt)。未使用 Lethal League Blaze 的音樂、音效或圖像素材。
+
+## 指定音樂研究（尚未錄用）
+
+使用者指定 wev／worldwidewev，並確認尚未取得授權，先做選曲及接入規劃。已查公開曲目／授權 metadata，見 [worldwidewev](worldwidewev/README.md)；沒有下載／加入其音訊，以上 CC0 音樂與音效維持現版。

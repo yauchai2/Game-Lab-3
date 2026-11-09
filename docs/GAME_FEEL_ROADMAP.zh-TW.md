@@ -1,5 +1,7 @@
 # 爽感、交鋒及整體演出優化計劃
 
+最新補充：第三份 R&D 與使用者空中戰優先要求已整理為 [空中動作整合規劃](AERIAL_ACTION_AUDIO_PLAN.zh-TW.md)；指定藝術家見 [wev 音訊計劃](WEV_MUSIC_PLAN.md)。本輪僅規劃，沒有實作新空中系統或換曲。
+
 最新實作進度：使用者其後授權開發，本輪已落地 P1a 專用練習及部分 P2 視聽、短 KO；見 [KINETIC_OVERDRIVE.md](KINETIC_OVERDRIVE.md)。下方仍是完整計劃及起始參數，P1b、選角／VS 等未完成；已實作細節以新交付文件為準。
 
 日期：2026-11-09。對照版本：`abf0dfc`，Godot 4.6.3 Compatibility。**本文件是下一輪規格與實驗計劃，並非已實作或已驗收功能。**
