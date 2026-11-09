@@ -9,7 +9,7 @@ Input #0, mp3, from '/tmp/wev-masters/family-ties-wev-edit.mp3':
       Metadata:
         encoder         : LAME3.99r
       Side data:
-        replaygain: track gain - -7.700000, track peak - unknown, album gain - unknown, album peak - unknown, 
+        replaygain: track gain - -7.700000, track peak - unknown, album gain - unknown, album peak - unknown,
   Stream #0:1: Video: mjpeg (Baseline), yuvj444p(pc, bt470bg/unknown/unknown), 700x700 [SAR 72:72 DAR 1:1], 90k tbr, 90k tbn (attached pic)
       Metadata:
         title           : cover
@@ -34,8 +34,20 @@ Output #0, null, to 'pipe:':
       Metadata:
         encoder         : Lavc61.19.101 pcm_s16le
       Side data:
-        replaygain: track gain - -7.700000, track peak - unknown, album gain - unknown, album peak - unknown, 
-frame=    1 fps=0.0 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.2e-05x    frame=    1 fps=1.0 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=1.1e-05x    frame=    1 fps=0.7 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=7.33e-06x    frame=    1 fps=0.5 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=5.5e-06x    frame=    1 fps=0.4 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=4.4e-06x    frame=    1 fps=0.3 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=3.67e-06x    frame=    1 fps=0.3 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=3.14e-06x    frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.75e-06x    frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.44e-06x    frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.2e-06x    frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2e-06x    frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=1.83e-06x    [Parsed_loudnorm_0 @ 0x7f718c002080] 
+        replaygain: track gain - -7.700000, track peak - unknown, album gain - unknown, album peak - unknown,
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.2e-05x
+frame=    1 fps=1.0 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=1.1e-05x
+frame=    1 fps=0.7 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=7.33e-06x
+frame=    1 fps=0.5 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=5.5e-06x
+frame=    1 fps=0.4 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=4.4e-06x
+frame=    1 fps=0.3 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=3.67e-06x
+frame=    1 fps=0.3 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=3.14e-06x
+frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.75e-06x
+frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.44e-06x
+frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.2e-06x
+frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2e-06x
+frame=    1 fps=0.2 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=1.83e-06x
+[Parsed_loudnorm_0 @ 0x7f718c002080]
 {
 	"input_i" : "-6.94",
 	"input_tp" : "0.04",
@@ -49,4 +61,4 @@ frame=    1 fps=0.0 q=-0.0 size=N/A time=00:00:00.00 bitrate=N/A speed=2.2e-05x 
 	"target_offset" : "-0.83"
 }
 [out#0/null @ 0x5602680e1200] video:0KiB audio:169314KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
-frame=    1 fps=0.2 q=-0.0 Lsize=N/A time=00:00:00.00 bitrate=N/A speed=1.81e-06x    
+frame=    1 fps=0.2 q=-0.0 Lsize=N/A time=00:00:00.00 bitrate=N/A speed=1.81e-06x
