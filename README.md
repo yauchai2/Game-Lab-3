@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新[統一像素美術、活街景與3D選角詳細計劃](docs/UNIFIED_PIXEL_ART_PLAN.zh-TW.md)：本輪僅規劃，未變更遊戲或Web。
+
 ## Approved reference UI
 
 [Reference UI update](docs/REFERENCE_UI.md): original title composition, five actions, native four-card fighters and matching HUD. Music ducks through Esc/settings and crossfades songs; all attacks reviewed, noisy raster stamps removed. [Native images / Demo / VFX review](docs/evidence/ui-replica/README.md). Source branch only; public Web unchanged.

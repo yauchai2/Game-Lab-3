@@ -1,5 +1,10 @@
 # 接續工作交接
 
+## 最新規劃：統一像素美術與活街景
+
+使用者要求詳細規劃，方案見 [UNIFIED_PIXEL_ART_PLAN.zh-TW.md](UNIFIED_PIXEL_ART_PLAN.zh-TW.md)。先統一世界／UI／VFX／字體640×360合成，再做JSR式字族、3D選角與4人不同pose、特效尺寸、手工街景／植被／垃圾及有界背景動態。現有world-only pixel shader是主要風格差距；天空／飛機可沿用。本輪僅文件，runtime與Web不變。
+
+
 ## Latest: reference UI and continuous music
 
 Current policy: [REFERENCE_UI.md](REFERENCE_UI.md). Exact title art, five buttons, native card/P1/P2 selection and reference-layout HUD. English; original files remain. Pause ducks music and transport continues; two dedicated crossfade decks. Active combat renderer is authored vectors, old generated stamps/echo sticks retired. Native37/37,19 actual move routes,144 headless and47 rhythm/red-stage checks. Web unchanged.

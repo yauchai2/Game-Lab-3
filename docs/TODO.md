@@ -1,5 +1,16 @@
 # 待辦與完成狀態
 
+## 最新待實作：統一像素與生命感
+
+- [ ] P1 共用低解析合成與字體字樣表。
+- [ ] P2 右側3D選角、4人不同入場／待機／確認／卡片pose。
+- [ ] P3 13招分級擴大與四種大招，同格線cels。
+- [ ] P4/P5 手工邊／低解析貼圖／垃圾群落／植物與樹。
+- [ ] P6/P7 背景director、路人／車／雨篷循環、拆層UI動畫與整體驗收。
+
+詳規與驗收見 [UNIFIED_PIXEL_ART_PLAN.zh-TW.md](UNIFIED_PIXEL_ART_PLAN.zh-TW.md)；全部為計劃，未聲稱已完成。
+
+
 ## Latest: approved reference UI
 
 - [x] Five-action original title, four-card P1/P2 roster, matching live HUD and English pages.

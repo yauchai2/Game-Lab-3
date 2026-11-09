@@ -1,5 +1,10 @@
 # 驗證紀錄與證據範圍
 
+## 最新：統一美術規劃文件（2026-11-09）
+
+[詳細計劃](UNIFIED_PIXEL_ART_PLAN.zh-TW.md)依基線8ed0700讀取現有project、world-only pixel shader、reference UI、天空／飛機、植物方塊與動作資料制定。候選規格、已存在與待實作清楚分開。本輪僅文件，檢查本地連結及diff whitespace；沒有重跑／宣稱新的遊戲測試或效能驗收，runtime／素材／公開Web均未修改。
+
+
 ## 最新：參考圖UI復刻、連續音樂與完整特效審查（2026-11-09）
 
 [功能／界線](REFERENCE_UI.md)／[實機圖與證據](evidence/ui-replica/README.md)。主選單原圖直接接入5個原生按鈕；選角4卡／P1P2與英語；HUD依圖構圖但保留真實動態值。主選單原生1280×720對來源bilinear縮放RGB平均絕對差約1.14/255，不能推論每個動態畫面100%像素相同。
