@@ -1,0 +1,236 @@
+{
+  "checks": [
+    {
+      "name": "strict compile air_counter",
+      "passed": true
+    },
+    {
+      "name": "strict compile aerial_motion",
+      "passed": true
+    },
+    {
+      "name": "strict compile aerial_poses",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_simulation",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_session",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_hud",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_vfx",
+      "passed": true
+    },
+    {
+      "name": "air parry hijacks the real contact 0/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "one attempt costs twenty five 0/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "success does not award automatic damage 0/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "contact hold freezes both logical bodies 0/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "committed kick deals the configured hold duration once 0/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "kick cannot double hit after exit 0/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "air parry hijacks the real contact 0/meteor",
+      "passed": true
+    },
+    {
+      "name": "one attempt costs twenty five 0/meteor",
+      "passed": true
+    },
+    {
+      "name": "success does not award automatic damage 0/meteor",
+      "passed": true
+    },
+    {
+      "name": "contact hold freezes both logical bodies 0/meteor",
+      "passed": true
+    },
+    {
+      "name": "committed kick deals the configured hold duration once 0/meteor",
+      "passed": true
+    },
+    {
+      "name": "kick cannot double hit after exit 0/meteor",
+      "passed": true
+    },
+    {
+      "name": "air parry hijacks the real contact 1/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "one attempt costs twenty five 1/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "success does not award automatic damage 1/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "contact hold freezes both logical bodies 1/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "committed kick deals the configured hold duration once 1/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "kick cannot double hit after exit 1/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "air parry hijacks the real contact 1/meteor",
+      "passed": true
+    },
+    {
+      "name": "one attempt costs twenty five 1/meteor",
+      "passed": true
+    },
+    {
+      "name": "success does not award automatic damage 1/meteor",
+      "passed": true
+    },
+    {
+      "name": "contact hold freezes both logical bodies 1/meteor",
+      "passed": true
+    },
+    {
+      "name": "committed kick deals the configured hold duration once 1/meteor",
+      "passed": true
+    },
+    {
+      "name": "kick cannot double hit after exit 1/meteor",
+      "passed": true
+    },
+    {
+      "name": "first valid commitment locks",
+      "passed": true
+    },
+    {
+      "name": "hold remains active until the configured hold duration",
+      "passed": true
+    },
+    {
+      "name": "hold ends at the configured duration without another hitstop",
+      "passed": true
+    },
+    {
+      "name": "kick has configured visible startup ticks",
+      "passed": true
+    },
+    {
+      "name": "final live windup tick resolves contact",
+      "passed": true
+    },
+    {
+      "name": "escape transfers into a real safe dash",
+      "passed": true
+    },
+    {
+      "name": "no choice safely disperses instead of auto attacking",
+      "passed": true
+    },
+    {
+      "name": "loser can dodge the new counter instead of guaranteed damage",
+      "passed": true
+    },
+    {
+      "name": "early repeated parries cannot refresh the window",
+      "passed": true
+    },
+    {
+      "name": "insufficient energy gives no negative meter or free counter",
+      "passed": true
+    },
+    {
+      "name": "holding guard is not an automatic aerial parry",
+      "passed": true
+    },
+    {
+      "name": "distant attempt is not consumed",
+      "passed": true
+    },
+    {
+      "name": "one parry attempt per flight",
+      "passed": true
+    },
+    {
+      "name": "formal fight cannot start the experimental counter",
+      "passed": true
+    },
+    {
+      "name": "ninety tick failsafe ends the hold",
+      "passed": true
+    },
+    {
+      "name": "training reset clears counter choice and windows",
+      "passed": true
+    },
+    {
+      "name": "lesson read phase is indefinite and physically stable",
+      "passed": true
+    },
+    {
+      "name": "lesson begins only on explicit start",
+      "passed": true
+    },
+    {
+      "name": "scripted lesson can be genuinely parried",
+      "passed": true
+    },
+    {
+      "name": "lesson resolves to review",
+      "passed": true
+    },
+    {
+      "name": "review retry restores resources then starts a fresh attack",
+      "passed": true
+    },
+    {
+      "name": "sparring AI can parry a public finisher tell",
+      "passed": true
+    },
+    {
+      "name": "AI choice commits on its own schedule",
+      "passed": true
+    },
+    {
+      "name": "player can evade an AI reversal",
+      "passed": true
+    },
+    {
+      "name": "twenty five thousand counter ticks remain deterministic",
+      "passed": true
+    },
+    {
+      "name": "deterministic replay exercises real reversals",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 57,
+  "replay_counter_starts": 25,
+  "replay_ticks": 25000
+}

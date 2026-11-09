@@ -1,0 +1,953 @@
+{
+  "name": "llb-reference-a.mp4",
+  "sha256": "14ab121a6b38f89247a100b87d0806d83637aea55f5d616c2d9f88dfee843806",
+  "duration": 862.336122,
+  "bytes": 293890682,
+  "sampled_frames": 6898,
+  "sample_fps": 8,
+  "threshold": 0.35,
+  "red_intervals": [
+    {
+      "start": 30.875,
+      "end": 32.125,
+      "peak": {
+        "time": 32.125,
+        "red_fraction": 0.6525
+      }
+    },
+    {
+      "start": 42.0,
+      "end": 44.375,
+      "peak": {
+        "time": 44.375,
+        "red_fraction": 0.5832
+      }
+    },
+    {
+      "start": 76.25,
+      "end": 76.625,
+      "peak": {
+        "time": 76.5,
+        "red_fraction": 0.6331
+      }
+    },
+    {
+      "start": 77.375,
+      "end": 77.625,
+      "peak": {
+        "time": 77.5,
+        "red_fraction": 0.6344
+      }
+    },
+    {
+      "start": 78.375,
+      "end": 81.875,
+      "peak": {
+        "time": 78.625,
+        "red_fraction": 0.9778
+      }
+    },
+    {
+      "start": 142.625,
+      "end": 145.0,
+      "peak": {
+        "time": 143.625,
+        "red_fraction": 0.7731
+      }
+    },
+    {
+      "start": 152.375,
+      "end": 154.625,
+      "peak": {
+        "time": 154.625,
+        "red_fraction": 0.8152
+      }
+    },
+    {
+      "start": 164.875,
+      "end": 167.125,
+      "peak": {
+        "time": 167.125,
+        "red_fraction": 0.7246
+      }
+    },
+    {
+      "start": 172.125,
+      "end": 175.25,
+      "peak": {
+        "time": 172.125,
+        "red_fraction": 0.7743
+      }
+    },
+    {
+      "start": 191.125,
+      "end": 192.75,
+      "peak": {
+        "time": 192.5,
+        "red_fraction": 0.6607
+      }
+    },
+    {
+      "start": 216.375,
+      "end": 219.375,
+      "peak": {
+        "time": 219.375,
+        "red_fraction": 0.7196
+      }
+    },
+    {
+      "start": 227.5,
+      "end": 230.625,
+      "peak": {
+        "time": 230.625,
+        "red_fraction": 0.7596
+      }
+    },
+    {
+      "start": 240.625,
+      "end": 243.625,
+      "peak": {
+        "time": 243.625,
+        "red_fraction": 0.7397
+      }
+    },
+    {
+      "start": 254.875,
+      "end": 257.375,
+      "peak": {
+        "time": 254.875,
+        "red_fraction": 0.7762
+      }
+    },
+    {
+      "start": 272.75,
+      "end": 275.25,
+      "peak": {
+        "time": 272.75,
+        "red_fraction": 0.7762
+      }
+    },
+    {
+      "start": 284.75,
+      "end": 287.125,
+      "peak": {
+        "time": 287.125,
+        "red_fraction": 0.7567
+      }
+    },
+    {
+      "start": 331.125,
+      "end": 333.5,
+      "peak": {
+        "time": 333.5,
+        "red_fraction": 0.7369
+      }
+    },
+    {
+      "start": 347.25,
+      "end": 349.75,
+      "peak": {
+        "time": 348.25,
+        "red_fraction": 0.7644
+      }
+    },
+    {
+      "start": 359.375,
+      "end": 362.5,
+      "peak": {
+        "time": 362.5,
+        "red_fraction": 0.7603
+      }
+    },
+    {
+      "start": 379.5,
+      "end": 381.75,
+      "peak": {
+        "time": 381.75,
+        "red_fraction": 0.7418
+      }
+    },
+    {
+      "start": 391.25,
+      "end": 394.25,
+      "peak": {
+        "time": 394.25,
+        "red_fraction": 0.7481
+      }
+    },
+    {
+      "start": 405.375,
+      "end": 407.75,
+      "peak": {
+        "time": 407.75,
+        "red_fraction": 0.7599
+      }
+    },
+    {
+      "start": 416.875,
+      "end": 419.875,
+      "peak": {
+        "time": 419.875,
+        "red_fraction": 0.7351
+      }
+    },
+    {
+      "start": 429.375,
+      "end": 431.75,
+      "peak": {
+        "time": 430.625,
+        "red_fraction": 0.8248
+      }
+    },
+    {
+      "start": 440.375,
+      "end": 441.75,
+      "peak": {
+        "time": 441.75,
+        "red_fraction": 0.7144
+      }
+    },
+    {
+      "start": 452.0,
+      "end": 454.375,
+      "peak": {
+        "time": 453.0,
+        "red_fraction": 0.7394
+      }
+    },
+    {
+      "start": 474.375,
+      "end": 476.75,
+      "peak": {
+        "time": 475.375,
+        "red_fraction": 0.7704
+      }
+    },
+    {
+      "start": 513.375,
+      "end": 515.75,
+      "peak": {
+        "time": 515.5,
+        "red_fraction": 0.9117
+      }
+    },
+    {
+      "start": 552.375,
+      "end": 554.5,
+      "peak": {
+        "time": 552.375,
+        "red_fraction": 0.7778
+      }
+    },
+    {
+      "start": 575.625,
+      "end": 577.875,
+      "peak": {
+        "time": 577.875,
+        "red_fraction": 0.9385
+      }
+    },
+    {
+      "start": 591.0,
+      "end": 594.125,
+      "peak": {
+        "time": 594.125,
+        "red_fraction": 0.763
+      }
+    },
+    {
+      "start": 596.125,
+      "end": 598.5,
+      "peak": {
+        "time": 598.375,
+        "red_fraction": 0.8885
+      }
+    },
+    {
+      "start": 608.5,
+      "end": 611.5,
+      "peak": {
+        "time": 609.875,
+        "red_fraction": 0.8848
+      }
+    },
+    {
+      "start": 627.625,
+      "end": 629.375,
+      "peak": {
+        "time": 627.625,
+        "red_fraction": 0.7778
+      }
+    },
+    {
+      "start": 645.5,
+      "end": 649.125,
+      "peak": {
+        "time": 647.875,
+        "red_fraction": 0.9744
+      }
+    },
+    {
+      "start": 672.25,
+      "end": 674.75,
+      "peak": {
+        "time": 674.75,
+        "red_fraction": 0.7017
+      }
+    },
+    {
+      "start": 680.625,
+      "end": 681.0,
+      "peak": {
+        "time": 680.875,
+        "red_fraction": 0.6254
+      }
+    },
+    {
+      "start": 681.75,
+      "end": 682.0,
+      "peak": {
+        "time": 681.875,
+        "red_fraction": 0.6258
+      }
+    },
+    {
+      "start": 682.75,
+      "end": 685.75,
+      "peak": {
+        "time": 685.375,
+        "red_fraction": 0.7582
+      }
+    },
+    {
+      "start": 691.125,
+      "end": 693.375,
+      "peak": {
+        "time": 691.5,
+        "red_fraction": 0.7694
+      }
+    },
+    {
+      "start": 698.0,
+      "end": 700.375,
+      "peak": {
+        "time": 700.375,
+        "red_fraction": 0.7657
+      }
+    },
+    {
+      "start": 713.625,
+      "end": 716.75,
+      "peak": {
+        "time": 713.625,
+        "red_fraction": 0.7756
+      }
+    },
+    {
+      "start": 725.875,
+      "end": 725.875,
+      "peak": {
+        "time": 725.875,
+        "red_fraction": 0.4613
+      }
+    },
+    {
+      "start": 726.5,
+      "end": 726.875,
+      "peak": {
+        "time": 726.75,
+        "red_fraction": 0.6153
+      }
+    },
+    {
+      "start": 727.5,
+      "end": 727.875,
+      "peak": {
+        "time": 727.75,
+        "red_fraction": 0.5929
+      }
+    },
+    {
+      "start": 728.625,
+      "end": 728.875,
+      "peak": {
+        "time": 728.75,
+        "red_fraction": 0.6282
+      }
+    },
+    {
+      "start": 729.625,
+      "end": 730.0,
+      "peak": {
+        "time": 729.75,
+        "red_fraction": 0.6131
+      }
+    },
+    {
+      "start": 730.625,
+      "end": 731.0,
+      "peak": {
+        "time": 730.75,
+        "red_fraction": 0.6104
+      }
+    },
+    {
+      "start": 731.625,
+      "end": 732.0,
+      "peak": {
+        "time": 731.875,
+        "red_fraction": 0.5988
+      }
+    },
+    {
+      "start": 732.625,
+      "end": 733.0,
+      "peak": {
+        "time": 732.875,
+        "red_fraction": 0.6199
+      }
+    },
+    {
+      "start": 733.75,
+      "end": 734.0,
+      "peak": {
+        "time": 733.875,
+        "red_fraction": 0.6294
+      }
+    },
+    {
+      "start": 734.75,
+      "end": 735.125,
+      "peak": {
+        "time": 734.875,
+        "red_fraction": 0.6317
+      }
+    },
+    {
+      "start": 735.75,
+      "end": 738.625,
+      "peak": {
+        "time": 738.5,
+        "red_fraction": 0.7778
+      }
+    },
+    {
+      "start": 744.5,
+      "end": 746.875,
+      "peak": {
+        "time": 746.875,
+        "red_fraction": 0.7575
+      }
+    },
+    {
+      "start": 766.125,
+      "end": 768.5,
+      "peak": {
+        "time": 767.125,
+        "red_fraction": 0.7399
+      }
+    },
+    {
+      "start": 777.5,
+      "end": 779.875,
+      "peak": {
+        "time": 779.875,
+        "red_fraction": 0.7492
+      }
+    },
+    {
+      "start": 794.875,
+      "end": 795.625,
+      "peak": {
+        "time": 795.625,
+        "red_fraction": 0.6581
+      }
+    },
+    {
+      "start": 798.375,
+      "end": 801.5,
+      "peak": {
+        "time": 799.125,
+        "red_fraction": 0.7753
+      }
+    },
+    {
+      "start": 809.125,
+      "end": 812.125,
+      "peak": {
+        "time": 811.0,
+        "red_fraction": 0.8508
+      }
+    },
+    {
+      "start": 823.375,
+      "end": 826.5,
+      "peak": {
+        "time": 826.5,
+        "red_fraction": 0.7476
+      }
+    },
+    {
+      "start": 837.375,
+      "end": 839.875,
+      "peak": {
+        "time": 838.375,
+        "red_fraction": 0.7655
+      }
+    },
+    {
+      "start": 849.625,
+      "end": 852.25,
+      "peak": {
+        "time": 851.0,
+        "red_fraction": 0.6838
+      }
+    },
+    {
+      "start": 857.375,
+      "end": 862.125,
+      "peak": {
+        "time": 861.625,
+        "red_fraction": 0.819
+      }
+    }
+  ],
+  "overview": [
+    {
+      "time": 0.0,
+      "red_fraction": 0.0828,
+      "brightness": 64.24
+    },
+    {
+      "time": 10.0,
+      "red_fraction": 0.0987,
+      "brightness": 81.13
+    },
+    {
+      "time": 20.0,
+      "red_fraction": 0.0074,
+      "brightness": 185.15
+    },
+    {
+      "time": 30.0,
+      "red_fraction": 0.0092,
+      "brightness": 208.32
+    },
+    {
+      "time": 40.0,
+      "red_fraction": 0.0651,
+      "brightness": 67.06
+    },
+    {
+      "time": 50.0,
+      "red_fraction": 0.023,
+      "brightness": 55.41
+    },
+    {
+      "time": 60.0,
+      "red_fraction": 0.0,
+      "brightness": 183.28
+    },
+    {
+      "time": 70.0,
+      "red_fraction": 0.0048,
+      "brightness": 184.43
+    },
+    {
+      "time": 80.0,
+      "red_fraction": 0.4999,
+      "brightness": 90.26
+    },
+    {
+      "time": 90.0,
+      "red_fraction": 0.0049,
+      "brightness": 184.31
+    },
+    {
+      "time": 100.0,
+      "red_fraction": 0.0055,
+      "brightness": 183.76
+    },
+    {
+      "time": 110.0,
+      "red_fraction": 0.0176,
+      "brightness": 59.03
+    },
+    {
+      "time": 120.0,
+      "red_fraction": 0.0397,
+      "brightness": 59.97
+    },
+    {
+      "time": 130.0,
+      "red_fraction": 0.0597,
+      "brightness": 80.69
+    },
+    {
+      "time": 140.0,
+      "red_fraction": 0.0453,
+      "brightness": 123.92
+    },
+    {
+      "time": 150.0,
+      "red_fraction": 0.0805,
+      "brightness": 64.87
+    },
+    {
+      "time": 160.0,
+      "red_fraction": 0.0679,
+      "brightness": 70.43
+    },
+    {
+      "time": 170.0,
+      "red_fraction": 0.0893,
+      "brightness": 67.24
+    },
+    {
+      "time": 180.0,
+      "red_fraction": 0.078,
+      "brightness": 63.14
+    },
+    {
+      "time": 190.0,
+      "red_fraction": 0.0053,
+      "brightness": 30.21
+    },
+    {
+      "time": 200.0,
+      "red_fraction": 0.0719,
+      "brightness": 64.95
+    },
+    {
+      "time": 210.0,
+      "red_fraction": 0.0671,
+      "brightness": 62.57
+    },
+    {
+      "time": 220.0,
+      "red_fraction": 0.068,
+      "brightness": 61.51
+    },
+    {
+      "time": 230.0,
+      "red_fraction": 0.6381,
+      "brightness": 81.54
+    },
+    {
+      "time": 240.0,
+      "red_fraction": 0.0726,
+      "brightness": 65.59
+    },
+    {
+      "time": 250.0,
+      "red_fraction": 0.0787,
+      "brightness": 65.54
+    },
+    {
+      "time": 260.0,
+      "red_fraction": 0.0697,
+      "brightness": 64.97
+    },
+    {
+      "time": 270.0,
+      "red_fraction": 0.0046,
+      "brightness": 37.5
+    },
+    {
+      "time": 280.0,
+      "red_fraction": 0.0774,
+      "brightness": 66.36
+    },
+    {
+      "time": 290.0,
+      "red_fraction": 0.0713,
+      "brightness": 62.59
+    },
+    {
+      "time": 300.0,
+      "red_fraction": 0.0074,
+      "brightness": 47.19
+    },
+    {
+      "time": 310.0,
+      "red_fraction": 0.0079,
+      "brightness": 77.92
+    },
+    {
+      "time": 320.0,
+      "red_fraction": 0.0851,
+      "brightness": 97.62
+    },
+    {
+      "time": 330.0,
+      "red_fraction": 0.0551,
+      "brightness": 93.52
+    },
+    {
+      "time": 340.0,
+      "red_fraction": 0.1059,
+      "brightness": 99.43
+    },
+    {
+      "time": 350.0,
+      "red_fraction": 0.14,
+      "brightness": 47.03
+    },
+    {
+      "time": 360.0,
+      "red_fraction": 0.5901,
+      "brightness": 76.67
+    },
+    {
+      "time": 370.0,
+      "red_fraction": 0.0494,
+      "brightness": 69.8
+    },
+    {
+      "time": 380.0,
+      "red_fraction": 0.5187,
+      "brightness": 82.24
+    },
+    {
+      "time": 390.0,
+      "red_fraction": 0.0172,
+      "brightness": 81.33
+    },
+    {
+      "time": 400.0,
+      "red_fraction": 0.0184,
+      "brightness": 81.31
+    },
+    {
+      "time": 410.0,
+      "red_fraction": 0.0176,
+      "brightness": 81.28
+    },
+    {
+      "time": 420.0,
+      "red_fraction": 0.0014,
+      "brightness": 18.25
+    },
+    {
+      "time": 430.0,
+      "red_fraction": 0.6856,
+      "brightness": 87.73
+    },
+    {
+      "time": 440.0,
+      "red_fraction": 0.0165,
+      "brightness": 80.23
+    },
+    {
+      "time": 450.0,
+      "red_fraction": 0.1808,
+      "brightness": 41.14
+    },
+    {
+      "time": 460.0,
+      "red_fraction": 0.0178,
+      "brightness": 81.88
+    },
+    {
+      "time": 470.0,
+      "red_fraction": 0.0006,
+      "brightness": 204.96
+    },
+    {
+      "time": 480.0,
+      "red_fraction": 0.0074,
+      "brightness": 79.02
+    },
+    {
+      "time": 490.0,
+      "red_fraction": 0.0215,
+      "brightness": 148.38
+    },
+    {
+      "time": 500.0,
+      "red_fraction": 0.0562,
+      "brightness": 56.26
+    },
+    {
+      "time": 510.0,
+      "red_fraction": 0.0213,
+      "brightness": 56.53
+    },
+    {
+      "time": 520.0,
+      "red_fraction": 0.0256,
+      "brightness": 51.98
+    },
+    {
+      "time": 530.0,
+      "red_fraction": 0.0328,
+      "brightness": 59.54
+    },
+    {
+      "time": 540.0,
+      "red_fraction": 0.0229,
+      "brightness": 58.11
+    },
+    {
+      "time": 550.0,
+      "red_fraction": 0.0075,
+      "brightness": 57.73
+    },
+    {
+      "time": 560.0,
+      "red_fraction": 0.0257,
+      "brightness": 57.73
+    },
+    {
+      "time": 570.0,
+      "red_fraction": 0.0238,
+      "brightness": 58.8
+    },
+    {
+      "time": 580.0,
+      "red_fraction": 0.0069,
+      "brightness": 51.36
+    },
+    {
+      "time": 590.0,
+      "red_fraction": 0.0273,
+      "brightness": 59.77
+    },
+    {
+      "time": 600.0,
+      "red_fraction": 0.0098,
+      "brightness": 52.55
+    },
+    {
+      "time": 610.0,
+      "red_fraction": 0.8619,
+      "brightness": 100.04
+    },
+    {
+      "time": 620.0,
+      "red_fraction": 0.0207,
+      "brightness": 57.09
+    },
+    {
+      "time": 630.0,
+      "red_fraction": 0.0342,
+      "brightness": 138.69
+    },
+    {
+      "time": 640.0,
+      "red_fraction": 0.0172,
+      "brightness": 99.54
+    },
+    {
+      "time": 650.0,
+      "red_fraction": 0.0699,
+      "brightness": 52.88
+    },
+    {
+      "time": 660.0,
+      "red_fraction": 0.0072,
+      "brightness": 184.3
+    },
+    {
+      "time": 670.0,
+      "red_fraction": 0.0014,
+      "brightness": 156.96
+    },
+    {
+      "time": 680.0,
+      "red_fraction": 0.0069,
+      "brightness": 185.83
+    },
+    {
+      "time": 690.0,
+      "red_fraction": 0.0042,
+      "brightness": 194.22
+    },
+    {
+      "time": 700.0,
+      "red_fraction": 0.6497,
+      "brightness": 83.77
+    },
+    {
+      "time": 710.0,
+      "red_fraction": 0.0072,
+      "brightness": 186.37
+    },
+    {
+      "time": 720.0,
+      "red_fraction": 0.0073,
+      "brightness": 185.58
+    },
+    {
+      "time": 730.0,
+      "red_fraction": 0.4152,
+      "brightness": 58.9
+    },
+    {
+      "time": 740.0,
+      "red_fraction": 0.0079,
+      "brightness": 187.98
+    },
+    {
+      "time": 750.0,
+      "red_fraction": 0.0007,
+      "brightness": 202.58
+    },
+    {
+      "time": 760.0,
+      "red_fraction": 0.046,
+      "brightness": 61.72
+    },
+    {
+      "time": 770.0,
+      "red_fraction": 0.0419,
+      "brightness": 56.49
+    },
+    {
+      "time": 780.0,
+      "red_fraction": 0.042,
+      "brightness": 53.54
+    },
+    {
+      "time": 790.0,
+      "red_fraction": 0.043,
+      "brightness": 55.25
+    },
+    {
+      "time": 800.0,
+      "red_fraction": 0.679,
+      "brightness": 94.18
+    },
+    {
+      "time": 810.0,
+      "red_fraction": 0.5683,
+      "brightness": 68.91
+    },
+    {
+      "time": 820.0,
+      "red_fraction": 0.0446,
+      "brightness": 55.93
+    },
+    {
+      "time": 830.0,
+      "red_fraction": 0.0403,
+      "brightness": 56.56
+    },
+    {
+      "time": 840.0,
+      "red_fraction": 0.0435,
+      "brightness": 60.0
+    },
+    {
+      "time": 850.0,
+      "red_fraction": 0.6301,
+      "brightness": 76.45
+    },
+    {
+      "time": 860.0,
+      "red_fraction": 0.8077,
+      "brightness": 97.41
+    }
+  ],
+  "scope": "Full-duration 8fps red-pixel scan, not every 60fps source frame or an audio/game-rules analysis."
+}

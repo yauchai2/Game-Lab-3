@@ -1,0 +1,85 @@
+{
+  "captures": "Native Godot renderer, controlled fixed-step simulation, silent. Demo: 900 ticks/225 frames/15fps/15 sec, continuous. KO: 60 render steps/30 frames/30fps/1 sec. No reference-video pixels used.",
+  "files": [
+    {
+      "path": "docs/evidence/rush-rework/endless-demo.mp4",
+      "sha256": "d5de8a3bcee24486014dff13a26c9cd16bc130ac8f8a54f292f4b5a6349db6b8",
+      "bytes": 4146700
+    },
+    {
+      "path": "docs/evidence/rush-rework/red-ko.mp4",
+      "sha256": "b86aa758d6c457b4c053ae1bb299296b685cab97b4063a81875db73cc6d2b03d",
+      "bytes": 636753
+    },
+    {
+      "path": "docs/evidence/rush-rework/endless-demo.gif",
+      "sha256": "8c22f843eb36c2b6920f3380f7e65877d48c54ef70321000fade7b057ef2ce8c",
+      "bytes": 4456688
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/air_counter_start.png",
+      "sha256": "ec36f083f659e195a4ca1ef6e5fdb582d1229d0348a7108b1e65a5dcba9eabf8",
+      "bytes": 222088
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/break_finish.png",
+      "sha256": "d1265688ef8a50f3b858f00cfbe635a1739f72418e98cfa3f71b324b78d62da1",
+      "bytes": 64355
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/hit_air_kick.png",
+      "sha256": "274125013f9f0f3c261e5bf9721120b78723db205dc4840f55b234ed29a78755",
+      "bytes": 216464
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/hit_meteor.png",
+      "sha256": "d9ee0d31f4ded99c65343d18fc71a287eb1e55785b0eef49eaab7a2455bce3e7",
+      "bytes": 58791
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/hit_special.png",
+      "sha256": "d1265688ef8a50f3b858f00cfbe635a1739f72418e98cfa3f71b324b78d62da1",
+      "bytes": 64355
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/homing_chase.png",
+      "sha256": "a43b2b9f8a44df2aceb719e3931fbcd45af38ed693f447c558566a372f4fc1f5",
+      "bytes": 219851
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/live_fight.png",
+      "sha256": "ac070147b9812718f91ef0d890cf3b355fd248af7a5c756b84577e9af2735c5d",
+      "bytes": 238159
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/player_burst_charge.png",
+      "sha256": "42e9c35d9eab999dab07dd9455945d1fe45cf2ae28ffca72aa3ba95c2acbce5c",
+      "bytes": 71151
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/player_burst_hit.png",
+      "sha256": "5c1253c9ee8608147d3a81dd6954ed0131724748a087e8ae66d1ecc30cb38b2e",
+      "bytes": 73656
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/player_first_ko.png",
+      "sha256": "f9197d9424b47a1f2fad2cc11a97f8938359a4d41e2566b155a46301360ef5b3",
+      "bytes": 216900
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/player_launcher.png",
+      "sha256": "d05de500460b42d75dba4ff2e2751847dec51e94592d5a4eca323f0c34418753",
+      "bytes": 322318
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/player_meteor.png",
+      "sha256": "7e983d9acef13fda4bbc977be64a09f73ec6e9bf556e336ff67c027300a946ba",
+      "bytes": 72677
+    },
+    {
+      "path": "docs/evidence/rush-rework/captures/reduced_live.png",
+      "sha256": "0f105545b6e7c8b8dc03888f36b03b82a923ab7d01a7326a91ef71538fee4694",
+      "bytes": 234067
+    }
+  ]
+}

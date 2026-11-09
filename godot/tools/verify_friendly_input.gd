@@ -12,7 +12,8 @@ func step(n:=1) -> void:
     for i in n:scene._physics_process(1.0/60);scene._process(1.0/60);scene.hud._process(1.0/60)
 func shot(name:String) -> void:
     await process_frame;await RenderingServer.frame_post_draw
-    root.get_texture().get_image().save_png("res://../docs/evidence/friendly-defense/"+name+".png")
+    DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://../docs/evidence/rush-rework/defense-captures"))
+    root.get_texture().get_image().save_png("res://../docs/evidence/rush-rework/defense-captures/"+name+".png")
 func setup(frame:int) -> void:
     scene.start_match(false);scene.sim.phase="fight";scene.sim.ai_enabled=false
     scene.sim.fighters[0].x=-.6;scene.sim.fighters[1].x=.6

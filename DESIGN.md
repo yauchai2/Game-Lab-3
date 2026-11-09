@@ -1,5 +1,10 @@
 # Afterhours — interface design
 
+## Current combat update — 2026-11-09
+
+[docs/RUSH_REWORK.md](docs/RUSH_REWORK.md) is the current main-game contract: hold J for confirmed ground/air strings and paid pursuit, K launch/slam, L burst. The pressure-choice system remains in its dedicated lab. F12 is an endless live duel, with compact restart/exit controls and no chapters. Red-stage skills, BREAK and KO use actual actors against a temporary flat environment; KO removes the HUD and changes the camera. F2 restores the ordinary street presentation. Older lab-only/chapter descriptions below are historical.
+
+
 This is a native Godot 4 game, with a playable Hong Kong street as its setting. The maintained game/world design is [docs/DESIGN.md](docs/DESIGN.md); current mechanics are in [docs/PRESSURE_EXCHANGE.md](docs/PRESSURE_EXCHANGE.md). The user requested a full UI improvement on 2026-11-09 and allows scene changes. Public Web publishing remains opt-in.
 
 ## North star

@@ -1,0 +1,151 @@
+{
+  "checks": [
+    {
+      "name": "viewport F10 enters real rally practice",
+      "passed": true
+    },
+    {
+      "name": "rally entry never opens legacy choices",
+      "passed": true
+    },
+    {
+      "name": "viewport new Shift opens real parry rally",
+      "passed": true
+    },
+    {
+      "name": "viewport J commits the counter",
+      "passed": true
+    },
+    {
+      "name": "pause freezes both rule and visual clocks",
+      "passed": true
+    },
+    {
+      "name": "resume keeps the same commitment",
+      "passed": true
+    },
+    {
+      "name": "high tier enables scoped world grade",
+      "passed": true
+    },
+    {
+      "name": "grade is below the untouched HUD",
+      "passed": true
+    },
+    {
+      "name": "echo captures actual posed skeleton segments",
+      "passed": true
+    },
+    {
+      "name": "reduced effects immediately disables world grade",
+      "passed": true
+    },
+    {
+      "name": "reduced effects has no camera kick",
+      "passed": true
+    },
+    {
+      "name": "all cosmetic effects stay within sixty four",
+      "passed": true
+    },
+    {
+      "name": "training reset clears every visual pending effect",
+      "passed": true
+    },
+    {
+      "name": "training reset clears experimental state",
+      "passed": true
+    },
+    {
+      "name": "KO is resolved before the visual finish",
+      "passed": true
+    },
+    {
+      "name": "finish first shows action rather than the result menu",
+      "passed": true
+    },
+    {
+      "name": "finish camera never changes simulation",
+      "passed": true
+    },
+    {
+      "name": "finish camera is bounded",
+      "passed": true
+    },
+    {
+      "name": "finish presents operable result after point eight two seconds",
+      "passed": true
+    },
+    {
+      "name": "next round resets camera and grade",
+      "passed": true
+    },
+    {
+      "name": "viewport Enter skips the finish and advances once",
+      "passed": true
+    },
+    {
+      "name": "skip cannot buffer a following attack",
+      "passed": true
+    },
+    {
+      "name": "formal match cannot enable rally from prime call",
+      "passed": true
+    },
+    {
+      "name": "title clears grade core clock and rule state",
+      "passed": true
+    },
+    {
+      "name": "menu fits viewport zh(960, 540)",
+      "passed": true
+    },
+    {
+      "name": "main actions do not require scroll zh(960, 540)",
+      "passed": true
+    },
+    {
+      "name": "menu fits viewport zh(1280, 720)",
+      "passed": true
+    },
+    {
+      "name": "main actions do not require scroll zh(1280, 720)",
+      "passed": true
+    },
+    {
+      "name": "menu fits viewport zh(960, 720)",
+      "passed": true
+    },
+    {
+      "name": "main actions do not require scroll zh(960, 720)",
+      "passed": true
+    },
+    {
+      "name": "menu fits viewport en(960, 540)",
+      "passed": true
+    },
+    {
+      "name": "main actions do not require scroll en(960, 540)",
+      "passed": true
+    },
+    {
+      "name": "menu fits viewport en(1280, 720)",
+      "passed": true
+    },
+    {
+      "name": "main actions do not require scroll en(1280, 720)",
+      "passed": true
+    },
+    {
+      "name": "menu fits viewport en(960, 720)",
+      "passed": true
+    },
+    {
+      "name": "main actions do not require scroll en(960, 720)",
+      "passed": true
+    }
+  ],
+  "display": "X11",
+  "passed": 36,
+  "total": 36
+}

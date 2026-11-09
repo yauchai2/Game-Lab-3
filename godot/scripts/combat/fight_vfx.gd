@@ -12,6 +12,20 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     var paper := Color("fff8dc")
     var ink := Color("111a32")
     match effect.kind:
+        "meteor_streak":
+            if reduced:return
+            for side in [-1,1]:
+                var base:=at+Vector2(side*22,-155*(1-time))
+                canvas.draw_colored_polygon(PackedVector2Array([base,at+Vector2(side*14,72*time),base+Vector2(side*18,32)]),paper if side>0 else tint)
+        "slam_crater":
+            for i in (4 if reduced else 8):
+                var angle:=i*TAU/8
+                var direction:=Vector2(cos(angle),sin(angle)*.34)
+                var radius:=22+time*155
+                var tangent:=direction.orthogonal()*8*(1-time)
+                var tip:=at+direction*(radius+24)
+                canvas.draw_colored_polygon(PackedVector2Array([at+direction*radius-tangent,tip,at+direction*radius+tangent]),tint)
+            if not reduced:canvas.draw_arc(at,24+time*100,0,TAU,10,Color(paper,1-time),4)
         "chase_path":
             if reduced:return
             var p: Array=effect.get("points",[])
@@ -28,9 +42,9 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             for bone in effect.get("bones",[]):
                 var a: Vector2=session.camera.unproject_position(bone.a)*Vector2(1280,720)/session.get_viewport().get_visible_rect().size
                 var b: Vector2=session.camera.unproject_position(bone.b)*Vector2(1280,720)/session.get_viewport().get_visible_rect().size
-                var tangent: Vector2=(b-a).normalized().orthogonal()*bone.width*55.0*(1.0-time*.5)
+                var tangent: Vector2=(b-a).normalized().orthogonal()*bone.width*(80.0 if effect.get("rush",false) else 55.0)*(1.0-time*.5)
                 var drift:=Vector2(-face*time*24,0)
-                canvas.draw_colored_polygon(PackedVector2Array([a-tangent+drift,b-tangent+drift,b+tangent+drift,a+tangent+drift]),Color(tint,(1.0-time)*.30))
+                canvas.draw_colored_polygon(PackedVector2Array([a-tangent+drift,b-tangent+drift,b+tangent+drift,a+tangent+drift]),Color(tint,(1.0-time)*(.55 if effect.get("rush",false) else .30)))
         "ground_ring":
             if reduced:return
             var radius:=.3+time*2.0
@@ -59,7 +73,7 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             var phase: float = fmod(effect.age,0.15)/0.15 if effect.kind in ["hit","clash"] and effect.get("held",false) else time
             var shapes: Array[Dictionary] = impact_shapes.build("hit" if effect.kind=="clash" else ("release" if effect.kind=="wall" else effect.kind),effect.get("move","jab"),phase,tint,face,reduced)
             var pixels_per_meter: float = (session.project(effect.at+Vector2(1,0))-at).length()
-            var perspective_scale := clampf(pixels_per_meter/56.0,.65,1.3)
+            var perspective_scale := clampf(pixels_per_meter/56.0,.65,1.5)*(1.28 if effect.get("rush",false) and effect.get("move","") in ["meteor","launcher","special","air_kick"] and not reduced else 1.0)
             for shape in shapes:
                 var points: PackedVector2Array=shape.points.duplicate()
                 for i in points.size(): points[i]=at+points[i]*perspective_scale

@@ -1,5 +1,10 @@
 # Afterhours / Game-Lab-3
 
+最新[**Rush 街鬥大改**](docs/RUSH_REWORK.md)：正式對戰 **按住 J 連段＋空中追擊、K 挑空／暴扣、L 爆發**；**F12** 看不會完結的雙 AI 自由交戰，R 重開、Esc 暫停。新增紅幕技能、BREAK 及近鏡環繞 KO。[15 秒無剪接 Demo](docs/evidence/rush-rework/endless-demo.mp4)／[紅幕 KO](docs/evidence/rush-rework/red-ko.mp4)。只更新原始碼，公開 Web 維持舊版。
+
+本節為最新操作；以下先前的「23 段技巧／N 下一段、空戰只限 F11、正式模式不改」均已由這輪取代，保留歷史可追溯。wev 音樂仍已接入。
+
+
 最新[格擋／反擊容錯與正回饋](docs/FRIENDLY_DEFENSE.md)：**Shift** 接招更容易，成功後 **J 反擊**（不用放開 Shift），空中選擇與高壓決策時間加長。命中才顯示「反擊成功」，普通擋格也有提示；公開 Web 未更新。
 
 最新[雙 AI 技巧 Demo](docs/AI_DEMO.md)：**F12** 自動展示 23 段技巧、自由交戰及 KO 循環。**N 下一段、R 重播、Esc 暫停、F12 結束**；保留 wev 音樂及 F2。只更新開發分支，公開 Web 不更新。
@@ -57,7 +62,7 @@
 
 ## 開啟專案
 
-驗證版本為 Godot 4.6.3，以編輯器開啟 `godot/project.godot`，匯入後按 F5 進入格鬥主選單 `scenes/combat/street_fight.tscn`。J 輕攻擊、K 重攻擊、W+K 挑空、L 能量技、Shift 防禦／抓準時機反制、E 翻滾閃避、Space 跳躍；M 靜音、F4 音樂、F2 減少演出、O 場景描邊；遊戲內 F6 返回原街景 `scenes/street_walk.tscn`，再按 F6 回格鬥。
+驗證版本為 Godot 4.6.3，以編輯器開啟 `godot/project.godot`，匯入後按 F5 進入格鬥主選單 `scenes/combat/street_fight.tscn`。按住 J 地空連段、K 挑空／空中暴扣、↓+K 地面重踢、L 能量技、Shift 防禦／抓準時機反制、E 翻滾閃避、Space 跳躍；M 靜音、F4 音樂、F2 減少演出、O 場景描邊；遊戲內 F6 返回原街景 `scenes/street_walk.tscn`，再按 F6 回格鬥。
 
 原街景操作：WASD 移動、滑鼠轉向、Space 跳躍、V 切換第一／第三人稱；按 `1–5`／`Tab` 查看固定視角，`0` 回到角色，`R` 重設，`B` 比較樣片材質，`P` 重播飛機，`C` 切換程序雲朵／純色天空，`N` 比較生成的天空圖片，`O` 開關實驗性描邊。原資產展示仍保留於 `scenes/review.tscn`。
 

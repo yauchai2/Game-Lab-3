@@ -1,5 +1,22 @@
 # 驗證紀錄與證據範圍
 
+## 最新：Rush 主玩法／無限交戰／紅幕技能及 KO（2026-11-09）
+
+功能見 [RUSH_REWORK.md](RUSH_REWORK.md)，兩部影片的實際取樣範圍見 [COMBAT_VISUAL_STUDY.md](COMBAT_VISUAL_STUDY.md)。本輪改了正式規則與 Demo，不將上一輪的章節展示結果冒充這輪自由交戰。
+
+- [最後完整無視窗回歸](evidence/rush-rework/final-headless/summary.json) **494/494**：Rush 正式新手規則 21、連續 Demo 21、友善格擋 25、空中反制 57、空戰 54、換手 60、結果 15、原戰鬥 34、戰鬥完善 35、分段演出 24、三選 59、近身 41、UI 35、構圖 13。新手按住 J 實際命中六種招式、產生六連及贏下真回合，對手也造成真傷害；空揮不追人、手動 L 不被吞、落地逃脫、爆發非無敵及投技破起手均檢查。Demo 兩個獨立決策／模擬在 **30,000 tick** 輸入／事件／狀態一致，無章節重置或時間／KO 完結，雙方數百次真命中，實際出現追擊、暴扣、反踩、受身與 BREAK。
+- [完整原生流程](evidence/rush-rework/red-native/summary.json) **221/221**：紅幕 17、友善格擋 13、Demo／主玩法 28、wev 20、空中反制 33、空戰 31、換手展示 36、UI 17、戰鬥按鍵 15、三選按鍵 11。含真正 viewport 的 F12／R／Esc、玩家鍵隔離、N 無功能、偏好恢復、雙語／三尺寸、按住 J 主玩法實際贏回合，以及 red environment／city／shadow／F2／暫停／退出／結果清理。
+- 最後調整 KO 尖星跟隨受擊者、展示層角色分離及暴扣雙手放大後，再跑 [紅幕／Demo 45/45](evidence/rush-rework/final-native/summary.json)，並擷取新片段。其後修正時間到／平手不誤播紅幕 KO，新增一項同時檢查兩種結果，再跑 [18＋28＝46/46](evidence/rush-rework/final-native-timeout/summary.json)。覆核**不重複加總**；本輪不同檢查 **716** 項。上述完整 221 項早於最後幾項純視覺調整，未宣稱全部都在最後一秒重跑。
+- [紅幕版原生真實時鐘觀察](evidence/rush-rework/native-soak/complete.json) **120.14 秒、5,794 戰鬥 tick**：只有開始 F12 的兩次按鍵轉換，169 次真命中（70／99）、27 次追擊、9 次暴扣起手、29 次爆發起手、23 次 BREAK、11 次空中反踢命中、9 次場邊受身；**0 重置、0 循環、全程維持 fight**。502 個渲染取樣落在紅幕，最多 13 效果／540 節點，孤立節點取樣 0。這是短時間穩定性觀察，不是長測或記憶體洩漏證明；軟體 GL 未達目標機 60Hz，不能拿這份時鐘當目標 FPS。
+- [15 秒連續 Demo](evidence/rush-rework/endless-demo.mp4)／[GIF](evidence/rush-rework/endless-demo.gif)：900 sim tick、225 張原生擷取、15fps，**同一場不中斷、無剪接／章節跳轉**；29 真命中、5 追擊、2 暴扣命中、2 爆發命中、2 BREAK、3 次空中反制起手，詳見 [take.json](evidence/rush-rework/captures/take.json)。[1 秒紅幕 KO](evidence/rush-rework/red-ko.mp4)為真正按住 J 贏下回合後的 30fps 演出擷取；兩片均固定步進／無音軌，不是人手操作錄影。已檢視普通交手、追擊、暴扣、爆發及近鏡 KO 畫面，未將截圖當真人好玩評價。
+- [原自主交戰基線](evidence/rush-rework/baseline.json)與[新候選](evidence/rush-rework/candidate.json)各 7,200 tick：命中 **145 → 208**、追擊 **11 → 32**、爆發命中 **8 → 38**、最長無命中間隔 **160 → 97 tick**。舊基線只取自主 duel、不是含預設情境的章節展示；初始能量舊 100／新 70，規則及策略一併改變，這是整體候選對比，不是單變因實驗或真人爽感分數。
+- [來源清單](evidence/rush-rework/source-manifest.json)保存基線 af7c13c 與候選內容 SHA-256，43 件既有 GLB／圖片／音檔不變，wev 音樂保留；UI OFL 衍生字體重建。[擷取雜湊](evidence/rush-rework/artifact-manifest.json)另存。
+
+首跑驗證失敗亦保留：[spacing-first.json](evidence/rush-rework/spacing-first.json) 的舊 F7 契約仍要求 ±3m，但主玩法自由練習已改 ±0.7m；將斷言改成按模式驗證新／舊合法距離後通過，沒有取消重置檢查。[red-theatre-first.json](evidence/rush-rework/red-theatre-first.json) 16/17 的結果時序在 .816 秒讀選單，早於 .82 秒門檻，修正等待至 .866 秒後通過；不冒稱這兩項準備問題是新遊戲 bug。較早成功快照留在同目錄，最終以上述路徑為準。歷史 friendly-defense 原圖已恢復，新的回歸擷取改寫 rush-rework/defense-captures。
+
+Godot 4.6.3／Compatibility／Mesa llvmpipe／Dummy audio；只有預期 VSync 提示，最終日誌未有新腳本錯誤或退出資源警告。原生注入輸入／實際解碼與混音檢查並不代表真人手感、實聽、目標 GPU 或使用者電腦驗收。選角／VS、更多角色專用動畫、完整新蓄力分支及真人平衡仍待做。只推送來源分支，未匯出／部署公開 Web。
+
+
 ## 最新：更友善的格擋／反擊（2026-11-09）
 
 目前數值與操作見 [FRIENDLY_DEFENSE.md](FRIENDLY_DEFENSE.md)。本輪修改實際預設規則與正回饋，不僅更新說明。

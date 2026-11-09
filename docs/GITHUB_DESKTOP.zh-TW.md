@@ -1,5 +1,10 @@
 # 使用 GitHub Desktop 查看最新 Godot 場景
 
+## 最新 Rush 版查看方法
+
+在 `codex/street-combat` **Fetch／Pull** 後，用 Godot 4.6.3 匯入／F5。Enter 對戰：**按住 J**、**K** 挑空或暴扣、**L** 爆發。主選單 **F12** 看無限雙 AI，R 重開、Esc 暫停、F12 退出，F2 比較減少演出。這輪有紅幕攻擊、BREAK／KO；N 不再換章。[新功能與影片](RUSH_REWORK.md)。只有來源分支更新，公開試玩網址保持舊版；雲端無法代你操作 Desktop。
+
+
 目前格鬥與新街角細節位於任務分支 **`codex/street-combat`**；原始街景來源分支 `codex/flight-street-handoff` 保留。這裡的步驟用於查看與回饋，並不要求合併 PR。
 
 依使用者 2026-11-08 指示，日常只推送原始碼供 Desktop 更新，**明確要求時才更新公開試玩版／gh-pages**。雲端 AI 不能假設已同步你的電腦。

@@ -6,6 +6,7 @@ var model: Node3D
 var skeleton: Skeleton3D
 var materials: Array[ShaderMaterial] = []
 var team := Color("66e5db")
+var oversized_bones: Array[int]=[]
 var elapsed := 0.0
 var motions := preload("res://scripts/combat/combat_motions.gd").new()
 
@@ -19,7 +20,7 @@ func setup(color: Color) -> void:
             var original: Material = mesh.get_active_material(surface)
             var mat := ShaderMaterial.new()
             mat.shader = Toon
-            mat.set_shader_parameter("tint", Color.WHITE.lerp(team, 0.32))
+            mat.set_shader_parameter("tint", Color.WHITE.lerp(team, 0.50))
             if original is BaseMaterial3D and original.albedo_texture:
                 mat.set_shader_parameter("use_texture", true)
                 mat.set_shader_parameter("base_texture", original.albedo_texture)
@@ -34,6 +35,8 @@ func setup(color: Color) -> void:
         motions.setup(skeleton,model)
 
 func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent_x := INF) -> void:
+    for bone in oversized_bones:skeleton.set_bone_pose_scale(bone,Vector3.ONE)
+    oversized_bones.clear()
     elapsed += delta
     position = Vector3(f.x, f.y, 3.0)
     # Imported +Z forward maps to gameplay +X at +90 degrees.
@@ -71,11 +74,27 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
     model.rotation.y=0.0
     if f.get("air_enabled",false) and not reduced and f.state=="idle" and f.air.phase=="rise" and f.air.air_ticks<=8:
         model.rotation.y=TAU*float(f.air.air_ticks)/8.0
+    if f.get("ko_theatre",-1.0)>=0:
+        var pose_time:float=f.ko_theatre
+        model.rotation.x+=(-.35 if f.health<=0 else .12)*sin(pose_time*PI/.64)
+        if f.health<=0:model.rotation.z=sin(pose_time*PI/.64)*.55
+        stretch*=Vector3(1.18,.92,1.18)
+    else:model.rotation.z=0.0
     model.scale=Vector3.ONE*2.1*stretch
     for mat in materials:
         mat.set_shader_parameter("flash", 1.0 if f.flash > 0 and not reduced else 0.0)
     if skeleton:
         motions.present(f,delta,stopped)
+        if f.get("rush_visual",false) and f.state=="attack":
+            var move: Dictionary=preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
+            if f.frame>=move.startup-1 and f.frame<move.startup+move.active:
+                var limbs:Array=["LeftHand","RightHand"] if f.move=="meteor" else ["RightFoot" if f.move in ["air_kick","air_counter"] else ("LeftHand" if f.move in ["jab","air_jab"] else "RightHand")]
+                for limb in limbs:
+                    var index:=skeleton.find_bone("mixamorig_"+limb)
+                    if index>=0:
+                        skeleton.set_bone_pose_scale(index,Vector3.ONE*2.1)
+                        oversized_bones.append(index)
+                model.scale*=Vector3(1.05,.94,1.20)
 
 func capture_echo() -> Array:
     var segments: Array=[]

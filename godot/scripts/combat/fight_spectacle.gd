@@ -1,5 +1,6 @@
 extends RefCounted
 ## Original comic staging. Visual clock only; never changes collision or damage.
+var impact_word := ""
 var mode := ""
 var age := 1.0
 var duration := 0.0
@@ -11,6 +12,7 @@ var kick := 0.0
 var generation := 0
 
 func clear() -> void:
+    impact_word=""
     mode=""
     age=1.0
     duration=0.0
@@ -28,6 +30,9 @@ func trigger(kind: String, side: int, point: Vector2, level := 1) -> void:
     if kind in ["burst","finish"]:
         kick_age=0.0
         kick=.45 if kind=="finish" else .12+tier*.06
+
+func tag_move(move: String) -> void:
+    impact_word={"meteor":"SLAM!","launcher":"RISE!","special":"BURST!","air_counter":"REVERSE!"}.get(move,"")
 
 func advance(delta: float, paused: bool) -> void:
     if paused:return
@@ -93,6 +98,13 @@ func draw(canvas: Control, session: Node3D) -> void:
         canvas.draw_line(Vector2(left,167),Vector2(1280,167),color,4)
         canvas.draw_string(session.hud.bold,Vector2(left+8,215),session.hud.tr_text("overdrive_stamp"),HORIZONTAL_ALIGNMENT_LEFT,-1,35,color)
     elif mode in ["burst","contact"]:
+        if impact_word!="" and age<.18:
+            var x:=845.0 if owner==0 else 65.0
+            var slide:=maxf(0,.035-age)*1100
+            var plate:=PackedVector2Array([Vector2(x+slide,166),Vector2(x+305+slide,166),Vector2(x+283+slide,232),Vector2(x-18+slide,232)])
+            canvas.draw_colored_polygon(plate,ink)
+            canvas.draw_line(plate[0],plate[1],color,4)
+            canvas.draw_string(session.hud.bold,Vector2(x+8+slide,215),impact_word,HORIZONTAL_ALIGNMENT_LEFT,-1,45,paper)
         _border(canvas,color,fade*(.4+tier*.1))
         var count:=12 if tier<3 else 20
         for i in count:

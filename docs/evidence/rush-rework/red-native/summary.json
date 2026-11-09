@@ -1,0 +1,303 @@
+{
+  "created_utc": "20261109T100234Z",
+  "source_commit": "af7c13ccf290f640800f1d2df80945afe7b77ac3",
+  "tracked_runtime_changes": [
+    "godot/assets/fonts/AfterhoursUIHK.otf",
+    "godot/scripts/combat/demo_director.gd",
+    "godot/scripts/combat/fight_audio.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/fight_spectacle.gd",
+    "godot/scripts/combat/fight_vfx.gd",
+    "godot/scripts/combat/fighter_visual.gd",
+    "godot/scripts/combat/ui/ui_text.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 221,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_red_theatre",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "caac0f4dcb869ac50677950506fccab3ad39ac693a37d57131a8215f1183a1bf",
+      "seconds": 1.422,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_red_theatre.gd"
+      ],
+      "report_written": true,
+      "passed": 17,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_friendly_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "1a02cd330e60b3994a23b303b866468461802263c3878b99d17a133781d0f96d",
+      "seconds": 4.297,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_friendly_input.gd"
+      ],
+      "report_written": true,
+      "passed": 13,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_demo_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "6b64c1d790871d1bf0281f57b6886ad03be88090662a22a5e9d6bbd01c83d2fc",
+      "seconds": 10.194,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_demo_input.gd"
+      ],
+      "report_written": true,
+      "passed": 28,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_wev_audio",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "88ad9ef0be5fe7d6a338eed5da85df0a158eee5e83f371b69631af8dccf380ff",
+      "seconds": 1.496,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_wev_audio.gd"
+      ],
+      "report_written": true,
+      "passed": 20,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_air_counter_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "9a39dd2cf90bacf2d1cc5e8b5528264db99eef0a81a53ae0b0f8d1e926f296ac",
+      "seconds": 6.675,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_air_counter_input.gd"
+      ],
+      "report_written": true,
+      "passed": 33,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_aerial_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "6db82eb6c4d0c7c09106ff55866982286ad188a813647514f9a351fef9607798",
+      "seconds": 14.614,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_aerial_input.gd"
+      ],
+      "report_written": true,
+      "passed": 31,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_kinetic_presentation",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "651b0bf6c29e98d52d5f80fa3e32aee2c293c11cf7ea198cfd0bc99a2740fd23",
+      "seconds": 7.457,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_kinetic_presentation.gd"
+      ],
+      "report_written": true,
+      "passed": 36,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_ui_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "13b18f0f153fdca5e7f7b3656a97d6f512bec0843952a62e491dd53037672be8",
+      "seconds": 13.406,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_ui_input.gd"
+      ],
+      "report_written": true,
+      "passed": 17,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_combat_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "181113f43dd461e1912548f984785c9ea3eb5fa96deaa0b880510a7c357937b2",
+      "seconds": 6.648,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_combat_input.gd"
+      ],
+      "report_written": true,
+      "passed": 15,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_pressure_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "7065fe9611ad370e4f07e8c70faefe5070f8dbd8e0de3206c28da358cb6e2a82",
+      "seconds": 4.096,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_pressure_input.gd"
+      ],
+      "report_written": true,
+      "passed": 11,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

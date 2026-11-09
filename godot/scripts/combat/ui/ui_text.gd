@@ -2,10 +2,11 @@ extends RefCounted
 ## Product copy is keyed; simulation events and save identifiers stay language-independent.
 var language := "zh"
 const COPY := {
+"demo_hits":["次命中","HITS"],"rush_controls":["按住 J 連擊 · K 挑空／暴扣 · L 爆發","HOLD J: RUSH / K: LAUNCH-SLAM / L: BURST"],
 "counter_ready":["格擋成功！J 反擊","PARRY! J TO COUNTER"],
 "rival_parry":["對手擋住了 · 重新找機會","RIVAL PARRIED / FIND AN OPENING"],
 "counter_success":["反擊成功！","COUNTER SUCCESS!"],"nice_block":["擋住了！","NICE BLOCK!"],
-"demo":["AI 技巧展示","AI SHOWCASE"],"demo_auto":["雙 AI 自動展示 · 示範情境循環播放","TWO AI AGENTS / SCRIPTED SHOWCASE LOOP"],
+"demo":["雙 AI 無限激鬥","ENDLESS AI FIGHT"],"demo_auto":["雙 AI 自動展示 · 示範情境循環播放","TWO AI AGENTS / SCRIPTED SHOWCASE LOOP"],
 "demo_next":["下一段 · N","NEXT / N"],"demo_restart":["重播 · R","RESTART / R"],"demo_exit":["結束 · F12","EXIT / F12"],
 "demo_combo":["拳腳三連", "GROUND COMBO"],
 "demo_heavy":["重擊擊飛", "HEAVY LAUNCH"],
@@ -85,7 +86,7 @@ const COPY := {
 "finish_stamp":["決勝一擊","KNOCKOUT"],
 "subtitle":["借勢街鬥","PRESSURE / STREET FIGHT"],
 "intro":["拳腳交鋒，借勢反擊。","Build pressure. Read the stance. Turn the fight."],
-"fight":["街頭對戰","Fight the rival"],"fight_hint":["單人對 AI · 先取兩勝","Solo vs AI / First to two"],
+"fight":["街頭對戰","Fight the rival"],"fight_hint":["按住 J 連擊 · L 爆發 · 先取兩勝","Hold J: combo / L: burst / First to two"],
 "training":["自由練習","Free training"],"training_hint":["練連段、挑空與拆招","Combos, launchers and counters"],
 "drill":["交鋒教室","Pressure dojo"],"drill_hint":["先看懂，再出手。","Read first. Then commit."],
 "settings":["設定","Settings"],"controls":["操作與招式","How to play"],"explore":["街區遊走","Explore the street"],
@@ -127,8 +128,8 @@ const COPY := {
 "light":["輕拳","Light"],"heavy":["重踢","Heavy"],"launch":["挑空","Launch"],"special":["能量技","Special"],
 "move":["移動","Move"],"jump":["跳躍","Jump"],"dodge":["閃避","Dodge"],"parry":["防禦／精準反制","Guard / parry"],
 "move_help":["A / D 左右移動，Space 跳躍。","A / D to move. Space to jump."],
-"combo_help":["J 輕拳連按三段。K 重踢。W + K 挑空。","J: three-hit chain. K: heavy. W + K: launcher."],
-"air_help":["挑空命中後按 Space 追上，再按 J 接招。","On launcher hit: Space to chase, then J."],
+"combo_help":["主玩法：按住 J 連擊，挑空命中後自動追擊。K 挑空，空中 K 暴扣。","RUSH MODE: Hold J to combo and chase confirmed launches. K launches; airborne K slams."],
+"air_help":["專項教室保留手動操作：W + K 挑空 → E 追擊 → J 空連。","Specialist labs keep manual controls: W+K launch → E chase → J air chain."],
 "defense_help":["Shift 防禦；抓準起手時機可反制。E 閃避。","Shift guards; time it for a parry. E dodges."],
 "pressure_help":["命中、擋格及反制會升壓。高壓地面重踢可開對峙。","Hits, blocks and parries build pressure. A grounded heavy opens a clash at high pressure."],
 "clash_help":["對峙時：J 頂進、Shift 卸勢、E 抽身。只鎖定一次。標準與挑戰對手可能用假動作；教室會明示選擇。","In a clash: J press, Shift turn, E slip. One commitment. Standard and Challenging rivals can feint; the dojo shows true intentions."],

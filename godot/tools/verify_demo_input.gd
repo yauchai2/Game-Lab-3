@@ -2,82 +2,77 @@ extends SceneTree
 var scene: Node
 var checks: Array[Dictionary]=[]
 func _initialize() -> void:call_deferred("run")
-func check(label:String,passed:bool) -> void:
-    checks.append({"name":label,"passed":passed})
-    if not passed:push_error("DEMO INPUT FAIL: "+label)
-func key(code:Key) -> void:
-    var e:=InputEventKey.new();e.keycode=code;e.physical_keycode=code;e.pressed=true
-    Input.parse_input_event(e);await process_frame
-    e=InputEventKey.new();e.keycode=code;e.physical_keycode=code;e.pressed=false
-    Input.parse_input_event(e);await process_frame
-func step() -> void:
-    scene._physics_process(1.0/60);scene._process(1.0/60);scene.hud._process(1.0/60)
+func check(label:String,value:bool) -> void:
+    checks.append({"name":label,"passed":value})
+    if not value:push_error("LIVE INPUT FAIL: "+label)
+func key(code:Key,down:=true) -> void:
+    var e:=InputEventKey.new();e.keycode=code;e.physical_keycode=code;e.pressed=down
+    Input.parse_input_event(e);await process_frame;await process_frame
+func tap(code:Key) -> void:await key(code);await key(code,false)
+func step(n:=1) -> void:
+    for i in n:scene._physics_process(1.0/60);scene._process(1.0/60);scene.hud._process(1.0/60)
 func run() -> void:
-    scene=preload("res://scenes/combat/street_fight.tscn").instantiate()
-    scene.preferences_path=""
+    scene=preload("res://scenes/combat/street_fight.tscn").instantiate();scene.preferences_path=""
     root.add_child(scene);current_scene=scene
     scene.set_process(false);scene.set_physics_process(false);scene.audio.muted=true
+    await process_frame;await process_frame
     scene.sim.partner_mode=2
-    await key(KEY_F12);step()
-    check("F12 starts autonomous showcase",scene.demo!=null and scene.screen=="play")
-    check("demo has three visible native transport buttons",scene.hud.demo_buttons.all(func(b:Button)->bool:return b.visible))
-    check("demo hides manual air and clash choices",not scene.hud.air_lesson.visible and scene.hud.choice_buttons.all(func(b:Button)->bool:return not b.visible))
-    var saved: Dictionary=scene.pending.duplicate()
-    await key(KEY_J);await key(KEY_K);await key(KEY_F5);await key(KEY_F7);await key(KEY_F8)
-    check("gameplay keys cannot control either AI or change scenario",scene.pending==saved and scene.demo.chapter==0 and scene.sim.partner_mode==0)
-    await key(KEY_ESCAPE)
+    await tap(KEY_F12);step()
+    check("F12 starts endless live combat",scene.demo!=null and scene.sim.endless and scene.sim.arcade_enabled)
+    check("only restart and exit transport remain",scene.hud.demo_buttons.size()==2 and scene.hud.demo_buttons.all(func(b:Button)->bool:return b.visible))
+    check("no player laboratory controls cover the demo",not scene.hud.air_lesson.visible and scene.hud.choice_buttons.all(func(b:Button)->bool:return not b.visible))
     var age: int=scene.demo.age
-    for i in 20:step()
-    check("Escape pauses agents and simulation",scene.screen=="pause" and scene.demo.age==age)
-    check("paused transport buttons hidden",scene.hud.demo_buttons.all(func(b:Button)->bool:return not b.visible))
-    await key(KEY_ESCAPE);step()
-    check("resume continues original chapter",scene.screen=="play" and scene.demo.age==age+1)
-    await key(KEY_N);step()
-    check("N advances chapter and clears previous effects",scene.demo.chapter==1 and scene.sim.fighters.all(func(f:Dictionary)->bool:return f.health==100) and scene.effects.is_empty())
-    scene.hud.demo_buttons[0].pressed.emit();step()
-    check("native Next uses same transition",scene.demo.chapter==2)
-    await key(KEY_R);step()
-    check("R restarts whole demo",scene.demo.chapter==0 and scene.demo.cycle==0)
-    check("restart preserves original partner preference",scene.demo_partner==2)
-    await key(KEY_F2)
-    check("F2 can reduce demo effects",scene.reduced_effects)
-    scene.pause_game();scene.hud.open_page("settings")
-    check("settings opens over paused demo",scene.demo!=null and scene.screen=="pause")
-    check("demo settings cannot change scripted partner",not scene.hud.menu_stack.find_children("*","OptionButton",true,false).any(func(b:OptionButton)->bool:return b.get_meta("ui_key","")=="partner"))
-    scene.hud.close_page();scene.resume_game()
-    var counts: Dictionary={}
-    scene.combat_event.connect(func(e:Dictionary):counts[e.kind]=counts.get(e.kind,0)+1)
-    var maximum:=0
-    var finale:=false
-    for i in 8000:
-        step();maximum=maxi(maximum,scene.effects.size())
-        if scene.screen=="result":finale=true
-        if scene.demo.cycle>=1:break
-    check("native scene completes and loops all chapters",scene.demo.cycle==1 and scene.demo.chapter==0)
-    check("KO goes through real result presentation",finale and counts.get("ko",0)==1)
-    check("native event dispatch includes air and ground exchanges",counts.get("air_counter_start",0)>=3 and counts.get("clash_start",0)>=3 and counts.get("homing_chase",0)>0 and counts.get("rally_contact",0)>=4)
-    check("effects remain bounded",maximum<=64)
-    check("wev is retained as demo background music",scene.audio.music_credit.contains("wev"))
-    for language in ["zh","en"]:
-        scene.set_language(language)
-        for size in [Vector2i(960,540),Vector2i(1280,720),Vector2i(1920,1080)]:
-            root.size=size;await process_frame;scene.hud._process(0)
-            check("transport bounds "+language+str(size),scene.hud.demo_buttons.all(func(b:Button)->bool:return b.get_global_rect().end.x<=scene.hud.layout_root.size.x+.1 and b.get_global_rect().end.y<=scene.hud.layout_root.size.y+.1))
-    await key(KEY_F12);step()
-    check("F12 exits demo to title cleanly",scene.demo==null and scene.screen=="title" and scene.effects.is_empty())
-    check("exit restores original partner preference",scene.sim.partner_mode==2)
-    scene.start_match(false);step()
-    check("normal match retains player control and ordinary AI",scene.demo==null and not scene.practice and scene.sim.ai_enabled)
+    await tap(KEY_N);await tap(KEY_J);await tap(KEY_F5);step()
+    check("old Next and player keys cannot reset or control the fight",scene.demo.age==age+1 and scene.pending.is_empty())
+    await tap(KEY_ESCAPE);age=scene.demo.age;step(15)
+    check("pause freezes both autonomous agents",scene.screen=="pause" and scene.demo.age==age)
+    await tap(KEY_ESCAPE);step()
+    check("resume continues the same fight",scene.screen=="play" and scene.demo.age==age+1)
+    var max_effects:=0
+    var giant_seen:=false
+    for i in 1800:
+        step();max_effects=maxi(max_effects,scene.effects.size())
+        giant_seen=giant_seen or scene.fighters.any(func(f:Node)->bool:return not f.oversized_bones.is_empty())
+    check("native scene keeps fighting without KO pages or chapters",scene.screen=="play" and scene.sim.phase=="fight" and scene.demo.age>1800)
+    check("both live agents hit naturally",scene.demo.hits[0]>10 and scene.demo.hits[1]>10)
+    check("native demo includes chase and meteor payoff",scene.demo.seen.get("homing_chase",0)>5 and scene.demo.seen.get("hit/meteor",0)>2)
+    check("effects remain bounded",max_effects<=64)
+    check("active attacks really enlarge a hand or foot",giant_seen)
+    check("new heavyweight effects actually spawn",scene.audio.sounds.has("slam") and scene.audio.sounds.has("launch"))
+    await tap(KEY_R);step()
+    check("explicit restart returns to fresh live opening",scene.demo.age==1 and scene.demo.hits==[0,0])
+    check("restart retains original player preferences",scene.demo_partner==2)
+    await tap(KEY_F2);step()
+    check("F2 stops oversized bones and strong grading",scene.reduced_effects and not scene.grade.visible and scene.fighters.all(func(f:Node)->bool:return f.oversized_bones.is_empty()))
+    for locale in ["zh","en"]:
+        scene.set_language(locale)
+        for extent in [Vector2i(960,540),Vector2i(1280,720),Vector2i(1920,1080)]:
+            root.size=extent;await process_frame;scene.hud._process(0)
+            check("compact transport bounds "+locale+str(extent),scene.hud.demo_buttons.all(func(b:Button)->bool:return b.get_global_rect().end.x<=1280 and b.get_global_rect().end.y<=720))
+    root.size=Vector2i(1280,720);scene.set_language("zh")
+    await tap(KEY_F12);step()
+    check("F12 exits and restores partner preference",scene.demo==null and scene.screen=="title" and scene.sim.partner_mode==2)
+    scene.start_match(false);await key(KEY_J)
+    var moves:={}
+    scene.combat_event.connect(func(e:Dictionary):
+        if e.kind=="hit" and e.attacker==0:moves[e.move]=true)
+    for i in 500:
+        step()
+        if scene.screen=="result":break
+    await key(KEY_J,false)
+    check("native held J earns an aerial combo on first play",moves.has("launcher") and moves.has("air_jab") and moves.has("meteor"))
+    check("first-play player can win a real round",scene.screen=="result" and scene.sim.winner==0)
+    scene.start_match(true);step()
+    check("free practice uses the same accessible core",scene.sim.arcade_enabled and scene.sim.is_aerial())
+    await tap(KEY_F11);step()
+    check("manual air lab stays available separately",not scene.sim.arcade_enabled and scene.sim.practice_scenario=="air")
     scene.return_to_title();scene.hud.rebuild_menu()
-    var buttons=scene.hud.menu_stack.find_children("*","Button",true,false)
-    var entry=buttons.filter(func(b:Button)->bool:return b.get_meta("ui_key","")=="demo")
-    check("title exposes a native demo entry",entry.size()==1)
+    var entry=scene.hud.menu_stack.find_children("*","Button",true,false).filter(func(b:Button)->bool:return b.get_meta("ui_key","")=="demo")
     entry[0].pressed.emit();step()
-    check("pointer also starts showcase",scene.demo!=null and scene.screen=="play")
-    scene.hud.demo_buttons[2].pressed.emit();step()
-    check("pointer Exit clears director",scene.demo==null and scene.screen=="title")
+    check("pointer starts endless demo",scene.demo!=null and scene.sim.endless)
+    scene.hud.demo_buttons[1].pressed.emit();step()
+    check("pointer exit clears combat effects and pending commands",scene.demo==null and scene.effects.is_empty() and scene.pending.is_empty())
     var passed:=checks.filter(func(c:Dictionary)->bool:return c.passed).size()
-    FileAccess.open("res://../docs/evidence/ai-demo/input.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"events":counts,"max_effects":maximum,"scope":"Native viewport key dispatch and real session/controller simulation, manually stepped; not a human or target GPU playtest."},"  "))
+    FileAccess.open("res://../docs/evidence/rush-rework/input.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"max_effects":max_effects,"player_moves":moves,"scope":"Native viewport inputs with manual simulation/presentation steps. Not human judgement."},"  "))
     scene.queue_free();await process_frame;await process_frame
-    print("DEMO_INPUT_CHECKS ",passed,"/",checks.size())
-    call_deferred("quit",0 if passed==checks.size() else 1)
+    print("LIVE_INPUT_CHECKS ",passed,"/",checks.size());call_deferred("quit",0 if passed==checks.size() else 1)

@@ -146,7 +146,7 @@ func run() -> void:
     check("F5 resets practice and clears input history",scene.sim.fighters[0].health==100 and scene.input_history.is_empty())
     key.keycode=KEY_F7
     scene._unhandled_key_input(key)
-    check("F7 cycles practice opponent and restores spacing",scene.sim.partner_mode==1 and scene.sim.fighters[0].x==-3)
+    check("F7 cycles practice opponent and restores spacing",scene.sim.partner_mode==1 and is_equal_approx(scene.sim.fighters[0].x,-.7 if scene.sim.arcade_enabled else -3.0))
     scene.set_difficulty(2)
     scene.audio.music_muted=true
     scene.reduced_effects=true

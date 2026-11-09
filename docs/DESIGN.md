@@ -1,5 +1,10 @@
 # 場景設計基準
 
+## 最新玩法覆蓋（2026-11-09）
+
+[Rush 主玩法](RUSH_REWORK.md)取代正式模式只做地面三選的限制：有限空戰進正式／自由練習，按住 J 連段、K 挑空／暴扣、L 爆發。三選與動能換手仍可在專用教室練習。F12 是持續自由交戰，無章節／KO 重置；正式回合仍有真 KO。技能與 KO 的紅幕屬獨立展示層，F2／暫停／退出必須可清理。街區美術與無文字招牌規範保持。
+
+
 最新可試玩版本見 [AERIAL_STREET.md](AERIAL_STREET.md)：F11 練習限定分段跳躍、曲線追擊、空連與暴扣；正式仍保留原玩法。變形／短旋身和程序姿態只動展示層，F2 可減少演出，wev 音訊仍未錄用。
 
 最新空中戰與聲畫方向見 [AERIAL_ACTION_AUDIO_PLAN.zh-TW.md](AERIAL_ACTION_AUDIO_PLAN.zh-TW.md)。使用者強調跳起／空連／誇張動作，優先完成有界的空中原型。指定音樂為 wev／worldwidewev，但使用者確認尚未授權，先選曲及接入規劃，保留既有合法音訊；詳見 [WEV_MUSIC_PLAN.md](WEV_MUSIC_PLAN.md)。

@@ -25,6 +25,9 @@ func apply(motions: RefCounted, f: Dictionary) -> String:
         name=f.move
         if f.move=="air_jab":pose={"LeftArm":["LeftForeArm",front,weight],"LeftForeArm":["LeftHand",front,weight],"RightUpLeg":["RightLeg",front+up*.2,.6]}
         elif f.move=="air_counter":pose={"RightUpLeg":["RightLeg",front-up*.4,weight],"RightLeg":["RightFoot",front-up*.6,weight],"LeftArm":["LeftForeArm",up-front*.2,.8]}
+        elif f.move=="meteor":
+            var winding:bool=f.frame<move.startup
+            pose={"Spine":["Spine1",up-front*.5 if winding else up*.4+front*.65,.65],"LeftArm":["LeftForeArm",up-front*.7 if winding else -up+front*.65,.9],"RightArm":["RightForeArm",up-front*.7 if winding else -up+front*.65,.9],"LeftForeArm":["LeftHand",up if winding else -up+front*.4,.9],"RightForeArm":["RightHand",up if winding else -up+front*.4,.9],"RightUpLeg":["RightLeg",front-up*.3,.7]}
         elif f.move=="air_kick":pose={"RightUpLeg":["RightLeg",front+up*.3,weight],"RightLeg":["RightFoot",front-up*.1,weight],"LeftArm":["LeftForeArm",up-front*.3,.75]}
         else:pose={"RightArm":["RightForeArm",-up+front*.35,weight],"RightForeArm":["RightHand",-up+front*.1,weight],"LeftArm":["LeftForeArm",-up+front*.35,weight],"LeftUpLeg":["LeftLeg",front+up*.4,.7]}
     elif f.state=="chase":

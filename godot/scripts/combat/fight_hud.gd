@@ -54,14 +54,13 @@ func _ready() -> void:
         button.set_meta("ui_key","choice_"+choice)
         layout_root.add_child(button)
         choice_buttons.append(button)
-    for i in 3:
+    for i in 2:
         var button:=Button.new()
-        button.position=Vector2(350+i*198,611)
-        button.size=Vector2(184,36)
-        var action: int=i
+        button.position=Vector2(938+i*154,112)
+        button.size=Vector2(146,34)
+        var restart: bool=i==0
         button.pressed.connect(func():
-            if action==0:session.next_demo_chapter()
-            elif action==1:session.start_demo()
+            if restart:session.start_demo()
             else:session.return_to_title()
             button.release_focus())
         layout_root.add_child(button)
@@ -293,12 +292,6 @@ func _pause_page() -> void:
     _action(menu_stack,"main_menu","",func():session.return_to_title())
 
 func _result_page() -> void:
-    if session.demo!=null:
-        _heading("demo_finale")
-        _caption("demo_auto")
-        _action(menu_stack,"demo_next","N",func():session.next_demo_chapter(),true)
-        _action(menu_stack,"demo_exit","F12",func():session.return_to_title())
-        return
     _heading("draw" if session.sim.winner<0 else ("win" if session.sim.winner==0 else "lose"))
     if session.sim.winner==1:_caption("runback")
     menu_stack.add_child(_label("%d  —  %d"%[session.sim.wins[0],session.sim.wins[1]],48,Tokens.GOLD,true))
@@ -481,14 +474,16 @@ func _draw() -> void:
         _text(Vector2(66,694),tr_text("local")+"  /  ↑↓  Enter",12,Tokens.MUTED)
         _text(Vector2(940,686),tr_text("stage"),18,PAPER)
         return
-    session.spectacle.draw(self,session)
+    session.theatre.draw(self,session)
+    if not (session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects):session.spectacle.draw(self,session)
     for effect in session.effects:
         if effect.age>=0:vfx_renderer.draw_effect(self,session,effect)
+    if session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
     _health(34,session.sim.fighters[0],Tokens.TEAL,false,0)
     _health(772,session.sim.fighters[1],Tokens.CORAL,true,1)
     _plate(Vector2(604,16),Vector2(72,62),INK)
     _center(Vector2(640,61),"DEMO" if session.demo!=null else tr_text("free") if session.practice else "%02d"%ceili(session.sim.remaining),23 if session.practice else 43,Tokens.GOLD,not session.practice)
-    _center(Vector2(640,94),tr_text("round")+" %02d"%session.sim.round_number,11,Tokens.MUTED)
+    _center(Vector2(640,94),"LIVE" if session.demo!=null else tr_text("round")+" %02d"%session.sim.round_number,11,Tokens.MUTED)
     for side in 2:
         for pip in 2:
             var at:=Vector2(548+pip*22 if side==0 else 710+pip*22,42)
@@ -497,17 +492,18 @@ func _draw() -> void:
     if session.sim.combo_hits>=2 and session.sim.fighters[1-session.sim.combo_owner].state=="stun":
         var x:=40 if session.sim.combo_owner==0 else 1090
         var baseline:=210.0 if session.sim.is_aerial() else 171.0
-        _text(Vector2(x,baseline),"%02d"%session.sim.combo_hits,42,Tokens.GOLD,true)
-        _text(Vector2(x+61,baseline-2),tr_text("hits"),16,PAPER)
+        if session.sim.arcade_enabled:_plate(Vector2(x-12,baseline-57),Vector2(176,91),Color(INK,.94))
+        _text(Vector2(x,baseline),"%02d"%session.sim.combo_hits,56 if session.sim.arcade_enabled else 42,Tokens.GOLD,true)
+        _text(Vector2(x+(78 if session.sim.arcade_enabled else 61),baseline-2),tr_text("hits"),16,PAPER)
         _text(Vector2(x,baseline+23),"%d "%session.sim.combo_damage+tr_text("damage"),13,Tokens.MUTED)
     if session.sim.phase=="ready" and session.screen=="play":
         _center(Vector2(640,280),tr_text("round")+" %d"%session.sim.round_number,40)
         _center(Vector2(640,316),"準備" if session.language=="zh" else "GET READY",22,Tokens.GOLD)
-    if notice_time>0 and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
+    if notice_time>0 and session.demo==null and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
         _plate(Vector2(426,110),Vector2(428,40),INK)
         _center(Vector2(640,139),copy.notice(notice),19,Tokens.GOLD)
     var player: Dictionary=session.sim.fighters[0]
-    if player.wall_tech_window>0 and player.state=="stun" and player.meter>=20:
+    if session.demo==null and player.wall_tech_window>0 and player.state=="stun" and player.meter>=20:
         var at: Vector2=session.project(Vector2(player.x,player.y+2.3))
         at.x=clampf(at.x,120,1160)
         _plate(at+Vector2(-100,-26),Vector2(200,32),INK)
@@ -518,11 +514,12 @@ func _draw() -> void:
         _plate(cue+Vector2(-140,-28),Vector2(280,34),INK)
         _center(cue+Vector2(0,-5),tr_text("counter_ready"),16,Tokens.TEAL)
     if session.demo!=null:_demo_hud()
+    elif session.sim.arcade_enabled:_arcade_hud()
     elif session.sim.is_aerial():_air_hud()
     elif session.sim.rally_enabled:_rally_hud()
     else:_pressure_hud()
     if session.practice and session.demo==null:_practice_hud()
-    if session.demo==null and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
+    if session.demo==null and not session.sim.arcade_enabled and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
         _text(Vector2(34,690),"J "+tr_text("light")+"   K "+tr_text("heavy")+"   G "+tr_text("throw")+"   Shift "+tr_text("guard")+"   E "+tr_text("dodge"),13,PAPER)
     _text(Vector2(1010,690),"H "+tr_text("help")+"   Esc "+tr_text("pause"),13,PAPER)
     if session.hitboxes_visible:_draw_hitboxes()
@@ -573,13 +570,16 @@ func _pressure_hud() -> void:
     elif drill:_text(Vector2(34,690),tr_text("drill_exit"),12,Tokens.MUTED)
 
 func _demo_hud() -> void:
-    var demo=session.demo
-    _plate(Vector2(330,548),Vector2(620,108),Color(INK,.96))
-    _text(Vector2(348,574),tr_text("demo")+"  %02d / %02d"%[demo.chapter+1,demo.CHAPTERS.size()],15,Tokens.TEAL)
-    _center(Vector2(640,600),tr_text("demo_"+demo.key()),20,PAPER)
-    _plate(Vector2(348,580),Vector2(584,3),Tokens.EDGE)
-    _plate(Vector2(348,580),Vector2(584*clampf(float(demo.age)/demo.limit(),0,1),3),Tokens.TEAL)
-    _center(Vector2(640,677),tr_text("demo_auto"),11,Tokens.MUTED)
+    _plate(Vector2(440,110),Vector2(400,36),Color(INK,.95))
+    _center(Vector2(640,134),tr_text("demo")+"  ∞",18,Tokens.TEAL)
+    _text(Vector2(34,130),"%d  /  %d  "%[session.demo.hits[0],session.demo.hits[1]]+tr_text("demo_hits"),13,Tokens.MUTED)
+
+func _arcade_hud() -> void:
+    if session.sim.air_counter.active():
+        _air_hud()
+        return
+    _plate(Vector2(340,632),Vector2(600,38),Color(INK,.95))
+    _center(Vector2(640,657),tr_text("rush_controls"),16,Tokens.TEAL)
 
 func _air_hud() -> void:
     if session.sim.air_counter.active():
@@ -623,11 +623,11 @@ func _sync_air_controls() -> void:
     if not is_instance_valid(air_lesson):return
     for i in demo_buttons.size():
         demo_buttons[i].visible=session.demo!=null and session.screen=="play"
-        demo_buttons[i].text=tr_text(["demo_next","demo_restart","demo_exit"][i])
+        demo_buttons[i].text=tr_text(["demo_restart","demo_exit"][i])
     var active: bool=session.screen=="play" and session.sim.is_aerial() and session.demo==null
     var lesson: bool=session.sim.is_air_lesson()
     var counter=session.sim.air_counter
-    air_lesson.visible=active
+    air_lesson.visible=active and session.practice and not session.sim.arcade_enabled
     air_lesson.text=tr_text("air_to_free" if lesson else "air_to_defense")
     air_begin.visible=active and lesson and not counter.active() and session.sim.air_lesson_stage in ["read","review"]
     air_begin.text=tr_text("air_begin" if session.sim.air_lesson_stage=="read" else "air_retry")
@@ -669,6 +669,9 @@ func _rally_hud() -> void:
     _center(Vector2(640,645),tr_text("rally_hold" if rally.phase=="compress" else "rally_live"),12,Tokens.MUTED)
 
 func _practice_hud() -> void:
+    if session.sim.arcade_enabled:
+        _text(Vector2(40,122),tr_text("training_title"),13,Tokens.TEAL)
+        return
     if session.sim.is_aerial():
         _text(Vector2(40,122),tr_text("air_lab"),12,Tokens.TEAL)
         _text(Vector2(40,143),tr_text("air_exit"),11,Tokens.MUTED)

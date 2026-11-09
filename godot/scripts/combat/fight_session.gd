@@ -11,6 +11,8 @@ var echo_clock := 0.0
 var finish_menu_open := false
 var sim := Simulation.new()
 var fighters: Array[Node3D] = []
+var theatre=preload("res://scripts/combat/impact_theatre.gd").new()
+var red_environment: Environment
 var camera: Camera3D
 var hud: Control
 var audio: Node
@@ -82,6 +84,12 @@ func _build_stage() -> void:
     backdrop.static_batches_enabled=static_batches_enabled
     add_child(backdrop)
     stage_environment = backdrop.environment
+    red_environment=Environment.new()
+    red_environment.background_mode=Environment.BG_COLOR
+    red_environment.background_color=Color("f42d20")
+    red_environment.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR
+    red_environment.ambient_light_color=Color.WHITE
+    red_environment.ambient_light_energy=.8
     camera = Camera3D.new()
     camera.projection = Camera3D.PROJECTION_PERSPECTIVE
     camera.fov = 48.0
@@ -127,12 +135,16 @@ func _material(color: Color, unlit: bool) -> StandardMaterial3D:
 func start_match(training := false) -> void:
     if demo!=null:sim.partner_mode=demo_partner
     demo=null
+    sim.arcade_enabled=true
+    sim.endless=false
     result_clock=0.0
     practice = training
     sim.training = training
     sim.restart_match()
     finish_menu_open=false
-    if practice: sim.phase="fight"
+    if practice:
+        sim.phase="fight"
+        sim.fighters[0].x=-.7;sim.fighters[1].x=.7
     input_history.clear()
     sim.ai_enabled = not practice
     effects.clear()
@@ -152,9 +164,14 @@ func _physics_process(_delta: float) -> void:
     input["guard"] = Input.is_physical_key_pressed(KEY_SHIFT)
     input["down"] = input.get("down",Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN))
     input["up"] = input.get("up",Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP))
+    if sim.arcade_enabled and demo==null:
+        input["rush"]=Input.is_physical_key_pressed(KEY_J)
+        if input.get("attack","")=="heavy":
+            input["down"]=sim.fighters[0].y>.1 or input.get("down",false)
+            input["up"]=sim.fighters[0].y<=.1 and not input.down
     var previous_stop := sim.hitstop
     if demo!=null:
-        if demo.needs_setup:_prepare_demo_chapter()
+        if demo.needs_setup:_prepare_demo_state()
         var commands: Array=demo.commands(sim)
         sim.tick(commands[0],commands[1])
         demo.observe(sim)
@@ -170,6 +187,9 @@ func _physics_process(_delta: float) -> void:
         finish_menu_open=false
         var winning_side:=maxi(0,sim.winner)
         spectacle.trigger("finish",winning_side,Vector2(sim.fighters[1-winning_side].x,1.1),4)
+        if sim.arcade_enabled and sim.winner>=0 and sim.fighters[1-sim.winner].health<=0:
+            theatre.begin("ko",winning_side)
+        else:theatre.clear()
         audio.stop_all()
         audio.play_sound("ko")
         hud.rebuild_menu()
@@ -179,9 +199,9 @@ func start_demo() -> void:
     start_match(true)
     demo_partner=original_partner
     demo=preload("res://scripts/combat/demo_director.gd").new()
-    _prepare_demo_chapter()
+    _prepare_demo_state()
 
-func _prepare_demo_chapter() -> void:
+func _prepare_demo_state() -> void:
     demo.prepare(sim)
     effects.clear()
     _clear_impacts()
@@ -196,22 +216,20 @@ func _prepare_demo_chapter() -> void:
     hud.notice_time=0
     hud.rebuild_menu()
 
-func next_demo_chapter() -> void:
-    if demo==null:return
-    demo.next()
-    _prepare_demo_chapter()
-
 func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}) -> void:
     if reduced_effects and kind in ["speed","trail"]: return
     if effects.size()>=64: effects.pop_front()
-    var effect := {"kind":kind,"at":at,"age":0.0,"life":life,"strength":0.5,"face":1,"color":COLORS[0]}
+    var effect := {"rush":sim.arcade_enabled,"kind":kind,"at":at,"age":0.0,"life":life,"strength":0.5,"face":1,"color":COLORS[0]}
     effect.merge(options,true)
     effects.append(effect)
 
 func _handle_event(event: Dictionary) -> void:
     combat_event.emit(event)
     var kind: String = event.kind
-    if kind=="counter_success":
+    if kind=="break_finish":
+        theatre.begin("break",event.attacker)
+        audio.play_sound("slam",.75,-2)
+    elif kind=="counter_success":
         if event.target==0 or demo!=null:
             hud.notice="COUNTER SUCCESS"
             hud.notice_time=1.1
@@ -341,12 +359,16 @@ func _handle_event(event: Dictionary) -> void:
         var point := Vector2(target.x,target.y+1.2)
         _spawn_vfx(kind,point,0.38,{"strength":strength,"color":tint,"move":move,"face":face,"held":kind=="hit" and sim.hitstop>0})
         if kind=="hit":
-            if strength>.55:spectacle.trigger("contact",attacker,point,clampi(ceili(strength*4),1,4))
+            if sim.arcade_enabled and move in ["meteor","special"]:theatre.begin("impact",attacker)
+            if sim.arcade_enabled and move=="meteor":_spawn_vfx("meteor_streak",point,.22,{"color":COLORS[attacker],"face":face})
+            if strength>.55:
+                spectacle.trigger("contact",attacker,point,clampi(ceili(strength*4),1,4))
+                if sim.arcade_enabled:spectacle.tag_move(move)
             if impact_queue.size()>=4:impact_queue.pop_front()
             impact_queue.append({"at":point,"strength":strength,"color":tint,"move":move,"face":face})
             if sim.hitstop==0:_release_impacts()
         trauma = maxf(trauma,strength*0.6)
-        audio.play_sound(("heavy" if strength>0.55 else "hit") if kind=="hit" else kind,1.0+sim.combo_hits*0.04)
+        audio.play_sound(("slam" if sim.arcade_enabled and move=="meteor" else ("launch" if sim.arcade_enabled and move=="launcher" else ("heavy" if strength>0.55 else "hit"))) if kind=="hit" else kind,1.0+sim.combo_hits*0.04)
         if kind=="hit" and strength>0.55: audio.play_sound("sub",0.9,-5.0)
         if kind=="hit" and move=="grab":
             hud.notice="THROW"
@@ -365,6 +387,7 @@ func _handle_event(event: Dictionary) -> void:
         audio.play_sound("swing",1.0,-8.0)
         if event.move=="grab":_spawn_vfx("grab_tell",Vector2(fighter.x+fighter.face*.55,fighter.y+1.25),startup,{"face":fighter.face,"color":Color("eebd4c")})
         if event.move=="special":
+            if sim.arcade_enabled:theatre.begin("skill",event.target)
             spectacle.trigger("charge",event.target,Vector2(fighter.x,fighter.y+1.2),4)
             _spawn_vfx("charge",Vector2(fighter.x,fighter.y+1.2),startup,{"color":COLORS[event.target]})
             _spawn_vfx("wave",Vector2(fighter.x+fighter.face*0.6,fighter.y+1.2),0.26,{"age":-startup,"face":fighter.face,"color":COLORS[event.target]})
@@ -386,6 +409,10 @@ func _handle_event(event: Dictionary) -> void:
         hud.notice_time = 1.5
 
 func _clear_impacts() -> void:
+    theatre.clear()
+    if is_instance_valid(backdrop):backdrop.visible=true
+    if is_instance_valid(camera):camera.environment=null
+    for shadow in silhouettes:shadow.visible=true
     impact_queue.clear()
     recoil=Vector2.ZERO
     recoil_age=1.0
@@ -403,6 +430,7 @@ func _release_impacts(with_audio := true) -> void:
             var side:=0 if impact.color==COLORS[0] else 1
             spectacle.trigger("burst",side,impact.at,clampi(ceili(impact.strength*4),1,4))
             _spawn_vfx("surge_arc",impact.at,.20,{"face":impact.face,"color":impact.color,"tier":clampi(ceili(impact.strength*4),1,4)})
+            if sim.arcade_enabled and impact.move in ["meteor","special","launcher"]:_spawn_vfx("slam_crater",Vector2(impact.at.x,.04),.45,{"color":impact.color,"strength":impact.strength})
             _spawn_vfx("ground_ring",Vector2(impact.at.x,.04),.32,{"face":impact.face,"color":impact.color,"strength":impact.strength})
         if impact.strength>=strongest:
             strongest=impact.strength
@@ -414,7 +442,6 @@ func _release_impacts(with_audio := true) -> void:
     impact_queue.clear()
 
 func _process(delta: float) -> void:
-    if demo!=null and screen=="result" and result_clock>=2.5:next_demo_chapter()
     if settings_save_clock>=0:
         settings_save_clock-=delta
         if settings_save_clock<0:save_options()
@@ -424,6 +451,7 @@ func _process(delta: float) -> void:
             finish_menu_open=true
             hud.rebuild_menu()
     spectacle.advance(delta,screen in ["pause","help"])
+    theatre.advance(delta,screen in ["pause","help"])
     audio.context = screen
     if screen != "pause" and screen != "help":
         elapsed += delta
@@ -457,7 +485,15 @@ func _process(delta: float) -> void:
     backdrop.present(delta, screen in ["pause", "help", "result"], reduced_effects)
     _present(delta if screen in ["play", "title", "result"] else 0.0)
     _grade_world()
+    _apply_red_stage()
     hud.queue_redraw()
+
+func _apply_red_stage() -> void:
+    var red:bool=theatre.active() and not reduced_effects and screen in ["play","result"]
+    backdrop.visible=not red
+    camera.environment=red_environment if red else null
+    for shadow in silhouettes:shadow.visible=not red
+    if red:grade.visible=false
 
 func _grade_world() -> void:
     if not is_instance_valid(grade):return
@@ -468,7 +504,7 @@ func _grade_world() -> void:
             strength=.45+(sim.rally.tier-3)*.2
             owner=sim.rally.owner
         elif spectacle.mode in ["charge","burst","contact"] and spectacle.tier>=3:
-            strength=.62*clampf(1.0-spectacle.age/maxf(.001,spectacle.duration),0,1)
+            strength=(.84 if sim.arcade_enabled else .62)*clampf(1.0-spectacle.age/maxf(.001,spectacle.duration),0,1)
         elif screen=="result" and result_clock<.82:
             strength=.85*(1.0-result_clock/.82)
     grade.visible=strength>.001
@@ -479,10 +515,15 @@ func _present(delta: float) -> void:
     for i in fighters.size():
         var pose: Dictionary=sim.fighters[i].duplicate()
         pose["air_enabled"]=sim.is_aerial()
+        pose["rush_visual"]=sim.arcade_enabled and not reduced_effects
+        pose["ko_theatre"]=theatre.age if theatre.mode=="ko" and theatre.active() and not reduced_effects else -1.0
         if sim.air_counter.active():
             pose["air_counter_role"]="owner" if i==sim.air_counter.owner else "target"
             pose["air_counter_phase"]=sim.air_counter.phase
         if screen=="result":
+            if theatre.active() and theatre.mode=="ko" and not reduced_effects:
+                pose.x-=pose.face*(.28 if i==sim.winner else .45)
+                if i!=sim.winner:pose.y+=.18
             if result_clock>.18:pose.flash=0
             pose.y=maxf(0,pose.y-maxf(0,result_clock-.15)*5.0)
             if i==sim.winner and result_clock>.45:
@@ -511,7 +552,7 @@ func _present(delta: float) -> void:
     var shake := 0.0 if reduced_effects else trauma * trauma * 0.35
     var midpoint: float = (sim.fighters[0].x + sim.fighters[1].x) * 0.5
     var separation: float = absf(sim.fighters[0].x - sim.fighters[1].x)
-    var distance := clampf(10.0 + separation * 0.35,10.7,17.2)
+    var distance := clampf(8.1+separation*.22,8.4,15.0) if sim.arcade_enabled else clampf(10.0 + separation * 0.35,10.7,17.2)
     var yaw := clampf(midpoint * 0.018,-0.10,0.10)
     var target_focus := Vector3(midpoint*0.8,2.1 + maxf(sim.fighters[0].y,sim.fighters[1].y)*0.15,FIGHT_Z)
     if sim.is_aerial():
@@ -533,7 +574,7 @@ func _present(delta: float) -> void:
         finish_zoom=sin(clampf(result_clock/.82,0,1)*PI)
         var victim: Dictionary=sim.fighters[1-sim.winner]
         target_focus=target_focus.lerp(Vector3(victim.x*.6,1.3,FIGHT_Z),finish_zoom*.65)
-        target_position=target_position.lerp(Vector3(target_focus.x+.45,1.3,FIGHT_Z+7.8),finish_zoom)
+        target_position=target_position.lerp(Vector3(target_focus.x+.45,1.3,FIGHT_Z+(6.0 if sim.arcade_enabled else 7.8)),finish_zoom)
     var blend := 1.0-exp(-delta*4.0)
     camera_focus = camera_focus.lerp(target_focus,blend)
     base_camera = base_camera.lerp(target_position,blend)
@@ -545,9 +586,20 @@ func _present(delta: float) -> void:
     if not reduced_effects and screen=="play":
         if sim.rally.active() and sim.rally.phase=="compress":desired_fov=48.0-sim.rally.tier*.6
         desired_fov-=cinematic*3.0
+        if sim.arcade_enabled and spectacle.mode in ["contact","burst"] and spectacle.tier>=3:
+            desired_fov-=5.0*clampf(1.0-spectacle.age/.22,0,1)
     camera.fov=48.0 if reduced_effects else lerpf(camera.fov,desired_fov,1.0-exp(-delta*12.0))
     camera.position = base_camera + Vector3(sin(elapsed*91)*shake+punch.x,cos(elapsed*77)*shake*0.4+punch.y,-cinematic)
     camera.look_at(camera_focus)
+    if theatre.active() and theatre.mode=="ko" and not reduced_effects and screen=="result":
+        var progress:float=clampf(theatre.age/theatre.duration,0,1)
+        var center:=Vector3(midpoint,(sim.fighters[0].y+sim.fighters[1].y)*.5+.95,FIGHT_Z)
+        var orbit:float=-.25+progress
+        var close_distance:float=maxf(3.05,separation*1.1)-sin(progress*PI)*.2
+        camera.position=center+Vector3(sin(orbit)*close_distance,.15+sin(progress*PI)*.18,cos(orbit)*close_distance)
+        camera.look_at(center)
+        camera.fov=42.0
+        camera.rotation.z=deg_to_rad(-7.0*sin(progress*PI))
 
 func project(point: Vector2) -> Vector2:
     return camera.unproject_position(Vector3(point.x,point.y,FIGHT_Z)) * Vector2(1280,720) / get_viewport().get_visible_rect().size
@@ -587,7 +639,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
         return
     if demo!=null and screen in ["play","pause","result"]:
         if event.keycode==KEY_R:start_demo();return
-        if event.keycode==KEY_N:next_demo_chapter();return
         if event.keycode not in [KEY_ESCAPE,KEY_F1,KEY_H,KEY_F2,KEY_F3,KEY_F4,KEY_F6,KEY_M,KEY_O]:return
     if event.keycode == KEY_F6:
         return_to_street()
@@ -624,7 +675,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
         save_options()
         hud.rebuild_menu()
     elif event.keycode==KEY_F8 and practice and screen=="play":
-        if sim.is_aerial():prime_air_defense()
+        if sim.is_aerial() and not sim.arcade_enabled:prime_air_defense()
         else:prime_pressure_drill()
     elif event.keycode==KEY_F7 and practice and screen=="play":
         set_partner_mode((sim.partner_mode+1)%3)
@@ -719,6 +770,7 @@ func reset_training(keep_screen := false) -> void:
 
 func prime_air_defense() -> void:
     if not practice:return
+    sim.arcade_enabled=false
     reset_training()
     sim.configure_air_lesson()
     hud.notice_time=0
@@ -726,6 +778,7 @@ func prime_air_defense() -> void:
 
 func prime_air_drill() -> void:
     if not practice:return
+    sim.arcade_enabled=false
     reset_training()
     sim.partner_mode=0
     _configure_air_lab()
@@ -734,6 +787,7 @@ func prime_air_drill() -> void:
     hud.rebuild_menu()
 
 func _configure_air_lab() -> void:
+    sim.arcade_enabled=false
     sim.practice_scenario="air"
     sim.fighters[0].x=-.75
     sim.fighters[1].x=.75
@@ -741,6 +795,7 @@ func _configure_air_lab() -> void:
 
 func prime_rally_drill() -> void:
     if not practice:return
+    sim.arcade_enabled=false
     reset_training()
     sim.practice_scenario="rally"
     sim.rally_enabled=true
@@ -753,6 +808,7 @@ func prime_rally_drill() -> void:
 
 func prime_pressure_drill() -> void:
     if not practice:return
+    sim.arcade_enabled=false
     reset_training()
     sim.fighters[0].x=-.8
     sim.fighters[1].x=.8
@@ -765,7 +821,7 @@ func prime_pressure_drill() -> void:
 func set_partner_mode(value: int) -> void:
     sim.partner_mode=clampi(value,0,2)
     if practice:
-        var air_lab: bool=sim.is_aerial()
+        var air_lab: bool=sim.is_aerial() and not sim.arcade_enabled
         var defense_lab: bool=sim.is_air_lesson()
         reset_training(true)
         if defense_lab:sim.configure_air_lesson()
@@ -803,6 +859,7 @@ func save_options() -> void:
 func return_to_title() -> void:
     if demo!=null:sim.partner_mode=demo_partner
     demo=null
+    sim.arcade_enabled=false;sim.endless=false
     sim.reset_round()
     sim.pressure_drill=false
     sim.exchange.reset()

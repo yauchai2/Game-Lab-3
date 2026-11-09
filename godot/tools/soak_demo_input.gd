@@ -3,7 +3,7 @@ extends SceneTree
 var scene: Node
 var started:=0
 var duration:=120.0
-var output:="res://../docs/evidence/ai-demo/native-soak"
+var output:="res://../docs/evidence/rush-rework/native-soak"
 var held: Dictionary={}
 var release_at: Dictionary={}
 var deadline:=0
@@ -12,6 +12,7 @@ var loops:=0
 var resets:=0
 var counts: Dictionary={}
 var input_events:=0
+var red_samples:=0
 var max_effects:=0
 var max_nodes:=0
 var max_orphans:=0
@@ -49,6 +50,7 @@ func drive() -> void:
     var elapsed: float=(now-started)/1000.0
     for code in release_at.keys():
         if now>=release_at[code]:key(code,false);release_at.erase(code)
+    if scene.theatre.active() and not scene.reduced_effects:red_samples+=1
     max_effects=maxi(max_effects,scene.effects.size())
     max_nodes=maxi(max_nodes,int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT)))
     max_orphans=maxi(max_orphans,int(Performance.get_monitor(Performance.OBJECT_ORPHAN_NODE_COUNT)))
@@ -59,7 +61,7 @@ func drive() -> void:
     if elapsed>=duration:
         process_frame.disconnect(drive)
         for code in held.keys():key(code,false)
-        var report:={"completed":true,"elapsed_seconds":elapsed,"input_events":input_events,"loops":loops,"resets":resets,"event_counts":counts,"max_effects":max_effects,"max_nodes":max_nodes,"max_orphans":max_orphans,"method":"real native Godot physics and viewport key events, combat_event signal observes every dispatched event; Dummy audio, software GL; no human/target GPU claim"}
+        var report:={"red_render_samples":red_samples,"mode":"endless_live_combat","fight_ticks":scene.demo.age if scene.demo!=null else 0,"live_hits":scene.demo.hits if scene.demo!=null else [],"stayed_live":scene.screen=="play" and scene.sim.phase=="fight","completed":true,"elapsed_seconds":elapsed,"input_events":input_events,"loops":loops,"resets":resets,"event_counts":counts,"max_effects":max_effects,"max_nodes":max_nodes,"max_orphans":max_orphans,"method":"real native Godot physics and viewport key events, combat_event signal observes every dispatched event; Dummy audio, software GL; no human/target GPU claim"}
         var file:=FileAccess.open(output+"/complete.json",FileAccess.WRITE)
         file.store_string(JSON.stringify(report,"  "))
         scene.queue_free()
@@ -67,4 +69,4 @@ func drive() -> void:
         call_deferred("quit")
         return
     if scene.screen=="title":tap(KEY_F12,now);return
-    if scene.demo!=null:loops=scene.demo.cycle
+    if scene.demo!=null:loops=0

@@ -1,5 +1,14 @@
 # Native game UI contract
 
+## Current Rush flow — 2026-11-09
+
+Main gameplay authority is now [docs/RUSH_REWORK.md](docs/RUSH_REWORK.md) plus simulation; pressure choices remain a specialist lab. Hold J chains only confirmed legal attacks, K selects grounded launcher or aerial meteor, L queues a paid burst even while J is held. First-round energy allows L immediately. Landing protection and finite aerial limits preserve an escape.
+
+F12 starts endless live AI combat. Only R/restart, pause/settings, F2 and F12/exit transport controls act on it; N and player attacks do not. No chapters or timed resets. Live hits and infinity replace round progress. Endless BREAK is an actual-hit presentation event, never a fake KO. Real KO alone ends a formal round.
+
+Red-stage clock is visual-only: pause freezes it; F2/title/restart clear environment override, hidden city/shadows and bone enlargement. KO hides the HUD during its 0.64-second red stage, then restores the city before the 0.82-second result menu. Evidence: rush-rework/final-native and red-native. Earlier chapter/lab-only statements below are superseded.
+
+
 Authoritative gameplay rules: docs/PRESSURE_EXCHANGE.md and simulation. This contract describes interface behavior; it does not override gameplay.
 
 | Capability | Canonical owner | Source of truth | Allowed variants | Verification |

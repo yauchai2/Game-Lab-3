@@ -39,7 +39,7 @@ func run() -> void:
     check("jump key reaches gameplay",scene.sim.fighters[0].y>0.1)
     await tap(KEY_K)
     await frames(3)
-    check("heavy key selects attack",scene.sim.fighters[0].move=="heavy")
+    check("airborne K selects accessible meteor",scene.sim.fighters[0].move=="meteor")
     await tap(KEY_ESCAPE)
     check("escape pauses through viewport input",scene.screen=="pause")
     var ticks: int = scene.sim.tick_count
