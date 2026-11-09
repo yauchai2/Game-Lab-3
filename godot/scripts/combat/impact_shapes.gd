@@ -16,7 +16,8 @@ func build(kind: String, move: String, phase: float, tint: Color, face: float, r
     var shapes: Array[Dictionary]=[]
     var frame:=clampi(int(clampf(phase,0,.9999)*6),0,5)
     var profile: Vector3=PROFILES.get(move,PROFILES.jab)
-    var radius:=profile.x*(.62 if reduced else 1.0)
+    var gain:float={"heavy":1.35,"launcher":1.45,"finisher":1.35,"meteor":1.55,"air_finisher":1.45,"special":1.8,"overdrive":2.15}.get(move,1.0)
+    var radius:=profile.x*(.62 if reduced else gain)
     if kind=="swing":
         if frame<3:
             var extent:=Vector2(1.0,.75 if move=="heavy" else 1.0)

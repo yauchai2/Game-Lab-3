@@ -36,7 +36,12 @@ func _ready() -> void:
 func _emit(role: String, shape: String, at: Vector3, size: Vector3, tint: Color, angles := Vector3.ZERO) -> void:
     var key := role+"/"+shape
     if not groups.has(key): groups[key]=[]
-    var pose := Transform3D(Basis.from_euler(angles).scaled_local(size),at)
+    var adjusted:Vector3=angles
+    var offset:Vector3=at
+    if zone in ["front_left","front_right","neighbors_left","neighbors_right"] and role=="solid" and at.y>1.5 and size.y<1.8 and size.x<1.8:
+        var seed_value:float=sin(at.x*7.1+at.y*11.9+at.z*5.3)
+        adjusted.z+=seed_value*.025;offset.x+=seed_value*.035
+    var pose := Transform3D(Basis.from_euler(adjusted).scaled_local(size),offset)
     groups[key].append({"pose":pose,"tint":tint})
     detail_bounds.append(pose*AABB(Vector3.ONE*-.5,Vector3.ONE))
     instance_count+=1
@@ -142,7 +147,7 @@ func _balcony(x: float, y: float, face: float, width: float, tint: Color, plants
         for i in 5:
             var px := x-width*.34+i*width*.17
             _box("solid",Vector3(px,y+.27,face+.55),Vector3(.30,.29,.30),Color("8f6f4e"))
-            _box("solid",Vector3(px,y+.55,face+.55),Vector3(.42,.37+.07*(i%2),.36),Color("627f4a") if i%2 else Color("78904e"))
+            _emit("solid","foliage",Vector3(px,y+.55,face+.55),Vector3(.42,.37+.07*(i%2),.36),Color("627f4a") if i%2 else Color("78904e"))
 
 func _pipe(x: float,top: float,face: float,tint: Color) -> void:
     _bar(Vector3(x,.3,face+.10),Vector3(x,top,face+.10),.09,tint)
@@ -399,7 +404,7 @@ func _flush() -> void:
     cylinder.bottom_radius=.5
     cylinder.height=1.0
     cylinder.radial_segments=12
-    var meshes: Dictionary={"box":box,"sphere":_flat_mesh(sphere),"cylinder":_flat_mesh(cylinder)}
+    var meshes: Dictionary={"box":box,"sphere":_flat_mesh(sphere),"cylinder":_flat_mesh(cylinder),"foliage":preload("res://scripts/combat/street_art_meshes.gd").leaf_cluster()}
     for key in groups:
         var parts: PackedStringArray=key.split("/")
         var entries: Array=groups[key]

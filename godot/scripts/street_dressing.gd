@@ -79,7 +79,7 @@ func _flush_groups() -> void:
         var transforms: Array = groups[key]
         var batch := MultiMesh.new()
         batch.transform_format = MultiMesh.TRANSFORM_3D
-        batch.mesh = box
+        batch.mesh = preload("res://scripts/combat/street_art_meshes.gd").leaf_cluster() if key=="leaf" else box
         batch.instance_count = transforms.size()
         for i in transforms.size():
             batch.set_instance_transform(i,transforms[i])

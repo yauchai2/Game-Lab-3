@@ -18,7 +18,7 @@
   "requiredCommands": [],
   "commands": {},
   "evidence": {
-    "nativeChecks": "docs/evidence/ui-replica/",
-    "nativeRuntime": "godot/tools/verify_reference_ui.gd"
+    "nativeChecks": "docs/evidence/unified-pixel/",
+    "nativeRuntime": "godot/tools/verify_unified_presentation.gd"
   }
 }

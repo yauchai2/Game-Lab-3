@@ -1,5 +1,5 @@
 extends Node
-## User-approved wev music, CC0 impacts and original energy layers.
+## User supplied music, CC0 impacts and explicit recoverable output routing.
 var muted := false
 var music_muted := false
 var music_level := 0.75
@@ -24,6 +24,7 @@ var music_credit := ""
 var music_trim_db := 0.0
 
 func _ready() -> void:
+    _ensure_buses()
     var files := {
         "hit":["impactPunch_medium_000","impactPunch_medium_001","impactPunch_medium_002"],
         "heavy":["impactPunch_heavy_000","impactPunch_heavy_001"],
@@ -44,16 +45,19 @@ func _ready() -> void:
     for i in 10:
         var voice := AudioStreamPlayer.new()
         add_child(voice)
-        voice.volume_db = -8.0
+        voice.bus="Afterhours SFX"
+        voice.volume_db = -4.0
         voices.append(voice)
     music = AudioStreamPlayer.new()
     music.name = "BackgroundMusic"
+    music.bus="Afterhours Music"
     current_track=BERLIN
     music.stream = music_stream(current_track)
     music.volume_db = -19.0+music_trim_db
     add_child(music)
     fading_music=AudioStreamPlayer.new()
     fading_music.name="MusicCrossfade"
+    fading_music.bus="Afterhours Music"
     fading_music.volume_db=-80.0
     fading_music.stream=music_stream(GROOVE)
     fading_track=GROOVE
@@ -82,7 +86,7 @@ func _process(delta: float) -> void:
     if not music.playing:music.play()
     music.stream_paused=false
     fading_music.stream_paused=false
-    var target_db:float=(-13.0 if context=="play" else (-23.0 if context in ["pause","help"] else -17.0))-(4.0 if duck_time>0 else 0.0)
+    var target_db:float=(-4.0 if context=="play" else (-15.0 if context in ["pause","help"] else -7.0))-(4.0 if duck_time>0 else 0.0)
     if muted or music_muted or music_level<=0:target_db=-80.0
     else:target_db+=linear_to_db(maxf(.001,music_level))
     music_gain_db=lerpf(music_gain_db,target_db,1.0-exp(-delta*7.0))
@@ -116,7 +120,7 @@ func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
     voice.stop()
     voice.stream = variants[voice_index % variants.size()]
     voice_index += 1
-    voice.volume_db = -8.0+level_db+linear_to_db(maxf(.001,effects_level))
+    voice.volume_db = -4.0+level_db+linear_to_db(maxf(.001,effects_level))
     voice.pitch_scale = clampf(pitch,0.65,1.55)
     voice.play()
     if kind in ["hit","heavy","parry","guard_break","rally","release"]: duck_time = 0.18
@@ -160,3 +164,30 @@ func _tone(duration: float, start: float, end: float, noise: float) -> AudioStre
     result.mix_rate = rate
     result.data = data
     return result
+
+func _ensure_buses() -> void:
+    for label in ["Afterhours Music","Afterhours SFX"]:
+        if AudioServer.get_bus_index(label)<0:
+            AudioServer.add_bus();AudioServer.set_bus_name(AudioServer.bus_count-1,label)
+            AudioServer.set_bus_send(AudioServer.bus_count-1,"Master")
+
+func silent_settings() -> bool:
+    for label in ["Afterhours Music","Afterhours SFX"]:
+        var index:int=AudioServer.get_bus_index(label)
+        if index>=0 and (AudioServer.is_bus_mute(index) or AudioServer.get_bus_volume_db(index)<=-60):return true
+    return muted or music_muted or music_level<=0 or effects_level<=0 or AudioServer.is_bus_mute(0) or AudioServer.get_bus_volume_db(0)<=-60
+
+func restore_output() -> void:
+    muted=false;music_muted=false;music_level=.8;effects_level=.9
+    for label in ["Master","Afterhours Music","Afterhours SFX"]:
+        var index:int=AudioServer.get_bus_index(label)
+        if index>=0:AudioServer.set_bus_mute(index,false);AudioServer.set_bus_volume_db(index,0.0)
+    _process(.02)
+    play_sound("parry",1.0,-3)
+
+func status_text() -> String:
+    if AudioServer.get_driver_name()=="Dummy":return "No audio output device / use a real audio driver"
+    if muted:return "Sound muted / restore to hear music and effects"
+    if AudioServer.is_bus_mute(0):return "Output muted / restore sound"
+    if music_muted or music_level<=0:return "Music off / effects level %d%%"%roundi(effects_level*100)
+    return "Music %d%% / Effects %d%%"%[roundi(music_level*100),roundi(effects_level*100)]

@@ -2,6 +2,8 @@ extends RefCounted
 ## Product copy is keyed; simulation events and save identifiers stay language-independent.
 var language := "zh"
 const COPY := {
+"test_audio":["測試聲音","TEST SOUND"],
+"restore_audio":["恢復聲音","RESTORE SOUND"],
 "retro_pixels":["復古低解像畫面", "Retro low resolution"],
 "trait_boxer":["拳手：均衡拳擊・穩定反擊", "BOXER · balanced fists / counters"],
 "trait_dancer":["舞者：長腿空連・旋風踢", "DANCER · reach / aerial spin kicks"],

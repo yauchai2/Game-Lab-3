@@ -68,6 +68,7 @@ func _ready() -> void:
     pixel_layer.layer=0
     add_child(pixel_layer)
     pixel_pass=ColorRect.new()
+    pixel_pass.visible=false
     pixel_pass.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     pixel_pass.mouse_filter=Control.MOUSE_FILTER_IGNORE
     var pixel_material:=ShaderMaterial.new()
@@ -255,6 +256,7 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
 func _handle_event(event: Dictionary) -> void:
     combat_event.emit(event)
     var kind: String = event.kind
+    if kind in ["break_finish","ko"] and is_instance_valid(backdrop.living):backdrop.living.react()
     if sim.arcade_enabled and not reduced_effects:
         var side:int=event.get("attacker",event.get("target",0))
         if kind=="break_finish":rhythm.trigger("break",side)
@@ -519,7 +521,7 @@ func _process(delta: float) -> void:
                 _spawn_vfx("trail",Vector2(fighter.x,fighter.y+1),0.15,{"face":signf(fighter.vx),"color":COLORS[i]})
         if trail_clock>0.06: trail_clock = 0.0
     # Motion paths already communicate pursuit; omit opaque skeleton-stick ghosts.
-    backdrop.present(delta, screen in ["pause", "help", "result"], reduced_effects)
+    backdrop.present(delta, screen in ["pause", "help", "result"] or (screen=="play" and rhythm.phase()=="hold"), reduced_effects)
     _present((delta*rhythm.view_speed() if screen=="play" and not reduced_effects else delta) if screen in ["play", "title", "result"] else 0.0)
     _grade_world()
     _apply_red_stage()
@@ -536,7 +538,7 @@ func _apply_red_stage() -> void:
 
 func _grade_world() -> void:
     if not is_instance_valid(grade):return
-    pixel_pass.visible=retro_pixels
+    pixel_pass.visible=false # Whole viewport now renders at the common pixel resolution.
     var strength:=0.0
     var grade_owner:=spectacle.owner
     if not reduced_effects and screen in ["play","result"]:

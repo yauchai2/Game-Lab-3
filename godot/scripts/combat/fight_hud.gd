@@ -11,6 +11,8 @@ var menu_scroll: ScrollContainer
 var menu_stack: VBoxContainer
 var layout_root: Control
 var art=preload("res://scripts/combat/ui/reference_art.gd").new()
+var roster_preview:Node
+var audio_restore:Button
 var art_controls:Control
 var art_buttons:Dictionary={}
 var pause_button:Button
@@ -52,6 +54,8 @@ func _ready() -> void:
     art_controls=Control.new()
     art_controls.mouse_filter=Control.MOUSE_FILTER_IGNORE
     layout_root.add_child(art_controls)
+    roster_preview=preload("res://scripts/combat/ui/roster_preview.gd").new()
+    add_child(roster_preview)
     for i in 3:
         var button:=Button.new()
         button.position=Vector2(346+i*198,578)
@@ -136,6 +140,12 @@ func _ready() -> void:
     back_button.add_theme_font_size_override("font_size",26)
     back_button.pressed.connect(close_page)
     layout_root.add_child(back_button)
+    audio_restore=Button.new()
+    audio_restore.text="SOUND OFF / RESTORE"
+    audio_restore.position=Vector2(976,605);audio_restore.size=Vector2(265,38)
+    audio_restore.add_theme_font_size_override("font_size",18)
+    audio_restore.pressed.connect(_restore_sound)
+    layout_root.add_child(audio_restore)
     pause_button=Button.new()
     pause_button.text="Ⅱ  PAUSE"
     pause_button.position=Vector2(1152,93);pause_button.size=Vector2(98,27)
@@ -269,11 +279,12 @@ func _action(parent: Node, key: String, shortcut: String, callback: Callable, pr
     button.add_theme_font_size_override("font_size",20)
     button.set_meta("ui_key",key)
     if primary:
-        button.add_theme_stylebox_override("normal",Tokens.sticker("button_selected"))
-        button.add_theme_color_override("font_color",PAPER)
-        button.add_theme_color_override("font_focus_color",PAPER)
+        button.add_theme_stylebox_override("normal",Tokens.plate(Tokens.LIME,INK,2))
+        button.add_theme_color_override("font_color",INK)
+        button.add_theme_color_override("font_focus_color",INK)
     if key in ["roster","controls","settings","demo","explore"]:
         button.add_theme_stylebox_override("normal",Tokens.plate(INK,Tokens.EDGE,1))
+        button.add_theme_color_override("font_color",PAPER)
     if key in ["roster","controls","settings","demo","explore"]:
         button.tooltip_text=button.text+(" · "+shortcut if shortcut!="" else "")
         shortcut=""
@@ -441,11 +452,11 @@ func _settings_page() -> void:
     menu_stack.add_child(_label(session.audio.music_credit,14,Tokens.MUTED))
     _volume("music",session.audio.music_level)
     _volume("sound",session.audio.effects_level)
+    menu_stack.add_child(_label(session.audio.status_text(),17,PAPER))
+    _action(menu_stack,"test_audio","",func():session.audio.play_sound("parry",1.0,0.0))
+    _action(menu_stack,"restore_audio","",_restore_sound)
     _toggle("reduced",session.reduced_effects,func(value:bool):
         session.reduced_effects=value
-        session.save_options())
-    _toggle("retro_pixels",session.retro_pixels,func(value:bool):
-        session.retro_pixels=value
         session.save_options())
     _toggle("scene_edges",session.ink_pass.visible,func(value:bool):
         session.ink_pass.visible=value
@@ -480,8 +491,11 @@ func _help_page() -> void:
         session.prime_pressure_drill())
 
 func _process(delta: float) -> void:
+    art.advance(delta,session.reduced_effects)
     copy.language="en"
     pause_button.visible=session.screen=="play"
+    audio_restore.visible=session.screen=="title" and menu_page=="main" and session.audio.silent_settings()
+    roster_preview.update_preview(session.screen=="title" and menu_page=="roster",session.character_choices[art.roster_side],delta,session.reduced_effects)
     if session.screen not in ["pause","help"]:notice_time=maxf(0,notice_time-delta)
     if session.screen=="play":skill_time=maxf(0,skill_time-delta)
     for i in 2:
@@ -811,3 +825,8 @@ func _build_art_controls() -> void:
             button.focus_neighbor_right=art_buttons["card_"+str(i^1)].get_path()
             button.focus_neighbor_top=art_buttons["card_"+str((i+2)%4)].get_path()
             button.focus_neighbor_bottom=art_buttons["card_"+str(i+2)].get_path() if i<2 else art_buttons.roster_fight.get_path()
+
+func _restore_sound() -> void:
+    session.audio.restore_output()
+    session.save_options()
+    if menu_page=="settings":rebuild_menu()

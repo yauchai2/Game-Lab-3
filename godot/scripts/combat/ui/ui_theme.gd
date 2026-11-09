@@ -12,8 +12,8 @@ const LIME := Color("d7f400")
 const FRAMES = preload("res://assets/ui/jsr/ui-frames.png")
 const LOGO = preload("res://assets/ui/jsr/afterhours-logo.png")
 const ICONS = preload("res://assets/ui/jsr/action-icons.png")
-const BODY = preload("res://assets/fonts/AfterhoursUIHK.otf")
-const DISPLAY = preload("res://assets/fonts/BarlowCondensed-BlackItalic.ttf")
+const BODY = preload("res://assets/fonts/RadioPixelBody.fnt")
+const DISPLAY = preload("res://assets/fonts/RadioPixelDisplay.fnt")
 static func plate(color: Color, border := Color.TRANSPARENT, width := 0) -> StyleBoxFlat:
     var style:=StyleBoxFlat.new()
     style.bg_color=color
@@ -76,6 +76,14 @@ static func build() -> Theme:
         theme.set_stylebox("pressed",type_name,sticker("button_selected"))
         theme.set_stylebox("disabled",type_name,sticker("button_disabled"))
         theme.set_stylebox("focus",type_name,plate(Color.TRANSPARENT,LIME,3))
+    # Native secondary actions use opaque pixel plates; nine-sliced skew stickers
+    # collapse at compact sizes and hide the recovery labels.
+    for state in ["normal","hover","pressed","disabled"]:
+        theme.set_stylebox(state,"Button",plate(LIME if state in ["hover","pressed"] else PAPER,INK,2))
+    for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color"]:
+        theme.set_color(state,"Button",INK)
+    theme.set_constant("outline_size","Button",0)
+    theme.set_font("font","Button",DISPLAY)
     for native_type in ["OptionButton","CheckButton"]:
         theme.set_stylebox("normal",native_type,plate(INK,EDGE,1))
         theme.set_stylebox("hover",native_type,plate(INK.lightened(.14),LIME,2))

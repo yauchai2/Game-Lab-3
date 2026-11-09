@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：已接入統一像素、3D選角、活街景及音訊恢復。詳見 [本輪實作與試用方法](docs/UNIFIED_PIXEL_RUNTIME.zh-TW.md)，[實機畫面](docs/evidence/unified-pixel/README.md)。只更新原始碼分支，公開Web版本不變。
+
 最新[統一像素美術、活街景與3D選角詳細計劃](docs/UNIFIED_PIXEL_ART_PLAN.zh-TW.md)：本輪僅規劃，未變更遊戲或Web。
 
 ## Approved reference UI

@@ -8,6 +8,7 @@ var plane: Node3D
 var environment: Environment
 var elapsed := 0.0
 var frozen := false
+var living:Node3D
 var sky_motion = preload("res://scripts/sky_drift.gd").new()
 var flight_direction := Vector3.FORWARD
 var vehicle_nodes: Array[Node3D] = []
@@ -77,6 +78,8 @@ func _ready() -> void:
     plane.position = anchor
     plane.rotation_degrees.y = -145
     flight_direction = -plane.basis.z.normalized()
+    living=preload("res://scripts/combat/living_street.gd").new()
+    add_child(living)
     if static_batches_enabled:
         static_batch_stats=preload("res://scripts/combat/static_street_batches.gd").bake(street,[Toon,two_sided_shader])
 
@@ -116,6 +119,7 @@ func _style_surfaces(root: Node) -> void:
 
 func present(delta: float, paused: bool, reduced := false) -> void:
     if frozen or paused: return
+    living.advance(delta,false,reduced)
     sky_motion.advance(environment,delta,PI*0.5,reduced)
     elapsed = fmod(elapsed+delta,cycle)
     var phase := fmod(elapsed+FLIGHT_SECONDS*0.5,cycle)

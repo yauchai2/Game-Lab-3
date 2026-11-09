@@ -3,16 +3,19 @@ extends RefCounted
 const T=preload("res://scripts/combat/ui/ui_theme.gd")
 const TITLE=preload("res://assets/ui/replica/title.png")
 const BOARD=preload("res://assets/ui/replica/roster-backplate.png")
-const ROSTER=preload("res://assets/ui/replica/roster-reference.png")
 const HEAD=preload("res://assets/ui/replica/headphones.png")
 const RIBBON=preload("res://assets/ui/replica/controls.png")
-const PORTRAIT_ATLAS=preload("res://assets/ui/replica/fighter-portraits.png")
-var portrait_cache:Array[AtlasTexture]=[]
 const MAIN_RECTS=[Rect2(150,351,468,155),Rect2(160,500,443,107),Rect2(158,607,448,96),Rect2(145,701,478,117),Rect2(49,838,286,86)]
 const CARD_RECTS=[Rect2(198,155,300,349),Rect2(485,159,301,345),Rect2(191,509,298,332),Rect2(491,510,304,330)]
 var roster_side:=0
-var focused_key:="fight"
-static func fit(rect:Rect2) -> Rect2:
+var focus_age:=1.0
+var focused_key:="fight":
+    set(value):
+        if value!=focused_key:focus_age=0.0
+        focused_key=value
+func advance(delta:float,reduced:bool) -> void:
+    focus_age=1.0 if reduced else minf(1.0,focus_age+delta)
+func fit(rect:Rect2) -> Rect2:
     return Rect2(rect.position*Vector2(1280.0/1672,720.0/941),rect.size*Vector2(1280.0/1672,720.0/941))
 func polygon(c:Control,pts:Array,color:Color) -> void:
     c.draw_colored_polygon(PackedVector2Array(pts),color)
@@ -25,47 +28,39 @@ func title(c:Control) -> void:
     c.draw_texture_rect(TITLE,Rect2(0,0,1280,720),false)
     var keys:Array=["fight","roster","training","settings","demo"]
     var index:int=keys.find(focused_key)
-    if index>0:
+    if index>=0:
         var r:Rect2=fit(MAIN_RECTS[index])
         c.draw_polyline(PackedVector2Array([r.position+Vector2(25,3),Vector2(r.end.x-5,r.position.y+3),r.end-Vector2(25,3),Vector2(r.position.x+5,r.end.y-3),r.position+Vector2(25,3)]),T.LIME,3)
-        polygon(c,[Vector2(r.position.x-18,r.get_center().y),Vector2(r.position.x-34,r.get_center().y-9),Vector2(r.position.x-34,r.get_center().y+9)],T.LIME)
+        polygon(c,[Vector2(r.position.x-18-(4 if focus_age<.10 else (2 if focus_age<.20 else 0)),r.get_center().y),Vector2(r.position.x-34,r.get_center().y-9),Vector2(r.position.x-34,r.get_center().y+9)],T.LIME)
 func roster(c:Control,s:Node) -> void:
     var choice:int=s.character_choices[roster_side]
-    c.draw_texture_rect(ROSTER if choice==3 else BOARD,Rect2(0,0,1280,720),false)
-    if choice!=3:
-        # The complete original left composition preserves exact card artwork/edges.
-        c.draw_texture_rect_region(ROSTER,Rect2(0,0,612.44,720),Rect2(0,0,800,941))
+    c.draw_texture_rect(BOARD,Rect2(0,0,1280,720),false)
     for i in 4:
-        var r:Rect2=fit(CARD_RECTS[i])
+        var card_rect:Rect2=fit(CARD_RECTS[i])
+        plate(c,Rect2(card_rect.position+Vector2(7,8),card_rect.size),T.INK,20)
+        plate(c,card_rect,T.LIME if choice==i else T.PAPER,20)
+        c.draw_texture_rect(s.hud.roster_preview.card_texture(i),Rect2(card_rect.position+Vector2(14,8),card_rect.size-Vector2(28,40)),false)
+        text(c,card_rect.position+Vector2(30,card_rect.size.y-8),["ORIGINAL","1","3","4"][i],27)
         for side in 2:
             if s.character_choices[side]!=i:continue
             var tint:Color=T.LIME if side==0 else T.TEAL
-            var tag:Rect2=Rect2(r.position+Vector2(18 if side==0 else 132,16),Vector2(48,30))
+            var tag:Rect2=Rect2(card_rect.position+Vector2(18 if side==0 else 132,16),Vector2(48,30))
             plate(c,tag,tint,5);text(c,tag.position+Vector2(9,25),"P%d"%(side+1),27)
-        if focused_key=="card_"+str(i):c.draw_rect(r.grow(1),T.PAPER,false,2)
+        if focused_key=="card_"+str(i):c.draw_rect(card_rect.grow(1),T.INK,false,2)
     for side in 2:
-        var r:Rect2=fit(Rect2(18,241+side*100,160,84))
-        plate(c,r,T.LIME if roster_side==side else T.PAPER)
-        if focused_key=="side_"+str(side):c.draw_rect(r.grow(2),T.TEAL,false,3)
-        text(c,r.position+Vector2(18,47),"P%d"%(side+1),48)
-    if choice!=3:
-        if portrait_cache.is_empty():
-            var data:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/replica/portrait-regions.json"))
-            for rect in data.regions:
-                var piece:=AtlasTexture.new();piece.atlas=PORTRAIT_ATLAS;piece.region=Rect2(rect[0],rect[1],rect[2],rect[3]);portrait_cache.append(piece)
-        var hero:Texture2D=portrait_cache[choice]
-        var height:=464.0;var width:float=height*hero.get_width()/hero.get_height()
-        c.draw_texture_rect(hero,Rect2(861-width*.5,127,width,height),false)
-    if choice!=3:
-        var label:Rect2=fit(Rect2(1400,339,244,218))
-        plate(c,label,T.PAPER,18)
-        text(c,label.position+Vector2(39,125),["A","1","3","4"][choice],139)
-    var profile:Dictionary=s.Simulation.Profiles.profile(choice)
+        var side_rect:Rect2=fit(Rect2(18,241+side*100,160,84))
+        plate(c,side_rect,T.LIME if roster_side==side else T.PAPER)
+        if focused_key=="side_"+str(side):c.draw_rect(side_rect.grow(2),T.TEAL,false,3)
+        text(c,side_rect.position+Vector2(18,47),"P%d"%(side+1),48)
+    c.draw_texture_rect(s.hud.roster_preview.hero_texture(),Rect2(662,117,420,486),false)
+    var label:Rect2=fit(Rect2(1400,339,244,218))
+    plate(c,label,T.PAPER,18)
+    text(c,label.position+Vector2(39,125),["A","1","3","4"][choice],139)
     var name:String=["BOXER / BALANCED","DANCER / AIR REACH","BASS / HEAVY HITS","SPARK / FAST ENERGY"][choice]
     plate(c,Rect2(675,674,313,29),T.PAPER,8)
     text(c,Vector2(686,697),name,21)
-    var r:Rect2=fit(Rect2(849,773,550,100))
-    if focused_key=="roster_fight":c.draw_rect(r,T.LIME,false,3)
+    var fight_rect:Rect2=fit(Rect2(849,773,550,100))
+    if focused_key=="roster_fight":c.draw_rect(fight_rect,T.LIME,false,3)
     elif focused_key=="back":c.draw_rect(fit(Rect2(1507,875,145,50)),T.LIME,false,3)
 func secondary(c:Control,heading:String) -> void:
     c.draw_texture_rect(BOARD,Rect2(0,0,1280,720),false)

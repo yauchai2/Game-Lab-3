@@ -1,5 +1,10 @@
 # Native game UI contract
 
+## Current override: unified pixel runtime (2026-11-10)
+
+The complete world, UI, fonts and VFX composite at 640×360 with nearest integer viewport scaling. Controls retain 1280×720 authoring coordinates mapped to the internal framebuffer; pointer/keyboard mapping is tested at three window sizes. The former world-only retro toggle is retired. Display/body use locally generated binary-alpha BMFont derivatives of bundled Barlow Condensed Black Italic and DejaVu Sans Condensed Bold; these are JSR-inspired adaptations, not the official JSR font. Reference title art stays intact. Roster cards and hero use five isolated, bounded, low-resolution real-model SubViewports, updated at15Hz only on the roster page, with four different showcase poses. Menu focus has a short stepped pointer kick; reduced effects removes it. Audio has exactly two music decks plus ten effects voices, with named buses. Settings exposes Test Sound, Restore Sound and output status; silent title preferences show a recovery action. Transport continues through pause and mute. Details/evidence: docs/UNIFIED_PIXEL_RUNTIME.zh-TW.md. Earlier contradictory descriptions below are historical.
+
+
 ## Approved five-action reference flow — 2026-11-09
 
 Current UI policy is [REFERENCE_UI.md](docs/REFERENCE_UI.md). Title has exactly Fight/Fighters/Training/Settings/AI Demo. Fixed English art may contain static labels, but each hit target is a real named native Button. Native focus selects the actual Enter action; background art is not an extra gameplay controller. Roster/Grid is owned by fight_hud.gd native Buttons, reference_art.gd paints it, simulation/preferences own P1/P2 choices. Dynamic HP/energy/time/combo still belong to native drawing and true data.

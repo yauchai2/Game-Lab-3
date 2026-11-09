@@ -1,5 +1,10 @@
 # 接續工作交接
 
+## 2026-11-10：統一像素、活街景及音訊恢復已接入
+
+本輪開始執行 [統一美術計劃](UNIFIED_PIXEL_ART_PLAN.zh-TW.md)，實作與界限見 [UNIFIED_PIXEL_RUNTIME.zh-TW.md](UNIFIED_PIXEL_RUNTIME.zh-TW.md)。全畫面640×360整數放大、兩款衍生bitmap字體、5個隔離3D選角viewport／四人不同姿態、分級放大的向量技能、低解析路面貼圖／不齊立面／植物剪影／28件路邊垃圾、4位背景人物及遠景車／樹葉／紙片／燈光動態已接入。新增音訊bus、可見靜音恢復及測試入口，音樂繼續播放且暫停只降低音量。原始GLB／音樂／UI來源圖保留，Web不變。
+
+
 ## 最新規劃：統一像素美術與活街景
 
 使用者要求詳細規劃，方案見 [UNIFIED_PIXEL_ART_PLAN.zh-TW.md](UNIFIED_PIXEL_ART_PLAN.zh-TW.md)。先統一世界／UI／VFX／字體640×360合成，再做JSR式字族、3D選角與4人不同pose、特效尺寸、手工街景／植被／垃圾及有界背景動態。現有world-only pixel shader是主要風格差距；天空／飛機可沿用。本輪僅文件，runtime與Web不變。

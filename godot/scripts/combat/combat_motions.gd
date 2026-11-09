@@ -107,6 +107,8 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         elif character==2:selected="Spell_Simple_Idle_Loop";loop=true
         elif character==3:selected="Idle_Loop";loop=true
     if f.state=="attack" and character==2 and f.move in ["cross","finisher","special"]:selected="Sword_Attack";loop=false
+    if f.get("showcase",false):
+        selected=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop"][character];loop=true
     var state_key := selected + "/" + str(f.state) + ("/"+str(f.move) if f.state=="attack" else "")
     if state_key != previous_state:
         blend_from.clear()
@@ -261,6 +263,7 @@ func _aim_limb(bone_name: String, child_name: String, direction: Vector3, weight
     var parent := skeleton.get_bone_parent(bone)
     var parent_rotation := Quaternion.IDENTITY if parent<0 else skeleton.get_bone_global_pose(parent).basis.get_rotation_quaternion()
     skeleton.set_bone_pose_rotation(bone,(parent_rotation.inverse()*desired).normalized())
+    skeleton.force_update_all_bone_transforms()
 
 func _source_index(name: String) -> int:
     for i in library.nodes.size():
