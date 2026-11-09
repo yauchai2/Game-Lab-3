@@ -47,7 +47,7 @@ func camera_punch(reduced: bool) -> float:
 func draw(canvas: Control, session: Node3D) -> void:
     var rally=session.sim.rally
     var held: bool=rally.active() and rally.phase=="compress"
-    var finishing: bool=session.screen=="result" and session.result_clock<.82
+    var finishing: bool=session.screen=="result" and session.result_clock<session.FINISH_SECONDS
     if not held and mode=="" and not finishing:return
     var reduced: bool=session.reduced_effects
     var at: Vector2=session.project(focus)
@@ -74,7 +74,7 @@ func draw(canvas: Control, session: Node3D) -> void:
     if reduced:return
     if finishing:
         color=session.COLORS[maxi(0,session.sim.winner)]
-        var progress:=clampf(session.result_clock/.82,0,1)
+        var progress:=clampf(session.result_clock/session.FINISH_SECONDS,0,1)
         _border(canvas,color,(1.0-progress)*.85)
         # A center-free radial composition: fighters remain visible in the opening.
         for i in 18:

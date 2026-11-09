@@ -1,5 +1,10 @@
 # 使用 GitHub Desktop 查看最新 Godot 場景
 
+## 最新節奏與角色比例
+
+Pull 後 F5：護目鏡角色 4 已縮為先前 2/3 高。Enter／F12 可看新停住 → 慢鏡 → 加速連段、較長紅幕及甩鏡；F2 比較普通速度／減少演出。見 [新節奏與片段](COMBAT_RHYTHM.md)。
+
+
 ## 新增三個角色
 
 Pull `codex/street-combat` 後等待新 GLB 匯入，F5 → **角色配搭**，分別選原角色／角色 1／3／4，即時看右方預覽。所選配搭保存並用於對戰、練習與 F12 Demo。目前共用招式與能力，詳見 [CHARACTER_ROSTER.md](CHARACTER_ROSTER.md)。

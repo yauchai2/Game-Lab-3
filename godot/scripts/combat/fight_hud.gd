@@ -145,7 +145,7 @@ func rebuild_menu(requested_focus := "") -> void:
     for child in menu_stack.get_children():
         menu_stack.remove_child(child)
         child.queue_free()
-    menu.visible=session.screen!="play" and not (session.screen=="result" and session.result_clock<.82 and not session.reduced_effects)
+    menu.visible=session.screen!="play" and not (session.screen=="result" and session.result_clock<session.FINISH_SECONDS and not session.reduced_effects)
     back_button.visible=menu.visible and menu_page!="main"
     back_button.text="← "+tr_text("back")+"  Esc"
     if not menu.visible:
@@ -490,7 +490,8 @@ func _draw() -> void:
         _text(Vector2(940,686),tr_text("stage"),18,PAPER)
         return
     session.theatre.draw(self,session)
-    if not (session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects):session.spectacle.draw(self,session)
+    session.rhythm.draw(self,session)
+    if not (session.theatre.active() and session.theatre.mode in ["ko","skill"] and not session.reduced_effects):session.spectacle.draw(self,session)
     for effect in session.effects:
         if effect.age>=0:vfx_renderer.draw_effect(self,session,effect)
     if session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
@@ -538,7 +539,7 @@ func _draw() -> void:
         _text(Vector2(34,690),"J "+tr_text("light")+"   K "+tr_text("heavy")+"   G "+tr_text("throw")+"   Shift "+tr_text("guard")+"   E "+tr_text("dodge"),13,PAPER)
     _text(Vector2(1010,690),"H "+tr_text("help")+"   Esc "+tr_text("pause"),13,PAPER)
     if session.hitboxes_visible:_draw_hitboxes()
-    if session.screen!="play" and not (session.screen=="result" and session.result_clock<.82 and not session.reduced_effects):_plate(Vector2.ZERO,Vector2(1280,720),Color(Tokens.NIGHT,.6))
+    if session.screen!="play" and not (session.screen=="result" and session.result_clock<session.FINISH_SECONDS and not session.reduced_effects):_plate(Vector2.ZERO,Vector2(1280,720),Color(Tokens.NIGHT,.6))
 
 func _health(x: float, fighter: Dictionary, tint: Color, reverse: bool, index: int) -> void:
     _cut_bar(Vector2(x-10,10),Vector2(494,90),Color(INK,.94),reverse)

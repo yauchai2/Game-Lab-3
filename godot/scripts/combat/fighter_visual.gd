@@ -129,5 +129,5 @@ func capture_echo() -> Array:
         if indices[0]<0 or indices[1]<0:continue
         var a: Vector3=skeleton.global_transform*skeleton.get_bone_global_pose(indices[0]).origin
         var b: Vector3=skeleton.global_transform*skeleton.get_bone_global_pose(indices[1]).origin
-        segments.append({"a":a,"b":b,"width":pair[2]})
+        segments.append({"a":a,"b":b,"width":pair[2]*model_scale/2.1})
     return segments

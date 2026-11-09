@@ -1,5 +1,10 @@
 # Afterhours — interface design
 
+## Combat rhythm update — 2026-11-09
+
+[COMBAT_RHYTHM.md](docs/COMBAT_RHYTHM.md) defines the latest shared combat clock and longer red-stage cuts. Light strings establish flow; launch/parry/burst use distinct hold, 0.22x slow motion and accelerated release. Full-screen shutters, contraction rings and release lines replace continuous clutter. Camera orbit, roll and FOV follow the beat. F2 restores normal pacing. Goggle fighter 4 is 2/3 of its previous height without rewriting the source model.
+
+
 ## Four-character roster — 2026-11-09
 
 The title now offers Fighters, with independent player/rival OptionButtons, a live world preview and saved choices. Preview uses the existing left-side match-card layout, leaves the right side undimmed and moves the camera slightly closer. These are shared-moveset character models; character-specific abilities and a full cinematic selection flow remain future work. See [docs/CHARACTER_ROSTER.md](docs/CHARACTER_ROSTER.md).

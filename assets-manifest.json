@@ -226,7 +226,7 @@
       ],
       "bytes": 255880,
       "sha256": "c443bad6aa0a9d0ab49741fc0e7ee36cddab7b7271ff1e95342993a27df68941",
-      "scale": 2.1,
+      "scale": 1.4,
       "skeleton_bones": 65,
       "embedded_animations": 0,
       "status": "integrated_shared_combat_roster_pending_human_review",

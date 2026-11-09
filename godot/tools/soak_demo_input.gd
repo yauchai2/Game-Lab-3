@@ -3,7 +3,7 @@ extends SceneTree
 var scene: Node
 var started:=0
 var duration:=120.0
-var output:="res://../docs/evidence/rush-rework/native-soak"
+var output:="res://../docs/evidence/combat-rhythm/native-soak"
 var held: Dictionary={}
 var release_at: Dictionary={}
 var deadline:=0
@@ -13,6 +13,8 @@ var resets:=0
 var counts: Dictionary={}
 var input_events:=0
 var red_samples:=0
+var phase_frames:Dictionary={}
+var maximum_roll:=0.0
 var max_effects:=0
 var max_nodes:=0
 var max_orphans:=0
@@ -29,6 +31,7 @@ func run() -> void:
     scene.preferences_path=""
     root.add_child(scene);current_scene=scene
     scene.audio.muted=true
+    scene.set_character(0,3);scene.set_character(1,2)
     scene.combat_event.connect(func(event:Dictionary):
         counts[event.kind]=counts.get(event.kind,0)+1
         if event.kind=="hit":counts[event.move]=counts.get(event.move,0)+1)
@@ -51,6 +54,9 @@ func drive() -> void:
     for code in release_at.keys():
         if now>=release_at[code]:key(code,false);release_at.erase(code)
     if scene.theatre.active() and not scene.reduced_effects:red_samples+=1
+    var phase:String=scene.rhythm.phase()
+    phase_frames[phase]=phase_frames.get(phase,0)+1
+    maximum_roll=maxf(maximum_roll,absf(rad_to_deg(scene.camera.rotation.z)))
     max_effects=maxi(max_effects,scene.effects.size())
     max_nodes=maxi(max_nodes,int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT)))
     max_orphans=maxi(max_orphans,int(Performance.get_monitor(Performance.OBJECT_ORPHAN_NODE_COUNT)))
@@ -61,7 +67,7 @@ func drive() -> void:
     if elapsed>=duration:
         process_frame.disconnect(drive)
         for code in held.keys():key(code,false)
-        var report:={"red_render_samples":red_samples,"mode":"endless_live_combat","fight_ticks":scene.demo.age if scene.demo!=null else 0,"live_hits":scene.demo.hits if scene.demo!=null else [],"stayed_live":scene.screen=="play" and scene.sim.phase=="fight","completed":true,"elapsed_seconds":elapsed,"input_events":input_events,"loops":loops,"resets":resets,"event_counts":counts,"max_effects":max_effects,"max_nodes":max_nodes,"max_orphans":max_orphans,"method":"real native Godot physics and viewport key events, combat_event signal observes every dispatched event; Dummy audio, software GL; no human/target GPU claim"}
+        var report:={"phase_render_frames":phase_frames,"maximum_roll_degrees":maximum_roll,"red_render_samples":red_samples,"mode":"endless_live_combat","fight_ticks":scene.demo.age if scene.demo!=null else 0,"live_hits":scene.demo.hits if scene.demo!=null else [],"stayed_live":scene.screen=="play" and scene.sim.phase=="fight","completed":true,"elapsed_seconds":elapsed,"input_events":input_events,"loops":loops,"resets":resets,"event_counts":counts,"max_effects":max_effects,"max_nodes":max_nodes,"max_orphans":max_orphans,"method":"real native Godot physics and viewport key events, combat_event signal observes every dispatched event; Dummy audio, software GL; no human/target GPU claim"}
         var file:=FileAccess.open(output+"/complete.json",FileAccess.WRITE)
         file.store_string(JSON.stringify(report,"  "))
         scene.queue_free()

@@ -16,7 +16,7 @@ func run() -> void:
     check("skill cut has a short finite lifespan",t.active())
     var age:float=t.age;t.advance(.5,true)
     check("pause freezes the visual clock",t.age==age)
-    t.advance(.1,false);check("red stage naturally expires",not t.active())
+    t.advance(1.0,false);check("red stage naturally expires",not t.active())
     t.begin("break",1);t.begin("impact",0)
     check("ordinary hit cannot overwrite a finisher cut",t.mode=="break" and t.owner==1)
     t.begin("ko",0);t.begin("skill",1)
@@ -36,14 +36,14 @@ func run() -> void:
     check("F2 restores the city immediately",scene.backdrop.visible and scene.camera.environment==null and not scene.grade.visible)
     scene.reduced_effects=false
     setup();scene.sim.fighters[1].health=20;scene.pending.attack="special"
-    for i in 25:
+    for i in 160:
         step()
         if scene.screen=="result":break
     check("lethal real contact launches red KO animation",scene.screen=="result" and scene.theatre.mode=="ko" and scene.camera.environment==scene.red_environment)
     snapshot=scene.sim.fighters.duplicate(true);scene._process(.3)
     check("KO camera and pose leave the resolved simulation unchanged",scene.sim.fighters==snapshot)
     check("KO camera adds a bounded cinematic roll",absf(scene.camera.rotation.z)>0.01 and absf(scene.camera.rotation.z)<.2)
-    scene._process(.55)
+    scene._process(scene.FINISH_SECONDS)
     check("KO returns to the city and operable result",not scene.theatre.active() and scene.backdrop.visible and scene.camera.environment==null and scene.hud.menu.visible)
     scene.return_to_title();scene._process(.01)
     check("title clears camera matte and shadows",scene.theatre.mode=="" and scene.backdrop.visible and scene.camera.environment==null and scene.silhouettes.all(func(s:Node)->bool:return s.visible))

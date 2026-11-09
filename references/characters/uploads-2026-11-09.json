@@ -126,7 +126,7 @@
           ]
         }
       ],
-      "runtime_scale": 2.1,
+      "runtime_scale": 1.4,
       "provenance": "User supplied GLB in this conversation. No source rewrite or paid provider operation. No independent generator/license claim.",
       "runtime_status": "Shared combat retargeting, original material base color with existing toon/outline overrides; no character-specific moves yet."
     }

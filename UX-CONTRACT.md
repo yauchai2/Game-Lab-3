@@ -1,5 +1,10 @@
 # Native game UI contract
 
+## Shared pacing update — 2026-11-09
+
+Main combat and Demo share a wall-time scheduler around fixed 60Hz simulation ticks. It holds both actors, slows to 0.22x, then releases at up to 2x; at most two steps per physics call. Pending input survives a hold. Pause freezes rhythm and red clocks; restart/title clear accumulated time; F2 restores one step, street and ordinary camera. Music stays at original speed. This changes real-time timing for both sides, not per-tick rules. Skill 1s, hit .65s, BREAK 1.1s, KO 1.2s, result 1.4s; Enter can skip results. Nonlethal timeout/draw never produces red KO.
+
+
 ## Roster — 2026-11-09
 
 Title → Fighters opens two native four-item selectors with live model previews and persistence. Back returns focus to Fighters; the Fight action starts the chosen pair. Fight, practice and endless Demo retain those choices; changing a model is rejected outside the title. Both sides may select the same model. New GLBs use the existing moves and stats; the copy says so. Exploration keeps the original model. Model replacement clears per-instance materials, active limb scaling and retarget caches; combat simulation is untouched.

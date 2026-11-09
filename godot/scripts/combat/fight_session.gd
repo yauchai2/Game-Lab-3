@@ -12,6 +12,8 @@ var finish_menu_open := false
 var sim := Simulation.new()
 var fighters: Array[Node3D] = []
 var theatre=preload("res://scripts/combat/impact_theatre.gd").new()
+var rhythm=preload("res://scripts/combat/combat_rhythm.gd").new()
+const FINISH_SECONDS := 1.4
 var red_environment: Environment
 var camera: Camera3D
 var hud: Control
@@ -155,7 +157,16 @@ func start_match(training := false) -> void:
     screen = "play"
     hud.rebuild_menu()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+    if screen!="play":return
+    var count:int=rhythm.take_steps(delta,sim.arcade_enabled and not reduced_effects)
+    for i in count:
+        if screen!="play":break
+        _combat_step()
+        # A new contact must be seen before spending a second accelerated step.
+        if rhythm.active() and rhythm.phase()=="hold":break
+
+func _combat_step() -> void:
     if screen != "play":
         return
     var input := pending.duplicate()
@@ -227,6 +238,17 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
 func _handle_event(event: Dictionary) -> void:
     combat_event.emit(event)
     var kind: String = event.kind
+    if sim.arcade_enabled and not reduced_effects:
+        var side:int=event.get("attacker",event.get("target",0))
+        if kind=="break_finish":rhythm.trigger("break",side)
+        elif kind in ["parry","air_counter_start"]:rhythm.trigger("parry",side)
+        elif kind=="homing_chase":rhythm.trigger("chase",side)
+        elif kind=="swing" and event.get("move","")=="special":rhythm.trigger("skill",side)
+        elif kind=="hit":
+            if event.get("move","") in ["meteor","special","air_counter"]:rhythm.trigger("impact",side)
+            elif event.get("move","")=="launcher":rhythm.trigger("launch",side)
+        if rhythm.active() and rhythm.phase()=="hold":
+            effects=effects.filter(func(e:Dictionary)->bool:return e.kind not in ["echo","trail","speed"])
     if kind=="break_finish":
         theatre.begin("break",event.attacker)
         audio.play_sound("slam",.75,-2)
@@ -357,7 +379,7 @@ func _handle_event(event: Dictionary) -> void:
         var attacker: int = event.get("attacker",0)
         var move: String = event.get("move","jab")
         var face: float = sim.fighters[attacker].face
-        var point := Vector2(target.x,target.y+1.2)
+        var point := Vector2(target.x,target.y+fighters[event.target].model_scale*.57)
         _spawn_vfx(kind,point,0.38,{"strength":strength,"color":tint,"move":move,"face":face,"held":kind=="hit" and sim.hitstop>0})
         if kind=="hit":
             if sim.arcade_enabled and move in ["meteor","special"]:theatre.begin("impact",attacker)
@@ -384,7 +406,7 @@ func _handle_event(event: Dictionary) -> void:
     elif kind=="swing":
         var fighter: Dictionary = sim.fighters[event.target]
         var startup: float = float(Simulation.MOVES[event.move].startup)/60.0
-        _spawn_vfx("swing",Vector2(fighter.x+fighter.face*0.9,fighter.y+1.15),0.15,{"age":-startup,"face":fighter.face,"color":COLORS[event.target],"move":event.move})
+        _spawn_vfx("swing",Vector2(fighter.x+fighter.face*0.9,fighter.y+fighters[event.target].model_scale*.55),0.15,{"age":-startup,"face":fighter.face,"color":COLORS[event.target],"move":event.move})
         audio.play_sound("swing",1.0,-8.0)
         if event.move=="grab":_spawn_vfx("grab_tell",Vector2(fighter.x+fighter.face*.55,fighter.y+1.25),startup,{"face":fighter.face,"color":Color("eebd4c")})
         if event.move=="special":
@@ -411,6 +433,7 @@ func _handle_event(event: Dictionary) -> void:
 
 func _clear_impacts() -> void:
     theatre.clear()
+    rhythm.clear()
     if is_instance_valid(backdrop):backdrop.visible=true
     if is_instance_valid(camera):camera.environment=null
     for shadow in silhouettes:shadow.visible=true
@@ -448,7 +471,7 @@ func _process(delta: float) -> void:
         if settings_save_clock<0:save_options()
     if screen=="result":
         result_clock+=delta
-        if result_clock>=.82 and not finish_menu_open:
+        if result_clock>=FINISH_SECONDS and not finish_menu_open:
             finish_menu_open=true
             hud.rebuild_menu()
     spectacle.advance(delta,screen in ["pause","help"])
@@ -457,7 +480,7 @@ func _process(delta: float) -> void:
     if screen != "pause" and screen != "help":
         elapsed += delta
         for effect in effects:
-            effect.age += delta
+            effect.age += delta*rhythm.view_speed() if screen=="play" and not reduced_effects else delta
             if effect.get("held",false) and (sim.hitstop>0 or sim.exchange.active() or sim.rally.active() or sim.air_counter.active()):effect.life=maxf(effect.life,effect.age+0.1)
         effects = effects.filter(func(e: Dictionary) -> bool: return e.age < e.life)
         recoil_age += delta
@@ -474,7 +497,7 @@ func _process(delta: float) -> void:
             if fighter.state=="stun" and absf(fighter.vx)>6 and trail_clock>0.06:
                 _spawn_vfx("trail",Vector2(fighter.x,fighter.y+1),0.15,{"face":signf(fighter.vx),"color":COLORS[i]})
         if trail_clock>0.06: trail_clock = 0.0
-    if screen=="play" and not reduced_effects:
+    if screen=="play" and not reduced_effects and rhythm.view_speed()>=1.0:
         echo_clock+=delta
         if echo_clock>=.055:
             echo_clock=0.0
@@ -484,13 +507,15 @@ func _process(delta: float) -> void:
                     var bones: Array=fighters[side].capture_echo()
                     _spawn_vfx("echo",Vector2.ZERO,.18,{"bones":bones,"color":COLORS[side],"face":state.face})
     backdrop.present(delta, screen in ["pause", "help", "result"], reduced_effects)
-    _present(delta if screen in ["play", "title", "result"] else 0.0)
+    _present((delta*rhythm.view_speed() if screen=="play" and not reduced_effects else delta) if screen in ["play", "title", "result"] else 0.0)
     _grade_world()
     _apply_red_stage()
     hud.queue_redraw()
 
 func _apply_red_stage() -> void:
     var red:bool=theatre.active() and not reduced_effects and screen in ["play","result"]
+    if red:
+        red_environment.background_color=Color("c92645") if theatre.mode=="skill" else (Color("ff431e") if theatre.mode=="break" else Color("f42d20"))
     backdrop.visible=not red
     camera.environment=red_environment if red else null
     for shadow in silhouettes:shadow.visible=not red
@@ -506,8 +531,8 @@ func _grade_world() -> void:
             owner=sim.rally.owner
         elif spectacle.mode in ["charge","burst","contact"] and spectacle.tier>=3:
             strength=(.84 if sim.arcade_enabled else .62)*clampf(1.0-spectacle.age/maxf(.001,spectacle.duration),0,1)
-        elif screen=="result" and result_clock<.82:
-            strength=.85*(1.0-result_clock/.82)
+        elif screen=="result" and result_clock<FINISH_SECONDS:
+            strength=.85*(1.0-result_clock/FINISH_SECONDS)
     grade.visible=strength>.001
     grade_material.set_shader_parameter("strength",strength)
     grade_material.set_shader_parameter("accent",COLORS[owner])
@@ -517,7 +542,7 @@ func _present(delta: float) -> void:
         var pose: Dictionary=sim.fighters[i].duplicate()
         pose["air_enabled"]=sim.is_aerial()
         pose["rush_visual"]=sim.arcade_enabled and not reduced_effects
-        pose["ko_theatre"]=theatre.age if theatre.mode=="ko" and theatre.active() and not reduced_effects else -1.0
+        pose["ko_theatre"]=theatre.age/theatre.duration*.64 if theatre.mode=="ko" and theatre.active() and not reduced_effects else -1.0
         if sim.air_counter.active():
             pose["air_counter_role"]="owner" if i==sim.air_counter.owner else "target"
             pose["air_counter_phase"]=sim.air_counter.phase
@@ -549,8 +574,8 @@ func _present(delta: float) -> void:
             pose["exchange_choice"]=choice
         fighters[i].present(pose, delta, (sim.hitstop>0 or sim.exchange.active() or (sim.rally.active() and sim.rally.phase=="compress") or (sim.air_counter.active() and sim.air_counter.phase=="hold")) and screen=="play", reduced_effects, sim.fighters[1-i].x)
         silhouettes[i].position = Vector3(fighters[i].model.global_position.x,0.03,FIGHT_Z)
-        silhouettes[i].scale = Vector3.ONE * clampf(1.0 - pose.y * 0.08, 0.5, 1.0)
-    var shake := 0.0 if reduced_effects else trauma * trauma * 0.35
+        silhouettes[i].scale = Vector3.ONE * clampf(1.0 - pose.y * 0.08, 0.5, 1.0)*(fighters[i].model_scale/2.1)
+    var shake := 0.0 if reduced_effects else trauma * trauma * 0.60
     var midpoint: float = (sim.fighters[0].x + sim.fighters[1].x) * 0.5
     var separation: float = absf(sim.fighters[0].x - sim.fighters[1].x)
     var distance := clampf(8.1+separation*.22,8.4,15.0) if sim.arcade_enabled else clampf(10.0 + separation * 0.35,10.7,17.2)
@@ -571,8 +596,8 @@ func _present(delta: float) -> void:
         target_position=Vector3(-.6,2.3,FIGHT_Z+9.7)
         if not reduced_effects:target_position.x+=sin(elapsed*.23)*.07
     var finish_zoom:=0.0
-    if screen=="result" and result_clock<.82 and sim.winner>=0 and not reduced_effects:
-        finish_zoom=sin(clampf(result_clock/.82,0,1)*PI)
+    if screen=="result" and result_clock<FINISH_SECONDS and sim.winner>=0 and not reduced_effects:
+        finish_zoom=sin(clampf(result_clock/FINISH_SECONDS,0,1)*PI)
         var victim: Dictionary=sim.fighters[1-sim.winner]
         target_focus=target_focus.lerp(Vector3(victim.x*.6,1.3,FIGHT_Z),finish_zoom*.65)
         target_position=target_position.lerp(Vector3(target_focus.x+.45,1.3,FIGHT_Z+(6.0 if sim.arcade_enabled else 7.8)),finish_zoom)
@@ -593,6 +618,21 @@ func _present(delta: float) -> void:
     camera.fov=48.0 if reduced_effects else lerpf(camera.fov,desired_fov,1.0-exp(-delta*12.0))
     camera.position = base_camera + Vector3(sin(elapsed*91)*shake+punch.x,cos(elapsed*77)*shake*0.4+punch.y,-cinematic)
     camera.look_at(camera_focus)
+    if rhythm.active() and not reduced_effects and screen=="play":
+        var stage:String=rhythm.phase()
+        var direction:float=1.0 if rhythm.owner==0 else -1.0
+        var center:=Vector3(midpoint,(sim.fighters[0].y+sim.fighters[1].y)*.5+.95,FIGHT_Z)
+        var travel:float=clampf(rhythm.age/.74,0,1)
+        var orbit:float=direction*(-.22+travel*.50)
+        var vertical_gap:float=absf(sim.fighters[0].y-sim.fighters[1].y)
+        var aspect:float=get_viewport().get_visible_rect().size.x/get_viewport().get_visible_rect().size.y
+        var cinematic_distance:float=maxf(5.8,maxf((separation+2.0)/(2*tan(deg_to_rad(25.0))*aspect*.78),(vertical_gap+3.0)/(2*tan(deg_to_rad(25.0))*.68)))
+        var slam:float=sin(travel*PI)
+        camera.position=center+Vector3(sin(orbit)*cinematic_distance,.6+slam*.6,cos(orbit)*cinematic_distance)
+        if stage=="release":camera.position+=Vector3(sin(elapsed*110)*.19,cos(elapsed*97)*.10,0)
+        camera.look_at(center)
+        camera.fov=44.0 if stage=="slow" else 50.0
+        camera.rotation.z=direction*deg_to_rad((11.0 if stage!="release" else -7.0)*slam)
     if theatre.active() and theatre.mode=="ko" and not reduced_effects and screen=="result":
         var progress:float=clampf(theatre.age/theatre.duration,0,1)
         var center:=Vector3(midpoint,(sim.fighters[0].y+sim.fighters[1].y)*.5+.95,FIGHT_Z)

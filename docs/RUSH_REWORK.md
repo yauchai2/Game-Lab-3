@@ -1,5 +1,8 @@
 # Rush 街鬥：空連、無限 AI 與紅幕爆發
 
+最新覆蓋：[COMBAT_RHYTHM.md](COMBAT_RHYTHM.md) 已加入真正的停慢快節奏、加長紅幕及甩鏡，角色 4 高度減少 1/3。以下初版時長／全部 2.1 倍的描述為前輪紀錄，以最新文件為準。
+
+
 2026-11-09。依使用者「Demo 要自由交戰、首次玩就爽、可以大改」及最新兩部影片要求，正式對戰與自由練習共用空戰，不再把主要動作鎖在 F11。這份文件覆蓋早前「正式保留三選、空戰只限練習、Demo 23 段」的描述；舊系統仍可由專用教室進入。
 
 [15 秒無剪接雙 AI Demo](evidence/rush-rework/endless-demo.mp4) · [GIF](evidence/rush-rework/endless-demo.gif) · [紅幕 KO 1 秒片段](evidence/rush-rework/red-ko.mp4) · [影片觀察與轉譯](COMBAT_VISUAL_STUDY.md)

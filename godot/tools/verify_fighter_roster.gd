@@ -10,7 +10,8 @@ func frames(n:=2) -> void:
     for i in n:await process_frame
 func shot(name:String) -> void:
     await process_frame;await RenderingServer.frame_post_draw
-    root.get_texture().get_image().save_png("res://../docs/evidence/character-roster/"+name+".png")
+    DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://../docs/evidence/combat-rhythm/roster-captures"))
+    root.get_texture().get_image().save_png("res://../docs/evidence/combat-rhythm/roster-captures/"+name+".png")
 func step() -> void:scene._physics_process(1.0/60);scene._process(1.0/60);scene.hud._process(1.0/60)
 func settle_preview() -> void:
     for i in 90:scene._process(1.0/60);scene.hud._process(1.0/60)

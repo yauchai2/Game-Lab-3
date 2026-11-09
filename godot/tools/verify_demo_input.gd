@@ -30,10 +30,14 @@ func run() -> void:
     check("resume continues the same fight",scene.screen=="play" and scene.demo.age==age+1)
     var max_effects:=0
     var giant_seen:=false
+    var stable_live:=true
+    var previous_age:int=scene.demo.age
     for i in 1800:
         step();max_effects=maxi(max_effects,scene.effects.size())
+        stable_live=stable_live and scene.demo.age>=previous_age and scene.demo.age-previous_age<=2
+        previous_age=scene.demo.age
         giant_seen=giant_seen or scene.fighters.any(func(f:Node)->bool:return not f.oversized_bones.is_empty())
-    check("native scene keeps fighting without KO pages or chapters",scene.screen=="play" and scene.sim.phase=="fight" and scene.demo.age>1800)
+    check("native scene keeps fighting without KO pages or chapters",stable_live and scene.screen=="play" and scene.sim.phase=="fight" and scene.demo.age>600)
     check("both live agents hit naturally",scene.demo.hits[0]>10 and scene.demo.hits[1]>10)
     check("native demo includes chase and meteor payoff",scene.demo.seen.get("homing_chase",0)>5 and scene.demo.seen.get("hit/meteor",0)>2)
     check("effects remain bounded",max_effects<=64)

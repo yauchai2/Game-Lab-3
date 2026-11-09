@@ -1,5 +1,22 @@
 # 驗證紀錄與證據範圍
 
+## 最新：停慢快節奏、加長紅幕與角色 4 比例（2026-11-09）
+
+功能／時間規格見 [COMBAT_RHYTHM.md](COMBAT_RHYTHM.md)。原始 GLB 不修改；護目鏡角色 4 包裝比例 2.1→1.4，顯示高度減少 1/3，陰影／殘影粗細與特效高度配合。
+
+- [無視窗回歸 494/494](evidence/combat-rhythm/headless/summary.json)：Rush 21、友善防禦 25、無限 Demo 21、空中反制 57、空戰 54、換手 60、結果 15、戰鬥 34、戰鬥完善 35、接觸演出 24、高壓 59、近身 41、UI 35、構圖 13。純 simulation 規則及 30,000 tick 雙實例確定性保持；實際新遊戲時鐘由原生檢查驗證，沒有把純模擬 tick 當新牆鐘時間。
+- [原生流程 135/135](evidence/combat-rhythm/final-native/summary.json)：新節奏 27、四角色 30、紅幕 18、Demo 28、UI 17、戰鬥輸入 15。新 27 項逐一檢查六配置的 hold／slow／release／flow 與最多兩步；低階事件不覆寫強停頓；F2／清理、角色 4 確切 2/3 比例；真實付費爆發啟動停頓、雙方狀態及 sim.tick_count 真正凍結、停頓輸入保留、暫停凍結兩時鐘、實際慢速與高速步進、約 5–13° 間的可見鏡頭轉動、無限交戰兼有普通街景與強演出，兩方真命中。
+- 清理慢鏡骨架殘影／重複技能字卡後，再跑 [新節奏＋紅幕＋Demo 73/73](evidence/combat-rhythm/visual-final/summary.json)；這是覆核，不重複加總，本輪 **629 個不同檢查**。最後只有工具擷取路徑及額外錄影工具變動，未再改 runtime。
+- [120.007 秒原生真實時鐘運行](evidence/combat-rhythm/native-soak/complete.json)：角色 4 對 3、只有開始 F12 的兩次按鍵轉換，6,103 戰鬥 tick、177 次真命中（72／105）、28 次追擊、24 BREAK、12 次反踢命中，0 重置／循環，全程維持 fight。最多 15 效果／541 節點，孤立節點取樣 0；最大鏡頭 roll 約 11°。phase_render_frames 為各階段的**渲染幀取樣數**，不是 simulation tick 或時間比例。軟體渲染各階段 FPS 不同，不拿此表推論慢鏡佔總時間。
+- [30 秒無剪接片段](evidence/combat-rhythm/rhythm-demo.mp4)／[GIF](evidence/combat-rhythm/rhythm-demo.gif)為同場 1,800 固定牆鐘步驟、450 張原生畫面／15fps，無音軌；實際 simulation 前進 1,675 tick、54 真命中、9 追擊、6 爆發命中、4 暴扣命中、5 BREAK，事件以 signal 計數。每四步採樣的 [capture.json](evidence/combat-rhythm/capture.json) 有 274 flow／37 hold／59 slow／80 release、132 紅幕取樣；這是固定間隔取樣，不是逐幀視覺評分。
+- [新長 KO 片段](evidence/combat-rhythm/extended-ko.mp4)為角色 4 按住 J 真實勝出後的 1.6 秒／30fps 擷取，包含 1.2 秒紅幕與結果返回。已檢視[縮高預覽](evidence/combat-rhythm/captures/short_fighter_preview.png)、[慢鏡技能](evidence/combat-rhythm/captures/skill_slow.png)、[速度線釋放](evidence/combat-rhythm/captures/release.png)、[BREAK](evidence/combat-rhythm/captures/break.png)及[KO](evidence/combat-rhythm/captures/extended_ko.png)原生畫面。
+- [來源與擷取雜湊](evidence/combat-rhythm/source-manifest.json)：基線 49be6e5 的全部 49 件既有模型／圖片／音檔逐位元組保留；更新原始碼／角色比例 metadata，不改 wev 音樂。歷史 character-roster PNG 因舊工具回歸被重寫，已恢復原版；新縮高畫面另存本輪，工具未來寫入本輪目錄。
+
+保留失敗與修正：`native/` 的 Demo 107/108 是舊斷言把 1,800 牆鐘呼叫等同至少 1,800 模擬 tick；改驗證每步單調、最多兩 tick、持續有真交戰且不切章，並保留兩方命中／追擊門檻。`first-headless/` 493/494 的挑空測試仍固定十次呼叫等釋放，新慢鏡使其過早；改為最多 120 次內等真 hitstop 結束。`first-rhythm-native/` 132/135 揭露實際接線錯誤：技能是 swing/special 事件，誤等不存在的 special kind；改接真發招後，技能停頓／雙方凍結／輸入保留三項都通過。首個 KO 擷取未等原生按鍵進入下一視窗幀便快轉，未取得所需命中；補兩幀輸入交付後真實勝出，保留 ko-capture-first.log，不冒稱新增遊戲 bug。
+
+Godot 4.6.3／Compatibility／Mesa llvmpipe／Dummy 音訊。最後通過日誌只有預期 VSync 提示，沒有新腳本或退出資源錯誤。自動注入／畫面檢視不等於真人爽感、甩鏡舒適度、實聽、目標 GPU 或使用者電腦驗收；120 秒是短觀察，不是長測或無洩漏保證。新共享時鐘改變兩方的實際操作時間，需真人比較，F2 返回普通速度。只推來源分支，未部署 Web。
+
+
 ## 最新：三個 GLB／四角色配搭（2026-11-09）
 
 功能見 [CHARACTER_ROSTER.md](CHARACTER_ROSTER.md)，靜態資料見 [uploads manifest](../references/characters/uploads-2026-11-09.json)。三個來源 GLB 不改位元組，各 1,502／1,535／1,548 tris、65 joints、1024² Base Color、零內嵌動畫。Python 檢查 GLB magic／version／長度、JSON／binary chunk、三角形模式、材質與圖片可解碼；這不是 `game-dev` receipt。該 CLI 缺少，未安裝或改用遠端生成。

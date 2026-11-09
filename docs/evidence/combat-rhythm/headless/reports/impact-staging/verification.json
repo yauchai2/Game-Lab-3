@@ -1,0 +1,103 @@
+{
+  "checks": [
+    {
+      "name": "all 864 vector cels triangulate with finite bounded geometry",
+      "passed": true
+    },
+    {
+      "name": "all new cels remain fully opaque",
+      "passed": true
+    },
+    {
+      "name": "every attack mirrors correctly after swapping sides",
+      "passed": true
+    },
+    {
+      "name": "jab heavy launcher and special have distinct silhouettes",
+      "passed": true
+    },
+    {
+      "name": "late attack cels break into detached fragments",
+      "passed": true
+    },
+    {
+      "name": "reduced effects uses fewer release polygons",
+      "passed": true
+    },
+    {
+      "name": "real heavy contact schedules one held core",
+      "passed": true
+    },
+    {
+      "name": "presentation preserves heavy damage",
+      "passed": true
+    },
+    {
+      "name": "core survives a long render interval while physics is stopped",
+      "passed": true
+    },
+    {
+      "name": "pause preserves pending release and core age",
+      "passed": true
+    },
+    {
+      "name": "release waits until last hitstop tick",
+      "passed": true
+    },
+    {
+      "name": "last hitstop tick replaces core with one release",
+      "passed": true
+    },
+    {
+      "name": "horizontal contact kicks camera opposite attacker direction",
+      "passed": true
+    },
+    {
+      "name": "release is emitted exactly once",
+      "passed": true
+    },
+    {
+      "name": "release polygons expire without alpha fade",
+      "passed": true
+    },
+    {
+      "name": "launcher release has rising axis",
+      "passed": true
+    },
+    {
+      "name": "practice reset clears pending contact and camera kick",
+      "passed": true
+    },
+    {
+      "name": "return to title clears pending contact",
+      "passed": true
+    },
+    {
+      "name": "block keeps shield and never produces hit release",
+      "passed": true
+    },
+    {
+      "name": "whiff has attack arc without contact burst",
+      "passed": true
+    },
+    {
+      "name": "trade retains both contact bursts",
+      "passed": true
+    },
+    {
+      "name": "reduced effects removes both shake and camera punch",
+      "passed": true
+    },
+    {
+      "name": "new round clears queued releases",
+      "passed": true
+    },
+    {
+      "name": "KO flushes contact instead of leaving held core behind result menu",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "geometry_cels_checked": 864,
+  "passed": 24
+}

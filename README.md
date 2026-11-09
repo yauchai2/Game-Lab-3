@@ -1,5 +1,8 @@
 # Afterhours / Game-Lab-3
 
+最新[停慢快節奏與加長紅幕](docs/COMBAT_RHYTHM.md)：挑空／反制／爆發加入**全停 → 0.22 倍慢鏡 → 加速釋放**，全屏速度線、繞行甩鏡；技能紅幕 1 秒、KO 1.2 秒。護目鏡角色 4 身高縮為原來 **2/3**。[30 秒連續 Demo](docs/evidence/combat-rhythm/rhythm-demo.mp4)。F2 比較減少演出，公開 Web 不更新。
+
+
 最新[四角色配搭](docs/CHARACTER_ROSTER.md)：已加入你提供的 **1、3、4** 三個 GLB，主選單「**角色配搭**」可選自己及對手，即時預覽並保存；對戰／練習／F12 Demo 沿用。四位目前共用招式與能力，公開 Web 未更新。
 
 

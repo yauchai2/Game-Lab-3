@@ -65,7 +65,9 @@ func run() -> void:
     scene._process(.4)
     check("release polygons expire without alpha fade",count_kind(scene,"release")==0)
     contact(scene,"launcher")
-    for i in 10:scene._physics_process(1.0/60)
+    for i in 120:
+        scene._physics_process(1.0/60)
+        if scene.sim.hitstop==0:break
     check("launcher release has rising axis",scene.recoil.y<0 and scene.effects.any(func(e:Dictionary)->bool:return e.kind=="release" and e.move=="launcher"))
     contact(scene,"special")
     scene.reset_training()

@@ -1,0 +1,8 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: IMPACT FAIL: launcher release has rising axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_impact_staging.gd:6)
+       [1] run (res://tools/verify_impact_staging.gd:69)
+IMPACT_STAGING_CHECKS 23/24
