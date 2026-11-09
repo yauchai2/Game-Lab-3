@@ -39,3 +39,7 @@ The simulation confirms KO first. A bounded 0.82 second presentation precedes th
 F11 starts practice-only Air lab with a standing partner; F5 exits it, F10 switches to the separate rally. Changing the partner in Settings preserves Air lab and pause. Space is a fresh jump command; S is a fresh fast-fall command. W/Down modifiers are captured at K-down so a quick release before the physics tick retains the intended move. The HUD distinguishes a chase costing 20 energy from ordinary dashing and the free manual jump chase; invalid chase attempts show feedback.
 
 Air camera framing uses both players' vertical bounds and viewport aspect. The combo counter leaves room for the practice context. F2 keeps phase/owner prompts and basic poses while disabling strong stretch, spin, grade and shake.
+
+## Air reversal iteration
+
+Air counter dojo starts from F11 → F8. K begins/retries the read-first lesson; Shift arms a six-tick attempt costing 25 energy. During the 18-tick hold, J/E and native buttons submit the same first-choice lock. No choice defaults to escape. Pause freezes the hold; mode changes/retry clear pending choices and effects. See [AIR_REVERSAL](docs/AIR_REVERSAL.md).

@@ -32,3 +32,5 @@ AI 會在已授權範圍內推送任務分支並告知更新；桌面端需使�
 本輪已改成繁中 UI。主選單「交鋒教室」對應下文早期 PRESSURE DRILL。G 投技／拆投；E 可在撞到場邊後消耗 20 能量受身。F1 設定、H 操作、練習 F9 展開數據；F6 遊走按 H 展開提示。新版只在 Desktop Pull 後用 Godot F5 查看，公開網址未更新。詳見 [EXTENDED_POLISH.md](EXTENDED_POLISH.md)。
 
 Pull `codex/street-combat` 後 Godot F5，主選單選 PRESSURE DRILL；或 T 進練習、F8 準備。可先不限時閱讀提示，按 K 才進 0.4 秒對峙，再選 J 頂進／Shift 卸勢／E 抽身。F8 重試，F5 退出此練習。完整規則見 [PRESSURE_EXCHANGE.md](PRESSURE_EXCHANGE.md)。這是原始碼版本，公開試玩版本輪不更新。
+
+最新空中反制試法：在 `codex/street-combat` Pull 後，Godot 執行 → F11 → F8 → K → 接觸前 Shift → J 反踢／E 抽身。只更新來源；公開 Web 未更新。見 [AIR_REVERSAL.md](AIR_REVERSAL.md)。

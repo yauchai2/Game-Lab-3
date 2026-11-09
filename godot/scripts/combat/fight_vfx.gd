@@ -49,7 +49,7 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             _crescent(canvas,at,radius,12*(1-time)+2,face,ink)
             _crescent(canvas,at,radius-4,10*(1-time)+2,face,tint)
             if not reduced:_crescent(canvas,at,radius-9,4*(1-time)+1,face,paper)
-        "rally_core":
+        "rally_core","air_counter_core":
             var level: int=effect.get("tier",1)
             var radius:=18.0+level*4
             canvas.draw_circle(at,radius,ink)

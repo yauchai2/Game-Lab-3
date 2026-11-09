@@ -24,6 +24,11 @@ var vfx_renderer := preload("res://scripts/combat/fight_vfx.gd").new()
 var choice_buttons: Array[Button]=[]
 var choice_skin := [-1,-1,-1]
 var back_button: Button
+var air_lesson: Button
+var air_begin: Button
+var air_parry: Button
+var air_choices: Array[Button]=[]
+var air_choice_skin:=[-1,-1]
 var drill_start: Button
 var health_lag := [100.0,100.0]
 var last_health := [100.0,100.0]
@@ -55,6 +60,37 @@ func _ready() -> void:
     drill_start.pressed.connect(func():session.pending["attack"]="heavy")
     drill_start.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
     layout_root.add_child(drill_start)
+    air_lesson=Button.new()
+    air_lesson.position=Vector2(1005,116)
+    air_lesson.size=Vector2(241,36)
+    air_lesson.set_meta("ui_key","air_lesson")
+    air_lesson.pressed.connect(func():session.prime_air_drill() if session.sim.is_air_lesson() else session.prime_air_defense())
+    layout_root.add_child(air_lesson)
+    air_begin=Button.new()
+    air_begin.position=Vector2(494,611)
+    air_begin.size=Vector2(292,36)
+    air_begin.set_meta("ui_key","air_begin")
+    air_begin.pressed.connect(func():session.pending["lesson_start"]=true)
+    layout_root.add_child(air_begin)
+    air_parry=Button.new()
+    air_parry.position=Vector2(494,611)
+    air_parry.size=Vector2(292,36)
+    air_parry.set_meta("ui_key","air_parry")
+    air_parry.pressed.connect(func():session.pending["guard_pressed"]=true)
+    layout_root.add_child(air_parry)
+    for index in 2:
+        var button:=Button.new()
+        button.position=Vector2(422+index*226,611)
+        button.size=Vector2(210,36)
+        button.set_meta("ui_key","air_"+["kick","escape"][index])
+        var choice: String=["kick","escape"][index]
+        button.pressed.connect(func():session.commit_air_choice(choice))
+        layout_root.add_child(button)
+        air_choices.append(button)
+    for button in [air_lesson,air_begin,air_parry]+air_choices:
+        button.add_theme_font_size_override("font_size",16)
+        button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
+        button.pressed.connect(button.release_focus)
     menu=PanelContainer.new()
     menu.add_theme_stylebox_override("panel",Tokens.plate(Color(INK,.97),Tokens.EDGE,1))
     layout_root.add_child(menu)
@@ -102,6 +138,7 @@ func rebuild_menu(requested_focus := "") -> void:
     back_button.text="← "+tr_text("back")+"  Esc"
     if not menu.visible:
         _sync_choices()
+        _sync_air_controls()
         return
     if menu_page!="main":
         menu.position=Vector2(360,74)
@@ -120,6 +157,7 @@ func rebuild_menu(requested_focus := "") -> void:
     menu_scroll.set_deferred("scroll_vertical",old_scroll if preserve_scroll else 0)
     call_deferred("_restore_focus")
     _sync_choices()
+    _sync_air_controls()
     queue_redraw()
 
 func _restore_focus() -> void:
@@ -307,7 +345,8 @@ func _settings_page() -> void:
     _choice("language",["zh","en"],0 if session.language=="zh" else 1,func(index:int):session.set_language("zh" if index==0 else "en"))
     _choice("difficulty",["relaxed","standard","challenging"],session.sim.difficulty,session.set_difficulty)
     _caption("difficulty_hint")
-    if session.practice or session.screen=="title":_choice("partner",["standing","guarding","sparring"],session.sim.partner_mode,session.set_partner_mode)
+    if session.sim.is_air_lesson():_caption("air_fixed_partner")
+    elif session.practice or session.screen=="title":_choice("partner",["standing","guarding","sparring"],session.sim.partner_mode,session.set_partner_mode)
     _toggle("muted",session.audio.muted,func(value:bool):
         session.audio.muted=value
         session.audio.stop_all()
@@ -351,6 +390,7 @@ func _process(delta: float) -> void:
         health_delay[i]=maxf(0,health_delay[i]-delta)
         if health_delay[i]<=0:health_lag[i]=move_toward(health_lag[i],hp,delta*65)
     _sync_choices()
+    _sync_air_controls()
     queue_redraw()
 
 func _sync_choices() -> void:
@@ -498,15 +538,69 @@ func _pressure_hud() -> void:
     elif drill:_text(Vector2(34,690),tr_text("drill_exit"),12,Tokens.MUTED)
 
 func _air_hud() -> void:
+    if session.sim.air_counter.active():
+        var counter=session.sim.air_counter
+        var tint: Color=session.COLORS[counter.owner]
+        _plate(Vector2(330,548),Vector2(620,108),Color(INK,.96))
+        _text(Vector2(348,575),tr_text("air_reversal"),18,tint)
+        _text(Vector2(765,575),tr_text("you" if counter.owner==0 else "rival"),14,tint)
+        if counter.phase=="hold":
+            var caption: String=tr_text("air_choose" if counter.owner==0 else "air_rival_holds")
+            if counter.owner==0 and counter.choice!="":caption=tr_text("air_locked")+" · "+tr_text("air_choice_"+counter.choice)
+            _center(Vector2(640,600),caption,14,PAPER)
+            _plate(Vector2(348,580),Vector2(584,3),Tokens.EDGE)
+            _plate(Vector2(348,580),Vector2(584*(1.0-float(counter.age)/counter.HOLD),3),tint)
+        else:_center(Vector2(640,620),tr_text("air_counter_release_hint"),16,PAPER)
+        return
+    if session.sim.is_air_lesson():
+        _plate(Vector2(330,548),Vector2(620,108),Color(INK,.96))
+        _text(Vector2(348,575),tr_text("air_defense_title"),18,Tokens.TEAL)
+        var phase: String=session.sim.air_lesson_stage
+        var caption: String=tr_text("air_defense_"+phase)
+        if phase=="attack":
+            var a: Dictionary=session.sim.fighters[1]
+            var ready: bool=a.state=="attack" and a.frame>=session.Simulation.MOVES.air_finisher.startup-6 and a.frame<session.Simulation.MOVES.air_finisher.startup
+            caption=tr_text("air_parry_now" if ready else "air_wait_windup")
+        _center(Vector2(640,600),caption,14,PAPER)
+        return
     var f: Dictionary=session.sim.fighters[0]
     _plate(Vector2(330,548),Vector2(620,108),Color(INK,.96))
     _text(Vector2(348,575),tr_text("air_lab"),18,Tokens.TEAL)
     _text(Vector2(744,575),tr_text("air_phase_"+f.air.phase),14,Tokens.GOLD)
     _center(Vector2(640,600),tr_text("air_jump_help"),14,PAPER)
     _center(Vector2(640,623),tr_text("air_combo_help"),14,PAPER)
-    if f.air.chase_window>0 and not f.air.chase_used:
+    if session.sim.can_air_parry(0) and session.sim.fighters[1].frame>=session.Simulation.MOVES[session.sim.fighters[1].move].startup-6:
+        _center(Vector2(640,646),tr_text("air_parry_now"),13,Tokens.GOLD)
+    elif f.air.chase_window>0 and not f.air.chase_used:
         _center(Vector2(640,646),tr_text("air_chase_ready"),13,Tokens.GOLD)
     else:_center(Vector2(640,646),tr_text("air_stall")+" %d / 12"%f.air.stall_left,12,Tokens.MUTED)
+
+func _sync_air_controls() -> void:
+    if not is_instance_valid(air_lesson):return
+    var active: bool=session.screen=="play" and session.sim.is_aerial()
+    var lesson: bool=session.sim.is_air_lesson()
+    var counter=session.sim.air_counter
+    air_lesson.visible=active
+    air_lesson.text=tr_text("air_to_free" if lesson else "air_to_defense")
+    air_begin.visible=active and lesson and not counter.active() and session.sim.air_lesson_stage in ["read","review"]
+    air_begin.text=tr_text("air_begin" if session.sim.air_lesson_stage=="read" else "air_retry")
+    air_parry.visible=active and lesson and not counter.active() and session.sim.air_lesson_stage=="attack"
+    air_parry.text=tr_text("air_parry_button")
+    air_parry.disabled=not session.sim.can_air_parry(0) or session.sim.fighters[0].meter<25
+    for i in 2:
+        var button:=air_choices[i]
+        button.visible=active and counter.phase=="hold" and counter.owner==0
+        button.text=tr_text("air_choice_"+["kick","escape"][i])
+        button.disabled=counter.choice!=""
+        var skin:=1 if counter.choice==["kick","escape"][i] else 0
+        if air_choice_skin[i]!=skin:
+            air_choice_skin[i]=skin
+            if skin==1:
+                button.add_theme_stylebox_override("disabled",Tokens.plate(Tokens.TEAL,Tokens.TEAL,1))
+                button.add_theme_color_override("font_disabled_color",INK)
+            else:
+                button.remove_theme_stylebox_override("disabled")
+                button.remove_theme_color_override("font_disabled_color")
 
 func _rally_hud() -> void:
     var rally=session.sim.rally

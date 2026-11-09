@@ -2,6 +2,25 @@ extends RefCounted
 ## Product copy is keyed; simulation events and save identifiers stay language-independent.
 var language := "zh"
 const COPY := {
+"air_to_defense":["反制教室 · F8","Counter dojo / F8"],"air_to_free":["自由空戰 · F11","Free air / F11"],
+"air_defense_title":["空中反制教室","AIR COUNTER DOJO"],
+"air_defense_read":["接觸前按一次 Shift · 花 25 能量，成功後 J 反踢 / E 抽身","Tap Shift before contact / 25 energy; then J kick or E escape"],
+"air_defense_review":["再試一次，練出接招節奏。","Try again. Find the contact timing."],
+"air_begin":["K 開始出招","K START ATTACK"],"air_retry":["K 再試","K RETRY"],
+"air_fixed_partner":["反制教室使用固定出招陪練。","The counter dojo uses a scripted partner."],
+"air_parry_button":["Shift 反制 · 25 能量","Shift PARRY / 25 ENERGY"],
+"air_parry_now":["現在！按 Shift 接住終結招。","NOW! SHIFT TO CATCH THE FINISHER."],
+"air_wait_windup":["看清起手，等接觸前再按 Shift。","Read the windup. Wait until just before contact."],
+"air_reversal":["借勢換手","AIR REVERSAL"],
+"air_locked":["已鎖定","LOCKED"],
+"air_choose":["已接住！選一次，等能量釋放。","CAUGHT IT! COMMIT ONCE, THEN RELEASE."],
+"air_rival_holds":["對手接住了 · 等起手再按 E 閃開","RIVAL CAUGHT IT / E TO DODGE AFTER THE HOLD"],
+"air_counter_release_hint":["反踢起手 · 可移動或 E 閃避","COUNTER WINDUP / MOVE OR E TO EVADE"],
+"air_choice_kick":["J 反踢","J COUNTER KICK"],"air_choice_escape":["E 安全抽身","E SAFE ESCAPE"],
+"air_phase_parry":["反制","PARRY"],"air_phase_recoil":["失勢","RECOIL"],
+"air_counter_hit":["借勢反踢命中！","AIR COUNTER CONNECTS!"],"air_counter_escape":["卸力抽身","ENERGY DISPERSED / ESCAPE"],
+"air_counter_whiff":["反踢落空","COUNTER MISSED"],"air_counter_timeout":["反制解除","COUNTER ENDED"],
+"air_parry_no_meter":["空中反制需要 25 能量","AIR PARRY NEEDS 25 ENERGY"],
 "air_lab_help":["F11 空中訓練限定：三幀蓄勢起跳、S 急降；挑空後 E 追擊花 20 能量，再按 J 接空連，↓ + K 暴扣。","F11 Air lab: three-tick jump load, S fast fall. After launch, E chases for 20 energy; J chains and ↓ + K meteors."],
 "chase_unavailable":["距離或狀態不適合追擊","CHASE OUT OF RANGE OR UNAVAILABLE"],
 "rally_short":["動能換手","Rally lab"],"air_lab":["空中訓練","Air lab"],
@@ -99,7 +118,7 @@ func text(key: String) -> String:
     return values[0 if language=="zh" else 1]
 func notice(raw: String) -> String:
     if raw.begins_with("FEINT / "):return text("feint")+" · "+notice(raw.trim_prefix("FEINT / "))
-    var notices := {"CHASE UNAVAILABLE":"chase_unavailable","AIR LAB READY":"air_lab_ready","CHASE":"chase_notice","AIR ESCAPE":"air_escape_notice","CHASE NEEDS 20":"chase_meter_notice","RALLY READY":"rally_ready","LIMIT":"rally_end_limit","TIMEOUT":"rally_end_timeout","NO_INPUT":"rally_end_no_input","WHIFF":"rally_end_whiff","BLOCKED":"rally_end_blocked","HIT":"rally_end_hit","THROW":"throw_notice","THROW TECH":"throw_tech","WALL TECH":"wall_tech","PERFECT GUARD":"perfect_guard","GUARD BREAK":"guard_break","COUNTER HIT":"counter","AIR CHASE / J TO FOLLOW UP":"air_chase","FIGHT!":"fight_start","SPECIAL NEEDS 50 ENERGY":"no_meter","TRAINING RESET":"reset_notice","EVEN / PRESSURE RELEASED":"tie"}
+    var notices := {"AIR COUNTER HIT":"air_counter_hit","AIR COUNTER ESCAPE":"air_counter_escape","AIR COUNTER WHIFF":"air_counter_whiff","AIR COUNTER TIMEOUT":"air_counter_timeout","AIR PARRY NEEDS 25":"air_parry_no_meter","CHASE UNAVAILABLE":"chase_unavailable","AIR LAB READY":"air_lab_ready","CHASE":"chase_notice","AIR ESCAPE":"air_escape_notice","CHASE NEEDS 20":"chase_meter_notice","RALLY READY":"rally_ready","LIMIT":"rally_end_limit","TIMEOUT":"rally_end_timeout","NO_INPUT":"rally_end_no_input","WHIFF":"rally_end_whiff","BLOCKED":"rally_end_blocked","HIT":"rally_end_hit","THROW":"throw_notice","THROW TECH":"throw_tech","WALL TECH":"wall_tech","PERFECT GUARD":"perfect_guard","GUARD BREAK":"guard_break","COUNTER HIT":"counter","AIR CHASE / J TO FOLLOW UP":"air_chase","FIGHT!":"fight_start","SPECIAL NEEDS 50 ENERGY":"no_meter","TRAINING RESET":"reset_notice","EVEN / PRESSURE RELEASED":"tie"}
     if notices.has(raw):return text(notices[raw])
     for choice in ["press","turn","slip"]:
         if raw.ends_with("/ "+choice.to_upper()):return text("your_result" if raw.begins_with("YOU") else "rival_result")+" · "+text("result_"+choice)

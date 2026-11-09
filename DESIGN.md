@@ -46,3 +46,7 @@ Full-width opaque control manuals during combat, unexplained decorative numbers,
 The practice-only rally and comic staging are specified in [docs/KINETIC_OVERDRIVE.md](docs/KINETIC_OVERDRIVE.md). A world grading CanvasLayer sits below the unchanged HUD; the drawing pass adds bounded edge rays and a center opening around the fight. F2 disables grading, echoes, shake and zoom. A short confirmed KO finish precedes the result panel, with Enter available to skip. The title's native action stack keeps space above the footer and fits without mandatory scroll.
 
 The practice-only Air lab (F11) is specified in [docs/AERIAL_STREET.md](docs/AERIAL_STREET.md). Its context panel replaces the pressure gauge; live air phases, chase eligibility/cost and a short move route stay visible. Rally and Air buttons share one row to keep the title free of forced scrolling.
+
+## Air reversal iteration
+
+The aerial lab now includes a read-first air counter dojo: F11 → F8 → K, then Shift and J/E. See [AIR_REVERSAL](docs/AIR_REVERSAL.md). The 18-tick hold retains world positions; a 10-tick kick windup permits evasion.

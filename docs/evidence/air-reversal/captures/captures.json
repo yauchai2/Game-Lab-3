@@ -1,0 +1,296 @@
+[
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "",
+    "health": [
+      100,
+      100
+    ],
+    "meter": [
+      100.0,
+      100.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "01_read_first",
+    "owner": -1,
+    "phase": "idle",
+    "png_error": 0,
+    "poses": [
+      "Air_Apex_Swagger",
+      "Air_Apex_Swagger"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "",
+    "health": [
+      100,
+      100
+    ],
+    "meter": [
+      100.0,
+      100.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "02_finisher_tell",
+    "owner": -1,
+    "phase": "idle",
+    "png_error": 0,
+    "poses": [
+      "Air_Apex_Swagger",
+      "air_finisher"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "",
+    "health": [
+      100,
+      100
+    ],
+    "meter": [
+      75.0,
+      100.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "03_parry_hold",
+    "owner": 0,
+    "phase": "hold",
+    "png_error": 0,
+    "poses": [
+      "Air_Parry_Stomp",
+      "Air_Parried_Recoil"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "kick",
+    "health": [
+      100,
+      100
+    ],
+    "meter": [
+      75.0,
+      100.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "04_kick_locked",
+    "owner": 0,
+    "phase": "hold",
+    "png_error": 0,
+    "poses": [
+      "Air_Parry_Stomp",
+      "Air_Parried_Recoil"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "kick",
+    "health": [
+      100,
+      100
+    ],
+    "meter": [
+      75.0,
+      100.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "05_counter_windup",
+    "owner": 0,
+    "phase": "windup",
+    "png_error": 0,
+    "poses": [
+      "air_counter",
+      "Air_Apex_Swagger"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "kick",
+    "health": [
+      100,
+      82
+    ],
+    "meter": [
+      94.8,
+      100.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "06_counter_contact",
+    "owner": 0,
+    "phase": "idle",
+    "png_error": 0,
+    "poses": [
+      "air_counter",
+      "Hit_Fold_V"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "kick",
+    "health": [
+      100,
+      82
+    ],
+    "meter": [
+      94.8,
+      100.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "07_counter_release",
+    "owner": 0,
+    "phase": "idle",
+    "png_error": 0,
+    "poses": [
+      "air_counter",
+      "Hit_Fold_V"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "escape",
+    "health": [
+      100,
+      100
+    ],
+    "meter": [
+      75.0,
+      100.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "08_escape",
+    "owner": 0,
+    "phase": "idle",
+    "png_error": 0,
+    "poses": [
+      "Air_Descent",
+      "Air_Apex_Swagger"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "",
+    "health": [
+      88,
+      100
+    ],
+    "meter": [
+      81.0,
+      100.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "09_early_failure",
+    "owner": -1,
+    "phase": "idle",
+    "png_error": 0,
+    "poses": [
+      "Hit_Fold_V",
+      "air_finisher"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "",
+    "health": [
+      100,
+      100
+    ],
+    "meter": [
+      24,
+      100.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "10_insufficient_energy",
+    "owner": -1,
+    "phase": "idle",
+    "png_error": 0,
+    "poses": [
+      "Air_Apex_Swagger",
+      "air_finisher"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "",
+    "health": [
+      100,
+      100
+    ],
+    "meter": [
+      75.0,
+      100.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "11_reduced_hold",
+    "owner": 0,
+    "phase": "hold",
+    "png_error": 0,
+    "poses": [
+      "Air_Parry_Stomp",
+      "Air_Parried_Recoil"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "",
+    "health": [
+      100,
+      100
+    ],
+    "meter": [
+      75.0,
+      100.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "12_english_hold",
+    "owner": 0,
+    "phase": "hold",
+    "png_error": 0,
+    "poses": [
+      "Air_Parry_Stomp",
+      "Air_Parried_Recoil"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "",
+    "health": [
+      100,
+      100
+    ],
+    "meter": [
+      100.0,
+      75.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "13_ai_reversal",
+    "owner": 1,
+    "phase": "hold",
+    "png_error": 0,
+    "poses": [
+      "Air_Parried_Recoil",
+      "Air_Parry_Stomp"
+    ]
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "choice": "kick",
+    "health": [
+      100,
+      100
+    ],
+    "meter": [
+      100.0,
+      75.0
+    ],
+    "method": "native fixed-step scripted capture; no realtime/human claim",
+    "name": "14_evade_ai",
+    "owner": 1,
+    "phase": "idle",
+    "png_error": 0,
+    "poses": [
+      "Air_Descent",
+      "air_counter"
+    ]
+  }
+]

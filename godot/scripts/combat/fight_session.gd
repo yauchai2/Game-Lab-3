@@ -175,7 +175,42 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
 func _handle_event(event: Dictionary) -> void:
     combat_event.emit(event)
     var kind: String = event.kind
-    if kind in ["fast_fall","air_land","ground_bounce","homing_chase","chase_arrive","air_escape","no_chase_meter","chase_unavailable"]:
+    if kind=="air_lesson_reset":
+        effects.clear()
+        _clear_impacts()
+        audio.stop_all()
+        pending.clear()
+    elif kind in ["air_parry_attempt","air_parry_no_meter"]:
+        if kind=="air_parry_attempt":
+            var f: Dictionary=sim.fighters[event.target]
+            _spawn_vfx("parry",Vector2(f.x,f.y+1.2),.12,{"color":COLORS[event.target]})
+            audio.play_sound("parry",1.25,-10)
+        else:
+            hud.notice="AIR PARRY NEEDS 25"
+            hud.notice_time=.9
+    elif kind=="air_counter_start":
+        effects=effects.filter(func(e:Dictionary)->bool:return e.kind!="air_counter_core")
+        _clear_impacts()
+        var point:=Vector2((sim.fighters[0].x+sim.fighters[1].x)*.5,(sim.fighters[0].y+sim.fighters[1].y)*.5+1.1)
+        _spawn_vfx("air_counter_core",point,.5,{"held":true,"tier":3,"color":COLORS[event.owner]})
+        spectacle.trigger("contact",event.owner,point,3)
+        audio.play_sound("rally",1.1,-5)
+        audio.play_sound("charge",1.15,-8)
+        pending.clear()
+        hud.notice_time=0
+    elif kind=="air_counter_windup":
+        effects=effects.filter(func(e:Dictionary)->bool:return e.kind!="air_counter_core")
+    elif kind=="air_counter_release":
+        var f: Dictionary=sim.fighters[event.owner]
+        spectacle.trigger("burst",event.owner,Vector2(f.x,f.y+1.0),3)
+        _spawn_vfx("surge_arc",Vector2(f.x+f.face*.6,f.y+1.1),.22,{"face":f.face,"tier":3,"color":COLORS[event.owner]})
+        audio.play_sound("release",1.1,-6)
+    elif kind=="air_counter_end":
+        effects=effects.filter(func(e:Dictionary)->bool:return e.kind!="air_counter_core")
+        hud.notice="AIR COUNTER "+event.reason.to_upper()
+        hud.notice_time=.8
+        if event.reason!="hit":spectacle.clear()
+    elif kind in ["fast_fall","air_land","ground_bounce","homing_chase","chase_arrive","air_escape","no_chase_meter","chase_unavailable"]:
         var fighter: Dictionary=sim.fighters[event.target]
         var point:=Vector2(fighter.x,fighter.y+.8)
         if kind in ["air_land","ground_bounce"]:
@@ -349,7 +384,7 @@ func _process(delta: float) -> void:
         elapsed += delta
         for effect in effects:
             effect.age += delta
-            if effect.get("held",false) and (sim.hitstop>0 or sim.exchange.active() or sim.rally.active()):effect.life=maxf(effect.life,effect.age+0.1)
+            if effect.get("held",false) and (sim.hitstop>0 or sim.exchange.active() or sim.rally.active() or sim.air_counter.active()):effect.life=maxf(effect.life,effect.age+0.1)
         effects = effects.filter(func(e: Dictionary) -> bool: return e.age < e.life)
         recoil_age += delta
         trauma = move_toward(trauma, 0.0, delta * 2.0)
@@ -399,6 +434,9 @@ func _present(delta: float) -> void:
     for i in fighters.size():
         var pose: Dictionary=sim.fighters[i].duplicate()
         pose["air_enabled"]=sim.is_aerial()
+        if sim.air_counter.active():
+            pose["air_counter_role"]="owner" if i==sim.air_counter.owner else "target"
+            pose["air_counter_phase"]=sim.air_counter.phase
         if screen=="result":
             if result_clock>.18:pose.flash=0
             pose.y=maxf(0,pose.y-maxf(0,result_clock-.15)*5.0)
@@ -422,7 +460,7 @@ func _present(delta: float) -> void:
             var choice: String=sim.exchange.clash.choices[i]
             if i==1:choice=sim.exchange.clash.cue
             pose["exchange_choice"]=choice
-        fighters[i].present(pose, delta, (sim.hitstop>0 or sim.exchange.active() or (sim.rally.active() and sim.rally.phase=="compress")) and screen=="play", reduced_effects, sim.fighters[1-i].x)
+        fighters[i].present(pose, delta, (sim.hitstop>0 or sim.exchange.active() or (sim.rally.active() and sim.rally.phase=="compress") or (sim.air_counter.active() and sim.air_counter.phase=="hold")) and screen=="play", reduced_effects, sim.fighters[1-i].x)
         silhouettes[i].position = Vector3(fighters[i].model.global_position.x,0.03,FIGHT_Z)
         silhouettes[i].scale = Vector3.ONE * clampf(1.0 - pose.y * 0.08, 0.5, 1.0)
     var shake := 0.0 if reduced_effects else trauma * trauma * 0.35
@@ -533,7 +571,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
         save_options()
         hud.rebuild_menu()
     elif event.keycode==KEY_F8 and practice and screen=="play":
-        prime_pressure_drill()
+        if sim.is_aerial():prime_air_defense()
+        else:prime_pressure_drill()
     elif event.keycode==KEY_F7 and practice and screen=="play":
         set_partner_mode((sim.partner_mode+1)%3)
     elif event.keycode == KEY_F3:
@@ -556,6 +595,13 @@ func _unhandled_key_input(event: InputEvent) -> void:
     elif event.keycode == KEY_R and screen in ["pause", "result"]:
         start_match(practice)
     elif screen == "play":
+        if sim.air_counter.active() and sim.air_counter.phase=="hold":
+            if event.physical_keycode==KEY_J:commit_air_choice("kick")
+            elif event.physical_keycode==KEY_E:commit_air_choice("escape")
+            return
+        if sim.is_air_lesson() and sim.air_lesson_stage in ["read","review"] and event.physical_keycode==KEY_K:
+            pending["lesson_start"]=true
+            return
         if sim.exchange.active():
             var choices := {KEY_J:"press",KEY_SHIFT:"turn",KEY_E:"slip"}
             if choices.has(event.physical_keycode):commit_clash_choice(choices[event.physical_keycode])
@@ -573,6 +619,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
             KEY_G: pending["attack"] = "grab"
             KEY_SPACE: pending["jump"] = true
             KEY_E: pending["dash"] = true
+
+func commit_air_choice(choice: String) -> void:
+    if screen=="play" and sim.air_counter.phase=="hold" and sim.air_counter.owner==0 and choice in ["kick","escape"] and not pending.has("air_choice"):
+        pending["air_choice"]=choice
 
 func commit_clash_choice(choice: String) -> void:
     if screen=="play" and sim.exchange.active() and choice in sim.exchange.CHOICES and not pending.has("clash_choice"):
@@ -612,6 +662,13 @@ func reset_training(keep_screen := false) -> void:
     screen=previous_screen if keep_screen and previous_screen in ["pause","help"] else "play"
     hud.notice="TRAINING RESET"
     hud.notice_time=0.7
+    hud.rebuild_menu()
+
+func prime_air_defense() -> void:
+    if not practice:return
+    reset_training()
+    sim.configure_air_lesson()
+    hud.notice_time=0
     hud.rebuild_menu()
 
 func prime_air_drill() -> void:
@@ -656,8 +713,10 @@ func set_partner_mode(value: int) -> void:
     sim.partner_mode=clampi(value,0,2)
     if practice:
         var air_lab: bool=sim.is_aerial()
+        var defense_lab: bool=sim.is_air_lesson()
         reset_training(true)
-        if air_lab:_configure_air_lab()
+        if defense_lab:sim.configure_air_lesson()
+        elif air_lab:_configure_air_lab()
     save_options()
 
 func set_difficulty(value: int) -> void:

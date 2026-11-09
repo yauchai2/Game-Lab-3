@@ -8,15 +8,23 @@ func apply(motions: RefCounted, f: Dictionary) -> String:
     var right:=front.cross(up).normalized()
     var name:=""
     var pose: Dictionary={}
-    if f.state=="stun" and f.y>.1:
+    if f.get("air_counter_phase","")=="hold":
+        if f.get("air_counter_role","")=="owner":
+            name="Air_Parry_Stomp"
+            pose={"RightUpLeg":["RightLeg",front+up*.6,.9],"RightLeg":["RightFoot",-up+front*.1,.9],"LeftUpLeg":["LeftLeg",-up-front*.2,.7],"LeftArm":["LeftForeArm",front+up*.2,.8],"LeftForeArm":["LeftHand",right-front*.1,.8],"RightArm":["RightForeArm",front+up*.2,.7]}
+        else:
+            name="Air_Parried_Recoil"
+            pose={"Spine":["Spine1",up-front*.5,.6],"LeftArm":["LeftForeArm",up-front,.8],"RightArm":["RightForeArm",up-front,.8],"RightUpLeg":["RightLeg",front+up*.3,.6]}
+    elif f.state=="stun" and f.y>.1:
         name="Hit_Fold_V"
         pose={"Spine":["Spine1",front*.6+up*.4,.55],"LeftUpLeg":["LeftLeg",up*.5+front,.75],"RightUpLeg":["RightLeg",up*.4+front,.65],"LeftArm":["LeftForeArm",-front+up*.25,.6],"RightArm":["RightForeArm",-front+up*.4,.6]}
-    elif f.state=="attack" and f.move in ["air_jab","air_kick","air_finisher","meteor"]:
+    elif f.state=="attack" and f.move in ["air_jab","air_kick","air_finisher","meteor","air_counter"]:
         var move: Dictionary=preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
         var weight:=clampf(float(f.frame)/move.startup,0,1)
         if f.frame>move.startup+move.active:weight=1.0-clampf(float(f.frame-move.startup-move.active)/move.recovery,0,1)
         name=f.move
         if f.move=="air_jab":pose={"LeftArm":["LeftForeArm",front,weight],"LeftForeArm":["LeftHand",front,weight],"RightUpLeg":["RightLeg",front+up*.2,.6]}
+        elif f.move=="air_counter":pose={"RightUpLeg":["RightLeg",front-up*.4,weight],"RightLeg":["RightFoot",front-up*.6,weight],"LeftArm":["LeftForeArm",up-front*.2,.8]}
         elif f.move=="air_kick":pose={"RightUpLeg":["RightLeg",front+up*.3,weight],"RightLeg":["RightFoot",front-up*.1,weight],"LeftArm":["LeftForeArm",up-front*.3,.75]}
         else:pose={"RightArm":["RightForeArm",-up+front*.35,weight],"RightForeArm":["RightHand",-up+front*.1,weight],"LeftArm":["LeftForeArm",-up+front*.35,weight],"LeftUpLeg":["LeftLeg",front+up*.4,.7]}
     elif f.state=="chase":
@@ -46,6 +54,8 @@ func stretch(f: Dictionary, reduced: bool) -> Vector3:
         "squat":vertical=.68
         "rise":vertical=1.40 if f.air.air_ticks<=4 else 1.10
         "apex","stall":vertical=.88
+        "parry":vertical=.82
+        "recoil":vertical=1.08
         "fast":vertical=1.28
         "land":vertical=lerpf(.65 if f.air.hard_land else .79,1.0,1.0-float(f.air.land)/(8 if f.air.hard_land else 4))
     var lateral:=1.0/sqrt(maxf(.55,vertical))

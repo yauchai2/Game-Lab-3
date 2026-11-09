@@ -12,7 +12,7 @@ static func fresh() -> Dictionary:
     return {"phase":"ground","squat":0,"land":0,"hard_land":false,"air_ticks":0,
         "stall_left":STALL_BUDGET,"stall":0,"saved_vy":0.0,"fast_used":false,"fast":false,
         "drop_buffer":0,"chase_window":0,"chase_buffer":0,"chase_used":false,"chase_tick":0,"points":[],
-        "combo_left":0,"bounce_granted":false,"bounce_used":false}
+        "parry_used":false,"parry_window":0,"combo_left":0,"bounce_granted":false,"bounce_used":false}
 
 func request_jump(f: Dictionary) -> void:
     f.state="jump_squat"
@@ -142,6 +142,8 @@ func _vertical(f: Dictionary, _edge: float, signal_kind: String) -> String:
         air.combo_left=0
         air.bounce_granted=false
         air.bounce_used=false
+        air.parry_used=false
+        air.parry_window=0
         f.vy=0.0
         f.juggle=0
         if f.state=="idle":f.state="landing"

@@ -6,8 +6,12 @@ const MAX_HEALTH := 100
 const ROUND_SECONDS := 75.0
 const AirMotion=preload("res://scripts/combat/aerial_motion.gd")
 var air_motion:=AirMotion.new()
+var air_counter=preload("res://scripts/combat/air_counter.gd").new()
+var air_lesson_stage:=""
+var air_lesson_ticks:=0
 var practice_scenario:="free"
 const MOVES := {
+    "air_counter":{"startup":10,"active":4,"recovery":22,"damage":18,"reach":2.3,"stun":28,"push":7.0,"lift":-10.0,"stop":10},
     "air_jab":{"startup":6,"active":3,"recovery":12,"damage":6,"reach":1.7,"stun":22,"push":1.2,"lift":1.0,"stop":4},
     "air_kick":{"startup":8,"active":3,"recovery":16,"damage":8,"reach":2.0,"stun":25,"push":1.8,"lift":1.0,"stop":5},
     "air_finisher":{"startup":12,"active":4,"recovery":22,"damage":12,"reach":2.2,"stun":28,"push":8.0,"lift":2.0,"stop":8},
@@ -55,6 +59,9 @@ func _init() -> void:
 func reset_round() -> void:
     exchange.reset()
     practice_scenario="free"
+    air_counter.reset()
+    air_lesson_stage=""
+    air_lesson_ticks=0
     rally.reset()
     rally_enabled=false
     rally_drill=false
@@ -115,6 +122,8 @@ func ai_command() -> Dictionary:
     if a.wall_tech_window>0 and a.wall_tech_window<=(6 if level==1 else 9) and a.meter>=20 and level>0:command["dash"]=true
     if b.y > 1.0 and ai_tick % [72,48,36][level] == 0:
         command["jump"] = true
+    if is_aerial() and level>0 and not a.air.parry_used and b.move in ["air_finisher","meteor"] and b.state=="attack" and b.frame==MOVES[b.move].startup-5 and (ai_tick+round_number)%3<level:
+        command["guard_pressed"]=true
     return command
 
 func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
@@ -128,6 +137,21 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         return
     if phase != "fight":
         return
+    if is_air_lesson():
+        if air_lesson_stage in ["read","review"] and player.get("lesson_start",false):
+            if air_lesson_stage=="review":
+                configure_air_lesson()
+                events.append({"kind":"air_lesson_reset"})
+            air_lesson_stage="attack"
+            air_lesson_ticks=0
+            _start_attack(1,"air_finisher")
+            events.append({"kind":"air_lesson_start"})
+            return
+        if air_lesson_stage=="read":
+            guard_was_down[0]=player.get("guard",false)
+            return
+        air_lesson_ticks+=1
+        if air_lesson_stage=="attack" and not air_counter.active() and air_lesson_ticks>42 and fighters[1].state=="idle":air_lesson_stage="review"
     var partner: Dictionary = ai_command() if ai_enabled else opponent
     if training:
         if partner_mode==1: partner={"guard":true,"allow_parry":false}
@@ -145,8 +169,10 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
             # Precommitted teaching partner: first three returns, then a visible miss.
             var aim: int=rally.WINDUP-2 if rally.tier<4 else rally.WINDUP+5
             partner={"guard":rally.age>=aim,"guard_pressed":rally.age==aim}
+    if is_air_lesson():partner=opponent if not opponent.is_empty() else {}
     var commands := [player.duplicate(),partner.duplicate()]
-    if is_aerial():
+    if is_air_lesson() and air_lesson_stage=="attack" and not air_counter.active():commands[0].erase("attack")
+    if is_aerial() and not air_counter.active():
         _advance_air_limits()
         for side in 2:
             var air: Dictionary=fighters[side].air
@@ -157,6 +183,12 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         if not commands[side].has("guard_pressed"):
             commands[side]["guard_pressed"]=down and not guard_was_down[side]
         guard_was_down[side]=down
+    if is_aerial():
+        if air_counter.active():
+            _tick_air_counter(commands)
+            _update_training()
+            return
+        _air_parry_inputs(commands)
     if rally.active():
         _tick_rally(commands)
         if training:_update_training()
@@ -415,6 +447,9 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     var m: Dictionary = MOVES[move_name]
     if move_name=="grab" and (a.connected or a.state!="attack"):return
     a.connected = true
+    if is_aerial() and move_name in ["air_finisher","meteor"] and b.air.parry_window>0 and b.y>.1 and b.state in ["idle","stun"]:
+        _begin_air_counter(1-i)
+        return
     if move_name=="grab" and (b.tech_window>0 or (b.state=="attack" and b.move=="grab" and b.frame<=MOVES.grab.startup+MOVES.grab.active)):
         for side in 2:
             var fighter: Dictionary=fighters[side]
@@ -505,6 +540,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     if is_aerial() and move_name in ["air_jab","air_kick"] and b.y>.1:
         b.air.saved_vy=b.vy
         b.air.stall=8
+    if is_aerial() and move_name=="air_counter":b.vy=minf(b.vy,-10.0)
     if is_aerial() and move_name=="meteor":
         b.vy=-16.0
         b.air.bounce_granted=not b.air.bounce_used and b.wall_bounces==0
@@ -518,7 +554,8 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     a.chain_ttl = 45
     hitstop = maxi(hitstop, m.stop)
     hitstop_total = hitstop
-    events.append({"kind": "hit", "target": 1-i, "attacker": i, "damage": damage, "move": move_name, "strength": (.95 if move_name=="meteor" else .8) if is_aerial() and move_name in ["air_finisher","meteor"] else float(m.damage) / 27.0, "counter": counter})
+    if is_air_lesson() and move_name in ["air_finisher","air_counter"]:air_lesson_stage="review"
+    events.append({"kind": "hit", "target": 1-i, "attacker": i, "damage": damage, "move": move_name, "strength": (.95 if move_name=="meteor" else .8) if is_aerial() and move_name in ["air_finisher","meteor","air_counter"] else float(m.damage) / 27.0, "counter": counter})
 
 
 func _begin_rally(side: int) -> void:
@@ -722,7 +759,7 @@ func reset_training() -> void:
     phase="fight"
 
 func is_aerial() -> bool:
-    return training and practice_scenario=="air"
+    return training and practice_scenario in ["air","air_defense"]
 
 func _advance_air_limits() -> void:
     for i in 2:
@@ -743,3 +780,104 @@ func _advance_air_limits() -> void:
             f.air.bounce_granted=false
             hitstop=0
             events.append({"kind":"air_escape","target":i})
+
+func is_air_lesson() -> bool:
+    return training and practice_scenario=="air_defense"
+
+func configure_air_lesson() -> void:
+    if not training:return
+    reset_training()
+    practice_scenario="air_defense"
+    partner_mode=0
+    air_lesson_stage="read"
+    for i in 2:
+        var f: Dictionary=fighters[i]
+        f.x=-.65 if i==0 else .65
+        f.y=1.4
+        f.meter=100.0
+        f.air.phase="apex"
+
+func can_air_parry(side: int) -> bool:
+    if not is_aerial() or air_counter.active() or hitstop>0:return false
+    var f: Dictionary=fighters[side]
+    var a: Dictionary=fighters[1-side]
+    if f.air.parry_used or f.y<=.1 or a.y<=.1 or f.invuln>0 or f.state not in ["idle","stun"]:return false
+    if a.state!="attack" or a.move not in ["air_finisher","meteor"]:return false
+    return a.frame<MOVES[a.move].startup and absf(a.x-f.x)<=MOVES[a.move].reach+.3 and absf(a.y-f.y)<=1.65 and (f.x-a.x)*a.face>0
+
+func _air_parry_inputs(commands: Array) -> void:
+    if hitstop>0:return
+    for side in 2:
+        var f: Dictionary=fighters[side]
+        f.air.parry_window=maxi(0,f.air.parry_window-1)
+        if not commands[side].get("guard_pressed",false) or not can_air_parry(side):continue
+        if f.meter<air_counter.COST:
+            events.append({"kind":"air_parry_no_meter","target":side})
+            continue
+        f.meter-=air_counter.COST
+        f.air.parry_used=true
+        f.air.parry_window=air_counter.PARRY_WINDOW
+        events.append({"kind":"air_parry_attempt","target":side})
+
+func _begin_air_counter(side: int) -> void:
+    air_counter.begin(side)
+    hitstop=0
+    combo_hits=0;combo_damage=0;combo_owner=-1
+    for i in 2:
+        var f: Dictionary=fighters[i]
+        air_motion.cancel_stall(f)
+        f.state="counter_hold"
+        f.vx=0.0;f.vy=0.0;f.flash=0
+        f.guarding=false
+        f.buffer="";f.buffer_ttl=0;f.jump_buffer=0
+        f.air.combo_left=0
+        f.air.drop_buffer=0;f.air.chase_buffer=0;f.air.chase_window=0
+        f.air.parry_window=0;f.air.bounce_granted=false
+        f.air.phase="parry" if i==side else "recoil"
+        f.face=1 if fighters[1-i].x>=f.x else -1
+    events.append({"kind":"air_counter_start","owner":side})
+
+func _tick_air_counter(commands: Array) -> void:
+    var owner: int=air_counter.owner
+    var defender:=1-owner
+    var old_choice: String=air_counter.choice
+    var transition: String=air_counter.tick(commands,(ai_enabled or partner_mode==2) and owner==1)
+    if old_choice=="" and air_counter.choice!="":events.append({"kind":"air_counter_choice","owner":owner,"choice":air_counter.choice})
+    if transition=="escape":
+        var f: Dictionary=fighters[owner]
+        f.state="dash";f.frame=6;f.vx=-f.face*8.0;f.vy=-2.0;f.invuln=10
+        fighters[defender].state="idle"
+        _end_air_counter("escape")
+        events.append({"kind":"dash","target":owner})
+        return
+    if transition=="end":
+        _end_air_counter(air_counter.reason)
+        return
+    if air_counter.phase=="hold":return
+    if transition=="windup":
+        for f in fighters:f.state="idle"
+        _start_attack(owner,"air_counter")
+        events.append({"kind":"air_counter_windup","owner":owner})
+        return
+    var defense: Dictionary=commands[defender].duplicate()
+    defense.erase("attack")
+    defense["allow_parry"]=false
+    if defense.get("dash",false) and absf(defense.get("axis",0.0))<.1:defense["axis"]=-fighters[defender].face
+    _advance_fighter(defender,defense)
+    # A counter starts at frame 0; the first live windup tick already counts as 1.
+    _advance_fighter(owner,{"allow_parry":false})
+    _separate_bodies()
+    if transition=="release":events.append({"kind":"air_counter_release","owner":owner})
+    if _can_hit(owner):
+        _resolve_hit(owner,false)
+        _end_air_counter("hit")
+
+func _end_air_counter(why: String) -> void:
+    air_counter.finish(why)
+    for f in fighters:
+        if f.state=="counter_hold":f.state="idle"
+        f.buffer="";f.buffer_ttl=0;f.jump_buffer=0
+        f.air.parry_window=0
+        if f.air.phase in ["parry","recoil"]:f.air.phase="fall"
+    if is_air_lesson():air_lesson_stage="review"
+    events.append({"kind":"air_counter_end","reason":why,"owner":air_counter.owner})
