@@ -1,5 +1,19 @@
 # 驗證紀錄與證據範圍
 
+## 最新：JSR UI 研究與生成素材（2026-11-09）
+
+成果見 [研究與接入規格](JSR_UI_ART_DIRECTION.zh-TW.md)／[圖片總覽](../references/ui-jsr-2026-11-09/README.md)。本輪未改遊戲 runtime UI，沒有把圖片視為已接入或重跑不相關戰鬥回歸。
+
+- [45/45 素材檢查](evidence/ui-jsr/asset-inspection.json)：三張正式 PNG 的 RGBA／透明角落／內容、Logo 至少 6% 顯著內容留白、8 框架區域、16 圖示、血框與圓盤的透明中心。工具只讀像素，未裁切／重畫生成 PNG，切片另寫 JSON。
+- [Godot 框架](evidence/ui-jsr/ui-frames-alpha-preview.png)／[圖示](evidence/ui-jsr/action-icons-alpha-preview.png)／[Logo](evidence/ui-jsr/afterhours-logo-alpha-preview.png)為實際原生 alpha 合成並已檢視；只是在檢查素材，沒有假裝是已工作的遊戲按鈕。首張預覽未按 project 邏輯畫布縮放而裁切，修正成 viewport 等比適配後完整顯示，first-preview 保留。原檔透明 RGB 背景有色，不能從不合成 alpha 的預覽誤判為不透明。
+- [提案色票對比](evidence/ui-jsr/contrast.json)：Ink 對 Paper／Orange／Lime 為 15.93／6.22／14.30:1；Paper 對 Orange 只有 2.56:1，明確排除一般小字用法。這不是生成圖逐像素或整體 A11Y 驗收。
+- [Frontend Design Premium strict 稽核](evidence/ui-jsr/premium-audit.json) 0 errors／warnings；該工具主要掃 Web 格式，不能證明 Godot 原生控制項的互動／無障礙。既有 DESIGN.md／UX-CONTRACT.md 與 ui_theme 擁有權已核對，現行 Tokens 未改。
+- [來源](../references/ui-jsr-2026-11-09/sources.json)及[生成 lineage](../references/ui-jsr-2026-11-09/generation-manifest.json)：四張官方 PC 截圖、十頁手冊圖像實際檢視，掃描 PDF 無可抽取文字；blocked／零素材來源亦記錄，未冒稱看過。9 個生成輸出含3早稿，主要交付6 PNG；未重用原作素材作遊戲貼圖。角色參考來自現有四個模型的原生擷取。
+- [來源完整性](evidence/ui-jsr/source-integrity.json)核對基線19a3637全部49件既有模型／圖片／音檔及所有現行 runtime 腳本／場景／設定不變；只有新增擷取／合成工具、設計文件與素材。
+
+圖片為概念合成，英文示意文字不當作正式 UI 字圖；右側角色插畫有簡化，不當作新模型設定。素材需接入時再驗證真實輸入、數值、兩語言、三尺寸與 F2；本輪沒有那些 runtime 變更，不宣稱已通過。Godot 4.6.3 Compatibility／Mesa llvmpipe，只有預期 VSync 提示。只推來源分支，不更新 Web，未操作使用者電腦。
+
+
 ## 最新：蓄力重砲、空連後 AI 選擇與分招式鏡頭（2026-11-09）
 
 功能見 [CHARGED_CANNON.md](CHARGED_CANNON.md)。W＋L／↑＋L 為一次承諾的固定起手重砲，75 能量、30 tick 起手、38 基傷／3.8m／一次命中；普通 L 的 50 消耗保持。原來源模型／音樂不改，角色 4 維持 1.4 縮放。

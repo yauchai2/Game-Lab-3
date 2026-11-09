@@ -1,5 +1,8 @@
 # Afterhours / Game-Lab-3
 
+最新 [Jet Set Radio UI 研究與圖片](docs/JSR_UI_ART_DIRECTION.zh-TW.md)：已研究原版手冊／官方 PC 截圖，生成主選單、精簡 HUD、四角色頁，以及透明 Logo／8 框架／16 圖示。[圖片總覽](references/ui-jsr-2026-11-09/README.md)／[素材 ZIP](references/ui-jsr-2026-11-09/afterhours-jsr-ui-v001.zip)。本輪為設計與素材，尚未替換遊戲 UI，公開 Web 不更新。
+
+
 最新[蓄力重砲與分招式演出](docs/CHARGED_CANNON.md)：**W＋L／↑＋L** 花 75 能量，雙手蓄力 → 雙掌光束；L 普通爆發保持。AI 完成空連後會等待合適機會施放，重砲／暴扣／反制採不同鏡頭。[30 秒新 Demo](docs/evidence/charged-cannon/demo.mp4)／[重砲片段](docs/evidence/charged-cannon/cannon.mp4)。只推來源，Web 不更新。
 
 

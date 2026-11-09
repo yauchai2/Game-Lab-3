@@ -1,0 +1,237 @@
+{
+  "checks": [
+    {
+      "name": "assets/afterhours-logo.png decodes as RGBA",
+      "passed": true
+    },
+    {
+      "name": "assets/afterhours-logo.png has genuinely empty corner alpha",
+      "passed": true
+    },
+    {
+      "name": "assets/afterhours-logo.png has visible art and a transparent background",
+      "passed": true
+    },
+    {
+      "name": "logo has at least six percent significant-content padding",
+      "passed": true
+    },
+    {
+      "name": "assets/ui-frames.png decodes as RGBA",
+      "passed": true
+    },
+    {
+      "name": "assets/ui-frames.png has genuinely empty corner alpha",
+      "passed": true
+    },
+    {
+      "name": "assets/ui-frames.png has visible art and a transparent background",
+      "passed": true
+    },
+    {
+      "name": "frame sheet dimensions match slicing contract",
+      "passed": true
+    },
+    {
+      "name": "button_normal region is bounded",
+      "passed": true
+    },
+    {
+      "name": "button_normal region contains visible art",
+      "passed": true
+    },
+    {
+      "name": "button_selected region is bounded",
+      "passed": true
+    },
+    {
+      "name": "button_selected region contains visible art",
+      "passed": true
+    },
+    {
+      "name": "button_hover region is bounded",
+      "passed": true
+    },
+    {
+      "name": "button_hover region contains visible art",
+      "passed": true
+    },
+    {
+      "name": "button_disabled region is bounded",
+      "passed": true
+    },
+    {
+      "name": "button_disabled region contains visible art",
+      "passed": true
+    },
+    {
+      "name": "health_frame region is bounded",
+      "passed": true
+    },
+    {
+      "name": "health_frame region contains visible art",
+      "passed": true
+    },
+    {
+      "name": "energy_ornament region is bounded",
+      "passed": true
+    },
+    {
+      "name": "energy_ornament region contains visible art",
+      "passed": true
+    },
+    {
+      "name": "timer_dial region is bounded",
+      "passed": true
+    },
+    {
+      "name": "timer_dial region contains visible art",
+      "passed": true
+    },
+    {
+      "name": "combo_badge region is bounded",
+      "passed": true
+    },
+    {
+      "name": "combo_badge region contains visible art",
+      "passed": true
+    },
+    {
+      "name": "health frame interior is transparent",
+      "passed": true
+    },
+    {
+      "name": "timer dial center is transparent",
+      "passed": true
+    },
+    {
+      "name": "assets/action-icons.png decodes as RGBA",
+      "passed": true
+    },
+    {
+      "name": "assets/action-icons.png has genuinely empty corner alpha",
+      "passed": true
+    },
+    {
+      "name": "assets/action-icons.png has visible art and a transparent background",
+      "passed": true
+    },
+    {
+      "name": "jab icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "launch icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "slam icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "cannon icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "parry icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "counter icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "dash icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "grab icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "headphones icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "radio icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "demo icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "roster icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "music icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "sound icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "pause icon cell is nonempty",
+      "passed": true
+    },
+    {
+      "name": "back icon cell is nonempty",
+      "passed": true
+    }
+  ],
+  "passed": 45,
+  "failed": 0,
+  "assets": [
+    {
+      "path": "assets/afterhours-logo.png",
+      "width": 2146,
+      "height": 733,
+      "mode": "RGBA",
+      "sha256": "2d205bab1b23b2565a47e0dbfc9672906ecb4ca79148e876c4bbb0c94baf9797",
+      "bytes": 1039931,
+      "alpha_zero_fraction": 0.5616,
+      "alpha_near_opaque_fraction": 0.4201,
+      "significant_alpha_bbox": [
+        201,
+        67,
+        1928,
+        658
+      ]
+    },
+    {
+      "path": "assets/ui-frames.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "sha256": "88d91d93ac23b9e87a350fc9a0fb5c632bf5fdc87effaafb83a88e641d259d4e",
+      "bytes": 1543725,
+      "alpha_zero_fraction": 0.5312,
+      "alpha_near_opaque_fraction": 0.3926,
+      "significant_alpha_bbox": [
+        43,
+        47,
+        1493,
+        1016
+      ]
+    },
+    {
+      "path": "assets/action-icons.png",
+      "width": 1261,
+      "height": 1247,
+      "mode": "RGBA",
+      "sha256": "bb40a6ac4ba961f4aea5a73ab42c36330690758ef8e731bbe41fc71a96ef232a",
+      "bytes": 1067835,
+      "alpha_zero_fraction": 0.6593,
+      "alpha_near_opaque_fraction": 0.2486,
+      "significant_alpha_bbox": [
+        45,
+        50,
+        1216,
+        1195
+      ]
+    }
+  ],
+  "scope": "Pixel/header/alpha/region inspection plus separately captured native composition. Not game integration, OCR, perceptual QA, or control-state/accessibility verification."
+}
