@@ -97,7 +97,7 @@ func rebuild_menu(requested_focus := "") -> void:
     for child in menu_stack.get_children():
         menu_stack.remove_child(child)
         child.queue_free()
-    menu.visible=session.screen!="play"
+    menu.visible=session.screen!="play" and not (session.screen=="result" and session.result_clock<.82 and not session.reduced_effects)
     back_button.visible=menu.visible and menu_page!="main"
     back_button.text="← "+tr_text("back")+"  Esc"
     if not menu.visible:
@@ -108,7 +108,7 @@ func rebuild_menu(requested_focus := "") -> void:
         menu.size=Vector2(560,572)
     elif session.screen=="title":
         menu.position=Vector2(52,230)
-        menu.size=Vector2(450,412)
+        menu.size=Vector2(450,434)
     else:
         menu.position=Vector2(420,126)
         menu.size=Vector2(440,480 if session.screen in ["pause","help"] else 398)
@@ -193,6 +193,9 @@ func _title_page() -> void:
     _caption("fight_hint")
     _action(menu_stack,"training","T",func():session.start_match(true))
     _caption("training_hint")
+    _action(menu_stack,"rally_lab","F10",func():
+        session.start_match(true)
+        session.prime_rally_drill())
     _action(menu_stack,"drill","F8",func():
         session.start_match(true)
         session.prime_pressure_drill())
@@ -399,6 +402,7 @@ func _draw() -> void:
         _text(Vector2(66,694),tr_text("local")+"  /  ↑↓  Enter",12,Tokens.MUTED)
         _text(Vector2(940,686),tr_text("stage"),18,PAPER)
         return
+    session.spectacle.draw(self,session)
     for effect in session.effects:
         if effect.age>=0:vfx_renderer.draw_effect(self,session,effect)
     _health(34,session.sim.fighters[0],Tokens.TEAL,false,0)
@@ -419,7 +423,7 @@ func _draw() -> void:
     if session.sim.phase=="ready" and session.screen=="play":
         _center(Vector2(640,280),tr_text("round")+" %d"%session.sim.round_number,40)
         _center(Vector2(640,316),"準備" if session.language=="zh" else "GET READY",22,Tokens.GOLD)
-    if notice_time>0 and not session.sim.exchange.active() and not session.sim.pressure_drill:
+    if notice_time>0 and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
         _plate(Vector2(426,110),Vector2(428,40),INK)
         _center(Vector2(640,139),copy.notice(notice),19,Tokens.GOLD)
     var player: Dictionary=session.sim.fighters[0]
@@ -428,13 +432,14 @@ func _draw() -> void:
         at.x=clampf(at.x,120,1160)
         _plate(at+Vector2(-100,-26),Vector2(200,32),INK)
         _center(at+Vector2(0,-3),"E "+tr_text("recover"),13,Tokens.TEAL)
-    _pressure_hud()
+    if session.sim.rally_enabled:_rally_hud()
+    else:_pressure_hud()
     if session.practice:_practice_hud()
-    if not session.sim.exchange.active() and not session.sim.pressure_drill:
+    if not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
         _text(Vector2(34,690),"J "+tr_text("light")+"   K "+tr_text("heavy")+"   G "+tr_text("throw")+"   Shift "+tr_text("guard")+"   E "+tr_text("dodge"),13,PAPER)
     _text(Vector2(1010,690),"H "+tr_text("help")+"   Esc "+tr_text("pause"),13,PAPER)
     if session.hitboxes_visible:_draw_hitboxes()
-    if session.screen!="play":_plate(Vector2.ZERO,Vector2(1280,720),Color(Tokens.NIGHT,.6))
+    if session.screen!="play" and not (session.screen=="result" and session.result_clock<.82 and not session.reduced_effects):_plate(Vector2.ZERO,Vector2(1280,720),Color(Tokens.NIGHT,.6))
 
 func _health(x: float, fighter: Dictionary, tint: Color, reverse: bool, index: int) -> void:
     _cut_bar(Vector2(x-10,10),Vector2(494,90),Color(INK,.94),reverse)
@@ -480,9 +485,29 @@ func _pressure_hud() -> void:
     if active and exchange.clash.choices[0]!="":_center(Vector2(640,682),tr_text("locked")+" · "+tr_text(exchange.clash.choices[0]),14,Tokens.TEAL)
     elif drill:_text(Vector2(34,690),tr_text("drill_exit"),12,Tokens.MUTED)
 
+func _rally_hud() -> void:
+    var rally=session.sim.rally
+    var tint: Color=session.COLORS[rally.owner] if rally.active() else Tokens.GOLD
+    _plate(Vector2(340,546),Vector2(600,111),Color(INK,.96))
+    _text(Vector2(358,573),tr_text("rally_lab"),18,tint)
+    if not rally.active():
+        _center(Vector2(640,603),tr_text("rally_wait"),16,PAPER)
+        _center(Vector2(640,639),tr_text("rally_exit"),12,Tokens.MUTED)
+        return
+    var status: String=tr_text("you" if rally.owner==0 else "rival")+"  /  "+str(rally.tier)+" / 4"
+    _text(Vector2(730,573),status,16,tint)
+    var caption: String=tr_text("rally_commit" if rally.owner==0 else "rally_defend")
+    if rally.phase=="compress" and rally.owner==0 and rally.chosen:caption=tr_text("rally_locked")
+    _center(Vector2(640,606),caption,18,PAPER)
+    var ratio: float=1.0-float(rally.age)/rally.HOLDS[rally.tier-1] if rally.phase=="compress" else float(rally.age)/rally.WINDUP
+    _plate(Vector2(358,619),Vector2(564,5),Tokens.EDGE)
+    _plate(Vector2(358,619),Vector2(564*clampf(ratio,0,1),5),tint)
+    _center(Vector2(640,645),tr_text("rally_hold" if rally.phase=="compress" else "rally_live"),12,Tokens.MUTED)
+
 func _practice_hud() -> void:
-    _text(Vector2(40,122),tr_text("training_title")+" · "+tr_text(["standing","guarding","sparring"][session.sim.partner_mode]),12,Tokens.MUTED)
-    _text(Vector2(40,143),"F5 "+tr_text("reset_training")+"   F8 "+tr_text("drill")+"   F9 "+tr_text("training_details"),11,Tokens.MUTED)
+    var lab: bool=session.sim.rally_enabled
+    _text(Vector2(40,122),tr_text("rally_lab") if lab else tr_text("training_title")+" · "+tr_text(["standing","guarding","sparring"][session.sim.partner_mode]),12,Tokens.MUTED)
+    _text(Vector2(40,143),tr_text("rally_exit") if lab else "F5 "+tr_text("reset_training")+"   F8 "+tr_text("drill")+"   F9 "+tr_text("training_details"),11,Tokens.MUTED)
     if not session.training_details:return
     _plate(Vector2(30,488),Vector2(240,152),Color(INK,.94))
     _text(Vector2(44,511),tr_text("last_combo"),14,Tokens.GOLD)

@@ -13,6 +13,10 @@ const MOVES := {
     "launcher": {"startup": 13, "active": 7, "recovery": 27, "damage": 14, "reach": 1.8, "stun": 39, "push": 3.0, "lift": 10.0, "stop": 10},
     "special": {"startup": 18, "active": 10, "recovery": 31, "damage": 27, "reach": 3.4, "stun": 40, "push": 14.0, "lift": 5.0, "stop": 17}
 }
+var rally = preload("res://scripts/combat/kinetic_rally.gd").new()
+var rally_enabled := false
+var rally_drill := false
+var guard_was_down := [false,false]
 var exchange = preload("res://scripts/combat/pressure_exchange.gd").new()
 var fighters: Array[Dictionary] = []
 var events: Array[Dictionary] = []
@@ -43,6 +47,10 @@ func _init() -> void:
 
 func reset_round() -> void:
     exchange.reset()
+    rally.reset()
+    rally_enabled=false
+    rally_drill=false
+    guard_was_down=[false,false]
     pressure_drill=false
     fighters.clear()
     for i in 2:
@@ -50,7 +58,7 @@ func reset_round() -> void:
             "face": 1 if i == 0 else -1, "health": MAX_HEALTH, "meter": 0.0, "guard": 100.0,
             "state": "idle", "move": "", "frame": 0, "stun": 0, "connected": false,
             "buffer": "", "buffer_ttl": 0, "chain": 0, "chain_ttl": 0, "dash_cd": 0,
-            "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "jump_buffer":0, "juggle":0, "hit_confirmed":false,"throw_cd":0,"tech_window":0,"wall_bounces":0,"wall_tech_window":0,"wall_tech_buffer":0})
+            "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "entry_parry_window":0, "jump_buffer":0, "juggle":0, "hit_confirmed":false,"throw_cd":0,"tech_window":0,"wall_bounces":0,"wall_tech_window":0,"wall_tech_buffer":0})
     phase = "ready"
     countdown = 72
     remaining = ROUND_SECONDS
@@ -117,7 +125,28 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         if partner_mode==1: partner={"guard":true,"allow_parry":false}
         elif partner_mode==2: partner=ai_command()
     if training and pressure_drill:partner={}
-    var commands := [player,partner]
+    if training and rally_drill:
+        partner={}
+        if not rally.active():
+            var rival: Dictionary=fighters[1]
+            partner={"axis":signf(fighters[0].x-rival.x) if absf(fighters[0].x-rival.x)>1.4 else 0.0,"allow_parry":false}
+            if ai_tick%100==60:partner["attack"]="light"
+        elif rally.owner==1 and rally.phase=="compress" and rally.age>=2:
+            partner={"attack":"light"}
+        elif rally.owner==0 and rally.phase=="windup":
+            # Precommitted teaching partner: first three returns, then a visible miss.
+            var aim: int=rally.WINDUP-2 if rally.tier<4 else rally.WINDUP+5
+            partner={"guard":rally.age>=aim,"guard_pressed":rally.age==aim}
+    var commands := [player.duplicate(),partner.duplicate()]
+    for side in 2:
+        var down: bool=commands[side].get("guard",false)
+        if not commands[side].has("guard_pressed"):
+            commands[side]["guard_pressed"]=down and not guard_was_down[side]
+        guard_was_down[side]=down
+    if rally.active():
+        _tick_rally(commands)
+        if training:_update_training()
+        return
     if exchange.active():
         var automated: bool=ai_enabled or training
         if exchange.tick(commands,automated,8+clampi(difficulty,0,2)*3):
@@ -172,6 +201,7 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
     var f: Dictionary = fighters[i]
     var other: Dictionary = fighters[1-i]
     f.parry_allowed = command.get("allow_parry",true)
+    f.entry_parry_window=6 if command.get("guard_pressed",false) else maxi(0,f.entry_parry_window-1)
     var was_guarding: bool = f.guarding
     f.throw_cd=maxi(0,f.throw_cd-1)
     f.tech_window=maxi(0,f.tech_window-1)
@@ -337,7 +367,7 @@ func _wall_tech(i: int) -> void:
 func _can_open_exchange(i: int) -> bool:
     var a: Dictionary=fighters[i]
     var b: Dictionary=fighters[1-i]
-    return a.state=="attack" and a.move=="heavy" and exchange.pressure>=exchange.THRESHOLD and exchange.cooldown==0 and a.y<=.01 and b.y<=.01 and b.state in ["idle","attack"]
+    return not (training and rally_enabled) and a.state=="attack" and a.move=="heavy" and exchange.pressure>=exchange.THRESHOLD and exchange.cooldown==0 and a.y<=.01 and b.y<=.01 and b.state in ["idle","attack"]
 
 func _resolve_hit(i: int, allow_exchange := true) -> void:
     var a: Dictionary = fighters[i]
@@ -382,6 +412,11 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
             b.parry_cd = 90
             b.meter = minf(100.0,b.meter+12.0)
             b.guard = maxf(0.0,b.guard-8.0)
+            if training and rally_enabled and b.entry_parry_window>0 and a.y<=.01 and b.y<=.01 and exchange.cooldown==0:
+                hitstop=0
+                exchange.contact(16)
+                _begin_rally(1-i)
+                return
             a.state = "stun"
             a.stun = 18
             a.vx = -a.face*5.0
@@ -434,6 +469,112 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     hitstop = maxi(hitstop, m.stop)
     hitstop_total = hitstop
     events.append({"kind": "hit", "target": 1-i, "attacker": i, "damage": damage, "move": move_name, "strength": float(m.damage) / 27.0, "counter": counter})
+
+
+func _begin_rally(side: int) -> void:
+    rally.begin(side)
+    _hold_rally()
+    events.append({"kind":"rally_contact","owner":side,"tier":rally.tier})
+
+func _hold_rally() -> void:
+    hitstop=0
+    combo_hits=0
+    combo_owner=-1
+    combo_damage=0
+    for i in 2:
+        var f: Dictionary=fighters[i]
+        f.state="idle"
+        f.move=""
+        f.frame=0
+        f.vx=0.0
+        f.vy=0.0
+        f.flash=0
+        f.guarding=false
+        f.guard_frames=0
+        f.buffer=""
+        f.buffer_ttl=0
+        f.jump_buffer=0
+        f.connected=false
+        f.face=1 if fighters[1-i].x>=f.x else -1
+
+func _tick_rally(commands: Array) -> void:
+    var was_phase: String=rally.phase
+    var transition: String=rally.tick(commands)
+    if transition=="end":
+        _end_rally(rally.reason)
+        return
+    if was_phase=="compress":
+        if transition=="windup":events.append({"kind":"rally_windup","owner":rally.owner,"tier":rally.tier})
+        return
+    var owner: int=rally.owner
+    var defender:=1-owner
+    # Only the defender can move/guard/escape; no ordinary attacks buffered through it.
+    var defense: Dictionary=commands[defender].duplicate()
+    defense.erase("attack")
+    defense["allow_parry"]=false
+    if defense.get("jump",false):fighters[defender].jump_buffer=8
+    _advance_fighter(defender,defense)
+    _advance_fighter(owner,{"guard":true,"allow_parry":false})
+    fighters[owner].vx=0.0
+    _separate_bodies()
+    if transition=="release":
+        fighters[owner].state="attack"
+        fighters[owner].move="cross"
+        fighters[owner].frame=MOVES.cross.startup
+        fighters[owner].connected=false
+        events.append({"kind":"rally_release","owner":owner,"tier":rally.tier})
+    if rally.phase!="active" or not _can_hit(owner):return
+    var a: Dictionary=fighters[owner]
+    var b: Dictionary=fighters[defender]
+    if b.guarding and rally.guard_window[defender]>0 and b.guard>=25 and (a.x-b.x)*b.face>0:
+        b.guard=maxf(0,b.guard-8)
+        if rally.return_parry(defender):
+            _hold_rally()
+            events.append({"kind":"rally_contact","owner":defender,"tier":rally.tier})
+        else:_end_rally("limit")
+        return
+    if b.guarding and (a.x-b.x)*b.face>0:
+        b.guard=maxf(0,b.guard-20-rally.tier*3)
+        b.state="blockstun"
+        b.stun=12
+        b.vx=a.face*4.0
+        events.append({"kind":"block","target":defender,"attacker":owner})
+        _end_rally("blocked",true)
+        return
+    var damage: int=rally.DAMAGE[rally.tier-1]
+    b.health=maxi(0,b.health-damage)
+    b.state="stun"
+    b.stun=30
+    b.vx=a.face*(8.0+rally.tier)
+    b.vy=3.0+rally.tier*.5
+    b.flash=15
+    a.connected=true
+    last_combo_hits=1
+    last_combo_damage=damage
+    combo_hits=1
+    combo_owner=owner
+    combo_damage=damage
+    events.append({"kind":"hit","attacker":owner,"target":defender,"damage":damage,"move":"cross","strength":.55+rally.tier*.11,"rally_tier":rally.tier})
+    hitstop=8+rally.tier*2
+    hitstop_total=hitstop
+    _end_rally("hit",true)
+
+func _end_rally(why: String, preserve_outcome := false) -> void:
+    rally.finish(why)
+    exchange.pressure=0
+    exchange.cooldown=90
+    exchange.quiet_ticks=0
+    for f in fighters:
+        f.buffer=""
+        f.buffer_ttl=0
+        f.jump_buffer=0
+        f.guarding=false
+        f.parry_cd=maxi(f.parry_cd,90)
+        if not preserve_outcome:
+            f.state="idle"
+            f.move=""
+            f.vx=0.0
+    events.append({"kind":"rally_end","reason":why})
 
 func _resolve_exchange() -> void:
     var result: Dictionary=exchange.last_result

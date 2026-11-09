@@ -1,0 +1,176 @@
+{
+  "checks": [
+    {
+      "name": "bundled font covers every localized copy string",
+      "passed": false
+    },
+    {
+      "name": "labels have no opaque style that can cover button text",
+      "passed": true
+    },
+    {
+      "name": "native buttons share hover pressed focus and disabled styles",
+      "passed": true
+    },
+    {
+      "name": "replacement shop fascia has a stable artwork anchor",
+      "passed": true
+    },
+    {
+      "name": "arena has two visible edge barriers outside the running envelope",
+      "passed": true
+    },
+    {
+      "name": "Traditional Chinese is the default",
+      "passed": true
+    },
+    {
+      "name": "title has separate fight training and dojo actions",
+      "passed": true
+    },
+    {
+      "name": "shortcut text keeps readable contrast on hover",
+      "passed": true
+    },
+    {
+      "name": "shortcut text keeps readable contrast while pressed",
+      "passed": true
+    },
+    {
+      "name": "title main actions fit without mandatory scroll",
+      "passed": false
+    },
+    {
+      "name": "settings has a persistent Back outside scroll",
+      "passed": true
+    },
+    {
+      "name": "settings starts at top instead of scrolling to the last button",
+      "passed": true
+    },
+    {
+      "name": "language difficulty and audio sliders use native controls",
+      "passed": true
+    },
+    {
+      "name": "Back restores the originating settings action",
+      "passed": true
+    },
+    {
+      "name": "help opens to its text before action buttons",
+      "passed": true
+    },
+    {
+      "name": "changing practice partner in settings keeps the game paused",
+      "passed": true
+    },
+    {
+      "name": "slider changes volume immediately",
+      "passed": true
+    },
+    {
+      "name": "slider does not rebuild or lose focus on every change",
+      "passed": true
+    },
+    {
+      "name": "changing language preserves native control focus",
+      "passed": true
+    },
+    {
+      "name": "English view changes labels without changing simulation",
+      "passed": true
+    },
+    {
+      "name": "zero music level pauses or prevents music playback",
+      "passed": true
+    },
+    {
+      "name": "zero effects level stops playing sound voices",
+      "passed": true
+    },
+    {
+      "name": "read-first drill exposes Start and disables uncommitted choices",
+      "passed": true
+    },
+    {
+      "name": "native Start enters the real simulation clash",
+      "passed": true
+    },
+    {
+      "name": "active choices are pointer-operable native buttons",
+      "passed": true
+    },
+    {
+      "name": "pointer choices feed the same first commitment as keyboard",
+      "passed": true
+    },
+    {
+      "name": "commitment disables every choice and removes pointer cursor",
+      "passed": true
+    },
+    {
+      "name": "opening settings pauses the decision window",
+      "passed": true
+    },
+    {
+      "name": "returning from settings resumes same committed choice",
+      "passed": true
+    },
+    {
+      "name": "health damage retains a short readable trailing segment",
+      "passed": true
+    },
+    {
+      "name": "health trailing segment converges to actual health",
+      "passed": true
+    },
+    {
+      "name": "returning to title clears gameplay and drill state",
+      "passed": true
+    },
+    {
+      "name": "language volumes and practice detail preference persist",
+      "passed": true
+    },
+    {
+      "name": "invalid preference values are bounded or fall back",
+      "passed": true
+    },
+    {
+      "name": "leaving a scene immediately flushes pending slider preferences",
+      "passed": true
+    }
+  ],
+  "display": "headless",
+  "failed": 2,
+  "missing_glyphs": [
+    23526,
+    39511,
+    35320,
+    29190,
+    30332,
+    21521,
+    20839,
+    32302,
+    30528,
+    29694,
+    20197,
+    23559,
+    32026,
+    23436,
+    23433,
+    25955,
+    38291,
+    27794,
+    26377,
+    33853,
+    27770
+  ],
+  "passed": 33,
+  "skipped": [
+    {
+      "name": "residential billboard transform readback",
+      "reason": "Dummy renderer returns identity MultiMesh transforms; requires native GL verification"
+    }
+  ]
+}

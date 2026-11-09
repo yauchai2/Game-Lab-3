@@ -10,7 +10,7 @@ Authoritative gameplay rules: docs/PRESSURE_EXCHANGE.md and simulation. This con
 
 ## Flow ownership
 
-Title offers Fight, Free training and Pressure dojo. Help and Settings use one page mechanism. From play, opening either pauses first; Escape returns to pause, then Escape resumes. From title or result, Back returns to that originating screen. Option popups consume their own Escape before page navigation. Back retains the originating action's focus. All settings have the same native control, label and persistence behavior regardless of entry screen.
+Title offers Fight, Free training, practice-only Kinetic rally lab (F10) and Pressure dojo. Help and Settings use one page mechanism. From play, opening either pauses first; Escape returns to pause, then Escape resumes. From title or result, Back returns to that originating screen. Option popups consume their own Escape before page navigation. Back retains the originating action's focus. All settings have the same native control, label and persistence behavior regardless of entry screen.
 
 A clash choice is committed through fight_session.commit_clash_choice by both keyboard and native Button. The first valid pending choice wins; subsequent keys/clicks cannot replace it. Read-first controls are disabled until K or Start triggers the actual heavy. Non-clash actions cannot be buffered through the decision window.
 
@@ -27,3 +27,9 @@ Leaving a scene flushes a pending volume write. F6 exploration shares language, 
 ## Evidence boundary
 
 The frontend-design-premium static audit primarily recognizes web source formats. It is recorded as an auxiliary static check, not proof of native accessibility. Godot import, GDScript strict compilation, project integration checks, real X11 viewport input, pointer callbacks, popup captures and native long-run telemetry provide the runtime evidence. Linux software rendering does not establish user-PC or target-GPU performance. No public site is updated by this work.
+
+## Kinetic lab and finish
+
+F10 starts the mutually exclusive practice rally; F5 returns to ordinary practice, F8 enters the original pressure dojo. A new Shift edge opens/replies to a parry, J commits a quick counter, and holding guard cannot repeatedly parry. The active lab panel replaces the ordinary pressure display and keeps owner, tier and timing visible. The lab does not offer the planned held-K or relay-throw branches yet.
+
+The simulation confirms KO first. A bounded 0.82 second presentation precedes the result menu; Enter can skip to the proper next round or restart a completed match. Reset/skip/title transitions discard pending cosmetic effects and camera/grade state. Reduced effects bypasses the animated finish presentation and shows result controls immediately.

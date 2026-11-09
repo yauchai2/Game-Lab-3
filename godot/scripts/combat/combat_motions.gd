@@ -183,6 +183,20 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
             _aim_limb("RightArm","RightForeArm",model_up+model_forward*0.35,attack_weight)
             _aim_limb("RightForeArm","RightHand",model_up+model_forward*0.65,attack_weight)
 
+    if f.guarding and f.state in ["idle","blockstun"] and f.get("rally_phase","")!="compress":
+        for side in ["Left","Right"]:
+            _aim_limb(side+"Arm",side+"ForeArm",model_forward*.45+model_up*.3,.6)
+            _aim_limb(side+"ForeArm",side+"Hand",model_up+model_forward*.25,.8)
+    if f.get("rally_phase","")=="compress":
+        var amount: float=clampf(f.get("rally_amount",0.0),0,1)
+        if f.get("rally_owner",false):
+            _aim_limb("RightArm","RightForeArm",model_up*.25-model_forward*.55,.45+amount*.25)
+            _aim_limb("RightForeArm","RightHand",model_up+model_forward*.2,.8)
+        else:
+            for side in ["Left","Right"]:
+                _aim_limb(side+"Arm",side+"ForeArm",model_forward*.4+model_up*.3,.65)
+                _aim_limb(side+"ForeArm",side+"Hand",model_up+model_forward*.3,.75)
+
 func _aim_limb(bone_name: String, child_name: String, direction: Vector3, weight: float) -> void:
     var bone := skeleton.find_bone("mixamorig_"+bone_name)
     var child := skeleton.find_bone("mixamorig_"+child_name)

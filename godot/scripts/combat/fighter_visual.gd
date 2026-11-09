@@ -52,7 +52,46 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
     model.rotation.x={"press":-.12,"turn":.10,"slip":.22}.get(exchange_choice,0.0)
     if exchange_choice!="":
         model.position.z += {"press":.12,"turn":-.06,"slip":-.18}.get(exchange_choice,0.0)
+    # Authored visual deformation, kept separate from gameplay transforms.
+    var stretch:=Vector3.ONE
+    if not reduced:
+        if stopped:stretch=Vector3(1.06,.94,1.06)
+        elif f.state=="dash":stretch=Vector3(.91,.92,1.20)
+        elif f.state=="attack" and f.move in ["heavy","special","finisher"]:
+            var move: Dictionary=preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
+            var anticip: float=clampf(float(f.frame)/move.startup,0,1)
+            stretch=Vector3(1.0+anticip*.05,1.0-anticip*.07,1.0+anticip*.11)
+    var rally_phase: String=f.get("rally_phase","")
+    if rally_phase!="":
+        var amount: float=clampf(f.get("rally_amount",0.0),0,1)
+        var attacking: bool=f.get("rally_owner",false)
+        model.rotation.x=(-.12-amount*.12 if attacking else .12) if rally_phase=="compress" else 0.0
+        if rally_phase=="compress" and not reduced:stretch=Vector3(1.05,.93,1.08)
+    model.scale=Vector3.ONE*2.1*stretch
     for mat in materials:
         mat.set_shader_parameter("flash", 1.0 if f.flash > 0 and not reduced else 0.0)
     if skeleton:
         motions.present(f,delta,stopped)
+
+func capture_echo() -> Array:
+    var segments: Array=[]
+    if not is_instance_valid(skeleton):return segments
+    var pairs := [["Hips","Spine2",.19],["Spine2","Head",.15],
+        ["LeftArm","LeftForeArm",.075],["LeftForeArm","LeftHand",.06],
+        ["RightArm","RightForeArm",.075],["RightForeArm","RightHand",.06],
+        ["LeftUpLeg","LeftLeg",.11],["LeftLeg","LeftFoot",.09],
+        ["RightUpLeg","RightLeg",.11],["RightLeg","RightFoot",.09]]
+    for pair in pairs:
+        var indices:=[]
+        for label in [pair[0],pair[1]]:
+            var found:=-1
+            for i in skeleton.get_bone_count():
+                if skeleton.get_bone_name(i).trim_prefix("mixamorig_")==label or skeleton.get_bone_name(i).get_slice(":",1)==label:
+                    found=i
+                    break
+            indices.append(found)
+        if indices[0]<0 or indices[1]<0:continue
+        var a: Vector3=skeleton.global_transform*skeleton.get_bone_global_pose(indices[0]).origin
+        var b: Vector3=skeleton.global_transform*skeleton.get_bone_global_pose(indices[1]).origin
+        segments.append({"a":a,"b":b,"width":pair[2]})
+    return segments

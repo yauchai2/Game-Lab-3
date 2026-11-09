@@ -1,5 +1,13 @@
 # 驗證紀錄與證據範圍
 
+## 最新：動能換手及漫畫爆發（2026-11-09）
+
+完整功能／限制見 [KINETIC_OVERDRIVE.md](KINETIC_OVERDRIVE.md)。最終無視窗 316/316、原生 viewport 79/79 通過，包含新規則 60 項、展示／輸入 36 項及 25,000 tick 決定性重播；最後主選單底部留白另有 UI 35/35、原生展示 36/36。原生自動輸入完成 120.031 秒、732 次鍵盤轉換、6 回合／2 場；這是短觀察，不是長時或真人測試。
+
+15 張原生圖片、86 張固定步進序列衍生 GIF／MP4，已查看壓縮、能量技、KO、減少演出及主選單畫面。[無視窗報告](evidence/kinetic-overdrive/final-headless/summary.json)、[原生報告](evidence/kinetic-overdrive/final-native/summary.json)、[觀察完成紀錄](evidence/kinetic-overdrive/native-soak/complete.json)。初期 UI 33/35 失敗記錄保留，已修字體重新匯入及選單溢出。新換手只在練習，未做持鍵蓄力、選角或 VS。
+
+Linux Godot 4.6.3 Compatibility／Mesa llvmpipe；音訊 Dummy，未實聽、未真人平衡、未驗收目標 GPU，未同步使用者電腦。原模型／貼圖／音檔保留；只更新衍生 UI 字體及來源 manifest。只推送開發分支，gh-pages 不更新。
+
 ## 最新：爽感規劃文件（2026-11-09；沒有改遊戲）
 
 - 對照 `abf0dfc` 的交鋒／格擋、輸入、鏡頭、動作轉換與既有設計，完成 [GAME_FEEL_ROADMAP.zh-TW.md](GAME_FEEL_ROADMAP.zh-TW.md)。兩份使用者文字已完整讀取；未獨立觀看影片／核實原片時間碼、FOV 或速度門檻。

@@ -25,6 +25,7 @@ func _ready() -> void:
         sounds[kind] = []
         for filename in files[kind]: sounds[kind].append(load(OPEN+filename+".ogg"))
     sounds["charge"] = [_tone(0.28,65.0,120.0,0.08)]
+    sounds["rally"] = [_tone(0.14,360.0,105.0,0.10)]
     sounds["sub"] = [_tone(0.17,100.0,30.0,0.20)]
     for i in 10:
         var voice := AudioStreamPlayer.new()
@@ -60,7 +61,7 @@ func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
     voice.volume_db = -8.0+level_db+linear_to_db(maxf(.001,effects_level))
     voice.pitch_scale = clampf(pitch,0.65,1.55)
     voice.play()
-    if kind in ["hit","heavy","parry","guard_break"]: duck_time = 0.18
+    if kind in ["hit","heavy","parry","guard_break","rally","release"]: duck_time = 0.18
 
 func stop_all() -> void:
     for voice in voices: voice.stop()

@@ -12,6 +12,38 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     var paper := Color("fff8dc")
     var ink := Color("111a32")
     match effect.kind:
+        "echo":
+            if reduced:return
+            for bone in effect.get("bones",[]):
+                var a: Vector2=session.camera.unproject_position(bone.a)*Vector2(1280,720)/session.get_viewport().get_visible_rect().size
+                var b: Vector2=session.camera.unproject_position(bone.b)*Vector2(1280,720)/session.get_viewport().get_visible_rect().size
+                var tangent: Vector2=(b-a).normalized().orthogonal()*bone.width*55.0*(1.0-time*.5)
+                var drift:=Vector2(-face*time*24,0)
+                canvas.draw_colored_polygon(PackedVector2Array([a-tangent+drift,b-tangent+drift,b+tangent+drift,a+tangent+drift]),Color(tint,(1.0-time)*.30))
+        "ground_ring":
+            if reduced:return
+            var radius:=.3+time*2.0
+            for i in 12:
+                if i%3==1:continue
+                var a:=i*TAU/12
+                var b:=(i+.7)*TAU/12
+                var points:=PackedVector2Array()
+                for angle in [a,b]:
+                    var world:=Vector3(effect.at.x+cos(angle)*radius,.06,session.FIGHT_Z+sin(angle)*radius*.5)
+                    points.append(session.camera.unproject_position(world)*Vector2(1280,720)/session.get_viewport().get_visible_rect().size)
+                canvas.draw_line(points[0],points[1],Color(tint,1-time),maxf(1,5*(1-time)))
+        "surge_arc":
+            var level: int=effect.get("tier",1)
+            var radius: float=(48+level*14)*(0.55 if reduced else 1.0)*(1.0+time*.55)
+            _crescent(canvas,at,radius,12*(1-time)+2,face,ink)
+            _crescent(canvas,at,radius-4,10*(1-time)+2,face,tint)
+            if not reduced:_crescent(canvas,at,radius-9,4*(1-time)+1,face,paper)
+        "rally_core":
+            var level: int=effect.get("tier",1)
+            var radius:=18.0+level*4
+            canvas.draw_circle(at,radius,ink)
+            _star(canvas,at,radius*(1.0 if reduced else 1.15),4,tint)
+            canvas.draw_circle(at,5,paper)
         "swing","hit","release","clash","wall":
             var phase: float = fmod(effect.age,0.15)/0.15 if effect.kind in ["hit","clash"] and effect.get("held",false) else time
             var shapes: Array[Dictionary] = impact_shapes.build("hit" if effect.kind=="clash" else ("release" if effect.kind=="wall" else effect.kind),effect.get("move","jab"),phase,tint,face,reduced)

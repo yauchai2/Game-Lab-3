@@ -1,0 +1,9 @@
+{
+  "completed": true,
+  "elapsed_seconds": 120.031,
+  "input_events": 732,
+  "matches": 2,
+  "method": "actual native Godot physics clock with viewport Input.parse_input_event; muted Dummy audio; no human playtesting or target GPU performance claim",
+  "physics_ticks": 5894,
+  "rounds": 6
+}

@@ -1,0 +1,239 @@
+{
+  "created_utc": "2026-11-09T03:42:26.081504+00:00",
+  "baseline": "14887e03d642ccddb5714d9dadfed5dcf1d771b7",
+  "runtime_files": [
+    {
+      "path": "godot/assets/fonts/AfterhoursUIHK.otf",
+      "sha256": "0025b445f4a7779e0b963178ad9dee623b945f9c192f3676e807aef8abcdbd7a"
+    },
+    {
+      "path": "godot/scripts/combat/combat_motions.gd",
+      "sha256": "463276dfb4bc15f9ba9b7f1aa168db30fb64b18f9d2e9cfecf9b23d05b87f629"
+    },
+    {
+      "path": "godot/scripts/combat/fight_audio.gd",
+      "sha256": "66d4acfc6c714b4842f0ea04f6ccafa4c0b63f4bebe5b46ffd42d60dcaac0591"
+    },
+    {
+      "path": "godot/scripts/combat/fight_hud.gd",
+      "sha256": "bc67cba1bcee57131404de9c92822684757f3c5cf1ef91b012e61e19e2930574"
+    },
+    {
+      "path": "godot/scripts/combat/fight_session.gd",
+      "sha256": "faf7859b69fbf90d61ee2f0e21da96f84dfed92074a52d0b9ed27c0be601a6db"
+    },
+    {
+      "path": "godot/scripts/combat/fight_simulation.gd",
+      "sha256": "1e53f5e56a4967be06884e3092287c4b6f66a440f03678e92d1db66176597664"
+    },
+    {
+      "path": "godot/scripts/combat/fight_spectacle.gd",
+      "sha256": "20ecd871f2c4de98394f8849a697188339a980cf77792c390a13f34e69e4430f"
+    },
+    {
+      "path": "godot/scripts/combat/fight_vfx.gd",
+      "sha256": "b41374bb442698e0e44744994e339d24f31654b53a27fc2778075e3d31be75f3"
+    },
+    {
+      "path": "godot/scripts/combat/fighter_visual.gd",
+      "sha256": "32d655a9ebc705fdd156ae312ae54b91a372ffb6d921d333f7df78170a179ff4"
+    },
+    {
+      "path": "godot/scripts/combat/kinetic_rally.gd",
+      "sha256": "207112122920714b509670c79a96f1468846529220f3688b497b51b9bb50dd41"
+    },
+    {
+      "path": "godot/scripts/combat/ui/ui_text.gd",
+      "sha256": "3d943db827f40a632e232b467a8b9d369a52354d1340993b69f4a2873f17f2f0"
+    },
+    {
+      "path": "godot/shaders/kinetic_grade.gdshader",
+      "sha256": "24987bf5b376845479583179b2ba0af0a66468de6d7369b2982e5ae494e3114b"
+    },
+    {
+      "path": "godot/tools/capture_kinetic_overdrive.gd",
+      "sha256": "1dd92009f9d3c504ca909d479476a2201d39339b38cb9ebf35980a124dd61571"
+    },
+    {
+      "path": "godot/tools/verify_kinetic_presentation.gd",
+      "sha256": "651b0bf6c29e98d52d5f80fa3e32aee2c293c11cf7ea198cfd0bc99a2740fd23"
+    },
+    {
+      "path": "godot/tools/verify_kinetic_rally.gd",
+      "sha256": "4d26f1bf5b52ad3a94cd7dcf3056db78b82c7140750c8fa8969f788a5d248710"
+    }
+  ],
+  "protected_binary_assets": [
+    {
+      "path": "godot/assets/CHAR_PLAYER_A01.glb",
+      "git_blob": "bd6964624b55e22397dfab7089f60176d4d95f03"
+    },
+    {
+      "path": "godot/assets/CHAR_PLAYER_A01_stylized_3d_character_basecolor.jpg",
+      "git_blob": "d57c0b38ad71f1375c4733489fa82b4681deb43c"
+    },
+    {
+      "path": "godot/assets/PROP_BIN_A01.glb",
+      "git_blob": "8a331f5e3b3bc2f80904be51979ce1aefac2e832"
+    },
+    {
+      "path": "godot/assets/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg",
+      "git_blob": "376c9d9fdbed1eabea9ee848abfcd13b3c1505b2"
+    },
+    {
+      "path": "godot/assets/PROP_CRATES_A01.glb",
+      "git_blob": "e1526887e6d0baaa2a2534b482586fadd147fd73"
+    },
+    {
+      "path": "godot/assets/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg",
+      "git_blob": "a6c2c8ebea8b9690e42f3c0de68a213a65f6da04"
+    },
+    {
+      "path": "godot/assets/PROP_HYDRANT_A01.glb",
+      "git_blob": "e5e571f2fb32d30b7eef9a6bbc057301058da557"
+    },
+    {
+      "path": "godot/assets/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg",
+      "git_blob": "a06ca1e2368de28b22541f1e5749999fd5e2e03b"
+    },
+    {
+      "path": "godot/assets/PROP_MAILBOX_A01.glb",
+      "git_blob": "bedd1761e2c89146624a5f1c67b3578d52f0e685"
+    },
+    {
+      "path": "godot/assets/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg",
+      "git_blob": "d73e10ba5ff5a6129c4eb9ac2a1a456554d6ff92"
+    },
+    {
+      "path": "godot/assets/PROP_SHOP_STOOL_A01.glb",
+      "git_blob": "8864b103603ee52e9dfa989f0932887c4931a69a"
+    },
+    {
+      "path": "godot/assets/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg",
+      "git_blob": "d92cebb73bc6480ce5662e0e68c27b57fd32cbc5"
+    },
+    {
+      "path": "godot/assets/SKY_BLUE_A01.png",
+      "git_blob": "6ac3857c8a82ec127fbf0222a1bb6f6e429431f4"
+    },
+    {
+      "path": "godot/assets/VEH_CAR_A01.glb",
+      "git_blob": "187437bb7b9a66a4f6c2da4a84b06d95b4619b4f"
+    },
+    {
+      "path": "godot/assets/VEH_CAR_A01_car_3d_model_basecolor.jpg",
+      "git_blob": "fe5d0bac57fedfd448e8fc5cadf06d0597e4e4b4"
+    },
+    {
+      "path": "godot/assets/VEH_TRUCK_A01.glb",
+      "git_blob": "e46ba6c28bccece8601ad2f39a9e5fd935fd381a"
+    },
+    {
+      "path": "godot/assets/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg",
+      "git_blob": "748d32b2e830642a533000e70ea1b904c2e80cc9"
+    },
+    {
+      "path": "godot/assets/VEH_VAN_A01.glb",
+      "git_blob": "ff60a90d97ef0c8ffbd0c38763271c3b57efa9fd"
+    },
+    {
+      "path": "godot/assets/VEH_VAN_A01_van_3d_model_basecolor.jpg",
+      "git_blob": "c155a39081190059fcdb5e096d0d107491e98f5a"
+    },
+    {
+      "path": "godot/assets/art/graffiti_swift_A01.png",
+      "git_blob": "3864cf16576ef2cb8dfe9fc8171b07091c44ff46"
+    },
+    {
+      "path": "godot/assets/textures/corner_plaster_128.png",
+      "git_blob": "9ba9dd5faf2f3705db7df043e4833b74b66f9529"
+    },
+    {
+      "path": "godot/assets/textures/corner_shutter_128.png",
+      "git_blob": "c2c6cc554bf26d00f82acc0dc9775e46fc08df4d"
+    },
+    {
+      "path": "godot/assets/textures/corner_tiles_128.png",
+      "git_blob": "d89c8d603a097fd83639c46fac7889fd502e4027"
+    },
+    {
+      "path": "godot/assets/textures/painted_concrete_128.png",
+      "git_blob": "7efbf37d1c1daab344b76cfc49621a8876950812"
+    },
+    {
+      "path": "godot/assets/textures/road_asphalt_128.png",
+      "git_blob": "e7faac2c983476115b810782940310df40c2c07a"
+    },
+    {
+      "path": "godot/assets/textures/sidewalk_tiles_128.png",
+      "git_blob": "04aa989f207685a26e54340477b03768fdb5e0fc"
+    },
+    {
+      "path": "godot/audio/engine_placeholder.wav",
+      "git_blob": "5d5d2e53923a3ddbe2ec6d9d424c8d223d47e16b"
+    },
+    {
+      "path": "godot/audio/open/footstep_concrete_000.ogg",
+      "git_blob": "163cc56468f1734fe694351e7ff984699afa8b86"
+    },
+    {
+      "path": "godot/audio/open/footstep_concrete_003.ogg",
+      "git_blob": "bfb613ab88407279aabcab0a963c7aaa755c508b"
+    },
+    {
+      "path": "godot/audio/open/impactBell_heavy_003.ogg",
+      "git_blob": "13d3e60cb91012b0a1e6c5f298df7efb40902d12"
+    },
+    {
+      "path": "godot/audio/open/impactGlass_heavy_000.ogg",
+      "git_blob": "b9cbaad034d2da26dffcfbc0bead1abcf595f560"
+    },
+    {
+      "path": "godot/audio/open/impactMetal_heavy_003.ogg",
+      "git_blob": "970c26411815308929901d60a2afc0d072e83450"
+    },
+    {
+      "path": "godot/audio/open/impactMetal_light_000.ogg",
+      "git_blob": "7d49262cc9f69eb517cf644f61940ace16714f22"
+    },
+    {
+      "path": "godot/audio/open/impactPunch_heavy_000.ogg",
+      "git_blob": "55e70b52ca082c89326bac62a02505c0ba750260"
+    },
+    {
+      "path": "godot/audio/open/impactPunch_heavy_001.ogg",
+      "git_blob": "6655951d3bb43d8b06bd23b8ae60580fd7584406"
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_000.ogg",
+      "git_blob": "d8e0b890ae019533ec190dd2d1decce249ea556e"
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_001.ogg",
+      "git_blob": "33080462eeb8bc99025e669abfef610a6e630815"
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_002.ogg",
+      "git_blob": "9704fd215d8122bc36dc6cead55cfa620fae276e"
+    },
+    {
+      "path": "godot/audio/open/impactSoft_heavy_000.ogg",
+      "git_blob": "1c321ef698c367144d0d55b52d7a680a4b8e5958"
+    },
+    {
+      "path": "godot/audio/open/impactSoft_medium_001.ogg",
+      "git_blob": "a8c643460ae2d429f0a219d02a7cc186ba2b3652"
+    },
+    {
+      "path": "godot/audio/open/impactTin_medium_001.ogg",
+      "git_blob": "c45507c649d9b19ed46c9037d7f1dcad21995c44"
+    },
+    {
+      "path": "godot/audio/open/level1.ogg",
+      "git_blob": "696ba703f8269381333c4544bea3dc93939f2994"
+    }
+  ],
+  "protected_count": 42,
+  "font_derivative_manifest": "references/ui-fonts/noto-subset.json",
+  "evidence_boundary": "Native Linux Compatibility software GL and Dummy audio; no human feel, listening or target GPU claim."
+}

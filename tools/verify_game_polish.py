@@ -19,6 +19,9 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES = [
+    ("verify_kinetic_rally", "kinetic-overdrive/rules.json", "headless"),
+    ("verify_kinetic_presentation", "kinetic-overdrive/presentation/verification.json", "native"),
+    ("verify_result_presentation", "extended-polish/result-presentation.json", "headless"),
     ("verify_combat", "combat/verification.json", "headless"),
     ("verify_combat_polish", "combat-polish/verification.json", "headless"),
     ("verify_scene_audio_vfx", "scene-audio-vfx/verification.json", "headless"),

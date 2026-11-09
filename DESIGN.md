@@ -25,7 +25,7 @@ Body: bundled OFL Noto Sans CJK HK subset, derivative family Afterhours UI HK. D
 
 ## Hierarchy
 
-- Title: live world on the right, one left column with three clear entry actions. Settings and instructions are separate pages.
+- Title: live world on the right, one left column with Fight, Free training, Kinetic rally lab and Pressure dojo entry actions. Settings and instructions are separate pages.
 - Fight: paired health, two energy segments corresponding to a 50-energy special, round wins and a central clock. Pressure stays small until it asks for a decision.
 - Clash: three actionable native buttons, a readable cue, fixed countdown and a committed-choice state. Labels explain what each action defeats. Read-first drill has no timer.
 - Practice: one short context label. Detailed input history and combo data are optional (F9).
@@ -40,3 +40,7 @@ Desktop keyboard/mouse is the supported interaction target. Verify 1280×720 and
 ## Avoid
 
 Full-width opaque control manuals during combat, unexplained decorative numbers, gradient/glow-heavy panels, tiny English-only controls, fake non-functional buttons, changing labels between pages, generated text inside scene signs, and pixel-filtered UI fonts. Scene signs remain blank until user artwork arrives.
+
+## Kinetic presentation extension
+
+The practice-only rally and comic staging are specified in [docs/KINETIC_OVERDRIVE.md](docs/KINETIC_OVERDRIVE.md). A world grading CanvasLayer sits below the unchanged HUD; the drawing pass adds bounded edge rays and a center opening around the fight. F2 disables grading, echoes, shake and zoom. A short confirmed KO finish precedes the result panel, with Enter available to skip. The title's native action stack keeps space above the footer and fits without mandatory scroll.

@@ -1,0 +1,51 @@
+{
+  "checks": [
+    {
+      "name": "viewport T starts training",
+      "passed": true
+    },
+    {
+      "name": "viewport F8 primes pressure drill",
+      "passed": true
+    },
+    {
+      "name": "viewport K opens actual heavy clash",
+      "passed": true
+    },
+    {
+      "name": "viewport Shift chooses turn without normal attack input",
+      "passed": true
+    },
+    {
+      "name": "viewport repeated choice cannot replace commitment",
+      "passed": true
+    },
+    {
+      "name": "viewport Escape freezes active deadline",
+      "passed": true
+    },
+    {
+      "name": "viewport F2 works during paused clash",
+      "passed": true
+    },
+    {
+      "name": "viewport Escape resumes same choice",
+      "passed": true
+    },
+    {
+      "name": "viewport decision resolves as player turn win",
+      "passed": true
+    },
+    {
+      "name": "outcome stays readable after hit event",
+      "passed": true
+    },
+    {
+      "name": "viewport F8 clears prior result and impact effects",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "method": "X11 Godot viewport Input.parse_input_event; not a physical keyboard or human playtest",
+  "passed": 11
+}

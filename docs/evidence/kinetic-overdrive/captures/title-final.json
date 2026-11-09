@@ -1,0 +1,24 @@
+[
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 0,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 48.0,
+    "grade_visible": false,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "01_title",
+    "tier": 0
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 0,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 48.0,
+    "grade_visible": false,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "title_english",
+    "tier": 0
+  }
+]

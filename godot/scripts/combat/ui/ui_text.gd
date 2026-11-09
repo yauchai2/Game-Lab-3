@@ -2,6 +2,23 @@ extends RefCounted
 ## Product copy is keyed; simulation events and save identifiers stay language-independent.
 var language := "zh"
 const COPY := {
+"rally_lab":["動能換手 · 實驗練習","KINETIC RALLY / LAB"],
+"rally_wait":["等對手出拳，接觸前輕按 Shift。","Tap Shift just before the rival's punch connects."],
+"rally_exit":["F10 再試 · F5 回自由練習","F10 RETRY / F5 FREE TRAINING"],
+"rally_commit":["輪到你！按 J 鎖定反擊。","YOUR TURN! J commits a counter."],
+"rally_defend":["看出拳時機，再按一次 Shift！","Read the release. Tap Shift again!"],
+"rally_locked":["反擊鎖定 · 準備爆發","COUNTER LOCKED / RELEASE INCOMING"],
+"rally_hold":["壓縮中 · 等出拳動作再格擋","COMPRESS / WAIT FOR THE WINDUP"],
+"rally_live":["現在可以格擋或閃避","PARRY OR DODGE THE RELEASE"],
+"rally_ready":["對手將出拳 · Shift 接住","RIVAL WILL STRIKE / SHIFT TO PARRY"],
+"rally_end_limit":["四級換手完成 · 安全散能","RALLY COMPLETE / ENERGY DISPERSED"],
+"rally_end_timeout":["交鋒時間到 · 回到中立","RALLY TIMEOUT / NEUTRAL"],
+"rally_end_no_input":["沒有反擊 · 能量散去","NO COUNTER / ENERGY VENTED"],
+"rally_end_whiff":["反擊落空","COUNTER MISSED"],
+"rally_end_blocked":["擋住反擊","COUNTER BLOCKED"],
+"rally_end_hit":["動能反擊命中！","KINETIC COUNTER CONNECTS!"],
+"overdrive_stamp":["能量爆發","OVERDRIVE"],
+"finish_stamp":["決勝一擊","KNOCKOUT"],
 "subtitle":["借勢街鬥","PRESSURE / STREET FIGHT"],
 "intro":["拳腳交鋒，借勢反擊。","Build pressure. Read the stance. Turn the fight."],
 "fight":["街頭對戰","Fight the rival"],"fight_hint":["單人對 AI · 先取兩勝","Solo vs AI / First to two"],
@@ -66,7 +83,7 @@ func text(key: String) -> String:
     return values[0 if language=="zh" else 1]
 func notice(raw: String) -> String:
     if raw.begins_with("FEINT / "):return text("feint")+" · "+notice(raw.trim_prefix("FEINT / "))
-    var notices := {"THROW":"throw_notice","THROW TECH":"throw_tech","WALL TECH":"wall_tech","PERFECT GUARD":"perfect_guard","GUARD BREAK":"guard_break","COUNTER HIT":"counter","AIR CHASE / J TO FOLLOW UP":"air_chase","FIGHT!":"fight_start","SPECIAL NEEDS 50 ENERGY":"no_meter","TRAINING RESET":"reset_notice","EVEN / PRESSURE RELEASED":"tie"}
+    var notices := {"RALLY READY":"rally_ready","LIMIT":"rally_end_limit","TIMEOUT":"rally_end_timeout","NO_INPUT":"rally_end_no_input","WHIFF":"rally_end_whiff","BLOCKED":"rally_end_blocked","HIT":"rally_end_hit","THROW":"throw_notice","THROW TECH":"throw_tech","WALL TECH":"wall_tech","PERFECT GUARD":"perfect_guard","GUARD BREAK":"guard_break","COUNTER HIT":"counter","AIR CHASE / J TO FOLLOW UP":"air_chase","FIGHT!":"fight_start","SPECIAL NEEDS 50 ENERGY":"no_meter","TRAINING RESET":"reset_notice","EVEN / PRESSURE RELEASED":"tie"}
     if notices.has(raw):return text(notices[raw])
     for choice in ["press","turn","slip"]:
         if raw.ends_with("/ "+choice.to_upper()):return text("your_result" if raw.begins_with("YOU") else "rival_result")+" · "+text("result_"+choice)

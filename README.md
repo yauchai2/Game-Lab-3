@@ -1,10 +1,12 @@
 # Afterhours / Game-Lab-3
 
-最新[爽感與完整演出優化計劃](docs/GAME_FEEL_ROADMAP.zh-TW.md)：已吸收並保存兩份使用者參考，規劃有限格擋換手、蓄力、分層演出、選角／VS／KO 及驗收次序。**本輪只有文件更新，新系統尚未實作；現行三選對峙保留。公開試玩版不更新。**
+最新[動能換手與漫畫爆發演出](docs/KINETIC_OVERDRIVE.md)：**F10** 進有限格擋換手練習，Shift 接拳 → J 反擊 → 再格擋升級。正式對戰新增月牙衝擊弧、骨架殘影、三色階爆發、鏡頭反衝及可跳過的 KO 演出。F2 減少演出。只更新開發分支，**公開 Web 不更新**。
+
+前輪[爽感與完整演出優化計劃](docs/GAME_FEEL_ROADMAP.zh-TW.md)：已吸收並保存兩份使用者參考，規劃有限格擋換手、蓄力、分層演出、選角／VS／KO 及驗收次序。**本輪只有文件更新，新系統尚未實作；現行三選對峙保留。公開試玩版不更新。**
 
 **[在 GitHub 直接試玩](https://yauchai2.github.io/Game-Lab-3/)** · 電腦鍵盤、單人對 AI／無限練習、首次約 19 MB。GitHub Pages 已啟用。[操作與更新方法](docs/WEB_PLAYTEST.md)。
 
-最新[原生 UI 與近身交鋒完善](docs/EXTENDED_POLISH.md)：移除藍樓遮窗大牌，繁中／英文選單、可點按對峙、獨立音量、G 投技／拆投、E 場邊受身、較近的交手追鏡及靜態批次繪圖。只更新 `codex/street-combat` 原始碼，**公開試玩網址仍是舊版**。
+前輪[原生 UI 與近身交鋒完善](docs/EXTENDED_POLISH.md)：移除藍樓遮窗大牌，繁中／英文選單、可點按對峙、獨立音量、G 投技／拆投、E 場邊受身、較近的交手追鏡及靜態批次繪圖。只更新 `codex/street-combat` 原始碼，**公開試玩網址仍是舊版**。
 
 [借勢街鬥核心原型](docs/PRESSURE_EXCHANGE.md)：三階壓力、高壓重踢 0.4 秒對峙、J 頂進／Shift 卸勢／E 抽身。主選單選「交鋒教室」，或 T → F8 → K 直接試。
 
