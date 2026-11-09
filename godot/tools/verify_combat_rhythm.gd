@@ -25,7 +25,7 @@ func run() -> void:
     await process_frame;await process_frame
     scene.set_character(0,3);scene.set_character(1,0)
     scene._process(.01)
-    check("goggle fighter is exactly one third shorter",is_equal_approx(scene.fighters[0].model_scale/scene.fighters[1].model_scale,2.0/3.0))
+    check("goggle fighter is only slightly shorter",is_equal_approx(scene.fighters[0].model_scale/scene.fighters[1].model_scale,1.98/2.1))
     scene.start_match(false);scene.sim.phase="fight";scene.sim.ai_enabled=false
     scene.sim.fighters[0].x=-.5;scene.sim.fighters[1].x=.5;scene.pending.attack="special";step()
     check("paid skill opens a full second red cut and hold",scene.theatre.mode=="skill" and scene.theatre.duration==1 and scene.rhythm.phase()=="hold" and scene.sim.fighters[0].meter==10)

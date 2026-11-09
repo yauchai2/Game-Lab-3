@@ -1,7 +1,9 @@
 extends RefCounted
 ## Original hard-edged, staged canvas effects projected from the shared fight world.
+var sprite_fx=preload("res://scripts/combat/generated_combat_vfx.gd").new()
 var impact_shapes = preload("res://scripts/combat/impact_shapes.gd").new()
 func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
+    sprite_fx.draw(canvas,session,effect)
     var at: Vector2 = session.project(effect.at)
     var time: float = clampf(effect.age/effect.life,0,1)
     var stage := floorf(time*6.0)/6.0

@@ -31,6 +31,8 @@ var step_distance := [0.0,0.0]
 var trail_clock := 0.0
 var ink_pass: MeshInstance3D
 var reduced_effects := false
+var retro_pixels := true
+var pixel_pass: ColorRect
 var language := "zh"
 var character_choices := [0,1]
 var training_details := false
@@ -62,6 +64,18 @@ func _ready() -> void:
     audio = FightAudio.new()
     add_child(audio)
     _restore_options()
+    var pixel_layer:=CanvasLayer.new()
+    pixel_layer.layer=0
+    add_child(pixel_layer)
+    pixel_pass=ColorRect.new()
+    pixel_pass.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    pixel_pass.mouse_filter=Control.MOUSE_FILTER_IGNORE
+    var pixel_material:=ShaderMaterial.new()
+    pixel_material.shader=preload("res://shaders/retro_pixels.gdshader")
+    pixel_pass.material=pixel_material
+    pixel_layer.add_child(pixel_pass)
+    get_viewport().msaa_3d=Viewport.MSAA_DISABLED
+    get_viewport().screen_space_aa=Viewport.SCREEN_SPACE_AA_DISABLED
     var grading_layer:=CanvasLayer.new()
     grading_layer.layer=1
     add_child(grading_layer)
@@ -233,6 +247,8 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
     if effects.size()>=64: effects.pop_front()
     var effect := {"rush":sim.arcade_enabled,"kind":kind,"at":at,"age":0.0,"life":life,"strength":0.5,"face":1,"color":COLORS[0]}
     effect.merge(options,true)
+    var actor:int=effect.get("attacker",effect.get("owner",0 if effect.color==COLORS[0] else 1))
+    effect["character"]=character_choices[clampi(actor,0,1)]
     effects.append(effect)
 
 func _handle_event(event: Dictionary) -> void:
@@ -380,7 +396,7 @@ func _handle_event(event: Dictionary) -> void:
         var move: String = event.get("move","jab")
         var face: float = sim.fighters[attacker].face
         var point := Vector2(target.x,target.y+fighters[event.target].model_scale*.57)
-        _spawn_vfx(kind,point,0.38,{"strength":strength,"color":tint,"move":move,"face":face,"held":kind=="hit" and sim.hitstop>0})
+        _spawn_vfx(kind,point,0.38,{"strength":strength,"color":tint,"move":move,"face":face,"attacker":attacker,"held":kind=="hit" and sim.hitstop>0})
         if kind=="hit":
             if sim.arcade_enabled and move in ["meteor","special","overdrive"]:theatre.begin("cannon_hit" if move=="overdrive" else "impact",attacker)
             if sim.arcade_enabled and move=="meteor":_spawn_vfx("meteor_streak",point,.22,{"color":COLORS[attacker],"face":face})
@@ -405,11 +421,14 @@ func _handle_event(event: Dictionary) -> void:
             hud.notice_time = 0.8
     elif kind=="swing":
         var fighter: Dictionary = sim.fighters[event.target]
-        var startup: float = float(Simulation.MOVES[event.move].startup)/60.0
+        var startup: float = float(sim.move_for(fighter,event.move).startup)/60.0
         _spawn_vfx("swing",Vector2(fighter.x+fighter.face*0.9,fighter.y+fighters[event.target].model_scale*.55),0.15,{"age":-startup,"face":fighter.face,"color":COLORS[event.target],"move":event.move})
         audio.play_sound("swing",1.0,-8.0)
         if event.move=="grab":_spawn_vfx("grab_tell",Vector2(fighter.x+fighter.face*.55,fighter.y+1.25),startup,{"face":fighter.face,"color":Color("eebd4c")})
         if event.move in ["special","overdrive"]:
+            var profile:Dictionary=Simulation.Profiles.profile(character_choices[event.target])
+            hud.skill_key=profile.overdrive_name if event.move=="overdrive" else profile.special_name
+            hud.skill_time=1.3
             if sim.arcade_enabled:theatre.begin("overdrive" if event.move=="overdrive" else "skill",event.target)
             spectacle.trigger("charge",event.target,Vector2(fighter.x,fighter.y+1.2),4)
             _spawn_vfx("charge",Vector2(fighter.x,fighter.y+1.2),startup,{"color":COLORS[event.target]})
@@ -526,19 +545,20 @@ func _apply_red_stage() -> void:
 
 func _grade_world() -> void:
     if not is_instance_valid(grade):return
+    pixel_pass.visible=retro_pixels
     var strength:=0.0
-    var owner:=spectacle.owner
+    var grade_owner:=spectacle.owner
     if not reduced_effects and screen in ["play","result"]:
         if sim.rally.active() and sim.rally.tier>=3:
             strength=.45+(sim.rally.tier-3)*.2
-            owner=sim.rally.owner
+            grade_owner=sim.rally.owner
         elif spectacle.mode in ["charge","burst","contact"] and spectacle.tier>=3:
             strength=(.84 if sim.arcade_enabled else .62)*clampf(1.0-spectacle.age/maxf(.001,spectacle.duration),0,1)
         elif screen=="result" and result_clock<FINISH_SECONDS:
             strength=.85*(1.0-result_clock/FINISH_SECONDS)
     grade.visible=strength>.001
     grade_material.set_shader_parameter("strength",strength)
-    grade_material.set_shader_parameter("accent",COLORS[owner])
+    grade_material.set_shader_parameter("accent",COLORS[grade_owner])
 
 func _present(delta: float) -> void:
     for i in fighters.size():
@@ -892,6 +912,7 @@ func _restore_options() -> void:
     audio.muted=options.muted
     audio.music_muted=options.music_muted
     reduced_effects=options.reduced_effects
+    retro_pixels=options.retro_pixels
     ink_pass.visible=options.scene_edges
     language=options.language
     training_details=options.training_details
@@ -900,6 +921,8 @@ func _restore_options() -> void:
     sim.difficulty=options.difficulty
     sim.partner_mode=options.partner_mode
     character_choices=[options.player_character,options.rival_character]
+    sim.character_choices=character_choices.duplicate()
+    for i in 2:sim.fighters[i]["character"]=character_choices[i]
     for i in 2:
         if fighters[i].character_index!=character_choices[i]:fighters[i].setup(COLORS[i],character_choices[i])
 
@@ -908,11 +931,14 @@ func set_character(side:int,index:int) -> void:
     var selected:=clampi(index,0,FighterVisual.Roster.ENTRIES.size()-1)
     if character_choices[side]==selected:return
     character_choices[side]=selected
+    sim.character_choices[side]=selected
+    sim.fighters[side]["character"]=selected
     fighters[side].setup(COLORS[side],selected)
     save_options()
+    if is_instance_valid(hud) and hud.menu_page=="roster":hud.rebuild_menu()
 
 func save_options() -> void:
-    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"scene_edges":ink_pass.visible,"difficulty":sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":character_choices[1]})
+    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":character_choices[1]})
 
 func return_to_title() -> void:
     if demo!=null:sim.partner_mode=demo_partner
@@ -922,6 +948,7 @@ func return_to_title() -> void:
     sim.pressure_drill=false
     sim.exchange.reset()
     screen="title"
+    hud.skill_time=0
     pending.clear()
     effects.clear()
     _clear_impacts()

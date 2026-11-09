@@ -1,5 +1,13 @@
 # Native game UI contract
 
+## Current JSR native UI and profiles — 2026-11-09
+
+The JSR direction is implemented in the canonical native theme/HUD/copy/session owners. Generated art decorates actual Buttons, bars and clock; all labels, HP, energy, time, combo counts and input remain live. Native settings/roster dropdowns retain keyboard/popup behavior. Energy thresholds are exact 50/75 markers on a continuous 0–100 bar. Roster shows the actual selected fighter traits and signature names; changes update both the live model and simulation profile, and persist. Four distinct profiles supersede the old shared-stats copy.
+
+Retro low resolution is an independent persisted setting: nearest 640×360 world sampling beneath the high-resolution UI. Berlin plays at title; Groove District during play. Pause/settings preserve the playing song and playhead; returning to title switches to Berlin. Only one music player exists; looping uses a duplicate stream, leaving source resources unchanged.
+
+Fighter 4 is slightly shorter (1.98/2.1). All characters retain shared basic inputs and defense windows. Character-specific startup/damage/reach/lift/speed/energy are owned by fighter_profiles.gd and resolved by the simulation; presentation reads the same move snapshot. Generated attack sprites are driven by real events and never cause independent damage. See docs/JSR_RUNTIME.md.
+
 ## Cannon input — 2026-11-09
 
 W+L or Up+L snapshots the modifier at key-down and requests a 75-energy overdrive in arcade play. Ordinary L retains its 50-energy command. This is a committed fixed windup, not variable hold-to-charge. Pending cannon input survives cinematic holds and held J. Underfunded input reports 75 without spending energy; pause/reset/title clear presentation. A beam denotes actual hit release, not an independent projectile or automatic damage. F2 keeps the real move and reduced presentation.

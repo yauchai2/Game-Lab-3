@@ -101,6 +101,12 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     elif absf(f.vx) > 0.3:
         selected = "Walk_Loop" if f.vx*f.face<0 else ("Sprint_Loop" if absf(f.vx)>5.5 else ("Jog_Fwd_Loop" if absf(f.vx)>4 else "Walk_Loop"))
         loop = true
+    var character:int=f.get("character",0)
+    if f.state=="idle" and absf(f.vx)<.3 and f.y<=.01:
+        if character==1:selected="Dance_Loop";loop=true
+        elif character==2:selected="Spell_Simple_Idle_Loop";loop=true
+        elif character==3:selected="Idle_Loop";loop=true
+    if f.state=="attack" and character==2 and f.move in ["cross","finisher","special"]:selected="Sword_Attack";loop=false
     var state_key := selected + "/" + str(f.state) + ("/"+str(f.move) if f.state=="attack" else "")
     if state_key != previous_state:
         blend_from.clear()
@@ -119,7 +125,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     if selected == "Punch_Enter":
         sample_time = duration # Authored boxing stance, with breathing layered below.
     elif f.state == "attack":
-        var move: Dictionary = preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
+        var move: Dictionary = f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
         var contact: float = contact_phases.get(selected,0.42)
         if f.frame < move.startup:
             sample_time = duration * contact * float(f.frame) / move.startup
@@ -168,7 +174,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         hips_position.y += clampf(offset.y,-0.15,0.12)
     skeleton.set_bone_pose_position(target_hips,hips_position)
     if f.state == "attack":
-        var move: Dictionary = preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
+        var move: Dictionary = f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
         var attack_weight := clampf(float(f.frame)/move.startup,0,1)
         if f.frame > move.startup+move.active:
             attack_weight = 1.0-clampf(float(f.frame-move.startup-move.active)/move.recovery,0,1)
@@ -185,6 +191,23 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
             _aim_limb("RightArm","RightForeArm",model_up+model_forward*0.35,attack_weight)
             _aim_limb("RightForeArm","RightHand",model_up+model_forward*0.65,attack_weight)
 
+    # Original character-specific silhouettes layered onto the retargeted library.
+    if f.state=="attack":
+        var move:Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
+        var w:float=clampf(float(f.frame)/move.startup,0,1)
+        if f.frame>move.startup+move.active:w=1.0-clampf(float(f.frame-move.startup-move.active)/move.recovery,0,1)
+        if character==1 and f.move in ["jab","cross","finisher","special","overdrive"]:
+            var side:String="Left" if f.move in ["jab","special"] else "Right"
+            _aim_limb(side+"UpLeg",side+"Leg",model_forward+model_up*.45,w*.95)
+            _aim_limb(side+"Leg",side+"Foot",model_forward-model_up*.15,w*.95)
+            _aim_limb("Spine","Spine1",model_up-model_forward*.55,w*.65)
+        elif character==2:
+            _aim_limb("Spine","Spine1",model_up+model_forward*.5,w*.7)
+            _aim_limb("RightArm","RightForeArm",model_forward+model_up*.3,w*.9)
+        elif character==3:
+            _aim_limb("Spine","Spine1",model_up+model_forward*.75,w*.65)
+            _aim_limb("LeftUpLeg","LeftLeg",-model_forward+model_up*.1,w*.75)
+            _aim_limb("RightArm","RightForeArm",model_forward-model_up*.1,w*.9)
     if f.guarding and f.state in ["idle","blockstun"] and f.get("rally_phase","")!="compress":
         for side in ["Left","Right"]:
             _aim_limb(side+"Arm",side+"ForeArm",model_forward*.45+model_up*.3,.6)
@@ -202,7 +225,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     air_pose_name=""
     if f.get("air_enabled",false):air_pose_name=air_poses.apply(self,f)
     if f.state=="attack" and f.move in ["overdrive","launcher"]:
-        var winding:bool=f.frame<preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move].startup
+        var winding:bool=f.frame<f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]).startup
         if f.move=="overdrive":
             air_pose_name="Cannon_Load" if winding else "Cannon_DoublePalm"
             _aim_limb("Spine","Spine1",model_up+model_forward*(-.65 if winding else .55),.8)
@@ -214,6 +237,16 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
             air_pose_name="Launcher_Coil" if winding else "Launcher_Uppercut"
             _aim_limb("RightArm","RightForeArm",-model_up+model_forward*.3 if winding else model_up+model_forward*.3,.9)
             _aim_limb("RightForeArm","RightHand",model_forward if winding else model_up,.9)
+
+    if f.state=="attack" and f.move in ["special","overdrive"]:
+        air_pose_name=["Boxer_DoublePalm","Dancer_SpinKick","Bass_Hammer","Spark_Drive"][character]
+        var active:bool=f.frame>=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]).startup
+        if active and character==1:
+            _aim_limb("RightUpLeg","RightLeg",model_forward+model_up*.35,1.0)
+            _aim_limb("RightLeg","RightFoot",model_forward,1.0)
+        elif active and character==3:
+            _aim_limb("LeftArm","LeftForeArm",-model_forward,.95)
+            _aim_limb("RightArm","RightForeArm",model_forward,1.0)
 
 func _aim_limb(bone_name: String, child_name: String, direction: Vector3, weight: float) -> void:
     var bone := skeleton.find_bone("mixamorig_"+bone_name)

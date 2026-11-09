@@ -66,7 +66,7 @@ func draw(canvas: Control, session: Node3D) -> void:
                 var direction:=Vector2.from_angle(i*TAU/10+.14)
                 var outer:=at+direction*(radius+40)
                 _wedge(canvas,outer,at+direction*radius,3,color)
-        canvas.draw_arc(at,30 if reduced else radius,0,TAU,12,color,3)
+        canvas.draw_arc(at,30.0 if reduced else radius,0,TAU,12,color,3)
         for i in rally.tier:
             var mark:=at+Vector2(-18+i*12,42)
             canvas.draw_colored_polygon(PackedVector2Array([mark,mark+Vector2(5,-5),mark+Vector2(10,0),mark+Vector2(5,5)]),paper)

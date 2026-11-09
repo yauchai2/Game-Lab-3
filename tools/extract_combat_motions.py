@@ -4,7 +4,7 @@ Usage: python3 tools/extract_combat_motions.py /tmp/quaternius-animations
 """
 import hashlib,json,pathlib,struct,sys
 src=pathlib.Path(sys.argv[1]); doc=json.loads((src/'AnimationLibrary_Godot_Standard.gltf').read_text()); binary=(src/'AnimationLibrary_Godot_Standard.bin').read_bytes()
-selected=['Punch_Enter','Punch_Jab','Punch_Cross','Hit_Chest','Hit_Head','Walk_Loop','Jog_Fwd_Loop','Sprint_Loop','Jump_Start','Jump_Loop','Jump_Land','Roll','Death01','Spell_Simple_Shoot']
+selected=['Punch_Enter','Punch_Jab','Punch_Cross','Hit_Chest','Hit_Head','Walk_Loop','Jog_Fwd_Loop','Sprint_Loop','Jump_Start','Jump_Loop','Jump_Land','Roll','Death01','Spell_Simple_Shoot','Dance_Loop','Crouch_Idle_Loop','Spell_Simple_Idle_Loop','Sword_Attack','Idle_Loop']
 def read(index):
  a=doc['accessors'][index];v=doc['bufferViews'][a['bufferView']];n={'SCALAR':1,'VEC3':3,'VEC4':4}[a['type']]; stride=v.get('byteStride',n*4);offset=v.get('byteOffset',0)+a.get('byteOffset',0)
  rows=[list(struct.unpack_from('<'+'f'*n,binary,offset+i*stride)) for i in range(a['count'])]

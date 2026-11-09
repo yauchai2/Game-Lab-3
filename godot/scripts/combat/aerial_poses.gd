@@ -19,7 +19,7 @@ func apply(motions: RefCounted, f: Dictionary) -> String:
         name="Hit_Fold_V"
         pose={"Spine":["Spine1",front*.6+up*.4,.55],"LeftUpLeg":["LeftLeg",up*.5+front,.75],"RightUpLeg":["RightLeg",up*.4+front,.65],"LeftArm":["LeftForeArm",-front+up*.25,.6],"RightArm":["RightForeArm",-front+up*.4,.6]}
     elif f.state=="attack" and f.move in ["air_jab","air_kick","air_finisher","meteor","air_counter"]:
-        var move: Dictionary=preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
+        var move: Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
         var weight:=clampf(float(f.frame)/move.startup,0,1)
         if f.frame>move.startup+move.active:weight=1.0-clampf(float(f.frame-move.startup-move.active)/move.recovery,0,1)
         name=f.move

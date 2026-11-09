@@ -57,10 +57,10 @@ func run() -> void:
     await frames(3)
     var badge: Label=training.get_child(0)
     var foreground: Color=badge.get_theme_color("font_color").srgb_to_linear()
-    var background: Color=training.get_theme_stylebox("hover").bg_color.srgb_to_linear()
+    var background: Color=badge.get_theme_color("font_outline_color").srgb_to_linear()
     var fg: float=foreground.r*.2126+foreground.g*.7152+foreground.b*.0722
     var bg: float=background.r*.2126+background.g*.7152+background.b*.0722
-    check("real pointer hover keeps shortcut contrast above 4.5",training.is_hovered() and (maxf(fg,bg)+.05)/(minf(fg,bg)+.05)>=4.5)
+    check("real pointer hover keeps outlined shortcut contrast above 4.5",training.is_hovered() and (maxf(fg,bg)+.05)/(minf(fg,bg)+.05)>=4.5)
     await click(control(scene.hud,"settings"))
     check("pointer opens settings from title",scene.hud.menu_page=="settings")
     var language: OptionButton=control(scene.hud,"language")

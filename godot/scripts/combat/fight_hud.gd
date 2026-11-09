@@ -15,6 +15,8 @@ var previous_screen := ""
 var built_page := ""
 var focus_key := ""
 var page_return_focus := ""
+var skill_key := ""
+var skill_time := 0.0
 var notice := ""
 var notice_time := 0.0
 var font: Font=Tokens.BODY
@@ -76,7 +78,9 @@ func _ready() -> void:
     air_lesson.position=Vector2(1005,116)
     air_lesson.size=Vector2(241,36)
     air_lesson.set_meta("ui_key","air_lesson")
-    air_lesson.pressed.connect(func():session.prime_air_drill() if session.sim.is_air_lesson() else session.prime_air_defense())
+    air_lesson.pressed.connect(func():
+        if session.sim.is_air_lesson():session.prime_air_drill()
+        else:session.prime_air_defense())
     layout_root.add_child(air_lesson)
     air_begin=Button.new()
     air_begin.position=Vector2(494,611)
@@ -104,7 +108,7 @@ func _ready() -> void:
         button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
         button.pressed.connect(button.release_focus)
     menu=PanelContainer.new()
-    menu.add_theme_stylebox_override("panel",Tokens.plate(Color(INK,.97),Tokens.EDGE,1))
+    menu.add_theme_stylebox_override("panel",Tokens.plate(Color(INK,.94),Tokens.LIME,2))
     layout_root.add_child(menu)
     menu_scroll=ScrollContainer.new()
     menu_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
@@ -165,6 +169,7 @@ func rebuild_menu(requested_focus := "") -> void:
     else:
         menu.position=Vector2(420,126)
         menu.size=Vector2(440,480 if session.screen in ["pause","help"] else 398)
+    menu.add_theme_stylebox_override("panel",Tokens.plate(Color.TRANSPARENT if session.screen=="title" and menu_page=="main" else Color(INK,.96),Tokens.LIME if menu_page!="main" else Color.TRANSPARENT,2 if menu_page!="main" else 0))
     if menu_page=="settings":_settings_page()
     elif menu_page=="roster":_roster_page()
     elif menu_page=="help":_help_page()
@@ -182,7 +187,7 @@ func _restore_focus() -> void:
     if focus_key=="back" and back_button.visible:
         back_button.grab_focus()
         return
-    var first: Control
+    var first: Control=null
     for control in menu_stack.find_children("*","Control",true,false):
         if not control is BaseButton and not control is Range:continue
         if not first:first=control
@@ -213,28 +218,40 @@ func _heading(key: String) -> void:
 func _action(parent: Node, key: String, shortcut: String, callback: Callable, primary := false) -> Button:
     var button:=Button.new()
     button.text=tr_text(key)
+    var icon_index:int={"fight":0,"training":4,"roster":11,"demo":10,"settings":9,"resume":14,"main_menu":15}.get(key,-1)
+    if icon_index>=0:
+        button.icon=Tokens.icon(icon_index)
+        button.expand_icon=true
+        button.add_theme_constant_override("icon_max_width",28)
     button.alignment=HORIZONTAL_ALIGNMENT_LEFT
     button.custom_minimum_size=Vector2(0,48)
     button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
     button.add_theme_font_size_override("font_size",20)
     button.set_meta("ui_key",key)
     if primary:
-        button.add_theme_stylebox_override("normal",Tokens.plate(PAPER,PAPER,1))
-        button.add_theme_color_override("font_color",INK)
-        button.add_theme_color_override("font_focus_color",INK)
+        button.add_theme_stylebox_override("normal",Tokens.sticker("button_selected"))
+        button.add_theme_color_override("font_color",PAPER)
+        button.add_theme_color_override("font_focus_color",PAPER)
+    if key in ["roster","controls","settings","demo","explore"]:
+        button.add_theme_stylebox_override("normal",Tokens.plate(INK,Tokens.EDGE,1))
+    if key in ["roster","controls","settings","demo","explore"]:
+        button.tooltip_text=button.text+(" · "+shortcut if shortcut!="" else "")
+        shortcut=""
     if shortcut!="":
         var badge:=Label.new()
         badge.text=shortcut
         badge.add_theme_font_size_override("font_size",12)
-        badge.add_theme_color_override("font_color",INK if primary else Tokens.MUTED)
+        badge.add_theme_color_override("font_color",PAPER)
+        badge.add_theme_color_override("font_outline_color",INK)
+        badge.add_theme_constant_override("outline_size",3)
         badge.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
         badge.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
         badge.offset_right=-16
         badge.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
         badge.mouse_filter=Control.MOUSE_FILTER_IGNORE
         button.add_child(badge)
-        var highlight:=func():badge.add_theme_color_override("font_color",INK)
-        var restore:=func():badge.add_theme_color_override("font_color",INK if primary or button.is_hovered() else Tokens.MUTED)
+        var highlight:=func():badge.add_theme_color_override("font_color",PAPER)
+        var restore:=func():badge.add_theme_color_override("font_color",PAPER)
         button.mouse_entered.connect(highlight)
         button.mouse_exited.connect(restore)
         button.button_down.connect(highlight)
@@ -291,7 +308,9 @@ func _pause_page() -> void:
     _heading("paused")
     _action(menu_stack,"resume","Esc",func():session.resume_game(),true)
     if session.demo!=null:_action(menu_stack,"demo_restart","R",func():session.start_demo())
-    else:_action(menu_stack,"reset_training" if session.practice else "restart","F5" if session.practice else "R",func():session.reset_training() if session.practice else session.start_match(false))
+    else:_action(menu_stack,"reset_training" if session.practice else "restart","F5" if session.practice else "R",func():
+        if session.practice:session.reset_training()
+        else:session.start_match(false))
     if session.practice and session.demo==null:_action(menu_stack,"drill","F8",func():session.prime_pressure_drill())
     _action(menu_stack,"settings","F1",func():open_page("settings"))
     _action(menu_stack,"controls","H",func():open_page("help"))
@@ -303,7 +322,9 @@ func _result_page() -> void:
     menu_stack.add_child(_label("%d  —  %d"%[session.sim.wins[0],session.sim.wins[1]],48,Tokens.GOLD,true))
     _caption("wins")
     var complete: bool=session.sim.phase=="match_over"
-    _action(menu_stack,"rematch" if complete else "next_round","Enter",func():session.start_match(session.practice) if complete else session.advance_round(),true)
+    _action(menu_stack,"rematch" if complete else "next_round","Enter",func():
+        if complete:session.start_match(session.practice)
+        else:session.advance_round(),true)
     _action(menu_stack,"main_menu","",func():session.return_to_title())
 
 func open_page(page: String) -> void:
@@ -387,6 +408,9 @@ func _settings_page() -> void:
     _toggle("reduced",session.reduced_effects,func(value:bool):
         session.reduced_effects=value
         session.save_options())
+    _toggle("retro_pixels",session.retro_pixels,func(value:bool):
+        session.retro_pixels=value
+        session.save_options())
     _toggle("scene_edges",session.ink_pass.visible,func(value:bool):
         session.ink_pass.visible=value
         session.save_options())
@@ -401,7 +425,11 @@ func _roster_page() -> void:
     for entry in preload("res://scripts/combat/fighter_roster.gd").ENTRIES:labels.append(entry.label)
     _choice("player_character",labels,session.character_choices[0],func(index:int):session.set_character(0,index))
     _choice("rival_character",labels,session.character_choices[1],func(index:int):session.set_character(1,index))
-    _caption("roster_hint")
+    for side in 2:
+        var entry:Dictionary=session.FighterVisual.Roster.entry(session.character_choices[side])
+        menu_stack.add_child(_label(tr_text("you" if side==0 else "rival")+" · "+tr_text(entry.trait),14,Tokens.LIME))
+        var profile:Dictionary=session.Simulation.Profiles.profile(session.character_choices[side])
+        menu_stack.add_child(_label("L · "+tr_text(profile.special_name)+" / W+L · "+tr_text(profile.overdrive_name),12,PAPER))
     _action(menu_stack,"fight","Enter",func():session.start_match(false),true)
 
 func _help_page() -> void:
@@ -419,6 +447,7 @@ func _help_page() -> void:
 func _process(delta: float) -> void:
     copy.language=session.language
     if session.screen not in ["pause","help"]:notice_time=maxf(0,notice_time-delta)
+    if session.screen=="play":skill_time=maxf(0,skill_time-delta)
     for i in 2:
         var hp: float=session.sim.fighters[i].health
         if hp<last_health[i]:health_delay[i]=.18
@@ -482,10 +511,11 @@ func _draw() -> void:
         if menu_page not in ["main","roster"]:
             _plate(Vector2.ZERO,Vector2(1280,720),Color(Tokens.NIGHT,.62))
             return
-        draw_colored_polygon(PackedVector2Array([Vector2.ZERO,Vector2(540,0),Vector2(592,720),Vector2(0,720)]),Color(Tokens.NIGHT,.94))
-        _text(Vector2(66,100),"AFTERHOURS",57,Tokens.TEAL,true)
-        _text(Vector2(66,145),tr_text("subtitle"),29)
-        if menu_page!="roster":_text(Vector2(66,188),tr_text("intro"),15,Tokens.MUTED)
+        draw_colored_polygon(PackedVector2Array([Vector2.ZERO,Vector2(540,0),Vector2(592,720),Vector2(0,720)]),Color(Tokens.NIGHT,.91))
+        for radius in [170,225,280]:draw_arc(Vector2(45,350),radius,-1.3,1.35,32,Color(Tokens.GOLD,.24),5)
+        draw_texture_rect(Tokens.LOGO,Rect2(26,0,520,158),false)
+        _text(Vector2(66,182),tr_text("subtitle"),23,Tokens.LIME)
+        if menu_page!="roster":_text(Vector2(66,211),tr_text("intro"),15,Tokens.MUTED)
         _text(Vector2(66,694),tr_text("local")+"  /  ↑↓  Enter",12,Tokens.MUTED)
         _text(Vector2(940,686),tr_text("stage"),18,PAPER)
         return
@@ -497,8 +527,9 @@ func _draw() -> void:
     if session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
     _health(34,session.sim.fighters[0],Tokens.TEAL,false,0)
     _health(772,session.sim.fighters[1],Tokens.CORAL,true,1)
-    _plate(Vector2(604,16),Vector2(72,62),INK)
-    _center(Vector2(640,61),"DEMO" if session.demo!=null else tr_text("free") if session.practice else "%02d"%ceili(session.sim.remaining),23 if session.practice else 43,Tokens.GOLD,not session.practice)
+    draw_texture_rect(Tokens.atlas("timer_dial"),Rect2(593,4,94,94),false)
+    draw_circle(Vector2(640,48),25,INK)
+    _center(Vector2(640,61),"∞" if session.demo!=null else tr_text("free") if session.practice else "%02d"%ceili(session.sim.remaining),23 if session.practice else 37,Tokens.LIME,not session.practice)
     _center(Vector2(640,94),"LIVE" if session.demo!=null else tr_text("round")+" %02d"%session.sim.round_number,11,Tokens.MUTED)
     for side in 2:
         for pip in 2:
@@ -512,6 +543,9 @@ func _draw() -> void:
         _text(Vector2(x,baseline),"%02d"%session.sim.combo_hits,56 if session.sim.arcade_enabled else 42,Tokens.GOLD,true)
         _text(Vector2(x+(78 if session.sim.arcade_enabled else 61),baseline-2),tr_text("hits"),16,PAPER)
         _text(Vector2(x,baseline+23),"%d "%session.sim.combo_damage+tr_text("damage"),13,Tokens.MUTED)
+    if skill_time>0 and skill_key!="" and session.screen=="play":
+        _plate(Vector2(460,154),Vector2(360,34),INK)
+        _center(Vector2(640,179),tr_text(skill_key),21,Tokens.LIME)
     if session.sim.phase=="ready" and session.screen=="play":
         _center(Vector2(640,280),tr_text("round")+" %d"%session.sim.round_number,40)
         _center(Vector2(640,316),"準備" if session.language=="zh" else "GET READY",22,Tokens.GOLD)
@@ -542,21 +576,23 @@ func _draw() -> void:
     if session.screen!="play" and not (session.screen=="result" and session.result_clock<session.FINISH_SECONDS and not session.reduced_effects):_plate(Vector2.ZERO,Vector2(1280,720),Color(Tokens.NIGHT,.6))
 
 func _health(x: float, fighter: Dictionary, tint: Color, reverse: bool, index: int) -> void:
-    _cut_bar(Vector2(x-10,10),Vector2(494,90),Color(INK,.94),reverse)
-    _text(Vector2(x+4,31),("AI 1" if index==0 else "AI 2") if session.demo!=null else tr_text("you" if index==0 else ("practice" if session.practice else "rival")),14,tint)
-    _cut_bar(Vector2(x,39),Vector2(470,23),Tokens.EDGE,reverse)
-    var hp: float=470*fighter.health/100.0
-    var lag: float=470*health_lag[index]/100.0
-    _cut_bar(Vector2(x+470-lag if reverse else x,39),Vector2(lag,23),PAPER,reverse)
-    _cut_bar(Vector2(x+470-hp if reverse else x,39),Vector2(hp,23),tint,reverse)
-    _text(Vector2(x+10,57),str(fighter.health),16,INK,true)
-    for part in 2:
-        var amount: float=clampf((fighter.meter-part*50)/50.0,0,1)
-        var bx:=x+part*238
-        _plate(Vector2(bx,70),Vector2(232,4),Tokens.EDGE)
-        _plate(Vector2(bx,70),Vector2(232*amount,4),Tokens.GOLD)
-    _text(Vector2(x,92),"L "+tr_text("special") if fighter.meter>=50 else tr_text("energy")+" %d"%fighter.meter,11,Tokens.GOLD if fighter.meter>=50 else Tokens.MUTED)
-    _text(Vector2(x+340,92),tr_text("guard")+" %d"%fighter.guard,11,Tokens.MUTED)
+    var fighter_tag: String=("AI 1" if index==0 else "AI 2") if session.demo!=null else tr_text("you" if index==0 else ("practice" if session.practice else "rival"))
+    _text(Vector2(x+8,28),fighter_tag+" / "+tr_text(session.FighterVisual.Roster.entry(session.character_choices[index]).label),13,PAPER)
+    draw_texture_rect(Tokens.atlas("health_frame"),Rect2(x-5,27,480,42),false)
+    _cut_bar(Vector2(x+6,36),Vector2(458,24),INK,reverse)
+    var hp: float=458*clampf(fighter.health/100.0,0,1)
+    var lag: float=458*clampf(health_lag[index]/100.0,0,1)
+    _cut_bar(Vector2(x+6+458-lag if reverse else x+6,40),Vector2(lag,16),PAPER,reverse)
+    _cut_bar(Vector2(x+6+458-hp if reverse else x+6,40),Vector2(hp,16),tint,reverse)
+    # Generated empty frame is a decoration; live bars and values remain native.
+    _text(Vector2(x+14,55),str(fighter.health),14,INK,true)
+    _plate(Vector2(x+6,72),Vector2(458,6),INK)
+    _plate(Vector2(x+6,72),Vector2(458*clampf(fighter.meter/100.0,0,1),6),Tokens.LIME)
+    for threshold in [50,75]:
+        var tx: float=x+6+458*threshold/100.0
+        draw_line(Vector2(tx,69),Vector2(tx,81),PAPER,2)
+    _text(Vector2(x+6,96),"L 50 / W+L 75   ·   %d"%fighter.meter,11,Tokens.LIME)
+    _text(Vector2(x+345,96),tr_text("guard")+" %d"%fighter.guard,11,PAPER)
 
 func _pressure_hud() -> void:
     var exchange=session.sim.exchange
@@ -619,8 +655,8 @@ func _air_hud() -> void:
         var caption: String=tr_text("air_defense_"+phase)
         if phase=="attack":
             var a: Dictionary=session.sim.fighters[1]
-            var ready: bool=a.state=="attack" and a.frame>=session.Simulation.MOVES.air_finisher.startup-session.sim.air_counter.PARRY_WINDOW and a.frame<session.Simulation.MOVES.air_finisher.startup
-            caption=tr_text("air_parry_now" if ready else "air_wait_windup")
+            var parry_ready: bool=a.state=="attack" and a.frame>=session.Simulation.MOVES.air_finisher.startup-session.sim.air_counter.PARRY_WINDOW and a.frame<session.Simulation.MOVES.air_finisher.startup
+            caption=tr_text("air_parry_now" if parry_ready else "air_wait_windup")
         _center(Vector2(640,600),caption,14,PAPER)
         return
     var f: Dictionary=session.sim.fighters[0]

@@ -11,6 +11,9 @@ var music: AudioStreamPlayer
 var context := "title"
 var duck_time := 0.0
 const OPEN := "res://audio/open/"
+const BERLIN := "res://audio/user-tracks/berlin.ogg"
+const GROOVE := "res://audio/user-tracks/groove_district.ogg"
+var current_track := ""
 const WEV := "res://audio/wev/family_ties_game.ogg"
 var music_credit := ""
 var music_trim_db := 0.0
@@ -40,7 +43,8 @@ func _ready() -> void:
         voices.append(voice)
     music = AudioStreamPlayer.new()
     music.name = "BackgroundMusic"
-    music.stream = music_stream(WEV)
+    current_track=BERLIN
+    music.stream = music_stream(current_track)
     music.volume_db = -19.0+music_trim_db
     add_child(music)
 
@@ -50,8 +54,8 @@ func music_stream(path: String) -> AudioStreamOggVorbis:
     if source==null:
         selected=OPEN+"level1.ogg"
         source=load(selected) as AudioStreamOggVorbis
-    music_trim_db=7.0 if selected==WEV else 0.0
-    music_credit="wev / family ties (wev edit)" if selected==WEV else "Juhani Junkala / Level 1 (CC0)"
+    music_trim_db=0.0
+    music_credit="Berlin" if selected==BERLIN else ("Starjunk 95 / Groove District" if selected==GROOVE else "Juhani Junkala / Level 1 (CC0)")
     var track: AudioStreamOggVorbis=source.duplicate(true)
     track.loop=true
     return track
@@ -59,6 +63,12 @@ func music_stream(path: String) -> AudioStreamOggVorbis:
 func _process(delta: float) -> void:
     duck_time = maxf(0.0,duck_time-delta)
     if not is_instance_valid(music): return
+    # Keep a fight track across pause/settings; switch only when entering title/play.
+    var desired:String=GROOVE if context=="play" else (BERLIN if context=="title" else current_track)
+    if desired!=current_track:
+        music.stop()
+        current_track=desired
+        music.stream=music_stream(current_track)
     var pause_requested := muted or music_muted or music_level<=0 or context in ["pause","help"]
     # An idle AudioStreamPlayer does not retain stream_paused: use the requested
     # state when deciding to start, then pause/resume an existing playback.

@@ -19,6 +19,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES = [
+    ("verify_jsr_runtime", "jsr-runtime/checks.json", "native"),
     ("verify_cannon_input", "charged-cannon/input.json", "native"),
     ("verify_charged_cannon", "charged-cannon/rules.json", "headless"),
     ("verify_combat_rhythm", "combat-rhythm/verification.json", "native"),
@@ -29,7 +30,7 @@ CASES = [
     ("verify_friendly_defense", "friendly-defense/rules.json", "headless"),
     ("verify_demo", "rush-rework/live-rules.json", "headless"),
     ("verify_demo_input", "rush-rework/input.json", "native"),
-    ("verify_wev_audio", "wev-integration/runtime.json", "native"),
+    ("verify_music_audio", "jsr-runtime/music-runtime.json", "native"),
     ("verify_air_counter", "air-reversal/rules.json", "headless"),
     ("verify_air_counter_input", "air-reversal/input.json", "native"),
     ("verify_aerial_street", "aerial-street/rules.json", "headless"),

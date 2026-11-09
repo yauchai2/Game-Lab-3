@@ -1,5 +1,13 @@
 # Afterhours — interface design
 
+## Current JSR implementation — 2026-11-09
+
+The approved original-JSR / Hong Kong underground-radio direction is now live. Generated AFTERHOURS lettering, sticker Buttons, a compact radio clock and empty health frame decorate native live controls; no concept screenshot is used as an interactive background. Native OptionButton and CheckButton surfaces stay quiet and readable. Labels remain upright, bundled, Traditional Chinese / English, with explicit focus and outlined shortcut text. All title, roster, settings, pause and result screens use the same theme owner.
+
+World-only postprocessing samples a 640×360 nearest grid; UI and font rendering remain at the logical 1280×720. This is deliberate visual pixelation, not an internal-resolution performance claim. A persisted Retro low resolution toggle is available. F2 retains its effects/pacing purpose and does not change this aesthetic preference.
+
+Four profiles now differ in speed, actual move data, energy gain and procedural silhouettes. Fighter 4 scale is 1.98 vs 2.1 (~94%); this overrides the historical 1.4 value below. Animation selection expands from 14 to 19 licensed CC0 clips; distinct kicks/hammer/drive are authored overlays, not four newly downloaded full movesets. Berlin is the menu song; Groove District is the fight/training/Demo song. See [JSR_RUNTIME.md](docs/JSR_RUNTIME.md).
+
 ## Charged cannon — 2026-11-09
 
 [CHARGED_CANNON.md](docs/CHARGED_CANNON.md) adds a 75-energy W+L commitment with a longer windup, double-palm release and muzzle-aligned beam after real contact. Normal L remains. Cannon, meteor and counter use low, downward and reverse-orbit camera treatments respectively; launch has its own coiled/uppercut pose. These are shared moves and procedural poses, not character-specific animation assets.
@@ -24,7 +32,7 @@ This is a native Godot 4 game, with a playable Hong Kong street as its setting. 
 
 ## North star
 
-A street fight should remain visible. Menus feel like the printed match card at the edge of the crossing; fighting UI is an instrument panel, not a document. The world supplies the artwork. The distinctive device is the clipped end of bars and panels, echoing road markings and the sharp geometry of the scene.
+A street fight should remain visible. Menus feel like underground-radio flyers at the edge of the crossing; fighting UI is an instrument panel, not a document. The world supplies the artwork. The distinctive device is the clipped end of bars and panels, echoing road markings and the sharp geometry of the scene.
 
 ## Runtime owner
 
@@ -32,14 +40,15 @@ A street fight should remain visible. Menus feel like the printed match card at 
 
 | Token | Hex | Role |
 | --- | --- | --- |
-| NIGHT | #0a2028 | Menu dimmer and deepest surfaces |
-| INK | #102c34 | Flat plates, text on light controls |
-| PAPER | #f4ead8 | Main text and primary actions |
-| MUTED | #aec3c5 | Supporting text |
-| TEAL | #57dfcc | Player, choice commitment, hover |
-| CORAL | #ff785d | Rival, high-pressure state |
-| GOLD | #eebd4c | Energy, decision timer, match outcomes |
-| EDGE | #48636a | Boundaries and empty meters |
+| NIGHT | #160c23 | Menu dimmer and deepest surfaces |
+| INK | #20102f | Flat plates, text on light controls |
+| PAPER | #fff1d0 | Main text and primary actions |
+| MUTED | #d1becb | Supporting text |
+| TEAL | #4acfe0 | Player, choice commitment, hover |
+| CORAL | #ff765e | Rival, high-pressure state |
+| GOLD | #ff6a00 | Energy, decision timer, match outcomes |
+| EDGE | #62536e | Boundaries and empty meters |
+| LIME | #d7f400 | Selection, live energy and signature accents |
 
 Body: bundled OFL Noto Sans CJK HK subset, derivative family Afterhours UI HK. Display: bundled DejaVu Sans Condensed Bold for the English brand, clock and large numerals. Both have local license/source records, with Chinese drawn through the CJK face. No platform-dependent font selection for the combat UI.
 

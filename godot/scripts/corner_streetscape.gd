@@ -259,13 +259,13 @@ func _neighbors() -> void:
         _box("solid",Vector3(side*28.0,.10,3.83),Vector3(24.0,.20,.10),Color("c0bea9"))
 
 func _scooter(at: Vector3,yaw: float,tint: Color,index: int) -> void:
-    var basis:=Basis(Vector3.UP,yaw)
+    var scooter_basis:=Basis(Vector3.UP,yaw)
     for z in [-.59,.59]:
-        _emit("solid","cylinder",at+basis*Vector3(0,.28,z),Vector3(.50,.17,.50),Color("293b40"),Vector3(0,yaw,PI*.5))
+        _emit("solid","cylinder",at+scooter_basis*Vector3(0,.28,z),Vector3(.50,.17,.50),Color("293b40"),Vector3(0,yaw,PI*.5))
     for spec in [[Vector3(0,.57,0),Vector3(.43,.38,1.28),tint],[Vector3(0,.91,.22),Vector3(.45,.14,.74),INK],[Vector3(0,.84,-.51),Vector3(.43,.72,.20),tint],[Vector3(0,1.18,-.65),Vector3(.56,.055,.07),INK]]:
-        _box("solid",at+basis*spec[0],spec[1],spec[2],Vector3(0,yaw,0))
-    _bar(at+basis*Vector3(0,.36,-.55),at+basis*Vector3(0,1.16,-.62),.055)
-    _emit("bulb","sphere",at+basis*Vector3(0,.96,-.64),Vector3(.21,.20,.10),IVORY,Vector3(0,yaw,0))
+        _box("solid",at+scooter_basis*spec[0],spec[1],spec[2],Vector3(0,yaw,0))
+    _bar(at+scooter_basis*Vector3(0,.36,-.55),at+scooter_basis*Vector3(0,1.16,-.62),.055)
+    _emit("bulb","sphere",at+scooter_basis*Vector3(0,.96,-.64),Vector3(.21,.20,.10),IVORY,Vector3(0,yaw,0))
     _collision("ParkedScooter_"+str(index),at+Vector3(0,.65,0),Vector3(.60,1.30,1.55),yaw)
 
 func _street_objects() -> void:

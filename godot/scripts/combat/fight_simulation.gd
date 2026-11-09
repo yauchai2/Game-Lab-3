@@ -7,6 +7,8 @@ const STEP := 1.0 / 60.0
 const EDGE := 8.2
 const MAX_HEALTH := 100
 const ROUND_SECONDS := 75.0
+const Profiles=preload("res://scripts/combat/fighter_profiles.gd")
+var character_choices := [0,0]
 const AirMotion=preload("res://scripts/combat/aerial_motion.gd")
 var air_motion:=AirMotion.new()
 var air_counter=preload("res://scripts/combat/air_counter.gd").new()
@@ -77,7 +79,7 @@ func reset_round() -> void:
     fighters.clear()
     for i in 2:
         fighters.append({"x": -3.0 if i == 0 else 3.0, "y": 0.0, "vx": 0.0, "vy": 0.0,
-            "air":AirMotion.fresh(), "face": 1 if i == 0 else -1, "health": MAX_HEALTH, "meter": 0.0, "guard": 100.0,
+            "character":character_choices[i],"air":AirMotion.fresh(), "face": 1 if i == 0 else -1, "health": MAX_HEALTH, "meter": 0.0, "guard": 100.0,
             "state": "idle", "move": "", "frame": 0, "stun": 0, "connected": false,
             "buffer": "", "buffer_ttl": 0, "chain": 0, "chain_ttl": 0, "dash_cd": 0,
             "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "entry_parry_window":0, "counter_window":0, "counter_attack":false, "break_lock":0, "impact_load":0.0, "jump_buffer":0, "juggle":0, "hit_confirmed":false,"throw_cd":0,"tech_window":0,"wall_bounces":0,"wall_tech_window":0,"wall_tech_buffer":0})
@@ -137,7 +139,7 @@ func ai_command() -> Dictionary:
     if a.wall_tech_window>0 and a.wall_tech_window<=(6 if level==1 else 9) and a.meter>=20 and level>0:command["dash"]=true
     if b.y > 1.0 and ai_tick % [72,48,36][level] == 0:
         command["jump"] = true
-    if is_aerial() and level>0 and not a.air.parry_used and b.move in ["air_finisher","meteor"] and b.state=="attack" and b.frame==MOVES[b.move].startup-5 and (ai_tick+round_number)%3<level:
+    if is_aerial() and level>0 and not a.air.parry_used and b.move in ["air_finisher","meteor"] and b.state=="attack" and b.frame==move_for(b,b.move).startup-5 and (ai_tick+round_number)%3<level:
         command["guard_pressed"]=true
     return command
 
@@ -303,7 +305,7 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
             f.state = "idle"
     elif f.state == "attack":
         f.frame += 1
-        var move: Dictionary = MOVES[f.move]
+        var move: Dictionary = move_for(f,f.move)
         var end: int = move.startup + move.active + (maxi(8,roundi(move.recovery*.55)) if arcade_enabled else move.recovery)
         # Confirm a grounded launcher, then buffer Space during its hitstop to chase.
         if f.hit_confirmed and f.move=="launcher" and f.jump_buffer>0 and f.y<=0.01:
@@ -334,11 +336,11 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
             f.frame = 0
             f.invuln = 7
             f.dash_cd = 42
-            f.vx = (signf(command.get("axis", 0.0)) if absf(command.get("axis", 0.0)) > 0.1 else float(f.face)) * 14.0
+            f.vx = (signf(command.get("axis", 0.0)) if absf(command.get("axis", 0.0)) > 0.1 else float(f.face)) * 14.0 * Profiles.profile(f.get("character",0)).speed
             events.append({"kind": "dash", "target": i})
         else:
             f.guarding = (command.get("guard", false) or (f.entry_parry_window>0 and f.parry_allowed and f.parry_cd==0 and f.jump_buffer<=0)) and f.y <= 0.01 and f.guard > 0
-            f.vx = float(command.get("axis", 0.0)) * (1.6 if f.guarding else (8.0 if arcade_enabled else 5.8))
+            f.vx = float(command.get("axis", 0.0)) * (1.6 if f.guarding else (8.0 if arcade_enabled else 5.8))*Profiles.profile(f.get("character",0)).speed
             if f.jump_buffer>0 and f.y <= 0.01 and not f.guarding:
                 if is_aerial():air_motion.request_jump(f)
                 else:
@@ -419,6 +421,7 @@ func _start_attack(i: int, requested: String) -> void:
     f.state = "attack"
     f.guarding=false
     f.move = name
+    f["move_data"]=move_for(f,name)
     f.frame = 0
     f.connected = false
     f.hit_confirmed = false
@@ -442,7 +445,7 @@ func _can_hit(i: int) -> bool:
     var b: Dictionary = fighters[1-i]
     if a.state != "attack" or a.connected or b.invuln > 0 or (b.y>0.1 and b.juggle>=3):
         return false
-    var m: Dictionary = MOVES[a.move]
+    var m: Dictionary = move_for(a,a.move)
     if a.move=="grab" and (a.y>.01 or b.y>.01 or b.state in ["stun","blockstun"]):return false
     if a.frame < m.startup or a.frame >= m.startup + m.active:
         return false
@@ -477,7 +480,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     var a: Dictionary = fighters[i]
     var b: Dictionary = fighters[1-i]
     var move_name: String = a.move
-    var m: Dictionary = MOVES[move_name]
+    var m: Dictionary = move_for(a,move_name)
     if move_name=="grab" and (a.connected or a.state!="attack"):return
     a.connected = true
     if is_aerial() and move_name in ["air_finisher","meteor"] and b.air.parry_window>0 and b.y>.1 and b.state in ["idle","stun"]:
@@ -557,7 +560,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
         combo_owner = i
         combo_hits = 0
         combo_damage = 0
-    var counter: bool = move_name!="grab" and b.state=="attack" and b.frame<MOVES[b.move].startup
+    var counter: bool = move_name!="grab" and b.state=="attack" and b.frame<move_for(b,b.move).startup
     combo_hits += 1
     var damage: int = maxi(3, roundi(m.damage * maxf(0.45, 1.0 - (combo_hits - 1) * 0.12)))
     if counter: damage = roundi(damage*1.15)
@@ -571,7 +574,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
         b.air.fast=false
         if b.air.combo_left==0 and (b.y>.1 or m.lift>0):b.air.combo_left=AirMotion.COMBO_TICKS
         if move_name=="launcher":a.air.chase_window=30
-    var armor:bool=arcade_enabled and b.state=="attack" and b.move in ["special","overdrive"] and b.frame<MOVES[b.move].startup and move_name!="grab"
+    var armor:bool=arcade_enabled and b.state=="attack" and b.move in ["special","overdrive"] and b.frame<move_for(b,b.move).startup and move_name!="grab"
     b.state = "attack" if armor else "stun"
     b.stun = 0 if armor else m.stun
     b.vx = 0.0 if armor else a.face * m.push
@@ -594,7 +597,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     b.buffer = ""
     b.buffer_ttl = 0
     b.chain = 0
-    a.meter = minf(100.0, a.meter + damage * 1.1)
+    a.meter = minf(100.0, a.meter + damage * 1.1 * Profiles.profile(a.get("character",0)).gain)
     b.meter = minf(100.0, b.meter + damage * 0.5)
     a.chain = (a.chain + 1) % 3 if move_name in ["jab", "cross", "finisher","air_jab","air_kick","air_finisher"] else 0
     a.chain_ttl = 45
@@ -855,7 +858,7 @@ func can_air_parry(side: int) -> bool:
     var a: Dictionary=fighters[1-side]
     if f.air.parry_used or f.y<=.1 or a.y<=.1 or f.invuln>0 or f.state not in ["idle","stun"]:return false
     if a.state!="attack" or a.move not in ["air_finisher","meteor"]:return false
-    return a.frame<MOVES[a.move].startup and absf(a.x-f.x)<=MOVES[a.move].reach+.3 and absf(a.y-f.y)<=1.65 and (f.x-a.x)*a.face>0
+    return a.frame<move_for(a,a.move).startup and absf(a.x-f.x)<=move_for(a,a.move).reach+.3 and absf(a.y-f.y)<=1.65 and (f.x-a.x)*a.face>0
 
 func _air_parry_inputs(commands: Array) -> void:
     if hitstop>0:return
@@ -935,3 +938,6 @@ func _end_air_counter(why: String) -> void:
         if f.air.phase in ["parry","recoil"]:f.air.phase="fall"
     if is_air_lesson():air_lesson_stage="review"
     events.append({"kind":"air_counter_end","reason":why,"owner":air_counter.owner})
+
+func move_for(fighter:Dictionary,name:String) -> Dictionary:
+    return Profiles.move(MOVES[name],fighter.get("character",0),name)

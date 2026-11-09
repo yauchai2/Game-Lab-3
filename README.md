@@ -1,5 +1,10 @@
 # Afterhours / Game-Lab-3
 
+## JSR 遊戲內 UI 已替換
+
+[本輪更新](docs/JSR_RUNTIME.md)：JSR 原生介面、四人不同招式／特性、護目鏡94%身高、生成攻擊／爆發圖、新音樂及可關閉低解像畫面。只更新來源分支；公開 Web 保持舊版。
+
+
 最新 [Jet Set Radio UI 研究與圖片](docs/JSR_UI_ART_DIRECTION.zh-TW.md)：已研究原版手冊／官方 PC 截圖，生成主選單、精簡 HUD、四角色頁，以及透明 Logo／8 框架／16 圖示。[圖片總覽](references/ui-jsr-2026-11-09/README.md)／[素材 ZIP](references/ui-jsr-2026-11-09/afterhours-jsr-ui-v001.zip)。本輪為設計與素材，尚未替換遊戲 UI，公開 Web 不更新。
 
 

@@ -10,8 +10,8 @@ func frames(n:=2) -> void:
     for i in n:await process_frame
 func shot(name:String) -> void:
     await process_frame;await RenderingServer.frame_post_draw
-    DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://../docs/evidence/charged-cannon/roster-captures"))
-    root.get_texture().get_image().save_png("res://../docs/evidence/charged-cannon/roster-captures/"+name+".png")
+    DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://../docs/evidence/jsr-runtime/roster-captures"))
+    root.get_texture().get_image().save_png("res://../docs/evidence/jsr-runtime/roster-captures/"+name+".png")
 func step() -> void:scene._physics_process(1.0/60);scene._process(1.0/60);scene.hud._process(1.0/60)
 func settle_preview() -> void:
     for i in 90:scene._process(1.0/60);scene.hud._process(1.0/60)
@@ -28,7 +28,7 @@ func run() -> void:
         var pose:Dictionary=scene.sim.fighters[0].duplicate(true)
         pose.merge({"air_enabled":true,"rush_visual":true,"state":"attack","move":"meteor","frame":14,"y":1.5},true)
         visual.present(pose,1.0/60,false,false)
-        check("character %d deforms and enlarges both active hands"%selection,visual.oversized_bones.size()==2 and visual.motions.air_pose_name!="")
+        check("character %d deforms and enlarges its active limbs"%selection,visual.oversized_bones.size()==(1 if selection==1 else 2) and visual.motions.air_pose_name!="")
         var finite:=true
         for bone in visual.skeleton.get_bone_count():
             var transform:Transform3D=visual.skeleton.get_bone_global_pose(bone)
@@ -36,7 +36,9 @@ func run() -> void:
         check("character %d bone transforms remain finite"%selection,finite)
         pose.rush_visual=false;visual.present(pose,1.0/60,false,true)
         check("character %d restores active limb scales"%selection,visual.oversized_bones.is_empty() and visual.skeleton.get_bone_pose_scale(visual.skeleton.find_bone("mixamorig_LeftHand")).is_equal_approx(Vector3.ONE))
-    check("swapping source models leaves combat data untouched",scene.sim.fighters[0]==before)
+    var after:Dictionary=scene.sim.fighters[0].duplicate(true)
+    before.erase("character");after.erase("character")
+    check("swapping profiles leaves health position and resources untouched",after==before)
     scene.set_character(0,1);scene.set_character(1,2)
     scene.hud.open_page("roster");scene._process(.1);await frames()
     var selectors:Array=[]
@@ -45,6 +47,7 @@ func run() -> void:
     selectors[0].select(3);selectors[0].item_selected.emit(3);await frames();settle_preview()
     check("native selector callback updates the live model",scene.character_choices[0]==3 and scene.fighters[0].character_index==3)
     await shot("01_fighter_4_vs_3")
+    selectors=hud_selectors()
     selectors[0].select(1);selectors[0].item_selected.emit(1);await frames();settle_preview()
     await shot("02_fighter_1_vs_3")
     var fit:=true
@@ -54,7 +57,7 @@ func run() -> void:
             root.size=viewport;scene.hud.rebuild_menu();await frames(3)
             for control in scene.hud.menu_stack.find_children("*","OptionButton",true,false):
                 var rect:Rect2=control.get_global_rect()
-                fit=fit and rect.position.x>=0 and rect.end.x<=root.size.x+1 and rect.end.y<=root.size.y+1
+                fit=fit and rect.position.x>=0 and rect.end.x<=root.get_visible_rect().size.x+1 and rect.end.y<=root.get_visible_rect().size.y+1
     check("both locales and three viewport sizes contain the roster controls",fit)
     root.size=Vector2i(1280,720);scene.language="zh";scene.hud.close_page();await frames()
     var all_chains:=true
@@ -70,6 +73,7 @@ func run() -> void:
             for event in scene.sim.events:
                 if event.kind=="hit" and event.attacker==0:seen[event.move]=true
             if scene.screen=="result":break
+        print("PROFILE_CHAIN ",selection," ",seen," screen=",scene.screen," winner=",scene.sim.winner," hp=",[scene.sim.fighters[0].health,scene.sim.fighters[1].health])
         all_chains=all_chains and seen.has("meteor") and scene.screen=="result" and scene.sim.winner==0
         if selection==3:await shot("03_new_fighter_ko")
         var release:=InputEventKey.new();release.keycode=KEY_J;release.physical_keycode=KEY_J;release.pressed=false;Input.parse_input_event(release)
@@ -99,3 +103,6 @@ func run() -> void:
     var passed:=checks.filter(func(c:Dictionary)->bool:return c.passed).size()
     FileAccess.open("res://../docs/evidence/character-roster/native.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"scope":"Native Godot model, retargeting, presentation and UI callbacks; fixed-step injected input, software GL, not human playtest."},"  "))
     print("ROSTER_CHECKS ",passed,"/",checks.size());call_deferred("quit",0 if passed==checks.size() else 1)
+
+func hud_selectors() -> Array:
+    return scene.hud.menu_stack.find_children("*","OptionButton",true,false)

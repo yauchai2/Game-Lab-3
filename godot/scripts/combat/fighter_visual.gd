@@ -57,7 +57,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
     var shake := 0.0 if reduced or not stopped else 0.025
     var lunge := 0.0
     if f.state=="attack":
-        var move: Dictionary = preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
+        var move: Dictionary = f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
         var amount := clampf(float(f.frame)/move.startup,0,1)
         if f.frame>move.startup+move.active:
             amount = 1.0-clampf(float(f.frame-move.startup-move.active)/move.recovery,0,1)
@@ -74,7 +74,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         if stopped:stretch=Vector3(1.06,.94,1.06)
         elif f.state=="dash":stretch=Vector3(.91,.92,1.20)
         elif f.state=="attack" and f.move in ["heavy","special","overdrive","finisher"]:
-            var move: Dictionary=preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
+            var move: Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
             var anticip: float=clampf(float(f.frame)/move.startup,0,1)
             stretch=Vector3(1.0+anticip*.05,1.0-anticip*.07,1.0+anticip*.11)
     var rally_phase: String=f.get("rally_phase","")
@@ -99,9 +99,11 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
     if skeleton:
         motions.present(f,delta,stopped)
         if f.get("rush_visual",false) and f.state=="attack":
-            var move: Dictionary=preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
+            var move: Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
             if f.frame>=move.startup-1 and f.frame<move.startup+move.active:
                 var limbs:Array=["LeftHand","RightHand"] if f.move in ["meteor","overdrive"] else ["RightFoot" if f.move in ["air_kick","air_counter"] else ("LeftHand" if f.move in ["jab","air_jab"] else "RightHand")]
+                if character_index==1:
+                    limbs=["LeftFoot" if f.move in ["jab","special"] else "RightFoot"]
                 for limb in limbs:
                     var index:=skeleton.find_bone("mixamorig_"+limb)
                     if index>=0:

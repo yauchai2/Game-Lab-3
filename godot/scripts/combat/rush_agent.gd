@@ -18,7 +18,7 @@ func choose(s: RefCounted, side: int, clock: int, level:=2, showcase:=false) -> 
             command["air_choice"]="escape" if (floori(clock/7.0)+side)%7==0 else "kick"
         elif s.air_counter.owner!=side and s.air_counter.phase=="windup" and s.air_counter.age==5 and (clock+side)%3==0:command["dash"]=true;command["axis"]=-f.face
         return command
-    if s.can_air_parry(side) and other.frame==s.MOVES[other.move].startup-4 and (clock+side*7)%4<(2 if showcase else level):command["guard_pressed"]=true
+    if s.can_air_parry(side) and other.frame==s.move_for(other,other.move).startup-4 and (clock+side*7)%4<(2 if showcase else level):command["guard_pressed"]=true
     if f.state=="stun":
         if f.wall_tech_window>0:command["dash"]=true
         return command
@@ -34,7 +34,7 @@ func choose(s: RefCounted, side: int, clock: int, level:=2, showcase:=false) -> 
         elif f.air.phase=="fall":command["down_pressed"]=true
         return command
     if other.move=="grab" and other.state=="attack" and other.frame==7 and distance<1.4:command["dash"]=true;command["axis"]=-f.face;return command
-    if (showcase or level>=2 or other.move not in ["special","overdrive"]) and other.state=="attack" and other.frame==s.MOVES[other.move].startup-4 and distance<2.4 and (clock+side*13)%7<(2 if showcase else level):
+    if (showcase or level>=2 or other.move not in ["special","overdrive"]) and other.state=="attack" and other.frame==s.move_for(other,other.move).startup-4 and distance<2.4 and (clock+side*13)%7<(2 if showcase else level):
         command["guard"]=true;command["guard_pressed"]=true;command["axis"]=0.0
         return command
     if f.counter_window>0:command["rush"]=true;return command

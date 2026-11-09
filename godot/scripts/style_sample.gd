@@ -42,15 +42,15 @@ func _ready() -> void:
     var sun: DirectionalLight3D = street.get_node("Sun")
     sun.light_energy = .62
     sun.light_color = Color("ffe4c4")
-    # Bring the landmark sign slightly into the street and warm its face;
+    # Bring the landmark sign_mesh slightly into the street and warm its face;
     # the standalone S1 whitebox remains untouched.
     for title in ["VerticalSignFrame","VerticalSignFace"]:
-        var sign: MeshInstance3D = street.get_node("Landmarks/"+title)
-        sign.position.x += .8
-        var original: BaseMaterial3D = sign.get_active_material(0)
+        var sign_mesh: MeshInstance3D = street.get_node("Landmarks/"+title)
+        sign_mesh.position.x += .8
+        var original: BaseMaterial3D = sign_mesh.get_active_material(0)
         var styled: BaseMaterial3D = original.duplicate(true)
         styled.albedo_color = Color("dbab3c") if title == "VerticalSignFrame" else Color("59402d")
-        sign.material_override = styled
+        sign_mesh.material_override = styled
     two_sided_shader = Shader.new()
     two_sided_shader.code = ToonShader.code.replace("specular_disabled;", "specular_disabled, cull_disabled;")
     # Thin aircraft details produced shadow acne on the white fuselage. The plane
@@ -131,7 +131,8 @@ func _flush_detail_groups() -> void:
         var transforms: Array = group.transforms
         var batch := MultiMesh.new()
         batch.transform_format = MultiMesh.TRANSFORM_3D
-        batch.mesh = box if group.kind == "box" else sphere
+        if group.kind == "box":batch.mesh=box
+        else:batch.mesh=sphere
         batch.instance_count = transforms.size()
         for i in transforms.size():
             batch.set_instance_transform(i,transforms[i])
