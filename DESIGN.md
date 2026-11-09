@@ -50,3 +50,7 @@ The practice-only Air lab (F11) is specified in [docs/AERIAL_STREET.md](docs/AER
 ## Air reversal iteration
 
 The aerial lab now includes a read-first air counter dojo: F11 → F8 → K, then Shift and J/E. See [AIR_REVERSAL](docs/AIR_REVERSAL.md). The 18-tick hold retains world positions; a 10-tick kick windup permits evasion.
+
+## Two-agent demo
+
+F12 starts the two-agent showcase: 23 labeled presets plus real AI command decisions, free exchange and a knockout. Visible scripted-demo labeling distinguishes coverage from competitive AI. The existing title footer row now pairs Demo and Explore without increasing menu height.

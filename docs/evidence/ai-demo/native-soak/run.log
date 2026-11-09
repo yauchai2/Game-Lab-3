@@ -1,0 +1,6 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+AI_DEMO_NATIVE_SOAK {"completed":true,"elapsed_seconds":120.005,"event_counts":{"air_counter":1,"air_counter_choice":3,"air_counter_end":3,"air_counter_release":2,"air_counter_start":3,"air_counter_windup":2,"air_finisher":3,"air_jab":4,"air_kick":4,"air_land":26,"air_parry_attempt":3,"block":4,"chase_arrive":3,"clash_end":3,"clash_start":3,"cross":4,"dash":5,"fast_fall":2,"finisher":5,"grab":2,"ground_bounce":1,"guard_break":2,"heavy":10,"hit":43,"homing_chase":3,"jab":4,"jump":4,"ko":1,"land":11,"launcher":3,"meteor":1,"parry":3,"rally_contact":4,"rally_end":1,"rally_release":4,"rally_windup":4,"special":2,"swing":73,"throw_tech":2,"wall_bounce":1,"wall_tech":1},"input_events":2,"loops":1,"max_effects":9,"max_nodes":541,"max_orphans":0,"method":"real native Godot physics and viewport key events, combat_event signal observes every dispatched event; Dummy audio, software GL; no human/target GPU claim","resets":0}

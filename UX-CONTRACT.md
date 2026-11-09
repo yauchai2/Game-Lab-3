@@ -43,3 +43,7 @@ Air camera framing uses both players' vertical bounds and viewport aspect. The c
 ## Air reversal iteration
 
 Air counter dojo starts from F11 → F8. K begins/retries the read-first lesson; Shift arms a six-tick attempt costing 25 energy. During the 18-tick hold, J/E and native buttons submit the same first-choice lock. No choice defaults to escape. Pause freezes the hold; mode changes/retry clear pending choices and effects. See [AIR_REVERSAL](docs/AIR_REVERSAL.md).
+
+## Two-agent demo
+
+Demo uses F12 / native title entry. N advances, R restarts, Escape pauses, F12 exits. Three native transport buttons share those session actions. Gameplay keys and practice shortcuts cannot override either agent. Pause freezes the director, result advances after 2.5 seconds, mode changes clear effects/input, original partner preference survives. Existing F9 remains unchanged outside Demo.

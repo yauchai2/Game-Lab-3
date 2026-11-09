@@ -29,6 +29,7 @@ var air_begin: Button
 var air_parry: Button
 var air_choices: Array[Button]=[]
 var air_choice_skin:=[-1,-1]
+var demo_buttons: Array[Button]=[]
 var drill_start: Button
 var health_lag := [100.0,100.0]
 var last_health := [100.0,100.0]
@@ -53,6 +54,18 @@ func _ready() -> void:
         button.set_meta("ui_key","choice_"+choice)
         layout_root.add_child(button)
         choice_buttons.append(button)
+    for i in 3:
+        var button:=Button.new()
+        button.position=Vector2(350+i*198,611)
+        button.size=Vector2(184,36)
+        var action: int=i
+        button.pressed.connect(func():
+            if action==0:session.next_demo_chapter()
+            elif action==1:session.start_demo()
+            else:session.return_to_title()
+            button.release_focus())
+        layout_root.add_child(button)
+        demo_buttons.append(button)
     drill_start=Button.new()
     drill_start.position=Vector2(750,539)
     drill_start.size=Vector2(182,30)
@@ -257,20 +270,35 @@ func _title_page() -> void:
         button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
         button.add_theme_font_size_override("font_size",15)
         button.custom_minimum_size.y=38
-    var explore:=_action(menu_stack,"explore","F6",func():session.return_to_street())
+    var bottom:=HBoxContainer.new()
+    bottom.add_theme_constant_override("separation",8)
+    menu_stack.add_child(bottom)
+    var demo_button:=_action(bottom,"demo","F12",func():session.start_demo())
+    demo_button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+    demo_button.add_theme_font_size_override("font_size",15)
+    demo_button.custom_minimum_size.y=36
+    var explore:=_action(bottom,"explore","F6",func():session.return_to_street())
+    explore.size_flags_horizontal=Control.SIZE_EXPAND_FILL
     explore.add_theme_font_size_override("font_size",15)
     explore.custom_minimum_size.y=36
 
 func _pause_page() -> void:
     _heading("paused")
     _action(menu_stack,"resume","Esc",func():session.resume_game(),true)
-    _action(menu_stack,"reset_training" if session.practice else "restart","F5" if session.practice else "R",func():session.reset_training() if session.practice else session.start_match(false))
-    if session.practice:_action(menu_stack,"drill","F8",func():session.prime_pressure_drill())
+    if session.demo!=null:_action(menu_stack,"demo_restart","R",func():session.start_demo())
+    else:_action(menu_stack,"reset_training" if session.practice else "restart","F5" if session.practice else "R",func():session.reset_training() if session.practice else session.start_match(false))
+    if session.practice and session.demo==null:_action(menu_stack,"drill","F8",func():session.prime_pressure_drill())
     _action(menu_stack,"settings","F1",func():open_page("settings"))
     _action(menu_stack,"controls","H",func():open_page("help"))
     _action(menu_stack,"main_menu","",func():session.return_to_title())
 
 func _result_page() -> void:
+    if session.demo!=null:
+        _heading("demo_finale")
+        _caption("demo_auto")
+        _action(menu_stack,"demo_next","N",func():session.next_demo_chapter(),true)
+        _action(menu_stack,"demo_exit","F12",func():session.return_to_title())
+        return
     _heading("draw" if session.sim.winner<0 else ("win" if session.sim.winner==0 else "lose"))
     if session.sim.winner==1:_caption("runback")
     menu_stack.add_child(_label("%d  —  %d"%[session.sim.wins[0],session.sim.wins[1]],48,Tokens.GOLD,true))
@@ -346,7 +374,7 @@ func _settings_page() -> void:
     _choice("difficulty",["relaxed","standard","challenging"],session.sim.difficulty,session.set_difficulty)
     _caption("difficulty_hint")
     if session.sim.is_air_lesson():_caption("air_fixed_partner")
-    elif session.practice or session.screen=="title":_choice("partner",["standing","guarding","sparring"],session.sim.partner_mode,session.set_partner_mode)
+    elif session.demo==null and (session.practice or session.screen=="title"):_choice("partner",["standing","guarding","sparring"],session.sim.partner_mode,session.set_partner_mode)
     _toggle("muted",session.audio.muted,func(value:bool):
         session.audio.muted=value
         session.audio.stop_all()
@@ -397,7 +425,7 @@ func _process(delta: float) -> void:
 func _sync_choices() -> void:
     if not is_instance_valid(drill_start):return
     var exchange=session.sim.exchange
-    var active: bool=exchange.active() and session.screen=="play"
+    var active: bool=exchange.active() and session.screen=="play" and session.demo==null
     var drill: bool=session.sim.pressure_drill and session.screen=="play"
     drill_start.visible=drill
     drill_start.text=tr_text("begin_drill")
@@ -459,7 +487,7 @@ func _draw() -> void:
     _health(34,session.sim.fighters[0],Tokens.TEAL,false,0)
     _health(772,session.sim.fighters[1],Tokens.CORAL,true,1)
     _plate(Vector2(604,16),Vector2(72,62),INK)
-    _center(Vector2(640,61),tr_text("free") if session.practice else "%02d"%ceili(session.sim.remaining),23 if session.practice else 43,Tokens.GOLD,not session.practice)
+    _center(Vector2(640,61),"DEMO" if session.demo!=null else tr_text("free") if session.practice else "%02d"%ceili(session.sim.remaining),23 if session.practice else 43,Tokens.GOLD,not session.practice)
     _center(Vector2(640,94),tr_text("round")+" %02d"%session.sim.round_number,11,Tokens.MUTED)
     for side in 2:
         for pip in 2:
@@ -484,11 +512,12 @@ func _draw() -> void:
         at.x=clampf(at.x,120,1160)
         _plate(at+Vector2(-100,-26),Vector2(200,32),INK)
         _center(at+Vector2(0,-3),"E "+tr_text("recover"),13,Tokens.TEAL)
-    if session.sim.is_aerial():_air_hud()
+    if session.demo!=null:_demo_hud()
+    elif session.sim.is_aerial():_air_hud()
     elif session.sim.rally_enabled:_rally_hud()
     else:_pressure_hud()
-    if session.practice:_practice_hud()
-    if not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
+    if session.practice and session.demo==null:_practice_hud()
+    if session.demo==null and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
         _text(Vector2(34,690),"J "+tr_text("light")+"   K "+tr_text("heavy")+"   G "+tr_text("throw")+"   Shift "+tr_text("guard")+"   E "+tr_text("dodge"),13,PAPER)
     _text(Vector2(1010,690),"H "+tr_text("help")+"   Esc "+tr_text("pause"),13,PAPER)
     if session.hitboxes_visible:_draw_hitboxes()
@@ -496,7 +525,7 @@ func _draw() -> void:
 
 func _health(x: float, fighter: Dictionary, tint: Color, reverse: bool, index: int) -> void:
     _cut_bar(Vector2(x-10,10),Vector2(494,90),Color(INK,.94),reverse)
-    _text(Vector2(x+4,31),tr_text("you" if index==0 else ("practice" if session.practice else "rival")),14,tint)
+    _text(Vector2(x+4,31),("AI 1" if index==0 else "AI 2") if session.demo!=null else tr_text("you" if index==0 else ("practice" if session.practice else "rival")),14,tint)
     _cut_bar(Vector2(x,39),Vector2(470,23),Tokens.EDGE,reverse)
     var hp: float=470*fighter.health/100.0
     var lag: float=470*health_lag[index]/100.0
@@ -538,6 +567,15 @@ func _pressure_hud() -> void:
     if active and exchange.clash.choices[0]!="":_center(Vector2(640,682),tr_text("locked")+" · "+tr_text(exchange.clash.choices[0]),14,Tokens.TEAL)
     elif drill:_text(Vector2(34,690),tr_text("drill_exit"),12,Tokens.MUTED)
 
+func _demo_hud() -> void:
+    var demo=session.demo
+    _plate(Vector2(330,548),Vector2(620,108),Color(INK,.96))
+    _text(Vector2(348,574),tr_text("demo")+"  %02d / %02d"%[demo.chapter+1,demo.CHAPTERS.size()],15,Tokens.TEAL)
+    _center(Vector2(640,600),tr_text("demo_"+demo.key()),20,PAPER)
+    _plate(Vector2(348,580),Vector2(584,3),Tokens.EDGE)
+    _plate(Vector2(348,580),Vector2(584*clampf(float(demo.age)/demo.limit(),0,1),3),Tokens.TEAL)
+    _center(Vector2(640,677),tr_text("demo_auto"),11,Tokens.MUTED)
+
 func _air_hud() -> void:
     if session.sim.air_counter.active():
         var counter=session.sim.air_counter
@@ -578,7 +616,10 @@ func _air_hud() -> void:
 
 func _sync_air_controls() -> void:
     if not is_instance_valid(air_lesson):return
-    var active: bool=session.screen=="play" and session.sim.is_aerial()
+    for i in demo_buttons.size():
+        demo_buttons[i].visible=session.demo!=null and session.screen=="play"
+        demo_buttons[i].text=tr_text(["demo_next","demo_restart","demo_exit"][i])
+    var active: bool=session.screen=="play" and session.sim.is_aerial() and session.demo==null
     var lesson: bool=session.sim.is_air_lesson()
     var counter=session.sim.air_counter
     air_lesson.visible=active

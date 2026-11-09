@@ -1,5 +1,18 @@
 # 驗證紀錄與證據範圍
 
+## 最新：雙 AI 技巧 Demo（2026-11-09）
+
+功能及預設情境範圍見 [AI_DEMO.md](AI_DEMO.md)。F12 進 23 段技巧／自由交戰／KO 循環；不把展示決策器當成通用競技 AI。
+
+- [無視窗回歸](evidence/ai-demo/headless/summary.json) **384/384**：新 Demo 37 項，兩份模擬／決策器在 **9,858 tick、兩個完整循環**保持輸入／角色／事件一致，全部 23 段在左右角色交換後各一次，雙方皆真實命中。實際事件覆蓋所有 12 種已實作傷害招式，以及格擋／破防／完美格擋、拆投、閃避、撞牆／受身、起跳／急降、挑空追擊、地面反彈、空中反制、高壓對峙、四階換手及 KO；未靠假事件檢查。其餘 347 項既有規則／介面／構圖回歸本輪重跑。
+- [原生 viewport 輸入／展示](evidence/ai-demo/native/summary.json) **138/138**：新 Demo 31 項，含鍵盤 F12／N／R、點按、暫停、F2、設定、23 段完整循環及結果自動續播、玩家出招隔離、原陪練偏好恢復、雙語／三尺寸控制範圍。其餘 107 項空中、反制、介面、戰鬥及高壓輸入回歸通過；手動步進，不冒充真人。
+- [原生真實時鐘觀察](evidence/ai-demo/native-soak/complete.json) **120.005 秒**：只有開始按鍵的 2 次轉換，完整自動循環一次並進第二輪；43 次真實命中、1 次 KO、3 次空中反制、4 次動能換手接觸、3 次高壓對峙、拆投／撞牆／受身均實際發生。最多 9 效果、節點初始化最高 541 後取樣穩定 517、孤立節點樣本 0。是短觀察，不是長測或硬體效能驗收。
+- [25 張原生畫面](evidence/ai-demo/captures)含主選單、每段技巧及 F2；已檢視入口、空中反制與場邊受身。180 幀擷取衍生 [12 秒 MP4](evidence/ai-demo/demo.mp4)／[GIF](evidence/ai-demo/demo.gif)：空連／反制／四階換手／KO 的剪接，60Hz 固定步進、每四 tick 擷取、15fps 播放，沒有遊戲音軌，不是真人錄影。
+
+首跑 **25/37** 與完整報告保留在 rules-first.*：純決策器在 KO 終止狀態仍等 hitstop 歸零，遊戲結算本來已停模擬，導致無法跑第二輪，故多項至少兩次覆蓋失敗。已讓章節終止判定識別 round_over／match_over；session 仍播放 2.5 秒 KO 結果再續播。修正後 37/37；原生完整循環亦通過。
+
+修改前基線及既有模型／圖片／音檔不變的雜湊見 [source-manifest.json](evidence/ai-demo/source-manifest.json)。字體子集因新段名重建。只有預期軟體 VSync 提示；無新腳本錯誤／資源退出警告。Godot 4.6.3／Compatibility／Mesa llvmpipe／Dummy 音訊，不代表真人手感、實聽、目標 GPU 或使用者電腦測試。未更新公開 Web。
+
 ## 最新：wev 官方音樂接入（2026-11-09）
 
 使用者確認可用並指示自行下載，官方 Bandcamp 免費下載成功取得 family ties (wev edit) MP3 320，全曲 225.802 秒；不是 SoundCloud 串流擷取，未購買付費 OST。官方下載的最初 URL 回傳 Download Expired，依官方頁面 JS 的 statdownload／伺服器 retry_url 流程取得 HTTP 200 audio/mpeg。未登入、提交 email 或繞驗證；沒有將短期下載簽章寫入 repo。

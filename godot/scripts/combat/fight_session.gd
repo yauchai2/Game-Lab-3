@@ -31,6 +31,8 @@ var language := "zh"
 var training_details := false
 var settings_save_clock := -1.0
 var practice := false
+var demo: RefCounted
+var demo_partner := 0
 @export var static_batches_enabled := true
 @export var preferences_path := "user://afterhours.cfg"
 var preferences := preload("res://scripts/combat/fight_preferences.gd").new()
@@ -123,6 +125,8 @@ func _material(color: Color, unlit: bool) -> StandardMaterial3D:
     return mat
 
 func start_match(training := false) -> void:
+    if demo!=null:sim.partner_mode=demo_partner
+    demo=null
     result_clock=0.0
     practice = training
     sim.training = training
@@ -149,7 +153,12 @@ func _physics_process(_delta: float) -> void:
     input["down"] = input.get("down",Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN))
     input["up"] = input.get("up",Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP))
     var previous_stop := sim.hitstop
-    sim.tick(input)
+    if demo!=null:
+        if demo.needs_setup:_prepare_demo_chapter()
+        var commands: Array=demo.commands(sim)
+        sim.tick(commands[0],commands[1])
+        demo.observe(sim)
+    else:sim.tick(input)
     if previous_stop>0 and sim.hitstop==0:
         _release_impacts()
     for event in sim.events:
@@ -164,6 +173,33 @@ func _physics_process(_delta: float) -> void:
         audio.stop_all()
         audio.play_sound("ko")
         hud.rebuild_menu()
+
+func start_demo() -> void:
+    var original_partner: int=demo_partner if demo!=null else sim.partner_mode
+    start_match(true)
+    demo_partner=original_partner
+    demo=preload("res://scripts/combat/demo_director.gd").new()
+    _prepare_demo_chapter()
+
+func _prepare_demo_chapter() -> void:
+    demo.prepare(sim)
+    effects.clear()
+    _clear_impacts()
+    spectacle.clear()
+    audio.stop_all()
+    pending.clear()
+    input_history.clear()
+    trauma=0.0
+    result_clock=0.0
+    finish_menu_open=false
+    screen="play"
+    hud.notice_time=0
+    hud.rebuild_menu()
+
+func next_demo_chapter() -> void:
+    if demo==null:return
+    demo.next()
+    _prepare_demo_chapter()
 
 func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}) -> void:
     if reduced_effects and kind in ["speed","trail"]: return
@@ -370,6 +406,7 @@ func _release_impacts(with_audio := true) -> void:
     impact_queue.clear()
 
 func _process(delta: float) -> void:
+    if demo!=null and screen=="result" and result_clock>=2.5:next_demo_chapter()
     if settings_save_clock>=0:
         settings_save_clock-=delta
         if settings_save_clock<0:save_options()
@@ -458,7 +495,7 @@ func _present(delta: float) -> void:
                 pose.frame=floori(clampf(float(sim.rally.age)/sim.rally.WINDUP,0,1)*Simulation.MOVES.cross.startup)
         if sim.exchange.active():
             var choice: String=sim.exchange.clash.choices[i]
-            if i==1:choice=sim.exchange.clash.cue
+            if i==1 and demo==null:choice=sim.exchange.clash.cue
             pose["exchange_choice"]=choice
         fighters[i].present(pose, delta, (sim.hitstop>0 or sim.exchange.active() or (sim.rally.active() and sim.rally.phase=="compress") or (sim.air_counter.active() and sim.air_counter.phase=="hold")) and screen=="play", reduced_effects, sim.fighters[1-i].x)
         silhouettes[i].position = Vector3(fighters[i].model.global_position.x,0.03,FIGHT_Z)
@@ -536,6 +573,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
     if not event.is_pressed() or event.is_echo():
         return
     if hud.handle_shortcut(event):return
+    if event.keycode==KEY_F12:
+        if demo!=null:return_to_title()
+        elif screen in ["title","play"]:start_demo()
+        return
+    if demo!=null and screen in ["play","pause","result"]:
+        if event.keycode==KEY_R:start_demo();return
+        if event.keycode==KEY_N:next_demo_chapter();return
+        if event.keycode not in [KEY_ESCAPE,KEY_F1,KEY_H,KEY_F2,KEY_F3,KEY_F4,KEY_F6,KEY_M,KEY_O]:return
     if event.keycode == KEY_F6:
         return_to_street()
     elif event.keycode == KEY_M:
@@ -745,9 +790,11 @@ func _restore_options() -> void:
     sim.partner_mode=options.partner_mode
 
 func save_options() -> void:
-    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"scene_edges":ink_pass.visible,"difficulty":sim.difficulty,"partner_mode":sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level})
+    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"scene_edges":ink_pass.visible,"difficulty":sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level})
 
 func return_to_title() -> void:
+    if demo!=null:sim.partner_mode=demo_partner
+    demo=null
     sim.reset_round()
     sim.pressure_drill=false
     sim.exchange.reset()

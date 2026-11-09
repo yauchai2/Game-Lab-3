@@ -34,3 +34,5 @@ AI 會在已授權範圍內推送任務分支並告知更新；桌面端需使�
 Pull `codex/street-combat` 後 Godot F5，主選單選 PRESSURE DRILL；或 T 進練習、F8 準備。可先不限時閱讀提示，按 K 才進 0.4 秒對峙，再選 J 頂進／Shift 卸勢／E 抽身。F8 重試，F5 退出此練習。完整規則見 [PRESSURE_EXCHANGE.md](PRESSURE_EXCHANGE.md)。這是原始碼版本，公開試玩版本輪不更新。
 
 最新空中反制試法：在 `codex/street-combat` Pull 後，Godot 執行 → F11 → F8 → K → 接觸前 Shift → J 反踢／E 抽身。只更新來源；公開 Web 未更新。見 [AIR_REVERSAL.md](AIR_REVERSAL.md)。
+
+雙 AI Demo：Pull 開發分支後執行 Godot，主選單按 F12；N 下一段、R 重播、Esc 暫停、F12 結束。公開試玩版未更新。見 [AI_DEMO.md](AI_DEMO.md)。
