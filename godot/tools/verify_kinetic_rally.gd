@@ -82,6 +82,7 @@ func run() -> void:
     sim=fresh()
     choose(sim)
     step_to(sim,"windup")
+    sim.rally.tier=4
     var defender: int=1-sim.rally.owner
     for i in 10:
         var commands:=[{},{}]

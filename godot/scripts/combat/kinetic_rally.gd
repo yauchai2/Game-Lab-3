@@ -1,7 +1,7 @@
 extends RefCounted
 ## Bounded practice experiment. One 60 Hz clock; no scene/input/audio dependencies.
 const HOLDS := [12,16,22,30]
-const WINDOWS := [6,5,4,3]
+const WINDOWS := [12,10,9,8]
 const DAMAGE := [12,16,21,27]
 const WINDUP := 10
 const MAX_TICKS := 300
@@ -14,6 +14,7 @@ var serial := 0
 var chosen := false
 var guard_window := [0,0]
 var guard_lock := [0,0]
+var guard_buffer := [false,false]
 var reason := ""
 
 func active() -> bool:
@@ -30,6 +31,7 @@ func reset() -> void:
     reason=""
     guard_window=[0,0]
     guard_lock=[0,0]
+    guard_buffer=[false,false]
 
 func begin(side: int) -> void:
     elapsed=0
@@ -44,6 +46,7 @@ func _transfer(side: int) -> void:
     chosen=false
     guard_window=[0,0]
     guard_lock=[0,0]
+    guard_buffer=[false,false]
     reason=""
 
 func return_parry(side: int) -> bool:
@@ -59,6 +62,7 @@ func finish(why: String) -> void:
     reason=why
     guard_window=[0,0]
     guard_lock=[0,0]
+    guard_buffer=[false,false]
 
 func tick(commands: Array) -> String:
     if not active():return ""
@@ -68,6 +72,7 @@ func tick(commands: Array) -> String:
         return "end"
     age+=1
     if phase=="compress":
+        if HOLDS[tier-1]-age<=8 and commands[1-owner].get("guard_pressed",false):guard_buffer[1-owner]=true
         if commands[owner].get("attack","")=="light":chosen=true
         if age>=HOLDS[tier-1]:
             if not chosen:
@@ -81,7 +86,9 @@ func tick(commands: Array) -> String:
     for i in 2:
         guard_window[i]=maxi(0,guard_window[i]-1)
         guard_lock[i]=maxi(0,guard_lock[i]-1)
-    if commands[defender].get("guard_pressed",false) and guard_lock[defender]==0:
+    var buffered: bool=guard_buffer[defender] and age>=maxi(1,WINDUP-WINDOWS[tier-1]+1)
+    if (commands[defender].get("guard_pressed",false) or buffered) and guard_lock[defender]==0:
+        guard_buffer[defender]=false
         guard_window[defender]=WINDOWS[tier-1]
         guard_lock[defender]=WINDOWS[tier-1]+10
     if phase=="windup" and age>=WINDUP:

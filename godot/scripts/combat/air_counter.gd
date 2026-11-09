@@ -1,9 +1,9 @@
 extends RefCounted
 ## One bounded air reversal. Pure 60Hz state; no nodes or engine time scaling.
 const COST := 25
-const PARRY_WINDOW := 6
-const HOLD := 18
-const WINDUP := 10
+const PARRY_WINDOW := 12
+const HOLD := 30
+const WINDUP := 14
 const ACTIVE := 4
 const MAX_TICKS := 90
 var phase:="idle"

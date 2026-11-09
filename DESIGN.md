@@ -54,3 +54,7 @@ The aerial lab now includes a read-first air counter dojo: F11 → F8 → K, the
 ## Two-agent demo
 
 F12 starts the two-agent showcase: 23 labeled presets plus real AI command decisions, free exchange and a knockout. Visible scripted-demo labeling distinguishes coverage from competitive AI. The existing title footer row now pairs Demo and Explore without increasing menu height.
+
+## Forgiving defense
+
+Default defense now favors readable success: 12-tick ground/air parries, 36-tick earned counter cue, 14-tick input buffer, 30-tick air choice and 36-tick pressure decision. Success copy reports actual blocks and contacts; it never substitutes fake damage. See docs/FRIENDLY_DEFENSE.md for current values overriding earlier timing notes.

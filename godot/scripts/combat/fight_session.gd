@@ -211,7 +211,12 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
 func _handle_event(event: Dictionary) -> void:
     combat_event.emit(event)
     var kind: String = event.kind
-    if kind=="air_lesson_reset":
+    if kind=="counter_success":
+        if event.target==0 or demo!=null:
+            hud.notice="COUNTER SUCCESS"
+            hud.notice_time=1.1
+            audio.play_sound("rally",1.4,-9)
+    elif kind=="air_lesson_reset":
         effects.clear()
         _clear_impacts()
         audio.stop_all()
@@ -347,8 +352,11 @@ func _handle_event(event: Dictionary) -> void:
             hud.notice="THROW"
             hud.notice_time=.7
             audio.play_sound("heavy",.85,-7)
+        if kind=="block" and (event.target==0 or demo!=null):
+            hud.notice="NICE BLOCK"
+            hud.notice_time=.65
         if kind=="parry" or kind=="guard_break" or (event.get("counter",false) and not event.get("exchange",false)):
-            hud.notice = "PERFECT GUARD" if kind=="parry" else ("GUARD BREAK" if kind=="guard_break" else "COUNTER HIT")
+            hud.notice = ("PERFECT GUARD" if event.target==0 or demo!=null else "RIVAL PARRY") if kind=="parry" else ("GUARD BREAK" if kind=="guard_break" else "COUNTER HIT")
             hud.notice_time = 0.8
     elif kind=="swing":
         var fighter: Dictionary = sim.fighters[event.target]

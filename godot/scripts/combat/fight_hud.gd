@@ -512,6 +512,11 @@ func _draw() -> void:
         at.x=clampf(at.x,120,1160)
         _plate(at+Vector2(-100,-26),Vector2(200,32),INK)
         _center(at+Vector2(0,-3),"E "+tr_text("recover"),13,Tokens.TEAL)
+    if session.demo==null and player.counter_window>0 and session.screen=="play":
+        var cue: Vector2=session.project(Vector2(player.x,player.y+2.7))
+        cue.x=clampf(cue.x,145,1135);cue.y=clampf(cue.y,180,480)
+        _plate(cue+Vector2(-140,-28),Vector2(280,34),INK)
+        _center(cue+Vector2(0,-5),tr_text("counter_ready"),16,Tokens.TEAL)
     if session.demo!=null:_demo_hud()
     elif session.sim.is_aerial():_air_hud()
     elif session.sim.rally_enabled:_rally_hud()
@@ -598,7 +603,7 @@ func _air_hud() -> void:
         var caption: String=tr_text("air_defense_"+phase)
         if phase=="attack":
             var a: Dictionary=session.sim.fighters[1]
-            var ready: bool=a.state=="attack" and a.frame>=session.Simulation.MOVES.air_finisher.startup-6 and a.frame<session.Simulation.MOVES.air_finisher.startup
+            var ready: bool=a.state=="attack" and a.frame>=session.Simulation.MOVES.air_finisher.startup-session.sim.air_counter.PARRY_WINDOW and a.frame<session.Simulation.MOVES.air_finisher.startup
             caption=tr_text("air_parry_now" if ready else "air_wait_windup")
         _center(Vector2(640,600),caption,14,PAPER)
         return
@@ -608,7 +613,7 @@ func _air_hud() -> void:
     _text(Vector2(744,575),tr_text("air_phase_"+f.air.phase),14,Tokens.GOLD)
     _center(Vector2(640,600),tr_text("air_jump_help"),14,PAPER)
     _center(Vector2(640,623),tr_text("air_combo_help"),14,PAPER)
-    if session.sim.can_air_parry(0) and session.sim.fighters[1].frame>=session.Simulation.MOVES[session.sim.fighters[1].move].startup-6:
+    if session.sim.can_air_parry(0) and session.sim.fighters[1].frame>=session.Simulation.MOVES[session.sim.fighters[1].move].startup-session.sim.air_counter.PARRY_WINDOW:
         _center(Vector2(640,646),tr_text("air_parry_now"),13,Tokens.GOLD)
     elif f.air.chase_window>0 and not f.air.chase_used:
         _center(Vector2(640,646),tr_text("air_chase_ready"),13,Tokens.GOLD)

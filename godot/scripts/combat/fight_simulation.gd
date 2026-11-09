@@ -1,5 +1,8 @@
 extends RefCounted
 ## Deterministic 60 Hz gameplay. Presentation uses a separate, unfrozen clock.
+const PARRY_WINDOW := 12
+const COUNTER_WINDOW := 36
+const INPUT_BUFFER := 14
 const STEP := 1.0 / 60.0
 const EDGE := 8.2
 const MAX_HEALTH := 100
@@ -11,7 +14,7 @@ var air_lesson_stage:=""
 var air_lesson_ticks:=0
 var practice_scenario:="free"
 const MOVES := {
-    "air_counter":{"startup":10,"active":4,"recovery":22,"damage":18,"reach":2.3,"stun":28,"push":7.0,"lift":-10.0,"stop":10},
+    "air_counter":{"startup":14,"active":4,"recovery":22,"damage":18,"reach":2.3,"stun":28,"push":7.0,"lift":-10.0,"stop":10},
     "air_jab":{"startup":6,"active":3,"recovery":12,"damage":6,"reach":1.7,"stun":22,"push":1.2,"lift":1.0,"stop":4},
     "air_kick":{"startup":8,"active":3,"recovery":16,"damage":8,"reach":2.0,"stun":25,"push":1.8,"lift":1.0,"stop":5},
     "air_finisher":{"startup":12,"active":4,"recovery":22,"damage":12,"reach":2.2,"stun":28,"push":8.0,"lift":2.0,"stop":8},
@@ -73,7 +76,7 @@ func reset_round() -> void:
             "air":AirMotion.fresh(), "face": 1 if i == 0 else -1, "health": MAX_HEALTH, "meter": 0.0, "guard": 100.0,
             "state": "idle", "move": "", "frame": 0, "stun": 0, "connected": false,
             "buffer": "", "buffer_ttl": 0, "chain": 0, "chain_ttl": 0, "dash_cd": 0,
-            "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "entry_parry_window":0, "jump_buffer":0, "juggle":0, "hit_confirmed":false,"throw_cd":0,"tech_window":0,"wall_bounces":0,"wall_tech_window":0,"wall_tech_buffer":0})
+            "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "entry_parry_window":0, "counter_window":0, "counter_attack":false, "jump_buffer":0, "juggle":0, "hit_confirmed":false,"throw_cd":0,"tech_window":0,"wall_bounces":0,"wall_tech_window":0,"wall_tech_buffer":0})
     phase = "ready"
     countdown = 72
     remaining = ROUND_SECONDS
@@ -207,7 +210,7 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         if commands[i].get("dash",false) and f.state=="stun":f.wall_tech_buffer=8
         if commands[i].has("attack"):
             f.buffer = "meteor" if is_aerial() and fighters[i].y>.01 and commands[i].attack=="heavy" and commands[i].get("down",false) else ("launcher" if commands[i].attack == "heavy" and commands[i].get("up", false) else commands[i].attack)
-            f.buffer_ttl = 10
+            f.buffer_ttl = INPUT_BUFFER
             if commands[i].attack=="grab":f.tech_window=7
     if hitstop > 0:
         hitstop -= 1
@@ -247,7 +250,8 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
     var f: Dictionary = fighters[i]
     var other: Dictionary = fighters[1-i]
     f.parry_allowed = command.get("allow_parry",true)
-    f.entry_parry_window=6 if command.get("guard_pressed",false) else maxi(0,f.entry_parry_window-1)
+    f.counter_window=maxi(0,f.counter_window-1)
+    f.entry_parry_window=PARRY_WINDOW if command.get("guard_pressed",false) else maxi(0,f.entry_parry_window-1)
     var was_guarding: bool = f.guarding
     f.throw_cd=maxi(0,f.throw_cd-1)
     f.tech_window=maxi(0,f.tech_window-1)
@@ -275,7 +279,7 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
         if f.state=="landing" and f.air.land<=0:f.state="idle"
     if f.state in ["stun", "blockstun"]:
         if f.state == "blockstun":
-            f.guarding = command.get("guard", false) and f.y <= 0.01 and f.guard > 0
+            f.guarding = (command.get("guard", false) or (f.entry_parry_window>0 and f.parry_allowed and f.parry_cd==0 and f.jump_buffer<=0)) and f.y <= 0.01 and f.guard > 0
         f.stun -= 1
         if f.stun <= 0:
             f.state = "idle"
@@ -313,7 +317,7 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
             f.vx = (signf(command.get("axis", 0.0)) if absf(command.get("axis", 0.0)) > 0.1 else float(f.face)) * 14.0
             events.append({"kind": "dash", "target": i})
         else:
-            f.guarding = command.get("guard", false) and f.y <= 0.01 and f.guard > 0
+            f.guarding = (command.get("guard", false) or (f.entry_parry_window>0 and f.parry_allowed and f.parry_cd==0 and f.jump_buffer<=0)) and f.y <= 0.01 and f.guard > 0
             f.vx = float(command.get("axis", 0.0)) * (1.6 if f.guarding else 5.8)
             if f.jump_buffer>0 and f.y <= 0.01 and not f.guarding:
                 if is_aerial():air_motion.request_jump(f)
@@ -321,6 +325,7 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
                     f.vy = 10.3
                     f.jump_buffer = 0
                     events.append({"kind": "jump", "target": i})
+            if f.counter_window>0 and f.buffer_ttl>0 and f.buffer in ["light","heavy","special"]:f.guarding=false
             if f.state=="idle" and f.buffer_ttl > 0 and (not f.guarding or f.buffer=="grab"):
                 _start_attack(i, f.buffer)
     if f.state != "idle" and f.state != "dash":
@@ -383,6 +388,8 @@ func _start_attack(i: int, requested: String) -> void:
             return
         f.meter -= 50
     if is_aerial():air_motion.attack_stall(f)
+    f.counter_attack=f.counter_window>0
+    f.counter_window=0
     f.state = "attack"
     f.guarding=false
     f.move = name
@@ -479,12 +486,13 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
             fighter.buffer=""
             fighter.buffer_ttl=0
             fighter.jump_buffer=0
+            fighter.counter_window=0;fighter.counter_attack=false
         events.append({"kind":"clash_start","attacker":i})
         return
     if move_name!="grab" and b.guarding and (a.x - b.x) * b.face > 0:
-        if b.parry_allowed and b.guard_frames<=6 and b.parry_cd==0 and b.guard>=25:
-            b.parry_cd = 90
-            b.meter = minf(100.0,b.meter+12.0)
+        if b.parry_allowed and b.guard_frames<=PARRY_WINDOW and b.parry_cd==0 and b.guard>=25:
+            b.parry_cd = 60
+            b.meter = minf(100.0,b.meter+18.0)
             b.guard = maxf(0.0,b.guard-8.0)
             if training and rally_enabled and b.entry_parry_window>0 and a.y<=.01 and b.y<=.01 and exchange.cooldown==0:
                 hitstop=0
@@ -492,7 +500,8 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
                 _begin_rally(1-i)
                 return
             a.state = "stun"
-            a.stun = 18
+            a.stun = 30
+            b.counter_window=COUNTER_WINDOW
             a.vx = -a.face*5.0
             hitstop = maxi(hitstop,8)
             hitstop_total = hitstop
@@ -513,6 +522,9 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
             b.guarding = false
             events.append({"kind": "guard_break", "target": 1-i})
         return
+    if a.counter_attack:
+        events.append({"kind":"counter_success","target":i})
+        a.counter_attack=false
     exchange.contact(10)
     a.hit_confirmed = true
     if combo_owner != i or b.state != "stun":
@@ -526,6 +538,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     combo_damage += damage
     last_combo_hits = combo_hits
     last_combo_damage = combo_damage
+    b.counter_window=0;b.counter_attack=false
     b.health = maxi(0, b.health - damage)
     if is_aerial():
         air_motion.cancel_stall(b)
@@ -581,6 +594,7 @@ func _hold_rally() -> void:
         f.buffer=""
         f.buffer_ttl=0
         f.jump_buffer=0
+        f.counter_window=0;f.counter_attack=false
         f.connected=false
         f.face=1 if fighters[1-i].x>=f.x else -1
 
@@ -599,6 +613,7 @@ func _tick_rally(commands: Array) -> void:
     var defense: Dictionary=commands[defender].duplicate()
     defense.erase("attack")
     defense["allow_parry"]=false
+    defense["guard"]=defense.get("guard",false) or rally.guard_window[defender]>0
     if defense.get("jump",false):fighters[defender].jump_buffer=8
     _advance_fighter(defender,defense)
     _advance_fighter(owner,{"guard":true,"allow_parry":false})
@@ -655,6 +670,7 @@ func _end_rally(why: String, preserve_outcome := false) -> void:
         f.buffer=""
         f.buffer_ttl=0
         f.jump_buffer=0
+        f.counter_window=0;f.counter_attack=false
         f.guarding=false
         f.parry_cd=maxi(f.parry_cd,90)
         if not preserve_outcome:
@@ -671,6 +687,7 @@ func _resolve_exchange() -> void:
         fighter.buffer=""
         fighter.buffer_ttl=0
         fighter.jump_buffer=0
+        fighter.counter_window=0;fighter.counter_attack=false
         fighter.guarding=false
         fighter.flash=0
         fighter.connected=true
@@ -830,6 +847,7 @@ func _begin_air_counter(side: int) -> void:
         f.vx=0.0;f.vy=0.0;f.flash=0
         f.guarding=false
         f.buffer="";f.buffer_ttl=0;f.jump_buffer=0
+        f.counter_window=0;f.counter_attack=false
         f.air.combo_left=0
         f.air.drop_buffer=0;f.air.chase_buffer=0;f.air.chase_window=0
         f.air.parry_window=0;f.air.bounce_granted=false
@@ -877,6 +895,7 @@ func _end_air_counter(why: String) -> void:
     for f in fighters:
         if f.state=="counter_hold":f.state="idle"
         f.buffer="";f.buffer_ttl=0;f.jump_buffer=0
+        f.counter_window=0;f.counter_attack=false
         f.air.parry_window=0
         if f.air.phase in ["parry","recoil"]:f.air.phase="fall"
     if is_air_lesson():air_lesson_stage="review"

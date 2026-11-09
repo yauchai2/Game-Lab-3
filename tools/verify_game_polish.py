@@ -19,6 +19,8 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES = [
+    ("verify_friendly_input", "friendly-defense/input.json", "native"),
+    ("verify_friendly_defense", "friendly-defense/rules.json", "headless"),
     ("verify_demo", "ai-demo/rules.json", "headless"),
     ("verify_demo_input", "ai-demo/input.json", "native"),
     ("verify_wev_audio", "wev-integration/runtime.json", "native"),

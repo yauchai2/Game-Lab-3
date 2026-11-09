@@ -70,7 +70,7 @@ func run() -> void:
     check("native retry restores resources and starts fresh",scene.sim.fighters[0].meter==100 and scene.sim.air_lesson_stage=="attack" and scene.sim.fighters[1].frame==0)
     parry_lesson()
     await key(KEY_E);step()
-    for i in 22:
+    for i in scene.sim.air_counter.HOLD+2:
         step()
         if not scene.sim.air_counter.active():break
     check("native E chooses safe escape without damage",scene.sim.air_counter.reason=="escape" and scene.sim.fighters[1].health==100)
@@ -86,7 +86,7 @@ func run() -> void:
     check("pointer can also enter the lesson",scene.sim.is_air_lesson())
     scene.hud.air_begin.pressed.emit();step();step(8)
     scene.hud.air_parry.pressed.emit();step(4)
-    check("pointer parry uses the real six tick rule",scene.sim.air_counter.active() and scene.sim.fighters[0].meter==75)
+    check("pointer parry uses the widened twelve tick rule",scene.sim.air_counter.active() and scene.sim.fighters[0].meter==75)
     await key(KEY_F5);step()
     check("F5 clears lesson and return windows",not scene.sim.is_aerial() and not scene.sim.air_counter.active())
     scene.prime_air_defense();scene.pause_game();scene.hud.open_page("settings")

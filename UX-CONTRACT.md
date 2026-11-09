@@ -47,3 +47,7 @@ Air counter dojo starts from F11 → F8. K begins/retries the read-first lesson;
 ## Two-agent demo
 
 Demo uses F12 / native title entry. N advances, R restarts, Escape pauses, F12 exits. Three native transport buttons share those session actions. Gameplay keys and practice shortcuts cannot override either agent. Pause freezes the director, result advances after 2.5 seconds, mode changes clear effects/input, original partner preference survives. Existing F9 remains unchanged outside Demo.
+
+## Forgiving defense
+
+Earned parry feedback shows J to counter for 36 simulation ticks, frozen while paused. Queued J can start while Shift remains held; a released tap does not swallow Jump. Only a real damaging contact yields COUNTER SUCCESS; ordinary block earns NICE BLOCK. Air choice lasts 30 ticks, high-pressure choice 36; earlier timing descriptions are historical. F2 preserves these messages.

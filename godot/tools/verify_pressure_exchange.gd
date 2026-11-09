@@ -25,7 +25,7 @@ func ready_clash() -> RefCounted:
     return sim
 func resolve(sim: RefCounted, a: String, b: String) -> void:
     sim.tick({"clash_choice":a},{"clash_choice":b})
-    for i in 23:sim.tick()
+    for i in Exchange.WINDOW-1:sim.tick()
 func key(scene: Node, code: Key) -> void:
     var event:=InputEventKey.new()
     event.keycode=code
@@ -90,7 +90,7 @@ func run() -> void:
     sim.tick()
     check("a simultaneous normal trade cannot unlock a clash halfway through resolution",not sim.exchange.active() and sim.fighters[0].health==82 and sim.fighters[1].health==93)
     sim=ready_clash()
-    check("grounded high pressure heavy opens a single decision window",sim.exchange.active() and sim.exchange.clash.remaining==24 and sim.events.filter(func(e:Dictionary)->bool:return e.kind=="clash_start").size()==1)
+    check("grounded high pressure heavy opens a single decision window",sim.exchange.active() and sim.exchange.clash.remaining==Exchange.WINDOW and sim.events.filter(func(e:Dictionary)->bool:return e.kind=="clash_start").size()==1)
     check("opening clash defers damage",sim.fighters[1].health==100 and sim.hitstop==0)
     var snapshot: Array=sim.fighters.duplicate(true)
     var clock: float=sim.remaining

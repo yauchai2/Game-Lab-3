@@ -1,7 +1,7 @@
 extends RefCounted
 ## Shared pressure and a bounded, deterministic decision window. No rendering/input APIs.
 const CHOICES := ["press","turn","slip"]
-const WINDOW := 24
+const WINDOW := 36
 const THRESHOLD := 60.0
 const MAX_PRESSURE := 90.0
 var pressure := 0.0

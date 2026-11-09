@@ -2,6 +2,9 @@ extends RefCounted
 ## Product copy is keyed; simulation events and save identifiers stay language-independent.
 var language := "zh"
 const COPY := {
+"counter_ready":["格擋成功！J 反擊","PARRY! J TO COUNTER"],
+"rival_parry":["對手擋住了 · 重新找機會","RIVAL PARRIED / FIND AN OPENING"],
+"counter_success":["反擊成功！","COUNTER SUCCESS!"],"nice_block":["擋住了！","NICE BLOCK!"],
 "demo":["AI 技巧展示","AI SHOWCASE"],"demo_auto":["雙 AI 自動展示 · 示範情境循環播放","TWO AI AGENTS / SCRIPTED SHOWCASE LOOP"],
 "demo_next":["下一段 · N","NEXT / N"],"demo_restart":["重播 · R","RESTART / R"],"demo_exit":["結束 · F12","EXIT / F12"],
 "demo_combo":["拳腳三連", "GROUND COMBO"],
@@ -37,7 +40,7 @@ const COPY := {
 "air_parry_button":["Shift 反制 · 25 能量","Shift PARRY / 25 ENERGY"],
 "air_parry_now":["現在！按 Shift 接住終結招。","NOW! SHIFT TO CATCH THE FINISHER."],
 "air_wait_windup":["看清起手，等接觸前再按 Shift。","Read the windup. Wait until just before contact."],
-"air_reversal":["借勢換手","AIR REVERSAL"],
+"air_reversal":["反制成功！","PARRY SUCCESS!"],
 "air_locked":["已鎖定","LOCKED"],
 "air_choose":["已接住！選一次，等能量釋放。","CAUGHT IT! COMMIT ONCE, THEN RELEASE."],
 "air_rival_holds":["對手接住了 · 等起手再按 E 閃開","RIVAL CAUGHT IT / E TO DODGE AFTER THE HOLD"],
@@ -66,7 +69,7 @@ const COPY := {
 "rally_lab":["動能換手 · 實驗練習","KINETIC RALLY / LAB"],
 "rally_wait":["等對手出拳，接觸前輕按 Shift。","Tap Shift just before the rival's punch connects."],
 "rally_exit":["F10 再試 · F5 回自由練習","F10 RETRY / F5 FREE TRAINING"],
-"rally_commit":["輪到你！按 J 鎖定反擊。","YOUR TURN! J commits a counter."],
+"rally_commit":["接得好！按 J 準備反擊。","NICE PARRY! J TO COUNTER."],
 "rally_defend":["看出拳時機，再按一次 Shift！","Read the release. Tap Shift again!"],
 "rally_locked":["反擊鎖定 · 準備爆發","COUNTER LOCKED / RELEASE INCOMING"],
 "rally_hold":["壓縮中 · 等出拳動作再格擋","COMPRESS / WAIT FOR THE WINDUP"],
@@ -134,7 +137,7 @@ const COPY := {
 "inputs":["輸入紀錄","INPUT HISTORY"],"none":["尚未出招","No inputs yet"],"impact":["命中停頓","IMPACT"],
 "stage":["航道街口","FLIGHT PATH / CROSSING"],"wins":["先取兩勝","FIRST TO TWO"],
 "result_press":["頂進命中","PRESS CONNECTS"],"result_turn":["借勢反擊","TURN COUNTER"],"result_slip":["抽身成功","SLIP ESCAPE"],
-"perfect_guard":["精準防禦","PERFECT GUARD"],"guard_break":["防禦崩解","GUARD BREAK"],"counter":["反擊命中","COUNTER HIT"],
+"perfect_guard":["完美格擋！J 反擊","PERFECT PARRY! J TO COUNTER"],"guard_break":["防禦崩解","GUARD BREAK"],"counter":["反擊命中","COUNTER HIT"],
 "air_chase":["追上去！Space → J","AIR CHASE / SPACE → J"],"fight_start":["開打！","FIGHT!"],
 "no_meter":["能量技需要 50 能量","SPECIAL NEEDS 50 ENERGY"],"reset_notice":["練習已重設","TRAINING RESET"],
 "tie":["勢均力敵 · 壓力解除","EVEN / PRESSURE RELEASED"],"your_result":["你","YOU"],"rival_result":["對手","RIVAL"]
@@ -144,7 +147,7 @@ func text(key: String) -> String:
     return values[0 if language=="zh" else 1]
 func notice(raw: String) -> String:
     if raw.begins_with("FEINT / "):return text("feint")+" · "+notice(raw.trim_prefix("FEINT / "))
-    var notices := {"AIR COUNTER HIT":"air_counter_hit","AIR COUNTER ESCAPE":"air_counter_escape","AIR COUNTER WHIFF":"air_counter_whiff","AIR COUNTER TIMEOUT":"air_counter_timeout","AIR PARRY NEEDS 25":"air_parry_no_meter","CHASE UNAVAILABLE":"chase_unavailable","AIR LAB READY":"air_lab_ready","CHASE":"chase_notice","AIR ESCAPE":"air_escape_notice","CHASE NEEDS 20":"chase_meter_notice","RALLY READY":"rally_ready","LIMIT":"rally_end_limit","TIMEOUT":"rally_end_timeout","NO_INPUT":"rally_end_no_input","WHIFF":"rally_end_whiff","BLOCKED":"rally_end_blocked","HIT":"rally_end_hit","THROW":"throw_notice","THROW TECH":"throw_tech","WALL TECH":"wall_tech","PERFECT GUARD":"perfect_guard","GUARD BREAK":"guard_break","COUNTER HIT":"counter","AIR CHASE / J TO FOLLOW UP":"air_chase","FIGHT!":"fight_start","SPECIAL NEEDS 50 ENERGY":"no_meter","TRAINING RESET":"reset_notice","EVEN / PRESSURE RELEASED":"tie"}
+    var notices := {"RIVAL PARRY":"rival_parry","COUNTER SUCCESS":"counter_success","NICE BLOCK":"nice_block","AIR COUNTER HIT":"air_counter_hit","AIR COUNTER ESCAPE":"air_counter_escape","AIR COUNTER WHIFF":"air_counter_whiff","AIR COUNTER TIMEOUT":"air_counter_timeout","AIR PARRY NEEDS 25":"air_parry_no_meter","CHASE UNAVAILABLE":"chase_unavailable","AIR LAB READY":"air_lab_ready","CHASE":"chase_notice","AIR ESCAPE":"air_escape_notice","CHASE NEEDS 20":"chase_meter_notice","RALLY READY":"rally_ready","LIMIT":"rally_end_limit","TIMEOUT":"rally_end_timeout","NO_INPUT":"rally_end_no_input","WHIFF":"rally_end_whiff","BLOCKED":"rally_end_blocked","HIT":"rally_end_hit","THROW":"throw_notice","THROW TECH":"throw_tech","WALL TECH":"wall_tech","PERFECT GUARD":"perfect_guard","GUARD BREAK":"guard_break","COUNTER HIT":"counter","AIR CHASE / J TO FOLLOW UP":"air_chase","FIGHT!":"fight_start","SPECIAL NEEDS 50 ENERGY":"no_meter","TRAINING RESET":"reset_notice","EVEN / PRESSURE RELEASED":"tie"}
     if notices.has(raw):return text(notices[raw])
     for choice in ["press","turn","slip"]:
         if raw.ends_with("/ "+choice.to_upper()):return text("your_result" if raw.begins_with("YOU") else "rival_result")+" · "+text("result_"+choice)
