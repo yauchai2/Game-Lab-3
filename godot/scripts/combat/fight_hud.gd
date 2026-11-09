@@ -10,6 +10,10 @@ var menu: PanelContainer
 var menu_scroll: ScrollContainer
 var menu_stack: VBoxContainer
 var layout_root: Control
+var art=preload("res://scripts/combat/ui/reference_art.gd").new()
+var art_controls:Control
+var art_buttons:Dictionary={}
+var pause_button:Button
 var menu_page := "main"
 var previous_screen := ""
 var built_page := ""
@@ -45,6 +49,9 @@ func _ready() -> void:
     layout_root.mouse_filter=Control.MOUSE_FILTER_IGNORE
     layout_root.size=Vector2(1280,720)
     add_child(layout_root)
+    art_controls=Control.new()
+    art_controls.mouse_filter=Control.MOUSE_FILTER_IGNORE
+    layout_root.add_child(art_controls)
     for i in 3:
         var button:=Button.new()
         button.position=Vector2(346+i*198,578)
@@ -122,8 +129,27 @@ func _ready() -> void:
     back_button.position=Vector2(360,28)
     back_button.size=Vector2(156,34)
     back_button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
+    for state in ["normal","hover","pressed"]:back_button.add_theme_stylebox_override(state,Tokens.plate(PAPER,INK,2))
+    for state in ["font_color","font_hover_color","font_focus_color","font_pressed_color"]:back_button.add_theme_color_override(state,INK)
+    back_button.add_theme_constant_override("outline_size",0)
+    back_button.add_theme_font_override("font",Tokens.DISPLAY)
+    back_button.add_theme_font_size_override("font_size",26)
     back_button.pressed.connect(close_page)
     layout_root.add_child(back_button)
+    pause_button=Button.new()
+    pause_button.text="Ⅱ  PAUSE"
+    pause_button.position=Vector2(1152,93);pause_button.size=Vector2(98,27)
+    pause_button.add_theme_font_override("font",Tokens.DISPLAY)
+    pause_button.add_theme_font_size_override("font_size",20)
+    var pause_skin:=StyleBoxTexture.new()
+    pause_skin.texture=preload("res://assets/ui/replica/pause.png")
+    for state in ["normal","hover","pressed"]:pause_button.add_theme_stylebox_override(state,pause_skin)
+    for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color"]:pause_button.add_theme_color_override(state,Color.TRANSPARENT)
+    pause_button.add_theme_constant_override("outline_size",0)
+    pause_button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
+    pause_button.pressed.connect(session.pause_game)
+    pause_button.visible=false
+    layout_root.add_child(pause_button)
     resized.connect(_resize_layout)
     _resize_layout()
     rebuild_menu()
@@ -149,25 +175,35 @@ func rebuild_menu(requested_focus := "") -> void:
     for child in menu_stack.get_children():
         menu_stack.remove_child(child)
         child.queue_free()
+    art_controls.visible=false
     menu.visible=session.screen!="play" and not (session.screen=="result" and session.result_clock<session.FINISH_SECONDS and not session.reduced_effects)
     back_button.visible=menu.visible and menu_page!="main"
-    back_button.text="← "+tr_text("back")+"  Esc"
+    back_button.text="ESC  BACK"
     if not menu.visible:
         _sync_choices()
         _sync_air_controls()
         return
-    back_button.position=Vector2(52,184) if menu_page=="roster" else Vector2(360,28)
+    if session.screen=="title" and menu_page in ["main","roster"]:
+        menu.visible=false
+        back_button.visible=false
+        _build_art_controls()
+        _sync_choices();_sync_air_controls()
+        call_deferred("_restore_focus")
+        queue_redraw()
+        return
+    back_button.position=Vector2(1062,663)
+    back_button.size=Vector2(174,39)
     if menu_page=="roster":
         menu.position=Vector2(52,230)
         menu.size=Vector2(450,434)
     elif menu_page!="main":
-        menu.position=Vector2(360,74)
-        menu.size=Vector2(560,572)
+        menu.position=Vector2(330,139)
+        menu.size=Vector2(610,490)
     elif session.screen=="title":
         menu.position=Vector2(52,230)
         menu.size=Vector2(450,434)
     else:
-        menu.position=Vector2(420,126)
+        menu.position=Vector2(420,145)
         menu.size=Vector2(440,480 if session.screen in ["pause","help"] else 398)
     menu.add_theme_stylebox_override("panel",Tokens.plate(Color.TRANSPARENT if session.screen=="title" and menu_page=="main" else Color(INK,.96),Tokens.LIME if menu_page!="main" else Color.TRANSPARENT,2 if menu_page!="main" else 0))
     if menu_page=="settings":_settings_page()
@@ -183,6 +219,10 @@ func rebuild_menu(requested_focus := "") -> void:
     queue_redraw()
 
 func _restore_focus() -> void:
+    if art_controls.visible:
+        var target:String=focus_key if art_buttons.has(focus_key) else ("card_"+str(session.character_choices[art.roster_side]) if menu_page=="roster" else "fight")
+        art_buttons[target].grab_focus()
+        return
     if not menu.visible:return
     if focus_key=="back" and back_button.visible:
         back_button.grab_focus()
@@ -305,13 +345,11 @@ func _title_page() -> void:
     explore.custom_minimum_size.y=36
 
 func _pause_page() -> void:
-    _heading("paused")
     _action(menu_stack,"resume","Esc",func():session.resume_game(),true)
     if session.demo!=null:_action(menu_stack,"demo_restart","R",func():session.start_demo())
     else:_action(menu_stack,"reset_training" if session.practice else "restart","F5" if session.practice else "R",func():
         if session.practice:session.reset_training()
         else:session.start_match(false))
-    if session.practice and session.demo==null:_action(menu_stack,"drill","F8",func():session.prime_pressure_drill())
     _action(menu_stack,"settings","F1",func():open_page("settings"))
     _action(menu_stack,"controls","H",func():open_page("help"))
     _action(menu_stack,"main_menu","",func():session.return_to_title())
@@ -389,8 +427,6 @@ func _volume(key: String, value: float) -> void:
     menu_stack.add_child(slider)
 
 func _settings_page() -> void:
-    _heading("settings")
-    _choice("language",["zh","en"],0 if session.language=="zh" else 1,func(index:int):session.set_language("zh" if index==0 else "en"))
     _choice("difficulty",["relaxed","standard","challenging"],session.sim.difficulty,session.set_difficulty)
     _caption("difficulty_hint")
     if session.sim.is_air_lesson():_caption("air_fixed_partner")
@@ -433,7 +469,6 @@ func _roster_page() -> void:
     _action(menu_stack,"fight","Enter",func():session.start_match(false),true)
 
 func _help_page() -> void:
-    _heading("controls")
     for key in ["move_help","combo_help","air_help","defense_help","throw_help","wall_help","special_help","pressure_help","clash_help","air_lab_help"]:
         var label:=_label(tr_text(key),17,PAPER)
         menu_stack.add_child(label)
@@ -445,7 +480,8 @@ func _help_page() -> void:
         session.prime_pressure_drill())
 
 func _process(delta: float) -> void:
-    copy.language=session.language
+    copy.language="en"
+    pause_button.visible=session.screen=="play"
     if session.screen not in ["pause","help"]:notice_time=maxf(0,notice_time-delta)
     if session.screen=="play":skill_time=maxf(0,skill_time-delta)
     for i in 2:
@@ -508,16 +544,9 @@ func _draw() -> void:
     if not is_instance_valid(session):return
     draw_set_transform(Vector2.ZERO,0,size/Vector2(1280,720))
     if session.screen=="title":
-        if menu_page not in ["main","roster"]:
-            _plate(Vector2.ZERO,Vector2(1280,720),Color(Tokens.NIGHT,.62))
-            return
-        draw_colored_polygon(PackedVector2Array([Vector2.ZERO,Vector2(540,0),Vector2(592,720),Vector2(0,720)]),Color(Tokens.NIGHT,.91))
-        for radius in [170,225,280]:draw_arc(Vector2(45,350),radius,-1.3,1.35,32,Color(Tokens.GOLD,.24),5)
-        draw_texture_rect(Tokens.LOGO,Rect2(26,0,520,158),false)
-        _text(Vector2(66,182),tr_text("subtitle"),23,Tokens.LIME)
-        if menu_page!="roster":_text(Vector2(66,211),tr_text("intro"),15,Tokens.MUTED)
-        _text(Vector2(66,694),tr_text("local")+"  /  ↑↓  Enter",12,Tokens.MUTED)
-        _text(Vector2(940,686),tr_text("stage"),18,PAPER)
+        if menu_page=="main":art.title(self)
+        elif menu_page=="roster":art.roster(self,session)
+        else:art.secondary(self,"SETTINGS" if menu_page=="settings" else "HOW TO PLAY")
         return
     session.theatre.draw(self,session)
     session.rhythm.draw(self,session)
@@ -525,24 +554,7 @@ func _draw() -> void:
     for effect in session.effects:
         if effect.age>=0:vfx_renderer.draw_effect(self,session,effect)
     if session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
-    _health(34,session.sim.fighters[0],Tokens.TEAL,false,0)
-    _health(772,session.sim.fighters[1],Tokens.CORAL,true,1)
-    draw_texture_rect(Tokens.atlas("timer_dial"),Rect2(593,4,94,94),false)
-    draw_circle(Vector2(640,48),25,INK)
-    _center(Vector2(640,61),"∞" if session.demo!=null else tr_text("free") if session.practice else "%02d"%ceili(session.sim.remaining),23 if session.practice else 37,Tokens.LIME,not session.practice)
-    _center(Vector2(640,94),"LIVE" if session.demo!=null else tr_text("round")+" %02d"%session.sim.round_number,11,Tokens.MUTED)
-    for side in 2:
-        for pip in 2:
-            var at:=Vector2(548+pip*22 if side==0 else 710+pip*22,42)
-            var color: Color=(Tokens.TEAL if side==0 else Tokens.CORAL) if session.sim.wins[side]>pip else Tokens.EDGE
-            draw_colored_polygon(PackedVector2Array([at+Vector2(0,-6),at+Vector2(6,0),at+Vector2(0,6),at+Vector2(-6,0)]),color)
-    if session.sim.combo_hits>=2 and session.sim.fighters[1-session.sim.combo_owner].state=="stun":
-        var x:=40 if session.sim.combo_owner==0 else 1090
-        var baseline:=210.0 if session.sim.is_aerial() else 171.0
-        if session.sim.arcade_enabled:_plate(Vector2(x-12,baseline-57),Vector2(176,91),Color(INK,.94))
-        _text(Vector2(x,baseline),"%02d"%session.sim.combo_hits,56 if session.sim.arcade_enabled else 42,Tokens.GOLD,true)
-        _text(Vector2(x+(78 if session.sim.arcade_enabled else 61),baseline-2),tr_text("hits"),16,PAPER)
-        _text(Vector2(x,baseline+23),"%d "%session.sim.combo_damage+tr_text("damage"),13,Tokens.MUTED)
+    art.hud(self,session,health_lag)
     if skill_time>0 and skill_key!="" and session.screen=="play":
         _plate(Vector2(460,154),Vector2(360,34),INK)
         _center(Vector2(640,179),tr_text(skill_key),21,Tokens.LIME)
@@ -571,9 +583,10 @@ func _draw() -> void:
     if session.practice and session.demo==null:_practice_hud()
     if session.demo==null and not session.sim.arcade_enabled and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
         _text(Vector2(34,690),"J "+tr_text("light")+"   K "+tr_text("heavy")+"   G "+tr_text("throw")+"   Shift "+tr_text("guard")+"   E "+tr_text("dodge"),13,PAPER)
-    _text(Vector2(1010,690),"H "+tr_text("help")+"   Esc "+tr_text("pause"),13,PAPER)
+
     if session.hitboxes_visible:_draw_hitboxes()
-    if session.screen!="play" and not (session.screen=="result" and session.result_clock<session.FINISH_SECONDS and not session.reduced_effects):_plate(Vector2.ZERO,Vector2(1280,720),Color(Tokens.NIGHT,.6))
+    if session.screen!="play" and not (session.screen=="result" and session.result_clock<session.FINISH_SECONDS and not session.reduced_effects):
+        art.secondary(self,"SETTINGS" if menu_page=="settings" else ("HOW TO PLAY" if menu_page=="help" else ("PAUSED" if session.screen in ["pause","help"] else "RESULT")))
 
 func _health(x: float, fighter: Dictionary, tint: Color, reverse: bool, index: int) -> void:
     var fighter_tag: String=("AI 1" if index==0 else "AI 2") if session.demo!=null else tr_text("you" if index==0 else ("practice" if session.practice else "rival"))
@@ -622,16 +635,13 @@ func _pressure_hud() -> void:
     elif drill:_text(Vector2(34,690),tr_text("drill_exit"),12,Tokens.MUTED)
 
 func _demo_hud() -> void:
-    _plate(Vector2(440,110),Vector2(400,36),Color(INK,.95))
-    _center(Vector2(640,134),tr_text("demo")+"  ∞",18,Tokens.TEAL)
-    _text(Vector2(34,130),"%d  /  %d  "%[session.demo.hits[0],session.demo.hits[1]]+tr_text("demo_hits"),13,Tokens.MUTED)
+    _text(Vector2(37,105),"AI DEMO  /  LIVE",14,PAPER)
 
 func _arcade_hud() -> void:
     if session.sim.air_counter.active():
         _air_hud()
         return
-    _plate(Vector2(340,632),Vector2(600,38),Color(INK,.95))
-    _center(Vector2(640,657),tr_text("rush_controls"),16,Tokens.TEAL)
+    # Fixed English ribbon is cropped from the approved reference art.
 
 func _air_hud() -> void:
     if session.sim.air_counter.active():
@@ -674,7 +684,7 @@ func _air_hud() -> void:
 func _sync_air_controls() -> void:
     if not is_instance_valid(air_lesson):return
     for i in demo_buttons.size():
-        demo_buttons[i].visible=session.demo!=null and session.screen=="play"
+        demo_buttons[i].visible=false
         demo_buttons[i].text=tr_text(["demo_restart","demo_exit"][i])
     var active: bool=session.screen=="play" and session.sim.is_aerial() and session.demo==null
     var lesson: bool=session.sim.is_air_lesson()
@@ -752,3 +762,52 @@ func _draw_hitboxes() -> void:
             var move: Dictionary=session.Simulation.MOVES[f.move]
             if f.frame>=move.startup and f.frame<move.startup+move.active:
                 draw_line(session.project(Vector2(f.x,f.y+1.2)),session.project(Vector2(f.x+f.face*move.reach,f.y+1.2)),Color.RED,5)
+
+func _art_button(key:String,label:String,rect:Rect2,callback:Callable) -> Button:
+    var button:=Button.new()
+    button.name="Art_"+key
+    button.text=label
+    button.tooltip_text=label
+    button.set_meta("ui_key",key)
+    button.position=rect.position;button.size=rect.size
+    for state in ["normal","hover","pressed","focus","disabled"]:button.add_theme_stylebox_override(state,StyleBoxEmpty.new())
+    for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color","font_disabled_color","font_outline_color"]:button.add_theme_color_override(state,Color.TRANSPARENT)
+    button.add_theme_constant_override("outline_size",0)
+    button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
+    button.focus_entered.connect(func():art.focused_key=key;queue_redraw())
+    button.mouse_entered.connect(func():art.focused_key=key;queue_redraw())
+    button.pressed.connect(func():
+        get_viewport().set_input_as_handled()
+        callback.call())
+    art_controls.add_child(button);art_buttons[key]=button
+    return button
+
+func _build_art_controls() -> void:
+    for child in art_controls.get_children():art_controls.remove_child(child);child.queue_free()
+    art_buttons.clear();art_controls.visible=true
+    if menu_page=="main":
+        var keys:Array=["fight","roster","training","settings","demo"]
+        var labels:Array=["FIGHT","FIGHTERS","TRAINING","SETTINGS","AI DEMO"]
+        var calls:Array=[func():session.start_match(false),func():open_page("roster"),func():session.start_match(true),func():open_page("settings"),func():session.start_demo()]
+        for i in 5:_art_button(keys[i],labels[i],art.fit(art.MAIN_RECTS[i]),calls[i])
+        for i in 5:
+            art_buttons[keys[i]].focus_neighbor_top=art_buttons[keys[(i+4)%5]].get_path()
+            art_buttons[keys[i]].focus_neighbor_bottom=art_buttons[keys[(i+1)%5]].get_path()
+    else:
+        for i in 4:
+            var index:int=i
+            _art_button("card_"+str(i),["ORIGINAL","FIGHTER 1","FIGHTER 3","FIGHTER 4"][i],art.fit(art.CARD_RECTS[i]),func():
+                focus_key="card_"+str(index)
+                session.set_character(art.roster_side,index)
+                _build_art_controls();call_deferred("_restore_focus");queue_redraw())
+        for side in 2:
+            var selected_side:int=side
+            _art_button("side_"+str(side),"SELECT P%d"%(side+1),art.fit(Rect2(18,241+side*100,160,84)),func():art.roster_side=selected_side;queue_redraw())
+        _art_button("roster_fight","FIGHT",art.fit(Rect2(849,773,550,100)),func():session.start_match(false))
+        _art_button("back","BACK",art.fit(Rect2(1507,875,145,50)),close_page)
+        for i in 4:
+            var button:Button=art_buttons["card_"+str(i)]
+            button.focus_neighbor_left=art_buttons["card_"+str(i^1)].get_path()
+            button.focus_neighbor_right=art_buttons["card_"+str(i^1)].get_path()
+            button.focus_neighbor_top=art_buttons["card_"+str((i+2)%4)].get_path()
+            button.focus_neighbor_bottom=art_buttons["card_"+str(i+2)].get_path() if i<2 else art_buttons.roster_fight.get_path()

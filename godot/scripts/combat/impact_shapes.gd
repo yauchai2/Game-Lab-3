@@ -12,7 +12,7 @@ const PROFILES := {
     "finisher": Vector3(59,19,.20), "heavy": Vector3(71,24,.12),
     "launcher": Vector3(63,21,-.85), "special": Vector3(82,27,0)
 }
-func build(kind: String, move: String, phase: float, tint: Color, face: float, reduced: bool) -> Array[Dictionary]:
+func build(kind: String, move: String, phase: float, tint: Color, face: float, reduced: bool, character := 0) -> Array[Dictionary]:
     var shapes: Array[Dictionary]=[]
     var frame:=clampi(int(clampf(phase,0,.9999)*6),0,5)
     var profile: Vector3=PROFILES.get(move,PROFILES.jab)
@@ -47,6 +47,28 @@ func build(kind: String, move: String, phase: float, tint: Color, face: float, r
                 var angle:=i*TAU/5+.17
                 var center:=Vector2.from_angle(angle)*(radius+8+frame*3)
                 _diamond(shapes,center,Vector2(9-frame,3),angle,PAPER if i%2 else tint)
+    if move in ["special","overdrive"] and kind in ["swing","release"]:
+        shapes.clear()
+        var pulse:float=[.72,1.0,1.12,1.2,1.26,1.30][frame]
+        var w:float=maxf(2.0,profile.y*(1.0-frame*.14))
+        var color:Color=Color(["ff6a00","4acfe0","e05aaf","d7f400"][clampi(character,0,3)])
+        radius*=pulse
+        match character:
+            1:
+                for angle in [-.45,.45]:
+                    _crescent(shapes,radius,w,angle,Vector2(1,.86),color)
+                    if frame<3:_crescent(shapes,radius-4,w*.28,angle,Vector2(1,.86),PAPER)
+            2:
+                for i in 3:
+                    _ring_piece(shapes,radius+i*13,maxf(2,w*.4),-PI*.9,PI*.15,Vector2(1,.6),color if i%2==0 else PAPER)
+            3:
+                var points:=PackedVector2Array([Vector2(-radius,.18*radius),Vector2(-radius*.3,-radius*.14),Vector2(-radius*.4,radius*.03),Vector2(radius*.6,-radius*.35),Vector2(radius*.3,-radius*.03),Vector2(radius,0),Vector2(radius*.15,radius*.27),Vector2(radius*.3,radius*.07),Vector2(-radius*.5,radius*.34)])
+                _poly(shapes,points,color)
+                if frame<3:_diamond(shapes,Vector2(radius*.1,0),Vector2(radius*.65,4),-.12,PAPER)
+            _:
+                _star(shapes,radius*.62,4,0,color)
+                _star(shapes,radius*.30,4,0,PAPER)
+                for side in [-1,1]:_diamond(shapes,Vector2(-radius*.7,side*radius*.3),Vector2(radius*.55,3),-.1*side,color)
     if face<0:
         for shape in shapes:
             var points: PackedVector2Array=shape.points

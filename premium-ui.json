@@ -1,11 +1,24 @@
 {
   "profile": "native-game",
-  "sourceRoots": ["godot/scripts/combat"],
-  "locale": "zh-Hant-HK",
+  "sourceRoots": [
+    "godot/scripts/combat"
+  ],
+  "locale": "en",
   "canonicalMap": "UX-CONTRACT.md",
-  "requiredCapabilities": ["Select/Listbox", "Scrollbar", "Toast"],
-  "ownership": {"Select/Listbox": "native", "Scrollbar": "native", "Toast": "authored"},
+  "requiredCapabilities": [
+    "Select/Listbox",
+    "Scrollbar",
+    "Toast"
+  ],
+  "ownership": {
+    "Select/Listbox": "native",
+    "Scrollbar": "native",
+    "Toast": "authored"
+  },
   "requiredCommands": [],
   "commands": {},
-  "evidence": {"nativeChecks": "docs/evidence/extended-polish/", "nativeRuntime": "godot/tools/capture_extended_polish.gd"}
+  "evidence": {
+    "nativeChecks": "docs/evidence/ui-replica/",
+    "nativeRuntime": "godot/tools/verify_reference_ui.gd"
+  }
 }

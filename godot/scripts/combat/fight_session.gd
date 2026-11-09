@@ -33,7 +33,7 @@ var ink_pass: MeshInstance3D
 var reduced_effects := false
 var retro_pixels := true
 var pixel_pass: ColorRect
-var language := "zh"
+var language := "en"
 var character_choices := [0,1]
 var training_details := false
 var settings_save_clock := -1.0
@@ -249,6 +249,7 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
     effect.merge(options,true)
     var actor:int=effect.get("attacker",effect.get("owner",0 if effect.color==COLORS[0] else 1))
     effect["character"]=character_choices[clampi(actor,0,1)]
+    if effect.get("move","") in ["special","overdrive"]:effect.color=Color(Simulation.Profiles.profile(effect.character).color)
     effects.append(effect)
 
 func _handle_event(event: Dictionary) -> void:
@@ -315,6 +316,7 @@ func _handle_event(event: Dictionary) -> void:
             _spawn_vfx("ground_ring",Vector2(fighter.x,.04),.30,{"color":COLORS[event.target]})
             _spawn_vfx("dust",Vector2(fighter.x,.08),.22,{"color":Color("fff5db")})
             if kind=="ground_bounce" or event.get("hard",false):
+                _spawn_vfx("slam_crater",Vector2(fighter.x,.04),.32,{"color":COLORS[event.target]})
                 trauma=maxf(trauma,.28)
                 audio.play_sound("sub",.85,-7)
             audio.play_sound("land",.85,-6)
@@ -475,9 +477,6 @@ func _release_impacts(with_audio := true) -> void:
         if impact.strength>.55:
             var side:=0 if impact.color==COLORS[0] else 1
             spectacle.trigger("burst",side,impact.at,clampi(ceili(impact.strength*4),1,4))
-            _spawn_vfx("surge_arc",impact.at,.20,{"face":impact.face,"color":impact.color,"tier":clampi(ceili(impact.strength*4),1,4)})
-            if sim.arcade_enabled and impact.move in ["meteor","special","overdrive","launcher"]:_spawn_vfx("slam_crater",Vector2(impact.at.x,.04),.45,{"color":impact.color,"strength":impact.strength})
-            _spawn_vfx("ground_ring",Vector2(impact.at.x,.04),.32,{"face":impact.face,"color":impact.color,"strength":impact.strength})
         if impact.strength>=strongest:
             strongest=impact.strength
             recoil=Vector2(-impact.face,-0.55 if impact.move=="launcher" else 0.12)*minf(.18,impact.strength*.18)
@@ -519,15 +518,7 @@ func _process(delta: float) -> void:
             if fighter.state=="stun" and absf(fighter.vx)>6 and trail_clock>0.06:
                 _spawn_vfx("trail",Vector2(fighter.x,fighter.y+1),0.15,{"face":signf(fighter.vx),"color":COLORS[i]})
         if trail_clock>0.06: trail_clock = 0.0
-    if screen=="play" and not reduced_effects and rhythm.view_speed()>=1.0:
-        echo_clock+=delta
-        if echo_clock>=.055:
-            echo_clock=0.0
-            for side in 2:
-                var state: Dictionary=sim.fighters[side]
-                if (state.state in ["dash","chase"] or (state.state=="stun" and absf(state.vx)>6) or (state.state=="attack" and state.move in ["special","overdrive","heavy","finisher","air_kick","air_finisher","meteor"])) and sim.hitstop==0:
-                    var bones: Array=fighters[side].capture_echo()
-                    _spawn_vfx("echo",Vector2.ZERO,.18,{"bones":bones,"color":COLORS[side],"face":state.face})
+    # Motion paths already communicate pursuit; omit opaque skeleton-stick ghosts.
     backdrop.present(delta, screen in ["pause", "help", "result"], reduced_effects)
     _present((delta*rhythm.view_speed() if screen=="play" and not reduced_effects else delta) if screen in ["play", "title", "result"] else 0.0)
     _grade_world()
@@ -757,7 +748,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
         start_match(true)
     elif event.keycode == KEY_ENTER:
         if screen == "title":
-            start_match()
+            var focused:Control=get_viewport().gui_get_focus_owner()
+            if focused is Button and focused.get_parent()==hud.art_controls:focused.pressed.emit()
+            else:start_match()
         elif screen == "result":
             if sim.phase == "match_over":
                 start_match(practice)
@@ -914,7 +907,7 @@ func _restore_options() -> void:
     reduced_effects=options.reduced_effects
     retro_pixels=options.retro_pixels
     ink_pass.visible=options.scene_edges
-    language=options.language
+    language="en"
     training_details=options.training_details
     audio.music_level=options.music_level
     audio.effects_level=options.effects_level

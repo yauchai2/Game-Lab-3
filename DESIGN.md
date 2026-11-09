@@ -1,5 +1,12 @@
 # Afterhours — interface design
 
+## Current approved reference UI — 2026-11-09
+
+The user now requests direct reproduction of the supplied three screens, English, and only five title actions. Main is the exact original raster artwork under aligned native targets. Roster is a native four-card/P1/P2 grid with reference art and live profile data; HUD uses reference geometry and fixed crops around native dynamic values. `reference_art.gd` is the canonical HUD's drawing helper, not a second interaction controller. The durable palette stays in ui_theme.gd; display type is now OFL Barlow Condensed Black Italic, body remains the bundled UI font. The historical DejaVu/left match-card descriptions below are superseded.
+
+Music continues through pause/settings with smooth gain and two dedicated crossfade decks. Combat raster stamps and stick ghosts are retired; six-cel vector VFX preserve controlled silhouettes. See [REFERENCE_UI.md](docs/REFERENCE_UI.md).
+
+
 ## Current JSR implementation — 2026-11-09
 
 The approved original-JSR / Hong Kong underground-radio direction is now live. Generated AFTERHOURS lettering, sticker Buttons, a compact radio clock and empty health frame decorate native live controls; no concept screenshot is used as an interactive background. Native OptionButton and CheckButton surfaces stay quiet and readable. Labels remain upright, bundled, Traditional Chinese / English, with explicit focus and outlined shortcut text. All title, roster, settings, pause and result screens use the same theme owner.
@@ -50,7 +57,7 @@ A street fight should remain visible. Menus feel like underground-radio flyers a
 | EDGE | #62536e | Boundaries and empty meters |
 | LIME | #d7f400 | Selection, live energy and signature accents |
 
-Body: bundled OFL Noto Sans CJK HK subset, derivative family Afterhours UI HK. Display: bundled DejaVu Sans Condensed Bold for the English brand, clock and large numerals. Both have local license/source records, with Chinese drawn through the CJK face. No platform-dependent font selection for the combat UI.
+Body: bundled OFL Noto Sans CJK HK subset, derivative family Afterhours UI HK. Display: bundled OFL Barlow Condensed Black Italic for the English brand, clock and large numerals. Both have local license/source records, with Chinese drawn through the CJK face. No platform-dependent font selection for the combat UI.
 
 ## Hierarchy
 

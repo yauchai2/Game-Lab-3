@@ -1,5 +1,14 @@
 # 待辦與完成狀態
 
+## Latest: approved reference UI
+
+- [x] Five-action original title, four-card P1/P2 roster, matching live HUD and English pages.
+- [x] Continuous/ducked music plus reversible two-deck crossfade.
+- [x] Actual review of all13 moves and4 signature pairs; remove raster stamps and redundant floor effects.
+- [x] Native interaction/audio tests and actual stage captures.
+- [ ] Human review of readability, balance and real-device audio mix.
+
+
 ## JSR 正式遊戲版本
 
 - [x] 原生 JSR UI、透明圖集、雙語／即時數值與50/75刻度。

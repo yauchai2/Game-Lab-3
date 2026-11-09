@@ -1,5 +1,14 @@
 # Native game UI contract
 
+## Approved five-action reference flow — 2026-11-09
+
+Current UI policy is [REFERENCE_UI.md](docs/REFERENCE_UI.md). Title has exactly Fight/Fighters/Training/Settings/AI Demo. Fixed English art may contain static labels, but each hit target is a real named native Button. Native focus selects the actual Enter action; background art is not an extra gameplay controller. Roster/Grid is owned by fight_hud.gd native Buttons, reference_art.gd paints it, simulation/preferences own P1/P2 choices. Dynamic HP/energy/time/combo still belong to native drawing and true data.
+
+Settings retain native difficulty/partner dropdowns, sliders, focus and bounded scrolling. The old language dropdown/two character dropdowns are replaced by English and a four-card roster. Their old harnesses remain historical; verify_reference_ui.gd exercises current behavior.
+
+Music policy overrides every earlier pause-silence/playhead clause: pause/help/settings duck rather than pause; mute/zero silence gain while transport advances. Context song changes crossfade over1.2s on two dedicated players. Reverse a rapid navigation fade; retire only a silent old deck. Gameplay pause still freezes simulation. Native checks assert transport and gain, not human audio acceptance.
+
+
 ## Current JSR native UI and profiles — 2026-11-09
 
 The JSR direction is implemented in the canonical native theme/HUD/copy/session owners. Generated art decorates actual Buttons, bars and clock; all labels, HP, energy, time, combo counts and input remain live. Native settings/roster dropdowns retain keyboard/popup behavior. Energy thresholds are exact 50/75 markers on a continuous 0–100 bar. Roster shows the actual selected fighter traits and signature names; changes update both the live model and simulation profile, and persist. Four distinct profiles supersede the old shared-stats copy.

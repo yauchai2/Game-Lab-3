@@ -14,6 +14,11 @@ const OPEN := "res://audio/open/"
 const BERLIN := "res://audio/user-tracks/berlin.ogg"
 const GROOVE := "res://audio/user-tracks/groove_district.ogg"
 var current_track := ""
+var fading_music: AudioStreamPlayer
+var fading_track := ""
+var crossfade := 1.0
+var music_gain_db := -19.0
+const CROSSFADE_SECONDS := 1.2
 const WEV := "res://audio/wev/family_ties_game.ogg"
 var music_credit := ""
 var music_trim_db := 0.0
@@ -47,6 +52,13 @@ func _ready() -> void:
     music.stream = music_stream(current_track)
     music.volume_db = -19.0+music_trim_db
     add_child(music)
+    fading_music=AudioStreamPlayer.new()
+    fading_music.name="MusicCrossfade"
+    fading_music.volume_db=-80.0
+    fading_music.stream=music_stream(GROOVE)
+    fading_track=GROOVE
+    music_credit="Berlin"
+    add_child(fading_music)
 
 func music_stream(path: String) -> AudioStreamOggVorbis:
     var selected:=path if ResourceLoader.exists(path,"AudioStreamOggVorbis") else OPEN+"level1.ogg"
@@ -65,17 +77,37 @@ func _process(delta: float) -> void:
     if not is_instance_valid(music): return
     # Keep a fight track across pause/settings; switch only when entering title/play.
     var desired:String=GROOVE if context=="play" else (BERLIN if context=="title" else current_track)
-    if desired!=current_track:
-        music.stop()
-        current_track=desired
-        music.stream=music_stream(current_track)
-    var pause_requested := muted or music_muted or music_level<=0 or context in ["pause","help"]
-    # An idle AudioStreamPlayer does not retain stream_paused: use the requested
-    # state when deciding to start, then pause/resume an existing playback.
-    if not pause_requested and not music.playing: music.play()
-    music.stream_paused = pause_requested
-    var target_db := (-13.0 if context=="play" else -19.0) - (4.0 if duck_time>0 else 0.0) + music_trim_db + linear_to_db(maxf(.001,music_level))
-    music.volume_db = lerpf(music.volume_db,target_db,1.0-exp(-delta*9.0))
+    if desired!=current_track:_switch_track(desired)
+    # Navigation never pauses the transport. Explicit mute/zero volume silence it.
+    if not music.playing:music.play()
+    music.stream_paused=false
+    fading_music.stream_paused=false
+    var target_db:float=(-13.0 if context=="play" else (-23.0 if context in ["pause","help"] else -17.0))-(4.0 if duck_time>0 else 0.0)
+    if muted or music_muted or music_level<=0:target_db=-80.0
+    else:target_db+=linear_to_db(maxf(.001,music_level))
+    music_gain_db=lerpf(music_gain_db,target_db,1.0-exp(-delta*7.0))
+    crossfade=minf(1.0,crossfade+delta/CROSSFADE_SECONDS)
+    music.volume_db=music_gain_db+linear_to_db(maxf(.0001,sin(crossfade*PI*.5)))
+    fading_music.volume_db=music_gain_db+linear_to_db(maxf(.0001,cos(crossfade*PI*.5)))
+    if crossfade>=1.0 and fading_music.playing:fading_music.stop()
+
+func _switch_track(path:String) -> void:
+    if fading_music.playing and path==fading_track:
+        var swap:AudioStreamPlayer=music
+        music=fading_music;fading_music=swap
+        var old:String=current_track;current_track=fading_track;fading_track=old
+        crossfade=1.0-crossfade
+        music_credit="Berlin" if current_track==BERLIN else "Starjunk 95 / Groove District"
+        return
+    fading_music.stop() # Already silent when starting a new two-song transition.
+    var swap:AudioStreamPlayer=music
+    music=fading_music;fading_music=swap
+    fading_track=current_track;current_track=path
+    # Each song keeps its dedicated stream; navigation reuses it.
+    music_credit="Berlin" if path==BERLIN else "Starjunk 95 / Groove District"
+    music.volume_db=-80.0
+    music.play()
+    crossfade=0.0
 
 func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
     if muted or effects_level<=0 or not sounds.has(kind): return
@@ -98,6 +130,11 @@ func _exit_tree() -> void:
         if voice.has_stream_playback(): voice.get_stream_playback().stop()
         voice.stop()
         voice.stream = null
+    if is_instance_valid(fading_music):
+        fading_music.stream_paused=false
+        if fading_music.has_stream_playback():fading_music.get_stream_playback().stop()
+        fading_music.stop()
+        fading_music.stream=null
     if is_instance_valid(music):
         music.stream_paused = false
         if music.has_stream_playback(): music.get_stream_playback().stop()

@@ -1,0 +1,76 @@
+{
+  "created_utc": "20261109T153854Z",
+  "source_commit": "ec2f980c26a6e1b6a0cdc6bf4adcc0a48ed60ff6",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/fight_audio.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_preferences.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_vfx.gd",
+    "godot/scripts/combat/impact_shapes.gd",
+    "godot/scripts/combat/ui/ui_theme.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 47,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_combat_rhythm",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "d0e629c8a7344ab50a721c90093b2e6b31387abb4e7027f05ae9d7c986efafb6",
+      "seconds": 3.106,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_combat_rhythm.gd"
+      ],
+      "report_written": true,
+      "passed": 29,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_red_theatre",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "8666730bb78b6c793729d883919c7f4502c04637548c8ae0746dae443cae5052",
+      "seconds": 1.808,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_red_theatre.gd"
+      ],
+      "report_written": true,
+      "passed": 18,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

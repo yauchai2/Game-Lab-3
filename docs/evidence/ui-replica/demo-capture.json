@@ -1,0 +1,30 @@
+{
+  "events": {
+    "air_counter_choice": 2,
+    "air_counter_end": 2,
+    "air_counter_release": 2,
+    "air_counter_start": 2,
+    "air_counter_windup": 2,
+    "air_land": 4,
+    "air_parry_attempt": 2,
+    "break_finish": 2,
+    "chase_arrive": 2,
+    "hit/air_counter": 2,
+    "hit/air_jab": 2,
+    "hit/air_kick": 2,
+    "hit/cross": 2,
+    "hit/jab": 2,
+    "hit/launcher": 2,
+    "hit/overdrive": 2,
+    "homing_chase": 2,
+    "swing": 17
+  },
+  "fixed_wall_steps": 480,
+  "fps": 15,
+  "frames": 120,
+  "hits": [
+    7,
+    7
+  ],
+  "scope": "Continuous native fixed-step capture. No soundtrack, no human input, not measured real-time FPS."
+}

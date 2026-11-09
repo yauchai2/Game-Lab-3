@@ -18,19 +18,19 @@ import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
+# UI replica replaces old dropdown/Chinese-menu and pause-silence harnesses.
+# Their source and historical evidence remain; verify_reference_ui covers the new contract.
 CASES = [
-    ("verify_jsr_runtime", "jsr-runtime/checks.json", "native"),
+    ("verify_reference_ui", "ui-replica/checks.json", "native"),
     ("verify_cannon_input", "charged-cannon/input.json", "native"),
     ("verify_charged_cannon", "charged-cannon/rules.json", "headless"),
     ("verify_combat_rhythm", "combat-rhythm/verification.json", "native"),
-    ("verify_fighter_roster", "character-roster/native.json", "native"),
     ("verify_red_theatre", "rush-rework/red-theatre.json", "native"),
     ("verify_rush_arcade", "rush-rework/arcade-rules.json", "headless"),
     ("verify_friendly_input", "friendly-defense/input.json", "native"),
     ("verify_friendly_defense", "friendly-defense/rules.json", "headless"),
     ("verify_demo", "rush-rework/live-rules.json", "headless"),
     ("verify_demo_input", "rush-rework/input.json", "native"),
-    ("verify_music_audio", "jsr-runtime/music-runtime.json", "native"),
     ("verify_air_counter", "air-reversal/rules.json", "headless"),
     ("verify_air_counter_input", "air-reversal/input.json", "native"),
     ("verify_aerial_street", "aerial-street/rules.json", "headless"),
@@ -49,10 +49,7 @@ CASES = [
     ("verify_pressure_exchange", "pressure-exchange/verification.json", "headless"),
     ("verify_flyby", "flyby/verification.json", "headless"),
     ("verify_close_combat", "extended-polish/close-combat.json", "headless"),
-    ("verify_game_ui", "extended-polish/ui-verification.json", "headless"),
     ("verify_combat_framing", "extended-polish/framing/verification.json", "headless"),
-    ("verify_game_ui", "extended-polish/ui-verification.json", "native"),
-    ("verify_ui_input", "extended-polish/ui-input.json", "native"),
     ("verify_street_ui", "extended-polish/street-ui/verification.json", "native"),
     ("verify_combat_input", "combat/input-verification.json", "native"),
     ("verify_pressure_input", "pressure-exchange/input-verification.json", "native"),

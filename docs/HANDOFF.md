@@ -1,5 +1,10 @@
 # 接續工作交接
 
+## Latest: reference UI and continuous music
+
+Current policy: [REFERENCE_UI.md](REFERENCE_UI.md). Exact title art, five buttons, native card/P1/P2 selection and reference-layout HUD. English; original files remain. Pause ducks music and transport continues; two dedicated crossfade decks. Active combat renderer is authored vectors, old generated stamps/echo sticks retired. Native37/37,19 actual move routes,144 headless and47 rhythm/red-stage checks. Web unchanged.
+
+
 ## JSR UI 正式接入／四流派／新音樂
 
 本輪正式採用上一輪 JSR 方向，並加入四角色差異、護目鏡94%身高、低解像設定與兩首使用者音樂。詳見 [JSR_RUNTIME.md](JSR_RUNTIME.md)。這覆蓋先前研究未接入／四人共用能力／scale1.4／wev 預設；Web 仍不更新。

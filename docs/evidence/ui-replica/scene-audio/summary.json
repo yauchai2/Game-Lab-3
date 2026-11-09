@@ -1,0 +1,45 @@
+{
+  "created_utc": "20261109T155241Z",
+  "source_commit": "ec2f980c26a6e1b6a0cdc6bf4adcc0a48ed60ff6",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/fight_audio.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_preferences.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_vfx.gd",
+    "godot/scripts/combat/impact_shapes.gd",
+    "godot/scripts/combat/ui/ui_theme.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": false,
+  "passed": 32,
+  "failed": 1,
+  "cases": [
+    {
+      "name": "verify_scene_audio_vfx",
+      "mode": "headless",
+      "exit_code": 1,
+      "harness_sha256": "5123e020c21c98b1f319810179b943090dbbb0608717895e11eebc857e6e993e",
+      "seconds": 1.468,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_scene_audio_vfx.gd"
+      ],
+      "report_written": true,
+      "passed": 32,
+      "failed": 1,
+      "skipped": [],
+      "diagnostics": [
+        "ERROR: SCENE/AUDIO/VFX FAIL: parry opens a counter window and grants energy"
+      ],
+      "success": false
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

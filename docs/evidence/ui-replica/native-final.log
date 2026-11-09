@@ -1,0 +1,202 @@
+WorkerThreadPool: 3 threads, 1 max low-priority.
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Unrecognized output string "misc2" in mapping:
+030000008a2e0000dd10000011010000,Hand Held Legend GC Ultimate,a:b0,b:b2,back:b17,dpdown:b5,dpleft:b6,dpright:b7,dpup:b4,guide:b18,leftshoulder:b10,leftstick:b8,lefttrigger:a3,leftx:a0,lefty:a1,misc1:b19,misc2:b24,paddle1:b13,paddle2:b12,rightshoulder:b11,rightstick:b9,righttrigger:a4,rightx:a2,righty:a5,start:b16,x:b1,y:b3,platform:Linux,
+Unrecognized output string "misc2" in mapping:
+030000000d0f0000ab01000011010000,Horipad Steam,a:b0,b:b1,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a5,leftx:a0,lefty:a1,misc2:b2,paddle1:b19,paddle2:b18,paddle3:b15,paddle4:b5,rightshoulder:b7,rightstick:b14,righttrigger:a4,rightx:a2,righty:a3,start:b11,x:b3,y:b4,platform:Linux,
+Unrecognized output string "misc2" in mapping:
+050000000d0f00009601000091000000,Horipad Steam,a:b0,b:b1,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a5,leftx:a0,lefty:a1,misc2:b2,paddle1:b19,paddle2:b18,paddle3:b15,paddle4:b5,rightshoulder:b7,rightstick:b14,righttrigger:a4,rightx:a2,righty:a3,start:b11,x:b3,y:b4,platform:Linux,
+Unrecognized output string "misc2" in mapping:
+030000007e0500006920000011010000,Nintendo Switch 2 Pro Controller,a:b0,b:b1,back:b14,dpdown:b8,dpleft:b10,dpright:b9,dpup:b11,guide:b16,leftshoulder:b12,leftstick:b15,lefttrigger:b13,leftx:a0,lefty:a1~,misc1:b17,misc2:b20,paddle1:b18,paddle2:b19,rightshoulder:b4,rightstick:b7,righttrigger:b5,rightx:a2,righty:a3~,start:b6,x:b2,y:b3,platform:Linux,
+SDL: Init OK!
+Xshape 1.1 detected.
+Xinerama 1.1 detected.
+Xrandr 1.6 detected.
+Xrender 0.11 detected.
+Xinput 2.2 detected.
+XInput: Refreshing devices.
+XInput: No touch devices found.
+Detecting GPUs, set DRI_PRIME in the environment to override GPU detection logic.
+Only one GPU found, using default.
+Accessibility: window 0 adapter created.
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+XcursorGetTheme could not get cursor theme
+Failed loading custom cursor: crossed_circle
+DBus 1.16.2 detected.
+Using "default" pen tablet driver...
+Shader 'CanvasSdfShaderGLES3' SHA256: e1fc4015d45db07fce0346b99c312728ab006030520ec796da1461e1428345c5
+Shader 'SkeletonShaderGLES3' SHA256: e42116215ed2a92dea7085176e3b3f1089edcb71a3405ab67073ce8e77114587
+Shader 'ParticlesShaderGLES3' SHA256: ffb4401639aafac71f9f113685cb6db157587dac2f1a352495327188f37419b2
+Shader 'ParticlesCopyShaderGLES3' SHA256: 9899e9a2ef961a3d8b457619edf04eca325601701531cee383193a6c83ec1a13
+Shader 'CopyShaderGLES3' SHA256: e360dbabe48fbad4409fd02e3794a652b8c7d7778b2d408785702371b1c962c6
+Shader 'CubemapFilterShaderGLES3' SHA256: 017276394727d66a84d83b8b9d67287226d828c938b0adde3d2f699f78cf1582
+Shader 'GlowShaderGLES3' SHA256: 427cfd9bd0cc4045ecaa4bc4f23055a2a40660411d8e1663897a7c2cd3c80665
+Shader 'PostShaderGLES3' SHA256: a31034a68aa96e1495d69b387fe1f9198e7da7c39aaca2ae4881120445f14d7a
+Shader 'FeedShaderGLES3' SHA256: 9c5f15371d9ed62661ff3bb3ecc28f82cb15be9a4be89518b1f6fd8d372fbe4b
+Shader 'CanvasShaderGLES3' SHA256: 16f1396f2f5ac39d277138cd33a6d284e2d97309f2a547816c220d0ef0318826
+Shader 'CanvasOcclusionShaderGLES3' SHA256: 6baa8caaecef40c331cf27f156879d8ca7d8bf94ec84f8168903490f61264d2d
+Shader 'SceneShaderGLES3' SHA256: 6d63bbf4b53e4a6a75547f4788484cc8b6c054bccd3c1331ef7b8b504184effa
+Shader 'SkyShaderGLES3' SHA256: 9ed6b1ef29b56a1ac888c4de409d9caf637e7cb9b41ab33a7c5391c352788c40
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2475187701
+EDITOR API HASH: 3867286884
+Loading resource: res://tools/verify_reference_ui.gd
+Loading resource: res://scenes/combat/street_fight.tscn
+Loading resource: res://scripts/combat/fight_session.gd
+Loading resource: res://shaders/retro_pixels.gdshader
+Loading resource: res://shaders/kinetic_grade.gdshader
+Loading resource: res://shaders/fighter_toon.gdshader
+Loading resource: res://shaders/fighter_outline.gdshader
+Loading resource: res://assets/fonts/AfterhoursUIHK.otf
+Loading resource: res://.godot/imported/AfterhoursUIHK.otf-c68e766da200c0033213e1c1d1823d30.fontdata
+Loading resource: res://assets/fonts/BarlowCondensed-BlackItalic.ttf
+Loading resource: res://.godot/imported/BarlowCondensed-BlackItalic.ttf-0ff67cac2263edec22b7d19155e2ab46.fontdata
+Loading resource: res://assets/ui/replica/pause.png
+Loading resource: res://.godot/imported/pause.png-2860b61a39546da66b52a2e9442a4d19.ctex
+Loading resource: res://assets/ui/jsr/ui-frames.png
+Loading resource: res://.godot/imported/ui-frames.png-1247cb73983a48699e4206ffbfe6cdeb.ctex
+Loading resource: res://assets/ui/jsr/afterhours-logo.png
+Loading resource: res://.godot/imported/afterhours-logo.png-9ef83f17a2df5e1abaddb8f16b8d71cd.ctex
+Loading resource: res://assets/ui/jsr/action-icons.png
+Loading resource: res://.godot/imported/action-icons.png-22da2865cd9adc83430ab32b1ee2e911.ctex
+Loading resource: res://assets/ui/replica/title.png
+Loading resource: res://.godot/imported/title.png-62dbdf635ea4732fc596e3efa75f0d44.ctex
+Loading resource: res://assets/ui/replica/roster-backplate.png
+Loading resource: res://.godot/imported/roster-backplate.png-b65471ff10186133362b63702ac88bad.ctex
+Loading resource: res://assets/ui/replica/roster-reference.png
+Loading resource: res://.godot/imported/roster-reference.png-31dc8c9f78d3a635f262775df5780863.ctex
+Loading resource: res://assets/ui/replica/headphones.png
+Loading resource: res://.godot/imported/headphones.png-1ecff8e07804b2daf27a24db511dae56.ctex
+Loading resource: res://assets/ui/replica/controls.png
+Loading resource: res://.godot/imported/controls.png-da04f4659208e9f74797d41a1eda8080.ctex
+Loading resource: res://assets/ui/replica/fighter-portraits.png
+Loading resource: res://.godot/imported/fighter-portraits.png-8d9ee3119708b82a516aea5a97677fbf.ctex
+Loading resource: res://shaders/sample_toon.gdshader
+Loading resource: res://scenes/street_whitebox.tscn
+Loading resource: res://scripts/whitebox_views.gd
+Loading resource: res://scenes/PROP_HYDRANT_A01.tscn
+Loading resource: res://assets/PROP_HYDRANT_A01.glb
+Loading resource: res://.godot/imported/PROP_HYDRANT_A01.glb-726df1253135847fc834381f41f31d4c.scn
+Loading resource: res://assets/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg-e0dc938f13d5b5e34b31d9827f38e3a0.ctex
+Loading resource: res://scenes/PROP_BIN_A01.tscn
+Loading resource: res://assets/PROP_BIN_A01.glb
+Loading resource: res://.godot/imported/PROP_BIN_A01.glb-1ad4606efe2e456a553d6c913eb16937.scn
+Loading resource: res://assets/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg-e016496386dd0f364bac2daa608d46a1.ctex
+Loading resource: res://scenes/VEH_VAN_A01.tscn
+Loading resource: res://assets/VEH_VAN_A01.glb
+Loading resource: res://.godot/imported/VEH_VAN_A01.glb-b4052da69b546fa3cc830a7573d08264.scn
+Loading resource: res://assets/VEH_VAN_A01_van_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/VEH_VAN_A01_van_3d_model_basecolor.jpg-adc9b97991aeb27f2ff54c5e9df3f605.ctex
+Loading resource: res://scenes/PROP_SHOP_STOOL_A01.tscn
+Loading resource: res://assets/PROP_SHOP_STOOL_A01.glb
+Loading resource: res://.godot/imported/PROP_SHOP_STOOL_A01.glb-82b3d46beab3e0fb3e84eb76feff46ee.scn
+Loading resource: res://assets/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg-170ac8f8b9734de12bc8232bc4a6690d.ctex
+Loading resource: res://scenes/PROP_CRATES_A01.tscn
+Loading resource: res://assets/PROP_CRATES_A01.glb
+Loading resource: res://.godot/imported/PROP_CRATES_A01.glb-351dca0e178713f7a1933bf488e4adf9.scn
+Loading resource: res://assets/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg-7cf18af2b2407ccbede59237102989fd.ctex
+Loading resource: res://scenes/PROP_MAILBOX_A01.tscn
+Loading resource: res://assets/PROP_MAILBOX_A01.glb
+Loading resource: res://.godot/imported/PROP_MAILBOX_A01.glb-c965e072e821df1d51ab09fb7ccf7b0f.scn
+Loading resource: res://assets/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg-8ca2ca862cb68d603d2ca672e415b127.ctex
+Loading resource: res://assets/SKY_BLUE_A01.png
+Loading resource: res://.godot/imported/SKY_BLUE_A01.png-879322509cb93cae73ca6a61c3e02f41.ctex
+Loading resource: res://scenes/VEH_CAR_A01.tscn
+Loading resource: res://assets/VEH_CAR_A01.glb
+Loading resource: res://.godot/imported/VEH_CAR_A01.glb-527c955c709cd507d017b61d6302b1d1.scn
+Loading resource: res://assets/VEH_CAR_A01_car_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/VEH_CAR_A01_car_3d_model_basecolor.jpg-2cfd519ce788daea4842f09f547fd94f.ctex
+Loading resource: res://scenes/VEH_TRUCK_A01.tscn
+Loading resource: res://assets/VEH_TRUCK_A01.glb
+Loading resource: res://.godot/imported/VEH_TRUCK_A01.glb-059d49b85b9dd68b388a5a722f5cb151.scn
+Loading resource: res://assets/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg-24213b95b47126054305e56503e74a45.ctex
+Loading resource: res://scripts/truck_rear_details.gd
+Loading resource: res://assets/textures/road_asphalt_128.png
+Loading resource: res://.godot/imported/road_asphalt_128.png-8419c7086fa44e2c77606ddfe0b242d9.ctex
+Loading resource: res://assets/textures/sidewalk_tiles_128.png
+Loading resource: res://.godot/imported/sidewalk_tiles_128.png-7f17613fdca0d2a1eed196448973d81a.ctex
+Loading resource: res://assets/textures/painted_concrete_128.png
+Loading resource: res://.godot/imported/painted_concrete_128.png-a40506574473020cac60481f5c9416f1.ctex
+Loading resource: res://assets/art/graffiti_swift_A01.png
+Loading resource: res://.godot/imported/graffiti_swift_A01.png-a284772f7b53f2ba5d58ee9f5c5f9400.ctex
+Loading resource: res://assets/textures/corner_plaster_128.png
+Loading resource: res://.godot/imported/corner_plaster_128.png-55dd3a8307e2b8eed0bc114e5d1cd928.ctex
+Loading resource: res://assets/textures/corner_tiles_128.png
+Loading resource: res://.godot/imported/corner_tiles_128.png-726cba5f3c517abc2082a5e9fc56d490.ctex
+Loading resource: res://assets/textures/corner_shutter_128.png
+Loading resource: res://.godot/imported/corner_shutter_128.png-52fcd06472565678d1afe812d3272c57.ctex
+Loading resource: res://shaders/stylized_sky.gdshader
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://shaders/screen_outline.gdshader
+Loading resource: res://assets/CHAR_PLAYER_A01.glb
+Loading resource: res://.godot/imported/CHAR_PLAYER_A01.glb-518956f91aca74d55da5a6b4c1e345a8.scn
+Loading resource: res://assets/CHAR_PLAYER_A01_stylized_3d_character_basecolor.jpg
+Loading resource: res://.godot/imported/CHAR_PLAYER_A01_stylized_3d_character_basecolor.jpg-ec219d0107e9c8a8a62759bb96c3cbf1.ctex
+Loading resource: res://assets/characters/CHAR_FIGHTER_1.glb
+Loading resource: res://.godot/imported/CHAR_FIGHTER_1.glb-ad3355d6a6090b3cb8cddbd8a8203c2c.scn
+Loading resource: res://assets/characters/CHAR_FIGHTER_1_1_basecolor.jpg
+Loading resource: res://.godot/imported/CHAR_FIGHTER_1_1_basecolor.jpg-5aba1c7d1269bc1e76f02f1fbe795b48.ctex
+Loading resource: res://audio/open/impactPunch_medium_000.ogg
+Loading resource: res://.godot/imported/impactPunch_medium_000.ogg-656cbff178810cd574e1bb61a69c899c.oggvorbisstr
+Loading resource: res://audio/open/impactPunch_medium_001.ogg
+Loading resource: res://.godot/imported/impactPunch_medium_001.ogg-aedf14171205fbdc069a91a7d9d9c1e7.oggvorbisstr
+Loading resource: res://audio/open/impactPunch_medium_002.ogg
+Loading resource: res://.godot/imported/impactPunch_medium_002.ogg-ef99d271b35ea1e87b8414af832ebc80.oggvorbisstr
+Loading resource: res://audio/open/impactPunch_heavy_000.ogg
+Loading resource: res://.godot/imported/impactPunch_heavy_000.ogg-1921e5f7324029a89bd1379f76b7d645.oggvorbisstr
+Loading resource: res://audio/open/impactPunch_heavy_001.ogg
+Loading resource: res://.godot/imported/impactPunch_heavy_001.ogg-5d6d7f0d9d6bda1c5670f84540d647c3.oggvorbisstr
+Loading resource: res://audio/open/impactMetal_light_000.ogg
+Loading resource: res://.godot/imported/impactMetal_light_000.ogg-1fdeed698ca8c58ae09764ed762ffa99.oggvorbisstr
+Loading resource: res://audio/open/impactBell_heavy_003.ogg
+Loading resource: res://.godot/imported/impactBell_heavy_003.ogg-bcabe78cf315cee3333e153358960b0a.oggvorbisstr
+Loading resource: res://audio/open/impactGlass_heavy_000.ogg
+Loading resource: res://.godot/imported/impactGlass_heavy_000.ogg-7bcbeeef978c6a02449a9bfc62b0177f.oggvorbisstr
+Loading resource: res://audio/open/impactSoft_medium_001.ogg
+Loading resource: res://.godot/imported/impactSoft_medium_001.ogg-6bded28b444e16a74c703ed79ac53e1e.oggvorbisstr
+Loading resource: res://audio/open/impactSoft_heavy_000.ogg
+Loading resource: res://.godot/imported/impactSoft_heavy_000.ogg-cd102d30a558e32ed8a7876b68241bb8.oggvorbisstr
+Loading resource: res://audio/open/footstep_concrete_000.ogg
+Loading resource: res://.godot/imported/footstep_concrete_000.ogg-c6a116d00fb37d5f41fee222b3b3c712.oggvorbisstr
+Loading resource: res://audio/open/footstep_concrete_003.ogg
+Loading resource: res://.godot/imported/footstep_concrete_003.ogg-55fdd8cecdbc7a9df3d1a3d298f5c92e.oggvorbisstr
+Loading resource: res://audio/open/impactTin_medium_001.ogg
+Loading resource: res://.godot/imported/impactTin_medium_001.ogg-1c3cb7f3f4573f6ede9fa04020053996.oggvorbisstr
+Loading resource: res://audio/open/impactMetal_heavy_003.ogg
+Loading resource: res://.godot/imported/impactMetal_heavy_003.ogg-b61003713425988b2fc56fe2275314ae.oggvorbisstr
+Loading resource: res://audio/user-tracks/berlin.ogg
+Loading resource: res://.godot/imported/berlin.ogg-34b0a98ee2968a341290c6e8159cd3c4.oggvorbisstr
+Loading resource: res://audio/user-tracks/groove_district.ogg
+Loading resource: res://.godot/imported/groove_district.ogg-6e17a34a705b2f155a90a40cdaff336c.oggvorbisstr
+ENTER_STATE title roster ["card_0", "card_1", "card_2", "card_3", "side_0", "side_1", "roster_fight", "back"]
+Loading resource: res://assets/characters/CHAR_FIGHTER_4.glb
+Loading resource: res://.godot/imported/CHAR_FIGHTER_4.glb-3228f920e4c54e0fadf7c12447e24236.scn
+Loading resource: res://assets/characters/CHAR_FIGHTER_4_4_basecolor.jpg
+Loading resource: res://.godot/imported/CHAR_FIGHTER_4_4_basecolor.jpg-101dfcb9688cc113361cffa1ba022e55.ctex
+Loading resource: res://assets/CHAR_PLAYER_A01.glb
+Loading resource: res://.godot/imported/CHAR_PLAYER_A01.glb-518956f91aca74d55da5a6b4c1e345a8.scn
+Loading resource: res://assets/CHAR_PLAYER_A01_stylized_3d_character_basecolor.jpg
+Loading resource: res://.godot/imported/CHAR_PLAYER_A01_stylized_3d_character_basecolor.jpg-ec219d0107e9c8a8a62759bb96c3cbf1.ctex
+Loading resource: res://assets/characters/CHAR_FIGHTER_1.glb
+Loading resource: res://.godot/imported/CHAR_FIGHTER_1.glb-ad3355d6a6090b3cb8cddbd8a8203c2c.scn
+Loading resource: res://assets/characters/CHAR_FIGHTER_3.glb
+Loading resource: res://.godot/imported/CHAR_FIGHTER_3.glb-dc30a7f7d1f508f3e844a8d00854a848.scn
+Loading resource: res://assets/characters/CHAR_FIGHTER_3_stylized_3d_character_basecolor.jpg
+Loading resource: res://.godot/imported/CHAR_FIGHTER_3_stylized_3d_character_basecolor.jpg-0bf05889273c92b8a763c10929730efe.ctex
+REFERENCE_UI 37/37
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Accessibility: window 0 adapter destroyed.

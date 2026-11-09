@@ -1,9 +1,7 @@
 extends RefCounted
 ## Original hard-edged, staged canvas effects projected from the shared fight world.
-var sprite_fx=preload("res://scripts/combat/generated_combat_vfx.gd").new()
 var impact_shapes = preload("res://scripts/combat/impact_shapes.gd").new()
 func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
-    sprite_fx.draw(canvas,session,effect)
     var at: Vector2 = session.project(effect.at)
     var time: float = clampf(effect.age/effect.life,0,1)
     var stage := floorf(time*6.0)/6.0
@@ -95,7 +93,7 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             canvas.draw_circle(at,5,paper)
         "swing","hit","release","clash","wall":
             var phase: float = fmod(effect.age,0.15)/0.15 if effect.kind in ["hit","clash"] and effect.get("held",false) else time
-            var shapes: Array[Dictionary] = impact_shapes.build("hit" if effect.kind=="clash" else ("release" if effect.kind=="wall" else effect.kind),effect.get("move","jab"),phase,tint,face,reduced)
+            var shapes: Array[Dictionary] = impact_shapes.build("hit" if effect.kind=="clash" else ("release" if effect.kind=="wall" else effect.kind),effect.get("move","jab"),phase,tint,face,reduced,effect.get("character",0))
             var pixels_per_meter: float = (session.project(effect.at+Vector2(1,0))-at).length()
             var perspective_scale := clampf(pixels_per_meter/56.0,.65,1.5)*(1.28 if effect.get("rush",false) and effect.get("move","") in ["meteor","launcher","special","air_kick"] and not reduced else 1.0)
             for shape in shapes:

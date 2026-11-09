@@ -13,7 +13,7 @@ const FRAMES = preload("res://assets/ui/jsr/ui-frames.png")
 const LOGO = preload("res://assets/ui/jsr/afterhours-logo.png")
 const ICONS = preload("res://assets/ui/jsr/action-icons.png")
 const BODY = preload("res://assets/fonts/AfterhoursUIHK.otf")
-const DISPLAY = preload("res://assets/fonts/DejaVuSansCondensed-Bold.ttf")
+const DISPLAY = preload("res://assets/fonts/BarlowCondensed-BlackItalic.ttf")
 static func plate(color: Color, border := Color.TRANSPARENT, width := 0) -> StyleBoxFlat:
     var style:=StyleBoxFlat.new()
     style.bg_color=color

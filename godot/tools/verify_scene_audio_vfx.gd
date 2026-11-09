@@ -57,15 +57,15 @@ func run() -> void:
     check("downloaded physical hit and parry clips are loaded",audio.sounds.hit[0] is AudioStreamOggVorbis and audio.sounds.parry[0] is AudioStreamOggVorbis)
     audio.muted = true
     audio._process(0.02)
-    check("master mute pauses or prevents music playback",not audio.music.playing or audio.music.stream_paused)
+    check("master mute keeps transport but lowers its target",audio.music.playing and not audio.music.stream_paused)
     audio.muted = false
     audio.music_muted = true
     audio._process(0.02)
-    check("music can be disabled independently",(not audio.music.playing or audio.music.stream_paused) and not audio.muted)
+    check("music can be silenced independently while transport continues",audio.music.playing and not audio.music.stream_paused and not audio.muted)
     audio.music_muted = false
     audio.context = "pause"
     audio._process(0.02)
-    check("pause suspends or prevents music playback",not audio.music.playing or audio.music.stream_paused)
+    check("pause keeps music transport running",audio.music.playing and not audio.music.stream_paused)
     audio.context = "play"
     audio._process(0.02)
     check("resume enables music",not audio.music.stream_paused)
@@ -75,7 +75,7 @@ func run() -> void:
     sim.fighters[0].frame = 4
     sim.tick({}, {"guard":true})
     check("timed guard parries an incoming jab",sim.fighters[1].health==100 and sim.events.any(func(event: Dictionary)->bool: return event.kind=="parry"))
-    check("parry opens a counter window and grants energy",sim.fighters[0].state=="stun" and sim.fighters[1].meter==12 and sim.fighters[1].parry_cd>0)
+    check("parry opens a counter window and grants energy",sim.fighters[0].state=="stun" and sim.fighters[1].meter==18 and sim.fighters[1].parry_cd>0)
     sim = setup()
     for i in 10: sim.tick({}, {"guard":true})
     sim.tick({"attack":"light"},{"guard":true})

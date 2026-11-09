@@ -1,5 +1,10 @@
 # Afterhours / Game-Lab-3
 
+## Approved reference UI
+
+[Reference UI update](docs/REFERENCE_UI.md): original title composition, five actions, native four-card fighters and matching HUD. Music ducks through Esc/settings and crossfades songs; all attacks reviewed, noisy raster stamps removed. [Native images / Demo / VFX review](docs/evidence/ui-replica/README.md). Source branch only; public Web unchanged.
+
+
 ## JSR 遊戲內 UI 已替換
 
 [本輪更新](docs/JSR_RUNTIME.md)：JSR 原生介面、四人不同招式／特性、護目鏡94%身高、生成攻擊／爆發圖、新音樂及可關閉低解像畫面。只更新來源分支；公開 Web 保持舊版。
