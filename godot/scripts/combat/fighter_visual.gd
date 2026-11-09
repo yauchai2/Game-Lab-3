@@ -73,7 +73,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
     if not reduced:
         if stopped:stretch=Vector3(1.06,.94,1.06)
         elif f.state=="dash":stretch=Vector3(.91,.92,1.20)
-        elif f.state=="attack" and f.move in ["heavy","special","finisher"]:
+        elif f.state=="attack" and f.move in ["heavy","special","overdrive","finisher"]:
             var move: Dictionary=preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
             var anticip: float=clampf(float(f.frame)/move.startup,0,1)
             stretch=Vector3(1.0+anticip*.05,1.0-anticip*.07,1.0+anticip*.11)
@@ -101,7 +101,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         if f.get("rush_visual",false) and f.state=="attack":
             var move: Dictionary=preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
             if f.frame>=move.startup-1 and f.frame<move.startup+move.active:
-                var limbs:Array=["LeftHand","RightHand"] if f.move=="meteor" else ["RightFoot" if f.move in ["air_kick","air_counter"] else ("LeftHand" if f.move in ["jab","air_jab"] else "RightHand")]
+                var limbs:Array=["LeftHand","RightHand"] if f.move in ["meteor","overdrive"] else ["RightFoot" if f.move in ["air_kick","air_counter"] else ("LeftHand" if f.move in ["jab","air_jab"] else "RightHand")]
                 for limb in limbs:
                     var index:=skeleton.find_bone("mixamorig_"+limb)
                     if index>=0:

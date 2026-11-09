@@ -19,6 +19,8 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES = [
+    ("verify_cannon_input", "charged-cannon/input.json", "native"),
+    ("verify_charged_cannon", "charged-cannon/rules.json", "headless"),
     ("verify_combat_rhythm", "combat-rhythm/verification.json", "native"),
     ("verify_fighter_roster", "character-roster/native.json", "native"),
     ("verify_red_theatre", "rush-rework/red-theatre.json", "native"),

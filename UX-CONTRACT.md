@@ -1,5 +1,10 @@
 # Native game UI contract
 
+## Cannon input — 2026-11-09
+
+W+L or Up+L snapshots the modifier at key-down and requests a 75-energy overdrive in arcade play. Ordinary L retains its 50-energy command. This is a committed fixed windup, not variable hold-to-charge. Pending cannon input survives cinematic holds and held J. Underfunded input reports 75 without spending energy; pause/reset/title clear presentation. A beam denotes actual hit release, not an independent projectile or automatic damage. F2 keeps the real move and reduced presentation.
+
+
 ## Shared pacing update — 2026-11-09
 
 Main combat and Demo share a wall-time scheduler around fixed 60Hz simulation ticks. It holds both actors, slows to 0.22x, then releases at up to 2x; at most two steps per physics call. Pending input survives a hold. Pause freezes rhythm and red clocks; restart/title clear accumulated time; F2 restores one step, street and ordinary camera. Music stays at original speed. This changes real-time timing for both sides, not per-tick rules. Skill 1s, hit .65s, BREAK 1.1s, KO 1.2s, result 1.4s; Enter can skip results. Nonlethal timeout/draw never produces red KO.

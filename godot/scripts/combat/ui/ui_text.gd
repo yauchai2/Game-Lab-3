@@ -2,10 +2,11 @@ extends RefCounted
 ## Product copy is keyed; simulation events and save identifiers stay language-independent.
 var language := "zh"
 const COPY := {
+"overdrive_meter":["蓄力重砲需要 75 能量","OVERDRIVE NEEDS 75 ENERGY"],
 "roster":["角色配搭","FIGHTERS"],"player_character":["你的角色","YOUR FIGHTER"],"rival_character":["對手角色","RIVAL FIGHTER"],
 "fighter_original":["原角色","ORIGINAL"],"fighter_1":["角色 1","FIGHTER 1"],"fighter_3":["角色 3","FIGHTER 3"],"fighter_4":["角色 4","FIGHTER 4"],
 "roster_hint":["左右角色即時預覽。對戰、練習與 AI Demo 沿用此配搭；目前共用招式與能力。","Live preview on the right. Fight, practice and AI demo use this pair; moves and stats are shared."],
-"demo_hits":["次命中","HITS"],"rush_controls":["按住 J 連擊 · K 挑空／暴扣 · L 爆發","HOLD J: RUSH / K: LAUNCH-SLAM / L: BURST"],
+"demo_hits":["次命中","HITS"],"rush_controls":["按住 J 連擊 · K 挑空／暴扣 · L 爆發 · W＋L 重砲","HOLD J: RUSH / K: LAUNCH-SLAM / L: BURST / W+L: CANNON"],
 "counter_ready":["格擋成功！J 反擊","PARRY! J TO COUNTER"],
 "rival_parry":["對手擋住了 · 重新找機會","RIVAL PARRIED / FIND AN OPENING"],
 "counter_success":["反擊成功！","COUNTER SUCCESS!"],"nice_block":["擋住了！","NICE BLOCK!"],
@@ -136,7 +137,7 @@ const COPY := {
 "defense_help":["Shift 防禦；抓準起手時機可反制。E 閃避。","Shift guards; time it for a parry. E dodges."],
 "pressure_help":["命中、擋格及反制會升壓。高壓地面重踢可開對峙。","Hits, blocks and parries build pressure. A grounded heavy opens a clash at high pressure."],
 "clash_help":["對峙時：J 頂進、Shift 卸勢、E 抽身。只鎖定一次。標準與挑戰對手可能用假動作；教室會明示選擇。","In a clash: J press, Shift turn, E slip. One commitment. Standard and Challenging rivals can feint; the dojo shows true intentions."],
-"special_help":["L 能量技，消耗 50 能量。","L uses 50 energy for a special."],
+"special_help":["L 爆發消耗 50；W＋L 蓄力重砲消耗 75，起手較長，可被投技打斷。","L: 50-energy burst. W+L: 75-energy charged cannon; longer startup, vulnerable to throws."],
 "training_title":["自由練習","FREE TRAINING"],"last_combo":["上次連段","LAST COMBO"],"hits":["連擊","HITS"],"damage":["傷害","DAMAGE"],
 "inputs":["輸入紀錄","INPUT HISTORY"],"none":["尚未出招","No inputs yet"],"impact":["命中停頓","IMPACT"],
 "stage":["航道街口","FLIGHT PATH / CROSSING"],"wins":["先取兩勝","FIRST TO TWO"],
@@ -151,7 +152,7 @@ func text(key: String) -> String:
     return values[0 if language=="zh" else 1]
 func notice(raw: String) -> String:
     if raw.begins_with("FEINT / "):return text("feint")+" · "+notice(raw.trim_prefix("FEINT / "))
-    var notices := {"RIVAL PARRY":"rival_parry","COUNTER SUCCESS":"counter_success","NICE BLOCK":"nice_block","AIR COUNTER HIT":"air_counter_hit","AIR COUNTER ESCAPE":"air_counter_escape","AIR COUNTER WHIFF":"air_counter_whiff","AIR COUNTER TIMEOUT":"air_counter_timeout","AIR PARRY NEEDS 25":"air_parry_no_meter","CHASE UNAVAILABLE":"chase_unavailable","AIR LAB READY":"air_lab_ready","CHASE":"chase_notice","AIR ESCAPE":"air_escape_notice","CHASE NEEDS 20":"chase_meter_notice","RALLY READY":"rally_ready","LIMIT":"rally_end_limit","TIMEOUT":"rally_end_timeout","NO_INPUT":"rally_end_no_input","WHIFF":"rally_end_whiff","BLOCKED":"rally_end_blocked","HIT":"rally_end_hit","THROW":"throw_notice","THROW TECH":"throw_tech","WALL TECH":"wall_tech","PERFECT GUARD":"perfect_guard","GUARD BREAK":"guard_break","COUNTER HIT":"counter","AIR CHASE / J TO FOLLOW UP":"air_chase","FIGHT!":"fight_start","SPECIAL NEEDS 50 ENERGY":"no_meter","TRAINING RESET":"reset_notice","EVEN / PRESSURE RELEASED":"tie"}
+    var notices := {"RIVAL PARRY":"rival_parry","COUNTER SUCCESS":"counter_success","NICE BLOCK":"nice_block","AIR COUNTER HIT":"air_counter_hit","AIR COUNTER ESCAPE":"air_counter_escape","AIR COUNTER WHIFF":"air_counter_whiff","AIR COUNTER TIMEOUT":"air_counter_timeout","AIR PARRY NEEDS 25":"air_parry_no_meter","CHASE UNAVAILABLE":"chase_unavailable","AIR LAB READY":"air_lab_ready","CHASE":"chase_notice","AIR ESCAPE":"air_escape_notice","CHASE NEEDS 20":"chase_meter_notice","RALLY READY":"rally_ready","LIMIT":"rally_end_limit","TIMEOUT":"rally_end_timeout","NO_INPUT":"rally_end_no_input","WHIFF":"rally_end_whiff","BLOCKED":"rally_end_blocked","HIT":"rally_end_hit","THROW":"throw_notice","THROW TECH":"throw_tech","WALL TECH":"wall_tech","PERFECT GUARD":"perfect_guard","GUARD BREAK":"guard_break","COUNTER HIT":"counter","AIR CHASE / J TO FOLLOW UP":"air_chase","FIGHT!":"fight_start","OVERDRIVE NEEDS 75":"overdrive_meter","SPECIAL NEEDS 50 ENERGY":"no_meter","TRAINING RESET":"reset_notice","EVEN / PRESSURE RELEASED":"tie"}
     if notices.has(raw):return text(notices[raw])
     for choice in ["press","turn","slip"]:
         if raw.ends_with("/ "+choice.to_upper()):return text("your_result" if raw.begins_with("YOU") else "rival_result")+" · "+text("result_"+choice)

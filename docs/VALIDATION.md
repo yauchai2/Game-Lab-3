@@ -1,5 +1,20 @@
 # 驗證紀錄與證據範圍
 
+## 最新：蓄力重砲、空連後 AI 選擇與分招式鏡頭（2026-11-09）
+
+功能見 [CHARGED_CANNON.md](CHARGED_CANNON.md)。W＋L／↑＋L 為一次承諾的固定起手重砲，75 能量、30 tick 起手、38 基傷／3.8m／一次命中；普通 L 的 50 消耗保持。原來源模型／音樂不改，角色 4 維持 1.4 縮放。
+
+- 本輪 **504 項不同無視窗檢查**：既有 494 項回歸及新重砲 10 項。初次[整套 headless](evidence/charged-cannon/headless/summary.json) 503/504，唯一失敗為新投技測試誤把施放後 25 能量當成被投後仍 25，忽略既有受傷 +6 回報；修正預期為 31，保留真打斷／扣血檢查，[10/10 通過](evidence/charged-cannon/final-rules/summary.json)。AI 最終改成空連取得機會後，再跑[新規則＋30,000 tick 雙實例 Demo 31/31](evidence/charged-cannon/earned-rules/summary.json)。新規則涵蓋 74 拒絕／75 真消耗、空揮不退、一次命中、起手受傷、投技打斷、按住 J 不吞手動指令、普通 L 保持及 AI 自然真命中。
+- 本輪 **144 項不同原生檢查**：重砲輸入 7、節奏 29（七配置）、四角色 30、紅幕 18、Demo 28、UI 17、戰鬥按鍵 15。初次[原生批次](evidence/charged-cannon/native/summary.json) 143/144，顯示 AI 太直接選重砲會降低既有 30 秒追擊／暴扣門檻；沒有放寬門檻，改成自己完成地空五連記住機會、600 tick 間隔並等距離／能量，再跑[新輸入／節奏／Demo 64/64](evidence/charged-cannon/earned-native/summary.json)。[光束錨點與 UI 24/24](evidence/charged-cannon/muzzle-final/summary.json)另確認實際 F2 傷害保留及介面；重複項不加總。[逐案例回歸索引](evidence/charged-cannon/validation-index.json)列出本輪不同檢查共 **648**，是多次有出處的回歸集合，不冒稱單次全套在最後一秒執行。
+- 新原生 7 項包含 viewport 真實 W／L、放開方向後仍選正確技能、75 消耗、獨立蓄力紅幕與時鐘、後拉／雙掌姿態、真接觸後才產生光束、正確能量不足提示、F2 真傷害及退出清理。最後再驗證演出優先級：[輸入／節奏／紅幕／Demo／UI 99/99](evidence/charged-cannon/priority-final/summary.json)，普通技能不可蓋掉重砲，真命中／BREAK／KO 才接管。姿態為程序疊加，不冒稱新增下載動畫。
+- [最終 120.009 秒原生自由交戰](evidence/charged-cannon/native-soak-final/complete.json)：6,064 戰鬥 tick、173 次真命中（89／84）、27 追擊、11 次重砲命中、20 普通爆發命中、23 BREAK，0 重置／循環／結果。最多 15 效果／541 節點，孤立節點取樣 0，最大 roll 約 11°。只有開始 F12 的兩次按鍵轉換，最終優先級／光束修正後完成。較早 [120.172 秒 run](evidence/charged-cannon/native-soak/complete.json) 亦保留，不混為同一回合或加總。短觀察不是長測／無洩漏保證，軟體 GL 不是目標 GPU 效能。
+- [30 秒連續 Demo](evidence/charged-cannon/demo.mp4)／[GIF](evidence/charged-cannon/demo.gif)：同場 1,800 牆鐘步驟、450 張原生擷取／15fps／無音軌；實際前進 1,620 simulation tick、51 真命中、8 追擊、3 重砲命中、3 普通爆發命中、3 暴扣、6 BREAK。事件由 combat_event signal 計數，見 [capture.json](evidence/charged-cannon/capture.json)。與舊版數字不同是新戰鬥路徑，不是單變因爽感評分。
+- [4 秒重砲片段](evidence/charged-cannon/cannon.mp4)是對站立陪練的一次真實 W＋L 指令，120 張／30fps，真消耗與一次命中後的光束釋放，見 [move-capture.json](evidence/charged-cannon/move-capture.json)。已檢視[紫紅蓄力](evidence/charged-cannon/captures/cannon_slow.png)、[手部射向接觸點的光束](evidence/charged-cannon/captures/cannon_blast.png)及新角色比例。不是自由交戰剪接或人手錄影。
+- [來源與候選雜湊](evidence/charged-cannon/source-manifest.json)保存基線 297b1f3：全部 49 件既有 GLB／圖片／音檔逐位元組保留，只更新程式／UI 衍生字體。舊 smoke 工具及角色回歸擷取意外寫回歷史證據的檔案已恢復；本輪新畫面另存 charged-cannon，未覆寫歷史原圖。
+
+Godot 4.6.3 Compatibility／Mesa llvmpipe／Dummy 音訊。最後通過日誌只有預期 VSync 提示，未有新腳本／退出資源錯誤。自動注入、狀態／幾何檢查與原生畫面檢視不代表真人讀招、手感、混音、舒適度或使用者電腦驗收。只推來源分支，不更新公開 Web；角色專屬技能／名字、完整 VS、可變持鍵蓄力仍待後續。
+
+
 ## 最新：停慢快節奏、加長紅幕與角色 4 比例（2026-11-09）
 
 功能／時間規格見 [COMBAT_RHYTHM.md](COMBAT_RHYTHM.md)。原始 GLB 不修改；護目鏡角色 4 包裝比例 2.1→1.4，顯示高度減少 1/3，陰影／殘影粗細與特效高度配合。

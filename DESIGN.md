@@ -1,5 +1,10 @@
 # Afterhours — interface design
 
+## Charged cannon — 2026-11-09
+
+[CHARGED_CANNON.md](docs/CHARGED_CANNON.md) adds a 75-energy W+L commitment with a longer windup, double-palm release and muzzle-aligned beam after real contact. Normal L remains. Cannon, meteor and counter use low, downward and reverse-orbit camera treatments respectively; launch has its own coiled/uppercut pose. These are shared moves and procedural poses, not character-specific animation assets.
+
+
 ## Combat rhythm update — 2026-11-09
 
 [COMBAT_RHYTHM.md](docs/COMBAT_RHYTHM.md) defines the latest shared combat clock and longer red-stage cuts. Light strings establish flow; launch/parry/burst use distinct hold, 0.22x slow motion and accelerated release. Full-screen shutters, contraction rings and release lines replace continuous clutter. Camera orbit, roll and FOV follow the beat. F2 restores normal pacing. Goggle fighter 4 is 2/3 of its previous height without rewriting the source model.

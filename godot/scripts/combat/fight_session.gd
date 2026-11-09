@@ -243,9 +243,9 @@ func _handle_event(event: Dictionary) -> void:
         if kind=="break_finish":rhythm.trigger("break",side)
         elif kind in ["parry","air_counter_start"]:rhythm.trigger("parry",side)
         elif kind=="homing_chase":rhythm.trigger("chase",side)
-        elif kind=="swing" and event.get("move","")=="special":rhythm.trigger("skill",side)
+        elif kind=="swing" and event.get("move","") in ["special","overdrive"]:rhythm.trigger("overdrive" if event.move=="overdrive" else "skill",side)
         elif kind=="hit":
-            if event.get("move","") in ["meteor","special","air_counter"]:rhythm.trigger("impact",side)
+            if event.get("move","") in ["meteor","special","overdrive","air_counter"]:rhythm.trigger("impact",side,event.move)
             elif event.get("move","")=="launcher":rhythm.trigger("launch",side)
         if rhythm.active() and rhythm.phase()=="hold":
             effects=effects.filter(func(e:Dictionary)->bool:return e.kind not in ["echo","trail","speed"])
@@ -382,13 +382,13 @@ func _handle_event(event: Dictionary) -> void:
         var point := Vector2(target.x,target.y+fighters[event.target].model_scale*.57)
         _spawn_vfx(kind,point,0.38,{"strength":strength,"color":tint,"move":move,"face":face,"held":kind=="hit" and sim.hitstop>0})
         if kind=="hit":
-            if sim.arcade_enabled and move in ["meteor","special"]:theatre.begin("impact",attacker)
+            if sim.arcade_enabled and move in ["meteor","special","overdrive"]:theatre.begin("cannon_hit" if move=="overdrive" else "impact",attacker)
             if sim.arcade_enabled and move=="meteor":_spawn_vfx("meteor_streak",point,.22,{"color":COLORS[attacker],"face":face})
             if strength>.55:
                 spectacle.trigger("contact",attacker,point,clampi(ceili(strength*4),1,4))
                 if sim.arcade_enabled:spectacle.tag_move(move)
             if impact_queue.size()>=4:impact_queue.pop_front()
-            impact_queue.append({"at":point,"strength":strength,"color":tint,"move":move,"face":face})
+            impact_queue.append({"at":point,"strength":strength,"color":tint,"move":move,"face":face,"attacker":attacker})
             if sim.hitstop==0:_release_impacts()
         trauma = maxf(trauma,strength*0.6)
         audio.play_sound(("slam" if sim.arcade_enabled and move=="meteor" else ("launch" if sim.arcade_enabled and move=="launcher" else ("heavy" if strength>0.55 else "hit"))) if kind=="hit" else kind,1.0+sim.combo_hits*0.04)
@@ -409,12 +409,14 @@ func _handle_event(event: Dictionary) -> void:
         _spawn_vfx("swing",Vector2(fighter.x+fighter.face*0.9,fighter.y+fighters[event.target].model_scale*.55),0.15,{"age":-startup,"face":fighter.face,"color":COLORS[event.target],"move":event.move})
         audio.play_sound("swing",1.0,-8.0)
         if event.move=="grab":_spawn_vfx("grab_tell",Vector2(fighter.x+fighter.face*.55,fighter.y+1.25),startup,{"face":fighter.face,"color":Color("eebd4c")})
-        if event.move=="special":
-            if sim.arcade_enabled:theatre.begin("skill",event.target)
+        if event.move in ["special","overdrive"]:
+            if sim.arcade_enabled:theatre.begin("overdrive" if event.move=="overdrive" else "skill",event.target)
             spectacle.trigger("charge",event.target,Vector2(fighter.x,fighter.y+1.2),4)
             _spawn_vfx("charge",Vector2(fighter.x,fighter.y+1.2),startup,{"color":COLORS[event.target]})
             _spawn_vfx("wave",Vector2(fighter.x+fighter.face*0.6,fighter.y+1.2),0.26,{"age":-startup,"face":fighter.face,"color":COLORS[event.target]})
             audio.play_sound("charge",1.0,-4.0)
+            if event.move=="overdrive":
+                _spawn_vfx("cannon_charge",Vector2(fighter.x,fighter.y+fighters[event.target].model_scale*.6),.5,{"face":fighter.face,"color":COLORS[event.target],"owner":event.target})
     elif kind in ["land","dash","jump"]:
         var fighter: Dictionary = sim.fighters[event.target]
         _spawn_vfx("dust",Vector2(fighter.x,0.08),0.22,{"color":Color("f1edcf")})
@@ -428,7 +430,7 @@ func _handle_event(event: Dictionary) -> void:
         hud.notice = "FIGHT!"
         hud.notice_time = 0.7
     elif kind=="no_meter":
-        hud.notice = "SPECIAL NEEDS 50 ENERGY"
+        hud.notice = "OVERDRIVE NEEDS 75" if event.get("cost",50)==75 else "SPECIAL NEEDS 50 ENERGY"
         hud.notice_time = 1.5
 
 func _clear_impacts() -> void:
@@ -450,11 +452,12 @@ func _release_impacts(with_audio := true) -> void:
     var strongest:=0.0
     for impact in impact_queue:
         _spawn_vfx("release",impact.at,0.18 if impact.strength<0.5 else 0.24,impact)
+        if impact.move=="overdrive":_spawn_vfx("cannon_blast",impact.at,.34,impact)
         if impact.strength>.55:
             var side:=0 if impact.color==COLORS[0] else 1
             spectacle.trigger("burst",side,impact.at,clampi(ceili(impact.strength*4),1,4))
             _spawn_vfx("surge_arc",impact.at,.20,{"face":impact.face,"color":impact.color,"tier":clampi(ceili(impact.strength*4),1,4)})
-            if sim.arcade_enabled and impact.move in ["meteor","special","launcher"]:_spawn_vfx("slam_crater",Vector2(impact.at.x,.04),.45,{"color":impact.color,"strength":impact.strength})
+            if sim.arcade_enabled and impact.move in ["meteor","special","overdrive","launcher"]:_spawn_vfx("slam_crater",Vector2(impact.at.x,.04),.45,{"color":impact.color,"strength":impact.strength})
             _spawn_vfx("ground_ring",Vector2(impact.at.x,.04),.32,{"face":impact.face,"color":impact.color,"strength":impact.strength})
         if impact.strength>=strongest:
             strongest=impact.strength
@@ -503,7 +506,7 @@ func _process(delta: float) -> void:
             echo_clock=0.0
             for side in 2:
                 var state: Dictionary=sim.fighters[side]
-                if (state.state in ["dash","chase"] or (state.state=="stun" and absf(state.vx)>6) or (state.state=="attack" and state.move in ["special","heavy","finisher","air_kick","air_finisher","meteor"])) and sim.hitstop==0:
+                if (state.state in ["dash","chase"] or (state.state=="stun" and absf(state.vx)>6) or (state.state=="attack" and state.move in ["special","overdrive","heavy","finisher","air_kick","air_finisher","meteor"])) and sim.hitstop==0:
                     var bones: Array=fighters[side].capture_echo()
                     _spawn_vfx("echo",Vector2.ZERO,.18,{"bones":bones,"color":COLORS[side],"face":state.face})
     backdrop.present(delta, screen in ["pause", "help", "result"], reduced_effects)
@@ -515,7 +518,7 @@ func _process(delta: float) -> void:
 func _apply_red_stage() -> void:
     var red:bool=theatre.active() and not reduced_effects and screen in ["play","result"]
     if red:
-        red_environment.background_color=Color("c92645") if theatre.mode=="skill" else (Color("ff431e") if theatre.mode=="break" else Color("f42d20"))
+        red_environment.background_color=Color("692049") if theatre.mode=="overdrive" else (Color("c92645") if theatre.mode=="skill" else (Color("ff431e") if theatre.mode=="break" else Color("f42d20")))
     backdrop.visible=not red
     camera.environment=red_environment if red else null
     for shadow in silhouettes:shadow.visible=not red
@@ -623,15 +626,17 @@ func _present(delta: float) -> void:
         var direction:float=1.0 if rhythm.owner==0 else -1.0
         var center:=Vector3(midpoint,(sim.fighters[0].y+sim.fighters[1].y)*.5+.95,FIGHT_Z)
         var travel:float=clampf(rhythm.age/.74,0,1)
-        var orbit:float=direction*(-.22+travel*.50)
+        var reverse:float=-1.0 if rhythm.style in ["parry","air_counter"] else 1.0
+        var orbit:float=direction*reverse*(-.22+travel*.50)
         var vertical_gap:float=absf(sim.fighters[0].y-sim.fighters[1].y)
         var aspect:float=get_viewport().get_visible_rect().size.x/get_viewport().get_visible_rect().size.y
         var cinematic_distance:float=maxf(5.8,maxf((separation+2.0)/(2*tan(deg_to_rad(25.0))*aspect*.78),(vertical_gap+3.0)/(2*tan(deg_to_rad(25.0))*.68)))
         var slam:float=sin(travel*PI)
-        camera.position=center+Vector3(sin(orbit)*cinematic_distance,.6+slam*.6,cos(orbit)*cinematic_distance)
+        var elevation:float=1.7-slam*.4 if rhythm.style=="meteor" else (-.2+slam*.15 if rhythm.style=="overdrive" else .6+slam*.6)
+        camera.position=center+Vector3(sin(orbit)*cinematic_distance,elevation,cos(orbit)*cinematic_distance)
         if stage=="release":camera.position+=Vector3(sin(elapsed*110)*.19,cos(elapsed*97)*.10,0)
         camera.look_at(center)
-        camera.fov=44.0 if stage=="slow" else 50.0
+        camera.fov=(38.0 if rhythm.style=="overdrive" else 44.0) if stage=="slow" else 50.0
         camera.rotation.z=direction*deg_to_rad((11.0 if stage!="release" else -7.0)*slam)
     if theatre.active() and theatre.mode=="ko" and not reduced_effects and screen=="result":
         var progress:float=clampf(theatre.age/theatre.duration,0,1)
@@ -761,7 +766,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
                 pending["attack"] = "heavy"
                 pending["up"] = Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)
                 pending["down"] = Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN)
-            KEY_L: pending["attack"] = "special"
+            KEY_L: pending["attack"] = "overdrive" if sim.arcade_enabled and (Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)) else "special"
             KEY_G: pending["attack"] = "grab"
             KEY_SPACE: pending["jump"] = true
             KEY_E: pending["dash"] = true

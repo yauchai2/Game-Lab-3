@@ -1,0 +1,33 @@
+{
+  "checks": [
+    {
+      "name": "native W plus L commits the paid cannon after modifiers are released",
+      "passed": true
+    },
+    {
+      "name": "cannon has its own long red charge and pacing profile",
+      "passed": true
+    },
+    {
+      "name": "real charge and two-palm release poses both render",
+      "passed": true
+    },
+    {
+      "name": "beam appears after actual cannon contact",
+      "passed": true
+    },
+    {
+      "name": "underfunded cannon tells the player the 75 cost",
+      "passed": true
+    },
+    {
+      "name": "F2 cannon retains real damage without red camera staging",
+      "passed": true
+    },
+    {
+      "name": "leaving the match clears cannon effects and profile",
+      "passed": true
+    }
+  ],
+  "scope": "Native W/L input, real cost and contacts, procedural pose and effect state; software renderer, no human claim."
+}

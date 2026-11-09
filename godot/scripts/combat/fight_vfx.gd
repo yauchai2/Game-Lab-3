@@ -12,6 +12,28 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     var paper := Color("fff8dc")
     var ink := Color("111a32")
     match effect.kind:
+        "cannon_charge":
+            var fighter:Dictionary=session.sim.fighters[effect.owner]
+            at=session.project(Vector2(fighter.x-face*.35,fighter.y+session.fighters[effect.owner].model_scale*.6))
+            var radius:float=95.0*(1-time)+18
+            if not reduced:
+                for i in 8:
+                    var direction:=Vector2.from_angle(i*TAU/8+stage)
+                    canvas.draw_line(at+direction*radius,at+direction*(radius+25),tint,4)
+            canvas.draw_arc(at,radius,0,TAU,8,tint,3)
+            canvas.draw_arc(at,16+time*14,0,TAU,6,paper,5)
+        "cannon_blast":
+            var source:Dictionary=session.sim.fighters[effect.attacker]
+            var muzzle:Vector2=session.project(Vector2(source.x+face*.6,source.y+session.fighters[effect.attacker].model_scale*.60))
+            var direction:Vector2=(at-muzzle).normalized()
+            if direction.length_squared()<.01:direction=Vector2(face,0)
+            var width:float=(12 if reduced else 45)*(1-time)
+            var tangent:Vector2=direction.orthogonal()
+            var front:Vector2=at+direction*(80 if reduced else 220)*(1-time*.4)
+            canvas.draw_colored_polygon(PackedVector2Array([muzzle-tangent*width*.5,front-tangent*width*.3,front+direction*70,front+tangent*width*.3,muzzle+tangent*width*.5]),tint)
+            canvas.draw_line(muzzle,front,paper,maxf(2,width*.45))
+            if not reduced:
+                for i in 4:canvas.draw_arc(at,40+time*140+i*12,-1.3,1.3,7,paper if i%2 else tint,3)
         "meteor_streak":
             if reduced:return
             for side in [-1,1]:

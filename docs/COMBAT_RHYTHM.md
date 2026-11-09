@@ -1,5 +1,8 @@
 # 戰鬥節奏第二版：停住、慢鏡、加速釋放
 
+新增：[CHARGED_CANNON.md](CHARGED_CANNON.md) 的 W＋L 蓄力重砲、0.20／0.34／0.38 秒第七種節奏、低視點鏡頭與真命中光束。以下既有六配置保持。
+
+
 2026-11-09。依使用者回饋「整體單調、缺乏停慢快對比、紅幕太少太短、可大搖鏡」，重做正式／自由練習／無限 Demo 的時間與演出。這份文件取代早前 Rush 的紅幕時長；三種專用教室保留原本時序。
 
 [30 秒無剪接新版 Demo](evidence/combat-rhythm/rhythm-demo.mp4) · [GIF](evidence/combat-rhythm/rhythm-demo.gif) · [加長 KO](evidence/combat-rhythm/extended-ko.mp4) · [角色 4 身高](evidence/combat-rhythm/captures/short_fighter_preview.png) · [慢鏡紅幕](evidence/combat-rhythm/captures/skill_slow.png) · [加速釋放](evidence/combat-rhythm/captures/release.png)

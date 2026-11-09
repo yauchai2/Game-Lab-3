@@ -1,9 +1,12 @@
 extends RefCounted
 ## Live state policy. Chooses legal inputs, never moves actors or edits damage.
 var last_burst:=[0,-120]
+var last_cannon:=[-600,-600]
+var cannon_primed:=[false,false]
 func choose(s: RefCounted, side: int, clock: int, level:=2, showcase:=false) -> Dictionary:
     var f: Dictionary=s.fighters[side]
     var other: Dictionary=s.fighters[1-side]
+    if s.combo_owner==side and s.combo_hits>=5 and f.state=="attack" and f.move in ["air_kick","meteor"]:cannon_primed[side]=true
     var dx: float=other.x-f.x
     var distance:=absf(dx)
     var command:={"axis":signf(dx) if distance>1.12 else 0.0,"allow_parry":true}
@@ -31,12 +34,14 @@ func choose(s: RefCounted, side: int, clock: int, level:=2, showcase:=false) -> 
         elif f.air.phase=="fall":command["down_pressed"]=true
         return command
     if other.move=="grab" and other.state=="attack" and other.frame==7 and distance<1.4:command["dash"]=true;command["axis"]=-f.face;return command
-    if (showcase or level>=2 or other.move!="special") and other.state=="attack" and other.frame==s.MOVES[other.move].startup-4 and distance<2.4 and (clock+side*13)%7<(2 if showcase else level):
+    if (showcase or level>=2 or other.move not in ["special","overdrive"]) and other.state=="attack" and other.frame==s.MOVES[other.move].startup-4 and distance<2.4 and (clock+side*13)%7<(2 if showcase else level):
         command["guard"]=true;command["guard_pressed"]=true;command["axis"]=0.0
         return command
     if f.counter_window>0:command["rush"]=true;return command
     if showcase and f.meter>=50 and distance<3.25 and absf(other.y-f.y)<1.3 and clock-last_burst[side]>=300:
-        command["attack"]="special";last_burst[side]=clock
+        var charged:bool=f.meter>=75 and cannon_primed[side] and clock-last_cannon[side]>=600
+        command["attack"]="overdrive" if charged else "special";last_burst[side]=clock
+        if charged:last_cannon[side]=clock;cannon_primed[side]=false
         return command
     if distance>3.0 and f.dash_cd==0:command["dash"]=true;return command
     var beat: int=3 if showcase else [12,8,4][clampi(level,0,2)]

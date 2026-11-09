@@ -28,6 +28,7 @@ const MOVES := {
     "finisher": {"startup": 9, "active": 6, "recovery": 23, "damage": 13, "reach": 2.1, "stun": 28, "push": 9.0, "lift": 3.8, "stop": 9},
     "heavy": {"startup": 16, "active": 7, "recovery": 26, "damage": 18, "reach": 2.25, "stun": 32, "push": 10.0, "lift": 2.5, "stop": 11},
     "launcher": {"startup": 13, "active": 7, "recovery": 27, "damage": 14, "reach": 1.8, "stun": 39, "push": 3.0, "lift": 10.0, "stop": 10},
+    "overdrive": {"startup":30,"active":8,"recovery":42,"damage":38,"reach":3.8,"stun":48,"push":18.0,"lift":7.0,"stop":26},
     "special": {"startup": 18, "active": 10, "recovery": 31, "damage": 27, "reach": 3.4, "stun": 40, "push": 14.0, "lift": 5.0, "stop": 17}
 }
 var rally = preload("res://scripts/combat/kinetic_rally.gd").new()
@@ -188,7 +189,7 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
     if arcade_enabled:
         for i in 2:
             var f: Dictionary=fighters[i]
-            if commands[i].get("rush",false) and not commands[i].has("attack") and not (f.buffer_ttl>0 and f.buffer in ["special","launcher","heavy","meteor","grab"]):commands[i]["attack"]="light"
+            if commands[i].get("rush",false) and not commands[i].has("attack") and not (f.buffer_ttl>0 and f.buffer in ["special","overdrive","launcher","heavy","meteor","grab"]):commands[i]["attack"]="light"
             if commands[i].get("attack","")=="light" and f.air.chase_window>0 and not f.air.chase_used and fighters[1-i].state=="stun":commands[i]["dash"]=true
     if is_air_lesson() and air_lesson_stage=="attack" and not air_counter.active():commands[0].erase("attack")
     if is_aerial() and not air_counter.active():
@@ -314,7 +315,7 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
                 events.append({"kind":"jump","target":i})
             events.append({"kind":"air_chase","target":i})
         # Confirmed light attacks cancel into the next light during recovery.
-        if arcade_enabled and f.hit_confirmed and f.buffer_ttl>0 and f.buffer in ["special","launcher","meteor"] and f.frame>=move.startup+move.active:
+        if arcade_enabled and f.hit_confirmed and f.buffer_ttl>0 and f.buffer in ["special","overdrive","launcher","meteor"] and f.frame>=move.startup+move.active:
             _start_attack(i,f.buffer)
         elif f.hit_confirmed and f.move in ["air_jab","air_kick"] and f.frame>=move.startup+move.active and f.buffer=="light" and f.buffer_ttl>0:
             _start_attack(i,"light")
@@ -403,13 +404,15 @@ func _start_attack(i: int, requested: String) -> void:
             f.buffer_ttl=0
             return
         f.throw_cd=60
-    if name == "special":
-        if f.meter < 50:
+    if name=="overdrive" and not arcade_enabled:return
+    if name in ["special","overdrive"]:
+        var cost:int=75 if name=="overdrive" else 50
+        if f.meter < cost:
             f.buffer = ""
             f.buffer_ttl = 0
-            events.append({"kind": "no_meter", "target": i})
+            events.append({"kind": "no_meter", "target": i,"cost":cost})
             return
-        f.meter -= 50
+        f.meter -= cost
     if is_aerial():air_motion.attack_stall(f)
     f.counter_attack=f.counter_window>0
     f.counter_window=0
@@ -568,7 +571,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
         b.air.fast=false
         if b.air.combo_left==0 and (b.y>.1 or m.lift>0):b.air.combo_left=AirMotion.COMBO_TICKS
         if move_name=="launcher":a.air.chase_window=30
-    var armor:bool=arcade_enabled and b.state=="attack" and b.move=="special" and b.frame<MOVES.special.startup and move_name!="grab"
+    var armor:bool=arcade_enabled and b.state=="attack" and b.move in ["special","overdrive"] and b.frame<MOVES[b.move].startup and move_name!="grab"
     b.state = "attack" if armor else "stun"
     b.stun = 0 if armor else m.stun
     b.vx = 0.0 if armor else a.face * m.push
@@ -581,11 +584,11 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     if is_aerial() and move_name=="meteor":
         b.vy=-16.0
         b.air.bounce_granted=not b.air.bounce_used and b.wall_bounces==0
-    var stop_ticks: int={"jab":3,"cross":4,"launcher":9,"air_jab":3,"air_kick":4,"meteor":14,"special":20}.get(move_name,m.stop) if arcade_enabled else m.stop
+    var stop_ticks: int={"jab":3,"cross":4,"launcher":9,"air_jab":3,"air_kick":4,"meteor":14,"special":20,"overdrive":26}.get(move_name,m.stop) if arcade_enabled else m.stop
     b.flash = stop_ticks + 7
     if endless:
         b.impact_load=minf(100.0,b.impact_load+damage)
-        if b.break_lock==0 and (b.health<=0 or (b.impact_load>=55 and move_name in ["meteor","special","air_counter"])):
+        if b.break_lock==0 and (b.health<=0 or (b.impact_load>=55 and move_name in ["meteor","special","overdrive","air_counter"])):
             b.break_lock=180;b.impact_load=0.0
             events.append({"kind":"break_finish","attacker":i,"target":1-i})
     b.buffer = ""

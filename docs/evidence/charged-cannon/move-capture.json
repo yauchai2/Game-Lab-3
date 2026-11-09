@@ -1,0 +1,13 @@
+{
+  "beam_seen": true,
+  "events": {
+    "air_land": 2,
+    "hit/overdrive": 1,
+    "swing": 1,
+    "wall_bounce": 1
+  },
+  "fps": 30,
+  "frames": 120,
+  "scope": "Native physical W/L command against standing training partner; actual cost/contact and release, fixed wall steps, silent.",
+  "wall_seconds": 4
+}

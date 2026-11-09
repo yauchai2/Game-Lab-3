@@ -3,6 +3,7 @@ extends RefCounted
 var kind := ""
 var age := 10.0
 var owner := 0
+var style := ""
 var priority := 0
 var cooldown := 0.0
 var bank := 0.0
@@ -13,18 +14,20 @@ const PROFILES := {
     "chase":[.025,.035,.17,1.8,1],
     "parry":[.12,.18,.24,1.65,2],
     "skill":[.16,.26,.32,1.8,3],
-    "impact":[.11,.20,.30,1.85,4],
-    "break":[.18,.24,.36,2.0,5],
+    "overdrive":[.20,.34,.38,1.95,4],
+    "impact":[.11,.20,.30,1.85,5],
+    "break":[.18,.24,.36,2.0,6],
 }
 func clear() -> void:
-    kind="";age=10.0;priority=0;cooldown=0.0;bank=0.0;rate_now=1.0
+    kind="";style="";age=10.0;priority=0;cooldown=0.0;bank=0.0;rate_now=1.0
 func active() -> bool:return kind!=""
-func trigger(next:String,side:int) -> void:
+func trigger(next:String,side:int,move_hint:="") -> void:
     if not PROFILES.has(next):return
     var profile:Array=PROFILES[next]
     if active() and int(profile[4])<=priority:return
     if cooldown>0 and int(profile[4])<3:return
     kind=next;owner=clampi(side,0,1);age=0.0;priority=profile[4]
+    style=move_hint if move_hint!="" else next
     cooldown=.75
     bank=0.0
     rate_now=0.0

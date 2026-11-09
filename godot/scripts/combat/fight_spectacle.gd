@@ -32,7 +32,7 @@ func trigger(kind: String, side: int, point: Vector2, level := 1) -> void:
         kick=.45 if kind=="finish" else .12+tier*.06
 
 func tag_move(move: String) -> void:
-    impact_word={"meteor":"SLAM!","launcher":"RISE!","special":"BURST!","air_counter":"REVERSE!"}.get(move,"")
+    impact_word={"overdrive":"MAX OUT!","meteor":"SLAM!","launcher":"RISE!","special":"BURST!","air_counter":"REVERSE!"}.get(move,"")
 
 func advance(delta: float, paused: bool) -> void:
     if paused:return

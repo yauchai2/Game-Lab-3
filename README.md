@@ -1,5 +1,8 @@
 # Afterhours / Game-Lab-3
 
+最新[蓄力重砲與分招式演出](docs/CHARGED_CANNON.md)：**W＋L／↑＋L** 花 75 能量，雙手蓄力 → 雙掌光束；L 普通爆發保持。AI 完成空連後會等待合適機會施放，重砲／暴扣／反制採不同鏡頭。[30 秒新 Demo](docs/evidence/charged-cannon/demo.mp4)／[重砲片段](docs/evidence/charged-cannon/cannon.mp4)。只推來源，Web 不更新。
+
+
 最新[停慢快節奏與加長紅幕](docs/COMBAT_RHYTHM.md)：挑空／反制／爆發加入**全停 → 0.22 倍慢鏡 → 加速釋放**，全屏速度線、繞行甩鏡；技能紅幕 1 秒、KO 1.2 秒。護目鏡角色 4 身高縮為原來 **2/3**。[30 秒連續 Demo](docs/evidence/combat-rhythm/rhythm-demo.mp4)。F2 比較減少演出，公開 Web 不更新。
 
 

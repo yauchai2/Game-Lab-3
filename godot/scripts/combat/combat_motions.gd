@@ -88,7 +88,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         selected = "Death01"
     elif f.state == "attack":
         selected = "Punch_Jab" if f.move in ["jab","air_jab"] else "Punch_Cross"
-        if f.move == "special": selected = "Spell_Simple_Shoot"
+        if f.move in ["special","overdrive"]: selected = "Spell_Simple_Shoot"
     elif f.state == "stun":
         selected = "Hit_Head" if f.vy > 2.0 else "Hit_Chest"
     elif f.state == "dash":
@@ -201,6 +201,19 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
 
     air_pose_name=""
     if f.get("air_enabled",false):air_pose_name=air_poses.apply(self,f)
+    if f.state=="attack" and f.move in ["overdrive","launcher"]:
+        var winding:bool=f.frame<preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move].startup
+        if f.move=="overdrive":
+            air_pose_name="Cannon_Load" if winding else "Cannon_DoublePalm"
+            _aim_limb("Spine","Spine1",model_up+model_forward*(-.65 if winding else .55),.8)
+            for side in ["Left","Right"]:
+                _aim_limb(side+"Arm",side+"ForeArm",-model_forward+model_up*.15 if winding else model_forward,.95)
+                _aim_limb(side+"ForeArm",side+"Hand",model_up if winding else model_forward,.95)
+            _aim_limb("LeftUpLeg","LeftLeg",model_forward*.8-model_up,.65)
+        else:
+            air_pose_name="Launcher_Coil" if winding else "Launcher_Uppercut"
+            _aim_limb("RightArm","RightForeArm",-model_up+model_forward*.3 if winding else model_up+model_forward*.3,.9)
+            _aim_limb("RightForeArm","RightHand",model_forward if winding else model_up,.9)
 
 func _aim_limb(bone_name: String, child_name: String, direction: Vector3, weight: float) -> void:
     var bone := skeleton.find_bone("mixamorig_"+bone_name)

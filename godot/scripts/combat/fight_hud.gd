@@ -491,7 +491,7 @@ func _draw() -> void:
         return
     session.theatre.draw(self,session)
     session.rhythm.draw(self,session)
-    if not (session.theatre.active() and session.theatre.mode in ["ko","skill"] and not session.reduced_effects):session.spectacle.draw(self,session)
+    if not (session.theatre.active() and session.theatre.mode in ["ko","skill","overdrive"] and not session.reduced_effects):session.spectacle.draw(self,session)
     for effect in session.effects:
         if effect.age>=0:vfx_renderer.draw_effect(self,session,effect)
     if session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
