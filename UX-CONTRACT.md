@@ -1,5 +1,10 @@
 # Native game UI contract
 
+## Current cover override (2026-11-10)
+
+Title uses original generated faceless upper-body cyan/lime silhouettes with hands in pockets, stark black/white city and magenta sky. The old portrait title is preserved but not drawn. Brand logo stays; all five menu labels/selection states are native art aligned with real Buttons. MAIN_RECTS is now1280×720logical directly; do not call fit for title buttons. The roster keeps its existing source-coordinate fit mapping. Preserve24/28/32 logical readability and640×360 composite. References, prompt and native proof: docs/FACELESS_COVER.zh-TW.md. This overrides the earlier exact-title-raster requirement only for the cover.
+
+
 ## Current override: readable pixel typography (2026-11-10)
 
 Keep the640×360 shared framebuffer. Minimum authored copy is24logical pixels; default body controls28, primary actions32 (12/14/16 internal pixel nominal sizes). `ui_theme.gd` owns these tokens. Use the14px/16px readable bitmap derivatives for body/small display text; large headings retain the original24px display source. The secondary panel is780×510 logical with14px item gaps and6px label line spacing. Source reference art remains; native large shortcuts, Pause and Enter/Esc hints replace the tiny baked text in those regions. Never solve readability by shrinking labels to fit: widen, wrap and scroll. See docs/UI_READABILITY.zh-TW.md for actual captures and hardware limits.

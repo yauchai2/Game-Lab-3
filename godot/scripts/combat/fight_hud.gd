@@ -804,7 +804,7 @@ func _build_art_controls() -> void:
         var keys:Array=["fight","roster","training","settings","demo"]
         var labels:Array=["FIGHT","FIGHTERS","TRAINING","SETTINGS","AI DEMO"]
         var calls:Array=[func():session.start_match(false),func():open_page("roster"),func():session.start_match(true),func():open_page("settings"),func():session.start_demo()]
-        for i in 5:_art_button(keys[i],labels[i],art.fit(art.MAIN_RECTS[i]),calls[i])
+        for i in 5:_art_button(keys[i],labels[i],art.MAIN_RECTS[i],calls[i])
         for i in 5:
             art_buttons[keys[i]].focus_neighbor_top=art_buttons[keys[(i+4)%5]].get_path()
             art_buttons[keys[i]].focus_neighbor_bottom=art_buttons[keys[(i+1)%5]].get_path()

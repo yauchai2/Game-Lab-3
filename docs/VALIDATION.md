@@ -422,3 +422,7 @@ T 進無限練習、F5 重置、F7 切對手；正常對局 Enter。挑空僅在
 ## 2026-11-10 UI文字可讀性及4.7.2覆核
 
 Godot4.7.2 Linux Compatibility：22條呈現／材質、37條原生操作、144條戰鬥回歸及6條PCM測試通過。壓力測試已重現截圖4類材質錯誤；frame_post_draw保留舊材質及延遲hero初始化後，6項材質生命週期嚴格回歸零engine error、pending歸零。Mac硬件仍待覆核。首次退出8個ObjectDB警告、最終verbose未重現，保留追蹤。 詳見 [本輪紀錄](UI_READABILITY.zh-TW.md)，Web不變。
+
+## 2026-11-10 無臉半身封面
+
+Godot4.7.2 native Compatibility／llvmpipe，37項原生操作／三視窗尺寸／音樂transport檢查通過，無ERROR。人工檢視兩個無五官上半身剪影，圖片alpha全255確保後方世界不透出。不是Mac或自動人臉檢測證明。 詳見 [封面紀錄](FACELESS_COVER.zh-TW.md)。未更新公開Web。

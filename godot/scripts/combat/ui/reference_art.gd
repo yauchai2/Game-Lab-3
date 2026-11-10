@@ -2,10 +2,10 @@ extends RefCounted
 ## Approved image composition; fixed art is raster, live game state remains native.
 const T=preload("res://scripts/combat/ui/ui_theme.gd")
 const LARGE_TYPE=preload("res://assets/fonts/RadioPixelDisplay.fnt")
-const TITLE=preload("res://assets/ui/replica/title.png")
+const TITLE=preload("res://assets/ui/cover/neon-silhouettes.png")
 const BOARD=preload("res://assets/ui/replica/roster-backplate.png")
 const HEAD=preload("res://assets/ui/replica/headphones.png")
-const MAIN_RECTS=[Rect2(150,351,468,155),Rect2(160,500,443,107),Rect2(158,607,448,96),Rect2(145,701,478,117),Rect2(49,838,286,86)]
+const MAIN_RECTS=[Rect2(56,260,408,84),Rect2(56,354,408,66),Rect2(56,430,408,66),Rect2(56,506,408,66),Rect2(56,604,282,54)]
 const CARD_RECTS=[Rect2(198,155,300,349),Rect2(485,159,301,345),Rect2(191,509,298,332),Rect2(491,510,304,330)]
 var roster_side:=0
 var focus_age:=1.0
@@ -25,14 +25,25 @@ func plate(c:Control,rect:Rect2,color:Color,cut:=14.0) -> void:
     var p:Vector2=rect.position;var e:Vector2=rect.end
     polygon(c,[p+Vector2(cut,0),Vector2(e.x,p.y),e-Vector2(cut,0),Vector2(p.x,e.y)],color)
 func title(c:Control) -> void:
+    # Opaque faceless key art; the previous illustrated portraits are not drawn.
     c.draw_texture_rect(TITLE,Rect2(0,0,1280,720),false)
-    hints(c)
+    c.draw_texture_rect(T.LOGO,Rect2(24,22,590,202),false)
+    c.draw_line(Vector2(56,236),Vector2(464,236),Color("00d9ec"),4)
     var keys:Array=["fight","roster","training","settings","demo"]
-    var index:int=keys.find(focused_key)
-    if index>=0:
-        var r:Rect2=fit(MAIN_RECTS[index])
-        c.draw_polyline(PackedVector2Array([r.position+Vector2(25,3),Vector2(r.end.x-5,r.position.y+3),r.end-Vector2(25,3),Vector2(r.position.x+5,r.end.y-3),r.position+Vector2(25,3)]),T.LIME,3)
-        polygon(c,[Vector2(r.position.x-18-(4 if focus_age<.10 else (2 if focus_age<.20 else 0)),r.get_center().y),Vector2(r.position.x-34,r.get_center().y-9),Vector2(r.position.x-34,r.get_center().y+9)],T.LIME)
+    var labels:Array=["FIGHT","FIGHTERS","TRAINING","SETTINGS","AI DEMO"]
+    for i in 5:
+        var active:bool=focused_key==keys[i]
+        var rect:Rect2=MAIN_RECTS[i]
+        plate(c,Rect2(rect.position+Vector2(6,7),rect.size),Color("07030d"),14)
+        plate(c,rect.grow(3),Color.WHITE,14)
+        plate(c,rect,T.LIME if active else Color("100719"),14)
+        var point_size:int=64 if i==0 else (34 if i==4 else 46)
+        text(c,rect.position+Vector2(24,62 if i==0 else (40 if i==4 else 49)),labels[i],point_size,T.INK if active else Color.WHITE)
+        if active:
+            var kick:int=4 if focus_age<.10 else (2 if focus_age<.20 else 0)
+            var center:Vector2=Vector2(rect.position.x-14-kick,rect.get_center().y)
+            polygon(c,[center,center+Vector2(-15,-10),center+Vector2(-15,10)],T.LIME)
+    hints(c)
 func roster(c:Control,s:Node) -> void:
     var choice:int=s.character_choices[roster_side]
     c.draw_texture_rect(BOARD,Rect2(0,0,1280,720),false)

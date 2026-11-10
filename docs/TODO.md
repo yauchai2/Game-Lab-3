@@ -1,5 +1,10 @@
 # 待辦與完成狀態
 
+## 2026-11-10：無臉半身剪影封面
+
+使用者提供兩段低多邊形影片作風格參考，並要求不見人臉；後續指定低調酷的插袋姿勢、僅上半身。已生成並接入雙人青／螢光綠純色半身剪影，黑白城市及桃紅天空；主選單改為原生5選項與既有Logo，維持清楚像素字體。角色選擇及戰鬥仍沿用原模型。見 [FACELESS_COVER.zh-TW.md](FACELESS_COVER.zh-TW.md)，37條native操作通過，原始素材及Web不變。
+
+
 ## 2026-11-10：UI可讀性及Godot4.7.2覆核
 
 使用者回報字太細與6項診斷。已放大設定／按鈕／HUD提示，面板擴闊與增加行距；採新14px body／16px display bitmap衍生，常用邏輯字級24／28／32（內部12／14／16），大標題保留較高解析來源。底部操作列、Pause及Enter／Esc提示改為原生清楚文字。修正swap變數作用域與ArrayMesh／BoxMesh三元警告，新增幾何基礎材質並先完成surface替換才釋放override。詳見 [UI_READABILITY.zh-TW.md](UI_READABILITY.zh-TW.md)。已用與截圖相同Godot4.7.2 Linux Compatibility覆核；已重現首幀換模過早釋放材質並修正：舊材質保留至frame_post_draw，3次場景／24次選角嚴格測試零renderer error且佇列歸零；Mac硬件仍待覆核。原模型／圖／音檔不改，Web不動。

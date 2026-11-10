@@ -160,3 +160,7 @@
 保留640×360合成，將正文／按鈕加大並擴闊頁面，使用14／16px新衍生bitmap；大標題仍24px來源。修正作用域／三元警告，確保surface替換完成後才釋放override，原始資產不改。 詳見 [本輪紀錄](UI_READABILITY.zh-TW.md)，Web不變。
 
 補充重現結果：4.7.2首幀換模會過早釋放舊材質RID；FighterVisual以單一frame_post_draw回呼清空共用短暫保留佇列，預覽hero延遲初始化。3次場景／24次選角後pending=0且無engine error。新增runner對ERROR／SCRIPT ERROR的失敗判斷，避免state-only假陽性。
+
+## 2026-11-10 無臉半身封面
+
+採用黑白城市／桃紅天與雙人青綠純色半身插袋剪影；Logo沿用，五個原生按鈕與新標題畫面共用logical rect，原圖保留。 詳見 [封面紀錄](FACELESS_COVER.zh-TW.md)。未更新公開Web。

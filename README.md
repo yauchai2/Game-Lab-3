@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[無臉半身剪影封面](docs/FACELESS_COVER.zh-TW.md)／[主選單實機畫面](docs/evidence/faceless-cover/README.md)。
+
 最新：[UI文字加大與Godot4.7.2覆核](docs/UI_READABILITY.zh-TW.md)／[前後實機畫面](docs/evidence/readable-ui/README.md)。只更新原始碼，Web保持不變。
 
 最新：已接入統一像素、3D選角、活街景及音訊恢復。詳見 [本輪實作與試用方法](docs/UNIFIED_PIXEL_RUNTIME.zh-TW.md)，[實機畫面](docs/evidence/unified-pixel/README.md)。只更新原始碼分支，公開Web版本不變。
