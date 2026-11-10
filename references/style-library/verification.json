@@ -1,0 +1,8 @@
+{
+  "six_original_hashes_verified": true,
+  "two_full_duration_copies_hashes_verified": true,
+  "two_copies_completely_decoded": true,
+  "art_inventory_entries": 64,
+  "missing_originals": "Four recent inline TR3B portraits and some older inline scene/UI guides; no local original pointers. See README.",
+  "long_original_storage": "Original Drive links retained; Git stores full-duration lossy research copies. Empty draft release removed after upload endpoint returned401."
+}

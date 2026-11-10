@@ -1,5 +1,14 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-10：加長大招與藝術參考庫
+
+使用者要求大招更長／近鏡／更多旋轉，已接入四人五段程序pose、overdrive共用時鐘0.22s hold／0.78s slow／0.44s release、36°起手鏡頭及最高14°roll；攝影機按雙方body bounds拉遠。真正受擊中斷／被招架才取消，護甲保持攻擊時不取消。見 [NEON_SIGNATURE.zh-TW.md](NEON_SIGNATURE.zh-TW.md)，覆蓋M1最高6°及短大招的數字。原模型／判定／音訊來源與Web不變。
+
+藝術文件／六段風格原片／圖片與生成素材／兩段長篇完整時長壓縮研究版集中在 [參考總庫](../references/style-library/README.md)。原圖缺件及原Drive連結／hash皆列明；Release上傳401已改用Git內研究副本，空draft已刪。
+
+[RPG／加點／解鎖](RPG_PROGRESSION_PLAN.zh-TW.md)只完成具體提案，尚未加入runtime。推薦單人街區＋三路技能板＋兩裝備節點，標準對戰固定數值，四角色和基本技巧不鎖。後續先完成新pose／逐招VFX與M2場景，再切RPG存檔及結算。
+
+
 ## 2026-11-10：Neon Facets M1已實作
 
 `codex/neon-street-lab`已從規劃進入可玩切片：場景／既有細節合批的Lab材質、五階桃紅天空、四人切面shader、格擋／蓄力／重擊／BREAK／KO單一全屏director、短剪影與回氣、24個局部效果上限、最高6°roll及獨立Lab偏好。原GLB／判定／音檔保留；Web與穩定分支不變。

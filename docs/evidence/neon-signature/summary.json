@@ -1,0 +1,9 @@
+{
+  "baseline_commit": "0bfa3ad92bae9c153b36808262a5b1538b0d1034",
+  "engine": "Godot4.7.2 Linux Compatibility / llvmpipe",
+  "signature_checks": 28,
+  "native_checks": 43,
+  "rule_checks": 56,
+  "strict_renderer_and_script_errors": 0,
+  "scope": "Four real paid overdrives; explicit camera/armor/parry/pause/F2 fixtures; not target Mac performance. Movie captured with the same signature pose/camera paths, before non-signature roll cap refinement."
+}

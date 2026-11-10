@@ -83,7 +83,7 @@ func run() -> void:
     check("Free AI stays alive and both sides land hits",s.screen=="play" and s.demo.hits[0]>0 and s.demo.hits[1]>0,s.demo.hits)
     check("Strong poster duty stays below 20 percent",float(poster_frames)/1800.0<=.2,float(poster_frames)/1800.0)
     check("Effect pool bound",max_effects<=24,max_effects)
-    check("Camera roll bound",max_roll<=deg_to_rad(6.01),rad_to_deg(max_roll))
+    check("Camera roll bound",max_roll<=deg_to_rad(s.neon_profile.signature_roll_degrees+.01),rad_to_deg(max_roll))
     var stats:={"events":seen,"poster_frames":poster_frames,"wall_steps":1800,"modes":modes,"accepted":s.neon.accepted,"suppressed":s.neon.suppressed,"simulation_tick":s.sim.tick_count}
     s.return_to_title();await destroy_scene()
     check("Material retirement queue drained",preload("res://scripts/combat/fighter_visual.gd").retired_materials.is_empty())

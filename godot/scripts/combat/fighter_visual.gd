@@ -113,6 +113,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         mat.set_shader_parameter("flash", 1.0 if f.flash > 0 and not reduced else 0.0)
     if skeleton:
         motions.present(f,delta,stopped)
+        if neon_enabled:preload("res://scripts/combat/neon/neon_signature_motion.gd").apply(motions,f)
         if f.get("rush_visual",false) and f.state=="attack":
             var move: Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
             if f.frame>=move.startup-1 and f.frame<move.startup+move.active:

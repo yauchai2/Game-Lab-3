@@ -176,3 +176,7 @@
 ## Neon Facets M1實作決策（2026-11-10）
 
 使用者「開始做」授權執行既定分支計劃。材質在合批前套用；局部圖形沿既有renderer、全屏只由Lab director仲裁，持續音樂與simulation不複製。最高6°鏡頭／0.10s剪影／0.8s恢復為M1起始值；獨立user://neon_lab/options.cfg。全套拓撲／pose／專屬圖形留後續，現況與驗證見NEON_FACETS_RUNTIME.zh-TW.md。
+
+## 大招、RPG及參考歸檔（2026-11-10）
+
+使用者要求更多／更長動作與慢鏡／zoom／旋轉：Lab大招已延長，14°roll＋36°FOV按兩人body bounds限制；護甲未中斷不能取消鏡頭。RPG為詢問與設計提案，未擅自引入升級數值。所有可讀取參考素材上傳：6原始短片、2完整時長壓縮長片及圖片／原稿／文字總索引；inline原圖缺件明示。gh Release二進制上傳401後移除空draft，改Git內研究副本；保留原Drive／SHA，Web不變。

@@ -6,6 +6,7 @@ const FightHUD = preload("res://scripts/combat/fight_hud.gd")
 const FightAudio = preload("res://scripts/combat/fight_audio.gd")
 @export var neon_enabled:=true
 var neon=preload("res://scripts/combat/neon/neon_effect_director.gd").new()
+var signature_camera=preload("res://scripts/combat/neon/neon_signature_camera.gd").new()
 var neon_profile:Resource=preload("res://scripts/combat/neon/neon_style_profile.tres")
 var spectacle := preload("res://scripts/combat/fight_spectacle.gd").new()
 var grade: ColorRect
@@ -264,6 +265,12 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
     effects.append(effect)
 
 func _handle_event(event: Dictionary) -> void:
+    if neon_enabled and event.kind in ["hit","parry"] and neon.signature and neon.mode=="CHARGE":
+        var interrupted:bool=(event.kind=="hit" and event.get("target",-1)==neon.owner) or (event.kind=="parry" and event.get("attacker",-1)==neon.owner)
+        if event.kind=="hit" and interrupted:
+            var owner_state:Dictionary=sim.fighters[neon.owner]
+            interrupted=owner_state.state!="attack" or owner_state.move!="overdrive"
+        if interrupted:neon.clear();rhythm.clear()
     combat_event.emit(event)
     var kind: String = event.kind
     if kind in ["break_finish","ko"] and is_instance_valid(backdrop.living):backdrop.living.react()
@@ -586,6 +593,8 @@ func _present(delta: float) -> void:
     for i in fighters.size():
         var pose: Dictionary=sim.fighters[i].duplicate()
         pose["air_enabled"]=sim.is_aerial()
+        if neon_enabled and neon.signature and i==neon.owner and not reduced_effects:
+            pose["neon_signature_phase"]=neon.signature_phase()
         pose["rush_visual"]=sim.arcade_enabled and not reduced_effects
         pose["ko_theatre"]=theatre.age/theatre.duration*.64 if theatre.mode=="ko" and theatre.active() and not reduced_effects else -1.0
         if sim.air_counter.active():
@@ -694,6 +703,7 @@ func _present(delta: float) -> void:
         # Reuse the normal two-fighter framing; a bounded roll is the sole accent camera owner.
         camera.rotation.z=neon.camera_roll()
         camera.fov=maxf(44.0,camera.fov)
+        signature_camera.apply(camera,self)
 
 func project(point: Vector2) -> Vector2:
     return camera.unproject_position(Vector3(point.x,point.y,FIGHT_Z)) * Vector2(1280,720) / get_viewport().get_visible_rect().size

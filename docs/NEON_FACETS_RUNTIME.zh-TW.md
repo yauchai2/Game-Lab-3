@@ -1,5 +1,7 @@
 # Neon Facets Lab：第一個可玩風格切片
 
+最新大招數值與鏡頭已由 [長演出更新](NEON_SIGNATURE.zh-TW.md)覆蓋；以下保留M1初始切片及當時驗證。
+
 2026-11-10；獨立分支 `codex/neon-street-lab`。本頁覆蓋前輪「只有規劃、runtime未改」的現況敘述；[完整路線](NEON_FACETS_PLAN.zh-TW.md)中的M2–M6仍是待辦。
 
 ## 現在可以玩到

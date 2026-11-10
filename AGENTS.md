@@ -69,3 +69,5 @@
 - 2026-11-10 分支實驗：本worktree／branch為codex/neon-street-lab，885f1c1基線。使用者要求整場景、角色、FX及節奏新風格，計劃在docs/NEON_FACETS_PLAN.zh-TW.md；本輪只規劃與研究，runtime未變。實作時依M1樣板至M6驗收推進，音樂與判定權威不改，封面維持無臉／無項鍊。不要將新參考的項鍊自動錄用，不要把純剪影永久套滿整場；穩定codex/street-combat及Web保持。
 
 - 2026-11-10 使用者已要求「開始做」：本Lab分支M1已接runtime，現況以docs/NEON_FACETS_RUNTIME.zh-TW.md覆蓋前輪planning-only。正常完整人物／短剪影重音、唯一全屏owner、共用時鐘、Lab偏好及6°roll有驗證。M2–M6未完成，穩定分支與Web不動。
+
+- 2026-11-10 最新大招要求覆蓋6°／短演出：見docs/NEON_SIGNATURE.zh-TW.md，4人長pose、最高14°roll／36°FOV與兩人body bounds檢查。RPG_PROGRESSION_PLAN只提案，不能當已加入進度。藝術總索引references/style-library；6原片與長篇完整時長壓縮版歸檔，inline原圖缺件明示。穩定來源與公開Web仍不更新。
