@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新角色修訂：[2男2女陣容與造型計劃](docs/LAST_SERVICE_ROSTER_REVISION.zh-TW.md)：ZIP／HUSH女性，RIVET／LOOP男性。暫不生圖；既有圖與模型尚未更新。
+
 角色設計紀錄：[LAST SERVICE 四角色人設／技能提案](docs/LAST_SERVICE_CHARACTERS.zh-TW.md)／[人物及裝備三視圖](references/last-service-2026-11-10/README.md)。本輪僅歸檔設計，尚未生成新 GLB 或替換遊戲角色。
 
 最新：[新封面／Logo與全套Ink UI](docs/INK_UI.zh-TW.md)／[各頁實機](docs/evidence/ink-ui/README.md)／[拆件素材](godot/assets/ui/ink/README.md)。
