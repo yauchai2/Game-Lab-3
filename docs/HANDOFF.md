@@ -1,5 +1,12 @@
 # 接續工作交接
 
+## Neon Facets實驗分支：規劃階段（2026-11-10）
+
+本worktree屬 `codex/neon-street-lab`，由885f1c1另開，主線及公開Web不變。使用者要求整個遊戲轉新附TR3B參考風格並詳細規劃；六片80.200s以2fps抽樣、10張contact sheets已檢視。具體方案在 [NEON_FACETS_PLAN.zh-TW.md](NEON_FACETS_PLAN.zh-TW.md)：常態切面材質／色塊人物，格擋／蓄力／重擊才短剪影；含地圖、4人、FX、鏡頭、三時鐘、音訊、背景director及M1–M6驗收。
+
+**本輪只建立規劃分支與來源研究，godot runtime檔案未變；不是已完成風格版試玩。** 下一包是M1代表切片（雙樓／道路／2人＋parry/charge/release＋30s A/B），實作時保留F2／4.7.2材質退休機制與原始GLB。
+
+
 ## 2026-11-10：新封面、Logo及全套Ink UI
 
 使用者要求重新生成、不要項鍊，並將其他頁面與Logo統一。已接入新兜帽／帽沿半身圖、無皇冠白字Logo、共用黑白城市／桃紅背板、原生按鈕及方切控件。選角仍為真3D不同pose，但用純色無五官剪影；戰鬥原材質保持。詳見 [INK_UI.zh-TW.md](INK_UI.zh-TW.md)。37原生操作＋10頁面＋6材質檢查通過，素材拆件於 `godot/assets/ui/ink`。只更新來源分支，不更新Web。

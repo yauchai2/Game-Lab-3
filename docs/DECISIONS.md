@@ -168,3 +168,7 @@
 ## 2026-11-10 全套Ink UI
 
 重新生成無項鍊兜帽／帽沿封面，換成乾淨白字Logo；所有頁面共用黑白城市header與palette。拆分logo atlas／城市帶／斜切紋，原生frame及控件保留真互動。3D預覽專用shader旗標隱藏五官及描邊，實際戰鬥保持正常貼圖。 詳見 [實作與證據](INK_UI.zh-TW.md)。原始素材及公開Web不變。
+
+## 2026-11-10 Neon Facets分支規劃
+
+另開codex/neon-street-lab／885f1c1，原版保持。參考同時有彩色建築／服裝細節及黑白／剪影段落，採常態Neon Facets＋事件式剪影的雙層方向。數值屬起始提案，六片抽樣不當成作者shader／動畫幀率證據。以M1小切片與A/B驗收擴至M6，見 [計劃](NEON_FACETS_PLAN.zh-TW.md)。本輪無runtime變更。

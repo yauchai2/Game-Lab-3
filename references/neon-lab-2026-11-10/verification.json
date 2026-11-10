@@ -1,0 +1,19 @@
+{
+  "scope": "planning and source study only; no new runtime or performance claims",
+  "source_hashes_verified": [
+    "file_0000000035ac8211bee0f9c1b027ed73",
+    "file_00000000ecb482118fe1bbcc09a72457",
+    "file_0000000029b0821198e71f965c39d18f",
+    "file_00000000d76c82118ac88407f0fc4fd1",
+    "file_000000000fb882118664d1c133f71513",
+    "file_000000007788821189943a553a9e010a"
+  ],
+  "total_duration_seconds": 80.2,
+  "contact_sheets": 10,
+  "local_links_checked": 13,
+  "proposal_json_valid": true,
+  "runtime_changes": [],
+  "stable_head": "885f1c10573ce3e7831f313b130b34a05a62112e",
+  "web_head": "2908503295c24b918b293b463ec962797a7ccb06",
+  "game_tests": "not run: documentation-only change"
+}

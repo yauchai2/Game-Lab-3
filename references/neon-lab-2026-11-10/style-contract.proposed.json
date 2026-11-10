@@ -1,0 +1,66 @@
+{
+  "status": "proposal_only_not_loaded_by_runtime",
+  "id": "neon_facets_lab",
+  "baseline": "885f1c10573ce3e7831f313b130b34a05a62112e",
+  "branch": "codex/neon-street-lab",
+  "render": {
+    "internal_resolution": [
+      640,
+      360
+    ],
+    "normal_actor_style": "textured_facets",
+    "accent_actor_style": "brief_silhouette",
+    "environment_bands": 3,
+    "root_motion_uses_simulation": true,
+    "pose_sample_hz_proposed": [
+      12,
+      15
+    ]
+  },
+  "palette": {
+    "ink": "#080a10",
+    "road": "#10131b",
+    "mid": "#555e70",
+    "wall": "#d6dae2",
+    "shadow": "#392445",
+    "cyan": "#00d6e7",
+    "magenta": "#ff008c",
+    "lime": "#bdff00"
+  },
+  "limits_proposed": {
+    "active_effect_instances": 24,
+    "ghosts_per_actor": 3,
+    "strong_screen_coverage_duty_fraction": 0.2,
+    "large_effect_recovery_seconds": [
+      0.6,
+      1.0
+    ],
+    "neutral_camera_roll_degrees": 1,
+    "accent_camera_roll_degrees": 4,
+    "signature_camera_roll_degrees": 7
+  },
+  "ownership": {
+    "gameplay": "existing fight_simulation, unchanged authority",
+    "time": "existing combat_rhythm, no extra Engine.time_scale",
+    "audio": "existing continuous audio transport",
+    "fullscreen": "proposed neon_effect_director, one owner",
+    "styles": "proposed scene-load adapter before static batch bake"
+  },
+  "regression": [
+    "native input and three window sizes",
+    "four role material masks and real rig poses",
+    "default textured actor / temporary silhouette reset",
+    "20 scene/model reloads and retired-material queue empty",
+    "F2,pause,restart,title and KO clean state",
+    "audio playhead advances through pause",
+    "fixed tape/seed baseline-candidate captures"
+  ],
+  "forbidden_in_this_variant": [
+    "publishing Web without user request",
+    "overwriting source GLB/audio/fonts",
+    "copying Blender UI or source film pixels into runtime",
+    "delaying hit/parry response to music beat",
+    "forcing fake AI hits or invulnerability",
+    "permanent full-screen camera spin"
+  ]
+}

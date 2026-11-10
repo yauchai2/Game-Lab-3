@@ -65,3 +65,5 @@
 - 2026-11-10 最新封面指示：不見人臉，參考TR3B影片的黑白城市／桃紅天空／純色剪影，並指定插袋、低調酷、僅上半身。現況見 docs/FACELESS_COVER.zh-TW.md；新標題圖及原生5選項覆蓋先前原圖100%復刻的封面部分，其他頁面保持。主選單MAIN_RECTS現在直接用1280×720logical座標，roster仍走fit。Web不更新。
 
 - 2026-11-10 最新全套UI指示覆蓋前輪封面／沿用舊Logo：重生成無項鍊兜帽／帽沿半身圖，Logo及其他頁面統一黑白城市／桃紅／青綠Ink風。現況 docs/INK_UI.zh-TW.md；素材 `assets/ui/ink`，ui_theme為palette/控件owner，reference_art為共用頁面繪製owner。3D選角專用silhouette_preview不作用於戰鬥。原素材保留，Web仍需明確要求才發佈。
+
+- 2026-11-10 分支實驗：本worktree／branch為codex/neon-street-lab，885f1c1基線。使用者要求整場景、角色、FX及節奏新風格，計劃在docs/NEON_FACETS_PLAN.zh-TW.md；本輪只規劃與研究，runtime未變。實作時依M1樣板至M6驗收推進，音樂與判定權威不改，封面維持無臉／無項鍊。不要將新參考的項鍊自動錄用，不要把純剪影永久套滿整場；穩定codex/street-combat及Web保持。
