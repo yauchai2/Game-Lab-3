@@ -204,3 +204,7 @@
 本輪「繼續優化」落實規格B有界原型，保留正常對戰及F8舊教室隔離。新增decision狀態在既有pressure owner內，共用90步冷卻；21個Simulation決策步不受Rhythm倍率影響。只在地面雙方idle及合法近身的起手提議前開，並非對已成立招式新增免費取消。到期只交回原生輸入；有限24步普通格擋／一次普通dash，原傷害、能量及判定不改。超時保存雙方原始提議，AI在開窗時依公開狀態預承諾；同幀提議輪替serial優先。B在相同明示fixture重設切換，真人比較後才考慮正式採用。
 
 使用者明示合作流程：完成後commit／push GitHub，使用者在Desktop更新該branch，再本機Godot測試。本輪繼續codex/combat-escalation-next，不再開另一條branch，沿既有草稿PR更新。公開Web未獲本輪更新指示。
+
+## 2026-11-10：FIRST MINUTE教學目標與判定
+
+依「繼續優化」授權補規格E首分鐘及C實際起手提示。四課在明示訓練fixture中進行，教學director只觀察事件及送陪練正常commands，不碰傷害／判定。連段先採共通兩擊，避免LOOP長擊退讓首課要靠場邊才湊三段；不為教學改正常招式數值。parry、起手counter hit、counter_success明確區別，過關需真正接觸，不能按鍵或時間到就完成。讀招提示也檢查玩家合法防禦狀態；機會過期不繼續承諾可反擊。課堂沒有60秒硬期限，也不把自動student速度當真人驗收。沒有XP／裝備或存檔進度變更；每關／F5重建明示fixture，進度只在這次課程記憶體中保留。標準FIGHT／Street Run／自由AI／SURGE原型維持隔離。繼續同branch推送，不部署Web。

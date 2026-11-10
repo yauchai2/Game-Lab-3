@@ -1,5 +1,13 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-10：FIRST MINUTE四步主動教學
+
+規格E首分鐘與C起手讀取切片已接入，見 [FIRST_MINUTE_COACH.zh-TW.md](FIRST_MINUTE_COACH.zh-TW.md)。主選單C或HOW TO PLAY頂部入口，四個真接觸目標：同段兩擊、parry後真counter_success＋hit、launcher→付費homing_chase→空中hit、付75能量的overdrive真hit。Enter／按鈕開始及接下一關，F5僅重試本關，Esc保存，F2仍能完成。每關明示100能量／近身／SURGE0 fixture，不改正常傷害、擊退、能量、成長或AI規則；讀招陪練只用普通commands，成功由Simulation事件判斷。
+
+396項（63新教學＋46窗口＋250戰鬥＋37原生UI音樂）通過，另有桌面真C／Enter／按住J完成兩擊。四角×四課都以普通輸入完成；揮空／普通block／起手counter hit／只有parry／只有launcher／只有startup不誤判。反擊／追擊期限與長按guard有正確提示。[畫面、示範及log](evidence/first-minute/README.md)。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy audio，無ERROR／SCRIPT ERROR；不是Mac、真人學習／首分鐘完成時間或實際混音驗收。
+
+完整C情境教讀、D逐角色視聽、E三站敘事仍待續作；新高壓窗口維持練習隔離。繼續推同一來源branch codex/combat-escalation-next／PR #6，使用者Desktop Fetch／Pull後本機Godot測試；公開Web不更新。
+
 ## 2026-11-10：SURGE LAB高壓窗口原型（僅練習）
 
 接續規格B的獨立比較原型，見 [SURGE_WINDOW_PROTOTYPE.zh-TW.md](SURGE_WINDOW_PROTOTYPE.zh-TW.md)。主選單B或HOW TO PLAY頂部入口：明示60能量／60 SURGE近身fixture，B切BASELINE／WINDOW並重設，F5重試。雙方地面idle、無硬直／已緩衝動作及合法距離，heavy／launcher尚未起手前開21個固定60Hz決策步進；J確認攻擊／Shift有限普通格擋／E普通後撤。逐邊首選、超時沿用兩方原輸入、AI預承諾、共用pressure及90步冷卻；不套舊F8三選傷害。Esc保存，F2不延長，KO／中斷／退出清理。

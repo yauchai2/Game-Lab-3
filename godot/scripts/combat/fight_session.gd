@@ -35,6 +35,7 @@ var hud: Control
 var audio: Node
 var screen := "title"
 var pending: Dictionary = {}
+var coach:RefCounted=null
 var surge_pulse:=0.0
 var surge_reaction_cd:=0.0
 var effects: Array[Dictionary] = []
@@ -177,6 +178,7 @@ func _material(color: Color, unlit: bool) -> StandardMaterial3D:
     return mat
 
 func start_match(training := false) -> void:
+    coach=null
     _leave_run()
     sim.service_perks=[[],[]]
     if demo!=null:sim.partner_mode=demo_partner
@@ -202,6 +204,9 @@ func start_match(training := false) -> void:
 
 func _physics_process(delta: float) -> void:
     if screen!="play":return
+    if coach!=null:
+        if coach.status=="ready":return
+        if coach.status=="running":coach.elapsed+=delta
     surge_pulse=maxf(0,surge_pulse-delta)
     surge_reaction_cd=maxf(0,surge_reaction_cd-delta)
     # Decision steps run at fixed 60 Hz even while presentation would hold/slow.
@@ -238,6 +243,9 @@ func _combat_step() -> void:
         var commands: Array=demo.commands(sim)
         sim.tick(commands[0],commands[1])
         demo.observe(sim)
+    elif coach!=null:
+        sim.tick(input,coach.command(sim))
+        coach.observe(sim)
     else:sim.tick(input)
     if previous_stop>0 and sim.hitstop==0:
         _release_impacts()
@@ -803,6 +811,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
     if not event.is_pressed() or event.is_echo():
         return
     if hud.handle_shortcut(event):return
+    if event.keycode==KEY_C and (screen=="title" or (practice and demo==null and screen=="play")):
+        start_first_minute()
+        return
     if event.keycode==KEY_B and (screen=="title" or (practice and demo==null and screen=="play")):
         start_surge_lab(true if screen=="title" else not sim.surge_lab_enabled)
         return
@@ -862,6 +873,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
     elif event.keycode==KEY_T and screen=="title":
         start_match(true)
     elif event.keycode == KEY_ENTER:
+        if screen=="play" and coach!=null:
+            continue_coach()
+            return
         if screen == "title":
             var focused:Control=get_viewport().gui_get_focus_owner()
             if focused is Button and focused.get_parent()==hud.art_controls:focused.pressed.emit()
@@ -875,6 +889,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
     elif event.keycode == KEY_R and screen in ["pause", "result"]:
         start_match(practice)
     elif screen == "play":
+        if coach!=null and coach.status=="ready":return
         if sim.exchange.decision_active():
             var surge_keys:Dictionary={KEY_J:"strike",KEY_SHIFT:"guard",KEY_E:"evade"}
             if surge_keys.has(event.physical_keycode):
@@ -941,6 +956,11 @@ func _notification(what: int) -> void:
 func reset_training(keep_screen := false) -> void:
     if not practice: return
     var previous_screen := screen
+    if coach!=null:
+        coach.reset_attempt()
+        _prepare_coach_fixture()
+        if keep_screen:screen=previous_screen;hud.rebuild_menu()
+        return
     if sim.surge_lab_fixture:
         var enabled:bool=sim.surge_lab_enabled
         start_surge_lab(enabled)
@@ -958,6 +978,7 @@ func reset_training(keep_screen := false) -> void:
     hud.rebuild_menu()
 
 func prime_air_defense() -> void:
+    coach=null
     if not practice:return
     sim.arcade_enabled=false
     reset_training()
@@ -966,6 +987,7 @@ func prime_air_defense() -> void:
     hud.rebuild_menu()
 
 func prime_air_drill() -> void:
+    coach=null
     if not practice:return
     sim.arcade_enabled=false
     reset_training()
@@ -983,6 +1005,7 @@ func _configure_air_lab() -> void:
     for fighter in sim.fighters:fighter.meter=100.0
 
 func prime_rally_drill() -> void:
+    coach=null
     if not practice:return
     sim.arcade_enabled=false
     reset_training()
@@ -996,6 +1019,7 @@ func prime_rally_drill() -> void:
     hud.rebuild_menu()
 
 func prime_pressure_drill() -> void:
+    coach=null
     if not practice:return
     sim.arcade_enabled=false
     reset_training()
@@ -1008,6 +1032,7 @@ func prime_pressure_drill() -> void:
     hud.notice_time=2.0
 
 func set_partner_mode(value: int) -> void:
+    coach=null
     sim.partner_mode=clampi(value,0,2)
     if practice:
         var air_lab: bool=sim.is_aerial() and not sim.arcade_enabled
@@ -1066,6 +1091,7 @@ func save_options() -> void:
     preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":run_base_difficulty if run_active else sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":run_original_rival if run_active else character_choices[1]})
 
 func return_to_title() -> void:
+    coach=null
     _leave_run()
     if demo!=null:sim.partner_mode=demo_partner
     demo=null
@@ -1146,3 +1172,25 @@ func start_surge_lab(enabled:=true) -> void:
     hud.notice="B: COMPARE WINDOW / BASELINE - F5: RETRY"
     hud.notice_time=2.0
     hud.rebuild_menu()
+
+func start_first_minute() -> void:
+    start_match(true)
+    coach=preload("res://scripts/combat/first_minute_coach.gd").new()
+    _prepare_coach_fixture()
+
+func _prepare_coach_fixture() -> void:
+    sim.arcade_enabled=true;sim.training=true;sim.ai_enabled=false;sim.partner_mode=0;sim.endless=false
+    sim.service_perks=[[],[]]
+    sim.reset_training()
+    for side in 2:
+        sim.fighters[side].x=-.6 if side==0 else .6
+        sim.fighters[side].meter=100.0
+    effects.clear();_clear_impacts();pending.clear();input_history.clear();trauma=0.0
+    hud.notice_time=0;hud.skill_time=0;screen="play"
+    hud.rebuild_menu()
+
+func continue_coach() -> void:
+    if screen!="play" or coach==null or coach.status=="running":return
+    if coach.status=="complete":return_to_title();return
+    if coach.advance():_prepare_coach_fixture()
+    pending.clear()

@@ -1,0 +1,21 @@
+{
+  "completed": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "events": {
+    "air_land": 3,
+    "chase_arrive": 1,
+    "counter_success": 1,
+    "hit": 10,
+    "homing_chase": 1,
+    "parry": 1,
+    "swing": 9
+  },
+  "fps": 15,
+  "frames": 156,
+  "scope": "Automated student in explicitly configured training fixtures, not free AI or human learning/first-minute timing validation.",
+  "virtual_wall_seconds": 10.35
+}

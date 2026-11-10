@@ -1,0 +1,44 @@
+{
+  "created_utc": "20261110T130615Z",
+  "source_commit": "ec0932ddd14738202359f311a233e3a4634dbc05",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 37,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_reference_ui",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "166c034f9a19f853236686ab97e2cf021a595634e1f75212d9342a95c5ed5ca3",
+      "seconds": 28.46,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_reference_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 37,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

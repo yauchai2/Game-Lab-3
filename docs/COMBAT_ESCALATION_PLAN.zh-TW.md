@@ -1,6 +1,6 @@
 # LLB優點轉化：升溫、選擇與清晰回饋
 
-實作狀態更新（2026-11-10）：[A＋B基礎已實作](COMBAT_ESCALATION_RUNTIME.zh-TW.md)，[高壓獨立比較原型已實作](SURGE_WINDOW_PROTOTYPE.zh-TW.md)，尚未正式採用；以下保留原規格及當時基線。公開Web未更新。
+實作狀態更新（2026-11-10）：[A＋B基礎已實作](COMBAT_ESCALATION_RUNTIME.zh-TW.md)，[高壓獨立比較原型已實作](SURGE_WINDOW_PROTOTYPE.zh-TW.md)，尚未正式採用；[四步主動教學已實作](FIRST_MINUTE_COACH.zh-TW.md)，真人首次學習與三站敘事仍待驗證／續作。以下保留原規格及當時基線。公開Web未更新。
 
 2026-11-10。整合前輪討論及使用者補充分析，目標是讓首次一分鐘有可操作的爽感，一場對局有清楚的升溫、轉勢、爆發及回氣。**本文件是下一輪實作規格，尚未更改戰鬥runtime或公開Web。**
 

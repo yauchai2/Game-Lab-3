@@ -17,6 +17,7 @@ var roster_preview:Node
 var audio_restore:Button
 var art_controls:Control
 var art_buttons:Dictionary={}
+var coach_continue:Button
 var pause_button:Button
 var menu_page := "main"
 var previous_screen := ""
@@ -163,6 +164,14 @@ func _ready() -> void:
     pause_button.pressed.connect(session.pause_game)
     pause_button.visible=false
     layout_root.add_child(pause_button)
+    coach_continue=Button.new()
+    coach_continue.position=Vector2(450,590);coach_continue.size=Vector2(380,42)
+    coach_continue.add_theme_font_size_override("font_size",28)
+    coach_continue.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
+    coach_continue.set_meta("ui_key","coach_continue")
+    coach_continue.pressed.connect(func():session.continue_coach();coach_continue.release_focus())
+    coach_continue.visible=false
+    layout_root.add_child(coach_continue)
     resized.connect(_resize_layout)
     _resize_layout()
     rebuild_menu()
@@ -489,6 +498,7 @@ func _roster_page() -> void:
     _action(menu_stack,"fight","Enter",func():session.start_match(false),true)
 
 func _help_page() -> void:
+    _plain_action("FIRST MINUTE / C - START LESSONS","first_minute",session.start_first_minute)
     _plain_action("SURGE LAB / B - COMPARE DECISION WINDOW","surge_lab",session.start_surge_lab)
     for line in ["ZIP: evade a nearby strike for ROUTE. Spend it on E dash. L confirms a second kick.","RIVET: hold L to PRELOAD I / II, then release. Slow windup, strong guard pressure.","HUSH: frontal perfect guard stores SAMPLE. Cross / K / L / W+L spends it.","LOOP: L places a node (20). Move+L places farther. S+L pulses nodes (10). W+L: ENCORE.","FIGHTERS > STREET RUN: win stops for XP and skill points. Equip 2 in SKILLS. Standard FIGHT uses fixed stats."]:
         menu_stack.add_child(_label(line,28,Tokens.TEAL))
@@ -507,6 +517,9 @@ func _process(delta: float) -> void:
     art.advance(delta,session.reduced_effects)
     copy.language="en"
     pause_button.visible=session.screen=="play"
+    coach_continue.visible=session.screen=="play" and session.coach!=null and session.coach.status in ["ready","passed","complete"]
+    if coach_continue.visible:
+        coach_continue.text="ENTER / "+{"ready":"BEGIN","passed":"NEXT LESSON","complete":"MAIN MENU"}[session.coach.status]
     audio_restore.visible=session.screen=="title" and menu_page=="main" and session.audio.silent_settings()
     roster_preview.update_preview(session.screen=="title" and menu_page=="roster",session.character_choices[art.roster_side],delta,session.reduced_effects)
     if session.screen not in ["pause","help"]:notice_time=maxf(0,notice_time-delta)
@@ -614,6 +627,7 @@ func _draw() -> void:
     elif session.sim.is_aerial():_air_hud()
     elif session.sim.rally_enabled:_rally_hud()
     else:_pressure_hud()
+    if session.coach!=null:_coach_hud()
     if session.practice and session.demo==null:_practice_hud()
     if session.demo==null and not session.sim.arcade_enabled and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
         _text(Vector2(34,690),"J "+tr_text("light")+"   K "+tr_text("heavy")+"   G "+tr_text("throw")+"   Shift "+tr_text("guard")+"   E "+tr_text("dodge"),13,PAPER)
@@ -689,6 +703,19 @@ func _surge_hud() -> void:
             var label:String={"light":"J","heavy":"K","dash":"E"}[slot.choice]
             _plate(Vector2(330 if side==0 else 755,119),Vector2(210,30),INK)
             _text(Vector2(334 if side==0 else 759,143),"P%d %s LOCK"%[side+1,label],24,session.COLORS[side])
+
+func _coach_hud() -> void:
+    var c:RefCounted=session.coach
+    var tint:Color=Tokens.LIME if c.status in ["passed","complete"] else Tokens.TEAL
+    _plate(Vector2(200,494),Vector2(880,144),INK)
+    _center(Vector2(640,521),"P1 GOAL %d/4 / "%int(c.index+1)+c.TITLES[c.index],28,tint)
+    _center(Vector2(640,552),c.KEYS[c.index],28,PAPER)
+    if c.status=="running":
+        _center(Vector2(640,582),c.cue(session.sim),24,Tokens.LIME if c.cue(session.sim).contains("SHIFT NOW") else PAPER)
+        var detail:String="REAL COMBO %d / 2"%c.combo_max if c.index==0 else ("PARRY / "+("YES" if c.parried else "--") if c.index==1 else ("LAUNCH %s / CHASE %s"%["YES" if c.launched else "--","YES" if c.chased else "--"] if c.index==2 else "PAID START / "+("YES" if c.paid else "--")))
+        _center(Vector2(640,614),detail+" / F5 RETRY",24,Tokens.MUTED)
+    else:
+        _center(Vector2(640,580),"4/4 COMPLETE / %ds / NO TIME LIMIT"%ceili(c.elapsed) if c.status=="complete" else ("REAL CONTACT CONFIRMED" if c.status=="passed" else c.HINTS[c.index]),24,tint)
 
 func _surge_decision_hud() -> void:
     var d:Dictionary=session.sim.exchange.decision
@@ -794,6 +821,12 @@ func _rally_hud() -> void:
     _center(Vector2(640,645),tr_text("rally_hold" if rally.phase=="compress" else "rally_live"),12,Tokens.MUTED)
 
 func _practice_hud() -> void:
+    if session.coach!=null:
+        _plate(Vector2(28,95),Vector2(282,82),INK)
+        _text(Vector2(40,122),"FIRST MINUTE / %d OF 4"%(session.coach.index+1),24,Tokens.LIME)
+        _text(Vector2(40,148),"FIXTURE / 100 ENERGY",24,PAPER)
+        _text(Vector2(40,172),"F5 RETRY / NO XP",24,Tokens.MUTED)
+        return
     if session.sim.arcade_enabled and session.sim.surge_lab_fixture:
         _plate(Vector2(28,95),Vector2(282,82),INK)
         _text(Vector2(40,122),"SURGE LAB / "+("WINDOW" if session.sim.surge_lab_enabled else "BASELINE"),24,Tokens.LIME)

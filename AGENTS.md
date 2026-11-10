@@ -86,3 +86,5 @@
 
 - 2026-11-10 本聊天使用者確認工作流程：每輪完成驗證後commit／push到GitHub，回報branch及commit，使用者在GitHub Desktop Fetch／Pull再用本機Godot測試；不宣稱已操作其本機。SURGE工作目前接續codex/combat-escalation-next／草稿PR #6，避免每輪另開使用者要切換的branch。
 - 最新SURGE現況見docs/SURGE_WINDOW_PROTOTYPE.zh-TW.md：A＋B基礎後，B獨立21步高壓比較窗口已加入明示練習fixture，B切BASELINE／WINDOW。尚未替換標準FIGHT／Demo／Street Run；真人比較、首分鐘完整教學及三站敘事仍待驗證／續作。pressure／Rhythm／Neon維持單一owner，Web不更新。
+
+- 最新首分鐘切片見docs/FIRST_MINUTE_COACH.zh-TW.md：C進入四課主動教學，真事件驗連段／parry counter／付費追擊空擊／付費overdrive。100能量／近身／SURGE0是明示fixture；director不裁決傷害，不把自動student當真人學習。F5保留前課重試本課，Esc保存，無XP／存檔獎勵；其他模式隔離。LOOP首課採共通兩擊，不改實際擊退或招式數值。三站敘事、完整C與D仍待續；來源同branch，Web不更新。
