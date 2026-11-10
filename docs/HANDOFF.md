@@ -1,5 +1,9 @@
 # 接續工作交接
 
+## 2026-11-10：LAST SERVICE 四角色設計與圖片歸檔
+
+使用者要求將本聊天資料推至 GitHub。見 [角色設計](LAST_SERVICE_CHARACTERS.zh-TW.md)／[圖片與來源](../references/last-service-2026-11-10/README.md)：ZIP、RIVET、HUSH、LOOP 人設／專屬機制提案，1 動作概念＋4 白底人物三視圖＋4 裝備圖，另保留5早稿與6原影片、SHA-256。圖片未等同嚴格一致 mesh 投影；未有新 GLB、未替換既有 roster／runtime。下一步先核對左右／裝備細節再生成模型，使用者供模型流程依既有規範。只記錄，不更新公開 Web。
+
 ## 2026-11-10：新封面、Logo及全套Ink UI
 
 使用者要求重新生成、不要項鍊，並將其他頁面與Logo統一。已接入新兜帽／帽沿半身圖、無皇冠白字Logo、共用黑白城市／桃紅背板、原生按鈕及方切控件。選角仍為真3D不同pose，但用純色無五官剪影；戰鬥原材質保持。詳見 [INK_UI.zh-TW.md](INK_UI.zh-TW.md)。37原生操作＋10頁面＋6材質檢查通過，素材拆件於 `godot/assets/ui/ink`。只更新來源分支，不更新Web。

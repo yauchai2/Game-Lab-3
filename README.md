@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+角色設計紀錄：[LAST SERVICE 四角色人設／技能提案](docs/LAST_SERVICE_CHARACTERS.zh-TW.md)／[人物及裝備三視圖](references/last-service-2026-11-10/README.md)。本輪僅歸檔設計，尚未生成新 GLB 或替換遊戲角色。
+
 最新：[新封面／Logo與全套Ink UI](docs/INK_UI.zh-TW.md)／[各頁實機](docs/evidence/ink-ui/README.md)／[拆件素材](godot/assets/ui/ink/README.md)。
 
 最新：[無臉半身剪影封面](docs/FACELESS_COVER.zh-TW.md)／[主選單實機畫面](docs/evidence/faceless-cover/README.md)。

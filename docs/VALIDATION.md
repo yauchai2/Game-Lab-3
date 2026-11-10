@@ -430,3 +430,7 @@ Godot4.7.2 native Compatibility／llvmpipe，37項原生操作／三視窗尺寸
 ## 2026-11-10 全套Ink UI
 
 Godot4.7.2 Linux Compatibility：37原生操作、10頁面／3D剪影／popup／實際角色材質隔離檢查、6材質生命週期檢查通過，strict runner無engine ERROR。初期嵌入popup擷取退出有4個ObjectDB警告，關閉嵌入窗口並等待音訊釋放後最終page-suite未重現。Result為明示fixture擷取，不是KO實玩證明；目標Mac未測。 詳見 [實作與證據](INK_UI.zh-TW.md)。原始素材及公開Web不變。
+
+## 2026-11-10：LAST SERVICE 設計歸檔
+
+歸檔14張PNG與6段MP4，PNG可解碼，逐件原始位元組複製及SHA-256核對；manifest與Markdown連結檢查結果見 references/last-service-2026-11-10/validation.json。僅圖片／文件／來源保存，未跑遊戲回歸、生成3D或驗證目標硬體。三視圖存在需人工校正的幾何／左右／配件差異，不宣稱工程精度。原遊戲模型及runtime未改，公開Web未更新。
