@@ -35,6 +35,8 @@ var hud: Control
 var audio: Node
 var screen := "title"
 var pending: Dictionary = {}
+var surge_pulse:=0.0
+var surge_reaction_cd:=0.0
 var effects: Array[Dictionary] = []
 var elapsed := 0.0
 var result_clock := 0.0
@@ -200,6 +202,8 @@ func start_match(training := false) -> void:
 
 func _physics_process(delta: float) -> void:
     if screen!="play":return
+    surge_pulse=maxf(0,surge_pulse-delta)
+    surge_reaction_cd=maxf(0,surge_reaction_cd-delta)
     var count:int=rhythm.take_steps(delta,sim.arcade_enabled and not reduced_effects)
     for i in count:
         if screen!="play":break
@@ -223,6 +227,7 @@ func _combat_step() -> void:
         if input.get("attack","")=="heavy":
             input["down"]=sim.fighters[0].y>.1 or input.get("down",false)
             input["up"]=sim.fighters[0].y<=.1 and not input.down
+    var previous_tier:int=sim.exchange.tier()
     var previous_stop := sim.hitstop
     if demo!=null:
         if demo.needs_setup:_prepare_demo_state()
@@ -232,6 +237,11 @@ func _combat_step() -> void:
     else:sim.tick(input)
     if previous_stop>0 and sim.hitstop==0:
         _release_impacts()
+    if sim.exchange.tier()>previous_tier:
+        surge_pulse=.45
+        audio.play_sound("parry",1.1 if sim.exchange.tier()==2 else 1.4,-12)
+        if is_instance_valid(backdrop.living) and surge_reaction_cd<=0:
+            backdrop.living.react();surge_reaction_cd=1.5
     for event in sim.events:
         _handle_event(event)
     if sim.phase in ["round_over", "match_over"]:
@@ -319,12 +329,12 @@ func _handle_event(event: Dictionary) -> void:
     if sim.arcade_enabled and not reduced_effects:
         var side:int=event.get("attacker",event.get("target",0))
         if kind=="break_finish":rhythm.trigger("break",side)
-        elif kind in ["parry","air_counter_start"]:rhythm.trigger("parry",side)
+        elif kind in ["parry","air_counter_start"]:rhythm.trigger("parry",side,"",sim.exchange.tier())
         elif kind=="homing_chase":rhythm.trigger("chase",side)
         elif kind=="swing" and event.get("move","") in ["special","overdrive"]:rhythm.trigger("overdrive" if event.move=="overdrive" else "skill",side)
         elif kind=="hit":
-            if event.get("move","") in ["meteor","special","overdrive","air_counter"]:rhythm.trigger("impact",side,event.move)
-            elif event.get("move","")=="launcher":rhythm.trigger("launch",side)
+            if event.get("move","") in ["meteor","special","overdrive","air_counter"]:rhythm.trigger("impact",side,event.move,sim.exchange.tier())
+            elif event.get("move","")=="launcher":rhythm.trigger("launch",side,"",sim.exchange.tier())
         if rhythm.active() and rhythm.phase()=="hold":
             effects=effects.filter(func(e:Dictionary)->bool:return e.kind not in ["echo","trail","speed"])
     if kind=="break_finish":
@@ -454,6 +464,7 @@ func _handle_event(event: Dictionary) -> void:
     elif kind in ["hit","block","parry","guard_break"]:
         var target: Dictionary = sim.fighters[event.target]
         var strength: float = event.get("strength",0.8 if kind in ["parry","guard_break"] else 0.25)
+        if sim.arcade_enabled:strength*= [0.65,0.85,1.0][sim.exchange.tier()-1]
         var tint: Color = Color("eaf078") if kind in ["parry","guard_break"] else COLORS[event.get("attacker",0)]
         var attacker: int = event.get("attacker",0)
         var move: String = event.get("move","jab")
@@ -470,8 +481,8 @@ func _handle_event(event: Dictionary) -> void:
             impact_queue.append({"at":point,"strength":strength,"color":tint,"move":move,"face":face,"attacker":attacker})
             if sim.hitstop==0:_release_impacts()
         trauma = maxf(trauma,strength*0.6)
-        audio.play_sound(("slam" if sim.arcade_enabled and move=="meteor" else ("launch" if sim.arcade_enabled and move=="launcher" else ("heavy" if strength>0.55 else "hit"))) if kind=="hit" else kind,1.0+sim.combo_hits*0.04)
-        if kind=="hit" and strength>0.55: audio.play_sound("sub",0.9,-5.0)
+        audio.play_sound(("slam" if sim.arcade_enabled and move=="meteor" else ("launch" if sim.arcade_enabled and move=="launcher" else ("heavy" if strength>0.55 else "hit"))) if kind=="hit" else kind,1.0+sim.combo_hits*0.04,[-5.0,-3.0,-1.0][sim.exchange.tier()-1] if sim.arcade_enabled else 0.0)
+        if kind=="hit" and strength>0.55: audio.play_sound("sub",0.9,-9.0)
         if kind=="hit" and move=="grab":
             hud.notice="THROW"
             hud.notice_time=.7
@@ -515,9 +526,12 @@ func _handle_event(event: Dictionary) -> void:
         hud.notice = "OVERDRIVE NEEDS 75" if event.get("cost",50)==75 else "SPECIAL NEEDS 50 ENERGY"
         hud.notice_time = 1.5
 
-    if neon_enabled and not reduced_effects:neon.trigger(event,sim.fighters)
+    if neon_enabled and not reduced_effects:neon.trigger(event,sim.fighters,sim.exchange.tier())
 
 func _clear_impacts() -> void:
+    sim.continuation.clear()
+    surge_pulse=0.0
+    surge_reaction_cd=0.0
     theatre.clear()
     neon.clear()
     for fighter in fighters: fighter.set_neon_silhouette(false)
@@ -754,13 +768,11 @@ func project(point: Vector2) -> Vector2:
 func pause_game() -> void:
     if screen == "play":
         screen = "pause"
-        pending.clear()
         audio.stop_all()
         hud.rebuild_menu()
 
 func resume_game() -> void:
     screen = "play"
-    pending.clear()
     hud.rebuild_menu()
 
 func advance_round() -> void:
@@ -860,6 +872,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
             var choices := {KEY_J:"press",KEY_SHIFT:"turn",KEY_E:"slip"}
             if choices.has(event.physical_keycode):commit_clash_choice(choices[event.physical_keycode])
             return
+        if sim.arcade_enabled and event.physical_keycode in [KEY_J,KEY_K,KEY_E]:
+            var continuation_choice:String={KEY_J:"light",KEY_K:"heavy",KEY_E:"dash"}[event.physical_keycode]
+            if sim.continuation.offer(0,continuation_choice):return
         if practice: _record_training_input(event.physical_keycode)
         match event.physical_keycode:
             KEY_S,KEY_DOWN: pending["down_pressed"] = true

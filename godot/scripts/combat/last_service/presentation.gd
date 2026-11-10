@@ -24,5 +24,5 @@ func draw(canvas:Control,s:Node) -> void:
             canvas.draw_colored_polygon(points,s.effect_color_for(side));canvas.draw_polyline(PackedVector2Array([points[0],points[1],points[2],points[3],points[0]]),Color.WHITE,2)
             canvas.draw_rect(Rect2(at+Vector2(-15,9),Vector2(38,22)),Color("08090d"))
             canvas.draw_string(s.hud.font,at+Vector2(-10,27),"P%d"%(side+1),HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color.WHITE)
-    if s.run_active:
-        canvas.draw_string(s.hud.font,Vector2(488,128),"STREET RUN %d/3 / BUILD ON"%s.run_stage,HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color.WHITE)
+    if s.run_active and (s.sim.phase=="ready" or s.screen in ["pause","result"]):
+        canvas.draw_string(s.hud.font,Vector2(488,252),"STREET RUN %d/3 / BUILD ON"%s.run_stage,HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color.WHITE)

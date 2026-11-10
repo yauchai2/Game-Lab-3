@@ -123,7 +123,7 @@ func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
     voice.stop()
     voice.stream = variants[voice_index % variants.size()]
     voice_index += 1
-    voice.volume_db = -4.0+level_db+linear_to_db(maxf(.001,effects_level))
+    voice.volume_db = -4.0+minf(0.0,level_db)+linear_to_db(maxf(.001,effects_level))
     voice.pitch_scale = clampf(pitch,0.65,1.55)
     voice.play()
     if kind in ["hit","heavy","parry","guard_break","rally","release"]: duck_time = 0.18
@@ -173,6 +173,16 @@ func _ensure_buses() -> void:
         if AudioServer.get_bus_index(label)<0:
             AudioServer.add_bus();AudioServer.set_bus_name(AudioServer.bus_count-1,label)
             AudioServer.set_bus_send(AudioServer.bus_count-1,"Master")
+
+    var sfx_bus:int=AudioServer.get_bus_index("Afterhours SFX")
+    var has_limiter:=false
+    for i in AudioServer.get_bus_effect_count(sfx_bus):
+        if AudioServer.get_bus_effect(sfx_bus,i) is AudioEffectLimiter:has_limiter=true
+    if not has_limiter:
+        var limiter:=AudioEffectLimiter.new()
+        limiter.ceiling_db=-6.0
+        limiter.threshold_db=-6.0
+        AudioServer.add_bus_effect(sfx_bus,limiter)
 
 func silent_settings() -> bool:
     for label in ["Afterhours Music","Afterhours SFX"]:

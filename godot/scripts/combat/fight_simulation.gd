@@ -46,6 +46,7 @@ var rally = preload("res://scripts/combat/kinetic_rally.gd").new()
 var rally_enabled := false
 var rally_drill := false
 var guard_was_down := [false,false]
+var continuation=preload("res://scripts/combat/continuation_buffer.gd").new()
 var exchange = preload("res://scripts/combat/pressure_exchange.gd").new()
 var fighters: Array[Dictionary] = []
 var events: Array[Dictionary] = []
@@ -76,6 +77,7 @@ func _init() -> void:
 
 func reset_round() -> void:
     exchange.reset()
+    continuation.clear()
     practice_scenario="free"
     air_counter.reset()
     air_lesson_stage=""
@@ -203,6 +205,19 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
     if is_air_lesson():partner=opponent if not opponent.is_empty() else {}
     var commands := [player.duplicate(),partner.duplicate()]
     if arcade_enabled:
+        for side in 2:
+            var choice:String="dash" if commands[side].get("dash",false) else commands[side].get("attack","")
+            if continuation.offer(side,choice):
+                commands[side].erase("attack");commands[side].erase("dash")
+            var queued:Dictionary=continuation.command(side,hitstop>0,fighters[side].state not in ["stun","blockstun"])
+            if not queued.is_empty():
+                if queued.get("dash",false) and fighters[side].air.chase_window<=0:queued["axis"]=-float(fighters[side].face)
+                if queued.has("attack") and queued.attack=="heavy":
+                    queued["up"]=fighters[side].y<=.1;queued["down"]=fighters[side].y>.1
+                commands[side].merge(queued,true)
+            # Held rush is normal chaining, never a fresh continuation decision.
+            if not continuation.slots[side].is_empty() and continuation.slots[side].choice!="" and not continuation.slots[side].spent:commands[side].erase("rush")
+    if arcade_enabled:
         for i in 2:
             var f: Dictionary=fighters[i]
             if commands[i].get("rush",false) and not commands[i].has("attack") and not (f.buffer_ttl>0 and f.buffer in ["special","overdrive","launcher","heavy","meteor","grab"]):commands[i]["attack"]="light"
@@ -280,6 +295,16 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         for i in contacts:_resolve_hit(i,false)
     if last_service_enabled:
         for event in events.duplicate():service_rules.observe(self,event)
+    if arcade_enabled:
+        for event in events:
+            if event.kind=="hit":
+                continuation.cancel(event.target)
+                if event.move=="launcher":continuation.open(event.attacker)
+            elif event.kind=="parry":
+                continuation.cancel(event.attacker)
+                continuation.open(event.target)
+            elif event.kind=="block":continuation.open(event.target)
+            elif event.kind in ["guard_break","air_counter_start"]:continuation.cancel(event.get("target",event.get("owner",0)))
     if training:
         _update_training()
         return
@@ -539,6 +564,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
         if ai_enabled and not training and difficulty>0:
             var feint: bool=exchange.serial%4==3 if difficulty==1 else exchange.serial%2==1
             if feint:cue=exchange.CHOICES[(exchange.CHOICES.find(intent)+1)%3]
+        continuation.clear()
         exchange.begin(i,intent,cue)
         pressure_drill=false
         hitstop=0
@@ -814,6 +840,7 @@ func _resolve_exchange() -> void:
     hitstop_total=maxi(1,hitstop)
 
 func _finish_round() -> void:
+    continuation.clear()
     phase = "round_over"
     if fighters[0].health == fighters[1].health:
         winner = -1
@@ -912,6 +939,7 @@ func _air_parry_inputs(commands: Array) -> void:
         events.append({"kind":"air_parry_attempt","target":side})
 
 func _begin_air_counter(side: int) -> void:
+    continuation.clear()
     air_counter.begin(side)
     hitstop=0
     combo_hits=0;combo_damage=0;combo_owner=-1

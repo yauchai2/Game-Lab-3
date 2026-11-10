@@ -20,7 +20,7 @@ func silhouette() -> bool:
 func stage() -> bool:
     # One brief poster frame at the accent; longer, readable monochrome stage for signatures.
     return active() and age<(0.10 if priority<3 else .23)
-func trigger(event:Dictionary,fighters:Array) -> void:
+func trigger(event:Dictionary,fighters:Array,surge_tier:=3) -> void:
     var kind:String=event.kind
     var next:="";var rank:=0;var length:=0.0
     var side:int=event.get("attacker",event.get("owner",event.get("target",0)))
@@ -33,6 +33,7 @@ func trigger(event:Dictionary,fighters:Array) -> void:
     elif kind=="break_finish":next="BREAK";rank=5;length=.50
     elif kind=="ko":next="K.O.";rank=6;length=.65;side=maxi(0,event.get("winner",0))
     if next=="":return
+    if next in ["PARRY","RELEASE"]:length*=[.45,.72,1.0][clampi(surge_tier-1,0,2)]
     # A charge-to-release upgrade is allowed. Lower events must leave recovery space.
     if (active() and rank<=priority) or (not active() and cooldown>0 and rank<6):
         suppressed+=1;return

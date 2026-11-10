@@ -585,6 +585,7 @@ func _draw() -> void:
     if not session.neon_enabled and session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
     art.hud(self,session,health_lag)
     service_art.draw(self,session)
+    if session.sim.arcade_enabled:_surge_hud()
     if session.neon_enabled:draw_string(font,Vector2(16,160),"NEON FACETS LAB",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color("bdff00"))
     if skill_time>0 and skill_key!="" and session.screen=="play":
         _plate(Vector2(460,154),Vector2(360,34),INK)
@@ -593,8 +594,8 @@ func _draw() -> void:
         _center(Vector2(640,280),tr_text("round")+" %d"%session.sim.round_number,40)
         _center(Vector2(640,316),"準備" if session.language=="zh" else "GET READY",22,Tokens.GOLD)
     if notice_time>0 and session.demo==null and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
-        _plate(Vector2(426,110),Vector2(428,40),INK)
-        _center(Vector2(640,139),copy.notice(notice),19,Tokens.GOLD)
+        _plate(Vector2(426,196),Vector2(428,40),INK)
+        _center(Vector2(640,225),copy.notice(notice),19,Tokens.GOLD)
     var player: Dictionary=session.sim.fighters[0]
     if session.demo==null and player.wall_tech_window>0 and player.state=="stun" and player.meter>=20:
         var at: Vector2=session.project(Vector2(player.x,player.y+2.3))
@@ -668,6 +669,24 @@ func _pressure_hud() -> void:
 func _demo_hud() -> void:
     _plate(Vector2(28,78),Vector2(270,38),INK)
     _text(Vector2(37,105),"AI DEMO  /  LIVE",14,PAPER)
+
+func _surge_hud() -> void:
+    var exchange=session.sim.exchange
+    var tier:int=exchange.tier()
+    var tint:Color=[Tokens.TEAL,Tokens.LIME,Tokens.MAGENTA][tier-1]
+    var jump:float=0.0 if session.reduced_effects else sin(session.surge_pulse/.45*PI)*4.0
+    _plate(Vector2(548,86-jump),Vector2(184,64),INK)
+    _center(Vector2(640,110-jump),"SURGE %02d"%roundi(exchange.pressure),24,tint)
+    _center(Vector2(640,137-jump),["FLOW","HEAT","SURGE"][tier-1],24,tint)
+    for i in 3:
+        draw_rect(Rect2(556+i*56,143-jump,52,4),Color(tint,.2))
+        draw_rect(Rect2(556+i*56,143-jump,52*clampf((exchange.pressure-i*30)/30.0,0,1),4),tint)
+    for side in 2:
+        var slot:Dictionary=session.sim.continuation.slots[side]
+        if not slot.is_empty() and slot.choice!="" and not slot.spent:
+            var label:String={"light":"J","heavy":"K","dash":"E"}[slot.choice]
+            _plate(Vector2(330 if side==0 else 755,119),Vector2(210,30),INK)
+            _text(Vector2(334 if side==0 else 759,143),"P%d %s LOCK"%[side+1,label],24,session.COLORS[side])
 
 func _arcade_hud() -> void:
     if session.sim.air_counter.active():

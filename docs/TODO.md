@@ -1,5 +1,13 @@
 # 待辦與完成狀態
 
+## 2026-11-10：SURGE A＋B基礎切片已實作
+
+依 [COMBAT_ESCALATION_PLAN.zh-TW.md](COMBAT_ESCALATION_PLAN.zh-TW.md) 接續第一切片，現況見 [COMBAT_ESCALATION_RUNTIME.zh-TW.md](COMBAT_ESCALATION_RUNTIME.zh-TW.md)。正式Rush／自由Demo中央顯示同一pressure0–90及FLOW／HEAT／SURGE；升階提示、三級局部強度／接觸聲量，沿同一Rhythm／Neon owner做低高壓對照。成功格擋／挑空後逐邊鎖首個J／K／E意圖，原生hitstop及presentation hold不消耗期限；36個非hitstop固定步進有界，合法時僅交回既有判定一次。Esc保存，受擊／KO／重開／退出清理；不加傷害倍率、免費追擊或受擊偷跑。
+
+30項新增檢查＋250項戰鬥規則回歸＋37項原生UI／音樂回歸通過；真鍵盤K／Esc／Esc使用明示凍結時間fixture，和兩組各30秒正常自由AI錄像分開。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy audio；無ERROR／SCRIPT ERROR，原生VSync不支援警告保留。最終混音峰值／實聽、目標Mac及真人首分鐘仍待驗收。[證據](evidence/combat-escalation/README.md)。
+
+前對話01a1b16d-5526-77a4-b961-b3a97bc7a0af讀取工具回報host不可用，未聲稱已讀；依遠端891489b與規格／交接續作。來源任務分支codex/combat-escalation-next；穩定分支及公開Web不更新。下一步先真人比較可靠預輸入是否足夠，再決定高壓雙方窗口原型；C一般招式教讀／D逐招姿態及E三站敘事尚未整包完成。
+
 ## 2026-11-10：LLB升溫／博弈優點轉化規格（待實作）
 
 已吸收使用者補充，對照目前Simulation／Rhythm／Neon／Audio及HUD，規格見 [COMBAT_ESCALATION_PLAN.zh-TW.md](COMBAT_ESCALATION_PLAN.zh-TW.md)。確認現有pressure0–90會累積但正式Rush不顯示，舊三選排除is_aerial；停頓pending也不等於完整決策佇列。下一步沿現有pressure對外稱SURGE，先做三級回饋＋可靠預輸入，再驗證高壓雙方窗口和三站敘事。LLB原作精確規則／幀數標為使用者參考分析，本輪未獨立核實。

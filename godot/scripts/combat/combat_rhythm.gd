@@ -4,6 +4,7 @@ var kind := ""
 var age := 10.0
 var owner := 0
 var style := ""
+var intensity:=1.0
 var priority := 0
 var cooldown := 0.0
 var bank := 0.0
@@ -22,11 +23,12 @@ var profiles:Dictionary=PROFILES
 func clear() -> void:
     kind="";style="";age=10.0;priority=0;cooldown=0.0;bank=0.0;rate_now=1.0
 func active() -> bool:return kind!=""
-func trigger(next:String,side:int,move_hint:="") -> void:
+func trigger(next:String,side:int,move_hint:="",surge_tier:=3) -> void:
     if not profiles.has(next):return
     var profile:Array=profiles[next]
     if active() and int(profile[4])<=priority:return
     if cooldown>0 and int(profile[4])<3:return
+    intensity=[.45,.72,1.0][clampi(surge_tier-1,0,2)]
     kind=next;owner=clampi(side,0,1);age=0.0;priority=profile[4]
     style=move_hint if move_hint!="" else next
     cooldown=.75
@@ -35,8 +37,8 @@ func trigger(next:String,side:int,move_hint:="") -> void:
 func phase() -> String:
     if not active():return "flow"
     var p:Array=profiles[kind]
-    if age<p[0]:return "hold"
-    if age<p[0]+p[1]:return "slow"
+    if age<p[0]*intensity:return "hold"
+    if age<(p[0]+p[1])*intensity:return "slow"
     return "release"
 func rate() -> float:
     if not active():return 1.0
@@ -49,7 +51,7 @@ func advance(delta:float) -> void:
     age+=delta
     if active():
         var p:Array=profiles[kind]
-        if age>=p[0]+p[1]+p[2]:kind="";priority=0
+        if age>=(p[0]+p[1])*intensity+p[2]:kind="";priority=0
 func take_steps(delta:float,enabled:bool) -> int:
     if not enabled:
         clear();steps+=1;return 1

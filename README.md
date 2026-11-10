@@ -1,6 +1,6 @@
 # Afterhours / Game-Lab-3
 
-最新規劃：[LLB升溫／博弈／視聽回饋轉化](docs/COMBAT_ESCALATION_PLAN.zh-TW.md)。已對照現有程式，尚未修改runtime。
+最新實作：[SURGE 三階回饋與可靠預輸入](docs/COMBAT_ESCALATION_RUNTIME.zh-TW.md)／[畫面與兩組30秒AI錄像](docs/evidence/combat-escalation/README.md)。沿既有pressure，正式Rush可見升溫；格擋／挑空後J／K／E鎖一次意圖。高壓雙方窗口仍未採入；公開Web未更新。
 
 最新：[五人群像與構圖修正](docs/TITLE_ENSEMBLE.zh-TW.md)／[循環GIF](docs/evidence/title-ensemble/title-loop.gif)。完整16:9鏡頭、前後景站位、同構圖靜態封面。
 

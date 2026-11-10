@@ -194,3 +194,7 @@
 - 2026-11-10：吸收LLB補充分析，下一輪升溫沿用pressure_exchange的唯一共用pressure，UI對外稱SURGE；先三級回饋／可靠預輸入，再有界高壓窗口，維持角色meter與專屬資源。原作精確幀數／相剋未獨立核實；本輪只規格，不宣稱實裝或Web發佈。見COMBAT_ESCALATION_PLAN.zh-TW.md。
 
 - 2026-11-10：使用者已明確要求更新公開Web，本輪授權以codex/neon-street-lab現有可玩版匯出至gh-pages；SURGE新規格仍未實裝。使用匹配Godot4.7.2官方單執行緒Web模板；瀏覽器選角壓測記憶體上升後，Web長BGM改用STREAM播放，桌面播放方式保持。之後例行來源更新仍不可自動發佈。
+
+## 2026-11-10：SURGE第一可玩切片
+
+依使用者本輪繼續優化授權，A＋B基礎已接入，覆蓋前輪planning-only。pressure仍是唯一升溫owner，HUD公開名SURGE；同一Rhythm／Neon／Audio調強度，不改真實傷害／能量／成長模式。預輸入由Simulation擁有的continuation_buffer逐邊鎖首個J／K／E，36個非hitstop固定步進期限；僅阻止同一事件的覆寫，消費後普通Rush接招繼續。K按地空解析，E有追擊窗走付費追擊，否則後撤；已有硬直不被清除。暫停保存狀態，下一輪接觸／中斷清理。高壓公平雙方窗口未加入；舊F8教室維持隔離。只推codex/combat-escalation-next來源，不部署Web。
