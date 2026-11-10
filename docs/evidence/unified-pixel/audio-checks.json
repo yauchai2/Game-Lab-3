@@ -1,0 +1,68 @@
+{
+  "checks": [
+    {
+      "check": "Menu music reaches Master",
+      "detail": {
+        "clipped": 0,
+        "frames": 20480,
+        "peak": 0.127185106277466,
+        "rms": 0.0370834859501026
+      },
+      "pass": true
+    },
+    {
+      "check": "Music mute preserves effects",
+      "detail": {
+        "sfx": {
+          "clipped": 0,
+          "frames": 8192,
+          "peak": 0.472036957740784,
+          "rms": 0.112962773899136
+        },
+        "silence": {
+          "clipped": 0,
+          "frames": 8192,
+          "peak": 0.0000161218940775143,
+          "rms": 0.00000428502678016449
+        }
+      },
+      "pass": true
+    },
+    {
+      "check": "Silent settings detected",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Restore recovers zero levels and muted Master",
+      "detail": {
+        "clipped": 0,
+        "frames": 20480,
+        "peak": 0.147649541497231,
+        "rms": 0.0403707940778688
+      },
+      "pass": true
+    },
+    {
+      "check": "Pause keeps music transport advancing",
+      "detail": {
+        "after": 1.76533329486847,
+        "before": 1.3933333158493
+      },
+      "pass": true
+    },
+    {
+      "check": "Fight mix stays nonzero without clipping",
+      "detail": {
+        "clipped": 0,
+        "frames": 12288,
+        "peak": 0.569145500659943,
+        "rms": 0.114616508356871
+      },
+      "pass": true
+    }
+  ],
+  "driver": "Dummy",
+  "engine": "4.6.3-stable (official)",
+  "scope": "Actual engine PCM mixer, no hardware output or listening test"
+}

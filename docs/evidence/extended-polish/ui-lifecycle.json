@@ -1,0 +1,84 @@
+{
+  "checks": [
+    {
+      "name": "menu rebuilds retain a stable live-node count after warmup",
+      "passed": true
+    },
+    {
+      "name": "512 page and language cycles leave no extra orphan nodes",
+      "passed": true
+    },
+    {
+      "name": "steady-state object growth stays within four transient resources",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "method": "headless Control/Callable lifecycle after 16 warmup cycles; native renderer memory is observed separately",
+  "passed": 3,
+  "samples": [
+    {
+      "cycles": 0,
+      "nodes": 523.0,
+      "objects": 3020.0,
+      "orphans": 0.0,
+      "static_memory": 91691844.0
+    },
+    {
+      "cycles": 64,
+      "nodes": 523.0,
+      "objects": 3020.0,
+      "orphans": 0.0,
+      "static_memory": 92122928.0
+    },
+    {
+      "cycles": 128,
+      "nodes": 523.0,
+      "objects": 3020.0,
+      "orphans": 0.0,
+      "static_memory": 92614996.0
+    },
+    {
+      "cycles": 192,
+      "nodes": 523.0,
+      "objects": 3020.0,
+      "orphans": 0.0,
+      "static_memory": 92615744.0
+    },
+    {
+      "cycles": 256,
+      "nodes": 523.0,
+      "objects": 3020.0,
+      "orphans": 0.0,
+      "static_memory": 92616516.0
+    },
+    {
+      "cycles": 320,
+      "nodes": 523.0,
+      "objects": 3020.0,
+      "orphans": 0.0,
+      "static_memory": 93600440.0
+    },
+    {
+      "cycles": 384,
+      "nodes": 523.0,
+      "objects": 3020.0,
+      "orphans": 0.0,
+      "static_memory": 93601236.0
+    },
+    {
+      "cycles": 448,
+      "nodes": 523.0,
+      "objects": 3020.0,
+      "orphans": 0.0,
+      "static_memory": 93601960.0
+    },
+    {
+      "cycles": 512,
+      "nodes": 523.0,
+      "objects": 3020.0,
+      "orphans": 0.0,
+      "static_memory": 93602684.0
+    }
+  ]
+}

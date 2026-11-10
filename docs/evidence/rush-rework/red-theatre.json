@@ -1,0 +1,73 @@
+{
+  "checks": [
+    {
+      "name": "skill cut has a short finite lifespan",
+      "passed": true
+    },
+    {
+      "name": "pause freezes the visual clock",
+      "passed": true
+    },
+    {
+      "name": "red stage naturally expires",
+      "passed": true
+    },
+    {
+      "name": "ordinary hit cannot overwrite a finisher cut",
+      "passed": true
+    },
+    {
+      "name": "KO has highest presentation priority",
+      "passed": true
+    },
+    {
+      "name": "accepted burst startup enters a real red scene",
+      "passed": true
+    },
+    {
+      "name": "actors remain visible while scenery is hidden",
+      "passed": true
+    },
+    {
+      "name": "red staging never edits positions health or combat state",
+      "passed": true
+    },
+    {
+      "name": "native pause preserves the red clock",
+      "passed": true
+    },
+    {
+      "name": "F2 restores the city immediately",
+      "passed": true
+    },
+    {
+      "name": "lethal real contact launches red KO animation",
+      "passed": true
+    },
+    {
+      "name": "KO camera and pose leave the resolved simulation unchanged",
+      "passed": true
+    },
+    {
+      "name": "KO camera adds a bounded cinematic roll",
+      "passed": true
+    },
+    {
+      "name": "KO returns to the city and operable result",
+      "passed": false
+    },
+    {
+      "name": "title clears camera matte and shadows",
+      "passed": true
+    },
+    {
+      "name": "endless finisher red cut never ends the match",
+      "passed": true
+    },
+    {
+      "name": "finisher reward uses actual accumulated impact and a lockout",
+      "passed": true
+    }
+  ],
+  "scope": "Real simulation contacts with controlled fixtures; native camera/matte state checks, not human visual acceptance."
+}

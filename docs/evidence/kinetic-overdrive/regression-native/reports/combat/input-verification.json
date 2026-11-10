@@ -1,0 +1,67 @@
+{
+  "checks": [
+    {
+      "name": "native keyboard starts match from title",
+      "passed": true
+    },
+    {
+      "name": "held physical movement key moves fighter",
+      "passed": true
+    },
+    {
+      "name": "jump key reaches gameplay",
+      "passed": true
+    },
+    {
+      "name": "heavy key selects attack",
+      "passed": true
+    },
+    {
+      "name": "escape pauses through viewport input",
+      "passed": true
+    },
+    {
+      "name": "pause freezes simulation clock",
+      "passed": true
+    },
+    {
+      "name": "mute shortcut works in pause",
+      "passed": true
+    },
+    {
+      "name": "reduced-effects shortcut works in pause",
+      "passed": true
+    },
+    {
+      "name": "escape resumes through viewport input",
+      "passed": true
+    },
+    {
+      "name": "F6 switches to preserved walk scene",
+      "passed": true
+    },
+    {
+      "name": "walk F6 returns to fight title",
+      "passed": true
+    },
+    {
+      "name": "viewport G queues a throw",
+      "passed": true
+    },
+    {
+      "name": "native throw input reaches the real contact and damage rule",
+      "passed": true
+    },
+    {
+      "name": "viewport G also breaks an incoming throw without damage",
+      "passed": true
+    },
+    {
+      "name": "viewport E performs edge recovery and spends exactly twenty energy",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "method": "Input.parse_input_event through native viewport; automated, not human keyboard playtest",
+  "passed": 15
+}

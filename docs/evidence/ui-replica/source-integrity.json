@@ -1,0 +1,345 @@
+{
+  "baseline": "ec2f980",
+  "all_existing_binary_assets_unchanged": true,
+  "count": 56,
+  "files": [
+    {
+      "path": "godot/assets/CHAR_PLAYER_A01.glb",
+      "baseline_sha256": "12bb38212d67c8b28eeb6bbb64e3c354e2e9841d5fca51bdc1860e48691150ad",
+      "current_sha256": "12bb38212d67c8b28eeb6bbb64e3c354e2e9841d5fca51bdc1860e48691150ad",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/CHAR_PLAYER_A01_stylized_3d_character_basecolor.jpg",
+      "baseline_sha256": "e390f50cc7116bdc138947afa6cfb16aebfbe9a808fc5580a91e55cd0e15a920",
+      "current_sha256": "e390f50cc7116bdc138947afa6cfb16aebfbe9a808fc5580a91e55cd0e15a920",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_BIN_A01.glb",
+      "baseline_sha256": "df6efc5267d9f94f955b93286412a926e4a7d06a1ac0744b905ed2ebb4a09cc2",
+      "current_sha256": "df6efc5267d9f94f955b93286412a926e4a7d06a1ac0744b905ed2ebb4a09cc2",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg",
+      "baseline_sha256": "5e6d14bd81f53ef958159408b53cf4621e8e75f275854291d5abd8df4e1a7e2b",
+      "current_sha256": "5e6d14bd81f53ef958159408b53cf4621e8e75f275854291d5abd8df4e1a7e2b",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_CRATES_A01.glb",
+      "baseline_sha256": "8f620aaf28cc09091de7afc5989d13f5419c5039abfbf46e319f5e56ba890692",
+      "current_sha256": "8f620aaf28cc09091de7afc5989d13f5419c5039abfbf46e319f5e56ba890692",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg",
+      "baseline_sha256": "7e1371cfe9c7f1757319b695b63eb0762ffbe008bdd6d6a0e27705d8ac6d0b77",
+      "current_sha256": "7e1371cfe9c7f1757319b695b63eb0762ffbe008bdd6d6a0e27705d8ac6d0b77",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_HYDRANT_A01.glb",
+      "baseline_sha256": "091fb06d4cfcf52620f62d80ec392e3f97caee103d6687ce51a6e9e27f0e5d78",
+      "current_sha256": "091fb06d4cfcf52620f62d80ec392e3f97caee103d6687ce51a6e9e27f0e5d78",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg",
+      "baseline_sha256": "60f470f90e2fd4ff9e008998750db0a22d2834b6549190c50baeefddf97ba35d",
+      "current_sha256": "60f470f90e2fd4ff9e008998750db0a22d2834b6549190c50baeefddf97ba35d",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_MAILBOX_A01.glb",
+      "baseline_sha256": "4d86307ba149a4375d9b5f97ecb31862f53e262b2cd10460eaf56cfc02c110fe",
+      "current_sha256": "4d86307ba149a4375d9b5f97ecb31862f53e262b2cd10460eaf56cfc02c110fe",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg",
+      "baseline_sha256": "ac41400bcf4ca684db25e4d75d85a61ac8acd4f49ec29280b1688d9e8f67da7c",
+      "current_sha256": "ac41400bcf4ca684db25e4d75d85a61ac8acd4f49ec29280b1688d9e8f67da7c",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_SHOP_STOOL_A01.glb",
+      "baseline_sha256": "b096aa7250a983df7ff9be5dfa1a0ccbf48366dec268fa5cf290079e7e503c1b",
+      "current_sha256": "b096aa7250a983df7ff9be5dfa1a0ccbf48366dec268fa5cf290079e7e503c1b",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg",
+      "baseline_sha256": "9e35821d11fdb9e3fbb58359137b4797ebc97a9c48198f3f98b8ed9a9eec5f37",
+      "current_sha256": "9e35821d11fdb9e3fbb58359137b4797ebc97a9c48198f3f98b8ed9a9eec5f37",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/SKY_BLUE_A01.png",
+      "baseline_sha256": "a2d11528d41244210b7827d4bf26c3136858dcb7c823f078c899a61c7fcd1095",
+      "current_sha256": "a2d11528d41244210b7827d4bf26c3136858dcb7c823f078c899a61c7fcd1095",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_CAR_A01.glb",
+      "baseline_sha256": "4cf37ec42939e8f1f4e413ebc0828d4b70a4b240b20b688f8337fe65fee2f457",
+      "current_sha256": "4cf37ec42939e8f1f4e413ebc0828d4b70a4b240b20b688f8337fe65fee2f457",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_CAR_A01_car_3d_model_basecolor.jpg",
+      "baseline_sha256": "4cea6c5040000b59872380e00888ccfa9c7be5b0c2d148ad21549fec9a933dbd",
+      "current_sha256": "4cea6c5040000b59872380e00888ccfa9c7be5b0c2d148ad21549fec9a933dbd",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_TRUCK_A01.glb",
+      "baseline_sha256": "b15a7535ab7f2f173472ffe002ead8e246883ff9252cc11efb6769cc09b83228",
+      "current_sha256": "b15a7535ab7f2f173472ffe002ead8e246883ff9252cc11efb6769cc09b83228",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg",
+      "baseline_sha256": "5878a33db957fd3501e705e8718fdc10ab0b3a62e8df7e3517b6cae971e9f286",
+      "current_sha256": "5878a33db957fd3501e705e8718fdc10ab0b3a62e8df7e3517b6cae971e9f286",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_VAN_A01.glb",
+      "baseline_sha256": "d07862f84eb4e02386b2b248d9283b875075e0bb17ce1d66d9419ee84c585926",
+      "current_sha256": "d07862f84eb4e02386b2b248d9283b875075e0bb17ce1d66d9419ee84c585926",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_VAN_A01_van_3d_model_basecolor.jpg",
+      "baseline_sha256": "e7d8969280216905e502ffa90adedc5cf046386f7018894fc20e5b82e0ff41df",
+      "current_sha256": "e7d8969280216905e502ffa90adedc5cf046386f7018894fc20e5b82e0ff41df",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/art/graffiti_swift_A01.png",
+      "baseline_sha256": "aefa86b33d0f2f8ced4b43cf0ae5cf00ee80067b66740f0b2fc8730298521596",
+      "current_sha256": "aefa86b33d0f2f8ced4b43cf0ae5cf00ee80067b66740f0b2fc8730298521596",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/characters/CHAR_FIGHTER_1.glb",
+      "baseline_sha256": "a507c9f842ff7c1c804050f2f4e473e604f1413f55d1a8bff4da8a4b844c7f6f",
+      "current_sha256": "a507c9f842ff7c1c804050f2f4e473e604f1413f55d1a8bff4da8a4b844c7f6f",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/characters/CHAR_FIGHTER_1_1_basecolor.jpg",
+      "baseline_sha256": "47e0010fc98c5560b0983bc320eee8261fefdf43edc868f7140ec3b1922ea8c4",
+      "current_sha256": "47e0010fc98c5560b0983bc320eee8261fefdf43edc868f7140ec3b1922ea8c4",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/characters/CHAR_FIGHTER_3.glb",
+      "baseline_sha256": "bac90f34f9d55d3d407a57dd47a6d55844f002a02e6fff42b9c5ac4c8f60b704",
+      "current_sha256": "bac90f34f9d55d3d407a57dd47a6d55844f002a02e6fff42b9c5ac4c8f60b704",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/characters/CHAR_FIGHTER_3_stylized_3d_character_basecolor.jpg",
+      "baseline_sha256": "b88b66d63e64f2cc4b5d242fe8cc2ab880085aa26d8504ea880aa91338ecc95e",
+      "current_sha256": "b88b66d63e64f2cc4b5d242fe8cc2ab880085aa26d8504ea880aa91338ecc95e",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/characters/CHAR_FIGHTER_4.glb",
+      "baseline_sha256": "c443bad6aa0a9d0ab49741fc0e7ee36cddab7b7271ff1e95342993a27df68941",
+      "current_sha256": "c443bad6aa0a9d0ab49741fc0e7ee36cddab7b7271ff1e95342993a27df68941",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/characters/CHAR_FIGHTER_4_4_basecolor.jpg",
+      "baseline_sha256": "cbf5d08f02412e3625a22e7c8c78a4e7483607b10ea155a0f06d3852ff167a16",
+      "current_sha256": "cbf5d08f02412e3625a22e7c8c78a4e7483607b10ea155a0f06d3852ff167a16",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/corner_plaster_128.png",
+      "baseline_sha256": "a26ed0cadfa1d175b0af4683ddf3338d6fb40fe94f677d04531f96e334fe6c18",
+      "current_sha256": "a26ed0cadfa1d175b0af4683ddf3338d6fb40fe94f677d04531f96e334fe6c18",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/corner_shutter_128.png",
+      "baseline_sha256": "654a7a847a4b96b680901202349342dae219f8a6d3da168cb6b1207ac326655c",
+      "current_sha256": "654a7a847a4b96b680901202349342dae219f8a6d3da168cb6b1207ac326655c",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/corner_tiles_128.png",
+      "baseline_sha256": "acc47e8fa5bbe83cf6cc9e3f558dfdb6d3d83d020d58c764628afe00c17fa180",
+      "current_sha256": "acc47e8fa5bbe83cf6cc9e3f558dfdb6d3d83d020d58c764628afe00c17fa180",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/painted_concrete_128.png",
+      "baseline_sha256": "c51122c2c8af475a68b90b082c56921653c828c574e8d47029aecef3237fddba",
+      "current_sha256": "c51122c2c8af475a68b90b082c56921653c828c574e8d47029aecef3237fddba",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/road_asphalt_128.png",
+      "baseline_sha256": "50fa20d1442e6bdb77f0180589fba51581aa768cd53c1bf9891abf07640c1de7",
+      "current_sha256": "50fa20d1442e6bdb77f0180589fba51581aa768cd53c1bf9891abf07640c1de7",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/sidewalk_tiles_128.png",
+      "baseline_sha256": "e0da54d6c3ef54628c001ad7f28fd105388edea8f9fdc8bf866bc959c236a112",
+      "current_sha256": "e0da54d6c3ef54628c001ad7f28fd105388edea8f9fdc8bf866bc959c236a112",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/ui/jsr/action-icons.png",
+      "baseline_sha256": "bb40a6ac4ba961f4aea5a73ab42c36330690758ef8e731bbe41fc71a96ef232a",
+      "current_sha256": "bb40a6ac4ba961f4aea5a73ab42c36330690758ef8e731bbe41fc71a96ef232a",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/ui/jsr/afterhours-logo.png",
+      "baseline_sha256": "2d205bab1b23b2565a47e0dbfc9672906ecb4ca79148e876c4bbb0c94baf9797",
+      "current_sha256": "2d205bab1b23b2565a47e0dbfc9672906ecb4ca79148e876c4bbb0c94baf9797",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/ui/jsr/ui-frames.png",
+      "baseline_sha256": "88d91d93ac23b9e87a350fc9a0fb5c632bf5fdc87effaafb83a88e641d259d4e",
+      "current_sha256": "88d91d93ac23b9e87a350fc9a0fb5c632bf5fdc87effaafb83a88e641d259d4e",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/vfx/fighter_signatures.png",
+      "baseline_sha256": "e508181f68f5fc0988dd02009fc42739b3d356f3ed4ca371a8ecd091398482c7",
+      "current_sha256": "e508181f68f5fc0988dd02009fc42739b3d356f3ed4ca371a8ecd091398482c7",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/vfx/street_actions.png",
+      "baseline_sha256": "23bc2c316211b357ec893c4ac72ada873614344b5279c3b02a223674aa419cbc",
+      "current_sha256": "23bc2c316211b357ec893c4ac72ada873614344b5279c3b02a223674aa419cbc",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/engine_placeholder.wav",
+      "baseline_sha256": "5b8ad2d7936e66719f9c77f23928b5aef5a372e9dbb54e08ee62dff103ec55c1",
+      "current_sha256": "5b8ad2d7936e66719f9c77f23928b5aef5a372e9dbb54e08ee62dff103ec55c1",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/footstep_concrete_000.ogg",
+      "baseline_sha256": "d7267e183067757c92c169de2a379abea592cfca6b39bb2e8feea15221ad79fe",
+      "current_sha256": "d7267e183067757c92c169de2a379abea592cfca6b39bb2e8feea15221ad79fe",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/footstep_concrete_003.ogg",
+      "baseline_sha256": "8b513c2f0316324060b9174b8f28df6c2147418c506e6a53b77f18e149a5547b",
+      "current_sha256": "8b513c2f0316324060b9174b8f28df6c2147418c506e6a53b77f18e149a5547b",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactBell_heavy_003.ogg",
+      "baseline_sha256": "5572ccdeb3b62373b86fa955355b3a222c36e815f0636ba16165189a21cf2514",
+      "current_sha256": "5572ccdeb3b62373b86fa955355b3a222c36e815f0636ba16165189a21cf2514",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactGlass_heavy_000.ogg",
+      "baseline_sha256": "b44b39a940e8948e74b9bd3776bff980df43cf220abdaf0d467dc4c43c0244a5",
+      "current_sha256": "b44b39a940e8948e74b9bd3776bff980df43cf220abdaf0d467dc4c43c0244a5",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactMetal_heavy_003.ogg",
+      "baseline_sha256": "b0f2ba4dabde9a87eb9c188a19d31e0c2300fd321adeba08d3b9b8aa011d7037",
+      "current_sha256": "b0f2ba4dabde9a87eb9c188a19d31e0c2300fd321adeba08d3b9b8aa011d7037",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactMetal_light_000.ogg",
+      "baseline_sha256": "33b5e6e37c6e9d54e07bf5a89b12c76e879f40c1ea83cdd82714df1d6f9fec6d",
+      "current_sha256": "33b5e6e37c6e9d54e07bf5a89b12c76e879f40c1ea83cdd82714df1d6f9fec6d",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_heavy_000.ogg",
+      "baseline_sha256": "b33a8f14068aec24ec69ba85e5e87fdc41228975f6a1a3e44a6e7d6fc3d9f8d8",
+      "current_sha256": "b33a8f14068aec24ec69ba85e5e87fdc41228975f6a1a3e44a6e7d6fc3d9f8d8",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_heavy_001.ogg",
+      "baseline_sha256": "f92f5cb6ba4ff2766497292ffd90865654317eeca976f5652e0708dbdcdc0dd9",
+      "current_sha256": "f92f5cb6ba4ff2766497292ffd90865654317eeca976f5652e0708dbdcdc0dd9",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_000.ogg",
+      "baseline_sha256": "486988aa2d6440ffc4c62a0e8ccf3c23673ba84424bd4723378d451b7255eb5c",
+      "current_sha256": "486988aa2d6440ffc4c62a0e8ccf3c23673ba84424bd4723378d451b7255eb5c",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_001.ogg",
+      "baseline_sha256": "e71d23abcc3f10d9d6bc9615b2a431fff70b12333a5fcdd9964457564ace4349",
+      "current_sha256": "e71d23abcc3f10d9d6bc9615b2a431fff70b12333a5fcdd9964457564ace4349",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_002.ogg",
+      "baseline_sha256": "6492f9ccbc8d24dcef607bb1b48790b7870961474561f7fe5601e1c73a3018ef",
+      "current_sha256": "6492f9ccbc8d24dcef607bb1b48790b7870961474561f7fe5601e1c73a3018ef",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactSoft_heavy_000.ogg",
+      "baseline_sha256": "49e7ca88743fca974bb8676ea138b751cfd8f9033b5e7af8736c2a215d6edbc1",
+      "current_sha256": "49e7ca88743fca974bb8676ea138b751cfd8f9033b5e7af8736c2a215d6edbc1",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactSoft_medium_001.ogg",
+      "baseline_sha256": "7642a4fd43e547afe4f7adfadb3dabb681c0ff512f52c1674bae30a726841faf",
+      "current_sha256": "7642a4fd43e547afe4f7adfadb3dabb681c0ff512f52c1674bae30a726841faf",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactTin_medium_001.ogg",
+      "baseline_sha256": "84253095543c094d83cd749f42ecfbc96e356b60385f18a192c18eafb25b3cc6",
+      "current_sha256": "84253095543c094d83cd749f42ecfbc96e356b60385f18a192c18eafb25b3cc6",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/level1.ogg",
+      "baseline_sha256": "471b48b13e12bdf34a324c32d2c1d1e4ab76b89308108d1cc3cf619639de2783",
+      "current_sha256": "471b48b13e12bdf34a324c32d2c1d1e4ab76b89308108d1cc3cf619639de2783",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/user-tracks/berlin.ogg",
+      "baseline_sha256": "86109386ba3fc5d82dac5a60613edc8f3a354dd9b3d418cf7d0e4f3bf88270a6",
+      "current_sha256": "86109386ba3fc5d82dac5a60613edc8f3a354dd9b3d418cf7d0e4f3bf88270a6",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/user-tracks/groove_district.ogg",
+      "baseline_sha256": "2860ea8b7ca1e5f883849f7a70cb6a2855d3e0b8729042edebcdfeed6979b3d0",
+      "current_sha256": "2860ea8b7ca1e5f883849f7a70cb6a2855d3e0b8729042edebcdfeed6979b3d0",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/wev/family_ties_game.ogg",
+      "baseline_sha256": "a4c11da48bb3c2e11bbb15bc5f6dc11b0802f7aa391390ae90dc1b591514bbc3",
+      "current_sha256": "a4c11da48bb3c2e11bbb15bc5f6dc11b0802f7aa391390ae90dc1b591514bbc3",
+      "unchanged": true
+    }
+  ],
+  "intentional_new_assets": "Reference UI copy/crops, generated UI backplate/portraits, OFL Barlow font. Generated combat stamp atlases retained unchanged but retired from active rendering.",
+  "public_web_unchanged": "2908503295c24b918b293b463ec962797a7ccb06"
+}

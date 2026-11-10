@@ -1,0 +1,415 @@
+幫我詳細研究：我想做到 lethal league blaze 般的爽感、誇張的動感、誇張的技能效果、儲力爆發感、角色選擇畫面、過場等等。我想講/解釋俾AI聽，然後實作。請寫得極詳細但要中point。
+
+
+
+我在想是否可以完美格擋時爽感。停濟、連擊。如對方如果又即時完美格擋到就輪到對方，攻擊疊加成更強。你有咩建議？
+
+你提出的「完美格擋（Perfect Parry）＋ 停滯（Hitstop）＋ 雙方輪流格擋疊加威力」，直接命中了《Lethal League Blaze》(LLB) 的核心靈魂！這其實就是「沒有球的 LLB」——把原本在場上飛的「球」，變成了雙方貼身或中距離交鋒時「懸在兩人之間、越滾越大的毀滅性動能（Kinetic Charge）」。
+
+以下為你拆解一套針對這套核心機制的深度設計建議，以及一份可以直接餵給 AI 進行開發的「終極系統規格書（Master Spec Prompt）」。
+
+第一部分：核心戰鬥機制建議——「動能轉嫁系統 (Kinetic Clash System)」
+如果雙方只是單純輪流按格擋（叮、叮、叮），超過 3 次就會變成枯燥的節奏遊戲。要做出 LLB 那種「手心冒汗、一擊必殺」的極限爽感，必須在「完美格擋」中加入蓄力心理戰與破防變化：
+
+1. 完美格擋後的「停滯與反擊三選一（Hitstop Mix-up）」
+當 A 攻擊 B，B 觸發「完美格擋（Perfect Parry）」時：
+
+瞬間停滯（Hitstop）： 畫面立刻凍結（時間隨當前疊加倍數拉長，例如 0.2 秒至 1.2 秒），爆發出巨型手繪十字星芒，鏡頭微幅推進（Zoom-in）。
+
+動能繼承與加倍： 這次攻擊的威力不會消失，而是被 B「吸收並翻倍」（例如 100 -> 200 -> 400 -> 800）。
+
+停滯期間的心理戰（B 的選擇）： 在畫面凍結的這段時間內，B 可以輸入指令決定如何把這股能量甩回去（A 看不到 B 按了什麼，只能預判）：
+
+【快拍重擊 Fast Counter】（不額外蓄力，停滯結束瞬間 1 幀出手）：速度極快，專抓想偷跑的對手。
+
+【延遲蓄力拍 Delayed Smash】（按住攻擊鍵額外壓縮 0.3 秒）：故意破壞節奏（拐拍），如果 A 提早按了格擋就會揮空（Whiff），直接被滿蓄力一拳轟飛。
+
+【變向繞背／挑空 Shift Strike】（方向鍵 + 攻擊）：利用格擋的爆發力瞬間瞬移到 A 的正上方或背後劈下，強迫 A 必須猜對方向才能格擋。
+
+2. 當對手「又完美格擋」時的連鎖升級（The Rally Escalation）
+如果 A 預判成功，把 B 反擊回來的 200% 攻擊再次完美格擋，就會進入 LLB 最經典的「神仙打架階段」：
+
+格擋判定窗口收窄（Anti-Infinite）： 每連續格擋一輪，下一次完美格擋的判定幀數就縮短（例如 8 frames -> 6 frames -> 4 frames -> 3 frames），確保不會無限打鐵。
+
+破防抓技（Guard Crush / Throw）： 當倍率疊高、對手死盯著你的出手準備按格擋時，你可以在停滯期間改按「投技（Grab）」。投技無法被格擋，一旦抓中正在架盾的對手，直接將當前累積的所有動能灌進對手體內原地引爆！
+
+失誤的代價（Get Decked）： 只要有一方沒按出完美格擋（只按出普通防禦或沒防住），高倍率下會直接觸發「破盾擊飛（Guard Break）」——角色像棒球一樣以光速撞穿牆壁反彈，觸發全屏紅黑暴走演出。
+
+第二部分：給 AI 實作的「終極規格指令書 (Master Prompt)」
+你可以直接複製以下整段 Markdown 規格書，貼給寫 Code 或做架構的 AI（如 Claude / Cursor / ChatGPT），請它根據你的引擎（Godot 或 Unity）逐步實作：
+
+Markdown
+# 專案目標：開發具備《Lethal League Blaze》極致打擊感與街頭美學的 2.5D 高速格鬥系統
+
+請擔任資深遊戲系統架構師與 VFX 技術美術，協助我實作以下四大核心模組。所有設計需追求極致的「日式作畫張力（Sakuga）」、「越快越慢的動態頓幀（Dynamic Hitstop）」與「街頭潮流 UI/UX 演出」。
+
+---
+
+## 模組一：核心戰鬥——「完美格擋與動能疊加系統 (Kinetic Parry & Escalation Loop)」
+
+1. **全域動能計數器 (`ClashMomentum` / `SurgeLevel`)**：
+   - 場上維護一個共用的動能數值（初始為 Level 1，隨每次成功交鋒與完美格擋呈指數增長：Lv.1 -> Lv.2 -> Lv.4 -> Lv.8 -> MAX OVERDRIVE）。
+   - UI 需即時顯示當前累積的動能數值與危險等級。
+
+2. **完美格擋（Perfect Parry）與動態頓幀（Dynamic Hitstop）**：
+   - 當防守方在攻擊判定生效前的極短窗口（初始 7 幀，隨 `SurgeLevel` 遞減至最低 3 幀）按下格擋，觸發 `PerfectParry`。
+   - **凍結邏輯**：不修改全域 `Time.timeScale`，而是由 `HitstopManager` 凍結雙方角色的動畫狀態機與物理位移，但允許 VFX、攝影機震動與角色模型高頻抖動（Jitter）繼續以 60fps 運作。
+   - **頓幀時長公式**：`HitstopDuration = BaseFrames (8f) + (SurgeLevel * ScalingFactor)`，最高可凍結達 60~75 幀（約 1~1.25 秒）。
+
+3. **頓幀期間的蓄力爆發與心理博弈（Hitstop Input Buffering）**：
+   - 在 `PerfectParry` 的頓幀凍結期間，成功格擋的一方獲得主動權，可輸入以下三種反擊指令（頓幀結束瞬間執行）：
+     1. **Instant Release（瞬發反擊）**：頓幀結束第 1 幀立刻打出反擊，動能倍率 x1.5。
+     2. **Charge Overdrive（延遲蓄力爆發）**：按住攻擊鍵額外延長蓄力時間（角色身上出現收縮的能量環與劇烈震動），專門抓對手提早按格擋的空檔（拐拍），動能倍率 x2.0。
+     3. **Kinetic Feint / Grab（動能投技破防）**：消耗一格能量將反擊轉為不可格擋的近身抓技，專剋死按格擋的對手。
+   - 若被反擊方再次精準抓到出手幀並按下格擋，則觸發**「連鎖格擋（Clash Rally）」**，主導權瞬間換手，動能與頓幀時間繼續往上疊加。
+
+---
+
+## 模組二：誇張動感、儲力爆發與 2D 技能特效（VFX & Shader Specs）
+
+1. **三階段「儲力爆發（Charge & Release）」視覺與聽覺演出**：
+   - **階段 A（瞬間接觸 / Impact）**：觸發 1~2 幀的全屏「黑白反轉作畫閃光（Impact Frame）」，中心生成高對比手繪 2D 十字星芒與雙色同心圓。
+   - **階段 B（頓幀壓縮 / Compression）**：
+     - 雙方角色模型在原座標進行高頻隨機偏移（`Jitter Offset`，振幅隨 `SurgeLevel` 增大）。
+     - 特效呈現「向內收縮（Implosion）」：空氣扭曲波紋與手繪閃電從四周向接觸點中心急速吸聚。
+     - 畫面下方或角色腳底顯示高張力的蓄力讀條（讓雙方預判出招瞬間）。
+     - 音效播放隨倍率拉高音調（Pitch Scaling）的低頻電流蓄力嗡鳴聲。
+   - **階段 C（釋放爆發 / Detonation）**：
+     - 頓幀結束第 1 幀，角色瞬間切換為大幅度拉長變形的「塗抹幀（Smear Frame）」姿態，伴隨佔據半個畫面的新月形手繪雙色刀光（3~5 幀內快速收尾，無柔和半透明漸層）。
+     - 攝影機沿著攻擊向量方向執行「瞬間推拉（FOV Zoom Punch）」與「方向性阻尼彈簧震動（Directional Damped Spring Shake）」。
+
+2. **高倍率「全屏領域切換（Eclipse / Overdrive Mode）」**：
+   - 當 `SurgeLevel` 達到危險閾值，透過全域 Shader 瞬間（1 幀內）將 3D 背景環境切換為**高對比猩紅與純黑剪影（Red/Black Silhouette）**。
+   - 角色自身外框線改為發光亮色，攻擊軌跡拖尾（Ribbon Trail）加寬並帶有鋸齒狀手繪殘影。
+
+---
+
+## 模組三：街頭潮流角色選擇畫面（Character Select Screen - CSS）
+
+1. **3D 空間化 UI 佈局（Diegetic Street UI）**：
+   - 捨棄平面方格選單，背景為一個持續運鏡的 3D 街頭地下基地／塗鴉車庫。
+   - UI 面板採用**「大角度傾斜平行四邊形（Skewed Parallelograms，傾斜角約 12~18 度）」**、粗黑外框線與高飽和撞色（螢光黃、電光青、洋紅、純黑）。
+2. **游標移動與鎖定反饋（Selection Juice）**：
+   - **切換角色（Hover）**：游標切換時帶有極強的彈性緩動（`EaseOutBack`），伴隨噴漆罐「嗤——」聲或黑膠唱片刮碟聲（Record Scratch）。角色 3D 模型立刻擺出動態街頭 Pose，背景瞬間刷過一道該角色代表色的 2D 塗鴉噴濺與巨型英文名字排版（Kinetic Typography）。
+   - **按鍵鎖定（Lock-in）**：按下確認瞬間，整個選角框產生重擊震動（Screen Shake），角色模型閃白 2 幀後做出挑釁動作，背後蓋上巨大的「READY / LOCKED」街頭貼紙印章，並觸發專屬的重低音 Bass Drop 音效。
+
+---
+
+## 模組四：無縫動態過場與對戰開場／終結（Transitions, Intro & KO）
+
+1. **VS 畫面與進場無縫轉場（Seamless Wipe Transition）**：
+   - 從選角進入戰鬥時不使用黑屏淡出（Fade to Black）。
+   - 採用**「對角線硬切分屏（Diagonal Split-Screen）」**：兩名角色的 2D 誇張特寫立繪從左右兩側高速對撞，中間爆出 2D 電光火石與巨大的塗鴉字體「VS」。
+   - 隨後一道巨大的 2D 手繪油漆滾筒、滑板或音響音波橫掃過螢幕（Wipe Transition），畫面擦過去的瞬間直接揭露已經載入完成的 3D 戰鬥場景，攝影機直接從高空俯衝聚焦到角色身上開始倒數。
+2. **「Get Decked」終結擊殺演出（KO Finish）**：
+   - 當一方在極高動能下防禦失敗被擊敗時：
+     - 觸發全屏紅黑反轉閃光與 1 秒超長慢動作特寫。
+     - 被擊敗的角色切換為純白剪影材質，以極高速在場地四面牆壁之間連續高速彈射（留下一連串 Z 字形的粗線條撞擊裂痕），最後撞碎螢幕鏡頭或化為無數白色幾何方塊炸裂。
+     - 畫面中央瞬間砸下佔滿全屏的粗體街頭字樣（如「SMASHED! / OBLITERATED!」），搭配全場觀眾歡呼與警報聲。
+下一步實作建議：
+你可以先將「模組一（完美格擋＋動能疊加＋動態頓幀）」與「模組二（三階段儲力爆發）」交給 AI，要求它先在你的引擎裡用兩個簡單的 Capsule（膠囊體）與方塊寫出 60 FPS 幀級別精準的 ClashController 與 HitstopManager 程式碼。只要這個「一停、一蓄、一爆、再被對面格擋反彈」的核心節奏調對了，這隻遊戲的爽感就已經成功了 80%！
+
+你想先針對哪一個引擎（Godot 還是 Unity）把這套「完美格擋輪流疊加」的狀態機與程式碼寫出來？
+
+Godot + Blender
+
+用 Godot 4 + Blender 來實作這套「完美格擋動能疊加（Kinetic Clash）」系統非常合拍。透過 glTF/GLB 管線，你可以將 Blender 製作的低模／賽璐珞角色與誇張變形骨架（Smear Frames）無縫導入 Godot，並利用 Godot 的 ShaderMaterial 與 Tween 實現 60 FPS 幀級別精準的頓幀與視覺爆發。
+
+以下為你整理 Blender 到 Godot 4 的完整實作架構、核心 GDScript 程式碼與 Shader 實作指南，你可以直接複製到專案中使用或交給 AI 擴充：
+
+一、Blender 資產與動畫準備管線（glTF 導出規範）
+為了做出《Lethal League Blaze》那種極具張力的街頭卡通感與誇張動態，Blender 端需按以下規格設置：
+
+1. 角色模型與雙重描邊準備
+法線平滑處理： 為了讓三階色塊（Cel Shading）乾淨不破碎，建議將臉部與軀幹的法線向中心球體傳遞（Data Transfer Modifier），避免陰影出現髒點。
+
+色彩屬性（Vertex Color）： 用頂點色標記固定陰影區域（如脖子下方、衣服皺褶內側），導出 .glb 時勾選 Vertex Colors，供 Godot Shader 讀取。
+
+2. 「零插值（Constant Interpolation）」與塗抹幀（Smear Frames）
+階梯式動畫（Stepped Animation）： 在 Blender 的 Nonlinear Animation / Graph Editor 中，將關鍵姿勢（Key Poses）設為 Constant（常數插值）或高斜率曲線，模擬日式手繪動畫 12 FPS / 24 FPS 的卡頓力度，不要用平滑的 60 FPS 補間。
+
+蓄力與爆發姿勢分離：
+
+Attack_Charge（完美格擋後的頓幀蓄力姿勢）：身體極度後仰或壓低重心，持續循環抖動。
+
+Attack_Release（頓幀結束第 1 幀）：利用 Shape Keys（形態鍵） 或專屬拉伸骨骼（Stretch Bones），將揮拳的手臂或武器在第 1 幀拉長至原本的 2 倍大（Smear Frame），第 3 幀迅速收縮回正常比例。
+
+3. 2D 刀光與撞擊網格（Mesh Flipbook）
+除了在 Godot 用 AnimatedSprite3D 播序列幀外，針對「揮擊大刀光（Swing Arc）」，直接在 Blender 建一個彎曲的新月形平面（Crescent Plane），綁在角色攻擊判定的骨骼前端，並展開標準 UV（0 到 1），方便在 Godot 中用 Shader 刷過雙色塊。
+
+二、Godot 4 核心戰鬥架構（Scene Tree 與 Autoload）
+建議在 Godot 4 中建立一個全域單例（Autoload）ClashManager.gd，專門統籌動能疊加、局部頓幀（不卡死特效與鏡頭）與輸入緩衝。
+
+1. 全域動能與頓幀控制器：ClashManager.gd (Autoload)
+GDScript
+extends Node
+
+signal clash_triggered(surge_level: int, hitstop_frames: int, defender: Node3D)
+signal clash_released(surge_level: int, release_type: String, attacker: Node3D)
+signal eclipse_mode_changed(is_active: bool)
+
+# 核心動能參數
+var surge_level: int = 1
+var max_surge_level: int = 10
+var eclipse_threshold: int = 5 # 達到 Lv.5 觸發全屏紅黑領域
+
+# 頓幀計時（以 60 FPS 物理幀為基準）
+var hitstop_frames_remaining: int = 0
+var is_in_hitstop: bool = false
+
+# 完美格擋判定窗口（隨等級遞減，防止無限打鐵）
+func get_parry_window_frames() -> int:
+	return maxi(3, 8 - (surge_level / 2))
+
+# 計算動態頓幀長度：越快越慢
+func calculate_hitstop_frames(level: int) -> int:
+	return mini(70, 8 + (level * 6)) # 從 14 幀一路拉長到最高 70 幀 (約1.16秒)
+
+func _physics_process(_delta: float) -> void:
+	if is_in_hitstop:
+		hitstop_frames_remaining -= 1
+		if hitstop_frames_remaining <= 0:
+			_end_hitstop()
+
+# 當防守方成功觸發「完美格擋」時呼叫
+func trigger_perfect_parry(attacker: Node3D, defender: Node3D, hit_position: Vector3) -> void:
+	surge_level = mini(max_surge_level, surge_level + 1)
+	hitstop_frames_remaining = calculate_hitstop_frames(surge_level)
+	is_in_hitstop = true
+	
+	# 凍結雙方角色的狀態機與物理，但不凍結全域 Engine.time_scale
+	attacker.set_hitstop_freeze(true)
+	defender.set_hitstop_freeze(true, true) # defender 獲得反擊輸入權
+	
+	# 檢查是否進入紅黑領域 (Eclipse Mode)
+	if surge_level >= eclipse_threshold:
+		RenderingServer.global_shader_parameter_set("eclipse_active", true)
+		eclipse_mode_changed.emit(true)
+		
+	clash_triggered.emit(surge_level, hitstop_frames_remaining, defender)
+
+func _end_hitstop() -> void:
+	is_in_hitstop = false
+	get_tree().call_group("fighters", "set_hitstop_freeze", false)
+
+# 回合重置（有人被擊飛時呼叫）
+func reset_clash() -> void:
+	surge_level = 1
+	is_in_hitstop = false
+	RenderingServer.global_shader_parameter_set("eclipse_active", false)
+	eclipse_mode_changed.emit(false)
+2. 角色格擋、頓幀抖動與三選一反擊：FighterController.gd
+掛載於 CharacterBody3D 上（需加入 "fighters" Group），負責處理頓幀期間的模型高頻抖動（Jitter）與蓄力拐拍／瞬發／破防投技輸入：
+
+GDScript
+extends CharacterBody3D
+
+@export var visual_root: Node3D # 指向 Blender 匯入的模型根節點（用來做抖動而不影響碰撞體）
+@export var anim_player: AnimationPlayer
+
+var is_frozen: bool = false
+var can_buffer_counter: bool = false
+var buffered_action: String = "INSTANT" # INSTANT, DELAYED_CHARGE, GRAB
+var extra_charge_frames: int = 0
+
+var base_visual_pos: Vector3
+
+func _ready() -> void:
+	add_to_group("fighters")
+	base_visual_pos = visual_root.position
+
+func _physics_process(delta: float) -> void:
+	if is_frozen:
+		_process_hitstop_jitter()
+		if can_buffer_counter:
+			_read_hitstop_inputs()
+		return
+		
+	# 如果格擋方選擇了「延遲蓄力拐拍 (DELAYED_CHARGE)」，在頓幀結束後繼續短暫蓄力
+	if extra_charge_frames > 0:
+		extra_charge_frames -= 1
+		_process_hitstop_jitter(1.5) # 蓄力期間抖動更劇烈
+		if extra_charge_frames == 0:
+			_execute_counter_attack("DELAYED_CHARGE")
+		return
+
+	# 正常移動與物理邏輯
+	move_and_slide()
+
+# 頓幀期間的模型高頻隨機震動 (LLB 招牌蓄力感)
+func _process_hitstop_jitter(multiplier: float = 1.0) -> void:
+	var intensity: float = 0.02 * ClashManager.surge_level * multiplier
+	visual_root.position = base_visual_pos + Vector3(
+		randf_range(-intensity, intensity),
+		randf_range(-intensity, intensity),
+		0.0
+	)
+
+# 頓幀期間讀取玩家的心理戰變招指令
+func _read_hitstop_inputs() -> void:
+	if Input.is_action_pressed("attack_heavy"):
+		buffered_action = "DELAYED_CHARGE" # 按住重擊：延遲蓄力拐拍
+	elif Input.is_action_just_pressed("grab"):
+		buffered_action = "GRAB" # 投技：直接破防對手的格擋
+	elif Input.is_action_just_pressed("attack_light"):
+		buffered_action = "INSTANT" # 瞬發反擊
+
+func set_hitstop_freeze(freeze: bool, is_parry_winner: bool = false) -> void:
+	is_frozen = freeze
+	if freeze:
+		anim_player.pause()
+		can_buffer_counter = is_parry_winner
+		buffered_action = "INSTANT" # 預設瞬發
+	else:
+		visual_root.position = base_visual_pos
+		anim_player.play()
+		if can_buffer_counter:
+			can_buffer_counter = false
+			if buffered_action == "DELAYED_CHARGE":
+				# 額外壓縮 15 幀（0.25秒），騙對手提早按出格擋
+				extra_charge_frames = 15
+				anim_player.play("Attack_Charge_Hold")
+			else:
+				_execute_counter_attack(buffered_action)
+
+func _execute_counter_attack(action_type: String) -> void:
+	ClashManager.clash_released.emit(ClashManager.surge_level, action_type, self)
+	match action_type:
+		"INSTANT":
+			anim_player.play("Counter_Instant_Smear")
+		"DELAYED_CHARGE":
+			anim_player.play("Counter_Overdrive_Smash")
+		"GRAB":
+			anim_player.play("Counter_Kinetic_Grab")
+三、Godot 4 視覺與 Shader 實作（反白、雙色刀光與紅黑領域）
+在 Godot 的 Project Settings -> Shader Globals 中，新增一個全域變數：
+
+名稱：eclipse_active，類型：bool，預設值：false。
+
+1. 角色賽璐珞 + 受擊瞬間純白剪影 + 紅黑領域切換 Shader (fighter_toon.gdshader)
+OpenGL Shading Language
+shader_type spatial;
+render_mode unshaded; // 使用自訂光照計算以確保絕對銳利的色塊
+
+global uniform bool eclipse_active;
+uniform sampler2D albedo_tex : source_color;
+uniform vec4 shadow_tint : source_color = vec4(0.4, 0.35, 0.5, 1.0);
+uniform float flash_white : hint_range(0.0, 1.0) = 0.0; // 受擊或格擋瞬間設為 1.0
+uniform vec4 team_color : source_color = vec4(0.0, 0.8, 1.0, 1.0);
+
+void fragment() {
+	vec4 tex = texture(albedo_tex, UV);
+	
+	// 1. 紅黑領域 (Eclipse Mode) 高反差剪影模式
+	if (eclipse_active) {
+		float luma = dot(tex.rgb, vec3(0.299, 0.587, 0.114));
+		// 角色轉為純黑剪影配亮色邊緣/色塊
+		ALBEDO = mix(vec3(0.02, 0.0, 0.02), team_color.rgb, step(0.65, luma));
+	} else {
+		ALBEDO = tex.rgb;
+	}
+	
+	// 2. 完美格擋 / 受擊瞬間純白閃光 (Impact Flash)
+	ALBEDO = mix(ALBEDO, vec3(1.0, 1.0, 1.0), flash_white);
+}
+2. 背景場景瞬間切換「猩紅黑洞領域」Shader (stage_eclipse.gdshader)
+掛在所有 3D 背景建築物材質上，當 surge_level >= 5 時，1 幀內將整個街頭場景變成紅黑剪影：
+
+OpenGL Shading Language
+shader_type spatial;
+
+global uniform bool eclipse_active;
+uniform sampler2D bg_texture : source_color;
+uniform vec3 eclipse_red : source_color = vec3(0.85, 0.05, 0.12);
+
+void fragment() {
+	vec4 col = texture(bg_texture, UV);
+	if (eclipse_active) {
+		float gray = dot(col.rgb, vec3(0.299, 0.587, 0.114));
+		// 二值化閾值：暗部純黑，亮部猩紅
+		ALBEDO = mix(vec3(0.03, 0.0, 0.02), eclipse_red, step(0.4, gray));
+		EMISSION = ALBEDO * 0.8;
+	} else {
+		ALBEDO = col.rgb;
+	}
+}
+3. 全屏「黑白閃（Impact Frame）」後處理 (impact_frame_post.gdshader)
+在場景最上層放一個 CanvasLayer -> ColorRect（設為 Full Rect），當完美格擋或高倍率重擊發生時，開啟顯示 2 幀（約 0.033 秒） 後關閉，瞬間製造熱血動畫的黑白作畫閃光：
+
+OpenGL Shading Language
+shader_type canvas_item;
+
+uniform sampler2D screen_texture : hint_screen_texture, filter_nearest;
+uniform bool invert_phase = false; // 第 1 幀設 false (黑底白光)，第 2 幀設 true (白底黑線)
+
+void fragment() {
+	vec3 scr = texture(screen_texture, SCREEN_UV).rgb;
+	float luma = dot(scr, vec3(0.299, 0.587, 0.114));
+	float bw = step(0.45, luma); // 強制轉為極端黑白二值化
+	if (invert_phase) {
+		bw = 1.0 - bw;
+	}
+	COLOR = vec4(vec3(bw), 1.0);
+}
+四、方向性鏡頭震動與 FOV 推拉 (ClashCamera3D.gd)
+LLB 的鏡頭不會無規律亂晃，而是「在格擋瞬間稍微拉近（Zoom In 壓迫感），在頓幀結束出招的那 1 幀沿著攻擊方向猛烈震動（Directional Punch）」：
+
+GDScript
+extends Camera3D
+
+var shake_offset: Vector2 = Vector2.ZERO
+var shake_velocity: Vector2 = Vector2.ZERO
+var spring_stiffness: float = 450.0
+var spring_damping: float = 22.0
+var default_fov: float = 55.0
+var target_fov: float = 55.0
+
+func _ready() -> void:
+	default_fov = fov
+	ClashManager.clash_triggered.connect(_on_clash_triggered)
+	ClashManager.clash_released.connect(_on_clash_released)
+
+func _process(delta: float) -> void:
+	# 阻尼彈簧物理計算鏡頭回彈
+	var force: Vector2 = -spring_stiffness * shake_offset - spring_damping * shake_velocity
+	shake_velocity += force * delta
+	shake_offset += shake_velocity * delta
+	
+	h_offset = shake_offset.x
+	v_offset = shake_offset.y
+	fov = lerpf(fov, target_fov, delta * 18.0)
+
+# 1. 完美格擋瞬間：鏡頭瞬間推進 (Zoom-in)，聚焦蓄力張力
+func _on_clash_triggered(surge_level: int, _frames: int, _defender: Node3D) -> void:
+	target_fov = maxf(38.0, default_fov - (surge_level * 2.0))
+	apply_directional_impulse(Vector2(0, 1), 2.5) # 垂直微震一下
+
+# 2. 頓幀結束出招瞬間：鏡頭恢復並沿攻擊方向猛烈震動
+func _on_clash_released(surge_level: int, _type: String, attacker: Node3D) -> void:
+	target_fov = default_fov
+	var dir_x: float = signf(attacker.global_transform.basis.z.x)
+	var power: float = 4.0 + (surge_level * 2.5)
+	apply_directional_impulse(Vector2(dir_x, 0.3).normalized(), power)
+
+func apply_directional_impulse(direction: Vector2, strength: float) -> void:
+	shake_velocity += direction * strength
+五、街頭潮流選角畫面（CSS）與對角線轉場（Godot Control 節點配置）
+在 Godot 4 中製作《Lethal League Blaze》風格的 UI 與轉場，完全不需要載入笨重的影片，直接用 Control 的 Transform 與 Shader 即可完成：
+
+大角度傾斜街頭選單（Skewed Street Panels）：
+
+在 Godot 4 的 Panel 或 TextureRect 中，直接調整 rotation（設為 -8° 到 -15°），或使用自訂 CanvasItem Shader 加入 VERTEX.x += VERTEX.y * -0.25; 實現真正的水平斜切（Horizontal Skew），同時讓內部的粗體字跟著斜切。
+
+選角鎖定反饋（Tween 動畫鏈）：
+
+當玩家按下確認鍵時，呼叫 create_tween()：
+
+GDScript
+var tw = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+tw.tween_property(char_portrait, "scale", Vector2(1.35, 0.75), 0.04) # 瞬間擠壓
+tw.tween_property(char_portrait, "scale", Vector2(1.0, 1.0), 0.18)   # 彈性回彈
+無縫油漆滾筒／斜切轉場（Diagonal Wipe Transition）：
+
+建立一個全屏 ColorRect 作為 Scene Transition Autoload，掛載帶有斜角遮罩（step(UV.x + UV.y * 0.4, progress)）的 Shader。
+
+選角結束時，先讓兩張角色特寫立繪從左右兩側滑入對撞（停留 0.6 秒），接著在背景使用 ResourceLoader.load_threaded_request() 載入 3D 對戰場景，載入完成的瞬間刷過一道斜角街頭塗鴉條紋直接揭開對戰畫面，完全零黑屏。

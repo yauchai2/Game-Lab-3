@@ -1,0 +1,175 @@
+{
+  "package": "afterhours-jsr-ui-v001.zip",
+  "sha256": "41573c2c7e050e7f190bbc2f6d994b4341f1ecb3f886adff7036735a99e0aa87",
+  "bytes": 11394729,
+  "files": 33,
+  "zip_crc_pass": true,
+  "all_payloads_match": true,
+  "entries": [
+    {
+      "path": "README.md",
+      "bytes": 2465,
+      "sha256": "cb3be612af20674e55e3b8763a28ecd11df2bd280eb0a3a441df25a5caed3ce5"
+    },
+    {
+      "path": "assets/action-icons.png",
+      "bytes": 1067835,
+      "sha256": "bb40a6ac4ba961f4aea5a73ab42c36330690758ef8e731bbe41fc71a96ef232a"
+    },
+    {
+      "path": "assets/afterhours-logo.png",
+      "bytes": 1039931,
+      "sha256": "2d205bab1b23b2565a47e0dbfc9672906ecb4ca79148e876c4bbb0c94baf9797"
+    },
+    {
+      "path": "assets/ui-frames.png",
+      "bytes": 1543725,
+      "sha256": "88d91d93ac23b9e87a350fc9a0fb5c632bf5fdc87effaafb83a88e641d259d4e"
+    },
+    {
+      "path": "atlas-regions.json",
+      "bytes": 6866,
+      "sha256": "0130913e5d6474ece210bd31e06cdef288cb9f85c856dcc88ce85d1d504f2906"
+    },
+    {
+      "path": "generated/01-main-menu-direction.png",
+      "bytes": 2404392,
+      "sha256": "8b669019a3a9e9a67ca76da53ae07a5403e92abc406b023a4102b79ac9ba3249"
+    },
+    {
+      "path": "generated/02-hud-direction.png",
+      "bytes": 1752358,
+      "sha256": "1a0a6c3caa9a2242e85dc44dcccc213926709086fdada557457291c1149bfcb4"
+    },
+    {
+      "path": "generated/03-roster-direction.png",
+      "bytes": 2122554,
+      "sha256": "05491e956ed7799d16995f94e5cd2ea865dbe110b2149b9acccac7acda65cbca"
+    },
+    {
+      "path": "generation-manifest.json",
+      "bytes": 6531,
+      "sha256": "44dd7ceaae17975d7108098a2cca452e1dc408fc3839d595aab7abbefac9378e"
+    },
+    {
+      "path": "inputs/gameplay-flow.png",
+      "bytes": 304516,
+      "sha256": "d0801f4f0f6330d942a2d4223e9247ae594f0bc0b8e2127049c06fa893bd3574"
+    },
+    {
+      "path": "prompt-01.txt",
+      "bytes": 2224,
+      "sha256": "b8c4997a54bbfba9f24c11a9793c5a4b0902c4dbbebcfaa7c28e1fc0390a8e26"
+    },
+    {
+      "path": "prompt-02.txt",
+      "bytes": 1942,
+      "sha256": "c48c63311be85222ecfa66711e675628e7f2bf6e5242c80296ee9c0bf6fe27b9"
+    },
+    {
+      "path": "prompt-03.txt",
+      "bytes": 1100,
+      "sha256": "c884ef85134a514edd9e3627b24f2f3f74cfb49fcfe4245d3dc71105a080d843"
+    },
+    {
+      "path": "prompt-04.txt",
+      "bytes": 1812,
+      "sha256": "9914c1d2ed598a97df1140ad81d69a399ca76f5dd77e7faabeff5b67b6ed9b28"
+    },
+    {
+      "path": "prompt-05.txt",
+      "bytes": 1068,
+      "sha256": "ec0727749cfe03f9babb2aba140031af233197524c7a392f5894f0c61ad63359"
+    },
+    {
+      "path": "prompt-06.txt",
+      "bytes": 1499,
+      "sha256": "59672405136383265a1c7ca87743739d8ad524a134e79c0085db457e64ec99d4"
+    },
+    {
+      "path": "prompt-07.txt",
+      "bytes": 1334,
+      "sha256": "aba06f57ef7af04c9d4b92f2507b462c3630b2ccdaccc795c49b5a5b4e8325a9"
+    },
+    {
+      "path": "prompt-08.txt",
+      "bytes": 1830,
+      "sha256": "e2ce0c3238bb15c1d978ebb75024655b7be1b0dc6548571e7b33f3f1d034c97d"
+    },
+    {
+      "path": "prompt-09.txt",
+      "bytes": 774,
+      "sha256": "c9b9046e49e5d4050762fa724052d6858788d6b1a2612691c687f96fe780db35"
+    },
+    {
+      "path": "proposal-tokens.json",
+      "bytes": 1094,
+      "sha256": "f40bfd70f620a1b536a49e5a40aef6ea2c4d0d0fd6f37f6e3ce6af21c4812258"
+    },
+    {
+      "path": "research.zh-TW.md",
+      "bytes": 12140,
+      "sha256": "bad1db3a7e651e7f4eb763d2be173f47a9c77e90f0c02966f33c39f0f314bb9e"
+    },
+    {
+      "path": "roster-model-reference.png",
+      "bytes": 76307,
+      "sha256": "f451d0f422c55b93c62e2f48189cd0a37c56b76abe5eb4e020946851c094474c"
+    },
+    {
+      "path": "sources.json",
+      "bytes": 5077,
+      "sha256": "aa8cf1341c6d09e6bf708c631e664e5154f759880cfdff3f85c2e2cc89e23ec2"
+    },
+    {
+      "path": "validation/README.md",
+      "bytes": 921,
+      "sha256": "987d92885d6cac53c62c17078598501bcf63bbb58736a8be9ba31f78f93ebde3"
+    },
+    {
+      "path": "validation/action-icons-alpha-preview.png",
+      "bytes": 462928,
+      "sha256": "de28c5363d1a7765aa83eab4794c71eb9ac755280c666bf1a01e21b5b0d5c751"
+    },
+    {
+      "path": "validation/afterhours-logo-alpha-preview.png",
+      "bytes": 374520,
+      "sha256": "f57aed61b3f2b3a47311d26c39f011259c17bd5f81eaa48c4574310ea760dc14"
+    },
+    {
+      "path": "validation/alpha-preview.log",
+      "bytes": 367,
+      "sha256": "36e36669428facd74332657f763307565fdcc6c6a86f05c8c8ed999dffced574"
+    },
+    {
+      "path": "validation/asset-inspection.json",
+      "bytes": 5463,
+      "sha256": "95b358b4032fcc76c00bfe04e2397ac097bd6f5bd63cc7f676ca2af1ccf56301"
+    },
+    {
+      "path": "validation/contrast.json",
+      "bytes": 962,
+      "sha256": "b4b604103f8ba77de31f3ca8640b659725f295d5e7661cb6135fa09dbf080e85"
+    },
+    {
+      "path": "validation/model-reference.log",
+      "bytes": 367,
+      "sha256": "36e36669428facd74332657f763307565fdcc6c6a86f05c8c8ed999dffced574"
+    },
+    {
+      "path": "validation/premium-audit.json",
+      "bytes": 225,
+      "sha256": "e90087aca8911680e7f4224f31b12aedfcc65d413eb9d0bf481e0cce582bf5bb"
+    },
+    {
+      "path": "validation/source-integrity.json",
+      "bytes": 57382,
+      "sha256": "fc8448fcd71056919f98fa4cb7b4a95725227ccab2a7e7778eb650f56cc98a8e"
+    },
+    {
+      "path": "validation/ui-frames-alpha-preview.png",
+      "bytes": 612795,
+      "sha256": "175ef1213fb055d7ce9eea047b27320f16f35d5af9a903f9ccc3b5cc744e7adb"
+    }
+  ]
+}

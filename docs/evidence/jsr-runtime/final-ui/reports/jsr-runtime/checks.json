@@ -1,0 +1,463 @@
+{
+  "checks": [
+    {
+      "name": "profile 0 survives round reset",
+      "passed": true
+    },
+    {
+      "name": "profile 0 air_counter is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 air_jab is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 air_kick is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 air_finisher is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 meteor is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 grab is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 jab is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 cross is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 finisher is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 heavy is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 launcher is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 overdrive is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 special is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 0 movement uses its true speed",
+      "passed": true
+    },
+    {
+      "name": "profile 0 special has its actual damage",
+      "passed": true
+    },
+    {
+      "name": "profile 1 survives round reset",
+      "passed": true
+    },
+    {
+      "name": "profile 1 air_counter is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 air_jab is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 air_kick is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 air_finisher is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 meteor is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 grab is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 jab is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 cross is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 finisher is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 heavy is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 launcher is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 overdrive is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 special is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 1 movement uses its true speed",
+      "passed": true
+    },
+    {
+      "name": "profile 1 special has its actual damage",
+      "passed": true
+    },
+    {
+      "name": "profile 2 survives round reset",
+      "passed": true
+    },
+    {
+      "name": "profile 2 air_counter is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 air_jab is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 air_kick is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 air_finisher is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 meteor is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 grab is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 jab is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 cross is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 finisher is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 heavy is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 launcher is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 overdrive is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 special is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 2 movement uses its true speed",
+      "passed": true
+    },
+    {
+      "name": "profile 2 special has its actual damage",
+      "passed": true
+    },
+    {
+      "name": "profile 3 survives round reset",
+      "passed": true
+    },
+    {
+      "name": "profile 3 air_counter is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 air_jab is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 air_kick is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 air_finisher is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 meteor is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 grab is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 jab is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 cross is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 finisher is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 heavy is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 launcher is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 overdrive is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 special is legal and single-contact",
+      "passed": true
+    },
+    {
+      "name": "profile 3 movement uses its true speed",
+      "passed": true
+    },
+    {
+      "name": "profile 3 special has its actual damage",
+      "passed": true
+    },
+    {
+      "name": "goggles height is only slightly smaller",
+      "passed": true
+    },
+    {
+      "name": "title zh (960, 540) all actions reachable",
+      "passed": true
+    },
+    {
+      "name": "roster fight action remains inside its scroll viewport",
+      "passed": true
+    },
+    {
+      "name": "roster zh (960, 540) native selectors",
+      "passed": true
+    },
+    {
+      "name": "title zh (1280, 720) all actions reachable",
+      "passed": true
+    },
+    {
+      "name": "roster fight action remains inside its scroll viewport",
+      "passed": true
+    },
+    {
+      "name": "roster zh (1280, 720) native selectors",
+      "passed": true
+    },
+    {
+      "name": "title zh (1920, 1080) all actions reachable",
+      "passed": true
+    },
+    {
+      "name": "roster fight action remains inside its scroll viewport",
+      "passed": true
+    },
+    {
+      "name": "roster zh (1920, 1080) native selectors",
+      "passed": true
+    },
+    {
+      "name": "title en (960, 540) all actions reachable",
+      "passed": true
+    },
+    {
+      "name": "roster fight action remains inside its scroll viewport",
+      "passed": true
+    },
+    {
+      "name": "roster en (960, 540) native selectors",
+      "passed": true
+    },
+    {
+      "name": "title en (1280, 720) all actions reachable",
+      "passed": true
+    },
+    {
+      "name": "roster fight action remains inside its scroll viewport",
+      "passed": true
+    },
+    {
+      "name": "roster en (1280, 720) native selectors",
+      "passed": true
+    },
+    {
+      "name": "title en (1920, 1080) all actions reachable",
+      "passed": true
+    },
+    {
+      "name": "roster fight action remains inside its scroll viewport",
+      "passed": true
+    },
+    {
+      "name": "roster en (1920, 1080) native selectors",
+      "passed": true
+    },
+    {
+      "name": "roster callback updates visuals and gameplay profile",
+      "passed": true
+    },
+    {
+      "name": "profile retained in real practice",
+      "passed": true
+    },
+    {
+      "name": "pixel pass defaults on and UI is a later layer",
+      "passed": true
+    },
+    {
+      "name": "pixel option switches immediately",
+      "passed": true
+    },
+    {
+      "name": "title selects Berlin",
+      "passed": true
+    },
+    {
+      "name": "play selects Groove District",
+      "passed": true
+    },
+    {
+      "name": "pause retains current song",
+      "passed": true
+    },
+    {
+      "name": "resume retains current song",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for air_counter",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for air_jab",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for air_kick",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for air_finisher",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for meteor",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for grab",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for jab",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for cross",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for finisher",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for heavy",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for launcher",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for overdrive",
+      "passed": true
+    },
+    {
+      "name": "sprite mapped for special",
+      "passed": true
+    },
+    {
+      "name": "signature art 0 special",
+      "passed": true
+    },
+    {
+      "name": "signature art 0 overdrive",
+      "passed": true
+    },
+    {
+      "name": "signature art 1 special",
+      "passed": true
+    },
+    {
+      "name": "signature art 1 overdrive",
+      "passed": true
+    },
+    {
+      "name": "signature art 2 special",
+      "passed": true
+    },
+    {
+      "name": "signature art 2 overdrive",
+      "passed": true
+    },
+    {
+      "name": "signature art 3 special",
+      "passed": true
+    },
+    {
+      "name": "signature art 3 overdrive",
+      "passed": true
+    },
+    {
+      "name": "new profiles sustain live endless combat",
+      "passed": true
+    },
+    {
+      "name": "title clears generated effects",
+      "passed": true
+    }
+  ],
+  "passed": 114,
+  "scope": "Native UI ownership, profile rules, real damage, music context, sprites and fixed-step AI. Not human/target GPU validation.",
+  "total": 114
+}

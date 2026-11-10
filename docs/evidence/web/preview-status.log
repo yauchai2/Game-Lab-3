@@ -1,0 +1,5 @@
+SITES_MANAGED_LINUX_CONTAINER=1
+cua_repl.js tool and Sites helper scripts unavailable in selected executor.
+$ sites-preview status
+sites-preview: preview relay unavailable: No such file or directory (os error 2)
+Browser QA not performed; no replacement preview server or browser installed.

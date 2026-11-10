@@ -1,0 +1,41 @@
+{
+  "suites": [
+    {
+      "suite": "verification",
+      "passed": 18,
+      "failed": 0
+    },
+    {
+      "suite": "corner",
+      "passed": 28,
+      "failed": 0
+    },
+    {
+      "suite": "sky",
+      "passed": 7,
+      "failed": 0
+    },
+    {
+      "suite": "backdrop",
+      "passed": 30,
+      "failed": 0
+    },
+    {
+      "suite": "dressing",
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "suite": "scene-audio",
+      "passed": 33,
+      "failed": 0
+    },
+    {
+      "suite": "walk",
+      "passed": 28,
+      "failed": 0
+    }
+  ],
+  "passed": 157,
+  "method": "Cloud Godot native/headless; separate software GL captures. No public web update or user-computer access."
+}

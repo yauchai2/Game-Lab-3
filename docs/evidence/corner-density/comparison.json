@@ -1,0 +1,103 @@
+{
+  "comparisons": [
+    {
+      "shot": "01_fight_center",
+      "size": [
+        1280,
+        720
+      ],
+      "same_camera": true,
+      "changed_pixels_over_8_rgb": 150699,
+      "changed_fraction": 0.16351888020833333,
+      "baseline_draw_calls": 963,
+      "candidate_draw_calls": 978,
+      "baseline_primitives": 118766,
+      "candidate_primitives": 165930
+    },
+    {
+      "shot": "02_fight_left",
+      "size": [
+        1280,
+        720
+      ],
+      "same_camera": true,
+      "changed_pixels_over_8_rgb": 164787,
+      "changed_fraction": 0.17880533854166666,
+      "baseline_draw_calls": 954,
+      "candidate_draw_calls": 969,
+      "baseline_primitives": 116546,
+      "candidate_primitives": 163710
+    },
+    {
+      "shot": "03_fight_right",
+      "size": [
+        1280,
+        720
+      ],
+      "same_camera": true,
+      "changed_pixels_over_8_rgb": 214737,
+      "changed_fraction": 0.23300455729166666,
+      "baseline_draw_calls": 959,
+      "candidate_draw_calls": 973,
+      "baseline_primitives": 119607,
+      "candidate_primitives": 165247
+    },
+    {
+      "shot": "04_wide_reference",
+      "size": [
+        1280,
+        720
+      ],
+      "same_camera": true,
+      "changed_pixels_over_8_rgb": 327511,
+      "changed_fraction": 0.35537217881944444,
+      "baseline_draw_calls": 1023,
+      "candidate_draw_calls": 1045,
+      "baseline_primitives": 120022,
+      "candidate_primitives": 177854
+    },
+    {
+      "shot": "05_left_shops",
+      "size": [
+        1280,
+        720
+      ],
+      "same_camera": true,
+      "changed_pixels_over_8_rgb": 639005,
+      "changed_fraction": 0.6933648003472223,
+      "baseline_draw_calls": 934,
+      "candidate_draw_calls": 951,
+      "baseline_primitives": 79226,
+      "candidate_primitives": 130938
+    },
+    {
+      "shot": "06_right_shops",
+      "size": [
+        1280,
+        720
+      ],
+      "same_camera": true,
+      "changed_pixels_over_8_rgb": 700808,
+      "changed_fraction": 0.7604253472222222,
+      "baseline_draw_calls": 943,
+      "candidate_draw_calls": 960,
+      "baseline_primitives": 83373,
+      "candidate_primitives": 135085
+    },
+    {
+      "shot": "07_panorama_reference",
+      "size": [
+        1280,
+        544
+      ],
+      "same_camera": true,
+      "changed_pixels_over_8_rgb": 291871,
+      "changed_fraction": 0.41916216681985297,
+      "baseline_draw_calls": 1053,
+      "candidate_draw_calls": 1075,
+      "baseline_primitives": 113026,
+      "candidate_primitives": 170858
+    }
+  ],
+  "method": "Matching native Godot camera and viewport. Baseline hides only the new CornerStreetscape layer; not an aesthetic quality score or FPS benchmark."
+}

@@ -1,0 +1,183 @@
+{
+  "created_utc": "20261108T191919Z",
+  "source_commit": "0d3f85284671345d0635317b197e9630cc86a414",
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 104,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_game_ui",
+      "mode": "native",
+      "exit_code": 0,
+      "seconds": 11.979,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_game_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 36,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "ERROR: Texture with GL ID of 40: leaked 349524 bytes.",
+        "ERROR: Texture with GL ID of 41: leaked 349524 bytes."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_ui_input",
+      "mode": "native",
+      "exit_code": 0,
+      "seconds": 34.792,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_ui_input.gd"
+      ],
+      "report_written": true,
+      "passed": 17,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_street_ui",
+      "mode": "native",
+      "exit_code": 0,
+      "seconds": 27.76,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_street_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 12,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_combat_input",
+      "mode": "native",
+      "exit_code": 0,
+      "seconds": 22.066,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_combat_input.gd"
+      ],
+      "report_written": true,
+      "passed": 15,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_pressure_input",
+      "mode": "native",
+      "exit_code": 0,
+      "seconds": 10.134,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_pressure_input.gd"
+      ],
+      "report_written": true,
+      "passed": 11,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_static_batches",
+      "mode": "native",
+      "exit_code": 0,
+      "seconds": 2.748,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_static_batches.gd"
+      ],
+      "report_written": true,
+      "passed": 13,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "ERROR: Texture with GL ID of 40: leaked 349524 bytes.",
+        "ERROR: Texture with GL ID of 41: leaked 349524 bytes.",
+        "ERROR: Texture with GL ID of 43: leaked 349524 bytes.",
+        "ERROR: Texture with GL ID of 44: leaked 349524 bytes.",
+        "ERROR: Texture with GL ID of 45: leaked 349524 bytes.",
+        "ERROR: Texture with GL ID of 57: leaked 349524 bytes.",
+        "ERROR: Texture with GL ID of 58: leaked 349524 bytes.",
+        "ERROR: Texture with GL ID of 59: leaked 349524 bytes."
+      ],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

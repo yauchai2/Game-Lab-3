@@ -1,0 +1,394 @@
+{
+  "baseline": "49be6e5d4eb898b939a088e3ce83fae35183b44e",
+  "scope": "Candidate source/metadata and capture hashes before commit. No original GLB/image/audio rewrite. UI font unchanged this round. Native summaries record dirty source baseline, final visual recheck follows last runtime changes.",
+  "original_assets": [
+    {
+      "path": "godot/assets/CHAR_PLAYER_A01.glb",
+      "sha256": "12bb38212d67c8b28eeb6bbb64e3c354e2e9841d5fca51bdc1860e48691150ad",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/CHAR_PLAYER_A01_stylized_3d_character_basecolor.jpg",
+      "sha256": "e390f50cc7116bdc138947afa6cfb16aebfbe9a808fc5580a91e55cd0e15a920",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_BIN_A01.glb",
+      "sha256": "df6efc5267d9f94f955b93286412a926e4a7d06a1ac0744b905ed2ebb4a09cc2",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg",
+      "sha256": "5e6d14bd81f53ef958159408b53cf4621e8e75f275854291d5abd8df4e1a7e2b",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_CRATES_A01.glb",
+      "sha256": "8f620aaf28cc09091de7afc5989d13f5419c5039abfbf46e319f5e56ba890692",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg",
+      "sha256": "7e1371cfe9c7f1757319b695b63eb0762ffbe008bdd6d6a0e27705d8ac6d0b77",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_HYDRANT_A01.glb",
+      "sha256": "091fb06d4cfcf52620f62d80ec392e3f97caee103d6687ce51a6e9e27f0e5d78",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg",
+      "sha256": "60f470f90e2fd4ff9e008998750db0a22d2834b6549190c50baeefddf97ba35d",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_MAILBOX_A01.glb",
+      "sha256": "4d86307ba149a4375d9b5f97ecb31862f53e262b2cd10460eaf56cfc02c110fe",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg",
+      "sha256": "ac41400bcf4ca684db25e4d75d85a61ac8acd4f49ec29280b1688d9e8f67da7c",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_SHOP_STOOL_A01.glb",
+      "sha256": "b096aa7250a983df7ff9be5dfa1a0ccbf48366dec268fa5cf290079e7e503c1b",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg",
+      "sha256": "9e35821d11fdb9e3fbb58359137b4797ebc97a9c48198f3f98b8ed9a9eec5f37",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/SKY_BLUE_A01.png",
+      "sha256": "a2d11528d41244210b7827d4bf26c3136858dcb7c823f078c899a61c7fcd1095",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_CAR_A01.glb",
+      "sha256": "4cf37ec42939e8f1f4e413ebc0828d4b70a4b240b20b688f8337fe65fee2f457",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_CAR_A01_car_3d_model_basecolor.jpg",
+      "sha256": "4cea6c5040000b59872380e00888ccfa9c7be5b0c2d148ad21549fec9a933dbd",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_TRUCK_A01.glb",
+      "sha256": "b15a7535ab7f2f173472ffe002ead8e246883ff9252cc11efb6769cc09b83228",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg",
+      "sha256": "5878a33db957fd3501e705e8718fdc10ab0b3a62e8df7e3517b6cae971e9f286",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_VAN_A01.glb",
+      "sha256": "d07862f84eb4e02386b2b248d9283b875075e0bb17ce1d66d9419ee84c585926",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_VAN_A01_van_3d_model_basecolor.jpg",
+      "sha256": "e7d8969280216905e502ffa90adedc5cf046386f7018894fc20e5b82e0ff41df",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/art/graffiti_swift_A01.png",
+      "sha256": "aefa86b33d0f2f8ced4b43cf0ae5cf00ee80067b66740f0b2fc8730298521596",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/characters/CHAR_FIGHTER_1.glb",
+      "sha256": "a507c9f842ff7c1c804050f2f4e473e604f1413f55d1a8bff4da8a4b844c7f6f",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/characters/CHAR_FIGHTER_1_1_basecolor.jpg",
+      "sha256": "47e0010fc98c5560b0983bc320eee8261fefdf43edc868f7140ec3b1922ea8c4",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/characters/CHAR_FIGHTER_3.glb",
+      "sha256": "bac90f34f9d55d3d407a57dd47a6d55844f002a02e6fff42b9c5ac4c8f60b704",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/characters/CHAR_FIGHTER_3_stylized_3d_character_basecolor.jpg",
+      "sha256": "b88b66d63e64f2cc4b5d242fe8cc2ab880085aa26d8504ea880aa91338ecc95e",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/characters/CHAR_FIGHTER_4.glb",
+      "sha256": "c443bad6aa0a9d0ab49741fc0e7ee36cddab7b7271ff1e95342993a27df68941",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/characters/CHAR_FIGHTER_4_4_basecolor.jpg",
+      "sha256": "cbf5d08f02412e3625a22e7c8c78a4e7483607b10ea155a0f06d3852ff167a16",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/corner_plaster_128.png",
+      "sha256": "a26ed0cadfa1d175b0af4683ddf3338d6fb40fe94f677d04531f96e334fe6c18",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/corner_shutter_128.png",
+      "sha256": "654a7a847a4b96b680901202349342dae219f8a6d3da168cb6b1207ac326655c",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/corner_tiles_128.png",
+      "sha256": "acc47e8fa5bbe83cf6cc9e3f558dfdb6d3d83d020d58c764628afe00c17fa180",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/painted_concrete_128.png",
+      "sha256": "c51122c2c8af475a68b90b082c56921653c828c574e8d47029aecef3237fddba",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/road_asphalt_128.png",
+      "sha256": "50fa20d1442e6bdb77f0180589fba51581aa768cd53c1bf9891abf07640c1de7",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/sidewalk_tiles_128.png",
+      "sha256": "e0da54d6c3ef54628c001ad7f28fd105388edea8f9fdc8bf866bc959c236a112",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/engine_placeholder.wav",
+      "sha256": "5b8ad2d7936e66719f9c77f23928b5aef5a372e9dbb54e08ee62dff103ec55c1",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/footstep_concrete_000.ogg",
+      "sha256": "d7267e183067757c92c169de2a379abea592cfca6b39bb2e8feea15221ad79fe",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/footstep_concrete_003.ogg",
+      "sha256": "8b513c2f0316324060b9174b8f28df6c2147418c506e6a53b77f18e149a5547b",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactBell_heavy_003.ogg",
+      "sha256": "5572ccdeb3b62373b86fa955355b3a222c36e815f0636ba16165189a21cf2514",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactGlass_heavy_000.ogg",
+      "sha256": "b44b39a940e8948e74b9bd3776bff980df43cf220abdaf0d467dc4c43c0244a5",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactMetal_heavy_003.ogg",
+      "sha256": "b0f2ba4dabde9a87eb9c188a19d31e0c2300fd321adeba08d3b9b8aa011d7037",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactMetal_light_000.ogg",
+      "sha256": "33b5e6e37c6e9d54e07bf5a89b12c76e879f40c1ea83cdd82714df1d6f9fec6d",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_heavy_000.ogg",
+      "sha256": "b33a8f14068aec24ec69ba85e5e87fdc41228975f6a1a3e44a6e7d6fc3d9f8d8",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_heavy_001.ogg",
+      "sha256": "f92f5cb6ba4ff2766497292ffd90865654317eeca976f5652e0708dbdcdc0dd9",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_000.ogg",
+      "sha256": "486988aa2d6440ffc4c62a0e8ccf3c23673ba84424bd4723378d451b7255eb5c",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_001.ogg",
+      "sha256": "e71d23abcc3f10d9d6bc9615b2a431fff70b12333a5fcdd9964457564ace4349",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_002.ogg",
+      "sha256": "6492f9ccbc8d24dcef607bb1b48790b7870961474561f7fe5601e1c73a3018ef",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactSoft_heavy_000.ogg",
+      "sha256": "49e7ca88743fca974bb8676ea138b751cfd8f9033b5e7af8736c2a215d6edbc1",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactSoft_medium_001.ogg",
+      "sha256": "7642a4fd43e547afe4f7adfadb3dabb681c0ff512f52c1674bae30a726841faf",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactTin_medium_001.ogg",
+      "sha256": "84253095543c094d83cd749f42ecfbc96e356b60385f18a192c18eafb25b3cc6",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/level1.ogg",
+      "sha256": "471b48b13e12bdf34a324c32d2c1d1e4ab76b89308108d1cc3cf619639de2783",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/wev/family_ties_game.ogg",
+      "sha256": "a4c11da48bb3c2e11bbb15bc5f6dc11b0802f7aa391390ae90dc1b591514bbc3",
+      "unchanged": true
+    }
+  ],
+  "candidate_files": [
+    {
+      "path": "godot/scripts/combat/combat_rhythm.gd",
+      "sha256": "30b4875daaaff8ec575e8b1ec5a43e504e783cf8561e2af974a334f92d7c0046"
+    },
+    {
+      "path": "godot/scripts/combat/combat_rhythm.gd.uid",
+      "sha256": "3008f5748cf4f31e3eec1c603ea699e377e29a76a964681f505c3ad718c749f2"
+    },
+    {
+      "path": "godot/scripts/combat/fight_hud.gd",
+      "sha256": "ff50ce643c31378562fa37fd39f610d71f27f455b053442c12b30b45acead785"
+    },
+    {
+      "path": "godot/scripts/combat/fight_session.gd",
+      "sha256": "84c475612ed92be9a77cd8f1c4d61c6557078d00ab0ad17d691b8a45140f2732"
+    },
+    {
+      "path": "godot/scripts/combat/fight_spectacle.gd",
+      "sha256": "36723e43051aa052d9e06628fe0aa900d13e7dedf319440f590a5682da67bbee"
+    },
+    {
+      "path": "godot/scripts/combat/fighter_roster.gd",
+      "sha256": "c5d28c54289a23ccf9c1c086d15fbe29c564c6ea9ef3abc7cc34068492b5b8d5"
+    },
+    {
+      "path": "godot/scripts/combat/fighter_visual.gd",
+      "sha256": "b316f621299c0e1730ee8473e3df7a948f84385039540280747c53d1bec817a4"
+    },
+    {
+      "path": "godot/scripts/combat/impact_theatre.gd",
+      "sha256": "c7e0b251b6ab044b281257b0c094d987a528817368ded8e0a5c3637470b52b3d"
+    },
+    {
+      "path": "godot/tools/capture_combat_rhythm.gd",
+      "sha256": "5079979ce231c36d53ef1e1a124f5853d8ab5e8166f31578f3e2dfc9275671bf"
+    },
+    {
+      "path": "godot/tools/capture_rhythm_ko.gd",
+      "sha256": "d1cde9f477d5d58b04205d3e6bf4e8cfcfbeb218b9e818d222350b382a1641ef"
+    },
+    {
+      "path": "godot/tools/soak_demo_input.gd",
+      "sha256": "e4080d7c2db55b4d700fcccb5a402e2b175e251b76730b4e6ff0be6f4ae312ef"
+    },
+    {
+      "path": "godot/tools/verify_combat_rhythm.gd",
+      "sha256": "36593c6e07e3dc2a2d1d461f4119c85dedcf523d4e538a6564679c79aa802331"
+    },
+    {
+      "path": "godot/tools/verify_demo_input.gd",
+      "sha256": "36c5340e3a78524d53809be4cd62236a8bc79a6b13f90dfc588996a405ea9d22"
+    },
+    {
+      "path": "godot/tools/verify_fighter_roster.gd",
+      "sha256": "0e6a68a31faf89b9afb8350c6f8943bdce5e757c49b0cb581e4a0a8e4e72bce3"
+    },
+    {
+      "path": "godot/tools/verify_impact_staging.gd",
+      "sha256": "48439d74a0e46adebcfcff016615b2e3d42aedc464262fa77691e45b704bb7c2"
+    },
+    {
+      "path": "godot/tools/verify_red_theatre.gd",
+      "sha256": "8666730bb78b6c793729d883919c7f4502c04637548c8ae0746dae443cae5052"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/evidence/combat-rhythm/captures/break.png",
+      "bytes": 76634,
+      "sha256": "bc52b618eaee676094e206e6ffd6d2097e82a58743f8f04e535588e78df66951"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/captures/extended_ko.png",
+      "bytes": 136750,
+      "sha256": "9a57b8a62933183642ff9f16dc8b0da659630f72d4ebccc6dea95bea7a1a9ea5"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/captures/flow.png",
+      "bytes": 304516,
+      "sha256": "d0801f4f0f6330d942a2d4223e9247ae594f0bc0b8e2127049c06fa893bd3574"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/captures/hold.png",
+      "bytes": 285314,
+      "sha256": "75ffdff41d589635120efab63793ddd4d38afb9aebfb3eb5fb8d8242453713b8"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/captures/meteor.png",
+      "bytes": 72684,
+      "sha256": "5ae88cce2a5a55c10a9017f46f6a20bd320d192b6c8d282e8ea230e95c414789"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/captures/release.png",
+      "bytes": 338637,
+      "sha256": "0f793594abc7be040d884cb33a300dfd781ffc2f4cebd02b2d3cd98937b191e1"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/captures/short_fighter_preview.png",
+      "bytes": 302191,
+      "sha256": "43bc1234ab41b30b98050dc2da0ff24284e65938058c7a0d2e08597babdfe0be"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/captures/skill_slow.png",
+      "bytes": 90397,
+      "sha256": "d72bc19df6edc3fbae860037eedc8a94097ac8f353bf8cb9f9f98b4c94df36f3"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/captures/slow.png",
+      "bytes": 314048,
+      "sha256": "321907d432e3a8c1e1a2d36726901c23e6c9e5d28e693e2634b368e787848a3a"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/extended-ko.mp4",
+      "bytes": 692251,
+      "sha256": "30635d7c0314342eaf5d5b782188dbe9a84c2bb32bb7a8d15a04fa536e3305db"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/rhythm-demo.gif",
+      "bytes": 7267901,
+      "sha256": "c05b998ed385122a558a15dc245a21bbc3843d805734e95422fa581d27b904dc"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/rhythm-demo.mp4",
+      "bytes": 13633007,
+      "sha256": "25dc88e8a6f76d249fefd62343e115be56b169e4d1f9102e8603b8f10b81df8a"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/roster-captures/01_fighter_4_vs_3.png",
+      "bytes": 304257,
+      "sha256": "711dcca06a95266662eda377c404e5cd7b5583d0120766ff9b6c893350e8845c"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/roster-captures/03_new_fighter_ko.png",
+      "bytes": 68829,
+      "sha256": "a7219f02dee8a7a3205ff7a84fb9f37b81385dac416683cf1f884e96c2d11a12"
+    },
+    {
+      "path": "docs/evidence/combat-rhythm/roster-captures/04_demo_pair.png",
+      "bytes": 63070,
+      "sha256": "c8a18b31a9faf816f48c5e9326ea1db7e14fd79b279776b8efd00007dea7edbe"
+    }
+  ]
+}

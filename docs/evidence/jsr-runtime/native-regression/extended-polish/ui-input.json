@@ -1,0 +1,75 @@
+{
+  "checks": [
+    {
+      "name": "real pointer hover keeps outlined shortcut contrast above 4.5",
+      "passed": true
+    },
+    {
+      "name": "pointer opens settings from title",
+      "passed": true
+    },
+    {
+      "name": "keyboard opens native language popup",
+      "passed": true
+    },
+    {
+      "name": "popup Escape does not leave settings",
+      "passed": true
+    },
+    {
+      "name": "native popup selection changes to English",
+      "passed": true
+    },
+    {
+      "name": "keyboard changes native audio slider",
+      "passed": true
+    },
+    {
+      "name": "page Escape returns focus to title settings action",
+      "passed": true
+    },
+    {
+      "name": "pointer opens read-first dojo",
+      "passed": true
+    },
+    {
+      "name": "pointer Start creates the actual clash",
+      "passed": true
+    },
+    {
+      "name": "pointer chooses and locks TURN",
+      "passed": true
+    },
+    {
+      "name": "disabled choice click cannot change commitment",
+      "passed": true
+    },
+    {
+      "name": "settings shortcut pauses a live clash",
+      "passed": true
+    },
+    {
+      "name": "settings does not consume decision time",
+      "passed": true
+    },
+    {
+      "name": "Escape returns through pause and resumes same fight",
+      "passed": true
+    },
+    {
+      "name": "pointer coordinates still match settings at 960x540",
+      "passed": true
+    },
+    {
+      "name": "persistent Back remains clickable in small viewport",
+      "passed": true
+    },
+    {
+      "name": "letterboxed 4:3 viewport preserves native pointer hit targets",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "method": "Actual X11 Godot viewport Input.parse_input_event mouse and keyboard; not physical human input",
+  "passed": 17
+}

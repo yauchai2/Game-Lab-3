@@ -1,0 +1,158 @@
+{
+  "animation": {
+    "clips": [
+      "throw",
+      "edge_recovery"
+    ],
+    "encoded_fps": 30,
+    "frames_each": 90,
+    "method": "native fixed simulation-step render; not measured real-time FPS or human input",
+    "simulation_ticks_per_frame": 2
+  },
+  "screens": [
+    {
+      "canvas_to_window": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]",
+      "file": "1280x720_settings_top.png",
+      "image_size": "(1280, 720)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(1280, 720)"
+    },
+    {
+      "canvas_to_window": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]",
+      "file": "1280x720_settings_bottom.png",
+      "image_size": "(1280, 720)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(1280, 720)"
+    },
+    {
+      "canvas_to_window": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]",
+      "file": "1280x720_help_top.png",
+      "image_size": "(1280, 720)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(1280, 720)"
+    },
+    {
+      "canvas_to_window": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]",
+      "file": "1280x720_help_bottom.png",
+      "image_size": "(1280, 720)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(1280, 720)"
+    },
+    {
+      "canvas_to_window": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]",
+      "file": "1280x720_practice_details.png",
+      "image_size": "(1280, 720)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(1280, 720)"
+    },
+    {
+      "canvas_to_window": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]",
+      "file": "1280x720_clash.png",
+      "image_size": "(1280, 720)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(1280, 720)"
+    },
+    {
+      "canvas_to_window": "[X: (0.75, 0.0), Y: (0.0, 0.75), O: (0.0, 0.0)]",
+      "file": "960x540_settings_top.png",
+      "image_size": "(960, 540)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(960, 540)"
+    },
+    {
+      "canvas_to_window": "[X: (0.75, 0.0), Y: (0.0, 0.75), O: (0.0, 0.0)]",
+      "file": "960x540_settings_bottom.png",
+      "image_size": "(960, 540)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(960, 540)"
+    },
+    {
+      "canvas_to_window": "[X: (0.75, 0.0), Y: (0.0, 0.75), O: (0.0, 0.0)]",
+      "file": "960x540_help_top.png",
+      "image_size": "(960, 540)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(960, 540)"
+    },
+    {
+      "canvas_to_window": "[X: (0.75, 0.0), Y: (0.0, 0.75), O: (0.0, 0.0)]",
+      "file": "960x540_help_bottom.png",
+      "image_size": "(960, 540)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(960, 540)"
+    },
+    {
+      "canvas_to_window": "[X: (0.75, 0.0), Y: (0.0, 0.75), O: (0.0, 0.0)]",
+      "file": "960x540_practice_details.png",
+      "image_size": "(960, 540)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(960, 540)"
+    },
+    {
+      "canvas_to_window": "[X: (0.75, 0.0), Y: (0.0, 0.75), O: (0.0, 0.0)]",
+      "file": "960x540_clash.png",
+      "image_size": "(960, 540)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(960, 540)"
+    },
+    {
+      "canvas_to_window": "[X: (0.8, 0.0), Y: (0.0, 0.8), O: (0.0, 96.0)]",
+      "file": "1024x768_settings_top.png",
+      "image_size": "(1024, 576)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(1024, 768)"
+    },
+    {
+      "canvas_to_window": "[X: (0.8, 0.0), Y: (0.0, 0.8), O: (0.0, 96.0)]",
+      "file": "1024x768_settings_bottom.png",
+      "image_size": "(1024, 576)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(1024, 768)"
+    },
+    {
+      "canvas_to_window": "[X: (0.8, 0.0), Y: (0.0, 0.8), O: (0.0, 96.0)]",
+      "file": "1024x768_help_top.png",
+      "image_size": "(1024, 576)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(1024, 768)"
+    },
+    {
+      "canvas_to_window": "[X: (0.8, 0.0), Y: (0.0, 0.8), O: (0.0, 96.0)]",
+      "file": "1024x768_help_bottom.png",
+      "image_size": "(1024, 576)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(1024, 768)"
+    },
+    {
+      "canvas_to_window": "[X: (0.8, 0.0), Y: (0.0, 0.8), O: (0.0, 96.0)]",
+      "file": "1024x768_practice_details.png",
+      "image_size": "(1024, 576)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(1024, 768)"
+    },
+    {
+      "canvas_to_window": "[X: (0.8, 0.0), Y: (0.0, 0.8), O: (0.0, 96.0)]",
+      "file": "1024x768_clash.png",
+      "image_size": "(1024, 576)",
+      "language": "en",
+      "png_error": 0,
+      "window_size": "(1024, 768)"
+    }
+  ]
+}

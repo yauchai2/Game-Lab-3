@@ -1,0 +1,92 @@
+{
+  "checks": [
+    {
+      "name": "early tap catches a real attack on side 0",
+      "passed": true
+    },
+    {
+      "name": "parry grants tangible energy and punish time 0",
+      "passed": true
+    },
+    {
+      "name": "parry cooldown is bounded 0",
+      "passed": true
+    },
+    {
+      "name": "early tap catches a real attack on side 1",
+      "passed": true
+    },
+    {
+      "name": "parry grants tangible energy and punish time 1",
+      "passed": true
+    },
+    {
+      "name": "parry cooldown is bounded 1",
+      "passed": true
+    },
+    {
+      "name": "counter input can be queued before parry contact",
+      "passed": true
+    },
+    {
+      "name": "queued counter starts even while Shift stays held",
+      "passed": true
+    },
+    {
+      "name": "counter adds no automatic damage bonus",
+      "passed": true
+    },
+    {
+      "name": "a tap that is too early still expires",
+      "passed": true
+    },
+    {
+      "name": "throw still beats assisted guard",
+      "passed": false
+    },
+    {
+      "name": "counter praise requires actual contact",
+      "passed": true
+    },
+    {
+      "name": "counter opportunity cannot last forever",
+      "passed": true
+    },
+    {
+      "name": "air parry accepts the entire finisher tell",
+      "passed": true
+    },
+    {
+      "name": "air hold and punish windup allow more decision time",
+      "passed": true
+    },
+    {
+      "name": "late compression guard is buffered",
+      "passed": true
+    },
+    {
+      "name": "buffered tap becomes an actual rally parry",
+      "passed": true
+    },
+    {
+      "name": "high tier retains a generous but finite window",
+      "passed": true
+    },
+    {
+      "name": "reset removes counter opportunity and queued strike",
+      "passed": true
+    },
+    {
+      "name": "pressure decision lasts six tenths of a second",
+      "passed": true
+    },
+    {
+      "name": "positive feedback is localized zh",
+      "passed": true
+    },
+    {
+      "name": "positive feedback is localized en",
+      "passed": true
+    }
+  ]
+}

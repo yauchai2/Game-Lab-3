@@ -1,9 +1,9 @@
 extends Node
 ## Low-resolution, tileable texture multipliers on per-instance materials.
 ## Source whitebox resources and all user GLBs remain unchanged.
-const ROAD = preload("res://assets/textures/road_asphalt_128.png")
-const SIDEWALK = preload("res://assets/textures/sidewalk_tiles_128.png")
-const WALL = preload("res://assets/textures/painted_concrete_128.png")
+const ROAD = preload("res://assets/textures/radio/asphalt.png")
+const SIDEWALK = preload("res://assets/textures/radio/paving.png")
+const WALL = preload("res://assets/textures/radio/concrete.png")
 var applied: Array[MeshInstance3D] = []
 @onready var street: Node3D = get_parent().get_node("Street")
 func _ready() -> void:

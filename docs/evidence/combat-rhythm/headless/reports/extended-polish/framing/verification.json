@@ -1,0 +1,161 @@
+{
+  "checks": [
+    {
+      "name": "both bodies fit above the pressure HUD at [-8.2, -7.4] / air 0.0",
+      "passed": true
+    },
+    {
+      "name": "both bodies fit above the pressure HUD at [-8.2, -7.4] / air 2.1",
+      "passed": true
+    },
+    {
+      "name": "both bodies fit above the pressure HUD at [-8.2, 8.2] / air 0.0",
+      "passed": true
+    },
+    {
+      "name": "both bodies fit above the pressure HUD at [-8.2, 8.2] / air 2.1",
+      "passed": true
+    },
+    {
+      "name": "both bodies fit above the pressure HUD at [-3.0, 3.0] / air 0.0",
+      "passed": true
+    },
+    {
+      "name": "both bodies fit above the pressure HUD at [-3.0, 3.0] / air 2.1",
+      "passed": true
+    },
+    {
+      "name": "both bodies fit above the pressure HUD at [-0.4, 0.4] / air 0.0",
+      "passed": true
+    },
+    {
+      "name": "both bodies fit above the pressure HUD at [-0.4, 0.4] / air 2.1",
+      "passed": true
+    },
+    {
+      "name": "both bodies fit above the pressure HUD at [7.4, 8.2] / air 0.0",
+      "passed": true
+    },
+    {
+      "name": "both bodies fit above the pressure HUD at [7.4, 8.2] / air 2.1",
+      "passed": true
+    },
+    {
+      "name": "close-range fighter silhouette occupies at least 145 logical pixels",
+      "passed": true
+    },
+    {
+      "name": "following a half-metre step eases rather than teleports",
+      "passed": true
+    },
+    {
+      "name": "pause holds framing in place",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "method": "perspective-projected 2.4 m fighter envelope; not a human camera-comfort test",
+  "passed": 13,
+  "samples": [
+    {
+      "camera": "(-7.0786, 1.7, 11.35804)",
+      "jump_height": 0.0,
+      "positions": [
+        -8.2,
+        -7.4
+      ],
+      "projected_body_extents": "[(445.6629, 568.0994), (448.359, 329.6387), (526.1039, 566.4482), (527.6689, 330.2999)]",
+      "safe": true
+    },
+    {
+      "camera": "(-7.177511, 1.7, 12.34384)",
+      "jump_height": 2.1,
+      "positions": [
+        -8.2,
+        -7.4
+      ],
+      "projected_body_extents": "[(468.6696, 359.2684), (470.55, 150.9339), (538.4948, 544.0813), (539.61, 333.5017)]",
+      "safe": true
+    },
+    {
+      "camera": "(-0.0, 1.7, 15.14264)",
+      "jump_height": 0.0,
+      "positions": [
+        -8.2,
+        8.2
+      ],
+      "projected_body_extents": "[(91.13789, 500.4861), (94.7047, 340.061), (1188.862, 500.4861), (1185.295, 340.061)]",
+      "safe": true
+    },
+    {
+      "camera": "(-0.0, 1.7, 15.14264)",
+      "jump_height": 2.1,
+      "positions": [
+        -8.2,
+        8.2
+      ],
+      "projected_body_extents": "[(94.2614, 360.0), (97.7879, 201.3898), (1188.862, 500.4861), (1185.295, 340.061)]",
+      "safe": true
+    },
+    {
+      "camera": "(-0.0, 1.7, 12.42)",
+      "jump_height": 0.0,
+      "positions": [
+        -3.0,
+        3.0
+      ],
+      "projected_body_extents": "[(380.2702, 541.6472), (383.0713, 334.3303), (899.7297, 541.6472), (896.9287, 334.3303)]",
+      "safe": true
+    },
+    {
+      "camera": "(-0.0, 1.7, 12.42)",
+      "jump_height": 2.1,
+      "positions": [
+        -3.0,
+        3.0
+      ],
+      "projected_body_extents": "[(382.7245, 360.0), (385.4731, 156.5618), (899.7297, 541.6472), (896.9287, 334.3303)]",
+      "safe": true
+    },
+    {
+      "camera": "(0.0, 1.7, 11.4)",
+      "jump_height": 0.0,
+      "positions": [
+        -0.4,
+        0.4
+      ],
+      "projected_body_extents": "[(601.0778, 564.1104), (601.6052, 331.2365), (678.9222, 564.1104), (678.3948, 331.2365)]",
+      "safe": true
+    },
+    {
+      "camera": "(0.0, 1.7, 12.39076)",
+      "jump_height": 2.1,
+      "positions": [
+        -0.4,
+        0.4
+      ],
+      "projected_body_extents": "[(605.59, 360.0), (605.9598, 155.9442), (674.7404, 542.2216), (674.3633, 334.2508)]",
+      "safe": true
+    },
+    {
+      "camera": "(7.0786, 1.7, 11.35804)",
+      "jump_height": 0.0,
+      "positions": [
+        7.4,
+        8.2
+      ],
+      "projected_body_extents": "[(753.8961, 566.4482), (752.3311, 330.2999), (834.3371, 568.0994), (831.6409, 329.6387)]",
+      "safe": true
+    },
+    {
+      "camera": "(7.177511, 1.7, 12.34384)",
+      "jump_height": 2.1,
+      "positions": [
+        7.4,
+        8.2
+      ],
+      "projected_body_extents": "[(740.5281, 359.5707), (739.4341, 153.0041), (813.0103, 545.3913), (811.093, 332.9741)]",
+      "safe": true
+    }
+  ]
+}

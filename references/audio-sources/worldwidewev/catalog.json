@@ -1,0 +1,284 @@
+{
+  "retrieved_utc": "2026-11-09T03:52:09.557091+00:00",
+  "artist": "wev / worldwidewev",
+  "artist_url": "https://soundcloud.com/worldwidewev",
+  "artist_website": "https://wev.world",
+  "album": {
+    "artist": "wev",
+    "url": "https://worldwidewev.bandcamp.com/album/ost",
+    "album_release_date": "29 May 2026 00:00:00 GMT",
+    "current": {
+      "title": "OST",
+      "about": null,
+      "credits": null,
+      "license_type": null,
+      "release_date": "29 May 2026 00:00:00 GMT"
+    },
+    "tracks": [
+      {
+        "title": "HELLO WORLD",
+        "track_num": 1,
+        "duration": 10.0061,
+        "is_downloadable": true,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/hello-world",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "GET W THIS",
+        "track_num": 2,
+        "duration": 244.277,
+        "is_downloadable": false,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/get-w-this",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "wev, scruz - SPECTRUM",
+        "track_num": 3,
+        "duration": 229.269,
+        "is_downloadable": false,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/spectrum",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "wev, issacgsw - WITMYBABY",
+        "track_num": 4,
+        "duration": 164.275,
+        "is_downloadable": true,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/witmybaby",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "wev, Yoshi T - TECHNOCHRONIC (feat. Yoshi T)",
+        "track_num": 5,
+        "duration": 178.942,
+        "is_downloadable": false,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/technochronic-feat-yoshi-t",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "K.I.P.",
+        "track_num": 6,
+        "duration": 222.979,
+        "is_downloadable": true,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/k-i-p",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "SELECTA",
+        "track_num": 7,
+        "duration": 12.8,
+        "is_downloadable": true,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/selecta",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "CAN'T SHAKE THIS",
+        "track_num": 8,
+        "duration": 216.762,
+        "is_downloadable": true,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/cant-shake-this",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "THE WEVALUDE",
+        "track_num": 9,
+        "duration": 320.972,
+        "is_downloadable": true,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/the-wevalude",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "wev, frau - COME UNDONE",
+        "track_num": 10,
+        "duration": 190.271,
+        "is_downloadable": true,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/come-undone",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "WHY DO I RUN AWAY?",
+        "track_num": 11,
+        "duration": 274.845,
+        "is_downloadable": true,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/why-do-i-run-away",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "wev, Dazegxd - BAD BOY MUSIC",
+        "track_num": 12,
+        "duration": 57.1431,
+        "is_downloadable": true,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/bad-boy-music",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "QUATRO QUATRO",
+        "track_num": 13,
+        "duration": 61.7474,
+        "is_downloadable": true,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/quatro-quatro",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "I KNOW THIS 1!",
+        "track_num": 14,
+        "duration": 269.78,
+        "is_downloadable": true,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/i-know-this-1",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      },
+      {
+        "title": "LONELY BOY",
+        "track_num": 15,
+        "duration": 246.838,
+        "is_downloadable": true,
+        "license_type": 1,
+        "has_lyrics": false,
+        "url": "https://worldwidewev.bandcamp.com/track/lonely-boy",
+        "rights_status": "all_rights_reserved (album/track JSON-LD copyrightNotice)",
+        "download_flag_is_not_game_license": true
+      }
+    ]
+  },
+  "album_tags": [
+    "Electronic",
+    "acid jazz",
+    "electro",
+    "garage house",
+    "house music",
+    "jungle",
+    "lofi house music",
+    "techno",
+    "ukg",
+    "vgm",
+    "wev",
+    "Brooklyn"
+  ],
+  "soundcloud_tracks_checked": [
+    {
+      "id": 2411921577,
+      "title": "MINMI - shiki no uta (wev edit)",
+      "permalink_url": "https://soundcloud.com/worldwidewev/minmi-shiki-no-uta-wev-edit-1",
+      "description": "samurai champloo in the club?",
+      "genre": "worldwidewev",
+      "tag_list": "wev \"samurai champloo\" \"in the club\" \"garage house\" house edit",
+      "license": "all-rights-reserved",
+      "downloadable": false,
+      "download_url": null,
+      "purchase_url": "https://worldwidewev.bandcamp.com/track/shiki-no-uta-wev-edit",
+      "duration": 349907,
+      "release_date": null,
+      "publisher_metadata": {
+        "id": 2411921577,
+        "urn": "soundcloud:tracks:2411921577",
+        "artist": "wev",
+        "explicit": false
+      },
+      "label_name": ""
+    },
+    {
+      "id": 2341875734,
+      "title": "wev - OST ALBUM RELEASE @ The Lot Radio 05-29-2026",
+      "permalink_url": "https://soundcloud.com/worldwidewev/wev-ost-album-release-the-lot",
+      "description": "my debut album OST OUT NOW!\ncreatemusic.fm/OST\n\nhere's a 1 hour mix exploring the confluence of electronic music, video game worlds, and contemporary club culture\n\nwww.instagram.com/worldwidewev\n@worldwidewev\n",
+      "genre": "House",
+      "tag_list": "wev \"the lot radio\" house electro jungle OST \"album release\" mix ukg",
+      "license": "all-rights-reserved",
+      "downloadable": false,
+      "download_url": null,
+      "purchase_url": null,
+      "duration": 3705466,
+      "release_date": null,
+      "publisher_metadata": {
+        "id": 2341875734,
+        "urn": "soundcloud:tracks:2341875734",
+        "artist": "wev",
+        "explicit": false
+      },
+      "label_name": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://soundcloud.com/worldwidewev",
+      "http_status": 200,
+      "response_sha256": "aad0a4cde7227dbb36cae24e4a104d28485b097dca65e4f03e33f2e2d04b3593"
+    },
+    {
+      "url": "https://soundcloud.com/worldwidewev/minmi-shiki-no-uta-wev-edit-1",
+      "http_status": 200,
+      "response_sha256": "ab74d215b0c5cd2b7e8e356207c4d1f222dfddf2ec8a9d56dce7652652c24981"
+    },
+    {
+      "url": "https://soundcloud.com/worldwidewev/wev-ost-album-release-the-lot",
+      "http_status": 200,
+      "response_sha256": "92b285220560a78eecc25e49f378734b71f487772780bf4ebd493d285067a801"
+    },
+    {
+      "url": "https://wev.world",
+      "http_status": 200,
+      "response_sha256": "c346cf123fec71f6ff270d7b45a41d3a39e66dbce4e538e67a9a173012dc6c99"
+    },
+    {
+      "url": "https://worldwidewev.bandcamp.com/album/ost",
+      "http_status": 200,
+      "response_sha256": "0c41f2c124907a9126fc2012b07cae1e5ff883044bb761d34fa6a1e0be65b071"
+    },
+    {
+      "url": "https://worldwidewev.bandcamp.com/music",
+      "http_status": 200,
+      "response_sha256": "2df5f8cab755dfa69647a586f7899dd4ee506e7684419b2600da2a1673141ccc"
+    },
+    {
+      "url": "https://createmusic.fm/OST",
+      "http_status": 200,
+      "response_sha256": "6b8eead16b5db666d18ac4d534d4b24a0c239ba757bcdb723015cc9aa91d73fd"
+    }
+  ],
+  "evidence_boundary": "Public page metadata only. No audio masters or streams downloaded, no listening/BPM/loop-point analysis; no artist outreach. Raw hydration tracking identifiers and media URLs omitted.",
+  "user_rights_answer": "2026-11-09: 尚未取得，先完成選曲及接入規劃",
+  "admission_status": "blocked_missing_license",
+  "runtime_audio_changed": false
+}

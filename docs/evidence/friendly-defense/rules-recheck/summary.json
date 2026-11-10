@@ -1,0 +1,89 @@
+{
+  "created_utc": "20261109T065037Z",
+  "source_commit": "18141ccc23125545ebaccb2eb27146a41b4c9e3f",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/air_counter.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/kinetic_rally.gd",
+    "godot/scripts/combat/pressure_exchange.gd",
+    "godot/scripts/combat/ui/ui_text.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": true,
+  "passed": 176,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_air_counter",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "9ed67036d0a5b130b895be9c5816edc5c745152739fd83f41480b1c0243fd37d",
+      "seconds": 2.112,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_air_counter.gd"
+      ],
+      "report_written": true,
+      "passed": 57,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_kinetic_rally",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "edd5ba4089c0a19a4a1d7fba8f83b2685bb94272779cd93caadfca8e5220ad61",
+      "seconds": 1.737,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_kinetic_rally.gd"
+      ],
+      "report_written": true,
+      "passed": 60,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_pressure_exchange",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "b4c6dbacab9cf2164308cb6cc5156b5c3177062313b1b3ba0054b73f69876e64",
+      "seconds": 1.748,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_pressure_exchange.gd"
+      ],
+      "report_written": true,
+      "passed": 59,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

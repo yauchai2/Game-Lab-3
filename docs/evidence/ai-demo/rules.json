@@ -1,0 +1,221 @@
+{
+  "chapters": {
+    "air_combo": 2,
+    "air_counter_escape": 2,
+    "air_counter_evade": 2,
+    "air_counter_kick": 2,
+    "block": 2,
+    "combo": 2,
+    "dodge": 2,
+    "duel": 2,
+    "finale": 2,
+    "grab": 2,
+    "guard_break": 2,
+    "heavy": 2,
+    "jump": 2,
+    "kinetic": 2,
+    "meteor": 2,
+    "parry": 2,
+    "pressure_press": 2,
+    "pressure_slip": 2,
+    "pressure_turn": 2,
+    "special": 2,
+    "throw_tech": 2,
+    "wall_bounce": 2,
+    "wall_tech": 2
+  },
+  "checks": [
+    {
+      "name": "two complete showcase cycles finish",
+      "passed": true
+    },
+    {
+      "name": "all chapters run in both role orientations",
+      "passed": true
+    },
+    {
+      "name": "both AI agents land actual hits",
+      "passed": true
+    },
+    {
+      "name": "identical state produces identical commands outcomes and events",
+      "passed": true
+    },
+    {
+      "name": "all simulated positions remain finite and in arena",
+      "passed": true
+    },
+    {
+      "name": "real event coverage hit/jab",
+      "passed": true
+    },
+    {
+      "name": "real event coverage hit/cross",
+      "passed": true
+    },
+    {
+      "name": "real event coverage hit/finisher",
+      "passed": true
+    },
+    {
+      "name": "real event coverage hit/heavy",
+      "passed": true
+    },
+    {
+      "name": "real event coverage hit/launcher",
+      "passed": true
+    },
+    {
+      "name": "real event coverage hit/air_jab",
+      "passed": true
+    },
+    {
+      "name": "real event coverage hit/air_kick",
+      "passed": true
+    },
+    {
+      "name": "real event coverage hit/air_finisher",
+      "passed": true
+    },
+    {
+      "name": "real event coverage hit/meteor",
+      "passed": true
+    },
+    {
+      "name": "real event coverage hit/air_counter",
+      "passed": true
+    },
+    {
+      "name": "real event coverage hit/grab",
+      "passed": true
+    },
+    {
+      "name": "real event coverage hit/special",
+      "passed": true
+    },
+    {
+      "name": "real event coverage block",
+      "passed": true
+    },
+    {
+      "name": "real event coverage guard_break",
+      "passed": true
+    },
+    {
+      "name": "real event coverage parry",
+      "passed": true
+    },
+    {
+      "name": "real event coverage throw_tech",
+      "passed": true
+    },
+    {
+      "name": "real event coverage dash",
+      "passed": true
+    },
+    {
+      "name": "real event coverage wall_bounce",
+      "passed": true
+    },
+    {
+      "name": "real event coverage wall_tech",
+      "passed": true
+    },
+    {
+      "name": "real event coverage jump",
+      "passed": true
+    },
+    {
+      "name": "real event coverage fast_fall",
+      "passed": true
+    },
+    {
+      "name": "real event coverage homing_chase",
+      "passed": true
+    },
+    {
+      "name": "real event coverage chase_arrive",
+      "passed": true
+    },
+    {
+      "name": "real event coverage ground_bounce",
+      "passed": true
+    },
+    {
+      "name": "real event coverage air_counter_start",
+      "passed": true
+    },
+    {
+      "name": "real event coverage air_counter_end",
+      "passed": true
+    },
+    {
+      "name": "real event coverage clash_start",
+      "passed": true
+    },
+    {
+      "name": "real event coverage clash_end",
+      "passed": true
+    },
+    {
+      "name": "real event coverage rally_contact",
+      "passed": true
+    },
+    {
+      "name": "real event coverage rally_release",
+      "passed": true
+    },
+    {
+      "name": "real event coverage rally_end",
+      "passed": true
+    },
+    {
+      "name": "real event coverage ko",
+      "passed": true
+    }
+  ],
+  "coverage": {
+    "air_counter_choice": 6,
+    "air_counter_end": 6,
+    "air_counter_release": 4,
+    "air_counter_start": 6,
+    "air_counter_windup": 4,
+    "air_land": 52,
+    "air_parry_attempt": 6,
+    "block": 4,
+    "chase_arrive": 6,
+    "clash_end": 6,
+    "clash_start": 6,
+    "dash": 8,
+    "fast_fall": 4,
+    "ground_bounce": 2,
+    "guard_break": 2,
+    "hit/air_counter": 2,
+    "hit/air_finisher": 6,
+    "hit/air_jab": 8,
+    "hit/air_kick": 8,
+    "hit/cross": 6,
+    "hit/finisher": 8,
+    "hit/grab": 2,
+    "hit/heavy": 18,
+    "hit/jab": 6,
+    "hit/launcher": 6,
+    "hit/meteor": 2,
+    "hit/special": 4,
+    "homing_chase": 6,
+    "jump": 8,
+    "ko": 2,
+    "land": 16,
+    "parry": 4,
+    "rally_contact": 8,
+    "rally_end": 2,
+    "rally_release": 8,
+    "rally_windup": 8,
+    "swing": 124,
+    "throw_tech": 2,
+    "wall_bounce": 2,
+    "wall_tech": 2
+  },
+  "scope": "Deterministic scripted showcase agents, real simulation commands and contacts; not competitive AI or human test.",
+  "ticks": 9858
+}

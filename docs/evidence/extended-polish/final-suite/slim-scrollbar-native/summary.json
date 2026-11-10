@@ -1,0 +1,65 @@
+{
+  "created_utc": "20261108T193210Z",
+  "source_commit": "b6e439b208dc7941e6b364cf6b5cdf3290f49c65",
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 53,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_game_ui",
+      "mode": "native",
+      "exit_code": 0,
+      "seconds": 14.627,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_game_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 36,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_ui_input",
+      "mode": "native",
+      "exit_code": 0,
+      "seconds": 38.282,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_ui_input.gd"
+      ],
+      "report_written": true,
+      "passed": 17,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

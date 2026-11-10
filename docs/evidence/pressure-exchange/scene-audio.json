@@ -1,0 +1,139 @@
+{
+  "checks": [
+    {
+      "name": "street keeps source proportions without X stretching",
+      "passed": true
+    },
+    {
+      "name": "accepted image panorama restored",
+      "passed": true
+    },
+    {
+      "name": "image panorama rotation matches walk scene",
+      "passed": true
+    },
+    {
+      "name": "red car wrapper restored at source location",
+      "passed": true
+    },
+    {
+      "name": "truck wrapper restored at source location",
+      "passed": true
+    },
+    {
+      "name": "vehicle wrapper scales remain uniform",
+      "passed": true
+    },
+    {
+      "name": "original van and six props retained",
+      "passed": true
+    },
+    {
+      "name": "source sample details restored",
+      "passed": true
+    },
+    {
+      "name": "source street dressing density retained",
+      "passed": true
+    },
+    {
+      "name": "low-resolution environment textures restored",
+      "passed": true
+    },
+    {
+      "name": "road toon shader retains world UVs and texture",
+      "passed": true
+    },
+    {
+      "name": "only entrance paint extended for fight width",
+      "passed": true
+    },
+    {
+      "name": "aircraft moves nose-first rather than backwards",
+      "passed": true
+    },
+    {
+      "name": "flight height clears the street rooftops",
+      "passed": true
+    },
+    {
+      "name": "scene outline off by default",
+      "passed": true
+    },
+    {
+      "name": "character outlines remain independent",
+      "passed": true
+    },
+    {
+      "name": "O toggles scene edges",
+      "passed": true
+    },
+    {
+      "name": "O restores the clear scene view",
+      "passed": true
+    },
+    {
+      "name": "open music loads with loop enabled",
+      "passed": true
+    },
+    {
+      "name": "downloaded physical hit and parry clips are loaded",
+      "passed": true
+    },
+    {
+      "name": "master mute pauses or prevents music playback",
+      "passed": true
+    },
+    {
+      "name": "music can be disabled independently",
+      "passed": true
+    },
+    {
+      "name": "pause suspends or prevents music playback",
+      "passed": true
+    },
+    {
+      "name": "resume enables music",
+      "passed": true
+    },
+    {
+      "name": "timed guard parries an incoming jab",
+      "passed": true
+    },
+    {
+      "name": "parry opens a counter window and grants energy",
+      "passed": true
+    },
+    {
+      "name": "holding guard beyond the window is a regular block",
+      "passed": true
+    },
+    {
+      "name": "parry cooldown prevents repeated perfect guards",
+      "passed": true
+    },
+    {
+      "name": "interrupting startup awards a counter hit",
+      "passed": true
+    },
+    {
+      "name": "energy attacks schedule charge and travelling wave effects",
+      "passed": true
+    },
+    {
+      "name": "parry has its own visual and notice",
+      "passed": true
+    },
+    {
+      "name": "effect count is bounded",
+      "passed": true
+    },
+    {
+      "name": "reduced effects omits trails and speed shards",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "method": "headless source inventory, proportions, flight geometry, audio resources/controls and combat/VFX regressions; no human listening or hardware FPS claim",
+  "passed": 33
+}

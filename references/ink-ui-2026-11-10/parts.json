@@ -1,0 +1,60 @@
+{
+  "parts": [
+    {
+      "file": "logo.tres",
+      "source": "logo-source.png",
+      "region_xywh": [
+        90,
+        207,
+        2000,
+        339
+      ],
+      "method": "AtlasTexture region, unmodified source PNG"
+    },
+    {
+      "file": "city-band.png",
+      "source": "cover.png",
+      "region_xywh": [
+        660,
+        0,
+        1012,
+        300
+      ],
+      "method": "Authorized exact crop above heads, no repainting"
+    },
+    {
+      "file": "slashes.png",
+      "source_generated_filename": "exec-ebab3921-2139-4e37-8f90-1c6516e2fa42.png",
+      "region_xywh": [
+        48,
+        800,
+        504,
+        320
+      ],
+      "method": "Authorized exact crop of lower-left modular asset",
+      "repository_source": "references/ink-ui-2026-11-10/parts-source.png"
+    }
+  ],
+  "files": {
+    "city-band.png": "7499677465a3aa4fd045473bf551ed2b89438d09b895672fa2b052aefb990cc0",
+    "cover.png": "5d868776d926287c6821558314e2190c43a4ea319254f0965cb8cd8785e423ed",
+    "logo-source.png": "791c075399e123a433542fdbdd228f34da14350392e777bd696138ac93b7b13e",
+    "logo.tres": "836f97396114b76b4c68cb76111959423b548eaab3963817485a4ddb13ec14dd",
+    "select-arrow.svg": "ab996ac7ca7303d0e8b6dbfdafc8be0bc82cbe2cf498aaa831274b80f08ba824",
+    "slashes.png": "79081198e80ee260642f9cd1d15fe66e9e36f137328094a461b7e0b32178b1f0",
+    "slider-thumb-disabled.svg": "5b3f3083aaf446acd750c758933091caa8c10ff3d7a24776d2b35bd64c02ce2b",
+    "slider-thumb-focus.svg": "d9739b36e83a7f47bd1d6f927d02d1eb8161e652e73678e312c078c5c82190c4",
+    "slider-thumb.svg": "ac17e03639ef7faafd8cadded3503419a039549e7e5d4fd41286a1804162eaef",
+    "toggle-off-disabled.svg": "c4402fc6371f5b00c86c75c83319f8610ae1b88fce9a2fc00293ea377f52cb7a",
+    "toggle-off.svg": "dbbfe8a45ed28d9854467667e62bd09f73ed87cd77b3c496f0ccce09bbd53c27",
+    "toggle-on-disabled.svg": "c929b0b9af11c1fbd165e776b20b9d2d0618805163c0917f5c5d46326b2fde16",
+    "toggle-on.svg": "d4ef421846e5b45452d756b64d82bc1a1c89323fa1c1b13a0db856989aecdb9d"
+  },
+  "native_parts": [
+    "reference_art.gd corners: panel/card focus brackets",
+    "reference_art.gd hud: three-bar team radio insignia",
+    "ui_theme.gd: native panels, text and control states"
+  ],
+  "svg_palette_owner": "godot/scripts/combat/ui/ui_theme.gd",
+  "svg_generator": "tools/build_ink_controls.py"
+}

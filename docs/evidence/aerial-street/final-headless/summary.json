@@ -1,0 +1,258 @@
+{
+  "created_utc": "20261109T051124Z",
+  "source_commit": "1b81ba688ab9e140289fc1187d84e41971d8b69d",
+  "tracked_runtime_changes": [
+    "godot/assets/fonts/AfterhoursUIHK.otf",
+    "godot/scripts/combat/combat_motions.gd",
+    "godot/scripts/combat/fight_audio.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/fight_vfx.gd",
+    "godot/scripts/combat/fighter_visual.gd",
+    "godot/scripts/combat/impact_shapes.gd",
+    "godot/scripts/combat/ui/ui_text.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": true,
+  "passed": 370,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_aerial_street",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "662d73cc8869abf3d57dbd496f727f6ee46413941b09477657ccd98fc6be438c",
+      "seconds": 2.032,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_aerial_street.gd"
+      ],
+      "report_written": true,
+      "passed": 54,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_kinetic_rally",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "4d26f1bf5b52ad3a94cd7dcf3056db78b82c7140750c8fa8969f788a5d248710",
+      "seconds": 2.642,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_kinetic_rally.gd"
+      ],
+      "report_written": true,
+      "passed": 60,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_result_presentation",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "4d98cddff04aaf8246d03a4ea5839a66e1dd08dff925ddfa353da022a7a1dc80",
+      "seconds": 1.145,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_result_presentation.gd"
+      ],
+      "report_written": true,
+      "passed": 15,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_combat",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "522f3c7daa81539a1d8466ef069a66f4c4bdfb7a05afb157f04fc4db7e5139fd",
+      "seconds": 1.189,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat.gd"
+      ],
+      "report_written": true,
+      "passed": 34,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_combat_polish",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "be10e49db4aad723132048fa095ab2f37fd6fc544364aed1070ac7f54b246b78",
+      "seconds": 1.326,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat_polish.gd"
+      ],
+      "report_written": true,
+      "passed": 35,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_impact_staging",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "3ddae6a0d7148872454bcaaec2845dde1bda24534bc7e5110f162099d4f55315",
+      "seconds": 1.073,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_impact_staging.gd"
+      ],
+      "report_written": true,
+      "passed": 24,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_pressure_exchange",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "956c18b1616ff2fc289f10e39b30e9b76d1b32e178725f11327b43f44921d88e",
+      "seconds": 2.39,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_pressure_exchange.gd"
+      ],
+      "report_written": true,
+      "passed": 59,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_close_combat",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "6b1b1322f8b7f0323d26e97f8301fcbb59cf60d41c6de7048e121f8298f8d144",
+      "seconds": 1.025,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_close_combat.gd"
+      ],
+      "report_written": true,
+      "passed": 41,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_game_ui",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "e85f827a5f8e2fb0abd0c1140b3342fbe6d02100b9d0c96ad210c8c3fd7c4f6f",
+      "seconds": 1.598,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_game_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 35,
+      "failed": 0,
+      "skipped": [
+        {
+          "name": "residential billboard transform readback",
+          "reason": "Dummy renderer returns identity MultiMesh transforms; requires native GL verification"
+        }
+      ],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_combat_framing",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "319b1771d883ea42c4b0cfe99156abe745db3ace475b84b381cc85f1ac19a37e",
+      "seconds": 1.188,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat_framing.gd"
+      ],
+      "report_written": true,
+      "passed": 13,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

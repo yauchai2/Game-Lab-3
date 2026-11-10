@@ -1,0 +1,3641 @@
+{
+  "events": {
+    "air_counter_choice": 5,
+    "air_counter_end": 5,
+    "air_counter_release": 5,
+    "air_counter_start": 5,
+    "air_counter_windup": 5,
+    "air_escape": 1,
+    "air_land": 24,
+    "air_parry_attempt": 5,
+    "break_finish": 5,
+    "chase_arrive": 9,
+    "dash": 6,
+    "ground_bounce": 3,
+    "hit/air_counter": 3,
+    "hit/air_jab": 9,
+    "hit/air_kick": 9,
+    "hit/cross": 7,
+    "hit/jab": 7,
+    "hit/launcher": 9,
+    "hit/meteor": 4,
+    "hit/special": 6,
+    "homing_chase": 9,
+    "swing": 65,
+    "wall_bounce": 1,
+    "wall_tech": 4
+  },
+  "hits": [
+    24,
+    30
+  ],
+  "one_continuous_take": true,
+  "output_fps": 15,
+  "output_frames": 450,
+  "silent": true,
+  "simulation_ticks": 1675,
+  "timeline": [
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 0.0,
+      "simulation_tick": 1
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 0.0666666666666667,
+      "simulation_tick": 5
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 0.133333333333333,
+      "simulation_tick": 9
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 0.2,
+      "simulation_tick": 13
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 0.266666666666667,
+      "simulation_tick": 17
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 0.333333333333333,
+      "simulation_tick": 21
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 0.4,
+      "simulation_tick": 25
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 0.466666666666667,
+      "simulation_tick": 29
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 0.533333333333333,
+      "simulation_tick": 33
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 0.6,
+      "simulation_tick": 37
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 0.666666666666667,
+      "simulation_tick": 41
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 0.733333333333333,
+      "simulation_tick": 45
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "",
+      "roll_degrees": 1.55145463152336,
+      "seconds": 0.8,
+      "simulation_tick": 47
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 4.53091356140739,
+      "seconds": 0.866666666666667,
+      "simulation_tick": 47
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 7.14984501137711,
+      "seconds": 0.933333333333333,
+      "simulation_tick": 48
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": -5.85445566594141,
+      "seconds": 1.0,
+      "simulation_tick": 53
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": -6.69316703752583,
+      "seconds": 1.06666666666667,
+      "simulation_tick": 59
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": -6.99929910433357,
+      "seconds": 1.13333333333333,
+      "simulation_tick": 65
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 1.2,
+      "simulation_tick": 69
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 1.26666666666667,
+      "simulation_tick": 73
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 1.33333333333333,
+      "simulation_tick": 77
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 1.4,
+      "simulation_tick": 81
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 1.46666666666667,
+      "simulation_tick": 85
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 1.53333333333333,
+      "simulation_tick": 89
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 1.6,
+      "simulation_tick": 93
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 1.66666666666667,
+      "simulation_tick": 97
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 1.73333333333333,
+      "simulation_tick": 101
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 1.8,
+      "simulation_tick": 105
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 1.86666666666667,
+      "simulation_tick": 109
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 1.93333333333333,
+      "simulation_tick": 113
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.0,
+      "simulation_tick": 117
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.06666666666667,
+      "simulation_tick": 121
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.13333333333333,
+      "simulation_tick": 125
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.2,
+      "simulation_tick": 129
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.26666666666667,
+      "simulation_tick": 133
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.33333333333333,
+      "simulation_tick": 137
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.4,
+      "simulation_tick": 141
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.46666666666667,
+      "simulation_tick": 145
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.53333333333333,
+      "simulation_tick": 149
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.6,
+      "simulation_tick": 153
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.66666666666667,
+      "simulation_tick": 157
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.73333333333333,
+      "simulation_tick": 161
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.8,
+      "simulation_tick": 165
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.86666666666667,
+      "simulation_tick": 169
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 2.93333333333333,
+      "simulation_tick": 173
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 3.0,
+      "simulation_tick": 177
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 3.06666666666667,
+      "simulation_tick": 181
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 3.13333333333333,
+      "simulation_tick": 185
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 3.2,
+      "simulation_tick": 189
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 3.26666666666667,
+      "simulation_tick": 193
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 3.33333333333333,
+      "simulation_tick": 197
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 3.4,
+      "simulation_tick": 201
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 3.46666666666667,
+      "simulation_tick": 205
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 3.53333333333333,
+      "simulation_tick": 209
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 3.6,
+      "simulation_tick": 213
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "",
+      "roll_degrees": -0.777673225984046,
+      "seconds": 3.66666666666667,
+      "simulation_tick": 216
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": -3.81093862524129,
+      "seconds": 3.73333333333333,
+      "simulation_tick": 216
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": -6.54096480960856,
+      "seconds": 3.8,
+      "simulation_tick": 217
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 5.56851449209388,
+      "seconds": 3.86666666666667,
+      "simulation_tick": 220
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 6.53150627826856,
+      "seconds": 3.93333333333333,
+      "simulation_tick": 226
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 6.97478256719463,
+      "seconds": 4.0,
+      "simulation_tick": 232
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 4.06666666666667,
+      "simulation_tick": 237
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 4.13333333333333,
+      "simulation_tick": 241
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 4.2,
+      "simulation_tick": 245
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 4.26666666666667,
+      "simulation_tick": 249
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 4.33333333333333,
+      "simulation_tick": 253
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 4.4,
+      "simulation_tick": 257
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 4.46666666666667,
+      "simulation_tick": 261
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 4.53333333333333,
+      "simulation_tick": 265
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 4.6,
+      "simulation_tick": 269
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 4.66666666666667,
+      "simulation_tick": 273
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "impact",
+      "roll_degrees": 0.0,
+      "seconds": 4.73333333333333,
+      "simulation_tick": 277
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "impact",
+      "roll_degrees": -3.0718916664784,
+      "seconds": 4.8,
+      "simulation_tick": 277
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": -5.89935092624273,
+      "seconds": 4.86666666666667,
+      "simulation_tick": 277
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": -8.257395616901,
+      "seconds": 4.93333333333333,
+      "simulation_tick": 278
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": -9.95839361176379,
+      "seconds": 5.0,
+      "simulation_tick": 279
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 6.91536120207599,
+      "seconds": 5.06666666666667,
+      "simulation_tick": 282
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 6.94330307908369,
+      "seconds": 5.13333333333333,
+      "simulation_tick": 288
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 6.41876205318645,
+      "seconds": 5.2,
+      "simulation_tick": 294
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 5.38347612974177,
+      "seconds": 5.26666666666667,
+      "simulation_tick": 300
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 3.91982336655552,
+      "seconds": 5.33333333333333,
+      "simulation_tick": 306
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 5.4,
+      "simulation_tick": 310
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 5.46666666666667,
+      "simulation_tick": 314
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 5.53333333333333,
+      "simulation_tick": 318
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 5.6,
+      "simulation_tick": 322
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 5.66666666666667,
+      "simulation_tick": 326
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 5.73333333333333,
+      "simulation_tick": 330
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 5.8,
+      "simulation_tick": 334
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 5.86666666666667,
+      "simulation_tick": 338
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 5.93333333333333,
+      "simulation_tick": 342
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 6.0,
+      "simulation_tick": 346
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 6.06666666666667,
+      "simulation_tick": 350
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 6.13333333333333,
+      "simulation_tick": 354
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": -3.0718916664784,
+      "seconds": 6.2,
+      "simulation_tick": 354
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": -5.89935092624273,
+      "seconds": 6.26666666666667,
+      "simulation_tick": 355
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 5.2547061464327,
+      "seconds": 6.33333333333333,
+      "simulation_tick": 357
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 6.3371596487382,
+      "seconds": 6.4,
+      "simulation_tick": 363
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 6.91536120207599,
+      "seconds": 6.46666666666667,
+      "simulation_tick": 369
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 6.53333333333333,
+      "simulation_tick": 374
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 6.6,
+      "simulation_tick": 378
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 6.66666666666667,
+      "simulation_tick": 382
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 6.73333333333333,
+      "simulation_tick": 386
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 6.8,
+      "simulation_tick": 390
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 6.86666666666667,
+      "simulation_tick": 394
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 6.93333333333333,
+      "simulation_tick": 398
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.0,
+      "simulation_tick": 402
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.06666666666667,
+      "simulation_tick": 406
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.13333333333333,
+      "simulation_tick": 410
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.2,
+      "simulation_tick": 414
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.26666666666667,
+      "simulation_tick": 418
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.33333333333333,
+      "simulation_tick": 422
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.4,
+      "simulation_tick": 426
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.46666666666667,
+      "simulation_tick": 430
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.53333333333333,
+      "simulation_tick": 434
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.6,
+      "simulation_tick": 438
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.66666666666667,
+      "simulation_tick": 442
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.73333333333333,
+      "simulation_tick": 446
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.8,
+      "simulation_tick": 450
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.86666666666667,
+      "simulation_tick": 454
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 7.93333333333333,
+      "simulation_tick": 458
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "",
+      "roll_degrees": 2.31747187288451,
+      "seconds": 8.0,
+      "simulation_tick": 459
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 5.22821440396316,
+      "seconds": 8.06666666666667,
+      "simulation_tick": 459
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 7.7229444134049,
+      "seconds": 8.13333333333333,
+      "simulation_tick": 460
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 9.60315547303142,
+      "seconds": 8.2,
+      "simulation_tick": 460
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "",
+      "roll_degrees": -6.82133254909336,
+      "seconds": 8.26666666666667,
+      "simulation_tick": 463
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "",
+      "roll_degrees": -6.98878829697456,
+      "seconds": 8.33333333333333,
+      "simulation_tick": 469
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "",
+      "roll_degrees": -6.60014199546437,
+      "seconds": 8.4,
+      "simulation_tick": 475
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "",
+      "roll_degrees": -5.68631817980368,
+      "seconds": 8.46666666666667,
+      "simulation_tick": 481
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "skill",
+      "roll_degrees": -4.3200306170096,
+      "seconds": 8.53333333333333,
+      "simulation_tick": 487
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "skill",
+      "roll_degrees": 0.0,
+      "seconds": 8.6,
+      "simulation_tick": 491
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "skill",
+      "roll_degrees": 0.0,
+      "seconds": 8.66666666666667,
+      "simulation_tick": 495
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "skill",
+      "roll_degrees": -0.777673225984046,
+      "seconds": 8.73333333333333,
+      "simulation_tick": 498
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "skill",
+      "roll_degrees": -3.81093862524129,
+      "seconds": 8.8,
+      "simulation_tick": 498
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "skill",
+      "roll_degrees": -6.54096480960856,
+      "seconds": 8.86666666666667,
+      "simulation_tick": 498
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "skill",
+      "roll_degrees": -8.75052246837122,
+      "seconds": 8.93333333333333,
+      "simulation_tick": 498
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "skill",
+      "roll_degrees": -10.2637961289908,
+      "seconds": 9.0,
+      "simulation_tick": 499
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "skill",
+      "roll_degrees": -10.9603721177209,
+      "seconds": 9.06666666666667,
+      "simulation_tick": 500
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "skill",
+      "roll_degrees": -10.7848251569942,
+      "seconds": 9.13333333333333,
+      "simulation_tick": 501
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "break",
+      "roll_degrees": 1.55145463152336,
+      "seconds": 9.2,
+      "simulation_tick": 504
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "break",
+      "roll_degrees": 4.53091356140739,
+      "seconds": 9.26666666666667,
+      "simulation_tick": 504
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "break",
+      "roll_degrees": 7.14984501137711,
+      "seconds": 9.33333333333333,
+      "simulation_tick": 504
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": 9.19985926952521,
+      "seconds": 9.4,
+      "simulation_tick": 504
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": 10.517833916112,
+      "seconds": 9.46666666666667,
+      "simulation_tick": 505
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": 10.998898653508,
+      "seconds": 9.53333333333333,
+      "simulation_tick": 506
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": -6.74849242357658,
+      "seconds": 9.6,
+      "simulation_tick": 509
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": -5.96070395423601,
+      "seconds": 9.66666666666667,
+      "simulation_tick": 517
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": -4.69861861119329,
+      "seconds": 9.73333333333333,
+      "simulation_tick": 525
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": -3.06266109270195,
+      "seconds": 9.8,
+      "simulation_tick": 533
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": -1.18300573299743,
+      "seconds": 9.86666666666667,
+      "simulation_tick": 541
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": -0.000000000000000857252717773674,
+      "seconds": 9.93333333333333,
+      "simulation_tick": 549
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 10.0,
+      "simulation_tick": 553
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 10.0666666666667,
+      "simulation_tick": 557
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 10.1333333333333,
+      "simulation_tick": 561
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 10.2,
+      "simulation_tick": 565
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 10.2666666666667,
+      "simulation_tick": 569
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 10.3333333333333,
+      "simulation_tick": 573
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 10.4,
+      "simulation_tick": 577
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 10.4666666666667,
+      "simulation_tick": 581
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 10.5333333333333,
+      "simulation_tick": 585
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 10.6,
+      "simulation_tick": 589
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 10.6666666666667,
+      "simulation_tick": 593
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 10.7333333333333,
+      "simulation_tick": 597
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 10.8,
+      "simulation_tick": 601
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 10.8666666666667,
+      "simulation_tick": 605
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 10.9333333333333,
+      "simulation_tick": 609
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 11.0,
+      "simulation_tick": 613
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 11.0666666666667,
+      "simulation_tick": 617
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": -3.0718916664784,
+      "seconds": 11.1333333333333,
+      "simulation_tick": 617
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": -5.89935092624273,
+      "seconds": 11.2,
+      "simulation_tick": 618
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 5.2547061464327,
+      "seconds": 11.2666666666667,
+      "simulation_tick": 620
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 6.3371596487382,
+      "seconds": 11.3333333333333,
+      "simulation_tick": 626
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 6.91536120207599,
+      "seconds": 11.4,
+      "simulation_tick": 632
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 11.4666666666667,
+      "simulation_tick": 637
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 11.5333333333333,
+      "simulation_tick": 641
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 11.6,
+      "simulation_tick": 645
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 11.6666666666667,
+      "simulation_tick": 649
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 11.7333333333333,
+      "simulation_tick": 653
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 11.8,
+      "simulation_tick": 657
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 11.8666666666667,
+      "simulation_tick": 661
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 11.9333333333333,
+      "simulation_tick": 665
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 12.0,
+      "simulation_tick": 669
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 12.0666666666667,
+      "simulation_tick": 673
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 12.1333333333333,
+      "simulation_tick": 677
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "impact",
+      "roll_degrees": -2.31747187288451,
+      "seconds": 12.2,
+      "simulation_tick": 678
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": -5.22821440396316,
+      "seconds": 12.2666666666667,
+      "simulation_tick": 678
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": -7.7229444134049,
+      "seconds": 12.3333333333333,
+      "simulation_tick": 679
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": -9.60315547303142,
+      "seconds": 12.4,
+      "simulation_tick": 679
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 6.82133254909336,
+      "seconds": 12.4666666666667,
+      "simulation_tick": 682
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 6.98878829697456,
+      "seconds": 12.5333333333333,
+      "simulation_tick": 688
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 6.60014199546437,
+      "seconds": 12.6,
+      "simulation_tick": 694
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 5.68631817980368,
+      "seconds": 12.6666666666667,
+      "simulation_tick": 700
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 4.3200306170096,
+      "seconds": 12.7333333333333,
+      "simulation_tick": 706
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 12.8,
+      "simulation_tick": 710
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 12.8666666666667,
+      "simulation_tick": 714
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 12.9333333333333,
+      "simulation_tick": 718
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 13.0,
+      "simulation_tick": 722
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 13.0666666666667,
+      "simulation_tick": 726
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 13.1333333333333,
+      "simulation_tick": 730
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 13.2,
+      "simulation_tick": 734
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 13.2666666666667,
+      "simulation_tick": 738
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 13.3333333333333,
+      "simulation_tick": 742
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 13.4,
+      "simulation_tick": 746
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 13.4666666666667,
+      "simulation_tick": 750
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 13.5333333333333,
+      "simulation_tick": 754
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "",
+      "roll_degrees": -2.31747187288451,
+      "seconds": 13.6,
+      "simulation_tick": 755
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": -5.22821440396316,
+      "seconds": 13.6666666666667,
+      "simulation_tick": 755
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": -7.7229444134049,
+      "seconds": 13.7333333333333,
+      "simulation_tick": 756
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 6.11109874334417,
+      "seconds": 13.8,
+      "simulation_tick": 762
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 6.82133254909336,
+      "seconds": 13.8666666666667,
+      "simulation_tick": 768
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 6.98878829697456,
+      "seconds": 13.9333333333333,
+      "simulation_tick": 774
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.0,
+      "simulation_tick": 778
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.0666666666667,
+      "simulation_tick": 782
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.1333333333333,
+      "simulation_tick": 786
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.2,
+      "simulation_tick": 790
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.2666666666667,
+      "simulation_tick": 794
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.3333333333333,
+      "simulation_tick": 798
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.4,
+      "simulation_tick": 802
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.4666666666667,
+      "simulation_tick": 806
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.5333333333333,
+      "simulation_tick": 810
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.6,
+      "simulation_tick": 814
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.6666666666667,
+      "simulation_tick": 818
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.7333333333333,
+      "simulation_tick": 822
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.8,
+      "simulation_tick": 826
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.8666666666667,
+      "simulation_tick": 830
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 14.9333333333333,
+      "simulation_tick": 834
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 15.0,
+      "simulation_tick": 838
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 15.0666666666667,
+      "simulation_tick": 842
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 15.1333333333333,
+      "simulation_tick": 846
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 15.2,
+      "simulation_tick": 850
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 15.2666666666667,
+      "simulation_tick": 854
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 15.3333333333333,
+      "simulation_tick": 858
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "",
+      "roll_degrees": 1.55145463152336,
+      "seconds": 15.4,
+      "simulation_tick": 860
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "",
+      "roll_degrees": 4.53091356140739,
+      "seconds": 15.4666666666667,
+      "simulation_tick": 860
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 7.14984501137711,
+      "seconds": 15.5333333333333,
+      "simulation_tick": 860
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 9.19985926952521,
+      "seconds": 15.6,
+      "simulation_tick": 861
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 10.517833916112,
+      "seconds": 15.6666666666667,
+      "simulation_tick": 862
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "",
+      "roll_degrees": -6.99929910433357,
+      "seconds": 15.7333333333333,
+      "simulation_tick": 868
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "",
+      "roll_degrees": -6.74849242357658,
+      "seconds": 15.8,
+      "simulation_tick": 874
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "",
+      "roll_degrees": -5.96070395423601,
+      "seconds": 15.8666666666667,
+      "simulation_tick": 880
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "",
+      "roll_degrees": -4.69861861119329,
+      "seconds": 15.9333333333333,
+      "simulation_tick": 886
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "skill",
+      "roll_degrees": 0.0,
+      "seconds": 16.0,
+      "simulation_tick": 891
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "skill",
+      "roll_degrees": 0.0,
+      "seconds": 16.0666666666667,
+      "simulation_tick": 895
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "skill",
+      "roll_degrees": 0.0,
+      "seconds": 16.1333333333333,
+      "simulation_tick": 899
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "skill",
+      "roll_degrees": -3.0718916664784,
+      "seconds": 16.2,
+      "simulation_tick": 899
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "skill",
+      "roll_degrees": -5.89935092624273,
+      "seconds": 16.2666666666667,
+      "simulation_tick": 899
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "skill",
+      "roll_degrees": -8.257395616901,
+      "seconds": 16.3333333333333,
+      "simulation_tick": 899
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "skill",
+      "roll_degrees": -9.95839361176379,
+      "seconds": 16.4,
+      "simulation_tick": 900
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "skill",
+      "roll_degrees": -10.866995747804,
+      "seconds": 16.4666666666667,
+      "simulation_tick": 901
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "skill",
+      "roll_degrees": -10.9109044726571,
+      "seconds": 16.5333333333333,
+      "simulation_tick": 902
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "impact",
+      "roll_degrees": 0.777673225984046,
+      "seconds": 16.6,
+      "simulation_tick": 905
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "impact",
+      "roll_degrees": 3.81093862524129,
+      "seconds": 16.6666666666667,
+      "simulation_tick": 905
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": 6.54096480960856,
+      "seconds": 16.7333333333333,
+      "simulation_tick": 905
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": 8.75052246837122,
+      "seconds": 16.8,
+      "simulation_tick": 906
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": 10.2637961289908,
+      "seconds": 16.8666666666667,
+      "simulation_tick": 907
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": -6.97478256719463,
+      "seconds": 16.9333333333333,
+      "simulation_tick": 912
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": -6.86307055445084,
+      "seconds": 17.0,
+      "simulation_tick": 918
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": -6.20525973124196,
+      "seconds": 17.0666666666667,
+      "simulation_tick": 924
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": -5.05369282538558,
+      "seconds": 17.1333333333333,
+      "simulation_tick": 930
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "impact",
+      "roll_degrees": 0.0,
+      "seconds": 17.2,
+      "simulation_tick": 935
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "break",
+      "roll_degrees": -1.55145463152336,
+      "seconds": 17.2666666666667,
+      "simulation_tick": 937
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "break",
+      "roll_degrees": -4.53091356140739,
+      "seconds": 17.3333333333333,
+      "simulation_tick": 937
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "break",
+      "roll_degrees": -7.14984501137711,
+      "seconds": 17.4,
+      "simulation_tick": 937
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": -9.19985926952521,
+      "seconds": 17.4666666666667,
+      "simulation_tick": 937
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": -10.517833916112,
+      "seconds": 17.5333333333333,
+      "simulation_tick": 938
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": -10.998898653508,
+      "seconds": 17.6,
+      "simulation_tick": 939
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": 6.74849242357658,
+      "seconds": 17.6666666666667,
+      "simulation_tick": 942
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": 5.96070395423601,
+      "seconds": 17.7333333333333,
+      "simulation_tick": 950
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": 4.69861861119329,
+      "seconds": 17.8,
+      "simulation_tick": 958
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": 3.06266109270195,
+      "seconds": 17.8666666666667,
+      "simulation_tick": 966
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": 1.18300573299743,
+      "seconds": 17.9333333333333,
+      "simulation_tick": 974
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": 0.000000000000000857252717773674,
+      "seconds": 18.0,
+      "simulation_tick": 982
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 18.0666666666667,
+      "simulation_tick": 986
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 18.1333333333333,
+      "simulation_tick": 990
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 18.2,
+      "simulation_tick": 994
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 18.2666666666667,
+      "simulation_tick": 998
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 18.3333333333333,
+      "simulation_tick": 1002
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 18.4,
+      "simulation_tick": 1006
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 18.4666666666667,
+      "simulation_tick": 1010
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 18.5333333333333,
+      "simulation_tick": 1014
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 18.6,
+      "simulation_tick": 1018
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 18.6666666666667,
+      "simulation_tick": 1022
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 18.7333333333333,
+      "simulation_tick": 1026
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 18.8,
+      "simulation_tick": 1030
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "",
+      "roll_degrees": -1.55145463152336,
+      "seconds": 18.8666666666667,
+      "simulation_tick": 1032
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": -4.53091356140739,
+      "seconds": 18.9333333333333,
+      "simulation_tick": 1032
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": -7.14984501137711,
+      "seconds": 19.0,
+      "simulation_tick": 1033
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 5.85445566594141,
+      "seconds": 19.0666666666667,
+      "simulation_tick": 1038
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 6.69316703752583,
+      "seconds": 19.1333333333333,
+      "simulation_tick": 1044
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": 6.99929910433357,
+      "seconds": 19.2,
+      "simulation_tick": 1050
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 19.2666666666667,
+      "simulation_tick": 1054
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 19.3333333333333,
+      "simulation_tick": 1058
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 19.4,
+      "simulation_tick": 1062
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 19.4666666666667,
+      "simulation_tick": 1066
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 19.5333333333333,
+      "simulation_tick": 1070
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 19.6,
+      "simulation_tick": 1074
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 19.6666666666667,
+      "simulation_tick": 1078
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 19.7333333333333,
+      "simulation_tick": 1082
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 19.8,
+      "simulation_tick": 1086
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 19.8666666666667,
+      "simulation_tick": 1090
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "impact",
+      "roll_degrees": -0.777673225984046,
+      "seconds": 19.9333333333333,
+      "simulation_tick": 1093
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "impact",
+      "roll_degrees": -3.81093862524129,
+      "seconds": 20.0,
+      "simulation_tick": 1093
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": -6.54096480960856,
+      "seconds": 20.0666666666667,
+      "simulation_tick": 1093
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": -8.75052246837122,
+      "seconds": 20.1333333333333,
+      "simulation_tick": 1094
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": -10.2637961289908,
+      "seconds": 20.2,
+      "simulation_tick": 1095
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 6.97478256719463,
+      "seconds": 20.2666666666667,
+      "simulation_tick": 1100
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 6.86307055445084,
+      "seconds": 20.3333333333333,
+      "simulation_tick": 1106
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 6.20525973124196,
+      "seconds": 20.4,
+      "simulation_tick": 1112
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": 5.05369282538558,
+      "seconds": 20.4666666666667,
+      "simulation_tick": 1118
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "impact",
+      "roll_degrees": 0.0,
+      "seconds": 20.5333333333333,
+      "simulation_tick": 1123
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 20.6,
+      "simulation_tick": 1127
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 20.6666666666667,
+      "simulation_tick": 1131
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 20.7333333333333,
+      "simulation_tick": 1135
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 2.31747187288451,
+      "seconds": 20.8,
+      "simulation_tick": 1136
+    },
+    {
+      "phase": "release",
+      "rate": 1.8,
+      "red": "",
+      "roll_degrees": -3.32704554919868,
+      "seconds": 20.8666666666667,
+      "simulation_tick": 1142
+    },
+    {
+      "phase": "release",
+      "rate": 1.8,
+      "red": "",
+      "roll_degrees": -4.91460114558014,
+      "seconds": 20.9333333333333,
+      "simulation_tick": 1148
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 21.0,
+      "simulation_tick": 1153
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 21.0666666666667,
+      "simulation_tick": 1157
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 21.1333333333333,
+      "simulation_tick": 1161
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 21.2,
+      "simulation_tick": 1165
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 21.2666666666667,
+      "simulation_tick": 1169
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 21.3333333333333,
+      "simulation_tick": 1173
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 21.4,
+      "simulation_tick": 1177
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 21.4666666666667,
+      "simulation_tick": 1181
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 21.5333333333333,
+      "simulation_tick": 1185
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "break",
+      "roll_degrees": 1.55145463152336,
+      "seconds": 21.6,
+      "simulation_tick": 1187
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "break",
+      "roll_degrees": 4.53091356140739,
+      "seconds": 21.6666666666667,
+      "simulation_tick": 1187
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "break",
+      "roll_degrees": 7.14984501137711,
+      "seconds": 21.7333333333333,
+      "simulation_tick": 1187
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": 9.19985926952521,
+      "seconds": 21.8,
+      "simulation_tick": 1187
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": 10.517833916112,
+      "seconds": 21.8666666666667,
+      "simulation_tick": 1188
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": 10.998898653508,
+      "seconds": 21.9333333333333,
+      "simulation_tick": 1189
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": -6.74849242357658,
+      "seconds": 22.0,
+      "simulation_tick": 1192
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": -5.96070395423601,
+      "seconds": 22.0666666666667,
+      "simulation_tick": 1200
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": -4.69861861119329,
+      "seconds": 22.1333333333333,
+      "simulation_tick": 1208
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": -3.06266109270195,
+      "seconds": 22.2,
+      "simulation_tick": 1216
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": -1.18300573299743,
+      "seconds": 22.2666666666667,
+      "simulation_tick": 1224
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": -0.000000000000000857252717773674,
+      "seconds": 22.3333333333333,
+      "simulation_tick": 1232
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 22.4,
+      "simulation_tick": 1236
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 22.4666666666667,
+      "simulation_tick": 1240
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 22.5333333333333,
+      "simulation_tick": 1244
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 22.6,
+      "simulation_tick": 1248
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 22.6666666666667,
+      "simulation_tick": 1252
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 22.7333333333333,
+      "simulation_tick": 1256
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 22.8,
+      "simulation_tick": 1260
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 22.8666666666667,
+      "simulation_tick": 1264
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 3.0718916664784,
+      "seconds": 22.9333333333333,
+      "simulation_tick": 1264
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 5.89935092624273,
+      "seconds": 23.0,
+      "simulation_tick": 1265
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": -5.2547061464327,
+      "seconds": 23.0666666666667,
+      "simulation_tick": 1267
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": -6.3371596487382,
+      "seconds": 23.1333333333333,
+      "simulation_tick": 1273
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": -6.91536120207599,
+      "seconds": 23.2,
+      "simulation_tick": 1279
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 23.2666666666667,
+      "simulation_tick": 1284
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 23.3333333333333,
+      "simulation_tick": 1288
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 23.4,
+      "simulation_tick": 1292
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 23.4666666666667,
+      "simulation_tick": 1296
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 23.5333333333333,
+      "simulation_tick": 1300
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 23.6,
+      "simulation_tick": 1304
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 23.6666666666667,
+      "simulation_tick": 1308
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 23.7333333333333,
+      "simulation_tick": 1312
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 23.8,
+      "simulation_tick": 1316
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 23.8666666666667,
+      "simulation_tick": 1320
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 23.9333333333333,
+      "simulation_tick": 1324
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 24.0,
+      "simulation_tick": 1328
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 24.0666666666667,
+      "simulation_tick": 1332
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 24.1333333333333,
+      "simulation_tick": 1336
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 24.2,
+      "simulation_tick": 1340
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 24.2666666666667,
+      "simulation_tick": 1344
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 24.3333333333333,
+      "simulation_tick": 1348
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 24.4,
+      "simulation_tick": 1352
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 24.4666666666667,
+      "simulation_tick": 1356
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 24.5333333333333,
+      "simulation_tick": 1360
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 24.6,
+      "simulation_tick": 1364
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 24.6666666666667,
+      "simulation_tick": 1368
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "break",
+      "roll_degrees": -2.31747187288451,
+      "seconds": 24.7333333333333,
+      "simulation_tick": 1369
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "break",
+      "roll_degrees": -5.22821440396316,
+      "seconds": 24.8,
+      "simulation_tick": 1369
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": -7.7229444134049,
+      "seconds": 24.8666666666667,
+      "simulation_tick": 1369
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": -9.60315547303142,
+      "seconds": 24.9333333333333,
+      "simulation_tick": 1370
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": -10.7192365579418,
+      "seconds": 25.0,
+      "simulation_tick": 1370
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "break",
+      "roll_degrees": -10.9823815485476,
+      "seconds": 25.0666666666667,
+      "simulation_tick": 1371
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": 6.60014199546437,
+      "seconds": 25.1333333333333,
+      "simulation_tick": 1376
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": 5.68631817980368,
+      "seconds": 25.2,
+      "simulation_tick": 1384
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": 4.3200306170096,
+      "seconds": 25.2666666666667,
+      "simulation_tick": 1392
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": 2.60999542810123,
+      "seconds": 25.3333333333333,
+      "simulation_tick": 1400
+    },
+    {
+      "phase": "release",
+      "rate": 2.0,
+      "red": "break",
+      "roll_degrees": 0.692281080402635,
+      "seconds": 25.4,
+      "simulation_tick": 1408
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 25.4666666666667,
+      "simulation_tick": 1415
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 25.5333333333333,
+      "simulation_tick": 1419
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 25.6,
+      "simulation_tick": 1423
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 25.6666666666667,
+      "simulation_tick": 1427
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "break",
+      "roll_degrees": 0.0,
+      "seconds": 25.7333333333333,
+      "simulation_tick": 1431
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 25.8,
+      "simulation_tick": 1435
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 25.8666666666667,
+      "simulation_tick": 1439
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 25.9333333333333,
+      "simulation_tick": 1443
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "impact",
+      "roll_degrees": 0.777673225984046,
+      "seconds": 26.0,
+      "simulation_tick": 1446
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "impact",
+      "roll_degrees": 3.81093862524129,
+      "seconds": 26.0666666666667,
+      "simulation_tick": 1446
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": 6.54096480960856,
+      "seconds": 26.1333333333333,
+      "simulation_tick": 1446
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": 8.75052246837122,
+      "seconds": 26.2,
+      "simulation_tick": 1447
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "impact",
+      "roll_degrees": 10.2637961289908,
+      "seconds": 26.2666666666667,
+      "simulation_tick": 1448
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": -6.97478256719463,
+      "seconds": 26.3333333333333,
+      "simulation_tick": 1453
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": -6.86307055445084,
+      "seconds": 26.4,
+      "simulation_tick": 1459
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": -6.20525973124196,
+      "seconds": 26.4666666666667,
+      "simulation_tick": 1465
+    },
+    {
+      "phase": "release",
+      "rate": 1.85,
+      "red": "impact",
+      "roll_degrees": -5.05369282538558,
+      "seconds": 26.5333333333333,
+      "simulation_tick": 1471
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "impact",
+      "roll_degrees": 0.0,
+      "seconds": 26.6,
+      "simulation_tick": 1476
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 26.6666666666667,
+      "simulation_tick": 1480
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 26.7333333333333,
+      "simulation_tick": 1484
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 26.8,
+      "simulation_tick": 1488
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 26.8666666666667,
+      "simulation_tick": 1492
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 26.9333333333333,
+      "simulation_tick": 1496
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.0,
+      "simulation_tick": 1500
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.0666666666667,
+      "simulation_tick": 1504
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.1333333333333,
+      "simulation_tick": 1508
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.2,
+      "simulation_tick": 1512
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.2666666666667,
+      "simulation_tick": 1516
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.3333333333333,
+      "simulation_tick": 1520
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.4,
+      "simulation_tick": 1524
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.4666666666667,
+      "simulation_tick": 1528
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.5333333333333,
+      "simulation_tick": 1532
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.6,
+      "simulation_tick": 1536
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.6666666666667,
+      "simulation_tick": 1540
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.7333333333333,
+      "simulation_tick": 1544
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.8,
+      "simulation_tick": 1548
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.8666666666667,
+      "simulation_tick": 1552
+    },
+    {
+      "phase": "hold",
+      "rate": 0.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 27.9333333333333,
+      "simulation_tick": 1556
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 3.0718916664784,
+      "seconds": 28.0,
+      "simulation_tick": 1556
+    },
+    {
+      "phase": "slow",
+      "rate": 0.22,
+      "red": "",
+      "roll_degrees": 5.89935092624273,
+      "seconds": 28.0666666666667,
+      "simulation_tick": 1557
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": -5.2547061464327,
+      "seconds": 28.1333333333333,
+      "simulation_tick": 1559
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": -6.3371596487382,
+      "seconds": 28.2,
+      "simulation_tick": 1565
+    },
+    {
+      "phase": "release",
+      "rate": 1.65,
+      "red": "",
+      "roll_degrees": -6.91536120207599,
+      "seconds": 28.2666666666667,
+      "simulation_tick": 1571
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 28.3333333333333,
+      "simulation_tick": 1576
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 28.4,
+      "simulation_tick": 1580
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 28.4666666666667,
+      "simulation_tick": 1584
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 28.5333333333333,
+      "simulation_tick": 1588
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 28.6,
+      "simulation_tick": 1592
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 28.6666666666667,
+      "simulation_tick": 1596
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 28.7333333333333,
+      "simulation_tick": 1600
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 28.8,
+      "simulation_tick": 1604
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 28.8666666666667,
+      "simulation_tick": 1608
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 28.9333333333333,
+      "simulation_tick": 1612
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.0,
+      "simulation_tick": 1616
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.0666666666667,
+      "simulation_tick": 1620
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.1333333333333,
+      "simulation_tick": 1624
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.2,
+      "simulation_tick": 1628
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.2666666666667,
+      "simulation_tick": 1632
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.3333333333333,
+      "simulation_tick": 1636
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.4,
+      "simulation_tick": 1640
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.4666666666667,
+      "simulation_tick": 1644
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.5333333333333,
+      "simulation_tick": 1648
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.6,
+      "simulation_tick": 1652
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.6666666666667,
+      "simulation_tick": 1656
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.7333333333333,
+      "simulation_tick": 1660
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.8,
+      "simulation_tick": 1664
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.8666666666667,
+      "simulation_tick": 1668
+    },
+    {
+      "phase": "flow",
+      "rate": 1.0,
+      "red": "",
+      "roll_degrees": 0.0,
+      "seconds": 29.9333333333333,
+      "simulation_tick": 1672
+    }
+  ],
+  "wall_seconds": 30,
+  "wall_steps": 1800
+}

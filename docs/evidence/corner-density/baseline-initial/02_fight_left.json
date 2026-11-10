@@ -1,0 +1,9 @@
+{
+  "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "camera_transform": "[X: (0.995953, 0.0, 0.089874), Y: (-0.004985, 0.99846, 0.055246), Z: (-0.089736, -0.05547, 0.99442), O: (-5.213123, 1.7, 16.44538)]",
+  "draw_calls": 954,
+  "fov": 48.0,
+  "image_error": 0,
+  "primitives": 116546,
+  "shot": "02_fight_left"
+}

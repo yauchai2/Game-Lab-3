@@ -1,0 +1,44 @@
+Input #0, ogg, from 'godot/audio/wev/family_ties_game.ogg':
+  Duration: 00:03:45.75, start: 0.000000, bitrate: 143 kb/s
+  Stream #0:0: Video: theora, yuv444p, 700x700 [SAR 1:1 DAR 1:1], 90k tbr, 90k tbn
+      Metadata:
+        encoder         : Lavc61.19.101 libtheora
+        artist          : wev
+        title           : family ties (wev edit)
+  Stream #0:1: Audio: vorbis, 44100 Hz, stereo, fltp, 160 kb/s
+      Metadata:
+        encoder         : Lavc61.19.101 libvorbis
+        artist          : wev
+        title           : family ties (wev edit)
+Stream mapping:
+  Stream #0:0 -> #0:0 (theora (native) -> wrapped_avframe (native))
+  Stream #0:1 -> #0:1 (vorbis (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    encoder         : Lavf61.7.103
+  Stream #0:0: Video: wrapped_avframe, yuv444p(progressive), 700x700 [SAR 1:1 DAR 1:1], q=2-31, 200 kb/s, 90k fps, 90k tbn
+      Metadata:
+        title           : family ties (wev edit)
+        artist          : wev
+        encoder         : Lavc61.19.101 wrapped_avframe
+  Stream #0:1: Audio: pcm_s16le, 192000 Hz, stereo, s16, 6144 kb/s
+      Metadata:
+        title           : family ties (wev edit)
+        artist          : wev
+        encoder         : Lavc61.19.101 pcm_s16le
+[Parsed_loudnorm_0 @ 0x7fb344002080]
+{
+	"input_i" : "-18.02",
+	"input_tp" : "-10.01",
+	"input_lra" : "3.90",
+	"input_thresh" : "-28.14",
+	"output_i" : "-17.17",
+	"output_tp" : "-5.76",
+	"output_lra" : "3.60",
+	"output_thresh" : "-27.24",
+	"normalization_type" : "dynamic",
+	"target_offset" : "-0.83"
+}
+[out#0/null @ 0x55893e4a8c80] video:0KiB audio:169314KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.2 q=-0.0 Lsize=N/A time=00:00:00.00 bitrate=N/A speed=1.84e-06x

@@ -1,0 +1,88 @@
+{
+  "capture_frames": 7680,
+  "capture_peak": 0.297277808189392,
+  "checks": [
+    {
+      "name": "wev game derivative loads and loops",
+      "passed": true
+    },
+    {
+      "name": "full official track retained",
+      "passed": true
+    },
+    {
+      "name": "credit names actual artist and track",
+      "passed": true
+    },
+    {
+      "name": "missing optional track uses retained CC0 fallback",
+      "passed": true
+    },
+    {
+      "name": "loading music never alters source import loop flag",
+      "passed": true
+    },
+    {
+      "name": "source loop flag is isolated from playback copy",
+      "passed": true
+    },
+    {
+      "name": "title starts native playback",
+      "passed": true
+    },
+    {
+      "name": "title to fight retains one playback head",
+      "passed": true
+    },
+    {
+      "name": "heavy contact ducks music without stopping it",
+      "passed": true
+    },
+    {
+      "name": "duck recovers after bounded interval",
+      "passed": true
+    },
+    {
+      "name": "pause preserves playhead",
+      "passed": true
+    },
+    {
+      "name": "resume keeps same player",
+      "passed": true
+    },
+    {
+      "name": "independent music mute retains effect setting",
+      "passed": true
+    },
+    {
+      "name": "music volume zero pauses playback",
+      "passed": true
+    },
+    {
+      "name": "restoring volume resumes",
+      "passed": true
+    },
+    {
+      "name": "master mute pauses music",
+      "passed": true
+    },
+    {
+      "name": "twenty navigation cycles never stack players",
+      "passed": true
+    },
+    {
+      "name": "effect voices stay bounded and original effects retained",
+      "passed": true
+    },
+    {
+      "name": "full-song endpoint wraps on the existing player",
+      "passed": true
+    },
+    {
+      "name": "captured output if available stays below clipping",
+      "passed": true
+    }
+  ],
+  "passed": 20,
+  "scope": "Godot runtime playback/control checks; Dummy audio is not a human listening or hardware mix acceptance."
+}

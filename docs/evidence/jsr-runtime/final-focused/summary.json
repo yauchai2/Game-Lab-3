@@ -1,0 +1,88 @@
+{
+  "created_utc": "20261109T150809Z",
+  "source_commit": "59125e5ff33c2cca998647a5fc07f64b87174f3d",
+  "tracked_runtime_changes": [
+    "godot/assets/animations/quaternius_combat.json",
+    "godot/assets/fonts/AfterhoursUIHK.otf",
+    "godot/scripts/combat/aerial_poses.gd",
+    "godot/scripts/combat/combat_motions.gd",
+    "godot/scripts/combat/fight_audio.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_preferences.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/fight_spectacle.gd",
+    "godot/scripts/combat/fight_vfx.gd",
+    "godot/scripts/combat/fighter_roster.gd",
+    "godot/scripts/combat/fighter_visual.gd",
+    "godot/scripts/combat/rush_agent.gd",
+    "godot/scripts/combat/ui/ui_text.gd",
+    "godot/scripts/combat/ui/ui_theme.gd",
+    "godot/scripts/corner_streetscape.gd",
+    "godot/scripts/style_sample.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": false,
+  "passed": 49,
+  "failed": 1,
+  "cases": [
+    {
+      "name": "verify_fighter_roster",
+      "mode": "native",
+      "exit_code": 1,
+      "harness_sha256": "50ea1c9ef347c7df21c5fd1fe32b3103cdaac603db066503a6dcd255c256178c",
+      "seconds": 17.11,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_fighter_roster.gd"
+      ],
+      "report_written": true,
+      "passed": 29,
+      "failed": 1,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "ERROR: ROSTER FAIL: all three new models play a real air chain through KO"
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_music_audio",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "f12c68edffba2e34ad3f4731bd349c1bfb4b14b37ca429066472ca8c618e5254",
+      "seconds": 4.119,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_music_audio.gd"
+      ],
+      "report_written": true,
+      "passed": 20,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

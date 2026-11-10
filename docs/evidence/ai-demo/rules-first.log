@@ -1,0 +1,63 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: DEMO FAIL: two complete showcase cycles finish
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_demo.gd:8)
+       [1] run (res://tools/verify_demo.gd:37)
+ERROR: DEMO FAIL: all chapters run in both role orientations
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_demo.gd:8)
+       [1] run (res://tools/verify_demo.gd:38)
+ERROR: DEMO FAIL: real event coverage hit/meteor
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_demo.gd:8)
+       [1] run (res://tools/verify_demo.gd:43)
+ERROR: DEMO FAIL: real event coverage hit/air_counter
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_demo.gd:8)
+       [1] run (res://tools/verify_demo.gd:43)
+ERROR: DEMO FAIL: real event coverage hit/grab
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_demo.gd:8)
+       [1] run (res://tools/verify_demo.gd:43)
+ERROR: DEMO FAIL: real event coverage guard_break
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_demo.gd:8)
+       [1] run (res://tools/verify_demo.gd:43)
+ERROR: DEMO FAIL: real event coverage throw_tech
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_demo.gd:8)
+       [1] run (res://tools/verify_demo.gd:43)
+ERROR: DEMO FAIL: real event coverage wall_bounce
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_demo.gd:8)
+       [1] run (res://tools/verify_demo.gd:43)
+ERROR: DEMO FAIL: real event coverage wall_tech
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_demo.gd:8)
+       [1] run (res://tools/verify_demo.gd:43)
+ERROR: DEMO FAIL: real event coverage ground_bounce
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_demo.gd:8)
+       [1] run (res://tools/verify_demo.gd:43)
+ERROR: DEMO FAIL: real event coverage rally_end
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_demo.gd:8)
+       [1] run (res://tools/verify_demo.gd:43)
+ERROR: DEMO FAIL: real event coverage ko
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_demo.gd:8)
+       [1] run (res://tools/verify_demo.gd:43)
+DEMO_CHECKS 25/37 ticks=18000

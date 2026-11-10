@@ -1,0 +1,50 @@
+{
+  "combo": 6,
+  "events": {
+    "air_counter_choice": 22,
+    "air_counter_end": 22,
+    "air_counter_release": 20,
+    "air_counter_start": 22,
+    "air_counter_windup": 20,
+    "air_escape": 1,
+    "air_land": 103,
+    "air_parry_attempt": 22,
+    "break_finish": 29,
+    "chase_arrive": 32,
+    "counter_success": 1,
+    "dash": 45,
+    "fast_fall": 4,
+    "ground_bounce": 9,
+    "hit/air_counter": 14,
+    "hit/air_jab": 32,
+    "hit/air_kick": 32,
+    "hit/cross": 23,
+    "hit/jab": 25,
+    "hit/launcher": 34,
+    "hit/meteor": 10,
+    "hit/special": 38,
+    "homing_chase": 32,
+    "parry": 1,
+    "swing": 257,
+    "wall_bounce": 1,
+    "wall_tech": 10
+  },
+  "first": 11,
+  "gap": 97,
+  "hits": [
+    85,
+    123
+  ],
+  "positions": [
+    [
+      -5.91468864696595,
+      0.0
+    ],
+    [
+      -2.88968864696595,
+      0.0
+    ]
+  ],
+  "ticks": 7200,
+  "scope": "Current live duel, fixed-step simulation; initial x +/-1.5 and meters70. Compared with old autonomous duel (not old chapter show), which used meters100. Changed rules and policies together; not an isolated variable or human fun test."
+}

@@ -44,5 +44,9 @@ func run() -> void:
     print("FLYBY_VERIFIED ",JSON.stringify(report))
     fly.sound.stop()
     scene.queue_free()
+    # --fixed-fps advances test time faster than the real audio mixer thread.
+    # Drain in wall time, rather than using a simulated SceneTreeTimer.
+    var cleanup_started:=Time.get_ticks_msec()
+    while Time.get_ticks_msec()-cleanup_started<100:await process_frame
     await frames(4)
     quit(1 if failed else 0)

@@ -1,0 +1,37 @@
+[
+  {
+    "test": "verify_combat",
+    "exit": 0,
+    "summary": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\nCOMBAT_CHECKS 34/34\n"
+  },
+  {
+    "test": "verify_aerial_street",
+    "exit": 0,
+    "summary": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\nAIR_CHECKS 54/54\n"
+  },
+  {
+    "test": "verify_kinetic_rally",
+    "exit": 0,
+    "summary": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\nKINETIC_CHECKS 60/60\n"
+  },
+  {
+    "test": "verify_pressure_exchange",
+    "exit": 0,
+    "summary": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\nPRESSURE_STRESS natural_clashes=23\nPRESSURE_EXCHANGE_CHECKS 59/59\n"
+  },
+  {
+    "test": "verify_rush_arcade",
+    "exit": 0,
+    "summary": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\nRUSH_ARCADE_CHECKS 21/21\n"
+  },
+  {
+    "test": "verify_charged_cannon",
+    "exit": 0,
+    "summary": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\nCANNON_RULES 10/10\n"
+  },
+  {
+    "test": "verify_friendly_defense",
+    "exit": 0,
+    "summary": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\nFRIENDLY_DEFENSE_CHECKS 25/25\n"
+  }
+]

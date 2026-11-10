@@ -1,0 +1,107 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+WARNING: Missing .uid file for path "res://scripts/screen_outline.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://scripts/street_dressing.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://scripts/truck_rear_details.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://shaders/screen_outline.gdshader". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_aircraft_detail.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_car_scene.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_character_motion.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_dressing.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_flyby.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_image_sky_rotation.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_live_flyby.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_outline.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_plane_grid.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_plane_options.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_residential.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_sky.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_sky_rotation.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_texture_filter.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/capture_truck_sky.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/measure_dressing.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_car_scene.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_character_textures.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_dressing.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_environment_mipmaps.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_flyby.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_sky.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_texture_filter.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+WARNING: Missing .uid file for path "res://tools/verify_truck_sky.gd". The file was re-created from cache.
+     at: _process_file_system (editor/file_system/editor_file_system.cpp:1374)
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started Registering global classes... (3 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  25% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  50% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1m_update_scan_actions[22m | Started Scanning actions... (3 steps)[39m[0m
+[   0% ] [90m[1m_update_scan_actions[22m | corner_plaster_128.png[39m[0m
+[  25% ] [90m[1m_update_scan_actions[22m | corner_shutter_128.png[39m[0m
+[  50% ] [90m[1m_update_scan_actions[22m | corner_tiles_128.png[39m[0m
+[92m[ DONE ][39m [1m_update_scan_actions[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (3 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  25% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  50% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[   0% ] [90m[1mreimport[22m | Executing pre-reimport operations...[39m[0m
+[   0% ] [90m[1mreimport[22m | corner_plaster_128.png[39m[0m
+[  25% ] [90m[1mreimport[22m | corner_shutter_128.png[39m[0m
+[  50% ] [90m[1mreimport[22m | corner_tiles_128.png[39m[0m
+[  75% ] [90m[1mreimport[22m | Finalizing Asset Import...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (3 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | Executing post-reimport operations...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+SCRIPT ERROR: Parse Error: Cannot infer the type of "x" variable because the value doesn't have a set type.
+          at: GDScript::reload (res://scripts/corner_streetscape.gd:275)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/street_backdrop.gd:0)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/fight_session.gd:0)
+ERROR: Failed to load script "res://scripts/combat/fight_session.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2907)

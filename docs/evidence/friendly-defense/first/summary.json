@@ -1,0 +1,161 @@
+{
+  "created_utc": "20261109T064926Z",
+  "source_commit": "18141ccc23125545ebaccb2eb27146a41b4c9e3f",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/air_counter.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/kinetic_rally.gd",
+    "godot/scripts/combat/pressure_exchange.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": false,
+  "passed": 221,
+  "failed": 2,
+  "cases": [
+    {
+      "name": "verify_demo",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "4ea130d51e5e2347ca662392a3cd9a0e61d1796211c53b92be4fb063ba135190",
+      "seconds": 0.828,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_demo.gd"
+      ],
+      "report_written": true,
+      "passed": 37,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_air_counter",
+      "mode": "headless",
+      "exit_code": 1,
+      "harness_sha256": "45ae9573c1f42d3ecc23011c789dc196a531386440b0c96cf0f129874be5d2ed",
+      "seconds": 2.111,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_air_counter.gd"
+      ],
+      "report_written": true,
+      "passed": 56,
+      "failed": 1,
+      "skipped": [],
+      "diagnostics": [
+        "ERROR: AIR COUNTER FAIL: early repeated parries cannot refresh the window"
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_kinetic_rally",
+      "mode": "headless",
+      "exit_code": 1,
+      "harness_sha256": "4d26f1bf5b52ad3a94cd7dcf3056db78b82c7140750c8fa8969f788a5d248710",
+      "seconds": 1.738,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_kinetic_rally.gd"
+      ],
+      "report_written": true,
+      "passed": 59,
+      "failed": 1,
+      "skipped": [],
+      "diagnostics": [
+        "ERROR: KINETIC FAIL: spamming early fresh presses cannot extend window"
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_combat",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "522f3c7daa81539a1d8466ef069a66f4c4bdfb7a05afb157f04fc4db7e5139fd",
+      "seconds": 0.808,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat.gd"
+      ],
+      "report_written": true,
+      "passed": 34,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_combat_polish",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "be10e49db4aad723132048fa095ab2f37fd6fc544364aed1070ac7f54b246b78",
+      "seconds": 0.806,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat_polish.gd"
+      ],
+      "report_written": true,
+      "passed": 35,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_pressure_exchange",
+      "mode": "headless",
+      "exit_code": -15,
+      "harness_sha256": "ef7ac1e276d7dc904c54144ac6dcc0fc5997469540b4eaab199104e22fb6bc83",
+      "seconds": 64.355,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_pressure_exchange.gd"
+      ],
+      "report_written": false,
+      "passed": 0,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "SCRIPT ERROR: Invalid access to property or key 'winner' on a base object of type 'Dictionary'."
+      ],
+      "success": false
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

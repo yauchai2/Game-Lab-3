@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://b52iodmlduk4i"
+path="res://.godot/imported/RadioPixelBodyReadable.fnt-7d6b4b501b1e24ec5088b7b523eeec43.fontdata"
+
+[deps]
+
+source_file="res://assets/fonts/RadioPixelBodyReadable.fnt"
+dest_files=["res://.godot/imported/RadioPixelBodyReadable.fnt-7d6b4b501b1e24ec5088b7b523eeec43.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

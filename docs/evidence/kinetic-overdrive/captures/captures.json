@@ -1,0 +1,167 @@
+[
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 0,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 48.0,
+    "grade_visible": false,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "01_title",
+    "tier": 0
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 1,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 47.6207275390625,
+    "grade_visible": false,
+    "png_error": 0,
+    "rally_phase": "compress",
+    "shot": "rally_tier_1_compress",
+    "tier": 1
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 2,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 47.241455078125,
+    "grade_visible": false,
+    "png_error": 0,
+    "rally_phase": "compress",
+    "shot": "rally_tier_2_compress",
+    "tier": 2
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 2,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 46.8621788024902,
+    "grade_visible": true,
+    "png_error": 0,
+    "rally_phase": "compress",
+    "shot": "rally_tier_3_compress",
+    "tier": 3
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 2,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 46.48291015625,
+    "grade_visible": true,
+    "png_error": 0,
+    "rally_phase": "compress",
+    "shot": "rally_tier_4_compress",
+    "tier": 4
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 2,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 47.5841369628906,
+    "grade_visible": true,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "rally_tier_4_contact",
+    "tier": 4
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 5,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 47.7694358825684,
+    "grade_visible": true,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "rally_tier_4_release",
+    "tier": 4
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 5,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 48.0,
+    "grade_visible": true,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "special_anticipation",
+    "tier": 0
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 5,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 48.0,
+    "grade_visible": true,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "special_contact",
+    "tier": 0
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 6,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 47.749755859375,
+    "grade_visible": true,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "special_release",
+    "tier": 0
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 3,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 48.0,
+    "grade_visible": false,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "heavy_smear_whiff",
+    "tier": 0
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 3,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 48.0,
+    "grade_visible": false,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "special_reduced",
+    "tier": 0
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 0,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 46.4326477050781,
+    "grade_visible": true,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "knockout_impact",
+    "tier": 0
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 0,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 47.999942779541,
+    "grade_visible": false,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "knockout_result",
+    "tier": 0
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "effects": 0,
+    "evidence": "native Compatibility fixed-step scripted scene, not realtime performance or human play",
+    "fov": 48.0,
+    "grade_visible": false,
+    "png_error": 0,
+    "rally_phase": "idle",
+    "shot": "title_english",
+    "tier": 0
+  }
+]

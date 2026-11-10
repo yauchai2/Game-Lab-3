@@ -1,6 +1,7 @@
 extends Node3D
 ## Reversible scene dressing; storefronts are visual, lamp poles use simple collision.
 ## Boxes sharing a material are batched to keep the number of draw submissions modest.
+@export var show_sign_text := false
 const GRAFFITI = preload("res://assets/art/graffiti_swift_A01.png")
 var groups: Dictionary = {}
 var material_colors := {
@@ -25,9 +26,10 @@ var shared_font: SystemFont
 var box_count := 0
 
 func _ready() -> void:
-    shared_font = SystemFont.new()
-    shared_font.font_names = PackedStringArray(["Noto Sans CJK TC","Microsoft JhengHei","PingFang TC","sans-serif"])
-    shared_font.font_weight = 700
+    if show_sign_text:
+        shared_font = SystemFont.new()
+        shared_font.font_names = PackedStringArray(["Noto Sans CJK TC","Microsoft JhengHei","PingFang TC","sans-serif"])
+        shared_font.font_weight = 700
     labels = Node3D.new()
     labels.name = "Lettering"
     add_child(labels)
@@ -60,8 +62,8 @@ func _segment(group: String, start: Vector3, end: Vector3, width: float) -> void
     if not groups.has(group):
         groups[group] = []
     var delta := end-start
-    var rotation := Basis(Quaternion(Vector3.UP,delta.normalized()))
-    groups[group].append(Transform3D(rotation.scaled_local(Vector3(width,delta.length(),width)),(start+end)*.5))
+    var segment_basis := Basis(Quaternion(Vector3.UP,delta.normalized()))
+    groups[group].append(Transform3D(segment_basis.scaled_local(Vector3(width,delta.length(),width)),(start+end)*.5))
     box_count += 1
 
 func _material(color: Color) -> StandardMaterial3D:
@@ -73,35 +75,39 @@ func _material(color: Color) -> StandardMaterial3D:
 func _flush_groups() -> void:
     var box := BoxMesh.new()
     box.size = Vector3.ONE
+    box.material=_material(Color.WHITE)
     for key in groups:
         var transforms: Array = groups[key]
         var batch := MultiMesh.new()
         batch.transform_format = MultiMesh.TRANSFORM_3D
-        batch.mesh = box
+        var geometry:Mesh=box
+        if key=="leaf":geometry=preload("res://scripts/combat/street_art_meshes.gd").leaf_cluster()
+        batch.mesh=geometry
         batch.instance_count = transforms.size()
         for i in transforms.size():
             batch.set_instance_transform(i,transforms[i])
         var instance := MultiMeshInstance3D.new()
         instance.name = "Batch_"+key
-        instance.multimesh = batch
         instance.material_override = _material(material_colors[key])
+        instance.multimesh = batch
         # Fine, uncollidable details do not need hundreds of separate shadow casters.
         instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
         static_batches.add_child(instance)
     groups.clear()
 
 func _label(text: String, at: Vector3, rotation_y: float, font_size: int, pixel_size: float, color: Color) -> void:
-    var sign := Label3D.new()
-    sign.name = "SignText_"+str(labels.get_child_count())
-    sign.text = text
-    sign.font_size = font_size
-    sign.pixel_size = pixel_size
-    sign.modulate = color
-    sign.outline_size = 0
-    sign.position = at
-    sign.rotation.y = rotation_y
-    sign.font = shared_font
-    labels.add_child(sign)
+    if not show_sign_text: return
+    var sign_label := Label3D.new()
+    sign_label.name = "SignText_"+str(labels.get_child_count())
+    sign_label.text = text
+    sign_label.font_size = font_size
+    sign_label.pixel_size = pixel_size
+    sign_label.modulate = color
+    sign_label.outline_size = 0
+    sign_label.position = at
+    sign_label.rotation.y = rotation_y
+    sign_label.font = shared_font
+    labels.add_child(sign_label)
 
 func _make_road() -> void:
     # A pedestrian crossing at the entrance; paint is visual only and sits above the road surface.
@@ -208,10 +214,8 @@ func _make_streetfront_layers() -> void:
 
 func _make_corner_facades() -> void:
     # The entrance-facing gables are visible from the photo-aligned camera.
-    _box("blue",Vector3(-9.0,10.5,2.07),Vector3(2.35,8.2,.16))
-    _box("ivory",Vector3(-9.0,10.5,2.17),Vector3(2.18,8.05,.08))
-    _box("teal",Vector3(-9.0,10.5,2.23),Vector3(1.95,7.8,.06))
-    _label("新\n興\n茶\n室",Vector3(-9.0,10.5,2.28),0,100,.011,Color("c4e88e"))
+    # Removed the old eight-metre billboard. The shared corner builder supplies
+    # residential windows and a shop fascia in the same bay, without duplication.
     # A vertical edge band and shallow vent windows articulate the orange corner.
     _box("warm",Vector3(6.35,10.0,2.08),Vector3(.32,19.5,.12))
     for y in [5.1,8.4,11.7,15.0]:
@@ -310,6 +314,11 @@ func _make_signs() -> void:
         _box("ivory",Vector3(x,y,z),Vector3(3.0,.82,.13))
         _box(spec[3],Vector3(x,y,z+.08),Vector3(2.85,.68,.06))
         _label(spec[4],Vector3(x,y,z+.125),0,48,.007,Color("f7d575"))
+        var side := -1 if x<0 else 1
+        var edge := x+side*1.5
+        _segment("frame",Vector3(side*5.88,y+.48,z),Vector3(edge,y+.48,z),.055)
+        _segment("frame",Vector3(side*5.88,y+1.05,z),Vector3(edge,y+.48,z),.045)
+        _segment("frame",Vector3(edge,y+.48,z),Vector3(edge,y+.14,z),.045)
     # Additional sign silhouettes add depth without spanning the full street.
     for spec in [[-1,-29.0,7.9,"yellow"],[1,-43.0,8.2,"teal"],[-1,-48.0,6.3,"red"]]:
         var side: int = spec[0]
@@ -371,6 +380,7 @@ func _make_cables() -> void:
             last = point
 
 func _make_graffiti() -> void:
+    if not show_sign_text: return
     # One original graphic in the side alley, away from the photo's main view.
     var surface := QuadMesh.new()
     surface.size = Vector2(4.4,2.25)

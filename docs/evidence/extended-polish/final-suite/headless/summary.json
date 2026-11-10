@@ -1,0 +1,309 @@
+{
+  "created_utc": "20261108T192023Z",
+  "source_commit": "0d3f85284671345d0635317b197e9630cc86a414",
+  "mode": "headless",
+  "all_assertions_passed": true,
+  "passed": 374,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_combat",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 2.251,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat.gd"
+      ],
+      "report_written": true,
+      "passed": 34,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_combat_polish",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 2.608,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat_polish.gd"
+      ],
+      "report_written": true,
+      "passed": 35,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_scene_audio_vfx",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 1.375,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_scene_audio_vfx.gd"
+      ],
+      "report_written": true,
+      "passed": 33,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+        "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_street_backdrop",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 2.419,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_street_backdrop.gd"
+      ],
+      "report_written": true,
+      "passed": 30,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_corner_density",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 1.948,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_corner_density.gd"
+      ],
+      "report_written": true,
+      "passed": 28,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_dressing",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 2.746,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_dressing.gd"
+      ],
+      "report_written": true,
+      "passed": 13,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+      ],
+      "success": true
+    },
+    {
+      "name": "verify_sky_motion",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 1.306,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_sky_motion.gd"
+      ],
+      "report_written": true,
+      "passed": 18,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_impact_staging",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 1.858,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_impact_staging.gd"
+      ],
+      "report_written": true,
+      "passed": 24,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_pressure_exchange",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 3.891,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_pressure_exchange.gd"
+      ],
+      "report_written": true,
+      "passed": 59,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_flyby",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 2.239,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--fixed-fps",
+        "60",
+        "--script",
+        "res://tools/verify_flyby.gd"
+      ],
+      "report_written": true,
+      "passed": 11,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_close_combat",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 2.006,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_close_combat.gd"
+      ],
+      "report_written": true,
+      "passed": 41,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_game_ui",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 1.866,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_game_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 35,
+      "failed": 0,
+      "skipped": [
+        {
+          "name": "residential billboard transform readback",
+          "reason": "Dummy renderer returns identity MultiMesh transforms; requires native GL verification"
+        }
+      ],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_combat_framing",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 1.933,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat_framing.gd"
+      ],
+      "report_written": true,
+      "passed": 13,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

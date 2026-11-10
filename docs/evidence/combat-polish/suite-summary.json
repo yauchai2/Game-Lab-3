@@ -1,0 +1,38 @@
+{
+  "native_suites": [
+    {
+      "suite": "verification",
+      "passed": 35
+    },
+    {
+      "suite": "combat-regression",
+      "passed": 34
+    },
+    {
+      "suite": "scene-audio-regression",
+      "passed": 33
+    },
+    {
+      "suite": "backdrop-regression",
+      "passed": 30
+    },
+    {
+      "suite": "input-regression",
+      "passed": 11
+    },
+    {
+      "suite": "web-pack",
+      "passed": 8
+    },
+    {
+      "suite": "warnings-regression",
+      "passed": 3
+    }
+  ],
+  "native_checks_passed": 154,
+  "browser_passed": 7,
+  "browser_total": 7,
+  "public_http_passed": 15,
+  "public_http_total": 15,
+  "scope": "Automated headless/native and real Chromium WebGL with software rendering; not human playtest, listening or hardware FPS"
+}

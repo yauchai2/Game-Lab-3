@@ -1,0 +1,13 @@
+{
+  "base_commit": "8defe3711e19bfe94f85345168395e5124f85309",
+  "authored_assets": "Original Godot vector cels and presentation code; no external VFX downloads or Tripo job.",
+  "source_files": {
+    "godot/scripts/combat/impact_shapes.gd": "9511dc032adad20cb7f8b9d8301894dfca52f74b98706a1fbc99fc6e486f6689",
+    "godot/scripts/combat/fight_session.gd": "05f45c1e530709de736cff4ed077d88d13f5fc462d729b57a82044fecb9b7f1d",
+    "godot/scripts/combat/fight_vfx.gd": "8bc4748726533f95a23530f79f2975007a13bfa69e16a08f7f35c38f7a0b8e4d",
+    "godot/tools/verify_impact_staging.gd": "b8bafdaad83f7bb1c57231caf782ee79df60b36072fa40b64a72609ac181074d",
+    "godot/tools/capture_impact_staging.gd": "376e088402b075d1766488220c085f5e82de2fb68849efcfdbf3c8ca0dc6031f"
+  },
+  "simulation_unchanged": true,
+  "pages_ref_before": "2908503295c24b918b293b463ec962797a7ccb06"
+}

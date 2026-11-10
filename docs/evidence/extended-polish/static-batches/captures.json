@@ -1,0 +1,106 @@
+[
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "batch_stats": {
+
+    },
+    "camera": "fight",
+    "draw_calls": 978,
+    "png_error": 0,
+    "primitives": 167874,
+    "variant": "source"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "batch_stats": {
+
+    },
+    "camera": "wide",
+    "draw_calls": 1045,
+    "png_error": 0,
+    "primitives": 179798,
+    "variant": "source"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "batch_stats": {
+
+    },
+    "camera": "left",
+    "draw_calls": 592,
+    "png_error": 0,
+    "primitives": 88702,
+    "variant": "source"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "batch_stats": {
+
+    },
+    "camera": "right",
+    "draw_calls": 727,
+    "png_error": 0,
+    "primitives": 93208,
+    "variant": "source"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "batch_stats": {
+      "batches": 16,
+      "primitive": "unit BoxMesh",
+      "source_boxes": 219,
+      "source_nodes_preserved": true,
+      "walk_material_comparison_unmodified": true
+    },
+    "camera": "fight",
+    "draw_calls": 311,
+    "png_error": 0,
+    "primitives": 171750,
+    "variant": "batched"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "batch_stats": {
+      "batches": 16,
+      "primitive": "unit BoxMesh",
+      "source_boxes": 219,
+      "source_nodes_preserved": true,
+      "walk_material_comparison_unmodified": true
+    },
+    "camera": "wide",
+    "draw_calls": 351,
+    "png_error": 0,
+    "primitives": 183350,
+    "variant": "batched"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "batch_stats": {
+      "batches": 16,
+      "primitive": "unit BoxMesh",
+      "source_boxes": 219,
+      "source_nodes_preserved": true,
+      "walk_material_comparison_unmodified": true
+    },
+    "camera": "left",
+    "draw_calls": 197,
+    "png_error": 0,
+    "primitives": 95206,
+    "variant": "batched"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "batch_stats": {
+      "batches": 16,
+      "primitive": "unit BoxMesh",
+      "source_boxes": 219,
+      "source_nodes_preserved": true,
+      "walk_material_comparison_unmodified": true
+    },
+    "camera": "right",
+    "draw_calls": 246,
+    "png_error": 0,
+    "primitives": 98740,
+    "variant": "batched"
+  }
+]

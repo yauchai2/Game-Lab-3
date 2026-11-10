@@ -1,0 +1,38 @@
+{
+  "created_utc": "20261108T193114Z",
+  "source_commit": "0d3f85284671345d0635317b197e9630cc86a414",
+  "mode": "headless",
+  "all_assertions_passed": true,
+  "passed": 35,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_game_ui",
+      "mode": "headless",
+      "exit_code": 0,
+      "seconds": 2.99,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_game_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 35,
+      "failed": 0,
+      "skipped": [
+        {
+          "name": "residential billboard transform readback",
+          "reason": "Dummy renderer returns identity MultiMesh transforms; requires native GL verification"
+        }
+      ],
+      "diagnostics": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

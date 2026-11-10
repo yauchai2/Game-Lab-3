@@ -1,0 +1,29 @@
+{
+  "method": "Standalone semi-implicit Euler at 60 Hz, gravity selected before each integration; no Godot execution, collision, buffering or animation validation.",
+  "baseline": {
+    "peak_m": 1.955,
+    "peak_tick": 23,
+    "air_ticks": 47,
+    "air_seconds": 0.783333
+  },
+  "supplied_reference": {
+    "peak_m": 5.683333,
+    "peak_tick": 43,
+    "air_ticks": 84,
+    "air_seconds": 1.4
+  },
+  "proposed": {
+    "peak_m": 2.181667,
+    "peak_tick": 26,
+    "air_ticks": 52,
+    "air_seconds": 0.866667
+  },
+  "continuous_peak_m": {
+    "baseline": 2.040192307692308,
+    "reference": 5.866666666666667,
+    "proposed": 2.2958531746031747
+  },
+  "scale_reference_volume": 0.6843520000000001,
+  "volume_preserving_y_1_48_xz": 0.8219949365267866,
+  "proposed_jump_squat_ticks_not_in_airtime": 3
+}

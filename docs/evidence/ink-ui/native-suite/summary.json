@@ -1,0 +1,79 @@
+{
+  "created_utc": "20261110T024014Z",
+  "source_commit": "d974f312d4d69bb8620f217458d75a1cd7963c1c",
+  "tracked_runtime_changes": [
+    "godot/project.godot",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/ui/reference_art.gd",
+    "godot/scripts/combat/ui/roster_preview.gd",
+    "godot/scripts/combat/ui/ui_theme.gd",
+    "godot/shaders/fighter_outline.gdshader",
+    "godot/shaders/fighter_toon.gdshader"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 16,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_ink_ui",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "574a6e9f88dddfa1ae5b851b92774af63628f012ee805ab1d9637ace92399691",
+      "seconds": 10.766,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_ink_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 10,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details)."
+      ],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_material_lifecycle",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "10c88c08a17733663c2fe1f9f9671d60b32b7be615aee5a478613e2015dcdc60",
+      "seconds": 6.282,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_material_lifecycle.gd"
+      ],
+      "report_written": true,
+      "passed": 6,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

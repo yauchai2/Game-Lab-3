@@ -1,0 +1,522 @@
+{
+  "checks": [
+    {
+      "name": "one continuous fight remains active for thirty thousand ticks",
+      "passed": true
+    },
+    {
+      "name": "two independent runs reproduce commands actors and events",
+      "passed": true
+    },
+    {
+      "name": "both agents land hundreds of real hits",
+      "passed": true
+    },
+    {
+      "name": "first contact arrives within one second",
+      "passed": true
+    },
+    {
+      "name": "no multi-second idle gaps",
+      "passed": true
+    },
+    {
+      "name": "positions health and resources stay bounded",
+      "passed": true
+    },
+    {
+      "name": "natural live event hit/jab",
+      "passed": true
+    },
+    {
+      "name": "natural live event hit/cross",
+      "passed": true
+    },
+    {
+      "name": "natural live event hit/launcher",
+      "passed": true
+    },
+    {
+      "name": "natural live event hit/air_jab",
+      "passed": true
+    },
+    {
+      "name": "natural live event hit/air_kick",
+      "passed": true
+    },
+    {
+      "name": "natural live event hit/meteor",
+      "passed": true
+    },
+    {
+      "name": "natural live event hit/special",
+      "passed": true
+    },
+    {
+      "name": "natural live event hit/air_counter",
+      "passed": true
+    },
+    {
+      "name": "natural live event homing_chase",
+      "passed": true
+    },
+    {
+      "name": "natural live event ground_bounce",
+      "passed": true
+    },
+    {
+      "name": "natural live event air_counter_start",
+      "passed": true
+    },
+    {
+      "name": "natural live event air_escape",
+      "passed": true
+    },
+    {
+      "name": "demo is actually endless rather than a KO loop",
+      "passed": true
+    },
+    {
+      "name": "showy combos occur without scene presets",
+      "passed": true
+    }
+  ],
+  "events": {
+    "air_counter_choice": 134,
+    "air_counter_end": 134,
+    "air_counter_release": 108,
+    "air_counter_start": 134,
+    "air_counter_windup": 108,
+    "air_escape": 6,
+    "air_land": 404,
+    "air_parry_attempt": 134,
+    "chase_arrive": 195,
+    "counter_success": 15,
+    "dash": 82,
+    "fast_fall": 26,
+    "ground_bounce": 55,
+    "hit/air_counter": 78,
+    "hit/air_jab": 195,
+    "hit/air_kick": 195,
+    "hit/cross": 113,
+    "hit/jab": 113,
+    "hit/launcher": 195,
+    "hit/meteor": 61,
+    "hit/special": 15,
+    "homing_chase": 195,
+    "parry": 15,
+    "swing": 1222,
+    "wall_tech": 55
+  },
+  "first_hit": 11,
+  "hits": [
+    521,
+    444
+  ],
+  "longest_combo": 7,
+  "max_no_hit_ticks": 105,
+  "scope": "Live input policies only. No chapter changes, position resets or injected hits.",
+  "ticks": 30000,
+  "timeline": [
+    {
+      "gap": 1,
+      "hits": [
+        0,
+        0
+      ],
+      "tick": 0
+    },
+    {
+      "gap": 7,
+      "hits": [
+        12,
+        11
+      ],
+      "tick": 600
+    },
+    {
+      "gap": 14,
+      "hits": [
+        22,
+        22
+      ],
+      "tick": 1200
+    },
+    {
+      "gap": 97,
+      "hits": [
+        34,
+        31
+      ],
+      "tick": 1800
+    },
+    {
+      "gap": 15,
+      "hits": [
+        41,
+        40
+      ],
+      "tick": 2400
+    },
+    {
+      "gap": 45,
+      "hits": [
+        53,
+        47
+      ],
+      "tick": 3000
+    },
+    {
+      "gap": 1,
+      "hits": [
+        73,
+        49
+      ],
+      "tick": 3600
+    },
+    {
+      "gap": 2,
+      "hits": [
+        79,
+        65
+      ],
+      "tick": 4200
+    },
+    {
+      "gap": 3,
+      "hits": [
+        102,
+        65
+      ],
+      "tick": 4800
+    },
+    {
+      "gap": 9,
+      "hits": [
+        112,
+        72
+      ],
+      "tick": 5400
+    },
+    {
+      "gap": 14,
+      "hits": [
+        122,
+        82
+      ],
+      "tick": 6000
+    },
+    {
+      "gap": 20,
+      "hits": [
+        131,
+        89
+      ],
+      "tick": 6600
+    },
+    {
+      "gap": 82,
+      "hits": [
+        136,
+        105
+      ],
+      "tick": 7200
+    },
+    {
+      "gap": 15,
+      "hits": [
+        154,
+        107
+      ],
+      "tick": 7800
+    },
+    {
+      "gap": 4,
+      "hits": [
+        165,
+        119
+      ],
+      "tick": 8400
+    },
+    {
+      "gap": 2,
+      "hits": [
+        172,
+        132
+      ],
+      "tick": 9000
+    },
+    {
+      "gap": 28,
+      "hits": [
+        185,
+        139
+      ],
+      "tick": 9600
+    },
+    {
+      "gap": 5,
+      "hits": [
+        192,
+        149
+      ],
+      "tick": 10200
+    },
+    {
+      "gap": 5,
+      "hits": [
+        196,
+        164
+      ],
+      "tick": 10800
+    },
+    {
+      "gap": 12,
+      "hits": [
+        203,
+        178
+      ],
+      "tick": 11400
+    },
+    {
+      "gap": 52,
+      "hits": [
+        211,
+        187
+      ],
+      "tick": 12000
+    },
+    {
+      "gap": 5,
+      "hits": [
+        217,
+        198
+      ],
+      "tick": 12600
+    },
+    {
+      "gap": 31,
+      "hits": [
+        224,
+        213
+      ],
+      "tick": 13200
+    },
+    {
+      "gap": 7,
+      "hits": [
+        228,
+        227
+      ],
+      "tick": 13800
+    },
+    {
+      "gap": 16,
+      "hits": [
+        239,
+        233
+      ],
+      "tick": 14400
+    },
+    {
+      "gap": 2,
+      "hits": [
+        258,
+        233
+      ],
+      "tick": 15000
+    },
+    {
+      "gap": 0,
+      "hits": [
+        272,
+        239
+      ],
+      "tick": 15600
+    },
+    {
+      "gap": 51,
+      "hits": [
+        283,
+        245
+      ],
+      "tick": 16200
+    },
+    {
+      "gap": 10,
+      "hits": [
+        293,
+        258
+      ],
+      "tick": 16800
+    },
+    {
+      "gap": 14,
+      "hits": [
+        300,
+        268
+      ],
+      "tick": 17400
+    },
+    {
+      "gap": 2,
+      "hits": [
+        307,
+        281
+      ],
+      "tick": 18000
+    },
+    {
+      "gap": 0,
+      "hits": [
+        318,
+        292
+      ],
+      "tick": 18600
+    },
+    {
+      "gap": 30,
+      "hits": [
+        328,
+        298
+      ],
+      "tick": 19200
+    },
+    {
+      "gap": 73,
+      "hits": [
+        339,
+        302
+      ],
+      "tick": 19800
+    },
+    {
+      "gap": 15,
+      "hits": [
+        357,
+        303
+      ],
+      "tick": 20400
+    },
+    {
+      "gap": 23,
+      "hits": [
+        367,
+        315
+      ],
+      "tick": 21000
+    },
+    {
+      "gap": 12,
+      "hits": [
+        381,
+        321
+      ],
+      "tick": 21600
+    },
+    {
+      "gap": 73,
+      "hits": [
+        400,
+        321
+      ],
+      "tick": 22200
+    },
+    {
+      "gap": 16,
+      "hits": [
+        415,
+        326
+      ],
+      "tick": 22800
+    },
+    {
+      "gap": 43,
+      "hits": [
+        421,
+        340
+      ],
+      "tick": 23400
+    },
+    {
+      "gap": 1,
+      "hits": [
+        434,
+        344
+      ],
+      "tick": 24000
+    },
+    {
+      "gap": 70,
+      "hits": [
+        446,
+        354
+      ],
+      "tick": 24600
+    },
+    {
+      "gap": 10,
+      "hits": [
+        450,
+        368
+      ],
+      "tick": 25200
+    },
+    {
+      "gap": 11,
+      "hits": [
+        464,
+        371
+      ],
+      "tick": 25800
+    },
+    {
+      "gap": 15,
+      "hits": [
+        473,
+        378
+      ],
+      "tick": 26400
+    },
+    {
+      "gap": 34,
+      "hits": [
+        484,
+        388
+      ],
+      "tick": 27000
+    },
+    {
+      "gap": 14,
+      "hits": [
+        488,
+        400
+      ],
+      "tick": 27600
+    },
+    {
+      "gap": 16,
+      "hits": [
+        497,
+        410
+      ],
+      "tick": 28200
+    },
+    {
+      "gap": 8,
+      "hits": [
+        499,
+        428
+      ],
+      "tick": 28800
+    },
+    {
+      "gap": 23,
+      "hits": [
+        514,
+        432
+      ],
+      "tick": 29400
+    }
+  ]
+}

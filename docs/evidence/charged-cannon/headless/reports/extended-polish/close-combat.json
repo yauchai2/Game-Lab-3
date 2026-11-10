@@ -1,0 +1,170 @@
+{
+  "checks": [
+    {
+      "name": "throw has clear startup and cooldown",
+      "passed": true
+    },
+    {
+      "name": "throw defeats even a fresh guard without guard damage",
+      "passed": true
+    },
+    {
+      "name": "throw creates lift and a held impact",
+      "passed": true
+    },
+    {
+      "name": "throw builds shared pressure once",
+      "passed": true
+    },
+    {
+      "name": "one throw cannot damage repeatedly",
+      "passed": true
+    },
+    {
+      "name": "throwing from guard drops protection during startup",
+      "passed": true
+    },
+    {
+      "name": "airborne attackers cannot start a throw",
+      "passed": true
+    },
+    {
+      "name": "airborne target cannot be thrown",
+      "passed": true
+    },
+    {
+      "name": "out of range throw whiffs with a punishable cooldown",
+      "passed": true
+    },
+    {
+      "name": "throw cooldown rejects immediate retry",
+      "passed": true
+    },
+    {
+      "name": "defender can break a throw with a late G",
+      "passed": true
+    },
+    {
+      "name": "throw break separates and releases a small pressure gain",
+      "passed": true
+    },
+    {
+      "name": "simultaneous throws break exactly once",
+      "passed": true
+    },
+    {
+      "name": "active jab interrupts throw fairly on side 0",
+      "passed": true
+    },
+    {
+      "name": "active jab interrupts throw fairly on side 1",
+      "passed": true
+    },
+    {
+      "name": "jumping escapes a throw",
+      "passed": true
+    },
+    {
+      "name": "dodge escapes throw range",
+      "passed": true
+    },
+    {
+      "name": "throws cannot extend a helpless stun combo",
+      "passed": true
+    },
+    {
+      "name": "heavy edge impact bounces once without free damage",
+      "passed": true
+    },
+    {
+      "name": "edge impact opens a twelve tick recovery opportunity",
+      "passed": true
+    },
+    {
+      "name": "same launch cannot bounce repeatedly",
+      "passed": true
+    },
+    {
+      "name": "prebuffered recovery spends exactly twenty energy",
+      "passed": true
+    },
+    {
+      "name": "recovery grants a bounded jump away and invulnerability",
+      "passed": true
+    },
+    {
+      "name": "late recovery remains available inside the window",
+      "passed": true
+    },
+    {
+      "name": "recovery clears old juggle and buffered commands",
+      "passed": true
+    },
+    {
+      "name": "recovery cannot charge energy twice",
+      "passed": true
+    },
+    {
+      "name": "insufficient energy keeps the bounce without negative resource",
+      "passed": true
+    },
+    {
+      "name": "recovery after the deadline is rejected",
+      "passed": true
+    },
+    {
+      "name": "light push does not trigger dramatic edge bounce",
+      "passed": true
+    },
+    {
+      "name": "round reset clears all throw and recovery state",
+      "passed": true
+    },
+    {
+      "name": "AI closes distance to challenge a passive guard with throws",
+      "passed": true
+    },
+    {
+      "name": "AI chooses an in-range throw against a passive guard",
+      "passed": true
+    },
+    {
+      "name": "all twelve preselected intentions remain fixed at difficulty 0",
+      "passed": true
+    },
+    {
+      "name": "difficulty 0 has bounded preselected feint frequency",
+      "passed": true
+    },
+    {
+      "name": "all twelve preselected intentions remain fixed at difficulty 1",
+      "passed": true
+    },
+    {
+      "name": "difficulty 1 has bounded preselected feint frequency",
+      "passed": true
+    },
+    {
+      "name": "all twelve preselected intentions remain fixed at difficulty 2",
+      "passed": true
+    },
+    {
+      "name": "difficulty 2 has bounded preselected feint frequency",
+      "passed": true
+    },
+    {
+      "name": "dojo always shows the true stance even on challenging difficulty",
+      "passed": true
+    },
+    {
+      "name": "G routes to the throw command",
+      "passed": true
+    },
+    {
+      "name": "throw pose extends both hands toward the opponent",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 41
+}

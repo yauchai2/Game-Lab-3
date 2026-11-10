@@ -1,0 +1,72 @@
+{
+  "created_utc": "20261109T110737Z",
+  "source_commit": "297b1f35154ad87bce3ac93c5beeb99ba5651bbe",
+  "tracked_runtime_changes": [
+    "godot/assets/fonts/AfterhoursUIHK.otf",
+    "godot/scripts/combat/combat_motions.gd",
+    "godot/scripts/combat/combat_rhythm.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/fight_spectacle.gd",
+    "godot/scripts/combat/fight_vfx.gd",
+    "godot/scripts/combat/fighter_visual.gd",
+    "godot/scripts/combat/impact_shapes.gd",
+    "godot/scripts/combat/impact_theatre.gd",
+    "godot/scripts/combat/rush_agent.gd",
+    "godot/scripts/combat/ui/ui_text.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": true,
+  "passed": 31,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_charged_cannon",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "d6f515c59afb2e8637ec29e4468bf893f47996cd38d3c9d5fa8c85e1b5e97aee",
+      "seconds": 0.659,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_charged_cannon.gd"
+      ],
+      "report_written": true,
+      "passed": 10,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_demo",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "3f6451b2f352bbd7dde8dfca121b4d169f4e7a8faebb576ead363c086b2ab5a8",
+      "seconds": 3.285,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_demo.gd"
+      ],
+      "report_written": true,
+      "passed": 21,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

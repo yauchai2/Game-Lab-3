@@ -1,0 +1,43 @@
+{
+  "created_utc": "20261109T062449Z",
+  "source_commit": "70ded9998c1091bc8cc09033a345e5053a37fb25",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/fight_audio.gd",
+    "godot/scripts/combat/fight_hud.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 20,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_wev_audio",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "88ad9ef0be5fe7d6a338eed5da85df0a158eee5e83f371b69631af8dccf380ff",
+      "seconds": 1.55,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_wev_audio.gd"
+      ],
+      "report_written": true,
+      "passed": 20,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

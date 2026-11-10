@@ -1,0 +1,279 @@
+{
+  "baseline": "18141ccc23125545ebaccb2eb27146a41b4c9e3f",
+  "original_assets": [
+    {
+      "path": "godot/assets/CHAR_PLAYER_A01.glb",
+      "sha256": "12bb38212d67c8b28eeb6bbb64e3c354e2e9841d5fca51bdc1860e48691150ad",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/CHAR_PLAYER_A01_stylized_3d_character_basecolor.jpg",
+      "sha256": "e390f50cc7116bdc138947afa6cfb16aebfbe9a808fc5580a91e55cd0e15a920",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_BIN_A01.glb",
+      "sha256": "df6efc5267d9f94f955b93286412a926e4a7d06a1ac0744b905ed2ebb4a09cc2",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg",
+      "sha256": "5e6d14bd81f53ef958159408b53cf4621e8e75f275854291d5abd8df4e1a7e2b",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_CRATES_A01.glb",
+      "sha256": "8f620aaf28cc09091de7afc5989d13f5419c5039abfbf46e319f5e56ba890692",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg",
+      "sha256": "7e1371cfe9c7f1757319b695b63eb0762ffbe008bdd6d6a0e27705d8ac6d0b77",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_HYDRANT_A01.glb",
+      "sha256": "091fb06d4cfcf52620f62d80ec392e3f97caee103d6687ce51a6e9e27f0e5d78",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg",
+      "sha256": "60f470f90e2fd4ff9e008998750db0a22d2834b6549190c50baeefddf97ba35d",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_MAILBOX_A01.glb",
+      "sha256": "4d86307ba149a4375d9b5f97ecb31862f53e262b2cd10460eaf56cfc02c110fe",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg",
+      "sha256": "ac41400bcf4ca684db25e4d75d85a61ac8acd4f49ec29280b1688d9e8f67da7c",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_SHOP_STOOL_A01.glb",
+      "sha256": "b096aa7250a983df7ff9be5dfa1a0ccbf48366dec268fa5cf290079e7e503c1b",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg",
+      "sha256": "9e35821d11fdb9e3fbb58359137b4797ebc97a9c48198f3f98b8ed9a9eec5f37",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/SKY_BLUE_A01.png",
+      "sha256": "a2d11528d41244210b7827d4bf26c3136858dcb7c823f078c899a61c7fcd1095",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_CAR_A01.glb",
+      "sha256": "4cf37ec42939e8f1f4e413ebc0828d4b70a4b240b20b688f8337fe65fee2f457",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_CAR_A01_car_3d_model_basecolor.jpg",
+      "sha256": "4cea6c5040000b59872380e00888ccfa9c7be5b0c2d148ad21549fec9a933dbd",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_TRUCK_A01.glb",
+      "sha256": "b15a7535ab7f2f173472ffe002ead8e246883ff9252cc11efb6769cc09b83228",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg",
+      "sha256": "5878a33db957fd3501e705e8718fdc10ab0b3a62e8df7e3517b6cae971e9f286",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_VAN_A01.glb",
+      "sha256": "d07862f84eb4e02386b2b248d9283b875075e0bb17ce1d66d9419ee84c585926",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/VEH_VAN_A01_van_3d_model_basecolor.jpg",
+      "sha256": "e7d8969280216905e502ffa90adedc5cf046386f7018894fc20e5b82e0ff41df",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/art/graffiti_swift_A01.png",
+      "sha256": "aefa86b33d0f2f8ced4b43cf0ae5cf00ee80067b66740f0b2fc8730298521596",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/corner_plaster_128.png",
+      "sha256": "a26ed0cadfa1d175b0af4683ddf3338d6fb40fe94f677d04531f96e334fe6c18",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/corner_shutter_128.png",
+      "sha256": "654a7a847a4b96b680901202349342dae219f8a6d3da168cb6b1207ac326655c",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/corner_tiles_128.png",
+      "sha256": "acc47e8fa5bbe83cf6cc9e3f558dfdb6d3d83d020d58c764628afe00c17fa180",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/painted_concrete_128.png",
+      "sha256": "c51122c2c8af475a68b90b082c56921653c828c574e8d47029aecef3237fddba",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/road_asphalt_128.png",
+      "sha256": "50fa20d1442e6bdb77f0180589fba51581aa768cd53c1bf9891abf07640c1de7",
+      "unchanged": true
+    },
+    {
+      "path": "godot/assets/textures/sidewalk_tiles_128.png",
+      "sha256": "e0da54d6c3ef54628c001ad7f28fd105388edea8f9fdc8bf866bc959c236a112",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/engine_placeholder.wav",
+      "sha256": "5b8ad2d7936e66719f9c77f23928b5aef5a372e9dbb54e08ee62dff103ec55c1",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/footstep_concrete_000.ogg",
+      "sha256": "d7267e183067757c92c169de2a379abea592cfca6b39bb2e8feea15221ad79fe",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/footstep_concrete_003.ogg",
+      "sha256": "8b513c2f0316324060b9174b8f28df6c2147418c506e6a53b77f18e149a5547b",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactBell_heavy_003.ogg",
+      "sha256": "5572ccdeb3b62373b86fa955355b3a222c36e815f0636ba16165189a21cf2514",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactGlass_heavy_000.ogg",
+      "sha256": "b44b39a940e8948e74b9bd3776bff980df43cf220abdaf0d467dc4c43c0244a5",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactMetal_heavy_003.ogg",
+      "sha256": "b0f2ba4dabde9a87eb9c188a19d31e0c2300fd321adeba08d3b9b8aa011d7037",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactMetal_light_000.ogg",
+      "sha256": "33b5e6e37c6e9d54e07bf5a89b12c76e879f40c1ea83cdd82714df1d6f9fec6d",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_heavy_000.ogg",
+      "sha256": "b33a8f14068aec24ec69ba85e5e87fdc41228975f6a1a3e44a6e7d6fc3d9f8d8",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_heavy_001.ogg",
+      "sha256": "f92f5cb6ba4ff2766497292ffd90865654317eeca976f5652e0708dbdcdc0dd9",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_000.ogg",
+      "sha256": "486988aa2d6440ffc4c62a0e8ccf3c23673ba84424bd4723378d451b7255eb5c",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_001.ogg",
+      "sha256": "e71d23abcc3f10d9d6bc9615b2a431fff70b12333a5fcdd9964457564ace4349",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactPunch_medium_002.ogg",
+      "sha256": "6492f9ccbc8d24dcef607bb1b48790b7870961474561f7fe5601e1c73a3018ef",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactSoft_heavy_000.ogg",
+      "sha256": "49e7ca88743fca974bb8676ea138b751cfd8f9033b5e7af8736c2a215d6edbc1",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactSoft_medium_001.ogg",
+      "sha256": "7642a4fd43e547afe4f7adfadb3dabb681c0ff512f52c1674bae30a726841faf",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/impactTin_medium_001.ogg",
+      "sha256": "84253095543c094d83cd749f42ecfbc96e356b60385f18a192c18eafb25b3cc6",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/open/level1.ogg",
+      "sha256": "471b48b13e12bdf34a324c32d2c1d1e4ab76b89308108d1cc3cf619639de2783",
+      "unchanged": true
+    },
+    {
+      "path": "godot/audio/wev/family_ties_game.ogg",
+      "sha256": "a4c11da48bb3c2e11bbb15bc5f6dc11b0802f7aa391390ae90dc1b591514bbc3",
+      "unchanged": true
+    }
+  ],
+  "all_original_unchanged": true,
+  "candidate_runtime": [
+    {
+      "path": "godot/assets/fonts/AfterhoursUIHK.otf",
+      "sha256": "3209645b876843249c13fea7e1052ce7224f0b13f9cf755365d97fa4273274f0"
+    },
+    {
+      "path": "godot/scripts/combat/air_counter.gd",
+      "sha256": "886837ea1c5801b822ad0b54086ab6b52116ca36acb4f5ef15861b19e8e0243c"
+    },
+    {
+      "path": "godot/scripts/combat/fight_hud.gd",
+      "sha256": "e1550b881e3c7f4fe1206b5563c22451a4f7d2213daecd7440f5d22c7124f181"
+    },
+    {
+      "path": "godot/scripts/combat/fight_session.gd",
+      "sha256": "c557ebab0b878649c570e7a131f19b9c73be080c2f6e0ffc9e12975443005c6a"
+    },
+    {
+      "path": "godot/scripts/combat/fight_simulation.gd",
+      "sha256": "1d17aa2d581db3a21aa954aac1627cccc165af2fedad0ff197520463299575a4"
+    },
+    {
+      "path": "godot/scripts/combat/kinetic_rally.gd",
+      "sha256": "54b796457a6055dd902ccb5decfab69f10e3ecdfdf047f5121a500a453cdb84f"
+    },
+    {
+      "path": "godot/scripts/combat/pressure_exchange.gd",
+      "sha256": "8cde315d0f9db42033e5f9e531b64ec0d18123fc35e24b65ca1717a06533a88a"
+    },
+    {
+      "path": "godot/scripts/combat/ui/ui_text.gd",
+      "sha256": "22adad103b47ef37626e7d07318a6379d0ed80e9bc6fccc6f5022fb8e058bca8"
+    },
+    {
+      "path": "godot/tools/verify_air_counter.gd",
+      "sha256": "9ed67036d0a5b130b895be9c5816edc5c745152739fd83f41480b1c0243fd37d"
+    },
+    {
+      "path": "godot/tools/verify_air_counter_input.gd",
+      "sha256": "9a39dd2cf90bacf2d1cc5e8b5528264db99eef0a81a53ae0b0f8d1e926f296ac"
+    },
+    {
+      "path": "godot/tools/verify_friendly_defense.gd",
+      "sha256": "dde4d21c520176fc936cea54d29decd55b381fb5053d9d99c450675f2d4e4679"
+    },
+    {
+      "path": "godot/tools/verify_friendly_input.gd",
+      "sha256": "34d63ae8b485a7a290182d9f754bd9bbbd44d9f81c405d821c704dcac6ef8381"
+    },
+    {
+      "path": "godot/tools/verify_kinetic_rally.gd",
+      "sha256": "edd5ba4089c0a19a4a1d7fba8f83b2685bb94272779cd93caadfca8e5220ad61"
+    },
+    {
+      "path": "godot/tools/verify_pressure_exchange.gd",
+      "sha256": "b4c6dbacab9cf2164308cb6cc5156b5c3177062313b1b3ba0054b73f69876e64"
+    }
+  ]
+}

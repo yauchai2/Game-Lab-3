@@ -1,0 +1,34 @@
+{
+  "events": {
+    "air_counter_choice": 3,
+    "air_counter_end": 3,
+    "air_counter_release": 3,
+    "air_counter_start": 3,
+    "air_counter_windup": 3,
+    "air_land": 12,
+    "air_parry_attempt": 3,
+    "break_finish": 2,
+    "chase_arrive": 5,
+    "dash": 3,
+    "ground_bounce": 2,
+    "hit/air_counter": 2,
+    "hit/air_jab": 5,
+    "hit/air_kick": 5,
+    "hit/cross": 4,
+    "hit/jab": 4,
+    "hit/launcher": 5,
+    "hit/meteor": 2,
+    "hit/special": 2,
+    "homing_chase": 5,
+    "swing": 38,
+    "wall_tech": 2
+  },
+  "frames": 225,
+  "hits": [
+    8,
+    21
+  ],
+  "one_continuous_take": true,
+  "output_fps": 15,
+  "simulation_ticks": 900
+}

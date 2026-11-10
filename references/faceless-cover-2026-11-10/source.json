@@ -1,0 +1,52 @@
+{
+  "input_videos": [
+    {
+      "filename": "TR3B_-__LaGaNga______-_lowpoly_blender_mfCeKM.mp4",
+      "duration_seconds": 6.314667,
+      "sha256": "69c3edc3b80b8e2a7d3425cb471b240baafbd3d579774477ef02ec786ab25a3f",
+      "sediment_file_id": "file_00000000a21482079f614abb8f7d58c4"
+    },
+    {
+      "filename": "TR3B_-___GanGA______-___wip_-_lowpoly_blender_z3Qbse.mp4",
+      "duration_seconds": 21.098667,
+      "sha256": "45d3bf5a076d768100471668d6fa191607b856414796ac86eb6cc255ccce1d05",
+      "sediment_file_id": "file_000000004c548211bf527b173ed7580b"
+    }
+  ],
+  "inspection": "Six evenly spaced still samples from each clip; original first frame of clip1 used as ImageGen style reference. No audio/continuous or frame-by-frame viewing claim.",
+  "direction": [
+    "black/white angular city",
+    "magenta sky",
+    "two opaque faceless cyan/lime upper-body silhouettes",
+    "casual hands-in-pockets walking/slouched poses",
+    "native readable five-option menu"
+  ],
+  "generated_asset": "godot/assets/ui/cover/neon-silhouettes.png",
+  "asset_sha256": "3266daf8278007bd9350997280b11cb8c816136f6bc19a18b381f6cdfdcabf2d",
+  "generation": "ImageGen, original composition, reference frame for style, prompt.txt",
+  "original_preserved": "Old title.png and source films unchanged; original generated PNG remains in generated_images. No author names/film UI/copyright character artwork copied into runtime.",
+  "user_refinement": "Upper body only, understated cool, hands in pockets, no fighting pose or visible face.",
+  "iterations": [
+    {
+      "version": 1,
+      "source_generated_filename": "exec-690a42a0-2ec8-496a-9508-d6a12d4d1456.png",
+      "status": "superseded by user pose/framing feedback",
+      "prompt": "prompt-v1.txt"
+    },
+    {
+      "version": 2,
+      "source_generated_filename": "exec-5b6c72ac-ca3e-46ef-9e7e-a0407d66891f.png",
+      "status": "active key art",
+      "prompt": "prompt.txt"
+    }
+  ],
+  "asset_size": [
+    1672,
+    941
+  ],
+  "asset_alpha_range": [
+    255,
+    255
+  ],
+  "cover_face_review": "Manual review of generated key art and640x360 native title capture: two solid featureless heads, no eyes/nose/mouth/skin rendering. No automated face-detector guarantee."
+}

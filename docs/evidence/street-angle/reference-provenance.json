@@ -1,0 +1,22 @@
+{
+  "drive_file_id": "14umRoL39F5hDiDY7-REG6sa5Jqg3QGjD",
+  "source_url": "https://drive.google.com/file/d/14umRoL39F5hDiDY7-REG6sa5Jqg3QGjD/view",
+  "size_bytes": 344300575,
+  "sha256": "02249702c2a85d792ca683263288c92f7e0faad5aadab567ef34320375ecc6d0",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "duration_seconds": 1088.654467,
+  "sampling": "ffmpeg fps=1/45,scale=640:-1,tile=3x2; first six output samples only",
+  "approximate_sample_seconds": [
+    22.5,
+    67.5,
+    112.5,
+    157.5,
+    202.5,
+    247.5
+  ],
+  "full_video_watched": false,
+  "reference_video_in_repository": false,
+  "images": "Three images supplied inline in this chat; used as composition references."
+}

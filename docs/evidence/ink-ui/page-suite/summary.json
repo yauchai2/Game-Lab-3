@@ -1,0 +1,49 @@
+{
+  "created_utc": "20261110T025008Z",
+  "source_commit": "d974f312d4d69bb8620f217458d75a1cd7963c1c",
+  "tracked_runtime_changes": [
+    "godot/project.godot",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/ui/reference_art.gd",
+    "godot/scripts/combat/ui/roster_preview.gd",
+    "godot/scripts/combat/ui/ui_theme.gd",
+    "godot/shaders/fighter_outline.gdshader",
+    "godot/shaders/fighter_toon.gdshader"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 10,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_ink_ui",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "7d135125598ed920ebf54e6c63de17435269130b7207b6e203989c1a386dfe56",
+      "seconds": 10.621,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_ink_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 10,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

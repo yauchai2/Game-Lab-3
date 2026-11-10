@@ -1,0 +1,10 @@
+{
+  "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.984301, 0.176495), Z: (0.0, -0.176495, 0.984301), O: (0.0, 2.6, 22.0)]",
+  "draw_calls": 1053,
+  "fov": 68.0,
+  "image_error": 0,
+  "image_size": "(968.0, 412.0)",
+  "primitives": 113026,
+  "shot": "07_panorama_reference"
+}

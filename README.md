@@ -1,4 +1,69 @@
-# Game-Lab-3
+# Afterhours / Game-Lab-3
+
+最新：[新封面／Logo與全套Ink UI](docs/INK_UI.zh-TW.md)／[各頁實機](docs/evidence/ink-ui/README.md)／[拆件素材](godot/assets/ui/ink/README.md)。
+
+最新：[無臉半身剪影封面](docs/FACELESS_COVER.zh-TW.md)／[主選單實機畫面](docs/evidence/faceless-cover/README.md)。
+
+最新：[UI文字加大與Godot4.7.2覆核](docs/UI_READABILITY.zh-TW.md)／[前後實機畫面](docs/evidence/readable-ui/README.md)。只更新原始碼，Web保持不變。
+
+最新：已接入統一像素、3D選角、活街景及音訊恢復。詳見 [本輪實作與試用方法](docs/UNIFIED_PIXEL_RUNTIME.zh-TW.md)，[實機畫面](docs/evidence/unified-pixel/README.md)。只更新原始碼分支，公開Web版本不變。
+
+最新[統一像素美術、活街景與3D選角詳細計劃](docs/UNIFIED_PIXEL_ART_PLAN.zh-TW.md)：本輪僅規劃，未變更遊戲或Web。
+
+## Approved reference UI
+
+[Reference UI update](docs/REFERENCE_UI.md): original title composition, five actions, native four-card fighters and matching HUD. Music ducks through Esc/settings and crossfades songs; all attacks reviewed, noisy raster stamps removed. [Native images / Demo / VFX review](docs/evidence/ui-replica/README.md). Source branch only; public Web unchanged.
+
+
+## JSR 遊戲內 UI 已替換
+
+[本輪更新](docs/JSR_RUNTIME.md)：JSR 原生介面、四人不同招式／特性、護目鏡94%身高、生成攻擊／爆發圖、新音樂及可關閉低解像畫面。只更新來源分支；公開 Web 保持舊版。
+
+
+最新 [Jet Set Radio UI 研究與圖片](docs/JSR_UI_ART_DIRECTION.zh-TW.md)：已研究原版手冊／官方 PC 截圖，生成主選單、精簡 HUD、四角色頁，以及透明 Logo／8 框架／16 圖示。[圖片總覽](references/ui-jsr-2026-11-09/README.md)／[素材 ZIP](references/ui-jsr-2026-11-09/afterhours-jsr-ui-v001.zip)。本輪為設計與素材，尚未替換遊戲 UI，公開 Web 不更新。
+
+
+最新[蓄力重砲與分招式演出](docs/CHARGED_CANNON.md)：**W＋L／↑＋L** 花 75 能量，雙手蓄力 → 雙掌光束；L 普通爆發保持。AI 完成空連後會等待合適機會施放，重砲／暴扣／反制採不同鏡頭。[30 秒新 Demo](docs/evidence/charged-cannon/demo.mp4)／[重砲片段](docs/evidence/charged-cannon/cannon.mp4)。只推來源，Web 不更新。
+
+
+最新[停慢快節奏與加長紅幕](docs/COMBAT_RHYTHM.md)：挑空／反制／爆發加入**全停 → 0.22 倍慢鏡 → 加速釋放**，全屏速度線、繞行甩鏡；技能紅幕 1 秒、KO 1.2 秒。護目鏡角色 4 身高縮為原來 **2/3**。[30 秒連續 Demo](docs/evidence/combat-rhythm/rhythm-demo.mp4)。F2 比較減少演出，公開 Web 不更新。
+
+
+最新[四角色配搭](docs/CHARACTER_ROSTER.md)：已加入你提供的 **1、3、4** 三個 GLB，主選單「**角色配搭**」可選自己及對手，即時預覽並保存；對戰／練習／F12 Demo 沿用。四位目前共用招式與能力，公開 Web 未更新。
+
+
+最新[**Rush 街鬥大改**](docs/RUSH_REWORK.md)：正式對戰 **按住 J 連段＋空中追擊、K 挑空／暴扣、L 爆發**；**F12** 看不會完結的雙 AI 自由交戰，R 重開、Esc 暫停。新增紅幕技能、BREAK 及近鏡環繞 KO。[15 秒無剪接 Demo](docs/evidence/rush-rework/endless-demo.mp4)／[紅幕 KO](docs/evidence/rush-rework/red-ko.mp4)。只更新原始碼，公開 Web 維持舊版。
+
+本節為最新操作；以下先前的「23 段技巧／N 下一段、空戰只限 F11、正式模式不改」均已由這輪取代，保留歷史可追溯。wev 音樂仍已接入。
+
+
+最新[格擋／反擊容錯與正回饋](docs/FRIENDLY_DEFENSE.md)：**Shift** 接招更容易，成功後 **J 反擊**（不用放開 Shift），空中選擇與高壓決策時間加長。命中才顯示「反擊成功」，普通擋格也有提示；公開 Web 未更新。
+
+最新[雙 AI 技巧 Demo](docs/AI_DEMO.md)：**F12** 自動展示 23 段技巧、自由交戰及 KO 循環。**N 下一段、R 重播、Esc 暫停、F12 結束**；保留 wev 音樂及 F2。只更新開發分支，公開 Web 不更新。
+
+最新[空中借勢逆轉](docs/AIR_REVERSAL.md)：**F11 → F8 → K**，接觸前 **Shift** 反制 → **J 反踢／E 抽身**。花 25 能量、每次離地一次；反踢有起手，可閃避。新增反制教室、踩踏姿態、雙語提示及音效同步。只更新原始碼，**公開 Web 不更新**。
+
+最新[空中街鬥原型](docs/AERIAL_STREET.md)：主選單 **F11 空中訓練**，Space 蓄勢起跳、S 急降、W＋K 挑空 → E 追擊 → J 空中三連、↓＋K 暴扣及一次反彈。新增程序姿態、空中構圖及快速組合鍵修正；F2 減少演出。正式模式保留原玩法，**公開 Web 不更新**。
+
+前輪規劃：[空中戰、誇張動作及聲畫整合](docs/AERIAL_ACTION_AUDIO_PLAN.zh-TW.md)／[wev 選曲與接入](docs/WEV_MUSIC_PLAN.md)。吸收新 R&D 參考並核對跳躍尺度，下一輪優先起跳、有限滯空與空連；**本輪未改遊戲**。wev 其後已由使用者確認可用，並指示自行下載；現已從官方免費下載接入 **family ties (wev edit)**，保留 CC0 缺檔 fallback，公開 Web 未更新。
+
+最新[動能換手與漫畫爆發演出](docs/KINETIC_OVERDRIVE.md)：**F10** 進有限格擋換手練習，Shift 接拳 → J 反擊 → 再格擋升級。正式對戰新增月牙衝擊弧、骨架殘影、三色階爆發、鏡頭反衝及可跳過的 KO 演出。F2 減少演出。只更新開發分支，**公開 Web 不更新**。
+
+前輪[爽感與完整演出優化計劃](docs/GAME_FEEL_ROADMAP.zh-TW.md)：已吸收並保存兩份使用者參考，規劃有限格擋換手、蓄力、分層演出、選角／VS／KO 及驗收次序。**本輪只有文件更新，新系統尚未實作；現行三選對峙保留。公開試玩版不更新。**
+
+**[在 GitHub 直接試玩](https://yauchai2.github.io/Game-Lab-3/)** · 電腦鍵盤、單人對 AI／無限練習、首次約 19 MB。GitHub Pages 已啟用。[操作與更新方法](docs/WEB_PLAYTEST.md)。
+
+前輪[原生 UI 與近身交鋒完善](docs/EXTENDED_POLISH.md)：移除藍樓遮窗大牌，繁中／英文選單、可點按對峙、獨立音量、G 投技／拆投、E 場邊受身、較近的交手追鏡及靜態批次繪圖。只更新 `codex/street-combat` 原始碼，**公開試玩網址仍是舊版**。
+
+[借勢街鬥核心原型](docs/PRESSURE_EXCHANGE.md)：三階壓力、高壓重踢 0.4 秒對峙、J 頂進／Shift 卸勢／E 抽身。主選單選「交鋒教室」，或 T → F8 → K 直接試。
+
+前輪[分段打擊演出](docs/IMPACT_STAGING.md)：六種攻擊弧、頓幀接觸核心、釋放氣浪／碎片及方向反衝；只更新開發分支。
+
+前輪[招牌整理、動態天空與新版 LLB 參考](docs/SCENE_COMPOSITION.md)：保留圖片天空並加入緩慢雲圖漂移，重整空白招牌及支架；只更新開發分支。
+
+前輪[街角立面與兩側街區加密](docs/CORNER_DENSITY.md)只更新 Godot 原始碼，**公開試玩版未同步此輪場景**。在 GitHub Desktop 選 `codex/street-combat` 拉取後 F5 查看。
+
+本分支在既有風格化街區上加入 **2.5D 近身格鬥**：玩家對 AI、連擊、挑空、防禦、能量技、動態頓幀和回合勝負。[操作與完整開發狀態](docs/COMBAT.md)。最新已按試玩回饋修正朝向、接入 14 段 CC0 動畫，改用[斑馬線上的統一透視與追鏡](docs/PLAYTEST_FIXES.md)，場景招牌先留白。[最新戰鬥完善](docs/COMBAT_POLISH.md)：無限練習、對手切換、快速重置、挑空跳躍追擊、AI 難度及設定保存。最新已[接回原圖片天空、車輛與街景細節](docs/SCENE_AUDIO_VFX.md)，修正倒飛與街道拉伸，加入 CC0 音樂／音效、精準防禦及更多局部 VFX。
 
 以 Godot 4 製作風格化低空航道街區。AI 主導製作，使用者透過 Tripo 網頁生成與回傳模型，並提供美術及遊玩回饋。
 
@@ -29,7 +94,9 @@
 
 ## 開啟專案
 
-驗證版本為 Godot 4.6.3，以編輯器開啟 `godot/project.godot`，匯入後執行主場景 `scenes/street_walk.tscn`。WASD 移動、滑鼠轉向、Space 跳躍、V 切換第一／第三人稱；按 `1–5`／`Tab` 查看固定視角，`0` 回到角色，`R` 重設，`B` 比較樣片材質，`P` 重播飛機，`C` 切換程序雲朵／純色天空，`N` 比較生成的天空圖片，`O` 開關實驗性描邊。原資產展示仍保留於 `scenes/review.tscn`。
+驗證版本為 Godot 4.6.3，以編輯器開啟 `godot/project.godot`，匯入後按 F5 進入格鬥主選單 `scenes/combat/street_fight.tscn`。按住 J 地空連段、K 挑空／空中暴扣、↓+K 地面重踢、L 能量技、Shift 防禦／抓準時機反制、E 翻滾閃避、Space 跳躍；M 靜音、F4 音樂、F2 減少演出、O 場景描邊；遊戲內 F6 返回原街景 `scenes/street_walk.tscn`，再按 F6 回格鬥。
+
+原街景操作：WASD 移動、滑鼠轉向、Space 跳躍、V 切換第一／第三人稱；按 `1–5`／`Tab` 查看固定視角，`0` 回到角色，`R` 重設，`B` 比較樣片材質，`P` 重播飛機，`C` 切換程序雲朵／純色天空，`N` 比較生成的天空圖片，`O` 開關實驗性描邊。原資產展示仍保留於 `scenes/review.tscn`。
 
 ```sh
 godot --headless --editor --path godot --import --quit

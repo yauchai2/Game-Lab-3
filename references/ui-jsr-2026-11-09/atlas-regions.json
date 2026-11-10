@@ -1,0 +1,386 @@
+{
+  "format": "Atlas regions in original PNG pixels; no PNG cropping or retouch performed. Use Godot AtlasTexture.region; filenames are portable pack-relative.",
+  "frames": {
+    "image": "assets/ui-frames.png",
+    "entries": [
+      {
+        "id": "button_normal",
+        "region_xywh": [
+          0,
+          0,
+          768,
+          256
+        ],
+        "visible_bbox_in_region": [
+          52,
+          47,
+          720,
+          223
+        ],
+        "status": "alpha_asset_candidate"
+      },
+      {
+        "id": "button_selected",
+        "region_xywh": [
+          768,
+          0,
+          768,
+          256
+        ],
+        "visible_bbox_in_region": [
+          61,
+          47,
+          724,
+          224
+        ],
+        "status": "alpha_asset_candidate"
+      },
+      {
+        "id": "button_hover",
+        "region_xywh": [
+          0,
+          256,
+          768,
+          232
+        ],
+        "visible_bbox_in_region": [
+          47,
+          34,
+          719,
+          195
+        ],
+        "status": "alpha_asset_candidate"
+      },
+      {
+        "id": "button_disabled",
+        "region_xywh": [
+          768,
+          256,
+          768,
+          232
+        ],
+        "visible_bbox_in_region": [
+          49,
+          37,
+          725,
+          196
+        ],
+        "status": "alpha_asset_candidate"
+      },
+      {
+        "id": "health_frame",
+        "region_xywh": [
+          0,
+          488,
+          768,
+          216
+        ],
+        "visible_bbox_in_region": [
+          43,
+          14,
+          734,
+          195
+        ],
+        "status": "alpha_asset_candidate"
+      },
+      {
+        "id": "energy_ornament",
+        "region_xywh": [
+          768,
+          488,
+          768,
+          216
+        ],
+        "visible_bbox_in_region": [
+          59,
+          37,
+          715,
+          183
+        ],
+        "status": "decorative_only_rebuild_50_75_ticks_in_code"
+      },
+      {
+        "id": "timer_dial",
+        "region_xywh": [
+          0,
+          704,
+          768,
+          320
+        ],
+        "visible_bbox_in_region": [
+          170,
+          9,
+          586,
+          312
+        ],
+        "status": "alpha_asset_candidate"
+      },
+      {
+        "id": "combo_badge",
+        "region_xywh": [
+          768,
+          704,
+          768,
+          320
+        ],
+        "visible_bbox_in_region": [
+          21,
+          19,
+          720,
+          296
+        ],
+        "status": "alpha_asset_candidate"
+      }
+    ]
+  },
+  "icons": {
+    "image": "assets/action-icons.png",
+    "entries": [
+      {
+        "id": "jab",
+        "region_xywh": [
+          0,
+          0,
+          315,
+          311
+        ],
+        "significant_bbox_in_region": [
+          45,
+          50,
+          293,
+          294
+        ]
+      },
+      {
+        "id": "launch",
+        "region_xywh": [
+          315,
+          0,
+          315,
+          311
+        ],
+        "significant_bbox_in_region": [
+          44,
+          62,
+          276,
+          294
+        ]
+      },
+      {
+        "id": "slam",
+        "region_xywh": [
+          630,
+          0,
+          315,
+          311
+        ],
+        "significant_bbox_in_region": [
+          33,
+          76,
+          268,
+          290
+        ]
+      },
+      {
+        "id": "cannon",
+        "region_xywh": [
+          945,
+          0,
+          316,
+          311
+        ],
+        "significant_bbox_in_region": [
+          19,
+          91,
+          261,
+          272
+        ]
+      },
+      {
+        "id": "parry",
+        "region_xywh": [
+          0,
+          311,
+          315,
+          312
+        ],
+        "significant_bbox_in_region": [
+          72,
+          51,
+          276,
+          293
+        ]
+      },
+      {
+        "id": "counter",
+        "region_xywh": [
+          315,
+          311,
+          315,
+          312
+        ],
+        "significant_bbox_in_region": [
+          51,
+          62,
+          265,
+          282
+        ]
+      },
+      {
+        "id": "dash",
+        "region_xywh": [
+          630,
+          311,
+          315,
+          312
+        ],
+        "significant_bbox_in_region": [
+          8,
+          93,
+          278,
+          258
+        ]
+      },
+      {
+        "id": "grab",
+        "region_xywh": [
+          945,
+          311,
+          316,
+          312
+        ],
+        "significant_bbox_in_region": [
+          19,
+          64,
+          260,
+          273
+        ]
+      },
+      {
+        "id": "headphones",
+        "region_xywh": [
+          0,
+          623,
+          315,
+          312
+        ],
+        "significant_bbox_in_region": [
+          58,
+          49,
+          283,
+          270
+        ]
+      },
+      {
+        "id": "radio",
+        "region_xywh": [
+          315,
+          623,
+          315,
+          312
+        ],
+        "significant_bbox_in_region": [
+          61,
+          43,
+          261,
+          268
+        ]
+      },
+      {
+        "id": "demo",
+        "region_xywh": [
+          630,
+          623,
+          315,
+          312
+        ],
+        "significant_bbox_in_region": [
+          9,
+          54,
+          275,
+          261
+        ]
+      },
+      {
+        "id": "roster",
+        "region_xywh": [
+          945,
+          623,
+          316,
+          312
+        ],
+        "significant_bbox_in_region": [
+          12,
+          70,
+          271,
+          253
+        ]
+      },
+      {
+        "id": "music",
+        "region_xywh": [
+          0,
+          935,
+          315,
+          312
+        ],
+        "significant_bbox_in_region": [
+          53,
+          47,
+          266,
+          255
+        ]
+      },
+      {
+        "id": "sound",
+        "region_xywh": [
+          315,
+          935,
+          315,
+          312
+        ],
+        "significant_bbox_in_region": [
+          39,
+          49,
+          277,
+          257
+        ]
+      },
+      {
+        "id": "pause",
+        "region_xywh": [
+          630,
+          935,
+          315,
+          312
+        ],
+        "significant_bbox_in_region": [
+          67,
+          71,
+          220,
+          235
+        ]
+      },
+      {
+        "id": "back",
+        "region_xywh": [
+          945,
+          935,
+          316,
+          312
+        ],
+        "significant_bbox_in_region": [
+          16,
+          53,
+          246,
+          260
+        ]
+      }
+    ]
+  },
+  "notes": [
+    "Energy ornament separators are decorative, not exact 50/75 resource thresholds. Draw actual energy, health, text and state in the engine.",
+    "Alpha-zero pixels can retain colored RGB; native alpha-preview is the evidence, not an RGB-only viewer.",
+    "Significant bbox threshold is alpha >=16 for inspection only. PNG bytes are preserved."
+  ]
+}

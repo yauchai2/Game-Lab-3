@@ -1,0 +1,130 @@
+{
+  "checks": [
+    {
+      "name": "launch has hold slow release and normal flow",
+      "passed": true
+    },
+    {
+      "name": "launch uses a bounded shared clock",
+      "passed": true
+    },
+    {
+      "name": "chase has hold slow release and normal flow",
+      "passed": true
+    },
+    {
+      "name": "chase uses a bounded shared clock",
+      "passed": true
+    },
+    {
+      "name": "parry has hold slow release and normal flow",
+      "passed": true
+    },
+    {
+      "name": "parry uses a bounded shared clock",
+      "passed": true
+    },
+    {
+      "name": "skill has hold slow release and normal flow",
+      "passed": true
+    },
+    {
+      "name": "skill uses a bounded shared clock",
+      "passed": true
+    },
+    {
+      "name": "overdrive has hold slow release and normal flow",
+      "passed": true
+    },
+    {
+      "name": "overdrive uses a bounded shared clock",
+      "passed": true
+    },
+    {
+      "name": "impact has hold slow release and normal flow",
+      "passed": true
+    },
+    {
+      "name": "impact uses a bounded shared clock",
+      "passed": true
+    },
+    {
+      "name": "break has hold slow release and normal flow",
+      "passed": true
+    },
+    {
+      "name": "break uses a bounded shared clock",
+      "passed": true
+    },
+    {
+      "name": "weaker events cannot restart a dramatic hold",
+      "passed": true
+    },
+    {
+      "name": "reduced effects immediately returns to one normal step",
+      "passed": true
+    },
+    {
+      "name": "goggle fighter is only slightly shorter",
+      "passed": true
+    },
+    {
+      "name": "paid skill opens a full second red cut and hold",
+      "passed": true
+    },
+    {
+      "name": "hold really stops both fighters and the simulation clock",
+      "passed": true
+    },
+    {
+      "name": "input received during the hold stays pending",
+      "passed": true
+    },
+    {
+      "name": "pause freezes both choreography clocks",
+      "passed": true
+    },
+    {
+      "name": "live scene actually slows and accelerates",
+      "passed": true
+    },
+    {
+      "name": "cinematic camera performs visible bounded rotation",
+      "passed": true
+    },
+    {
+      "name": "accelerated frames never skip more than two fixed steps",
+      "passed": true
+    },
+    {
+      "name": "F2 clears the tempo and red environment",
+      "passed": true
+    },
+    {
+      "name": "title clears the pacing accumulator",
+      "passed": true
+    },
+    {
+      "name": "live demo retains quiet and dramatic intervals",
+      "passed": true
+    },
+    {
+      "name": "slow-motion demo stays alive and both sides hit",
+      "passed": true
+    },
+    {
+      "name": "extra full-screen effects remain bounded",
+      "passed": true
+    }
+  ],
+  "max_effects": 14,
+  "phase_frames": {
+    "flow": 1077,
+    "hold": 155,
+    "release": 312,
+    "slow": 256
+  },
+  "red_frames": 579,
+  "scope": "Fixed-step native engine input/state/camera checks; no human fun score or target GPU claim.",
+  "street_frames": 1221
+}

@@ -8,6 +8,7 @@ var procedural_sky: Sky
 var image_sky_enabled := false
 var clouds_enabled := true
 var sample_environment: Environment
+var sky_motion = preload("res://scripts/sky_drift.gd").new()
 var mode := 1 # 0 original, 1 two bands, 2 three bands
 var affected: Array[MeshInstance3D] = []
 var originals: Array[Material] = []
@@ -41,15 +42,15 @@ func _ready() -> void:
     var sun: DirectionalLight3D = street.get_node("Sun")
     sun.light_energy = .62
     sun.light_color = Color("ffe4c4")
-    # Bring the landmark sign slightly into the street and warm its face;
+    # Bring the landmark sign_mesh slightly into the street and warm its face;
     # the standalone S1 whitebox remains untouched.
     for title in ["VerticalSignFrame","VerticalSignFace"]:
-        var sign: MeshInstance3D = street.get_node("Landmarks/"+title)
-        sign.position.x += .8
-        var original: BaseMaterial3D = sign.get_active_material(0)
+        var sign_mesh: MeshInstance3D = street.get_node("Landmarks/"+title)
+        sign_mesh.position.x += .8
+        var original: BaseMaterial3D = sign_mesh.get_active_material(0)
         var styled: BaseMaterial3D = original.duplicate(true)
         styled.albedo_color = Color("dbab3c") if title == "VerticalSignFrame" else Color("59402d")
-        sign.material_override = styled
+        sign_mesh.material_override = styled
     two_sided_shader = Shader.new()
     two_sided_shader.code = ToonShader.code.replace("specular_disabled;", "specular_disabled, cull_disabled;")
     # Thin aircraft details produced shadow acne on the white fuselage. The plane
@@ -130,7 +131,8 @@ func _flush_detail_groups() -> void:
         var transforms: Array = group.transforms
         var batch := MultiMesh.new()
         batch.transform_format = MultiMesh.TRANSFORM_3D
-        batch.mesh = box if group.kind == "box" else sphere
+        if group.kind == "box":batch.mesh=box
+        else:batch.mesh=sphere
         batch.instance_count = transforms.size()
         for i in transforms.size():
             batch.set_instance_transform(i,transforms[i])
@@ -175,34 +177,8 @@ func _build_details() -> void:
                 _box("WindowSash",Vector3(x,y,z),Vector3(.10,1.55,.08),pale)
                 for edge in [-1,1]:
                     _box("WindowFrame",Vector3(x,y,z+edge*1.52),Vector3(.10,1.65,.10),dark)
-    # Two distant fictional signs provide depth cues above the walking route.
-    _box("CrossStreetSign",Vector3(.3,8.0,-28),Vector3(4.0,1.0,.18),teal)
-    _box("CrossStreetSignTrim",Vector3(.3,8.55,-28),Vector3(4.15,.10,.22),amber)
-    _box("FarStreetSign",Vector3(-.6,6.7,-39),Vector3(3.0,.8,.16),pale)
-    var small_label := Label3D.new()
-    small_label.name = "CrossStreetLabel"
-    small_label.text = "街角茶室"
-    small_label.font_size = 64
-    small_label.pixel_size = .009
-    small_label.modulate = Color("f1c55d")
-    small_label.position = Vector3(.3,8,-27.87)
-    var small_font := SystemFont.new()
-    small_font.font_names = PackedStringArray(["Noto Sans CJK TC","Microsoft JhengHei","PingFang TC","sans-serif"])
-    small_label.font = small_font
-    details.add_child(small_label)
-    # Label uses system font fallback; exact glyph availability depends on client fonts.
-    var label := Label3D.new()
-    label.name = "OriginalSignText"
-    label.text = "高\n空\n航\n道"
-    label.font_size = 96
-    label.pixel_size = .012
-    label.modulate = Color("f4c75d")
-    label.position = Vector3(-4.0,10.7,-14.72)
-    var font := SystemFont.new()
-    font.font_names = PackedStringArray(["Noto Sans CJK TC","Microsoft JhengHei","PingFang TC","sans-serif"])
-    font.font_weight = 700
-    label.font = font
-    details.add_child(label)
+    # StreetDressing owns the receding signs, avoiding duplicate panels at -39 m.
+    # Scene lettering is supplied later as user artwork; do not create hidden fonts.
 func set_mode(value: int) -> void:
     mode = posmod(value,3)
     if not is_instance_valid(details):
@@ -224,7 +200,7 @@ func set_clouds(enabled: bool) -> void:
     image_sky_enabled = false
     clouds_enabled = enabled
     sample_environment.sky = procedural_sky
-    sample_environment.sky_rotation = Vector3.ZERO
+    sample_environment.sky_rotation = Vector3(0,sky_motion.offset,0)
     sample_environment.background_mode = Environment.BG_SKY if enabled else Environment.BG_COLOR
 
 func set_image_sky(enabled: bool) -> void:
@@ -234,10 +210,13 @@ func set_image_sky(enabled: bool) -> void:
     image_sky_enabled = true
     clouds_enabled = true
     sample_environment.sky = generated_sky
-    sample_environment.sky_rotation = Vector3(0,deg_to_rad(90),0)
+    sample_environment.sky_rotation = Vector3(0,PI*0.5+sky_motion.offset,0)
     sample_environment.background_mode = Environment.BG_SKY
 
 func sky_label() -> String:
     if image_sky_enabled:
         return "Image sky"
     return "Clouds" if clouds_enabled else "Flat sky"
+
+func _process(delta: float) -> void:
+    sky_motion.advance(sample_environment,delta,PI*0.5 if image_sky_enabled else 0.0)

@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://dxsc6bdbchw6o"
+path="res://.godot/imported/RadioPixelDisplayReadable.fnt-ce0bf758bd8cb64f51ef91d1da9a3ad2.fontdata"
+
+[deps]
+
+source_file="res://assets/fonts/RadioPixelDisplayReadable.fnt"
+dest_files=["res://.godot/imported/RadioPixelDisplayReadable.fnt-ce0bf758bd8cb64f51ef91d1da9a3ad2.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

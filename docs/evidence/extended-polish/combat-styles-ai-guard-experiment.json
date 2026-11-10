@@ -1,0 +1,1231 @@
+{
+  "invariant_violations": [],
+  "method": "60 Hz offline simulation; 12-tick-old visual observations, deterministic bot styles; diagnostic only, not human balance validation",
+  "passed": true,
+  "rounds": [
+    {
+      "clashes": 1,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        0,
+        84
+      ],
+      "hits": 10,
+      "recoveries": 0,
+      "remaining": 62.1333333333341,
+      "steps": 892,
+      "style": "guard",
+      "throws": 9,
+      "trial": 0,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        0,
+        84
+      ],
+      "hits": 10,
+      "recoveries": 0,
+      "remaining": 62.1333333333341,
+      "steps": 892,
+      "style": "guard",
+      "throws": 9,
+      "trial": 1,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        0,
+        100
+      ],
+      "hits": 9,
+      "recoveries": 0,
+      "remaining": 62.1333333333341,
+      "steps": 864,
+      "style": "guard",
+      "throws": 8,
+      "trial": 2,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        0,
+        100
+      ],
+      "hits": 9,
+      "recoveries": 0,
+      "remaining": 62.1333333333341,
+      "steps": 864,
+      "style": "guard",
+      "throws": 8,
+      "trial": 3,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        0,
+        100
+      ],
+      "hits": 9,
+      "recoveries": 0,
+      "remaining": 62.1333333333341,
+      "steps": 860,
+      "style": "guard",
+      "throws": 8,
+      "trial": 4,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        0,
+        100
+      ],
+      "hits": 9,
+      "recoveries": 0,
+      "remaining": 62.1333333333341,
+      "steps": 860,
+      "style": "guard",
+      "throws": 8,
+      "trial": 5,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        92,
+        0
+      ],
+      "hits": 13,
+      "recoveries": 0,
+      "remaining": 68.2333333333337,
+      "steps": 486,
+      "style": "light",
+      "throws": 0,
+      "trial": 0,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        85,
+        0
+      ],
+      "hits": 15,
+      "recoveries": 0,
+      "remaining": 68.766666666667,
+      "steps": 461,
+      "style": "light",
+      "throws": 0,
+      "trial": 1,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        93,
+        0
+      ],
+      "hits": 13,
+      "recoveries": 0,
+      "remaining": 68.266666666667,
+      "steps": 474,
+      "style": "light",
+      "throws": 0,
+      "trial": 2,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        85,
+        0
+      ],
+      "hits": 15,
+      "recoveries": 0,
+      "remaining": 68.766666666667,
+      "steps": 461,
+      "style": "light",
+      "throws": 0,
+      "trial": 3,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        93,
+        0
+      ],
+      "hits": 14,
+      "recoveries": 0,
+      "remaining": 68.266666666667,
+      "steps": 485,
+      "style": "light",
+      "throws": 0,
+      "trial": 4,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        100,
+        0
+      ],
+      "hits": 12,
+      "recoveries": 0,
+      "remaining": 68.716666666667,
+      "steps": 448,
+      "style": "light",
+      "throws": 0,
+      "trial": 5,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        66,
+        0
+      ],
+      "hits": 10,
+      "recoveries": 0,
+      "remaining": 66.2666666666672,
+      "steps": 625,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 0,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        54,
+        0
+      ],
+      "hits": 11,
+      "recoveries": 0,
+      "remaining": 66.2333333333338,
+      "steps": 627,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 1,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        76,
+        0
+      ],
+      "hits": 9,
+      "recoveries": 0,
+      "remaining": 67.9000000000004,
+      "steps": 518,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 2,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        0,
+        12
+      ],
+      "hits": 15,
+      "recoveries": 0,
+      "remaining": 61.5000000000008,
+      "steps": 947,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 3,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        83,
+        0
+      ],
+      "hits": 8,
+      "recoveries": 0,
+      "remaining": 67.5000000000004,
+      "steps": 516,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 4,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        44,
+        0
+      ],
+      "hits": 10,
+      "recoveries": 0,
+      "remaining": 64.8166666666672,
+      "steps": 699,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 5,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        100,
+        0
+      ],
+      "hits": 10,
+      "recoveries": 0,
+      "remaining": 69.2833333333337,
+      "steps": 411,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 0,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        77,
+        0
+      ],
+      "hits": 12,
+      "recoveries": 0,
+      "remaining": 68.0500000000004,
+      "steps": 495,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 1,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        100,
+        0
+      ],
+      "hits": 9,
+      "recoveries": 0,
+      "remaining": 69.316666666667,
+      "steps": 430,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 2,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        92,
+        0
+      ],
+      "hits": 11,
+      "recoveries": 0,
+      "remaining": 68.8500000000003,
+      "steps": 466,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 3,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        93,
+        0
+      ],
+      "hits": 10,
+      "recoveries": 0,
+      "remaining": 68.8333333333337,
+      "steps": 441,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 4,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 0,
+      "finished": true,
+      "health": [
+        93,
+        0
+      ],
+      "hits": 11,
+      "recoveries": 0,
+      "remaining": 67.1000000000004,
+      "steps": 546,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 5,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        100
+      ],
+      "hits": 10,
+      "recoveries": 0,
+      "remaining": 58.5500000000009,
+      "steps": 1128,
+      "style": "guard",
+      "throws": 5,
+      "trial": 0,
+      "winner": 1
+    },
+    {
+      "clashes": 3,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        62
+      ],
+      "hits": 11,
+      "recoveries": 0,
+      "remaining": 52.3000000000013,
+      "steps": 1572,
+      "style": "guard",
+      "throws": 4,
+      "trial": 1,
+      "winner": 1
+    },
+    {
+      "clashes": 3,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        62
+      ],
+      "hits": 15,
+      "recoveries": 0,
+      "remaining": 51.0500000000014,
+      "steps": 1656,
+      "style": "guard",
+      "throws": 3,
+      "trial": 2,
+      "winner": 1
+    },
+    {
+      "clashes": 2,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        78
+      ],
+      "hits": 13,
+      "recoveries": 0,
+      "remaining": 55.5833333333344,
+      "steps": 1346,
+      "style": "guard",
+      "throws": 4,
+      "trial": 3,
+      "winner": 1
+    },
+    {
+      "clashes": 2,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        78
+      ],
+      "hits": 13,
+      "recoveries": 0,
+      "remaining": 55.5833333333344,
+      "steps": 1346,
+      "style": "guard",
+      "throws": 4,
+      "trial": 4,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        100
+      ],
+      "hits": 10,
+      "recoveries": 0,
+      "remaining": 59.8000000000009,
+      "steps": 1049,
+      "style": "guard",
+      "throws": 5,
+      "trial": 5,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        27,
+        0
+      ],
+      "hits": 15,
+      "recoveries": 0,
+      "remaining": 57.0666666666677,
+      "steps": 1222,
+      "style": "light",
+      "throws": 0,
+      "trial": 0,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        25
+      ],
+      "hits": 13,
+      "recoveries": 0,
+      "remaining": 59.6833333333342,
+      "steps": 1042,
+      "style": "light",
+      "throws": 0,
+      "trial": 1,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        30
+      ],
+      "hits": 13,
+      "recoveries": 0,
+      "remaining": 59.6833333333342,
+      "steps": 1056,
+      "style": "light",
+      "throws": 0,
+      "trial": 2,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        26,
+        0
+      ],
+      "hits": 16,
+      "recoveries": 0,
+      "remaining": 59.9333333333342,
+      "steps": 1051,
+      "style": "light",
+      "throws": 0,
+      "trial": 3,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        46,
+        0
+      ],
+      "hits": 15,
+      "recoveries": 0,
+      "remaining": 57.750000000001,
+      "steps": 1175,
+      "style": "light",
+      "throws": 0,
+      "trial": 4,
+      "winner": 0
+    },
+    {
+      "clashes": 2,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        10,
+        0
+      ],
+      "hits": 15,
+      "recoveries": 0,
+      "remaining": 57.2833333333343,
+      "steps": 1243,
+      "style": "light",
+      "throws": 0,
+      "trial": 5,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        82
+      ],
+      "hits": 8,
+      "recoveries": 0,
+      "remaining": 67.2000000000004,
+      "steps": 534,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 0,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        43
+      ],
+      "hits": 9,
+      "recoveries": 0,
+      "remaining": 64.5666666666673,
+      "steps": 702,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 1,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        46
+      ],
+      "hits": 10,
+      "recoveries": 0,
+      "remaining": 64.6833333333339,
+      "steps": 706,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 2,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        46
+      ],
+      "hits": 10,
+      "recoveries": 0,
+      "remaining": 64.6833333333339,
+      "steps": 706,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 3,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        46
+      ],
+      "hits": 10,
+      "recoveries": 0,
+      "remaining": 64.6833333333339,
+      "steps": 706,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 4,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        0,
+        40
+      ],
+      "hits": 9,
+      "recoveries": 0,
+      "remaining": 64.5833333333339,
+      "steps": 705,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 5,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        42,
+        0
+      ],
+      "hits": 17,
+      "recoveries": 0,
+      "remaining": 63.5000000000007,
+      "steps": 823,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 0,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        35,
+        0
+      ],
+      "hits": 16,
+      "recoveries": 0,
+      "remaining": 63.683333333334,
+      "steps": 792,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 1,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        82,
+        0
+      ],
+      "hits": 10,
+      "recoveries": 0,
+      "remaining": 65.9666666666672,
+      "steps": 632,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 2,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        92,
+        0
+      ],
+      "hits": 13,
+      "recoveries": 0,
+      "remaining": 66.5000000000005,
+      "steps": 598,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 3,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        67,
+        0
+      ],
+      "hits": 15,
+      "recoveries": 0,
+      "remaining": 65.6166666666672,
+      "steps": 678,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 4,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 1,
+      "finished": true,
+      "health": [
+        48,
+        0
+      ],
+      "hits": 12,
+      "recoveries": 0,
+      "remaining": 62.6166666666674,
+      "steps": 870,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 5,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        100
+      ],
+      "hits": 15,
+      "recoveries": 0,
+      "remaining": 56.8833333333344,
+      "steps": 1259,
+      "style": "guard",
+      "throws": 3,
+      "trial": 0,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        78
+      ],
+      "hits": 17,
+      "recoveries": 0,
+      "remaining": 50.5833333333347,
+      "steps": 1694,
+      "style": "guard",
+      "throws": 2,
+      "trial": 1,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        100
+      ],
+      "hits": 14,
+      "recoveries": 0,
+      "remaining": 56.600000000001,
+      "steps": 1261,
+      "style": "guard",
+      "throws": 4,
+      "trial": 2,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        100
+      ],
+      "hits": 19,
+      "recoveries": 0,
+      "remaining": 54.4833333333345,
+      "steps": 1422,
+      "style": "guard",
+      "throws": 2,
+      "trial": 3,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        78
+      ],
+      "hits": 21,
+      "recoveries": 0,
+      "remaining": 53.2833333333346,
+      "steps": 1534,
+      "style": "guard",
+      "throws": 2,
+      "trial": 4,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        100
+      ],
+      "hits": 17,
+      "recoveries": 0,
+      "remaining": 55.9666666666677,
+      "steps": 1304,
+      "style": "guard",
+      "throws": 4,
+      "trial": 5,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        93,
+        0
+      ],
+      "hits": 13,
+      "recoveries": 0,
+      "remaining": 61.0833333333341,
+      "steps": 917,
+      "style": "light",
+      "throws": 0,
+      "trial": 0,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        84,
+        0
+      ],
+      "hits": 14,
+      "recoveries": 0,
+      "remaining": 60.2500000000008,
+      "steps": 985,
+      "style": "light",
+      "throws": 0,
+      "trial": 1,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        82,
+        0
+      ],
+      "hits": 13,
+      "recoveries": 0,
+      "remaining": 59.9666666666675,
+      "steps": 1018,
+      "style": "light",
+      "throws": 0,
+      "trial": 2,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        3,
+        0
+      ],
+      "hits": 20,
+      "recoveries": 0,
+      "remaining": 53.0333333333346,
+      "steps": 1473,
+      "style": "light",
+      "throws": 0,
+      "trial": 3,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        68,
+        0
+      ],
+      "hits": 16,
+      "recoveries": 0,
+      "remaining": 56.700000000001,
+      "steps": 1215,
+      "style": "light",
+      "throws": 0,
+      "trial": 4,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        52,
+        0
+      ],
+      "hits": 17,
+      "recoveries": 0,
+      "remaining": 56.4166666666677,
+      "steps": 1241,
+      "style": "light",
+      "throws": 0,
+      "trial": 5,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        3
+      ],
+      "hits": 15,
+      "recoveries": 0,
+      "remaining": 60.0666666666675,
+      "steps": 1042,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 0,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        42
+      ],
+      "hits": 14,
+      "recoveries": 0,
+      "remaining": 63.433333333334,
+      "steps": 814,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 1,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        78
+      ],
+      "hits": 12,
+      "recoveries": 0,
+      "remaining": 66.1333333333338,
+      "steps": 630,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 2,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        6,
+        0
+      ],
+      "hits": 15,
+      "recoveries": 0,
+      "remaining": 61.4166666666674,
+      "steps": 948,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 3,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        78
+      ],
+      "hits": 12,
+      "recoveries": 0,
+      "remaining": 66.1333333333338,
+      "steps": 634,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 4,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        39
+      ],
+      "hits": 14,
+      "recoveries": 0,
+      "remaining": 62.1666666666674,
+      "steps": 889,
+      "style": "heavy",
+      "throws": 0,
+      "trial": 5,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        24
+      ],
+      "hits": 19,
+      "recoveries": 0,
+      "remaining": 63.7666666666673,
+      "steps": 804,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 0,
+      "winner": 1
+    },
+    {
+      "clashes": 0,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        0,
+        67
+      ],
+      "hits": 14,
+      "recoveries": 0,
+      "remaining": 65.2833333333339,
+      "steps": 661,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 1,
+      "winner": 1
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        32,
+        0
+      ],
+      "hits": 17,
+      "recoveries": 0,
+      "remaining": 63.7666666666673,
+      "steps": 822,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 2,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        3,
+        0
+      ],
+      "hits": 21,
+      "recoveries": 0,
+      "remaining": 59.5500000000009,
+      "steps": 1100,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 3,
+      "winner": 0
+    },
+    {
+      "clashes": 0,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        3,
+        0
+      ],
+      "hits": 20,
+      "recoveries": 0,
+      "remaining": 60.5333333333342,
+      "steps": 1021,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 4,
+      "winner": 0
+    },
+    {
+      "clashes": 1,
+      "difficulty": 2,
+      "finished": true,
+      "health": [
+        62,
+        0
+      ],
+      "hits": 11,
+      "recoveries": 0,
+      "remaining": 62.6166666666674,
+      "steps": 866,
+      "style": "mixed",
+      "throws": 0,
+      "trial": 5,
+      "winner": 0
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+{"Punch_Cross":[{"forward_reach":0.923981010913849,"phase":0.2},{"forward_reach":1.10109353065491,"phase":0.3},{"forward_reach":1.09616923332214,"phase":0.4},{"forward_reach":1.09897410869598,"phase":0.5},{"forward_reach":1.0792829990387,"phase":0.6},{"forward_reach":0.996414065361023,"phase":0.7},{"forward_reach":0.862227201461792,"phase":0.8}],"Punch_Jab":[{"forward_reach":0.993883669376373,"phase":0.2},{"forward_reach":1.05916333198547,"phase":0.3},{"forward_reach":1.05752611160278,"phase":0.4},{"forward_reach":1.04793453216553,"phase":0.5},{"forward_reach":0.982764363288879,"phase":0.6},{"forward_reach":0.854339003562927,"phase":0.7},{"forward_reach":0.79758620262146,"phase":0.8}]}

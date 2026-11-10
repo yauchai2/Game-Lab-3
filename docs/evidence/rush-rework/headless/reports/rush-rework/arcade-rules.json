@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "name": "burst is ready on the first round",
+      "passed": true
+    },
+    {
+      "name": "opening begins close and quickly",
+      "passed": true
+    },
+    {
+      "name": "holding one button earns contact within two seconds",
+      "passed": true
+    },
+    {
+      "name": "one-button chain actually hits with jab",
+      "passed": true
+    },
+    {
+      "name": "one-button chain actually hits with cross",
+      "passed": true
+    },
+    {
+      "name": "one-button chain actually hits with launcher",
+      "passed": true
+    },
+    {
+      "name": "one-button chain actually hits with air_jab",
+      "passed": true
+    },
+    {
+      "name": "one-button chain actually hits with air_kick",
+      "passed": true
+    },
+    {
+      "name": "one-button chain actually hits with meteor",
+      "passed": true
+    },
+    {
+      "name": "beginner can finish a real round",
+      "passed": true
+    },
+    {
+      "name": "opponent still deals real damage",
+      "passed": true
+    },
+    {
+      "name": "chain produces a readable six-hit reward",
+      "passed": true
+    },
+    {
+      "name": "held light does not erase a requested burst",
+      "passed": true
+    },
+    {
+      "name": "confirmed attack can cancel into a burst",
+      "passed": true
+    },
+    {
+      "name": "assist never hits outside real reach",
+      "passed": true
+    },
+    {
+      "name": "misses do not award free chase",
+      "passed": true
+    },
+    {
+      "name": "air combo landing grants a real escape",
+      "passed": true
+    },
+    {
+      "name": "arcade rules survive subsequent rounds",
+      "passed": true
+    }
+  ],
+  "opening_combo": 6,
+  "opening_first_hit": 43
+}

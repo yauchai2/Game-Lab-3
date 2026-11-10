@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "name": "street uses an independent 3D world",
+      "passed": true
+    },
+    {
+      "name": "reference background camera looks upwards",
+      "passed": true
+    },
+    {
+      "name": "combat keeps its orthographic camera",
+      "passed": true
+    },
+    {
+      "name": "both reference street walls remain visible",
+      "passed": true
+    },
+    {
+      "name": "source street is unrotated in the background wrapper",
+      "passed": true
+    },
+    {
+      "name": "backdrop input cannot consume combat controls",
+      "passed": true
+    },
+    {
+      "name": "fighter framing does not move the street camera",
+      "passed": true
+    },
+    {
+      "name": "aircraft follows a straight constant-speed path",
+      "passed": true
+    },
+    {
+      "name": "pause freezes flight and schedules one background refresh",
+      "passed": true
+    },
+    {
+      "name": "flight cooldown hides aircraft without reverse travel",
+      "passed": true
+    },
+    {
+      "name": "fixed capture uses the reproducible overhead pose",
+      "passed": true
+    },
+    {
+      "name": "background render width is bounded",
+      "passed": true
+    },
+    {
+      "name": "background display passes through mouse input",
+      "passed": true
+    },
+    {
+      "name": "foreground composites canvas behind the fighters",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "method": "headless scene, projection, composition and flight checks; visual evidence is separate",
+  "passed": 14
+}

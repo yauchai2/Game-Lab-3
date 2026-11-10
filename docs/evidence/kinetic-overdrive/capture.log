@@ -1,0 +1,21 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+KINETIC_CAPTURE 01_title png=0
+KINETIC_CAPTURE rally_tier_1_compress png=0
+KINETIC_CAPTURE rally_tier_2_compress png=0
+KINETIC_CAPTURE rally_tier_3_compress png=0
+KINETIC_CAPTURE rally_tier_4_compress png=0
+KINETIC_CAPTURE rally_tier_4_contact png=0
+KINETIC_CAPTURE rally_tier_4_release png=0
+KINETIC_CAPTURE special_anticipation png=0
+KINETIC_CAPTURE special_contact png=0
+KINETIC_CAPTURE special_release png=0
+KINETIC_CAPTURE heavy_smear_whiff png=0
+KINETIC_CAPTURE special_reduced png=0
+KINETIC_CAPTURE knockout_impact png=0
+KINETIC_CAPTURE knockout_result png=0
+KINETIC_CAPTURE title_english png=0
+KINETIC_SEQUENCE frames=86 fixed_simulation_hz=60 output_fps=30

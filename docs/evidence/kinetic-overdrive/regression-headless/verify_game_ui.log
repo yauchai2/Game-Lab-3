@@ -1,0 +1,15 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: UI FAIL: bundled font covers every localized copy string
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_game_ui.gd:9)
+       [1] run (res://tools/verify_game_ui.gd:33)
+UI_FONT_MISSING [23526, 39511, 35320, 29190, 30332, 21521, 20839, 32302, 30528, 29694, 20197, 23559, 32026, 23436, 23433, 25955, 38291, 27794, 26377, 33853, 27770]
+ERROR: UI FAIL: title main actions fit without mandatory scroll
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_game_ui.gd:9)
+       [1] run (res://tools/verify_game_ui.gd:68)
+       [2] frames (res://tools/verify_game_ui.gd:16)
+GAME_UI_CHECKS 33/35

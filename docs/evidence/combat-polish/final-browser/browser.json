@@ -1,0 +1,50 @@
+{
+  "url": "https://yauchai2.github.io/Game-Lab-3/",
+  "checks": [
+    {
+      "name": "actual Web engine boots",
+      "passed": true
+    },
+    {
+      "name": "training F5 does not refresh browser",
+      "passed": true
+    },
+    {
+      "name": "training F7 does not navigate browser",
+      "passed": true
+    },
+    {
+      "name": "browser audio context runs after user input",
+      "passed": true
+    },
+    {
+      "name": "preferences persisted to real browser IndexedDB",
+      "passed": true
+    },
+    {
+      "name": "fullscreen preserves 16:9 canvas input rectangle",
+      "passed": true
+    },
+    {
+      "name": "browser reload boots with saved preferences",
+      "passed": true
+    }
+  ],
+  "passed": 7,
+  "total": 7,
+  "errors": [],
+  "messages": [],
+  "audio": [
+    {
+      "state": "running",
+      "sampleRate": 44100
+    }
+  ],
+  "preferences": [
+    {
+      "key": "/userfs/godot/app_userdata/Afterhours — Street Fight Prototype/afterhours.cfg",
+      "text": "[options]\n\nmuted=true\nmusic_muted=false\nreduced_effects=true\nscene_edges=false\ndifficulty=1\npartner_mode=1\n"
+    }
+  ],
+  "method": "Chromium headless / ANGLE SwiftShader; real WebGL, input and IndexedDB. Not human playtest, listening or hardware FPS."
+}

@@ -1,0 +1,51 @@
+{
+  "created_utc": "20261109T074040Z",
+  "source_commit": "af7c13ccf290f640800f1d2df80945afe7b77ac3",
+  "tracked_runtime_changes": [
+    "godot/assets/fonts/AfterhoursUIHK.otf",
+    "godot/scripts/combat/demo_director.gd",
+    "godot/scripts/combat/fight_audio.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/fight_spectacle.gd",
+    "godot/scripts/combat/fight_vfx.gd",
+    "godot/scripts/combat/fighter_visual.gd",
+    "godot/scripts/combat/ui/ui_text.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 28,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_demo_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "6b64c1d790871d1bf0281f57b6886ad03be88090662a22a5e9d6bbd01c83d2fc",
+      "seconds": 10.517,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_demo_input.gd"
+      ],
+      "report_written": true,
+      "passed": 28,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

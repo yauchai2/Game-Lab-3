@@ -1,0 +1,9 @@
+{
+  "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "camera_transform": "[X: (0.999133, 0.0, -0.041631), Y: (0.011339, 0.962189, 0.272148), Z: (0.040056, -0.272384, 0.961355), O: (-15.0, 3.4, 12.0)]",
+  "draw_calls": 934,
+  "fov": 62.0,
+  "image_error": 0,
+  "primitives": 79226,
+  "shot": "05_left_shops"
+}

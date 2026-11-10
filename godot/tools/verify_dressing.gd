@@ -23,7 +23,7 @@ func run() -> void:
     var dressing = scene.get_node("StreetDressing")
     check(dressing.has_method("_make_storefronts") and dressing.box_count>300,"dressing_geometry_loaded",{"batched_boxes":dressing.box_count})
     check(dressing.static_batches.get_child_count() <= 16,"geometry_uses_shared_batches",{"batch_count":dressing.static_batches.get_child_count()})
-    check(dressing.labels.get_child_count() >= 18,"fictional_sign_labels_loaded",{"count":dressing.labels.get_child_count()})
+    check(dressing.labels.get_child_count() == 0,"sign_panels_have_no_generated_text",{"count":dressing.labels.get_child_count()})
     check(dressing.find_children("LampPoleCollider*","StaticBody3D",true,false).size() == 4,"lamp_pole_collision_count")
     var fly = scene.get_node("AircraftFlyby")
     check(fly.anchor.distance_to(Vector3(-6,41,-52))<.01,"walk_flyby_anchor_adjusted",{"anchor":[fly.anchor.x,fly.anchor.y,fly.anchor.z]})
@@ -54,5 +54,6 @@ func run() -> void:
     print("DRESSING_VERIFIED ",JSON.stringify(report))
     scene.get_node("AircraftFlyby").sound.stop()
     scene.queue_free()
-    await process_frame
+    var cleanup_started:=Time.get_ticks_msec()
+    while Time.get_ticks_msec()-cleanup_started<100:await process_frame
     quit(1 if failed else 0)
