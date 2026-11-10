@@ -77,3 +77,5 @@
 - 2026-11-10 最新封面：見docs/COVER_NEON_CITY.zh-TW.md，主選單TITLE改為assets/ui/last_service/cover-neon-city.png，原生選單／Logo保持；ImageGen原創無臉青粉半身人物＋黑白街城／桃紅天空，無項鍊。原cover.png及builder是歷史模型版，請勿重新生成並當成當前使用的底圖。Web不更新。
 
 - 2026-11-10 最新標題動畫覆蓋靜態預設：見docs/TITLE_MOTION.zh-TW.md，title_motion.gd為獨立3D封面場景owner，12Hz／376×360／8秒；純色無臉人物、黑白街城，原生UI不跟鏡頭搖。F2減少特效用靜態TITLE，離主選單停渲停鐘；不得用全域time_scale或中斷音樂，Web不更新。
+
+- 2026-11-10 最新構圖：TITLE_ENSEMBLE.zh-TW.md覆蓋兩人／窄viewport／四段鏡頭。title_motion採640×360全幅投影、五人前後群像（四原角＋ZIP背景演員）、固定街角軸線／6°roll。左選單獨立覆蓋；減少特效用同場景渲染cover-ensemble.png。保留12Hz與離頁停渲停鐘，未新增多人戰鬥、可選角色或Web發佈。

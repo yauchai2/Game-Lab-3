@@ -1,0 +1,32 @@
+{
+  "method": "Native original Godot 3D group reconstruction from archived TR3B art direction; no reference-video frames used as runtime sprites.",
+  "references": [
+    {
+      "current_upload_id": "file_000000006c708211be0cdef8a6631b56",
+      "archived_path": "references/last-service-2026-11-10/sources/TR3B_-__LaGaNga______-_lowpoly_blender_mfCeKM.mp4",
+      "sha256": "69c3edc3b80b8e2a7d3425cb471b240baafbd3d579774477ef02ec786ab25a3f"
+    },
+    {
+      "current_upload_id": "file_0000000006888211a789675d2a4edaeb",
+      "archived_path": "references/last-service-2026-11-10/sources/TR3B_-___GanGA______-___wip_-_lowpoly_blender_z3Qbse.mp4",
+      "sha256": "45d3bf5a076d768100471668d6fa191607b856414796ac86eb6cc255ccce1d05"
+    }
+  ],
+  "changes": [
+    "Full640x360 perspective before menu overlay, replacing narrow376x360 stage.",
+    "Five-person depth composition: HUSH pink, ZIP cyan, RIVET yellow, LOOP red, ZIP extra green. Fifth actor is a title extra only.",
+    "One stable street-corner axis, low eye position0.95, modest6deg roll, small dolly only.",
+    "Static reduced-effects poster rendered from same isolated stage without baked UI."
+  ],
+  "static_asset": "godot/assets/ui/last_service/cover-ensemble.png",
+  "static_sha256": "44804d3dd13c66f7d08a927f1db8cf23ac6242c7b06bac14816733621ed96f5a",
+  "render_source": "docs/evidence/title-ensemble/capture-runner.gd",
+  "cast_indices": [
+    2,
+    0,
+    1,
+    3,
+    0
+  ],
+  "scope": "Title composition only, no new selectable fighters, battle multiplayer, world simulation changes or Web deployment."
+}

@@ -2,7 +2,7 @@ extends RefCounted
 ## Approved image composition; fixed art is raster, live game state remains native.
 const T=preload("res://scripts/combat/ui/ui_theme.gd")
 const LARGE_TYPE=preload("res://assets/fonts/RadioPixelDisplay.fnt")
-const TITLE=preload("res://assets/ui/last_service/cover-neon-city.png")
+const TITLE=preload("res://assets/ui/last_service/cover-ensemble.png")
 const CITY=preload("res://assets/ui/ink/city-band.png")
 const SLASHES=preload("res://assets/ui/ink/slashes.png")
 const MAIN_RECTS=[Rect2(56,260,408,84),Rect2(56,354,408,66),Rect2(56,430,408,66),Rect2(56,506,408,66),Rect2(56,604,282,54)]
@@ -30,7 +30,9 @@ func title(c:Control) -> void:
     c.draw_texture_rect(TITLE,Rect2(0,0,1280,720),false)
     if is_instance_valid(title_stage) and title_stage.active and title_stage.ready_texture:
         c.draw_rect(Rect2(0,0,1280,720),T.NIGHT)
-        c.draw_texture_rect(title_stage.texture(),Rect2(528,0,752,720),false)
+        c.draw_texture_rect(title_stage.texture(),Rect2(0,0,1280,720),false)
+    # The same fixed menu overlay protects both animated and reduced-motion artwork.
+    polygon(c,[Vector2.ZERO,Vector2(500,0),Vector2(512,720),Vector2(0,720)],T.NIGHT)
     logo(c,Vector2(48,70),560)
     text(c,Vector2(58,222),"LAST SERVICE / STREET FIGHT",28,T.PAPER)
     c.draw_texture_rect(SLASHES,Rect2(514,198,56,36),false)

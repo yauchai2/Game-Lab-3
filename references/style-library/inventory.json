@@ -117,6 +117,11 @@
       "sha256": "88d91d93ac23b9e87a350fc9a0fb5c632bf5fdc87effaafb83a88e641d259d4e"
     },
     {
+      "path": "godot/assets/ui/last_service/cover-ensemble.png",
+      "bytes": 17108,
+      "sha256": "44804d3dd13c66f7d08a927f1db8cf23ac6242c7b06bac14816733621ed96f5a"
+    },
+    {
       "path": "godot/assets/ui/last_service/cover-neon-city.png",
       "bytes": 1492844,
       "sha256": "df74fc441205642c58c140939bd56f04a58846b3099cacd1ae9da565101fd450"

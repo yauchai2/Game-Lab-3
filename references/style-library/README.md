@@ -1,5 +1,7 @@
 # Afterhours藝術風格與參考素材總庫
 
+最新構圖：[參考式五人群像](../../docs/TITLE_ENSEMBLE.zh-TW.md)／[原生動畫](../../docs/evidence/title-ensemble/title-loop.gif)。
+
 最新動態：[標題動畫](../../docs/TITLE_MOTION.zh-TW.md)／[來源與觀察](../cover-neon-city-2026-11-10/motion-sources.json)。
 
 最新封面：[街城／青粉半身海報](../../docs/COVER_NEON_CITY.zh-TW.md)／[生成來源及prompt](../cover-neon-city-2026-11-10/source.json)。
