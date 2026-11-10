@@ -81,3 +81,5 @@
 - 2026-11-10 最新構圖：TITLE_ENSEMBLE.zh-TW.md覆蓋兩人／窄viewport／四段鏡頭。title_motion採640×360全幅投影、五人前後群像（四原角＋ZIP背景演員）、固定街角軸線／6°roll。左選單獨立覆蓋；減少特效用同場景渲染cover-ensemble.png。保留12Hz與離頁停渲停鐘，未新增多人戰鬥、可選角色或Web發佈。
 
 - 2026-11-10 最新戰鬥規劃：COMBAT_ESCALATION_PLAN.zh-TW.md與references/combat-escalation-2026-11-10/user-supplement.zh-TW.md。沿同一pressure升溫（SURGE公開名）、同一Rhythm／Neon owner，先A＋B回饋／預輸入；高壓雙方窗口與敘事仍待原型／人手驗證。不要把使用者LLB分析當官方規則或本輪實作，Web不更新。
+
+- 2026-11-10 此輪使用者明確要求「公開 Web 試玩版更新」，可部署本Lab可玩來源至gh-pages並覆核。採Godot4.7.2匹配官方Web模板、單執行緒，長BGM在Web強制STREAM（選角壓測樣本解碼曾記憶體上升）；之後沒有明確要求仍只同步來源。SURGE規劃不可冒稱已公開實裝。

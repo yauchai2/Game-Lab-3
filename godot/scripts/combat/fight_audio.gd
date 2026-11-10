@@ -50,6 +50,8 @@ func _ready() -> void:
         voices.append(voice)
     music = AudioStreamPlayer.new()
     music.name = "BackgroundMusic"
+    # Long tracks must stream on Web instead of decoding entire 192kHz songs as samples.
+    if OS.has_feature("web"):music.playback_type=AudioServer.PLAYBACK_TYPE_STREAM
     music.bus="Afterhours Music"
     current_track=BERLIN
     music.stream = music_stream(current_track)
@@ -57,6 +59,7 @@ func _ready() -> void:
     add_child(music)
     fading_music=AudioStreamPlayer.new()
     fading_music.name="MusicCrossfade"
+    if OS.has_feature("web"):fading_music.playback_type=AudioServer.PLAYBACK_TYPE_STREAM
     fading_music.bus="Afterhours Music"
     fading_music.volume_db=-80.0
     fading_music.stream=music_stream(GROOVE)

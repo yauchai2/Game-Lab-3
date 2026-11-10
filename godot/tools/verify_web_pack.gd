@@ -12,11 +12,20 @@ func run() -> void:
     check("exported animation JSON parses",library is Dictionary)
     var scene: Node3D = load("res://scenes/combat/street_fight.tscn").instantiate()
     scene.preferences_path=""
+    scene.progression_path="/tmp/afterhours-web-pack-check.cfg"
     root.add_child(scene)
     current_scene = scene
     await process_frame
     check("exported main scene builds both animated fighters",scene.fighters.size()==2 and scene.hud!=null)
-    check("exported panorama and red car load",scene.backdrop.street.has_node("ParkedCar") and scene.backdrop.environment.sky.sky_material.panorama!=null)
+    check("exported Lab sky and red car load",scene.backdrop.street.has_node("ParkedCar") and scene.backdrop.environment.sky!=null and scene.backdrop.environment.sky.sky_material!=null)
+    check("exported five-person title stage exists",scene.hud.title_motion.actors.size()==5 and scene.hud.title_motion.viewport.size==Vector2i(640,360))
+    var roster_ok:=true
+    for index in 4:
+        scene.set_character(0,index)
+        for frame in 4:await process_frame
+        roster_ok=roster_ok and scene.fighters[0].skeleton!=null and scene.fighters[0].skeleton.get_bone_count()==65 and scene.fighters[0].motions.mapping.size()==52
+    check("all four exported LAST SERVICE models retarget",roster_ok)
+    check("exported LAST SERVICE progression is active",scene.growth!=null and scene.sim.last_service_enabled)
     check("exported music and impact resources load",scene.audio.music.stream!=null and scene.audio.sounds.hit[0]!=null)
     scene.start_match(true)
     scene.set_physics_process(false)
@@ -38,8 +47,8 @@ func run() -> void:
     for i in 4: await process_frame
     check("exported street returns to fight title",current_scene.name=="StreetFight" and current_scene.screen=="title")
     current_scene.queue_free()
-    await process_frame
-    await create_timer(0.1).timeout
+    for frame in 6:await process_frame
+    await create_timer(0.3).timeout
     var failed := checks.filter(func(result:Dictionary)->bool:return not result.passed).size()
     print("WEB_PACK_CHECKS ",JSON.stringify({"checks":checks,"passed":checks.size()-failed,"failed":failed,"method":"native Godot runtime using exported Web PCK; not browser rendering"}))
     call_deferred("quit",0 if failed==0 else 1)
