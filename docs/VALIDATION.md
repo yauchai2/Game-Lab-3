@@ -143,3 +143,7 @@ Godot 4.6.3 headless 街景與遊走回歸通過；Godot Compatibility／llvmpip
 ## 住宅陽台與天線（2026-11-07）
 
 Godot 4.6.3 headless 街景及遊走回歸通過；Compatibility／llvmpipe 固定鏡頭前後 draw calls 1,131→1,131、primitives 86,297→88,181；測量、方法和仰視截圖見 [residential](evidence/residential/)。未驗證真實 GPU、FPS、真人遊玩或風格定案。
+
+## 屋頂設備剪影（2026-11-10）
+
+街景與遊走 headless 回歸通過；1280×720 圖片以 Godot Compatibility／llvmpipe 軟體渲染，截圖及日誌見 [rooftops](evidence/rooftops/)。未測真人操作、硬體 GPU 或 FPS。

@@ -41,6 +41,7 @@ func _ready() -> void:
     _make_corner_facades()
     _make_upper_facades()
     _make_residential_balconies()
+    _make_rooftop_utilities()
     _make_balcony_planters()
     _make_signs()
     _make_landmark_scaffold()
@@ -267,6 +268,31 @@ func _make_residential_balconies() -> void:
         _box("frame", Vector3(side*6.0,17.1,z), Vector3(.08,2.1,.08))
         _box("frame", Vector3(side*6.0,17.7,z), Vector3(.08,.06,1.4))
         _box("frame", Vector3(side*6.0,17.1,z), Vector3(.08,.06,.9))
+
+func _make_rooftop_utilities() -> void:
+    # Compact utility silhouettes reinforce the dense old neighbourhood.
+    # These are visual-only details well above the pedestrian corridor.
+    for spec in [[-1,-20.0,17.8],[-1,-44.0,17.3],[1,-43.0,17.9],[1,-56.0,16.8]]:
+        var side: int = spec[0]
+        var z: float = spec[1]
+        var y: float = spec[2]
+        var x: float = side * 6.5
+        _box("frame", Vector3(x,y-.48,z), Vector3(1.65,.12,1.8))
+        _box("cream", Vector3(x,y,z), Vector3(1.35,.92,1.42))
+        _box("road_dark", Vector3(x,y+.50,z), Vector3(1.45,.11,1.52))
+        for dz in [-.52, .52]:
+            _box("frame", Vector3(x,y-.75,z+dz), Vector3(.08,.48,.08))
+        _box("frame", Vector3(x-side*.72,y+.02,z+.78), Vector3(.08,1.25,.08))
+        _box("frame", Vector3(x-side*.72,y+.60,z+.30), Vector3(.08,.08,1.00))
+    # Small ventilation boxes and louvres avoid a uniform parapet edge.
+    for spec in [[-1,-25.5,16.8],[1,-35.0,16.8],[-1,-49.0,16.8]]:
+        var side: int = spec[0]
+        var z: float = spec[1]
+        var y: float = spec[2]
+        _box("ivory", Vector3(side*6.25,y,z), Vector3(.76,1.0,.86))
+        _box("frame", Vector3(side*5.85,y,z), Vector3(.05,.68,.65))
+        for dz in [-.20,0.0,.20]:
+            _box("cream", Vector3(side*5.81,y,z+dz), Vector3(.04,.60,.045))
 
 func _make_balcony_planters() -> void:
     # The reference's orange building uses long planted balcony edges.

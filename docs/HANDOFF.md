@@ -160,3 +160,7 @@ Godot 4.6.3 headless verbose 飛機測試 11 項通過，但退出仍提示 `Aud
 ## 舊樓陽台與天線（2026-11-07）
 
 在遊走場景五個舊樓位置加入三層外伸陽台、欄杆及簡化晾曬色塊，四處加天線；均使用現有批次及高處非碰撞裝飾。原始 GLB 和 S1 保留。Godot llvmpipe 仰視圖見 [住宅立面](evidence/residential/03_left_facade.png)，街景與遊走測試通過。相同 800×450 固定鏡頭軟體渲染，開啟街景細節時的 draw calls 前後均為 1,131，primitives 為 86,297→88,181；不是 FPS 或目標硬體效能測試。
+
+## 屋頂設備剪影（2026-11-10）
+
+遊走場景四處舊樓加入簡化水箱、底座及管線，三處加入通風箱；沿用現有 MultiMesh 分組及非碰撞裝飾，不改 S1 或原 GLB。Godot Compatibility／llvmpipe [屋頂仰視](evidence/rooftops/01_rooftops.png)及 headless 街景／遊走回歸見 `evidence/rooftops/`。此為局部細節，目標硬體、人工遊玩和整體風格仍待驗收。
