@@ -198,3 +198,9 @@
 ## 2026-11-10：SURGE第一可玩切片
 
 依使用者本輪繼續優化授權，A＋B基礎已接入，覆蓋前輪planning-only。pressure仍是唯一升溫owner，HUD公開名SURGE；同一Rhythm／Neon／Audio調強度，不改真實傷害／能量／成長模式。預輸入由Simulation擁有的continuation_buffer逐邊鎖首個J／K／E，36個非hitstop固定步進期限；僅阻止同一事件的覆寫，消費後普通Rush接招繼續。K按地空解析，E有追擊窗走付費追擊，否則後撤；已有硬直不被清除。暫停保存狀態，下一輪接觸／中斷清理。高壓公平雙方窗口未加入；舊F8教室維持隔離。只推codex/combat-escalation-next來源，不部署Web。
+
+## 2026-11-10：獨立高壓比較窗口與來源同步
+
+本輪「繼續優化」落實規格B有界原型，保留正常對戰及F8舊教室隔離。新增decision狀態在既有pressure owner內，共用90步冷卻；21個Simulation決策步不受Rhythm倍率影響。只在地面雙方idle及合法近身的起手提議前開，並非對已成立招式新增免費取消。到期只交回原生輸入；有限24步普通格擋／一次普通dash，原傷害、能量及判定不改。超時保存雙方原始提議，AI在開窗時依公開狀態預承諾；同幀提議輪替serial優先。B在相同明示fixture重設切換，真人比較後才考慮正式採用。
+
+使用者明示合作流程：完成後commit／push GitHub，使用者在Desktop更新該branch，再本機Godot測試。本輪繼續codex/combat-escalation-next，不再開另一條branch，沿既有草稿PR更新。公開Web未獲本輪更新指示。

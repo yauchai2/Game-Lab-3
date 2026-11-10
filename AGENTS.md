@@ -83,3 +83,6 @@
 - 2026-11-10 最新戰鬥規劃：COMBAT_ESCALATION_PLAN.zh-TW.md與references/combat-escalation-2026-11-10/user-supplement.zh-TW.md。沿同一pressure升溫（SURGE公開名）、同一Rhythm／Neon owner，先A＋B回饋／預輸入；高壓雙方窗口與敘事仍待原型／人手驗證。不要把使用者LLB分析當官方規則或本輪實作，Web不更新。
 
 - 2026-11-10 此輪使用者明確要求「公開 Web 試玩版更新」，可部署本Lab可玩來源至gh-pages並覆核。採Godot4.7.2匹配官方Web模板、單執行緒，長BGM在Web強制STREAM（選角壓測樣本解碼曾記憶體上升）；之後沒有明確要求仍只同步來源。SURGE規劃不可冒稱已公開實裝。
+
+- 2026-11-10 本聊天使用者確認工作流程：每輪完成驗證後commit／push到GitHub，回報branch及commit，使用者在GitHub Desktop Fetch／Pull再用本機Godot測試；不宣稱已操作其本機。SURGE工作目前接續codex/combat-escalation-next／草稿PR #6，避免每輪另開使用者要切換的branch。
+- 最新SURGE現況見docs/SURGE_WINDOW_PROTOTYPE.zh-TW.md：A＋B基礎後，B獨立21步高壓比較窗口已加入明示練習fixture，B切BASELINE／WINDOW。尚未替換標準FIGHT／Demo／Street Run；真人比較、首分鐘完整教學及三站敘事仍待驗證／續作。pressure／Rhythm／Neon維持單一owner，Web不更新。

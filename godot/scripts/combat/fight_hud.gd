@@ -489,6 +489,7 @@ func _roster_page() -> void:
     _action(menu_stack,"fight","Enter",func():session.start_match(false),true)
 
 func _help_page() -> void:
+    _plain_action("SURGE LAB / B - COMPARE DECISION WINDOW","surge_lab",session.start_surge_lab)
     for line in ["ZIP: evade a nearby strike for ROUTE. Spend it on E dash. L confirms a second kick.","RIVET: hold L to PRELOAD I / II, then release. Slow windup, strong guard pressure.","HUSH: frontal perfect guard stores SAMPLE. Cross / K / L / W+L spends it.","LOOP: L places a node (20). Move+L places farther. S+L pulses nodes (10). W+L: ENCORE.","FIGHTERS > STREET RUN: win stops for XP and skill points. Equip 2 in SKILLS. Standard FIGHT uses fixed stats."]:
         menu_stack.add_child(_label(line,28,Tokens.TEAL))
     for key in ["move_help","combo_help","air_help","defense_help","throw_help","wall_help","special_help","pressure_help","clash_help","air_lab_help"]:
@@ -586,6 +587,7 @@ func _draw() -> void:
     art.hud(self,session,health_lag)
     service_art.draw(self,session)
     if session.sim.arcade_enabled:_surge_hud()
+    if session.sim.exchange.decision_active():_surge_decision_hud()
     if session.neon_enabled:draw_string(font,Vector2(16,160),"NEON FACETS LAB",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color("bdff00"))
     if skill_time>0 and skill_key!="" and session.screen=="play":
         _plate(Vector2(460,154),Vector2(360,34),INK)
@@ -593,7 +595,7 @@ func _draw() -> void:
     if session.sim.phase=="ready" and session.screen=="play":
         _center(Vector2(640,280),tr_text("round")+" %d"%session.sim.round_number,40)
         _center(Vector2(640,316),"準備" if session.language=="zh" else "GET READY",22,Tokens.GOLD)
-    if notice_time>0 and session.demo==null and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
+    if notice_time>0 and session.demo==null and not session.sim.exchange.decision_active() and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
         _plate(Vector2(426,196),Vector2(428,40),INK)
         _center(Vector2(640,225),copy.notice(notice),19,Tokens.GOLD)
     var player: Dictionary=session.sim.fighters[0]
@@ -687,6 +689,16 @@ func _surge_hud() -> void:
             var label:String={"light":"J","heavy":"K","dash":"E"}[slot.choice]
             _plate(Vector2(330 if side==0 else 755,119),Vector2(210,30),INK)
             _text(Vector2(334 if side==0 else 759,143),"P%d %s LOCK"%[side+1,label],24,session.COLORS[side])
+
+func _surge_decision_hud() -> void:
+    var d:Dictionary=session.sim.exchange.decision
+    _plate(Vector2(256,498),Vector2(768,134),INK)
+    _center(Vector2(640,526),"SURGE LAB / CHOOSE / %02d"%d.remaining,28,Tokens.LIME)
+    _center(Vector2(640,560),"J STRIKE   SHIFT GUARD   E BACKSTEP",28,PAPER)
+    var own:String=d.choices[0]
+    if session.pending.has("surge_choice"):own=session.pending.surge_choice
+    _center(Vector2(640,591),"P1 "+("READY" if own=="" else own.to_upper()+" LOCK")+" / P2 "+("READY" if d.choices[1]=="" else "LOCKED"),24,Tokens.TEAL)
+    draw_rect(Rect2(280,614,720*float(d.remaining)/session.sim.exchange.DECISION_TICKS,6),Tokens.MAGENTA)
 
 func _arcade_hud() -> void:
     if session.sim.air_counter.active():
@@ -782,6 +794,12 @@ func _rally_hud() -> void:
     _center(Vector2(640,645),tr_text("rally_hold" if rally.phase=="compress" else "rally_live"),12,Tokens.MUTED)
 
 func _practice_hud() -> void:
+    if session.sim.arcade_enabled and session.sim.surge_lab_fixture:
+        _plate(Vector2(28,95),Vector2(282,82),INK)
+        _text(Vector2(40,122),"SURGE LAB / "+("WINDOW" if session.sim.surge_lab_enabled else "BASELINE"),24,Tokens.LIME)
+        _text(Vector2(40,148),"FIXTURE / B COMPARE",24,PAPER)
+        _text(Vector2(40,172),"F5 RETRY / K TO START",24,Tokens.MUTED)
+        return
     if session.sim.arcade_enabled:
         _plate(Vector2(28,95),Vector2(244,38),INK)
         _text(Vector2(40,122),tr_text("training_title"),13,Tokens.TEAL)

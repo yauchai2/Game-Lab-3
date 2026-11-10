@@ -1,0 +1,193 @@
+{
+  "checks": [
+    {
+      "name": "neutral close high-SURGE proposal opens window before startup",
+      "passed": true
+    },
+    {
+      "name": "new window leaves old F8 clash isolated",
+      "passed": true
+    },
+    {
+      "name": "simultaneous inputs lock independently, first wins",
+      "passed": true
+    },
+    {
+      "name": "decision freezes combat, never awards damage or resources",
+      "passed": true
+    },
+    {
+      "name": "last decision step is still open",
+      "passed": true
+    },
+    {
+      "name": "window closes at exactly twenty-one decision steps",
+      "passed": true
+    },
+    {
+      "name": "guard and evade use ordinary commands",
+      "passed": true
+    },
+    {
+      "name": "shared cooldown prevents instant reopen",
+      "passed": true
+    },
+    {
+      "name": "timeout preserves both original proposals",
+      "passed": true
+    },
+    {
+      "name": "both timeout attacks still have normal windup",
+      "passed": true
+    },
+    {
+      "name": "faster real jab can interrupt slower strike",
+      "passed": true
+    },
+    {
+      "name": "guard choice holds a finite real guard until heavy contact",
+      "passed": true
+    },
+    {
+      "name": "guard does not invent counter success or damage",
+      "passed": true
+    },
+    {
+      "name": "evade still respects original dash cooldown",
+      "passed": true
+    },
+    {
+      "name": "guard with exhausted resource cannot grant defense",
+      "passed": true
+    },
+    {
+      "name": "paid signature cannot open a cancel window",
+      "passed": true
+    },
+    {
+      "name": "range invalidation cancels every intent",
+      "passed": true
+    },
+    {
+      "name": "simultaneous proposals alternate deterministic priority",
+      "passed": true
+    },
+    {
+      "name": "standard cannot open window",
+      "passed": true
+    },
+    {
+      "name": "off cannot open window",
+      "passed": true
+    },
+    {
+      "name": "low cannot open window",
+      "passed": true
+    },
+    {
+      "name": "range cannot open window",
+      "passed": true
+    },
+    {
+      "name": "air cannot open window",
+      "passed": true
+    },
+    {
+      "name": "stun cannot open window",
+      "passed": true
+    },
+    {
+      "name": "active cannot open window",
+      "passed": true
+    },
+    {
+      "name": "buffer cannot open window",
+      "passed": true
+    },
+    {
+      "name": "hitstop cannot open window",
+      "passed": true
+    },
+    {
+      "name": "cooldown cannot open window",
+      "passed": true
+    },
+    {
+      "name": "external interruption cancels without granting action",
+      "passed": true
+    },
+    {
+      "name": "KO invalidates all queued choices",
+      "passed": true
+    },
+    {
+      "name": "reset clears mode window and queued actions",
+      "passed": true
+    },
+    {
+      "name": "AI commitment does not inspect player window choice",
+      "passed": true
+    },
+    {
+      "name": "three thousand mixed fixed steps replay identically",
+      "passed": true
+    },
+    {
+      "name": "native handler records first key during hold and ignores echo",
+      "passed": true
+    },
+    {
+      "name": "Esc freezes both choices and decision deadline",
+      "passed": true
+    },
+    {
+      "name": "resume applies the saved intent",
+      "passed": true
+    },
+    {
+      "name": "decision clock bypasses presentation overdrive hold",
+      "passed": true
+    },
+    {
+      "name": "F2 does not reset or extend window deadline",
+      "passed": true
+    },
+    {
+      "name": "F5 recreates explicit comparable fixture",
+      "passed": true
+    },
+    {
+      "name": "B switches to baseline without window",
+      "passed": true
+    },
+    {
+      "name": "baseline starts normal attack immediately",
+      "passed": true
+    },
+    {
+      "name": "B restores window fixture and clears old state",
+      "passed": true
+    },
+    {
+      "name": "exit clears decision pending and committed guard",
+      "passed": true
+    },
+    {
+      "name": "standard FIGHT never inherits experimental mode",
+      "passed": true
+    },
+    {
+      "name": "normal free AI demo never inherits experimental mode",
+      "passed": true
+    },
+    {
+      "name": "music transport remains active across mode switches",
+      "passed": true
+    }
+  ],
+  "display": "X11",
+  "engine": "4.6.3-stable (official)",
+  "passed": 46,
+  "scope": "Explicit comparison fixtures and native integration; not human fun validation.",
+  "total": 46
+}

@@ -10,7 +10,35 @@ var quiet_ticks := 0
 var serial := 0
 var clash: Dictionary = {}
 var last_result: Dictionary = {}
+# Separate prototype window, sharing the pressure/cooldown owner with the F8 drill.
+const DECISION_TICKS := 21
+const DECISION_CHOICES := ["strike","guard","evade"]
+var decision:Dictionary={}
+var decision_result:Dictionary={}
+func decision_active() -> bool:return not decision.is_empty()
+func cancel_decision() -> void:
+    decision.clear();decision_result.clear()
+func begin_decision(side:int,move:String,intents:Array,defaults:Array) -> void:
+    serial+=1
+    decision={"serial":serial,"initiator":side,"move":move,"remaining":DECISION_TICKS,"choices":["",""],"intents":intents.duplicate(),"defaults":defaults.duplicate(true)}
+    decision_result.clear()
+    cooldown=90
+func choose_decision(side:int,choice:String) -> void:
+    if decision_active() and side in [0,1] and choice in DECISION_CHOICES and decision.choices[side]=="":decision.choices[side]=choice
+func advance_decision(commands:Array,automated:Array) -> bool:
+    if not decision_active():return false
+    for side in 2:
+        choose_decision(side,commands[side].get("surge_choice",""))
+        if automated[side] and DECISION_TICKS-int(decision.remaining)>=8:choose_decision(side,decision.intents[side])
+    decision.remaining-=1
+    if decision.remaining>0:return false
+    decision_result=decision.duplicate(true)
+    decision.clear()
+    cooldown=90
+    return true
+
 func reset() -> void:
+    cancel_decision()
     pressure=0.0
     cooldown=0
     quiet_ticks=0

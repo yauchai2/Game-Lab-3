@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[SURGE LAB高壓窗口比較原型](docs/SURGE_WINDOW_PROTOTYPE.zh-TW.md)／[畫面、對照片與驗證](docs/evidence/surge-window/README.md)。主選單B進入；21步固定決策、J／Shift／E逐邊鎖定，B切原流程比較。僅練習原型，正式FIGHT及公開Web保持。
+
 最新實作：[SURGE 三階回饋與可靠預輸入](docs/COMBAT_ESCALATION_RUNTIME.zh-TW.md)／[畫面與兩組30秒AI錄像](docs/evidence/combat-escalation/README.md)。沿既有pressure，正式Rush可見升溫；格擋／挑空後J／K／E鎖一次意圖。高壓雙方窗口仍未採入；公開Web未更新。
 
 最新：[五人群像與構圖修正](docs/TITLE_ENSEMBLE.zh-TW.md)／[循環GIF](docs/evidence/title-ensemble/title-loop.gif)。完整16:9鏡頭、前後景站位、同構圖靜態封面。

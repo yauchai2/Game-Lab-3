@@ -204,12 +204,16 @@ func _physics_process(delta: float) -> void:
     if screen!="play":return
     surge_pulse=maxf(0,surge_pulse-delta)
     surge_reaction_cd=maxf(0,surge_reaction_cd-delta)
+    # Decision steps run at fixed 60 Hz even while presentation would hold/slow.
+    if sim.exchange.decision_active():
+        _combat_step()
+        return
     var count:int=rhythm.take_steps(delta,sim.arcade_enabled and not reduced_effects)
     for i in count:
         if screen!="play":break
         _combat_step()
         # A new contact must be seen before spending a second accelerated step.
-        if rhythm.active() and rhythm.phase()=="hold":break
+        if sim.exchange.decision_active() or (rhythm.active() and rhythm.phase()=="hold"):break
 
 func _combat_step() -> void:
     if screen != "play":
@@ -298,6 +302,12 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
     effects.append(effect)
 
 func _handle_event(event: Dictionary) -> void:
+    if event.kind=="surge_decision_start":
+        rhythm.clear();neon.clear()
+        hud.notice_time=0
+    elif event.kind in ["surge_decision_end","surge_decision_cancel"]:
+        hud.notice="INPUTS RELEASED / NORMAL RULES" if event.kind=="surge_decision_end" else "WINDOW CANCELLED"
+        hud.notice_time=.7
     if neon_enabled and event.kind in ["hit","parry"] and neon.signature and neon.mode=="CHARGE":
         var interrupted:bool=(event.kind=="hit" and event.get("target",-1)==neon.owner) or (event.kind=="parry" and event.get("attacker",-1)==neon.owner)
         if event.kind=="hit" and interrupted:
@@ -529,6 +539,7 @@ func _handle_event(event: Dictionary) -> void:
     if neon_enabled and not reduced_effects:neon.trigger(event,sim.fighters,sim.exchange.tier())
 
 func _clear_impacts() -> void:
+    sim.exchange.cancel_decision();sim.surge_release.clear();sim.surge_guards=[0,0]
     sim.continuation.clear()
     surge_pulse=0.0
     surge_reaction_cd=0.0
@@ -792,6 +803,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
     if not event.is_pressed() or event.is_echo():
         return
     if hud.handle_shortcut(event):return
+    if event.keycode==KEY_B and (screen=="title" or (practice and demo==null and screen=="play")):
+        start_surge_lab(true if screen=="title" else not sim.surge_lab_enabled)
+        return
     if event.keycode==KEY_F12:
         if demo!=null:return_to_title()
         elif screen in ["title","play"]:start_demo()
@@ -861,6 +875,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
     elif event.keycode == KEY_R and screen in ["pause", "result"]:
         start_match(practice)
     elif screen == "play":
+        if sim.exchange.decision_active():
+            var surge_keys:Dictionary={KEY_J:"strike",KEY_SHIFT:"guard",KEY_E:"evade"}
+            if surge_keys.has(event.physical_keycode):
+                if not pending.has("surge_choice"):pending["surge_choice"]=surge_keys[event.physical_keycode]
+            return
         if sim.air_counter.active() and sim.air_counter.phase=="hold":
             if event.physical_keycode==KEY_J:commit_air_choice("kick")
             elif event.physical_keycode==KEY_E:commit_air_choice("escape")
@@ -922,6 +941,11 @@ func _notification(what: int) -> void:
 func reset_training(keep_screen := false) -> void:
     if not practice: return
     var previous_screen := screen
+    if sim.surge_lab_fixture:
+        var enabled:bool=sim.surge_lab_enabled
+        start_surge_lab(enabled)
+        if keep_screen:screen=previous_screen;hud.rebuild_menu()
+        return
     sim.reset_training()
     effects.clear()
     _clear_impacts()
@@ -1110,3 +1134,15 @@ func _track_service_effect(effect:Dictionary) -> void:
     else:
         effect.life=1.0;effect.age=clampf(float(fighter.frame)/move.startup+(fighter.service.preload*.18 if fighter.character==1 and fighter.move=="special" else 0.0),0,.99)
         if fighter.frame>=move.startup:effect["expired"]=true
+
+func start_surge_lab(enabled:=true) -> void:
+    start_match(true)
+    sim.surge_lab_fixture=true;sim.surge_lab_enabled=enabled
+    sim.partner_mode=0;sim.ai_enabled=false
+    sim.exchange.pressure=60.0
+    for side in 2:
+        sim.fighters[side].meter=60.0
+        sim.fighters[side].x=-.65 if side==0 else .65
+    hud.notice="B: COMPARE WINDOW / BASELINE - F5: RETRY"
+    hud.notice_time=2.0
+    hud.rebuild_menu()

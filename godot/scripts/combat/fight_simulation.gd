@@ -66,6 +66,10 @@ var combo_damage := 0
 var ai_tick := 0
 var difficulty := 1
 var training := false
+var surge_lab_enabled:=false
+var surge_lab_fixture:=false
+var surge_release:Array=[]
+var surge_guards:Array=[0,0]
 var pressure_drill := false
 var partner_mode := 0 # 0 standing, 1 guard, 2 sparring
 var training_rest := 0
@@ -76,6 +80,7 @@ func _init() -> void:
     reset_round()
 
 func reset_round() -> void:
+    surge_lab_enabled=false;surge_lab_fixture=false;surge_release.clear();surge_guards=[0,0]
     exchange.reset()
     continuation.clear()
     practice_scenario="free"
@@ -169,6 +174,10 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
             events.append({"kind": "fight"})
         return
     if phase != "fight":
+        exchange.cancel_decision();surge_release.clear()
+        return
+    if exchange.decision_active():
+        _tick_surge_decision([player,opponent])
         return
     if is_air_lesson():
         if air_lesson_stage in ["read","review"] and player.get("lesson_start",false):
@@ -203,7 +212,18 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
             var aim: int=rally.WINDUP-2 if rally.tier<4 else rally.WINDUP+5
             partner={"guard":rally.age>=aim,"guard_pressed":rally.age==aim}
     if is_air_lesson():partner=opponent if not opponent.is_empty() else {}
+    if surge_lab_fixture and training:partner=surge_partner_command()
     var commands := [player.duplicate(),partner.duplicate()]
+    var releasing_surge:bool=not surge_release.is_empty()
+    if releasing_surge:
+        commands=surge_release.duplicate(true);surge_release.clear()
+    if not releasing_surge and _try_surge_decision(commands):return
+    for side in 2:
+        if surge_guards[side]>0:
+            if fighters[side].state in ["stun","ko"]:surge_guards[side]=0
+            else:
+                commands[side]["guard"]=true;commands[side]["axis"]=0.0
+                if hitstop<=0:surge_guards[side]-=1
     if arcade_enabled:
         for side in 2:
             var choice:String="dash" if commands[side].get("dash",false) else commands[side].get("attack","")
@@ -840,6 +860,7 @@ func _resolve_exchange() -> void:
     hitstop_total=maxi(1,hitstop)
 
 func _finish_round() -> void:
+    exchange.cancel_decision();surge_release.clear();surge_guards=[0,0]
     continuation.clear()
     phase = "round_over"
     if fighters[0].health == fighters[1].health:
@@ -1007,3 +1028,71 @@ func _end_air_counter(why: String) -> void:
 func move_for(fighter:Dictionary,name:String) -> Dictionary:
     if last_service_enabled:return ServiceProfiles.move(MOVES[name],fighter.get("character",0),name,fighter)
     return Profiles.move(MOVES[name],fighter.get("character",0),name)
+
+# Explicit, opt-in comparison fixture; no pending player inputs are inspected.
+func surge_partner_command() -> Dictionary:
+    var gap:float=fighters[0].x-fighters[1].x
+    if absf(gap)>1.4:return {"axis":signf(gap)}
+    return {"attack":"heavy"} if ai_tick%120==90 else {}
+
+func _surge_pair_ready() -> bool:
+    if not training or not arcade_enabled or not surge_lab_enabled or phase!="fight":return false
+    if hitstop>0 or air_counter.active() or rally.active() or exchange.active():return false
+    for f in fighters:
+        if f.health<=0 or f.state!="idle" or f.stun>0 or f.y>.01 or f.buffer_ttl>0 or f.jump_buffer>0:return false
+    return true
+
+func _try_surge_decision(commands:Array) -> bool:
+    if not _surge_pair_ready() or exchange.pressure<exchange.THRESHOLD or exchange.cooldown>0:return false
+    # Both are still neutral: no active attack, paid start or stun is ever cancelled.
+    var candidates:Array[int]=[]
+    for side in 2:
+        var attack:String=commands[side].get("attack","")
+        if attack not in ["heavy","launcher"] or commands[side].get("jump",false) or commands[side].get("dash",false):continue
+        var f:Dictionary=fighters[side];var other:Dictionary=fighters[1-side]
+        var move_name:String="launcher" if attack=="launcher" or commands[side].get("up",false) else "heavy"
+        var gap:float=other.x-f.x
+        if gap*f.face>0 and absf(gap)<=minf(1.8,move_for(f,move_name).reach):candidates.append(side)
+    if candidates.is_empty():return false
+    # Alternating priority is deterministic if both propose a strike in the same step.
+    var initiator:int=candidates[exchange.serial%candidates.size()]
+    var next_move:String=commands[initiator].attack
+    if next_move=="heavy" and commands[initiator].get("up",false):next_move="launcher"
+    var intents:Array=[]
+    for side in 2:
+        var f:Dictionary=fighters[side]
+        var option:int=posmod(ai_tick+round_number+side+exchange.serial,3)
+        intents.append("evade" if option==2 and f.dash_cd==0 else ("guard" if option==1 and f.guard>0 else "strike"))
+    # Computer intent is fixed before either side can send a window choice.
+    exchange.begin_decision(initiator,next_move,intents,commands)
+    continuation.clear()
+    events.append({"kind":"surge_decision_start","initiator":initiator,"serial":exchange.serial})
+    return true
+
+func _tick_surge_decision(commands:Array) -> void:
+    if not _surge_pair_ready():
+        exchange.cancel_decision();surge_release.clear()
+        events.append({"kind":"surge_decision_cancel"})
+        return
+    var initiator:int=exchange.decision.initiator
+    if absf(fighters[0].x-fighters[1].x)>minf(1.8,move_for(fighters[initiator],exchange.decision.move).reach):
+        exchange.cancel_decision();surge_release.clear()
+        events.append({"kind":"surge_decision_cancel"})
+        return
+    var automated:Array=[false,ai_enabled or (training and partner_mode==2) or surge_lab_fixture]
+    if not exchange.advance_decision(commands,automated):return
+    var result:Dictionary=exchange.decision_result
+    surge_release=[{},{}]
+    for side in 2:
+        var choice:String=result.choices[side]
+        # Timeout preserves both original proposals, including a same-step defender input.
+        if choice=="":
+            surge_release[side]=result.defaults[side].duplicate()
+            continue
+        match choice:
+            "strike":surge_release[side]={"attack":result.move if side==result.initiator else "light"}
+            "guard":
+                surge_release[side]={"guard":true,"guard_pressed":true}
+                surge_guards[side]=24
+            "evade":surge_release[side]={"dash":true,"axis":-float(fighters[side].face)}
+    events.append({"kind":"surge_decision_end","choices":result.choices.duplicate(),"serial":result.serial})

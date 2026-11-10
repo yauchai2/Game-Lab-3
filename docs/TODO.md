@@ -1,5 +1,13 @@
 # 待辦與完成狀態
 
+## 2026-11-10：SURGE LAB高壓窗口原型（僅練習）
+
+接續規格B的獨立比較原型，見 [SURGE_WINDOW_PROTOTYPE.zh-TW.md](SURGE_WINDOW_PROTOTYPE.zh-TW.md)。主選單B或HOW TO PLAY頂部入口：明示60能量／60 SURGE近身fixture，B切BASELINE／WINDOW並重設，F5重試。雙方地面idle、無硬直／已緩衝動作及合法距離，heavy／launcher尚未起手前開21個固定60Hz決策步進；J確認攻擊／Shift有限普通格擋／E普通後撤。逐邊首選、超時沿用兩方原輸入、AI預承諾、共用pressure及90步冷卻；不套舊F8三選傷害。Esc保存，F2不延長，KO／中斷／退出清理。
+
+363項（46原型＋30基礎＋250戰鬥＋37原生UI音樂）通過，另有真正桌面B/K/E在21步完成evade。[畫面、並排fixture影片及log](evidence/surge-window/README.md)。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy audio，無ERROR／SCRIPT ERROR；不能當Mac、真人手感或實際混音驗收。新窗口仍不進標準FIGHT／自由AI Demo／Street Run；真人需先比較是否比可靠預輸入有趣。首分鐘完整教學／C教讀／D逐招視聽／E三站敘事未完成。
+
+繼續推同一來源branch `codex/combat-escalation-next`，方便GitHub Desktop Fetch／Pull後在使用者本機Godot測試；不操作或宣稱已同步該電腦，公開Web不更新。
+
 ## 2026-11-10：SURGE A＋B基礎切片已實作
 
 依 [COMBAT_ESCALATION_PLAN.zh-TW.md](COMBAT_ESCALATION_PLAN.zh-TW.md) 接續第一切片，現況見 [COMBAT_ESCALATION_RUNTIME.zh-TW.md](COMBAT_ESCALATION_RUNTIME.zh-TW.md)。正式Rush／自由Demo中央顯示同一pressure0–90及FLOW／HEAT／SURGE；升階提示、三級局部強度／接觸聲量，沿同一Rhythm／Neon owner做低高壓對照。成功格擋／挑空後逐邊鎖首個J／K／E意圖，原生hitstop及presentation hold不消耗期限；36個非hitstop固定步進有界，合法時僅交回既有判定一次。Esc保存，受擊／KO／重開／退出清理；不加傷害倍率、免費追擊或受擊偷跑。
