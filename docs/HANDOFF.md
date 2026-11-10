@@ -1,5 +1,9 @@
 # 接續工作交接
 
+## 2026-11-10：2男2女陣容與造型修訂（僅計劃）
+
+使用者回饋原三位女角缺乏女性味，其後指定2男2女、LOOP改男。最新為ZIP女22、HUSH女24、RIVET男26、LOOP男23；詳見 [修訂計劃](LAST_SERVICE_ROSTER_REVISION.zh-TW.md)。ZIP俏皮靈巧、HUSH冷艷精準，LOOP精瘦古怪電子技師；覆蓋先前LOOP女性化建議。此輪不生圖，已存圖片／表情與GLB均未更新，下一步待生圖指示後先定頭部再做比例／三視圖／表情。
+
 ## 2026-11-10：LAST SERVICE 四角色設計與圖片歸檔
 
 使用者要求將本聊天資料推至 GitHub。見 [角色設計](LAST_SERVICE_CHARACTERS.zh-TW.md)／[圖片與來源](../references/last-service-2026-11-10/README.md)：ZIP、RIVET、HUSH、LOOP 人設／專屬機制提案，1 動作概念＋4 白底人物三視圖＋4 裝備圖，另保留5早稿與6原影片、SHA-256。圖片未等同嚴格一致 mesh 投影；未有新 GLB、未替換既有 roster／runtime。下一步先核對左右／裝備細節再生成模型，使用者供模型流程依既有規範。只記錄，不更新公開 Web。
