@@ -1,5 +1,7 @@
 # Afterhours藝術風格與參考素材總庫
 
+最新動態：[標題動畫](../../docs/TITLE_MOTION.zh-TW.md)／[來源與觀察](../cover-neon-city-2026-11-10/motion-sources.json)。
+
 最新封面：[街城／青粉半身海報](../../docs/COVER_NEON_CITY.zh-TW.md)／[生成來源及prompt](../cover-neon-city-2026-11-10/source.json)。
 
 目前風格：**Neon Facets**，低解析切面人物、冷灰城市、少量螢光地標、桃紅天空；平時保留服裝與場景細節，重要交鋒短暫剪影。封面無臉、無項鍊。最新大招演出另見 [開發說明](../../docs/NEON_SIGNATURE.zh-TW.md)。

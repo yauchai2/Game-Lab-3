@@ -12,6 +12,7 @@ var menu_stack: VBoxContainer
 var layout_root: Control
 var service_art=preload("res://scripts/combat/last_service/presentation.gd").new()
 var art=preload("res://scripts/combat/ui/reference_art.gd").new()
+var title_motion:Node
 var roster_preview:Node
 var audio_restore:Button
 var art_controls:Control
@@ -55,6 +56,9 @@ func _ready() -> void:
     art_controls=Control.new()
     art_controls.mouse_filter=Control.MOUSE_FILTER_IGNORE
     layout_root.add_child(art_controls)
+    title_motion=preload("res://scripts/combat/ui/title_motion.gd").new()
+    add_child(title_motion)
+    art.title_stage=title_motion
     roster_preview=preload("res://scripts/combat/ui/roster_preview.gd").new()
     add_child(roster_preview)
     for i in 3:
@@ -498,6 +502,7 @@ func _help_page() -> void:
         session.prime_pressure_drill())
 
 func _process(delta: float) -> void:
+    title_motion.update_stage(session.screen=="title" and menu_page=="main",delta,session.reduced_effects)
     art.advance(delta,session.reduced_effects)
     copy.language="en"
     pause_button.visible=session.screen=="play"

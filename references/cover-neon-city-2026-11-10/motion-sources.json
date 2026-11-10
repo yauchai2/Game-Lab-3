@@ -1,0 +1,24 @@
+{
+  "method": "Original native Godot stage; existing ZIP/HUSH GLBs and retargeted animation library; no paid generation, copied reference footage, external GIF player or new audio. Original model bytes unchanged.",
+  "references": [
+    {
+      "current_upload_id": "file_000000006c708211be0cdef8a6631b56",
+      "archived_path": "references/last-service-2026-11-10/sources/TR3B_-__LaGaNga______-_lowpoly_blender_mfCeKM.mp4",
+      "sha256": "69c3edc3b80b8e2a7d3425cb471b240baafbd3d579774477ef02ec786ab25a3f"
+    },
+    {
+      "current_upload_id": "file_0000000006888211a789675d2a4edaeb",
+      "archived_path": "references/last-service-2026-11-10/sources/TR3B_-___GanGA______-___wip_-_lowpoly_blender_z3Qbse.mp4",
+      "sha256": "45d3bf5a076d768100471668d6fa191607b856414796ac86eb6cc255ccce1d05"
+    }
+  ],
+  "study": "LaGaNga complete 6.315s sampled at2fps; GanGA complete21.099s sampled at1fps, contact sheets visually inspected; not per-source-frame or beat analysis.",
+  "observations": [
+    "High contrast black-white tilted city, pink sky, solid cyan/pink character shapes.",
+    "Held poses, quick camera reframing and intermittent sharp/soft visual accents.",
+    "Rebuild motion with real perspective and capped animation sampling; avoid embedding Blender editor UI."
+  ],
+  "runtime_clock": "Authored 8-second loop, 0.5-second visual beat; not automatically synchronized to music BPM.",
+  "output": "godot/scripts/combat/ui/title_motion.gd",
+  "preview": "docs/evidence/title-motion/title-loop.gif"
+}

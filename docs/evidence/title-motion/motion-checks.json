@@ -1,0 +1,38 @@
+{
+  "checks": [
+    {
+      "name": "One isolated bounded title viewport",
+      "passed": true
+    },
+    {
+      "name": "Two real retargeted models use faceless colour silhouettes",
+      "passed": true
+    },
+    {
+      "name": "All four camera sections appear in eight-second loop",
+      "passed": true
+    },
+    {
+      "name": "Bounded render sampling",
+      "passed": true
+    },
+    {
+      "name": "Leaving title freezes clock and disables render",
+      "passed": true
+    },
+    {
+      "name": "Reduced effects uses static poster and disables viewport",
+      "passed": true
+    },
+    {
+      "name": "Loop wraps without accumulating scene nodes",
+      "passed": true
+    },
+    {
+      "name": "UI retains five original native actions",
+      "passed": true
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "scope": "Native render/state checks. Eight virtual seconds, no audio, not target hardware performance."
+}

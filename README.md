@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[原生3D動態標題](docs/TITLE_MOTION.zh-TW.md)／[8秒循環GIF](docs/evidence/title-motion/title-loop.gif)。抽幀剪影、街城視差、近鏡與斜鏡；F2可回靜態海報。
+
 最新：[黑白街城／青粉無臉新封面](docs/COVER_NEON_CITY.zh-TW.md)／[640×360實機畫面](docs/evidence/cover-neon-city/title.png)。標題選單保持原生操作，公開Web未更新。
 
 最新：[LAST SERVICE四角色＋專屬技能＋街區成長](docs/LAST_SERVICE_RUNTIME.zh-TW.md)／[畫面、兩組AI影片及295項檢查](docs/evidence/last-service-runtime/README.md)。試玩：FIGHTERS → STREET RUN／SKILLS；標準FIGHT不套用成長。公開Web不更新。

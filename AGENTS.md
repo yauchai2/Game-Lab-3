@@ -75,3 +75,5 @@
 - 2026-11-10 最新：新4 GLB及相關戰鬥／成長已替換，見docs/LAST_SERVICE_RUNTIME.zh-TW.md。ZIP99c7/RIVETeba8/HUSH966f/LOOP0a7a，原檔保留；52骨重定向，新四套資源。12技能、Street Run三站、角色XP／兩槽／免費重置／淡色FX實裝；標準FIGHT不套成長，Demo不給XP。此條覆蓋前輪RPG僅提案／舊roster的現況，完整提案未做部分仍待辦。使用者要求收尾，不再擴功能；來源推實驗分支、Web不變。
 
 - 2026-11-10 最新封面：見docs/COVER_NEON_CITY.zh-TW.md，主選單TITLE改為assets/ui/last_service/cover-neon-city.png，原生選單／Logo保持；ImageGen原創無臉青粉半身人物＋黑白街城／桃紅天空，無項鍊。原cover.png及builder是歷史模型版，請勿重新生成並當成當前使用的底圖。Web不更新。
+
+- 2026-11-10 最新標題動畫覆蓋靜態預設：見docs/TITLE_MOTION.zh-TW.md，title_motion.gd為獨立3D封面場景owner，12Hz／376×360／8秒；純色無臉人物、黑白街城，原生UI不跟鏡頭搖。F2減少特效用靜態TITLE，離主選單停渲停鐘；不得用全域time_scale或中斷音樂，Web不更新。
