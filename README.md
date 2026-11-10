@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新規劃：[LLB升溫／博弈／視聽回饋轉化](docs/COMBAT_ESCALATION_PLAN.zh-TW.md)。已對照現有程式，尚未修改runtime。
+
 最新：[五人群像與構圖修正](docs/TITLE_ENSEMBLE.zh-TW.md)／[循環GIF](docs/evidence/title-ensemble/title-loop.gif)。完整16:9鏡頭、前後景站位、同構圖靜態封面。
 
 最新：[原生3D動態標題](docs/TITLE_MOTION.zh-TW.md)／[8秒循環GIF](docs/evidence/title-motion/title-loop.gif)。抽幀剪影、街城視差、近鏡與斜鏡；F2可回靜態海報。
