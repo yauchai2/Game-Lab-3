@@ -1,5 +1,7 @@
 # 接續工作交接
 
+同步注意：本輪最後核對時，遠端codex/street-combat已由其他工作合入PR4（e4329e9，LAST SERVICE角色文件／圖），不是本Lab所推送。本Lab保留原基線與獨立玩法；藝術總庫已跨連該批圖，沒有rebase或覆寫其他工作的文件。gh-pages仍為2908503。
+
 ## 2026-11-10：加長大招與藝術參考庫
 
 使用者要求大招更長／近鏡／更多旋轉，已接入四人五段程序pose、overdrive共用時鐘0.22s hold／0.78s slow／0.44s release、36°起手鏡頭及最高14°roll；攝影機按雙方body bounds拉遠。真正受擊中斷／被招架才取消，護甲保持攻擊時不取消。見 [NEON_SIGNATURE.zh-TW.md](NEON_SIGNATURE.zh-TW.md)，覆蓋M1最高6°及短大招的數字。原模型／判定／音訊來源與Web不變。

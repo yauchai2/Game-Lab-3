@@ -35,6 +35,13 @@
 
 這些壓縮版不是逐位元原片，也不適合反推原始像素／逐幀動畫；原片仍可循Drive來源取得。第三方研究影片／截圖不當作自有遊戲資產或音樂授權。此庫更新不代表gh-pages試玩版更新。
 
+## 同期另一條分支的角色設計
+
+工作期間穩定分支另外合入了 LAST SERVICE 的角色／裝備三視圖。這些已在GitHub，另列入口方便總覽，未把該分支的文件或角色設定覆寫進本Lab：
+
+- [LAST SERVICE 角色、裝備、概念圖及來源](https://github.com/yauchai2/Game-Lab-3/tree/e4329e9cf34295c60f68506297da96b50bac7ef9/references/last-service-2026-11-10)
+- [四角色設定紀錄](https://github.com/yauchai2/Game-Lab-3/blob/e4329e9cf34295c60f68506297da96b50bac7ef9/docs/LAST_SERVICE_CHARACTERS.zh-TW.md)
+
 ## 圖片、UI與生成原稿
 
 - [JSR方向圖／圖集](../ui-jsr-2026-11-09/README.md)
