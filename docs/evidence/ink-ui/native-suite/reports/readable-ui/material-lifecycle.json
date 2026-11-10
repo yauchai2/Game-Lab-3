@@ -1,0 +1,40 @@
+{
+  "checks": [
+    {
+      "cycle": 0,
+      "missing_active_materials": 0,
+      "name": "live materials cycle 0",
+      "passed": true
+    },
+    {
+      "name": "retirement queue drained cycle 0",
+      "passed": true,
+      "pending": 0
+    },
+    {
+      "cycle": 1,
+      "missing_active_materials": 0,
+      "name": "live materials cycle 1",
+      "passed": true
+    },
+    {
+      "name": "retirement queue drained cycle 1",
+      "passed": true,
+      "pending": 0
+    },
+    {
+      "cycle": 2,
+      "missing_active_materials": 0,
+      "name": "live materials cycle 2",
+      "passed": true
+    },
+    {
+      "name": "retirement queue drained cycle 2",
+      "passed": true,
+      "pending": 0
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "inspected_surfaces": 1200,
+  "scope": "Three native scene lifecycles,24 roster model changes,restyle and frame renders; Linux driver only. Renderer errors must also be checked in the captured log."
+}

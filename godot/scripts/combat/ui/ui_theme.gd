@@ -4,18 +4,17 @@ extends RefCounted
 const CAPTION_SIZE:=24
 const BODY_SIZE:=28
 const ACTION_SIZE:=32
-const INK := Color("20102f")
-const NIGHT := Color("160c23")
-const PAPER := Color("fff1d0")
-const MUTED := Color("e4d8d1")
-const TEAL := Color("4acfe0")
-const CORAL := Color("ff765e")
-const GOLD := Color("ff6a00")
-const EDGE := Color("62536e")
-const LIME := Color("d7f400")
-const FRAMES = preload("res://assets/ui/jsr/ui-frames.png")
-const LOGO = preload("res://assets/ui/jsr/afterhours-logo.png")
-const ICONS = preload("res://assets/ui/jsr/action-icons.png")
+const INK := Color("000000")
+const NIGHT := Color("090b0e")
+const PAPER := Color("f7f9fa")
+const MUTED := Color("bcc5cc")
+const TEAL := Color("00d6e7")
+const CORAL := Color("ff008c")
+const GOLD := Color("ff008c")
+const EDGE := Color("505660")
+const MAGENTA := Color("ff008c")
+const LIME := Color("bdff00")
+const LOGO = preload("res://assets/ui/ink/logo.tres")
 const BODY = preload("res://assets/fonts/RadioPixelBodyReadable.fnt")
 const DISPLAY = preload("res://assets/fonts/RadioPixelDisplayReadable.fnt")
 static func plate(color: Color, border := Color.TRANSPARENT, width := 0) -> StyleBoxFlat:
@@ -28,6 +27,7 @@ static func plate(color: Color, border := Color.TRANSPARENT, width := 0) -> Styl
     style.content_margin_top=8
     style.content_margin_bottom=8
     return style
+# Legacy asset-inspection helpers are lazy; runtime pages use ink assets/native parts.
 static var atlas_cache: Dictionary={}
 static func atlas(id: String) -> AtlasTexture:
     if atlas_cache.has(id):return atlas_cache[id]
@@ -37,7 +37,7 @@ static func atlas(id: String) -> AtlasTexture:
         var r: Array=item.region_xywh
         var b: Array=item.visible_bbox_in_region
         var result:=AtlasTexture.new()
-        result.atlas=FRAMES
+        result.atlas=load("res://assets/ui/jsr/ui-frames.png")
         result.region=Rect2(r[0]+b[0],r[1]+b[1],b[2]-b[0],b[3]-b[1])
         atlas_cache[id]=result
         return result
@@ -56,11 +56,12 @@ static func sticker(id: String) -> StyleBoxTexture:
     return style
 static func icon(index: int) -> AtlasTexture:
     var texture:=AtlasTexture.new()
-    texture.atlas=ICONS
-    var x0:=floori(float(index%4)*ICONS.get_width()/4)
-    var y0:=floori(float(floori(index/4.0))*ICONS.get_height()/4)
-    var x1:=floori(float(index%4+1)*ICONS.get_width()/4)
-    var y1:=floori(float(floori(index/4.0)+1)*ICONS.get_height()/4)
+    var icons:Texture2D=load("res://assets/ui/jsr/action-icons.png")
+    texture.atlas=icons
+    var x0:=floori(float(index%4)*icons.get_width()/4)
+    var y0:=floori(float(floori(index/4.0))*icons.get_height()/4)
+    var x1:=floori(float(index%4+1)*icons.get_width()/4)
+    var y1:=floori(float(floori(index/4.0)+1)*icons.get_height()/4)
     texture.region=Rect2(x0,y0,x1-x0,y1-y0)
     return texture
 static func build() -> Theme:
@@ -75,23 +76,23 @@ static func build() -> Theme:
         theme.set_color("font_hover_color",type_name,PAPER)
         theme.set_color("font_focus_color",type_name,PAPER)
         theme.set_color("font_disabled_color",type_name,INK)
-        theme.set_stylebox("normal",type_name,sticker("button_normal"))
-        theme.set_stylebox("hover",type_name,sticker("button_hover"))
-        theme.set_stylebox("pressed",type_name,sticker("button_selected"))
-        theme.set_stylebox("disabled",type_name,sticker("button_disabled"))
-        theme.set_stylebox("focus",type_name,plate(Color.TRANSPARENT,LIME,3))
+        theme.set_stylebox("normal",type_name,plate(NIGHT,EDGE,1))
+        theme.set_stylebox("hover",type_name,plate(INK,TEAL,2))
+        theme.set_stylebox("pressed",type_name,plate(TEAL,INK,2))
+        theme.set_stylebox("disabled",type_name,plate(EDGE,INK,1))
+        theme.set_stylebox("focus",type_name,plate(Color.TRANSPARENT,TEAL,3))
     # Native secondary actions use opaque pixel plates; nine-sliced skew stickers
     # collapse at compact sizes and hide the recovery labels.
     for state in ["normal","hover","pressed","disabled"]:
-        theme.set_stylebox(state,"Button",plate(LIME if state in ["hover","pressed"] else PAPER,INK,2))
+        theme.set_stylebox(state,"Button",plate(TEAL if state in ["hover","pressed"] else PAPER,INK,2))
     for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color"]:
         theme.set_color(state,"Button",INK)
     theme.set_constant("outline_size","Button",0)
     theme.set_font("font","Button",DISPLAY)
     for native_type in ["OptionButton","CheckButton"]:
         theme.set_stylebox("normal",native_type,plate(INK,EDGE,1))
-        theme.set_stylebox("hover",native_type,plate(INK.lightened(.14),LIME,2))
-        theme.set_stylebox("pressed",native_type,plate(INK.lightened(.08),LIME,2))
+        theme.set_stylebox("hover",native_type,plate(INK.lightened(.14),TEAL,2))
+        theme.set_stylebox("pressed",native_type,plate(INK.lightened(.08),TEAL,2))
         theme.set_color("font_color",native_type,PAPER)
         theme.set_color("font_hover_color",native_type,PAPER)
         theme.set_color("font_pressed_color",native_type,PAPER)
@@ -112,6 +113,21 @@ static func build() -> Theme:
         scrollbar.content_margin_top=0 if state=="scroll" else 12
         scrollbar.content_margin_bottom=0 if state=="scroll" else 12
         theme.set_stylebox(state,"VScrollBar",scrollbar)
+    for key in ["checked","checked_mirrored"]:
+        theme.set_icon(key,"CheckButton",load("res://assets/ui/ink/toggle-on.svg"))
+    for key in ["unchecked","unchecked_mirrored"]:
+        theme.set_icon(key,"CheckButton",load("res://assets/ui/ink/toggle-off.svg"))
+    for key in ["checked_disabled","checked_disabled_mirrored"]:
+        theme.set_icon(key,"CheckButton",load("res://assets/ui/ink/toggle-on-disabled.svg"))
+    for key in ["unchecked_disabled","unchecked_disabled_mirrored"]:
+        theme.set_icon(key,"CheckButton",load("res://assets/ui/ink/toggle-off-disabled.svg"))
+    theme.set_icon("arrow","OptionButton",load("res://assets/ui/ink/select-arrow.svg"))
+    theme.set_icon("grabber","HSlider",load("res://assets/ui/ink/slider-thumb.svg"))
+    theme.set_icon("grabber_highlight","HSlider",load("res://assets/ui/ink/slider-thumb-focus.svg"))
+    theme.set_icon("grabber_disabled","HSlider",load("res://assets/ui/ink/slider-thumb-disabled.svg"))
+    theme.set_stylebox("panel","TooltipPanel",plate(NIGHT,EDGE,1))
+    theme.set_color("font_color","TooltipLabel",PAPER)
+    theme.set_font_size("font_size","TooltipLabel",CAPTION_SIZE)
     theme.set_stylebox("slider","HSlider",plate(EDGE))
     theme.set_stylebox("grabber_area","HSlider",plate(TEAL))
     theme.set_stylebox("grabber_area_highlight","HSlider",plate(GOLD))

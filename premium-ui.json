@@ -18,7 +18,7 @@
   "requiredCommands": [],
   "commands": {},
   "evidence": {
-    "nativeChecks": "docs/evidence/faceless-cover/",
-    "nativeRuntime": "godot/tools/verify_reference_ui.gd"
+    "nativeChecks": "docs/evidence/ink-ui/",
+    "nativeRuntime": "godot/tools/verify_ink_ui.gd"
   }
 }

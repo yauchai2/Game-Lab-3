@@ -63,3 +63,5 @@
 - 2026-11-10 使用者回報字太細與4.7.2材質錯誤：現行UI字級／布局見 docs/UI_READABILITY.zh-TW.md，覆蓋前輪細小字體。共用CAPTION_SIZE24／BODY_SIZE28／ACTION_SIZE32，12／14／16內部像素。字體與控制項需同步放大，不提高全局解析度。Godot4.7.2 Linux已覆核，已重現並修正首次繪製前換模的材質生命週期：FighterVisual在frame_post_draw後才釋放舊材質，預覽hero延遲首次setup；回歸runner遇ERROR／SCRIPT ERROR必須失敗，不可只看state JSON。Mac硬件仍待覆核；Web不更新。
 
 - 2026-11-10 最新封面指示：不見人臉，參考TR3B影片的黑白城市／桃紅天空／純色剪影，並指定插袋、低調酷、僅上半身。現況見 docs/FACELESS_COVER.zh-TW.md；新標題圖及原生5選項覆蓋先前原圖100%復刻的封面部分，其他頁面保持。主選單MAIN_RECTS現在直接用1280×720logical座標，roster仍走fit。Web不更新。
+
+- 2026-11-10 最新全套UI指示覆蓋前輪封面／沿用舊Logo：重生成無項鍊兜帽／帽沿半身圖，Logo及其他頁面統一黑白城市／桃紅／青綠Ink風。現況 docs/INK_UI.zh-TW.md；素材 `assets/ui/ink`，ui_theme為palette/控件owner，reference_art為共用頁面繪製owner。3D選角專用silhouette_preview不作用於戰鬥。原素材保留，Web仍需明確要求才發佈。

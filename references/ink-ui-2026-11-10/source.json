@@ -1,0 +1,15 @@
+{
+  "reference_videos_manifest": "references/faceless-cover-2026-11-10/source.json",
+  "style_input": "First original frame of the previously inspected user film; no new full-video viewing claim",
+  "active_cover_generated_filename": "exec-b47104e1-a351-403a-bd6d-ac9dabe853f2.png",
+  "active_logo_generated_filename": "exec-33a3de86-b666-4787-9a96-f8f6d49bad34.png",
+  "parts_generated_filename": "exec-ebab3921-2139-4e37-8f90-1c6516e2fa42.png",
+  "admission": "Cover and clean opaque logo admitted. Only the slash motif from modular generated sheet is used; frames and radio icon use exact native geometry. First distressed transparent-logo candidate not admitted.",
+  "cover_size": [
+    1672,
+    941
+  ],
+  "cover_opaque": true,
+  "logo_display": "AtlasTexture crop of the source; width/height ratio preserved. Source also used by configured boot splash.",
+  "manual_review": "Cover has hood/cap turned-away figures, blank clothing with no necklaces or jewelry. Pages use same chrome/logo and actual native controls. No automated face/jewelry detector claim."
+}

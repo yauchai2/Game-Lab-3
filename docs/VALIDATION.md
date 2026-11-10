@@ -426,3 +426,7 @@ Godot4.7.2 Linux Compatibility：22條呈現／材質、37條原生操作、144�
 ## 2026-11-10 無臉半身封面
 
 Godot4.7.2 native Compatibility／llvmpipe，37項原生操作／三視窗尺寸／音樂transport檢查通過，無ERROR。人工檢視兩個無五官上半身剪影，圖片alpha全255確保後方世界不透出。不是Mac或自動人臉檢測證明。 詳見 [封面紀錄](FACELESS_COVER.zh-TW.md)。未更新公開Web。
+
+## 2026-11-10 全套Ink UI
+
+Godot4.7.2 Linux Compatibility：37原生操作、10頁面／3D剪影／popup／實際角色材質隔離檢查、6材質生命週期檢查通過，strict runner無engine ERROR。初期嵌入popup擷取退出有4個ObjectDB警告，關閉嵌入窗口並等待音訊釋放後最終page-suite未重現。Result為明示fixture擷取，不是KO實玩證明；目標Mac未測。 詳見 [實作與證據](INK_UI.zh-TW.md)。原始素材及公開Web不變。

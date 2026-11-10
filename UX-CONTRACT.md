@@ -1,5 +1,21 @@
 # Native game UI contract
 
+## Current system override: Ink street UI (2026-11-10)
+
+User rejected the prior cover feel/jewelry and asked for a new logo plus coherent sibling pages. Active art lives in `godot/assets/ui/ink`: plain hood/cap upper bodies, no jewelry, a clean white AFTERHOURS mark, black/white city and magenta/cyan/lime. The old crown, orange/cream board and face badge are not drawn. `ui_theme.gd` owns palette/native controls; `reference_art.gd` owns title, shared page chrome, roster, HUD and native frame/radio geometry. Logo preserves atlas aspect ratio; SVG toggle/thumb/arrow states derive from the canonical palette through `tools/build_ink_controls.py`. Gameplay data and inputs remain native. Keep640×360 composite and24/28/32 type sizes. Four actual3D roster models use a preview-only flat-emission/outline-discard flag, with original poses and bounded viewports; actual fight materials keep that flag false. Details/evidence: docs/INK_UI.zh-TW.md. This supersedes earlier exact-title-image, retained old logo and orange-board clauses; the behavior ledger remains.
+
+| Current color | Hex | UI role |
+| --- | --- | --- |
+| Ink | #000000 | Opaque backgrounds and dark text |
+| Night | #090b0e | Panels |
+| Paper | #f7f9fa | Type and ordinary action plates |
+| Magenta | #ff008c | Primary action, P2 and header rule |
+| Cyan | #00d6e7 | Focus/hover and P1 |
+| Lime | #bdff00 | Energy and one roster silhouette |
+
+Legacy token names GOLD/CORAL resolve to magenta for compatibility. Source imagery includes intended flat-facet brightness variations. Archive sprite helpers remain lazy for old asset-inspection tools; active pages do not call them.
+
+
 ## Current cover override (2026-11-10)
 
 Title uses original generated faceless upper-body cyan/lime silhouettes with hands in pockets, stark black/white city and magenta sky. The old portrait title is preserved but not drawn. Brand logo stays; all five menu labels/selection states are native art aligned with real Buttons. MAIN_RECTS is now1280×720logical directly; do not call fit for title buttons. The roster keeps its existing source-coordinate fit mapping. Preserve24/28/32 logical readability and640×360 composite. References, prompt and native proof: docs/FACELESS_COVER.zh-TW.md. This overrides the earlier exact-title-raster requirement only for the cover.

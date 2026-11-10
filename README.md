@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[新封面／Logo與全套Ink UI](docs/INK_UI.zh-TW.md)／[各頁實機](docs/evidence/ink-ui/README.md)／[拆件素材](godot/assets/ui/ink/README.md)。
+
 最新：[無臉半身剪影封面](docs/FACELESS_COVER.zh-TW.md)／[主選單實機畫面](docs/evidence/faceless-cover/README.md)。
 
 最新：[UI文字加大與Godot4.7.2覆核](docs/UI_READABILITY.zh-TW.md)／[前後實機畫面](docs/evidence/readable-ui/README.md)。只更新原始碼，Web保持不變。

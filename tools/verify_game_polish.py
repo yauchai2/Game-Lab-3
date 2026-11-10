@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # UI replica replaces old dropdown/Chinese-menu and pause-silence harnesses.
 # Their source and historical evidence remain; verify_reference_ui covers the new contract.
 CASES = [
+    ("verify_ink_ui", "ink-ui/page-checks.json", "native"),
     ("verify_material_lifecycle", "readable-ui/material-lifecycle.json", "native"),
     ("verify_reference_ui", "ui-replica/checks.json", "native"),
     ("verify_cannon_input", "charged-cannon/input.json", "native"),

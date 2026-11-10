@@ -1,5 +1,6 @@
 extends Node
 ## Isolated real-model preview. No combat simulation, damage, or combat audio.
+const T=preload("res://scripts/combat/ui/ui_theme.gd")
 const Visual=preload("res://scripts/combat/fighter_visual.gd")
 var viewports:Array[SubViewport]=[]
 var models:Array[Node3D]=[]
@@ -22,7 +23,9 @@ func _ready() -> void:
         # The large preview is initialized with the actual choice on first use.
         # Replacing its eager default before the first Compatibility draw leaves
         # a stale renderer material dependency in Godot4.7.2.
-        if slot<4:visual.setup(Color.WHITE,slot)
+        if slot<4:
+            visual.setup(Color.WHITE,slot)
+            _style(visual,slot)
         models.append(visual)
 func update_preview(active:bool,choice:int,delta:float,reduced:bool) -> void:
     if not active:
@@ -30,7 +33,9 @@ func update_preview(active:bool,choice:int,delta:float,reduced:bool) -> void:
         return
     if choice!=selected:
         selected=choice
-        if models[4].model==null or models[4].character_index!=choice:models[4].setup(Color.WHITE,choice)
+        if models[4].model==null or models[4].character_index!=choice:
+            models[4].setup(Color.WHITE,choice)
+            _style(models[4],choice)
         confirmation=.45;sample_clock=1.0
     elapsed+=delta;confirmation=maxf(0,confirmation-delta);sample_clock+=delta
     if sample_clock<1.0/15:return
@@ -43,6 +48,12 @@ func update_preview(active:bool,choice:int,delta:float,reduced:bool) -> void:
         _pose(visual,character,elapsed,confirmation if slot==4 else 0.0,reduced)
         visual.position=Vector3.ZERO;visual.rotation.y=.5
         viewports[slot].render_target_update_mode=SubViewport.UPDATE_ONCE
+func _style(visual:Node3D,index:int) -> void:
+    var color:Color=[T.TEAL,T.LIME,T.MAGENTA,Color.WHITE][index]
+    for material in visual.materials:
+        material.set_shader_parameter("silhouette_preview",true)
+        material.set_shader_parameter("tint",color)
+        if material.next_pass is ShaderMaterial:material.next_pass.set_shader_parameter("silhouette_preview",true)
 func _pose(visual:Node3D,index:int,time:float,confirm:float,reduced:bool) -> void:
     var m=visual.motions;var up:Vector3=m.model_up;var forward:Vector3=m.model_forward
     var breath:float=sin(time*2.4)*.035 if not reduced else 0.0

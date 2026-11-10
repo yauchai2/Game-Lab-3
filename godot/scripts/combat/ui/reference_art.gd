@@ -2,9 +2,9 @@ extends RefCounted
 ## Approved image composition; fixed art is raster, live game state remains native.
 const T=preload("res://scripts/combat/ui/ui_theme.gd")
 const LARGE_TYPE=preload("res://assets/fonts/RadioPixelDisplay.fnt")
-const TITLE=preload("res://assets/ui/cover/neon-silhouettes.png")
-const BOARD=preload("res://assets/ui/replica/roster-backplate.png")
-const HEAD=preload("res://assets/ui/replica/headphones.png")
+const TITLE=preload("res://assets/ui/ink/cover.png")
+const CITY=preload("res://assets/ui/ink/city-band.png")
+const SLASHES=preload("res://assets/ui/ink/slashes.png")
 const MAIN_RECTS=[Rect2(56,260,408,84),Rect2(56,354,408,66),Rect2(56,430,408,66),Rect2(56,506,408,66),Rect2(56,604,282,54)]
 const CARD_RECTS=[Rect2(198,155,300,349),Rect2(485,159,301,345),Rect2(191,509,298,332),Rect2(491,510,304,330)]
 var roster_side:=0
@@ -27,8 +27,9 @@ func plate(c:Control,rect:Rect2,color:Color,cut:=14.0) -> void:
 func title(c:Control) -> void:
     # Opaque faceless key art; the previous illustrated portraits are not drawn.
     c.draw_texture_rect(TITLE,Rect2(0,0,1280,720),false)
-    c.draw_texture_rect(T.LOGO,Rect2(24,22,590,202),false)
-    c.draw_line(Vector2(56,236),Vector2(464,236),Color("00d9ec"),4)
+    logo(c,Vector2(48,70),560)
+    text(c,Vector2(58,222),"STREET FIGHT",28,T.PAPER)
+    c.draw_texture_rect(SLASHES,Rect2(514,198,56,36),false)
     var keys:Array=["fight","roster","training","settings","demo"]
     var labels:Array=["FIGHT","FIGHTERS","TRAINING","SETTINGS","AI DEMO"]
     for i in 5:
@@ -36,45 +37,64 @@ func title(c:Control) -> void:
         var rect:Rect2=MAIN_RECTS[i]
         plate(c,Rect2(rect.position+Vector2(6,7),rect.size),Color("07030d"),14)
         plate(c,rect.grow(3),Color.WHITE,14)
-        plate(c,rect,T.LIME if active else Color("100719"),14)
+        plate(c,rect,T.MAGENTA if active else T.NIGHT,14)
         var point_size:int=64 if i==0 else (34 if i==4 else 46)
         text(c,rect.position+Vector2(24,62 if i==0 else (40 if i==4 else 49)),labels[i],point_size,T.INK if active else Color.WHITE)
         if active:
             var kick:int=4 if focus_age<.10 else (2 if focus_age<.20 else 0)
             var center:Vector2=Vector2(rect.position.x-14-kick,rect.get_center().y)
-            polygon(c,[center,center+Vector2(-15,-10),center+Vector2(-15,10)],T.LIME)
+            polygon(c,[center,center+Vector2(-15,-10),center+Vector2(-15,10)],T.MAGENTA)
     hints(c)
+func logo(c:Control,at:Vector2,width:float) -> void:
+    var height:float=width*T.LOGO.get_height()/T.LOGO.get_width()
+    c.draw_texture_rect(T.LOGO,Rect2(at,Vector2(width,height)),false)
+func page_base(c:Control,heading:String) -> void:
+    c.draw_rect(Rect2(0,0,1280,720),T.INK)
+    c.draw_texture_rect(CITY,Rect2(0,0,1280,380),false,Color(.22,.22,.22))
+    logo(c,Vector2(40,29),340)
+    text(c,Vector2(430,88),heading,64,T.PAPER)
+    c.draw_rect(Rect2(40,106,1200,4),T.MAGENTA)
+    c.draw_texture_rect(SLASHES,Rect2(1154,30,80,50),false)
+    c.draw_rect(Rect2(40,704,1200,4),T.TEAL)
+func corners(c:Control,rect:Rect2,color:Color,length:=18.0) -> void:
+    for point in [rect.position,Vector2(rect.end.x,rect.position.y),rect.end,Vector2(rect.position.x,rect.end.y)]:
+        var x:float=1 if point.x==rect.position.x else -1
+        var y:float=1 if point.y==rect.position.y else -1
+        c.draw_line(point,point+Vector2(x*length,0),color,4)
+        c.draw_line(point,point+Vector2(0,y*length),color,4)
 func roster(c:Control,s:Node) -> void:
     var choice:int=s.character_choices[roster_side]
-    c.draw_texture_rect(BOARD,Rect2(0,0,1280,720),false)
+    page_base(c,"FIGHTERS")
     for i in 4:
         var card_rect:Rect2=fit(CARD_RECTS[i])
-        plate(c,Rect2(card_rect.position+Vector2(7,8),card_rect.size),T.INK,20)
-        plate(c,card_rect,T.LIME if choice==i else T.PAPER,20)
+        plate(c,card_rect,T.NIGHT,10)
+        c.draw_rect(card_rect,T.MAGENTA if choice==i else T.EDGE,false,3 if choice==i else 1)
+        if choice==i:corners(c,card_rect,T.PAPER,18)
         c.draw_texture_rect(s.hud.roster_preview.card_texture(i),Rect2(card_rect.position+Vector2(14,8),card_rect.size-Vector2(28,40)),false)
-        text(c,card_rect.position+Vector2(30,card_rect.size.y-8),["ORIGINAL","1","3","4"][i],27)
+        text(c,card_rect.position+Vector2(30,card_rect.size.y-8),["ORIGINAL","1","3","4"][i],27,T.PAPER)
         for side in 2:
             if s.character_choices[side]!=i:continue
-            var tint:Color=T.LIME if side==0 else T.TEAL
-            var tag:Rect2=Rect2(card_rect.position+Vector2(18 if side==0 else 132,16),Vector2(48,30))
-            plate(c,tag,tint,5);text(c,tag.position+Vector2(9,25),"P%d"%(side+1),27)
-        if focused_key=="card_"+str(i):c.draw_rect(card_rect.grow(1),T.INK,false,2)
+            var tint:Color=T.TEAL if side==0 else T.MAGENTA
+            var tag:=Rect2(card_rect.position+Vector2(18 if side==0 else 132,16),Vector2(48,30))
+            plate(c,tag,tint,5);text(c,tag.position+Vector2(9,25),"P%d"%(side+1),27,T.INK)
+        if focused_key=="card_"+str(i):corners(c,card_rect.grow(3),T.TEAL,23)
     for side in 2:
         var side_rect:Rect2=fit(Rect2(18,241+side*100,160,84))
-        plate(c,side_rect,T.LIME if roster_side==side else T.PAPER)
-        if focused_key=="side_"+str(side):c.draw_rect(side_rect.grow(2),T.TEAL,false,3)
-        text(c,side_rect.position+Vector2(18,47),"P%d"%(side+1),48)
+        plate(c,side_rect,T.PAPER if roster_side==side else T.NIGHT)
+        text(c,side_rect.position+Vector2(18,47),"P%d"%(side+1),48,T.INK if roster_side==side else T.PAPER)
+        if focused_key=="side_"+str(side):corners(c,side_rect.grow(2),T.TEAL)
+    corners(c,Rect2(657,121,420,476),T.EDGE,30)
     c.draw_texture_rect(s.hud.roster_preview.hero_texture(),Rect2(662,117,420,486),false)
-    var label:Rect2=fit(Rect2(1400,339,244,218))
-    plate(c,label,T.PAPER,18)
-    text(c,label.position+Vector2(39,125),["A","1","3","4"][choice],139)
-    var name:String=["BOXER / BALANCED","DANCER / AIR REACH","BASS / HEAVY HITS","SPARK / FAST ENERGY"][choice]
-    plate(c,Rect2(672,666,250,38),T.PAPER,8)
-    text(c,Vector2(686,697),name,26)
-    hints(c)
+    plate(c,Rect2(1094,142,140,128),T.NIGHT,10)
+    text(c,Vector2(1124,243),["A","1","3","4"][choice],106,T.PAPER)
     var fight_rect:Rect2=fit(Rect2(849,773,550,100))
-    if focused_key=="roster_fight":c.draw_rect(fight_rect,T.LIME,false,3)
-    elif focused_key=="back":c.draw_rect(fit(Rect2(1507,875,145,50)),T.LIME,false,3)
+    plate(c,fight_rect,T.TEAL if focused_key=="roster_fight" else T.PAPER,12)
+    text(c,fight_rect.position+Vector2(54,58),"FIGHT",64,T.INK)
+    var name:String=["BOXER / BALANCED","DANCER / AIR REACH","BASS / HEAVY HITS","SPARK / FAST ENERGY"][choice]
+    plate(c,Rect2(672,666,250,38),T.NIGHT,8)
+    text(c,Vector2(686,697),name,26,T.PAPER)
+    hints(c)
+    if focused_key=="back":corners(c,fit(Rect2(1507,875,145,50)),T.TEAL)
 func hints(c:Control) -> void:
     c.draw_rect(Rect2(924,658,356,62),T.INK)
     plate(c,Rect2(932,665,178,40),T.PAPER,8)
@@ -82,10 +102,7 @@ func hints(c:Control) -> void:
     plate(c,Rect2(1118,665,132,40),T.PAPER,8)
     text(c,Vector2(1130,695),"ESC BACK",28)
 func secondary(c:Control,heading:String) -> void:
-    c.draw_texture_rect(BOARD,Rect2(0,0,1280,720),false)
-    plate(c,Rect2(330,15,460,100),T.PAPER,35)
-    text(c,Vector2(371,92),heading,72)
-    polygon(c,[Vector2(0,580),Vector2(1280,550),Vector2(1280,720),Vector2(0,720)],T.INK)
+    page_base(c,heading)
 func hud(c:Control,s:Node,hp_lag:Array) -> void:
     for side in 2:
         var reverse:bool=side==1
@@ -113,7 +130,12 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
         for threshold in [50,75]:
             var tx:float=meter.position.x+meter.size.x*threshold/100
             c.draw_line(Vector2(tx,61),Vector2(tx,73),T.PAPER,2)
-        c.draw_texture_rect(HEAD,Rect2(58 if side==0 else 1163,15,58,61),false)
+        var center:=Vector2(87 if side==0 else 1192,45)
+        c.draw_circle(center,29,T.INK)
+        c.draw_arc(center,27,0,TAU,24,T.PAPER,2)
+        for bar_index in 3:
+            var extent:float=[14.0,26.0,20.0][bar_index]
+            c.draw_rect(Rect2(center+Vector2(-15+bar_index*11,-extent*.5),Vector2(7,extent)),T.TEAL if side==0 else T.MAGENTA)
     c.draw_circle(Vector2(640,44),35,T.INK);c.draw_circle(Vector2(640,44),32,T.PAPER);c.draw_circle(Vector2(640,44),29,T.GOLD)
     var clock:String="∞" if s.practice or s.demo!=null else "%02d"%ceili(s.sim.remaining)
     var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,48).x

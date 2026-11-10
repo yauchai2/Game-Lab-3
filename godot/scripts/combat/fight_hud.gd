@@ -119,7 +119,7 @@ func _ready() -> void:
         button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
         button.pressed.connect(button.release_focus)
     menu=PanelContainer.new()
-    menu.add_theme_stylebox_override("panel",Tokens.plate(Color(INK,.94),Tokens.LIME,2))
+    menu.add_theme_stylebox_override("panel",Tokens.plate(Color(INK,.94),Tokens.EDGE,2))
     layout_root.add_child(menu)
     menu_scroll=ScrollContainer.new()
     menu_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
@@ -213,7 +213,7 @@ func rebuild_menu(requested_focus := "") -> void:
     else:
         menu.position=Vector2(340,141)
         menu.size=Vector2(600,500 if session.screen in ["pause","help"] else 440)
-    menu.add_theme_stylebox_override("panel",Tokens.plate(Color.TRANSPARENT if session.screen=="title" and menu_page=="main" else Color(INK,.96),Tokens.LIME if menu_page!="main" else Color.TRANSPARENT,2 if menu_page!="main" else 0))
+    menu.add_theme_stylebox_override("panel",Tokens.plate(Color.TRANSPARENT if session.screen=="title" and menu_page=="main" else Color(INK,.96),Tokens.EDGE if menu_page!="main" else Color.TRANSPARENT,2 if menu_page!="main" else 0))
     if menu_page=="settings":_settings_page()
     elif menu_page=="roster":_roster_page()
     elif menu_page=="help":_help_page()
@@ -267,41 +267,37 @@ func _heading(key: String) -> void:
 func _action(parent: Node, key: String, shortcut: String, callback: Callable, primary := false) -> Button:
     var button:=Button.new()
     button.text=tr_text(key)
-    var icon_index:int={"fight":0,"training":4,"roster":11,"demo":10,"settings":9,"resume":14,"main_menu":15}.get(key,-1)
-    if icon_index>=0:
-        button.icon=Tokens.icon(icon_index)
-        button.expand_icon=true
-        button.add_theme_constant_override("icon_max_width",28)
     button.alignment=HORIZONTAL_ALIGNMENT_LEFT
     button.custom_minimum_size=Vector2(0,60)
     button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
     button.add_theme_font_size_override("font_size",Tokens.ACTION_SIZE)
     button.set_meta("ui_key",key)
     if primary:
-        button.add_theme_stylebox_override("normal",Tokens.plate(Tokens.LIME,INK,2))
+        button.add_theme_stylebox_override("normal",Tokens.plate(Tokens.MAGENTA,INK,2))
         button.add_theme_color_override("font_color",INK)
         button.add_theme_color_override("font_focus_color",INK)
     if key in ["roster","controls","settings","demo","explore"]:
         button.add_theme_stylebox_override("normal",Tokens.plate(INK,Tokens.EDGE,1))
         button.add_theme_color_override("font_color",PAPER)
+        button.add_theme_color_override("font_focus_color",PAPER)
     if key in ["roster","controls","settings","demo","explore"]:
         button.tooltip_text=button.text+(" · "+shortcut if shortcut!="" else "")
         shortcut=""
     if shortcut!="":
         var badge:=Label.new()
         badge.text=shortcut
-        badge.add_theme_font_size_override("font_size",12)
-        badge.add_theme_color_override("font_color",PAPER)
+        badge.add_theme_font_size_override("font_size",24)
+        badge.add_theme_color_override("font_color",INK)
         badge.add_theme_color_override("font_outline_color",INK)
-        badge.add_theme_constant_override("outline_size",3)
+        badge.add_theme_constant_override("outline_size",0)
         badge.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
         badge.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
         badge.offset_right=-16
         badge.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
         badge.mouse_filter=Control.MOUSE_FILTER_IGNORE
         button.add_child(badge)
-        var highlight:=func():badge.add_theme_color_override("font_color",PAPER)
-        var restore:=func():badge.add_theme_color_override("font_color",PAPER)
+        var highlight:=func():badge.add_theme_color_override("font_color",INK)
+        var restore:=func():badge.add_theme_color_override("font_color",INK)
         button.mouse_entered.connect(highlight)
         button.mouse_exited.connect(restore)
         button.button_down.connect(highlight)
@@ -604,7 +600,7 @@ func _draw() -> void:
 func _health(x: float, fighter: Dictionary, tint: Color, reverse: bool, index: int) -> void:
     var fighter_tag: String=("AI 1" if index==0 else "AI 2") if session.demo!=null else tr_text("you" if index==0 else ("practice" if session.practice else "rival"))
     _text(Vector2(x+8,28),fighter_tag+" / "+tr_text(session.FighterVisual.Roster.entry(session.character_choices[index]).label),13,PAPER)
-    draw_texture_rect(Tokens.atlas("health_frame"),Rect2(x-5,27,480,42),false)
+    draw_rect(Rect2(x-5,27,480,42),PAPER,false,2)
     _cut_bar(Vector2(x+6,36),Vector2(458,24),INK,reverse)
     var hp: float=458*clampf(fighter.health/100.0,0,1)
     var lag: float=458*clampf(health_lag[index]/100.0,0,1)

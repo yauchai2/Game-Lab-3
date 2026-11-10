@@ -4,10 +4,16 @@ uniform sampler2D base_texture : source_color, filter_nearest_mipmap;
 uniform vec4 tint : source_color = vec4(1.0);
 uniform bool use_texture = false;
 uniform float flash = 0.0;
+uniform bool silhouette_preview = false;
 void fragment() {
     vec3 c = tint.rgb * (use_texture ? texture(base_texture, UV).rgb : vec3(1.0));
-    ALBEDO = mix(c, vec3(1.0), flash);
-    EMISSION = c * 0.12 + vec3(flash * 0.8);
+    if (silhouette_preview) {
+        ALBEDO = vec3(0.0);
+        EMISSION = tint.rgb;
+    } else {
+        ALBEDO = mix(c, vec3(1.0), flash);
+        EMISSION = c * 0.12 + vec3(flash * 0.8);
+    }
     ROUGHNESS = 1.0;
 }
 void light() {
