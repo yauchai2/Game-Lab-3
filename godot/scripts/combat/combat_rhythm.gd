@@ -52,14 +52,20 @@ func advance(delta:float) -> void:
     if active():
         var p:Array=profiles[kind]
         if age>=(p[0]+p[1])*intensity+p[2]:kind="";priority=0
-func take_steps(delta:float,enabled:bool) -> int:
+func take_steps(delta:float,enabled:bool,native_stop:=false) -> int:
     if not enabled:
         clear();steps+=1;return 1
     advance(clampf(delta,0,.05))
     rate_now=rate()
     bank=minf(2.0,bank+clampf(delta,0,.05)*60.0*rate_now)
     var count:=floori(bank+0.00001)
-    bank-=count;steps+=count
+    bank-=count
+    if native_stop:
+        # Do not stretch contact freeze through slow motion a second time.
+        # Preserve the existing accelerated release, but always drain at least one tick.
+        if count==0:count=1;bank=0.0
+        rate_now=0.0
+    steps+=count
     return count
 func view_speed() -> float:return rate_now
 func draw(canvas:Control,session:Node3D) -> void:

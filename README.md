@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[正式街鬥玩法改善](docs/LIVE_COMBAT_IMPROVEMENTS.zh-TW.md)／[正式FIGHT真按鍵及30秒前後錄像](docs/evidence/live-combat/README.md)。CPU加入投守勢／揮空恢復／低guard後撤及角色資源決策，LOOP J連段能接第三段，接觸後更快回到動作。直接選FIGHT／STREET RUN體驗；同一來源branch，公開Web不變。
+
 最新：[FIRST MINUTE四步主動教學](docs/FIRST_MINUTE_COACH.zh-TW.md)／[實機與四關示範](docs/evidence/first-minute/README.md)。主選單C進入，真正完成連段、格擋反擊、付費空中追擊及爆發；Enter接下一關、F5重試。396項檢查通過，公開Web未更新。
 
 最新：[SURGE LAB高壓窗口比較原型](docs/SURGE_WINDOW_PROTOTYPE.zh-TW.md)／[畫面、對照片與驗證](docs/evidence/surge-window/README.md)。主選單B進入；21步固定決策、J／Shift／E逐邊鎖定，B切原流程比較。僅練習原型，正式FIGHT及公開Web保持。

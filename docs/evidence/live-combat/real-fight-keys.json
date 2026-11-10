@@ -1,0 +1,27 @@
+{
+  "cpu_moves": {
+    "air_jab": 1,
+    "air_kick": 1,
+    "cross": 1,
+    "grab": 1,
+    "heavy": 1,
+    "jab": 2,
+    "launcher": 1,
+    "meteor": 1,
+    "overdrive": 1,
+    "special": 1
+  },
+  "demo": false,
+  "difficulty": 1,
+  "held_shift_observed": true,
+  "mode": "normal FIGHT",
+  "passed": true,
+  "player_health": 88,
+  "scope": "Actual desktop held Shift in normal FIGHT through the real input handler. Default spawns, stats, countdown and opponent policy. Not a human fun/balance score.",
+  "training": false,
+  "keys_used": [
+    "R",
+    "held Shift"
+  ],
+  "move_log_scope": "CPU move counts also include the initial unattended round before R; throw confirmation requires actual held Shift."
+}

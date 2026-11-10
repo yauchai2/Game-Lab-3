@@ -10,6 +10,7 @@ var no_hit_ticks:=0
 var longest_gap:=0
 var agent=preload("res://scripts/combat/rush_agent.gd").new()
 func prepare(s: RefCounted) -> void:
+    agent.reset()
     s.training=true;s.arcade_enabled=true;s.endless=true
     s.reset_training()
     s.ai_enabled=false;s.partner_mode=0

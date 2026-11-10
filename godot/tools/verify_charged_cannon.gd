@@ -39,10 +39,15 @@ func run() -> void:
     s=fresh();s.tick({"attack":"special"})
     check("ordinary L keeps its 50-energy immediate command",s.fighters[0].meter==50 and s.fighters[0].move=="special")
     var d=preload("res://scripts/combat/demo_director.gd").new();s=Sim.new();d.prepare(s)
+    var contacts:=[0,0]
     for i in 7200:
         var commands:Array=d.commands(s);s.tick(commands[0],commands[1]);d.observe(s)
+        for event in s.events:
+            if event.kind=="hit":contacts[event.attacker]+=1
+            elif event.kind=="parry":contacts[event.target]+=1
+            elif event.kind=="air_counter_start":contacts[event.owner]+=1
     check("live agents naturally use the cannon",d.seen.get("hit/overdrive",0)>0 and d.seen.get("hit/special",0)>0)
-    check("new cannon does not end or reset the live duel",s.phase=="fight" and d.age==7200 and d.hits[0]>50 and d.hits[1]>50)
+    check("new cannon does not end or reset the live duel",s.phase=="fight" and d.age==7200 and d.hits[0]>50 and d.hits[1]>50 and contacts[0]>50 and contacts[1]>50)
     var passed:=checks.filter(func(c:Dictionary)->bool:return c.passed).size()
-    FileAccess.open("res://../docs/evidence/charged-cannon/rules.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"events":d.seen,"scope":"Actual legal command and simulation contacts; no fake hits."},"  "))
+    FileAccess.open("res://../docs/evidence/charged-cannon/rules.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"events":d.seen,"real_offense_or_defense_contacts":contacts,"scope":"Actual legal command and simulation contacts; no fake hits."},"  "))
     print("CANNON_RULES ",passed,"/",checks.size());quit(0 if passed==checks.size() else 1)

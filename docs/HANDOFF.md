@@ -1,5 +1,13 @@
 # 接續工作交接
 
+## 2026-11-10：正式FIGHT／Street Run玩法改善
+
+依使用者「真係優化遊戲」更正，直接修改正式AI、LOOP連段和共用接觸時鐘；見 [LIVE_COMBAT_IMPROVEMENTS.zh-TW.md](LIVE_COMBAT_IMPROVEMENTS.zh-TW.md)。CPU會近身投持續防禦、用輕拳打揮空恢復、低guard後撤、按資源選角色招式／付費大招；以20／14／9 tick承諾中立意圖，不讀玩家pending。HUSH低能量改近身；LOOP jab/cross推離5／6→2.8／3.4，近身J能接第三段挑空。native hitstop不再被慢鏡重複拉長，保留原tick數及大招起手profile，SURGE60 parry到狀態重推進16→12個wall步進。
+
+[真FIGHT按鍵、兩組30秒前後對照及量測](evidence/live-combat/README.md)：R後長按Shift被正常CPU真grab命中，非Demo／training；另驗證跳躍可避投。12組guard情境舊AI零投技，新每組5–12次起手；LOOP距離1.2／1.5的第三擊失敗已重現並修復。45新玩法＋260戰鬥＋37原生UI音樂＋185既有系統檢查通過；早期失敗及測試Easy難度更正均保留紀錄，不以數量宣稱好玩。Godot4.6.3 Linux／llvmpipe／Dummy audio，Mac與真人平衡／實聽仍待驗收。
+
+同一來源branch codex/combat-escalation-next／PR #6；不新增教學或原型作主要交付，原高壓窗口仍隔離，XP／裝備／GLB／公開Web不動。ChatGPT分享頁仍無法讀取（網頁無可讀內容、原生Chrome DNS錯誤），未聲稱已讀；以repo規格和本聊天更正續作。
+
 ## 2026-11-10：FIRST MINUTE四步主動教學
 
 規格E首分鐘與C起手讀取切片已接入，見 [FIRST_MINUTE_COACH.zh-TW.md](FIRST_MINUTE_COACH.zh-TW.md)。主選單C或HOW TO PLAY頂部入口，四個真接觸目標：同段兩擊、parry後真counter_success＋hit、launcher→付費homing_chase→空中hit、付75能量的overdrive真hit。Enter／按鈕開始及接下一關，F5僅重試本關，Esc保存，F2仍能完成。每關明示100能量／近身／SURGE0 fixture，不改正常傷害、擊退、能量、成長或AI規則；讀招陪練只用普通commands，成功由Simulation事件判斷。

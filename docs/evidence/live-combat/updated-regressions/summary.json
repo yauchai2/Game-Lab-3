@@ -1,0 +1,67 @@
+{
+  "created_utc": "20261110T134906Z",
+  "source_commit": "baa6950861a2b13f737e281346f510927261dfb7",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/combat_rhythm.gd",
+    "godot/scripts/combat/demo_director.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/last_service/profiles.gd",
+    "godot/scripts/combat/rush_agent.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": true,
+  "passed": 31,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_charged_cannon",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "cfade340715510138ea384f146c1af8f786a935896637c20c0a0fd0efdc003bf",
+      "seconds": 0.955,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_charged_cannon.gd"
+      ],
+      "report_written": true,
+      "passed": 10,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_rush_arcade",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "e85ca65bfa69410d1561344db3babb186bfd2dc118888cdc09cd3dd5ee332fda",
+      "seconds": 0.584,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_rush_arcade.gd"
+      ],
+      "report_written": true,
+      "passed": 21,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

@@ -80,6 +80,7 @@ func _init() -> void:
     reset_round()
 
 func reset_round() -> void:
+    rush_agent.reset()
     surge_lab_enabled=false;surge_lab_fixture=false;surge_release.clear();surge_guards=[0,0]
     exchange.reset()
     continuation.clear()

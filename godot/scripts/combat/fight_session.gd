@@ -213,7 +213,7 @@ func _physics_process(delta: float) -> void:
     if sim.exchange.decision_active():
         _combat_step()
         return
-    var count:int=rhythm.take_steps(delta,sim.arcade_enabled and not reduced_effects)
+    var count:int=rhythm.take_steps(delta,sim.arcade_enabled and not reduced_effects,sim.hitstop>0)
     for i in count:
         if screen!="play":break
         _combat_step()

@@ -26,8 +26,8 @@ static func move(base:Dictionary,index:int,name:String,f:Dictionary={}) -> Dicti
             if f.get("service",{}).get("sample_boost",false) and name in ["cross","heavy","launcher","special","overdrive"]:m.damage+=3;m.push+=3.0
             if "hush_recover" in f.get("perks",[]) and f.get("service",{}).get("sample_boost",false):m.recovery=maxi(8,m.recovery-4)
         3:
-            if name=="jab":m.reach=1.9;m.push=5.0
-            if name=="cross":m.reach=2.0;m.push=6.0
+            if name=="jab":m.reach=1.9;m.push=2.8
+            if name=="cross":m.reach=2.0;m.push=3.4
             if name=="special":m.damage=0;m.reach=0.0;m.startup=14;m.active=1;m.recovery=20
             if name=="overdrive":m.damage=24;m.startup=28;m.active=12;m.recovery=44;m.reach=2.5
     return m

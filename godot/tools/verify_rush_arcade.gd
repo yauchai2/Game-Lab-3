@@ -6,7 +6,7 @@ func check(label:String,value:bool) -> void:
     checks.append({"name":label,"passed":value})
     if not value:push_error("RUSH ARCADE FAIL: "+label)
 func run() -> void:
-    var s:=Sim.new();s.arcade_enabled=true;s.restart_match()
+    var s:=Sim.new();s.arcade_enabled=true;s.difficulty=0;s.restart_match()
     check("burst is ready on the first round",s.fighters[0].meter==60 and s.fighters[1].meter==60)
     check("opening begins close and quickly",s.countdown==36 and s.fighters[1].x-s.fighters[0].x<3.3)
     var seen:={};var first:=-1;var max_combo:=0

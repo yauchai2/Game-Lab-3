@@ -88,3 +88,5 @@
 - 最新SURGE現況見docs/SURGE_WINDOW_PROTOTYPE.zh-TW.md：A＋B基礎後，B獨立21步高壓比較窗口已加入明示練習fixture，B切BASELINE／WINDOW。尚未替換標準FIGHT／Demo／Street Run；真人比較、首分鐘完整教學及三站敘事仍待驗證／續作。pressure／Rhythm／Neon維持單一owner，Web不更新。
 
 - 最新首分鐘切片見docs/FIRST_MINUTE_COACH.zh-TW.md：C進入四課主動教學，真事件驗連段／parry counter／付費追擊空擊／付費overdrive。100能量／近身／SURGE0是明示fixture；director不裁決傷害，不把自動student當真人學習。F5保留前課重試本課，Esc保存，無XP／存檔獎勵；其他模式隔離。LOOP首課採共通兩擊，不改實際擊退或招式數值。三站敘事、完整C與D仍待續；來源同branch，Web不更新。
+
+- 2026-11-10 使用者更正：要求真正改善正式遊戲，不能再把新增教學／獨立原型當主要優化交付。最新正式玩法見docs/LIVE_COMBAT_IMPROVEMENTS.zh-TW.md：承諾式CPU攻防／角色資源、LOOP輕拳推離2.8／3.4、native hitstop與演出重疊消耗；原傷害／能量／大招長pose不改。Easy單鍵新手驗證明確選Easy，Normal／Hard可反制單鍵spam。仍同branch推送，公開Web不更新；Mac／真人平衡待測。

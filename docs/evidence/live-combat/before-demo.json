@@ -1,0 +1,73 @@
+{
+  "scope": "Two independent uncut genuine free-AI samples, fixed-step virtual wall time. Not a human match, scripted skill showcase or hardware FPS result.",
+  "segments": [
+    {
+      "events": {
+        "air_counter_choice": 4,
+        "air_counter_end": 4,
+        "air_counter_release": 4,
+        "air_counter_start": 4,
+        "air_counter_windup": 4,
+        "air_escape": 1,
+        "air_land": 19,
+        "air_parry_attempt": 4,
+        "break_finish": 4,
+        "chase_arrive": 8,
+        "dash": 7,
+        "ground_bounce": 3,
+        "hit": 51,
+        "homing_chase": 8,
+        "preload_tier": 2,
+        "swing": 63,
+        "wall_tech": 3
+      },
+      "fps": 10,
+      "frames": 300,
+      "hits": [
+        32,
+        19
+      ],
+      "pair": [
+        0,
+        1
+      ],
+      "silent": true,
+      "virtual_wall_seconds": 30
+    },
+    {
+      "events": {
+        "air_counter_choice": 3,
+        "air_counter_end": 3,
+        "air_counter_release": 3,
+        "air_counter_start": 3,
+        "air_counter_windup": 3,
+        "air_land": 19,
+        "air_parry_attempt": 3,
+        "break_finish": 4,
+        "chase_arrive": 7,
+        "dash": 10,
+        "ground_bounce": 4,
+        "hit": 45,
+        "homing_chase": 7,
+        "node_broken": 1,
+        "node_placed": 5,
+        "node_pulse_fx": 4,
+        "parry": 1,
+        "swing": 75,
+        "wall_tech": 4
+      },
+      "fps": 10,
+      "frames": 300,
+      "hits": [
+        20,
+        25
+      ],
+      "pair": [
+        2,
+        3
+      ],
+      "silent": true,
+      "virtual_wall_seconds": 30
+    }
+  ]
+}
