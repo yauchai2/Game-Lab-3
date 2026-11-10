@@ -44,5 +44,5 @@ func fits(camera:Camera3D,session:Node3D) -> bool:
                 var point:=Vector3(f.x+x,f.y+y,session.FIGHT_Z)
                 if camera.is_position_behind(point):return false
                 var screen:Vector2=camera.unproject_position(point)/viewport_size
-                if screen.x<.04 or screen.x>.96 or screen.y<.14 or screen.y>.84:return false
+                if screen.x<.04 or screen.x>.96 or screen.y<.18 or screen.y>.84:return false
     return true

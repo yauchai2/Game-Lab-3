@@ -2,7 +2,7 @@ extends RefCounted
 ## Approved image composition; fixed art is raster, live game state remains native.
 const T=preload("res://scripts/combat/ui/ui_theme.gd")
 const LARGE_TYPE=preload("res://assets/fonts/RadioPixelDisplay.fnt")
-const TITLE=preload("res://assets/ui/ink/cover.png")
+const TITLE=preload("res://assets/ui/last_service/cover.png")
 const CITY=preload("res://assets/ui/ink/city-band.png")
 const SLASHES=preload("res://assets/ui/ink/slashes.png")
 const MAIN_RECTS=[Rect2(56,260,408,84),Rect2(56,354,408,66),Rect2(56,430,408,66),Rect2(56,506,408,66),Rect2(56,604,282,54)]
@@ -28,7 +28,7 @@ func title(c:Control) -> void:
     # Opaque faceless key art; the previous illustrated portraits are not drawn.
     c.draw_texture_rect(TITLE,Rect2(0,0,1280,720),false)
     logo(c,Vector2(48,70),560)
-    text(c,Vector2(58,222),"STREET FIGHT",28,T.PAPER)
+    text(c,Vector2(58,222),"LAST SERVICE / STREET FIGHT",28,T.PAPER)
     c.draw_texture_rect(SLASHES,Rect2(514,198,56,36),false)
     var keys:Array=["fight","roster","training","settings","demo"]
     var labels:Array=["FIGHT","FIGHTERS","TRAINING","SETTINGS","AI DEMO"]
@@ -44,6 +44,7 @@ func title(c:Control) -> void:
             var kick:int=4 if focus_age<.10 else (2 if focus_age<.20 else 0)
             var center:Vector2=Vector2(rect.position.x-14-kick,rect.get_center().y)
             polygon(c,[center,center+Vector2(-15,-10),center+Vector2(-15,10)],T.MAGENTA)
+    text(c,Vector2(64,594),"FIGHTERS: XP / SKILLS",24,T.MUTED)
     hints(c)
 func logo(c:Control,at:Vector2,width:float) -> void:
     var height:float=width*T.LOGO.get_height()/T.LOGO.get_width()
@@ -71,7 +72,7 @@ func roster(c:Control,s:Node) -> void:
         c.draw_rect(card_rect,T.MAGENTA if choice==i else T.EDGE,false,3 if choice==i else 1)
         if choice==i:corners(c,card_rect,T.PAPER,18)
         c.draw_texture_rect(s.hud.roster_preview.card_texture(i),Rect2(card_rect.position+Vector2(14,8),card_rect.size-Vector2(28,40)),false)
-        text(c,card_rect.position+Vector2(30,card_rect.size.y-8),["ORIGINAL","1","3","4"][i],27,T.PAPER)
+        text(c,card_rect.position+Vector2(30,card_rect.size.y-8),["ZIP","RIVET","HUSH","LOOP"][i],27,T.PAPER)
         for side in 2:
             if s.character_choices[side]!=i:continue
             var tint:Color=T.TEAL if side==0 else T.MAGENTA
@@ -86,11 +87,15 @@ func roster(c:Control,s:Node) -> void:
     corners(c,Rect2(657,121,420,476),T.EDGE,30)
     c.draw_texture_rect(s.hud.roster_preview.hero_texture(),Rect2(662,117,420,486),false)
     plate(c,Rect2(1094,142,140,128),T.NIGHT,10)
-    text(c,Vector2(1124,243),["A","1","3","4"][choice],106,T.PAPER)
+    text(c,Vector2(1124,243),["Z","R","H","L"][choice],106,T.PAPER)
+    for label in [["SKILLS",Rect2(1094,300,140,60)],["STREET",Rect2(1094,380,140,86)]]:
+        plate(c,label[1],T.NIGHT,8)
+        text(c,label[1].position+Vector2(12,37),label[0],28,T.PAPER)
+    text(c,Vector2(1107,447),"RUN",28,T.TEAL)
     var fight_rect:Rect2=fit(Rect2(849,773,550,100))
     plate(c,fight_rect,T.TEAL if focused_key=="roster_fight" else T.PAPER,12)
     text(c,fight_rect.position+Vector2(54,58),"FIGHT",64,T.INK)
-    var name:String=["BOXER / BALANCED","DANCER / AIR REACH","BASS / HEAVY HITS","SPARK / FAST ENERGY"][choice]
+    var name:String=["ZIP / ROUTE KICKS","RIVET / PRELOAD","HUSH / SAMPLE","LOOP / PATCH NODES"][choice]
     plate(c,Rect2(672,666,250,38),T.NIGHT,8)
     text(c,Vector2(686,697),name,26,T.PAPER)
     hints(c)
@@ -127,7 +132,8 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
         plate(c,Rect2(meter.position-Vector2(3,3),meter.size+Vector2(6,6)),T.INK,4)
         plate(c,meter,T.LIME.darkened(.7),3)
         if f.meter>0:plate(c,Rect2(meter.position,meter.size*Vector2(f.meter/100,1)),T.LIME,3)
-        for threshold in [50,75]:
+        var marks:Array=[10,20,75] if f.character==3 else [50,75]
+        for threshold in marks:
             var tx:float=meter.position.x+meter.size.x*threshold/100
             c.draw_line(Vector2(tx,61),Vector2(tx,73),T.PAPER,2)
         var center:=Vector2(87 if side==0 else 1192,45)
@@ -142,13 +148,17 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
     text(c,Vector2(640-width*.5,59),clock,48)
     plate(c,Rect2(150,644,980,60),T.INK,20)
     plate(c,Rect2(154,646,972,54),T.PAPER,20)
-    var shortcuts:Array=[["J","RUSH",174],["K","LAUNCH",382],["L","BURST",616],["W+L","CANNON",820]]
+    var skill_label:String="NODE" if s.character_choices[0]==3 else ("HOLD" if s.character_choices[0]==1 else "SKILL")
+    var shortcuts:Array=[["J","RUSH",174],["K","LAUNCH",382],["L",skill_label,616],["W+L","SUPER",820]]
     for entry in shortcuts:
         var key_width:float=72 if entry[0]=="W+L" else 44
         plate(c,Rect2(entry[2],655,key_width,34),T.INK,6)
         text(c,Vector2(entry[2]+7,683),entry[0],32,T.PAPER)
         text(c,Vector2(entry[2]+key_width+10,683),entry[1],30)
 
+    if s.character_choices[0]==3:
+        plate(c,Rect2(990,606,238,32),T.INK,6)
+        text(c,Vector2(1000,631),"S+L  PULSE",24,T.LIME)
     if s.sim.combo_hits>=2 and s.sim.combo_owner>=0 and s.sim.fighters[1-s.sim.combo_owner].state=="stun":
         var x:float=39 if s.sim.combo_owner==0 else 1104
         plate(c,Rect2(x,146,118,49),T.PAPER,15)

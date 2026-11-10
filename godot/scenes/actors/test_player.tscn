@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3]
 [ext_resource type="Script" path="res://scripts/test_player.gd" id="1_script"]
-[ext_resource type="PackedScene" path="res://assets/CHAR_PLAYER_A01.glb" id="2_character"]
+[ext_resource type="PackedScene" path="res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb" id="2_character"]
 [ext_resource type="Script" path="res://scripts/character_pose_driver.gd" id="3_pose"]
 [sub_resource type="CapsuleShape3D" id="BodyShape"]
 radius = 0.28

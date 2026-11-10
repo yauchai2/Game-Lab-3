@@ -1,6 +1,126 @@
 {
-  "scope": "All locally available reference images/videos and Ink/JSR UI source art. Inline-only original chat images are listed as missing in README. Long references are explicitly lossy study copies.",
+  "scope": "All locally available reference images/videos and Ink/JSR UI source art. Inline-only original chat images are listed as missing in README. Long references are explicitly lossy study copies. Includes LAST SERVICE original character models and current cover.",
   "files": [
+    {
+      "path": "godot/assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb",
+      "bytes": 286696,
+      "sha256": "f6ca02d419c40dab34fd0922d71edb44d749f3108cb248686eb8dde645dc7b86"
+    },
+    {
+      "path": "godot/assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36_anime_action_figure_3d_basecolor.jpg",
+      "bytes": 192530,
+      "sha256": "5bcffb81df6c0f8aeea19c575dbaf5d955554a6d4d798806e98075231832d8d8"
+    },
+    {
+      "path": "godot/assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb",
+      "bytes": 248076,
+      "sha256": "0869b295395c067bb033bf039547ffa701bb443a0b33991e7fdb6d90092bf186"
+    },
+    {
+      "path": "godot/assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed_stylized_3d_character_basecolor.jpg",
+      "bytes": 161309,
+      "sha256": "0e73515f435c829c28b95c66ae49a7be3c7cb800af0210b504b374b8caf37bf4"
+    },
+    {
+      "path": "godot/assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb",
+      "bytes": 275516,
+      "sha256": "7cbdc19dce4c7e3ec58d792c5143502717f9ac04816778fbb3431754a70a389b"
+    },
+    {
+      "path": "godot/assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e_stylized_3d_character_basecolor.jpg",
+      "bytes": 193312,
+      "sha256": "355c94e1500c0d8479ecd138489f3a0506bd84a73126fe27d0c0dcdbe9423b7e"
+    },
+    {
+      "path": "godot/assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb",
+      "bytes": 264360,
+      "sha256": "e842af0e27edcff84ce4b66a6688b6201361e584e8f2a924f8d2996cb8600cde"
+    },
+    {
+      "path": "godot/assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283_stylized_3d_character_basecolor.jpg",
+      "bytes": 177593,
+      "sha256": "2b37ea7be9776613cc4b87a1e70875aa551127e3a623efe142b62f056ed12ae2"
+    },
+    {
+      "path": "godot/assets/ui/ink/city-band.png",
+      "bytes": 310778,
+      "sha256": "7499677465a3aa4fd045473bf551ed2b89438d09b895672fa2b052aefb990cc0"
+    },
+    {
+      "path": "godot/assets/ui/ink/cover.png",
+      "bytes": 1302081,
+      "sha256": "5d868776d926287c6821558314e2190c43a4ea319254f0965cb8cd8785e423ed"
+    },
+    {
+      "path": "godot/assets/ui/ink/logo-source.png",
+      "bytes": 804382,
+      "sha256": "791c075399e123a433542fdbdd228f34da14350392e777bd696138ac93b7b13e"
+    },
+    {
+      "path": "godot/assets/ui/ink/select-arrow.svg",
+      "bytes": 127,
+      "sha256": "ab996ac7ca7303d0e8b6dbfdafc8be0bc82cbe2cf498aaa831274b80f08ba824"
+    },
+    {
+      "path": "godot/assets/ui/ink/slashes.png",
+      "bytes": 85399,
+      "sha256": "79081198e80ee260642f9cd1d15fe66e9e36f137328094a461b7e0b32178b1f0"
+    },
+    {
+      "path": "godot/assets/ui/ink/slider-thumb-disabled.svg",
+      "bytes": 172,
+      "sha256": "5b3f3083aaf446acd750c758933091caa8c10ff3d7a24776d2b35bd64c02ce2b"
+    },
+    {
+      "path": "godot/assets/ui/ink/slider-thumb-focus.svg",
+      "bytes": 172,
+      "sha256": "d9739b36e83a7f47bd1d6f927d02d1eb8161e652e73678e312c078c5c82190c4"
+    },
+    {
+      "path": "godot/assets/ui/ink/slider-thumb.svg",
+      "bytes": 172,
+      "sha256": "ac17e03639ef7faafd8cadded3503419a039549e7e5d4fd41286a1804162eaef"
+    },
+    {
+      "path": "godot/assets/ui/ink/toggle-off-disabled.svg",
+      "bytes": 238,
+      "sha256": "c4402fc6371f5b00c86c75c83319f8610ae1b88fce9a2fc00293ea377f52cb7a"
+    },
+    {
+      "path": "godot/assets/ui/ink/toggle-off.svg",
+      "bytes": 238,
+      "sha256": "dbbfe8a45ed28d9854467667e62bd09f73ed87cd77b3c496f0ccce09bbd53c27"
+    },
+    {
+      "path": "godot/assets/ui/ink/toggle-on-disabled.svg",
+      "bytes": 239,
+      "sha256": "c929b0b9af11c1fbd165e776b20b9d2d0618805163c0917f5c5d46326b2fde16"
+    },
+    {
+      "path": "godot/assets/ui/ink/toggle-on.svg",
+      "bytes": 239,
+      "sha256": "d4ef421846e5b45452d756b64d82bc1a1c89323fa1c1b13a0db856989aecdb9d"
+    },
+    {
+      "path": "godot/assets/ui/jsr/action-icons.png",
+      "bytes": 1067835,
+      "sha256": "bb40a6ac4ba961f4aea5a73ab42c36330690758ef8e731bbe41fc71a96ef232a"
+    },
+    {
+      "path": "godot/assets/ui/jsr/afterhours-logo.png",
+      "bytes": 1039931,
+      "sha256": "2d205bab1b23b2565a47e0dbfc9672906ecb4ca79148e876c4bbb0c94baf9797"
+    },
+    {
+      "path": "godot/assets/ui/jsr/ui-frames.png",
+      "bytes": 1543725,
+      "sha256": "88d91d93ac23b9e87a350fc9a0fb5c632bf5fdc87effaafb83a88e641d259d4e"
+    },
+    {
+      "path": "godot/assets/ui/last_service/cover.png",
+      "bytes": 42440,
+      "sha256": "7230b11d6a9f4cc65fda69a485233581b0354192815817f3448bdd691476e74a"
+    },
     {
       "path": "references/assets/PROP_BIN_A01_ref_v001.png",
       "bytes": 1275185,
@@ -70,6 +190,106 @@
       "path": "references/ink-ui-2026-11-10/parts-source.png",
       "bytes": 407832,
       "sha256": "f67f6f813a8b85735b7b36e5de4ade9f4f95de845becc1f6934c8f6cc78e07e3"
+    },
+    {
+      "path": "references/last-service-2026-11-10/archive/hush-equipment-first.png",
+      "bytes": 1095762,
+      "sha256": "716538cee021e676874357f98347eb5b174c4705d183280b27b23f42b0252112"
+    },
+    {
+      "path": "references/last-service-2026-11-10/archive/hush-gray-labeled.png",
+      "bytes": 1466420,
+      "sha256": "4a56c24d935a33e534c277e9251e8a6799a965d4ff16cbbae47e7fbbef9bad62"
+    },
+    {
+      "path": "references/last-service-2026-11-10/archive/loop-gray-labeled.png",
+      "bytes": 1431459,
+      "sha256": "d3d7130bcd6c1f491de923b0026ed6e6fef159b6c02e0fefa1d8bdeeeb8782ec"
+    },
+    {
+      "path": "references/last-service-2026-11-10/archive/rivet-gray-labeled.png",
+      "bytes": 1456350,
+      "sha256": "b14fb6337a866533ab1a2bec072a75a590a740509f2237a2a8e551662a9e1fa4"
+    },
+    {
+      "path": "references/last-service-2026-11-10/archive/zip-gray-labeled.png",
+      "bytes": 1522713,
+      "sha256": "0cfa9171c4463d126c13305d13d39d3c12783272786a5f234ce20f7456f87b0f"
+    },
+    {
+      "path": "references/last-service-2026-11-10/characters/hush.png",
+      "bytes": 1324911,
+      "sha256": "c0d58e4f5ca9699b5bfd03855799be442bcf1899dc25a05ede6098ae25080432"
+    },
+    {
+      "path": "references/last-service-2026-11-10/characters/loop.png",
+      "bytes": 1323113,
+      "sha256": "d62e603e0259ac0068e24ae50338c3075befbe1b4d65b2a094880ca49e405bb9"
+    },
+    {
+      "path": "references/last-service-2026-11-10/characters/rivet.png",
+      "bytes": 1311888,
+      "sha256": "15aba2af83975b9882f394f715addc08173540194b411f1c457efd7436b93374"
+    },
+    {
+      "path": "references/last-service-2026-11-10/characters/zip.png",
+      "bytes": 1347147,
+      "sha256": "f5dd54b11fbf11c695c543e49a5dbaf3e46bbe8f448f6e5f290e2e55200a28ee"
+    },
+    {
+      "path": "references/last-service-2026-11-10/concept/roster-action.png",
+      "bytes": 2482081,
+      "sha256": "380d6a114f7eebe4e8187fe5666feeecc8977f34c4e126214e146360c4e0d02f"
+    },
+    {
+      "path": "references/last-service-2026-11-10/equipment/hush.png",
+      "bytes": 1125358,
+      "sha256": "0eff30e7cf8a9bd515a2b2ffdcc5b1354bd84f8b99166b4fefa36a2e3cb77735"
+    },
+    {
+      "path": "references/last-service-2026-11-10/equipment/loop.png",
+      "bytes": 1170485,
+      "sha256": "30288ad76aa9c959203e629da74bab1b9587cc32d7bdf0116ec78342bfd1dc96"
+    },
+    {
+      "path": "references/last-service-2026-11-10/equipment/rivet.png",
+      "bytes": 1137121,
+      "sha256": "a51be1c8098728fedda9eb95d958df35e3b7d4245f1606a455940f59d07b5bec"
+    },
+    {
+      "path": "references/last-service-2026-11-10/equipment/zip.png",
+      "bytes": 1143012,
+      "sha256": "1f0cd177c481a1e03bfa52b386976fe4d9a99ec1ed0da361002dab4e9d9f5a6d"
+    },
+    {
+      "path": "references/last-service-2026-11-10/sources/TR3B_-_WUkiHouS3________________INeWdV.mp4",
+      "bytes": 1231563,
+      "sha256": "779aaac20a1e46921a278eb00fe6ab1d93df6615488c920bc9fe7bee3d6ae20e"
+    },
+    {
+      "path": "references/last-service-2026-11-10/sources/TR3B_-__BTS__O__blender_lowpoly_sK94ux.mp4",
+      "bytes": 2754275,
+      "sha256": "736f9ba2479449003a3984b22e0c62381ced3189b700ba237503257ceccdaada"
+    },
+    {
+      "path": "references/last-service-2026-11-10/sources/TR3B_-__LaGaNga______-_lowpoly_blender_mfCeKM.mp4",
+      "bytes": 1058262,
+      "sha256": "69c3edc3b80b8e2a7d3425cb471b240baafbd3d579774477ef02ec786ab25a3f"
+    },
+    {
+      "path": "references/last-service-2026-11-10/sources/TR3B_-___GanGA______-___wip_-_lowpoly_blender_z3Qbse.mp4",
+      "bytes": 3769891,
+      "sha256": "45d3bf5a076d768100471668d6fa191607b856414796ac86eb6cc255ccce1d05"
+    },
+    {
+      "path": "references/last-service-2026-11-10/sources/TR3B_-___uWu__BTS_DanZ_Tet0__-_Lowpoly_blender_7o3epD.mp4",
+      "bytes": 2896749,
+      "sha256": "f19010423f40010e015b5491e74148539715b384255dbd4b9e7e5e9e512a3d19"
+    },
+    {
+      "path": "references/last-service-2026-11-10/sources/x-downloader.com_MdNmuM.mp4",
+      "bytes": 653247,
+      "sha256": "808057e249bf923e390c52317ea5c659e01bb06992c26276945fed6feb616c7a"
     },
     {
       "path": "references/neon-lab-2026-11-10/clip1-01.jpg",
@@ -245,81 +465,6 @@
       "path": "references/ui-replica-2026-11-09/explorations/portrait-3.png",
       "bytes": 56629,
       "sha256": "a6d29ab769ccf34ebcfc380fadf49ca6e53997902f47383732a273c33f004b92"
-    },
-    {
-      "path": "godot/assets/ui/ink/city-band.png",
-      "bytes": 310778,
-      "sha256": "7499677465a3aa4fd045473bf551ed2b89438d09b895672fa2b052aefb990cc0"
-    },
-    {
-      "path": "godot/assets/ui/ink/cover.png",
-      "bytes": 1302081,
-      "sha256": "5d868776d926287c6821558314e2190c43a4ea319254f0965cb8cd8785e423ed"
-    },
-    {
-      "path": "godot/assets/ui/ink/logo-source.png",
-      "bytes": 804382,
-      "sha256": "791c075399e123a433542fdbdd228f34da14350392e777bd696138ac93b7b13e"
-    },
-    {
-      "path": "godot/assets/ui/ink/select-arrow.svg",
-      "bytes": 127,
-      "sha256": "ab996ac7ca7303d0e8b6dbfdafc8be0bc82cbe2cf498aaa831274b80f08ba824"
-    },
-    {
-      "path": "godot/assets/ui/ink/slashes.png",
-      "bytes": 85399,
-      "sha256": "79081198e80ee260642f9cd1d15fe66e9e36f137328094a461b7e0b32178b1f0"
-    },
-    {
-      "path": "godot/assets/ui/ink/slider-thumb-disabled.svg",
-      "bytes": 172,
-      "sha256": "5b3f3083aaf446acd750c758933091caa8c10ff3d7a24776d2b35bd64c02ce2b"
-    },
-    {
-      "path": "godot/assets/ui/ink/slider-thumb-focus.svg",
-      "bytes": 172,
-      "sha256": "d9739b36e83a7f47bd1d6f927d02d1eb8161e652e73678e312c078c5c82190c4"
-    },
-    {
-      "path": "godot/assets/ui/ink/slider-thumb.svg",
-      "bytes": 172,
-      "sha256": "ac17e03639ef7faafd8cadded3503419a039549e7e5d4fd41286a1804162eaef"
-    },
-    {
-      "path": "godot/assets/ui/ink/toggle-off-disabled.svg",
-      "bytes": 238,
-      "sha256": "c4402fc6371f5b00c86c75c83319f8610ae1b88fce9a2fc00293ea377f52cb7a"
-    },
-    {
-      "path": "godot/assets/ui/ink/toggle-off.svg",
-      "bytes": 238,
-      "sha256": "dbbfe8a45ed28d9854467667e62bd09f73ed87cd77b3c496f0ccce09bbd53c27"
-    },
-    {
-      "path": "godot/assets/ui/ink/toggle-on-disabled.svg",
-      "bytes": 239,
-      "sha256": "c929b0b9af11c1fbd165e776b20b9d2d0618805163c0917f5c5d46326b2fde16"
-    },
-    {
-      "path": "godot/assets/ui/ink/toggle-on.svg",
-      "bytes": 239,
-      "sha256": "d4ef421846e5b45452d756b64d82bc1a1c89323fa1c1b13a0db856989aecdb9d"
-    },
-    {
-      "path": "godot/assets/ui/jsr/action-icons.png",
-      "bytes": 1067835,
-      "sha256": "bb40a6ac4ba961f4aea5a73ab42c36330690758ef8e731bbe41fc71a96ef232a"
-    },
-    {
-      "path": "godot/assets/ui/jsr/afterhours-logo.png",
-      "bytes": 1039931,
-      "sha256": "2d205bab1b23b2565a47e0dbfc9672906ecb4ca79148e876c4bbb0c94baf9797"
-    },
-    {
-      "path": "godot/assets/ui/jsr/ui-frames.png",
-      "bytes": 1543725,
-      "sha256": "88d91d93ac23b9e87a350fc9a0fb5c632bf5fdc87effaafb83a88e641d259d4e"
     }
   ]
 }

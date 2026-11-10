@@ -1,6 +1,6 @@
 extends Resource
 ## Scene-load variant. Never edits imported meshes or the authoritative simulation.
-@export var actor_accents:PackedColorArray=PackedColorArray([Color("ff008c"),Color("00d6e7"),Color("dedcff"),Color("bdff00")])
+@export var actor_accents:PackedColorArray=PackedColorArray([Color("00d6d8"),Color("ff921c"),Color("ff459d"),Color("b8ff00")])
 @export var sky_top:Color=Color("6e135d")
 @export var sky_horizon:Color=Color("ff1684")
 @export var effect_limit:=24

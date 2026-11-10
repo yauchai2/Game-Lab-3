@@ -6,6 +6,17 @@ const FightHUD = preload("res://scripts/combat/fight_hud.gd")
 const FightAudio = preload("res://scripts/combat/fight_audio.gd")
 @export var neon_enabled:=true
 var neon=preload("res://scripts/combat/neon/neon_effect_director.gd").new()
+var growth=preload("res://scripts/combat/last_service/progression.gd").new()
+@export var progression_path:="user://neon_lab/progression.cfg"
+var run_active:=false
+var run_stage:=0
+var run_character:=0
+var run_token:=""
+var run_reward:=0
+var run_awarded:=false
+var run_techniques:Dictionary={}
+var run_base_difficulty:=1
+var run_original_rival:=1
 var signature_camera=preload("res://scripts/combat/neon/neon_signature_camera.gd").new()
 var neon_profile:Resource=preload("res://scripts/combat/neon/neon_style_profile.tres")
 var spectacle := preload("res://scripts/combat/fight_spectacle.gd").new()
@@ -58,6 +69,9 @@ var silhouettes: Array[MeshInstance3D] = []
 const COLORS := [Color("65e9de"), Color("ff7659")]
 
 func _ready() -> void:
+    sim.last_service_enabled=true
+    growth.path=progression_path
+    growth.load_data()
     Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
     if neon_enabled:
         rhythm.profiles=neon_profile.rhythm_profiles
@@ -161,6 +175,8 @@ func _material(color: Color, unlit: bool) -> StandardMaterial3D:
     return mat
 
 func start_match(training := false) -> void:
+    _leave_run()
+    sim.service_perks=[[],[]]
     if demo!=null:sim.partner_mode=demo_partner
     demo=null
     sim.arcade_enabled=true
@@ -197,6 +213,7 @@ func _combat_step() -> void:
     var input := pending.duplicate()
     pending.clear()
     input["axis"] = float(Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT)) - float(Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT))
+    input["skill_held"]=Input.is_physical_key_pressed(KEY_L)
     input["guard_pressed"] = input.get("guard_pressed",false)
     input["guard"] = Input.is_physical_key_pressed(KEY_SHIFT)
     input["down"] = input.get("down",Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN))
@@ -219,6 +236,7 @@ func _combat_step() -> void:
         _handle_event(event)
     if sim.phase in ["round_over", "match_over"]:
         _release_impacts(false)
+        if run_active:_award_run()
         result_clock=0.0
         screen = "result"
         finish_menu_open=false
@@ -254,14 +272,19 @@ func _prepare_demo_state() -> void:
     hud.rebuild_menu()
 
 func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}) -> void:
+    if sim.last_service_enabled and kind=="wave":return
     if reduced_effects and kind in ["speed","trail"]: return
     if effects.size()>=(neon_profile.effect_limit if neon_enabled else 64): effects.pop_front()
     var effect := {"rush":sim.arcade_enabled,"kind":kind,"at":at,"age":0.0,"life":life,"strength":0.5,"face":1,"color":COLORS[0]}
     effect.merge(options,true)
     var actor:int=effect.get("attacker",effect.get("owner",0 if effect.color==COLORS[0] else 1))
     effect["character"]=character_choices[clampi(actor,0,1)]
-    if effect.get("move","") in ["special","overdrive"]:effect.color=Color(Simulation.Profiles.profile(effect.character).color)
-    if neon_enabled:effect.color=neon_profile.accent(effect.character)
+    if effect.get("move","") in ["special","overdrive"]:effect.color=Color(sim.profile_for(effect.character).color)
+    if neon_enabled:effect.color=effect_color_for(clampi(actor,0,1))
+    if sim.last_service_enabled and kind in ["swing","charge","cannon_charge"]:
+        effect["owner"]=clampi(actor,0,1)
+        effect["attack_serial"]=sim.fighters[effect.owner].service.serial
+        effect["track_attack"]=true
     effects.append(effect)
 
 func _handle_event(event: Dictionary) -> void:
@@ -271,7 +294,26 @@ func _handle_event(event: Dictionary) -> void:
             var owner_state:Dictionary=sim.fighters[neon.owner]
             interrupted=owner_state.state!="attack" or owner_state.move!="overdrive"
         if interrupted:neon.clear();rhythm.clear()
+    if run_active:
+        var player_technique:bool=(event.kind in ["parry","homing_chase"] and event.get("target",-1)==0) or (event.kind=="node_broken" and event.get("target",-1)==1) or (event.kind=="ground_bounce" and event.get("target",-1)==1 and sim.combo_owner==0)
+        if player_technique:run_techniques[event.kind]=true
+    if event.kind=="preload_tier":
+        audio.play_sound("charge",1.0+event.tier*.18,-10)
+        hud.notice="PRELOAD %d / 2"%event.tier;hud.notice_time=.5
+    if event.kind in ["route_gained","route_spent","sample_gained","sample_spent","node_placed","node_broken","node_unavailable","node_pulse_fx"]:
+        if event.kind=="node_pulse_fx":
+            _spawn_vfx("service_pulse",Vector2(event.x,.35),.30,{"owner":event.target,"low":event.low,"high":event.high})
+            audio.play_sound("rally",1.15,-12)
+        elif event.kind=="node_placed":audio.play_sound("block",1.2,-16)
+        elif event.kind=="node_broken":audio.play_sound("guard_break",1.2,-16)
+        elif event.kind in ["route_gained","sample_gained"]:
+            hud.notice="ROUTE +1" if event.kind=="route_gained" else "SAMPLE READY";hud.notice_time=.7
+        elif event.kind=="node_unavailable":hud.notice="PLACE A NODE / WAIT FOR PULSE";hud.notice_time=.7
     combat_event.emit(event)
+    if event.kind=="swing" and event.get("move","") in ["special","node_pulse"] and sim.last_service_enabled and character_choices[event.target]==3:
+        audio.play_sound("charge",1.15,-12)
+        hud.skill_key="skill_loop" if event.move=="special" else "skill_loop_pulse";hud.skill_time=.5
+        return
     var kind: String = event.kind
     if kind in ["break_finish","ko"] and is_instance_valid(backdrop.living):backdrop.living.react()
     if sim.arcade_enabled and not reduced_effects:
@@ -415,7 +457,7 @@ func _handle_event(event: Dictionary) -> void:
         var tint: Color = Color("eaf078") if kind in ["parry","guard_break"] else COLORS[event.get("attacker",0)]
         var attacker: int = event.get("attacker",0)
         var move: String = event.get("move","jab")
-        var face: float = sim.fighters[attacker].face
+        var face: float = event.get("face",sim.fighters[attacker].face)
         var point := Vector2(target.x,target.y+fighters[event.target].model_scale*.57)
         _spawn_vfx(kind,point,0.38,{"strength":strength,"color":tint,"move":move,"face":face,"attacker":attacker,"held":kind=="hit" and sim.hitstop>0})
         if kind=="hit":
@@ -443,16 +485,16 @@ func _handle_event(event: Dictionary) -> void:
     elif kind=="swing":
         var fighter: Dictionary = sim.fighters[event.target]
         var startup: float = float(sim.move_for(fighter,event.move).startup)/60.0
-        _spawn_vfx("swing",Vector2(fighter.x+fighter.face*0.9,fighter.y+fighters[event.target].model_scale*.55),0.15,{"age":-startup,"face":fighter.face,"color":COLORS[event.target],"move":event.move})
+        _spawn_vfx("swing",Vector2(fighter.x+fighter.face*0.9,fighter.y+fighters[event.target].model_scale*.55),0.15,{"age":-startup,"face":fighter.face,"color":COLORS[event.target],"move":event.move,"owner":event.target})
         audio.play_sound("swing",1.0,-8.0)
         if event.move=="grab":_spawn_vfx("grab_tell",Vector2(fighter.x+fighter.face*.55,fighter.y+1.25),startup,{"face":fighter.face,"color":Color("eebd4c")})
         if event.move in ["special","overdrive"]:
-            var profile:Dictionary=Simulation.Profiles.profile(character_choices[event.target])
+            var profile:Dictionary=sim.profile_for(character_choices[event.target])
             hud.skill_key=profile.overdrive_name if event.move=="overdrive" else profile.special_name
             hud.skill_time=1.3
             if sim.arcade_enabled:theatre.begin("overdrive" if event.move=="overdrive" else "skill",event.target)
             spectacle.trigger("charge",event.target,Vector2(fighter.x,fighter.y+1.2),4)
-            _spawn_vfx("charge",Vector2(fighter.x,fighter.y+1.2),startup,{"color":COLORS[event.target]})
+            _spawn_vfx("charge",Vector2(fighter.x,fighter.y+1.2),startup,{"color":COLORS[event.target],"owner":event.target})
             _spawn_vfx("wave",Vector2(fighter.x+fighter.face*0.6,fighter.y+1.2),0.26,{"age":-startup,"face":fighter.face,"color":COLORS[event.target]})
             audio.play_sound("charge",1.0,-4.0)
             if event.move=="overdrive":
@@ -498,7 +540,7 @@ func _release_impacts(with_audio := true) -> void:
     var strongest:=0.0
     for impact in impact_queue:
         _spawn_vfx("release",impact.at,0.18 if impact.strength<0.5 else 0.24,impact)
-        if impact.move=="overdrive":_spawn_vfx("cannon_blast",impact.at,.34,impact)
+        if impact.move=="overdrive" and not sim.last_service_enabled:_spawn_vfx("cannon_blast",impact.at,.34,impact)
         if impact.strength>.55:
             var side:=0 if impact.color==COLORS[0] else 1
             spectacle.trigger("burst",side,impact.at,clampi(ceili(impact.strength*4),1,4))
@@ -527,9 +569,10 @@ func _process(delta: float) -> void:
     if screen != "pause" and screen != "help":
         elapsed += delta
         for effect in effects:
-            effect.age += delta*rhythm.view_speed() if screen=="play" and not reduced_effects else delta
+            if effect.get("track_attack",false):_track_service_effect(effect)
+            else:effect.age += delta*rhythm.view_speed() if screen=="play" and not reduced_effects else delta
             if effect.get("held",false) and (sim.hitstop>0 or sim.exchange.active() or sim.rally.active() or sim.air_counter.active()):effect.life=maxf(effect.life,effect.age+0.1)
-        effects = effects.filter(func(e: Dictionary) -> bool: return e.age < e.life)
+        effects = effects.filter(func(e: Dictionary) -> bool: return e.age < e.life and not e.get("expired",false))
         recoil_age += delta
         trauma = move_toward(trauma, 0.0, delta * 2.0)
     if screen=="play" and sim.hitstop==0 and not sim.exchange.active():
@@ -798,6 +841,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
             if focused is Button and focused.get_parent()==hud.art_controls:focused.pressed.emit()
             else:start_match()
         elif screen == "result":
+            if run_active:advance_run();return
             if sim.phase == "match_over":
                 start_match(practice)
             else:
@@ -935,7 +979,10 @@ func set_partner_mode(value: int) -> void:
     save_options()
 
 func set_difficulty(value: int) -> void:
-    sim.difficulty=clampi(value,0,2)
+    if run_active:
+        run_base_difficulty=clampi(value,0,2)
+        sim.difficulty=clampi(run_base_difficulty+run_stage-1,0,2)
+    else:sim.difficulty=clampi(value,0,2)
     save_options()
 
 func _record_training_input(code: int) -> void:
@@ -977,9 +1024,10 @@ func set_character(side:int,index:int) -> void:
     if is_instance_valid(hud) and hud.menu_page=="roster":hud.rebuild_menu()
 
 func save_options() -> void:
-    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":character_choices[1]})
+    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":run_base_difficulty if run_active else sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":run_original_rival if run_active else character_choices[1]})
 
 func return_to_title() -> void:
+    _leave_run()
     if demo!=null:sim.partner_mode=demo_partner
     demo=null
     sim.arcade_enabled=false;sim.endless=false
@@ -993,3 +1041,57 @@ func return_to_title() -> void:
     _clear_impacts()
     audio.stop_all()
     hud.rebuild_menu()
+
+func effect_color_for(side:int) -> Color:
+    var character:int=character_choices[clampi(side,0,1)]
+    var color:Color=neon_profile.accent(character)
+    if growth.records[growth.Profiles.IDS[character]].palette:return color.lerp(Color.WHITE,.65)
+    return color
+
+func _leave_run() -> void:
+    if not run_active:return
+    run_active=false;sim.difficulty=run_base_difficulty
+    character_choices[1]=run_original_rival
+    sim.character_choices=character_choices.duplicate()
+    if fighters.size()>1: fighters[1].setup(COLORS[1],character_choices[1])
+    sim.service_perks=[[],[]]
+
+func start_run() -> void:
+    start_match(false)
+    run_active=true;run_stage=0;run_character=character_choices[0]
+    run_base_difficulty=sim.difficulty;run_original_rival=character_choices[1]
+    run_token=str(Time.get_unix_time_from_system())+"-"+str(Time.get_ticks_usec())
+    advance_run()
+
+func advance_run() -> void:
+    if not run_active:return
+    if run_stage>=3 or (screen=="result" and sim.winner!=0):return_to_title();return
+    run_stage+=1;run_awarded=false;run_reward=0;run_techniques.clear()
+    character_choices[0]=run_character;character_choices[1]=(run_character+run_stage)%4
+    sim.character_choices=character_choices.duplicate()
+    sim.service_perks=[growth.equipped(run_character),[]]
+    sim.difficulty=clampi(run_base_difficulty+run_stage-1,0,2)
+    sim.training=false;sim.ai_enabled=true;sim.restart_match();sim.phase="fight"
+    for i in 2:fighters[i].setup(COLORS[i],character_choices[i])
+    effects.clear();pending.clear();_clear_impacts();result_clock=0;finish_menu_open=false;trauma=0
+    screen="play";hud.notice="STREET RUN / STOP %d OF 3"%run_stage;hud.notice_time=1.5;hud.rebuild_menu()
+
+func _award_run() -> void:
+    if run_awarded or demo!=null:return
+    run_awarded=true
+    run_reward=growth.reward(run_character,run_token+"/"+str(run_stage),sim.winner==0,run_techniques.size())
+
+func _track_service_effect(effect:Dictionary) -> void:
+    var side:int=effect.owner;var fighter:Dictionary=sim.fighters[side]
+    if screen!="play" or fighter.health<=0 or fighter.state!="attack" or fighter.service.serial!=effect.attack_serial:
+        effect["expired"]=true;return
+    var move:Dictionary=sim.move_for(fighter,fighter.move)
+    effect.at=Vector2(fighter.x+(fighter.face*.9 if effect.kind=="swing" else 0),fighter.y+fighters[side].model_scale*.55)
+    effect.face=fighter.face
+    if effect.kind=="swing":
+        effect.age=float(fighter.frame-move.startup)/60.0
+        effect.life=float(move.active)/60.0
+        if fighter.frame>=move.startup+move.active:effect["expired"]=true
+    else:
+        effect.life=1.0;effect.age=clampf(float(fighter.frame)/move.startup+(fighter.service.preload*.18 if fighter.character==1 and fighter.move=="special" else 0.0),0,.99)
+        if fighter.frame>=move.startup:effect["expired"]=true

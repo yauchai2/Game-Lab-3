@@ -1,9 +1,12 @@
 extends SceneTree
-const OUT="res://../docs/evidence/neon-signature/"
+var OUT="res://../docs/evidence/neon-signature/"
 var s:Node
 var checks:Array=[]
 var timeline:Array=[]
-func _initialize() -> void:call_deferred("run")
+func _initialize() -> void:
+    for arg in OS.get_cmdline_user_args():
+        if arg.begins_with("--evidence-dir="):OUT=arg.trim_prefix("--evidence-dir=")
+    call_deferred("run")
 func check(label:String,passed:bool,detail:Variant=null) -> void:
     checks.append({"check":label,"pass":passed,"detail":detail});print("SIGNATURE ",label," ",passed," ",detail)
 func render() -> void:await process_frame;await RenderingServer.frame_post_draw

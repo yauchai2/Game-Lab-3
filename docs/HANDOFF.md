@@ -1,5 +1,12 @@
 # 接續工作交接
 
+## 2026-11-10：LAST SERVICE新四角與街區成長已接入
+
+使用者提供ZIP／RIVET／HUSH／LOOP四個Tripo GLB並要求替換相關系統。現況以 [LAST_SERVICE_RUNTIME.zh-TW.md](LAST_SERVICE_RUNTIME.zh-TW.md)為準：原檔SHA保留；65骨、52骨重定向；新選角／封面／名稱／技能／HUD、四套角色資源；三站Street Run、12技能、兩裝備槽、XP／免費重置／120XP淡色FX解鎖及獨立存檔。標準FIGHT固定基礎數值，不套成長；Demo無XP。舊探索預設角色亦改ZIP，未改成開放世界RPG。
+
+295項自動檢查通過，包含46新規則／22原生整合／28大招／53介面材質／134舊規則／12探索；嚴格log及分層證據見 [evidence](evidence/last-service-runtime/README.md)。三站結算用低血站樁fixture驗證真接觸及指標操作，自由AI影片不使用fixture；不當作Mac硬件或真人平衡驗收。實驗分支codex/neon-street-lab推送，Web不更新。下一步僅按玩家回饋修平衡／動作及補原提案其餘子招式，不能把完整劇情／RPG世界當已完成。
+
+
 同步注意：本輪最後核對時，遠端codex/street-combat已由其他工作合入PR4（e4329e9，LAST SERVICE角色文件／圖），不是本Lab所推送。本Lab保留原基線與獨立玩法；藝術總庫已跨連該批圖，沒有rebase或覆寫其他工作的文件。gh-pages仍為2908503。
 
 ## 2026-11-10：加長大招與藝術參考庫

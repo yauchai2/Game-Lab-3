@@ -1,5 +1,12 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-10：LAST SERVICE新四角與街區成長已接入
+
+使用者提供ZIP／RIVET／HUSH／LOOP四個Tripo GLB並要求替換相關系統。現況以 [LAST_SERVICE_RUNTIME.zh-TW.md](LAST_SERVICE_RUNTIME.zh-TW.md)為準：原檔SHA保留；65骨、52骨重定向；新選角／封面／名稱／技能／HUD、四套角色資源；三站Street Run、12技能、兩裝備槽、XP／免費重置／120XP淡色FX解鎖及獨立存檔。標準FIGHT固定基礎數值，不套成長；Demo無XP。舊探索預設角色亦改ZIP，未改成開放世界RPG。
+
+295項自動檢查通過，包含46新規則／22原生整合／28大招／53介面材質／134舊規則／12探索；嚴格log及分層證據見 [evidence](evidence/last-service-runtime/README.md)。三站結算用低血站樁fixture驗證真接觸及指標操作，自由AI影片不使用fixture；不當作Mac硬件或真人平衡驗收。實驗分支codex/neon-street-lab推送，Web不更新。下一步僅按玩家回饋修平衡／動作及補原提案其餘子招式，不能把完整劇情／RPG世界當已完成。
+
+
 ## 2026-11-10：加長大招與藝術參考庫
 
 使用者要求大招更長／近鏡／更多旋轉，已接入四人五段程序pose、overdrive共用時鐘0.22s hold／0.78s slow／0.44s release、36°起手鏡頭及最高14°roll；攝影機按雙方body bounds拉遠。真正受擊中斷／被招架才取消，護甲保持攻擊時不取消。見 [NEON_SIGNATURE.zh-TW.md](NEON_SIGNATURE.zh-TW.md)，覆蓋M1最高6°及短大招的數字。原模型／判定／音訊來源與Web不變。

@@ -8,7 +8,7 @@ var elapsed:=0.0
 var sample_clock:=0.0
 var selected:=-1
 var confirmation:=0.0
-var pose_names:=["Glove_Adjust","Heel_Toe","Heavy_Stance","Goggle_Adjust"]
+var pose_names:=["Route_Ready","Clamp_Check","Low_Guard","Patch_Cue"]
 func _ready() -> void:
     for slot in 5:
         var vp:=SubViewport.new();vp.name="RosterViewport_"+str(slot)
@@ -19,7 +19,7 @@ func _ready() -> void:
         var env:=WorldEnvironment.new();env.environment=Environment.new();env.environment.background_mode=Environment.BG_COLOR;env.environment.background_color=Color(0,0,0,0);env.environment.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR;env.environment.ambient_light_color=Color.WHITE;env.environment.ambient_light_energy=.85;vp.add_child(env)
         var light:=DirectionalLight3D.new();light.rotation_degrees=Vector3(-35,-30,0);light.light_energy=1.1;light.shadow_enabled=false;vp.add_child(light)
         var camera:=Camera3D.new();camera.projection=Camera3D.PROJECTION_ORTHOGONAL;camera.size=2.3 if slot==4 else 2.8;camera.position=Vector3(0,1.05 if slot==4 else 1.25,5);vp.add_child(camera);camera.look_at(Vector3(0,1.05 if slot==4 else 1.2,0));camera.current=true
-        var visual:=Visual.new();vp.add_child(visual)
+        var visual:=Visual.new();visual.neon_enabled=true;vp.add_child(visual)
         # The large preview is initialized with the actual choice on first use.
         # Replacing its eager default before the first Compatibility draw leaves
         # a stale renderer material dependency in Godot4.7.2.
@@ -49,40 +49,39 @@ func update_preview(active:bool,choice:int,delta:float,reduced:bool) -> void:
         visual.position=Vector3.ZERO;visual.rotation.y=.5
         viewports[slot].render_target_update_mode=SubViewport.UPDATE_ONCE
 func _style(visual:Node3D,index:int) -> void:
-    var color:Color=[T.TEAL,T.LIME,T.MAGENTA,Color.WHITE][index]
     for material in visual.materials:
-        material.set_shader_parameter("silhouette_preview",true)
-        material.set_shader_parameter("tint",color)
-        if material.next_pass is ShaderMaterial:material.next_pass.set_shader_parameter("silhouette_preview",true)
+        material.set_shader_parameter("silhouette_preview",false)
+        if material.get_shader_parameter("use_texture"):material.set_shader_parameter("tint",Color.WHITE)
+        material.set_shader_parameter("neon_accent",preload("res://scripts/combat/neon/neon_style_profile.tres").accent(index))
+        if material.next_pass is ShaderMaterial:material.next_pass.set_shader_parameter("silhouette_preview",false)
 func _pose(visual:Node3D,index:int,time:float,confirm:float,reduced:bool) -> void:
     var m=visual.motions;var up:Vector3=m.model_up;var forward:Vector3=m.model_forward
     var breath:float=sin(time*2.4)*.035 if not reduced else 0.0
     visual.model.rotation=Vector3(0,0,breath)
     visual.model.position=Vector3.ZERO
     match index:
-        0:
+        2:
             m._aim_limb("LeftArm","LeftForeArm",-up+forward*.25,1)
             m._aim_limb("LeftForeArm","LeftHand",forward+up*.15,1)
             m._aim_limb("RightArm","RightForeArm",forward*.5-up*.6,.95)
             m._aim_limb("RightForeArm","RightHand",forward*.3+up*.15,.95)
             if confirm>0:m._aim_limb("RightArm","RightForeArm",forward,confirm*1.8)
-        1:
+        0:
             for side in ["Left","Right"]:
                 m._aim_limb(side+"Arm",side+"ForeArm",forward*.4-up*.7,.92)
                 m._aim_limb(side+"ForeArm",side+"Hand",-up+forward*.1,.85)
             m._aim_limb("RightUpLeg","RightLeg",forward*.45-up,.55+breath)
             visual.model.rotation.z=-.12+breath
-        2:
+        1:
             m._aim_limb("LeftArm","LeftForeArm",forward*.5-up*.8,1)
             m._aim_limb("RightArm","RightForeArm",forward*.7-up*.5,1)
             for side in ["Left","Right"]:m._aim_limb(side+"ForeArm",side+"Hand",forward*.75+up*.05,.95)
             visual.model.rotation.x=.04
         3:
-            m._aim_limb("LeftArm","LeftForeArm",-up+forward*.15,1)
-            m._aim_limb("LeftForeArm","LeftHand",-up+forward*.1,.9)
-            var adjust:float=1.0 if fmod(time,4.0)<.7 or confirm>0 else .15
-            m._aim_limb("RightArm","RightForeArm",forward*.35+up*.4,adjust)
-            m._aim_limb("RightForeArm","RightHand",up-forward*.1,adjust)
-            visual.model.rotation.z=.07+breath
+            m._aim_limb("LeftArm","LeftForeArm",-forward*.3-up*.4,.9)
+            m._aim_limb("LeftForeArm","LeftHand",up*.6-forward*.2,.9)
+            m._aim_limb("RightArm","RightForeArm",forward*.7-up*.4,1.0)
+            m._aim_limb("RightForeArm","RightHand",forward+up*sin(time)*.12,.9)
+            visual.model.rotation.z=.04+breath
 func hero_texture() -> Texture2D:return viewports[4].get_texture()
 func card_texture(index:int) -> Texture2D:return viewports[index].get_texture()

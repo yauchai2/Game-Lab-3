@@ -1,0 +1,241 @@
+{
+  "date": "2026-11-10",
+  "timezone": "Asia/Taipei",
+  "source_chat": "Current character-design chat",
+  "related_game_chat": "codex://threads/01a1b16d-5526-77a4-b961-b3a97bc7a0af?hostId=durable",
+  "baseline": "885f1c10573ce3e7831f313b130b34a05a62112e",
+  "status": "design-reference-only; no GLB or runtime implementation",
+  "assets": [
+    {
+      "path": "concept/roster-action.png",
+      "original_generated_filename": "exec-21464160-c49c-42a0-96b8-1c030a0ff876.png",
+      "status": "concept",
+      "bytes": 2482081,
+      "sha256": "380d6a114f7eebe4e8187fe5666feeecc8977f34c4e126214e146360c4e0d02f",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "characters/zip.png",
+      "original_generated_filename": "exec-be9ac3e6-8a5d-4db6-827f-03041ea76146.png",
+      "status": "current",
+      "bytes": 1347147,
+      "sha256": "f5dd54b11fbf11c695c543e49a5dbaf3e46bbe8f448f6e5f290e2e55200a28ee",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "characters/rivet.png",
+      "original_generated_filename": "exec-5d7eb122-6166-448f-9fe5-70254f1e33d9.png",
+      "status": "current",
+      "bytes": 1311888,
+      "sha256": "15aba2af83975b9882f394f715addc08173540194b411f1c457efd7436b93374",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "characters/hush.png",
+      "original_generated_filename": "exec-fec24139-bb3a-401f-9c56-25f9d3dd7d1d.png",
+      "status": "current",
+      "bytes": 1324911,
+      "sha256": "c0d58e4f5ca9699b5bfd03855799be442bcf1899dc25a05ede6098ae25080432",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "characters/loop.png",
+      "original_generated_filename": "exec-ed0bda9a-3883-4102-a9ff-cf0841940d53.png",
+      "status": "current",
+      "bytes": 1323113,
+      "sha256": "d62e603e0259ac0068e24ae50338c3075befbe1b4d65b2a094880ca49e405bb9",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "equipment/zip.png",
+      "original_generated_filename": "exec-a025df3f-6c8a-4d21-a060-2fb4fe762abf.png",
+      "status": "current",
+      "bytes": 1143012,
+      "sha256": "1f0cd177c481a1e03bfa52b386976fe4d9a99ec1ed0da361002dab4e9d9f5a6d",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "equipment/rivet.png",
+      "original_generated_filename": "exec-8c35ce5b-582d-485a-b7bc-1e6acdcbe4b3.png",
+      "status": "current",
+      "bytes": 1137121,
+      "sha256": "a51be1c8098728fedda9eb95d958df35e3b7d4245f1606a455940f59d07b5bec",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "equipment/hush.png",
+      "original_generated_filename": "exec-f735bbbc-6d10-4d41-833e-201bf7e8feb2.png",
+      "status": "current",
+      "bytes": 1125358,
+      "sha256": "0eff30e7cf8a9bd515a2b2ffdcc5b1354bd84f8b99166b4fefa36a2e3cb77735",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "equipment/loop.png",
+      "original_generated_filename": "exec-276ad18a-1aaa-435a-ad31-a8fd03a67c16.png",
+      "status": "current",
+      "bytes": 1170485,
+      "sha256": "30288ad76aa9c959203e629da74bab1b9587cc32d7bdf0116ec78342bfd1dc96",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "archive/zip-gray-labeled.png",
+      "original_generated_filename": "exec-2c9cec3f-689e-40fd-ac15-3cd0372e7394.png",
+      "status": "superseded",
+      "bytes": 1522713,
+      "sha256": "0cfa9171c4463d126c13305d13d39d3c12783272786a5f234ce20f7456f87b0f",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "archive/rivet-gray-labeled.png",
+      "original_generated_filename": "exec-1651e04d-2023-4b01-b35d-a16f8dfef733.png",
+      "status": "superseded",
+      "bytes": 1456350,
+      "sha256": "b14fb6337a866533ab1a2bec072a75a590a740509f2237a2a8e551662a9e1fa4",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "archive/hush-gray-labeled.png",
+      "original_generated_filename": "exec-1491d880-3d3a-4559-8c9c-8739a56b4d2e.png",
+      "status": "superseded",
+      "bytes": 1466420,
+      "sha256": "4a56c24d935a33e534c277e9251e8a6799a965d4ff16cbbae47e7fbbef9bad62",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "archive/loop-gray-labeled.png",
+      "original_generated_filename": "exec-799c6b11-162b-443d-82e3-c9908bca0ce8.png",
+      "status": "superseded",
+      "bytes": 1431459,
+      "sha256": "d3d7130bcd6c1f491de923b0026ed6e6fef159b6c02e0fefa1d8bdeeeb8782ec",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "archive/hush-equipment-first.png",
+      "original_generated_filename": "exec-629cca7e-c875-4f2c-b9eb-4acd8a42202e.png",
+      "status": "superseded",
+      "bytes": 1095762,
+      "sha256": "716538cee021e676874357f98347eb5b174c4705d183280b27b23f42b0252112",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "origin": "ImageGen in this chat; original bytes copied without image editing"
+    },
+    {
+      "path": "sources/x-downloader.com_MdNmuM.mp4",
+      "status": "style-reference-only",
+      "bytes": 653247,
+      "sha256": "808057e249bf923e390c52317ea5c659e01bb06992c26276945fed6feb616c7a",
+      "origin": "User-uploaded video; not a runtime game asset; reference rights not inferred"
+    },
+    {
+      "path": "sources/TR3B_-__LaGaNga______-_lowpoly_blender_mfCeKM.mp4",
+      "status": "style-reference-only",
+      "bytes": 1058262,
+      "sha256": "69c3edc3b80b8e2a7d3425cb471b240baafbd3d579774477ef02ec786ab25a3f",
+      "origin": "User-uploaded video; not a runtime game asset; reference rights not inferred"
+    },
+    {
+      "path": "sources/TR3B_-___uWu__BTS_DanZ_Tet0__-_Lowpoly_blender_7o3epD.mp4",
+      "status": "style-reference-only",
+      "bytes": 2896749,
+      "sha256": "f19010423f40010e015b5491e74148539715b384255dbd4b9e7e5e9e512a3d19",
+      "origin": "User-uploaded video; not a runtime game asset; reference rights not inferred"
+    },
+    {
+      "path": "sources/TR3B_-___GanGA______-___wip_-_lowpoly_blender_z3Qbse.mp4",
+      "status": "style-reference-only",
+      "bytes": 3769891,
+      "sha256": "45d3bf5a076d768100471668d6fa191607b856414796ac86eb6cc255ccce1d05",
+      "origin": "User-uploaded video; not a runtime game asset; reference rights not inferred"
+    },
+    {
+      "path": "sources/TR3B_-_WUkiHouS3________________INeWdV.mp4",
+      "status": "style-reference-only",
+      "bytes": 1231563,
+      "sha256": "779aaac20a1e46921a278eb00fe6ab1d93df6615488c920bc9fe7bee3d6ae20e",
+      "origin": "User-uploaded video; not a runtime game asset; reference rights not inferred"
+    },
+    {
+      "path": "sources/TR3B_-__BTS__O__blender_lowpoly_sK94ux.mp4",
+      "status": "style-reference-only",
+      "bytes": 2754275,
+      "sha256": "736f9ba2479449003a3984b22e0c62381ced3189b700ba237503257ceccdaada",
+      "origin": "User-uploaded video; not a runtime game asset; reference rights not inferred"
+    }
+  ],
+  "missing_sources": "Four user-attached JPG references were visible in chat but their original bytes are not available in this workspace. Windows G:/ paths are not portable; do not treat them as archived files.",
+  "generation_history": "Action concept -> gray/labeled turnarounds -> white/unlabeled turnarounds -> equipment sheets -> HUSH correction (thumb opening added and hair removed from cap). Failed image-generation attempt produced no file.",
+  "validation_limits": [
+    "Images are generated references, not mathematically certified projections of one mesh.",
+    "Modeler must reconcile silhouette, handedness, attachments, glove digits and scale between views.",
+    "No model reconstruction, topology, rigging or engine import tested."
+  ]
+}

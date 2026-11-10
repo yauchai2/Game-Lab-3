@@ -9,6 +9,14 @@ const MAX_HEALTH := 100
 const ROUND_SECONDS := 75.0
 const Profiles=preload("res://scripts/combat/fighter_profiles.gd")
 var character_choices := [0,0]
+var last_service_enabled:=false
+var service_perks:Array=[[],[]]
+var service_contacts:Array=[]
+const ServiceProfiles=preload("res://scripts/combat/last_service/profiles.gd")
+var service_rules=preload("res://scripts/combat/last_service/rules.gd").new()
+func profile_for(index:int) -> Dictionary:
+    return ServiceProfiles.profile(index) if last_service_enabled else Profiles.profile(index)
+
 const AirMotion=preload("res://scripts/combat/aerial_motion.gd")
 var air_motion:=AirMotion.new()
 var air_counter=preload("res://scripts/combat/air_counter.gd").new()
@@ -19,6 +27,7 @@ var endless:=false
 var rush_agent=preload("res://scripts/combat/rush_agent.gd").new()
 var practice_scenario:="free"
 const MOVES := {
+    "node_pulse":{"startup":8,"active":1,"recovery":32,"damage":12,"reach":0.0,"stun":18,"push":5.0,"lift":2.0,"stop":7},
     "air_counter":{"startup":14,"active":4,"recovery":22,"damage":18,"reach":2.3,"stun":28,"push":7.0,"lift":-10.0,"stop":10},
     "air_jab":{"startup":6,"active":3,"recovery":12,"damage":6,"reach":1.7,"stun":22,"push":1.2,"lift":1.0,"stop":4},
     "air_kick":{"startup":8,"active":3,"recovery":16,"damage":8,"reach":2.0,"stun":25,"push":1.8,"lift":1.0,"stop":5},
@@ -76,6 +85,7 @@ func reset_round() -> void:
     rally_drill=false
     guard_was_down=[false,false]
     pressure_drill=false
+    service_contacts.clear()
     fighters.clear()
     for i in 2:
         fighters.append({"x": -3.0 if i == 0 else 3.0, "y": 0.0, "vx": 0.0, "vy": 0.0,
@@ -83,6 +93,9 @@ func reset_round() -> void:
             "state": "idle", "move": "", "frame": 0, "stun": 0, "connected": false,
             "buffer": "", "buffer_ttl": 0, "chain": 0, "chain_ttl": 0, "dash_cd": 0,
             "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "entry_parry_window":0, "counter_window":0, "counter_attack":false, "break_lock":0, "impact_load":0.0, "jump_buffer":0, "juggle":0, "hit_confirmed":false,"throw_cd":0,"tech_window":0,"wall_bounces":0,"wall_tech_window":0,"wall_tech_buffer":0})
+    for i in 2:
+        fighters[i]["service"]=service_rules.fresh()
+        fighters[i]["perks"]=service_perks[i].duplicate()
     phase = "ready"
     countdown = 72
     remaining = ROUND_SECONDS
@@ -145,6 +158,7 @@ func ai_command() -> Dictionary:
 
 func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
     events.clear()
+    service_contacts.clear()
     tick_count += 1
     if phase == "ready":
         countdown -= 1
@@ -223,6 +237,7 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
             elif fighters[0].health<=0 or fighters[1].health<=0:_finish_round()
         return
     for i in 2:
+        if last_service_enabled:service_rules.before(self,i,commands[i])
         var f: Dictionary = fighters[i]
         f.flash = maxi(0, f.flash - 1)
         if commands[i].get("jump",false): f.jump_buffer=8
@@ -241,11 +256,15 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
     for i in 2:
         _advance_fighter(i, commands[i])
     _separate_bodies()
+    if last_service_enabled:service_rules.advance(self)
     # Resolve simultaneous active attacks from the same frame; trades are allowed.
     var contacts: Array[int] = []
     for i in 2:
         if _can_hit(i):
             contacts.append(i)
+    # Node contacts share the ordinary simultaneous-contact snapshot.
+    for contact in service_contacts:service_rules.resolve_pulse(self,contact.owner,contact.origin)
+    service_contacts.clear()
     # Ordinary strikes interrupt a simultaneous throw on either player side.
     if contacts.size()==2 and fighters[contacts[0]].move=="grab" and fighters[contacts[1]].move!="grab":contacts.reverse()
     # Decide a clash from the simultaneous contact snapshot, before either hit
@@ -259,6 +278,8 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         _resolve_hit(exchange_contact)
     else:
         for i in contacts:_resolve_hit(i,false)
+    if last_service_enabled:
+        for event in events.duplicate():service_rules.observe(self,event)
     if training:
         _update_training()
         return
@@ -307,6 +328,8 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
         f.frame += 1
         var move: Dictionary = move_for(f,f.move)
         var end: int = move.startup + move.active + (maxi(8,roundi(move.recovery*.55)) if arcade_enabled else move.recovery)
+        if last_service_enabled and f.character==3 and f.move=="special" and f.frame>=move.startup+move.active and f.buffer=="node_pulse" and f.buffer_ttl>0 and not f.service.nodes.is_empty():
+            _start_attack(i,"node_pulse")
         # Confirm a grounded launcher, then buffer Space during its hitstop to chase.
         if f.hit_confirmed and f.move=="launcher" and f.jump_buffer>0 and f.y<=0.01:
             f.state = "idle"
@@ -336,11 +359,11 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
             f.frame = 0
             f.invuln = 7
             f.dash_cd = 42
-            f.vx = (signf(command.get("axis", 0.0)) if absf(command.get("axis", 0.0)) > 0.1 else float(f.face)) * 14.0 * Profiles.profile(f.get("character",0)).speed
+            f.vx = (signf(command.get("axis", 0.0)) if absf(command.get("axis", 0.0)) > 0.1 else float(f.face)) * 14.0 * profile_for(f.get("character",0)).speed
             events.append({"kind": "dash", "target": i})
         else:
             f.guarding = (command.get("guard", false) or (f.entry_parry_window>0 and f.parry_allowed and f.parry_cd==0 and f.jump_buffer<=0)) and f.y <= 0.01 and f.guard > 0
-            f.vx = float(command.get("axis", 0.0)) * (1.6 if f.guarding else (8.0 if arcade_enabled else 5.8))*Profiles.profile(f.get("character",0)).speed
+            f.vx = float(command.get("axis", 0.0)) * (1.6 if f.guarding else (8.0 if arcade_enabled else 5.8))*profile_for(f.get("character",0)).speed
             if f.jump_buffer>0 and f.y <= 0.01 and not f.guarding:
                 if is_aerial():air_motion.request_jump(f)
                 else:
@@ -398,6 +421,7 @@ func _start_attack(i: int, requested: String) -> void:
     var name := requested
     if requested == "light":
         name = (["air_jab","air_kick","meteor" if arcade_enabled else "air_finisher"] if is_aerial() and f.y>.01 else ["jab", "cross", "launcher" if arcade_enabled else "finisher"])[mini(f.chain, 2)]
+    if name=="node_pulse" and (not last_service_enabled or f.character!=3):return
     if not MOVES.has(name):
         return
     if name=="grab":
@@ -407,8 +431,13 @@ func _start_attack(i: int, requested: String) -> void:
             return
         f.throw_cd=60
     if name=="overdrive" and not arcade_enabled:return
-    if name in ["special","overdrive"]:
-        var cost:int=75 if name=="overdrive" else 50
+    if last_service_enabled and f.character==3 and name=="node_pulse":
+        if f.service.nodes.is_empty() or f.service.node_cd>0:
+            f.buffer="";f.buffer_ttl=0
+            events.append({"kind":"node_unavailable","target":i})
+            return
+    if name in ["special","overdrive","node_pulse"]:
+        var cost:int=10 if name=="node_pulse" else (75 if name=="overdrive" else (20 if last_service_enabled and f.character==3 else 50))
         if f.meter < cost:
             f.buffer = ""
             f.buffer_ttl = 0
@@ -421,6 +450,7 @@ func _start_attack(i: int, requested: String) -> void:
     f.state = "attack"
     f.guarding=false
     f.move = name
+    if last_service_enabled:service_rules.started(self,i,name)
     f["move_data"]=move_for(f,name)
     f.frame = 0
     f.connected = false
@@ -446,6 +476,7 @@ func _can_hit(i: int) -> bool:
     if a.state != "attack" or a.connected or b.invuln > 0 or (b.y>0.1 and b.juggle>=3):
         return false
     var m: Dictionary = move_for(a,a.move)
+    if last_service_enabled and a.character==3 and a.move in ["special","node_pulse"]:return false
     if a.move=="grab" and (a.y>.01 or b.y>.01 or b.state in ["stun","blockstun"]):return false
     if a.frame < m.startup or a.frame >= m.startup + m.active:
         return false
@@ -518,7 +549,10 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
             fighter.counter_window=0;fighter.counter_attack=false
         events.append({"kind":"clash_start","attacker":i})
         return
-    if move_name!="grab" and b.guarding and (a.x - b.x) * b.face > 0:
+    var attack_x:float=a.get("pulse_origin",a.x)
+    if a.has("pulse_origin") and absf(attack_x-b.x)<.01:attack_x=a.x
+    var hit_face:float=signf(b.x-attack_x) if a.has("pulse_origin") else a.face
+    if move_name!="grab" and b.guarding and (attack_x - b.x) * b.face > 0:
         if b.parry_allowed and b.guard_frames<=PARRY_WINDOW and b.parry_cd==0 and b.guard>=25:
             b.parry_cd = 60
             b.meter = minf(100.0,b.meter+18.0)
@@ -535,12 +569,14 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
             hitstop = maxi(hitstop,8)
             hitstop_total = hitstop
             exchange.contact(16)
-            events.append({"kind":"parry","target":1-i,"attacker":i})
+            events.append({"kind":"parry","target":1-i,"attacker":i,"move":move_name,"distance":absf(a.x-b.x)})
             return
-        b.guard = maxf(0.0, b.guard - m.damage * 2.8)
+        var guard_pressure:float=8.0 if last_service_enabled and a.character==1 and a.service.preload>=2 else 0.0
+        if last_service_enabled and a.character==1 and service_rules.perk(a,"rivet_guard"):guard_pressure+=5.0
+        b.guard = maxf(0.0, b.guard - m.damage * 2.8-guard_pressure)
         b.state = "blockstun"
         b.stun = 10
-        b.vx = a.face * 2.2
+        b.vx = hit_face * 2.2
         hitstop = maxi(hitstop, 4)
         hitstop_total = hitstop
         exchange.contact(8)
@@ -575,9 +611,10 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
         if b.air.combo_left==0 and (b.y>.1 or m.lift>0):b.air.combo_left=AirMotion.COMBO_TICKS
         if move_name=="launcher":a.air.chase_window=30
     var armor:bool=arcade_enabled and b.state=="attack" and b.move in ["special","overdrive"] and b.frame<move_for(b,b.move).startup and move_name!="grab"
+    if last_service_enabled:armor=armor and b.character==1 and b.frame>=move_for(b,b.move).startup-6
     b.state = "attack" if armor else "stun"
     b.stun = 0 if armor else m.stun
-    b.vx = 0.0 if armor else a.face * m.push
+    b.vx = 0.0 if armor else hit_face * m.push
     if b.y>0.1: b.juggle += 1
     b.vy = minf(b.vy,-3.5) if b.juggle>=3 else maxf(b.vy,m.lift)
     if is_aerial() and move_name in ["air_jab","air_kick"] and b.y>.1:
@@ -597,14 +634,14 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     b.buffer = ""
     b.buffer_ttl = 0
     b.chain = 0
-    a.meter = minf(100.0, a.meter + damage * 1.1 * Profiles.profile(a.get("character",0)).gain)
+    a.meter = minf(100.0, a.meter + damage * 1.1 * profile_for(a.get("character",0)).gain)
     b.meter = minf(100.0, b.meter + damage * 0.5)
     a.chain = (a.chain + 1) % 3 if move_name in ["jab", "cross", "finisher","air_jab","air_kick","air_finisher"] else 0
     a.chain_ttl = 45
     hitstop = maxi(hitstop, stop_ticks)
     hitstop_total = hitstop
     if is_air_lesson() and move_name in ["air_finisher","air_counter"]:air_lesson_stage="review"
-    events.append({"kind": "hit", "target": 1-i, "attacker": i, "damage": damage, "move": move_name, "strength": (.95 if move_name=="meteor" else .8) if is_aerial() and move_name in ["air_finisher","meteor","air_counter"] else float(m.damage) / 27.0, "counter": counter})
+    events.append({"kind": "hit", "target": 1-i, "attacker": i, "damage": damage, "move": move_name, "strength": (.95 if move_name=="meteor" else .8) if is_aerial() and move_name in ["air_finisher","meteor","air_counter"] else float(m.damage) / 27.0, "counter": counter,"face":hit_face})
 
 
 func _begin_rally(side: int) -> void:
@@ -940,4 +977,5 @@ func _end_air_counter(why: String) -> void:
     events.append({"kind":"air_counter_end","reason":why,"owner":air_counter.owner})
 
 func move_for(fighter:Dictionary,name:String) -> Dictionary:
+    if last_service_enabled:return ServiceProfiles.move(MOVES[name],fighter.get("character",0),name,fighter)
     return Profiles.move(MOVES[name],fighter.get("character",0),name)

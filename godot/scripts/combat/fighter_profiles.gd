@@ -1,5 +1,5 @@
 extends RefCounted
-## Deterministic per-character move and movement data; no cosmetic hit bonuses.
+## Legacy rule-harness profiles. Player sessions use last_service/profiles.gd.
 const PROFILES := [
     {"trait":"trait_boxer","speed":1.0,"gain":1.0,"color":"ff6a00","special_name":"skill_boxer","overdrive_name":"cannon_boxer"},
     {"trait":"trait_dancer","speed":1.08,"gain":1.0,"color":"4acfe0","special_name":"skill_dancer","overdrive_name":"cannon_dancer"},

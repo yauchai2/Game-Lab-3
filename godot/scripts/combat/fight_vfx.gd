@@ -12,6 +12,12 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     var paper := Color("fff8dc")
     var ink := Color("111a32")
     match effect.kind:
+        "service_pulse":
+            var a:Vector2=session.project(Vector2(effect.low,.10))
+            var b:Vector2=session.project(Vector2(effect.high,.10))
+            var up:=Vector2(0,-35.0*(1-time))
+            canvas.draw_colored_polygon(PackedVector2Array([a,b,b+up,a+up]),tint)
+            canvas.draw_line(a+up,b+up,Color.WHITE,3)
         "cannon_charge":
             var fighter:Dictionary=session.sim.fighters[effect.owner]
             at=session.project(Vector2(fighter.x-face*.35,fighter.y+session.fighters[effect.owner].model_scale*.6))

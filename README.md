@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[LAST SERVICE四角色＋專屬技能＋街區成長](docs/LAST_SERVICE_RUNTIME.zh-TW.md)／[畫面、兩組AI影片及295項檢查](docs/evidence/last-service-runtime/README.md)。試玩：FIGHTERS → STREET RUN／SKILLS；標準FIGHT不套用成長。公開Web不更新。
+
 最新：[大招長動作／近鏡旋轉](docs/NEON_SIGNATURE.zh-TW.md)／[藝術風格與全部可取得參考素材總庫](references/style-library/README.md)／[RPG與技能解鎖提案（未實作）](docs/RPG_PROGRESSION_PLAN.zh-TW.md)。
 
 **本分支已接入Neon Facets M1可玩風格切片。** [功能／試玩方式](docs/NEON_FACETS_RUNTIME.zh-TW.md)／[30秒自由AI影片及畫面](docs/evidence/neon-facets/README.md)／[完整計劃](docs/NEON_FACETS_PLAN.zh-TW.md)。M2–M6待續；穩定分支及公開Web不變。

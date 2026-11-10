@@ -180,3 +180,7 @@
 ## 大招、RPG及參考歸檔（2026-11-10）
 
 使用者要求更多／更長動作與慢鏡／zoom／旋轉：Lab大招已延長，14°roll＋36°FOV按兩人body bounds限制；護甲未中斷不能取消鏡頭。RPG為詢問與設計提案，未擅自引入升級數值。所有可讀取參考素材上傳：6原始短片、2完整時長壓縮長片及圖片／原稿／文字總索引；inline原圖缺件明示。gh Release二進制上傳401後移除空draft，改Git內研究副本；保留原Drive／SHA，Web不變。
+
+## LAST SERVICE角色替換與成長落地（2026-11-10）
+
+使用者新4GLB為當前roster，ZIP99c7／RIVETeba8／HUSH966f／LOOP0a7a；原bytes不變，骨名適配及CC0庫重定向。角色特性／資源／技能／UI／FX同步替換，放點不造成假命中，揮擊與真active frames綁定，脈衝使用共同接觸快照。角色專屬3節點共12、裝2、免費重置，僅Street Run生效；勝40／敗15＋本人技巧bonus，標準FIGHT不成長，Demo無XP。詳見LAST_SERVICE_RUNTIME.zh-TW.md。原提案未實作子招式與完整RPG保留待辦。使用者「收尾」後停止加功能，完成驗證與推送，不更新Web。

@@ -30,7 +30,7 @@ func run() -> void:
     root.size=Vector2i(1280,720);hud.art_buttons.fight.grab_focus();hud.art.focused_key="fight";await shot("title")
     await tap(KEY_DOWN);check("arrow moves Fight to Fighters",hud.art_buttons.roster.has_focus())
     await tap(KEY_ENTER);print("ENTER_STATE ",scene.screen," ",hud.menu_page," ",hud.art_buttons.keys());check("Enter opens four-card Fighters page",hud.menu_page=="roster" and hud.art_buttons.has("card_3"))
-    await click(hud.art_buttons.card_3);check("pointer selects goggles for P1",scene.character_choices[0]==3 and scene.sim.character_choices[0]==3)
+    await click(hud.art_buttons.card_3);check("pointer selects LOOP for P1",scene.character_choices[0]==3 and scene.sim.character_choices[0]==3)
     await click(hud.art_buttons.side_1);await click(hud.art_buttons.card_1)
     check("P2 card controls independently update actual rival",scene.character_choices==[3,1] and scene.sim.character_choices==[3,1])
     await click(hud.art_buttons.side_0);await shot("fighters")

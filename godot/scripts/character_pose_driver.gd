@@ -20,6 +20,7 @@ func _ready() -> void:
     skeleton = skeletons[0]
     for part in ["LeftUpLeg","RightUpLeg","LeftLeg","RightLeg","LeftArm","RightArm","LeftForeArm","RightForeArm","Spine"]:
         var index := skeleton.find_bone("mixamorig_"+part)
+        if index<0:index=skeleton.find_bone("mixamorig:"+part)
         if index < 0:
             continue
         bone_indices[part] = index

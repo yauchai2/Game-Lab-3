@@ -2,6 +2,12 @@ extends RefCounted
 ## Product copy is keyed; simulation events and save identifiers stay language-independent.
 var language := "zh"
 const COPY := {
+"skill_loop_pulse":["交叉接線","CROSS PATCH"],
+"fighter_zip":["疾扣 ZIP","ZIP"],"fighter_rivet":["鉚釘 RIVET","RIVET"],"fighter_hush":["靜噪 HUSH","HUSH"],"fighter_loop":["迴路 LOOP","LOOP"],
+"trait_zip":["路線追擊","ZIP / ROUTE KICKS"],"trait_rivet":["蓄力破防","RIVET / PRELOAD"],"trait_hush":["截擊取樣","HUSH / SAMPLE"],"trait_loop":["接點控場","LOOP / PATCH NODES"],
+"skill_zip":["急件簽收","EXPRESS RECEIPT"],"skill_rivet":["落鉚","DRIVE RIVET"],"skill_hush":["留白","DEAD AIR"],"skill_loop":["試音點","SOUND CHECK"],
+"cannon_zip":["末班快送","LAST DELIVERY"],"cannon_rivet":["停工通知","STOP WORK"],"cannon_hush":["全場靜音","TOTAL SILENCE"],"cannon_loop":["安可迴圈","ENCORE LOOP"],
+
 "test_audio":["測試聲音","TEST SOUND"],
 "restore_audio":["恢復聲音","RESTORE SOUND"],
 "retro_pixels":["復古低解像畫面", "Retro low resolution"],
@@ -152,7 +158,7 @@ const COPY := {
 "defense_help":["Shift 防禦；抓準起手時機可反制。E 閃避。","Shift guards; time it for a parry. E dodges."],
 "pressure_help":["命中、擋格及反制會升壓。高壓地面重踢可開對峙。","Hits, blocks and parries build pressure. A grounded heavy opens a clash at high pressure."],
 "clash_help":["對峙時：J 頂進、Shift 卸勢、E 抽身。只鎖定一次。標準與挑戰對手可能用假動作；教室會明示選擇。","In a clash: J press, Shift turn, E slip. One commitment. Standard and Challenging rivals can feint; the dojo shows true intentions."],
-"special_help":["L 爆發消耗 50；W＋L 蓄力重砲消耗 75，起手較長，可被投技打斷。","L: 50-energy burst. W+L: 75-energy charged cannon; longer startup, vulnerable to throws."],
+"special_help":["L 技能需 20／50 能量；LOOP S＋L 觸發需 10；W＋L 必殺需 75。起手可受反制。","L: character skill costs20/50. LOOP S+L pulse costs10. W+L: 75-energy signature; counter its startup."],
 "training_title":["自由練習","FREE TRAINING"],"last_combo":["上次連段","LAST COMBO"],"hits":["連擊","HITS"],"damage":["傷害","DAMAGE"],
 "inputs":["輸入紀錄","INPUT HISTORY"],"none":["尚未出招","No inputs yet"],"impact":["命中停頓","IMPACT"],
 "stage":["航道街口","FLIGHT PATH / CROSSING"],"wins":["先取兩勝","FIRST TO TWO"],

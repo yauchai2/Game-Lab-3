@@ -1,0 +1,11 @@
+{
+  "engine": "Godot4.7.2 Linux Compatibility / Mesa llvmpipe",
+  "new_character_rules": 46,
+  "new_native_integration": 22,
+  "signature_checks": 28,
+  "native_regression": 53,
+  "legacy_rule_regression": 134,
+  "walk_regression": 12,
+  "total": 295,
+  "scope": "Automated checks; low-health standing-opponent fixtures used for career result integration. Demo movies use normal free AI; no human/Mac hardware/performance claim."
+}

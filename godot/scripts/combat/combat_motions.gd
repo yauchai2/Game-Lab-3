@@ -46,20 +46,20 @@ func setup(target: Skeleton3D, model: Node3D) -> void:
     for bone in skeleton.get_bone_count():
         target_global_rest.append(skeleton.get_bone_global_rest(bone).basis.get_rotation_quaternion())
         target_local_rest.append(skeleton.get_bone_rest(bone).basis.get_rotation_quaternion())
-        var short_name := skeleton.get_bone_name(bone).trim_prefix("mixamorig_")
+        var short_name := skeleton.get_bone_name(bone).trim_prefix("mixamorig_").trim_prefix("mixamorig:")
         if names.has(short_name):
             var index := _source_index(names[short_name])
             if index >= 0: mapping[bone] = index
     source_hips = _source_index("DEF-hips")
-    target_hips = skeleton.find_bone("mixamorig_Hips")
+    target_hips = bone_index("Hips")
     var source_transforms: Dictionary = {}
     var source_right := _source_transform(_source_index("DEF-upper_arm.R"),source_transforms).origin
     var source_left := _source_transform(_source_index("DEF-upper_arm.L"),source_transforms).origin
     var source_head := _source_transform(_source_index("DEF-head"),source_transforms).origin
     var source_hip := _source_transform(source_hips,source_transforms).origin
-    var target_right := skeleton.get_bone_global_rest(skeleton.find_bone("mixamorig_RightArm")).origin
-    var target_left := skeleton.get_bone_global_rest(skeleton.find_bone("mixamorig_LeftArm")).origin
-    var target_head := skeleton.get_bone_global_rest(skeleton.find_bone("mixamorig_Head")).origin
+    var target_right := skeleton.get_bone_global_rest(bone_index("RightArm")).origin
+    var target_left := skeleton.get_bone_global_rest(bone_index("LeftArm")).origin
+    var target_head := skeleton.get_bone_global_rest(bone_index("Head")).origin
     var target_hip := skeleton.get_bone_global_rest(target_hips).origin
     alignment = (_frame(target_right-target_left,target_head-target_hip) * _frame(source_right-source_left,source_head-source_hip).inverse()).get_rotation_quaternion()
     height_scale = (target_head-target_hip).length() / maxf((source_head-source_hip).length(),0.01)
@@ -103,10 +103,10 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         loop = true
     var character:int=f.get("character",0)
     if f.state=="idle" and absf(f.vx)<.3 and f.y<=.01:
-        if character==1:selected="Dance_Loop";loop=true
-        elif character==2:selected="Spell_Simple_Idle_Loop";loop=true
+        if character==0:selected="Dance_Loop";loop=true
+        elif character==1:selected="Spell_Simple_Idle_Loop";loop=true
         elif character==3:selected="Idle_Loop";loop=true
-    if f.state=="attack" and character==2 and f.move in ["cross","finisher","special"]:selected="Sword_Attack";loop=false
+    if f.state=="attack" and character==1 and f.move in ["cross","finisher","special"]:selected="Sword_Attack";loop=false
     if f.get("showcase",false):
         selected=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop"][character];loop=true
     var state_key := selected + "/" + str(f.state) + ("/"+str(f.move) if f.state=="attack" else "")
@@ -198,7 +198,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         var move:Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
         var w:float=clampf(float(f.frame)/move.startup,0,1)
         if f.frame>move.startup+move.active:w=1.0-clampf(float(f.frame-move.startup-move.active)/move.recovery,0,1)
-        if character==1 and f.move in ["jab","cross","finisher","special","overdrive"]:
+        if character==0 and f.move in ["jab","cross","finisher","special","overdrive"]:
             var side:String="Left" if f.move in ["jab","special"] else "Right"
             _aim_limb(side+"UpLeg",side+"Leg",model_forward+model_up*.45,w*.95)
             _aim_limb(side+"Leg",side+"Foot",model_forward-model_up*.15,w*.95)
@@ -251,8 +251,8 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
             _aim_limb("RightArm","RightForeArm",model_forward,1.0)
 
 func _aim_limb(bone_name: String, child_name: String, direction: Vector3, weight: float) -> void:
-    var bone := skeleton.find_bone("mixamorig_"+bone_name)
-    var child := skeleton.find_bone("mixamorig_"+child_name)
+    var bone := bone_index(bone_name)
+    var child := bone_index(child_name)
     if bone<0 or child<0: return
     var global_pose := skeleton.get_bone_global_pose(bone)
     var current_direction := skeleton.get_bone_global_pose(child).origin-global_pose.origin
@@ -304,3 +304,9 @@ func _quat(value: Array) -> Quaternion:
     return Quaternion(value[0],value[1],value[2],value[3]).normalized()
 func _vec(value: Array) -> Vector3:
     return Vector3(value[0],value[1],value[2])
+
+func bone_index(short_name:String) -> int:
+    for prefix in ["mixamorig_","mixamorig:",""]:
+        var index:int=skeleton.find_bone(prefix+short_name)
+        if index>=0:return index
+    return -1

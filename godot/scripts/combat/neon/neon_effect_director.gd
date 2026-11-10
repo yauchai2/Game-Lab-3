@@ -50,7 +50,7 @@ func advance(delta:float,paused:bool,reduced:bool) -> void:
     if age>=duration:mode="";priority=0;signature=false
 func draw(canvas:Control,session:Node3D) -> void:
     if not active() or session.reduced_effects or session.screen not in ["play","result"]:return
-    var color:Color=profile.accent(session.character_choices[owner])
+    var color:Color=session.effect_color_for(owner)
     var at:Vector2=session.project(point)
     var ink:=Color("080a10")
     # Cropped edge cuts leave both the contact point and top HUD unobstructed.

@@ -1,0 +1,352 @@
+WorkerThreadPool: 3 threads, 1 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+SDL: Init OK!
+Accessibility: AccessKit driver loaded.
+Xshape 1.1 detected.
+Xinerama 1.1 detected.
+Xrandr 1.6 detected.
+Xrender 0.11 detected.
+Xinput 2.2 detected.
+XInput: Refreshing devices.
+XInput: No touch devices found.
+Input method started.
+Detecting GPUs, set DRI_PRIME in the environment to override GPU detection logic.
+Only one GPU found, using default.
+Accessibility: window 0 adapter created.
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+XcursorGetTheme could not get cursor theme
+Failed loading custom cursor: crossed_circle
+DBus 1.16.2 detected.
+Using "default" pen tablet driver...
+Shader 'CanvasSdfShaderGLES3' SHA256: e1fc4015d45db07fce0346b99c312728ab006030520ec796da1461e1428345c5
+Shader 'SkeletonShaderGLES3' SHA256: e42116215ed2a92dea7085176e3b3f1089edcb71a3405ab67073ce8e77114587
+Shader 'ParticlesShaderGLES3' SHA256: ffb4401639aafac71f9f113685cb6db157587dac2f1a352495327188f37419b2
+Shader 'ParticlesCopyShaderGLES3' SHA256: 826f4c822241d48a5251f5069f9781b034e657d580e0c94bb916da952bee53b5
+Shader 'CopyShaderGLES3' SHA256: 8e9443aa4b684ddd8943bffac4063cca51daba573b73bd6ebb6a15a023b35d42
+Shader 'CubemapFilterShaderGLES3' SHA256: 7d0f7673e184bb74d9f911e0aa90b55d157f7c33b79e4672b4fca4fb3573ac00
+Shader 'GlowShaderGLES3' SHA256: 427cfd9bd0cc4045ecaa4bc4f23055a2a40660411d8e1663897a7c2cd3c80665
+Shader 'PostShaderGLES3' SHA256: d42fe4516c6fdc8d420760c688277f65a0eb2c3ab6939c556404e04b25605697
+Shader 'FeedShaderGLES3' SHA256: 9c5f15371d9ed62661ff3bb3ecc28f82cb15be9a4be89518b1f6fd8d372fbe4b
+Shader 'CanvasShaderGLES3' SHA256: 16f1396f2f5ac39d277138cd33a6d284e2d97309f2a547816c220d0ef0318826
+Shader 'CanvasOcclusionShaderGLES3' SHA256: 6baa8caaecef40c331cf27f156879d8ca7d8bf94ec84f8168903490f61264d2d
+Shader 'SceneShaderGLES3' SHA256: 31a20b10164e4dec5c32d2d55b7815f3753e61e5a14deee17dcbc8ad8ddad8d8
+Shader 'SkyShaderGLES3' SHA256: 018037c76675d5aa479b8d6fab4462587586616124093692f099b74ed4b847ef
+Shader 'TexBlitShaderGLES3' SHA256: 164ea8204afa014fcb0dc8b854e570f311fcde3c83c12332ea81730620f6a63d
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://tools/verify_neon_signature.gd remapped: res://tools/verify_neon_signature.gd
+Loading resource: res://scenes/combat/street_fight.tscn remapped: res://scenes/combat/street_fight.tscn
+Loading resource: res://scripts/combat/fight_session.gd remapped: res://scripts/combat/fight_session.gd
+Loading resource: res://scripts/combat/neon/neon_style_profile.tres remapped: res://scripts/combat/neon/neon_style_profile.tres
+Loading resource: res://scripts/combat/neon/neon_style_profile.gd remapped: res://scripts/combat/neon/neon_style_profile.gd
+Completed load for: 'res://scripts/combat/neon/neon_style_profile.gd' remapped 'res://scripts/combat/neon/neon_style_profile.gd' at thread -1
+Completed load for: 'res://scripts/combat/neon/neon_style_profile.tres' remapped 'res://scripts/combat/neon/neon_style_profile.tres' at thread -1
+Loading resource: res://shaders/retro_pixels.gdshader remapped: res://shaders/retro_pixels.gdshader
+Completed load for: 'res://shaders/retro_pixels.gdshader' remapped 'res://shaders/retro_pixels.gdshader' at thread -1
+Loading resource: res://shaders/kinetic_grade.gdshader remapped: res://shaders/kinetic_grade.gdshader
+Completed load for: 'res://shaders/kinetic_grade.gdshader' remapped 'res://shaders/kinetic_grade.gdshader' at thread -1
+Loading resource: res://shaders/fighter_toon.gdshader remapped: res://shaders/fighter_toon.gdshader
+Completed load for: 'res://shaders/fighter_toon.gdshader' remapped 'res://shaders/fighter_toon.gdshader' at thread -1
+Loading resource: res://shaders/fighter_outline.gdshader remapped: res://shaders/fighter_outline.gdshader
+Completed load for: 'res://shaders/fighter_outline.gdshader' remapped 'res://shaders/fighter_outline.gdshader' at thread -1
+Loading resource: res://shaders/neon/neon_actor.gdshader remapped: res://shaders/neon/neon_actor.gdshader
+Completed load for: 'res://shaders/neon/neon_actor.gdshader' remapped 'res://shaders/neon/neon_actor.gdshader' at thread -1
+Loading resource: res://assets/fonts/RadioPixelBodyReadable.fnt remapped: res://assets/fonts/RadioPixelBodyReadable.fnt
+Loading resource: res://.godot/imported/RadioPixelBodyReadable.fnt-7d6b4b501b1e24ec5088b7b523eeec43.fontdata remapped: res://.godot/imported/RadioPixelBodyReadable.fnt-7d6b4b501b1e24ec5088b7b523eeec43.fontdata
+Completed load for: 'res://assets/fonts/RadioPixelBodyReadable.fnt' remapped 'res://assets/fonts/RadioPixelBodyReadable.fnt' at thread -1
+Loading resource: res://assets/fonts/RadioPixelDisplayReadable.fnt remapped: res://assets/fonts/RadioPixelDisplayReadable.fnt
+Loading resource: res://.godot/imported/RadioPixelDisplayReadable.fnt-ce0bf758bd8cb64f51ef91d1da9a3ad2.fontdata remapped: res://.godot/imported/RadioPixelDisplayReadable.fnt-ce0bf758bd8cb64f51ef91d1da9a3ad2.fontdata
+Completed load for: 'res://assets/fonts/RadioPixelDisplayReadable.fnt' remapped 'res://assets/fonts/RadioPixelDisplayReadable.fnt' at thread -1
+Loading resource: res://assets/ui/ink/logo.tres remapped: res://assets/ui/ink/logo.tres
+Loading resource: res://assets/ui/ink/logo-source.png remapped: res://assets/ui/ink/logo-source.png
+Loading resource: res://.godot/imported/logo-source.png-e9ae762497c009936b2ba42dffff1d8d.ctex remapped: res://.godot/imported/logo-source.png-e9ae762497c009936b2ba42dffff1d8d.ctex
+Completed load for: 'res://assets/ui/ink/logo-source.png' remapped 'res://assets/ui/ink/logo-source.png' at thread -1
+Completed load for: 'res://assets/ui/ink/logo.tres' remapped 'res://assets/ui/ink/logo.tres' at thread -1
+Loading resource: res://assets/fonts/RadioPixelDisplay.fnt remapped: res://assets/fonts/RadioPixelDisplay.fnt
+Loading resource: res://.godot/imported/RadioPixelDisplay.fnt-7024f4e130e7e4f669065b6efa61aef2.fontdata remapped: res://.godot/imported/RadioPixelDisplay.fnt-7024f4e130e7e4f669065b6efa61aef2.fontdata
+Completed load for: 'res://assets/fonts/RadioPixelDisplay.fnt' remapped 'res://assets/fonts/RadioPixelDisplay.fnt' at thread -1
+Loading resource: res://assets/ui/last_service/cover.png remapped: res://assets/ui/last_service/cover.png
+Loading resource: res://.godot/imported/cover.png-da6746212edc7f5a04e8f37102f141fe.ctex remapped: res://.godot/imported/cover.png-da6746212edc7f5a04e8f37102f141fe.ctex
+Completed load for: 'res://assets/ui/last_service/cover.png' remapped 'res://assets/ui/last_service/cover.png' at thread -1
+Loading resource: res://assets/ui/ink/city-band.png remapped: res://assets/ui/ink/city-band.png
+Loading resource: res://.godot/imported/city-band.png-f9d10e912b0d4bfadb0389eb13c70d12.ctex remapped: res://.godot/imported/city-band.png-f9d10e912b0d4bfadb0389eb13c70d12.ctex
+Completed load for: 'res://assets/ui/ink/city-band.png' remapped 'res://assets/ui/ink/city-band.png' at thread -1
+Loading resource: res://assets/ui/ink/slashes.png remapped: res://assets/ui/ink/slashes.png
+Loading resource: res://.godot/imported/slashes.png-d652f18598bec476215496683031fe8d.ctex remapped: res://.godot/imported/slashes.png-d652f18598bec476215496683031fe8d.ctex
+Completed load for: 'res://assets/ui/ink/slashes.png' remapped 'res://assets/ui/ink/slashes.png' at thread -1
+Loading resource: res://shaders/sample_toon.gdshader remapped: res://shaders/sample_toon.gdshader
+Completed load for: 'res://shaders/sample_toon.gdshader' remapped 'res://shaders/sample_toon.gdshader' at thread -1
+Loading resource: res://scenes/street_whitebox.tscn remapped: res://scenes/street_whitebox.tscn
+Loading resource: res://scripts/whitebox_views.gd remapped: res://scripts/whitebox_views.gd
+Completed load for: 'res://scripts/whitebox_views.gd' remapped 'res://scripts/whitebox_views.gd' at thread -1
+Loading resource: res://scenes/PROP_HYDRANT_A01.tscn remapped: res://scenes/PROP_HYDRANT_A01.tscn
+Loading resource: res://assets/PROP_HYDRANT_A01.glb remapped: res://assets/PROP_HYDRANT_A01.glb
+Loading resource: res://.godot/imported/PROP_HYDRANT_A01.glb-726df1253135847fc834381f41f31d4c.scn remapped: res://.godot/imported/PROP_HYDRANT_A01.glb-726df1253135847fc834381f41f31d4c.scn
+Loading resource: res://assets/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg remapped: res://assets/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg-e0dc938f13d5b5e34b31d9827f38e3a0.ctex remapped: res://.godot/imported/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg-e0dc938f13d5b5e34b31d9827f38e3a0.ctex
+Completed load for: 'res://assets/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg' remapped 'res://assets/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg' at thread -1
+Completed load for: 'res://assets/PROP_HYDRANT_A01.glb' remapped 'res://assets/PROP_HYDRANT_A01.glb' at thread -1
+Completed load for: 'res://scenes/PROP_HYDRANT_A01.tscn' remapped 'res://scenes/PROP_HYDRANT_A01.tscn' at thread -1
+Loading resource: res://scenes/PROP_BIN_A01.tscn remapped: res://scenes/PROP_BIN_A01.tscn
+Loading resource: res://assets/PROP_BIN_A01.glb remapped: res://assets/PROP_BIN_A01.glb
+Loading resource: res://.godot/imported/PROP_BIN_A01.glb-1ad4606efe2e456a553d6c913eb16937.scn remapped: res://.godot/imported/PROP_BIN_A01.glb-1ad4606efe2e456a553d6c913eb16937.scn
+Loading resource: res://assets/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg remapped: res://assets/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg-e016496386dd0f364bac2daa608d46a1.ctex remapped: res://.godot/imported/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg-e016496386dd0f364bac2daa608d46a1.ctex
+Completed load for: 'res://assets/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg' remapped 'res://assets/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg' at thread -1
+Completed load for: 'res://assets/PROP_BIN_A01.glb' remapped 'res://assets/PROP_BIN_A01.glb' at thread -1
+Completed load for: 'res://scenes/PROP_BIN_A01.tscn' remapped 'res://scenes/PROP_BIN_A01.tscn' at thread -1
+Loading resource: res://scenes/VEH_VAN_A01.tscn remapped: res://scenes/VEH_VAN_A01.tscn
+Loading resource: res://assets/VEH_VAN_A01.glb remapped: res://assets/VEH_VAN_A01.glb
+Loading resource: res://.godot/imported/VEH_VAN_A01.glb-b4052da69b546fa3cc830a7573d08264.scn remapped: res://.godot/imported/VEH_VAN_A01.glb-b4052da69b546fa3cc830a7573d08264.scn
+Loading resource: res://assets/VEH_VAN_A01_van_3d_model_basecolor.jpg remapped: res://assets/VEH_VAN_A01_van_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/VEH_VAN_A01_van_3d_model_basecolor.jpg-adc9b97991aeb27f2ff54c5e9df3f605.ctex remapped: res://.godot/imported/VEH_VAN_A01_van_3d_model_basecolor.jpg-adc9b97991aeb27f2ff54c5e9df3f605.ctex
+Completed load for: 'res://assets/VEH_VAN_A01_van_3d_model_basecolor.jpg' remapped 'res://assets/VEH_VAN_A01_van_3d_model_basecolor.jpg' at thread -1
+Completed load for: 'res://assets/VEH_VAN_A01.glb' remapped 'res://assets/VEH_VAN_A01.glb' at thread -1
+Completed load for: 'res://scenes/VEH_VAN_A01.tscn' remapped 'res://scenes/VEH_VAN_A01.tscn' at thread -1
+Loading resource: res://scenes/PROP_SHOP_STOOL_A01.tscn remapped: res://scenes/PROP_SHOP_STOOL_A01.tscn
+Loading resource: res://assets/PROP_SHOP_STOOL_A01.glb remapped: res://assets/PROP_SHOP_STOOL_A01.glb
+Loading resource: res://.godot/imported/PROP_SHOP_STOOL_A01.glb-82b3d46beab3e0fb3e84eb76feff46ee.scn remapped: res://.godot/imported/PROP_SHOP_STOOL_A01.glb-82b3d46beab3e0fb3e84eb76feff46ee.scn
+Loading resource: res://assets/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg remapped: res://assets/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg-170ac8f8b9734de12bc8232bc4a6690d.ctex remapped: res://.godot/imported/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg-170ac8f8b9734de12bc8232bc4a6690d.ctex
+Completed load for: 'res://assets/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg' remapped 'res://assets/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg' at thread -1
+Completed load for: 'res://assets/PROP_SHOP_STOOL_A01.glb' remapped 'res://assets/PROP_SHOP_STOOL_A01.glb' at thread -1
+Completed load for: 'res://scenes/PROP_SHOP_STOOL_A01.tscn' remapped 'res://scenes/PROP_SHOP_STOOL_A01.tscn' at thread -1
+Loading resource: res://scenes/PROP_CRATES_A01.tscn remapped: res://scenes/PROP_CRATES_A01.tscn
+Loading resource: res://assets/PROP_CRATES_A01.glb remapped: res://assets/PROP_CRATES_A01.glb
+Loading resource: res://.godot/imported/PROP_CRATES_A01.glb-351dca0e178713f7a1933bf488e4adf9.scn remapped: res://.godot/imported/PROP_CRATES_A01.glb-351dca0e178713f7a1933bf488e4adf9.scn
+Loading resource: res://assets/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg remapped: res://assets/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg-7cf18af2b2407ccbede59237102989fd.ctex remapped: res://.godot/imported/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg-7cf18af2b2407ccbede59237102989fd.ctex
+Completed load for: 'res://assets/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg' remapped 'res://assets/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg' at thread -1
+Completed load for: 'res://assets/PROP_CRATES_A01.glb' remapped 'res://assets/PROP_CRATES_A01.glb' at thread -1
+Completed load for: 'res://scenes/PROP_CRATES_A01.tscn' remapped 'res://scenes/PROP_CRATES_A01.tscn' at thread -1
+Loading resource: res://scenes/PROP_MAILBOX_A01.tscn remapped: res://scenes/PROP_MAILBOX_A01.tscn
+Loading resource: res://assets/PROP_MAILBOX_A01.glb remapped: res://assets/PROP_MAILBOX_A01.glb
+Loading resource: res://.godot/imported/PROP_MAILBOX_A01.glb-c965e072e821df1d51ab09fb7ccf7b0f.scn remapped: res://.godot/imported/PROP_MAILBOX_A01.glb-c965e072e821df1d51ab09fb7ccf7b0f.scn
+Loading resource: res://assets/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg remapped: res://assets/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg-8ca2ca862cb68d603d2ca672e415b127.ctex remapped: res://.godot/imported/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg-8ca2ca862cb68d603d2ca672e415b127.ctex
+Completed load for: 'res://assets/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg' remapped 'res://assets/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg' at thread -1
+Completed load for: 'res://assets/PROP_MAILBOX_A01.glb' remapped 'res://assets/PROP_MAILBOX_A01.glb' at thread -1
+Completed load for: 'res://scenes/PROP_MAILBOX_A01.tscn' remapped 'res://scenes/PROP_MAILBOX_A01.tscn' at thread -1
+Completed load for: 'res://scenes/street_whitebox.tscn' remapped 'res://scenes/street_whitebox.tscn' at thread -1
+Loading resource: res://shaders/neon/neon_environment.gdshader remapped: res://shaders/neon/neon_environment.gdshader
+Completed load for: 'res://shaders/neon/neon_environment.gdshader' remapped 'res://shaders/neon/neon_environment.gdshader' at thread -1
+Loading resource: res://assets/SKY_BLUE_A01.png remapped: res://assets/SKY_BLUE_A01.png
+Loading resource: res://.godot/imported/SKY_BLUE_A01.png-879322509cb93cae73ca6a61c3e02f41.ctex remapped: res://.godot/imported/SKY_BLUE_A01.png-879322509cb93cae73ca6a61c3e02f41.ctex
+Completed load for: 'res://assets/SKY_BLUE_A01.png' remapped 'res://assets/SKY_BLUE_A01.png' at thread -1
+Loading resource: res://shaders/neon/neon_sky.gdshader remapped: res://shaders/neon/neon_sky.gdshader
+Completed load for: 'res://shaders/neon/neon_sky.gdshader' remapped 'res://shaders/neon/neon_sky.gdshader' at thread -1
+Loading resource: res://scenes/VEH_CAR_A01.tscn remapped: res://scenes/VEH_CAR_A01.tscn
+Loading resource: res://assets/VEH_CAR_A01.glb remapped: res://assets/VEH_CAR_A01.glb
+Loading resource: res://.godot/imported/VEH_CAR_A01.glb-527c955c709cd507d017b61d6302b1d1.scn remapped: res://.godot/imported/VEH_CAR_A01.glb-527c955c709cd507d017b61d6302b1d1.scn
+Loading resource: res://assets/VEH_CAR_A01_car_3d_model_basecolor.jpg remapped: res://assets/VEH_CAR_A01_car_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/VEH_CAR_A01_car_3d_model_basecolor.jpg-2cfd519ce788daea4842f09f547fd94f.ctex remapped: res://.godot/imported/VEH_CAR_A01_car_3d_model_basecolor.jpg-2cfd519ce788daea4842f09f547fd94f.ctex
+Completed load for: 'res://assets/VEH_CAR_A01_car_3d_model_basecolor.jpg' remapped 'res://assets/VEH_CAR_A01_car_3d_model_basecolor.jpg' at thread -1
+Completed load for: 'res://assets/VEH_CAR_A01.glb' remapped 'res://assets/VEH_CAR_A01.glb' at thread -1
+Completed load for: 'res://scenes/VEH_CAR_A01.tscn' remapped 'res://scenes/VEH_CAR_A01.tscn' at thread -1
+Loading resource: res://scenes/VEH_TRUCK_A01.tscn remapped: res://scenes/VEH_TRUCK_A01.tscn
+Loading resource: res://assets/VEH_TRUCK_A01.glb remapped: res://assets/VEH_TRUCK_A01.glb
+Loading resource: res://.godot/imported/VEH_TRUCK_A01.glb-059d49b85b9dd68b388a5a722f5cb151.scn remapped: res://.godot/imported/VEH_TRUCK_A01.glb-059d49b85b9dd68b388a5a722f5cb151.scn
+Loading resource: res://assets/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg remapped: res://assets/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg
+Loading resource: res://.godot/imported/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg-24213b95b47126054305e56503e74a45.ctex remapped: res://.godot/imported/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg-24213b95b47126054305e56503e74a45.ctex
+Completed load for: 'res://assets/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg' remapped 'res://assets/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg' at thread -1
+Completed load for: 'res://assets/VEH_TRUCK_A01.glb' remapped 'res://assets/VEH_TRUCK_A01.glb' at thread -1
+Loading resource: res://scripts/truck_rear_details.gd remapped: res://scripts/truck_rear_details.gd
+Completed load for: 'res://scripts/truck_rear_details.gd' remapped 'res://scripts/truck_rear_details.gd' at thread -1
+Completed load for: 'res://scenes/VEH_TRUCK_A01.tscn' remapped 'res://scenes/VEH_TRUCK_A01.tscn' at thread -1
+Loading resource: res://assets/textures/radio/asphalt.png remapped: res://assets/textures/radio/asphalt.png
+Loading resource: res://.godot/imported/asphalt.png-8e5c189b5051d7bd421615023a566e2f.ctex remapped: res://.godot/imported/asphalt.png-8e5c189b5051d7bd421615023a566e2f.ctex
+Completed load for: 'res://assets/textures/radio/asphalt.png' remapped 'res://assets/textures/radio/asphalt.png' at thread -1
+Loading resource: res://assets/textures/radio/paving.png remapped: res://assets/textures/radio/paving.png
+Loading resource: res://.godot/imported/paving.png-ce036083eefe9fb0b354e087622a7e4d.ctex remapped: res://.godot/imported/paving.png-ce036083eefe9fb0b354e087622a7e4d.ctex
+Completed load for: 'res://assets/textures/radio/paving.png' remapped 'res://assets/textures/radio/paving.png' at thread -1
+Loading resource: res://assets/textures/radio/concrete.png remapped: res://assets/textures/radio/concrete.png
+Loading resource: res://.godot/imported/concrete.png-9e24ec6c65a233df898c1be3fc1595c6.ctex remapped: res://.godot/imported/concrete.png-9e24ec6c65a233df898c1be3fc1595c6.ctex
+Completed load for: 'res://assets/textures/radio/concrete.png' remapped 'res://assets/textures/radio/concrete.png' at thread -1
+Loading resource: res://assets/art/graffiti_swift_A01.png remapped: res://assets/art/graffiti_swift_A01.png
+Loading resource: res://.godot/imported/graffiti_swift_A01.png-a284772f7b53f2ba5d58ee9f5c5f9400.ctex remapped: res://.godot/imported/graffiti_swift_A01.png-a284772f7b53f2ba5d58ee9f5c5f9400.ctex
+Completed load for: 'res://assets/art/graffiti_swift_A01.png' remapped 'res://assets/art/graffiti_swift_A01.png' at thread -1
+Loading resource: res://assets/textures/corner_plaster_128.png remapped: res://assets/textures/corner_plaster_128.png
+Loading resource: res://.godot/imported/corner_plaster_128.png-55dd3a8307e2b8eed0bc114e5d1cd928.ctex remapped: res://.godot/imported/corner_plaster_128.png-55dd3a8307e2b8eed0bc114e5d1cd928.ctex
+Completed load for: 'res://assets/textures/corner_plaster_128.png' remapped 'res://assets/textures/corner_plaster_128.png' at thread -1
+Loading resource: res://assets/textures/corner_tiles_128.png remapped: res://assets/textures/corner_tiles_128.png
+Loading resource: res://.godot/imported/corner_tiles_128.png-726cba5f3c517abc2082a5e9fc56d490.ctex remapped: res://.godot/imported/corner_tiles_128.png-726cba5f3c517abc2082a5e9fc56d490.ctex
+Completed load for: 'res://assets/textures/corner_tiles_128.png' remapped 'res://assets/textures/corner_tiles_128.png' at thread -1
+Loading resource: res://assets/textures/corner_shutter_128.png remapped: res://assets/textures/corner_shutter_128.png
+Loading resource: res://.godot/imported/corner_shutter_128.png-52fcd06472565678d1afe812d3272c57.ctex remapped: res://.godot/imported/corner_shutter_128.png-52fcd06472565678d1afe812d3272c57.ctex
+Completed load for: 'res://assets/textures/corner_shutter_128.png' remapped 'res://assets/textures/corner_shutter_128.png' at thread -1
+Loading resource: res://assets/textures/road_asphalt_128.png remapped: res://assets/textures/road_asphalt_128.png
+Loading resource: res://.godot/imported/road_asphalt_128.png-8419c7086fa44e2c77606ddfe0b242d9.ctex remapped: res://.godot/imported/road_asphalt_128.png-8419c7086fa44e2c77606ddfe0b242d9.ctex
+Completed load for: 'res://assets/textures/road_asphalt_128.png' remapped 'res://assets/textures/road_asphalt_128.png' at thread -1
+Loading resource: res://assets/textures/sidewalk_tiles_128.png remapped: res://assets/textures/sidewalk_tiles_128.png
+Loading resource: res://.godot/imported/sidewalk_tiles_128.png-7f17613fdca0d2a1eed196448973d81a.ctex remapped: res://.godot/imported/sidewalk_tiles_128.png-7f17613fdca0d2a1eed196448973d81a.ctex
+Completed load for: 'res://assets/textures/sidewalk_tiles_128.png' remapped 'res://assets/textures/sidewalk_tiles_128.png' at thread -1
+Loading resource: res://shaders/stylized_sky.gdshader remapped: res://shaders/stylized_sky.gdshader
+Completed load for: 'res://shaders/stylized_sky.gdshader' remapped 'res://shaders/stylized_sky.gdshader' at thread -1
+Completed load for: 'res://scripts/combat/fight_session.gd' remapped 'res://scripts/combat/fight_session.gd' at thread -1
+Completed load for: 'res://scenes/combat/street_fight.tscn' remapped 'res://scenes/combat/street_fight.tscn' at thread -1
+Completed load for: 'res://tools/verify_neon_signature.gd' remapped 'res://tools/verify_neon_signature.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb remapped: res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb
+Loading resource: res://.godot/imported/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb-35410e2635ff35f9391657e092f801e0.scn remapped: res://.godot/imported/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb-35410e2635ff35f9391657e092f801e0.scn
+Loading resource: res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e_stylized_3d_character_basecolor.jpg remapped: res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e_stylized_3d_character_basecolor.jpg
+Loading resource: res://.godot/imported/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e_stylized_3d_character_basecolor.jpg-af9c3e6ee6b511afe613b83e9e28e315.ctex remapped: res://.godot/imported/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e_stylized_3d_character_basecolor.jpg-af9c3e6ee6b511afe613b83e9e28e315.ctex
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e_stylized_3d_character_basecolor.jpg' remapped 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e_stylized_3d_character_basecolor.jpg' at thread -1
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb' at thread -1
+Loading resource: res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb remapped: res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb
+Loading resource: res://.godot/imported/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb-186101791c20d34db275c86bff87bb92.scn remapped: res://.godot/imported/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb-186101791c20d34db275c86bff87bb92.scn
+Loading resource: res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283_stylized_3d_character_basecolor.jpg remapped: res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283_stylized_3d_character_basecolor.jpg
+Loading resource: res://.godot/imported/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283_stylized_3d_character_basecolor.jpg-1bc741baa7010066aa98d9f61fef41f4.ctex remapped: res://.godot/imported/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283_stylized_3d_character_basecolor.jpg-1bc741baa7010066aa98d9f61fef41f4.ctex
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283_stylized_3d_character_basecolor.jpg' remapped 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283_stylized_3d_character_basecolor.jpg' at thread -1
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb' at thread -1
+Loading resource: res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb remapped: res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb
+Loading resource: res://.godot/imported/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb-9ba0258c80ca975752dc54879a1f121d.scn remapped: res://.godot/imported/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb-9ba0258c80ca975752dc54879a1f121d.scn
+Loading resource: res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed_stylized_3d_character_basecolor.jpg remapped: res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed_stylized_3d_character_basecolor.jpg
+Loading resource: res://.godot/imported/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed_stylized_3d_character_basecolor.jpg-e96d288106eb577317d9e5d2b81c21aa.ctex remapped: res://.godot/imported/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed_stylized_3d_character_basecolor.jpg-e96d288106eb577317d9e5d2b81c21aa.ctex
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed_stylized_3d_character_basecolor.jpg' remapped 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed_stylized_3d_character_basecolor.jpg' at thread -1
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb' at thread -1
+Loading resource: res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb remapped: res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb
+Loading resource: res://.godot/imported/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb-003a0374917f121523bed0d5bc6bd2f6.scn remapped: res://.godot/imported/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb-003a0374917f121523bed0d5bc6bd2f6.scn
+Loading resource: res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36_anime_action_figure_3d_basecolor.jpg remapped: res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36_anime_action_figure_3d_basecolor.jpg
+Loading resource: res://.godot/imported/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36_anime_action_figure_3d_basecolor.jpg-08b7a8dc1b8411e92c8f593e9f1fb4ae.ctex remapped: res://.godot/imported/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36_anime_action_figure_3d_basecolor.jpg-08b7a8dc1b8411e92c8f593e9f1fb4ae.ctex
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36_anime_action_figure_3d_basecolor.jpg' remapped 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36_anime_action_figure_3d_basecolor.jpg' at thread -1
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb' at thread -1
+Loading resource: res://shaders/screen_outline.gdshader remapped: res://shaders/screen_outline.gdshader
+Completed load for: 'res://shaders/screen_outline.gdshader' remapped 'res://shaders/screen_outline.gdshader' at thread -1
+Loading resource: res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb remapped: res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb
+Loading resource: res://.godot/imported/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb-35410e2635ff35f9391657e092f801e0.scn remapped: res://.godot/imported/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb-35410e2635ff35f9391657e092f801e0.scn
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb' at thread -1
+Loading resource: res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb remapped: res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb
+Loading resource: res://.godot/imported/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb-186101791c20d34db275c86bff87bb92.scn remapped: res://.godot/imported/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb-186101791c20d34db275c86bff87bb92.scn
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb' at thread -1
+Loading resource: res://audio/open/impactPunch_medium_000.ogg remapped: res://audio/open/impactPunch_medium_000.ogg
+Loading resource: res://.godot/imported/impactPunch_medium_000.ogg-656cbff178810cd574e1bb61a69c899c.oggvorbisstr remapped: res://.godot/imported/impactPunch_medium_000.ogg-656cbff178810cd574e1bb61a69c899c.oggvorbisstr
+Completed load for: 'res://audio/open/impactPunch_medium_000.ogg' remapped 'res://audio/open/impactPunch_medium_000.ogg' at thread -1
+Loading resource: res://audio/open/impactPunch_medium_001.ogg remapped: res://audio/open/impactPunch_medium_001.ogg
+Loading resource: res://.godot/imported/impactPunch_medium_001.ogg-aedf14171205fbdc069a91a7d9d9c1e7.oggvorbisstr remapped: res://.godot/imported/impactPunch_medium_001.ogg-aedf14171205fbdc069a91a7d9d9c1e7.oggvorbisstr
+Completed load for: 'res://audio/open/impactPunch_medium_001.ogg' remapped 'res://audio/open/impactPunch_medium_001.ogg' at thread -1
+Loading resource: res://audio/open/impactPunch_medium_002.ogg remapped: res://audio/open/impactPunch_medium_002.ogg
+Loading resource: res://.godot/imported/impactPunch_medium_002.ogg-ef99d271b35ea1e87b8414af832ebc80.oggvorbisstr remapped: res://.godot/imported/impactPunch_medium_002.ogg-ef99d271b35ea1e87b8414af832ebc80.oggvorbisstr
+Completed load for: 'res://audio/open/impactPunch_medium_002.ogg' remapped 'res://audio/open/impactPunch_medium_002.ogg' at thread -1
+Loading resource: res://audio/open/impactPunch_heavy_000.ogg remapped: res://audio/open/impactPunch_heavy_000.ogg
+Loading resource: res://.godot/imported/impactPunch_heavy_000.ogg-1921e5f7324029a89bd1379f76b7d645.oggvorbisstr remapped: res://.godot/imported/impactPunch_heavy_000.ogg-1921e5f7324029a89bd1379f76b7d645.oggvorbisstr
+Completed load for: 'res://audio/open/impactPunch_heavy_000.ogg' remapped 'res://audio/open/impactPunch_heavy_000.ogg' at thread -1
+Loading resource: res://audio/open/impactPunch_heavy_001.ogg remapped: res://audio/open/impactPunch_heavy_001.ogg
+Loading resource: res://.godot/imported/impactPunch_heavy_001.ogg-5d6d7f0d9d6bda1c5670f84540d647c3.oggvorbisstr remapped: res://.godot/imported/impactPunch_heavy_001.ogg-5d6d7f0d9d6bda1c5670f84540d647c3.oggvorbisstr
+Completed load for: 'res://audio/open/impactPunch_heavy_001.ogg' remapped 'res://audio/open/impactPunch_heavy_001.ogg' at thread -1
+Loading resource: res://audio/open/impactMetal_light_000.ogg remapped: res://audio/open/impactMetal_light_000.ogg
+Loading resource: res://.godot/imported/impactMetal_light_000.ogg-1fdeed698ca8c58ae09764ed762ffa99.oggvorbisstr remapped: res://.godot/imported/impactMetal_light_000.ogg-1fdeed698ca8c58ae09764ed762ffa99.oggvorbisstr
+Completed load for: 'res://audio/open/impactMetal_light_000.ogg' remapped 'res://audio/open/impactMetal_light_000.ogg' at thread -1
+Loading resource: res://audio/open/impactBell_heavy_003.ogg remapped: res://audio/open/impactBell_heavy_003.ogg
+Loading resource: res://.godot/imported/impactBell_heavy_003.ogg-bcabe78cf315cee3333e153358960b0a.oggvorbisstr remapped: res://.godot/imported/impactBell_heavy_003.ogg-bcabe78cf315cee3333e153358960b0a.oggvorbisstr
+Completed load for: 'res://audio/open/impactBell_heavy_003.ogg' remapped 'res://audio/open/impactBell_heavy_003.ogg' at thread -1
+Loading resource: res://audio/open/impactGlass_heavy_000.ogg remapped: res://audio/open/impactGlass_heavy_000.ogg
+Loading resource: res://.godot/imported/impactGlass_heavy_000.ogg-7bcbeeef978c6a02449a9bfc62b0177f.oggvorbisstr remapped: res://.godot/imported/impactGlass_heavy_000.ogg-7bcbeeef978c6a02449a9bfc62b0177f.oggvorbisstr
+Completed load for: 'res://audio/open/impactGlass_heavy_000.ogg' remapped 'res://audio/open/impactGlass_heavy_000.ogg' at thread -1
+Loading resource: res://audio/open/impactSoft_medium_001.ogg remapped: res://audio/open/impactSoft_medium_001.ogg
+Loading resource: res://.godot/imported/impactSoft_medium_001.ogg-6bded28b444e16a74c703ed79ac53e1e.oggvorbisstr remapped: res://.godot/imported/impactSoft_medium_001.ogg-6bded28b444e16a74c703ed79ac53e1e.oggvorbisstr
+Completed load for: 'res://audio/open/impactSoft_medium_001.ogg' remapped 'res://audio/open/impactSoft_medium_001.ogg' at thread -1
+Loading resource: res://audio/open/impactSoft_heavy_000.ogg remapped: res://audio/open/impactSoft_heavy_000.ogg
+Loading resource: res://.godot/imported/impactSoft_heavy_000.ogg-cd102d30a558e32ed8a7876b68241bb8.oggvorbisstr remapped: res://.godot/imported/impactSoft_heavy_000.ogg-cd102d30a558e32ed8a7876b68241bb8.oggvorbisstr
+Completed load for: 'res://audio/open/impactSoft_heavy_000.ogg' remapped 'res://audio/open/impactSoft_heavy_000.ogg' at thread -1
+Loading resource: res://audio/open/footstep_concrete_000.ogg remapped: res://audio/open/footstep_concrete_000.ogg
+Loading resource: res://.godot/imported/footstep_concrete_000.ogg-c6a116d00fb37d5f41fee222b3b3c712.oggvorbisstr remapped: res://.godot/imported/footstep_concrete_000.ogg-c6a116d00fb37d5f41fee222b3b3c712.oggvorbisstr
+Completed load for: 'res://audio/open/footstep_concrete_000.ogg' remapped 'res://audio/open/footstep_concrete_000.ogg' at thread -1
+Loading resource: res://audio/open/footstep_concrete_003.ogg remapped: res://audio/open/footstep_concrete_003.ogg
+Loading resource: res://.godot/imported/footstep_concrete_003.ogg-55fdd8cecdbc7a9df3d1a3d298f5c92e.oggvorbisstr remapped: res://.godot/imported/footstep_concrete_003.ogg-55fdd8cecdbc7a9df3d1a3d298f5c92e.oggvorbisstr
+Completed load for: 'res://audio/open/footstep_concrete_003.ogg' remapped 'res://audio/open/footstep_concrete_003.ogg' at thread -1
+Loading resource: res://audio/open/impactTin_medium_001.ogg remapped: res://audio/open/impactTin_medium_001.ogg
+Loading resource: res://.godot/imported/impactTin_medium_001.ogg-1c3cb7f3f4573f6ede9fa04020053996.oggvorbisstr remapped: res://.godot/imported/impactTin_medium_001.ogg-1c3cb7f3f4573f6ede9fa04020053996.oggvorbisstr
+Completed load for: 'res://audio/open/impactTin_medium_001.ogg' remapped 'res://audio/open/impactTin_medium_001.ogg' at thread -1
+Loading resource: res://audio/open/impactMetal_heavy_003.ogg remapped: res://audio/open/impactMetal_heavy_003.ogg
+Loading resource: res://.godot/imported/impactMetal_heavy_003.ogg-b61003713425988b2fc56fe2275314ae.oggvorbisstr remapped: res://.godot/imported/impactMetal_heavy_003.ogg-b61003713425988b2fc56fe2275314ae.oggvorbisstr
+Completed load for: 'res://audio/open/impactMetal_heavy_003.ogg' remapped 'res://audio/open/impactMetal_heavy_003.ogg' at thread -1
+Loading resource: res://audio/user-tracks/berlin.ogg remapped: res://audio/user-tracks/berlin.ogg
+Loading resource: res://.godot/imported/berlin.ogg-34b0a98ee2968a341290c6e8159cd3c4.oggvorbisstr remapped: res://.godot/imported/berlin.ogg-34b0a98ee2968a341290c6e8159cd3c4.oggvorbisstr
+Completed load for: 'res://audio/user-tracks/berlin.ogg' remapped 'res://audio/user-tracks/berlin.ogg' at thread -1
+Loading resource: res://audio/user-tracks/groove_district.ogg remapped: res://audio/user-tracks/groove_district.ogg
+Loading resource: res://.godot/imported/groove_district.ogg-6e17a34a705b2f155a90a40cdaff336c.oggvorbisstr remapped: res://.godot/imported/groove_district.ogg-6e17a34a705b2f155a90a40cdaff336c.oggvorbisstr
+Completed load for: 'res://audio/user-tracks/groove_district.ogg' remapped 'res://audio/user-tracks/groove_district.ogg' at thread -1
+Loading resource: res://assets/ui/ink/toggle-on.svg remapped: res://assets/ui/ink/toggle-on.svg
+Loading resource: res://.godot/imported/toggle-on.svg-931e16d07f6e562d84220a0a172c6d41.ctex remapped: res://.godot/imported/toggle-on.svg-931e16d07f6e562d84220a0a172c6d41.ctex
+Completed load for: 'res://assets/ui/ink/toggle-on.svg' remapped 'res://assets/ui/ink/toggle-on.svg' at thread -1
+Loading resource: res://assets/ui/ink/toggle-off.svg remapped: res://assets/ui/ink/toggle-off.svg
+Loading resource: res://.godot/imported/toggle-off.svg-36bdc9bddc63349339db7a827fc5c41c.ctex remapped: res://.godot/imported/toggle-off.svg-36bdc9bddc63349339db7a827fc5c41c.ctex
+Completed load for: 'res://assets/ui/ink/toggle-off.svg' remapped 'res://assets/ui/ink/toggle-off.svg' at thread -1
+Loading resource: res://assets/ui/ink/toggle-on-disabled.svg remapped: res://assets/ui/ink/toggle-on-disabled.svg
+Loading resource: res://.godot/imported/toggle-on-disabled.svg-57ecd60be844db529acc3c3881089197.ctex remapped: res://.godot/imported/toggle-on-disabled.svg-57ecd60be844db529acc3c3881089197.ctex
+Completed load for: 'res://assets/ui/ink/toggle-on-disabled.svg' remapped 'res://assets/ui/ink/toggle-on-disabled.svg' at thread -1
+Loading resource: res://assets/ui/ink/toggle-off-disabled.svg remapped: res://assets/ui/ink/toggle-off-disabled.svg
+Loading resource: res://.godot/imported/toggle-off-disabled.svg-ac90b438352bf19e8d0e430e291bf3e7.ctex remapped: res://.godot/imported/toggle-off-disabled.svg-ac90b438352bf19e8d0e430e291bf3e7.ctex
+Completed load for: 'res://assets/ui/ink/toggle-off-disabled.svg' remapped 'res://assets/ui/ink/toggle-off-disabled.svg' at thread -1
+Loading resource: res://assets/ui/ink/select-arrow.svg remapped: res://assets/ui/ink/select-arrow.svg
+Loading resource: res://.godot/imported/select-arrow.svg-b78fa7bf39a635c4fa9a53a25c1f5cf5.ctex remapped: res://.godot/imported/select-arrow.svg-b78fa7bf39a635c4fa9a53a25c1f5cf5.ctex
+Completed load for: 'res://assets/ui/ink/select-arrow.svg' remapped 'res://assets/ui/ink/select-arrow.svg' at thread -1
+Loading resource: res://assets/ui/ink/slider-thumb.svg remapped: res://assets/ui/ink/slider-thumb.svg
+Loading resource: res://.godot/imported/slider-thumb.svg-03fae96447952c654ee4808736f59ef1.ctex remapped: res://.godot/imported/slider-thumb.svg-03fae96447952c654ee4808736f59ef1.ctex
+Completed load for: 'res://assets/ui/ink/slider-thumb.svg' remapped 'res://assets/ui/ink/slider-thumb.svg' at thread -1
+Loading resource: res://assets/ui/ink/slider-thumb-focus.svg remapped: res://assets/ui/ink/slider-thumb-focus.svg
+Loading resource: res://.godot/imported/slider-thumb-focus.svg-03f37010243bb3bb73e585450a319c49.ctex remapped: res://.godot/imported/slider-thumb-focus.svg-03f37010243bb3bb73e585450a319c49.ctex
+Completed load for: 'res://assets/ui/ink/slider-thumb-focus.svg' remapped 'res://assets/ui/ink/slider-thumb-focus.svg' at thread -1
+Loading resource: res://assets/ui/ink/slider-thumb-disabled.svg remapped: res://assets/ui/ink/slider-thumb-disabled.svg
+Loading resource: res://.godot/imported/slider-thumb-disabled.svg-66e4fdd6079dcdc9c844e24de919d8e0.ctex remapped: res://.godot/imported/slider-thumb-disabled.svg-66e4fdd6079dcdc9c844e24de919d8e0.ctex
+Completed load for: 'res://assets/ui/ink/slider-thumb-disabled.svg' remapped 'res://assets/ui/ink/slider-thumb-disabled.svg' at thread -1
+Loading resource: res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb remapped: res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb
+Loading resource: res://.godot/imported/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb-35410e2635ff35f9391657e092f801e0.scn remapped: res://.godot/imported/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb-35410e2635ff35f9391657e092f801e0.scn
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb' at thread -1
+Loading resource: res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb remapped: res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb
+Loading resource: res://.godot/imported/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb-186101791c20d34db275c86bff87bb92.scn remapped: res://.godot/imported/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb-186101791c20d34db275c86bff87bb92.scn
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb' at thread -1
+Loading resource: res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb remapped: res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb
+Loading resource: res://.godot/imported/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb-9ba0258c80ca975752dc54879a1f121d.scn remapped: res://.godot/imported/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb-9ba0258c80ca975752dc54879a1f121d.scn
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb' at thread -1
+Loading resource: res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb remapped: res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb
+Loading resource: res://.godot/imported/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb-003a0374917f121523bed0d5bc6bd2f6.scn remapped: res://.godot/imported/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb-003a0374917f121523bed0d5bc6bd2f6.scn
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb' at thread -1
+SIGNATURE Actor 0 real paid overdrive hits true <null>
+SIGNATURE Actor 0 has five-stage signature choreography true { "gather": 0, "open": 13, "aim": 38, "drive": 68, "settle": 87 }
+SIGNATURE Actor 0 longer charge and slow time true 1.13333333333333
+SIGNATURE Actor 0 stronger roll and close lens true { "roll": 14.0000009587679, "fov": 36.0 }
+SIGNATURE Actor 0 cinematic keeps both body bounds in view true <null>
+Loading resource: res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb remapped: res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb
+Loading resource: res://.godot/imported/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb-186101791c20d34db275c86bff87bb92.scn remapped: res://.godot/imported/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb-186101791c20d34db275c86bff87bb92.scn
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb' at thread -1
+SIGNATURE Actor 1 real paid overdrive hits true <null>
+SIGNATURE Actor 1 has five-stage signature choreography true { "gather": 0, "open": 13, "aim": 38, "drive": 78, "settle": 97 }
+SIGNATURE Actor 1 longer charge and slow time true 1.3
+SIGNATURE Actor 1 stronger roll and close lens true { "roll": 13.9999992512206, "fov": 36.0 }
+SIGNATURE Actor 1 cinematic keeps both body bounds in view true <null>
+Loading resource: res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb remapped: res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb
+Loading resource: res://.godot/imported/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb-9ba0258c80ca975752dc54879a1f121d.scn remapped: res://.godot/imported/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb-9ba0258c80ca975752dc54879a1f121d.scn
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb' at thread -1
+SIGNATURE Actor 2 real paid overdrive hits true <null>
+SIGNATURE Actor 2 has five-stage signature choreography true { "gather": 0, "open": 13, "aim": 38, "drive": 67, "settle": 86 }
+SIGNATURE Actor 2 longer charge and slow time true 1.11666666666667
+SIGNATURE Actor 2 stronger roll and close lens true { "roll": 13.9999975436733, "fov": 36.0 }
+SIGNATURE Actor 2 cinematic keeps both body bounds in view true <null>
+Loading resource: res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb remapped: res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb
+Loading resource: res://.godot/imported/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb-003a0374917f121523bed0d5bc6bd2f6.scn remapped: res://.godot/imported/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb-003a0374917f121523bed0d5bc6bd2f6.scn
+Completed load for: 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb' remapped 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb' at thread -1
+SIGNATURE Actor 3 real paid overdrive hits true <null>
+SIGNATURE Actor 3 has five-stage signature choreography true { "gather": 0, "open": 13, "aim": 38, "drive": 71, "settle": 90 }
+SIGNATURE Actor 3 longer charge and slow time true 1.18333333333333
+SIGNATURE Actor 3 stronger roll and close lens true { "roll": 13.9999992512206, "fov": 36.0 }
+SIGNATURE Actor 3 cinematic keeps both body bounds in view true <null>
+SIGNATURE Corner/air/separation camera grid keeps both bodies true <null>
+SIGNATURE Armor hit does not cancel a still-active real charge true <null>
+SIGNATURE Actual attack interruption cancels cinematic true <null>
+SIGNATURE True parry transfers cinematic ownership to defender true <null>
+SIGNATURE Non-signature heavy effects retain six-degree limit true <null>
+SIGNATURE Pause freezes long choreography true <null>
+SIGNATURE F2 cancels long camera and signature true <null>
+SIGNATURE Title resets camera true <null>
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Accessibility: window 0 adapter destroyed.

@@ -58,6 +58,7 @@ func setup(color: Color, selection := 0) -> void:
     if not list.is_empty():
         skeleton = list[0]
         motions.setup(skeleton,model)
+        if character_index==3:_add_signal_baton()
 
 static func _release_retired_materials() -> void:
     retired_materials.clear()
@@ -118,10 +119,10 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
             var move: Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
             if f.frame>=move.startup-1 and f.frame<move.startup+move.active:
                 var limbs:Array=["LeftHand","RightHand"] if f.move in ["meteor","overdrive"] else ["RightFoot" if f.move in ["air_kick","air_counter"] else ("LeftHand" if f.move in ["jab","air_jab"] else "RightHand")]
-                if character_index==1:
+                if character_index==0:
                     limbs=["LeftFoot" if f.move in ["jab","special"] else "RightFoot"]
                 for limb in limbs:
-                    var index:=skeleton.find_bone("mixamorig_"+limb)
+                    var index:=motions.bone_index(limb)
                     if index>=0:
                         skeleton.set_bone_pose_scale(index,Vector3.ONE*2.1)
                         oversized_bones.append(index)
@@ -155,3 +156,17 @@ func set_neon_silhouette(enabled:bool) -> void:
     for mat in materials:
         mat.set_shader_parameter("neon_silhouette",1.0 if enabled else 0.0)
         if mat.next_pass:mat.next_pass.set_shader_parameter("silhouette_preview",enabled)
+
+func _add_signal_baton() -> void:
+    var hand:int=motions.bone_index("RightHand")
+    if hand<0:return
+    var mount:=BoneAttachment3D.new();mount.name="SignalBaton";mount.bone_name=skeleton.get_bone_name(hand);skeleton.add_child(mount)
+    for spec in [[Vector3.ZERO,Vector3(.035,.25,.035),Color("10151a")],[Vector3(0,.125,0),Vector3(.05,.04,.05),Color("b8ff00")]]:
+        var box:=BoxMesh.new();box.size=spec[1]
+        var mat:=ShaderMaterial.new();mat.shader=preload("res://shaders/neon/neon_actor.gdshader") if neon_enabled else Toon
+        mat.set_shader_parameter("tint",spec[2])
+        if neon_enabled:mat.set_shader_parameter("neon_accent",Color("b8ff00"))
+        var border:=ShaderMaterial.new();border.shader=Outline;mat.next_pass=border
+        box.material=mat
+        var node:=MeshInstance3D.new();node.name="SignalBatonMesh";node.mesh=box;node.position=spec[0];mount.add_child(node)
+        materials.append(mat)

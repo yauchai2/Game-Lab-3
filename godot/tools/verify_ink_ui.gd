@@ -26,9 +26,9 @@ func run() -> void:
         var model:Node=s.hud.roster_preview.models[4]
         var flat:=true;var outline_off:=true
         for material in model.materials:
-            flat=flat and material.get_shader_parameter("silhouette_preview")==true
-            outline_off=outline_off and material.next_pass.get_shader_parameter("silhouette_preview")==true
-        check("Real3D silhouette preview "+str(choice),flat and outline_off and model.skeleton!=null)
+            flat=flat and material.get_shader_parameter("silhouette_preview")==false
+            outline_off=outline_off and material.next_pass.get_shader_parameter("silhouette_preview")==false
+        check("Real3D textured LAST SERVICE preview "+str(choice),flat and outline_off and model.skeleton!=null)
         await shot("roster"+str(choice))
     s.hud.open_page("settings");await shot("settings")
     var option:OptionButton

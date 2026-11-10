@@ -52,16 +52,23 @@ func build(kind: String, move: String, phase: float, tint: Color, face: float, r
         shapes.clear()
         var pulse:float=[.72,1.0,1.12,1.2,1.26,1.30][frame]
         var w:float=maxf(2.0,profile.y*(1.0-frame*.14))
-        var color:Color=Color(["ff6a00","4acfe0","e05aaf","d7f400"][clampi(character,0,3)])
+        var color:Color=tint
         radius*=pulse
         match character:
-            1:
+            0:
                 for angle in [-.45,.45]:
                     _crescent(shapes,radius,w,angle,Vector2(1,.86),color)
                     if frame<3:_crescent(shapes,radius-4,w*.28,angle,Vector2(1,.86),PAPER)
+            1:
+                for side in [-1,1]:
+                    var y:float=side*radius*.18
+                    _poly(shapes,PackedVector2Array([Vector2(-radius*.85,y-w*.4),Vector2(radius*.6,y-w*.4),Vector2(radius*.8,y),Vector2(radius*.6,y+w*.4),Vector2(-radius*.85,y+w*.4)]),color)
+                if frame<3:_diamond(shapes,Vector2.ZERO,Vector2(radius*.65,5),0,PAPER)
             2:
-                for i in 3:
-                    _ring_piece(shapes,radius+i*13,maxf(2,w*.4),-PI*.9,PI*.15,Vector2(1,.6),color if i%2==0 else PAPER)
+                _diamond(shapes,Vector2.ZERO,Vector2(radius,4),-.08,PAPER)
+                for side in [-1,1]:
+                    var at:=Vector2(side*radius*.65,0)
+                    _poly(shapes,PackedVector2Array([at+Vector2(-7,-w),at+Vector2(6,-w),at+Vector2(6,w),at+Vector2(-7,w)]),color)
             3:
                 var points:=PackedVector2Array([Vector2(-radius,.18*radius),Vector2(-radius*.3,-radius*.14),Vector2(-radius*.4,radius*.03),Vector2(radius*.6,-radius*.35),Vector2(radius*.3,-radius*.03),Vector2(radius,0),Vector2(radius*.15,radius*.27),Vector2(radius*.3,radius*.07),Vector2(-radius*.5,radius*.34)])
                 _poly(shapes,points,color)

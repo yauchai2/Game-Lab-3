@@ -71,3 +71,5 @@
 - 2026-11-10 使用者已要求「開始做」：本Lab分支M1已接runtime，現況以docs/NEON_FACETS_RUNTIME.zh-TW.md覆蓋前輪planning-only。正常完整人物／短剪影重音、唯一全屏owner、共用時鐘、Lab偏好及6°roll有驗證。M2–M6未完成，穩定分支與Web不動。
 
 - 2026-11-10 最新大招要求覆蓋6°／短演出：見docs/NEON_SIGNATURE.zh-TW.md，4人長pose、最高14°roll／36°FOV與兩人body bounds檢查。RPG_PROGRESSION_PLAN只提案，不能當已加入進度。藝術總索引references/style-library；6原片與長篇完整時長壓縮版歸檔，inline原圖缺件明示。穩定來源與公開Web仍不更新。
+
+- 2026-11-10 最新：新4 GLB及相關戰鬥／成長已替換，見docs/LAST_SERVICE_RUNTIME.zh-TW.md。ZIP99c7/RIVETeba8/HUSH966f/LOOP0a7a，原檔保留；52骨重定向，新四套資源。12技能、Street Run三站、角色XP／兩槽／免費重置／淡色FX實裝；標準FIGHT不套成長，Demo不給XP。此條覆蓋前輪RPG僅提案／舊roster的現況，完整提案未做部分仍待辦。使用者要求收尾，不再擴功能；來源推實驗分支、Web不變。

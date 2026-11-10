@@ -2,13 +2,15 @@
 
 目前風格：**Neon Facets**，低解析切面人物、冷灰城市、少量螢光地標、桃紅天空；平時保留服裝與場景細節，重要交鋒短暫剪影。封面無臉、無項鍊。最新大招演出另見 [開發說明](../../docs/NEON_SIGNATURE.zh-TW.md)。
 
+最新可玩版本：[LAST SERVICE四角色／技能／Street Run](../../docs/LAST_SERVICE_RUNTIME.zh-TW.md)，[角色與裝備原始設定](../last-service-2026-11-10/README.md)，[來源GLB檢查](../characters/last-service/inspection.json)。
+
 ## 風格文件
 
 - [完整Neon Facets計劃](../../docs/NEON_FACETS_PLAN.zh-TW.md)／[M1現況](../../docs/NEON_FACETS_RUNTIME.zh-TW.md)
 - [最初JSR／BRC風格原文](JSR-BRC-style-reference.original.md)：原文數字屬參考，不代表已核實原作內部技術。
 - [統一像素與活街景計劃](../../docs/UNIFIED_PIXEL_ART_PLAN.zh-TW.md)／[LLB戰鬥研究](../../docs/COMBAT_VISUAL_STUDY.md)
 - [JSR UI方向與生成素材](../ui-jsr-2026-11-09/README.md)／[無臉封面](../../docs/FACELESS_COVER.zh-TW.md)／[Ink全套UI](../../docs/INK_UI.zh-TW.md)
-- [RPG／技能點／解鎖提案（未實作）](../../docs/RPG_PROGRESSION_PLAN.zh-TW.md)
+- [RPG完整提案（目前已實作Street Run／技能點切片）](../../docs/RPG_PROGRESSION_PLAN.zh-TW.md)
 
 ## 六段原始風格影片
 
