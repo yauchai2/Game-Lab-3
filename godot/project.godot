@@ -2,7 +2,7 @@ config_version=5
 
 [application]
 
-config/name="Afterhours — Street Fight Prototype"
+config/name="Afterhours — Neon Facets Lab"
 boot_splash/image="res://assets/ui/ink/logo-source.png"
 boot_splash/bg_color=Color(0,0,0,1)
 run/main_scene="res://scenes/combat/street_fight.tscn"

@@ -172,3 +172,7 @@
 ## 2026-11-10 Neon Facets分支規劃
 
 另開codex/neon-street-lab／885f1c1，原版保持。參考同時有彩色建築／服裝細節及黑白／剪影段落，採常態Neon Facets＋事件式剪影的雙層方向。數值屬起始提案，六片抽樣不當成作者shader／動畫幀率證據。以M1小切片與A/B驗收擴至M6，見 [計劃](NEON_FACETS_PLAN.zh-TW.md)。本輪無runtime變更。
+
+## Neon Facets M1實作決策（2026-11-10）
+
+使用者「開始做」授權執行既定分支計劃。材質在合批前套用；局部圖形沿既有renderer、全屏只由Lab director仲裁，持續音樂與simulation不複製。最高6°鏡頭／0.10s剪影／0.8s恢復為M1起始值；獨立user://neon_lab/options.cfg。全套拓撲／pose／專屬圖形留後續，現況與驗證見NEON_FACETS_RUNTIME.zh-TW.md。

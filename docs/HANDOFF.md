@@ -1,5 +1,12 @@
 # 接續工作交接
 
+## 2026-11-10：Neon Facets M1已實作
+
+`codex/neon-street-lab`已從規劃進入可玩切片：場景／既有細節合批的Lab材質、五階桃紅天空、四人切面shader、格擋／蓄力／重擊／BREAK／KO單一全屏director、短剪影與回氣、24個局部效果上限、最高6°roll及獨立Lab偏好。原GLB／判定／音檔保留；Web與穩定分支不變。
+
+詳見 [NEON_FACETS_RUNTIME.zh-TW.md](NEON_FACETS_RUNTIME.zh-TW.md)及[連續錄像／驗證](evidence/neon-facets/README.md)。21 Lab＋53 native UI／材質＋134規則＋6音訊檢查通過；30s virtual-wall自由AI19／32命中、強stage7.44%。不是目標Mac性能證明，未同步使用者電腦。下一包M2全道具語義材質／葉端／雲動畫，然後M3新輪廓與pose；不得把M2–M6當已完成。
+
+
 ## Neon Facets實驗分支：規劃階段（2026-11-10）
 
 本worktree屬 `codex/neon-street-lab`，由885f1c1另開，主線及公開Web不變。使用者要求整個遊戲轉新附TR3B參考風格並詳細規劃；六片80.200s以2fps抽樣、10張contact sheets已檢視。具體方案在 [NEON_FACETS_PLAN.zh-TW.md](NEON_FACETS_PLAN.zh-TW.md)：常態切面材質／色塊人物，格擋／蓄力／重擊才短剪影；含地圖、4人、FX、鏡頭、三時鐘、音訊、背景director及M1–M6驗收。

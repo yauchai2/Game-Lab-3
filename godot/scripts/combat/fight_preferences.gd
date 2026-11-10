@@ -27,4 +27,5 @@ func write_options(path: String, values: Dictionary) -> Error:
         if key=="language" and value not in ["zh","en"]:value="zh"
         if key in ["music_level","effects_level"]:value=clampf(value,0,1)
         file.set_value("options",key,value)
+    DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(path.get_base_dir()))
     return file.save(path)

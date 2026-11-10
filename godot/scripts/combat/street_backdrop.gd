@@ -1,7 +1,9 @@
 extends Node3D
 ## Street, actors, shadows and camera share one perspective world.
 const Toon = preload("res://shaders/sample_toon.gdshader")
+var neon_enabled := false
 var static_batches_enabled := true
+var active_toon:Shader=Toon
 var static_batch_stats: Dictionary={}
 var street: Node3D
 var plane: Node3D
@@ -42,13 +44,15 @@ func _ready() -> void:
     var corner := preload("res://scripts/corner_streetscape.gd").new()
     street.add_child(corner)
     strip_scene_text(street)
+    if neon_enabled:active_toon=preload("res://shaders/neon/neon_environment.gdshader")
     two_sided_shader = Shader.new()
-    two_sided_shader.code = Toon.code.replace("specular_disabled;","specular_disabled, cull_disabled;")
+    two_sided_shader.code = active_toon.code.replace("specular_disabled;","specular_disabled, cull_disabled;")
     aircraft_shader = Shader.new()
-    aircraft_shader.code = Toon.code.replace("specular_disabled;","specular_disabled, shadows_disabled;")
+    aircraft_shader.code = active_toon.code.replace("specular_disabled;","specular_disabled, shadows_disabled;")
     aircraft_two_sided_shader = Shader.new()
-    aircraft_two_sided_shader.code = Toon.code.replace("specular_disabled;","specular_disabled, shadows_disabled, cull_disabled;")
+    aircraft_two_sided_shader.code = active_toon.code.replace("specular_disabled;","specular_disabled, shadows_disabled, cull_disabled;")
     _style_surfaces(street)
+    if neon_enabled:preload("res://scripts/combat/neon/neon_style_adapter.gd").style_extras(street)
     _extend_crossing()
     var world: WorldEnvironment = street.get_node("WorldEnvironment")
     world.environment = world.environment.duplicate(true)
@@ -58,6 +62,13 @@ func _ready() -> void:
     var sky_material := PanoramaSkyMaterial.new()
     sky_material.panorama = preload("res://assets/SKY_BLUE_A01.png")
     sky.sky_material = sky_material
+    if neon_enabled:
+        var neon_sky:=ShaderMaterial.new()
+        neon_sky.shader=preload("res://shaders/neon/neon_sky.gdshader")
+        var profile:Resource=preload("res://scripts/combat/neon/neon_style_profile.tres")
+        neon_sky.set_shader_parameter("top_color",profile.sky_top)
+        neon_sky.set_shader_parameter("horizon_color",profile.sky_horizon)
+        sky.sky_material=neon_sky
     environment.sky = sky
     environment.sky_rotation = Vector3(0,deg_to_rad(90),0)
     environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
@@ -80,8 +91,12 @@ func _ready() -> void:
     flight_direction = -plane.basis.z.normalized()
     living=preload("res://scripts/combat/living_street.gd").new()
     add_child(living)
+    if neon_enabled:
+        preload("res://scripts/combat/neon/neon_style_adapter.gd").style_living(living)
+        environment.ambient_light_color=Color("c6b7d4")
+        sun.light_color=Color("e8ecff")
     if static_batches_enabled:
-        static_batch_stats=preload("res://scripts/combat/static_street_batches.gd").bake(street,[Toon,two_sided_shader])
+        static_batch_stats=preload("res://scripts/combat/static_street_batches.gd").bake(street,[active_toon,two_sided_shader])
 
 static func strip_scene_text(root: Node) -> void:
     for label in root.find_children("*","Label3D",true,false):
@@ -99,7 +114,13 @@ func _style_surfaces(root: Node) -> void:
             if not source is BaseMaterial3D:
                 # Install replacements before releasing an old instance override.
                 # Every surface remains backed by a live resource during a style change.
-                if source!=null:mesh.set_surface_override_material(surface,source)
+                if neon_enabled and source is ShaderMaterial and source.shader==Toon:
+                    var derived:ShaderMaterial=source.duplicate()
+                    derived.shader=active_toon
+                    preload("res://scripts/combat/neon/neon_style_adapter.gd").configure_surface(derived,mesh)
+                    mesh.set_surface_override_material(surface,derived)
+                    retained_materials.append(derived)
+                elif source!=null:mesh.set_surface_override_material(surface,source)
                 else:
                     var fallback:=ShaderMaterial.new();fallback.shader=Toon
                     mesh.set_surface_override_material(surface,fallback);retained_materials.append(fallback)
@@ -109,7 +130,7 @@ func _style_surfaces(root: Node) -> void:
             if is_aircraft:
                 material.shader = aircraft_two_sided_shader if source.cull_mode==BaseMaterial3D.CULL_DISABLED else aircraft_shader
             else:
-                material.shader = two_sided_shader if source.cull_mode==BaseMaterial3D.CULL_DISABLED else Toon
+                material.shader = two_sided_shader if source.cull_mode==BaseMaterial3D.CULL_DISABLED else active_toon
             material.set_shader_parameter("base_color",source.albedo_color)
             material.set_shader_parameter("bands",2)
             material.set_shader_parameter("shadow_tint",Vector3(0.38,0.55,0.76))
@@ -120,6 +141,7 @@ func _style_surfaces(root: Node) -> void:
                 material.set_shader_parameter("use_texture",true)
                 material.set_shader_parameter("base_texture",source.albedo_texture)
                 material.set_shader_parameter("world_texture",source.albedo_texture)
+            if neon_enabled:preload("res://scripts/combat/neon/neon_style_adapter.gd").configure_surface(material,mesh)
             mesh.set_surface_override_material(surface,material)
             retained_materials.append(material)
         if mesh.material_override!=null:mesh.material_override=null
@@ -163,7 +185,7 @@ func _extend_crossing() -> void:
     paint.name = "CrossingExtension"
     paint.multimesh = batch
     var material := StandardMaterial3D.new()
-    material.albedo_color = Color("e9d7a8")
+    material.albedo_color = Color("dedfe8") if neon_enabled else Color("e9d7a8")
     material.roughness = 1.0
     paint.material_override = material
     paint.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF

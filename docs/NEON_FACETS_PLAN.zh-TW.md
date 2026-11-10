@@ -1,5 +1,7 @@
 # Neon Facets：全遊戲風格分支詳細計劃
 
+最新進度：[M1已接入runtime](NEON_FACETS_RUNTIME.zh-TW.md)，以下保留原始規劃與M2–M6待辦；「本輪只規劃」指上一個提交。
+
 2026-11-10。使用者要求另開分支，將地圖、角色、特效、整體視覺及節奏轉成新附影片／角色圖的低多邊形風格。
 
 **本輪交付是獨立規劃分支＋實際素材研究＋實作規格；尚未改動runtime，也不是新風格可玩版。** 分支 `codex/neon-street-lab`，固定基線 `885f1c10573ce3e7831f313b130b34a05a62112e`，獨立worktree。`codex/street-combat`及公開Web保持原狀。

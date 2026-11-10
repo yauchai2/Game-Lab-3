@@ -1,0 +1,11 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+AUDIO Menu music reaches Master true { "frames": 20480, "peak": 0.12710851430893, "rms": 0.03770425608857, "clipped": 0 }
+AUDIO Music mute preserves effects true { "silence": { "frames": 8192, "peak": 0.00003987719538, "rms": 0.00001458739626, "clipped": 0 }, "sfx": { "frames": 8192, "peak": 0.47201338410378, "rms": 0.11296221582247, "clipped": 0 } }
+AUDIO Silent settings detected true <null>
+AUDIO Restore recovers zero levels and muted Master true { "frames": 16384, "peak": 0.14549206197262, "rms": 0.04329589727153, "clipped": 0 }
+AUDIO Pause keeps music transport advancing true { "before": 1.3933333158493, "after": 1.76533329486847 }
+AUDIO Fight mix stays nonzero without clipping true { "frames": 9216, "peak": 0.5698606967926, "rms": 0.13025973362718, "clipped": 0 }

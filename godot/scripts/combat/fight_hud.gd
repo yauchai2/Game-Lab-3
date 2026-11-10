@@ -557,13 +557,17 @@ func _draw() -> void:
         elif menu_page=="roster":art.roster(self,session)
         else:art.secondary(self,"SETTINGS" if menu_page=="settings" else "HOW TO PLAY")
         return
-    session.theatre.draw(self,session)
-    session.rhythm.draw(self,session)
-    if not (session.theatre.active() and session.theatre.mode in ["ko","skill","overdrive"] and not session.reduced_effects):session.spectacle.draw(self,session)
+    if session.neon_enabled:
+        session.neon.draw(self,session)
+    else:
+        session.theatre.draw(self,session)
+        session.rhythm.draw(self,session)
+        if not (session.theatre.active() and session.theatre.mode in ["ko","skill","overdrive"] and not session.reduced_effects):session.spectacle.draw(self,session)
     for effect in session.effects:
         if effect.age>=0:vfx_renderer.draw_effect(self,session,effect)
-    if session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
+    if not session.neon_enabled and session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
     art.hud(self,session,health_lag)
+    if session.neon_enabled:draw_string(font,Vector2(16,160),"NEON FACETS LAB",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color("bdff00"))
     if skill_time>0 and skill_key!="" and session.screen=="play":
         _plate(Vector2(460,154),Vector2(360,34),INK)
         _center(Vector2(640,179),tr_text(skill_key),21,Tokens.LIME)

@@ -1,6 +1,6 @@
 # Afterhours / Game-Lab-3
 
-**本分支為Neon Facets規劃版，尚未更改可玩畫面。** [詳細計劃](docs/NEON_FACETS_PLAN.zh-TW.md)／[6片研究與接觸圖](references/neon-lab-2026-11-10/README.md)。從885f1c1獨立建立，穩定分支及公開Web不變。
+**本分支已接入Neon Facets M1可玩風格切片。** [功能／試玩方式](docs/NEON_FACETS_RUNTIME.zh-TW.md)／[30秒自由AI影片及畫面](docs/evidence/neon-facets/README.md)／[完整計劃](docs/NEON_FACETS_PLAN.zh-TW.md)。M2–M6待續；穩定分支及公開Web不變。
 
 最新：[新封面／Logo與全套Ink UI](docs/INK_UI.zh-TW.md)／[各頁實機](docs/evidence/ink-ui/README.md)／[拆件素材](godot/assets/ui/ink/README.md)。
 

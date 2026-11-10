@@ -7,6 +7,7 @@ var model: Node3D
 var skeleton: Skeleton3D
 var materials: Array[ShaderMaterial] = []
 var team := Color("66e5db")
+var neon_enabled:=false
 var character_index := 0
 var model_scale := 2.1
 var oversized_bones: Array[int]=[]
@@ -40,11 +41,14 @@ func setup(color: Color, selection := 0) -> void:
         for surface in mesh.mesh.get_surface_count():
             var original: Material = mesh.get_active_material(surface)
             var mat := ShaderMaterial.new()
-            mat.shader = Toon
+            mat.shader = preload("res://shaders/neon/neon_actor.gdshader") if neon_enabled else Toon
             mat.set_shader_parameter("tint", Color.WHITE.lerp(team, 0.50))
             if original is BaseMaterial3D and original.albedo_texture:
                 mat.set_shader_parameter("use_texture", true)
                 mat.set_shader_parameter("base_texture", original.albedo_texture)
+            if neon_enabled:
+                mat.set_shader_parameter("tint",Color.WHITE)
+                mat.set_shader_parameter("neon_accent",preload("res://scripts/combat/neon/neon_style_profile.tres").accent(character_index))
             var outline := ShaderMaterial.new()
             outline.shader = Outline
             mat.next_pass = outline
@@ -144,3 +148,9 @@ func capture_echo() -> Array:
         var b: Vector3=skeleton.global_transform*skeleton.get_bone_global_pose(indices[1]).origin
         segments.append({"a":a,"b":b,"width":pair[2]*model_scale/2.1})
     return segments
+
+func set_neon_silhouette(enabled:bool) -> void:
+    if not neon_enabled:return
+    for mat in materials:
+        mat.set_shader_parameter("neon_silhouette",1.0 if enabled else 0.0)
+        if mat.next_pass:mat.next_pass.set_shader_parameter("silhouette_preview",enabled)

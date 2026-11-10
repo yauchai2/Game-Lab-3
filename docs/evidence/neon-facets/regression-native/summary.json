@@ -1,0 +1,123 @@
+{
+  "created_utc": "20261110T034610Z",
+  "source_commit": "3f37ff8bdd452e0bfc6dfb18a6823647464b7c63",
+  "tracked_runtime_changes": [
+    "godot/assets/CHAR_PLAYER_A01.glb.import",
+    "godot/assets/PROP_BIN_A01.glb.import",
+    "godot/assets/PROP_CRATES_A01.glb.import",
+    "godot/assets/PROP_HYDRANT_A01.glb.import",
+    "godot/assets/PROP_MAILBOX_A01.glb.import",
+    "godot/assets/PROP_SHOP_STOOL_A01.glb.import",
+    "godot/assets/VEH_CAR_A01.glb.import",
+    "godot/assets/VEH_TRUCK_A01.glb.import",
+    "godot/assets/VEH_VAN_A01.glb.import",
+    "godot/assets/characters/CHAR_FIGHTER_1.glb.import",
+    "godot/assets/characters/CHAR_FIGHTER_3.glb.import",
+    "godot/assets/characters/CHAR_FIGHTER_4.glb.import",
+    "godot/assets/fonts/RadioPixelBody.png.import",
+    "godot/assets/fonts/RadioPixelBodyReadable.png.import",
+    "godot/assets/fonts/RadioPixelDisplay.png.import",
+    "godot/assets/fonts/RadioPixelDisplayReadable.png.import",
+    "godot/project.godot",
+    "godot/scripts/combat/combat_rhythm.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_preferences.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fighter_visual.gd",
+    "godot/scripts/combat/street_backdrop.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 53,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_ink_ui",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "7d135125598ed920ebf54e6c63de17435269130b7207b6e203989c1a386dfe56",
+      "seconds": 21.723,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_ink_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 10,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_material_lifecycle",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "10c88c08a17733663c2fe1f9f9671d60b32b7be615aee5a478613e2015dcdc60",
+      "seconds": 12.106,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_material_lifecycle.gd"
+      ],
+      "report_written": true,
+      "passed": 6,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_reference_ui",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "246547dd38beca1db123202fecff6d3277f2b0202e59f5ca8645f8d6a40d3a1f",
+      "seconds": 30.394,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_reference_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 37,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

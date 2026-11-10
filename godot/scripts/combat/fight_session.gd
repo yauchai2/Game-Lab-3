@@ -4,6 +4,9 @@ const Simulation = preload("res://scripts/combat/fight_simulation.gd")
 const FighterVisual = preload("res://scripts/combat/fighter_visual.gd")
 const FightHUD = preload("res://scripts/combat/fight_hud.gd")
 const FightAudio = preload("res://scripts/combat/fight_audio.gd")
+@export var neon_enabled:=true
+var neon=preload("res://scripts/combat/neon/neon_effect_director.gd").new()
+var neon_profile:Resource=preload("res://scripts/combat/neon/neon_style_profile.tres")
 var spectacle := preload("res://scripts/combat/fight_spectacle.gd").new()
 var grade: ColorRect
 var grade_material: ShaderMaterial
@@ -55,9 +58,14 @@ const COLORS := [Color("65e9de"), Color("ff7659")]
 
 func _ready() -> void:
     Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+    if neon_enabled:
+        rhythm.profiles=neon_profile.rhythm_profiles
+        if preferences_path=="user://afterhours.cfg":preferences_path="user://neon_lab/options.cfg"
+        DisplayServer.window_set_title("Afterhours — NEON FACETS LAB")
     _build_stage()
     for i in 2:
         var fighter := FighterVisual.new()
+        fighter.neon_enabled=neon_enabled
         add_child(fighter)
         fighter.setup(COLORS[i],character_choices[i])
         fighters.append(fighter)
@@ -100,6 +108,7 @@ func _build_stage() -> void:
     backdrop = preload("res://scripts/combat/street_backdrop.gd").new()
     backdrop.name = "StreetBackdrop"
     backdrop.static_batches_enabled=static_batches_enabled
+    backdrop.neon_enabled=neon_enabled
     add_child(backdrop)
     stage_environment = backdrop.environment
     red_environment=Environment.new()
@@ -245,12 +254,13 @@ func _prepare_demo_state() -> void:
 
 func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}) -> void:
     if reduced_effects and kind in ["speed","trail"]: return
-    if effects.size()>=64: effects.pop_front()
+    if effects.size()>=(neon_profile.effect_limit if neon_enabled else 64): effects.pop_front()
     var effect := {"rush":sim.arcade_enabled,"kind":kind,"at":at,"age":0.0,"life":life,"strength":0.5,"face":1,"color":COLORS[0]}
     effect.merge(options,true)
     var actor:int=effect.get("attacker",effect.get("owner",0 if effect.color==COLORS[0] else 1))
     effect["character"]=character_choices[clampi(actor,0,1)]
     if effect.get("move","") in ["special","overdrive"]:effect.color=Color(Simulation.Profiles.profile(effect.character).color)
+    if neon_enabled:effect.color=neon_profile.accent(effect.character)
     effects.append(effect)
 
 func _handle_event(event: Dictionary) -> void:
@@ -456,8 +466,12 @@ func _handle_event(event: Dictionary) -> void:
         hud.notice = "OVERDRIVE NEEDS 75" if event.get("cost",50)==75 else "SPECIAL NEEDS 50 ENERGY"
         hud.notice_time = 1.5
 
+    if neon_enabled and not reduced_effects:neon.trigger(event,sim.fighters)
+
 func _clear_impacts() -> void:
     theatre.clear()
+    neon.clear()
+    for fighter in fighters: fighter.set_neon_silhouette(false)
     rhythm.clear()
     if is_instance_valid(backdrop):backdrop.visible=true
     if is_instance_valid(camera):camera.environment=null
@@ -467,7 +481,9 @@ func _clear_impacts() -> void:
     recoil_age=1.0
     spectacle.clear()
     if is_instance_valid(grade):grade.visible=false
-    if is_instance_valid(camera):camera.fov=48.0
+    if is_instance_valid(camera):
+        camera.fov=48.0
+        if neon_enabled:camera.rotation.z=0.0
 
 func _release_impacts(with_audio := true) -> void:
     if impact_queue.is_empty():return
@@ -497,6 +513,7 @@ func _process(delta: float) -> void:
         if result_clock>=FINISH_SECONDS and not finish_menu_open:
             finish_menu_open=true
             hud.rebuild_menu()
+    if neon_enabled:neon.advance(delta,screen in ["pause","help"],reduced_effects)
     spectacle.advance(delta,screen in ["pause","help"])
     theatre.advance(delta,screen in ["pause","help"])
     audio.context = screen
@@ -528,6 +545,15 @@ func _process(delta: float) -> void:
     hud.queue_redraw()
 
 func _apply_red_stage() -> void:
+    if neon_enabled:
+        var poster:bool=neon.stage() and not reduced_effects and screen in ["play","result"]
+        backdrop.visible=not poster
+        camera.environment=red_environment if poster else null
+        if poster:red_environment.background_color=Color("15101f") if neon.mode=="CHARGE" else Color("650c4a")
+        for shadow in silhouettes:shadow.visible=not poster
+        for fighter in fighters: fighter.set_neon_silhouette(poster and neon.silhouette())
+        grade.visible=false
+        return
     var red:bool=theatre.active() and not reduced_effects and screen in ["play","result"]
     if red:
         red_environment.background_color=Color("692049") if theatre.mode=="overdrive" else (Color("c92645") if theatre.mode=="skill" else (Color("ff431e") if theatre.mode=="break" else Color("f42d20")))
@@ -538,6 +564,9 @@ func _apply_red_stage() -> void:
 
 func _grade_world() -> void:
     if not is_instance_valid(grade):return
+    if neon_enabled:
+        grade.visible=false
+        return
     pixel_pass.visible=false # Whole viewport now renders at the common pixel resolution.
     var strength:=0.0
     var grade_owner:=spectacle.owner
@@ -634,7 +663,7 @@ func _present(delta: float) -> void:
     camera.fov=48.0 if reduced_effects else lerpf(camera.fov,desired_fov,1.0-exp(-delta*12.0))
     camera.position = base_camera + Vector3(sin(elapsed*91)*shake+punch.x,cos(elapsed*77)*shake*0.4+punch.y,-cinematic)
     camera.look_at(camera_focus)
-    if rhythm.active() and not reduced_effects and screen=="play":
+    if rhythm.active() and not reduced_effects and screen=="play" and not neon_enabled:
         var stage:String=rhythm.phase()
         var direction:float=1.0 if rhythm.owner==0 else -1.0
         var center:=Vector3(midpoint,(sim.fighters[0].y+sim.fighters[1].y)*.5+.95,FIGHT_Z)
@@ -651,7 +680,7 @@ func _present(delta: float) -> void:
         camera.look_at(center)
         camera.fov=(38.0 if rhythm.style=="overdrive" else 44.0) if stage=="slow" else 50.0
         camera.rotation.z=direction*deg_to_rad((11.0 if stage!="release" else -7.0)*slam)
-    if theatre.active() and theatre.mode=="ko" and not reduced_effects and screen=="result":
+    if theatre.active() and theatre.mode=="ko" and not reduced_effects and screen=="result" and not neon_enabled:
         var progress:float=clampf(theatre.age/theatre.duration,0,1)
         var center:=Vector3(midpoint,(sim.fighters[0].y+sim.fighters[1].y)*.5+.95,FIGHT_Z)
         var orbit:float=-.25+progress
@@ -660,6 +689,11 @@ func _present(delta: float) -> void:
         camera.look_at(center)
         camera.fov=42.0
         camera.rotation.z=deg_to_rad(-7.0*sin(progress*PI))
+
+    if neon_enabled and screen in ["play","result"] and not reduced_effects:
+        # Reuse the normal two-fighter framing; a bounded roll is the sole accent camera owner.
+        camera.rotation.z=neon.camera_roll()
+        camera.fov=maxf(44.0,camera.fov)
 
 func project(point: Vector2) -> Vector2:
     return camera.unproject_position(Vector3(point.x,point.y,FIGHT_Z)) * Vector2(1280,720) / get_viewport().get_visible_rect().size
