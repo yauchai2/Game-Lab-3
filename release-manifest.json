@@ -1,28 +1,28 @@
 {
-  "engine": "Godot 4.6.3",
+  "engine": "Godot 4.7.2",
   "upstream_repository": "https://github.com/yauchai2/Game-Lab-3",
-  "upstream_commit": "e2c7e10468329badbeb71aebf3a237e13cf0ae1e",
+  "upstream_commit": "891489bbb7bdf92159ca8c5d66849cbae38ca76a",
   "source_dirty": false,
   "threads": false,
   "renderer": "gl_compatibility",
-  "wasm_uncompressed_bytes": 37700666,
-  "wasm_uncompressed_sha256": "26b61ce95247012ab3dca3ff51e96d1cdbff44ee91a8c20a83e150afca83f1b6",
-  "wasm_gzip_bytes": 9382282,
+  "wasm_uncompressed_bytes": 39514754,
+  "wasm_uncompressed_sha256": "fc74679e3b97f76878947fcd4fbe1268cbfa6188182a2e33bbc3f5dc9bfa57d0",
+  "wasm_gzip_bytes": 10054758,
   "files": [
     {
-      "file": "cover.webp",
-      "bytes": 62476,
-      "sha256": "8f51aad865459e75fd96275d810016c160dafa73f5b146bd0f8ee1511a462120"
+      "file": "cover.png",
+      "bytes": 17108,
+      "sha256": "44804d3dd13c66f7d08a927f1db8cf23ac6242c7b06bac14816733621ed96f5a"
     },
     {
       "file": "credits.html",
-      "bytes": 2109,
-      "sha256": "3a97a359de4faa09236351c2fcb99a9bee1f5693ceee6508881deb71cce97546"
+      "bytes": 3132,
+      "sha256": "ccf4edb708251aa9a89e2473ef8bb4d8b1bf0d829413bbc5c826b2ddd484e374"
     },
     {
       "file": "game.apple-touch-icon.png",
-      "bytes": 11952,
-      "sha256": "9b374ecbc8558f480421e646f38aaa8a69d5b1d65ff7b48d0735da214c46773a"
+      "bytes": 11944,
+      "sha256": "01d4f63e525941e06ce74f5187dad030d20a8d52a07ce365ae4e94af97a3b1f5"
     },
     {
       "file": "game.audio.position.worklet.js",
@@ -36,38 +36,48 @@
     },
     {
       "file": "game.icon.png",
-      "bytes": 5702,
-      "sha256": "08808dd5397e9a502cb3624944151f87a9705b5b66b5c365c5ca4c6ab51525f5"
+      "bytes": 5700,
+      "sha256": "ad3c35ad0facf487c618204bd98db543034fc95224eadc7f08c7a9ff38d5b3b5"
     },
     {
       "file": "game.js",
-      "bytes": 315759,
-      "sha256": "e3f56ee40e6f84371053db06692cfac15e2c8659547b11c6b2dfa1996dabd981"
+      "bytes": 279815,
+      "sha256": "33c94cb3175f3333b82e2a3be5e8e86f77986f0aa2042b1631f6367a4e5bb6ba"
     },
     {
       "file": "game.pck",
-      "bytes": 8767312,
-      "sha256": "99cf8ec4d5d375cd8b786873e09a666212233f12c424662a3fd617fdede9c7fb"
+      "bytes": 44670296,
+      "sha256": "3dc969c9104dba0fe24550a9386cdcb7fd947795800fcb3a01961b079dba493d"
     },
     {
       "file": "game.png",
-      "bytes": 21443,
-      "sha256": "3cb4495c0b98dfbe4b663cbf2b6836473572339beb66d902367893162a70be0e"
+      "bytes": 629295,
+      "sha256": "5300f40c341c7cfc8ebbd4d7f9f97a6d74cbf568f7e1474f1234c6c2f20baee5"
     },
     {
       "file": "game.wasm.gz",
-      "bytes": 9382282,
-      "sha256": "9352825a316f4449b81d326706e78be95ed5a81c0e797f35879ef8b39bc505bd"
+      "bytes": 10054758,
+      "sha256": "8032306d52d52497129dce5b767baacb660d504bdde28668b1c1337b717eacd8"
     },
     {
       "file": "index.html",
-      "bytes": 10380,
-      "sha256": "eeadd26c3f3bf17833452fc58b03af9116f630dbb215d3b1ef6528d09ec870e3"
+      "bytes": 10455,
+      "sha256": "139fb83bd223d9851bf09670c2f7e51b275176e98920e109c3ac01ff48cc2fe6"
     },
     {
       "file": "licenses/Godot-COPYRIGHT.txt",
-      "bytes": 99790,
-      "sha256": "b3330849267d56ddd3d62a513817506606c2195034411fe05859f0140bff9d8a"
+      "bytes": 100108,
+      "sha256": "cb1980c88089573bcacd7221d777c689bb8bbd778799f24c27fca0fe5f774d6d"
+    },
+    {
+      "file": "licenses/LICENSE-BarlowCondensed.txt",
+      "bytes": 4376,
+      "sha256": "10b0e6bb43166a50fbe7cde2895bd7f703738a5da843acb5c97c95dc9ea26817"
+    },
+    {
+      "file": "licenses/LICENSE-DejaVu.txt",
+      "bytes": 3857,
+      "sha256": "e81d9dced49fea2a7d576cbea283873de58563c5d488f954deb282843c3ea79c"
     },
     {
       "file": "licenses/LICENSE-Juhani.txt",
@@ -80,10 +90,15 @@
       "sha256": "94283f9120e58e6a1cae5762053df42ee280d37fe34be22589c92b7dbc7b2d39"
     },
     {
+      "file": "licenses/LICENSE-Noto-CJK.txt",
+      "bytes": 14712,
+      "sha256": "849f4ea9c214fa4ac3593b770c699f387534b11ce671264c1b10d85bdcb5997b"
+    },
+    {
       "file": "licenses/LICENSE-Quaternius.txt",
       "bytes": 7048,
       "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
     }
   ],
-  "total_bytes": 18697565
+  "total_bytes": 55823916
 }
