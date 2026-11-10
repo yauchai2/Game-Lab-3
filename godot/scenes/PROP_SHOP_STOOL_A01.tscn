@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://assets/PROP_SHOP_STOOL_A01.glb" id="1_model"]
+[sub_resource type="BoxShape3D" id="Body"]
+size = Vector3(0.45955425675507566, 0.45, 0.48821667713724126)
+[node name="PROP_SHOP_STOOL_A01" type="StaticBody3D"]
+metadata/asset_id = "PROP_SHOP_STOOL_A01"
+metadata/scale_target_axis = 1
+metadata/scale_target_value = 0.45
+[node name="Visual" parent="." instance=ExtResource("1_model")]
+scale = Vector3(0.489171974522293, 0.489171974522293, 0.489171974522293)
+[node name="Collision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.225, 0)
+shape = SubResource("Body")

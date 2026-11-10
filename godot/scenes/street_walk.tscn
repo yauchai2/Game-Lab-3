@@ -1,0 +1,37 @@
+[gd_scene load_steps=11 format=3]
+[ext_resource type="PackedScene" path="res://scenes/street_whitebox.tscn" id="1_street"]
+[ext_resource type="PackedScene" path="res://scenes/actors/test_player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://scripts/walk_session.gd" id="3_session"]
+[ext_resource type="Script" path="res://scripts/style_sample.gd" id="4_style"]
+[ext_resource type="Script" path="res://scripts/aircraft_flyby.gd" id="5_flyby"]
+[ext_resource type="PackedScene" path="res://scenes/VEH_CAR_A01.tscn" id="6_car"]
+[ext_resource type="PackedScene" path="res://scenes/VEH_TRUCK_A01.tscn" id="7_truck"]
+[ext_resource type="Script" path="res://scripts/street_dressing.gd" id="8_dressing"]
+[ext_resource type="Script" path="res://scripts/screen_outline.gd" id="9_outline"]
+[ext_resource type="Script" path="res://scripts/environment_textures.gd" id="10_textures"]
+[node name="StreetWalk" type="Node3D"]
+script = ExtResource("3_session")
+[node name="Street" parent="." instance=ExtResource("1_street")]
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector3(0, 0.08, 5.5)
+
+[node name="EnvironmentTextures" type="Node" parent="."]
+script = ExtResource("10_textures")
+
+[node name="StyleSample" type="Node3D" parent="."]
+script = ExtResource("4_style")
+
+[node name="AircraftFlyby" type="Node3D" parent="."]
+script = ExtResource("5_flyby")
+
+[node name="ParkedCar" parent="." instance=ExtResource("6_car")]
+position = Vector3(-2.9, 0, -17)
+
+[node name="ParkedTruck" parent="." instance=ExtResource("7_truck")]
+position = Vector3(2.6, 0, -36)
+
+[node name="StreetDressing" type="Node3D" parent="."]
+script = ExtResource("8_dressing")
+
+[node name="OutlinePass" type="MeshInstance3D" parent="."]
+script = ExtResource("9_outline")

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://assets/PROP_BIN_A01.glb" id="1_model"]
+[sub_resource type="BoxShape3D" id="Body"]
+size = Vector3(0.65, 0.92, 0.75)
+[node name="PROP_BIN_A01" type="StaticBody3D"]
+metadata/asset_id = "PROP_BIN_A01"
+metadata/target_height_m = 1.0
+[node name="Visual" parent="." instance=ExtResource("1_model")]
+scale = Vector3(1.00195695, 1.00195695, 1.00195695)
+[node name="BodyCollision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.46, 0)
+shape = SubResource("Body")

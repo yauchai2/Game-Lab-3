@@ -1,0 +1,13 @@
+{
+  "source_sha256": "4cf37ec42939e8f1f4e413ebc0828d4b70a4b240b20b688f8337fe65fee2f457",
+  "copied_sha256": "4cf37ec42939e8f1f4e413ebc0828d4b70a4b240b20b688f8337fe65fee2f457",
+  "matches": true,
+  "triangles": 1524,
+  "texture": [
+    1024,
+    1024
+  ],
+  "engine": "Godot 4.6.3",
+  "generated_model_version": "not reported",
+  "notes": "Source GLB copied without modification; wrapper and instance are separate."
+}

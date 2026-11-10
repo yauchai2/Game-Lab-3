@@ -1,0 +1,14 @@
+{
+  "display_driver": "X11",
+  "hardware_gpu_verified": false,
+  "human_playtest": false,
+  "plane_frozen": true,
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "same_camera_sky_comparison": true,
+  "shots": [
+    "01_procedural.png",
+    "02_image_sky.png",
+    "03_truck_front.png",
+    "04_truck_back.png"
+  ]
+}

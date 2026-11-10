@@ -1,0 +1,8 @@
+{
+  "images": "1280x720, same scene and camera; world sampler linear vs nearest",
+  "changed_pixels": 48717,
+  "changed_fraction": 0.052861328125,
+  "mean_absolute_channel_difference": 0.07144458912037037,
+  "max_absolute_channel_difference": 147,
+  "interpretation": "Change is deliberately limited to toon materials using world-projected environment textures. Pixel difference alone is not a style or quality score."
+}

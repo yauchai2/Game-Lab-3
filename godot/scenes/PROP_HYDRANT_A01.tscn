@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="PackedScene" path="res://assets/PROP_HYDRANT_A01.glb" id="1_model"]
+[sub_resource type="CylinderShape3D" id="Base"]
+radius = 0.30
+height = 0.12
+[sub_resource type="CylinderShape3D" id="Body"]
+radius = 0.18
+height = 0.78
+[sub_resource type="BoxShape3D" id="Outlets"]
+size = Vector3(0.68, 0.22, 0.60)
+[node name="PROP_HYDRANT_A01" type="StaticBody3D"]
+metadata/asset_id = "PROP_HYDRANT_A01"
+metadata/target_height_m = 0.9
+[node name="Visual" parent="." instance=ExtResource("1_model")]
+scale = Vector3(0.9004397, 0.9004397, 0.9004397)
+[node name="BaseCollision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.06, 0)
+shape = SubResource("Base")
+[node name="BodyCollision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.51, 0)
+shape = SubResource("Body")
+[node name="OutletCollision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.45, 0)
+shape = SubResource("Outlets")

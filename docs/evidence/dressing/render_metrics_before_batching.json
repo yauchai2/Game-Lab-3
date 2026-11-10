@@ -1,0 +1,39 @@
+{
+  "fps_benchmark": false,
+  "hardware_gpu_verified": false,
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "results": [
+    {
+      "draw_calls_max": 1871,
+      "draw_calls_min": 1871,
+      "mode": "with_dressing",
+      "objects_max": 1871,
+      "objects_min": 1871,
+      "primitives_max": 83895,
+      "primitives_min": 83895
+    },
+    {
+      "draw_calls_max": 1836,
+      "draw_calls_min": 1836,
+      "mode": "without_dressing",
+      "objects_max": 1836,
+      "objects_min": 1836,
+      "primitives_max": 76681,
+      "primitives_min": 76681
+    },
+    {
+      "draw_calls_max": 1872,
+      "draw_calls_min": 1872,
+      "mode": "with_outline",
+      "objects_max": 1872,
+      "objects_min": 1872,
+      "primitives_max": 83897,
+      "primitives_min": 83897
+    }
+  ],
+  "same_camera": true,
+  "screen_size": [
+    800,
+    450
+  ]
+}

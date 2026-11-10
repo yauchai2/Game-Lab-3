@@ -1,0 +1,92 @@
+{
+  "checks": [
+    {
+      "check": "initial_two_band_mode",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "sample_has_reversible_materials",
+      "details": {
+        "count": 94
+      },
+      "passed": true
+    },
+    {
+      "check": "sample_details_exist",
+      "details": {
+        "count": 167
+      },
+      "passed": true
+    },
+    {
+      "check": "sample_uses_new_sign",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "source_prop_textures_preserved",
+      "details": {
+        "textured_materials": 4
+      },
+      "passed": true
+    },
+    {
+      "check": "double_sided_source_materials_preserved",
+      "details": {
+        "materials": 4
+      },
+      "passed": true
+    },
+    {
+      "check": "toggle_three_bands",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "toggle_restores_original_material",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "comparison_preserves_geometry",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "toggle_two_bands",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "sample_lighting_does_not_mutate_s1",
+      "details": {
+
+      },
+      "passed": true
+    },
+    {
+      "check": "walk_controls_remain_active",
+      "details": {
+
+      },
+      "passed": true
+    }
+  ],
+  "engine": "4.6.3-stable (official)",
+  "gpu_render_test": false,
+  "human_review": false,
+  "passed": true
+}

@@ -1,0 +1,15 @@
+{
+  "capture_contains_audio": false,
+  "captured_fps": 10,
+  "event_active_at_finish": false,
+  "frame_count": 121,
+  "hardware_gpu_verified": false,
+  "human_playtest": false,
+  "plane_frozen": false,
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "screen_size": [
+    640,
+    360
+  ],
+  "simulation_fixed_fps": 30
+}

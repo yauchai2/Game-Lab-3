@@ -1,0 +1,11 @@
+{
+  "hardware_gpu_verified": false,
+  "human_playtest": false,
+  "plane_frozen": true,
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "same_camera": true,
+  "screen_size": [
+    1280,
+    720
+  ]
+}

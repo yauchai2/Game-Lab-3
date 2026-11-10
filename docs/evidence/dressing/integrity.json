@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "assets": [
+    {
+      "id": "PROP_BIN_A01",
+      "matches": true
+    },
+    {
+      "id": "PROP_CRATES_A01",
+      "matches": true
+    },
+    {
+      "id": "PROP_HYDRANT_A01",
+      "matches": true
+    },
+    {
+      "id": "PROP_MAILBOX_A01",
+      "matches": true
+    },
+    {
+      "id": "PROP_SHOP_STOOL_A01",
+      "matches": true
+    },
+    {
+      "id": "VEH_VAN_A01",
+      "matches": true
+    },
+    {
+      "id": "VEH_CAR_A01",
+      "matches": true
+    },
+    {
+      "id": "VEH_TRUCK_A01",
+      "matches": true
+    }
+  ],
+  "source": "assets-manifest.json"
+}

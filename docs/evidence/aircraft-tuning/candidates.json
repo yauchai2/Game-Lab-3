@@ -1,0 +1,52 @@
+{
+  "candidates": [
+    {
+      "file": "option_0.png",
+      "position": [
+        -3.0,
+        45.0,
+        -60.0
+      ]
+    },
+    {
+      "file": "option_1.png",
+      "position": [
+        -3.0,
+        41.0,
+        -52.0
+      ]
+    },
+    {
+      "file": "option_2.png",
+      "position": [
+        -3.0,
+        37.0,
+        -44.0
+      ]
+    },
+    {
+      "file": "option_3.png",
+      "position": [
+        -3.0,
+        34.0,
+        -38.0
+      ]
+    },
+    {
+      "file": "option_4.png",
+      "position": [
+        -3.0,
+        32.0,
+        -34.0
+      ]
+    }
+  ],
+  "hardware_gpu_verified": false,
+  "human_playtest": false,
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "screen_size": [
+    1280,
+    720
+  ],
+  "static_candidates": true
+}

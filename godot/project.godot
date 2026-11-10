@@ -1,0 +1,10 @@
+config_version=5
+[application]
+config/name="Game Lab 3 — Flight Street Walk Prototype"
+run/main_scene="res://scenes/street_walk.tscn"
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+[rendering]
+renderer/rendering_method="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.14, 0.17, 0.21, 1)
