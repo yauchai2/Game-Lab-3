@@ -528,6 +528,13 @@ func _handle_event(event: Dictionary) -> void:
             audio.play_sound("charge",1.0,-4.0)
             if event.move=="overdrive":
                 _spawn_vfx("cannon_charge",Vector2(fighter.x,fighter.y+fighters[event.target].model_scale*.6),.5,{"face":fighter.face,"color":COLORS[event.target],"owner":event.target})
+    elif kind=="double_jump":
+        var fighter:Dictionary=sim.fighters[event.target]
+        _spawn_vfx("surge_arc",Vector2(fighter.x,fighter.y+.15),.22,{"face":fighter.face,"color":COLORS[event.target]})
+        audio.play_sound("chase",1.25,-8.0)
+        if event.target==0:
+            hud.notice="DOUBLE JUMP"
+            hud.notice_time=.55
     elif kind in ["land","dash","jump"]:
         var fighter: Dictionary = sim.fighters[event.target]
         _spawn_vfx("dust",Vector2(fighter.x,0.08),0.22,{"color":Color("f1edcf")})

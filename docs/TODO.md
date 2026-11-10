@@ -1,5 +1,13 @@
 # 待辦與完成狀態
 
+## 2026-11-10：二段跳
+
+- [x] 正式街鬥每次離地一次二段跳，四角色共用，保留空中資源限制。
+- [x] 落地預輸入、局部姿態／視聽回饋及操作說明；新增規則與原生輸入驗證。
+- [x] 既有四個失敗斷言於 f53c378 對照重現，保留完整證據。
+- [ ] 使用者 Fetch／Pull 後在本機 Godot 驗收二段跳節奏、鏡頭及聲效；之後獨立更新舊重砲／縮放／音訊測試契約。
+
+
 ## 2026-11-10：正式FIGHT／Street Run玩法改善
 
 依使用者「真係優化遊戲」更正，直接修改正式AI、LOOP連段和共用接觸時鐘；見 [LIVE_COMBAT_IMPROVEMENTS.zh-TW.md](LIVE_COMBAT_IMPROVEMENTS.zh-TW.md)。CPU會近身投持續防禦、用輕拳打揮空恢復、低guard後撤、按資源選角色招式／付費大招；以20／14／9 tick承諾中立意圖，不讀玩家pending。HUSH低能量改近身；LOOP jab/cross推離5／6→2.8／3.4，近身J能接第三段挑空。native hitstop不再被慢鏡重複拉長，保留原tick數及大招起手profile，SURGE60 parry到狀態重推進16→12個wall步進。

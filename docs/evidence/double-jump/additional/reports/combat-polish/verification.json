@@ -1,0 +1,147 @@
+{
+  "checks": [
+    {
+      "name": "training has unlimited time",
+      "passed": true
+    },
+    {
+      "name": "training starts with full energy",
+      "passed": true
+    },
+    {
+      "name": "lethal training hit does not finish a round",
+      "passed": true
+    },
+    {
+      "name": "training remembers last combo damage",
+      "passed": true
+    },
+    {
+      "name": "settled training partner heals automatically",
+      "passed": true
+    },
+    {
+      "name": "healing preserves last combo statistics",
+      "passed": true
+    },
+    {
+      "name": "training restores special meter",
+      "passed": true
+    },
+    {
+      "name": "training does not heal in the middle of hitstun",
+      "passed": true
+    },
+    {
+      "name": "manual training reset restores positions and state",
+      "passed": true
+    },
+    {
+      "name": "guarding partner permits real guard-break practice",
+      "passed": true
+    },
+    {
+      "name": "guarding partner never auto-parries",
+      "passed": true
+    },
+    {
+      "name": "sparring partner attacks with AI while practice stays unlimited",
+      "passed": true
+    },
+    {
+      "name": "difficulty changes deliberate attack frequency",
+      "passed": true
+    },
+    {
+      "name": "all AI levels avoid perfect parries",
+      "passed": true
+    },
+    {
+      "name": "jump input buffered during hitstop survives until simulation resumes",
+      "passed": true
+    },
+    {
+      "name": "confirmed launcher can jump-cancel from a hitstop buffer",
+      "passed": true
+    },
+    {
+      "name": "launcher jump cancel produces a reachable air follow-up",
+      "passed": true
+    },
+    {
+      "name": "whiffed launcher cannot jump-cancel its recovery",
+      "passed": true
+    },
+    {
+      "name": "blocked launcher cannot claim a confirmed air chase",
+      "passed": true
+    },
+    {
+      "name": "third airborne hit sends the target down",
+      "passed": true
+    },
+    {
+      "name": "airborne juggle cap prevents an endless relaunch",
+      "passed": true
+    },
+    {
+      "name": "landing clears the air-hit budget",
+      "passed": true
+    },
+    {
+      "name": "missing preferences use safe defaults",
+      "passed": true
+    },
+    {
+      "name": "preferences persist validated values and clamp ranges",
+      "passed": true
+    },
+    {
+      "name": "malformed preference types fall back safely",
+      "passed": true
+    },
+    {
+      "name": "saved startup mute prevents the music player starting",
+      "passed": false
+    },
+    {
+      "name": "practice menu enters an unlimited ready-to-train session",
+      "passed": true
+    },
+    {
+      "name": "expanded menu uses a bounded scroll container",
+      "passed": true
+    },
+    {
+      "name": "training input history stays bounded",
+      "passed": true
+    },
+    {
+      "name": "F5 resets practice and clears input history",
+      "passed": true
+    },
+    {
+      "name": "F7 cycles practice opponent and restores spacing",
+      "passed": true
+    },
+    {
+      "name": "main menu returns without reloading the world",
+      "passed": true
+    },
+    {
+      "name": "T starts training directly from the main menu",
+      "passed": true
+    },
+    {
+      "name": "leaving training restores normal round rules",
+      "passed": true
+    },
+    {
+      "name": "new session restores difficulty, music and accessibility choices",
+      "passed": true
+    }
+  ],
+  "failed": 1,
+  "method": "Godot 4.6.3 headless deterministic gameplay, preferences and scene integration",
+  "passed": 34
+}

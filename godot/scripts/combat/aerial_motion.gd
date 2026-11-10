@@ -1,7 +1,8 @@
 extends RefCounted
-## Pure 60 Hz experimental air movement. No Node, Tween or input polling.
+## Shared pure 60 Hz air movement. No Node, Tween or input polling.
 const STEP := 1.0/60.0
 const JUMP_SPEED := 12.5
+const AIR_JUMP_SPEED := 10.5
 const SQUAT := 3
 const STALL_BUDGET := 12
 const CHASE_TICKS := 10
@@ -12,7 +13,21 @@ static func fresh() -> Dictionary:
     return {"phase":"ground","squat":0,"land":0,"hard_land":false,"air_ticks":0,
         "stall_left":STALL_BUDGET,"stall":0,"saved_vy":0.0,"fast_used":false,"fast":false,
         "drop_buffer":0,"chase_window":0,"chase_buffer":0,"chase_used":false,"chase_tick":0,"points":[],
-        "parry_used":false,"parry_window":0,"combo_left":0,"bounce_granted":false,"bounce_used":false}
+        "parry_used":false,"parry_window":0,"combo_left":0,"bounce_granted":false,"bounce_used":false,
+        "double_used":false,"double_pose":0}
+
+func request_air_jump(f: Dictionary) -> bool:
+    # A second impulse, never a stun/attack cancel or a refill of air resources.
+    if f.state!="idle" or f.y<=.01 or f.air.double_used:return false
+    cancel_stall(f)
+    f.air.double_used=true
+    f.air.double_pose=8
+    f.air.fast=false
+    f.air.drop_buffer=0
+    f.air.phase="rise"
+    f.vy=AIR_JUMP_SPEED
+    f.jump_buffer=0
+    return true
 
 func request_jump(f: Dictionary) -> void:
     f.state="jump_squat"
@@ -58,6 +73,7 @@ func start_chase(f: Dictionary, target: Dictionary, edge: float) -> String:
 
 func integrate(f: Dictionary, edge: float) -> String:
     var air: Dictionary=f.air
+    air.double_pose=maxi(0,air.double_pose-1)
     air.land=maxi(0,air.land-1)
     air.drop_buffer=maxi(0,air.drop_buffer-1)
     air.chase_window=maxi(0,air.chase_window-1)
@@ -144,6 +160,8 @@ func _vertical(f: Dictionary, _edge: float, signal_kind: String) -> String:
         air.bounce_used=false
         air.parry_used=false
         air.parry_window=0
+        air.double_used=false
+        air.double_pose=0
         f.vy=0.0
         f.juggle=0
         if f.state=="idle":f.state="landing"

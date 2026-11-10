@@ -416,6 +416,8 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
                     f.vy = 10.3
                     f.jump_buffer = 0
                     events.append({"kind": "jump", "target": i})
+            elif is_aerial() and f.jump_buffer>0 and air_motion.request_air_jump(f):
+                events.append({"kind":"double_jump","target":i})
             if f.counter_window>0 and f.buffer_ttl>0 and f.buffer in ["light","heavy","special"]:f.guarding=false
             if f.state=="idle" and f.buffer_ttl > 0 and (not f.guarding or f.buffer=="grab"):
                 _start_attack(i, f.buffer)
@@ -456,7 +458,9 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
                 events.append({"kind": "land", "target": i})
     f.guard_frames = f.guard_frames+1 if f.guarding and was_guarding else (1 if f.guarding else 0)
     f.guard = minf(100.0, f.guard + (0.06 if f.guarding else 0.30))
-    f.jump_buffer = maxi(0,f.jump_buffer-1)
+    # Landing recovery is bounded (4/8 ticks). Preserve an early Space press
+    # through it, just as native hitstop already preserves the input buffer.
+    if f.state!="landing":f.jump_buffer = maxi(0,f.jump_buffer-1)
     if f.buffer_ttl > 0:
         f.buffer_ttl -= 1
     if f.buffer_ttl == 0:

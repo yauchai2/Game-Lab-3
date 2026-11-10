@@ -36,6 +36,9 @@ func apply(motions: RefCounted, f: Dictionary) -> String:
     elif phase=="squat" or (phase=="land" and f.air.land>0):
         name="Jump_Load" if phase=="squat" else "Land_Superhero_Slide"
         pose={"LeftUpLeg":["LeftLeg",front*.8-up,.7],"RightUpLeg":["RightLeg",front*.5-up,.7],"LeftLeg":["LeftFoot",-front-up,.65],"RightLeg":["RightFoot",-front-up,.6],"RightArm":["RightForeArm",-up+front*.4,.85],"LeftArm":["LeftForeArm",-front+up*.3,.7]}
+    elif phase=="rise" and f.air.double_pose>0:
+        name="Air_Double_Tuck"
+        pose={"LeftUpLeg":["LeftLeg",front+up*.55,.85],"RightUpLeg":["RightLeg",front+up*.7,.9],"LeftArm":["LeftForeArm",-front+up*.4,.8],"RightArm":["RightForeArm",front+up*.6,.8]}
     elif phase=="rise":
         name="Air_Rise_Corkscrew"
         pose={"RightUpLeg":["RightLeg",front+up*.5,.9],"RightLeg":["RightFoot",-up-front*.25,.8],"RightArm":["RightForeArm",up+front*.15,.8],"LeftArm":["LeftForeArm",-front-up*.1,.7]}

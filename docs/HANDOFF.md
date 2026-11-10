@@ -1,5 +1,10 @@
 # 接續工作交接
 
+## 2026-11-10：正式二段跳與落地輸入改善
+
+已在現行共用空中 simulation 加入每次離地一次二段跳，Space 放開再按，10.5m/s，不取消攻擊／受擊／追擊或補回空中資源。落地恢復保留 8 tick 跳躍預輸入，加入收腿、月牙、上揚聲及操作提示。詳見 [DOUBLE_JUMP.zh-TW.md](DOUBLE_JUMP.zh-TW.md)／[本輪驗證](evidence/double-jump/README.md)。62 新規則、11 原生輸入、45 現行正式戰鬥、201 相關規則、13 鏡頭、37 原生 UI 通過。另 4 個舊斷言失敗已於未改動 f53c378 重現，完整 suite 並非零失敗；詳見證據。Godot4.6.3 Linux llvmpipe／Dummy audio，Mac／真人／實聽待驗收。沿同一來源 branch／PR #6；公開 Web 未更新。
+
+
 ## 2026-11-10：正式FIGHT／Street Run玩法改善
 
 依使用者「真係優化遊戲」更正，直接修改正式AI、LOOP連段和共用接觸時鐘；見 [LIVE_COMBAT_IMPROVEMENTS.zh-TW.md](LIVE_COMBAT_IMPROVEMENTS.zh-TW.md)。CPU會近身投持續防禦、用輕拳打揮空恢復、低guard後撤、按資源選角色招式／付費大招；以20／14／9 tick承諾中立意圖，不讀玩家pending。HUSH低能量改近身；LOOP jab/cross推離5／6→2.8／3.4，近身J能接第三段挑空。native hitstop不再被慢鏡重複拉長，保留原tick數及大招起手profile，SURGE60 parry到狀態重推進16→12個wall步進。
