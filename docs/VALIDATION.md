@@ -1,5 +1,12 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-10：黑白街城／青粉半身新封面
+
+依最新封面參考接入新海報：黑白切面樓群、桃紅天空、青／粉紅無臉半身人物；左側保留黑色原生選單區。沒有項鍊、五官或戰鬥架勢。新圖為ImageGen原創宣傳插畫，不宣稱是遊戲GLB渲染；原Godot模型封面和原始GLB保留。只改標題背景，未改其他頁面、戰鬥、音訊transport或公開Web。詳見 [封面更新](COVER_NEON_CITY.zh-TW.md)。
+
+Godot4.7.2 Linux Compatibility／llvmpipe介面回歸37/37通過，三視窗尺寸、真鍵鼠和音樂連續播放；log無ERROR／SCRIPT ERROR或退出洩漏。640×360實機圖見 [證據](evidence/cover-neon-city/README.md)，不代表目標Mac驗收。
+
+
 ## 2026-11-10：LAST SERVICE新四角與街區成長已接入
 
 使用者提供ZIP／RIVET／HUSH／LOOP四個Tripo GLB並要求替換相關系統。現況以 [LAST_SERVICE_RUNTIME.zh-TW.md](LAST_SERVICE_RUNTIME.zh-TW.md)為準：原檔SHA保留；65骨、52骨重定向；新選角／封面／名稱／技能／HUD、四套角色資源；三站Street Run、12技能、兩裝備槽、XP／免費重置／120XP淡色FX解鎖及獨立存檔。標準FIGHT固定基礎數值，不套成長；Demo無XP。舊探索預設角色亦改ZIP，未改成開放世界RPG。

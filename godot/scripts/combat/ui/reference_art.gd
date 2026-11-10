@@ -2,7 +2,7 @@ extends RefCounted
 ## Approved image composition; fixed art is raster, live game state remains native.
 const T=preload("res://scripts/combat/ui/ui_theme.gd")
 const LARGE_TYPE=preload("res://assets/fonts/RadioPixelDisplay.fnt")
-const TITLE=preload("res://assets/ui/last_service/cover.png")
+const TITLE=preload("res://assets/ui/last_service/cover-neon-city.png")
 const CITY=preload("res://assets/ui/ink/city-band.png")
 const SLASHES=preload("res://assets/ui/ink/slashes.png")
 const MAIN_RECTS=[Rect2(56,260,408,84),Rect2(56,354,408,66),Rect2(56,430,408,66),Rect2(56,506,408,66),Rect2(56,604,282,54)]

@@ -184,3 +184,5 @@
 ## LAST SERVICE角色替換與成長落地（2026-11-10）
 
 使用者新4GLB為當前roster，ZIP99c7／RIVETeba8／HUSH966f／LOOP0a7a；原bytes不變，骨名適配及CC0庫重定向。角色特性／資源／技能／UI／FX同步替換，放點不造成假命中，揮擊與真active frames綁定，脈衝使用共同接觸快照。角色專屬3節點共12、裝2、免費重置，僅Street Run生效；勝40／敗15＋本人技巧bonus，標準FIGHT不成長，Demo無XP。詳見LAST_SERVICE_RUNTIME.zh-TW.md。原提案未實作子招式與完整RPG保留待辦。使用者「收尾」後停止加功能，完成驗證與推送，不更新Web。
+
+- 2026-11-10：依最新封面參考，標題背景改為ImageGen原創黑白街城＋青粉無臉半身人物，固定靜態海報，不新增GIF／額外渲染循環。背景圖與原生選單分離；原Godot角色封面保留。只推Lab分支，Web不更新。見COVER_NEON_CITY.zh-TW.md。

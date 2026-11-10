@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[黑白街城／青粉無臉新封面](docs/COVER_NEON_CITY.zh-TW.md)／[640×360實機畫面](docs/evidence/cover-neon-city/title.png)。標題選單保持原生操作，公開Web未更新。
+
 最新：[LAST SERVICE四角色＋專屬技能＋街區成長](docs/LAST_SERVICE_RUNTIME.zh-TW.md)／[畫面、兩組AI影片及295項檢查](docs/evidence/last-service-runtime/README.md)。試玩：FIGHTERS → STREET RUN／SKILLS；標準FIGHT不套用成長。公開Web不更新。
 
 最新：[大招長動作／近鏡旋轉](docs/NEON_SIGNATURE.zh-TW.md)／[藝術風格與全部可取得參考素材總庫](references/style-library/README.md)／[RPG與技能解鎖提案（未實作）](docs/RPG_PROGRESSION_PLAN.zh-TW.md)。
