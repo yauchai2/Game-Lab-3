@@ -1,8 +1,8 @@
 extends RefCounted
 ## Stateless, rig-relative winner choreography. Never writes combat state.
-const IDS := ["zip", "rivet", "hush", "loop"]
-const LABELS := ["ZIP / GHOST STEP", "RIVET / HEAVY EXIT", "HUSH / LAST LOOK", "LOOP / SIGNAL OUT"]
-const ACCENTS := [Color("00e9ef"),Color("ff9824"),Color("ff3d97"),Color("c4ff00")]
+const IDS := ["zip", "rivet", "hush", "loop", "black_suit"]
+const LABELS := ["ZIP / GHOST STEP", "RIVET / HEAVY EXIT", "HUSH / LAST LOOK", "LOOP / SIGNAL OUT", "BLACK SUIT / JOB DONE"]
+const ACCENTS := [Color("00e9ef"),Color("ff9824"),Color("ff3d97"),Color("c4ff00"),Color("a888ff")]
 
 func apply(session: Node3D, side: int, seconds: float) -> Dictionary:
     var hero: Node3D=session.fighters[side]
@@ -10,7 +10,7 @@ func apply(session: Node3D, side: int, seconds: float) -> Dictionary:
     var t:float=clampf(seconds,0,3.2)
     var leave:float=smoothstep(1.18,3.12,t)
     var direction:float=-1.0 if id in [0,2] else 1.0
-    var stride:float=sin(maxf(0,t-1.18)*TAU/[.66,.86,.92,.72][id])
+    var stride:float=sin(maxf(0,t-1.18)*TAU/[.66,.86,.92,.72,.82][id])
     var gesture:float=smoothstep(.04,.2,t)*(1.0-smoothstep(.85,1.35,t))
     var turn:float=smoothstep(.92,1.48,t)
     var bob:float=absf(stride)*.035*smoothstep(1.18,1.45,t)
@@ -31,7 +31,7 @@ func apply(session: Node3D, side: int, seconds: float) -> Dictionary:
     var m=hero.motions
     if is_instance_valid(hero.skeleton):
         # Sample a reproducible neutral pose before applying the authored limbs.
-        var idle:String=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop"][id]
+        var idle:String=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop","Idle_Loop"][id]
         m.blend_from.clear();m.previous_state=idle+"/idle";m.clip_elapsed=t
         m.present({"character":id,"health":100,"state":"idle","move":"","frame":0,"y":0.0,"vy":0.0,"vx":0.0,"face":1,"guarding":false,"showcase":true},0.0,true)
         var up:Vector3=m.model_up

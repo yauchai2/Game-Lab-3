@@ -24,7 +24,8 @@ var grade: ColorRect
 var grade_material: ShaderMaterial
 var echo_clock := 0.0
 var finish_menu_open := false
-var sim := Simulation.new()
+var sim := preload("res://scripts/combat/enemies/squad_simulation.gd").new()
+var squad_visuals:Array[Node3D]=[]
 var fighters: Array[Node3D] = []
 var theatre=preload("res://scripts/combat/impact_theatre.gd").new()
 var rhythm=preload("res://scripts/combat/combat_rhythm.gd").new()
@@ -198,6 +199,7 @@ func start_match(training := false) -> void:
     ability_draw.clear()
     draw_rewards.reset();draw_match_serial+=1;draw_seed=Time.get_ticks_usec()
     coach=null
+    _leave_squad()
     _leave_run()
     sim.service_perks=[[],[]]
     if demo!=null:sim.partner_mode=demo_partner
@@ -276,8 +278,14 @@ func _combat_step() -> void:
         audio.play_sound("parry",1.1 if sim.exchange.tier()==2 else 1.4,-12)
         if is_instance_valid(backdrop.living) and surge_reaction_cd<=0:
             backdrop.living.react();surge_reaction_cd=1.5
+    var focused:Dictionary=sim.fighters[1]
+    var focused_visual:Node3D=fighters[1]
     for event in sim.events:
+        if sim.squad_enabled and event.has("squad_id"):
+            var id:int=event.squad_id
+            sim.fighters[1]=sim.squad_members[id];fighters[1]=squad_visuals[id]
         _handle_event(event)
+    sim.fighters[1]=focused;fighters[1]=focused_visual
     if sim.phase in ["round_over", "match_over"]:
         _release_impacts(false)
         if run_active:_award_run()
@@ -726,7 +734,7 @@ func _apply_red_stage() -> void:
         camera.environment=red_environment if poster else null
         if poster:red_environment.background_color=Color("15101f") if neon.mode=="CHARGE" else Color("650c4a")
         for shadow in silhouettes:shadow.visible=not poster
-        for fighter in fighters: fighter.set_neon_silhouette(poster and neon.silhouette())
+        for fighter in fighters+squad_visuals: fighter.set_neon_silhouette(poster and neon.silhouette())
         grade.visible=false
         return
     var red:bool=theatre.active() and not reduced_effects and screen in ["play","result"]
@@ -758,6 +766,13 @@ func _grade_world() -> void:
     grade_material.set_shader_parameter("accent",COLORS[grade_owner])
 
 func _present(delta: float) -> void:
+    if sim.squad_enabled:
+        fighters[1]=squad_visuals[sim.squad_focus]
+        for id in squad_visuals.size():
+            if id==sim.squad_focus:continue
+            var pose:Dictionary=sim.squad_members[id].duplicate()
+            pose["air_enabled"]=true;pose["rush_visual"]=not reduced_effects
+            squad_visuals[id].present(pose,delta,sim.hitstop>0,reduced_effects,sim.fighters[0].x)
     for i in fighters.size():
         var pose: Dictionary=sim.fighters[i].duplicate()
         pose["air_enabled"]=sim.is_aerial()
@@ -803,6 +818,13 @@ func _present(delta: float) -> void:
     var distance := clampf(8.1+separation*.22,8.4,15.0) if sim.arcade_enabled else clampf(10.0 + separation * 0.35,10.7,17.2)
     var yaw := clampf(midpoint * 0.018,-0.10,0.10)
     var target_focus := Vector3(midpoint*0.8,2.1 + maxf(sim.fighters[0].y,sim.fighters[1].y)*0.15,FIGHT_Z)
+    if sim.squad_enabled:
+        var low:float=sim.fighters[0].x;var high:float=low
+        for member in sim.squad_members:
+            if member.health>0:low=minf(low,member.x);high=maxf(high,member.x)
+        target_focus.x=(low+high)*.5
+        var aspect:float=get_viewport().get_visible_rect().size.x/maxf(1,get_viewport().get_visible_rect().size.y)
+        distance=maxf(distance,(high-low+2.0)/(2.0*tan(deg_to_rad(24.0))*aspect*.85))
     if sim.is_aerial():
         var aspect: float=get_viewport().get_visible_rect().size.x/maxf(1,get_viewport().get_visible_rect().size.y)
         distance=maxf(distance,(separation+.9)/(2.0*tan(deg_to_rad(24.0))*aspect*.90))
@@ -991,13 +1013,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
             if focused is Button and focused.get_parent()==hud.art_controls:focused.pressed.emit()
             else:start_match()
         elif screen == "result":
+            if sim.squad_enabled:start_squad();return
             if run_active:advance_run();return
             if sim.phase == "match_over":
                 start_match(practice)
             else:
                 advance_round()
     elif event.keycode == KEY_R and screen in ["pause", "result"]:
-        start_match(practice)
+        if sim.squad_enabled:start_squad()
+        else:start_match(practice)
     elif screen == "play":
         if coach!=null and coach.status=="ready":return
         if sim.exchange.decision_active():
@@ -1191,7 +1215,7 @@ func _restore_options() -> void:
 
 func set_character(side:int,index:int) -> void:
     if screen!="title" or side not in [0,1]:return
-    var selected:=clampi(index,0,FighterVisual.Roster.ENTRIES.size()-1)
+    var selected:=clampi(index,0,FighterVisual.Roster.BLACK_SUIT_INDEX if side==1 else FighterVisual.Roster.ENTRIES.size()-1)
     if character_choices[side]==selected:return
     character_choices[side]=selected
     sim.character_choices[side]=selected
@@ -1205,6 +1229,7 @@ func save_options() -> void:
 
 func return_to_title() -> void:
     coach=null
+    _leave_squad()
     _leave_run()
     if demo!=null:sim.partner_mode=demo_partner
     demo=null
@@ -1223,8 +1248,29 @@ func return_to_title() -> void:
 func effect_color_for(side:int) -> Color:
     var character:int=character_choices[clampi(side,0,1)]
     var color:Color=neon_profile.accent(character)
-    if growth.records[growth.Profiles.IDS[character]].palette:return color.lerp(Color.WHITE,.65)
+    if character<growth.Profiles.IDS.size() and growth.records[growth.Profiles.IDS[character]].palette:return color.lerp(Color.WHITE,.65)
     return color
+
+func start_squad() -> void:
+    start_match(false)
+    character_choices[1]=FighterVisual.Roster.BLACK_SUIT_INDEX
+    sim.character_choices=character_choices.duplicate()
+    fighters[1].setup(COLORS[1],character_choices[1])
+    round_theatre.clear()
+    sim.restart_match();sim.begin_squad()
+    squad_visuals=[fighters[1]]
+    for id in range(1,sim.squad_members.size()):
+        var visual:=FighterVisual.new();visual.neon_enabled=neon_enabled
+        add_child(visual);visual.setup(COLORS[1],character_choices[1]);squad_visuals.append(visual)
+    hud.notice="BLACK SUIT SQUAD / CLEAR ALL %d"%sim.squad_members.size();hud.notice_time=2.0
+    _present(0.0);hud.rebuild_menu()
+
+func _leave_squad() -> void:
+    if not squad_visuals.is_empty():
+        fighters[1]=squad_visuals[0]
+        for id in range(1,squad_visuals.size()):squad_visuals[id].queue_free()
+        squad_visuals.clear()
+    sim.end_squad()
 
 func _leave_run() -> void:
     if not run_active:return
@@ -1313,6 +1359,7 @@ func finish_seconds() -> float:
     return city_breaker.DURATION if city_breaker.active() else FINISH_SECONDS
 
 func final_ko() -> bool:
+    if sim.squad_enabled:return false # Squad uses its all-enemies result, not a two-actor cinematic.
     if sim.winner<0 or sim.fighters[1-sim.winner].health>0:return false
     return sim.phase=="match_over" or (run_active and (run_stage>=3 or sim.winner!=0))
 
@@ -1346,7 +1393,7 @@ func _advance_demo_round() -> void:
 
 
 func ability_draw_boundary() -> String:
-    if practice or coach!=null:return ""
+    if practice or coach!=null or sim.squad_enabled:return ""
     if run_active:
         if run_stage==2 and screen=="result" and sim.winner==0:return run_token+"/stop2"
         return ""

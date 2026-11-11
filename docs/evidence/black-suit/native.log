@@ -1,0 +1,37 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+BLACK_SUIT enemy option restores into real model and simulation true
+BLACK_SUIT four hero identities and mastery records remain isolated true
+BLACK_SUIT uploaded rig maps onto animation library true
+BLACK_SUIT black suit preserves texture and original color true
+BLACK_SUIT enemy cannot replace a player hero true
+BLACK_SUIT enemy button selects P2 with preview true
+BLACK_SUIT keyboard navigation reaches enemy button true
+BLACK_SUIT capture enemy-selection true
+BLACK_SUIT enemy control fits viewport (960, 540) true
+BLACK_SUIT enemy control fits viewport (1280, 720) true
+BLACK_SUIT enemy control fits viewport (1600, 900) true
+BLACK_SUIT enemy animated pose jab true
+BLACK_SUIT enemy animated pose heavy true
+BLACK_SUIT enemy animated pose launcher true
+BLACK_SUIT enemy animated pose special true
+BLACK_SUIT enemy animated pose overdrive true
+BLACK_SUIT enemy melee deals real damage true
+BLACK_SUIT enemy strikes remain parryable true
+BLACK_SUIT standard fight uses enemy and fixed stats true
+BLACK_SUIT enemy selection locked during fight true
+BLACK_SUIT capture enemy-fight true
+BLACK_SUIT free AI actually fights as the enemy true
+BLACK_SUIT enemy has no hero-only resources true
+BLACK_SUIT capture enemy-demo true
+BLACK_SUIT existing Street Run retains hero opponents true
+BLACK_SUIT leaving run restores enemy opponent true
+BLACK_SUIT enemy persists after run without changing player save true
+BLACK_SUIT reusable actor idle preserves scene placement true
+BLACK_SUIT reusable actor walk preserves scene placement true
+BLACK_SUIT reusable actor guard preserves scene placement true
+BLACK_SUIT background actor uses walk animation true
+BLACK_SUIT model swaps retire render materials true

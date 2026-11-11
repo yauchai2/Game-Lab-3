@@ -1,0 +1,22 @@
+Extensions: writing cache failed ([Errno 30] Read-only file system: '/home/agent/.config/blender/4.3/extensions').
+08:31:54 | INFO: Data are loaded, start creating Blender stuff
+08:31:54 | INFO: Blender create Mesh node tripo_mesh_6bb9e9c2-dd66-4f86-864f-2ceab3aa0a09
+08:31:54 | INFO: glTF import finished in 0.01s
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+08:31:54 | INFO: Starting glTF 2.0 export
+08:31:54 | INFO: Extracting primitive: CleanShirtInsert
+08:31:54 | INFO: Primitives created: 1
+08:31:54 | INFO: Extracting primitive: NeckBridge
+08:31:54 | INFO: Primitives created: 1
+08:31:54 | INFO: Extracting primitive: TieBlade
+08:31:54 | INFO: Primitives created: 1
+08:31:54 | INFO: Extracting primitive: TieKnot
+08:31:54 | INFO: Primitives created: 1
+08:31:54 | INFO: Extracting primitive: tripo_mesh_6bb9e9c2-dd66-4f86-864f-2ceab3aa0a09
+08:31:54 | INFO: Primitives created: 2
+08:31:54 | INFO: Finished glTF 2.0 export in 0.024036407470703125 s
+
+{"source_sha256": "8fcacf156af8a28e8eddc5ff0bd2be677e99bc2e58031bc4968de5ab038dcbc7", "derived_sha256": "f5b586441760ba486c66275d9d6c202cbf1722017bd6c0f1eb5b66b2674fa0b4", "source": "godot/assets/characters/black_suit/source/tripo_convert_6bb9e9c2-dd66-4f86-864f-2ceab3aa0a09.glb", "derived": "godot/assets/characters/black_suit/derived/black_suit_repaired.glb", "reweighted_neck_vertices": 97, "patches": ["NeckBridge", "CleanShirtInsert", "TieKnot", "TieBlade"], "method": "Skinned low-poly geometry and flat material repair; source GLB and original texture preserved. No image repaint or external generation."}
+Blender 4.3.2
+
+Blender quit

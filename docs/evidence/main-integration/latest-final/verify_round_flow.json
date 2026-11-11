@@ -1,0 +1,233 @@
+{
+  "checks": [
+    {
+      "name": "formal FIGHT begins with a real entry",
+      "passed": true
+    },
+    {
+      "name": "entry never consumes life / resources / countdown",
+      "passed": true
+    },
+    {
+      "name": "entry rejects buffered combat commands",
+      "passed": true
+    },
+    {
+      "name": "pause freezes entry score and camera time",
+      "passed": true
+    },
+    {
+      "name": "Space skips entry without a jump",
+      "passed": true
+    },
+    {
+      "name": "normal countdown then enters actual fight",
+      "passed": true
+    },
+    {
+      "name": "all four current roster models enter and restore visibility",
+      "passed": true
+    },
+    {
+      "name": "Street Run first and subsequent stops have an entry",
+      "passed": true
+    },
+    {
+      "name": "practice starts playable without an entry lock",
+      "passed": true
+    },
+    {
+      "name": "demo uses normal finite health rather than practice regeneration",
+      "passed": true
+    },
+    {
+      "name": "KO 1 has a real defeated fighter",
+      "passed": true
+    },
+    {
+      "name": "demo reserves full KO for the deciding round",
+      "passed": true
+    },
+    {
+      "name": "every deciding KO includes the winner exit",
+      "passed": true
+    },
+    {
+      "name": "rounds loop through a fresh entry after explicit draw confirmation",
+      "passed": true
+    },
+    {
+      "name": "two-win match completion also loops",
+      "passed": true
+    },
+    {
+      "name": "both autonomous sides land actual hits",
+      "passed": true
+    },
+    {
+      "name": "looping demo never grants progression rewards",
+      "passed": true
+    },
+    {
+      "name": "combat fisheye retains both fighters and HUD margins",
+      "passed": true
+    },
+    {
+      "name": "ambient smoke and dust have fixed bounds",
+      "passed": true
+    },
+    {
+      "name": "KO has substantial bounded smoke clouds",
+      "passed": true
+    },
+    {
+      "name": "pause cannot advance the demo loop",
+      "passed": true
+    },
+    {
+      "name": "F2 releases entry lens and score",
+      "passed": true
+    },
+    {
+      "name": "F12 exits demo and clears every temporary lens",
+      "passed": true
+    },
+    {
+      "name": "title exit cleans entry score and camera near plane",
+      "passed": true
+    }
+  ],
+  "display": "X11",
+  "engine": "4.6.3-stable (official)",
+  "failed": 0,
+  "passed": 24,
+  "phases": [
+    {
+      "health": [
+        100,
+        100
+      ],
+      "phase": "entry",
+      "round": 1,
+      "seconds": 0.0
+    },
+    {
+      "health": [
+        100,
+        100
+      ],
+      "phase": "play/ready",
+      "round": 1,
+      "seconds": 2.8
+    },
+    {
+      "health": [
+        100,
+        100
+      ],
+      "phase": "play/fight",
+      "round": 1,
+      "seconds": 3.4
+    },
+    {
+      "health": [
+        29,
+        0
+      ],
+      "phase": "result/round_over",
+      "round": 1,
+      "seconds": 18.1833333333333
+    },
+    {
+      "health": [
+        100,
+        100
+      ],
+      "phase": "entry",
+      "round": 2,
+      "seconds": 19.5666666666667
+    },
+    {
+      "health": [
+        100,
+        100
+      ],
+      "phase": "play/ready",
+      "round": 2,
+      "seconds": 22.3833333333333
+    },
+    {
+      "health": [
+        100,
+        100
+      ],
+      "phase": "play/fight",
+      "round": 2,
+      "seconds": 22.9833333333333
+    },
+    {
+      "health": [
+        0,
+        69
+      ],
+      "phase": "result/round_over",
+      "round": 2,
+      "seconds": 31.0666666666667
+    },
+    {
+      "health": [
+        100,
+        100
+      ],
+      "phase": "entry",
+      "round": 3,
+      "seconds": 37.0666666666667
+    },
+    {
+      "health": [
+        100,
+        100
+      ],
+      "phase": "play/ready",
+      "round": 3,
+      "seconds": 39.8833333333333
+    },
+    {
+      "health": [
+        100,
+        100
+      ],
+      "phase": "play/fight",
+      "round": 3,
+      "seconds": 40.4833333333333
+    },
+    {
+      "health": [
+        0,
+        43
+      ],
+      "phase": "ko",
+      "round": 3,
+      "seconds": 51.8666666666667
+    },
+    {
+      "health": [
+        0,
+        43
+      ],
+      "phase": "winner",
+      "round": 3,
+      "seconds": 56.8666666666667
+    },
+    {
+      "health": [
+        100,
+        100
+      ],
+      "phase": "entry",
+      "round": 4,
+      "seconds": 60.0666666666667
+    }
+  ],
+  "scope": "Normal-health autonomous commands and real KO transitions; no injected damage or health fixtures in the looping-demo portion"
+}

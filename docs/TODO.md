@@ -1,12 +1,53 @@
+## 2026-11-11：同步 main 至 codex/combat-escalation-next
+
+使用者明確要求也推到codex/combat-escalation-next。以遠端最新91db1f1合併main的ffffd15，保留九核心與Demo定時自動抽領，以及main的黑衣人群戰／頸部領帶修補／過場相容處理，不強推、不改Web。此輪只推指定開發分支；main維持ffffd15。最新Demo自動節奏以ABILITY_CORE_POOL.zh-TW.md為準，覆蓋較早手動Demo契約，一般FIGHT／Street Run仍手動。
+
+合併後144項通過：九核心75、群戰規則35、原生群戰10、原生回合24；無ERROR／SCRIPT ERROR。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy，非使用者本機或真人平衡驗收。證據docs/evidence/branch-sync-combat-escalation。
+
 ## 2026-11-11：九核心獎池與 Demo 延時自動抽領（最新）
 
 見 [ABILITY_CORE_POOL.zh-TW.md](ABILITY_CORE_POOL.zh-TW.md)。Demo 代幣展示3秒後自動抽，獎品展示3.5秒後自動領取；覆蓋上一輪Demo必須手動的契約，正常模式仍手動。獎池3→9：新增FURY增傷15%、PLATE減傷15%、FLOW命中能量30%、ECO技能耗能-20%、BREACH盾損25%、SIPHON命中回2／整局最多12HP。九種等機率、下一局限定，實際simulation／AI節能門檻／HUD刻度及圖示／輪盤色彩皆接入。263項通過，證據evidence/ability-draw/expanded-pool；原GLB／音訊／XP／公開Web保持，Mac／真人平衡待驗。
+
+## 2026-11-11：main 收入最後一筆遠端更新
+
+推送前再次核對遠端，combat-escalation-next已從3389fa9前進至3ea0691，故再合併該提交。包含手動DRAW／CONTINUE、2.05秒入場／2.20秒逐輪抽獎、新音訊及共用bitmap UI；Demo也等待玩家確認，覆蓋下方自動抽領的歷史描述。群戰／黑衣人相容處理保留。更新回合測試以明示Enter確認抽獎，不移除最新手動要求。
+
+最新合併來源再跑109項原生檢查：回合24、模型22、抽獎流程／輸入／節奏63，全部通過，無ERROR／SCRIPT ERROR；證據見evidence/main-integration/latest-final。前一整合477項與初次測試器失敗保留，非宣稱使用者本機／真人驗收。兩次合併保留987d4d2、3389fa9、3ea0691完整歷史；日常取main，Web未更新。
 
 ## 2026-11-11：手動抽獎、節奏及共用字體（最新）
 
 見 [ABILITY_DRAW_RHYTHM_UI.zh-TW.md](ABILITY_DRAW_RHYTHM_UI.zh-TW.md)。2.05 秒入場／2.20 秒抽獎，三輪鎖定後靜拍再揭曉；必須新按 DRAW，結果另按 CONTINUE，Demo 也等待玩家，覆蓋舊自動抽領。刪減口號與裝飾、統一黑白桃紅青綠 UI；修正獨立 Button 未繼承遊戲 bitmap Theme。63 流程／輸入／節奏＋22 原模型檢查通過，原生有聲證據在 evidence/ability-draw/rhythm-ui；原模型／音訊保留，Mac／真人待驗，Web 不更新。
 
 # 待辦與完成狀態
+
+## 2026-11-11：來源集中整合至 main
+
+使用者要求「把所有的更新都推到最常用的branch」。以 main738c740 為基礎，整合黑衣人分支987d4d2與正式戰鬥／過場／抽能力分支3389fa9，保留雙方提交及來源資產；往後 GitHub Desktop 選 main Fetch／Pull。此節覆蓋下方歷史的「main未更新」狀態；公開Web不更新。
+
+同時處理整合相容性：黑衣人索引4支援進場名稱／顏色、通用步行勝者離場及既有HUSH離場音軌；群戰保留多人跟鏡與短結算，不套雙人進場／決勝KO／回合抽能力。四英雄正式回合演出、有限生命Demo及抽能力保持；合併空連預算helper與ArenaBox排除，保留3位數群戰倒數。
+
+合併來源已跑477項最終檢查：146無視窗規則、177原生UI／結果／回合／勝者／材質、154群戰／黑衣人／Tripo抽能力。最終無ERROR／SCRIPT ERROR；Linux Godot4.6.3 Compatibility／llvmpipe／Dummy，非使用者Mac或真人手感驗收。最初round-flow 19/23的測試器在單一引擎影格內跑完整Demo，抽能力防重複確認阻止第二次動作；改為定期讓出真引擎影格後24/24。初次失敗與最終結果均保留在 [整合證據](evidence/main-integration/README.md)。
+
+
+## 2026-11-11：群戰及頸部／領帶
+
+- [x] FIGHTERS→SQUAD，3／4／5名獨立敵人、協調進攻、多目標普通命中、全隊勝負與模式清理。
+- [x] 頸部權重及封閉接合、領帶／襯衫材質幾何補片、凹入頸部outline修正；來源原檔保留。
+- [x] 原生對照／群戰及297項相關檢查，最終log無引擎／腳本error。
+- [ ] 使用者本機確認頸部／領帶各動作及群戰強弱；視真人回饋調整數量、血量和喘息。
+
+## 2026-11-11：黑衣人
+
+- [x] 原GLB／SHA／權重與貼圖檢查；敵人P2選擇、真3D預覽、正式戰鬥與AI、保存及成長隔離。
+- [x] 待機／走路／防守重用場景；原生整合與既有回歸共208項通過。
+- [ ] 使用者本機驗收西裝輪廓、手部與腿部動作、敵人強弱。
+- [ ] 六章故事／黑車／新地圖、不同黑衣人變體、槍械、18秒啟動劇情仍未實作。
+
+## 2026-11-11：同步 main
+
+- [x] 按使用者明確要求將最新完整遊戲4177ef9合併至main，保留既有歷史及風格文件。
+- [x] 無合併衝突；godot／tools tree與上輪已驗證版本完全一致。
+- [ ] 使用者於GitHub Desktop選main，Fetch／Pull後本機Godot驗收。
 
 ## 最新：Tripo NPC／機身實裝（2026-11-11）
 

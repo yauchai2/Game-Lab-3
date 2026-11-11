@@ -227,6 +227,20 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 
 使用者要求二段跳及整體優化；直接作用於現行正式街鬥共用simulation，不新增獨立原型。空中一次10.5m/s上推、不取消非idle動作、不刷新追擊／反制／滯空／急降資源，僅實際落地恢復；落地恢復保留跳躍預輸入。沿現有Rhythm／鏡頭／聲音池／F2，不新增全局時鐘或聲稱FPS提升。來源同codex/combat-escalation-next／PR #6；公開Web保持，詳見DOUBLE_JUMP.zh-TW.md。
 
+## 2026-11-11：以main交付最新完整遊戲
+
+使用者明確授權推送最新遊戲至main。將codex/combat-escalation-next的4177ef9完整合併，保留main54a520d及來源歷史，正常push，不使用force。此次授權為來源整合，沒有更新gh-pages或另行公開部署。
+
+
+## 2026-11-11：黑衣人角色接入
+
+使用者要求新GLB作敵人及其他用途。保留原檔，四名主角ID／成長不變；索引4專供P2黑衣人。敵人使用共用近身simulation與合法AI，獨立50／75能量招式，不附加主角資源或XP。非戰鬥用途由獨立black_suit_actor.tscn提供三種姿態，scene/director擁有根transform；不把演出動畫當命中權威。不自動替換Street Run三站或新增槍械／劇情／Web部署。
+
+
+## 2026-11-11：群戰與黑衣人修補
+
+按使用者要求加入成群黑衣人，採獨立血量／受擊與單進攻名額，普通近身招可多目標真命中；不用多份simulation重推玩家。群戰由FIGHTERS→SQUAD啟動，不替換既有對戰／Street Run。難度先3／4／5人配35／45／55HP與45／55／65%招式傷害，真人再調。原始GLB不變，修97頸部權重與封閉幾何接合，領帶改乾淨紫色材質補片；只抑制黑衣人凹入頸部的過厚outline。derived資產同時供戰鬥與演出角色。
+
 
 ## 2026-11-11：共用資產的正式 KO 3D 過場
 
@@ -284,3 +298,23 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 ## 2026-11-11：原Tripo骨架與機殼包裝，窗口及短音效可控
 
 以使用者原65骨／skin NPC製作runtime動作，不覆寫GLB或替換四戰鬥角色；機殼原貼圖保留，以衍生材質按局部座標移除窗口多層封面，活動件獨立。重用既有CC0 gait、原手腕二骨接觸／代幣跟手，不宣稱來源已有動畫或已烘焙回GLB。快速重開Ogg短cue退出滯留改用解碼PCM，原OGG及長BGM保持。詳見ABILITY_DRAW_TRIPO_MODELS.zh-TW.md；腰側裝備仍僅規劃。
+
+## 2026-11-11：來源集中整合至 main
+
+使用者要求「把所有的更新都推到最常用的branch」。以 main738c740 為基礎，整合黑衣人分支987d4d2與正式戰鬥／過場／抽能力分支3389fa9，保留雙方提交及來源資產；往後 GitHub Desktop 選 main Fetch／Pull。此節覆蓋下方歷史的「main未更新」狀態；公開Web不更新。
+
+同時處理整合相容性：黑衣人索引4支援進場名稱／顏色、通用步行勝者離場及既有HUSH離場音軌；群戰保留多人跟鏡與短結算，不套雙人進場／決勝KO／回合抽能力。四英雄正式回合演出、有限生命Demo及抽能力保持；合併空連預算helper與ArenaBox排除，保留3位數群戰倒數。
+
+合併來源已跑477項最終檢查：146無視窗規則、177原生UI／結果／回合／勝者／材質、154群戰／黑衣人／Tripo抽能力。最終無ERROR／SCRIPT ERROR；Linux Godot4.6.3 Compatibility／llvmpipe／Dummy，非使用者Mac或真人手感驗收。最初round-flow 19/23的測試器在單一引擎影格內跑完整Demo，抽能力防重複確認阻止第二次動作；改為定期讓出真引擎影格後24/24。初次失敗與最終結果均保留在 [整合證據](evidence/main-integration/README.md)。
+
+## 2026-11-11：main 收入最後一筆遠端更新
+
+推送前再次核對遠端，combat-escalation-next已從3389fa9前進至3ea0691，故再合併該提交。包含手動DRAW／CONTINUE、2.05秒入場／2.20秒逐輪抽獎、新音訊及共用bitmap UI；Demo也等待玩家確認，覆蓋下方自動抽領的歷史描述。群戰／黑衣人相容處理保留。更新回合測試以明示Enter確認抽獎，不移除最新手動要求。
+
+最新合併來源再跑109項原生檢查：回合24、模型22、抽獎流程／輸入／節奏63，全部通過，無ERROR／SCRIPT ERROR；證據見evidence/main-integration/latest-final。前一整合477項與初次測試器失敗保留，非宣稱使用者本機／真人驗收。兩次合併保留987d4d2、3389fa9、3ea0691完整歷史；日常取main，Web未更新。
+
+## 2026-11-11：同步 main 至 codex/combat-escalation-next
+
+使用者明確要求也推到codex/combat-escalation-next。以遠端最新91db1f1合併main的ffffd15，保留九核心與Demo定時自動抽領，以及main的黑衣人群戰／頸部領帶修補／過場相容處理，不強推、不改Web。此輪只推指定開發分支；main維持ffffd15。最新Demo自動節奏以ABILITY_CORE_POOL.zh-TW.md為準，覆蓋較早手動Demo契約，一般FIGHT／Street Run仍手動。
+
+合併後144項通過：九核心75、群戰規則35、原生群戰10、原生回合24；無ERROR／SCRIPT ERROR。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy，非使用者本機或真人平衡驗收。證據docs/evidence/branch-sync-combat-escalation。

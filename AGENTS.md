@@ -91,6 +91,10 @@
 
 - 2026-11-10 使用者更正：要求真正改善正式遊戲，不能再把新增教學／獨立原型當主要優化交付。最新正式玩法見docs/LIVE_COMBAT_IMPROVEMENTS.zh-TW.md：承諾式CPU攻防／角色資源、LOOP輕拳推離2.8／3.4、native hitstop與演出重疊消耗；原傷害／能量／大招長pose不改。Easy單鍵新手驗證明確選Easy，Normal／Hard可反制單鍵spam。仍同branch推送，公開Web不更新；Mac／真人平衡待測。
 
+- 2026-11-11 黑衣人接入：見docs/BLACK_SUIT_ENEMY.zh-TW.md。基於main738c740的codex/black-suit-enemy；P2敵人4與四英雄／成長分離，原6bb9e9c2 GLB不變。black_suit_actor.tscn供演出／背景，根transform屬導演；沒有AI／傷害。故事／槍械／新地圖未接入，main及Web未更新。
+
+- 2026-11-11 最新黑衣人修補與群戰見docs/BLACK_SUIT_SQUAD.zh-TW.md：runtime改derived/black_suit_repaired.glb（原檔保留）、97頸部權重／封閉補片／局部outline。FIGHTERS→SQUAD為3／4／5名獨立同場敵人，單進攻名額、玩家僅推進一次；群戰不給XP，退出須清除額外visual與simulation。舊單敵與Street Run保留；同分支、main與Web不動。
+
 - 2026-11-11 最新使用者指定此branch並要求按影片做正式回合3D過場：現況 CITY_BREAKER.zh-TW.md。CityBreaker是KO段唯一camera／destruction owner，零生命真結算後才播，不改simulation或XP；沿用當局四角／原街景／原客機，可逆static batch／飛機分件。F2短版，Enter／Space先跳過、再Enter接下局，Esc保持result恢復。所有退出走clear；不要改成固定人物影片或另建獨立玩法。來源同branch／PR #6，Web不更新；參考片與程序幾何仍有差異，未宣稱逐像素完美。
 
 - 2026-11-11 最新KO聲畫要求：見CITY_BREAKER.zh-TW.md最新節／evidence/city-breaker-fx。原CityBreaker正式KO入口擴充原創score、既有SFX bus、pause／clear及BGM duck，7-tap邊緣放射模糊／漫畫線／字卡／3D衝擊環／FOV反衝，14°roll上限。後製不模糊HUD，F2短版保持。原創音軌可由tools/build_city_breaker_audio.py重建；不要以原片音軌取代來源或把無聲舊預覽當最新。來源同branch推送，Web不更新。
@@ -111,6 +115,10 @@
 
 - 2026-11-11 本聊天已提供275dc57f…機身與36d4f0c3…65骨NPC，覆蓋前述待模型狀態：見docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md。原GLB／albedo byte保留，真骨架CC0 gait＋作者IK接觸／手指／代幣；機身窗口多層封面用包裝材質／outline開窗，活動件獨立。短入場／抽獎cue用原OGG解碼PCM（build_ability_pcm.py），原OGG／長BGM保持，避免重現的快速重開Ogg退出滯留；不要擅自改回舊程序人物／機殼。74項原生及有聲fixture有證據，Mac／真人待驗，腰側裝備仍未實作，來源同branch／Web不更新。
 
+- 2026-11-11 使用者明確要求所有更新集中最常用branch：本輪合併黑衣人與combat-escalation來源至main，覆蓋舊「main不動」與各聊天來源分支指示。後續日常Fetch／Pull使用main，保留歷史分支及原始GLB；Web仍需明確要求。黑衣人4可播通用勝出；SQUAD保留多人鏡頭／短結算，不套雙人過場或抽能力。整合驗證見docs/evidence/main-integration。
+
 - 2026-11-11 最新抽獎要求：見docs/ABILITY_DRAW_RHYTHM_UI.zh-TW.md。2.05秒入場／2.20秒逐輪抽獎；必須新按DRAW才抽、結果另按CONTINUE，包含Demo，覆蓋原Demo自動抽領契約。共用bitmap字體／原生Button theme、放鍵與160ms防穿透，原模型／音訊／跨場景入口保留，85項通過；Web不更新。
 
 - 2026-11-11 使用者最新更正覆蓋前輪Demo手動契約：見docs/ABILITY_CORE_POOL.zh-TW.md。Demo offer等3秒／result等3.5秒後自動抽領，可手動提前，pause凍結；正式FIGHT／Run仍手動。獎池9種等權，6新modifier及9圖示／輪盤、active-core HUD／ECO共用cost供AI及meter刻度。SIPHON真命中回2、上限實回12、不能復活；所有能力下一局限定、不存XP。263項通過，原GLB／音軌及公開Web保持；Mac／真人平衡待驗。
+
+- 2026-11-11 使用者也要求同步codex/combat-escalation-next：以最新91db1f1合併mainffffd15，保留九核心／Demo自動抽領（覆蓋舊Demo手動規則）及黑衣人群戰修補。本輪推指定開發分支，不改main或Web；144項整合檢查見docs/evidence/branch-sync-combat-escalation。

@@ -937,24 +937,27 @@ func is_aerial() -> bool:
 
 func _advance_air_limits() -> void:
     for i in 2:
-        var f: Dictionary=fighters[i]
-        if ArenaBox.active(f):continue
-        if f.air.combo_left<=0:continue
-        if f.state!="stun":
-            f.air.combo_left=0
-            continue
-        f.air.combo_left-=1
-        if f.air.combo_left==0:
-            air_motion.cancel_stall(f)
-            f.state="idle"
-            f.vy=minf(f.vy,-4.0)
-            f.vx=-f.face*4.0
-            f.invuln=maxi(f.invuln,18)
-            f.buffer=""
-            f.buffer_ttl=0
-            f.air.bounce_granted=false
-            hitstop=0
-            events.append({"kind":"air_escape","target":i})
+        _advance_air_limit(i)
+
+func _advance_air_limit(i:int) -> void:
+    var f: Dictionary=fighters[i]
+    if ArenaBox.active(f):return
+    if f.air.combo_left<=0:return
+    if f.state!="stun":
+        f.air.combo_left=0
+        return
+    f.air.combo_left-=1
+    if f.air.combo_left==0:
+        air_motion.cancel_stall(f)
+        f.state="idle"
+        f.vy=minf(f.vy,-4.0)
+        f.vx=-f.face*4.0
+        f.invuln=maxi(f.invuln,18)
+        f.buffer=""
+        f.buffer_ttl=0
+        f.air.bounce_granted=false
+        hitstop=0
+        events.append({"kind":"air_escape","target":i})
 
 func is_air_lesson() -> bool:
     return training and practice_scenario=="air_defense"

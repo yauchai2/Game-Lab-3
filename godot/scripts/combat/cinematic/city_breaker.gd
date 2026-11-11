@@ -123,7 +123,7 @@ func advance(delta: float, paused: bool) -> void:
     if playback_elapsed>=BASE_DURATION and not outro_started:
         outro_started=true
         score_player.stop()
-        score_player.stream=outro_scores[session.fighters[winner].character_index]
+        score_player.stream=outro_scores[2 if session.fighters[winner].character_index==4 else session.fighters[winner].character_index]
         score_player.play()
     sample(source_time(minf(playback_elapsed,BASE_DURATION)))
     if playback_elapsed >= DURATION:

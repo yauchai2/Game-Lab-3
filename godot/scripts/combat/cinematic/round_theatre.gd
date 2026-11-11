@@ -24,7 +24,9 @@ func setup(owner_session:Node3D) -> void:
     lens.material=material;layer.add_child(lens);lens.hide()
     score=AudioStreamPlayer.new();score.stream=load("res://audio/city_breaker/intro.wav");score.bus="Afterhours SFX";add_child(score)
 func begin_intro() -> void:
-    clear();saved_near=session.camera.near
+    clear()
+    if session.sim.squad_enabled:return
+    saved_near=session.camera.near
     saved_visibility.clear()
     for actor in session.fighters:saved_visibility.append(actor.visible)
     intro=true;age=0.0
@@ -48,6 +50,7 @@ func hold_simulation() -> bool:
     if intro and session.sim.phase!="ready":clear()
     return intro
 func trigger(event:Dictionary) -> void:
+    if session.sim.squad_enabled:return
     if intro or cooldown>0 or session.screen!="play" or session.reduced_effects:return
     if event.kind!="hit" or event.get("move","") not in ["heavy","finisher","launcher","meteor","special","overdrive","air_counter"]:return
     if event.get("target",-1) not in [0,1] or session.sim.fighters[event.target].health<=0:return
@@ -126,8 +129,8 @@ func draw(canvas:Control) -> void:
     else:
         var side:=0 if age<1.10 else 1
         var id:int=session.fighters[side].character_index
-        var text:String="P%d / "%int(side+1)+["ZIP","RIVET","HUSH","LOOP"][id]
-        canvas.draw_string(session.hud.bold,Vector2(62,605),text,HORIZONTAL_ALIGNMENT_LEFT,-1,74,[Color("00e9ef"),Color("ff9824"),Color("ff3d97"),Color("c4ff00")][id])
+        var text:String="P%d / "%int(side+1)+["ZIP","RIVET","HUSH","LOOP","BLACK SUIT"][id]
+        canvas.draw_string(session.hud.bold,Vector2(62,605),text,HORIZONTAL_ALIGNMENT_LEFT,-1,74,[Color("00e9ef"),Color("ff9824"),Color("ff3d97"),Color("c4ff00"),Color("a888ff")][id])
 
 func safe_framing() -> bool:
     if not framing.fits(session.camera,session):return false
