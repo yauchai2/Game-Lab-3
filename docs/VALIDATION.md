@@ -1,5 +1,11 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-11：上傳Tripo角色／機身
+
+最終Godot4.6.3 Compatibility／llvmpipe原生模型22/22＋既有流程52/52共74項，最終log無ERROR／SCRIPT ERROR／SHADER ERROR及退出洩漏。原檔逐byte相同、原65骨／skin／albedo實際載入；骨骼鏈、CC0重定向、有限姿態、手腕接觸、代幣跟手、渲染輪盤可見性及原有回合／mute／pause／F2／清理皆驗。證據evidence/ability-draw/tripo-models含原檔預覽、完整有聲Movie Writer、PCM及log。
+
+來源窗口封面使後移輪盤消失，已用衍生材質開窗並加真render pixel檢查；早期型別parse與outline varying宣告失敗保留。Ogg intro／arrival快速重開退出滯留在顯式stream模式仍重現，最終用原OGG解碼短PCM cue重跑乾淨；保留原OGG／長BGM，不宣稱修好引擎解碼器。錄像是1:1邊界fixture、640×360固定30fps再nearest放大，非自然完整match／使用者Mac／真人實聽或硬件FPS。裝備段未實作、Web未更新。
+
 ## 2026-11-11：三視圖參考圖交付
 
 已視覺檢視三份ImageGen三視圖：NPC全身A-pose／正側背、機器完整組裝／正拉桿側背、靜態機殼／活動件留空版；核對主色、朝向、拉桿左右、機殼基準及用途區分，PNG尺寸及SHA-256入references/ability-draw/tripo/manifest.json。這是建模設計參考而非CAD精確投影或Tripo服務驗證；背面為補完設計，不能保證生成後分件／拓撲。此輪只增加圖片／prompt／文件，runtime未改，未重跑引擎測試或發佈Web。

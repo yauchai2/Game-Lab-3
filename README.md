@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[使用者Tripo蒙面NPC／機身已接入](docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md)／[有聲引擎預覽](docs/evidence/ability-draw/tripo-models/tripo-ability-draw.mp4)。原65骨NPC拖行／拍機／展示／開獎，原機殼＋獨立活動件，來源原檔保留；74項原生檢查通過，Web不更新。
+
 最新：[蒙面NPC與抽獎機三視圖／Tripo生成建議](references/ability-draw/tripo/README.zh-TW.md)。含NPC A-pose、機器完整外觀及建議生成的機殼版，另附英文提示詞；只有設計參考，未換runtime模型。
 
 最新：[NPC拖機器進場修正與有聲預覽](docs/evidence/ability-draw/entry-v2/README.md)／[1.8秒裝備動畫六格分鏡](docs/ABILITY_EQUIP_STORYBOARD.zh-TW.md)。已修正街景碰撞導致原地出現；裝備段為規劃與概念圖，待Tripo模型後續換模／綁動畫。

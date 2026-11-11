@@ -1,6 +1,7 @@
 extends SceneTree
 var s:Node
 var checks:Array=[]
+var output:=OUT
 const OUT="res://../docs/evidence/ability-draw/entry-v2/"
 func _initialize() -> void:call_deferred("run")
 func check(label:String,ok:bool) -> void:
@@ -25,6 +26,7 @@ func fixture() -> void:
 func press(code:int) -> void:
     var e:=InputEventKey.new();e.keycode=code;e.physical_keycode=code;e.pressed=true;s._unhandled_key_input(e)
 func run() -> void:
+    if "--tripo-models" in OS.get_cmdline_user_args():output="res://../docs/evidence/ability-draw/tripo-models/"
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";s.progression_path="/tmp/ability-growth.cfg";root.add_child(s)
     s.set_process(false);s.set_physics_process(false);s.audio.muted=true
     await process_frame;await process_frame
@@ -136,5 +138,5 @@ func run() -> void:
     await create_timer(.1).timeout;s.queue_free();s=null
     for i in 8:await process_frame
     var failed:int=checks.filter(func(c):return not c.passed).size()
-    FileAccess.open(OUT+"verification.json",FileAccess.WRITE).store_string(JSON.stringify({"passed":checks.size()-failed,"failed":failed,"checks":checks,"scope":"Explicit 1-1 / Street Run boundary fixtures; actual runtime transition, native callbacks, deterministic rules, no claim of natural-match coverage here","engine":Engine.get_version_info().string},"  "))
+    FileAccess.open(output+"verification.json",FileAccess.WRITE).store_string(JSON.stringify({"passed":checks.size()-failed,"failed":failed,"checks":checks,"scope":"Explicit 1-1 / Street Run boundary fixtures; actual runtime transition, native callbacks, deterministic rules, no claim of natural-match coverage here","engine":Engine.get_version_info().string},"  "))
     print("ABILITY_DRAW_CHECKS ",checks.size()-failed,"/",checks.size());quit(1 if failed else 0)

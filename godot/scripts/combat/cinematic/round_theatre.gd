@@ -22,7 +22,7 @@ func setup(owner_session:Node3D) -> void:
     lens.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     material=ShaderMaterial.new();material.shader=preload("res://shaders/city_breaker_lens.gdshader")
     lens.material=material;layer.add_child(lens);lens.hide()
-    score=AudioStreamPlayer.new();score.stream=load("res://audio/city_breaker/intro.ogg");score.bus="Afterhours SFX";add_child(score)
+    score=AudioStreamPlayer.new();score.stream=load("res://audio/city_breaker/intro.wav");score.bus="Afterhours SFX";add_child(score)
 func begin_intro() -> void:
     clear();saved_near=session.camera.near
     saved_visibility.clear()

@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-11",
+  "sources_preserved": true,
+  "assets": [
+    {
+      "asset_id": "ABILITY_DEALER_TRIPO",
+      "role": "npc",
+      "path": "godot/assets/ability_draw/source/tripo_convert_36d4f0c3-b64c-4ea1-841e-104fd70e96ae.glb",
+      "original_filename": "tripo_convert_36d4f0c3-b64c-4ea1-841e-104fd70e96ae.glb",
+      "bytes": 210268,
+      "sha256": "4418a35dd51ea28be6946b3a6cf9e237df094a2cdcbd3ae005b6a9652da2a85d",
+      "mesh_count": 1,
+      "vertices": 923,
+      "triangles": 1164,
+      "skin_count": 1,
+      "skin_joints": [
+        65
+      ],
+      "animation_count": 0,
+      "bounds_in_source_units": [
+        {
+          "min": [
+            -0.334716796875,
+            -3.5371311923881876e-07,
+            -0.12377925962209702
+          ],
+          "max": [
+            0.33471667766571045,
+            0.9995114207267761,
+            0.12377924472093582
+          ]
+        }
+      ],
+      "wrapper_uniform_scale": 3.05,
+      "source": "User uploaded Tripo GLB; source bytes retained unchanged",
+      "runtime_motion": "Rest-relative CC0 gait plus authored two-bone contacts on original skin",
+      "runtime_import": "Godot 4 native glTF importer; embedded base color retained, wrapper cel material"
+    },
+    {
+      "asset_id": "ABILITY_CABINET_TRIPO",
+      "role": "cabinet_shell",
+      "path": "godot/assets/ability_draw/source/tripo_convert_275dc57f-e328-47e0-89e5-10195d3209c4.glb",
+      "original_filename": "tripo_convert_275dc57f-e328-47e0-89e5-10195d3209c4.glb",
+      "bytes": 375260,
+      "sha256": "5e6088d785fbad566305f77054a1bfdbf7d2d45af4995b6651bd58e39bef4e18",
+      "mesh_count": 1,
+      "vertices": 1627,
+      "triangles": 1066,
+      "skin_count": 0,
+      "skin_joints": [],
+      "animation_count": 0,
+      "bounds_in_source_units": [
+        {
+          "min": [
+            -0.4990234971046448,
+            0,
+            -0.3212891221046448
+          ],
+          "max": [
+            0.4990234971046448,
+            0.994140625,
+            0.3212891221046448
+          ]
+        }
+      ],
+      "wrapper_uniform_scale": 2.0,
+      "source": "User uploaded Tripo GLB; source bytes retained unchanged",
+      "runtime_motion": "Static shell under moving chassis; separate procedural drums, wheels, lever and hatch",
+      "runtime_import": "Godot 4 native glTF importer; embedded base color retained, wrapper cel material"
+    }
+  ],
+  "no_animation_in_source": true,
+  "scope": "Metadata from the original binary files. Runtime movement is in Godot wrappers, not baked back into the source GLBs."
+}

@@ -1,0 +1,35 @@
+ABILITY_DRAW draw respects zero effects volume true
+ABILITY_DRAW effects volume restores without restarting timeline true
+ABILITY_DRAW settings pauses draw with visible controls true
+ABILITY_DRAW live F2 disables lens without losing draw true
+ABILITY_DRAW_CHECKS 52/52
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)
+ERROR: 4 resources still in use at exit.
+   at: clear (core/io/resource.cpp:805)
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Accessibility: window 0 adapter destroyed.
+Leaked instance: OggPacketSequencePlayback:9223372175115816084 - Reference count: 1
+Leaked instance: AudioStreamOggVorbis:9223372140336647389 - Reference count: 1
+Leaked instance: OggPacketSequence:9223372140353424606 - Reference count: 3
+Leaked instance: OggPacketSequence:9223372152047144586 - Reference count: 3
+Leaked instance: AudioStreamOggVorbis:9223372152063921803 - Reference count: 1
+Leaked instance: OggPacketSequence:9223372157180972952 - Reference count: 5
+Leaked instance: AudioStreamOggVorbis:9223372157197750169 - Reference count: 2
+Leaked instance: OggPacketSequencePlayback:9223372178588700651 - Reference count: 1
+Leaked instance: AudioStreamPlaybackOggVorbis:9223372175099039752 - Reference count: 1
+Leaked instance: AudioStreamPlaybackOggVorbis:9223372178571923486 - Reference count: 1
+Leaked instance: OggPacketSequencePlayback:9223372178135715912 - Reference count: 1
+Leaked instance: AudioStreamPlaybackOggVorbis:9223372178118938706 - Reference count: 1
+Leaked instance: AudioStreamPlaybackOggVorbis:9223372178488037459 - Reference count: 1
+Leaked instance: OggPacketSequencePlayback:9223372178504814678 - Reference count: 1
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Resource still in use: res://audio/city_breaker/intro.ogg::OggPacketSequence_2q8g0 (OggPacketSequence)
+Resource still in use: res://audio/city_breaker/intro.ogg (AudioStreamOggVorbis)
+Resource still in use: res://audio/ability_draw/arrival.ogg::OggPacketSequence_viyc7 (OggPacketSequence)
+Resource still in use: res://audio/ability_draw/arrival.ogg (AudioStreamOggVorbis)
+Orphan StringName: Afterhours Music (static: 0, total: 2)
+Orphan StringName: Afterhours SFX (static: 0, total: 4)
+StringName: 2 unclaimed string names at exit.

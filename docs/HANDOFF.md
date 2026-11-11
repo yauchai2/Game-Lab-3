@@ -1,5 +1,11 @@
 # 接續工作交接
 
+## 2026-11-11：上傳Tripo NPC與機殼正式接入
+
+使用者提供275dc57f…機身及36d4f0c3…蒙面NPC，依先前換模／加動畫要求完成。原GLB在assets/ability_draw/source，逐byte保留，metadata在references/ability-draw/tripo/uploaded-models.json／assets-manifest。NPC1164tris／65骨／無來源動畫，包裝用既有CC0 gait＋作者二骨手腕接觸、手掌／指節、轉身及開獎反應；機身1066tris靜態，保留原albedo，活動件獨立；窗口多層封面用衍生材質／outline開窗，避免輪盤凸出或被遮住。
+
+74項（模型22＋流程52）原生通過，最終無ERROR或退出洩漏，有聲Movie Writer及原模型預覽見evidence/ability-draw/tripo-models。早期parse／shader宣告錯誤與52項後Ogg退出滯留已記錄；短入場／抽獎cue改用既有OGG解碼PCM，長BGM及原OGG不動，builder同步PCM。不是Godot全局解碼器修復、Mac或真人手感驗收。docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md為現況；不替換戰鬥選角，腰側裝備仍僅分鏡。來源同branch／PR #6，Web不更新。
+
 ## 2026-11-11：Tripo三視圖交接
 
 使用者提供最早九格分鏡並要求蒙面人／抽獎機嚴謹三視圖及動畫可行性。已生成NPC A-pose正側背、機器完整組裝正／拉桿側／背、機殼-only三視圖，保存references/ability-draw/tripo，附兩份英文prompt與manifest。為ImageGen設計稿而非精確CAD投影，背面按正面補完，生成後仍須比例／分件校正；沒收到或生成Tripo模型，runtime不變。

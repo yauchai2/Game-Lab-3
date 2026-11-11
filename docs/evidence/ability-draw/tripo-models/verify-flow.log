@@ -1,0 +1,58 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+ABILITY_DRAW round one advances without a draw true
+ABILITY_DRAW 2-0 match completion is ineligible true
+ABILITY_DRAW 1-1 result enters real 3D draw before next round true
+ABILITY_DRAW all fighters and shadows hidden true
+ABILITY_DRAW real street selects a nonzero entrance instead of stationary fallback true
+ABILITY_DRAW NPC starts completely outside camera true
+ABILITY_DRAW machine starts completely outside camera true
+ABILITY_DRAW cast actually travels in and wheels rotate true
+ABILITY_DRAW presentation does not tick combat or mutate fighters true
+ABILITY_DRAW pause freezes draw and all voice positions true
+ABILITY_DRAW skip arrival stops at offer without rolling true
+ABILITY_DRAW offer has visible native action true
+ABILITY_DRAW native button locks a random result once true
+ABILITY_DRAW skip spin retains exactly the same reward true
+ABILITY_DRAW claim page is stable and lens is released true
+ABILITY_DRAW claim starts round three and applies real modifier true
+ABILITY_DRAW claim cannot apply twice true
+ABILITY_DRAW all fighter visibility and camera near restore true
+ABILITY_DRAW seed and boundary results are stable true
+ABILITY_DRAW speed core changes actual movement +20% true
+ABILITY_DRAW guard core changes actual regeneration +35% true
+ABILITY_DRAW charge core adds at most twenty starting meter true
+ABILITY_DRAW temporary core never survives reset true
+ABILITY_DRAW F2 offer stays usable false true
+ABILITY_DRAW full playback reaches stable result false true
+ABILITY_DRAW title clears score / lens / hidden fighters false true
+ABILITY_DRAW F2 offer stays usable true true
+ABILITY_DRAW full playback reaches stable result true true
+ABILITY_DRAW title clears score / lens / hidden fighters true true
+ABILITY_DRAW restart cancels draw and clears pending reward true
+ABILITY_DRAW Street Run stop two win enters shared draw true
+ABILITY_DRAW Street Run claim advances to stop three true
+ABILITY_DRAW Street Run defeat cannot award a draw true
+ABILITY_DRAW practice never awards a draw true
+ABILITY_DRAW Demo uses same intermission true
+ABILITY_DRAW Demo auto selects and claims before third round true
+ABILITY_DRAW Demo does not grant permanent growth true
+ABILITY_DRAW another stage anchor and orientation transform the same cast true
+ABILITY_DRAW alternate entry side is used without negative scale true
+ABILITY_DRAW actors remain excluded at alternate stage true
+ABILITY_DRAW clear restores saved camera exactly true
+ABILITY_DRAW clear restores background actors and music duck true
+ABILITY_DRAW clear is idempotent true
+ABILITY_DRAW obstructed main lane chooses swept-volume backup true
+ABILITY_DRAW both blocked lanes choose explicit animated compact reveal true
+ABILITY_DRAW compact reveal never exposes a newly spawned cast true
+ABILITY_DRAW compact reveal releases cast after the covering wipe true
+ABILITY_DRAW draw respects explicit mute true
+ABILITY_DRAW draw respects zero effects volume true
+ABILITY_DRAW effects volume restores without restarting timeline true
+ABILITY_DRAW settings pauses draw with visible controls true
+ABILITY_DRAW live F2 disables lens without losing draw true
+ABILITY_DRAW_CHECKS 52/52

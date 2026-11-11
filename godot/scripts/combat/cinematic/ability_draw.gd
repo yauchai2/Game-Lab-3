@@ -60,7 +60,7 @@ func _toon(node:Node) -> void:
     for child in node.get_children():_toon(child)
 
 func _player(id:String) -> AudioStreamPlayer:
-    var p:=AudioStreamPlayer.new();p.stream=load("res://audio/ability_draw/"+id+".ogg");p.bus="Afterhours SFX";add_child(p);return p
+    var p:=AudioStreamPlayer.new();p.stream=load("res://audio/ability_draw/"+id+".wav");p.bus="Afterhours SFX";add_child(p);return p
 
 func active() -> bool:return state!="off"
 
@@ -134,7 +134,7 @@ func skip() -> void:
     sample()
 
 func _accent(id:String) -> void:
-    accent.stop();accent.stream=load("res://audio/ability_draw/"+id+".ogg");accent.play()
+    accent.stop();accent.stream=load("res://audio/ability_draw/"+id+".wav");accent.play()
 
 func _sync_audio(paused:bool) -> void:
     for p in [arrival,spin,reveal,accent]:
@@ -170,7 +170,7 @@ func sample() -> void:
     elif state=="offer":
         current_shot=2;camera_at=Vector3(-1.27,2.40,2.45);target=Vector3(-.91,2.16,.22);fov=73.0;roll=-.075;distortion=.23
     elif state=="spin" and t<3.5:
-        current_shot=3;camera_at=Vector3(.12,1.71,1.78);target=Vector3(0,1.72,.20);fov=68.0;roll=sin(age*22)*.025;distortion=.14
+        current_shot=3;camera_at=Vector3(.03,1.72,.95);target=Vector3(.01,1.72,-.25);fov=52.0;roll=sin(age*22)*.025;distortion=.14
     elif state=="spin":
         current_shot=4;camera_at=Vector3(-1.4,.70,3.1);target=Vector3(-.15,1.9,.3);fov=90;roll=-.14;distortion=.45;punch=maxf(0,1-absf(t-3.56)/.18)
     elif state=="result":

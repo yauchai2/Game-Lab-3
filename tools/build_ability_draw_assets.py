@@ -63,6 +63,8 @@ render('spin',1.3,[(i*.07,.10,'metal',.20,(-.4 if i%2 else .4)) for i in range(1
 render('reveal',1.85,[(0,.12,'metal',.45,-.5),(.12,.12,'metal',.6,0),(.25,.16,'metal',.8,.5),(.26,.10,'rise',.45,0),(.38,.75,'hit',.9,0),(.42,.8,'chord',.65,0),(.62,.42,'rise',.3,0)])
 render('coin',.4,[(0,.32,'metal',.5,0)])
 render('confirm',.6,[(0,.5,'chord',.5,0)])
+# Keep runtime PCM copies synchronized when rebuilding the original OGG cues.
+subprocess.run(['python3',str(ROOT/'tools/build_ability_pcm.py')],check=True)
 manifest={'origin':'Original programmatic polygon icon art and deterministic synthesis; no external recordings','seed':20261111,'rate':RATE,'source_video_sha256':hashlib.sha256((ROOT/'references/ability-draw/source.mp4').read_bytes()).hexdigest(),'source_duration_seconds':4.351969,'source_review':'Full-duration 4fps sampling; cut points approximated, not source-PTS locked','files':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted([*ART.glob('*.png'),*AUDIO.glob('*.ogg')])}}
 storyboard=ROOT/'references/ability-draw/equip-storyboard.png'
 if storyboard.exists():manifest['equip_storyboard']={'origin':'ImageGen concept sheet using existing capsule screenshot as design reference','status':'planning_only_not_runtime','sha256':hashlib.sha256(storyboard.read_bytes()).hexdigest()}

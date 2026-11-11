@@ -34,3 +34,7 @@
 保留原GLB／貼圖，衍生版本再清理。NPC檢查手指、腋下、衣袖、髖部可用拓撲；靜態模型須補骨架與權重，再做拖行、煞停、拍機、代幣展示及爆獎反應。機器用父子節點／獨立pivot，不必為每個剛性零件做角色式skin rig。依Tripo模型實際尺寸校正接觸點、輪徑與鏡頭；不要把本圖當已驗證的實際公尺標尺。
 
 此次只有生成參考圖與製作建議，沒有收到或生成新的Tripo模型，未改遊戲runtime、未替換原角色／機器，也未發佈Web。
+
+## 2026-11-11：使用者已提供模型，覆蓋上方「尚未收到」的歷史狀態
+
+收到`36d4f0c3…`蒙面NPC（65骨、無動畫）及`275dc57f…`機身（靜態單mesh），已用包裝場景接入正式過場、原檔逐byte保留；uploaded-models.json與pcm-cues.json記錄來源。NPC有CC0 gait＋作者骨骼接觸動作；機身多層黑色封面在衍生材質開窗，活動件另建。詳見docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md及evidence/ability-draw/tripo-models。裝備到玩家腰側仍僅規劃。
