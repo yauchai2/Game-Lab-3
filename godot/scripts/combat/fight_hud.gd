@@ -229,6 +229,7 @@ func rebuild_menu(requested_focus := "") -> void:
         menu.size=Vector2(600,500 if session.screen in ["pause","help"] else 440)
     menu.add_theme_stylebox_override("panel",Tokens.plate(Color.TRANSPARENT if session.screen=="title" and menu_page=="main" else Color(INK,.96),Tokens.EDGE if menu_page!="main" else Color.TRANSPARENT,2 if menu_page!="main" else 0))
     if menu_page=="skills":_skills_page()
+    elif menu_page=="versus":_versus_page()
     elif menu_page=="settings":_settings_page()
     elif menu_page=="roster":_roster_page()
     elif menu_page=="help":_help_page()
@@ -243,7 +244,7 @@ func rebuild_menu(requested_focus := "") -> void:
 
 func _restore_focus() -> void:
     if art_controls.visible:
-        var target:String=focus_key if art_buttons.has(focus_key) else ("card_"+str(session.character_choices[art.roster_side]) if menu_page=="roster" else "fight")
+        var target:String=focus_key if art_buttons.has(focus_key) else ("card_"+str(session.character_choices[art.roster_side]) if menu_page=="roster" else "story")
         art_buttons[target].grab_focus()
         return
     if not menu.visible:return
@@ -371,32 +372,37 @@ func _pause_page() -> void:
     else:_action(menu_stack,"reset_training" if session.practice else "restart","F5" if session.practice else "R",func():
         if session.practice:session.reset_training()
         elif session.run_active:session.start_run()
-        else:session.start_match(false))
+        else:session.restart_current())
     _action(menu_stack,"settings","F1",func():open_page("settings"))
     _action(menu_stack,"controls","H",func():open_page("help"))
     _action(menu_stack,"main_menu","",func():session.return_to_title())
 
 func _result_page() -> void:
-    _heading("draw" if session.sim.winner<0 else ("win" if session.sim.winner==0 else "lose"))
+    if session.versus:_heading("draw" if session.sim.winner<0 else "P%d WINS"%(session.sim.winner+1))
+    else:_heading("draw" if session.sim.winner<0 else ("win" if session.sim.winner==0 else "lose"))
     if session.run_active:
+        if session.sim.winner==0 and session.run_stage>=3:
+            menu_stack.add_child(_label("STORY CLEAR / FREE BATTLE UNLOCKED" if session.story_unlock_fresh else "STORY CLEAR",32,Tokens.LIME,true))
         menu_stack.add_child(_label("STOP %d / +%d XP / %d SKILL POINTS"%[session.run_stage,session.run_reward,session.growth.points(session.run_character)],28))
         if session.sim.winner==0 and session.run_stage<3:
             _plain_action("NEXT STOP","next_stop",session.advance_run)
-        else:_plain_action("RETURN TO FIGHTERS","end_run",func():session.return_to_title();open_page("roster"))
+        else:
+            if session.sim.winner==0 and session.free_battle_unlocked():_plain_action("FREE BATTLE","end_run_versus",func():session.return_to_title();open_page("versus"))
+            _plain_action("RETURN TO FIGHTERS","end_run",func():session.return_to_title();open_page("roster"))
         _plain_action("SKILLS / FREE RESPEC","skills",func():open_page("skills"))
         return
-    if session.sim.winner==1:_caption("runback")
+    if session.sim.winner==1 and not session.versus:_caption("runback")
     menu_stack.add_child(_label("%d  —  %d"%[session.sim.wins[0],session.sim.wins[1]],48,Tokens.GOLD,true))
     _caption("wins")
     var complete: bool=session.sim.phase=="match_over"
     _action(menu_stack,"rematch" if complete else "next_round","Enter",func():
-        if complete:session.start_match(session.practice)
+        if complete:session.restart_current()
         else:session.advance_round(),true)
     _action(menu_stack,"main_menu","",func():session.return_to_title())
 
 func open_page(page: String) -> void:
     if session.screen=="play" or (session.screen=="result" and session.ability_draw.active()):session.pause_game()
-    page_return_focus="controls" if page=="help" else page
+    page_return_focus="controls" if page=="help" else ("fight" if page=="versus" else page)
     menu_page=page
     focus_key="back"
     rebuild_menu("back")
@@ -482,6 +488,8 @@ func _settings_page() -> void:
     _toggle("training_details",session.training_details,func(value:bool):
         session.training_details=value
         session.save_options())
+    if session.free_battle_unlocked() and session.screen=="title":
+        _plain_action("RELOCK FREE BATTLE / REPLAY THE UNLOCK","relock",session.relock_free_battle)
     _caption("settings_saved")
 
 func _roster_page() -> void:
@@ -495,7 +503,23 @@ func _roster_page() -> void:
         menu_stack.add_child(_label(tr_text("you" if side==0 else "rival")+" · "+tr_text(entry.trait),14,Tokens.LIME))
         var profile:Dictionary=session.Simulation.Profiles.profile(session.character_choices[side])
         menu_stack.add_child(_label("L · "+tr_text(profile.special_name)+" / W+L · "+tr_text(profile.overdrive_name),12,PAPER))
-    _action(menu_stack,"fight","Enter",func():session.start_match(false),true)
+    if session.free_battle_unlocked():_action(menu_stack,"fight","Enter",func():session.start_match(false),true)
+    else:_plain_action("STORY / STREET RUN","start_run",session.start_run)
+
+func _versus_page() -> void:
+    var controls:RefCounted=session.controls
+    controls.set_mode("versus")
+    _plain_action("1P VS CPU","vs_cpu",func():session.start_free_battle(false))
+    _plain_action("2P LOCAL VERSUS","vs_local",func():session.start_free_battle(true))
+    menu_stack.add_child(_label("GAMEPADS CONNECTED / %d"%controls.pads().size(),28,Tokens.LIME))
+    for side in 2:
+        var index:int=side
+        _choice("P%d DEVICE"%(side+1),["AUTO","KEYBOARD","GAMEPAD"],controls.wanted[side],func(choice:int):session.set_device(index,choice))
+        menu_stack.add_child(_label("P%d / %s"%[side+1,controls.describe(side)],28,PAPER))
+        menu_stack.add_child(_label(controls.legend(side),24,Tokens.MUTED))
+    menu_stack.add_child(_label("AUTO: two gamepads take both players; one gamepad goes to P2; none splits the keyboard. Unplugging a gamepad pauses and falls back to keyboard.",24,Tokens.MUTED))
+    _plain_action("CHOOSE FIGHTERS / P1 AND P2","vs_roster",func():open_page("roster"))
+    _plain_action("AI DEMO / F12","vs_demo",session.start_demo)
 
 func _help_page() -> void:
     _plain_action("FIRST MINUTE / C - START LESSONS","first_minute",session.start_first_minute)
@@ -511,11 +535,14 @@ func _help_page() -> void:
     _action(menu_stack,"drill","F8",func():
         session.start_match(true)
         session.prime_pressure_drill())
+    for line in ["STORY: clear all 3 stops of the street run to unlock FREE BATTLE (1P VS CPU and 2P LOCAL VERSUS).","2P KEYBOARD / P1: "+session.controls.LEGEND.kb_left,"2P KEYBOARD / P2: "+session.controls.LEGEND.kb_right,"GAMEPAD: "+session.controls.LEGEND.pad]:
+        menu_stack.add_child(_label(line,24,Tokens.LIME))
 
 func _process(delta: float) -> void:
     title_motion.update_stage(session.screen=="title" and menu_page=="main",delta,session.reduced_effects)
     art.advance(delta,session.reduced_effects)
     copy.language="en"
+    art.free_locked=not session.free_battle_unlocked()
     pause_button.visible=session.screen=="play"
     coach_continue.visible=session.screen=="play" and session.coach!=null and session.coach.status in ["ready","passed","complete"]
     if coach_continue.visible:
@@ -586,7 +613,7 @@ func _draw() -> void:
     if session.screen=="title":
         if menu_page=="main":art.title(self)
         elif menu_page=="roster":art.roster(self,session)
-        else:art.secondary(self,"LOADOUT" if menu_page=="skills" else ("SETTINGS" if menu_page=="settings" else "HOW TO PLAY"))
+        else:art.secondary(self,"LOADOUT" if menu_page=="skills" else ("SETTINGS" if menu_page=="settings" else ("FREE BATTLE" if menu_page=="versus" else "HOW TO PLAY")))
         return
     if session.ability_draw.active() and session.screen=="result":
         session.ability_draw.draw(self)
@@ -622,12 +649,12 @@ func _draw() -> void:
         _plate(Vector2(426,notice_y),Vector2(428,40),INK)
         _center(Vector2(640,notice_y+29),copy.notice(notice),19,Tokens.GOLD)
     var player: Dictionary=session.sim.fighters[0]
-    if session.demo==null and player.wall_tech_window>0 and player.state=="stun" and player.meter>=20:
+    if session.demo==null and not session.versus and player.wall_tech_window>0 and player.state=="stun" and player.meter>=20:
         var at: Vector2=session.project(Vector2(player.x,player.y+2.3))
         at.x=clampf(at.x,120,1160)
         _plate(at+Vector2(-100,-26),Vector2(200,32),INK)
         _center(at+Vector2(0,-3),"E "+tr_text("recover"),13,Tokens.TEAL)
-    if session.demo==null and player.counter_window>0 and session.screen=="play":
+    if session.demo==null and not session.versus and player.counter_window>0 and session.screen=="play":
         var cue: Vector2=session.project(Vector2(player.x,player.y+2.7))
         cue.x=clampf(cue.x,145,1135);cue.y=clampf(cue.y,180,480)
         _plate(cue+Vector2(-140,-28),Vector2(280,34),INK)
@@ -899,13 +926,16 @@ func _build_art_controls() -> void:
     for child in art_controls.get_children():art_controls.remove_child(child);child.queue_free()
     art_buttons.clear();art_controls.visible=true
     if menu_page=="main":
-        var keys:Array=["fight","roster","training","settings","demo"]
-        var labels:Array=["FIGHT","FIGHTERS","TRAINING","SETTINGS","AI DEMO"]
-        var calls:Array=[func():session.start_match(false),func():open_page("roster"),func():session.start_match(true),func():open_page("settings"),func():session.start_demo()]
-        for i in 5:_art_button(keys[i],labels[i],art.MAIN_RECTS[i],calls[i])
-        for i in 5:
-            art_buttons[keys[i]].focus_neighbor_top=art_buttons[keys[(i+4)%5]].get_path()
-            art_buttons[keys[i]].focus_neighbor_bottom=art_buttons[keys[(i+1)%5]].get_path()
+        # Story is the only game mode until its three stops are cleared; then FREE BATTLE opens.
+        var keys:Array=art.MAIN_KEYS
+        var count:int=keys.size()
+        art.free_locked=not session.free_battle_unlocked()
+        var calls:Array=[session.start_run,_open_free_battle,func():open_page("roster"),func():session.start_match(true),func():open_page("settings"),func():session.start_demo()]
+        for i in count:_art_button(keys[i],art.MAIN_LABELS[i],art.MAIN_RECTS[i],calls[i])
+        if art.free_locked:art_buttons.fight.text="FREE BATTLE LOCKED / CLEAR STORY";art_buttons.fight.tooltip_text=art_buttons.fight.text
+        for i in count:
+            art_buttons[keys[i]].focus_neighbor_top=art_buttons[keys[(i+count-1)%count]].get_path()
+            art_buttons[keys[i]].focus_neighbor_bottom=art_buttons[keys[(i+1)%count]].get_path()
     else:
         for i in 4:
             var index:int=i
@@ -918,7 +948,9 @@ func _build_art_controls() -> void:
             _art_button("side_"+str(side),"SELECT P%d"%(side+1),art.fit(Rect2(18,241+side*100,160,84)),func():art.roster_side=selected_side;queue_redraw())
         _art_button("skills","SKILLS",Rect2(1094,300,140,60),func():open_page("skills"))
         _art_button("street_run","STREET RUN",Rect2(1094,380,140,86),session.start_run)
-        _art_button("roster_fight","FIGHT",art.fit(Rect2(849,773,550,100)),func():session.start_match(false))
+        _art_button("roster_fight","FIGHT" if session.free_battle_unlocked() else "STORY",art.fit(Rect2(849,773,550,100)),func():
+            if session.free_battle_unlocked():session.start_match(false)
+            else:session.start_run())
         _art_button("back","BACK",art.fit(Rect2(1507,875,145,50)),close_page)
         for i in 4:
             var button:Button=art_buttons["card_"+str(i)]
@@ -926,6 +958,13 @@ func _build_art_controls() -> void:
             button.focus_neighbor_right=art_buttons["card_"+str(i^1)].get_path()
             button.focus_neighbor_top=art_buttons["card_"+str((i+2)%4)].get_path()
             button.focus_neighbor_bottom=art_buttons["card_"+str(i+2)].get_path() if i<2 else art_buttons.roster_fight.get_path()
+
+func _open_free_battle() -> void:
+    if session.free_battle_unlocked():open_page("versus")
+    else:
+        art.locked_flash=1.0
+        session.audio.play_sound("block",.8,-8.0)
+        queue_redraw()
 
 func _restore_sound() -> void:
     session.audio.restore_output()

@@ -5,7 +5,7 @@
       "passed": true
     },
     {
-      "name": "exactly five native main actions",
+      "name": "six native main actions, story first",
       "passed": true
     },
     {
@@ -13,19 +13,19 @@
       "passed": true
     },
     {
-      "name": "five actions fit (960, 540)",
+      "name": "main actions fit (960, 540)",
       "passed": true
     },
     {
-      "name": "five actions fit (1280, 720)",
+      "name": "main actions fit (1280, 720)",
       "passed": true
     },
     {
-      "name": "five actions fit (1920, 1080)",
+      "name": "main actions fit (1920, 1080)",
       "passed": true
     },
     {
-      "name": "arrow moves Fight to Fighters",
+      "name": "arrow moves Versus to Fighters",
       "passed": true
     },
     {
@@ -33,7 +33,7 @@
       "passed": true
     },
     {
-      "name": "pointer selects goggles for P1",
+      "name": "pointer selects LOOP for P1",
       "passed": true
     },
     {
@@ -53,7 +53,7 @@
       "passed": true
     },
     {
-      "name": "Esc returns to five-option menu",
+      "name": "Esc returns to six-option menu",
       "passed": true
     },
     {

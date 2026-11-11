@@ -8,10 +8,11 @@ const SKILLS=[
 var path:="user://neon_lab/progression.cfg"
 var records:Dictionary={}
 var claimed:Array=[]
+var story_cleared:=false # Clearing the 3-stop story unlocks FREE BATTLE.
 var last_error:=OK
 func _init() -> void:reset()
 func reset() -> void:
-    records.clear();claimed.clear()
+    records.clear();claimed.clear();story_cleared=false
     for id in Profiles.IDS:records[id]={"xp":0,"unlocked":[],"equipped":[],"palette":false}
 func level(character:int) -> int:return mini(3,floori(float(records[Profiles.IDS[character]].xp)/40.0))
 func points(character:int) -> int:return maxi(0,level(character)-records[Profiles.IDS[character]].unlocked.size())
@@ -21,6 +22,7 @@ func load_data() -> void:
     var file:=ConfigFile.new()
     if file.load(path)!=OK and file.load(path+".bak")!=OK:return
     if file.get_value("save","version",0)!=1:return
+    story_cleared=file.get_value("save","story_cleared",false)==true
     var claims:Variant=file.get_value("save","claimed",[])
     if claims is Array:
         for id in claims:
@@ -41,7 +43,7 @@ func load_data() -> void:
 func save() -> Error:
     if path.is_empty():return OK
     DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(path.get_base_dir()))
-    var file:=ConfigFile.new();file.set_value("save","version",1);file.set_value("save","claimed",claimed)
+    var file:=ConfigFile.new();file.set_value("save","version",1);file.set_value("save","claimed",claimed);file.set_value("save","story_cleared",story_cleared)
     for id in records:
         for key in records[id]:file.set_value(id,key,records[id][key])
     last_error=file.save(path+".tmp")
