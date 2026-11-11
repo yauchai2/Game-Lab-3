@@ -1,5 +1,11 @@
 # 待辦與完成狀態
 
+## 2026-11-11：玩法與創意擴充企劃
+
+- [x] 撰寫 [CONTENT_EXPANSION_PLAN.zh-TW.md](CONTENT_EXPANSION_PLAN.zh-TW.md)（僅規劃，未實作）。
+- [ ] Alan 確認決策點 D1–D5 與故事方向。
+- [ ] P0：story.cfg／選單鎖定、InputSource 重構、雙鍵盤雙人、雙手柄、MVP 故事。
+
 ## 2026-11-11：同步 main
 
 - [x] 按使用者明確要求將最新完整遊戲4177ef9合併至main，保留既有歷史及風格文件。

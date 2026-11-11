@@ -1,5 +1,9 @@
 # 接續工作交接
 
+## 2026-11-11：玩法與創意擴充企劃（僅文件）
+
+使用者要求：開局只有故事模式、通關解鎖自由對戰、同機鍵盤雙人、雙手柄，並詳細規劃玩法與創意點子。企劃見 [CONTENT_EXPANSION_PLAN.zh-TW.md](CONTENT_EXPANSION_PLAN.zh-TW.md)。**只有文件，未改遊戲程式、存檔、規則或Web。** 讀碼確認：`fight_simulation.gd` 的 `tick(player, opponent)` 已能吃雙方指令，但`fight_session.gd`輸入硬寫P1鍵盤，且沒有任何手柄支援；雙人／手柄需先抽象輸入來源。待 Alan 決定 D1–D5。
+
 ## 2026-11-11：最新遊戲來源合併 main
 
 使用者明確要求「推送最新遊戲到main」。以遠端 main 54a520d 與最新遊戲來源 codex/combat-escalation-next 4177ef9 進行非強制合併，保留兩邊歷史及main既有JSR／BRC文件，無衝突。合併後godot／tools兩棵Git tree與已驗證4177ef9完全一致；本輪沒有改玩法或重跑上輪測試，上輪四個既有舊斷言失敗仍見double-jump證據。日常拉取可改選main；開發分支保留。公開Web未更新。
