@@ -228,3 +228,8 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 ## 2026-11-11：KO聲畫單一owner
 
 使用者授權創意加入聲效／震動／模糊／漫畫線，沿既有正式KO CityBreaker擴充，避免第二套全屏director。原創程序score打包為10秒OGG，專用player路由到既有SFX bus與limiter，pause保位置／clear停止；BGM owner只收duck值，不停／重置transport。7-tap邊緣放射模糊與中心保清、短撞擊色差／對比、速度線及FOV反衝都讀同一演出秒數。模糊是風格化放射採樣，並非運動向量motion blur；F2退出長演出及後製。
+
+
+## 2026-11-11：五秒KO非線性節奏
+
+最新加快一倍指示按本聊天KO上下文落實為10→5秒過場，不改正式simulation／招式速度。保留原10秒作者座標，新增5秒playback_elapsed與共享timing.json正反映射，移動段加速、接觸／空爆留短重拍、KO留0.92秒。程序聲效用同profile重排／重合成、保持音高，避免播放器2×把低頻與金屬聲一起升調。JSON明確打包但不更新Web。

@@ -21,6 +21,17 @@ func run() -> void:
     await process_frame;await process_frame
     s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.fighters[1].health=0;s._combat_step()
     var c=s.city_breaker
+    check("full presentation and score are both five seconds",c.DURATION==5.0 and absf(c.score_player.stream.get_length()-5.0)<.03)
+    check("audio retains original pitch",c.score_player.pitch_scale==1.0)
+    check("KO card holds for at least 0.9 seconds",c.DURATION-c.playback_time(c.CUTS[7])>=.9)
+    var monotonic:=true;var last:float=-1
+    for frame in 301:
+        var wall:float=frame/60.0
+        var authored:float=c.source_time(wall)
+        monotonic=monotonic and authored>=last and absf(c.playback_time(authored)-wall)<.0001
+        last=authored
+    check("time mapping has no reversal and covers five seconds",monotonic and is_equal_approx(c.source_time(5),10))
+    check("main airburst retains a deliberate slow accent",c.source_time(3.72)-c.source_time(3.55)<.17)
     check("real KO owns lens and synchronized score",c.active() and c.lens.visible and c.score_player.playing)
     var bus:=AudioServer.get_bus_index("Afterhours SFX")
     capture=AudioEffectCapture.new();capture.buffer_length=2.0

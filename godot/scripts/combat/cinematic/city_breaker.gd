@@ -1,12 +1,15 @@
 extends Node3D
 ## KO presentation only. Uses the live stage/roster; never writes simulation state.
 ## Closed-form paths allow frame-independent playback, capture and complete rollback.
-const DURATION := 10.0
+const DURATION := 5.0
+const SOURCE_DURATION := 10.0
+var timing: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://audio/city_breaker/timing.json"))
+var playback_elapsed := 0.0
 const CUTS := [0.0, 13.0/24, 43.0/24, 83.0/24, 125.0/24, 149.0/24, 172.0/24, 189.0/24, 10.0]
 const SHOTS := ["LAUNCH", "WALL BREAK", "STREET RUSH", "CHAIN REACTION", "SKYWARD", "AIRCRAFT HIT", "AIRBURST", "K.O."]
 var session: Node3D
 var running := false
-var age := 0.0
+var age := 0.0 # Authored animation seconds; playback_elapsed is the five-second wall clock.
 var winner := 0
 var victim := 1
 var shot := 0
@@ -89,6 +92,7 @@ func begin(side: int) -> void:
         plane_copy.transform = plane.transform
     rng.seed = 640360
     age = 0.0
+    playback_elapsed = 0.0
     shot = 0
     running = true
     container.show()
@@ -103,15 +107,15 @@ func advance(delta: float, paused: bool) -> void:
     if paused:
         sample(age)
         return
-    age = minf(DURATION, age + maxf(delta, 0.0))
-    sample(age)
-    if age >= DURATION:
+    playback_elapsed = minf(DURATION, playback_elapsed + maxf(delta, 0.0))
+    sample(source_time(playback_elapsed))
+    if playback_elapsed >= DURATION:
         clear()
 
 func sample(time: float) -> void:
     if not running:
         return
-    age = clampf(time, 0.0, DURATION)
+    age = clampf(time, 0.0, SOURCE_DURATION)
     shot = 0
     for i in SHOTS.size():
         if age >= CUTS[i]: shot = i
@@ -603,3 +607,16 @@ func _draw_speed_ink(canvas: Control) -> void:
         canvas.draw_string(session.hud.bold,Vector2(5,6),cue[1],HORIZONTAL_ALIGNMENT_LEFT,-1,78,Color("15101f",alpha))
         canvas.draw_string(session.hud.bold,Vector2.ZERO,cue[1],HORIZONTAL_ALIGNMENT_LEFT,-1,78,Color("fff3a8",alpha))
         canvas.draw_set_transform(Vector2.ZERO,0,scale)
+
+
+func source_time(seconds: float) -> float:
+    return _map_time(seconds,timing.playback,timing.source)
+
+func playback_time(authored_seconds: float) -> float:
+    return _map_time(authored_seconds,timing.source,timing.playback)
+
+func _map_time(seconds: float, inputs: Array, outputs: Array) -> float:
+    for i in range(inputs.size()-1):
+        if seconds<=inputs[i+1]:
+            return lerpf(outputs[i],outputs[i+1],clampf((seconds-inputs[i])/(inputs[i+1]-inputs[i]),0,1))
+    return outputs[-1]

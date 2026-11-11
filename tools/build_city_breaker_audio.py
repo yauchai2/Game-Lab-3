@@ -7,7 +7,10 @@ import json, subprocess, wave
 import numpy as np
 ROOT=Path(__file__).resolve().parents[1]
 RATE=48000
-DURATION=10.0
+TIMING=json.loads((ROOT/"godot/audio/city_breaker/timing.json").read_text())
+DURATION=TIMING["duration"]
+def playback(t):return float(np.interp(t,TIMING["source"],TIMING["playback"]))
+def span(at,duration):return playback(at+duration)-playback(at)
 rng=np.random.default_rng(20261111)
 mix=np.zeros((int(RATE*DURATION),2),dtype=np.float64)
 CUES=[(0.02,1.0,-.4),(.82,1.0,.7),(1.72,.85,-.65),(2.82,.85,.55),(3.18,.9,-.6),(3.65,1.05,.5),(6.4,1.0,.15),(172/24,1.45,0),(189/24,.8,0)]
@@ -44,30 +47,33 @@ def impact(at,power,pan):
     for i,f in enumerate([733,1099,1931,2877]):
         ring=np.sin(2*np.pi*f*t+np.sin(t*27)*.1)*np.exp(-t/(.12+i*.055))*fade(t,duration)
         add(at+.025+i*.009,ring,.018*power,pan*(-1 if i%2 else 1))
-for at,power,pan in CUES:impact(at,power,pan)
+for at,power,pan in CUES:impact(playback(at),power,pan)
 # Stereo rising flyaway / pressure trails, with holes for the impacts to breathe.
 for at,duration,start_freq,end_freq,gain in [(0, .73,90,1200,.15),(.95,2.65,180,1600,.10),(4.9,1.5,90,1800,.15)]:
+    duration=span(at,duration);at=playback(at)
     t=np.arange(int(RATE*duration))/RATE
     f=start_freq+(end_freq-start_freq)*(t/duration)**1.4
     noise=low_noise(len(t),3800)
     sig=(noise*.6+np.sin(2*np.pi*np.cumsum(f)/RATE)*.2)*np.sin(np.pi*t/duration)**1.1
     add(at,sig,gain,np.sin(t*1.4-.7))
 # Reverse suction just before the aircraft rupture.
-t=np.arange(int(RATE*.42))/RATE
-add(6.72,low_noise(len(t),1400)*(t/.42)**2,.16,0)
+suction=span(6.72,.42)
+t=np.arange(int(RATE*suction))/RATE
+add(playback(6.72),low_noise(len(t),1400)*(t/suction)**2,.16,0)
 # Four-engine rumble: deliberately synthetic, not a downloaded aircraft recording.
-t=np.arange(int(RATE*1.25))/RATE
+engine_duration=span(5.18,1.25)
+t=np.arange(int(RATE*engine_duration))/RATE
 engine=(np.sin(2*np.pi*51*t)+.3*np.sin(2*np.pi*103*t)+low_noise(len(t),550)*.18)
-add(5.18,engine*np.sin(np.pi*t/1.25)**2,.095,np.linspace(-.65,.5,len(t)))
+add(playback(5.18),engine*np.sin(np.pi*t/engine_duration)**2,.095,np.linspace(-.65,.5,len(t)))
 # Flying debris after the blast; staggered pans and decays.
 for i in range(10):
     duration=.22+rng.random()*.22;t=np.arange(int(RATE*duration))/RATE
-    add(7.25+i*.17,low_noise(len(t),1800+rng.random()*3000)*np.exp(-t/.09)*fade(t,duration),.022,(-1 if i%2 else 1)*.8)
+    add(playback(7.25+i*.17),low_noise(len(t),1800+rng.random()*3000)*np.exp(-t/.09)*fade(t,duration),.022,(-1 if i%2 else 1)*.8)
 # KO punctuation: descending arcade chord, rather than a synthetic spoken voice.
 for at,f,gain in [(7.91,146.83,.12),(8.04,110,.11),(8.18,73.42,.13)]:
     t=np.arange(int(RATE*.6))/RATE
     tone=sum(np.sin(2*np.pi*f*k*t)/k for k in [1,2,3])
-    add(at,tone*np.exp(-t/.17)*fade(t,.6),gain,0)
+    add(playback(at),tone*np.exp(-t/.17)*fade(t,.6),gain,0)
 # Gentle saturation and a documented fixed peak leave room for in-game BGM.
 peak=float(np.max(np.abs(mix)))
 mix=np.tanh(mix/max(peak,.001)*1.15)
@@ -79,5 +85,5 @@ out.mkdir(parents=True,exist_ok=True)
 wav=Path('/tmp/city-breaker-score.wav')
 with wave.open(str(wav),'wb') as f:f.setnchannels(2);f.setsampwidth(2);f.setframerate(RATE);f.writeframes(pcm.tobytes())
 subprocess.run(['ffmpeg','-v','error','-i',str(wav),'-c:a','libvorbis','-q:a','5',str(out/'score.ogg'),'-y'],check=True)
-(out/'provenance.json').write_text(json.dumps({'source':'Original procedural synthesis; no external samples','generator':'tools/build_city_breaker_audio.py','seed':20261111,'duration_seconds':DURATION,'sample_rate':RATE,'channels':2,'peak_dbfs_before_vorbis':-2,'impact_seconds':[c[0] for c in CUES]},indent=2)+'\n')
+(out/'provenance.json').write_text(json.dumps({'source':'Original procedural synthesis; no external samples','generator':'tools/build_city_breaker_audio.py','seed':20261111,'duration_seconds':DURATION,'sample_rate':RATE,'channels':2,'peak_dbfs_before_vorbis':-2,'impact_seconds':[playback(c[0]) for c in CUES],'authored_impact_seconds':[c[0] for c in CUES],'timing_profile':'godot/audio/city_breaker/timing.json'},indent=2)+'\n')
 print(out/'score.ogg')

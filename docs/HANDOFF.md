@@ -1,5 +1,9 @@
 # 接續工作交接
 
+## 2026-11-11：KO整體加快一倍
+
+使用者要求整體加快一倍並保留節奏／爽感，本輪作用於這段KO過場：正式播放10→5秒，用timing.json共享非線性映射，保留撞樓短重拍、約3.61秒空爆慢拍及4.08–5秒KO收尾。動畫age保留原10秒作者時間；新增playback_elapsed是真5秒時鐘，session結算使用DURATION5。聲效按相同profile重新合成5秒，pitch_scale1保持低頻／音高；JSON加入export filter但未發佈。20FX／PCM＋165KO＋17結果通過，有聲Movie Writer影片見evidence/city-breaker-fast。F2／靜音／暫停／跳過清理保持；不改正式simulation速度／傷害。來源同branch／PR #6。
+
 ## 2026-11-11：KO聲音與誇張漫畫FX
 
 依使用者最新要求，原CityBreaker正式KO入口加上原創10秒立體聲score、SFX bus／靜音／音量／暫停位置保持與clear停止，BGM原owner加入4–8dB duck但不停transport。邊緣放射模糊／短色差／高對比、漫畫速度線與字卡、3D衝擊環、FOV反衝／14°內roll由同一director擁有。15FX真PCM＋164KO＋17結果＋37UI音樂＋6混音通過；實際Movie Writer有聲10秒30fps影片見evidence/city-breaker-fx。原來源模型及判定不變；Mac／真人實聽／目標效能待驗。來源同branch／PR #6，Web不更新。

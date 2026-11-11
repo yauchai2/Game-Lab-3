@@ -532,3 +532,8 @@ Godot4.7.2 Linux Compatibility：37原生操作、10頁面／3D剪影／popup／
 ## 2026-11-11：KO聲畫FX
 
 15新增FX／實際PCM／音量／mute／pause／清理，164KO、17結果、37原生UI／音樂及6原混音回歸通過。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy音訊；最終log無ERROR／SCRIPT ERROR／資源洩漏。Movie Writer同錄640×360／30fps與立體聲48kHz，裁準備1幀後10秒，影片AAC解碼峰值0.467／RMS0.040／零削波，沒有事後配音。這不是Mac硬件、即時30fps效能或真人實聽證明；未重跑整個歷史suite，舊Rhythm六個基線失敗仍保留前輪紀錄。過早結束的result測試曾有音訊資源未drain，測試改為先停止player／等待混音後退出，最終17/17無警告。詳見evidence/city-breaker-fx。
+
+
+## 2026-11-11：五秒快節奏KO
+
+20項FX／實際PCM／節奏、165四角雙方KO生命週期、17結果檢查通過。驗證音軌及過場同為5秒、pitch_scale1、時間映射不倒退且正反一致、空爆局部慢拍、KO收尾>=0.9秒、4.983秒仍活動及5秒截止。最終原生log無ERROR／SCRIPT ERROR／洩漏；5秒Movie Writer聲畫及AAC解碼音訊見evidence/city-breaker-fast。Godot4.6.3／llvmpipe／Dummy，固定30fps匯出不代表目標Mac即時效能；未重跑整份歷史suite。

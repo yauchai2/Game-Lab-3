@@ -94,3 +94,5 @@
 - 2026-11-11 最新使用者指定此branch並要求按影片做正式回合3D過場：現況 CITY_BREAKER.zh-TW.md。CityBreaker是KO段唯一camera／destruction owner，零生命真結算後才播，不改simulation或XP；沿用當局四角／原街景／原客機，可逆static batch／飛機分件。F2短版，Enter／Space先跳過、再Enter接下局，Esc保持result恢復。所有退出走clear；不要改成固定人物影片或另建獨立玩法。來源同branch／PR #6，Web不更新；參考片與程序幾何仍有差異，未宣稱逐像素完美。
 
 - 2026-11-11 最新KO聲畫要求：見CITY_BREAKER.zh-TW.md最新節／evidence/city-breaker-fx。原CityBreaker正式KO入口擴充原創score、既有SFX bus、pause／clear及BGM duck，7-tap邊緣放射模糊／漫畫線／字卡／3D衝擊環／FOV反衝，14°roll上限。後製不模糊HUD，F2短版保持。原創音軌可由tools/build_city_breaker_audio.py重建；不要以原片音軌取代來源或把無聲舊預覽當最新。來源同branch推送，Web不更新。
+
+- 2026-11-11 最新節奏覆蓋原10秒KO：正式播放5秒，以timing.json把原10秒作者時間非線性壓縮，保留撞樓／空爆短重拍、0.92秒KO收尾；playback_elapsed是真時鐘，age仍是作者時間。聲效按同profile重新合成5秒、不變調；不要用Engine.time_scale或把整段pitch_scale=2。來源同branch，Web不更新；最新證據evidence/city-breaker-fast。
