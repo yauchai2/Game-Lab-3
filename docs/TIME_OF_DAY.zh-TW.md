@@ -14,3 +14,6 @@
 `godot/tools/verify_time_of_day.gd`：11 項通過（預設白晝不變、深夜較暗、霧開關、索引夾限、N 只在 title／pause、四次回到白晝、跨 session 保存、非法值夾限）。四時段實機截圖：[time-of-day-grid.png](evidence/time-of-day/time-of-day-grid.png)（左上白晝、右上黃昏、左下深夜、右下霧晨；Godot 4.6.3 Linux／xvfb／llvmpipe）。
 
 未驗證／限制：Mac 與真人觀感、深夜對比是否足夠、與 F2 減少特效的互動（本功能不依賴粒子，預期不受影響但未逐項測）。既有回歸 `verify_combat_polish.gd` 有一項「saved startup mute prevents the music player starting」失敗，已在未改動的基線重現，非本次造成；其餘既有套件未全數重跑。
+
+## D3 追加：SURGE 最高階飛機掠過
+標準 FIGHT 中壓力首次升到第 3 階（SURGE）時，背景飛機立刻從起點開始掠過一次（`street_backdrop.request_flyby()`，40 秒冷卻）。只是畫面事件：不動判定、不碰音樂；F2 減少特效、練習、Demo 與凍結畫面都不觸發。`verify_flyby_event.gd` 8/8 headless 通過；未做實機畫面或手感驗證。

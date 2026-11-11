@@ -27,6 +27,8 @@ var time_of_day:=0
 var neon_base:Dictionary={}
 const StreetTags=preload("res://scripts/combat/street_tags.gd")
 var tag_nodes:Dictionary={}
+var flyby_cooldown:=0.0
+const FLYBY_COOLDOWN:=40.0
 const TimeOfDay=preload("res://scripts/combat/time_of_day.gd")
 
 func _ready() -> void:
@@ -104,6 +106,13 @@ func _ready() -> void:
     if static_batches_enabled:
         static_batch_stats=preload("res://scripts/combat/static_street_batches.gd").bake(street,[active_toon,two_sided_shader])
 
+## D3: a bounded, visual-only aircraft pass for SURGE peaks. Returns false while cooling down or frozen.
+func request_flyby() -> bool:
+    if frozen or flyby_cooldown>0.0 or plane==null:return false
+    flyby_cooldown=FLYBY_COOLDOWN
+    elapsed=fposmod(cycle-FLIGHT_SECONDS*0.5,cycle)
+    return true
+
 func refresh_tags(store) -> void:
     if tag_nodes.is_empty():tag_nodes=StreetTags.build_marks(self)
     for id in tag_nodes:tag_nodes[id].visible=store!=null and store.has(id)
@@ -175,6 +184,7 @@ func present(delta: float, paused: bool, reduced := false) -> void:
     if frozen or paused: return
     living.advance(delta,false,reduced)
     sky_motion.advance(environment,delta,PI*0.5,reduced)
+    flyby_cooldown=maxf(0.0,flyby_cooldown-delta)
     elapsed = fmod(elapsed+delta,cycle)
     var phase := fmod(elapsed+FLIGHT_SECONDS*0.5,cycle)
     plane.visible = phase<=FLIGHT_SECONDS

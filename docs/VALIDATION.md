@@ -1,5 +1,9 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-11：D3 飛機掠過
+
+`verify_flyby_event.gd` 8/8（headless）。見 [TIME_OF_DAY.zh-TW.md](TIME_OF_DAY.zh-TW.md)。
+
 ## 2026-11-11：G5／G6／G8
 
 `verify_secret_notes.gd` 9/9，`verify_banter` 129、`verify_time_of_day` 12、`verify_street_tags` 27（headless）。非 Mac／真人驗收。

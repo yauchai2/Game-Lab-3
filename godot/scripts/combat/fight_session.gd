@@ -267,11 +267,7 @@ func _combat_step() -> void:
     else:sim.tick(input)
     if previous_stop>0 and sim.hitstop==0:
         _release_impacts()
-    if sim.exchange.tier()>previous_tier:
-        surge_pulse=.45
-        audio.play_sound("parry",1.1 if sim.exchange.tier()==2 else 1.4,-12)
-        if is_instance_valid(backdrop.living) and surge_reaction_cd<=0:
-            backdrop.living.react();surge_reaction_cd=1.5
+    if sim.exchange.tier()>previous_tier:_tier_up_feedback()
     for event in sim.events:
         _handle_event(event)
     if sim.phase in ["round_over", "match_over"]:
@@ -337,6 +333,12 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
         effect["track_attack"]=true
     effects.append(effect)
 
+func _tier_up_feedback() -> void:
+    surge_pulse=.45
+    audio.play_sound("parry",1.1 if sim.exchange.tier()==2 else 1.4,-12)
+    if sim.exchange.tier()==3 and not reduced_effects and sim.arcade_enabled and not practice and demo==null:backdrop.request_flyby()
+    if is_instance_valid(backdrop.living) and surge_reaction_cd<=0:
+        backdrop.living.react();surge_reaction_cd=1.5
 func _count_style(event:Dictionary) -> void:
     if event.kind=="hit" and event.get("attacker",-1)==0:style_stats.hits+=1
     elif event.kind=="block" and event.get("target",-1)==0:style_stats.defense+=1
