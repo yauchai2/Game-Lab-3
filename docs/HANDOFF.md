@@ -1,5 +1,11 @@
 # 接續工作交接
 
+## 2026-11-11：Tripo三視圖交接
+
+使用者提供最早九格分鏡並要求蒙面人／抽獎機嚴謹三視圖及動畫可行性。已生成NPC A-pose正側背、機器完整組裝正／拉桿側／背、機殼-only三視圖，保存references/ability-draw/tripo，附兩份英文prompt與manifest。為ImageGen設計稿而非精確CAD投影，背面按正面補完，生成後仍須比例／分件校正；沒收到或生成Tripo模型，runtime不變。
+
+建議NPC可Tripo後綁骨；機器首選手工硬表面，或Tripo只做外殼，三輪盤／輪子／拉桿／出貨蓋獨立建模。整機拖行容易，生成黏連件的分件才增加成本。多視角入口先分開各view，避免把三視圖排版生成三連體。來源同branch，Web不更新。
+
 ## 2026-11-11：抽獎進場修正及裝備分鏡
 
 使用者指出NPC／機器原地出現。真Physics查到±5m／z-.25入口起點與街景StaticCollision相交，兩路失敗退零位移；已改為驗清楚的±6m／z0，先空場、smoothstep拖入、鏡頭搖回、輪子／雙腳按路程、1.05秒煞停與聲畫重拍。其他兩路皆受阻stage加入compact遮幕揭幕，不直接露出新生成演員。新版證據evidence/ability-draw/entry-v2，保留上一輪原版文件與影片。最終52/52原生與退出乾淨；修正新查到arrival／intro播放實例的清理，初次log保留。

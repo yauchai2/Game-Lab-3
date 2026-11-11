@@ -106,3 +106,5 @@
 - 2026-11-11 最新本聊天要求開始製作抽能力：見docs/ABILITY_DRAW.zh-TW.md及evidence/ability-draw。正式FIGHT第二回合1:1／Street Run第二站勝出／Demo共用THE DEALER真3D；局部stage profile、掃掠備援、一次抽取／領取、下一局真modifier與永久XP隔離，所有相機／人物可見性／聲音／duck可逆。NPC不替換戰鬥GLB，玩家不入鏡；2:0保持決勝KO。首版平地入口／程序人物、非逐像素原片復刻，Mac／真人驗收待辦。來源同branch／PR #6，Web不更新。
 
 - 2026-11-11 本聊天更正NPC／機器入場：見evidence/ability-draw/entry-v2，原±5m／z-.25街景碰撞導致零位移已修正為±6m／z0；真出框／拖行／煞停及compact遮幕要保留。ABILITY_EQUIP_STORYBOARD.zh-TW.md與equip-storyboard.png僅規劃1.8秒腰側安裝，未接runtime；只拍手腰鞋不露玩家臉。等使用者Tripo NPC／機器後才換模／綁骨，保留來源與Web規則。
+
+- 2026-11-11 使用者要求最早九格分鏡的NPC／機器三視圖供Tripo：已交references/ability-draw/tripo（NPC A-pose、整機設計、外殼生成版及prompt）。圖是ImageGen建模設計而非CAD投影，背面補完；機器建議手工或Tripo外殼＋獨立輪盤／輪子／拉桿／出貨蓋，不能假定整機生成已分件。尚無Tripo新資產，runtime不變。

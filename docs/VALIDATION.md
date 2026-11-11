@@ -1,5 +1,9 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-11：三視圖參考圖交付
+
+已視覺檢視三份ImageGen三視圖：NPC全身A-pose／正側背、機器完整組裝／正拉桿側背、靜態機殼／活動件留空版；核對主色、朝向、拉桿左右、機殼基準及用途區分，PNG尺寸及SHA-256入references/ability-draw/tripo/manifest.json。這是建模設計參考而非CAD精確投影或Tripo服務驗證；背面為補完設計，不能保證生成後分件／拓撲。此輪只增加圖片／prompt／文件，runtime未改，未重跑引擎測試或發佈Web。
+
 ## 2026-11-11：抽獎進場修正與裝備分鏡
 
 最終Godot4.6.3原生52/52，log無ERROR／SCRIPT ERROR或退出洩漏；evidence/ability-draw/entry-v2保存空場首幀、鏡頭外入場、煞停、有聲Movie Writer、PCM及實際街景Physics前後probe。原入口被碰撞判阻塞而退回原地已重現，修正後驗真非零位移、兩演員mesh corners初始均出框、移動／輪轉、雙路受阻遮幕，以及原有獎勵／跨場景／暫停／F2／退出。
