@@ -1,0 +1,51 @@
+{
+  "checks": [
+    {
+      "name": "formal FIGHT uses shared air motion",
+      "passed": true
+    },
+    {
+      "name": "first press starts a ground jump",
+      "passed": false
+    },
+    {
+      "name": "OS key repeat cannot spend double jump",
+      "passed": true
+    },
+    {
+      "name": "released and repressed Space spends one jump",
+      "passed": false
+    },
+    {
+      "name": "second jump has readable local feedback",
+      "passed": false
+    },
+    {
+      "name": "existing pooled chase voice provides audio",
+      "passed": true
+    },
+    {
+      "name": "pause freezes double-jump budgets",
+      "passed": true
+    },
+    {
+      "name": "paused Space cannot queue a new jump",
+      "passed": true
+    },
+    {
+      "name": "both fighters fit the double-jump camera",
+      "passed": true
+    },
+    {
+      "name": "reduced effects retains double jump",
+      "passed": true
+    },
+    {
+      "name": "restart clears effects and used jump",
+      "passed": true
+    }
+  ],
+  "failed": 3,
+  "passed": 8,
+  "scope": "Godot 4.6.3 Linux Compatibility native rendering; injected InputEvents, Dummy audio, not human/GPU/audio-device validation."
+}

@@ -142,13 +142,16 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
         text(c,Vector2(1137 if reverse else 124,50),"P2" if reverse else "P1",32)
         text(c,Vector2(1070 if reverse else 177,50),str(f.health),36,T.PAPER)
         var meter:Rect2=Rect2(start+117,65,254,6)
-        plate(c,Rect2(meter.position-Vector2(3,3),meter.size+Vector2(6,6)),T.INK,4)
+        plate(c,Rect2(meter.position-Vector2(3,3),meter.size+Vector2(6,6)),T.INK.lerp(T.CORAL,clampf(c.resource_warning[side]/.45,0,1)),4)
         plate(c,meter,T.LIME.darkened(.7),3)
         if f.meter>0:plate(c,Rect2(meter.position,meter.size*Vector2(f.meter/100,1)),T.LIME,3)
         var marks:Array=[10,20,75] if f.character==3 else [50,75]
         for threshold in marks:
             var tx:float=meter.position.x+meter.size.x*threshold/100
             c.draw_line(Vector2(tx,61),Vector2(tx,73),T.PAPER,2)
+        for win in 2:
+            var won:bool=s.sim.wins[side]>win
+            c.draw_circle(Vector2((492+win*20) if side==0 else (788-win*20),88),5,T.GOLD if won else T.MUTED.darkened(.6))
         var center:=Vector2(87 if side==0 else 1192,45)
         c.draw_circle(center,29,T.INK)
         c.draw_arc(center,27,0,TAU,24,T.PAPER,2)

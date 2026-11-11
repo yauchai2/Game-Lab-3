@@ -1,3 +1,7 @@
+## 2026-11-11：精簡HUD
+
+[最終accepted log、JSON及原生圖](evidence/compact-hud/README.md)。HUD21／二段跳原生12／原生UI音樂37／嚴格編譯8，共78項通過，accepted log沒有ERROR／SCRIPT ERROR。初次typed Array清理、舊fixture Space被intro消費及mixer快速退出錯誤保留在initial-attempts，正式結果以accepted為準。Godot4.7.2 Linux Compatibility llvmpipe／Dummy，非人手可讀性／Mac驗收；保留simulation、費用、GLB、音樂transport和歷史圖片。Web未更新。
+
 ## 2026-11-11：死亡姿態／群戰屍體貼地
 
 [前後量測、圖及完整log](evidence/grounded-death/README.md)。基線7d3cab2五角色骨盆／身體懸空已重現；正式修正為完整死亡軌跡、穩定死亡clip、已落地屍體按skin頂點貼地及非focus結果落地。新native104/104以獨立renderer bake驗證地面接觸、兩朝向／F2、無資料改寫與生者跳躍；另strict8/8、規則／結果33/33、回合／KO189/189，共334項通過，最終無ERROR／SCRIPT ERROR。Linux Godot4.7.2 Compatibility llvmpipe／Dummy，不是Mac／真人／硬件音訊驗收；Web不更新。

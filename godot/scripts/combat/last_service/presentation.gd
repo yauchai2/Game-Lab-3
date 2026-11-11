@@ -5,11 +5,18 @@ func draw(canvas:Control,s:Node) -> void:
     for side in 2:
         var f:Dictionary=s.sim.fighters[side];var r:Dictionary=f.service
         if f.character==4:
-            var caption:String="SQUAD / %d LEFT"%s.sim.remaining_enemies() if s.sim.squad_enabled else "BLACK SUIT / COLLECTOR"
-            canvas.draw_string(s.hud.font,Vector2(755,104),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,24,s.effect_color_for(side))
+            var caption:String="%d LEFT"%s.sim.remaining_enemies() if s.sim.squad_enabled else "BLACK SUIT"
+            canvas.draw_string(s.hud.font,Vector2(820,100),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,24,s.effect_color_for(side))
             continue
-        var label:String=P.NAMES[f.character]+" / "+["ROUTE %d/2"%r.routes,"PRELOAD %d/2"%r.preload,"SAMPLE "+("READY" if r.sample>0 else "--"),"NODES %d/2"%r.nodes.size()][f.character]
-        canvas.draw_string(s.hud.font,Vector2(330 if side==0 else 755,104),label,HORIZONTAL_ALIGNMENT_LEFT,-1,24,s.effect_color_for(side))
+        var x:float=227.0 if side==0 else 820.0
+        var tint:Color=s.effect_color_for(side)
+        canvas.draw_string(s.hud.font,Vector2(x,100),P.NAMES[f.character],HORIZONTAL_ALIGNMENT_LEFT,-1,24,tint)
+        var count:int=[r.routes,r.preload,1 if r.sample>0 else 0,r.nodes.size()][f.character]
+        var slots:int=1 if f.character==2 else 2
+        var pip_x:float=x+108
+        for pip in slots:
+            canvas.draw_rect(Rect2(pip_x+pip*20,86,14,14),Color("15101f"))
+            canvas.draw_rect(Rect2(pip_x+pip*20+2,88,10,10),tint if pip<count else Color(tint,.18))
         var duration:float=0.0;var capacity:float=1.0
         match int(f.character):
             0:duration=r.route_ttl if r.routes>0 else 0;capacity=300.0 if "zip_route" in f.perks else 180.0
@@ -19,9 +26,9 @@ func draw(canvas:Control,s:Node) -> void:
                 if not r.nodes.is_empty():duration=r.nodes[0].life
                 capacity=420.0 if "loop_life" in f.perks else 300.0
         if duration>0:
-            var position:=Vector2(330 if side==0 else 755,110)
-            canvas.draw_rect(Rect2(position,Vector2(210,4)),Color("08090d"))
-            canvas.draw_rect(Rect2(position,Vector2(210*clampf(duration/capacity,0,1),4)),s.effect_color_for(side))
+            var position:=Vector2(x,105)
+            canvas.draw_rect(Rect2(position,Vector2(146,3)),Color("08090d"))
+            canvas.draw_rect(Rect2(position,Vector2(146*clampf(duration/capacity,0,1),3)),s.effect_color_for(side))
         for node in r.nodes:
             var at:Vector2=s.project(Vector2(node.x,.10))
             var points:=PackedVector2Array([at+Vector2(-14,0),at+Vector2(0,-9),at+Vector2(14,0),at+Vector2(0,9)])

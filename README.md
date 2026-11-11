@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[精簡戰鬥HUD](docs/evidence/compact-hud/README.md)。角色資源改小格、SURGE細條、取消二段跳／例行字卡，保留必要提示與教學；78項最終檢查通過，來源main，Web未更新。
+
 最新：[死亡後凌空已修正](docs/evidence/grounded-death/README.md)。完整死亡下落、五角色按實際skin貼地、群戰其他死者也在結算落地；334項檢查通過，來源main。
 
 最新：[Godot4.7.2截圖15項GDScript警告已修正](docs/evidence/godot-warnings/README.md)。型別直接呼叫static、統一數值分支型別及局部變數改名；原版15項已重現，修正後369項編譯／玩法／原生回歸通過。來源main，Pull後停止舊遊戲／清除舊Debugger紀錄再F5。

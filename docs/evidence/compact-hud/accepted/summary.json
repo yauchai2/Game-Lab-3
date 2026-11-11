@@ -1,0 +1,29 @@
+{
+  "baseline": "679b42b",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "passed": 78,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "hud",
+      "passed": 21,
+      "engine_errors": []
+    },
+    {
+      "name": "double-jump",
+      "passed": 12,
+      "engine_errors": []
+    },
+    {
+      "name": "reference-ui",
+      "passed": 37,
+      "engine_errors": []
+    },
+    {
+      "name": "strict",
+      "passed": 8,
+      "engine_errors": []
+    }
+  ],
+  "scope": "Linux Compatibility llvmpipe / Dummy audio; native injected input, not human or target Mac verification."
+}
