@@ -6,6 +6,10 @@ const Timing=preload("res://scripts/combat/ability_draw/timing.gd")
 const Tokens=preload("res://scripts/combat/ui/ui_theme.gd")
 const Visuals=preload("res://scripts/combat/ability_draw/visuals.gd")
 const Stage=preload("res://scripts/combat/ability_draw/stage_profile.gd")
+const EQUIP_DURATION:=4.10
+var equip_view:Node3D
+var equip_cue:AudioStreamPlayer
+var equip_duration:=EQUIP_DURATION
 var session:Node3D
 var actors:Node3D
 var stage:Resource
@@ -45,6 +49,8 @@ func setup(owner_session:Node3D) -> void:
     session=owner_session;name="AbilityDraw"
     actors=Visuals.new();add_child(actors);actors.build();actors.hide()
     _toon(actors)
+    equip_view=preload("res://scripts/combat/ability_draw/equip_view.gd").new();add_child(equip_view);equip_view.hide()
+    equip_cue=_player("equip")
     var layer:=CanvasLayer.new();layer.layer=1;add_child(layer)
     lens=ColorRect.new();lens.mouse_filter=Control.MOUSE_FILTER_IGNORE;lens.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     material=ShaderMaterial.new();material.shader=preload("res://shaders/city_breaker_lens.gdshader");lens.material=material;layer.add_child(lens);lens.hide()
@@ -116,6 +122,8 @@ func advance(delta:float,paused:bool) -> void:
             reveal_started=true;reveal.play(maxf(0,age-Timing.REVEAL_AT))
         if age>=Timing.SPIN_DURATION:_wait("result")
     elif state=="result":source_age=4.1
+    elif state=="equip":
+        if age>=equip_duration:_finish_equip();return
     if state in ["offer","result"] and age>=Timing.INPUT_SETTLE and not _accept_held():input_armed=true
     if session.demo!=null and state in ["offer","result"] and age>=(DEMO_DRAW_DELAY if state=="offer" else DEMO_CLAIM_DELAY):confirm(true)
     action.disabled=not input_armed
@@ -131,7 +139,7 @@ func _accept_held() -> bool:
 func handle_key(event:InputEventKey) -> void:
     if event.is_echo():return
     if state=="arrival":skip()
-    elif state=="spin":
+    elif state in ["spin","equip"]:
         if event.keycode==KEY_SPACE and age>=.25:skip()
     else:confirm()
 
@@ -149,20 +157,29 @@ func confirm(automatic:=false) -> void:
         result=session.draw_rewards.roll(boundary,seed_value);rolled_count+=1
         state="spin";age=0;source_age=2.55;_accent("coin");spin.play();action.hide()
     elif state=="result":
-        var item:=result.duplicate();var next_kind:=continuation
-        clear();session.complete_ability_draw(item,next_kind)
+        state="equip";age=0;input_armed=false;action.hide()
+        equip_duration=1.15 if session.reduced_effects else EQUIP_DURATION
+        equip_view.setup(session.character_choices[0],result.id)
+        actors.hide();equip_cue.stream=load("res://audio/ability_draw/"+("equip_short" if session.reduced_effects else "equip")+".wav");equip_cue.play()
+        sample()
+
+func _finish_equip() -> void:
+    var item:=result.duplicate();var next_kind:=continuation
+    clear();session.complete_ability_draw(item,next_kind)
+    session.round_theatre.clear() # Equip already supplies the next-round character introduction.
 
 func skip() -> void:
     last_skip=true
     if state=="arrival":_wait("offer");arrival.stop()
     elif state=="spin":_wait("result");spin.stop();reveal.stop();_accent("confirm")
+    elif state=="equip":_finish_equip();return
     sample()
 
 func _accent(id:String) -> void:
     accent.stop();accent.stream=load("res://audio/ability_draw/"+id+".wav");accent.play()
 
 func _sync_audio(paused:bool) -> void:
-    for p in [arrival,spin,reveal,accent]:
+    for p in [arrival,spin,reveal,accent,equip_cue]:
         p.stream_paused=paused
         p.volume_db=-80.0 if session.audio.muted or session.audio.effects_level<=0 else -9.0+linear_to_db(maxf(.001,session.audio.effects_level))
     session.audio.cinematic_duck=.18 if state in ["offer","result"] else (.80 if state=="spin" and age>=1.48 and age<Timing.REVEAL_AT else .55)
@@ -173,6 +190,8 @@ func sample() -> void:
     for a in saved_shadows:if is_instance_valid(a.node):a.node.hide()
     session.arena_cage.hide();session.backdrop.visible=true;session.grade.hide()
     session.camera.environment=null;session.camera.near=.04
+    if state=="equip":
+        _sample_equip();return
     var t:=source_age
     var progress:=smoothstep(.16,1.06,t)
     var offset:Vector3=entry_offset*(1-progress)
@@ -219,14 +238,40 @@ func sample() -> void:
     material.set_shader_parameter("impact",punch*.7)
     material.set_shader_parameter("ring_phase",clampf((t-3.5)*3,0,1))
     lens.visible=not session.reduced_effects and state!="result"
-    action.text="DRAW" if state=="offer" else "CONTINUE"
+    action.text="DRAW" if state=="offer" else "EQUIP"
     var extent:=session.get_viewport().get_visible_rect().size
     var rect:=Rect2(920,568,312,72) if state=="offer" else Rect2(720,560,480,72)
     action.position=rect.position*extent/Vector2(1280,720);action.size=rect.size*extent/Vector2(1280,720)
 
+func _sample_equip() -> void:
+    actors.hide();equip_view.show()
+    var t:float=clampf(age/equip_duration,0,1)*EQUIP_DURATION
+    equip_view.sample(t,session.reduced_effects)
+    var p:float=equip_view.punch
+    var shake:=Vector3(sin(t*127),cos(t*103),0)*p*.018
+    session.camera.global_position=equip_view.camera_at+shake
+    session.camera.look_at(equip_view.target,Vector3.UP)
+    session.camera.fov=equip_view.fov
+    session.camera.rotation.z=0.0 if session.reduced_effects else sin(t*29)*p*.065
+    material.set_shader_parameter("fisheye",0.0 if session.reduced_effects else (.20 if equip_view.shot==2 else .09)+p*.12)
+    material.set_shader_parameter("blur",0.0 if session.reduced_effects else p*.12)
+    material.set_shader_parameter("impact",p*.55)
+    material.set_shader_parameter("ring_phase",clampf((t-3.28)*3,0,1))
+    lens.visible=not session.reduced_effects
+
+
 func draw(canvas:Control) -> void:
     if not active() or session.screen!="result":return
     var bold:Font=session.hud.bold;var font:Font=session.hud.font
+    if state=="equip":
+        var t:float=age/equip_duration*EQUIP_DURATION
+        if not session.reduced_effects and equip_view.punch>0:
+            for i in 14:
+                var ray:=Vector2.from_angle(TAU*i/14+.13)
+                canvas.draw_colored_polygon(PackedVector2Array([Vector2(640,360)+ray*310,Vector2(640,360)+ray*950+ray.orthogonal()*18,Vector2(640,360)+ray*950-ray.orthogonal()*18]),Color(result.color,equip_view.punch*.85))
+        if t>3.68:canvas.draw_string(bold,Vector2(820,610),"CORE EQUIPPED",HORIZONTAL_ALIGNMENT_LEFT,-1,32,result.color)
+        canvas.draw_string(font,Vector2(28,690),"SPACE  SKIP",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
+        return
     if state=="result":
         canvas.draw_rect(Rect2(650,120,570,420),Tokens.NIGHT)
         var color:Color=result.get("color",Tokens.TEAL)
@@ -267,9 +312,10 @@ func clear() -> void:
     var was_active:=active()
     state="off";age=0
     if is_instance_valid(actors):actors.hide()
+    if is_instance_valid(equip_view):equip_view.clear()
     if is_instance_valid(action):action.hide()
     if is_instance_valid(lens):lens.hide();material.set_shader_parameter("fisheye",0.0);material.set_shader_parameter("blur",0.0);material.set_shader_parameter("impact",0.0)
-    for p in [arrival,spin,reveal,accent]:
+    for p in [arrival,spin,reveal,accent,equip_cue]:
         if is_instance_valid(p):
             p.stream_paused=false
             if p.has_stream_playback():p.get_stream_playback().stop()
@@ -287,5 +333,5 @@ func clear() -> void:
 
 func _exit_tree() -> void:
     clear()
-    for p in [arrival,spin,reveal,accent]:
+    for p in [arrival,spin,reveal,accent,equip_cue]:
         if is_instance_valid(p):p.stream=null

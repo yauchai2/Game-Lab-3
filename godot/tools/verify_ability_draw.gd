@@ -32,6 +32,7 @@ func click_action() -> void:
         root.push_input(e,true);await process_frame
 
 func run() -> void:
+    if "--equip" in OS.get_cmdline_user_args():output="res://../docs/evidence/ability-equip/"
     if "--expanded-pool" in OS.get_cmdline_user_args():output="res://../docs/evidence/ability-draw/expanded-pool/"
     if "--rhythm-ui" in OS.get_cmdline_user_args():output="res://../docs/evidence/ability-draw/rhythm-ui/"
     if "--tripo-models" in OS.get_cmdline_user_args():output="res://../docs/evidence/ability-draw/tripo-models/"
@@ -70,6 +71,8 @@ func run() -> void:
     check("skip spin retains exactly the same reward",s.ability_draw.state=="result" and s.ability_draw.result==result and s.ability_draw.rolled_count==count)
     check("claim page is stable and lens is released",not s.ability_draw.lens.visible and s.ability_draw.action.visible)
     await process_frame;await click_action()
+    check("claim enters physical equip before applying",s.ability_draw.state=="equip" and s.sim.round_number==2)
+    step(250)
     check("claim starts round three and applies real modifier",not s.ability_draw.active() and s.sim.round_number==3 and s.sim.fighters[0].get("draw_core","")==result.id)
     check("claim cannot apply twice",not s.draw_rewards.apply_once(s.sim,result))
     check("all fighter visibility and camera near restore",s.fighters.all(func(a):return a.visible) and is_equal_approx(s.camera.near,.1))
@@ -112,6 +115,7 @@ func run() -> void:
     s.start_run();s.run_stage=2;s.screen="result";s.sim.winner=0;s.advance_run()
     check("Street Run stop two win enters shared draw",s.ability_draw.active() and s.run_stage==2 and s.ability_draw.continuation=="run")
     s.ability_draw.skip();step(12);await process_frame;s.ability_draw.confirm();s.ability_draw.skip();step(12);await process_frame;s.ability_draw.confirm()
+    step(250)
     check("Street Run claim advances to stop three",s.run_stage==3 and s.sim.fighters[0].has("draw_core"))
     s.return_to_title();s.start_run();s.run_stage=2;s.screen="result";s.sim.winner=1
     check("Street Run defeat cannot award a draw",s.ability_draw_boundary().is_empty())
@@ -133,7 +137,9 @@ func run() -> void:
     check("Demo pause freezes automatic claim countdown",s.ability_draw.age==demo_wait and s.ability_draw.state=="result")
     s.resume_game();step(30);await process_frame
     Input.action_release("ui_accept")
-    check("Demo automatically claims after 3.5 seconds even with a held key",not s.ability_draw.active() and s.sim.round_number==3 and s.sim.fighters[0].has("draw_core"))
+    check("Demo begins equip after the 3.5 second reward hold",s.ability_draw.state=="equip" and s.sim.round_number==2)
+    step(250)
+    check("Demo automatically equips and claims even with a held key",not s.ability_draw.active() and s.sim.round_number==3 and s.sim.fighters[0].has("draw_core"))
     check("Demo does not grant permanent growth",s.growth.records==growth)
     s.return_to_title()
     var profile=preload("res://scripts/combat/ability_draw/stage_profile.gd").new()
@@ -178,8 +184,8 @@ func run() -> void:
     press(KEY_F2);step(1)
     check("live F2 disables lens without losing draw",s.ability_draw.active() and not s.ability_draw.lens.visible)
     s.return_to_title();s.audio.set_process(false);s.audio.music.stop();s.audio.fading_music.stop()
-    await create_timer(.1).timeout;s.queue_free();s=null
-    for i in 8:await process_frame
+    await create_timer(.2).timeout;s.queue_free();s=null
+    for i in 12:await process_frame
     var failed:int=checks.filter(func(c):return not c.passed).size()
-    FileAccess.open(output+"verification.json",FileAccess.WRITE).store_string(JSON.stringify({"passed":checks.size()-failed,"failed":failed,"checks":checks,"scope":"Explicit 1-1 / Street Run boundary fixtures; actual runtime transition, native callbacks, deterministic rules, no claim of natural-match coverage here","engine":Engine.get_version_info().string},"  "))
+    FileAccess.open(output+("flow-verification.json" if "--equip" in OS.get_cmdline_user_args() else "verification.json"),FileAccess.WRITE).store_string(JSON.stringify({"passed":checks.size()-failed,"failed":failed,"checks":checks,"scope":"Explicit 1-1 / Street Run boundary fixtures; actual runtime transition, native callbacks, deterministic rules, no claim of natural-match coverage here","engine":Engine.get_version_info().string},"  "))
     print("ABILITY_DRAW_CHECKS ",checks.size()-failed,"/",checks.size());quit(1 if failed else 0)

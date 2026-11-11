@@ -1,0 +1,12 @@
+{
+  "ability-equip.mp4": {
+    "peak": 0.21355918049812317,
+    "rms": 0.013374631293118,
+    "clipped_samples": 0
+  },
+  "demo-draw-equip.mp4": {
+    "peak": 0.22266463935375214,
+    "rms": 0.01576431840658188,
+    "clipped_samples": 0
+  }
+}

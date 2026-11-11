@@ -1,0 +1,38 @@
+{
+  "no_input_events": true,
+  "reward_seed": 3,
+  "scope": "Explicit 1-1 Demo boundary; actual automatic timed draw and claim, no synthesized key/mouse input.",
+  "seconds": 15.6,
+  "transitions": [
+    {
+      "reward": "",
+      "state": "arrival",
+      "time": 0.0
+    },
+    {
+      "reward": "",
+      "state": "offer",
+      "time": 2.06666666666667
+    },
+    {
+      "reward": "fury",
+      "state": "spin",
+      "time": 5.1
+    },
+    {
+      "reward": "fury",
+      "state": "result",
+      "time": 7.3
+    },
+    {
+      "reward": "fury",
+      "state": "equip",
+      "time": 10.8333333333333
+    },
+    {
+      "reward": "fury",
+      "state": "off",
+      "time": 14.9666666666667
+    }
+  ]
+}

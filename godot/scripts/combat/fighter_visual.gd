@@ -1,8 +1,10 @@
 extends Node3D
+const CoreProp=preload("res://scripts/combat/ability_draw/core_prop.gd")
 const Roster = preload("res://scripts/combat/fighter_roster.gd")
 const Toon = preload("res://shaders/fighter_toon.gdshader")
 const Outline = preload("res://shaders/fighter_outline.gdshader")
 static var retired_materials:Array[ShaderMaterial]=[]
+var core_module:Node3D
 var model: Node3D
 var skeleton: Skeleton3D
 var materials: Array[ShaderMaterial] = []
@@ -18,6 +20,7 @@ var death_surfaces:Array=[]
 var motions := preload("res://scripts/combat/combat_motions.gd").new()
 
 func setup(color: Color, selection := 0, model_path_override:="") -> void:
+    if core_module!=null:core_module.queue_free();core_module=null
     team = color
     character_index=clampi(selection,0,Roster.BLACK_SUIT_INDEX)
     var entry:Dictionary=Roster.entry(character_index)
@@ -160,6 +163,18 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
             model.scale=Vector3.ONE*model_scale
             model.position=Vector3.ZERO
             _ground_death_pose()
+    _present_core(f)
+func _present_core(f:Dictionary) -> void:
+    var id:String=f.get("draw_core","")
+    if id.is_empty():
+        if core_module!=null:core_module.hide()
+        return
+    if core_module==null or core_module.core_id!=id:
+        if core_module!=null:core_module.queue_free()
+        core_module=CoreProp.new();add_child(core_module);core_module.build(id)
+    skeleton.force_update_all_bone_transforms()
+    core_module.show();core_module.global_transform=CoreProp.socket_frame(self)
+
 
 func _ground_death_pose() -> void:
     if not death_ground_cached:

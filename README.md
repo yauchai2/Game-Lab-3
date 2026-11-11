@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[抽獎後3D裝備已實裝](docs/ABILITY_EQUIP_RUNTIME.zh-TW.md)／[有聲預覽](docs/evidence/ability-equip/ability-equip.mp4)／[完整Demo](docs/evidence/ability-equip/demo-draw-equip.mp4)。五選角不露臉接握／腰扣／鞋底啟動，九核心實體腰掛，345項通過，Web不更新。
+
 最新：[死亡後凌空已修正](docs/evidence/grounded-death/README.md)。完整死亡下落、五角色按實際skin貼地、群戰其他死者也在結算落地；334項檢查通過，來源main。
 
 最新：[Godot4.7.2截圖15項GDScript警告已修正](docs/evidence/godot-warnings/README.md)。型別直接呼叫static、統一數值分支型別及局部變數改名；原版15項已重現，修正後369項編譯／玩法／原生回歸通過。來源main，Pull後停止舊遊戲／清除舊Debugger紀錄再F5。

@@ -1,3 +1,7 @@
+## 2026-11-11：正式抽獎後 3D 裝備（最新）
+
+見 [ABILITY_EQUIP_RUNTIME.zh-TW.md](ABILITY_EQUIP_RUNTIME.zh-TW.md)。按EQUIP／Demo結果停3.5秒後，當局原選角演出副本接取→握緊→腰扣→鎖定→能量到鞋→踩地，4.10秒（F2開始1.15秒）。九核心真腰掛跟隨骨盆保留到下一局重置；不露臉，原街景／stage profile沿用，聲效／魚眼／短模糊／震動／漫畫線／煙塵同步。先演再一次套用，Space跳過不重抽；pause／cancel／R恢復。113新＋69流程＋75核心＋34戰鬥＋46角色／成長＋8嚴格編譯＝345項，證據evidence/ability-equip。原GLB／XP／Web保持，Mac／真人待驗；覆蓋舊腰側裝備僅規劃。
+
 ## 2026-11-11：死亡後凌空修正
 
 使用者截圖問題已於五角色重現：Death01骨盆下移被站立bob限幅截走，身體在0.8–1m高橫躺。死亡優先／獨立穩定state key、完整垂直軌跡及腿高比例；已落地死者依真skin頂點校正，停用活人空中／招式／Neon及反彈旋轉。靜止後快取，不改GLB／simulation。群戰result非focus屍體也下降及退flash。詳[證據與圖](evidence/grounded-death/README.md)。Godot4.7.2 Linux llvmpipe／Dummy：104新native＋8嚴格編譯＋33規則／結果＋189回合／KO，共334項通過，最終無ERROR／SCRIPT ERROR。沿main交付、Web不更新；Mac仍需Pull覆核。

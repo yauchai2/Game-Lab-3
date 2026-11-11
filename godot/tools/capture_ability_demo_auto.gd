@@ -1,14 +1,15 @@
 extends SceneTree
-const OUT="res://../docs/evidence/ability-draw/expanded-pool/"
+var OUT="res://../docs/evidence/ability-draw/expanded-pool/"
 var s:Node
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
+    if "--equip" in OS.get_cmdline_user_args():OUT="res://../docs/evidence/ability-equip/"
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";s.progression_path="/tmp/demo-pool-capture.cfg";root.add_child(s)
     s.start_demo();s.audio.muted=false;s.audio.music_muted=true;s.reduced_effects=false
     s.round_theatre.clear();s.sim.round_number=2;s.sim.wins=[1,1];s.sim.phase="round_over";s.sim.winner=0;s.screen="result";s.result_clock=2;s.draw_seed=3-s.draw_match_serial;s._advance_demo_round()
     var start_frame:=Engine.get_process_frames()
     var ticks:=0;var transitions:Array=[];var previous:="";var end_frames:=0
-    while ticks<380:
+    while ticks<620:
         await process_frame;ticks+=1
         var d=s.ability_draw
         if d.state!=previous:

@@ -1,0 +1,10 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+STRICT_WARNING res://scripts/combat/combat_motions.gd true
+STRICT_WARNING res://scripts/combat/fighter_visual.gd true
+STRICT_WARNING res://scripts/combat/fight_session.gd true
+STRICT_WARNING res://scripts/combat/fight_simulation.gd true
+STRICT_WARNING res://scripts/combat/cinematic/round_theatre.gd true
+STRICT_WARNING res://scripts/combat/cinematic/city_breaker.gd true
+STRICT_WARNING res://scripts/combat/ability_draw/dealer_rig.gd true
+STRICT_WARNING res://scripts/combat/cinematic/ability_draw.gd true

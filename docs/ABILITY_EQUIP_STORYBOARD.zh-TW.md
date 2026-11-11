@@ -1,3 +1,5 @@
+> 最新：以下保留為早期1.8秒分鏡提案；使用者新片的正式4.10秒3D版本已完成，見[ABILITY_EQUIP_RUNTIME.zh-TW.md](ABILITY_EQUIP_RUNTIME.zh-TW.md)。
+
 # 能力筒裝備：1.8秒六鏡分鏡（規劃，未接runtime）
 
 2026-11-11 使用者要求：改善NPC／機器入場、規劃抽到物件後裝上角色的短動畫並生成分鏡，以及之後提供Tripo模型後換模／加動畫。本檔的裝備段僅為規劃與生成概念圖；入場修正另見ABILITY_DRAW及entry-v2證據。

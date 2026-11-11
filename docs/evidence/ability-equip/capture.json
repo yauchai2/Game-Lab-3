@@ -1,0 +1,17 @@
+{
+  "scope": "Forced SPEED award boundary, then real GUI click, actual 3D equip and round-three claim. Not a natural full match.",
+  "transitions": [
+    {
+      "state": "result",
+      "time": 0.0
+    },
+    {
+      "state": "equip",
+      "time": 1.1
+    },
+    {
+      "state": "off",
+      "time": 5.2
+    }
+  ]
+}

@@ -1,3 +1,7 @@
+## 2026-11-11：正式抽獎後 3D 裝備（最新）
+
+見 [ABILITY_EQUIP_RUNTIME.zh-TW.md](ABILITY_EQUIP_RUNTIME.zh-TW.md)。按EQUIP／Demo結果停3.5秒後，當局原選角演出副本接取→握緊→腰扣→鎖定→能量到鞋→踩地，4.10秒（F2開始1.15秒）。九核心真腰掛跟隨骨盆保留到下一局重置；不露臉，原街景／stage profile沿用，聲效／魚眼／短模糊／震動／漫畫線／煙塵同步。先演再一次套用，Space跳過不重抽；pause／cancel／R恢復。113新＋69流程＋75核心＋34戰鬥＋46角色／成長＋8嚴格編譯＝345項，證據evidence/ability-equip。原GLB／XP／Web保持，Mac／真人待驗；覆蓋舊腰側裝備僅規劃。
+
 ## 2026-11-11：九核心獎池與 Demo 延時自動抽領（最新）
 
 見 [ABILITY_CORE_POOL.zh-TW.md](ABILITY_CORE_POOL.zh-TW.md)。Demo 代幣展示3秒後自動抽，獎品展示3.5秒後自動領取；覆蓋上一輪Demo必須手動的契約，正常模式仍手動。獎池3→9：新增FURY增傷15%、PLATE減傷15%、FLOW命中能量30%、ECO技能耗能-20%、BREACH盾損25%、SIPHON命中回2／整局最多12HP。九種等機率、下一局限定，實際simulation／AI節能門檻／HUD刻度及圖示／輪盤色彩皆接入。263項通過，證據evidence/ability-draw/expanded-pool；原GLB／音訊／XP／公開Web保持，Mac／真人平衡待驗。

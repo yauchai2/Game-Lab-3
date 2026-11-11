@@ -1,0 +1,640 @@
+{
+  "checks": [
+    {
+      "name": "selected actor 0 enters equip before gameplay claim",
+      "passed": true
+    },
+    {
+      "name": "selected actor 0 uses original current rig",
+      "passed": true
+    },
+    {
+      "name": "actor 0 t0.20 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 0 t0.20 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 0 t0.60 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 0 t0.60 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 0 t1.70 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 0 t1.70 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 0 t2.44 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 0 t2.44 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 0 t3.30 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 0 t3.30 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 0 t3.90 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 0 t3.90 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "pause freezes equip and cue 0",
+      "passed": true
+    },
+    {
+      "name": "repeated Enter does not skip equip 0",
+      "passed": true
+    },
+    {
+      "name": "playback claims once and starts round three 0",
+      "passed": true
+    },
+    {
+      "name": "physical core follows live selected actor 0",
+      "passed": true
+    },
+    {
+      "name": "installed module follows live movement 0",
+      "passed": true
+    },
+    {
+      "name": "new round removes visible module 0",
+      "passed": true
+    },
+    {
+      "name": "selected actor 1 enters equip before gameplay claim",
+      "passed": true
+    },
+    {
+      "name": "selected actor 1 uses original current rig",
+      "passed": true
+    },
+    {
+      "name": "actor 1 t0.20 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 1 t0.20 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 1 t0.60 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 1 t0.60 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 1 t1.70 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 1 t1.70 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 1 t2.44 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 1 t2.44 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 1 t3.30 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 1 t3.30 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 1 t3.90 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 1 t3.90 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "pause freezes equip and cue 1",
+      "passed": true
+    },
+    {
+      "name": "repeated Enter does not skip equip 1",
+      "passed": true
+    },
+    {
+      "name": "playback claims once and starts round three 1",
+      "passed": true
+    },
+    {
+      "name": "physical core follows live selected actor 1",
+      "passed": true
+    },
+    {
+      "name": "installed module follows live movement 1",
+      "passed": true
+    },
+    {
+      "name": "new round removes visible module 1",
+      "passed": true
+    },
+    {
+      "name": "selected actor 2 enters equip before gameplay claim",
+      "passed": true
+    },
+    {
+      "name": "selected actor 2 uses original current rig",
+      "passed": true
+    },
+    {
+      "name": "actor 2 t0.20 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 2 t0.20 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 2 t0.60 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 2 t0.60 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 2 t1.70 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 2 t1.70 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 2 t2.44 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 2 t2.44 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 2 t3.30 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 2 t3.30 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 2 t3.90 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 2 t3.90 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "pause freezes equip and cue 2",
+      "passed": true
+    },
+    {
+      "name": "repeated Enter does not skip equip 2",
+      "passed": true
+    },
+    {
+      "name": "playback claims once and starts round three 2",
+      "passed": true
+    },
+    {
+      "name": "physical core follows live selected actor 2",
+      "passed": true
+    },
+    {
+      "name": "installed module follows live movement 2",
+      "passed": true
+    },
+    {
+      "name": "new round removes visible module 2",
+      "passed": true
+    },
+    {
+      "name": "selected actor 3 enters equip before gameplay claim",
+      "passed": true
+    },
+    {
+      "name": "selected actor 3 uses original current rig",
+      "passed": true
+    },
+    {
+      "name": "actor 3 t0.20 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 3 t0.20 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 3 t0.60 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 3 t0.60 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 3 t1.70 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 3 t1.70 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 3 t2.44 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 3 t2.44 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 3 t3.30 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 3 t3.30 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 3 t3.90 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 3 t3.90 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "pause freezes equip and cue 3",
+      "passed": true
+    },
+    {
+      "name": "repeated Enter does not skip equip 3",
+      "passed": true
+    },
+    {
+      "name": "playback claims once and starts round three 3",
+      "passed": true
+    },
+    {
+      "name": "physical core follows live selected actor 3",
+      "passed": true
+    },
+    {
+      "name": "installed module follows live movement 3",
+      "passed": true
+    },
+    {
+      "name": "new round removes visible module 3",
+      "passed": true
+    },
+    {
+      "name": "selected actor 4 enters equip before gameplay claim",
+      "passed": true
+    },
+    {
+      "name": "selected actor 4 uses original current rig",
+      "passed": true
+    },
+    {
+      "name": "actor 4 t0.20 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 4 t0.20 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 4 t0.60 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 4 t0.60 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 4 t1.70 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 4 t1.70 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 4 t2.44 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 4 t2.44 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 4 t3.30 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 4 t3.30 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "actor 4 t3.90 keeps head outside frame",
+      "passed": true
+    },
+    {
+      "name": "actor 4 t3.90 wrist target is reachable",
+      "passed": true
+    },
+    {
+      "name": "pause freezes equip and cue 4",
+      "passed": true
+    },
+    {
+      "name": "repeated Enter does not skip equip 4",
+      "passed": true
+    },
+    {
+      "name": "playback claims once and starts round three 4",
+      "passed": true
+    },
+    {
+      "name": "physical core follows live selected actor 4",
+      "passed": true
+    },
+    {
+      "name": "installed module follows live movement 4",
+      "passed": true
+    },
+    {
+      "name": "new round removes visible module 4",
+      "passed": true
+    },
+    {
+      "name": "equip preserves selected core speed",
+      "passed": true
+    },
+    {
+      "name": "equip preserves selected core guard",
+      "passed": true
+    },
+    {
+      "name": "equip preserves selected core charge",
+      "passed": true
+    },
+    {
+      "name": "equip preserves selected core fury",
+      "passed": true
+    },
+    {
+      "name": "equip preserves selected core plate",
+      "passed": true
+    },
+    {
+      "name": "equip preserves selected core flow",
+      "passed": true
+    },
+    {
+      "name": "equip preserves selected core eco",
+      "passed": true
+    },
+    {
+      "name": "equip preserves selected core breach",
+      "passed": true
+    },
+    {
+      "name": "equip preserves selected core siphon",
+      "passed": true
+    },
+    {
+      "name": "equip follows alternate stage origin and heading",
+      "passed": true
+    },
+    {
+      "name": "F2 shortened equip claims the same core",
+      "passed": true
+    },
+    {
+      "name": "skip equip claims once without reroll",
+      "passed": true
+    },
+    {
+      "name": "cancel restores visibility camera and stops score",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 113,
+  "samples": [
+    {
+      "character": 0,
+      "contact_error_m": 0.0254416707903147,
+      "head_uv": "(0.612939, -0.116266)",
+      "time": 0.2
+    },
+    {
+      "character": 0,
+      "contact_error_m": 0.0271183848381042,
+      "head_uv": "(0.626563, -0.138035)",
+      "time": 0.6
+    },
+    {
+      "character": 0,
+      "contact_error_m": 0.00000012287812012346,
+      "head_uv": "(0.614963, -0.131273)",
+      "time": 1.7
+    },
+    {
+      "character": 0,
+      "contact_error_m": 0.0286609400063753,
+      "head_uv": "(0.639835, -0.121155)",
+      "time": 2.44
+    },
+    {
+      "character": 0,
+      "contact_error_m": 0.000000245756240246919,
+      "head_uv": "(0.523123, -0.873942)",
+      "time": 3.3
+    },
+    {
+      "character": 0,
+      "contact_error_m": 0.000000245756240246919,
+      "head_uv": "(0.517577, -0.288031)",
+      "time": 3.9
+    },
+    {
+      "character": 1,
+      "contact_error_m": 0.0167021844536066,
+      "head_uv": "(0.67102, -0.396706)",
+      "time": 0.2
+    },
+    {
+      "character": 1,
+      "contact_error_m": 0.0192557442933321,
+      "head_uv": "(0.683177, -0.417556)",
+      "time": 0.6
+    },
+    {
+      "character": 1,
+      "contact_error_m": 0.000000240274005136598,
+      "head_uv": "(0.70014, -0.427626)",
+      "time": 1.7
+    },
+    {
+      "character": 1,
+      "contact_error_m": 0.074900358915329,
+      "head_uv": "(0.738981, -0.41698)",
+      "time": 2.44
+    },
+    {
+      "character": 1,
+      "contact_error_m": 0.000536712119355798,
+      "head_uv": "(0.633617, -1.544912)",
+      "time": 3.3
+    },
+    {
+      "character": 1,
+      "contact_error_m": 0.000000320980831247653,
+      "head_uv": "(0.58096, -0.521552)",
+      "time": 3.9
+    },
+    {
+      "character": 2,
+      "contact_error_m": 0.000000120137002568299,
+      "head_uv": "(0.607, -0.137428)",
+      "time": 0.2
+    },
+    {
+      "character": 2,
+      "contact_error_m": 0.0,
+      "head_uv": "(0.621093, -0.160228)",
+      "time": 0.6
+    },
+    {
+      "character": 2,
+      "contact_error_m": 0.000000238883785641519,
+      "head_uv": "(0.60292, -0.141976)",
+      "time": 1.7
+    },
+    {
+      "character": 2,
+      "contact_error_m": 0.0,
+      "head_uv": "(0.627866, -0.13271)",
+      "time": 2.44
+    },
+    {
+      "character": 2,
+      "contact_error_m": 0.00000012287812012346,
+      "head_uv": "(0.524334, -0.842988)",
+      "time": 3.3
+    },
+    {
+      "character": 2,
+      "contact_error_m": 0.00000012287812012346,
+      "head_uv": "(0.510149, -0.286327)",
+      "time": 3.9
+    },
+    {
+      "character": 3,
+      "contact_error_m": 0.0813568904995918,
+      "head_uv": "(0.604938, -0.275204)",
+      "time": 0.2
+    },
+    {
+      "character": 3,
+      "contact_error_m": 0.08336241543293,
+      "head_uv": "(0.61913, -0.299467)",
+      "time": 0.6
+    },
+    {
+      "character": 3,
+      "contact_error_m": 0.0468556508421898,
+      "head_uv": "(0.600946, -0.253607)",
+      "time": 1.7
+    },
+    {
+      "character": 3,
+      "contact_error_m": 0.0934498533606529,
+      "head_uv": "(0.630187, -0.246139)",
+      "time": 2.44
+    },
+    {
+      "character": 3,
+      "contact_error_m": 0.0000000298023223876953,
+      "head_uv": "(0.538074, -0.997538)",
+      "time": 3.3
+    },
+    {
+      "character": 3,
+      "contact_error_m": 0.0000000298023223876953,
+      "head_uv": "(0.5097, -0.353465)",
+      "time": 3.9
+    },
+    {
+      "character": 4,
+      "contact_error_m": 0.000000266560078898692,
+      "head_uv": "(0.627529, -0.533967)",
+      "time": 0.2
+    },
+    {
+      "character": 4,
+      "contact_error_m": 0.00262261624448001,
+      "head_uv": "(0.64253, -0.561732)",
+      "time": 0.6
+    },
+    {
+      "character": 4,
+      "contact_error_m": 0.00000027028258386963,
+      "head_uv": "(0.612253, -0.473241)",
+      "time": 1.7
+    },
+    {
+      "character": 4,
+      "contact_error_m": 0.0152152217924595,
+      "head_uv": "(0.649814, -0.468319)",
+      "time": 2.44
+    },
+    {
+      "character": 4,
+      "contact_error_m": 0.000000119209289550781,
+      "head_uv": "(0.590774, -1.852545)",
+      "time": 3.3
+    },
+    {
+      "character": 4,
+      "contact_error_m": 0.000000119209289550781,
+      "head_uv": "(0.514519, -0.552441)",
+      "time": 3.9
+    }
+  ]
+}
