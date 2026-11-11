@@ -1,5 +1,9 @@
 # 接續工作交接
 
+## 2026-11-11：時段預設（企劃 D1）
+
+使用者指示可先做 D 場景／E 音樂演出／F 雙人社交／G 彩蛋。第一批只完成 D1：N 鍵切換白晝／黃昏／深夜／霧晨（純燈光霧），見 [TIME_OF_DAY.zh-TW.md](TIME_OF_DAY.zh-TW.md)。F（雙人）需先做輸入抽象，尚未開始；E、G 其餘未做。「Nam Mac」使用者說明為某位 Artist 的風格，網路搜尋未能確認是誰，等待參考圖／連結。
+
 ## 2026-11-11：玩法與創意擴充企劃（僅文件）
 
 使用者要求：開局只有故事模式、通關解鎖自由對戰、同機鍵盤雙人、雙手柄，並詳細規劃玩法與創意點子。企劃見 [CONTENT_EXPANSION_PLAN.zh-TW.md](CONTENT_EXPANSION_PLAN.zh-TW.md)。**只有文件，未改遊戲程式、存檔、規則或Web。** 讀碼確認：`fight_simulation.gd` 的 `tick(player, opponent)` 已能吃雙方指令，但`fight_session.gd`輸入硬寫P1鍵盤，且沒有任何手柄支援；雙人／手柄需先抽象輸入來源。待 Alan 決定 D1–D5。

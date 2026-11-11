@@ -17,6 +17,7 @@ var run_awarded:=false
 var run_techniques:Dictionary={}
 var run_base_difficulty:=1
 var run_original_rival:=1
+var time_of_day_choice:=0
 var signature_camera=preload("res://scripts/combat/neon/neon_signature_camera.gd").new()
 var neon_profile:Resource=preload("res://scripts/combat/neon/neon_style_profile.tres")
 var spectacle := preload("res://scripts/combat/fight_spectacle.gd").new()
@@ -127,6 +128,7 @@ func _build_stage() -> void:
     backdrop.name = "StreetBackdrop"
     backdrop.static_batches_enabled=static_batches_enabled
     backdrop.neon_enabled=neon_enabled
+    backdrop.time_of_day=time_of_day_choice
     add_child(backdrop)
     stage_environment = backdrop.environment
     red_environment=Environment.new()
@@ -842,6 +844,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
         audio.music_muted = not audio.music_muted
         save_options()
         hud.rebuild_menu()
+    elif event.keycode==KEY_N and screen in ["title","pause"]:
+        time_of_day_choice=(time_of_day_choice+1)%4
+        backdrop.set_time_of_day(time_of_day_choice)
+        save_options()
+        hud.notice="TIME: "+backdrop.TimeOfDay.label(time_of_day_choice,true);hud.notice_time=.9
     elif event.keycode == KEY_O:
         ink_pass.visible = not ink_pass.visible
         save_options()
@@ -1069,6 +1076,8 @@ func _restore_options() -> void:
     audio.muted=options.muted
     audio.music_muted=options.music_muted
     reduced_effects=options.reduced_effects
+    time_of_day_choice=options.time_of_day
+    if backdrop!=null:backdrop.set_time_of_day(time_of_day_choice)
     retro_pixels=options.retro_pixels
     ink_pass.visible=options.scene_edges
     language="en"
@@ -1095,7 +1104,7 @@ func set_character(side:int,index:int) -> void:
     if is_instance_valid(hud) and hud.menu_page=="roster":hud.rebuild_menu()
 
 func save_options() -> void:
-    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":run_base_difficulty if run_active else sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":run_original_rival if run_active else character_choices[1]})
+    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":run_base_difficulty if run_active else sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":run_original_rival if run_active else character_choices[1],"time_of_day":time_of_day_choice})
 
 func return_to_title() -> void:
     coach=null

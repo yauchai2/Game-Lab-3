@@ -1,5 +1,12 @@
 # 待辦與完成狀態
 
+## 2026-11-11：D／E／F／G 實作
+
+- [x] D1 時段預設（11 項檢查；Mac／真人待驗）。
+- [ ] D2–D6、E1–E5、F1–F5、G1–G8 其餘點子。
+- [ ] 既有 verify_combat_polish 靜音啟動斷言失敗（基線已重現）。
+- [ ] Alan 提供 Nam Mac 參考圖／連結。
+
 ## 2026-11-11：玩法與創意擴充企劃
 
 - [x] 撰寫 [CONTENT_EXPANSION_PLAN.zh-TW.md](CONTENT_EXPANSION_PLAN.zh-TW.md)（僅規劃，未實作）。

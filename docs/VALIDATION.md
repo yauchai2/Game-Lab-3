@@ -1,5 +1,9 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-11：時段預設
+
+`verify_time_of_day.gd` 11/11（headless），xvfb／llvmpipe 四時段截圖。`verify_combat_polish.gd` 的靜音啟動斷言失敗於未改動基線同樣重現（非本次造成）。其餘既有套件未全數重跑；非 Mac／真人驗收。詳見 [TIME_OF_DAY.zh-TW.md](TIME_OF_DAY.zh-TW.md)。
+
 ## 2026-11-11：main整合核對
 
 合併來源4177ef9至main54a520d，無衝突。以Git tree object ID核對godot及tools，兩者與4177ef9完全相同；原main的docs/JSR-BRC-style-reference.md亦與來源相同並保留。只更改整合紀錄，沒有重跑引擎測試或聲稱修正上輪四個舊測試失敗。既有二段跳／正式戰鬥驗證詳見docs/evidence/double-jump/README.md。公開Web分支沒有更新。
