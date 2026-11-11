@@ -232,3 +232,70 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 ## 2026-11-11：群戰與黑衣人修補
 
 按使用者要求加入成群黑衣人，採獨立血量／受擊與單進攻名額，普通近身招可多目標真命中；不用多份simulation重推玩家。群戰由FIGHTERS→SQUAD啟動，不替換既有對戰／Street Run。難度先3／4／5人配35／45／55HP與45／55／65%招式傷害，真人再調。原始GLB不變，修97頸部權重與封閉幾何接合，領帶改乾淨紫色材質補片；只抑制黑衣人凹入頸部的過厚outline。derived資產同時供戰鬥與演出角色。
+
+
+## 2026-11-11：共用資產的正式 KO 3D 過場
+
+按使用者原片復建八鏡10秒，直接接正式零生命結算而非新增獨立玩法；唯一 CityBreaker 演出owner在Simulation已決勝後掌鏡，不改命中／勝者／資源。沿用當局FighterVisual與retarget，原背景／飛機可逆分件，僅遠景重用本場建築；不烘焙人物或播放原片。先以24fps切點對齊時序，清楚保留與原片幾何／煙霧／人物差異；不宣稱完美復刻。F2原短版、Enter／Space跳過和Esc暫停／所有出口共用clear。來源同branch推送，Web不更新。
+
+
+## 2026-11-11：KO聲畫單一owner
+
+使用者授權創意加入聲效／震動／模糊／漫畫線，沿既有正式KO CityBreaker擴充，避免第二套全屏director。原創程序score打包為10秒OGG，專用player路由到既有SFX bus與limiter，pause保位置／clear停止；BGM owner只收duck值，不停／重置transport。7-tap邊緣放射模糊與中心保清、短撞擊色差／對比、速度線及FOV反衝都讀同一演出秒數。模糊是風格化放射採樣，並非運動向量motion blur；F2退出長演出及後製。
+
+
+## 2026-11-11：五秒KO非線性節奏
+
+最新加快一倍指示按本聊天KO上下文落實為10→5秒過場，不改正式simulation／招式速度。保留原10秒作者座標，新增5秒playback_elapsed與共享timing.json正反映射，移動段加速、接觸／空爆留短重拍、KO留0.92秒。程序聲效用同profile重排／重合成、保持音高，避免播放器2×把低頻與金屬聲一起升調。JSON明確打包但不更新Web。
+
+
+## 2026-11-11：勝者後段與單一演出owner
+
+新要求是在K.O.之後接近鏡／專屬離場，因此保留5秒破壞節奏、追加3.2秒，總長8.2秒，不把已有爆破再壓縮。四角色直接用現有骨架做獨立姿態／離場方向及原創exit音軌；module無獨立時鐘，由CityBreaker掌鏡與音軌切換。依rig頭部位置近鏡，124°FOV結合螢幕桶形畸變；真出框後出結果，避免只淡出模型。near／fisheye／音軌全部走同一clear；原GLB與simulation不變。
+
+
+## 2026-11-11：完整回合演出、AI Demo循環與煙霧
+
+正式FIGHT／Street Run加入2.8秒同場3D開場：街景、P1／P2角色近鏡、ROUND，再交回原倒數及對戰。Enter／Space跳過，Esc暫停，練習保持即玩。AI Demo改正常有限生命、不回血，真KO後播完整5秒破壞＋3.2秒勝者魚眼與離場，之後自動下一回合；兩勝完場也繼續loop，沿用選角、不發XP。覆蓋舊Demo endless／無KO契約，正常FIGHT結果仍由玩家確認。
+
+場景加入有界屋頂／街邊煙、命中揚塵及64團KO殘煙；重擊後可短暫魚眼近鏡，避讓Neon大招與KO，保持雙人及HUD留白。新增原創2.8秒開場音軌，沿原SFX／mute／pause及BGM duck。詳見evidence/round-flow/README.md。來源同codex/combat-escalation-next／PR #6，公開Web不更新；Mac／硬件效能與真人強度仍待驗收。
+
+開場是獨立presentation owner，在ready時凍結simulation但不改其資料；KO仍由CityBreaker唯一掌鏡。戰鬥accent只在其他鏡頭空檔、真重擊後觸發，0.28秒／至少1.6秒冷卻，不改遊戲時間或傷害。Demo只在正式結算及演出完成後呼叫next_round／restart_match；不在live fight重設生命、注入命中或替AI補傷害。煙霧用世界座標billboard及量化噪聲，18環境＋12命中池＋64KO固定上限。
+
+
+## 2026-11-11：結果頁修復、決勝KO與四面反彈
+
+修正RESULT空白：先前在CityBreaker仍active時提前設finish_menu_open，rebuild把controls隱藏；之後director清場但沒有再建選單。本輪在演出釋放後才建立結果操作，並對空白狀態自我恢復。原生測試驗真visible buttons、視窗內位置及pressed callbacks，涵蓋自動播完／暫停／F2／跳過、下一回合與重賽。
+
+依最新指示完整KO只在兩勝制決勝回合；之前回合短結算。Street Run只在最後一站或本次Run敗退結束播完整KO；超時不偽造零生命KO。Demo仍沿真勝負loop，每場只有決勝KO，之後接下一場開場。
+
+正式Rush／Demo／Street Run加入四面盒狀反彈：x±8.2、腳部y0–5.6（8m頂框），重擊／挑空／終結擊／符合推力的技能真命中才發射，普通輕拳不觸發。法線反射耗能、無額外碰牆傷害；每次飛行最多6個接觸／180物理tick，耗盡自動恢復＋18tick保護，不被新命中刷新預算，落地後才重置。接觸後18tick內可E花20能量受身；AI有有界反應延遲。暫停／hitstop不消耗飛行時間；F2保持物理，只減演出。
+
+真3D透明線框圍場、每面重用一個撞擊格、既有SFX／揚塵／速度尾跡／軀幹中心翻滾。高速飛行鏡頭以雙人body bounds即時退開，避開HUD，反彈字卡移到底部。詳見[evidence/arena-box](evidence/arena-box/README.md)。同codex/combat-escalation-next／PR #6推來源，不發佈Web；Mac／真人平衡、鏡頭和混音待驗收。
+
+反彈是Simulation的有界運動，ArenaBox不改生命，camera／mesh僅讀真接觸事件；不用畫面邊界或假命中控制物理。舊單次wall bounce保留給獨立教室／非Rush路徑，正常跳躍也會受天花限制，但不自動進入受擊反彈。
+
+## 2026-11-11：THE DEALER回合間抽能力
+
+依本聊天最新「開始製作」授權，正式接入第二回合尚未完場／Street Run第二站勝出的3D抽獎。共用當局世界與局部stage資源，NPC／機器獨立、玩家／影子不入鏡；一次隨機結果／一次領取，僅下一局modifier，不新增貨幣或永久扣XP。保持既有KO與先取兩勝、音樂transport、Compatibility及Web規則。細節與差異見ABILITY_DRAW.zh-TW.md；不宣稱逐像素復刻。
+
+## 2026-11-11：入場不可退回無遮擋原地生成；裝備段另規劃
+
+主街採真碰撞驗證過的±6m／z0入口及空場起鏡；兩路全堵compact需先遮幕再揭開，不關閉物理碰撞來繞過。使用者本次新增裝備需求允許只拍玩家手／腰／鞋，不露臉；1.8秒腰側夾具分鏡為提案，未當成已實作。未來Tripo模型原檔保留，另建衍生綁骨與分件。
+
+## 2026-11-11：機器Tripo採外殼／活動件分離
+
+使用者詢問整機生成與中間抽獎動畫難度：首選手工硬表面；若使用Tripo，只生成靜態機殼，輪盤／輪子／拉桿／出貨蓋另建，整機父節點動作與零件動作分開。三視圖與prompt在references/ability-draw/tripo；生成稿非CAD投影，背面補完，不冒稱已取得可動畫的Tripo資產。
+
+## 2026-11-11：原Tripo骨架與機殼包裝，窗口及短音效可控
+
+以使用者原65骨／skin NPC製作runtime動作，不覆寫GLB或替換四戰鬥角色；機殼原貼圖保留，以衍生材質按局部座標移除窗口多層封面，活動件獨立。重用既有CC0 gait、原手腕二骨接觸／代幣跟手，不宣稱來源已有動畫或已烘焙回GLB。快速重開Ogg短cue退出滯留改用解碼PCM，原OGG及長BGM保持。詳見ABILITY_DRAW_TRIPO_MODELS.zh-TW.md；腰側裝備仍僅規劃。
+
+## 2026-11-11：來源集中整合至 main
+
+使用者要求「把所有的更新都推到最常用的branch」。以 main738c740 為基礎，整合黑衣人分支987d4d2與正式戰鬥／過場／抽能力分支3389fa9，保留雙方提交及來源資產；往後 GitHub Desktop 選 main Fetch／Pull。此節覆蓋下方歷史的「main未更新」狀態；公開Web不更新。
+
+同時處理整合相容性：黑衣人索引4支援進場名稱／顏色、通用步行勝者離場及既有HUSH離場音軌；群戰保留多人跟鏡與短結算，不套雙人進場／決勝KO／回合抽能力。四英雄正式回合演出、有限生命Demo及抽能力保持；合併空連預算helper與ArenaBox排除，保留3位數群戰倒數。
+
+合併來源已跑477項最終檢查：146無視窗規則、177原生UI／結果／回合／勝者／材質、154群戰／黑衣人／Tripo抽能力。最終無ERROR／SCRIPT ERROR；Linux Godot4.6.3 Compatibility／llvmpipe／Dummy，非使用者Mac或真人手感驗收。最初round-flow 19/23的測試器在單一引擎影格內跑完整Demo，抽能力防重複確認阻止第二次動作；改為定期讓出真引擎影格後24/24。初次失敗與最終結果均保留在 [整合證據](evidence/main-integration/README.md)。
+

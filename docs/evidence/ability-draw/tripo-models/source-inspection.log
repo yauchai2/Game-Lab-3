@@ -1,0 +1,20 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+RIG /root/@Node3D@2/tripo_convert_36d4f0c3-b64c-4ea1-841e-104fd70e96ae/Armature/Skeleton3D 65 BASIS [X: (3.0, 0.0, 0.0), Y: (0.0, 3.0, 0.0), Z: (0.0, 0.0, 3.0)]
+BONE 0 mixamorig_Hips skeleton (0.001952, 0.52123, 0.005857) world (-1.594144, 1.56369, 0.01757)
+BONE 1 mixamorig_LeftUpLeg skeleton (0.060517, 0.525134, 0.005857) world (-1.418448, 1.575403, 0.01757)
+BONE 2 mixamorig_LeftLeg skeleton (0.083942, 0.290874, 0.001952) world (-1.348173, 0.872621, 0.005857)
+BONE 3 mixamorig_LeftFoot skeleton (0.111272, 0.068326, -0.021474) world (-1.266184, 0.204978, -0.064422)
+BONE 6 mixamorig_RightUpLeg skeleton (-0.056613, 0.525134, 0.005857) world (-1.769839, 1.575403, 0.01757)
+BONE 7 mixamorig_RightLeg skeleton (-0.080038, 0.290874, 0.001952) world (-1.840114, 0.872621, 0.005856)
+BONE 8 mixamorig_RightFoot skeleton (-0.107368, 0.068326, -0.021474) world (-1.922103, 0.204979, -0.064422)
+BONE 15 mixamorig_LeftArm skeleton (0.107369, 0.747682, -0.001952) world (-1.277892, 2.243045, -0.005856)
+BONE 16 mixamorig_LeftForeArm skeleton (0.185456, 0.61103, -0.025378) world (-1.043632, 1.833089, -0.076135)
+BONE 17 mixamorig_LeftHand skeleton (0.240975, 0.489652, -0.026488) world (-0.877074, 1.468956, -0.079465)
+BONE 39 mixamorig_Head skeleton (0.001952, 0.821864, 0.009761) world (-1.594144, 2.465593, 0.029282)
+BONE 42 mixamorig_RightArm skeleton (-0.103465, 0.747682, -0.001952) world (-1.910395, 2.243046, -0.005857)
+BONE 43 mixamorig_RightForeArm skeleton (-0.181552, 0.61103, -0.025378) world (-2.144655, 1.83309, -0.076135)
+BONE 44 mixamorig_RightHand skeleton (-0.24161, 0.489652, -0.026488) world (-2.324831, 1.468956, -0.079465)

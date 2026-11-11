@@ -1,0 +1,29 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+ARENA_RESULT intermediate round has no city destruction 0 true
+ARENA_RESULT short round result exposes real controls 0 true
+ARENA_RESULT pointer next-round action starts entry 0 true
+ARENA_RESULT deciding round alone starts full KO 0 true
+ARENA_RESULT automatic cinematic end shows result controls 0 true
+ARENA_RESULT result action remains within native viewport 0 true
+ARENA_RESULT pointer rematch returns to playable entry 0 true
+ARENA_RESULT intermediate round has no city destruction 1 true
+ARENA_RESULT short round result exposes real controls 1 true
+ARENA_RESULT pointer next-round action starts entry 1 true
+ARENA_RESULT deciding round alone starts full KO 1 true
+ARENA_RESULT automatic cinematic end shows result controls 1 true
+ARENA_RESULT result action remains within native viewport 1 true
+ARENA_RESULT pointer rematch returns to playable entry 1 true
+ARENA_RESULT pause holds final KO without exposing a result page true
+ARENA_RESULT resume reaches an actionable result true
+ARENA_RESULT F2 exits final KO into an actionable result true
+ARENA_RESULT skip exposes result controls immediately true
+ARENA_RESULT Street Run early stop uses a short result true
+ARENA_RESULT Street Run final stop has full KO true
+ARENA_RESULT formal battle has real wire-cage and bounded impact meshes true
+ARENA_RESULT reduced effects never disables physical boundaries true
+ARENA_RESULT title clears all cage flashes and temporary lenses true
+ARENA_RESULT_CHECKS 23/23

@@ -112,6 +112,12 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         if f.health<=0:model.rotation.z=sin(pose_time*PI/.64)*.55
         stretch*=Vector3(1.18,.92,1.18)
     else:model.rotation.z=0.0
+    if f.get("ricochet",{}).get("ticks",0)>0 and f.state=="stun" and not reduced:
+        var spin:float=f.ricochet.spin
+        model.rotation.x=spin
+        # Rotate about the torso instead of driving the head through the floor.
+        model.position.y+=1.1*(1-cos(spin));model.position.z-=1.1*sin(spin)
+        stretch*=Vector3(1.07,.93,1.07)
     model.scale=Vector3.ONE*model_scale*stretch
     for mat in materials:
         mat.set_shader_parameter("flash", 1.0 if f.flash > 0 and not reduced else 0.0)

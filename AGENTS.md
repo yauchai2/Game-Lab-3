@@ -94,3 +94,25 @@
 - 2026-11-11 黑衣人接入：見docs/BLACK_SUIT_ENEMY.zh-TW.md。基於main738c740的codex/black-suit-enemy；P2敵人4與四英雄／成長分離，原6bb9e9c2 GLB不變。black_suit_actor.tscn供演出／背景，根transform屬導演；沒有AI／傷害。故事／槍械／新地圖未接入，main及Web未更新。
 
 - 2026-11-11 最新黑衣人修補與群戰見docs/BLACK_SUIT_SQUAD.zh-TW.md：runtime改derived/black_suit_repaired.glb（原檔保留）、97頸部權重／封閉補片／局部outline。FIGHTERS→SQUAD為3／4／5名獨立同場敵人，單進攻名額、玩家僅推進一次；群戰不給XP，退出須清除額外visual與simulation。舊單敵與Street Run保留；同分支、main與Web不動。
+
+- 2026-11-11 最新使用者指定此branch並要求按影片做正式回合3D過場：現況 CITY_BREAKER.zh-TW.md。CityBreaker是KO段唯一camera／destruction owner，零生命真結算後才播，不改simulation或XP；沿用當局四角／原街景／原客機，可逆static batch／飛機分件。F2短版，Enter／Space先跳過、再Enter接下局，Esc保持result恢復。所有退出走clear；不要改成固定人物影片或另建獨立玩法。來源同branch／PR #6，Web不更新；參考片與程序幾何仍有差異，未宣稱逐像素完美。
+
+- 2026-11-11 最新KO聲畫要求：見CITY_BREAKER.zh-TW.md最新節／evidence/city-breaker-fx。原CityBreaker正式KO入口擴充原創score、既有SFX bus、pause／clear及BGM duck，7-tap邊緣放射模糊／漫畫線／字卡／3D衝擊環／FOV反衝，14°roll上限。後製不模糊HUD，F2短版保持。原創音軌可由tools/build_city_breaker_audio.py重建；不要以原片音軌取代來源或把無聲舊預覽當最新。來源同branch推送，Web不更新。
+
+- 2026-11-11 最新節奏覆蓋原10秒KO：正式播放5秒，以timing.json把原10秒作者時間非線性壓縮，保留撞樓／空爆短重拍、0.92秒KO收尾；playback_elapsed是真時鐘，age仍是作者時間。聲效按同profile重新合成5秒、不變調；不要用Engine.time_scale或把整段pitch_scale=2。來源同branch，Web不更新；最新證據evidence/city-breaker-fast。
+
+- 2026-11-11 最新K.O.後要求覆蓋5秒直接結果：保留5秒基段，再追加3.2秒當局勝者近鏡／專屬離場，整段8.2秒。victory_exit.gd由同一CityBreaker時鐘掌管，四套程序骨架／方向與exit音軌；124°FOV＋桶形fisheye依真head anchor取景，真出框再出結果。clear必須還原near／fisheye、停止score；F2／暫停／重開保持。原GLB／simulation不變，最新證據evidence/victory-exits；來源同branch推送，Web不更新。
+
+- 2026-11-11 最新完整過場要求覆蓋Demo endless／無自動重設歷史契約：見docs/evidence/round-flow/README.md。正式FIGHT／Street Run有2.8秒可跳過3D開場，練習即玩；Demo正常有限生命、真KO完整8.2秒後自動next round／next match，無XP、不在live fight補傷或改健康。round_theatre掌開場／稀疏0.28秒戰鬥魚眼，避讓Neon及CityBreaker；煙霧固定18＋12＋64上限。暫停／F2／R／F12／退出須清理lens與score。來源同branch／PR #6，Web不更新。
+
+- 2026-11-11 最新指示覆蓋每回合完整KO：僅match_over零生命決勝才播CityBreaker，Street Run只在最後站／敗退結束；普通round_over短結算，Demo仍真勝負跨場loop。RESULT選單須在director結束後建立並驗visible controls，不能只驗finish_menu_open。正式Rush四面ArenaBox（6接觸／180tick／E20受身／無額外反彈傷害）與arena_cage，見docs/evidence/arena-box/README.md；不得無限刷新stun或改成螢幕座標物理。camera最後以雙人bounds避HUD；F2不改物理。來源同branch／PR #6，Web不更新。
+
+- 2026-11-11 最新本聊天要求開始製作抽能力：見docs/ABILITY_DRAW.zh-TW.md及evidence/ability-draw。正式FIGHT第二回合1:1／Street Run第二站勝出／Demo共用THE DEALER真3D；局部stage profile、掃掠備援、一次抽取／領取、下一局真modifier與永久XP隔離，所有相機／人物可見性／聲音／duck可逆。NPC不替換戰鬥GLB，玩家不入鏡；2:0保持決勝KO。首版平地入口／程序人物、非逐像素原片復刻，Mac／真人驗收待辦。來源同branch／PR #6，Web不更新。
+
+- 2026-11-11 本聊天更正NPC／機器入場：見evidence/ability-draw/entry-v2，原±5m／z-.25街景碰撞導致零位移已修正為±6m／z0；真出框／拖行／煞停及compact遮幕要保留。ABILITY_EQUIP_STORYBOARD.zh-TW.md與equip-storyboard.png僅規劃1.8秒腰側安裝，未接runtime；只拍手腰鞋不露玩家臉。等使用者Tripo NPC／機器後才換模／綁骨，保留來源與Web規則。
+
+- 2026-11-11 使用者要求最早九格分鏡的NPC／機器三視圖供Tripo：已交references/ability-draw/tripo（NPC A-pose、整機設計、外殼生成版及prompt）。圖是ImageGen建模設計而非CAD投影，背面補完；機器建議手工或Tripo外殼＋獨立輪盤／輪子／拉桿／出貨蓋，不能假定整機生成已分件。尚無Tripo新資產，runtime不變。
+
+- 2026-11-11 本聊天已提供275dc57f…機身與36d4f0c3…65骨NPC，覆蓋前述待模型狀態：見docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md。原GLB／albedo byte保留，真骨架CC0 gait＋作者IK接觸／手指／代幣；機身窗口多層封面用包裝材質／outline開窗，活動件獨立。短入場／抽獎cue用原OGG解碼PCM（build_ability_pcm.py），原OGG／長BGM保持，避免重現的快速重開Ogg退出滯留；不要擅自改回舊程序人物／機殼。74項原生及有聲fixture有證據，Mac／真人待驗，腰側裝備仍未實作，來源同branch／Web不更新。
+
+- 2026-11-11 使用者明確要求所有更新集中最常用branch：本輪合併黑衣人與combat-escalation來源至main，覆蓋舊「main不動」與各聊天來源分支指示。後續日常Fetch／Pull使用main，保留歷史分支及原始GLB；Web仍需明確要求。黑衣人4可播通用勝出；SQUAD保留多人鏡頭／短結算，不套雙人過場或抽能力。整合驗證見docs/evidence/main-integration。

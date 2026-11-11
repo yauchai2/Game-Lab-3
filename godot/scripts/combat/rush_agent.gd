@@ -37,7 +37,7 @@ func choose(s:RefCounted,side:int,clock:int,level:=2,showcase:=false) -> Diction
         if plans[side].get("guard",false):command["guard"]=true;command["axis"]=0.0
         return command
     if f.state=="stun":
-        if f.wall_tech_window>0 and level>0:command["dash"]=true
+        if f.wall_tech_window>0 and level>0 and (not s.ArenaBox.active(f) or f.wall_tech_window<=8):command["dash"]=true
         return command
     if f.air.chase_window>0 and not f.air.chase_used and other.state=="stun" and f.meter>=s.AirMotion.CHASE_COST:
         command["rush"]=true

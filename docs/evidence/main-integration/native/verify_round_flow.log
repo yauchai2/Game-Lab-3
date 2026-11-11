@@ -1,0 +1,49 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+ROUND_FLOW formal FIGHT begins with a real entry true
+ROUND_FLOW entry never consumes life / resources / countdown true
+ROUND_FLOW entry rejects buffered combat commands true
+ROUND_FLOW pause freezes entry score and camera time true
+ROUND_FLOW Space skips entry without a jump true
+ROUND_FLOW normal countdown then enters actual fight true
+ROUND_FLOW all four current roster models enter and restore visibility true
+ROUND_FLOW Street Run first and subsequent stops have an entry true
+ROUND_FLOW practice starts playable without an entry lock true
+ROUND_FLOW demo uses normal finite health rather than practice regeneration true
+ROUND_FLOW demo reserves full KO for the deciding round false
+ERROR: demo reserves full KO for the deciding round
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_round_flow.gd:9)
+       [1] run (res://tools/verify_round_flow.gd:62)
+ROUND_FLOW every deciding KO includes the winner exit true
+ROUND_FLOW rounds loop through a fresh entry automatically false
+ERROR: rounds loop through a fresh entry automatically
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_round_flow.gd:9)
+       [1] run (res://tools/verify_round_flow.gd:64)
+ROUND_FLOW two-win match completion also loops false
+ERROR: two-win match completion also loops
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_round_flow.gd:9)
+       [1] run (res://tools/verify_round_flow.gd:65)
+ROUND_FLOW both autonomous sides land actual hits true
+ROUND_FLOW looping demo never grants progression rewards true
+ROUND_FLOW combat fisheye retains both fighters and HUD margins true
+ROUND_FLOW ambient smoke and dust have fixed bounds true
+ROUND_FLOW KO has substantial bounded smoke clouds false
+ERROR: KO has substantial bounded smoke clouds
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_round_flow.gd:9)
+       [1] run (res://tools/verify_round_flow.gd:70)
+ROUND_FLOW pause cannot advance the demo loop true
+ROUND_FLOW F2 releases entry lens and score true
+ROUND_FLOW F12 exits demo and clears every temporary lens true
+ROUND_FLOW title exit cleans entry score and camera near plane true
+ROUND_FLOW_CHECKS 19/23

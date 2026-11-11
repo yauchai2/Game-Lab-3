@@ -1,0 +1,47 @@
+{
+  "created_utc": "20261111T031201Z",
+  "source_commit": "18eb6f54df71a0c35e289067f1060af632e1b7a7",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/cinematic/city_breaker.gd",
+    "godot/scripts/combat/demo_director.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/street_backdrop.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 37,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_reference_ui",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "b9a61a32d0e0ab556ba0acdc7d16834cdd7aeed770fc61f3d9fa3059ef3c19b0",
+      "seconds": 16.728,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_reference_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 37,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

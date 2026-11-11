@@ -1,0 +1,352 @@
+{
+  "checks": [
+    {
+      "name": "five second destruction retained 0/0",
+      "passed": true
+    },
+    {
+      "name": "winner uses live selected model 0/0",
+      "passed": true
+    },
+    {
+      "name": "close lens has actual perspective and fisheye 0/0",
+      "passed": true
+    },
+    {
+      "name": "head remains in close frame 0/0",
+      "passed": true
+    },
+    {
+      "name": "character owns dedicated exit score 0/0",
+      "passed": true
+    },
+    {
+      "name": "pause freezes exit pose and score 0/0",
+      "passed": true
+    },
+    {
+      "name": "resume stays in result outro 0/0",
+      "passed": true
+    },
+    {
+      "name": "winner walks outside screen 0/0",
+      "passed": true
+    },
+    {
+      "name": "exit leaves combat snapshot unchanged 0/0",
+      "passed": true
+    },
+    {
+      "name": "skip restores near lens and stops sound 0/0",
+      "passed": true
+    },
+    {
+      "name": "five second destruction retained 0/1",
+      "passed": true
+    },
+    {
+      "name": "winner uses live selected model 0/1",
+      "passed": true
+    },
+    {
+      "name": "close lens has actual perspective and fisheye 0/1",
+      "passed": true
+    },
+    {
+      "name": "head remains in close frame 0/1",
+      "passed": true
+    },
+    {
+      "name": "character owns dedicated exit score 0/1",
+      "passed": true
+    },
+    {
+      "name": "pause freezes exit pose and score 0/1",
+      "passed": true
+    },
+    {
+      "name": "resume stays in result outro 0/1",
+      "passed": true
+    },
+    {
+      "name": "winner walks outside screen 0/1",
+      "passed": true
+    },
+    {
+      "name": "exit leaves combat snapshot unchanged 0/1",
+      "passed": true
+    },
+    {
+      "name": "skip restores near lens and stops sound 0/1",
+      "passed": true
+    },
+    {
+      "name": "five second destruction retained 0/2",
+      "passed": true
+    },
+    {
+      "name": "winner uses live selected model 0/2",
+      "passed": true
+    },
+    {
+      "name": "close lens has actual perspective and fisheye 0/2",
+      "passed": true
+    },
+    {
+      "name": "head remains in close frame 0/2",
+      "passed": true
+    },
+    {
+      "name": "character owns dedicated exit score 0/2",
+      "passed": true
+    },
+    {
+      "name": "pause freezes exit pose and score 0/2",
+      "passed": true
+    },
+    {
+      "name": "resume stays in result outro 0/2",
+      "passed": true
+    },
+    {
+      "name": "winner walks outside screen 0/2",
+      "passed": true
+    },
+    {
+      "name": "exit leaves combat snapshot unchanged 0/2",
+      "passed": true
+    },
+    {
+      "name": "skip restores near lens and stops sound 0/2",
+      "passed": true
+    },
+    {
+      "name": "five second destruction retained 0/3",
+      "passed": true
+    },
+    {
+      "name": "winner uses live selected model 0/3",
+      "passed": true
+    },
+    {
+      "name": "close lens has actual perspective and fisheye 0/3",
+      "passed": true
+    },
+    {
+      "name": "head remains in close frame 0/3",
+      "passed": true
+    },
+    {
+      "name": "character owns dedicated exit score 0/3",
+      "passed": true
+    },
+    {
+      "name": "pause freezes exit pose and score 0/3",
+      "passed": true
+    },
+    {
+      "name": "resume stays in result outro 0/3",
+      "passed": true
+    },
+    {
+      "name": "winner walks outside screen 0/3",
+      "passed": true
+    },
+    {
+      "name": "exit leaves combat snapshot unchanged 0/3",
+      "passed": true
+    },
+    {
+      "name": "skip restores near lens and stops sound 0/3",
+      "passed": true
+    },
+    {
+      "name": "five second destruction retained 1/0",
+      "passed": true
+    },
+    {
+      "name": "winner uses live selected model 1/0",
+      "passed": true
+    },
+    {
+      "name": "close lens has actual perspective and fisheye 1/0",
+      "passed": true
+    },
+    {
+      "name": "head remains in close frame 1/0",
+      "passed": true
+    },
+    {
+      "name": "character owns dedicated exit score 1/0",
+      "passed": true
+    },
+    {
+      "name": "pause freezes exit pose and score 1/0",
+      "passed": true
+    },
+    {
+      "name": "resume stays in result outro 1/0",
+      "passed": true
+    },
+    {
+      "name": "winner walks outside screen 1/0",
+      "passed": true
+    },
+    {
+      "name": "exit leaves combat snapshot unchanged 1/0",
+      "passed": true
+    },
+    {
+      "name": "skip restores near lens and stops sound 1/0",
+      "passed": true
+    },
+    {
+      "name": "five second destruction retained 1/1",
+      "passed": true
+    },
+    {
+      "name": "winner uses live selected model 1/1",
+      "passed": true
+    },
+    {
+      "name": "close lens has actual perspective and fisheye 1/1",
+      "passed": true
+    },
+    {
+      "name": "head remains in close frame 1/1",
+      "passed": true
+    },
+    {
+      "name": "character owns dedicated exit score 1/1",
+      "passed": true
+    },
+    {
+      "name": "pause freezes exit pose and score 1/1",
+      "passed": true
+    },
+    {
+      "name": "resume stays in result outro 1/1",
+      "passed": true
+    },
+    {
+      "name": "winner walks outside screen 1/1",
+      "passed": true
+    },
+    {
+      "name": "exit leaves combat snapshot unchanged 1/1",
+      "passed": true
+    },
+    {
+      "name": "skip restores near lens and stops sound 1/1",
+      "passed": true
+    },
+    {
+      "name": "five second destruction retained 1/2",
+      "passed": true
+    },
+    {
+      "name": "winner uses live selected model 1/2",
+      "passed": true
+    },
+    {
+      "name": "close lens has actual perspective and fisheye 1/2",
+      "passed": true
+    },
+    {
+      "name": "head remains in close frame 1/2",
+      "passed": true
+    },
+    {
+      "name": "character owns dedicated exit score 1/2",
+      "passed": true
+    },
+    {
+      "name": "pause freezes exit pose and score 1/2",
+      "passed": true
+    },
+    {
+      "name": "resume stays in result outro 1/2",
+      "passed": true
+    },
+    {
+      "name": "winner walks outside screen 1/2",
+      "passed": true
+    },
+    {
+      "name": "exit leaves combat snapshot unchanged 1/2",
+      "passed": true
+    },
+    {
+      "name": "skip restores near lens and stops sound 1/2",
+      "passed": true
+    },
+    {
+      "name": "five second destruction retained 1/3",
+      "passed": true
+    },
+    {
+      "name": "winner uses live selected model 1/3",
+      "passed": true
+    },
+    {
+      "name": "close lens has actual perspective and fisheye 1/3",
+      "passed": true
+    },
+    {
+      "name": "head remains in close frame 1/3",
+      "passed": true
+    },
+    {
+      "name": "character owns dedicated exit score 1/3",
+      "passed": true
+    },
+    {
+      "name": "pause freezes exit pose and score 1/3",
+      "passed": true
+    },
+    {
+      "name": "resume stays in result outro 1/3",
+      "passed": true
+    },
+    {
+      "name": "winner walks outside screen 1/3",
+      "passed": true
+    },
+    {
+      "name": "exit leaves combat snapshot unchanged 1/3",
+      "passed": true
+    },
+    {
+      "name": "skip restores near lens and stops sound 1/3",
+      "passed": true
+    },
+    {
+      "name": "four poses are measurably distinct on the actual rigs",
+      "passed": true
+    },
+    {
+      "name": "KO flows into winner closeup before showing result menu",
+      "passed": true
+    },
+    {
+      "name": "automatic completion after exit shows results",
+      "passed": true
+    },
+    {
+      "name": "F2 during winner closeup releases fisheye / sound / near plane",
+      "passed": true
+    },
+    {
+      "name": "restart during winner closeup releases fisheye / sound / near plane",
+      "passed": true
+    },
+    {
+      "name": "title during winner closeup releases fisheye / sound / near plane",
+      "passed": true
+    }
+  ],
+  "display": "X11",
+  "engine": "4.6.3-stable (official)",
+  "failed": 0,
+  "passed": 86
+}

@@ -46,8 +46,9 @@ func run() -> void:
             if event.kind=="hit":contacts[event.attacker]+=1
             elif event.kind=="parry":contacts[event.target]+=1
             elif event.kind=="air_counter_start":contacts[event.owner]+=1
+        if s.phase in ["round_over","match_over"]:d.advance_round(s)
     check("live agents naturally use the cannon",d.seen.get("hit/overdrive",0)>0 and d.seen.get("hit/special",0)>0)
-    check("new cannon does not end or reset the live duel",s.phase=="fight" and d.age==7200 and d.hits[0]>50 and d.hits[1]>50 and contacts[0]>50 and contacts[1]>50)
+    check("normal-health demo continues through authoritative round ends",d.rounds_finished>0 and d.age==7200 and d.hits[0]>50 and d.hits[1]>50 and contacts[0]>50 and contacts[1]>50)
     var passed:=checks.filter(func(c:Dictionary)->bool:return c.passed).size()
     FileAccess.open("res://../docs/evidence/charged-cannon/rules.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"events":d.seen,"real_offense_or_defense_contacts":contacts,"scope":"Actual legal command and simulation contacts; no fake hits."},"  "))
     print("CANNON_RULES ",passed,"/",checks.size());quit(0 if passed==checks.size() else 1)

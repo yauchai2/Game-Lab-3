@@ -1,5 +1,14 @@
 # 接續工作交接
 
+## 2026-11-11：來源集中整合至 main
+
+使用者要求「把所有的更新都推到最常用的branch」。以 main738c740 為基礎，整合黑衣人分支987d4d2與正式戰鬥／過場／抽能力分支3389fa9，保留雙方提交及來源資產；往後 GitHub Desktop 選 main Fetch／Pull。此節覆蓋下方歷史的「main未更新」狀態；公開Web不更新。
+
+同時處理整合相容性：黑衣人索引4支援進場名稱／顏色、通用步行勝者離場及既有HUSH離場音軌；群戰保留多人跟鏡與短結算，不套雙人進場／決勝KO／回合抽能力。四英雄正式回合演出、有限生命Demo及抽能力保持；合併空連預算helper與ArenaBox排除，保留3位數群戰倒數。
+
+合併來源已跑477項最終檢查：146無視窗規則、177原生UI／結果／回合／勝者／材質、154群戰／黑衣人／Tripo抽能力。最終無ERROR／SCRIPT ERROR；Linux Godot4.6.3 Compatibility／llvmpipe／Dummy，非使用者Mac或真人手感驗收。最初round-flow 19/23的測試器在單一引擎影格內跑完整Demo，抽能力防重複確認阻止第二次動作；改為定期讓出真引擎影格後24/24。初次失敗與最終結果均保留在 [整合證據](evidence/main-integration/README.md)。
+
+
 ## 2026-11-11：黑衣人群戰與模型修補
 
 使用者要求成群及修補截圖。FIGHTERS→SQUAD提供3／4／5名真實同場敵人，各35／45／55HP，保留每人位置／受擊；一個進攻名額，普通近身攻擊可多目標命中，全部倒下才勝利，玩家受擊有喘息。新增SquadSimulation是原simulation子類，一般模式仍走super.tick；暫停／重賽／退場及事件敵人綁定已覆核。原GLB保留；derived/black_suit_repaired.glb修97頸部權重、封閉NeckBridge／襯衫／領帶補片及局部outline，1208面／65關節。詳[現況](BLACK_SUIT_SQUAD.zh-TW.md)／[297項檢查](evidence/black-suit-squad/README.md)。Linux4.6.3 llvmpipe／Dummy，最終無引擎ERROR／SCRIPT ERROR，VSync警告保留。真人難度／Mac待驗收；槍械／劇情／新地圖未做。沿同一codex/black-suit-enemy來源，main／Web不動。
@@ -11,6 +20,62 @@
 ## 2026-11-11：最新遊戲來源合併 main
 
 使用者明確要求「推送最新遊戲到main」。以遠端 main 54a520d 與最新遊戲來源 codex/combat-escalation-next 4177ef9 進行非強制合併，保留兩邊歷史及main既有JSR／BRC文件，無衝突。合併後godot／tools兩棵Git tree與已驗證4177ef9完全一致；本輪沒有改玩法或重跑上輪測試，上輪四個既有舊斷言失敗仍見double-jump證據。日常拉取可改選main；開發分支保留。公開Web未更新。
+
+## 2026-11-11：上傳Tripo NPC與機殼正式接入
+
+使用者提供275dc57f…機身及36d4f0c3…蒙面NPC，依先前換模／加動畫要求完成。原GLB在assets/ability_draw/source，逐byte保留，metadata在references/ability-draw/tripo/uploaded-models.json／assets-manifest。NPC1164tris／65骨／無來源動畫，包裝用既有CC0 gait＋作者二骨手腕接觸、手掌／指節、轉身及開獎反應；機身1066tris靜態，保留原albedo，活動件獨立；窗口多層封面用衍生材質／outline開窗，避免輪盤凸出或被遮住。
+
+74項（模型22＋流程52）原生通過，最終無ERROR或退出洩漏，有聲Movie Writer及原模型預覽見evidence/ability-draw/tripo-models。早期parse／shader宣告錯誤與52項後Ogg退出滯留已記錄；短入場／抽獎cue改用既有OGG解碼PCM，長BGM及原OGG不動，builder同步PCM。不是Godot全局解碼器修復、Mac或真人手感驗收。docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md為現況；不替換戰鬥選角，腰側裝備仍僅分鏡。來源同branch／PR #6，Web不更新。
+
+## 2026-11-11：Tripo三視圖交接
+
+使用者提供最早九格分鏡並要求蒙面人／抽獎機嚴謹三視圖及動畫可行性。已生成NPC A-pose正側背、機器完整組裝正／拉桿側／背、機殼-only三視圖，保存references/ability-draw/tripo，附兩份英文prompt與manifest。為ImageGen設計稿而非精確CAD投影，背面按正面補完，生成後仍須比例／分件校正；沒收到或生成Tripo模型，runtime不變。
+
+建議NPC可Tripo後綁骨；機器首選手工硬表面，或Tripo只做外殼，三輪盤／輪子／拉桿／出貨蓋獨立建模。整機拖行容易，生成黏連件的分件才增加成本。多視角入口先分開各view，避免把三視圖排版生成三連體。來源同branch，Web不更新。
+
+## 2026-11-11：抽獎進場修正及裝備分鏡
+
+使用者指出NPC／機器原地出現。真Physics查到±5m／z-.25入口起點與街景StaticCollision相交，兩路失敗退零位移；已改為驗清楚的±6m／z0，先空場、smoothstep拖入、鏡頭搖回、輪子／雙腳按路程、1.05秒煞停與聲畫重拍。其他兩路皆受阻stage加入compact遮幕揭幕，不直接露出新生成演員。新版證據evidence/ability-draw/entry-v2，保留上一輪原版文件與影片。最終52/52原生與退出乾淨；修正新查到arrival／intro播放實例的清理，初次log保留。
+
+1.8秒「接住→握緊→對準右腰插座→夾具鎖住→能量到鞋→ready」六格已生成並保存，見ABILITY_EQUIP_STORYBOARD.zh-TW.md；僅計劃，未接equip狀態／腰側掛件。使用者之後提供Tripo NPC及機器，待檔後檢查骨架／分件、保留來源、衍生綁骨及掛接現有時間線，不冒稱已換模。來源同branch，Web不變。
+
+## 2026-11-11：THE DEALER抽能力正式接入
+
+使用者要求開始製作所附4.35秒影片，已接正式FIGHT第二回合1:1／Street Run第二站勝出／Demo的共用3D過場。程序蒙面NPC、輪式分件抽獎機、逐輪停靠、代幣等待、爆獎及native領取；三種真實下一局modifier、one-shot結果、與永久XP隔離。stage Resource給局部原點／方向／雙進場通道、掃掠碰撞備援及灰塵色，保存還原camera／visibility／duck，背景沿當局。聲音原創、短魚眼／模糊／速度線／煙塵，維持Compatibility及640×360。詳見[實作](ABILITY_DRAW.zh-TW.md)與[有聲證據](evidence/ability-draw/README.md)。
+
+45新native＋34戰鬥＋15結果共94項通過，native最終無ERROR；早期Dummy material null與測試設定失敗log保留。預覽是明示1:1邊界fixture、實際引擎聲畫，非自然match／Mac實測／逐像素完美；程序模型細節與原片仍有差異。首版平地入口，任意坡階／足底IK與目標硬件、真人混音／平衡待驗。沿codex/combat-escalation-next／既有PR #6推來源，不發Web。
+
+## 2026-11-11：結果頁修復、決勝KO與四面反彈
+
+修正RESULT空白：先前在CityBreaker仍active時提前設finish_menu_open，rebuild把controls隱藏；之後director清場但沒有再建選單。本輪在演出釋放後才建立結果操作，並對空白狀態自我恢復。原生測試驗真visible buttons、視窗內位置及pressed callbacks，涵蓋自動播完／暫停／F2／跳過、下一回合與重賽。
+
+依最新指示完整KO只在兩勝制決勝回合；之前回合短結算。Street Run只在最後一站或本次Run敗退結束播完整KO；超時不偽造零生命KO。Demo仍沿真勝負loop，每場只有決勝KO，之後接下一場開場。
+
+正式Rush／Demo／Street Run加入四面盒狀反彈：x±8.2、腳部y0–5.6（8m頂框），重擊／挑空／終結擊／符合推力的技能真命中才發射，普通輕拳不觸發。法線反射耗能、無額外碰牆傷害；每次飛行最多6個接觸／180物理tick，耗盡自動恢復＋18tick保護，不被新命中刷新預算，落地後才重置。接觸後18tick內可E花20能量受身；AI有有界反應延遲。暫停／hitstop不消耗飛行時間；F2保持物理，只減演出。
+
+真3D透明線框圍場、每面重用一個撞擊格、既有SFX／揚塵／速度尾跡／軀幹中心翻滾。高速飛行鏡頭以雙人body bounds即時退開，避開HUD，反彈字卡移到底部。513項focused checks全數通過；9秒四角合法挑空反彈預覽及約56.7秒自然三回合／下一場有聲錄像。詳見[evidence/arena-box](evidence/arena-box/README.md)。同codex/combat-escalation-next／PR #6推來源，不發佈Web；Mac／真人平衡、鏡頭和混音待驗收。
+
+## 2026-11-11：完整回合演出、AI Demo循環與煙霧
+
+正式FIGHT／Street Run加入2.8秒同場3D開場：街景、P1／P2角色近鏡、ROUND，再交回原倒數及對戰。Enter／Space跳過，Esc暫停，練習保持即玩。AI Demo改正常有限生命、不回血，真KO後播完整5秒破壞＋3.2秒勝者魚眼與離場，之後自動下一回合；兩勝完場也繼續loop，沿用選角、不發XP。覆蓋舊Demo endless／無KO契約，正常FIGHT結果仍由玩家確認。
+
+場景加入有界屋頂／街邊煙、命中揚塵及64團KO殘煙；重擊後可短暫魚眼近鏡，避讓Neon大招與KO，保持雙人及HUD留白。新增原創2.8秒開場音軌，沿原SFX／mute／pause及BGM duck。26回合／選角／清理＋86勝者＋20FX＋165KO＋37UI＋11Demo輸入＋7Demo規則＋17結果共369項通過；40.4秒連續兩個真KO有聲錄像。詳見[本輪證據](evidence/round-flow/README.md)。來源同codex/combat-escalation-next／PR #6，公開Web不更新；Mac／硬件效能與真人強度仍待驗收。
+
+## 2026-11-11：勝者超近魚眼與專屬離場
+
+依最新要求在K.O.後追加3.2秒，總長8.2秒，前5秒不變。victory_exit.gd以當局勝者／真骨架做四套姿態與離場：ZIP甩手側滑、RIVET雙拳重步、HUSH側頭回眸、LOOP右手花式轉身。124°FOV＋桶形fisheye，依各rig頭部取景，慢步真正出框後才出結果；背景破壞繼續慢動態。4套原創exit音軌第5秒切入，BGM／mute／pause保持；clear還原near／fisheye並停音，F2／重開／返回皆測。86新勝者＋20FX＋165KO＋17結果通過，四角及完整有聲影片在evidence/victory-exits。不是mocap／足底IK或物理魚眼校準；Mac／真人實聽／目標GPU待驗，來源同branch／PR #6，Web不更新。
+
+## 2026-11-11：KO整體加快一倍
+
+使用者要求整體加快一倍並保留節奏／爽感，本輪作用於這段KO過場：正式播放10→5秒，用timing.json共享非線性映射，保留撞樓短重拍、約3.61秒空爆慢拍及4.08–5秒KO收尾。動畫age保留原10秒作者時間；新增playback_elapsed是真5秒時鐘，session結算使用DURATION5。聲效按相同profile重新合成5秒，pitch_scale1保持低頻／音高；JSON加入export filter但未發佈。20FX／PCM＋165KO＋17結果通過，有聲Movie Writer影片見evidence/city-breaker-fast。F2／靜音／暫停／跳過清理保持；不改正式simulation速度／傷害。來源同branch／PR #6。
+
+## 2026-11-11：KO聲音與誇張漫畫FX
+
+依使用者最新要求，原CityBreaker正式KO入口加上原創10秒立體聲score、SFX bus／靜音／音量／暫停位置保持與clear停止，BGM原owner加入4–8dB duck但不停transport。邊緣放射模糊／短色差／高對比、漫畫速度線與字卡、3D衝擊環、FOV反衝／14°內roll由同一director擁有。15FX真PCM＋164KO＋17結果＋37UI音樂＋6混音通過；實際Movie Writer有聲10秒30fps影片見evidence/city-breaker-fx。原來源模型及判定不變；Mac／真人實聽／目標效能待驗。來源同branch／PR #6，Web不更新。
+
+## 2026-11-11：CITY BREAKER 正式 3D KO 過場
+
+使用者指定 codex/combat-escalation-next，按所附10秒影片接正式KO，現況與差異見 [CITY_BREAKER.zh-TW.md](CITY_BREAKER.zh-TW.md)。八鏡按24fps剪接點對齊、當局人物直接演出、同一街景／飛機可逆分件、回合結果延後、Enter／Space跳過與Esc暫停／F2／重開／退出清理。simulation傷害與獎勵保持權威，無影片貼圖或固定角色。164新過場＋17結果＋37UI／音樂＋62二段跳＋45正式玩法＋30SURGE通過；舊Rhythm23/29在未改4177ef9重現。Godot4.6.3／llvmpipe／Dummy audio，原生影片為15fps無聲取樣，不是Mac效能或逐像素復刻。沿同一branch／PR #6推來源，Web不更新。
 
 ## 2026-11-10：正式二段跳與落地輸入改善
 

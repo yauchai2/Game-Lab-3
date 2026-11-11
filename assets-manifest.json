@@ -277,6 +277,32 @@
       "scale": 2.15,
       "repair_report": "references/characters/black-suit/repair.json",
       "status": "runtime_enemy_and_squad"
+    },
+    {
+      "asset_id": "ABILITY_DEALER_TRIPO",
+      "model": "godot/assets/ability_draw/source/tripo_convert_36d4f0c3-b64c-4ea1-841e-104fd70e96ae.glb",
+      "triangles": 1164,
+      "bytes": 210268,
+      "sha256": "4418a35dd51ea28be6946b3a6cf9e237df094a2cdcbd3ae005b6a9652da2a85d",
+      "status": "integrated_ability_draw_runtime",
+      "provenance": "User uploaded Tripo GLB; source bytes retained unchanged",
+      "skeleton_bones": [
+        65
+      ],
+      "source_animation_count": 0,
+      "wrapper_scale": 3.05
+    },
+    {
+      "asset_id": "ABILITY_CABINET_TRIPO",
+      "model": "godot/assets/ability_draw/source/tripo_convert_275dc57f-e328-47e0-89e5-10195d3209c4.glb",
+      "triangles": 1066,
+      "bytes": 375260,
+      "sha256": "5e6088d785fbad566305f77054a1bfdbf7d2d45af4995b6651bd58e39bef4e18",
+      "status": "integrated_ability_draw_runtime",
+      "provenance": "User uploaded Tripo GLB; source bytes retained unchanged",
+      "skeleton_bones": [],
+      "source_animation_count": 0,
+      "wrapper_scale": 2.0
     }
   ],
   "pending_reference_only": [],

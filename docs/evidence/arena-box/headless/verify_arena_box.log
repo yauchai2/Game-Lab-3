@@ -1,0 +1,21 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ARENA a legal launcher hit arms the live box trajectory true
+ARENA one launch makes multiple genuine boundary contacts true
+ARENA flight remains inside all four limits true
+ARENA ricochets never create additional health damage true
+ARENA finite flight restores control without a permanent stun true
+ARENA left reverses the normal velocity and loses energy true
+ARENA left E tech spends 20 and releases the flight true
+ARENA right reverses the normal velocity and loses energy true
+ARENA right E tech spends 20 and releases the flight true
+ARENA ceiling reverses the normal velocity and loses energy true
+ARENA ceiling E tech spends 20 and releases the flight true
+ARENA floor reverses the normal velocity and loses energy true
+ARENA floor E tech spends 20 and releases the flight true
+ARENA native hitstop freezes trajectory and lifetime true
+ARENA time limit releases with protection true
+ARENA spent contact budget cannot be refreshed before landing true
+ARENA ordinary jumps cannot leave the ceiling true
+ARENA 10000 normal AI ticks are deterministic true
+ARENA_CHECKS 18/18

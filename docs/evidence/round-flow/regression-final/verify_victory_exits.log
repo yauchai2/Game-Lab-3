@@ -1,0 +1,96 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+VICTORY five second destruction retained 0/0 true
+VICTORY winner uses live selected model 0/0 true
+VICTORY close lens has actual perspective and fisheye 0/0 true
+VICTORY head remains in close frame 0/0 true
+VICTORY character owns dedicated exit score 0/0 true
+VICTORY pause freezes exit pose and score 0/0 true
+VICTORY resume stays in result outro 0/0 true
+VICTORY winner walks outside screen 0/0 true
+VICTORY exit leaves combat snapshot unchanged 0/0 true
+VICTORY skip restores near lens and stops sound 0/0 true
+VICTORY five second destruction retained 0/1 true
+VICTORY winner uses live selected model 0/1 true
+VICTORY close lens has actual perspective and fisheye 0/1 true
+VICTORY head remains in close frame 0/1 true
+VICTORY character owns dedicated exit score 0/1 true
+VICTORY pause freezes exit pose and score 0/1 true
+VICTORY resume stays in result outro 0/1 true
+VICTORY winner walks outside screen 0/1 true
+VICTORY exit leaves combat snapshot unchanged 0/1 true
+VICTORY skip restores near lens and stops sound 0/1 true
+VICTORY five second destruction retained 0/2 true
+VICTORY winner uses live selected model 0/2 true
+VICTORY close lens has actual perspective and fisheye 0/2 true
+VICTORY head remains in close frame 0/2 true
+VICTORY character owns dedicated exit score 0/2 true
+VICTORY pause freezes exit pose and score 0/2 true
+VICTORY resume stays in result outro 0/2 true
+VICTORY winner walks outside screen 0/2 true
+VICTORY exit leaves combat snapshot unchanged 0/2 true
+VICTORY skip restores near lens and stops sound 0/2 true
+VICTORY five second destruction retained 0/3 true
+VICTORY winner uses live selected model 0/3 true
+VICTORY close lens has actual perspective and fisheye 0/3 true
+VICTORY head remains in close frame 0/3 true
+VICTORY character owns dedicated exit score 0/3 true
+VICTORY pause freezes exit pose and score 0/3 true
+VICTORY resume stays in result outro 0/3 true
+VICTORY winner walks outside screen 0/3 true
+VICTORY exit leaves combat snapshot unchanged 0/3 true
+VICTORY skip restores near lens and stops sound 0/3 true
+VICTORY five second destruction retained 1/0 true
+VICTORY winner uses live selected model 1/0 true
+VICTORY close lens has actual perspective and fisheye 1/0 true
+VICTORY head remains in close frame 1/0 true
+VICTORY character owns dedicated exit score 1/0 true
+VICTORY pause freezes exit pose and score 1/0 true
+VICTORY resume stays in result outro 1/0 true
+VICTORY winner walks outside screen 1/0 true
+VICTORY exit leaves combat snapshot unchanged 1/0 true
+VICTORY skip restores near lens and stops sound 1/0 true
+VICTORY five second destruction retained 1/1 true
+VICTORY winner uses live selected model 1/1 true
+VICTORY close lens has actual perspective and fisheye 1/1 true
+VICTORY head remains in close frame 1/1 true
+VICTORY character owns dedicated exit score 1/1 true
+VICTORY pause freezes exit pose and score 1/1 true
+VICTORY resume stays in result outro 1/1 true
+VICTORY winner walks outside screen 1/1 true
+VICTORY exit leaves combat snapshot unchanged 1/1 true
+VICTORY skip restores near lens and stops sound 1/1 true
+VICTORY five second destruction retained 1/2 true
+VICTORY winner uses live selected model 1/2 true
+VICTORY close lens has actual perspective and fisheye 1/2 true
+VICTORY head remains in close frame 1/2 true
+VICTORY character owns dedicated exit score 1/2 true
+VICTORY pause freezes exit pose and score 1/2 true
+VICTORY resume stays in result outro 1/2 true
+VICTORY winner walks outside screen 1/2 true
+VICTORY exit leaves combat snapshot unchanged 1/2 true
+VICTORY skip restores near lens and stops sound 1/2 true
+VICTORY five second destruction retained 1/3 true
+VICTORY winner uses live selected model 1/3 true
+VICTORY close lens has actual perspective and fisheye 1/3 true
+VICTORY head remains in close frame 1/3 true
+VICTORY character owns dedicated exit score 1/3 true
+VICTORY pause freezes exit pose and score 1/3 true
+VICTORY resume stays in result outro 1/3 true
+VICTORY winner walks outside screen 1/3 true
+VICTORY exit leaves combat snapshot unchanged 1/3 true
+VICTORY skip restores near lens and stops sound 1/3 true
+VICTORY four poses are measurably distinct on the actual rigs true
+VICTORY KO flows into winner closeup before showing result menu true
+VICTORY automatic completion after exit shows results true
+VICTORY F2 during winner closeup releases fisheye / sound / near plane true
+VICTORY restart during winner closeup releases fisheye / sound / near plane true
+VICTORY title during winner closeup releases fisheye / sound / near plane true
+VICTORY_CHECKS 86/86
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)
+ERROR: 4 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)

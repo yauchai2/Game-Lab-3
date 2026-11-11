@@ -1,0 +1,13 @@
+{
+  "capture": "full-round-demo.mp4",
+  "sha256": "32fbb8fdcc17ad0d9d49e2ed109cf4ff369ff2e553d11d15442868428364ec19",
+  "duration_seconds": 40.4,
+  "width": 640,
+  "height": 360,
+  "fps": 30,
+  "stereo_audio_sample_rate": 48000,
+  "decoded_peak_dbfs": -5.950183391571045,
+  "decoded_rms_dbfs": -26.244638442993164,
+  "aftermath_image_video_seconds": 16.85,
+  "scope": "Native fixed-frame Movie Writer output, H264/AAC transcode. BGM muted only for this recording; original runtime SFX retained. Not realtime GPU performance or hardware audio verification."
+}

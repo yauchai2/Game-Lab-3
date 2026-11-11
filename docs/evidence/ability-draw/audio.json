@@ -1,0 +1,9 @@
+{
+  "channels": 2,
+  "sample_rate": 48000,
+  "seconds": 5.738666666666667,
+  "peak": 0.33987492322921753,
+  "rms": 0.03045950084924698,
+  "non_silent": true,
+  "scope": "Decoded PCM from actual Godot Movie Writer output; original SFX enabled, existing BGM intentionally muted for preview. Not device listening validation."
+}

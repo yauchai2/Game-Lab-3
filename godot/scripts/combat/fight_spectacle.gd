@@ -84,7 +84,7 @@ func draw(canvas: Control, session: Node3D) -> void:
         var offset:=maxf(0,.14-session.result_clock)*1800
         var points:=PackedVector2Array([Vector2(275-offset,155),Vector2(992-offset,155),Vector2(954-offset,234),Vector2(246-offset,234)])
         canvas.draw_colored_polygon(points,ink)
-        var text: String=session.hud.tr_text("draw" if session.sim.winner<0 else "finish_stamp")
+        var text: String=session.hud.tr_text("draw" if session.sim.winner<0 else "finish_stamp") if session.final_ko() else "ROUND CLEAR"
         var font: Font=session.hud.bold
         var extent:=font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,54)
         canvas.draw_string(font,Vector2(640-extent.x*.5-offset,215),text,HORIZONTAL_ALIGNMENT_LEFT,-1,54,paper)

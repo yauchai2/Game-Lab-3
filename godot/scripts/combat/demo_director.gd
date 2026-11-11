@@ -1,5 +1,7 @@
 extends RefCounted
-## Endless autonomous combat: no chapters, presets during play or timed resets.
+## Normal-health AI exhibition; session owns entry / KO / next-round timing.
+var rounds_finished:=0
+var matches_finished:=0
 var age:=0
 var needs_setup:=true
 var seen: Dictionary={}
@@ -11,12 +13,9 @@ var longest_gap:=0
 var agent=preload("res://scripts/combat/rush_agent.gd").new()
 func prepare(s: RefCounted) -> void:
     agent.reset()
-    s.training=true;s.arcade_enabled=true;s.endless=true
-    s.reset_training()
+    s.training=false;s.arcade_enabled=true;s.endless=false
+    s.restart_match()
     s.ai_enabled=false;s.partner_mode=0
-    for i in 2:
-        s.fighters[i].x=-1.5 if i==0 else 1.5
-        s.fighters[i].meter=70.0
     needs_setup=false
 func commands(s: RefCounted) -> Array:
     age+=1
@@ -32,3 +31,10 @@ func observe(s: RefCounted) -> void:
             longest_gap=maxi(longest_gap,no_hit_ticks);no_hit_ticks=0
         seen[label]=seen.get(label,0)+1
     longest_combo=maxi(longest_combo,s.combo_hits)
+
+func advance_round(s:RefCounted) -> void:
+    rounds_finished+=1
+    if s.phase=="match_over":matches_finished+=1;s.restart_match()
+    else:s.next_round()
+    s.training=false;s.endless=false;s.ai_enabled=false
+    agent.reset()

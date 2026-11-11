@@ -35,7 +35,7 @@ const COPY := {
 "counter_ready":["格擋成功！J 反擊","PARRY! J TO COUNTER"],
 "rival_parry":["對手擋住了 · 重新找機會","RIVAL PARRIED / FIND AN OPENING"],
 "counter_success":["反擊成功！","COUNTER SUCCESS!"],"nice_block":["擋住了！","NICE BLOCK!"],
-"demo":["雙 AI 無限激鬥","ENDLESS AI FIGHT"],"demo_auto":["雙 AI 自動展示 · 示範情境循環播放","TWO AI AGENTS / SCRIPTED SHOWCASE LOOP"],
+"demo":["雙 AI 回合循環","LOOPING AI BATTLE"],"demo_auto":["雙 AI 真對戰 · 完整開場及 KO 循環","TWO AI AGENTS / FULL ROUND LOOP"],
 "demo_next":["下一段 · N","NEXT / N"],"demo_restart":["重播 · R","RESTART / R"],"demo_exit":["結束 · F12","EXIT / F12"],
 "demo_combo":["拳腳三連", "GROUND COMBO"],
 "demo_heavy":["重擊擊飛", "HEAVY LAUNCH"],

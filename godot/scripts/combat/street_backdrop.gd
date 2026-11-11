@@ -11,6 +11,7 @@ var environment: Environment
 var elapsed := 0.0
 var frozen := false
 var living:Node3D
+var smoke:Node3D
 var sky_motion = preload("res://scripts/sky_drift.gd").new()
 var flight_direction := Vector3.FORWARD
 var vehicle_nodes: Array[Node3D] = []
@@ -95,6 +96,8 @@ func _ready() -> void:
         preload("res://scripts/combat/neon/neon_style_adapter.gd").style_living(living)
         environment.ambient_light_color=Color("c6b7d4")
         sun.light_color=Color("e8ecff")
+    smoke=preload("res://scripts/combat/street_smoke.gd").new()
+    add_child(smoke)
     if static_batches_enabled:
         static_batch_stats=preload("res://scripts/combat/static_street_batches.gd").bake(street,[active_toon,two_sided_shader])
 

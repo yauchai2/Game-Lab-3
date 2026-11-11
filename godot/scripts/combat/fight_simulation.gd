@@ -5,6 +5,7 @@ const COUNTER_WINDOW := 36
 const INPUT_BUFFER := 14
 const STEP := 1.0 / 60.0
 const EDGE := 8.2
+const ArenaBox=preload("res://scripts/combat/arena_box.gd")
 const MAX_HEALTH := 100
 const ROUND_SECONDS := 75.0
 const Profiles=preload("res://scripts/combat/fighter_profiles.gd")
@@ -97,7 +98,7 @@ func reset_round() -> void:
     fighters.clear()
     for i in 2:
         fighters.append({"x": -3.0 if i == 0 else 3.0, "y": 0.0, "vx": 0.0, "vy": 0.0,
-            "character":character_choices[i],"air":AirMotion.fresh(), "face": 1 if i == 0 else -1, "health": MAX_HEALTH, "meter": 0.0, "guard": 100.0,
+            "character":character_choices[i],"air":AirMotion.fresh(),"ricochet":ArenaBox.fresh(), "face": 1 if i == 0 else -1, "health": MAX_HEALTH, "meter": 0.0, "guard": 100.0,
             "state": "idle", "move": "", "frame": 0, "stun": 0, "connected": false,
             "buffer": "", "buffer_ttl": 0, "chain": 0, "chain_ttl": 0, "dash_cd": 0,
             "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "entry_parry_window":0, "counter_window":0, "counter_attack":false, "break_lock":0, "impact_load":0.0, "jump_buffer":0, "juggle":0, "hit_confirmed":false,"throw_cd":0,"tech_window":0,"wall_bounces":0,"wall_tech_window":0,"wall_tech_buffer":0})
@@ -346,7 +347,10 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
         _wall_tech(i)
     f.wall_tech_window=maxi(0,f.wall_tech_window-1)
     f.wall_tech_buffer=maxi(0,f.wall_tech_buffer-1)
-    if f.state=="idle" and f.y<=.01:f.wall_bounces=0
+    if f.state=="idle" and f.y<=.01:
+        f.wall_bounces=0;f.ricochet=ArenaBox.fresh()
+    if ArenaBox.active(f) and f.state!="stun":f.ricochet.ticks=0
+    if ArenaBox.active(f):f.stun=maxi(f.stun,2)
     f.parry_cd = maxi(0,f.parry_cd-1)
     f.dash_cd = maxi(0, f.dash_cd - 1)
     f.invuln = maxi(0, f.invuln - 1)
@@ -405,11 +409,11 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
             f.frame = 0
             f.invuln = 7
             f.dash_cd = 42
-            f.vx = (signf(command.get("axis", 0.0)) if absf(command.get("axis", 0.0)) > 0.1 else float(f.face)) * 14.0 * profile_for(f.get("character",0)).speed
+            f.vx = (signf(command.get("axis", 0.0)) if absf(command.get("axis", 0.0)) > 0.1 else float(f.face)) * 14.0 * profile_for(f.get("character",0)).speed*(1.1 if f.get("draw_core","")=="speed" else 1.0)
             events.append({"kind": "dash", "target": i})
         else:
             f.guarding = (command.get("guard", false) or (f.entry_parry_window>0 and f.parry_allowed and f.parry_cd==0 and f.jump_buffer<=0)) and f.y <= 0.01 and f.guard > 0
-            f.vx = float(command.get("axis", 0.0)) * (1.6 if f.guarding else (8.0 if arcade_enabled else 5.8))*profile_for(f.get("character",0)).speed
+            f.vx = float(command.get("axis", 0.0)) * (1.6 if f.guarding else (8.0 if arcade_enabled else 5.8))*profile_for(f.get("character",0)).speed*(1.2 if f.get("draw_core","")=="speed" else 1.0)
             if f.jump_buffer>0 and f.y <= 0.01 and not f.guarding:
                 if is_aerial():air_motion.request_jump(f)
                 else:
@@ -421,43 +425,51 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
             if f.counter_window>0 and f.buffer_ttl>0 and f.buffer in ["light","heavy","special"]:f.guarding=false
             if f.state=="idle" and f.buffer_ttl > 0 and (not f.guarding or f.buffer=="grab"):
                 _start_attack(i, f.buffer)
-    if f.state != "idle" and f.state != "dash":
-        f.vx = move_toward(f.vx, 0.0, STEP * 18.0)
-    var next_x: float=f.x+f.vx*STEP
-    if absf(next_x)>EDGE and f.state=="stun" and absf(f.vx)>6 and f.wall_bounces==0:
-        f.wall_bounces=1
-        f.wall_tech_window=12
-        if f.wall_tech_buffer>0 and f.meter>=20:
-            f.x=clampf(next_x,-EDGE,EDGE)
-            _wall_tech(i)
-        else:
-            f.vx=-signf(next_x)*absf(f.vx)*.60
-            f.vy=maxf(f.vy,4.0)
-            f.stun=maxi(f.stun,18)
-            events.append({"kind":"wall_bounce","target":i})
-    f.x=clampf(next_x,-EDGE,EDGE)
-    if is_aerial():
-        var was_juggled: bool=f.juggle>=3
-        var signal_kind: String=air_motion.integrate(f,EDGE)
-        if arcade_enabled and signal_kind=="air_land" and was_juggled and f.state=="stun":
-            f.state="idle";f.stun=0;f.invuln=maxi(f.invuln,18)
-            events.append({"kind":"air_escape","target":i})
-        if signal_kind!="":
-            events.append({"kind":signal_kind,"target":i,"hard":f.air.hard_land})
-            if signal_kind=="ground_bounce":
-                hitstop=maxi(hitstop,6)
-                hitstop_total=hitstop
+    if box_active() and ArenaBox.active(f):
+        for contact in ArenaBox.integrate(f,EDGE):
+            contact["kind"]="arena_bounce";contact["target"]=i
+            events.append(contact)
+            hitstop=maxi(hitstop,4);hitstop_total=hitstop
     else:
-        f.vy -= 26.0 * STEP
-        var previous_y: float = f.y
-        f.y = maxf(0.0, f.y + f.vy * STEP)
-        if f.y == 0:
-            f.vy = 0.0
-            if previous_y > 0.0:
-                f.juggle = 0
-                events.append({"kind": "land", "target": i})
+        if f.state != "idle" and f.state != "dash":
+            f.vx = move_toward(f.vx, 0.0, STEP * 18.0)
+        var next_x: float=f.x+f.vx*STEP
+        if absf(next_x)>EDGE and f.state=="stun" and absf(f.vx)>6 and f.wall_bounces==0:
+            f.wall_bounces=1
+            f.wall_tech_window=12
+            if f.wall_tech_buffer>0 and f.meter>=20:
+                f.x=clampf(next_x,-EDGE,EDGE)
+                _wall_tech(i)
+            else:
+                f.vx=-signf(next_x)*absf(f.vx)*.60
+                f.vy=maxf(f.vy,4.0)
+                f.stun=maxi(f.stun,18)
+                events.append({"kind":"wall_bounce","target":i})
+        f.x=clampf(next_x,-EDGE,EDGE)
+        if is_aerial():
+            var was_juggled: bool=f.juggle>=3
+            var signal_kind: String=air_motion.integrate(f,EDGE)
+            if arcade_enabled and signal_kind=="air_land" and was_juggled and f.state=="stun":
+                f.state="idle";f.stun=0;f.invuln=maxi(f.invuln,18)
+                events.append({"kind":"air_escape","target":i})
+            if signal_kind!="":
+                events.append({"kind":signal_kind,"target":i,"hard":f.air.hard_land})
+                if signal_kind=="ground_bounce":
+                    hitstop=maxi(hitstop,6)
+                    hitstop_total=hitstop
+        else:
+            f.vy -= 26.0 * STEP
+            var previous_y: float = f.y
+            f.y = maxf(0.0, f.y + f.vy * STEP)
+            if f.y == 0:
+                f.vy = 0.0
+                if previous_y > 0.0:
+                    f.juggle = 0
+                    events.append({"kind": "land", "target": i})
+        if box_active() and f.y>ArenaBox.CEILING:
+            f.y=ArenaBox.CEILING;f.vy=minf(f.vy,-2.0)
     f.guard_frames = f.guard_frames+1 if f.guarding and was_guarding else (1 if f.guarding else 0)
-    f.guard = minf(100.0, f.guard + (0.06 if f.guarding else 0.30))
+    f.guard = minf(100.0, f.guard + (0.06 if f.guarding else 0.30)*(1.35 if f.get("draw_core","")=="guard" else 1.0))
     # Landing recovery is bounded (4/8 ticks). Preserve an early Space press
     # through it, just as native hitstop already preserves the input buffer.
     if f.state!="landing":f.jump_buffer = maxi(0,f.jump_buffer-1)
@@ -535,12 +547,16 @@ func _can_hit(i: int) -> bool:
 
 func _wall_tech(i: int) -> void:
     var f: Dictionary=fighters[i]
+    var normal:Vector2=f.ricochet.normal
+    var was_ricochet:bool=ArenaBox.active(f)
+    if was_ricochet:ArenaBox.release(f)
     f.meter=maxf(0,f.meter-20)
     f.state="dash"
     f.frame=6
     f.invuln=10
     f.vx=-signf(f.x)*8.0
-    f.vy=6.5
+    f.vy=-5.0 if was_ricochet and normal.y<0 else 6.5
+    if was_ricochet and normal.x==0:f.vx=-f.face*8.0
     f.wall_tech_window=0
     f.wall_tech_buffer=0
     f.wall_bounces=1
@@ -675,6 +691,8 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     if is_aerial() and move_name=="meteor":
         b.vy=-16.0
         b.air.bounce_granted=not b.air.bounce_used and b.wall_bounces==0
+    if box_active() and not armor and move_name in ["heavy","finisher","launcher","meteor","special","overdrive","air_finisher","air_counter","grab"] and (m.push>=7 or move_name in ["launcher","meteor","air_counter"]):
+        ArenaBox.arm(b,move_name,hit_face,m.push)
     var stop_ticks: int={"jab":3,"cross":4,"launcher":9,"air_jab":3,"air_kick":4,"meteor":14,"special":20,"overdrive":26}.get(move_name,m.stop) if arcade_enabled else m.stop
     b.flash = stop_ticks + 7
     if endless:
@@ -912,6 +930,7 @@ func _advance_air_limits() -> void:
 
 func _advance_air_limit(i:int) -> void:
     var f: Dictionary=fighters[i]
+    if ArenaBox.active(f):return
     if f.air.combo_left<=0:return
     if f.state!="stun":
         f.air.combo_left=0
@@ -1104,3 +1123,6 @@ func _tick_surge_decision(commands:Array) -> void:
                 surge_guards[side]=24
             "evade":surge_release[side]={"dash":true,"axis":-float(fighters[side].face)}
     events.append({"kind":"surge_decision_end","choices":result.choices.duplicate(),"serial":result.serial})
+
+func box_active() -> bool:
+    return arcade_enabled and not rally_enabled and not pressure_drill and not surge_lab_fixture and air_lesson_stage==""

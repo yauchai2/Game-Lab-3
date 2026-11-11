@@ -102,6 +102,14 @@ func run() -> void:
     s.save_options()
     var loaded:Dictionary=prefs.read_options(options_path)
     check("enemy persists after run without changing player save",loaded.rival_character==4 and loaded.player_character==0)
+    s.start_match(false);s.reduced_effects=false
+    s.round_theatre.age=1.4;s.round_theatre.sample_intro();s.hud.queue_redraw();await frames()
+    check("enemy supports round entry portrait",s.fighters[1].visible and s.camera.transform.is_finite())
+    s.round_theatre.clear();s.sim.phase="fight";s.sim.wins[1]=1;s.sim.fighters[0].health=0;s._combat_step()
+    check("enemy win starts deciding KO",s.city_breaker.active())
+    s.city_breaker.playback_elapsed=5.2;s.city_breaker.advance(0.0,false)
+    check("enemy winner exit has valid pose and fallback score",s.fighters[1].visible and s.camera.transform.is_finite() and s.city_breaker.score_player.stream==s.city_breaker.outro_scores[2])
+    s.return_to_title()
     # A reusable background/cutscene actor must not overwrite the director's placement.
     var actor:Node3D=preload("res://scenes/characters/black_suit_actor.tscn").instantiate()
     actor.position=Vector3(3,0,-4);actor.rotation.y=.7;root.add_child(actor);actor.set_process(false)

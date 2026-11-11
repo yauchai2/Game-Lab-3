@@ -1,0 +1,80 @@
+{
+  "checks": [
+    {
+      "name": "insufficient energy rejects the cannon with the correct price",
+      "passed": true
+    },
+    {
+      "name": "cannon spends exactly 75 once and has a long real startup",
+      "passed": true
+    },
+    {
+      "name": "cannon hits once through its active frames",
+      "passed": true
+    },
+    {
+      "name": "a missed cannon never damages or refunds energy",
+      "passed": true
+    },
+    {
+      "name": "charge armor still takes real damage",
+      "passed": true
+    },
+    {
+      "name": "throw really interrupts the paid charge",
+      "passed": true
+    },
+    {
+      "name": "manual cannon is not swallowed by held J",
+      "passed": true
+    },
+    {
+      "name": "ordinary L keeps its 50-energy immediate command",
+      "passed": true
+    },
+    {
+      "name": "live agents naturally use the cannon",
+      "passed": true
+    },
+    {
+      "name": "normal-health demo continues through authoritative round ends",
+      "passed": true
+    }
+  ],
+  "events": {
+    "air_counter_choice": 8,
+    "air_counter_end": 8,
+    "air_counter_release": 8,
+    "air_counter_start": 8,
+    "air_counter_windup": 8,
+    "air_land": 93,
+    "air_parry_attempt": 12,
+    "arena_bounce": 58,
+    "block": 1,
+    "chase_arrive": 42,
+    "counter_success": 9,
+    "dash": 22,
+    "fast_fall": 63,
+    "fight": 13,
+    "guard_break": 1,
+    "hit/air_counter": 6,
+    "hit/air_jab": 21,
+    "hit/air_kick": 17,
+    "hit/cross": 26,
+    "hit/heavy": 2,
+    "hit/jab": 32,
+    "hit/launcher": 48,
+    "hit/overdrive": 5,
+    "hit/special": 11,
+    "homing_chase": 42,
+    "ko": 12,
+    "parry": 10,
+    "swing": 264,
+    "wall_tech": 38
+  },
+  "real_offense_or_defense_contacts": [
+    119,
+    67
+  ],
+  "scope": "Actual legal command and simulation contacts; no fake hits."
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "verify_squad_rules",
+    "passed": 35,
+    "total": 35,
+    "exit_code": 0,
+    "engine_errors": [],
+    "success": true
+  },
+  {
+    "name": "verify_squad_native",
+    "passed": 10,
+    "total": 10,
+    "exit_code": 0,
+    "engine_errors": [],
+    "success": true
+  },
+  {
+    "name": "verify_black_suit",
+    "passed": 35,
+    "total": 35,
+    "exit_code": 0,
+    "engine_errors": [],
+    "success": true
+  },
+  {
+    "name": "verify_ability_models",
+    "passed": 22,
+    "total": 22,
+    "exit_code": 0,
+    "engine_errors": [],
+    "success": true
+  },
+  {
+    "name": "verify_ability_draw",
+    "passed": 52,
+    "total": 52,
+    "exit_code": 0,
+    "engine_errors": [],
+    "success": true
+  }
+]

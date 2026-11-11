@@ -1,0 +1,17 @@
+{
+  "source": "Original procedural synthesis; no external samples",
+  "generator": "tools/build_city_breaker_audio.py",
+  "duration_seconds": 2.8,
+  "sample_rate": 48000,
+  "channels": 2,
+  "peak_dbfs_decoded": -3.3574607372283936,
+  "rms_dbfs_decoded": -23.78455352783203,
+  "sha256": "93e73718a134e99e68354ae98c997c02ea51bef6640f0f758b2b09a3f768b434",
+  "cues_seconds": [
+    0,
+    0.36,
+    1.11,
+    1.88,
+    2.15
+  ]
+}

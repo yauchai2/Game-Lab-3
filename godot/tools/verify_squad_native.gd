@@ -18,6 +18,7 @@ func run() -> void:
     for pressed in [true,false]:
         var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_LEFT;e.position=root.get_screen_transform()*button.get_global_rect().get_center();e.global_position=e.position;e.pressed=pressed;Input.parse_input_event(e);await frames(2)
     check("real pointer starts squad encounter",s.sim.squad_enabled and s.squad_visuals.size()==4 and s.screen=="play")
+    check("squad keeps multiplayer view without duel intro or ability draw",not s.round_theatre.intro and s.ability_draw_boundary().is_empty())
     for step in 60:s._process(1.0/60)
     await shot("squad-start")
     var mapped:=true

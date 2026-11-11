@@ -1,0 +1,101 @@
+{
+  "checks": [
+    {
+      "name": "intermediate round has no city destruction 0",
+      "passed": true
+    },
+    {
+      "name": "short round result exposes real controls 0",
+      "passed": true
+    },
+    {
+      "name": "pointer next-round action starts entry 0",
+      "passed": true
+    },
+    {
+      "name": "deciding round alone starts full KO 0",
+      "passed": true
+    },
+    {
+      "name": "automatic cinematic end shows result controls 0",
+      "passed": true
+    },
+    {
+      "name": "result action remains within native viewport 0",
+      "passed": true
+    },
+    {
+      "name": "pointer rematch returns to playable entry 0",
+      "passed": true
+    },
+    {
+      "name": "intermediate round has no city destruction 1",
+      "passed": true
+    },
+    {
+      "name": "short round result exposes real controls 1",
+      "passed": true
+    },
+    {
+      "name": "pointer next-round action starts entry 1",
+      "passed": true
+    },
+    {
+      "name": "deciding round alone starts full KO 1",
+      "passed": true
+    },
+    {
+      "name": "automatic cinematic end shows result controls 1",
+      "passed": true
+    },
+    {
+      "name": "result action remains within native viewport 1",
+      "passed": true
+    },
+    {
+      "name": "pointer rematch returns to playable entry 1",
+      "passed": true
+    },
+    {
+      "name": "pause holds final KO without exposing a result page",
+      "passed": true
+    },
+    {
+      "name": "resume reaches an actionable result",
+      "passed": true
+    },
+    {
+      "name": "F2 exits final KO into an actionable result",
+      "passed": true
+    },
+    {
+      "name": "skip exposes result controls immediately",
+      "passed": true
+    },
+    {
+      "name": "Street Run early stop uses a short result",
+      "passed": true
+    },
+    {
+      "name": "Street Run final stop has full KO",
+      "passed": true
+    },
+    {
+      "name": "fast ricochets keep both complete bodies clear of HUD",
+      "passed": true
+    },
+    {
+      "name": "formal battle has real wire-cage and bounded impact meshes",
+      "passed": true
+    },
+    {
+      "name": "reduced effects never disables physical boundaries",
+      "passed": true
+    },
+    {
+      "name": "title clears all cage flashes and temporary lenses",
+      "passed": true
+    }
+  ],
+  "scope": "Native rendered result pages, button callbacks and explicit intermediate/deciding KO fixtures; not a human playtest"
+}

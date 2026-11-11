@@ -1,0 +1,83 @@
+{
+  "checks": [
+    {
+      "name": "a legal launcher hit arms the live box trajectory",
+      "passed": true
+    },
+    {
+      "name": "one launch makes multiple genuine boundary contacts",
+      "passed": true
+    },
+    {
+      "name": "flight remains inside all four limits",
+      "passed": true
+    },
+    {
+      "name": "ricochets never create additional health damage",
+      "passed": true
+    },
+    {
+      "name": "finite flight restores control without a permanent stun",
+      "passed": true
+    },
+    {
+      "name": "left reverses the normal velocity and loses energy",
+      "passed": true
+    },
+    {
+      "name": "left E tech spends 20 and releases the flight",
+      "passed": true
+    },
+    {
+      "name": "right reverses the normal velocity and loses energy",
+      "passed": true
+    },
+    {
+      "name": "right E tech spends 20 and releases the flight",
+      "passed": true
+    },
+    {
+      "name": "ceiling reverses the normal velocity and loses energy",
+      "passed": true
+    },
+    {
+      "name": "ceiling E tech spends 20 and releases the flight",
+      "passed": true
+    },
+    {
+      "name": "floor reverses the normal velocity and loses energy",
+      "passed": true
+    },
+    {
+      "name": "floor E tech spends 20 and releases the flight",
+      "passed": true
+    },
+    {
+      "name": "native hitstop freezes trajectory and lifetime",
+      "passed": true
+    },
+    {
+      "name": "time limit releases with protection",
+      "passed": true
+    },
+    {
+      "name": "spent contact budget cannot be refreshed before landing",
+      "passed": true
+    },
+    {
+      "name": "ordinary jumps cannot leave the ceiling",
+      "passed": true
+    },
+    {
+      "name": "10000 normal AI ticks are deterministic",
+      "passed": true
+    }
+  ],
+  "scope": "Pure simulation, legal launcher plus explicit boundary and input fixtures; not a human balance test",
+  "surfaces_from_one_launcher": [
+    "ceiling",
+    "right",
+    "floor",
+    "left"
+  ]
+}

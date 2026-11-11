@@ -156,7 +156,7 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
             var extent:float=[14.0,26.0,20.0][bar_index]
             c.draw_rect(Rect2(center+Vector2(-15+bar_index*11,-extent*.5),Vector2(7,extent)),T.TEAL if side==0 else T.MAGENTA)
     c.draw_circle(Vector2(640,44),35,T.INK);c.draw_circle(Vector2(640,44),32,T.PAPER);c.draw_circle(Vector2(640,44),29,T.GOLD)
-    var clock:String="∞" if s.practice or s.demo!=null else "%02d"%ceili(s.sim.remaining)
+    var clock:String="∞" if s.practice or s.sim.endless else "%02d"%ceili(s.sim.remaining)
     var clock_size:int=36 if clock.length()>2 else 48
     var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,clock_size).x
     text(c,Vector2(640-width*.5,59),clock,clock_size)

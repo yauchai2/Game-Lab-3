@@ -1,0 +1,26 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+KO_FX full presentation and score are both five seconds true
+KO_FX audio retains original pitch true
+KO_FX KO card holds for at least 0.9 seconds true
+KO_FX time mapping has no reversal and covers five seconds true
+KO_FX main airburst retains a deliberate slow accent true
+KO_FX real KO owns lens and synchronized score true
+KO_FX actual engine KO mixer produces bounded stereo PCM true
+KO_FX impact enables bounded high contrast / lens impulse true
+KO_FX camera recoil remains below fourteen degree roll true
+KO_FX street rush uses edge speed lines true
+KO_FX last KO frame settles for readability true
+KO_FX pause freezes score and cinematic clock true
+KO_FX resume unpauses existing score without starting combat true
+KO_FX global mute silences KO bus true
+KO_FX zero SFX level silences dedicated score true
+KO_FX sound setting changes preserve playback instance true
+KO_FX skip clears postprocessing / sound / music duck true
+KO_FX no score tail leaks after skip true
+KO_FX F2 clears lens and sound together true
+KO_FX title exit releases all FX ownership true
+KO_FX_CHECKS 20/20
