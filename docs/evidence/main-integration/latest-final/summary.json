@@ -1,0 +1,26 @@
+[
+  {
+    "name": "verify_round_flow",
+    "passed": 24,
+    "total": 24,
+    "exit_code": 0,
+    "engine_errors": [],
+    "success": true
+  },
+  {
+    "name": "verify_ability_models",
+    "passed": 22,
+    "total": 22,
+    "exit_code": 0,
+    "engine_errors": [],
+    "success": true
+  },
+  {
+    "name": "verify_ability_draw",
+    "passed": 63,
+    "total": 63,
+    "exit_code": 0,
+    "engine_errors": [],
+    "success": true
+  }
+]

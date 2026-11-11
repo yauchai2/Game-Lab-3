@@ -7,6 +7,7 @@ var output:=OUT
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
     live="--live" in OS.get_cmdline_user_args()
+    if "--rhythm-ui" in OS.get_cmdline_user_args():output="res://../docs/evidence/ability-draw/rhythm-ui/"
     if "--tripo-models" in OS.get_cmdline_user_args():output="res://../docs/evidence/ability-draw/tripo-models/"
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";s.progression_path="/tmp/draw-capture.cfg";root.add_child(s)
     s.audio.muted=false;s.audio.music_muted=true;s.reduced_effects=false
@@ -14,10 +15,14 @@ func run() -> void:
     s.advance_round()
     if live:return
     var shots:Dictionary={};var ticks:=0;var result_frames:=0
-    while ticks<230:
+    while ticks<330:
         await process_frame;ticks+=1
         var d=s.ability_draw
-        if d.state=="offer" and d.age>=.40:d.confirm()
+        if d.state=="offer" and d.age>=2.0:
+            var point:Vector2=d.action.get_global_rect().get_center()
+            for down in [true,false]:
+                var e:=InputEventMouseButton.new();e.position=point;e.global_position=point;e.button_index=MOUSE_BUTTON_LEFT;e.pressed=down
+                root.push_input(e,true);await process_frame
         if d.state=="result":result_frames+=1
         var label:=""
         if d.state=="arrival":
@@ -25,12 +30,12 @@ func run() -> void:
             elif d.source_age>.62 and d.source_age<.8:label="01-entry"
             elif d.source_age>1.08 and d.source_age<1.22:label="02-landing"
             elif d.source_age>1.40 and d.source_age<1.6:label="03-slap"
-        elif d.state=="offer":label="04-offer"
+        elif d.state=="offer" and d.age>.30:label="04-offer"
         elif d.state=="spin":
             if d.source_age<3.05:label="05-reels"
             elif d.source_age>=3.43 and d.source_age<3.5:label="06-lock"
             elif d.source_age>3.65:label="07-jackpot"
-        elif d.state=="result":label="08-core"
+        elif d.state=="result" and d.age>.30:label="08-core"
         if label!="" and not shots.has(label):
             shots[label]=ticks/30.0;await RenderingServer.frame_post_draw
             root.get_texture().get_image().save_png(output+label+".png")

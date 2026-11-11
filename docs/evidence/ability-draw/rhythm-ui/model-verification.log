@@ -1,0 +1,29 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+ABILITY_MODELS uploaded character is the visible 65-bone rig true
+ABILITY_MODELS uploaded cabinet is actually in the moving chassis true
+ABILITY_MODELS all two-bone and finger chains resolve true
+ABILITY_MODELS existing CC0 gait retargets actual source skeleton true
+ABILITY_MODELS shell retains source embedded albedo true
+ABILITY_MODELS three drums four wheels and flap remain independent true
+ABILITY_MODELS pose 0.30 remains finite true
+ABILITY_MODELS pose 0.55 remains finite true
+ABILITY_MODELS pose 0.82 remains finite true
+ABILITY_MODELS pose 1.05 remains finite true
+ABILITY_MODELS pose 1.42 remains finite true
+ABILITY_MODELS pose 1.70 remains finite true
+ABILITY_MODELS pose 2.16 remains finite true
+ABILITY_MODELS pose 2.85 remains finite true
+ABILITY_MODELS pose 3.75 remains finite true
+CONTACT_ERRORS [0.00000054628561, 0.00000011920929, 0.00000035762787, 0.00000016858739, 0.00000038165595, 0.00000033848931]
+ABILITY_MODELS drag and slap wrist contacts stay within 15cm true
+ABILITY_MODELS gait articulates leg bones rather than sliding a static model true
+ABILITY_MODELS hand animation changes with authored phases true
+ABILITY_MODELS token follows actual animated wrist true
+ABILITY_MODELS real reel faces are visible through the uploaded bay true
+ABILITY_MODELS pause preserves uploaded skeleton pose true
+ABILITY_MODELS return clears uploaded actors and temporary lens true
+ABILITY_MODEL_CHECKS 22/22

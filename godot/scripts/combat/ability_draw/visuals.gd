@@ -54,8 +54,8 @@ func icon(parent:Node3D,id:String,at:Vector3,size:Vector2) -> MeshInstance3D:
 func build() -> void:
     _build_machine()
     _build_dealer()
-    var card:=QuadMesh.new();card.size=Vector2(6,6)
-    reward_backdrop=mesh(self,card,Vector3(-.8,1.9,.9),Color("4f1b80"),false,true);reward_backdrop.hide()
+    var card:=QuadMesh.new();card.size=Vector2(12,8)
+    reward_backdrop=mesh(self,card,Vector3(-.8,1.9,.9),Color("090b0e"),false,true);reward_backdrop.hide()
     reward=Node3D.new();reward.name="PhysicalAbilityCapsule";add_child(reward)
     cylinder(reward,Vector3.ZERO,.19,.63,CYAN,6,-1,true)
     for y in [-.37,.37]:
@@ -135,8 +135,8 @@ func pose(t:float,entry:Vector3,spin:float,outcome:String,reveal:float,reduced:b
         # v=.125 is the first symbol centre at the visible front of each drum.
         var symbol_index:int=i if t<2.55 else target_index
         var target:float=-TAU*(.125+symbol_index*.25)
-        var turning:float=pow(maxf(0,1-spin/(.60+i*.13)),3)*TAU*(4+i) if spin>=0 else 0.0
-        reels[i].rotation.x=target+turning
+        reels[i].rotation.x=preload("res://scripts/combat/ability_draw/timing.gd").reel_angle(i,spin,target_index) if spin>=0 else target
+
     hatch.rotation.x=-minf(1,reveal*3)*1.1
     reward.visible=reveal>0
     reward.position=Vector3(.18,1.02,.65)+Vector3(0,sin(minf(reveal,1)*PI)*1.9+reveal*.3,reveal*1.9)

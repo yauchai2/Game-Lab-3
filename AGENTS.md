@@ -116,3 +116,5 @@
 - 2026-11-11 本聊天已提供275dc57f…機身與36d4f0c3…65骨NPC，覆蓋前述待模型狀態：見docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md。原GLB／albedo byte保留，真骨架CC0 gait＋作者IK接觸／手指／代幣；機身窗口多層封面用包裝材質／outline開窗，活動件獨立。短入場／抽獎cue用原OGG解碼PCM（build_ability_pcm.py），原OGG／長BGM保持，避免重現的快速重開Ogg退出滯留；不要擅自改回舊程序人物／機殼。74項原生及有聲fixture有證據，Mac／真人待驗，腰側裝備仍未實作，來源同branch／Web不更新。
 
 - 2026-11-11 使用者明確要求所有更新集中最常用branch：本輪合併黑衣人與combat-escalation來源至main，覆蓋舊「main不動」與各聊天來源分支指示。後續日常Fetch／Pull使用main，保留歷史分支及原始GLB；Web仍需明確要求。黑衣人4可播通用勝出；SQUAD保留多人鏡頭／短結算，不套雙人過場或抽能力。整合驗證見docs/evidence/main-integration。
+
+- 2026-11-11 最新抽獎要求：見docs/ABILITY_DRAW_RHYTHM_UI.zh-TW.md。2.05秒入場／2.20秒逐輪抽獎；必須新按DRAW才抽、結果另按CONTINUE，包含Demo，覆蓋原Demo自動抽領契約。共用bitmap字體／原生Button theme、放鍵與160ms防穿透，原模型／音訊／跨場景入口保留，85項通過；Web不更新。

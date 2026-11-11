@@ -1,12 +1,14 @@
 # Afterhours / Game-Lab-3
 
-目前統一使用 **main**：已整合黑衣人群戰／模型修補、完整回合與KO演出、四面反彈、Tripo蒙面NPC／抽能力機器；[本輪477項檢查](docs/evidence/main-integration/README.md)。以下分支描述為各輪歷史；以本段及HANDOFF最上方為準。
+目前統一使用 **main**：已整合黑衣人群戰／模型修補、完整回合與KO演出、四面反彈、Tripo蒙面NPC／抽能力機器及最新手動抽獎節奏UI；[本輪整合檢查](docs/evidence/main-integration/README.md)。以下分支描述為各輪歷史；以本段及HANDOFF最上方為準。
 
 最新：[黑衣人群戰＋後頸／領帶修補](docs/BLACK_SUIT_SQUAD.zh-TW.md)。FIGHTERS → SQUAD，Easy／Normal／Hard為3／4／5名同場敵人，有獨立血量、協調進攻及多人受擊；全隊清除才勝利。黑衣人runtime改用衍生修補GLB，原始檔保留。[修補前後及297項檢查](docs/evidence/black-suit-squad/README.md)。仍在codex/black-suit-enemy，main／Web不更新。
 
 最新：[黑衣人敵人與演出角色](docs/BLACK_SUIT_ENEMY.zh-TW.md)。FIGHTERS → BLACK SUIT / P2，正式FIGHT／練習／AI Demo沿用；原始GLB保留，另有可重用待機／走路／防守場景。[原生畫面及208項檢查](docs/evidence/black-suit/README.md)。來源分支codex/black-suit-enemy，main／公開Web未更新。
 
 最新：已按使用者要求將含二段跳的完整遊戲來源 `4177ef9` 合併到 `main`；之後可於 GitHub Desktop 選 `main` Fetch／Pull。公開 Web 仍為獨立部署。
+
+最新：[抽獎節奏／手動按鈕／共用遊戲字體](docs/ABILITY_DRAW_RHYTHM_UI.zh-TW.md)／[有聲預覽](docs/evidence/ability-draw/rhythm-ui/ability-draw-rhythm-ui.mp4)。按 DRAW 才抽，三輪鎖定、短靜拍、揭曉後另按 CONTINUE；85 項檢查通過，Web 不更新。
 
 最新：[使用者Tripo蒙面NPC／機身已接入](docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md)／[有聲引擎預覽](docs/evidence/ability-draw/tripo-models/tripo-ability-draw.mp4)。原65骨NPC拖行／拍機／展示／開獎，原機殼＋獨立活動件，來源原檔保留；74項原生檢查通過，Web不更新。
 

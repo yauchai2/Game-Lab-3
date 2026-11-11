@@ -50,6 +50,8 @@ func run() -> void:
         # Exercise real engine frames: draw confirmations reject two actions in one frame.
         if tick%120==0:await process_frame
         step()
+        # Latest draw contract waits for user input even in Demo; exercise that input.
+        if s.ability_draw.active() and s.ability_draw.input_armed:key(KEY_ENTER)
         var label:String="entry" if s.round_theatre.intro else ("winner" if s.city_breaker.active() and s.city_breaker.playback_elapsed>=5 else ("ko" if s.city_breaker.active() else s.screen+"/"+s.sim.phase))
         if label!=last:
             phases.append({"seconds":tick/60.0,"phase":label,"round":s.presentation_round(),"health":[s.sim.fighters[0].health,s.sim.fighters[1].health]})
@@ -63,7 +65,7 @@ func run() -> void:
         if s.demo.rounds_finished>=3:break
     check("demo reserves full KO for the deciding round",complete_ko>=1 and s.demo.seen.get("ko",0)>=3)
     check("every deciding KO includes the winner exit",winner_exits==complete_ko)
-    check("rounds loop through a fresh entry automatically",s.demo.rounds_finished>=3 and s.presentation_round()==initial_round+3 and s.round_theatre.intro and intros>=4)
+    check("rounds loop through a fresh entry after explicit draw confirmation",s.demo.rounds_finished>=3 and s.presentation_round()==initial_round+3 and s.round_theatre.intro and intros>=4)
     check("two-win match completion also loops",s.demo.matches_finished>=1)
     check("both autonomous sides land actual hits",s.demo.hits[0]>0 and s.demo.hits[1]>0)
     check("looping demo never grants progression rewards",s.growth.records==growth_before)
