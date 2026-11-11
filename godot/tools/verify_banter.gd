@@ -17,6 +17,8 @@ func run() -> void:
         check("win line %d"%c,line.begins_with(Banter.NAMES[c]))
     for pool in [Banter.START[0],Banter.START[1],Banter.START[2],Banter.START[3],Banter.WIN[0],Banter.MIRROR,Banter.STREAK_LINES]:
         for pair in pool:check("zh line <=20 chars: "+pair[0],pair[0].length()<=20 and pair[1].length()<=40)
+    for w in [true,false]:
+        for salt in 6:check("radio line %s/%d"%[w,salt],Banter.radio_line(w,salt,true).begins_with("RADIO: ") and Banter.radio_line(w,salt,false).begins_with("電台："))
     check("mirror uses mirror pool",Banter.start_line(2,2,0,0,true).contains("FIRST TO DELIVER"))
     check("streak>=5 uses streak pool",Banter.start_line(0,1,5,0,true).contains("FIFTH TIME"))
     check("streak<5 uses normal pool",not Banter.start_line(0,1,4,0,true).contains("FIFTH"))
@@ -59,7 +61,7 @@ func run() -> void:
     scene.start_match(false)
     scene.sim.phase="match_over";scene.sim.winner=0
     scene._physics_process(1.0/60)
-    check("player win records streak and sets result line",scene.banter_store.streak_against(1)==1 and scene.result_line.begins_with("ZIP: "))
+    check("player win records streak and sets result line",scene.banter_store.streak_against(1)==1 and scene.result_line.begins_with("ZIP: ") and scene.result_line.contains("RADIO: "))
     scene.start_match(true)
     scene.sim.phase="match_over";scene.sim.winner=0
     scene._physics_process(1.0/60)

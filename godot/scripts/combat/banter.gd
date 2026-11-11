@@ -16,6 +16,8 @@ const WIN:={
 }
 const MIRROR:=[["你不是第一個送件的人。","YOU'RE NOT THE FIRST TO DELIVER."],["同一條路，誰先到站？","SAME ROUTE. WHO ARRIVES FIRST?"],["看著自己打，感覺怪怪的。","FIGHTING MYSELF FEELS WRONG."]]
 const STREAK_LINES:=[["第五次了。你到底在背什麼？","FIFTH TIME. WHAT ARE YOU MEMORIZING?"],["我記得你的節奏了，這次不一樣。","I KNOW YOUR RHYTHM. NOT THIS TIME."]]
+const RADIO_WIN:=[["電台：這一場，街區聽見了。","RADIO: THE BLOCK HEARD THAT ONE."],["電台：末班車延後三分鐘，慶祝一下。","RADIO: LAST TRAIN HELD THREE MINUTES. ENJOY IT."],["電台：路燈亮了一格。","RADIO: A STREETLIGHT JUST CAME ON."]]
+const RADIO_LOSE:=[["電台：沒事，下一班很快到。","RADIO: NEXT TRAIN IS COMING SOON."],["電台：街區記住了這一課。","RADIO: THE BLOCK REMEMBERS THIS LESSON."],["電台：深呼吸，再按一次 Enter。","RADIO: BREATHE. HIT ENTER AGAIN."]]
 const STREAK_AT:=5
 static func start_line(player:int,rival:int,streak:int,salt:int,english:bool) -> String:
     var side:=1 if english else 0
@@ -30,6 +32,10 @@ static func win_line(winner_character:int,salt:int,english:bool) -> String:
     var pool:Array=WIN[clampi(winner_character,0,3)]
     var line:Array=pool[absi(salt)%pool.size()]
     return "%s: %s"%[NAMES[clampi(winner_character,0,3)],line[1 if english else 0]]
+
+static func radio_line(player_won:bool,salt:int,english:bool) -> String:
+    var pool:Array=RADIO_WIN if player_won else RADIO_LOSE
+    return pool[absi(salt)%pool.size()][1 if english else 0]
 
 ## Local-only win-streak memory against the same rival character (G4). Schema versioned, clamped, optional.
 class Store extends RefCounted:

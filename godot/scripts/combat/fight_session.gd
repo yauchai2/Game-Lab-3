@@ -271,7 +271,7 @@ func _combat_step() -> void:
         result_line=""
         if sim.phase=="match_over" and not practice and not run_active and demo==null and sim.winner>=0 and banter_store!=null:
             banter_store.record(character_choices[1],sim.winner==0)
-            result_line=Banter.win_line(character_choices[sim.winner],int(Time.get_ticks_msec()/1000),language=="en")
+            result_line=Banter.win_line(character_choices[sim.winner],int(Time.get_ticks_msec()/1000),language=="en")+"\n"+Banter.radio_line(sim.winner==0,int(Time.get_ticks_msec()/1000)+1,language=="en")
         result_clock=0.0
         screen = "result"
         finish_menu_open=false
