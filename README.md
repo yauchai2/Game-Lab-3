@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[黑衣人群戰＋後頸／領帶修補](docs/BLACK_SUIT_SQUAD.zh-TW.md)。FIGHTERS → SQUAD，Easy／Normal／Hard為3／4／5名同場敵人，有獨立血量、協調進攻及多人受擊；全隊清除才勝利。黑衣人runtime改用衍生修補GLB，原始檔保留。[修補前後及297項檢查](docs/evidence/black-suit-squad/README.md)。仍在codex/black-suit-enemy，main／Web不更新。
+
 最新：[黑衣人敵人與演出角色](docs/BLACK_SUIT_ENEMY.zh-TW.md)。FIGHTERS → BLACK SUIT / P2，正式FIGHT／練習／AI Demo沿用；原始GLB保留，另有可重用待機／走路／防守場景。[原生畫面及208項檢查](docs/evidence/black-suit/README.md)。來源分支codex/black-suit-enemy，main／公開Web未更新。
 
 最新：已按使用者要求將含二段跳的完整遊戲來源 `4177ef9` 合併到 `main`；之後可於 GitHub Desktop 選 `main` Fetch／Pull。公開 Web 仍為獨立部署。

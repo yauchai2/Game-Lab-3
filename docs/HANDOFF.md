@@ -1,5 +1,9 @@
 # 接續工作交接
 
+## 2026-11-11：黑衣人群戰與模型修補
+
+使用者要求成群及修補截圖。FIGHTERS→SQUAD提供3／4／5名真實同場敵人，各35／45／55HP，保留每人位置／受擊；一個進攻名額，普通近身攻擊可多目標命中，全部倒下才勝利，玩家受擊有喘息。新增SquadSimulation是原simulation子類，一般模式仍走super.tick；暫停／重賽／退場及事件敵人綁定已覆核。原GLB保留；derived/black_suit_repaired.glb修97頸部權重、封閉NeckBridge／襯衫／領帶補片及局部outline，1208面／65關節。詳[現況](BLACK_SUIT_SQUAD.zh-TW.md)／[297項檢查](evidence/black-suit-squad/README.md)。Linux4.6.3 llvmpipe／Dummy，最終無引擎ERROR／SCRIPT ERROR，VSync警告保留。真人難度／Mac待驗收；槍械／劇情／新地圖未做。沿同一codex/black-suit-enemy來源，main／Web不動。
+
 ## 2026-11-11：黑衣人敵人與可重用演出角色
 
 使用者上傳6bb9e9c2 GLB並要求入遊戲。基於main738c740，在codex/black-suit-enemy加入P2獨立敵人索引4（四張主角卡／四個成長ID保留），真3D預覽、正式FIGHT／TRAINING／Demo、偏好保存、Street Run退出還原。1,116面／65關節／52骨重定向，無內建動畫；原GLB SHA保留。場景black_suit_actor.tscn有idle／walk／guard，根transform不被動作覆寫；沒有AI／傷害，不把角色場景當戰鬥simulation。詳見[整合](BLACK_SUIT_ENEMY.zh-TW.md)／[208項檢查與畫面](evidence/black-suit/README.md)。Godot4.6.3 Linux llvmpipe／Dummy音訊，最終log無ERROR／SCRIPT ERROR；VSync警告保留，Mac／真人平衡待驗收。未做六章故事、槍械或新地圖；main／Web不動。

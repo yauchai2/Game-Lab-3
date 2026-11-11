@@ -1,5 +1,7 @@
 # 黑衣人：敵人與可重用演出角色
 
+最新現況：[群戰與後頸／領帶修補](BLACK_SUIT_SQUAD.zh-TW.md)。runtime現用derived修補GLB，FIGHTERS另有SQUAD入口；下方保留首版整合紀錄，模型面數／材質及無群戰描述以最新頁為準。
+
 2026-11-11，Asia/Taipei。使用者上傳 `tripo_convert_6bb9e9c2-dd66-4f86-864f-2ceab3aa0a09.glb`，要求接入遊戲作敵人及其他用途。本輪基於 main `738c740`，來源分支 `codex/black-suit-enemy`；不合併 main、不更新公開 Web。
 
 ## 現在可以玩

@@ -1,5 +1,9 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-11：群戰與修補版模型
+
+[完整證據](evidence/black-suit-squad/README.md)：35群戰規則＋9原生群戰＋32修補版單敵＋46角色資源＋45正式戰鬥＋62二段跳＋25防禦＋37原生UI＋6材質，共297項通過。確認同場獨立血量、多目標真命中每人一次、一個攻勢名額、全部倒下才勝利及全模式退出清理；三階站立診斷有真攻擊，最短受擊間距123／92／68 tick。修補前後原生正／側／後近鏡、97頸部重權重與4個封閉補片（無boundary edge）、1208面／65關節、權重誤差5.22e-8、原始SHA不變。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy音訊，最終無ERROR／SCRIPT ERROR；VSync警告保留，Mac／真人手感／實聽待驗收。
+
 ## 2026-11-11：黑衣人接入
 
 [報告及原生畫面](evidence/black-suit/README.md)：32敵人原生整合＋46四角技能＋62二段跳＋25防禦＋37原生UI＋6材質生命週期，共208項通過。原GLB hash比對、有限值／權重／joint與vertex索引／貼圖解碼另見references/characters/black-suit/inspection.json。實際指標選P2、真simulation命中與招架、30秒自由AI、三視窗、保存／Street Run還原與角色場景根transform均覆核。Godot4.6.3 Compatibility／Mesa llvmpipe／Dummy audio；最終native log無ERROR／SCRIPT ERROR，保留不支援VSync警告。初版測試器step呼叫錯誤、Dummy material診斷及早期退出警告保留在證據說明，不算通過；已改native-only及退出等待。不是Mac／硬件效能／真人平衡或喇叭實聽驗收。公開Web未更新。

@@ -92,3 +92,5 @@
 - 2026-11-10 使用者更正：要求真正改善正式遊戲，不能再把新增教學／獨立原型當主要優化交付。最新正式玩法見docs/LIVE_COMBAT_IMPROVEMENTS.zh-TW.md：承諾式CPU攻防／角色資源、LOOP輕拳推離2.8／3.4、native hitstop與演出重疊消耗；原傷害／能量／大招長pose不改。Easy單鍵新手驗證明確選Easy，Normal／Hard可反制單鍵spam。仍同branch推送，公開Web不更新；Mac／真人平衡待測。
 
 - 2026-11-11 黑衣人接入：見docs/BLACK_SUIT_ENEMY.zh-TW.md。基於main738c740的codex/black-suit-enemy；P2敵人4與四英雄／成長分離，原6bb9e9c2 GLB不變。black_suit_actor.tscn供演出／背景，根transform屬導演；沒有AI／傷害。故事／槍械／新地圖未接入，main及Web未更新。
+
+- 2026-11-11 最新黑衣人修補與群戰見docs/BLACK_SUIT_SQUAD.zh-TW.md：runtime改derived/black_suit_repaired.glb（原檔保留）、97頸部權重／封閉補片／局部outline。FIGHTERS→SQUAD為3／4／5名獨立同場敵人，單進攻名額、玩家僅推進一次；群戰不給XP，退出須清除額外visual與simulation。舊單敵與Street Run保留；同分支、main與Web不動。

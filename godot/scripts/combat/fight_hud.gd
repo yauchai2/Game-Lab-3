@@ -371,6 +371,7 @@ func _pause_page() -> void:
     if session.demo!=null:_action(menu_stack,"demo_restart","R",func():session.start_demo())
     else:_action(menu_stack,"reset_training" if session.practice else "restart","F5" if session.practice else "R",func():
         if session.practice:session.reset_training()
+        elif session.sim.squad_enabled:session.start_squad()
         elif session.run_active:session.start_run()
         else:session.start_match(false))
     _action(menu_stack,"settings","F1",func():open_page("settings"))
@@ -388,10 +389,12 @@ func _result_page() -> void:
         return
     if session.sim.winner==1:_caption("runback")
     menu_stack.add_child(_label("%d  —  %d"%[session.sim.wins[0],session.sim.wins[1]],48,Tokens.GOLD,true))
-    _caption("wins")
+    if session.sim.squad_enabled:menu_stack.add_child(_label("SQUAD CLEARED" if session.sim.winner==0 else "SQUAD / TRY AGAIN",28))
+    else:_caption("wins")
     var complete: bool=session.sim.phase=="match_over"
     _action(menu_stack,"rematch" if complete else "next_round","Enter",func():
-        if complete:session.start_match(session.practice)
+        if session.sim.squad_enabled:session.start_squad()
+        elif complete:session.start_match(session.practice)
         else:session.advance_round(),true)
     _action(menu_stack,"main_menu","",func():session.return_to_title())
 
@@ -914,6 +917,7 @@ func _build_art_controls() -> void:
             focus_key="enemy_black_suit"
             session.set_character(1,session.FighterVisual.Roster.BLACK_SUIT_INDEX)
             queue_redraw())
+        _art_button("enemy_squad","SQUAD",Rect2(1094,588,140,48),session.start_squad)
         _art_button("roster_fight","FIGHT",art.fit(Rect2(849,773,550,100)),func():session.start_match(false))
         _art_button("back","BACK",art.fit(Rect2(1507,875,145,50)),close_page)
         for i in 4:
@@ -926,7 +930,9 @@ func _build_art_controls() -> void:
         art_buttons.street_run.focus_neighbor_top=art_buttons.skills.get_path()
         art_buttons.street_run.focus_neighbor_bottom=art_buttons.enemy_black_suit.get_path()
         art_buttons.enemy_black_suit.focus_neighbor_top=art_buttons.street_run.get_path()
-        art_buttons.enemy_black_suit.focus_neighbor_bottom=art_buttons.roster_fight.get_path()
+        art_buttons.enemy_black_suit.focus_neighbor_bottom=art_buttons.enemy_squad.get_path()
+        art_buttons.enemy_squad.focus_neighbor_top=art_buttons.enemy_black_suit.get_path()
+        art_buttons.enemy_squad.focus_neighbor_bottom=art_buttons.roster_fight.get_path()
         art_buttons.enemy_black_suit.focus_neighbor_left=art_buttons.card_3.get_path()
         art_buttons.card_1.focus_neighbor_right=art_buttons.skills.get_path()
         art_buttons.card_3.focus_neighbor_right=art_buttons.enemy_black_suit.get_path()

@@ -103,6 +103,8 @@ func roster(c:Control,s:Node) -> void:
     text(c,Vector2(1106,521),"BLACK",28,T.PAPER)
     text(c,Vector2(1106,553),"SUIT / P2",26,T.PAPER)
     if focused_key=="enemy_black_suit":corners(c,enemy_rect.grow(2),T.TEAL)
+    plate(c,Rect2(1094,588,140,48),T.TEAL if focused_key=="enemy_squad" else T.PAPER,8)
+    text(c,Vector2(1106,623),"SQUAD",28,T.INK)
     var fight_rect:Rect2=fit(Rect2(849,773,550,100))
     plate(c,fight_rect,T.TEAL if focused_key=="roster_fight" else T.PAPER,12)
     text(c,fight_rect.position+Vector2(54,58),"FIGHT",64,T.INK)
@@ -129,8 +131,8 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
         c.draw_polyline(PackedVector2Array([outer[0],outer[1],outer[2],outer[3],outer[0]]),T.PAPER,4)
         c.draw_colored_polygon(outer,T.INK)
         var bar:Rect2=Rect2(704 if reverse else 227,40,350,14)
-        var ratio:float=clampf(f.health/100.0,0,1)
-        var lag:float=clampf(hp_lag[side]/100,0,1)
+        var ratio:float=clampf(float(f.health)/f.get("max_health",100.0),0,1)
+        var lag:float=clampf(hp_lag[side]/f.get("max_health",100.0),0,1)
         var x:float=bar.end.x-bar.size.x*lag if reverse else bar.position.x
         plate(c,Rect2(x,bar.position.y,bar.size.x*lag,bar.size.y),T.PAPER,7)
         x=bar.end.x-bar.size.x*ratio if reverse else bar.position.x
@@ -155,8 +157,9 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
             c.draw_rect(Rect2(center+Vector2(-15+bar_index*11,-extent*.5),Vector2(7,extent)),T.TEAL if side==0 else T.MAGENTA)
     c.draw_circle(Vector2(640,44),35,T.INK);c.draw_circle(Vector2(640,44),32,T.PAPER);c.draw_circle(Vector2(640,44),29,T.GOLD)
     var clock:String="∞" if s.practice or s.demo!=null else "%02d"%ceili(s.sim.remaining)
-    var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,48).x
-    text(c,Vector2(640-width*.5,59),clock,48)
+    var clock_size:int=36 if clock.length()>2 else 48
+    var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,clock_size).x
+    text(c,Vector2(640-width*.5,59),clock,clock_size)
     plate(c,Rect2(150,644,980,60),T.INK,20)
     plate(c,Rect2(154,646,972,54),T.PAPER,20)
     var skill_label:String="NODE" if s.character_choices[0]==3 else ("HOLD" if s.character_choices[0]==1 else "SKILL")

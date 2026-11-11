@@ -14,7 +14,7 @@ var oversized_bones: Array[int]=[]
 var elapsed := 0.0
 var motions := preload("res://scripts/combat/combat_motions.gd").new()
 
-func setup(color: Color, selection := 0) -> void:
+func setup(color: Color, selection := 0, model_path_override:="") -> void:
     team = color
     character_index=clampi(selection,0,Roster.BLACK_SUIT_INDEX)
     var entry:Dictionary=Roster.entry(character_index)
@@ -34,7 +34,7 @@ func setup(color: Color, selection := 0) -> void:
     motions=preload("res://scripts/combat/combat_motions.gd").new()
     elapsed=0.0
     model_scale=entry.scale
-    model = (load(entry.path) as PackedScene).instantiate()
+    model = (load(entry.path if model_path_override.is_empty() else model_path_override) as PackedScene).instantiate()
     model.scale = Vector3.ONE * model_scale
     add_child(model)
     for mesh in model.find_children("*", "MeshInstance3D", true, false):
@@ -43,16 +43,18 @@ func setup(color: Color, selection := 0) -> void:
             var mat := ShaderMaterial.new()
             mat.shader = preload("res://shaders/neon/neon_actor.gdshader") if neon_enabled else Toon
             mat.set_shader_parameter("tint", Color.WHITE.lerp(team, 0.50))
-            if character_index==Roster.BLACK_SUIT_INDEX:mat.set_shader_parameter("tint",Color.WHITE)
+            if character_index==Roster.BLACK_SUIT_INDEX:mat.set_shader_parameter("tint",original.albedo_color if original is BaseMaterial3D else Color.WHITE)
             if original is BaseMaterial3D and original.albedo_texture:
                 mat.set_shader_parameter("use_texture", true)
                 mat.set_shader_parameter("base_texture", original.albedo_texture)
             if neon_enabled:
-                mat.set_shader_parameter("tint",Color.WHITE)
+                mat.set_shader_parameter("tint",original.albedo_color if character_index==Roster.BLACK_SUIT_INDEX and original is BaseMaterial3D else Color.WHITE)
                 mat.set_shader_parameter("neon_accent",preload("res://scripts/combat/neon/neon_style_profile.tres").accent(character_index))
             var outline := ShaderMaterial.new()
             outline.shader = Outline
-            mat.next_pass = outline
+            outline.set_shader_parameter("repaired_suit_neck",character_index==Roster.BLACK_SUIT_INDEX)
+            if character_index!=Roster.BLACK_SUIT_INDEX or not str(mesh.name).begins_with("Repair") and str(mesh.name) not in ["NeckBridge","CleanShirtInsert","TieKnot","TieBlade"]:
+                mat.next_pass = outline
             mesh.set_surface_override_material(surface, mat)
             materials.append(mat)
     var list := model.find_children("*", "Skeleton3D", true, false)

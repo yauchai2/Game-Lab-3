@@ -261,9 +261,22 @@
       "bytes": 177472,
       "sha256": "8fcacf156af8a28e8eddc5ff0bd2be677e99bc2e58031bc4968de5ab038dcbc7",
       "scale": 2.15,
-      "status": "enemy_opponent_and_reusable_actor",
+      "status": "preserved_source_for_repaired_enemy",
       "inspection": "references/characters/black-suit/inspection.json",
-      "provenance": "User-uploaded Tripo GLB preserved byte-for-byte. No paid generation, source edits or new licensing claim."
+      "provenance": "User-uploaded Tripo GLB preserved byte-for-byte. No paid generation, source edits or new licensing claim.",
+      "derived_model": "godot/assets/characters/black_suit/derived/black_suit_repaired.glb"
+    },
+    {
+      "asset_id": "CHAR_BLACK_SUIT_REPAIRED",
+      "model": "godot/assets/characters/black_suit/derived/black_suit_repaired.glb",
+      "source_asset": "CHAR_BLACK_SUIT",
+      "sha256": "f5b586441760ba486c66275d9d6c202cbf1722017bd6c0f1eb5b66b2674fa0b4",
+      "scene": "godot/scenes/characters/black_suit_actor.tscn",
+      "triangles": 1208,
+      "joints": 65,
+      "scale": 2.15,
+      "repair_report": "references/characters/black-suit/repair.json",
+      "status": "runtime_enemy_and_squad"
     }
   ],
   "pending_reference_only": [],

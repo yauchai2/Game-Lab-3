@@ -7,6 +7,6 @@ const ENTRIES := [
  {"id":"loop","label":"fighter_loop","path":"res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb","scale":2.12,"trait":"trait_loop"}]
 ## Enemies have a separate identity; the four hero/save indices never move.
 const BLACK_SUIT_INDEX := 4
-const BLACK_SUIT := {"id":"black_suit","label":"fighter_black_suit","path":"res://assets/characters/black_suit/source/tripo_convert_6bb9e9c2-dd66-4f86-864f-2ceab3aa0a09.glb","scale":2.15,"trait":"trait_black_suit"}
+const BLACK_SUIT := {"id":"black_suit","label":"fighter_black_suit","path":"res://assets/characters/black_suit/derived/black_suit_repaired.glb","scale":2.15,"trait":"trait_black_suit"}
 static func entry(index:int) -> Dictionary:
     return BLACK_SUIT if index==BLACK_SUIT_INDEX else ENTRIES[clampi(index,0,3)]
