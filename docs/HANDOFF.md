@@ -1,5 +1,9 @@
 # 接續工作交接
 
+## 2026-11-11：KO聲音與誇張漫畫FX
+
+依使用者最新要求，原CityBreaker正式KO入口加上原創10秒立體聲score、SFX bus／靜音／音量／暫停位置保持與clear停止，BGM原owner加入4–8dB duck但不停transport。邊緣放射模糊／短色差／高對比、漫畫速度線與字卡、3D衝擊環、FOV反衝／14°內roll由同一director擁有。15FX真PCM＋164KO＋17結果＋37UI音樂＋6混音通過；實際Movie Writer有聲10秒30fps影片見evidence/city-breaker-fx。原來源模型及判定不變；Mac／真人實聽／目標效能待驗。來源同branch／PR #6，Web不更新。
+
 ## 2026-11-11：CITY BREAKER 正式 3D KO 過場
 
 使用者指定 codex/combat-escalation-next，按所附10秒影片接正式KO，現況與差異見 [CITY_BREAKER.zh-TW.md](CITY_BREAKER.zh-TW.md)。八鏡按24fps剪接點對齊、當局人物直接演出、同一街景／飛機可逆分件、回合結果延後、Enter／Space跳過與Esc暫停／F2／重開／退出清理。simulation傷害與獎勵保持權威，無影片貼圖或固定角色。164新過場＋17結果＋37UI／音樂＋62二段跳＋45正式玩法＋30SURGE通過；舊Rhythm23/29在未改4177ef9重現。Godot4.6.3／llvmpipe／Dummy audio，原生影片為15fps無聲取樣，不是Mac效能或逐像素復刻。沿同一branch／PR #6推來源，Web不更新。

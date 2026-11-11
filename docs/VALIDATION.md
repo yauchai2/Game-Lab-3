@@ -527,3 +527,8 @@ Godot4.7.2 Linux Compatibility：37原生操作、10頁面／3D剪影／popup／
 ## 2026-11-11：CITY BREAKER 原生 KO
 
 164新過場、17結果、37原生UI／持續音樂、62二段跳、45正式玩法、30SURGE通過；四角×雙方、真special傷害KO、逐鏡有限相機、資料不變、靜態batch／飛機／模型清理、輸入跳過、暫停、F2、重開與超時不誤觸。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy audio，最終過場／UI log無ERROR或SCRIPT ERROR，最終過場無ObjectDB警告。舊Rhythm23/29六失敗在未改4177ef9隔離worktree重現相同結果；不稱全套零失敗。畫面與150幀15fps無聲影片見evidence/city-breaker，來源／切點／差異見CITY_BREAKER.zh-TW.md。初期headless換模null material及早期測試修正有界線紀錄；未將Dummy或renderer載入當作Mac、實聽或效能證明。
+
+
+## 2026-11-11：KO聲畫FX
+
+15新增FX／實際PCM／音量／mute／pause／清理，164KO、17結果、37原生UI／音樂及6原混音回歸通過。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy音訊；最終log無ERROR／SCRIPT ERROR／資源洩漏。Movie Writer同錄640×360／30fps與立體聲48kHz，裁準備1幀後10秒，影片AAC解碼峰值0.467／RMS0.040／零削波，沒有事後配音。這不是Mac硬件、即時30fps效能或真人實聽證明；未重跑整個歷史suite，舊Rhythm六個基線失敗仍保留前輪紀錄。過早結束的result測試曾有音訊資源未drain，測試改為先停止player／等待混音後退出，最終17/17無警告。詳見evidence/city-breaker-fx。

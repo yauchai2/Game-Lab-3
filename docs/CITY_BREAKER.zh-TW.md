@@ -1,5 +1,14 @@
 # CITY BREAKER：正式 KO 的可替換 3D 過場
 
+## 最新：聲音、漫畫 FX 與鏡頭（2026-11-11）
+
+已按使用者最新要求加強，正式零生命KO後自動使用；四角、雙方及原場景接法不變。[有聲預覽與驗證](evidence/city-breaker-fx/README.md)覆蓋初版無聲證據：原創10秒立體聲聲軌、風壓／吸氣／混凝土脆裂／低頻爆破／金屬碎片／引擎轟鳴／KO電子重音，獨立score player服從SFX設定，暫停保留播放位置，全部clear出口停止。BGM原transport持續，重擊暫時4–8dB duck。
+
+畫面新增7-tap邊緣放射模糊、短促色差／高對比撞擊、擴散透鏡壓力環、30條邊緣漫畫速度線、KRAK／DOOM／SKY BREAK原生字卡、3D衝擊環；相機加入震動反衝、FOV壓縮後反彈和最高14°roll。中心保留清晰、末鏡收穩；HUD字卡在後製之後畫，不被模糊。沿CityBreaker唯一演出owner，不用Engine.time_scale，不改傷害／回合。
+
+15新FX／PCM＋164KO＋17結果＋37UI／音樂＋6既有混音檢查通過，最終原生log無ERROR／SCRIPT ERROR。影片是Godot Movie Writer實際聲畫、30fps固定匯出，並非Mac效能／真人實聽驗收。保留F2短版及跳過／暫停／重開清理。下文原初版時序及3D資產界線仍適用；其中「重用原音效cue／無聲15fps」為初版歷史，已由本節覆蓋。
+
+
 2026-11-11（香港時間）；來源 `codex/combat-escalation-next`，沿用草稿 PR #6。使用者要求按所附 Kling 影片重建 3D，放在戰鬥回合之間，使用當局人物、現有戰鬥背景與飛機。
 
 ## 現在可以使用

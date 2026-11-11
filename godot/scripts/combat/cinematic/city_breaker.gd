@@ -26,9 +26,16 @@ var ring: MeshInstance3D
 var plane_copy: Node3D
 var rng := RandomNumberGenerator.new()
 var body_position := Vector3.ZERO
-var cues_fired: Dictionary = {}
 var burst_materials: Array[Material] = []
 var prepared := false
+const IMPACTS := [0.02, .82, 1.72, 2.82, 3.18, 3.65, 6.4, 172.0/24, 189.0/24]
+var score_player: AudioStreamPlayer
+var lens: ColorRect
+var lens_material: ShaderMaterial
+var impact_strength := 0.0
+var speed_strength := 0.0
+var blur_strength := 0.0
+var impact_age := 1.0
 
 func setup(owner_session: Node3D) -> void:
     session = owner_session
@@ -37,6 +44,21 @@ func setup(owner_session: Node3D) -> void:
     container.name = "ReversibleDestruction"
     add_child(container)
     container.hide()
+    score_player = AudioStreamPlayer.new()
+    score_player.name = "OriginalKOSoundDesign"
+    score_player.stream = load("res://audio/city_breaker/score.ogg")
+    score_player.bus = "Afterhours SFX"
+    add_child(score_player)
+    var layer := CanvasLayer.new(); layer.layer = 1
+    add_child(layer)
+    lens = ColorRect.new(); lens.name = "KOLens"
+    lens.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    lens.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    lens_material = ShaderMaterial.new()
+    lens_material.shader = preload("res://shaders/city_breaker_lens.gdshader")
+    lens.material = lens_material
+    layer.add_child(lens)
+    lens.hide()
 
 func active() -> bool:
     return running
@@ -69,24 +91,19 @@ func begin(side: int) -> void:
     age = 0.0
     shot = 0
     running = true
-    cues_fired.clear()
     container.show()
     sample(0.0)
+    _sync_audio(false)
+    score_player.play()
 
 func advance(delta: float, paused: bool) -> void:
     if not running:
         return
+    _sync_audio(paused)
     if paused:
         sample(age)
         return
-    var previous := age
     age = minf(DURATION, age + maxf(delta, 0.0))
-    # Crossing-based events fire once even if a rendered frame crosses two cues.
-    var cues := [[0.0, "launch", 1.0], [.82, "heavy", .75], [1.72, "guard_break", .8], [2.82, "slam", .75], [3.18, "slam", .9], [3.65, "slam", 1.0], [5.05, "chase", 1.0], [6.4, "guard_break", .7], [172.0/24, "slam", .65], [7.3, "sub", .65], [8.0, "ko", 1.0]]
-    for i in cues.size():
-        if age >= cues[i][0] and (previous <= cues[i][0]) and not cues_fired.has(i):
-            cues_fired[i] = true
-            session.audio.play_sound(cues[i][1], cues[i][2], -5.0)
     sample(age)
     if age >= DURATION:
         clear()
@@ -110,6 +127,7 @@ func sample(time: float) -> void:
     _wave_at(age)
     _actors_at(age)
     _camera_at(u)
+    _lens_at(age)
     for shadow in session.silhouettes: shadow.visible = false
 
 func victim_path(time: float) -> Vector3:
@@ -198,12 +216,14 @@ func _camera_at(u: float) -> void:
             p = Vector3(0, 2.0, 16).lerp(Vector3(-handedness*.7, 1.7, 15), u)
             target = Vector3(0, 5.8, -20)
             fov = 70
-    var shake := 0.0
-    for hit in [.82, 1.72, 2.82, 3.18, 3.65, 6.4, 172.0/24, 8.0]:
-        var dt: float = age-hit
-        if dt >= 0 and dt < .3: shake += .16*exp(-dt*12)
-    if not session.reduced_effects:
-        p += Vector3(sin(age*117)*shake, cos(age*93)*shake*.6, 0)
+    var shake := _impact_at(age)*(.58 if shot in [3,5,6] else .34)
+    var rush := .065 if shot in [0,2,4] else 0.0
+    p += Vector3((sin(age*103)+sin(age*41)*.4)*shake, cos(age*83)*shake*.6, sin(age*67)*shake*.35)
+    p += Vector3(sin(age*37)*rush,cos(age*29)*rush*.5,0)
+    # Recoil is fast, overshoots, then settles; no second global time scale.
+    var punch := _impact_at(age)
+    fov += punch*(-4.0 if impact_age < .045 else 5.0)
+    roll = clampf(roll+sin(age*79)*punch*.065,-deg_to_rad(14),deg_to_rad(14))
     session.camera.position = p
     session.camera.look_at(target)
     session.camera.rotation.z = roll
@@ -402,6 +422,9 @@ func _make_burst(at: Vector3, start: float, radius: float) -> void:
         var ray:=_mesh(cone,_unlit(Color("ffb914") if i%2==0 else Color("ff6920")))
         var direction:=Vector3(cos(i*TAU/10),sin(i*TAU/10),rng.randf_range(-.3,.3)).normalized()
         nodes.append({"node":ray,"offset":direction,"ray":true,"smoke":false,"scale":.8,"rotation":Vector3.ZERO})
+    var torus:=TorusMesh.new();torus.inner_radius=.94;torus.outer_radius=1.0;torus.rings=32;torus.ring_segments=4
+    var shock:=_mesh(torus,_unlit(Color("a4ffef")))
+    nodes.append({"node":shock,"offset":Vector3.ZERO,"shock_ring":true,"smoke":false,"scale":1.0,"rotation":Vector3.ZERO})
     bursts.append({"at":at,"start":start,"radius":radius,"nodes":nodes})
 
 func _bursts_at(time: float) -> void:
@@ -410,7 +433,7 @@ func _bursts_at(time: float) -> void:
         var life := 4.3 if burst.start>=6.0 else 2.1
         for item in burst.nodes:
             var node: MeshInstance3D = item.node
-            node.visible = dt >= 0.0 and dt < (.65 if item.has("ray") else life)
+            node.visible = dt >= 0.0 and dt < (.65 if item.has("ray") or item.has("shock_ring") else life)
             if not node.visible: continue
             var grow := minf(1,dt/.26)
             var fade := clampf((life-dt)/.7,0,1)
@@ -418,6 +441,10 @@ func _bursts_at(time: float) -> void:
             node.position = burst.at + item.offset*size + Vector3(0,dt*(1.8 if item.smoke else .6),0)
             node.rotation = item.rotation + Vector3(0,dt*.15,0)
             node.scale = Vector3.ONE * maxf(.001,size*item.scale*fade)
+            if item.has("shock_ring"):
+                node.position=burst.at
+                node.rotation=Vector3(PI*.5 if burst.start>=6 else .18,0,.15)
+                node.scale=Vector3.ONE*maxf(.001,burst.radius*(.2+dt*3.3))
             if item.has("ray"):
                 node.quaternion=Quaternion(Vector3.UP,item.offset)
                 node.position=burst.at+item.offset*size*.7
@@ -465,6 +492,7 @@ func _octahedron() -> ArrayMesh:
 
 func draw(canvas: Control) -> void:
     if not running: return
+    _draw_speed_ink(canvas)
     var ink := Color("11101d")
     # Native overlay, never bake text or HUD into a video texture.
     canvas.draw_rect(Rect2(0,0,1280,28),ink)
@@ -480,6 +508,12 @@ func draw(canvas: Control) -> void:
 
 func clear() -> void:
     running = false
+    impact_strength=0.0;speed_strength=0.0;blur_strength=0.0
+    if is_instance_valid(score_player):
+        score_player.stream_paused=false
+        score_player.stop()
+    if is_instance_valid(lens):lens.hide()
+    if is_instance_valid(session) and is_instance_valid(session.audio):session.audio.cinematic_duck=0.0
     if is_instance_valid(container): container.hide()
     for source in hidden_sources:
         if is_instance_valid(source.node): source.node.visible = source.visible
@@ -507,3 +541,65 @@ func clear() -> void:
         session.camera.environment = camera_state.environment
     plane_state.clear()
     actor_states.clear()
+
+
+func _impact_at(time: float) -> float:
+    var strength := 0.0
+    impact_age = 1.0
+    for at in IMPACTS:
+        var dt: float = time-at
+        if dt >= 0.0 and dt < .48:
+            strength=maxf(strength,exp(-dt*10.0)*(1.0 if at<6.0 else 1.2))
+            impact_age=minf(impact_age,dt)
+    return minf(1.0,strength)
+
+func _lens_at(time: float) -> void:
+    impact_strength=_impact_at(time)
+    speed_strength= .8 if shot in [0,2,4] else (.32 if shot in [1,3,5] else .10)
+    speed_strength *= minf(1.0,time*7.0)
+    if shot==7:speed_strength=maxf(0.0,.25-(time-CUTS[7])*.7)
+    blur_strength=clampf(speed_strength*.045+impact_strength*.055,0,.08)
+    var center:=Vector2(.5,.47)
+    var focal:Vector3=body_position+Vector3(0,1,0) if shot<5 else Vector3(-2,48,-70)
+    if shot==7:focal=Vector3(0,7,-24)
+    if not session.camera.is_position_behind(focal):
+        var screen:Vector2=session.camera.unproject_position(focal)/session.get_viewport().get_visible_rect().size
+        center=screen.clamp(Vector2(.25,.25),Vector2(.75,.65))
+    lens.visible=running and not session.reduced_effects
+    lens_material.set_shader_parameter("blur",blur_strength)
+    lens_material.set_shader_parameter("impact",impact_strength)
+    lens_material.set_shader_parameter("ring_phase",clampf(impact_age/.48,0,1))
+    lens_material.set_shader_parameter("center",center)
+
+func _sync_audio(paused: bool) -> void:
+    if not is_instance_valid(score_player):return
+    score_player.stream_paused=paused
+    var level:float=session.audio.effects_level
+    score_player.volume_db=-80.0 if session.audio.muted or level<=0 else -7.0+linear_to_db(maxf(.001,level))
+    session.audio.cinematic_duck=0.0 if paused else (.5+_impact_at(age)*.5)
+
+func _draw_speed_ink(canvas: Control) -> void:
+    var center:=Vector2(640,342)
+    if speed_strength>.02:
+        for i in 30:
+            var angle:float=i*TAU/30+.045*sin(i*7.1)
+            var direction:=Vector2(cos(angle),sin(angle))
+            var phase:float=fposmod(age*(2.8 if shot==2 else 1.9)+i*.273,1.0)
+            var inner:float=lerpf(330,680,phase)
+            var tangent:Vector2=direction.orthogonal()*(2+i%4)*speed_strength
+            var tip:Vector2=center+direction*Vector2(inner,inner*.65)
+            var outer:Vector2=center+direction*Vector2(inner+210,inner*.65+160)
+            var color:=Color("c8ffff") if i%3==0 else Color("1b102a")
+            color.a=(.26+phase*.4)*speed_strength
+            canvas.draw_colored_polygon(PackedVector2Array([tip,outer-tangent,outer+tangent]),color)
+    # Short native onomatopoeia stays at the edges, away from the victim.
+    for cue in [[.82,"KRAK!"],[2.82,"DOOM!"],[172.0/24,"SKY BREAK!"]]:
+        var dt:float=age-cue[0]
+        if dt<0 or dt>.36:continue
+        var slide:float=maxf(0,.07-dt)*600
+        var scale:Vector2=canvas.size/Vector2(1280,720)
+        canvas.draw_set_transform(Vector2(62-slide,548)*scale,-.10,scale)
+        var alpha:float=minf(1,(.36-dt)*7)
+        canvas.draw_string(session.hud.bold,Vector2(5,6),cue[1],HORIZONTAL_ALIGNMENT_LEFT,-1,78,Color("15101f",alpha))
+        canvas.draw_string(session.hud.bold,Vector2.ZERO,cue[1],HORIZONTAL_ALIGNMENT_LEFT,-1,78,Color("fff3a8",alpha))
+        canvas.draw_set_transform(Vector2.ZERO,0,scale)

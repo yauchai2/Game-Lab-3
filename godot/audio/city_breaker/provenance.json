@@ -1,0 +1,20 @@
+{
+  "source": "Original procedural synthesis; no external samples",
+  "generator": "tools/build_city_breaker_audio.py",
+  "seed": 20261111,
+  "duration_seconds": 10.0,
+  "sample_rate": 48000,
+  "channels": 2,
+  "peak_dbfs_before_vorbis": -2,
+  "impact_seconds": [
+    0.02,
+    0.82,
+    1.72,
+    2.82,
+    3.18,
+    3.65,
+    6.4,
+    7.166666666666667,
+    7.875
+  ]
+}

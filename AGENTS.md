@@ -92,3 +92,5 @@
 - 2026-11-10 使用者更正：要求真正改善正式遊戲，不能再把新增教學／獨立原型當主要優化交付。最新正式玩法見docs/LIVE_COMBAT_IMPROVEMENTS.zh-TW.md：承諾式CPU攻防／角色資源、LOOP輕拳推離2.8／3.4、native hitstop與演出重疊消耗；原傷害／能量／大招長pose不改。Easy單鍵新手驗證明確選Easy，Normal／Hard可反制單鍵spam。仍同branch推送，公開Web不更新；Mac／真人平衡待測。
 
 - 2026-11-11 最新使用者指定此branch並要求按影片做正式回合3D過場：現況 CITY_BREAKER.zh-TW.md。CityBreaker是KO段唯一camera／destruction owner，零生命真結算後才播，不改simulation或XP；沿用當局四角／原街景／原客機，可逆static batch／飛機分件。F2短版，Enter／Space先跳過、再Enter接下局，Esc保持result恢復。所有退出走clear；不要改成固定人物影片或另建獨立玩法。來源同branch／PR #6，Web不更新；參考片與程序幾何仍有差異，未宣稱逐像素完美。
+
+- 2026-11-11 最新KO聲畫要求：見CITY_BREAKER.zh-TW.md最新節／evidence/city-breaker-fx。原CityBreaker正式KO入口擴充原創score、既有SFX bus、pause／clear及BGM duck，7-tap邊緣放射模糊／漫畫線／字卡／3D衝擊環／FOV反衝，14°roll上限。後製不模糊HUD，F2短版保持。原創音軌可由tools/build_city_breaker_audio.py重建；不要以原片音軌取代來源或把無聲舊預覽當最新。來源同branch推送，Web不更新。

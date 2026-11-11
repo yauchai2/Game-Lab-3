@@ -223,3 +223,8 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 ## 2026-11-11：共用資產的正式 KO 3D 過場
 
 按使用者原片復建八鏡10秒，直接接正式零生命結算而非新增獨立玩法；唯一 CityBreaker 演出owner在Simulation已決勝後掌鏡，不改命中／勝者／資源。沿用當局FighterVisual與retarget，原背景／飛機可逆分件，僅遠景重用本場建築；不烘焙人物或播放原片。先以24fps切點對齊時序，清楚保留與原片幾何／煙霧／人物差異；不宣稱完美復刻。F2原短版、Enter／Space跳過和Esc暫停／所有出口共用clear。來源同branch推送，Web不更新。
+
+
+## 2026-11-11：KO聲畫單一owner
+
+使用者授權創意加入聲效／震動／模糊／漫畫線，沿既有正式KO CityBreaker擴充，避免第二套全屏director。原創程序score打包為10秒OGG，專用player路由到既有SFX bus與limiter，pause保位置／clear停止；BGM owner只收duck值，不停／重置transport。7-tap邊緣放射模糊與中心保清、短撞擊色差／對比、速度線及FOV反衝都讀同一演出秒數。模糊是風格化放射採樣，並非運動向量motion blur；F2退出長演出及後製。

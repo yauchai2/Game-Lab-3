@@ -41,9 +41,13 @@ func run() -> void:
             for i in 4:await process_frame
             await RenderingServer.frame_post_draw
             root.get_texture().get_image().save_png("res://../docs/evidence/extended-polish/result_%d.png"%outcome)
+    scene.audio.set_process(false);scene.audio.music.stop();scene.audio.fading_music.stop()
+    scene.city_breaker.clear()
+    await create_timer(.12).timeout
     scene.queue_free()
     for i in 4:await process_frame
     if DisplayServer.get_name()!="headless":await RenderingServer.frame_post_draw
+    await create_timer(.12).timeout
     var failed:=checks.filter(func(c:Dictionary)->bool:return not c.passed).size()
     var file:=FileAccess.open("res://../docs/evidence/extended-polish/result-presentation.json",FileAccess.WRITE)
     file.store_string(JSON.stringify({"checks":checks,"passed":checks.size()-failed,"failed":failed,"display":DisplayServer.get_name(),"method":"real KO/timeout transitions with a stale prior-round result clock and active hit flash; frozen simulation compared with settled visual poses"},"  "))

@@ -1,0 +1,105 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "real KO owns lens and synchronized score",
+      "passed": true
+    },
+    {
+      "detail": {
+        "frames": 16384,
+        "peak": 0.478901863098145,
+        "rms": 0.0707633332233268,
+        "stereo": 0.029154202725321
+      },
+      "name": "actual engine KO mixer produces bounded stereo PCM",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "impact enables bounded high contrast / lens impulse",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "camera recoil remains below fourteen degree roll",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "street rush uses edge speed lines",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "last KO frame settles for readability",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "pause freezes score and cinematic clock",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "resume unpauses existing score without starting combat",
+      "passed": true
+    },
+    {
+      "detail": {
+        "frames": 8192,
+        "peak": 0.0000221674799831817,
+        "rms": 0.00000494037679814402,
+        "stereo": 0.00000152379433717636
+      },
+      "name": "global mute silences KO bus",
+      "passed": true
+    },
+    {
+      "detail": {
+        "frames": 4096,
+        "peak": 0.00000839588847156847,
+        "rms": 0.00000210234557124415,
+        "stereo": 0.000000861780435934696
+      },
+      "name": "zero SFX level silences dedicated score",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "sound setting changes preserve playback instance",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "skip clears postprocessing / sound / music duck",
+      "passed": true
+    },
+    {
+      "detail": {
+        "frames": 8192,
+        "peak": 0.0,
+        "rms": 0.0,
+        "stereo": 0.0
+      },
+      "name": "no score tail leaks after skip",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "F2 clears lens and sound together",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "title exit releases all FX ownership",
+      "passed": true
+    }
+  ],
+  "display": "X11",
+  "driver": "Dummy",
+  "engine": "4.6.3-stable (official)",
+  "failed": 0,
+  "passed": 15,
+  "scope": "Actual engine PCM and native renderer, no hardware speaker / Mac performance claim"
+}
