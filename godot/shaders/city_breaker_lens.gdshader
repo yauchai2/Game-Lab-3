@@ -2,11 +2,14 @@ shader_type canvas_item;
 render_mode unshaded;
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 uniform float blur = 0.0;
+uniform float fisheye = 0.0;
 uniform float impact = 0.0;
 uniform float ring_phase = 1.0;
 uniform vec2 center = vec2(0.5,0.48);
 void fragment() {
-    vec2 uv = SCREEN_UV;
+    vec2 q = SCREEN_UV-vec2(.5);
+    float r2=dot(q*vec2(1.777778,1.0),q*vec2(1.777778,1.0));
+    vec2 uv = clamp(vec2(.5)+q*(1.0+fisheye*.72*r2)/(1.0+fisheye*.75),vec2(.002),vec2(.998));
     vec2 radial = uv-center;
     float distance_from_center = length(radial*vec2(1.0,0.5625));
     float rim = smoothstep(0.12,0.52,distance_from_center);

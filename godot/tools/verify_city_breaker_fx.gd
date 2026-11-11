@@ -21,9 +21,9 @@ func run() -> void:
     await process_frame;await process_frame
     s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.fighters[1].health=0;s._combat_step()
     var c=s.city_breaker
-    check("full presentation and score are both five seconds",c.DURATION==5.0 and absf(c.score_player.stream.get_length()-5.0)<.03)
+    check("base destruction and score remain five seconds",c.BASE_DURATION==5.0 and absf(c.score_player.stream.get_length()-5.0)<.03)
     check("audio retains original pitch",c.score_player.pitch_scale==1.0)
-    check("KO card holds for at least 0.9 seconds",c.DURATION-c.playback_time(c.CUTS[7])>=.9)
+    check("KO card holds for at least 0.9 seconds",c.BASE_DURATION-c.playback_time(c.CUTS[7])>=.9)
     var monotonic:=true;var last:float=-1
     for frame in 301:
         var wall:float=frame/60.0

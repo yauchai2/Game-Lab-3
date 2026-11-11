@@ -537,3 +537,8 @@ Godot4.7.2 Linux Compatibility：37原生操作、10頁面／3D剪影／popup／
 ## 2026-11-11：五秒快節奏KO
 
 20項FX／實際PCM／節奏、165四角雙方KO生命週期、17結果檢查通過。驗證音軌及過場同為5秒、pitch_scale1、時間映射不倒退且正反一致、空爆局部慢拍、KO收尾>=0.9秒、4.983秒仍活動及5秒截止。最終原生log無ERROR／SCRIPT ERROR／洩漏；5秒Movie Writer聲畫及AAC解碼音訊見evidence/city-breaker-fast。Godot4.6.3／llvmpipe／Dummy，固定30fps匯出不代表目標Mac即時效能；未重跑整份歷史suite。
+
+
+## 2026-11-11：勝者魚眼與四角色離場
+
+86新檢查：四角×雙方、真模型／頭部構圖／不同骨架姿態、正確exit音軌、pause／resume／skip、實際出框、資料不變、near／fisheye／音訊還原、F2／重開／標題與自然結算。20FX＋165KO＋17結果回歸通過，最終log無ERROR／SCRIPT ERROR／洩漏。四套3.2秒原生Movie Writer聲畫與8.2秒完整KO流程、PCM量測見evidence/victory-exits。原5秒聲軌與HEAD版PCM解碼比對相同，未改基段音高。Godot4.6.3／llvmpipe／Dummy；不是Mac、即時GPU效能或真人實聽驗收。早期近鏡曾發現RIVET裁臉與LOOP手部遮擋，已按真head anchor與姿態改位，最終四角實際擷取並檢視。歷史suite未全重跑，舊Rhythm基線失敗仍保留。

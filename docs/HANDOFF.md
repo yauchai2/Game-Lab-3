@@ -1,5 +1,9 @@
 # 接續工作交接
 
+## 2026-11-11：勝者超近魚眼與專屬離場
+
+依最新要求在K.O.後追加3.2秒，總長8.2秒，前5秒不變。victory_exit.gd以當局勝者／真骨架做四套姿態與離場：ZIP甩手側滑、RIVET雙拳重步、HUSH側頭回眸、LOOP右手花式轉身。124°FOV＋桶形fisheye，依各rig頭部取景，慢步真正出框後才出結果；背景破壞繼續慢動態。4套原創exit音軌第5秒切入，BGM／mute／pause保持；clear還原near／fisheye並停音，F2／重開／返回皆測。86新勝者＋20FX＋165KO＋17結果通過，四角及完整有聲影片在evidence/victory-exits。不是mocap／足底IK或物理魚眼校準；Mac／真人實聽／目標GPU待驗，來源同branch／PR #6，Web不更新。
+
 ## 2026-11-11：KO整體加快一倍
 
 使用者要求整體加快一倍並保留節奏／爽感，本輪作用於這段KO過場：正式播放10→5秒，用timing.json共享非線性映射，保留撞樓短重拍、約3.61秒空爆慢拍及4.08–5秒KO收尾。動畫age保留原10秒作者時間；新增playback_elapsed是真5秒時鐘，session結算使用DURATION5。聲效按相同profile重新合成5秒，pitch_scale1保持低頻／音高；JSON加入export filter但未發佈。20FX／PCM＋165KO＋17結果通過，有聲Movie Writer影片見evidence/city-breaker-fast。F2／靜音／暫停／跳過清理保持；不改正式simulation速度／傷害。來源同branch／PR #6。

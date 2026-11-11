@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[勝者魚眼特寫與四種離場](docs/evidence/victory-exits/README.md)。保留5秒KO爆破，追加3.2秒超近廣角／魚眼與四角專屬動作、慢步出框和角色聲效；結果等離場後出現。來源同branch，Web不更新。
+
 最新：[五秒快節奏KO](docs/evidence/city-breaker-fast/README.md)。整段10→5秒，穿街／追天加快，保留撞擊／空爆重拍與約0.9秒KO收尾；聲效重新合成、不倍速變調。來源同branch，Web不更新。
 
 最新：[有聲 KO 演出與漫畫鏡頭](docs/evidence/city-breaker-fx/README.md)。真正KO後自動播放原創立體聲爆破／風壓／碎片／引擎／KO重音，配合速度線、短模糊、震動及FOV反衝。可跳過／暫停、F2短版，來源同branch，Web不更新。

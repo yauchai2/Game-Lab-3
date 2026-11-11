@@ -87,3 +87,45 @@ with wave.open(str(wav),'wb') as f:f.setnchannels(2);f.setsampwidth(2);f.setfram
 subprocess.run(['ffmpeg','-v','error','-i',str(wav),'-c:a','libvorbis','-q:a','5',str(out/'score.ogg'),'-y'],check=True)
 (out/'provenance.json').write_text(json.dumps({'source':'Original procedural synthesis; no external samples','generator':'tools/build_city_breaker_audio.py','seed':20261111,'duration_seconds':DURATION,'sample_rate':RATE,'channels':2,'peak_dbfs_before_vorbis':-2,'impact_seconds':[playback(c[0]) for c in CUES],'authored_impact_seconds':[c[0] for c in CUES],'timing_profile':'godot/audio/city_breaker/timing.json'},indent=2)+'\n')
 print(out/'score.ogg')
+
+# Four original 3.2-second victory signatures and footstep patterns.
+for character in ['zip','rivet','hush','loop']:
+    DURATION=3.2
+    mix=np.zeros((int(RATE*DURATION),2),dtype=np.float64)
+    def tone(at,f,duration,gain,pan=0):
+        t=np.arange(int(RATE*duration))/RATE
+        signal=(np.sin(2*np.pi*f*t)+.22*np.sin(2*np.pi*f*2.01*t))*np.exp(-t/.12)*fade(t,duration)
+        add(at,signal,gain,pan)
+    t=np.arange(int(RATE*.28))/RATE
+    add(.02,low_noise(len(t),2800)*np.sin(np.pi*t/.28)**2,.12,-.3)
+    if character=='zip':
+        for i,f in enumerate([880,1320,1760]):tone(.10+i*.075,f,.23,.09,-.3+i*.3)
+        impact(.12,.25,0)
+        steps=[1.48,2.10,2.73]
+    elif character=='rivet':
+        impact(.10,.8,0)
+        for i,f in enumerate([230,347,491]):tone(.22+i*.07,f,.32,.07,(-1 if i%2 else 1)*.4)
+        steps=[1.47,2.25,2.96]
+    elif character=='hush':
+        tone(.12,680,.22,.055,.3)
+        for at in [.32,.58]:
+            t=np.arange(int(RATE*.10))/RATE
+            add(at,low_noise(len(t),6500)*np.exp(-t/.009)*fade(t,.1),.12,-.2)
+        steps=[1.53,2.35,2.98]
+    else:
+        for i,f in enumerate([330,495,660,990]):tone(.10+i*.085,f,.26,.095,(-1 if i%2 else 1)*.55)
+        steps=[1.49,2.14,2.81]
+    for i,at in enumerate(steps):
+        if character=='rivet':impact(at,.23,.35)
+        t=np.arange(int(RATE*.18))/RATE
+        foot=low_noise(len(t),550 if character=='rivet' else 1800)*np.exp(-t/.028)*fade(t,.18)
+        add(at,foot,.13 if character=='rivet' else .065,(-.7 if character in ['zip','hush'] else .7)*(i+1)/3)
+        if character=='zip':add(at+.02,low_noise(len(t),2400)*np.exp(-t/.07)*fade(t,.18),.035,-.6)
+    target={'zip':-3,'rivet':-2,'hush':-6,'loop':-3}[character]
+    mix=np.tanh(mix)
+    mix*=10**(target/20)/max(.001,np.max(np.abs(mix)))
+    mix[-int(.15*RATE):]*=np.linspace(1,0,int(.15*RATE))[:,None]
+    wav=Path('/tmp/exit_'+character+'.wav')
+    with wave.open(str(wav),'wb') as f:f.setnchannels(2);f.setsampwidth(2);f.setframerate(RATE);f.writeframes((mix*32767).astype('<i2').tobytes())
+    subprocess.run(['ffmpeg','-v','error','-i',str(wav),'-c:a','libvorbis','-q:a','5',str(out/('exit_'+character+'.ogg')),'-y'],check=True)
+(out/'exit-provenance.json').write_text(json.dumps({'source':'Original procedural synthesis, no external samples','duration':3.2,'characters':['zip','rivet','hush','loop'],'sample_rate':RATE,'channels':2,'generator':'tools/build_city_breaker_audio.py'},indent=2)+'\n')

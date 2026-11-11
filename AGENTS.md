@@ -96,3 +96,5 @@
 - 2026-11-11 最新KO聲畫要求：見CITY_BREAKER.zh-TW.md最新節／evidence/city-breaker-fx。原CityBreaker正式KO入口擴充原創score、既有SFX bus、pause／clear及BGM duck，7-tap邊緣放射模糊／漫畫線／字卡／3D衝擊環／FOV反衝，14°roll上限。後製不模糊HUD，F2短版保持。原創音軌可由tools/build_city_breaker_audio.py重建；不要以原片音軌取代來源或把無聲舊預覽當最新。來源同branch推送，Web不更新。
 
 - 2026-11-11 最新節奏覆蓋原10秒KO：正式播放5秒，以timing.json把原10秒作者時間非線性壓縮，保留撞樓／空爆短重拍、0.92秒KO收尾；playback_elapsed是真時鐘，age仍是作者時間。聲效按同profile重新合成5秒、不變調；不要用Engine.time_scale或把整段pitch_scale=2。來源同branch，Web不更新；最新證據evidence/city-breaker-fast。
+
+- 2026-11-11 最新K.O.後要求覆蓋5秒直接結果：保留5秒基段，再追加3.2秒當局勝者近鏡／專屬離場，整段8.2秒。victory_exit.gd由同一CityBreaker時鐘掌管，四套程序骨架／方向與exit音軌；124°FOV＋桶形fisheye依真head anchor取景，真出框再出結果。clear必須還原near／fisheye、停止score；F2／暫停／重開保持。原GLB／simulation不變，最新證據evidence/victory-exits；來源同branch推送，Web不更新。

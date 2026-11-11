@@ -1,0 +1,29 @@
+{
+  "source": "Actual Godot Movie Writer exit-only mix; earlier KO transient excluded, no dubbed audio",
+  "characters": [
+    {
+      "character": "zip",
+      "peak": 0.26145169138908386,
+      "rms": 0.018193159252405167,
+      "clipped_samples": 0
+    },
+    {
+      "character": "rivet",
+      "peak": 0.3030281662940979,
+      "rms": 0.028028342872858047,
+      "clipped_samples": 0
+    },
+    {
+      "character": "hush",
+      "peak": 0.16282211244106293,
+      "rms": 0.009284436702728271,
+      "clipped_samples": 0
+    },
+    {
+      "character": "loop",
+      "peak": 0.24646040797233582,
+      "rms": 0.01733284443616867,
+      "clipped_samples": 0
+    }
+  ]
+}

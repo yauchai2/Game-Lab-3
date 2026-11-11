@@ -1,7 +1,14 @@
 extends Node3D
 ## KO presentation only. Uses the live stage/roster; never writes simulation state.
 ## Closed-form paths allow frame-independent playback, capture and complete rollback.
-const DURATION := 5.0
+const BASE_DURATION := 5.0
+const OUTRO_DURATION := 3.2
+const DURATION := BASE_DURATION + OUTRO_DURATION
+var victory = preload("res://scripts/combat/cinematic/victory_exit.gd").new()
+var victory_state: Dictionary = {}
+var outro_started := false
+var base_score: AudioStream
+var outro_scores: Array[AudioStream] = []
 const SOURCE_DURATION := 10.0
 var timing: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://audio/city_breaker/timing.json"))
 var playback_elapsed := 0.0
@@ -49,7 +56,10 @@ func setup(owner_session: Node3D) -> void:
     container.hide()
     score_player = AudioStreamPlayer.new()
     score_player.name = "OriginalKOSoundDesign"
-    score_player.stream = load("res://audio/city_breaker/score.ogg")
+    base_score = load("res://audio/city_breaker/score.ogg")
+    score_player.stream = base_score
+    for id in ["zip","rivet","hush","loop"]:
+        outro_scores.append(load("res://audio/city_breaker/exit_"+id+".ogg"))
     score_player.bus = "Afterhours SFX"
     add_child(score_player)
     var layer := CanvasLayer.new(); layer.layer = 1
@@ -78,7 +88,7 @@ func begin(side: int) -> void:
         actor_states.append({"node": actor, "transform": actor.transform, "visible": actor.visible})
     var plane: Node3D = session.backdrop.plane
     plane_state = {"transform": plane.transform, "visible": plane.visible, "frozen": session.backdrop.frozen}
-    camera_state = {"transform": session.camera.transform, "fov": session.camera.fov, "far": session.camera.far, "environment": session.camera.environment}
+    camera_state = {"transform": session.camera.transform, "fov": session.camera.fov, "far": session.camera.far, "near": session.camera.near, "environment": session.camera.environment}
     session.backdrop.frozen = true
     # Reposition this SAME aircraft for the authored sequence; restore after it.
     plane.position = Vector3(-2, 48, -70)
@@ -98,6 +108,7 @@ func begin(side: int) -> void:
     container.show()
     sample(0.0)
     _sync_audio(false)
+    score_player.stream = base_score
     score_player.play()
 
 func advance(delta: float, paused: bool) -> void:
@@ -108,7 +119,12 @@ func advance(delta: float, paused: bool) -> void:
         sample(age)
         return
     playback_elapsed = minf(DURATION, playback_elapsed + maxf(delta, 0.0))
-    sample(source_time(playback_elapsed))
+    if playback_elapsed>=BASE_DURATION and not outro_started:
+        outro_started=true
+        score_player.stop()
+        score_player.stream=outro_scores[session.fighters[winner].character_index]
+        score_player.play()
+    sample(source_time(minf(playback_elapsed,BASE_DURATION)))
     if playback_elapsed >= DURATION:
         clear()
 
@@ -132,6 +148,7 @@ func sample(time: float) -> void:
     _actors_at(age)
     _camera_at(u)
     _lens_at(age)
+    if playback_elapsed>=BASE_DURATION:_victory_at(playback_elapsed-BASE_DURATION)
     for shadow in session.silhouettes: shadow.visible = false
 
 func victim_path(time: float) -> Vector3:
@@ -496,13 +513,16 @@ func _octahedron() -> ArrayMesh:
 
 func draw(canvas: Control) -> void:
     if not running: return
+    if playback_elapsed>=BASE_DURATION:
+        _draw_victory(canvas)
+        return
     _draw_speed_ink(canvas)
     var ink := Color("11101d")
     # Native overlay, never bake text or HUD into a video texture.
     canvas.draw_rect(Rect2(0,0,1280,28),ink)
     canvas.draw_rect(Rect2(0,692,1280,28),ink)
     canvas.draw_string(session.hud.font,Vector2(28,710),"ENTER / SPACE  SKIP     ESC  PAUSE",HORIZONTAL_ALIGNMENT_LEFT,-1,22,Color("d9d2e5"))
-    if age >= 189.0/24:
+    if age >= 189.0/24 and playback_elapsed<BASE_DURATION:
         var enter := clampf((age-189.0/24)/.15,0,1)
         canvas.draw_set_transform(Vector2(930+(1-enter)*300,535)*canvas.size/Vector2(1280,720),-.14,canvas.size/Vector2(1280,720))
         canvas.draw_colored_polygon(PackedVector2Array([Vector2(-40,-85),Vector2(300,-115),Vector2(270,25),Vector2(-55,55)]),Color("f50091"))
@@ -512,6 +532,9 @@ func draw(canvas: Control) -> void:
 
 func clear() -> void:
     running = false
+    outro_started=false
+    victory_state.clear()
+    if is_instance_valid(lens_material):lens_material.set_shader_parameter("fisheye",0.0)
     impact_strength=0.0;speed_strength=0.0;blur_strength=0.0
     if is_instance_valid(score_player):
         score_player.stream_paused=false
@@ -542,6 +565,7 @@ func clear() -> void:
         session.camera.transform = camera_state.transform
         session.camera.fov = camera_state.fov
         session.camera.far = camera_state.far
+        session.camera.near = camera_state.near
         session.camera.environment = camera_state.environment
     plane_state.clear()
     actor_states.clear()
@@ -570,6 +594,7 @@ func _lens_at(time: float) -> void:
         var screen:Vector2=session.camera.unproject_position(focal)/session.get_viewport().get_visible_rect().size
         center=screen.clamp(Vector2(.25,.25),Vector2(.75,.65))
     lens.visible=running and not session.reduced_effects
+    lens_material.set_shader_parameter("fisheye",0.0)
     lens_material.set_shader_parameter("blur",blur_strength)
     lens_material.set_shader_parameter("impact",impact_strength)
     lens_material.set_shader_parameter("ring_phase",clampf(impact_age/.48,0,1))
@@ -620,3 +645,45 @@ func _map_time(seconds: float, inputs: Array, outputs: Array) -> float:
         if seconds<=inputs[i+1]:
             return lerpf(outputs[i],outputs[i+1],clampf((seconds-inputs[i])/(inputs[i+1]-inputs[i]),0,1))
     return outputs[-1]
+
+
+func _victory_at(seconds: float) -> void:
+    _pieces_at(SOURCE_DURATION+seconds*.22)
+    _bursts_at(SOURCE_DURATION+seconds*.22)
+    session.fighters[victim].visible=false
+    victory_state= victory.apply(session,winner,seconds)
+    lens_material.set_shader_parameter("fisheye",victory_state.fish)
+    lens_material.set_shader_parameter("blur",.018*victory_state.impact)
+    lens_material.set_shader_parameter("impact",victory_state.impact*.6)
+    lens_material.set_shader_parameter("center",Vector2(.5,.48))
+    lens_material.set_shader_parameter("ring_phase",clampf(seconds*3,0,1))
+    lens.visible=true
+    blur_strength=.018*victory_state.impact
+    impact_strength=victory_state.impact
+    speed_strength=0.0
+    session.audio.cinematic_duck=.28+victory_state.impact*.4
+
+func sample_outro(seconds: float) -> void:
+    playback_elapsed=BASE_DURATION+clampf(seconds,0,OUTRO_DURATION)
+    sample(SOURCE_DURATION)
+
+func _draw_victory(canvas: Control) -> void:
+    if victory_state.is_empty():return
+    var t:float=playback_elapsed-BASE_DURATION
+    var color:Color=victory_state.accent
+    var ink:=Color("12101d")
+    canvas.draw_rect(Rect2(0,0,1280,26),ink)
+    canvas.draw_rect(Rect2(0,690,1280,30),ink)
+    if t<1.12:
+        var width:float=235*(1.0-smoothstep(.95,1.12,t))
+        canvas.draw_colored_polygon(PackedVector2Array([Vector2(0,104),Vector2(width,86),Vector2(width-36,119),Vector2(0,142)]),color)
+        canvas.draw_string(session.hud.bold,Vector2(32,652),victory_state.label,HORIZONTAL_ALIGNMENT_LEFT,-1,36,color)
+    canvas.draw_string(session.hud.font,Vector2(28,710),"ENTER / SPACE  SKIP     ESC  PAUSE",HORIZONTAL_ALIGNMENT_LEFT,-1,22,Color("d9d2e5"))
+    # A few broad ink cuts punctuate the gesture, then leave the slow exit clean.
+    if t>.07 and t<.30:
+        for i in 6:
+            var x:float=55+i*231
+            canvas.draw_colored_polygon(PackedVector2Array([Vector2(x,-10),Vector2(x+15,30),Vector2(x+40,135),Vector2(x+22,35)]),Color(color,.65))
+    if t>2.98:
+        var wipe:float=smoothstep(2.98,3.2,t)
+        canvas.draw_colored_polygon(PackedVector2Array([Vector2(-160,0),Vector2(1440*wipe,0),Vector2(1440*wipe-140,720),Vector2(-160,720)]),ink)

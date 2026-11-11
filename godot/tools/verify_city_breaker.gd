@@ -66,10 +66,10 @@ func run() -> void:
     check("reduced effects KO keeps short original result",not s.city_breaker.active() and s.finish_seconds()==s.FINISH_SECONDS)
     s.reduced_effects=false;fixture(0)
     var c=s.city_breaker
-    for i in 299:s._process(1.0/60)
-    check("five second cut still runs before its final frame",c.active() and not s.finish_menu_open)
+    for i in 491:s._process(1.0/60)
+    check("winner outro still runs before its final frame",c.active() and not s.finish_menu_open)
     s._process(.04)
-    check("natural completion ends at five seconds",not c.active() and s.finish_menu_open and not s.backdrop.frozen)
+    check("natural completion ends after the five second KO and winner outro",not c.active() and s.finish_menu_open and not s.backdrop.frozen)
     check("original source nodes remain alive",c.hidden_sources.all(func(v:Dictionary)->bool:return is_instance_valid(v.node) and v.node.visible==v.visible))
     s.return_to_title();s.set_character(0,0);s.start_match(false)
     s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.fighters[0].x=-.5;s.sim.fighters[1].x=.5
