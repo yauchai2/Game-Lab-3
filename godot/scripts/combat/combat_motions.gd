@@ -113,6 +113,8 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     if f.state=="attack" and character==1 and f.move in ["cross","finisher","special"]:selected="Sword_Attack";loop=false
     if f.get("showcase",false):
         selected=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop","Idle_Loop"][clampi(character,0,4)];loop=true
+    # Cinematic performers name a library clip directly; combat never sets this key.
+    if f.has("cinematic_clip") and library.clips.has(f.cinematic_clip):selected=f.cinematic_clip;loop=true
     # Death owns the pose even when an outgoing attack or idle state remains in
     # the frozen result/squad snapshot. State changes must not restart the fall.
     var dead:bool=f.health<=0

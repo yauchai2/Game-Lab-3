@@ -1,3 +1,7 @@
+## 2026-11-11：開機劇情開場 18 秒六鏡（Claude，草稿 PR 待審）
+
+見 [STORY_OPENING.zh-TW.md](STORY_OPENING.zh-TW.md)。依使用者影片／分鏡／鏡頭表，以即時3D做啟動後、主選單前的18秒開場：城市俯衝→三人日常→ZIP帶黑箱→送錯貨俯拍→黑衣人下車→合箱撞擊切AFTERHOURS。四主角原GLB＋修補版黑衣人、程序場景、專屬lens、原創音效軌、粵語字幕；主選單曲淡入／9.75秒抽走／隨標題回歸，transport不停。首次啟動自動播，旗標存story_opening.cfg，設定頁可重播；Enter／Space跳過、Esc暫停、F2減少特效。只在場景為current_scene時自動播，既有測試不受影響。34/34原生檢查＋真實啟動錄影，證據evidence/story-opening。分支claude/project-thread-frl810→codex/combat-escalation-next，未合併、Web不動；simulation／XP／原GLB未改。真人實聽、Mac、4.7.2待驗，對白無配音。
+
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 
 最後合併最新main compact HUD（fda61d1），額外21項原生整合及嚴格8項重跑通過；交付main與codex/combat-escalation-next，Web不動。

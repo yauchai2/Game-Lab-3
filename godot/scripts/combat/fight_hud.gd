@@ -200,6 +200,10 @@ func rebuild_menu(requested_focus := "") -> void:
         menu_stack.remove_child(child)
         child.queue_free()
     art_controls.visible=false
+    if session.screen=="opening":
+        # The boot story opening owns the whole frame; no menu, no focus.
+        menu.visible=false;back_button.visible=false
+        return
     menu.visible=session.screen!="play" and not (session.demo!=null and session.screen=="result") and not session.result_presentation_active()
     back_button.visible=menu.visible and menu_page!="main"
     back_button.text="ESC  BACK"
@@ -488,6 +492,7 @@ func _settings_page() -> void:
     _toggle("training_details",session.training_details,func(value:bool):
         session.training_details=value
         session.save_options())
+    if session.screen=="title":_plain_action("REPLAY OPENING","replay_opening",session.replay_story_opening)
     _caption("settings_saved")
 
 func _roster_page() -> void:
@@ -591,6 +596,9 @@ func _cut_bar(at: Vector2, extent: Vector2, color: Color, reverse := false) -> v
 func _draw() -> void:
     if not is_instance_valid(session):return
     draw_set_transform(Vector2.ZERO,0,size/Vector2(1280,720))
+    if session.screen=="opening":
+        session.story_opening.draw(self)
+        return
     if session.screen=="title":
         if menu_page=="main":art.title(self)
         elif menu_page=="roster":art.roster(self,session)

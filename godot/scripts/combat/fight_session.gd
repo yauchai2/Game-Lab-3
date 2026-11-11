@@ -34,6 +34,11 @@ var arena_cage=preload("res://scripts/combat/arena_cage.gd").new()
 var round_theatre = preload("res://scripts/combat/cinematic/round_theatre.gd").new()
 var city_breaker = preload("res://scripts/combat/cinematic/city_breaker.gd").new()
 var ability_draw = preload("res://scripts/combat/cinematic/ability_draw.gd").new()
+var story_opening = preload("res://scripts/combat/cinematic/story_opening.gd").new()
+## Boot story opening plays before the main menu when this scene is the running game.
+@export var story_opening_on_boot := true
+## false: only the first launch plays it (flag saved beside progression). true: every launch.
+@export var story_opening_every_boot := false
 var draw_rewards = preload("res://scripts/combat/ability_draw/rewards.gd").new()
 var draw_continuing := false
 var draw_match_serial := 0
@@ -138,7 +143,10 @@ func _ready() -> void:
     round_theatre.setup(self)
     add_child(ability_draw)
     ability_draw.setup(self)
+    add_child(story_opening)
+    story_opening.setup(self)
     _present(0.0)
+    if story_opening_wanted():story_opening.begin()
 
 func _build_stage() -> void:
     backdrop = preload("res://scripts/combat/street_backdrop.gd").new()
@@ -687,6 +695,7 @@ func _process(delta: float) -> void:
             skip_city_breaker()
         else:
             city_breaker.advance(delta, screen != "result")
+    if story_opening.active():story_opening.advance(delta)
     if ability_draw.active():
         ability_draw.advance(delta,screen in ["pause","help"])
     elif not city_breaker.active():
@@ -723,6 +732,7 @@ func _fit_box_camera() -> void:
     base_camera=camera.position;camera_focus=center
 
 func _apply_red_stage() -> void:
+    if story_opening.active():return
     if city_breaker.active() or round_theatre.intro or ability_draw.active():
         backdrop.visible=true
         camera.environment=null
@@ -935,6 +945,9 @@ func return_to_street() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if not event.is_pressed() or event.is_echo():
         return
+    if story_opening.active():
+        story_opening.handle_key(event)
+        return
     if ability_draw.active() and screen=="result" and event.keycode in [KEY_ENTER,KEY_KP_ENTER,KEY_SPACE]:
         ability_draw.handle_key(event)
         return
@@ -1081,6 +1094,7 @@ func set_volume(kind: String, value: float) -> void:
     settings_save_clock=.35
 
 func _exit_tree() -> void:
+    story_opening.clear()
     ability_draw.clear()
     round_theatre.clear()
     city_breaker.clear()
@@ -1229,6 +1243,15 @@ func set_character(side:int,index:int) -> void:
 
 func save_options() -> void:
     preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":run_base_difficulty if run_active else sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":run_original_rival if run_active else character_choices[1]})
+
+func story_opening_wanted() -> bool:
+    # Only a real launch of this scene; tools that instantiate it stay on the menu.
+    if not story_opening_on_boot or DisplayServer.get_name()=="headless":return false
+    if get_tree().current_scene!=self:return false
+    return story_opening_every_boot or not story_opening.seen
+
+func replay_story_opening() -> void:
+    if screen=="title" and not story_opening.active():story_opening.begin(true)
 
 func return_to_title() -> void:
     coach=null

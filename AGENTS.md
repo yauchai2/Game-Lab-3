@@ -125,3 +125,5 @@
 - 2026-11-11 最新澄清：多面球狀反彈僅指定技能／大招，覆蓋一般重擊／挑空／投技皆觸發。ServiceProfiles.move以ricochet旗標opt-in：四人overdrive最後重擊、RIVET preload2 special、HUSH sample_boost special；其他normal／未強化技能不啟動。平常不顯示臨時盒或限制跳躍天花，僅反彈效果期間。原RESULT／決勝KO與能力抽取保持，見evidence/ricochet-scope；同branch推送、Web不更新。
 
 - 2026-11-11 本聊天最新已要求以新影片實作抽獎後裝備：見docs/ABILITY_EQUIP_RUNTIME.zh-TW.md，覆蓋腰側僅規劃。結果按EQUIP／Demo停3.5秒後播4.10秒，F2開始1.15秒；使用當局五原選角副本、只拍手腰腿鞋，正式fighter以Hips跟隨九核心腰掛。一次套用在演出後，skip不重抽、cancel無獎、pause／clear還原；不重播多餘第三局人物開場。345項通過／新原創PCM，原GLB／XP／Web保留，Mac／真人待驗。
+
+- 2026-11-11 使用者提供開場影片／六格分鏡／18秒鏡頭表：現況見docs/STORY_OPENING.zh-TW.md。啟動後、主選單前的18秒即時3D開場，cinematic/story_opening.gd為唯一導演，無狀態sample(t)，clear須還原相機／街景／lens／score／duck。只在場景為current_scene時自動播，首次啟動旗標存story_opening.cfg，設定頁可重播；音樂只調音量不停transport，音效軌由tools/build_story_opening_audio.py重建，不用參考片音軌。第一拳與黑衣人上門短動畫留待「開始故事」，尚未實作。分支claude/project-thread-frl810草稿PR指向codex/combat-escalation-next，未合併、Web不更新。

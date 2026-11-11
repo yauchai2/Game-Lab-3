@@ -1,3 +1,7 @@
+## 2026-11-11：開機劇情開場
+
+verify_story_opening 34/34（擁有權、六鏡對應、無狀態取樣、黑箱／車／黑衣人節點、減少特效、暫停、音樂duck、自動結束、相機／街景還原、旗標存取、重播與跳過）。Movie Maker真實啟動錄影確認開場→主選單及第二次啟動直入主選單。回歸：reference_ui 37/37、ability_draw 69、black_suit 35；round_flow 23/24，失敗項於未修改e725c99相同。Godot4.6.3 Linux llvmpipe／Dummy音訊，非使用者本機、真實音效或觀感驗收；4.7.2 warning工具未跑。
+
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 
 最後合併最新main compact HUD（fda61d1），額外21項原生整合及嚴格8項重跑通過；交付main與codex/combat-escalation-next，Web不動。

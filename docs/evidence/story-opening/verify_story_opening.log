@@ -1,0 +1,35 @@
+STORY_OPENING tools that instantiate the scene stay on the menu true
+STORY_OPENING a fresh save has not seen the opening true
+STORY_OPENING timeline is 18 seconds in six 3-second shots true
+STORY_OPENING begin owns the frame true
+STORY_OPENING menu and art buttons are hidden during the opening true
+STORY_OPENING cast is the four roster models plus three collectors true
+STORY_OPENING each second maps to its shot true
+STORY_OPENING sampling is stateless and repeatable true
+STORY_OPENING ZIP carries the case in on shot three true
+STORY_OPENING ZIP and the collectors are absent from the city shot true
+STORY_OPENING case lands closed on the bench with a camera jolt true
+STORY_OPENING overhead reveal shows the open case true
+STORY_OPENING three collectors walk in step true
+STORY_OPENING lid is driven shut for the slam frame true
+STORY_OPENING slam holds a black impact frame true
+STORY_OPENING title shows wordmark, ink city and flat silhouettes true
+STORY_OPENING silhouettes are released outside the title true
+STORY_OPENING reduced effects removes fisheye, blur, flash and shake true
+STORY_OPENING the clock advances with the game frame true
+STORY_OPENING other keys cannot start a mode during the opening true
+STORY_OPENING Esc pauses clock and score true
+STORY_OPENING Esc resumes true
+STORY_OPENING menu music is cut for the reveal, never stopped true
+STORY_OPENING music returns with the title true
+STORY_OPENING the opening ends by itself on the main menu true
+STORY_OPENING camera, lens and street are restored true
+STORY_OPENING main menu buttons are back and usable true
+STORY_OPENING seen flag is saved beside progression true
+STORY_OPENING replay starts from the title true
+STORY_OPENING Space skips straight to the menu and restores the camera true
+STORY_OPENING a match starts normally afterwards true
+STORY_OPENING leaving the scene mid-opening clears it true
+STORY_OPENING the next launch remembers it was seen true
+STORY_OPENING without being the running game it still never autoplays true
+STORY_OPENING_RESULT 34/34
