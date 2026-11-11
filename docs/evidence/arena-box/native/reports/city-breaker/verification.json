@@ -1,0 +1,668 @@
+{
+  "checks": [
+    {
+      "name": "real KO begins current fighter 0 / winning side 0",
+      "passed": true
+    },
+    {
+      "name": "uses current model, no hardcoded replacement 0/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 0.2 0/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 1.0 0/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 2.0 0/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 3.5 0/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 5.0 0/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 6.3 0/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 7.1 0/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 8.6 0/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 9.8 0/0",
+      "passed": true
+    },
+    {
+      "name": "presentation leaves health / round / resources immutable",
+      "passed": true
+    },
+    {
+      "name": "building and aircraft genuinely split into 3D pieces",
+      "passed": true
+    },
+    {
+      "name": "victim is clearly airborne",
+      "passed": true
+    },
+    {
+      "name": "pause holds cinematic time and path",
+      "passed": true
+    },
+    {
+      "name": "resume returns to result, never combat",
+      "passed": true
+    },
+    {
+      "name": "skip shows result without advancing round",
+      "passed": true
+    },
+    {
+      "name": "skip restores live aircraft",
+      "passed": true
+    },
+    {
+      "name": "every modified static batch instance restored",
+      "passed": true
+    },
+    {
+      "name": "real KO begins current fighter 1 / winning side 0",
+      "passed": true
+    },
+    {
+      "name": "uses current model, no hardcoded replacement 1/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 0.2 1/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 1.0 1/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 2.0 1/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 3.5 1/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 5.0 1/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 6.3 1/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 7.1 1/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 8.6 1/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 9.8 1/0",
+      "passed": true
+    },
+    {
+      "name": "presentation leaves health / round / resources immutable",
+      "passed": true
+    },
+    {
+      "name": "building and aircraft genuinely split into 3D pieces",
+      "passed": true
+    },
+    {
+      "name": "victim is clearly airborne",
+      "passed": true
+    },
+    {
+      "name": "pause holds cinematic time and path",
+      "passed": true
+    },
+    {
+      "name": "resume returns to result, never combat",
+      "passed": true
+    },
+    {
+      "name": "skip shows result without advancing round",
+      "passed": true
+    },
+    {
+      "name": "skip restores live aircraft",
+      "passed": true
+    },
+    {
+      "name": "every modified static batch instance restored",
+      "passed": true
+    },
+    {
+      "name": "real KO begins current fighter 2 / winning side 0",
+      "passed": true
+    },
+    {
+      "name": "uses current model, no hardcoded replacement 2/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 0.2 2/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 1.0 2/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 2.0 2/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 3.5 2/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 5.0 2/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 6.3 2/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 7.1 2/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 8.6 2/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 9.8 2/0",
+      "passed": true
+    },
+    {
+      "name": "presentation leaves health / round / resources immutable",
+      "passed": true
+    },
+    {
+      "name": "building and aircraft genuinely split into 3D pieces",
+      "passed": true
+    },
+    {
+      "name": "victim is clearly airborne",
+      "passed": true
+    },
+    {
+      "name": "pause holds cinematic time and path",
+      "passed": true
+    },
+    {
+      "name": "resume returns to result, never combat",
+      "passed": true
+    },
+    {
+      "name": "skip shows result without advancing round",
+      "passed": true
+    },
+    {
+      "name": "skip restores live aircraft",
+      "passed": true
+    },
+    {
+      "name": "every modified static batch instance restored",
+      "passed": true
+    },
+    {
+      "name": "real KO begins current fighter 3 / winning side 0",
+      "passed": true
+    },
+    {
+      "name": "uses current model, no hardcoded replacement 3/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 0.2 3/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 1.0 3/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 2.0 3/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 3.5 3/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 5.0 3/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 6.3 3/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 7.1 3/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 8.6 3/0",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 9.8 3/0",
+      "passed": true
+    },
+    {
+      "name": "presentation leaves health / round / resources immutable",
+      "passed": true
+    },
+    {
+      "name": "building and aircraft genuinely split into 3D pieces",
+      "passed": true
+    },
+    {
+      "name": "victim is clearly airborne",
+      "passed": true
+    },
+    {
+      "name": "pause holds cinematic time and path",
+      "passed": true
+    },
+    {
+      "name": "resume returns to result, never combat",
+      "passed": true
+    },
+    {
+      "name": "skip shows result without advancing round",
+      "passed": true
+    },
+    {
+      "name": "skip restores live aircraft",
+      "passed": true
+    },
+    {
+      "name": "every modified static batch instance restored",
+      "passed": true
+    },
+    {
+      "name": "real KO begins current fighter 0 / winning side 1",
+      "passed": true
+    },
+    {
+      "name": "uses current model, no hardcoded replacement 0/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 0.2 0/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 1.0 0/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 2.0 0/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 3.5 0/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 5.0 0/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 6.3 0/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 7.1 0/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 8.6 0/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 9.8 0/1",
+      "passed": true
+    },
+    {
+      "name": "presentation leaves health / round / resources immutable",
+      "passed": true
+    },
+    {
+      "name": "building and aircraft genuinely split into 3D pieces",
+      "passed": true
+    },
+    {
+      "name": "victim is clearly airborne",
+      "passed": true
+    },
+    {
+      "name": "pause holds cinematic time and path",
+      "passed": true
+    },
+    {
+      "name": "resume returns to result, never combat",
+      "passed": true
+    },
+    {
+      "name": "skip shows result without advancing round",
+      "passed": true
+    },
+    {
+      "name": "skip restores live aircraft",
+      "passed": true
+    },
+    {
+      "name": "every modified static batch instance restored",
+      "passed": true
+    },
+    {
+      "name": "real KO begins current fighter 1 / winning side 1",
+      "passed": true
+    },
+    {
+      "name": "uses current model, no hardcoded replacement 1/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 0.2 1/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 1.0 1/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 2.0 1/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 3.5 1/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 5.0 1/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 6.3 1/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 7.1 1/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 8.6 1/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 9.8 1/1",
+      "passed": true
+    },
+    {
+      "name": "presentation leaves health / round / resources immutable",
+      "passed": true
+    },
+    {
+      "name": "building and aircraft genuinely split into 3D pieces",
+      "passed": true
+    },
+    {
+      "name": "victim is clearly airborne",
+      "passed": true
+    },
+    {
+      "name": "pause holds cinematic time and path",
+      "passed": true
+    },
+    {
+      "name": "resume returns to result, never combat",
+      "passed": true
+    },
+    {
+      "name": "skip shows result without advancing round",
+      "passed": true
+    },
+    {
+      "name": "skip restores live aircraft",
+      "passed": true
+    },
+    {
+      "name": "every modified static batch instance restored",
+      "passed": true
+    },
+    {
+      "name": "real KO begins current fighter 2 / winning side 1",
+      "passed": true
+    },
+    {
+      "name": "uses current model, no hardcoded replacement 2/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 0.2 2/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 1.0 2/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 2.0 2/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 3.5 2/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 5.0 2/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 6.3 2/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 7.1 2/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 8.6 2/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 9.8 2/1",
+      "passed": true
+    },
+    {
+      "name": "presentation leaves health / round / resources immutable",
+      "passed": true
+    },
+    {
+      "name": "building and aircraft genuinely split into 3D pieces",
+      "passed": true
+    },
+    {
+      "name": "victim is clearly airborne",
+      "passed": true
+    },
+    {
+      "name": "pause holds cinematic time and path",
+      "passed": true
+    },
+    {
+      "name": "resume returns to result, never combat",
+      "passed": true
+    },
+    {
+      "name": "skip shows result without advancing round",
+      "passed": true
+    },
+    {
+      "name": "skip restores live aircraft",
+      "passed": true
+    },
+    {
+      "name": "every modified static batch instance restored",
+      "passed": true
+    },
+    {
+      "name": "real KO begins current fighter 3 / winning side 1",
+      "passed": true
+    },
+    {
+      "name": "uses current model, no hardcoded replacement 3/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 0.2 3/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 1.0 3/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 2.0 3/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 3.5 3/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 5.0 3/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 6.3 3/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 7.1 3/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 8.6 3/1",
+      "passed": true
+    },
+    {
+      "name": "finite 3D camera at 9.8 3/1",
+      "passed": true
+    },
+    {
+      "name": "presentation leaves health / round / resources immutable",
+      "passed": true
+    },
+    {
+      "name": "building and aircraft genuinely split into 3D pieces",
+      "passed": true
+    },
+    {
+      "name": "victim is clearly airborne",
+      "passed": true
+    },
+    {
+      "name": "pause holds cinematic time and path",
+      "passed": true
+    },
+    {
+      "name": "resume returns to result, never combat",
+      "passed": true
+    },
+    {
+      "name": "skip shows result without advancing round",
+      "passed": true
+    },
+    {
+      "name": "skip restores live aircraft",
+      "passed": true
+    },
+    {
+      "name": "every modified static batch instance restored",
+      "passed": true
+    },
+    {
+      "name": "next round cleans all destruction",
+      "passed": true
+    },
+    {
+      "name": "restart during explosion restores stage",
+      "passed": true
+    },
+    {
+      "name": "F2 immediately exits long cinematic",
+      "passed": true
+    },
+    {
+      "name": "return to title cleans camera and stage",
+      "passed": true
+    },
+    {
+      "name": "timeout does not launch a living loser",
+      "passed": true
+    },
+    {
+      "name": "reduced effects KO keeps short original result",
+      "passed": true
+    },
+    {
+      "name": "winner outro still runs before its final frame",
+      "passed": true
+    },
+    {
+      "name": "natural completion ends after the five second KO and winner outro",
+      "passed": true
+    },
+    {
+      "name": "original source nodes remain alive",
+      "passed": true
+    },
+    {
+      "name": "normal paid attack triggers cinematic through a real damage KO",
+      "passed": false
+    },
+    {
+      "name": "first Enter skips, never advances round",
+      "passed": false
+    },
+    {
+      "name": "second Enter enters next round",
+      "passed": true
+    },
+    {
+      "name": "Space also skips without a combat jump",
+      "passed": true
+    }
+  ],
+  "display": "X11",
+  "engine": "4.6.3-stable (official)",
+  "failed": 2,
+  "passed": 163
+}

@@ -29,6 +29,7 @@ var fighters: Array[Node3D] = []
 var theatre=preload("res://scripts/combat/impact_theatre.gd").new()
 var rhythm=preload("res://scripts/combat/combat_rhythm.gd").new()
 const FINISH_SECONDS := 1.4
+var arena_cage=preload("res://scripts/combat/arena_cage.gd").new()
 var round_theatre = preload("res://scripts/combat/cinematic/round_theatre.gd").new()
 var city_breaker = preload("res://scripts/combat/cinematic/city_breaker.gd").new()
 var pause_resume_screen := "play"
@@ -125,6 +126,7 @@ func _ready() -> void:
     canvas.add_child(hud)
     add_child(city_breaker)
     city_breaker.setup(self)
+    add_child(arena_cage)
     add_child(round_theatre)
     round_theatre.setup(self)
     _present(0.0)
@@ -274,12 +276,12 @@ func _combat_step() -> void:
         finish_menu_open=false
         var winning_side:=maxi(0,sim.winner)
         spectacle.trigger("finish",winning_side,Vector2(sim.fighters[1-winning_side].x,1.1),4)
-        if sim.arcade_enabled and sim.winner>=0 and sim.fighters[1-sim.winner].health<=0:
+        if final_ko() and sim.arcade_enabled:
             theatre.begin("ko",winning_side)
         else:theatre.clear()
         audio.stop_all()
-        audio.play_sound("ko")
-        if sim.winner >= 0 and sim.fighters[1-sim.winner].health <= 0 and not reduced_effects:
+        audio.play_sound("ko" if final_ko() else "rally")
+        if final_ko() and not reduced_effects:
             round_theatre.clear()
             theatre.clear(); neon.clear(); rhythm.clear(); spectacle.clear(); effects.clear()
             city_breaker.begin(sim.winner)
@@ -466,6 +468,15 @@ func _handle_event(event: Dictionary) -> void:
         if event.reason!="hit":spectacle.clear()
         hud.notice=event.reason.to_upper()
         hud.notice_time=.7
+    elif kind=="arena_bounce":
+        arena_cage.react(event)
+        var point:=Vector2(event.x,event.y)
+        _spawn_vfx("ground_ring" if event.surface=="floor" else "wall",point,.24,{"color":Color("c4f7ff"),"face":-signf(event.x),"move":"heavy"})
+        backdrop.smoke.react(Vector3(event.x,clampf(event.y,0,7),FIGHT_Z))
+        trauma=maxf(trauma,.25 if event.surface in ["left","right"] else .34)
+        audio.play_sound("slam",.85+event.chain*.07,-7)
+        audio.play_sound("sub",.80,-10)
+        hud.notice="RICOCHET x%d / %s"%[event.chain,event.surface.to_upper()];hud.notice_time=.55
     elif kind in ["wall_bounce","wall_tech","throw_tech"]:
         var fighter: Dictionary=sim.fighters[event.target]
         var point:=Vector2(fighter.x,fighter.y+1.0)
@@ -566,7 +577,7 @@ func _handle_event(event: Dictionary) -> void:
         hud.notice = "OVERDRIVE NEEDS 75" if event.get("cost",50)==75 else "SPECIAL NEEDS 50 ENERGY"
         hud.notice_time = 1.5
 
-    if neon_enabled and not reduced_effects:neon.trigger(event,sim.fighters,sim.exchange.tier())
+    if neon_enabled and not reduced_effects and not (event.kind=="ko" and not final_ko()):neon.trigger(event,sim.fighters,sim.exchange.tier())
     round_theatre.trigger(event)
     if event.kind=="hit" and not reduced_effects:
         var target:int=clampi(event.get("target",0),0,1)
@@ -574,6 +585,7 @@ func _handle_event(event: Dictionary) -> void:
 
 func _clear_impacts() -> void:
     round_theatre.clear()
+    arena_cage.clear()
     if is_instance_valid(backdrop) and is_instance_valid(backdrop.smoke):backdrop.smoke.clear_impacts()
     city_breaker.clear()
     sim.exchange.cancel_decision();sim.surge_release.clear();sim.surge_guards=[0,0]
@@ -621,9 +633,6 @@ func _process(delta: float) -> void:
         if settings_save_clock<0:save_options()
     if screen=="result":
         result_clock+=delta
-        if demo==null and result_clock>=finish_seconds() and not finish_menu_open:
-            finish_menu_open=true
-            hud.rebuild_menu()
     if neon_enabled:neon.advance(delta,screen in ["pause","help"],reduced_effects)
     spectacle.advance(delta,screen in ["pause","help"])
     theatre.advance(delta,screen in ["pause","help"])
@@ -665,7 +674,32 @@ func _process(delta: float) -> void:
     backdrop.smoke.advance(delta*(rhythm.view_speed() if screen=="play" and not reduced_effects else 1.0),screen in ["pause","help"],reduced_effects)
     if screen=="result" and demo!=null and not city_breaker.active() and result_clock>=FINISH_SECONDS:
         _advance_demo_round()
+    elif screen=="result" and demo==null and not result_presentation_active() and (not finish_menu_open or not hud.menu.visible):
+        # Check AFTER the cinematic releases its lens. Opening the menu before
+        # that hides its controls and used to leave an empty RESULT page forever.
+        finish_menu_open=true
+        hud.rebuild_menu()
+    arena_cage.visible=screen in ["play","pause"] and sim.phase=="fight" and sim.box_active() and not round_theatre.intro
+    if screen=="play" and sim.fighters.any(func(f:Dictionary)->bool:return Simulation.ArenaBox.active(f)):
+        _fit_box_camera()
+    arena_cage.advance(delta,screen in ["pause","help"],reduced_effects)
     hud.queue_redraw()
+
+func _fit_box_camera() -> void:
+    # High-speed trajectories must not outrun the ordinary camera easing.
+    var a:Dictionary=sim.fighters[0];var b:Dictionary=sim.fighters[1]
+    var center:=Vector3((a.x+b.x)*.5,(minf(a.y,b.y)+maxf(a.y,b.y)+2.4)*.5,FIGHT_Z)
+    var distance:float=maxf(8.4,camera.position.distance_to(center))
+    camera.position=center+Vector3(0,0,distance);camera.look_at(center)
+    for attempt in 16:
+        var fits:=true
+        for f in sim.fighters:
+            for y in [0.0,2.4]:
+                var point:Vector2=camera.unproject_position(Vector3(f.x,f.y+y,FIGHT_Z))/get_viewport().get_visible_rect().size
+                fits=fits and point.x>=.10 and point.x<=.90 and point.y>=.24 and point.y<=.82
+        if fits:break
+        camera.position=center+(camera.position-center)*1.10
+    base_camera=camera.position;camera_focus=center
 
 func _apply_red_stage() -> void:
     if city_breaker.active() or round_theatre.intro:
@@ -1257,6 +1291,10 @@ func continue_coach() -> void:
 
 func finish_seconds() -> float:
     return city_breaker.DURATION if city_breaker.active() else FINISH_SECONDS
+
+func final_ko() -> bool:
+    if sim.winner<0 or sim.fighters[1-sim.winner].health>0:return false
+    return sim.phase=="match_over" or (run_active and (run_stage>=3 or sim.winner!=0))
 
 func result_presentation_active() -> bool:
     return screen == "result" and not reduced_effects and (city_breaker.active() or result_clock < FINISH_SECONDS)

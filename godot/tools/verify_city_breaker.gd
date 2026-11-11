@@ -8,7 +8,7 @@ func check(label: String, passed: bool) -> void:
     print("CITY_BREAKER ", label, " ", passed)
     if not passed: push_error(label)
 func fixture(side: int) -> void:
-    s.start_match(false); s.sim.ai_enabled = false; s.sim.phase = "fight"
+    s.start_match(false); s.sim.ai_enabled = false; s.sim.phase = "fight";s.sim.wins[side]=1
     s.sim.fighters[0].health = 90 if side == 0 else 0
     s.sim.fighters[1].health = 90 if side == 1 else 0
     s._combat_step()
@@ -73,7 +73,7 @@ func run() -> void:
     check("original source nodes remain alive",c.hidden_sources.all(func(v:Dictionary)->bool:return is_instance_valid(v.node) and v.node.visible==v.visible))
     s.return_to_title();s.set_character(0,0);s.start_match(false)
     s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.fighters[0].x=-.5;s.sim.fighters[1].x=.5
-    s.sim.fighters[0].meter=100;s.sim.fighters[1].health=7
+    s.sim.wins[0]=1;s.sim.fighters[0].meter=100;s.sim.fighters[1].health=7
     s.pending={"attack":"special"}
     for i in 600:
         s._physics_process(1.0/60);s._process(1.0/60)
@@ -84,7 +84,7 @@ func run() -> void:
     s._unhandled_key_input(key)
     check("first Enter skips, never advances round",not s.city_breaker.active() and s.sim.round_number==round_before and s.screen=="result")
     s._unhandled_key_input(key)
-    check("second Enter enters next round",s.screen=="play" and s.sim.round_number==round_before+1)
+    check("second Enter restarts the finished match",s.screen=="play" and s.sim.round_number==1 and s.sim.wins==[0,0])
     fixture(0);s.city_breaker.sample(3.0)
     var space:=InputEventKey.new();space.keycode=KEY_SPACE;space.physical_keycode=KEY_SPACE;space.pressed=true
     s._unhandled_key_input(space)

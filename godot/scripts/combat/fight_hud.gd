@@ -615,8 +615,9 @@ func _draw() -> void:
         _center(Vector2(640,280),tr_text("round")+" %d"%session.sim.round_number,40)
         _center(Vector2(640,316),"準備" if session.language=="zh" else "GET READY",22,Tokens.GOLD)
     if notice_time>0 and session.demo==null and not session.sim.exchange.decision_active() and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
-        _plate(Vector2(426,196),Vector2(428,40),INK)
-        _center(Vector2(640,225),copy.notice(notice),19,Tokens.GOLD)
+        var notice_y:float=596 if notice.begins_with("RICOCHET") else 196
+        _plate(Vector2(426,notice_y),Vector2(428,40),INK)
+        _center(Vector2(640,notice_y+29),copy.notice(notice),19,Tokens.GOLD)
     var player: Dictionary=session.sim.fighters[0]
     if session.demo==null and player.wall_tech_window>0 and player.state=="stun" and player.meter>=20:
         var at: Vector2=session.project(Vector2(player.x,player.y+2.3))

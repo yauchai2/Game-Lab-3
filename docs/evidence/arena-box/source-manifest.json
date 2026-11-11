@@ -1,0 +1,24 @@
+{
+  "base_commit": "a89c8fc9f7e4ed8d1731181cbf5b9815be8fcde0",
+  "sha256": {
+    "godot/scripts/combat/arena_box.gd": "ab9b7349f5e9c8b203e80eabfd1bc7dfc47a9687247ba6b8067f1a925024c2ad",
+    "godot/scripts/combat/arena_cage.gd": "c65c1bba82a6381b7c86591ce16b2087aba08c9680383827dcd4772c905171c8",
+    "godot/scripts/combat/fight_hud.gd": "6760a4c0ae239ec7e6b9536447a81ef22e056c4b55db409fa3ad8277bdf9d623",
+    "godot/scripts/combat/fight_session.gd": "9626ef35a7d27bacbbd9bf04601200767a1f289802a3d8dd78b53667a4330a35",
+    "godot/scripts/combat/fight_simulation.gd": "9a0334d63abf8a135ff7c513c8541872e7b2c34dd969c8b2e4b2f41dbf170ce3",
+    "godot/scripts/combat/fight_spectacle.gd": "78efc13eb56d7a330f48ff951a696526b0af3780f60bbe9fc38717546a1f1131",
+    "godot/scripts/combat/fighter_visual.gd": "9ca2edb1902f380ee4b2719be576b1bd1dbcced60547e8b7dbff880d6452bb76",
+    "godot/scripts/combat/rush_agent.gd": "e88659aca84771c13ed3f1a90f9efd2b5cba751c280f5f7e4952f2bd2bd86ce9",
+    "godot/tools/capture_arena_box.gd": "b8eac0bd7f394dde106f40e04bfea12b83b47a4d8eec664cd74bdfe7503965c9",
+    "godot/tools/capture_round_flow.gd": "167f68946aa5532e35d341d903eca9822d06cd25d5526eb9a5e19641c512c25c",
+    "godot/tools/verify_arena_box.gd": "95f939fced7a1e5276f2d69f6576d309406b92bbae63eefadc0fba5e37bf03e4",
+    "godot/tools/verify_arena_results.gd": "268fe5044fc3d2f380afa0b5d7ff9ba6f0b4accd88d3b329a8a3010ed0156a4c",
+    "godot/tools/verify_charged_cannon.gd": "a3416bae23c10901958376a280868b289076c1f2f4a4d9358e741c0575e987fa",
+    "godot/tools/verify_city_breaker.gd": "24879442393ed8e70dc46af7e089a415d6869a937336541f88abbaba0d1bbc0b",
+    "godot/tools/verify_city_breaker_fx.gd": "b61b92c3f2513e1e5c8ee84625eb7b8a1511d25abdaae8c9981ab360390bdc41",
+    "godot/tools/verify_demo_input.gd": "00990adb05c723fb76a7598bca5544f67fa53eb36b3c3df7390720c11466e760",
+    "godot/tools/verify_round_flow.gd": "cb2a2de04a79451fd00b2e4e43697cad123484b7276f6ac0d71550f4554fcf07",
+    "godot/tools/verify_victory_exits.gd": "72eb129ff7993878879ad5416caacfd3aaf122a205aeb01b2db07f8e4e6bd756",
+    "tools/verify_game_polish.py": "ec71e7fd2317f9985c54d17891652ee2a815d77cbd110abd2b8e221a85bcf9cf"
+  }
+}

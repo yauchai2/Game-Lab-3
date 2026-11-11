@@ -15,7 +15,7 @@ func run() -> void:
         for character in 4:
             s.return_to_title();s.set_character(side,character)
             await process_frame;await process_frame
-            s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.fighters[1-side].health=0;s._combat_step()
+            s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.wins[side]=1;s.sim.fighters[1-side].health=0;s._combat_step()
             var c=s.city_breaker
             var snapshot:Array=s.sim.fighters.duplicate(true)
             check("five second destruction retained %d/%d"%[side,character],c.BASE_DURATION==5.0 and is_equal_approx(c.DURATION,8.2))
@@ -48,13 +48,13 @@ func run() -> void:
     for a in 4:
         for b in range(a+1,4):distinct=distinct and poses[a].distance_to(poses[b])>.05
     check("four poses are measurably distinct on the actual rigs",distinct)
-    s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.fighters[1].health=0;s._combat_step()
+    s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.wins[0]=1;s.sim.fighters[1].health=0;s._combat_step()
     for i in 301:s._process(1.0/60)
     check("KO flows into winner closeup before showing result menu",s.city_breaker.active() and not s.finish_menu_open and not s.city_breaker.victory_state.is_empty())
     for i in 194:s._process(1.0/60)
     check("automatic completion after exit shows results",not s.city_breaker.active() and s.finish_menu_open)
     for action in ["F2","restart","title"]:
-        s.reduced_effects=false;s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.fighters[1].health=0;s._combat_step()
+        s.reduced_effects=false;s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.wins[0]=1;s.sim.fighters[1].health=0;s._combat_step()
         s.city_breaker.sample_outro(.45)
         if action=="F2":s.reduced_effects=true;s._process(.01)
         elif action=="restart":s.start_match(false)

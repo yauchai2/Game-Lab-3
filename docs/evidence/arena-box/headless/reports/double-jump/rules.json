@@ -1,0 +1,254 @@
+{
+  "checks": [
+    {
+      "name": "ground press cannot also spend air jump 0/0",
+      "passed": true
+    },
+    {
+      "name": "second impulse with steering 0/0",
+      "passed": true
+    },
+    {
+      "name": "no resource refill 0/0",
+      "passed": true
+    },
+    {
+      "name": "third press rejected 0/0",
+      "passed": true
+    },
+    {
+      "name": "bounded flight returns to ground 0/0",
+      "passed": true
+    },
+    {
+      "name": "landing restores exactly one air jump 0/0",
+      "passed": true
+    },
+    {
+      "name": "ground press cannot also spend air jump 0/1",
+      "passed": true
+    },
+    {
+      "name": "second impulse with steering 0/1",
+      "passed": true
+    },
+    {
+      "name": "no resource refill 0/1",
+      "passed": true
+    },
+    {
+      "name": "third press rejected 0/1",
+      "passed": true
+    },
+    {
+      "name": "bounded flight returns to ground 0/1",
+      "passed": true
+    },
+    {
+      "name": "landing restores exactly one air jump 0/1",
+      "passed": true
+    },
+    {
+      "name": "ground press cannot also spend air jump 1/0",
+      "passed": true
+    },
+    {
+      "name": "second impulse with steering 1/0",
+      "passed": true
+    },
+    {
+      "name": "no resource refill 1/0",
+      "passed": true
+    },
+    {
+      "name": "third press rejected 1/0",
+      "passed": true
+    },
+    {
+      "name": "bounded flight returns to ground 1/0",
+      "passed": true
+    },
+    {
+      "name": "landing restores exactly one air jump 1/0",
+      "passed": true
+    },
+    {
+      "name": "ground press cannot also spend air jump 1/1",
+      "passed": true
+    },
+    {
+      "name": "second impulse with steering 1/1",
+      "passed": true
+    },
+    {
+      "name": "no resource refill 1/1",
+      "passed": true
+    },
+    {
+      "name": "third press rejected 1/1",
+      "passed": true
+    },
+    {
+      "name": "bounded flight returns to ground 1/1",
+      "passed": true
+    },
+    {
+      "name": "landing restores exactly one air jump 1/1",
+      "passed": true
+    },
+    {
+      "name": "ground press cannot also spend air jump 2/0",
+      "passed": true
+    },
+    {
+      "name": "second impulse with steering 2/0",
+      "passed": true
+    },
+    {
+      "name": "no resource refill 2/0",
+      "passed": true
+    },
+    {
+      "name": "third press rejected 2/0",
+      "passed": true
+    },
+    {
+      "name": "bounded flight returns to ground 2/0",
+      "passed": true
+    },
+    {
+      "name": "landing restores exactly one air jump 2/0",
+      "passed": true
+    },
+    {
+      "name": "ground press cannot also spend air jump 2/1",
+      "passed": true
+    },
+    {
+      "name": "second impulse with steering 2/1",
+      "passed": true
+    },
+    {
+      "name": "no resource refill 2/1",
+      "passed": true
+    },
+    {
+      "name": "third press rejected 2/1",
+      "passed": true
+    },
+    {
+      "name": "bounded flight returns to ground 2/1",
+      "passed": true
+    },
+    {
+      "name": "landing restores exactly one air jump 2/1",
+      "passed": true
+    },
+    {
+      "name": "ground press cannot also spend air jump 3/0",
+      "passed": true
+    },
+    {
+      "name": "second impulse with steering 3/0",
+      "passed": true
+    },
+    {
+      "name": "no resource refill 3/0",
+      "passed": true
+    },
+    {
+      "name": "third press rejected 3/0",
+      "passed": true
+    },
+    {
+      "name": "bounded flight returns to ground 3/0",
+      "passed": true
+    },
+    {
+      "name": "landing restores exactly one air jump 3/0",
+      "passed": true
+    },
+    {
+      "name": "ground press cannot also spend air jump 3/1",
+      "passed": true
+    },
+    {
+      "name": "second impulse with steering 3/1",
+      "passed": true
+    },
+    {
+      "name": "no resource refill 3/1",
+      "passed": true
+    },
+    {
+      "name": "third press rejected 3/1",
+      "passed": true
+    },
+    {
+      "name": "bounded flight returns to ground 3/1",
+      "passed": true
+    },
+    {
+      "name": "landing restores exactly one air jump 3/1",
+      "passed": true
+    },
+    {
+      "name": "fixture is falling",
+      "passed": true
+    },
+    {
+      "name": "falling jump reverses vertical motion",
+      "passed": true
+    },
+    {
+      "name": "hitstop preserves jump without moving",
+      "passed": true
+    },
+    {
+      "name": "buffer fires once after hitstop",
+      "passed": true
+    },
+    {
+      "name": "Space cannot cancel stun",
+      "passed": true
+    },
+    {
+      "name": "Space cannot cancel blockstun",
+      "passed": true
+    },
+    {
+      "name": "Space cannot cancel attack",
+      "passed": true
+    },
+    {
+      "name": "Space cannot cancel chase",
+      "passed": true
+    },
+    {
+      "name": "fast fall begins",
+      "passed": true
+    },
+    {
+      "name": "air jump brakes fast fall without rearming it",
+      "passed": true
+    },
+    {
+      "name": "hard landing records the early input",
+      "passed": true
+    },
+    {
+      "name": "early Space survives hard landing recovery",
+      "passed": true
+    },
+    {
+      "name": "restart clears air jump state",
+      "passed": true
+    },
+    {
+      "name": "6000 mixed ticks replay deterministically",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 62
+}

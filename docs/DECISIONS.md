@@ -247,3 +247,16 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 場景加入有界屋頂／街邊煙、命中揚塵及64團KO殘煙；重擊後可短暫魚眼近鏡，避讓Neon大招與KO，保持雙人及HUD留白。新增原創2.8秒開場音軌，沿原SFX／mute／pause及BGM duck。詳見evidence/round-flow/README.md。來源同codex/combat-escalation-next／PR #6，公開Web不更新；Mac／硬件效能與真人強度仍待驗收。
 
 開場是獨立presentation owner，在ready時凍結simulation但不改其資料；KO仍由CityBreaker唯一掌鏡。戰鬥accent只在其他鏡頭空檔、真重擊後觸發，0.28秒／至少1.6秒冷卻，不改遊戲時間或傷害。Demo只在正式結算及演出完成後呼叫next_round／restart_match；不在live fight重設生命、注入命中或替AI補傷害。煙霧用世界座標billboard及量化噪聲，18環境＋12命中池＋64KO固定上限。
+
+
+## 2026-11-11：結果頁修復、決勝KO與四面反彈
+
+修正RESULT空白：先前在CityBreaker仍active時提前設finish_menu_open，rebuild把controls隱藏；之後director清場但沒有再建選單。本輪在演出釋放後才建立結果操作，並對空白狀態自我恢復。原生測試驗真visible buttons、視窗內位置及pressed callbacks，涵蓋自動播完／暫停／F2／跳過、下一回合與重賽。
+
+依最新指示完整KO只在兩勝制決勝回合；之前回合短結算。Street Run只在最後一站或本次Run敗退結束播完整KO；超時不偽造零生命KO。Demo仍沿真勝負loop，每場只有決勝KO，之後接下一場開場。
+
+正式Rush／Demo／Street Run加入四面盒狀反彈：x±8.2、腳部y0–5.6（8m頂框），重擊／挑空／終結擊／符合推力的技能真命中才發射，普通輕拳不觸發。法線反射耗能、無額外碰牆傷害；每次飛行最多6個接觸／180物理tick，耗盡自動恢復＋18tick保護，不被新命中刷新預算，落地後才重置。接觸後18tick內可E花20能量受身；AI有有界反應延遲。暫停／hitstop不消耗飛行時間；F2保持物理，只減演出。
+
+真3D透明線框圍場、每面重用一個撞擊格、既有SFX／揚塵／速度尾跡／軀幹中心翻滾。高速飛行鏡頭以雙人body bounds即時退開，避開HUD，反彈字卡移到底部。詳見[evidence/arena-box](evidence/arena-box/README.md)。同codex/combat-escalation-next／PR #6推來源，不發佈Web；Mac／真人平衡、鏡頭和混音待驗收。
+
+反彈是Simulation的有界運動，ArenaBox不改生命，camera／mesh僅讀真接觸事件；不用畫面邊界或假命中控制物理。舊單次wall bounce保留給獨立教室／非Rush路徑，正常跳躍也會受天花限制，但不自動進入受擊反彈。

@@ -1,0 +1,84 @@
+{
+  "contacts": [
+    {
+      "chain": 1,
+      "seconds": 0.566666666666667,
+      "speed": 26.6473503112793,
+      "surface": "ceiling"
+    },
+    {
+      "chain": 2,
+      "seconds": 0.7,
+      "speed": 24.7370662689209,
+      "surface": "right"
+    },
+    {
+      "chain": 3,
+      "seconds": 1.03333333333333,
+      "speed": 24.8911075592041,
+      "surface": "floor"
+    },
+    {
+      "chain": 4,
+      "seconds": 1.56666666666667,
+      "speed": 19.934455871582,
+      "surface": "ceiling"
+    },
+    {
+      "chain": 5,
+      "seconds": 1.76666666666667,
+      "speed": 18.3015480041504,
+      "surface": "left"
+    },
+    {
+      "chain": 6,
+      "seconds": 2.23333333333334,
+      "speed": 20.3076133728027,
+      "surface": "floor"
+    },
+    {
+      "chain": 1,
+      "seconds": 5.03333333333333,
+      "speed": 26.6473503112793,
+      "surface": "ceiling"
+    },
+    {
+      "chain": 2,
+      "seconds": 5.16666666666666,
+      "speed": 24.7370662689209,
+      "surface": "right"
+    },
+    {
+      "chain": 3,
+      "seconds": 5.49999999999999,
+      "speed": 24.8911075592041,
+      "surface": "floor"
+    },
+    {
+      "chain": 4,
+      "seconds": 6.03333333333332,
+      "speed": 19.934455871582,
+      "surface": "ceiling"
+    },
+    {
+      "chain": 5,
+      "seconds": 6.23333333333332,
+      "speed": 18.3015480041504,
+      "surface": "left"
+    },
+    {
+      "chain": 6,
+      "seconds": 6.69999999999999,
+      "speed": 20.3076133728027,
+      "surface": "floor"
+    }
+  ],
+  "scope": "Standing CPU / x=0 and 1 / ordinary K launcher hits. No damage, launch velocity or boundary fixtures. Both pairs show all four current models; no E recovery so ricochet can be inspected.",
+  "seconds": 8.99999999999998,
+  "shots": {
+    "ceiling": 0.6,
+    "floor": 1.06666666666667,
+    "left": 1.8,
+    "right": 0.733333333333333
+  }
+}

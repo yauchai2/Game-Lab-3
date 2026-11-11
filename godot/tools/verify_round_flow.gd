@@ -52,15 +52,15 @@ func run() -> void:
         if label!=last:
             phases.append({"seconds":tick/60.0,"phase":label,"round":s.presentation_round(),"health":[s.sim.fighters[0].health,s.sim.fighters[1].health]})
             if label=="entry":intros+=1
-            if label=="ko":complete_ko+=1;check("KO %d has a real defeated fighter"%complete_ko,s.sim.winner>=0 and s.sim.fighters[1-s.sim.winner].health<=0)
+            if label=="ko":complete_ko+=1;check("KO %d has a real defeated fighter"%complete_ko,s.sim.phase=="match_over" and s.sim.winner>=0 and s.sim.fighters[1-s.sim.winner].health<=0)
             if label=="winner":winner_exits+=1
             last=label
         if s.round_theatre.lens.visible and not s.round_theatre.intro:
             lens_frames+=1
             safe=safe and s.round_theatre.safe_framing()
         if s.demo.rounds_finished>=3:break
-    check("demo completes at least three true KO cinematics",complete_ko>=3 and s.demo.seen.get("ko",0)>=3)
-    check("every KO includes the winner exit",winner_exits>=3)
+    check("demo reserves full KO for the deciding round",complete_ko>=1 and s.demo.seen.get("ko",0)>=3)
+    check("every deciding KO includes the winner exit",winner_exits==complete_ko)
     check("rounds loop through a fresh entry automatically",s.demo.rounds_finished>=3 and s.presentation_round()==initial_round+3 and s.round_theatre.intro and intros>=4)
     check("two-win match completion also loops",s.demo.matches_finished>=1)
     check("both autonomous sides land actual hits",s.demo.hits[0]>0 and s.demo.hits[1]>0)

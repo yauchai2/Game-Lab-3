@@ -1,6 +1,6 @@
 extends SceneTree
 ## Actual engine title -> entry -> normal-health autonomous fight -> full KO -> loop.
-const OUT="res://../docs/evidence/round-flow/"
+const OUT="res://../docs/evidence/arena-box/demo/"
 var s:Node
 var events:Dictionary={}
 var shots:Dictionary={}
@@ -29,8 +29,8 @@ func run() -> void:
             shots[label]=clock
             await RenderingServer.frame_post_draw
             root.get_texture().get_image().save_png(OUT+label+".png")
-        if s.demo.rounds_finished>=2 and s.round_theatre.age>.6:break
-    FileAccess.open(OUT+"capture.json",FileAccess.WRITE).store_string(JSON.stringify({"seconds":clock,"rounds_completed":s.demo.rounds_finished,"real_ko_events":events.get("ko",0),"events":events,"shots":shots,"scope":"Actual unmodified-stat AI Demo. Full title, entries, KO and winner sequences followed by next-round loop; no injected hits."},"  "))
+        if s.demo.matches_finished>=1 and s.round_theatre.age>.6:break
+    FileAccess.open(OUT+"capture.json",FileAccess.WRITE).store_string(JSON.stringify({"seconds":clock,"rounds_completed":s.demo.rounds_finished,"matches_completed":s.demo.matches_finished,"real_ko_events":events.get("ko",0),"events":events,"shots":shots,"scope":"Actual unmodified-stat AI Demo. Full title, short intermediate-round results, deciding KO and winner sequences followed by next-match loop; no injected hits."},"  "))
     s.return_to_title();s.set_process(false);s.set_physics_process(false);s.audio.set_process(false);s.audio.music.stop();s.audio.fading_music.stop()
     await create_timer(.15).timeout;s.queue_free();s=null
     for i in 8:await process_frame

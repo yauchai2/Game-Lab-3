@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[結果頁修復、決勝KO與四面反彈](docs/evidence/arena-box/README.md)。修好空白RESULT；只有整場決勝回合播放完整KO，之前短結算。正式戰鬥可撞天花／牆／地面連續反彈，加入受身、耗能、真3D撞擊回饋與跟鏡。來源同branch，Web不更新。
+
 最新：[完整開場→KO→勝者離場與AI Demo循環](docs/evidence/round-flow/README.md)。正式回合3D開場、真KO完整演出後自動接下一round的雙AI Demo、更強煙霧及戰鬥魚眼重音。來源同branch，Web不更新。
 
 最新：[勝者魚眼特寫與四種離場](docs/evidence/victory-exits/README.md)。保留5秒KO爆破，追加3.2秒超近廣角／魚眼與四角專屬動作、慢步出框和角色聲效；結果等離場後出現。來源同branch，Web不更新。

@@ -26,7 +26,9 @@ func run() -> void:
     var d=scene.demo
     key(KEY_J);key(KEY_G);key(KEY_N)
     check("player keys do not feed the autonomous agents",scene.pending.is_empty() and scene.demo==d)
-    step(4200)
+    for i in 15000:
+        step()
+        if d.rounds_finished>=2:break
     check("normal controls survive two complete KO loops",scene.demo==d and d.rounds_finished>=2 and d.seen.get("ko",0)>=2 and scene.screen in ["play","result"])
     key(KEY_R)
     check("R starts a fresh opening and statistics",scene.demo!=d and scene.demo.rounds_finished==0 and scene.demo.age==0 and scene.round_theatre.intro)

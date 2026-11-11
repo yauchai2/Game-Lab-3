@@ -19,7 +19,7 @@ func run() -> void:
     root.add_child(s);s.set_process(false);s.set_physics_process(false);s.reduced_effects=false
     s.audio.music_level=0;s.audio.muted=false
     await process_frame;await process_frame
-    s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.fighters[1].health=0;s._combat_step()
+    s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.wins[0]=1;s.sim.fighters[1].health=0;s._combat_step()
     var c=s.city_breaker
     check("base destruction and score remain five seconds",c.BASE_DURATION==5.0 and absf(c.score_player.stream.get_length()-5.0)<.03)
     check("audio retains original pitch",c.score_player.pitch_scale==1.0)
@@ -63,10 +63,10 @@ func run() -> void:
     await create_timer(.08).timeout
     var skipped:Dictionary=await pcm(.12)
     check("no score tail leaks after skip",skipped.peak<.0001,skipped)
-    s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.fighters[0].health=0;s._combat_step()
+    s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.wins[1]=1;s.sim.fighters[0].health=0;s._combat_step()
     c.sample(6.5);s.reduced_effects=true;s._process(.01)
     check("F2 clears lens and sound together",not c.active() and not c.lens.visible and not c.score_player.playing)
-    s.reduced_effects=false;s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.fighters[1].health=0;s._combat_step()
+    s.reduced_effects=false;s.start_match(false);s.sim.ai_enabled=false;s.sim.phase="fight";s.sim.wins[0]=1;s.sim.fighters[1].health=0;s._combat_step()
     s.return_to_title()
     check("title exit releases all FX ownership",not c.active() and not c.lens.visible and not c.score_player.playing and s.audio.cinematic_duck==0)
     AudioServer.remove_bus_effect(bus,capture_index);capture=null
