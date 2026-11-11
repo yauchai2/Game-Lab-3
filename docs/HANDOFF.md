@@ -1,5 +1,9 @@
 # 接續工作交接
 
+## 2026-11-11：G5／G6／G8 完成精簡版
+
+風格稱號、Z Z X X Q 解鎖 MONO 時段、集齊標記後的製作筆記，見 [BANTER.zh-TW.md](BANTER.zh-TW.md)。129＋9＋12＋27 項檢查通過。
+
 ## 2026-11-11：街區標記收集（G1）
 
 標準 FIGHT 成就解鎖 8 塊無文字路緣告示板，結算頁列出，本機 tags.cfg。見 [STREET_TAGS.zh-TW.md](STREET_TAGS.zh-TW.md)；27 項檢查。G2 站名牌因無文字規則未做。

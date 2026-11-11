@@ -19,6 +19,11 @@ func run() -> void:
         for pair in pool:check("zh line <=20 chars: "+pair[0],pair[0].length()<=20 and pair[1].length()<=40)
     for w in [true,false]:
         for salt in 6:check("radio line %s/%d"%[w,salt],Banter.radio_line(w,salt,true).begins_with("RADIO: ") and Banter.radio_line(w,salt,false).begins_with("電台："))
+    check("quiet match gets warm-up style",Banter.style_title({"hits":1,"defense":0,"air":1},0,true)=="WARM-UP SHIFT")
+    check("offense style",Banter.style_title({"hits":9,"defense":2,"air":1},0,true)=="COMBO RUNNER")
+    check("defense style wins ties over air/offense",Banter.style_title({"hits":3,"defense":3,"air":3},0,true)=="COOL OPERATOR")
+    check("air style",Banter.style_title({"hits":2,"defense":1,"air":6},0,true)=="LOWWAY FLYER")
+    for i in 6:check("dev note %d"%i,Banter.dev_note(i,true).begins_with("DEV NOTE: ") and Banter.dev_note(i,false).begins_with("製作筆記："))
     check("mirror uses mirror pool",Banter.start_line(2,2,0,0,true).contains("FIRST TO DELIVER"))
     check("streak>=5 uses streak pool",Banter.start_line(0,1,5,0,true).contains("FIFTH TIME"))
     check("streak<5 uses normal pool",not Banter.start_line(0,1,4,0,true).contains("FIFTH"))

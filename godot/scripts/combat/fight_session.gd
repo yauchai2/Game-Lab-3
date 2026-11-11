@@ -22,6 +22,10 @@ const Banter=preload("res://scripts/combat/banter.gd")
 var banter_store=null
 const StreetTags=preload("res://scripts/combat/street_tags.gd")
 var tag_store=null
+var secret_mono:=false
+var secret_progress:=0
+const SECRET_CODE:=[KEY_Z,KEY_Z,KEY_X,KEY_X,KEY_Q]
+var style_stats:={"hits":0,"defense":0,"air":0}
 var result_line:=""
 var signature_camera=preload("res://scripts/combat/neon/neon_signature_camera.gd").new()
 var neon_profile:Resource=preload("res://scripts/combat/neon/neon_style_profile.tres")
@@ -210,6 +214,7 @@ func start_match(training := false) -> void:
     pending.clear()
     trauma = 0
     result_line=""
+    style_stats={"hits":0,"defense":0,"air":0}
     screen = "play"
     if not practice and banter_store!=null:
         hud.notice=Banter.start_line(character_choices[0],character_choices[1],banter_store.streak_against(character_choices[1]),int(Time.get_ticks_msec()/1000),language=="en");hud.notice_time=2.4
@@ -279,7 +284,9 @@ func _combat_step() -> void:
             backdrop.refresh_tags(tag_store)
             result_line=Banter.win_line(character_choices[sim.winner],int(Time.get_ticks_msec()/1000),language=="en")+("" if not fresh.is_empty() else "\n"+Banter.radio_line(sim.winner==0,int(Time.get_ticks_msec()/1000)+1,language=="en"))
             for id in fresh:result_line+="\n"+("NEW TAG: " if language=="en" else "新標記：")+StreetTags.title(id,language=="en")
-            result_line+="\n"+("TAGS %d / %d"%[tag_store.count(),StreetTags.IDS.size()] if language=="en" else "標記 %d / %d"%[tag_store.count(),StreetTags.IDS.size()])
+            var tag_part:String=("TAGS %d / %d"%[tag_store.count(),StreetTags.IDS.size()]) if language=="en" else ("標記 %d / %d"%[tag_store.count(),StreetTags.IDS.size()])
+            result_line+="\n"+("STYLE: " if language=="en" else "風格：")+Banter.style_title(style_stats,int(Time.get_ticks_msec()/1000)+2,language=="en")+"  /  "+tag_part
+            if tag_store.count()==StreetTags.IDS.size():result_line+="\n"+Banter.dev_note(int(Time.get_ticks_msec()/1000)+3,language=="en")
         result_clock=0.0
         screen = "result"
         finish_menu_open=false
@@ -330,7 +337,13 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
         effect["track_attack"]=true
     effects.append(effect)
 
+func _count_style(event:Dictionary) -> void:
+    if event.kind=="hit" and event.get("attacker",-1)==0:style_stats.hits+=1
+    elif event.kind=="block" and event.get("target",-1)==0:style_stats.defense+=1
+    elif event.kind in ["parry","counter_success"] and event.get("target",-1)==0:style_stats.defense+=2
+    elif event.kind in ["homing_chase","double_jump","air_escape","wall_bounce"] and event.get("target",-1)==0:style_stats.air+=1
 func _handle_event(event: Dictionary) -> void:
+    if not practice and demo==null and not run_active:_count_style(event)
     if event.kind=="surge_decision_start":
         rhythm.clear();neon.clear()
         hud.notice_time=0
@@ -838,6 +851,17 @@ func return_to_street() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if not event.is_pressed() or event.is_echo():
         return
+    if screen=="title":
+        if event.keycode==SECRET_CODE[secret_progress]:
+            secret_progress+=1
+            if secret_progress>=SECRET_CODE.size():
+                secret_progress=0
+                secret_mono=true
+                time_of_day_choice=4
+                backdrop.set_time_of_day(4)
+                save_options()
+                hud.notice="SECRET: MONO CITY";hud.notice_time=1.4
+        else:secret_progress=1 if event.keycode==SECRET_CODE[0] else 0
     if hud.handle_shortcut(event):return
     if event.keycode==KEY_C and (screen=="title" or (practice and demo==null and screen=="play")):
         start_first_minute()
@@ -864,7 +888,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
         save_options()
         hud.rebuild_menu()
     elif event.keycode==KEY_N and screen in ["title","pause"]:
-        time_of_day_choice=(time_of_day_choice+1)%4
+        time_of_day_choice=(time_of_day_choice+1)%(5 if secret_mono else 4)
         backdrop.set_time_of_day(time_of_day_choice)
         save_options()
         hud.notice="TIME: "+backdrop.TimeOfDay.label(time_of_day_choice,true);hud.notice_time=.9
@@ -1095,6 +1119,7 @@ func _restore_options() -> void:
     audio.muted=options.muted
     audio.music_muted=options.music_muted
     reduced_effects=options.reduced_effects
+    secret_mono=options.secret_mono
     time_of_day_choice=options.time_of_day
     if backdrop!=null:backdrop.set_time_of_day(time_of_day_choice)
     retro_pixels=options.retro_pixels
@@ -1123,7 +1148,7 @@ func set_character(side:int,index:int) -> void:
     if is_instance_valid(hud) and hud.menu_page=="roster":hud.rebuild_menu()
 
 func save_options() -> void:
-    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":run_base_difficulty if run_active else sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":run_original_rival if run_active else character_choices[1],"time_of_day":time_of_day_choice})
+    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":run_base_difficulty if run_active else sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":run_original_rival if run_active else character_choices[1],"time_of_day":time_of_day_choice,"secret_mono":secret_mono})
 
 func return_to_title() -> void:
     coach=null

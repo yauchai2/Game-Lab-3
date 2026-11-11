@@ -43,7 +43,7 @@ func run() -> void:
     scene.start_match(false)
     scene.sim.phase="match_over";scene.sim.winner=0;scene.sim.wins=[2,0]
     scene._physics_process(1.0/60)
-    check("real win unlocks zip + clean and reports them",scene.tag_store.has("zip") and scene.tag_store.has("clean") and scene.result_line.contains("NEW TAG: ZIP ROUTE MARK") and scene.result_line.contains("TAGS 2 / 8") and not scene.result_line.contains("RADIO"))
+    check("real win unlocks zip + clean and reports them",scene.tag_store.has("zip") and scene.tag_store.has("clean") and scene.result_line.contains("NEW TAG: ZIP ROUTE MARK") and scene.result_line.contains("TAGS 2 / 8") and not scene.result_line.contains("RADIO") and scene.result_line.contains("STYLE: "))
     check("unlocked boards become visible, others stay hidden",scene.backdrop.tag_nodes["zip"].visible and scene.backdrop.tag_nodes["clean"].visible and not scene.backdrop.tag_nodes["loop"].visible)
     scene.start_match(true)
     scene.character_choices=[3,3]

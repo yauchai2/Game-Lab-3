@@ -18,6 +18,15 @@ const MIRROR:=[["你不是第一個送件的人。","YOU'RE NOT THE FIRST TO DEL
 const STREAK_LINES:=[["第五次了。你到底在背什麼？","FIFTH TIME. WHAT ARE YOU MEMORIZING?"],["我記得你的節奏了，這次不一樣。","I KNOW YOUR RHYTHM. NOT THIS TIME."]]
 const RADIO_WIN:=[["電台：這一場，街區聽見了。","RADIO: THE BLOCK HEARD THAT ONE."],["電台：末班車延後三分鐘，慶祝一下。","RADIO: LAST TRAIN HELD THREE MINUTES. ENJOY IT."],["電台：路燈亮了一格。","RADIO: A STREETLIGHT JUST CAME ON."]]
 const RADIO_LOSE:=[["電台：沒事，下一班很快到。","RADIO: NEXT TRAIN IS COMING SOON."],["電台：街區記住了這一課。","RADIO: THE BLOCK REMEMBERS THIS LESSON."],["電台：深呼吸，再按一次 Enter。","RADIO: BREATHE. HIT ENTER AGAIN."]]
+## G8: a per-match style title from the player's own events.
+const STYLES:={
+    "offense":[["連段跑者","COMBO RUNNER"],["街頭推進器","STREET PUSHER"]],
+    "defense":[["冷靜接線員","COOL OPERATOR"],["反擊收件人","COUNTER RECEIVER"]],
+    "air":[["低空航道客","LOWWAY FLYER"],["落地前不收工","NO CLOSING BEFORE LANDING"]],
+    "quiet":[["暖身班次","WARM-UP SHIFT"]],
+}
+## G5: short maker notes unlocked after collecting every street tag. Original; reflect repo decisions.
+const NOTES:=[["製作筆記：音樂只淡入淡出，不停下來。","DEV NOTE: THE MUSIC ONLY CROSSFADES. IT NEVER STOPS."],["製作筆記：標記沒有字，是在等你自己的招牌。","DEV NOTE: THE TAGS HAVE NO TEXT. THEY'RE WAITING FOR YOUR OWN SIGNS."],["製作筆記：演出可以誇張，判定永遠只有一份。","DEV NOTE: THE SHOW CAN BE LOUD. THE RULES HAVE ONE OWNER."],["製作筆記：標準對戰數值固定，成長不影響公平。","DEV NOTE: STANDARD FIGHTS KEEP FIXED NUMBERS."],["製作筆記：F2 隨時能把演出收小。","DEV NOTE: F2 TURNS THE SPECTACLE DOWN ANY TIME."],["製作筆記：這條街原本只是白盒。","DEV NOTE: THIS STREET STARTED AS A WHITEBOX."]]
 const STREAK_AT:=5
 static func start_line(player:int,rival:int,streak:int,salt:int,english:bool) -> String:
     var side:=1 if english else 0
@@ -33,6 +42,18 @@ static func win_line(winner_character:int,salt:int,english:bool) -> String:
     var line:Array=pool[absi(salt)%pool.size()]
     return "%s: %s"%[NAMES[clampi(winner_character,0,3)],line[1 if english else 0]]
 
+static func style_title(stats:Dictionary,salt:int,english:bool) -> String:
+    var offense:int=int(stats.get("hits",0));var defense:int=int(stats.get("defense",0));var air:int=int(stats.get("air",0))
+    var key:="quiet"
+    if offense+defense+air>=3:
+        key="defense"
+        var best:=defense
+        if air>best:key="air";best=air
+        if offense>best:key="offense"
+    var pool:Array=STYLES[key]
+    return pool[absi(salt)%pool.size()][1 if english else 0]
+static func dev_note(salt:int,english:bool) -> String:
+    return NOTES[absi(salt)%NOTES.size()][1 if english else 0]
 static func radio_line(player_won:bool,salt:int,english:bool) -> String:
     var pool:Array=RADIO_WIN if player_won else RADIO_LOSE
     return pool[absi(salt)%pool.size()][1 if english else 0]

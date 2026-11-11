@@ -40,8 +40,9 @@ func run() -> void:
     check("fog preset enables fog and day disables",true)
     scene.backdrop.set_time_of_day(3);check("fog on for FOG",scene.backdrop.environment.fog_enabled)
     scene.backdrop.set_time_of_day(0);check("fog off and adjustment off for DAY",not scene.backdrop.environment.fog_enabled and not scene.backdrop.environment.adjustment_enabled)
-    check("out of range clamps",preload("res://scripts/combat/time_of_day.gd").clamp_index(9)==3 and preload("res://scripts/combat/time_of_day.gd").clamp_index(-4)==0)
+    check("out of range clamps",preload("res://scripts/combat/time_of_day.gd").clamp_index(9)==4 and preload("res://scripts/combat/time_of_day.gd").clamp_index(-4)==0)
     if scene.screen=="play":scene.return_to_title()
+    check("MONO preset is fully desaturated",preload("res://scripts/combat/time_of_day.gd").PRESETS[4].sat==0.0)
     scene.screen="title"
     await key(KEY_N)
     check("N on title cycles to DUSK",scene.time_of_day_choice==1 and scene.backdrop.time_of_day==1)
@@ -61,7 +62,7 @@ func run() -> void:
     var bad:=prefs.read_options("")
     bad["time_of_day"]=99
     prefs.write_options(prefs_path,bad)
-    check("invalid saved value clamps",prefs.read_options(prefs_path).time_of_day==3)
+    check("invalid saved value clamps and secret slot needs unlock",prefs.read_options(prefs_path).time_of_day==0)
     DirAccess.remove_absolute(ProjectSettings.globalize_path(prefs_path))
     var failed:=checks.filter(func(c):return not c.passed)
     print("TIME OF DAY: %d/%d checks passed"%[checks.size()-failed.size(),checks.size()])
