@@ -205,18 +205,20 @@ func limb_at(node:Node3D,a:Vector3,b:Vector3) -> void:
 
 func pose(t:float,entry:Vector3,spin:float,outcome:String,reveal:float,reduced:bool) -> void:
     machine.position=entry
-    var brake:=sin(clampf((t-.43)/.35,0,1)*PI)
+    var brake:=sin(clampf((t-.97)/.25,0,1)*PI)
     machine.position.y+=brake*.20
-    machine.rotation.z=sin(t*23)*maxf(0,1-t/.85)*.09
+    var rolling:=smoothstep(.16,.32,t)*(1-smoothstep(.95,1.08,t))
+    var direction:=signf(entry.x) if absf(entry.x)>.01 else -1.0
+    machine.rotation.z=direction*rolling*.09+sin(entry.x*18)*rolling*.018
     chassis.position.y=-maxf(0,1-absf(t-1.40)/.12)*.09
     chassis.rotation.z=sin(t*49)*maxf(0,1-absf(t-1.40)/.32)*.035
     for wheel in wheels:wheel.rotation.x=-entry.x/.235
-    var drag:=clampf(1-t/1.12,0,1)
+    var drag:=rolling
     dealer.position=entry+Vector3(-1.05,0,-.42)
     dealer.rotation.z=drag*-.10
     body.rotation.x=drag*.18
     head.rotation.z=-.13+sin(floor(t*12)/12*1.6)*.045
-    var stepping:=sin(t*16)*drag*.13
+    var stepping:=sin(entry.x*4.5)*drag*.13
     limb_at(left_leg,Vector3(-.27,1.20,0),Vector3(-.31,.24,.06+stepping))
     limb_at(right_leg,Vector3(.27,1.20,0),Vector3(.31,.24,.06-stepping))
     shoes[0].position.z=stepping;shoes[1].position.z=-stepping
@@ -263,7 +265,7 @@ func pose(t:float,entry:Vector3,spin:float,outcome:String,reveal:float,reduced:b
         shard.rotation=Vector3(a,0,-a);shard.scale=Vector3.ONE*(1-reveal)*2
     for i in dust.size():
         var puff:MeshInstance3D=dust[i];var a:=i*2.399
-        var life:=clampf((t-.48)/.90,0,1)
+        var life:=clampf((t-1.02)/.70,0,1)
         puff.visible=life>0 and life<1 and (not reduced or i<5)
         puff.position=entry+Vector3(cos(a)*life*1.9,.12+sin(life*PI)*.18,sin(a)*life*.70)
         puff.scale=Vector3.ONE*(.6+life*1.2)*(1-life)

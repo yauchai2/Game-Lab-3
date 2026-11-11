@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[NPC拖機器進場修正與有聲預覽](docs/evidence/ability-draw/entry-v2/README.md)／[1.8秒裝備動畫六格分鏡](docs/ABILITY_EQUIP_STORYBOARD.zh-TW.md)。已修正街景碰撞導致原地出現；裝備段為規劃與概念圖，待Tripo模型後續換模／綁動畫。
+
 最新：[THE DEALER 回合間3D抽能力](docs/ABILITY_DRAW.zh-TW.md)／[有聲預覽](docs/evidence/ability-draw/ability-draw.mp4)。第二回合1:1或Street Run第二站勝出後，NPC拖機器入場、抽取下一局暫時能力；可暫停／跳過／F2、不同場景原點與備援入口。來源同branch，Web不更新。
 
 最新：[結果頁修復、決勝KO與四面反彈](docs/evidence/arena-box/README.md)。修好空白RESULT；只有整場決勝回合播放完整KO，之前短結算。正式戰鬥可撞天花／牆／地面連續反彈，加入受身、耗能、真3D撞擊回饋與跟鏡。來源同branch，Web不更新。

@@ -58,3 +58,9 @@ NPC是原創程序切面人物：紫色兜帽、黑色面罩內襯、象牙面�
 45項新檢查、既有戰鬥34項及結果15項，共94項通過。native最後log無ERROR／SCRIPT ERROR；保留VSync不支援warning。初次headless材質錯誤與測試設定失敗保留，見證據README；不能以33/33旗標掩蓋該次log錯誤。
 
 Godot4.6.3 Linux Compatibility／Mesa llvmpipe／Dummy audio；Movie Writer實際混音後轉H264/AAC，640×360原生渲染、1280×720 nearest放大。這不是使用者Mac、真人手感／音訊裝置或目標GPU即時效能驗收。
+
+## 2026-11-11：修正突然出現＋裝備分鏡
+
+使用者指出NPC／機器應有進場。已重現原版兩條通道起點與街景StaticCollision重疊，退回零位移的根因；入口改為已驗清楚的±6m／z0，先空場、再搖鏡迎接拖入，1.05秒煞停，腳步／輪轉／音效同步。兩路均受阻的compact配置加入遮幕揭幕，不再直接露出新生成的演員。新版有聲畫面與檢查在[entry-v2](evidence/ability-draw/entry-v2/README.md)，原版證據保留。
+
+使用者另要求能力物件裝上角色的短動畫，已生成[1.8秒六鏡規劃](ABILITY_EQUIP_STORYBOARD.zh-TW.md)與概念圖；**裝備動畫尚未接runtime**。抽獎段不見玩家；裝備提案只拍手／腰／鞋，不露臉。未來Tripo NPC／機器需待檔案到位再做衍生綁骨／分件及換模，原檔保留。

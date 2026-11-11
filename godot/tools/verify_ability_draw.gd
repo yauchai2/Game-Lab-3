@@ -1,13 +1,25 @@
 extends SceneTree
 var s:Node
 var checks:Array=[]
-const OUT="res://../docs/evidence/ability-draw/"
+const OUT="res://../docs/evidence/ability-draw/entry-v2/"
 func _initialize() -> void:call_deferred("run")
 func check(label:String,ok:bool) -> void:
     checks.append({"name":label,"passed":ok});print("ABILITY_DRAW ",label," ",ok)
     if not ok:push_error(label)
 func step(n:=1) -> void:
     for i in n:s._physics_process(1.0/60);s._process(1.0/60)
+func has_corner_in_frame(node:Node3D) -> bool:
+    if node is MeshInstance3D and node.is_visible_in_tree():
+        var bounds:AABB=node.get_aabb()
+        for i in 8:
+            var world:Vector3=node.to_global(bounds.get_endpoint(i))
+            if s.camera.is_position_behind(world):continue
+            var uv:Vector2=s.camera.unproject_position(world)/s.get_viewport().get_visible_rect().size
+            if Rect2(0,0,1,1).has_point(uv):return true
+    for child in node.get_children():
+        if child is Node3D and has_corner_in_frame(child):return true
+    return false
+
 func fixture() -> void:
     s.start_match(false);s.reduced_effects=false;s.round_theatre.clear();s.sim.round_number=2;s.sim.wins=[1,1];s.sim.phase="round_over";s.sim.winner=0;s.screen="result";s.result_clock=2.0
 func press(code:int) -> void:
@@ -21,7 +33,13 @@ func run() -> void:
     fixture();s.advance_round()
     check("1-1 result enters real 3D draw before next round",s.ability_draw.active() and s.sim.round_number==2)
     check("all fighters and shadows hidden",s.fighters.all(func(a):return not a.visible) and s.silhouettes.all(func(a):return not a.visible))
+    check("real street selects a nonzero entrance instead of stationary fallback",s.ability_draw.entry_offset.length()>5)
+    check("NPC starts completely outside camera",not has_corner_in_frame(s.ability_draw.actors.dealer))
+    check("machine starts completely outside camera",not has_corner_in_frame(s.ability_draw.actors.machine))
+    var first_position:Vector3=s.ability_draw.actors.machine.position
+    var first_wheel:float=s.ability_draw.actors.wheels[0].rotation.x
     var snapshot:Array=s.sim.fighters.duplicate(true);step(30)
+    check("cast actually travels in and wheels rotate",s.ability_draw.actors.machine.position.distance_to(first_position)>1 and absf(s.ability_draw.actors.wheels[0].rotation.x-first_wheel)>1)
     check("presentation does not tick combat or mutate fighters",snapshot==s.sim.fighters)
     s.pause_game();var time:float=s.ability_draw.age;step(20)
     check("pause freezes draw and all voice positions",s.screen=="pause" and s.ability_draw.age==time and s.ability_draw.arrival.stream_paused)
@@ -92,7 +110,16 @@ func run() -> void:
     profile=preload("res://scripts/combat/ability_draw/stage_profile.gd").new();profile.collision_mask=1<<19
     fixture();s.ability_draw_stage=profile;s.advance_round()
     check("obstructed main lane chooses swept-volume backup",s.ability_draw.use_backup and s.ability_draw.entry_offset.x>0)
-    s.ability_draw.clear();wall.queue_free();await process_frame
+    s.ability_draw.clear()
+    var other_wall:=StaticBody3D.new();other_wall.collision_layer=1<<19
+    var other_collision:=CollisionShape3D.new();other_collision.shape=box;other_wall.add_child(other_collision);root.add_child(other_wall);other_wall.position=Vector3(3,1.5,3)
+    await physics_frame;await physics_frame
+    fixture();s.ability_draw_stage=profile;s.advance_round()
+    check("both blocked lanes choose explicit animated compact reveal",s.ability_draw.compact_entry)
+    check("compact reveal never exposes a newly spawned cast",not s.ability_draw.actors.machine.visible and not s.ability_draw.actors.dealer.visible)
+    step(45)
+    check("compact reveal releases cast after the covering wipe",s.ability_draw.actors.machine.visible and s.ability_draw.actors.dealer.visible)
+    s.ability_draw.clear();wall.queue_free();other_wall.queue_free();await process_frame
     s.ability_draw_stage=null
     fixture();s.advance_round();s.audio.muted=true;step(1)
     check("draw respects explicit mute",s.ability_draw.arrival.volume_db<=-79)

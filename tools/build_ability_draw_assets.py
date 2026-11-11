@@ -58,11 +58,13 @@ def render(name,duration,events,loop=False):
     with wave.open(str(path),'wb') as w:w.setnchannels(2);w.setsampwidth(2);w.setframerate(RATE);w.writeframes((mix*32767).astype('<i2').tobytes())
     subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(path),'-c:a','libvorbis','-q:a','5',str(path.with_suffix('.ogg'))],check=True)
     path.unlink()
-render('arrival',1.95,[(0,.48,'drag',.45,-.7),(.25,.5,'drag',.6,-.3),(.55,.7,'hit',1,0),(.62,.65,'metal',.4,.3),(1.34,.5,'hit',1,0),(1.40,.4,'metal',.5,.2),(1.55,.32,'rise',.3,0)])
+render('arrival',1.95,[(0,.36,'drag',.35,-.7),(.18,.62,'drag',.55,-.5),(.50,.52,'drag',.6,-.2),(1.05,.7,'hit',1,0),(1.10,.65,'metal',.4,.3),(1.34,.5,'hit',1,0),(1.40,.4,'metal',.5,.2),(1.55,.32,'rise',.3,0)])
 render('spin',1.3,[(i*.07,.10,'metal',.20,(-.4 if i%2 else .4)) for i in range(18)],True)
 render('reveal',1.85,[(0,.12,'metal',.45,-.5),(.12,.12,'metal',.6,0),(.25,.16,'metal',.8,.5),(.26,.10,'rise',.45,0),(.38,.75,'hit',.9,0),(.42,.8,'chord',.65,0),(.62,.42,'rise',.3,0)])
 render('coin',.4,[(0,.32,'metal',.5,0)])
 render('confirm',.6,[(0,.5,'chord',.5,0)])
 manifest={'origin':'Original programmatic polygon icon art and deterministic synthesis; no external recordings','seed':20261111,'rate':RATE,'source_video_sha256':hashlib.sha256((ROOT/'references/ability-draw/source.mp4').read_bytes()).hexdigest(),'source_duration_seconds':4.351969,'source_review':'Full-duration 4fps sampling; cut points approximated, not source-PTS locked','files':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted([*ART.glob('*.png'),*AUDIO.glob('*.ogg')])}}
+storyboard=ROOT/'references/ability-draw/equip-storyboard.png'
+if storyboard.exists():manifest['equip_storyboard']={'origin':'ImageGen concept sheet using existing capsule screenshot as design reference','status':'planning_only_not_runtime','sha256':hashlib.sha256(storyboard.read_bytes()).hexdigest()}
 (ROOT/'references/ability-draw/manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print('Built reel art, 5 original stereo cues and provenance manifest')

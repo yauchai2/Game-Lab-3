@@ -1,5 +1,11 @@
 # 接續工作交接
 
+## 2026-11-11：抽獎進場修正及裝備分鏡
+
+使用者指出NPC／機器原地出現。真Physics查到±5m／z-.25入口起點與街景StaticCollision相交，兩路失敗退零位移；已改為驗清楚的±6m／z0，先空場、smoothstep拖入、鏡頭搖回、輪子／雙腳按路程、1.05秒煞停與聲畫重拍。其他兩路皆受阻stage加入compact遮幕揭幕，不直接露出新生成演員。新版證據evidence/ability-draw/entry-v2，保留上一輪原版文件與影片。最終52/52原生與退出乾淨；修正新查到arrival／intro播放實例的清理，初次log保留。
+
+1.8秒「接住→握緊→對準右腰插座→夾具鎖住→能量到鞋→ready」六格已生成並保存，見ABILITY_EQUIP_STORYBOARD.zh-TW.md；僅計劃，未接equip狀態／腰側掛件。使用者之後提供Tripo NPC及機器，待檔後檢查骨架／分件、保留來源、衍生綁骨及掛接現有時間線，不冒稱已換模。來源同branch，Web不變。
+
 ## 2026-11-11：THE DEALER抽能力正式接入
 
 使用者要求開始製作所附4.35秒影片，已接正式FIGHT第二回合1:1／Street Run第二站勝出／Demo的共用3D過場。程序蒙面NPC、輪式分件抽獎機、逐輪停靠、代幣等待、爆獎及native領取；三種真實下一局modifier、one-shot結果、與永久XP隔離。stage Resource給局部原點／方向／雙進場通道、掃掠碰撞備援及灰塵色，保存還原camera／visibility／duck，背景沿當局。聲音原創、短魚眼／模糊／速度線／煙塵，維持Compatibility及640×360。詳見[實作](ABILITY_DRAW.zh-TW.md)與[有聲證據](evidence/ability-draw/README.md)。

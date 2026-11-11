@@ -104,3 +104,5 @@
 - 2026-11-11 最新指示覆蓋每回合完整KO：僅match_over零生命決勝才播CityBreaker，Street Run只在最後站／敗退結束；普通round_over短結算，Demo仍真勝負跨場loop。RESULT選單須在director結束後建立並驗visible controls，不能只驗finish_menu_open。正式Rush四面ArenaBox（6接觸／180tick／E20受身／無額外反彈傷害）與arena_cage，見docs/evidence/arena-box/README.md；不得無限刷新stun或改成螢幕座標物理。camera最後以雙人bounds避HUD；F2不改物理。來源同branch／PR #6，Web不更新。
 
 - 2026-11-11 最新本聊天要求開始製作抽能力：見docs/ABILITY_DRAW.zh-TW.md及evidence/ability-draw。正式FIGHT第二回合1:1／Street Run第二站勝出／Demo共用THE DEALER真3D；局部stage profile、掃掠備援、一次抽取／領取、下一局真modifier與永久XP隔離，所有相機／人物可見性／聲音／duck可逆。NPC不替換戰鬥GLB，玩家不入鏡；2:0保持決勝KO。首版平地入口／程序人物、非逐像素原片復刻，Mac／真人驗收待辦。來源同branch／PR #6，Web不更新。
+
+- 2026-11-11 本聊天更正NPC／機器入場：見evidence/ability-draw/entry-v2，原±5m／z-.25街景碰撞導致零位移已修正為±6m／z0；真出框／拖行／煞停及compact遮幕要保留。ABILITY_EQUIP_STORYBOARD.zh-TW.md與equip-storyboard.png僅規劃1.8秒腰側安裝，未接runtime；只拍手腰鞋不露玩家臉。等使用者Tripo NPC／機器後才換模／綁骨，保留來源與Web規則。

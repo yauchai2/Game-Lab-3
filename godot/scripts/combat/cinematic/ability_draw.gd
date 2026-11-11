@@ -29,6 +29,7 @@ var rolled_count:=0
 var restore_count:=0
 var last_confirm_frame:=-1
 var use_backup:=false
+var compact_entry:=false
 var last_skip:=false
 var current_shot:=0
 var auto_age:=0.0
@@ -72,9 +73,10 @@ func begin(id:String,next_kind:String,random_seed:int,profile:Resource=null) -> 
     var space:=get_world_3d().direct_space_state
     use_backup=not stage.lane_clear(space,stage.entry_offset)
     entry_offset=stage.backup_entry_offset if use_backup else stage.entry_offset
-    # If both authored lanes are obstructed, enter through a brief smoke wipe at
-    # the clear landing point; never sweep through obstructing scene geometry.
-    if use_backup and not stage.lane_clear(space,entry_offset):entry_offset=Vector3.ZERO
+    # A blocked compact stage still receives an animated graphic reveal; never
+    # expose a newly spawned stationary cast in the first frame.
+    compact_entry=use_backup and not stage.lane_clear(space,entry_offset)
+    if compact_entry:entry_offset=Vector3.ZERO
     saved={"transform":session.camera.transform,"fov":session.camera.fov,"near":session.camera.near,"far":session.camera.far,"environment":session.camera.environment,"duck":session.audio.cinematic_duck,"backdrop":session.backdrop.visible,"living":session.backdrop.living.visible}
     saved_actors.clear();saved_shadows.clear()
     for actor in session.fighters:saved_actors.append({"node":actor,"visible":actor.visible});actor.hide()
@@ -147,8 +149,8 @@ func sample() -> void:
     session.arena_cage.hide();session.backdrop.visible=true;session.grade.hide()
     session.camera.environment=null;session.camera.near=.04
     var t:=source_age
-    var progress:=clampf(t/.78,0,1)
-    var offset:Vector3=entry_offset*pow(1-progress,2)
+    var progress:=smoothstep(.16,1.06,t)
+    var offset:Vector3=entry_offset*(1-progress)
     var spin_amount:float=age if state=="spin" else -1.0
     var burst:=clampf((t-3.5)/.50,0,1) if state in ["spin","result"] else 0.0
     var id:String=result.get("id","speed")
@@ -156,6 +158,10 @@ func sample() -> void:
     actors.reward_backdrop.visible=state=="result"
     var camera_at:=Vector3(-1.7,.32,3.5)
     var target:=Vector3(-.25,1.18,0)
+    if state=="arrival" and t<1.25:
+        # Begin looking into clear stage space. The cast is physically outside
+        # this frame, then travels in as the camera pans back to the landing.
+        target.x=lerpf(-signf(entry_offset.x)*1.7,-.25,smoothstep(.28,1.05,t))
     var fov:=52.0;var roll:=0.0;var distortion:=0.0;var punch:=0.0
     current_shot=0
     if t>=1.25 and t<1.95:
@@ -176,6 +182,8 @@ func sample() -> void:
         actors.reward.scale=Vector3.ONE*1.8
         actors.dealer.hide();actors.machine.hide()
     if state!="result":actors.reward.scale=Vector3.ONE;actors.dealer.show();actors.machine.show()
+    if compact_entry and state=="arrival" and t<.28:
+        actors.dealer.hide();actors.machine.hide()
     if session.reduced_effects:distortion=0;roll=0;punch=0
     var shake:=Vector3(sin(t*97),cos(t*131),sin(t*53))*punch*.055
     session.camera.global_position=to_global(camera_at+shake)
@@ -211,13 +219,18 @@ func draw(canvas:Control) -> void:
             canvas.draw_rect(Rect2(705,420,550,120),INK)
             canvas.draw_string(bold,Vector2(730,465),"ONE TOKEN. ONE CHANCE.",HORIZONTAL_ALIGNMENT_LEFT,-1,32,Color("ffca42"))
             canvas.draw_string(font,Vector2(730,508),"A RANDOM CORE FOR THE NEXT FIGHT",HORIZONTAL_ALIGNMENT_LEFT,-1,24,CREAM)
-        var peak:=maxf(maxf(0,1-absf(source_age-.56)/.11),maxf(0,1-absf(source_age-1.42)/.12))
+        var peak:=maxf(maxf(0,1-absf(source_age-1.06)/.11),maxf(0,1-absf(source_age-1.42)/.12))
         if state=="spin":peak=maxf(peak,maxf(0,1-absf(source_age-3.56)/.20))
         if not session.reduced_effects and peak>0:
             for i in 17:
                 var a:=TAU*i/17+.11;var ray:=Vector2(cos(a),sin(a));var p:=Vector2(640,350)+ray*260
                 canvas.draw_colored_polygon(PackedVector2Array([p,Vector2(640,350)+ray*900+ray.orthogonal()*22,Vector2(640,350)+ray*900-ray.orthogonal()*22]),Color(1,.8,.18,peak))
             canvas.draw_string(bold,Vector2(850,220),"WHAM!" if source_age<2 else "JACKPOT!",HORIZONTAL_ALIGNMENT_LEFT,-1,68,CREAM)
+    if compact_entry and state=="arrival" and source_age<.68:
+        var wipe:=smoothstep(.28,.68,source_age)
+        var edge:=lerpf(1600.0,-360.0,wipe)
+        canvas.draw_colored_polygon(PackedVector2Array([Vector2(-400,0),Vector2(edge,0),Vector2(edge-260,720),Vector2(-400,720)]),Color("4f1b80"))
+        canvas.draw_line(Vector2(edge-20,0),Vector2(edge-280,720),Color("ed7827"),32)
     canvas.draw_rect(Rect2(0,684,1280,36),INK)
     canvas.draw_string(font,Vector2(24,711),"ENTER / SPACE  "+("SPIN" if state=="offer" else ("TAKE CORE" if state=="result" else "SKIP"))+"     ESC  PAUSE     F2  REDUCE FX",HORIZONTAL_ALIGNMENT_LEFT,-1,24,CREAM)
 
@@ -228,7 +241,10 @@ func clear() -> void:
     if is_instance_valid(action):action.hide()
     if is_instance_valid(lens):lens.hide();material.set_shader_parameter("fisheye",0.0);material.set_shader_parameter("blur",0.0);material.set_shader_parameter("impact",0.0)
     for p in [arrival,spin,reveal,accent]:
-        if is_instance_valid(p):p.stream_paused=false;p.stop()
+        if is_instance_valid(p):
+            p.stream_paused=false
+            if p.has_stream_playback():p.get_stream_playback().stop()
+            p.stop()
     if not was_active:return
     restore_count+=1
     if is_instance_valid(session.camera) and not saved.is_empty():
@@ -238,3 +254,9 @@ func clear() -> void:
     for a in saved_shadows:if is_instance_valid(a.node):a.node.visible=a.visible
     saved.clear();saved_actors.clear();saved_shadows.clear()
     session.pending.clear()
+
+
+func _exit_tree() -> void:
+    clear()
+    for p in [arrival,spin,reveal,accent]:
+        if is_instance_valid(p):p.stream=null

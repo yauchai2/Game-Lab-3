@@ -1,5 +1,11 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-11：抽獎進場修正與裝備分鏡
+
+最終Godot4.6.3原生52/52，log無ERROR／SCRIPT ERROR或退出洩漏；evidence/ability-draw/entry-v2保存空場首幀、鏡頭外入場、煞停、有聲Movie Writer、PCM及實際街景Physics前後probe。原入口被碰撞判阻塞而退回原地已重現，修正後驗真非零位移、兩演員mesh corners初始均出框、移動／輪轉、雙路受阻遮幕，以及原有獎勵／跨場景／暫停／F2／退出。
+
+首跑52項後仍有4個資源未釋放；verbose是arrival／intro的Ogg playback，補齊兩owner的clear顯式停止及exit解除stream後最終重跑乾淨，初次紀錄保留。不把數字旗標當作初次無錯證明。裝備六鏡為ImageGen概念與規劃，未接runtime；Tripo模型尚待使用者提供。未發Web，Mac／真人裝置與目標GPU仍待驗收。
+
 ## 2026-11-11：THE DEALER 3D抽能力
 
 Godot4.6.3 Linux Compatibility／Mesa llvmpipe原生45/45新檢查，加既有headless戰鬥34/34及結果15/15，共94項。最終native log無ERROR／SCRIPT ERROR；VSync warning保留。明示1:1／Street Run邊界fixture測真流程、native pressed callbacks、seed／skip／一次領取、實際移速／回盾／能量／重置、Demo無XP、另一stage原點／方向、障礙備援、mute／設定／暫停／F2與完整還原。真桌面滑鼠／鍵盤到獎品頁亦已觀察。

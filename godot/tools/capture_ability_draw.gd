@@ -1,6 +1,6 @@
 extends SceneTree
 ## Deliberate second-round boundary fixture; actual 3D render, audio and UI.
-const OUT="res://../docs/evidence/ability-draw/"
+const OUT="res://../docs/evidence/ability-draw/entry-v2/"
 var s:Node
 var live:=false
 func _initialize() -> void:call_deferred("run")
@@ -19,8 +19,9 @@ func run() -> void:
         if d.state=="result":result_frames+=1
         var label:=""
         if d.state=="arrival":
-            if d.source_age>.15 and d.source_age<.35:label="01-entry"
-            elif d.source_age>.60 and d.source_age<.8:label="02-landing"
+            if d.source_age<.10:label="00-empty"
+            elif d.source_age>.62 and d.source_age<.8:label="01-entry"
+            elif d.source_age>1.08 and d.source_age<1.22:label="02-landing"
             elif d.source_age>1.40 and d.source_age<1.6:label="03-slap"
         elif d.state=="offer":label="04-offer"
         elif d.state=="spin":

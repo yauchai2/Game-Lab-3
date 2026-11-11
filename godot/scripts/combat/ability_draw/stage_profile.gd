@@ -2,8 +2,8 @@ extends Resource
 ## Local to the current battlefield. Author a clear lane; no baked city backdrop.
 @export var anchor:=Vector3(0,0,3)
 @export var heading_degrees:=0.0
-@export var entry_offset:=Vector3(-5.0,0,-.25)
-@export var backup_entry_offset:=Vector3(5.0,0,-.25)
+@export var entry_offset:=Vector3(-6.0,0,0)
+@export var backup_entry_offset:=Vector3(6.0,0,0)
 @export var floor_height:=0.0
 @export_flags_3d_physics var collision_mask:=1
 @export var dust_color:=Color("b0a1b9")

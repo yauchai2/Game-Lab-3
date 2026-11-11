@@ -38,7 +38,10 @@ func clear() -> void:
             if i<session.fighters.size():session.fighters[i].visible=saved_visibility[i]
     intro=false;age=0.0;close_age=1.0;cooldown=0
     if is_instance_valid(lens):lens.hide();material.set_shader_parameter("fisheye",0.0)
-    if is_instance_valid(score):score.stream_paused=false;score.stop()
+    if is_instance_valid(score):
+        score.stream_paused=false
+        if score.has_stream_playback():score.get_stream_playback().stop()
+        score.stop()
     if is_instance_valid(session) and is_instance_valid(session.audio):session.audio.cinematic_duck=0.0
 func hold_simulation() -> bool:
     # Explicit test/training fixtures that enter fight cannot inherit an intro lock.
@@ -135,3 +138,10 @@ func safe_framing() -> bool:
             var uv:Vector2=session.camera.unproject_position(point)/extent
             if uv.y<.25 or uv.y>.75:return false
     return true
+
+
+func _exit_tree() -> void:
+    if is_instance_valid(score):
+        score.stream_paused=false
+        if score.has_stream_playback():score.get_stream_playback().stop()
+        score.stop();score.stream=null
