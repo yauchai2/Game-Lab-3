@@ -1,0 +1,188 @@
+{
+  "checks": [
+    {
+      "name": "round one advances without a draw",
+      "passed": true
+    },
+    {
+      "name": "2-0 match completion is ineligible",
+      "passed": true
+    },
+    {
+      "name": "1-1 result enters real 3D draw before next round",
+      "passed": true
+    },
+    {
+      "name": "all fighters and shadows hidden",
+      "passed": true
+    },
+    {
+      "name": "presentation does not tick combat or mutate fighters",
+      "passed": true
+    },
+    {
+      "name": "pause freezes draw and all voice positions",
+      "passed": true
+    },
+    {
+      "name": "skip arrival stops at offer without rolling",
+      "passed": true
+    },
+    {
+      "name": "offer has visible native action",
+      "passed": true
+    },
+    {
+      "name": "native button locks a random result once",
+      "passed": true
+    },
+    {
+      "name": "skip spin retains exactly the same reward",
+      "passed": true
+    },
+    {
+      "name": "claim page is stable and lens is released",
+      "passed": true
+    },
+    {
+      "name": "claim starts round three and applies real modifier",
+      "passed": true
+    },
+    {
+      "name": "claim cannot apply twice",
+      "passed": true
+    },
+    {
+      "name": "all fighter visibility and camera near restore",
+      "passed": true
+    },
+    {
+      "name": "seed and boundary results are stable",
+      "passed": true
+    },
+    {
+      "name": "speed core changes actual movement +20%",
+      "passed": true
+    },
+    {
+      "name": "guard core changes actual regeneration +35%",
+      "passed": true
+    },
+    {
+      "name": "charge core adds at most twenty starting meter",
+      "passed": true
+    },
+    {
+      "name": "temporary core never survives reset",
+      "passed": true
+    },
+    {
+      "name": "F2 offer stays usable false",
+      "passed": true
+    },
+    {
+      "name": "full playback reaches stable result false",
+      "passed": true
+    },
+    {
+      "name": "title clears score / lens / hidden fighters false",
+      "passed": true
+    },
+    {
+      "name": "F2 offer stays usable true",
+      "passed": true
+    },
+    {
+      "name": "full playback reaches stable result true",
+      "passed": true
+    },
+    {
+      "name": "title clears score / lens / hidden fighters true",
+      "passed": true
+    },
+    {
+      "name": "restart cancels draw and clears pending reward",
+      "passed": true
+    },
+    {
+      "name": "Street Run stop two win enters shared draw",
+      "passed": true
+    },
+    {
+      "name": "Street Run claim advances to stop three",
+      "passed": true
+    },
+    {
+      "name": "Street Run defeat cannot award a draw",
+      "passed": true
+    },
+    {
+      "name": "practice never awards a draw",
+      "passed": true
+    },
+    {
+      "name": "Demo uses same intermission",
+      "passed": true
+    },
+    {
+      "name": "Demo auto selects and claims before third round",
+      "passed": true
+    },
+    {
+      "name": "Demo does not grant permanent growth",
+      "passed": true
+    },
+    {
+      "name": "another stage anchor and orientation transform the same cast",
+      "passed": true
+    },
+    {
+      "name": "alternate entry side is used without negative scale",
+      "passed": true
+    },
+    {
+      "name": "actors remain excluded at alternate stage",
+      "passed": true
+    },
+    {
+      "name": "clear restores saved camera exactly",
+      "passed": true
+    },
+    {
+      "name": "clear restores background actors and music duck",
+      "passed": true
+    },
+    {
+      "name": "clear is idempotent",
+      "passed": true
+    },
+    {
+      "name": "obstructed main lane chooses swept-volume backup",
+      "passed": true
+    },
+    {
+      "name": "draw respects explicit mute",
+      "passed": true
+    },
+    {
+      "name": "draw respects zero effects volume",
+      "passed": true
+    },
+    {
+      "name": "effects volume restores without restarting timeline",
+      "passed": true
+    },
+    {
+      "name": "settings pauses draw with visible controls",
+      "passed": true
+    },
+    {
+      "name": "live F2 disables lens without losing draw",
+      "passed": true
+    }
+  ],
+  "engine": "4.6.3-stable (official)",
+  "failed": 0,
+  "passed": 45,
+  "scope": "Explicit 1-1 / Street Run boundary fixtures; actual runtime transition, native callbacks, deterministic rules, no claim of natural-match coverage here"
+}

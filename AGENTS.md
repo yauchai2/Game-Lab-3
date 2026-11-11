@@ -102,3 +102,5 @@
 - 2026-11-11 最新完整過場要求覆蓋Demo endless／無自動重設歷史契約：見docs/evidence/round-flow/README.md。正式FIGHT／Street Run有2.8秒可跳過3D開場，練習即玩；Demo正常有限生命、真KO完整8.2秒後自動next round／next match，無XP、不在live fight補傷或改健康。round_theatre掌開場／稀疏0.28秒戰鬥魚眼，避讓Neon及CityBreaker；煙霧固定18＋12＋64上限。暫停／F2／R／F12／退出須清理lens與score。來源同branch／PR #6，Web不更新。
 
 - 2026-11-11 最新指示覆蓋每回合完整KO：僅match_over零生命決勝才播CityBreaker，Street Run只在最後站／敗退結束；普通round_over短結算，Demo仍真勝負跨場loop。RESULT選單須在director結束後建立並驗visible controls，不能只驗finish_menu_open。正式Rush四面ArenaBox（6接觸／180tick／E20受身／無額外反彈傷害）與arena_cage，見docs/evidence/arena-box/README.md；不得無限刷新stun或改成螢幕座標物理。camera最後以雙人bounds避HUD；F2不改物理。來源同branch／PR #6，Web不更新。
+
+- 2026-11-11 最新本聊天要求開始製作抽能力：見docs/ABILITY_DRAW.zh-TW.md及evidence/ability-draw。正式FIGHT第二回合1:1／Street Run第二站勝出／Demo共用THE DEALER真3D；局部stage profile、掃掠備援、一次抽取／領取、下一局真modifier與永久XP隔離，所有相機／人物可見性／聲音／duck可逆。NPC不替換戰鬥GLB，玩家不入鏡；2:0保持決勝KO。首版平地入口／程序人物、非逐像素原片復刻，Mac／真人驗收待辦。來源同branch／PR #6，Web不更新。

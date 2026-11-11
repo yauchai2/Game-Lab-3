@@ -409,11 +409,11 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
             f.frame = 0
             f.invuln = 7
             f.dash_cd = 42
-            f.vx = (signf(command.get("axis", 0.0)) if absf(command.get("axis", 0.0)) > 0.1 else float(f.face)) * 14.0 * profile_for(f.get("character",0)).speed
+            f.vx = (signf(command.get("axis", 0.0)) if absf(command.get("axis", 0.0)) > 0.1 else float(f.face)) * 14.0 * profile_for(f.get("character",0)).speed*(1.1 if f.get("draw_core","")=="speed" else 1.0)
             events.append({"kind": "dash", "target": i})
         else:
             f.guarding = (command.get("guard", false) or (f.entry_parry_window>0 and f.parry_allowed and f.parry_cd==0 and f.jump_buffer<=0)) and f.y <= 0.01 and f.guard > 0
-            f.vx = float(command.get("axis", 0.0)) * (1.6 if f.guarding else (8.0 if arcade_enabled else 5.8))*profile_for(f.get("character",0)).speed
+            f.vx = float(command.get("axis", 0.0)) * (1.6 if f.guarding else (8.0 if arcade_enabled else 5.8))*profile_for(f.get("character",0)).speed*(1.2 if f.get("draw_core","")=="speed" else 1.0)
             if f.jump_buffer>0 and f.y <= 0.01 and not f.guarding:
                 if is_aerial():air_motion.request_jump(f)
                 else:
@@ -469,7 +469,7 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
         if box_active() and f.y>ArenaBox.CEILING:
             f.y=ArenaBox.CEILING;f.vy=minf(f.vy,-2.0)
     f.guard_frames = f.guard_frames+1 if f.guarding and was_guarding else (1 if f.guarding else 0)
-    f.guard = minf(100.0, f.guard + (0.06 if f.guarding else 0.30))
+    f.guard = minf(100.0, f.guard + (0.06 if f.guarding else 0.30)*(1.35 if f.get("draw_core","")=="guard" else 1.0))
     # Landing recovery is bounded (4/8 ticks). Preserve an early Space press
     # through it, just as native hitstop already preserves the input buffer.
     if f.state!="landing":f.jump_buffer = maxi(0,f.jump_buffer-1)

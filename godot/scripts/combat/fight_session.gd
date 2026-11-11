@@ -32,6 +32,12 @@ const FINISH_SECONDS := 1.4
 var arena_cage=preload("res://scripts/combat/arena_cage.gd").new()
 var round_theatre = preload("res://scripts/combat/cinematic/round_theatre.gd").new()
 var city_breaker = preload("res://scripts/combat/cinematic/city_breaker.gd").new()
+var ability_draw = preload("res://scripts/combat/cinematic/ability_draw.gd").new()
+var draw_rewards = preload("res://scripts/combat/ability_draw/rewards.gd").new()
+var draw_continuing := false
+var draw_match_serial := 0
+var draw_seed := 0
+@export var ability_draw_stage: Resource=preload("res://resources/ability_draw/street.tres")
 var pause_resume_screen := "play"
 var red_environment: Environment
 var camera: Camera3D
@@ -129,6 +135,8 @@ func _ready() -> void:
     add_child(arena_cage)
     add_child(round_theatre)
     round_theatre.setup(self)
+    add_child(ability_draw)
+    ability_draw.setup(self)
     _present(0.0)
 
 func _build_stage() -> void:
@@ -187,6 +195,8 @@ func _material(color: Color, unlit: bool) -> StandardMaterial3D:
     return mat
 
 func start_match(training := false) -> void:
+    ability_draw.clear()
+    draw_rewards.reset();draw_match_serial+=1;draw_seed=Time.get_ticks_usec()
     coach=null
     _leave_run()
     sim.service_perks=[[],[]]
@@ -584,6 +594,7 @@ func _handle_event(event: Dictionary) -> void:
         backdrop.smoke.react(Vector3(sim.fighters[target].x,sim.fighters[target].y,FIGHT_Z))
 
 func _clear_impacts() -> void:
+    ability_draw.clear()
     round_theatre.clear()
     arena_cage.clear()
     if is_instance_valid(backdrop) and is_instance_valid(backdrop.smoke):backdrop.smoke.clear_impacts()
@@ -668,11 +679,13 @@ func _process(delta: float) -> void:
             skip_city_breaker()
         else:
             city_breaker.advance(delta, screen != "result")
-    if not city_breaker.active():
+    if ability_draw.active():
+        ability_draw.advance(delta,screen in ["pause","help"])
+    elif not city_breaker.active():
         round_theatre.advance(delta,screen in ["pause","help"])
-    backdrop.smoke.visible=screen in ["play","pause","result","help"]
+    backdrop.smoke.visible=screen in ["play","pause","result","help"] and not (ability_draw.active() and ability_draw.state=="result")
     backdrop.smoke.advance(delta*(rhythm.view_speed() if screen=="play" and not reduced_effects else 1.0),screen in ["pause","help"],reduced_effects)
-    if screen=="result" and demo!=null and not city_breaker.active() and result_clock>=FINISH_SECONDS:
+    if screen=="result" and demo!=null and not city_breaker.active() and not ability_draw.active() and result_clock>=FINISH_SECONDS:
         _advance_demo_round()
     elif screen=="result" and demo==null and not result_presentation_active() and (not finish_menu_open or not hud.menu.visible):
         # Check AFTER the cinematic releases its lens. Opening the menu before
@@ -702,7 +715,7 @@ func _fit_box_camera() -> void:
     base_camera=camera.position;camera_focus=center
 
 func _apply_red_stage() -> void:
-    if city_breaker.active() or round_theatre.intro:
+    if city_breaker.active() or round_theatre.intro or ability_draw.active():
         backdrop.visible=true
         camera.environment=null
         grade.visible=false
@@ -864,7 +877,7 @@ func project(point: Vector2) -> Vector2:
     return camera.unproject_position(Vector3(point.x,point.y,FIGHT_Z)) * Vector2(1280,720) / get_viewport().get_visible_rect().size
 
 func pause_game() -> void:
-    if screen == "play" or (screen == "result" and city_breaker.active()):
+    if screen == "play" or (screen == "result" and (city_breaker.active() or ability_draw.active())):
         pause_resume_screen = screen
         screen = "pause"
         audio.stop_all()
@@ -876,6 +889,7 @@ func resume_game() -> void:
     hud.rebuild_menu()
 
 func advance_round() -> void:
+    if _begin_ability_draw("round"):return
     city_breaker.clear()
     sim.next_round()
     finish_menu_open=false
@@ -887,6 +901,7 @@ func advance_round() -> void:
     hud.rebuild_menu()
 
 func return_to_street() -> void:
+    ability_draw.clear()
     round_theatre.clear()
     city_breaker.clear()
     audio.stop_all()
@@ -894,6 +909,9 @@ func return_to_street() -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
     if not event.is_pressed() or event.is_echo():
+        return
+    if ability_draw.active() and screen=="result" and event.keycode in [KEY_ENTER,KEY_SPACE]:
+        ability_draw.confirm()
         return
     if round_theatre.intro and screen=="play":
         if event.keycode in [KEY_ENTER,KEY_SPACE]:
@@ -958,7 +976,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
     elif event.keycode == KEY_F3:
         hitboxes_visible = not hitboxes_visible
     elif event.keycode == KEY_ESCAPE:
-        if screen == "play" or (screen == "result" and city_breaker.active()):
+        if screen == "play" or (screen == "result" and (city_breaker.active() or ability_draw.active())):
             pause_game()
         elif screen in ["pause", "help"]:
             resume_game()
@@ -1036,6 +1054,7 @@ func set_volume(kind: String, value: float) -> void:
     settings_save_clock=.35
 
 func _exit_tree() -> void:
+    ability_draw.clear()
     round_theatre.clear()
     city_breaker.clear()
     # A scene switch or immediate quit can happen before the slider debounce.
@@ -1223,6 +1242,7 @@ func start_run() -> void:
     advance_run()
 
 func advance_run() -> void:
+    if _begin_ability_draw("run"):return
     if not run_active:return
     if run_stage>=3 or (screen=="result" and sim.winner!=0):return_to_title();return
     run_stage+=1;run_awarded=false;run_reward=0;run_techniques.clear()
@@ -1297,7 +1317,7 @@ func final_ko() -> bool:
     return sim.phase=="match_over" or (run_active and (run_stage>=3 or sim.winner!=0))
 
 func result_presentation_active() -> bool:
-    return screen == "result" and not reduced_effects and (city_breaker.active() or result_clock < FINISH_SECONDS)
+    return screen == "result" and (ability_draw.active() or (not reduced_effects and (city_breaker.active() or result_clock < FINISH_SECONDS)))
 
 func skip_city_breaker() -> void:
     city_breaker.clear()
@@ -1313,10 +1333,44 @@ func presentation_round() -> int:
     return demo.rounds_finished+1 if demo!=null else sim.round_number
 
 func _advance_demo_round() -> void:
+    if _begin_ability_draw("demo"):return
+    var match_finished:bool=sim.phase=="match_over"
     var director:RefCounted=demo
     _clear_impacts();effects.clear();pending.clear()
     director.advance_round(sim)
+    if match_finished:draw_rewards.reset();draw_match_serial+=1
     result_clock=0.0;finish_menu_open=false;trauma=0.0
     screen="play"
     round_theatre.begin_intro()
     hud.notice_time=0;hud.rebuild_menu()
+
+
+func ability_draw_boundary() -> String:
+    if practice or coach!=null:return ""
+    if run_active:
+        if run_stage==2 and screen=="result" and sim.winner==0:return run_token+"/stop2"
+        return ""
+    if sim.phase=="round_over" and sim.round_number==2:
+        return "match:%d/round2"%draw_match_serial
+    return ""
+
+func _begin_ability_draw(next_kind:String) -> bool:
+    if draw_continuing:return false
+    if ability_draw.active():return true
+    var id:=ability_draw_boundary()
+    if id.is_empty() or draw_rewards.claimed.has(id):return false
+    effects.clear();_clear_impacts();pending.clear();trauma=0
+    ability_draw.begin(id,next_kind,draw_seed+draw_match_serial,ability_draw_stage)
+    return true
+
+func complete_ability_draw(item:Dictionary,next_kind:String) -> void:
+    # Reset the next round first: its fighter dictionaries must exist before a
+    # one-round modifier is installed. The director owns no gameplay writes.
+    draw_continuing=true
+    if next_kind=="run":advance_run()
+    elif next_kind=="demo":_advance_demo_round()
+    else:advance_round()
+    draw_continuing=false
+    if draw_rewards.apply_once(sim,item):
+        hud.notice=item.title+" / NEXT ROUND";hud.notice_time=2.0
+    pending.clear()

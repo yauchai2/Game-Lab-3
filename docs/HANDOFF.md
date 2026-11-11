@@ -1,5 +1,11 @@
 # 接續工作交接
 
+## 2026-11-11：THE DEALER抽能力正式接入
+
+使用者要求開始製作所附4.35秒影片，已接正式FIGHT第二回合1:1／Street Run第二站勝出／Demo的共用3D過場。程序蒙面NPC、輪式分件抽獎機、逐輪停靠、代幣等待、爆獎及native領取；三種真實下一局modifier、one-shot結果、與永久XP隔離。stage Resource給局部原點／方向／雙進場通道、掃掠碰撞備援及灰塵色，保存還原camera／visibility／duck，背景沿當局。聲音原創、短魚眼／模糊／速度線／煙塵，維持Compatibility及640×360。詳見[實作](ABILITY_DRAW.zh-TW.md)與[有聲證據](evidence/ability-draw/README.md)。
+
+45新native＋34戰鬥＋15結果共94項通過，native最終無ERROR；早期Dummy material null與測試設定失敗log保留。預覽是明示1:1邊界fixture、實際引擎聲畫，非自然match／Mac實測／逐像素完美；程序模型細節與原片仍有差異。首版平地入口，任意坡階／足底IK與目標硬件、真人混音／平衡待驗。沿codex/combat-escalation-next／既有PR #6推來源，不發Web。
+
 ## 2026-11-11：結果頁修復、決勝KO與四面反彈
 
 修正RESULT空白：先前在CityBreaker仍active時提前設finish_menu_open，rebuild把controls隱藏；之後director清場但沒有再建選單。本輪在演出釋放後才建立結果操作，並對空白狀態自我恢復。原生測試驗真visible buttons、視窗內位置及pressed callbacks，涵蓋自動播完／暫停／F2／跳過、下一回合與重賽。

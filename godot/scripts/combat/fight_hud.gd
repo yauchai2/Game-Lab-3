@@ -395,7 +395,7 @@ func _result_page() -> void:
     _action(menu_stack,"main_menu","",func():session.return_to_title())
 
 func open_page(page: String) -> void:
-    if session.screen=="play":session.pause_game()
+    if session.screen=="play" or (session.screen=="result" and session.ability_draw.active()):session.pause_game()
     page_return_focus="controls" if page=="help" else page
     menu_page=page
     focus_key="back"
@@ -587,6 +587,9 @@ func _draw() -> void:
         if menu_page=="main":art.title(self)
         elif menu_page=="roster":art.roster(self,session)
         else:art.secondary(self,"LOADOUT" if menu_page=="skills" else ("SETTINGS" if menu_page=="settings" else "HOW TO PLAY"))
+        return
+    if session.ability_draw.active() and session.screen=="result":
+        session.ability_draw.draw(self)
         return
     if session.round_theatre.intro and session.screen=="play":
         session.round_theatre.draw(self)

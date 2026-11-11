@@ -1,5 +1,11 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-11：THE DEALER 3D抽能力
+
+Godot4.6.3 Linux Compatibility／Mesa llvmpipe原生45/45新檢查，加既有headless戰鬥34/34及結果15/15，共94項。最終native log無ERROR／SCRIPT ERROR；VSync warning保留。明示1:1／Street Run邊界fixture測真流程、native pressed callbacks、seed／skip／一次領取、實際移速／回盾／能量／重置、Demo無XP、另一stage原點／方向、障礙備援、mute／設定／暫停／F2與完整還原。真桌面滑鼠／鍵盤到獎品頁亦已觀察。
+
+有聲Movie Writer 172幀／30fps，原生640×360再nearest放大1280×720；PCM非靜音與擷取時序見[evidence/ability-draw](evidence/ability-draw/README.md)。初次headless材質null與測試clock設定、原生profile collision mask及F2繼承失敗已保留及說明；不能把33/33旗標視為該次無錯。不是Mac／真人裝置實聽、自然完整match或目標GPU效能；模型與原片仍有差異。未發Web。
+
 ## 2026-11-11：結果頁修復、決勝KO與四面反彈
 
 修正RESULT空白：先前在CityBreaker仍active時提前設finish_menu_open，rebuild把controls隱藏；之後director清場但沒有再建選單。本輪在演出釋放後才建立結果操作，並對空白狀態自我恢復。原生測試驗真visible buttons、視窗內位置及pressed callbacks，涵蓋自動播完／暫停／F2／跳過、下一回合與重賽。

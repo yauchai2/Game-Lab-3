@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/ability_draw/stage_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+anchor = Vector3(0, 0, 3)
+entry_offset = Vector3(-5, 0, -0.25)
+backup_entry_offset = Vector3(5, 0, -0.25)
