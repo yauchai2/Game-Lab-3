@@ -49,8 +49,10 @@ LOCAL_VERSUS each player has an own jump key true
 LOCAL_VERSUS numpad is an alternate P2 attack true
 LOCAL_VERSUS P2 skill key is not the scene-edge shortcut true
 LOCAL_VERSUS result names the winning player true
+LOCAL_VERSUS two-human matches skip the one-sided ability draw true
 LOCAL_VERSUS next round keeps both humans true
 LOCAL_VERSUS restart keeps local versus true
+LOCAL_VERSUS gamepad A skips the round intro true
 LOCAL_VERSUS two gamepads take both players true
 LOCAL_VERSUS gamepad 1 X attacks for P1 only true
 LOCAL_VERSUS gamepad 2 X attacks for P2 only true
@@ -81,4 +83,4 @@ LOCAL_VERSUS A confirms a menu entry true
 LOCAL_VERSUS B goes back true
 LOCAL_VERSUS A cycles a device choice true
 LOCAL_VERSUS relock clears the saved flag only true
-LOCAL_VERSUS_CHECKS 66/66
+LOCAL_VERSUS_CHECKS 68/68

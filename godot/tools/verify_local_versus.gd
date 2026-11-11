@@ -61,6 +61,11 @@ func next_stop() -> void:
         if not scene.ability_draw.active():break
         scene.ability_draw.confirm()
         await process_frame
+func show_result_menu() -> void:
+    # Skip the KO cinematic the way Enter does, then let the result menu build.
+    if scene.city_breaker.active():scene.skip_city_breaker()
+    scene.finish_menu_open=true;scene.result_clock=2.0;scene.hud.rebuild_menu()
+    await process_frame
 func attacking(side:int) -> bool:
     return scene.sim.fighters[side].state=="attack"
 func idle_again() -> void:
@@ -106,7 +111,7 @@ func run() -> void:
             check("winning stop %d alone keeps the lock"%(stop+1),not scene.growth.story_cleared)
             await next_stop()
     check("winning the third stop unlocks free battle",scene.growth.story_cleared and scene.free_battle_unlocked() and scene.story_unlock_fresh)
-    scene.finish_menu_open=true;scene.result_clock=2.0;hud.rebuild_menu();await process_frame
+    await show_result_menu()
     var result_text:Array=[]
     for node in hud.menu_stack.find_children("*","Label",true,false):result_text.append(node.text)
     check("result screen announces the unlock",result_text.any(func(t:String)->bool:return t.contains("FREE BATTLE UNLOCKED")))
@@ -163,10 +168,13 @@ func run() -> void:
     await snapshot("versus-keyboard")
     # Two humans decide the round; P2 can win.
     scene.sim.phase="fight";scene.sim.fighters[0].health=0;step(2)
-    scene.finish_menu_open=true;scene.result_clock=2.0;hud.rebuild_menu();await process_frame
+    await show_result_menu()
     var headings:Array=[]
     for node in hud.menu_stack.find_children("*","Label",true,false):headings.append(node.text)
     check("result names the winning player",scene.screen=="result" and scene.sim.winner==1 and headings.has("P2 WINS"))
+    scene.sim.round_number=2
+    check("two-human matches skip the one-sided ability draw",scene.ability_draw_boundary()=="")
+    scene.sim.round_number=1
     await key(KEY_ENTER,true);await key(KEY_ENTER,false)
     check("next round keeps both humans",scene.screen=="play" and scene.versus and not scene.sim.ai_enabled)
     scene.pause_game();await key(KEY_R,true);await key(KEY_R,false)
@@ -174,7 +182,11 @@ func run() -> void:
     # --- Two gamepads ------------------------------------------------------
     scene.return_to_title()
     scene.controls.pads_override=[0,1];scene._on_joy_connection(0,true);scene._on_joy_connection(1,true)
-    scene.start_free_battle(true);settle()
+    scene.start_free_battle(true)
+    var intro_shown:bool=scene.round_theatre.intro
+    await button(1,JOY_BUTTON_A,true);await button(1,JOY_BUTTON_A,false)
+    check("gamepad A skips the round intro",intro_shown and not scene.round_theatre.intro and scene.screen=="play")
+    settle()
     check("two gamepads take both players",scene.controls.devices[0]=={"kind":"pad","id":0} and scene.controls.devices[1]=={"kind":"pad","id":1})
     await button(0,JOY_BUTTON_X,true);step(2)
     check("gamepad 1 X attacks for P1 only",attacking(0) and not attacking(1))

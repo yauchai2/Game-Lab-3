@@ -1,6 +1,6 @@
 # Afterhours / Game-Lab-3
 
-最新：[故事通關解鎖自由對戰、同鍵盤雙人、雙手柄](docs/LOCAL_VERSUS.zh-TW.md)。主選單由 **STORY** 開始；第三站勝出後 **VERSUS** 解鎖 1P VS CPU 與 2P 本機對戰。P1 WASD＋F G R T，P2 方向鍵＋K L O P；手柄 X Y B A，可熱插拔及與鍵盤混用。實體手柄與雙人手感待本機驗收。另有[豐富遊戲的點子計劃](docs/GAME_ENRICHMENT_IDEAS.zh-TW.md)（僅規劃）。分支 `claude/project-thread-xmgtx2`，公開 Web 未更新。
+最新：[故事通關解鎖自由對戰、同鍵盤雙人、雙手柄](docs/LOCAL_VERSUS.zh-TW.md)。主選單由 **STORY** 開始；第三站勝出後 **VERSUS** 解鎖 1P VS CPU 與 2P 本機對戰。P1 WASD＋F G R T，P2 方向鍵＋K L O P；手柄 X Y B A，可熱插拔及與鍵盤混用。實體手柄與雙人手感待本機驗收。另有[豐富遊戲的點子計劃](docs/GAME_ENRICHMENT_IDEAS.zh-TW.md)（僅規劃）。分支 `claude/project-thread-xmgtx2`（草稿 PR 回 `codex/combat-escalation-next`），公開 Web 未更新。
 
 最新：已按使用者要求將含二段跳的完整遊戲來源 `4177ef9` 合併到 `main`；之後可於 GitHub Desktop 選 `main` Fetch／Pull。公開 Web 仍為獨立部署。
 最新：[使用者Tripo蒙面NPC／機身已接入](docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md)／[有聲引擎預覽](docs/evidence/ability-draw/tripo-models/tripo-ability-draw.mp4)。原65骨NPC拖行／拍機／展示／開獎，原機殼＋獨立活動件，來源原檔保留；74項原生檢查通過，Web不更新。

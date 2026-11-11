@@ -41,7 +41,7 @@ SERVICE RIVET early startup remains interruptible true <null>
 SERVICE Throw beats RIVET late armor true <null>
 SERVICE HUSH can parry a remote pulse but does not sample it true <null>
 SERVICE Encore keeps pending nodes visible and destructible true <null>
-SERVICE Encore consumes at most two real nodes without unbounded damage true { "pulses": 2, "health": 58 }
+SERVICE Encore consumes at most two real nodes without unbounded damage true { "pulses": 2, "health": 67 }
 SERVICE New player has four characters and no locked base mechanics true <null>
 SERVICE First victory grants a point once true <null>
 SERVICE Skill unlock consumes a point and can equip true <null>

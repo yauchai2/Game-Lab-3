@@ -2,7 +2,7 @@
 
 2026-11-11。回應使用者四項要求中的前三項：遊戲一開始只有故事模式、完成後解鎖自由對戰；同一電腦鍵盤雙打；雙手柄控制。第四項（豐富遊戲的點子）見 [GAME_ENRICHMENT_IDEAS.zh-TW.md](GAME_ENRICHMENT_IDEAS.zh-TW.md)，屬規劃，未實作。
 
-基線 main 738c740，分支 `claude/project-thread-xmgtx2`。驗證與證據見 [evidence/local-versus/README.md](evidence/local-versus/README.md)。
+基線 `codex/combat-escalation-next` 3389fa9（最初在 main 738c740 上完成，其後依使用者確認的協作流程改接到 Codex 分支並重新驗證），分支 `claude/project-thread-xmgtx2`，草稿 PR 指向 Codex 分支。驗證與證據見 [evidence/local-versus/README.md](evidence/local-versus/README.md)。
 
 ## 已實作
 
@@ -16,7 +16,9 @@
 - 未解鎖時：標題按 Enter（沒有焦點時）開始故事；FIGHTERS 頁的大按鈕由 `FIGHT` 改為 `STORY`。
 - 設定頁（僅解鎖後、在標題）有 **RELOCK FREE BATTLE**，只清除旗標、保留 XP，方便重看解鎖流程。
 
-**仍然開放的項目（決策，見 DECISIONS D-LV1）**：TRAINING、首分鐘教學（C）、SURGE LAB（B）、F8／F10／F11 教室、AI DEMO（F12）、設定。理由是它們是教學／觀賞，不是對戰模式；新玩家在故事前仍需要練習入口。若使用者希望連這些也鎖，只需在 `fight_hud.gd` 的主選單回呼與 `fight_session.gd` 的快捷鍵加同一個 `free_battle_unlocked()` 判斷。
+**仍然開放的項目（使用者 2026-11-11 已確認「只鎖對戰」，見 DECISIONS D-LV1）**：TRAINING、首分鐘教學（C）、SURGE LAB（B）、F8／F10／F11 教室、AI DEMO（F12）、設定。
+
+**AI DEMO 是使用者的測試工具，正式版不會推出。** 目前仍留在主選單方便測試；發佈前需要移除主選單入口、FREE BATTLE 頁入口與 F12（尚未做，列在 TODO）。
 
 ### 2. 自由對戰頁（FREE BATTLE）
 
@@ -83,6 +85,8 @@
 - **沒有用真實手柄測試**。驗證以注入的 `InputEventJoypadButton／Motion` 和注入的手柄清單進行；實體手柄的按鍵映射、搖桿漂移、扳機行程、藍牙延遲都要在使用者電腦確認。
 - **鍵盤鬼鍵（ghosting）**：多數薄膜鍵盤同時按 3–6 鍵會漏鍵，雙人同鍵盤激烈對打時可能出現按了沒反應。這是硬體限制，程式無法修正；建議至少一人用手柄，或使用支援 N-key rollover 的鍵盤。按鍵位置已盡量分散到不同鍵盤矩陣區，但未實測。
 - **手感與平衡未驗證**：雙人對戰沿用為人對 CPU 調校的數值；真人互打的節奏、投技／格擋強度、角色平衡都未經真人測試。
+- **回合間能力抽取（Codex 分支的 dealer ability draw）在雙人對戰中停用**：它只把強化給 P1，兩名真人對打會不公平。1P VS CPU、故事、Demo 不受影響。日後可改成給落後一方或兩人各抽，見點子文件。
+- 開場演出、能力抽取、KO 演出可用手柄 A 或 Start 跳過／確認，與鍵盤 Enter／Space 相同。
 - 雙人對戰中，原本只給 P1 的提示（反擊就緒、牆受身 E）暫時隱藏，未為 P2 另做一套；教學與 SURGE LAB 仍為單人。
 - macOS 上左右 Shift 的 `location` 及手柄驅動未驗證。公開 Web 試玩版**未更新**；瀏覽器的手柄 API 行為亦未測。
 - 故事模式仍是三站連戰，沒有劇情演出；敘事內容見點子文件。

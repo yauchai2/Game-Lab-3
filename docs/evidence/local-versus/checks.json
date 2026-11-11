@@ -137,11 +137,19 @@
       "passed": true
     },
     {
+      "name": "two-human matches skip the one-sided ability draw",
+      "passed": true
+    },
+    {
       "name": "next round keeps both humans",
       "passed": true
     },
     {
       "name": "restart keeps local versus",
+      "passed": true
+    },
+    {
+      "name": "gamepad A skips the round intro",
       "passed": true
     },
     {
@@ -267,6 +275,6 @@
   ],
   "engine": "4.6.3-stable (official)",
   "failed": 0,
-  "passed": 66,
+  "passed": 68,
   "scope": "Linux Compatibility rendering under Xvfb; injected InputEvents and an injected gamepad list, Dummy audio. Not a real controller, keyboard-ghosting, human feel, Mac or GPU validation."
 }

@@ -25,15 +25,20 @@ SERVICE_NATIVE Interrupted skill clears tracked charge and strike graphics true 
 SERVICE_NATIVE Real pointer opens skill page true <null>
 SERVICE_NATIVE Locked skills do not consume points true <null>
 SERVICE_NATIVE Street Run starts with new mechanics and isolated save true <null>
-SERVICE_NATIVE Real victory awards XP and a point true <null>
-SERVICE_NATIVE Repeated result handling cannot duplicate reward true <null>
-SERVICE_NATIVE Pointer unlocks and equips earned ZIP skill true <null>
-SERVICE_NATIVE Next stop changes rival and applies selected build true <null>
-SERVICE_NATIVE Stop 2 finishes through a real contact true <null>
-SERVICE_NATIVE Stop 3 finishes through a real contact true <null>
-SERVICE_NATIVE Three-stop clear returns to roster with saved mastery true <null>
+SERVICE_NATIVE Real victory awards XP and a point false <null>
+SERVICE_NATIVE Repeated result handling cannot duplicate reward false <null>
+SERVICE_NATIVE Requested native button exists false <null>
+SERVICE_NATIVE Requested native button exists false <null>
+SERVICE_NATIVE Requested native button exists false <null>
+SERVICE_NATIVE Pointer unlocks and equips earned ZIP skill false <null>
+SERVICE_NATIVE Requested native button exists false <null>
+SERVICE_NATIVE Next stop changes rival and applies selected build false <null>
+SERVICE_NATIVE Stop 2 finishes through a real contact false <null>
+SERVICE_NATIVE Stop 3 finishes through a real contact false <null>
+SERVICE_NATIVE Requested native button exists false <null>
+SERVICE_NATIVE Three-stop clear returns to roster with saved mastery false <null>
 SERVICE_NATIVE Standard fight removes all progression modifiers true <null>
-SERVICE_NATIVE Free AI remains alive and both new roles hit true [16, 25]
-SERVICE_NATIVE AI uses legal LOOP nodes true { "placed": 3, "pulses": 2, "peak": 1 }
+SERVICE_NATIVE Free AI remains alive and both new roles hit true [13, 23]
+SERVICE_NATIVE AI uses legal LOOP nodes true { "placed": 2, "pulses": 0, "peak": 1 }
 SERVICE_NATIVE Demo grants no XP true <null>
 SERVICE_NATIVE Replacement materials retire cleanly true <null>

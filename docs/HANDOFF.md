@@ -6,11 +6,11 @@
 
 主選單改 6 項：STORY（現有 Street Run 三站）、VERSUS（未通關灰色鎖定）、FIGHTERS、TRAINING、SETTINGS、AI DEMO。第三站勝出寫入 `story_cleared`（既有 progression.cfg）。解鎖後 VERSUS 進 FREE BATTLE 頁：1P VS CPU、2P LOCAL VERSUS、P1／P2 裝置選擇。新 `fight_controls.gd` 為唯一裝置擁有者：分鍵盤（P1 WASD＋F G R T／P2 方向鍵＋K L O P 或數字鍵盤）、手柄（X Y B A、LB RB、扳機防禦、Start 暫停）、AUTO 分配及熱插拔（拔除即暫停並退回鍵盤，插回自動取回）。單人模式鍵盤與所有手柄同時控制 P1。`fight_simulation.gd` 未改，傷害／能量／判定／AI 不變。
 
-新驗證 66/66（`verify_local_versus.gd`）；既有 reference_ui 37/37（兩項斷言隨 6 選項更新）、combat_input 15/15、last_service_native 22/22、double_jump_input 11/11、live_combat 45/45、first_minute 63/63、last_service_rules 通過，改動前後同機對照。[證據](evidence/local-versus/README.md)。Godot 4.6.3 Linux Compatibility／Xvfb llvmpipe／Dummy audio，輸入全為注入事件。
+新驗證 68/68（`verify_local_versus.gd`，於 Codex 分支上）；既有 Codex 分支上：reference_ui 37/37（兩項斷言隨 6 選項更新）、live_combat 45/45、last_service_rules 通過。combat_input 12/15、double_jump_input 8/11、first_minute 60/63、last_service_native 失敗，這四套在未改動的 3389fa9 上同機重跑得到完全相同的失敗項，屬 Codex 分支既有狀況（與新的開場演出／回合流程有關），本輪沒有修。先前在 main 738c740 上這七套改動前後全數通過。[證據](evidence/local-versus/README.md)。Godot 4.6.3 Linux Compatibility／Xvfb llvmpipe／Dummy audio，輸入全為注入事件。
 
 **未驗證**：實體手柄、鍵盤鬼鍵、雙人手感與平衡、macOS 左右 Shift、Godot 4.7.2、公開 Web。本輪未跑完整舊 suite（上輪已知 4 個舊斷言失敗仍未處理）；verify_ui_input、verify_jsr_runtime、verify_demo_input 在改動前於本機已逾時或失敗，未作為回歸依據。未讀取：DESIGN.md、UX-CONTRACT.md 全文、`codex/*` 其他分支內容。
 
-分支 `claude/project-thread-xmgtx2`（由 main 738c740 開出，草稿 PR 指向 main）。沒有沿用 `codex/combat-escalation-next`，因為本對話的工作環境指定此分支；未合併、未更新 gh-pages。下一步：使用者 Fetch 此分支於本機 Godot 用實體手柄與鍵盤驗收，並回覆點子文件末尾四個問題。
+分支 `claude/project-thread-xmgtx2`。最初由 main 738c740 開出，其後依使用者確認的流程改接到 `codex/combat-escalation-next` 3389fa9，草稿 PR 指向該 Codex 分支；未合併、未更新 gh-pages。改接時處理：雙人對戰停用只給 P1 的回合間能力抽取；手柄 A／Start 可跳過開場、確認抽取、跳過 KO 演出。使用者同日確認「只鎖對戰」，並說明 AI DEMO 是測試用、正式不推出（入口尚未移除）。下一步：使用者 Fetch 此分支於本機 Godot 用實體手柄與鍵盤驗收，並回覆點子文件末尾四個問題。
 
 ## 2026-11-11：最新遊戲來源合併 main
 ## 2026-11-11：上傳Tripo NPC與機殼正式接入

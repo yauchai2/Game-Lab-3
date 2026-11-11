@@ -15,4 +15,22 @@ ERROR: Condition "status < 0" is true. Returning: ERR_CANT_OPEN
 WARNING: All audio drivers failed, falling back to the dummy driver.
      at: initialize (servers/audio/audio_server.cpp:247)
 
-COMBAT_INPUT_CHECKS 15/15
+ERROR: INPUT FAIL: held physical movement key moves fighter
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_combat_input.gd:7)
+       [1] run (res://tools/verify_combat_input.gd:36)
+       [2] frames (res://tools/verify_combat_input.gd:20)
+ERROR: INPUT FAIL: jump key reaches gameplay
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_combat_input.gd:7)
+       [1] run (res://tools/verify_combat_input.gd:39)
+       [2] frames (res://tools/verify_combat_input.gd:20)
+ERROR: INPUT FAIL: airborne K selects accessible meteor
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_combat_input.gd:7)
+       [1] run (res://tools/verify_combat_input.gd:42)
+       [2] frames (res://tools/verify_combat_input.gd:20)
+COMBAT_INPUT_CHECKS 12/15

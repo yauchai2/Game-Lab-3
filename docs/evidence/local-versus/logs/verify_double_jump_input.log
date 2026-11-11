@@ -16,14 +16,32 @@ WARNING: All audio drivers failed, falling back to the dummy driver.
      at: initialize (servers/audio/audio_server.cpp:247)
 
 DOUBLE_INPUT formal FIGHT uses shared air motion true
-DOUBLE_INPUT first press starts a ground jump true
+DOUBLE_INPUT first press starts a ground jump false
+ERROR: first press starts a ground jump
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_double_jump_input.gd:8)
+       [1] run (res://tools/verify_double_jump_input.gd:33)
+       [2] key (res://tools/verify_double_jump_input.gd:13)
 DOUBLE_INPUT OS key repeat cannot spend double jump true
-DOUBLE_INPUT released and repressed Space spends one jump true
-DOUBLE_INPUT second jump has readable local feedback true
+DOUBLE_INPUT released and repressed Space spends one jump false
+ERROR: released and repressed Space spends one jump
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_double_jump_input.gd:8)
+       [1] run (res://tools/verify_double_jump_input.gd:37)
+       [2] key (res://tools/verify_double_jump_input.gd:13)
+DOUBLE_INPUT second jump has readable local feedback false
+ERROR: second jump has readable local feedback
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_double_jump_input.gd:8)
+       [1] run (res://tools/verify_double_jump_input.gd:38)
+       [2] key (res://tools/verify_double_jump_input.gd:13)
 DOUBLE_INPUT existing pooled chase voice provides audio true
 DOUBLE_INPUT pause freezes double-jump budgets true
 DOUBLE_INPUT paused Space cannot queue a new jump true
 DOUBLE_INPUT both fighters fit the double-jump camera true
 DOUBLE_INPUT reduced effects retains double jump true
 DOUBLE_INPUT restart clears effects and used jump true
-DOUBLE_INPUT_CHECKS 11/11
+DOUBLE_INPUT_CHECKS 8/11

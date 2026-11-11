@@ -2,10 +2,12 @@
 
 ## 2026-11-11：故事解鎖、同鍵盤雙人、雙手柄
 
-[規格](LOCAL_VERSUS.zh-TW.md)／[log、report、畫面](evidence/local-versus/README.md)。基線 main 738c740；Godot 4.6.3 Linux Compatibility，Xvfb＋Mesa llvmpipe，Dummy audio。
+[規格](LOCAL_VERSUS.zh-TW.md)／[log、report、畫面](evidence/local-versus/README.md)。基線 `codex/combat-escalation-next` 3389fa9（先前在 main 738c740 上亦跑過同一套，結果一致）；Godot 4.6.3 Linux Compatibility，Xvfb＋Mesa llvmpipe，Dummy audio。
 
-- 新增 `verify_local_versus.gd` 66/66：全新存檔鎖定、鎖定入口拒絕、第三站落敗不解鎖、三站勝出解鎖並寫檔、重啟後保持、分鍵盤各自攻擊／移動／左右 Shift／跳／數字鍵盤、綁定鍵不觸發快捷鍵、結算與重開保持雙人、兩支手柄、搖桿死區、扳機、Start、拔除暫停與退回、插回取回、鍵盤＋手柄混用、裝置選項存檔、故事中手柄與鍵盤並用、手柄操作選單、RELOCK。log 除 ALSA 開啟失敗（無音效裝置）外無 ERROR／SCRIPT ERROR。
-- 既有回歸（改動前後同機各跑一次）：reference_ui 37/37（兩項斷言由「5 選項」改為「6 選項，故事在首」，其餘不變）、combat_input 15/15、last_service_native 22/22、double_jump_input 11/11、live_combat 45/45、first_minute 63/63、last_service_rules exit 0。`verify.gd` 道具庫通過。
+- 新增 `verify_local_versus.gd` 68/68：雙人對戰不觸發能力抽取、手柄 A 跳過開場、全新存檔鎖定、鎖定入口拒絕、第三站落敗不解鎖、三站勝出解鎖並寫檔、重啟後保持、分鍵盤各自攻擊／移動／左右 Shift／跳／數字鍵盤、綁定鍵不觸發快捷鍵、結算與重開保持雙人、兩支手柄、搖桿死區、扳機、Start、拔除暫停與退回、插回取回、鍵盤＋手柄混用、裝置選項存檔、故事中手柄與鍵盤並用、手柄操作選單、RELOCK。log 除 ALSA 開啟失敗（無音效裝置）外無 ERROR／SCRIPT ERROR。
+- 既有回歸，Codex 分支 3389fa9 上：reference_ui 37/37（兩項斷言由「5 選項」改為「6 選項，故事在首」）、live_combat 45/45、last_service_rules exit 0。combat_input 12/15、double_jump_input 8/11、first_minute 60/63、last_service_native exit 1：**在未改動的 3389fa9 乾淨 worktree 同機重跑，失敗項逐行相同**，不是本輪造成，本輪也沒有修。
+- 先前在 main 738c740 上：上述七套改動前後各跑一次全數通過（15/15、22/22、11/11、45/45、63/63、37/37），`verify.gd` 道具庫通過。
+- 沒有跑 Codex 分支新增的 verify_ability_draw、verify_round_flow、verify_city_breaker 等套件。
 - 改動前已有問題、未作依據：verify_ui_input（SCRIPT ERROR 後逾時）、verify_jsr_runtime（多項 FAIL 後逾時）、verify_demo_input（多項 FAIL）。本輪沒有修這些，也沒有重跑上輪記錄的另外 4 個舊失敗 suite。
 
 **範圍限制**：輸入全部是程式注入的 InputEvent 與注入的手柄清單，不是實體手柄、不是真人按鍵；不能證明按鍵映射、鬼鍵、延遲、手感或平衡。未在 Godot 4.7.2、macOS、目標 GPU 或 Web 驗證。未操作使用者電腦。

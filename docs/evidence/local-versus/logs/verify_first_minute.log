@@ -68,10 +68,28 @@ FIRST_MINUTE key echo cannot skip lesson true
 FIRST_MINUTE Enter continues and resets explicit next fixture true
 FIRST_MINUTE session route completes real parry counter true
 FIRST_MINUTE Esc preserves objective, pending and clocks true
-FIRST_MINUTE session route completes paid chase and real air hit true
-FIRST_MINUTE F2 retains final paid-hit objective true
+FIRST_MINUTE session route completes paid chase and real air hit false
+ERROR: session route completes paid chase and real air hit
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_first_minute.gd:12)
+       [1] run (res://tools/verify_first_minute.gd:125)
+       [2] shot (res://tools/verify_first_minute.gd:27)
+FIRST_MINUTE F2 retains final paid-hit objective false
+ERROR: F2 retains final paid-hit objective
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_first_minute.gd:12)
+       [1] run (res://tools/verify_first_minute.gd:131)
+       [2] shot (res://tools/verify_first_minute.gd:27)
 FIRST_MINUTE tutorial never awards XP or changes loadout true
-FIRST_MINUTE retry keeps prior achievements and resets current attempt true
+FIRST_MINUTE retry keeps prior achievements and resets current attempt false
+ERROR: retry keeps prior achievements and resets current attempt
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_first_minute.gd:12)
+       [1] run (res://tools/verify_first_minute.gd:134)
+       [2] shot (res://tools/verify_first_minute.gd:27)
 FIRST_MINUTE free AI demo never inherits coach true
 FIRST_MINUTE SURGE comparison never inherits coach true
 FIRST_MINUTE old F8 classroom remains isolated true
