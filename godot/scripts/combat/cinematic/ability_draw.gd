@@ -1,5 +1,7 @@
 extends Node3D
 ## Live-world, reversible intermission. One local timeline owns all sound and lens.
+const Timing=preload("res://scripts/combat/ability_draw/timing.gd")
+const Tokens=preload("res://scripts/combat/ui/ui_theme.gd")
 const Visuals=preload("res://scripts/combat/ability_draw/visuals.gd")
 const Stage=preload("res://scripts/combat/ability_draw/stage_profile.gd")
 var session:Node3D
@@ -32,10 +34,10 @@ var use_backup:=false
 var compact_entry:=false
 var last_skip:=false
 var current_shot:=0
-var auto_age:=0.0
+var input_armed:=false
+var reveal_started:=false
 const INK=Color("141024")
 const CREAM=Color("f4e5c7")
-const CYAN=Color("44ffdd")
 
 func setup(owner_session:Node3D) -> void:
     session=owner_session;name="AbilityDraw"
@@ -46,10 +48,16 @@ func setup(owner_session:Node3D) -> void:
     material=ShaderMaterial.new();material.shader=preload("res://shaders/city_breaker_lens.gdshader");lens.material=material;layer.add_child(lens);lens.hide()
     arrival=_player("arrival");spin=_player("spin");reveal=_player("reveal");accent=_player("coin")
     ui=CanvasLayer.new();ui.layer=4;add_child(ui)
-    action=Button.new();action.name="AbilityDrawAction";action.text="SPIN / FREE";action.add_theme_font_size_override("font_size",16)
-    action.add_theme_color_override("font_color",INK)
-    var style:=StyleBoxFlat.new();style.bg_color=CYAN;style.border_color=INK;style.set_border_width_all(3);style.set_content_margin_all(6)
-    action.add_theme_stylebox_override("normal",style);var hover:=style.duplicate();hover.bg_color=CREAM;action.add_theme_stylebox_override("hover",hover);action.add_theme_stylebox_override("focus",hover)
+    action=Button.new();action.name="AbilityDrawAction";action.theme=Tokens.build()
+    action.add_theme_font_override("font",Tokens.DISPLAY)
+    action.add_theme_font_size_override("font_size",Tokens.ACTION_SIZE/2)
+    for kind in ["normal","hover","pressed","disabled"]:
+        var color:Color=Tokens.PAPER if kind=="normal" else (Tokens.TEAL if kind=="pressed" else (Tokens.MUTED if kind=="disabled" else Tokens.MAGENTA))
+        var style:=Tokens.plate(color,Tokens.INK,2);style.set_content_margin_all(4)
+        style.shadow_color=Tokens.INK;style.shadow_size=3;style.shadow_offset=Vector2(3,3)
+        action.add_theme_stylebox_override(kind,style)
+        action.add_theme_color_override("font_"+kind+"_color",Tokens.INK)
+    action.add_theme_color_override("font_color",Tokens.INK)
     ui.add_child(action);action.pressed.connect(confirm);action.hide()
 
 func _toon(node:Node) -> void:
@@ -60,7 +68,7 @@ func _toon(node:Node) -> void:
     for child in node.get_children():_toon(child)
 
 func _player(id:String) -> AudioStreamPlayer:
-    var p:=AudioStreamPlayer.new();p.stream=load("res://audio/ability_draw/"+id+".wav");p.bus="Afterhours SFX";add_child(p);return p
+    var p:=AudioStreamPlayer.new();p.stream=load("res://audio/ability_draw/"+("rhythm/" if id in ["arrival","spin","reveal"] else "")+id+".wav");p.bus="Afterhours SFX";add_child(p);return p
 
 func active() -> bool:return state!="off"
 
@@ -84,7 +92,7 @@ func begin(id:String,next_kind:String,random_seed:int,profile:Resource=null) -> 
     session.backdrop.living.hide()
     for puff in actors.dust:
         (puff.material_override as ShaderMaterial).set_shader_parameter("base_color",stage.dust_color)
-    actors.show();state="arrival";age=0;source_age=0;auto_age=0;result={};last_skip=false;shown_count+=1
+    actors.show();state="arrival";age=0;source_age=0;input_armed=false;reveal_started=false;result={};last_skip=false;shown_count+=1
     session.pending.clear();session.finish_menu_open=false
     arrival.play();_sync_audio(false);sample()
     session.hud.rebuild_menu()
@@ -92,25 +100,37 @@ func begin(id:String,next_kind:String,random_seed:int,profile:Resource=null) -> 
 func advance(delta:float,paused:bool) -> void:
     if not active():return
     _sync_audio(paused)
-    action.visible=not paused and state in ["offer","result"] and session.demo==null
+    action.visible=not paused and state in ["offer","result"]
     if paused:sample();return
     age+=maxf(0,delta)
-    auto_age+=maxf(0,delta)
     if state=="arrival":
-        source_age=minf(1.95,age)
-        if age>=1.95:
-            state="offer";age=0;source_age=2.16
-    elif state=="offer":
-        source_age=2.16
-        if session.demo!=null and age>=.45:confirm()
+        source_age=Timing.arrival(age)
+        if age>=Timing.ARRIVAL_DURATION:_wait("offer")
+    elif state=="offer":source_age=2.16
     elif state=="spin":
-        source_age=2.55+minf(age,1.45)
-        if age>=.68 and spin.playing:spin.stop();reveal.play()
-        if age>=1.45:state="result";age=0;source_age=4.1;_accent("confirm")
-    elif state=="result":
-        source_age=4.1
-        if session.demo!=null and age>=1.0:confirm()
+        source_age=Timing.spin(age)
+        if age>=1.48 and spin.playing:spin.stop()
+        if age>=Timing.REVEAL_AT and not reveal_started:
+            reveal_started=true;reveal.play(maxf(0,age-Timing.REVEAL_AT))
+        if age>=Timing.SPIN_DURATION:_wait("result")
+    elif state=="result":source_age=4.1
+    if state in ["offer","result"] and age>=Timing.INPUT_SETTLE and not _accept_held():input_armed=true
+    action.disabled=not input_armed
     sample()
+
+func _wait(next_state:String) -> void:
+    state=next_state;age=0;input_armed=false
+    source_age=2.16 if next_state=="offer" else 4.1
+
+func _accept_held() -> bool:
+    return Input.is_action_pressed("ui_accept") or Input.is_key_pressed(KEY_ENTER) or Input.is_key_pressed(KEY_KP_ENTER) or Input.is_key_pressed(KEY_SPACE) or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+
+func handle_key(event:InputEventKey) -> void:
+    if event.is_echo():return
+    if state=="arrival":skip()
+    elif state=="spin":
+        if event.keycode==KEY_SPACE and age>=.25:skip()
+    else:confirm()
 
 func confirm() -> void:
     if not active() or session.screen!="result":return
@@ -119,18 +139,19 @@ func confirm() -> void:
     if frame==last_confirm_frame:return
     last_confirm_frame=frame
     if state=="arrival":skip();return
+    if state in ["offer","result"] and not input_armed:return
     if state=="offer":
+        input_armed=false;reveal_started=false
         result=session.draw_rewards.roll(boundary,seed_value);rolled_count+=1
         state="spin";age=0;source_age=2.55;_accent("coin");spin.play();action.hide()
-    elif state=="spin":skip()
     elif state=="result":
         var item:=result.duplicate();var next_kind:=continuation
         clear();session.complete_ability_draw(item,next_kind)
 
 func skip() -> void:
     last_skip=true
-    if state=="arrival":state="offer";age=0;source_age=2.16;arrival.stop()
-    elif state=="spin":state="result";age=0;source_age=4.1;spin.stop();reveal.stop();_accent("confirm")
+    if state=="arrival":_wait("offer");arrival.stop()
+    elif state=="spin":_wait("result");spin.stop();reveal.stop();_accent("confirm")
     sample()
 
 func _accent(id:String) -> void:
@@ -140,7 +161,7 @@ func _sync_audio(paused:bool) -> void:
     for p in [arrival,spin,reveal,accent]:
         p.stream_paused=paused
         p.volume_db=-80 if session.audio.muted or session.audio.effects_level<=0 else -9+linear_to_db(maxf(.001,session.audio.effects_level))
-    session.audio.cinematic_duck=.60
+    session.audio.cinematic_duck=.18 if state in ["offer","result"] else (.80 if state=="spin" and age>=1.48 and age<Timing.REVEAL_AT else .55)
 
 func sample() -> void:
     if not active():return
@@ -194,31 +215,30 @@ func sample() -> void:
     material.set_shader_parameter("impact",punch*.7)
     material.set_shader_parameter("ring_phase",clampf((t-3.5)*3,0,1))
     lens.visible=not session.reduced_effects and state!="result"
-    action.text="SPIN / FREE" if state=="offer" else "TAKE CORE / CONTINUE"
+    action.text="DRAW" if state=="offer" else "CONTINUE"
     var extent:=session.get_viewport().get_visible_rect().size
-    action.position=extent*Vector2(.58,.78);action.size=extent*Vector2(.36,.11)
+    var rect:=Rect2(920,568,312,72) if state=="offer" else Rect2(720,560,480,72)
+    action.position=rect.position*extent/Vector2(1280,720);action.size=rect.size*extent/Vector2(1280,720)
 
 func draw(canvas:Control) -> void:
     if not active() or session.screen!="result":return
     var bold:Font=session.hud.bold;var font:Font=session.hud.font
     if state=="result":
-        # Keep the 3D capsule silhouette visible in the left-side cutout.
-        canvas.draw_colored_polygon(PackedVector2Array([Vector2(0,0),Vector2(1280,0),Vector2(1280,720),Vector2(0,720),Vector2(0,510),Vector2(200,650),Vector2(590,560),Vector2(570,130),Vector2(180,90),Vector2(0,210)]),Color("4f1b80"))
-        for i in 11:
-            var y:=float(i)*85-70
-            canvas.draw_colored_polygon(PackedVector2Array([Vector2(590,y+90),Vector2(1280,y),Vector2(1280,y+24),Vector2(620,y+110)]),Color("ed7827"))
-        canvas.draw_rect(Rect2(620,180,640,310),INK)
-        canvas.draw_string(bold,Vector2(650,265),result.get("title","CORE"),HORIZONTAL_ALIGNMENT_LEFT,-1,66,CREAM)
-        canvas.draw_string(font,Vector2(650,330),result.get("detail",""),HORIZONTAL_ALIGNMENT_LEFT,-1,28,CYAN)
-        canvas.draw_string(bold,Vector2(650,407),"NEXT ROUND ONLY",HORIZONTAL_ALIGNMENT_LEFT,-1,36,Color("ffca42"))
-        canvas.draw_string(font,Vector2(650,457),"NO XP COST / ONE DRAW",HORIZONTAL_ALIGNMENT_LEFT,-1,24,CREAM)
+        canvas.draw_rect(Rect2(650,120,570,420),Tokens.NIGHT)
+        var color:Color=result.get("color",Tokens.TEAL)
+        canvas.draw_rect(Rect2(680,154,8,330),color)
+        canvas.draw_string(font,Vector2(720,185),"NEXT ROUND",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
+        canvas.draw_string(bold,Vector2(720,264),result.get("title","CORE"),HORIZONTAL_ALIGNMENT_LEFT,-1,48,Tokens.PAPER)
+        var row:=0
+        for stat in str(result.get("detail","")).split(" / "):
+            var split:int=stat.rfind(" ")
+            canvas.draw_string(font,Vector2(720,346+row*64),stat.substr(0,split),HORIZONTAL_ALIGNMENT_LEFT,-1,28,Tokens.MUTED)
+            canvas.draw_string(bold,Vector2(1080,346+row*64),stat.substr(split+1),HORIZONTAL_ALIGNMENT_RIGHT,120,32,color)
+            row+=1
     else:
-        canvas.draw_rect(Rect2(0,0,1280,40),INK)
-        canvas.draw_string(bold,Vector2(28,31),"THE DEALER / BETWEEN ROUNDS",HORIZONTAL_ALIGNMENT_LEFT,-1,26,CREAM)
-        if state=="offer":
-            canvas.draw_rect(Rect2(705,420,550,120),INK)
-            canvas.draw_string(bold,Vector2(730,465),"ONE TOKEN. ONE CHANCE.",HORIZONTAL_ALIGNMENT_LEFT,-1,32,Color("ffca42"))
-            canvas.draw_string(font,Vector2(730,508),"A RANDOM CORE FOR THE NEXT FIGHT",HORIZONTAL_ALIGNMENT_LEFT,-1,24,CREAM)
+        canvas.draw_rect(Rect2(24,24,280,48),Tokens.NIGHT)
+        canvas.draw_rect(Rect2(24,24,6,48),Tokens.MAGENTA)
+        canvas.draw_string(bold,Vector2(46,58),"THE DEALER",HORIZONTAL_ALIGNMENT_LEFT,-1,28,Tokens.PAPER)
         var peak:=maxf(maxf(0,1-absf(source_age-1.06)/.11),maxf(0,1-absf(source_age-1.42)/.12))
         if state=="spin":peak=maxf(peak,maxf(0,1-absf(source_age-3.56)/.20))
         if not session.reduced_effects and peak>0:
@@ -231,8 +251,11 @@ func draw(canvas:Control) -> void:
         var edge:=lerpf(1600.0,-360.0,wipe)
         canvas.draw_colored_polygon(PackedVector2Array([Vector2(-400,0),Vector2(edge,0),Vector2(edge-260,720),Vector2(-400,720)]),Color("4f1b80"))
         canvas.draw_line(Vector2(edge-20,0),Vector2(edge-280,720),Color("ed7827"),32)
-    canvas.draw_rect(Rect2(0,684,1280,36),INK)
-    canvas.draw_string(font,Vector2(24,711),"ENTER / SPACE  "+("SPIN" if state=="offer" else ("TAKE CORE" if state=="result" else "SKIP"))+"     ESC  PAUSE     F2  REDUCE FX",HORIZONTAL_ALIGNMENT_LEFT,-1,24,CREAM)
+    if state in ["offer","result"]:
+        var x:=920.0 if state=="offer" else 720.0
+        canvas.draw_string(font,Vector2(x,670),"ENTER / SPACE",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
+    elif state=="spin":
+        canvas.draw_string(font,Vector2(28,690),"SPACE  SKIP",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
 
 func clear() -> void:
     var was_active:=active()

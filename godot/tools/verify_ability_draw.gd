@@ -25,7 +25,14 @@ func fixture() -> void:
     s.start_match(false);s.reduced_effects=false;s.round_theatre.clear();s.sim.round_number=2;s.sim.wins=[1,1];s.sim.phase="round_over";s.sim.winner=0;s.screen="result";s.result_clock=2.0
 func press(code:int) -> void:
     var e:=InputEventKey.new();e.keycode=code;e.physical_keycode=code;e.pressed=true;s._unhandled_key_input(e)
+func click_action() -> void:
+    var point:Vector2=s.ability_draw.action.get_global_rect().get_center()
+    for down in [true,false]:
+        var e:=InputEventMouseButton.new();e.position=point;e.global_position=point;e.button_index=MOUSE_BUTTON_LEFT;e.pressed=down
+        root.push_input(e,true);await process_frame
+
 func run() -> void:
+    if "--rhythm-ui" in OS.get_cmdline_user_args():output="res://../docs/evidence/ability-draw/rhythm-ui/"
     if "--tripo-models" in OS.get_cmdline_user_args():output="res://../docs/evidence/ability-draw/tripo-models/"
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";s.progression_path="/tmp/ability-growth.cfg";root.add_child(s)
     s.set_process(false);s.set_physics_process(false);s.audio.muted=true
@@ -47,15 +54,21 @@ func run() -> void:
     check("pause freezes draw and all voice positions",s.screen=="pause" and s.ability_draw.age==time and s.ability_draw.arrival.stream_paused)
     s.resume_game();press(KEY_SPACE)
     check("skip arrival stops at offer without rolling",s.ability_draw.state=="offer" and s.ability_draw.result.is_empty())
-    step(1);check("offer has visible native action",s.ability_draw.action.visible)
+    Input.action_press("ui_accept");step(90)
+    check("held accept cannot arm or auto roll",not s.ability_draw.input_armed and s.ability_draw.state=="offer")
+    Input.action_release("ui_accept");step(12)
+    check("offer has visible native action",s.ability_draw.action.visible)
+    check("button uses the shared game display font",s.ability_draw.action.get_theme_font("font")==preload("res://scripts/combat/ui/ui_theme.gd").DISPLAY)
     await process_frame
-    s.ability_draw.action.pressed.emit()
+    await click_action()
     check("native button locks a random result once",s.ability_draw.state=="spin" and s.draw_rewards.results.size()==1)
+    step(18);await process_frame;press(KEY_ENTER)
+    check("repeated Enter cannot skip the spin",s.ability_draw.state=="spin")
     var result:Dictionary=s.ability_draw.result.duplicate();var count:int=s.ability_draw.rolled_count
-    step(10);await process_frame;press(KEY_SPACE);step(1)
+    step(20);await process_frame;press(KEY_SPACE);step(12)
     check("skip spin retains exactly the same reward",s.ability_draw.state=="result" and s.ability_draw.result==result and s.ability_draw.rolled_count==count)
     check("claim page is stable and lens is released",not s.ability_draw.lens.visible and s.ability_draw.action.visible)
-    await process_frame;s.ability_draw.action.pressed.emit()
+    await process_frame;await click_action()
     check("claim starts round three and applies real modifier",not s.ability_draw.active() and s.sim.round_number==3 and s.sim.fighters[0].get("draw_core","")==result.id)
     check("claim cannot apply twice",not s.draw_rewards.apply_once(s.sim,result))
     check("all fighter visibility and camera near restore",s.fighters.all(func(a):return a.visible) and is_equal_approx(s.camera.near,.1))
@@ -70,17 +83,34 @@ func run() -> void:
     var reward:Dictionary={"id":"charge","boundary":"energy"};rng_rewards.apply_once(sim,reward)
     check("charge core adds at most twenty starting meter",is_equal_approx(sim.fighters[0].meter,minf(100,energy+20)))
     sim.reset_round();check("temporary core never survives reset",not sim.fighters[0].has("draw_core"))
+    fixture();s.advance_round();step(80)
+    var slap:float=s.ability_draw.source_age
+    step(5)
+    check("slap has a brief authored hold",s.ability_draw.source_age>=slap and s.ability_draw.source_age<=1.43)
+    s.ability_draw.skip();step(12);await process_frame;s.ability_draw.confirm();step(63)
+    var reel0:float=s.ability_draw.actors.reels[0].rotation.x
+    var reel2:float=s.ability_draw.actors.reels[2].rotation.x
+    step(8)
+    check("first reel locks while last reel is still turning",is_equal_approx(reel0,s.ability_draw.actors.reels[0].rotation.x) and not is_equal_approx(reel2,s.ability_draw.actors.reels[2].rotation.x))
+    step(20)
+    check("all reels lock before prize reveal",s.ability_draw.state=="spin" and not s.ability_draw.reveal_started and not s.ability_draw.actors.reward.visible)
+    step(8)
+    check("reveal follows the quiet stop",s.ability_draw.reveal_started and s.ability_draw.actors.reward.visible)
+    step(45)
+    check("result settles after 2.2 seconds",s.ability_draw.state=="result" and not s.ability_draw.lens.visible)
+    step(600)
+    check("result waits without automatic claim",s.ability_draw.state=="result" and s.sim.round_number==2)
     for reduced in [false,true]:
-        fixture();s.reduced_effects=reduced;s.advance_round();step(125)
+        fixture();s.reduced_effects=reduced;s.advance_round();step(140)
         check("F2 offer stays usable %s"%reduced,s.ability_draw.state=="offer" and s.ability_draw.action.visible)
-        await process_frame;s.ability_draw.confirm();step(105)
+        await process_frame;s.ability_draw.confirm();step(140)
         check("full playback reaches stable result %s"%reduced,s.ability_draw.state=="result" and not s.ability_draw.lens.visible)
         s.return_to_title();check("title clears score / lens / hidden fighters %s"%reduced,not s.ability_draw.active() and not s.ability_draw.arrival.playing and not s.ability_draw.spin.playing and s.fighters.all(func(a):return a.visible))
     fixture();s.advance_round();step(15);press(KEY_R)
     check("restart cancels draw and clears pending reward",not s.ability_draw.active() and s.draw_rewards.results.is_empty())
     s.start_run();s.run_stage=2;s.screen="result";s.sim.winner=0;s.advance_run()
     check("Street Run stop two win enters shared draw",s.ability_draw.active() and s.run_stage==2 and s.ability_draw.continuation=="run")
-    s.ability_draw.skip();await process_frame;s.ability_draw.confirm();s.ability_draw.skip();await process_frame;s.ability_draw.confirm()
+    s.ability_draw.skip();step(12);await process_frame;s.ability_draw.confirm();s.ability_draw.skip();step(12);await process_frame;s.ability_draw.confirm()
     check("Street Run claim advances to stop three",s.run_stage==3 and s.sim.fighters[0].has("draw_core"))
     s.return_to_title();s.start_run();s.run_stage=2;s.screen="result";s.sim.winner=1
     check("Street Run defeat cannot award a draw",s.ability_draw_boundary().is_empty())
@@ -88,9 +118,12 @@ func run() -> void:
     var growth:Dictionary=s.growth.records.duplicate(true)
     s.return_to_title();s.start_demo();s.round_theatre.clear();s.sim.round_number=2;s.sim.wins=[1,1];s.sim.phase="round_over";s.sim.winner=0;s.screen="result";s.result_clock=2
     s._advance_demo_round();check("Demo uses same intermission",s.ability_draw.active())
-    for i in 360:
-        step();await process_frame
-    check("Demo auto selects and claims before third round",not s.ability_draw.active() and s.sim.round_number==3 and s.sim.fighters[0].has("draw_core"))
+    step(360);await process_frame
+    check("Demo waits indefinitely for player draw",s.ability_draw.state=="offer" and s.ability_draw.result.is_empty() and s.sim.round_number==2)
+    await click_action();step(140);await process_frame
+    check("Demo also waits for explicit claim",s.ability_draw.state=="result" and s.sim.round_number==2)
+    step(12);await click_action()
+    check("Demo click continues to round three",not s.ability_draw.active() and s.sim.round_number==3 and s.sim.fighters[0].has("draw_core"))
     check("Demo does not grant permanent growth",s.growth.records==growth)
     s.return_to_title()
     var profile=preload("res://scripts/combat/ability_draw/stage_profile.gd").new()

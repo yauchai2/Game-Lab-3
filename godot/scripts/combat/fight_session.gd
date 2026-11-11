@@ -910,8 +910,8 @@ func return_to_street() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if not event.is_pressed() or event.is_echo():
         return
-    if ability_draw.active() and screen=="result" and event.keycode in [KEY_ENTER,KEY_SPACE]:
-        ability_draw.confirm()
+    if ability_draw.active() and screen=="result" and event.keycode in [KEY_ENTER,KEY_KP_ENTER,KEY_SPACE]:
+        ability_draw.handle_key(event)
         return
     if round_theatre.intro and screen=="play":
         if event.keycode in [KEY_ENTER,KEY_SPACE]:

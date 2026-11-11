@@ -1,3 +1,7 @@
+## 2026-11-11：手動抽獎、節奏及共用字體（最新）
+
+見 [ABILITY_DRAW_RHYTHM_UI.zh-TW.md](ABILITY_DRAW_RHYTHM_UI.zh-TW.md)。2.05 秒入場／2.20 秒抽獎，三輪鎖定後靜拍再揭曉；必須新按 DRAW，結果另按 CONTINUE，Demo 也等待玩家，覆蓋舊自動抽領。刪減口號與裝飾、統一黑白桃紅青綠 UI；修正獨立 Button 未繼承遊戲 bitmap Theme。63 流程／輸入／節奏＋22 原模型檢查通過，原生有聲證據在 evidence/ability-draw/rhythm-ui；原模型／音訊保留，Mac／真人待驗，Web 不更新。
+
 # 接續工作交接
 
 ## 2026-11-11：上傳Tripo NPC與機殼正式接入

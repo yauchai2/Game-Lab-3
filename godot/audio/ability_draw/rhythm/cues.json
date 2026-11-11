@@ -1,0 +1,98 @@
+{
+  "seed": 2026111103,
+  "rate": 48000,
+  "format": "PCM16 stereo",
+  "reel_stops": [
+    1.02,
+    1.2,
+    1.39
+  ],
+  "reveal_at": 1.61,
+  "files": [
+    {
+      "path": "godot/audio/ability_draw/rhythm/arrival.wav",
+      "seconds": 2.05,
+      "sha256": "acbc18dbaf687fe862e4b8162d9e0547665ecef37987d7b05e326317530b9d27",
+      "events": [
+        {
+          "at": 0.08,
+          "kind": "drag"
+        },
+        {
+          "at": 0.22,
+          "kind": "drag"
+        },
+        {
+          "at": 0.34,
+          "kind": "clack"
+        },
+        {
+          "at": 0.64,
+          "kind": "clack"
+        },
+        {
+          "at": 1.04,
+          "kind": "hit"
+        },
+        {
+          "at": 1.38,
+          "kind": "hit"
+        },
+        {
+          "at": 1.48,
+          "kind": "clack"
+        }
+      ]
+    },
+    {
+      "path": "godot/audio/ability_draw/rhythm/spin.wav",
+      "seconds": 1.48,
+      "sha256": "1cf5d0e0cdb4f18f7b74196c4a51dd8d5e25c5ff691667afe8ab38b8775a6c38",
+      "events": [
+        {
+          "at": 0.02,
+          "kind": "spin"
+        },
+        {
+          "at": 0.13,
+          "kind": "clack"
+        },
+        {
+          "at": 0.31,
+          "kind": "clack"
+        },
+        {
+          "at": 1.02,
+          "kind": "clack"
+        },
+        {
+          "at": 1.2,
+          "kind": "clack"
+        },
+        {
+          "at": 1.39,
+          "kind": "clack"
+        }
+      ]
+    },
+    {
+      "path": "godot/audio/ability_draw/rhythm/reveal.wav",
+      "seconds": 0.85,
+      "sha256": "04bf5107cbf2a51f81be7bba1b10231229ef27aaddf384ee020cb2065796a9ab",
+      "events": [
+        {
+          "at": 0,
+          "kind": "hit"
+        },
+        {
+          "at": 0.03,
+          "kind": "whoosh"
+        },
+        {
+          "at": 0.21,
+          "kind": "clack"
+        }
+      ]
+    }
+  ]
+}
