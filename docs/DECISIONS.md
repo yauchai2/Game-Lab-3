@@ -336,3 +336,7 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 使用者澄清球狀連續反彈只屬特殊攻擊／大招，覆蓋前輪普通重擊／挑空／投技也發射的範圍。一般jab／cross／heavy／finisher／launcher／meteor／air_finisher／air_counter／grab及未強化special不啟動ArenaBox，保留原擊退／既有單次牆彈。四角色大招最後重擊（ZIP連打末段）及RIVET滿蓄、HUSH強化special由move metadata明確opt-in；傷害／消耗不改。
 
 圍場只在反彈效果期間可見，平常不加臨時天花限制。仍有6接觸／180tick／E20受身、衰減、跟鏡與F2。65反彈規則＋25原生結果／鏡頭＋62二段跳＋10重砲＋7Demo＋34戰鬥＋75能力核心共278項通過；原結果頁修復、決勝KO及能力抽取功能保留。[新證據與大招預覽](evidence/ricochet-scope/README.md)。同branch／PR #6來源更新，不發佈Web，真人／本機驗收待辦。
+
+## 2026-11-11：降低戰鬥HUD閱讀負擔
+
+使用者要求分析簡化資訊，其後要求將全部更新推GitHub；把建議實作到正式HUD。常駐只留血量／能量／時間／勝場、短名字與資源格、SURGE細條，常規成功動作由局部聲畫交代；重要決策／錯誤仍有回饋，教學保留詳細說明。二段跳不再產生文字字卡；不調輸入延遲、招式或音樂transport，沿main同步來源，Web不更新。

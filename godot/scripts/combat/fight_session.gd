@@ -345,6 +345,8 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
     effects.append(effect)
 
 func _handle_event(event: Dictionary) -> void:
+    if event.kind in ["no_meter","no_chase_meter","air_parry_no_meter","node_unavailable"]:
+        hud.resource_warning[clampi(event.get("target",0),0,1)]=.45
     if event.kind=="surge_decision_start":
         rhythm.clear();neon.clear()
         hud.notice_time=0
@@ -576,9 +578,6 @@ func _handle_event(event: Dictionary) -> void:
         var fighter:Dictionary=sim.fighters[event.target]
         _spawn_vfx("surge_arc",Vector2(fighter.x,fighter.y+.15),.22,{"face":fighter.face,"color":COLORS[event.target]})
         audio.play_sound("chase",1.25,-8.0)
-        if event.target==0:
-            hud.notice="DOUBLE JUMP"
-            hud.notice_time=.55
     elif kind in ["land","dash","jump"]:
         var fighter: Dictionary = sim.fighters[event.target]
         _spawn_vfx("dust",Vector2(fighter.x,0.08),0.22,{"color":Color("f1edcf")})
@@ -610,6 +609,7 @@ func _clear_impacts() -> void:
     sim.exchange.cancel_decision();sim.surge_release.clear();sim.surge_guards=[0,0]
     sim.continuation.clear()
     surge_pulse=0.0
+    if is_instance_valid(hud):hud.resource_warning.fill(0.0)
     surge_reaction_cd=0.0
     theatre.clear()
     neon.clear()

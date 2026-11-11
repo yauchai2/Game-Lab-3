@@ -6,9 +6,9 @@ func _initialize() -> void:call_deferred("run")
 func check(label:String,ok:bool) -> void:
     checks.append({"name":label,"passed":ok});print("DOUBLE_INPUT ",label," ",ok)
     if not ok:push_error(label)
-func key(down:bool,echo:=false) -> void:
+func key(down:bool,echo:=false,code:Key=KEY_SPACE) -> void:
     var event=InputEventKey.new()
-    event.keycode=KEY_SPACE;event.physical_keycode=KEY_SPACE;event.pressed=down;event.echo=echo
+    event.keycode=code;event.physical_keycode=code;event.pressed=down;event.echo=echo
     Input.parse_input_event(event)
     await process_frame;await process_frame
 func step(count:=1) -> void:
@@ -26,6 +26,8 @@ func run() -> void:
     scene.preferences_path="";root.add_child(scene);current_scene=scene
     scene.set_process(false);scene.set_physics_process(false);scene.audio.muted=true
     scene.start_match(false);scene.sim.phase="fight";scene.sim.ai_enabled=false
+    await key(true,false,KEY_ENTER);await key(false,false,KEY_ENTER)
+    check("normal Enter skips the current round intro",not scene.round_theatre.intro and scene.screen=="play")
     # Formal FIGHT with ordinary inputs; no training-only movement fixture.
     scene.sim.fighters[1].x=4.0
     check("formal FIGHT uses shared air motion",not scene.practice and scene.sim.is_aerial())
@@ -35,7 +37,7 @@ func run() -> void:
     check("OS key repeat cannot spend double jump",not scene.sim.fighters[0].air.double_used)
     await key(false);await key(true);step();await key(false)
     check("released and repressed Space spends one jump",scene.sim.fighters[0].air.double_used and scene.sim.fighters[0].vy>9)
-    check("second jump has readable local feedback",scene.hud.notice=="DOUBLE JUMP" and scene.effects.any(func(e:Dictionary)->bool:return e.kind=="surge_arc"))
+    check("second jump has readable local feedback",scene.hud.notice!="DOUBLE JUMP" and scene.effects.any(func(e:Dictionary)->bool:return e.kind=="surge_arc"))
     check("existing pooled chase voice provides audio",scene.audio.sounds.has("chase") and not scene.audio.sounds.chase.is_empty())
     await snapshot("double-takeoff")
     var frozen:Array=scene.sim.fighters.duplicate(true)
@@ -57,7 +59,7 @@ func run() -> void:
     scene.reduced_effects=true
     step(120)
     await key(true);step(10);await key(false);await key(true);step();await key(false)
-    check("reduced effects retains double jump",scene.sim.fighters[0].air.double_used and scene.hud.notice=="DOUBLE JUMP")
+    check("reduced effects retains double jump",scene.sim.fighters[0].air.double_used and scene.hud.notice!="DOUBLE JUMP")
     await snapshot("double-reduced")
     scene.start_match(false)
     check("restart clears effects and used jump",not scene.sim.fighters[0].air.double_used and scene.effects.is_empty() and scene.pending.is_empty())

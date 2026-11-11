@@ -19,6 +19,7 @@ var art_controls:Control
 var art_buttons:Dictionary={}
 var coach_continue:Button
 var pause_button:Button
+var resource_warning:Array[float]=[0.0,0.0]
 var menu_page := "main"
 var previous_screen := ""
 var built_page := ""
@@ -153,8 +154,9 @@ func _ready() -> void:
     audio_restore.pressed.connect(_restore_sound)
     layout_root.add_child(audio_restore)
     pause_button=Button.new()
-    pause_button.text="II  PAUSE"
-    pause_button.position=Vector2(1094,94);pause_button.size=Vector2(150,42)
+    pause_button.text="II"
+    pause_button.tooltip_text="Pause (Esc)"
+    pause_button.position=Vector2(1200,86);pause_button.size=Vector2(44,36)
     pause_button.add_theme_font_override("font",Tokens.DISPLAY)
     pause_button.add_theme_font_size_override("font_size",Tokens.ACTION_SIZE)
     for state in ["normal","hover","pressed"]:pause_button.add_theme_stylebox_override(state,Tokens.plate(PAPER,INK,2))
@@ -527,6 +529,8 @@ func _process(delta: float) -> void:
     audio_restore.visible=session.screen=="title" and menu_page=="main" and session.audio.silent_settings()
     roster_preview.update_preview(session.screen=="title" and menu_page=="roster",session.character_choices[art.roster_side],delta,session.reduced_effects)
     if session.screen not in ["pause","help"]:notice_time=maxf(0,notice_time-delta)
+    if session.screen not in ["pause","help"]:
+        for side in 2:resource_warning[side]=maxf(0,resource_warning[side]-delta)
     if session.screen=="play":skill_time=maxf(0,skill_time-delta)
     for i in 2:
         var hp: float=session.sim.fighters[i].health
@@ -615,14 +619,13 @@ func _draw() -> void:
     _draw_core_tag()
     if session.sim.arcade_enabled:_surge_hud()
     if session.sim.exchange.decision_active():_surge_decision_hud()
-    if session.neon_enabled:draw_string(font,Vector2(16,160),"NEON FACETS LAB",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color("bdff00"))
     if skill_time>0 and skill_key!="" and session.screen=="play":
         _plate(Vector2(460,154),Vector2(360,34),INK)
         _center(Vector2(640,179),tr_text(skill_key),21,Tokens.LIME)
     if session.sim.phase=="ready" and session.screen=="play":
         _center(Vector2(640,280),tr_text("round")+" %d"%session.sim.round_number,40)
         _center(Vector2(640,316),"準備" if session.language=="zh" else "GET READY",22,Tokens.GOLD)
-    if notice_time>0 and session.demo==null and not session.sim.exchange.decision_active() and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
+    if notice_time>0 and notice_visible() and session.demo==null and not session.sim.exchange.decision_active() and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
         var notice_y:float=596 if notice.begins_with("RICOCHET") else 196
         _plate(Vector2(426,notice_y),Vector2(428,40),INK)
         _center(Vector2(640,notice_y+29),copy.notice(notice),19,Tokens.GOLD)
@@ -711,20 +714,26 @@ func _pressure_hud() -> void:
     elif drill:_text(Vector2(34,690),tr_text("drill_exit"),12,Tokens.MUTED)
 
 func _demo_hud() -> void:
-    _plate(Vector2(28,78),Vector2(270,38),INK)
-    _text(Vector2(37,105),"AI DEMO / ROUND %02d"%session.presentation_round(),14,PAPER)
+    _text(Vector2(34,101),"DEMO",24,Tokens.MUTED)
+
+func notice_visible() -> bool:
+    if session.practice or session.coach!=null:return true
+    # Routine actions already have local motion/audio feedback. Keep outcomes
+    # that change the fight, and explain mechanics fully inside training.
+    return notice in ["FIGHT!","PERFECT GUARD","RIVAL PARRY","GUARD BREAK","COUNTER HIT","COUNTER SUCCESS","CHASE UNAVAILABLE","PLACE A NODE / WAIT FOR PULSE"] or notice.begins_with("STREET RUN /") or notice.begins_with("BLACK SUIT SQUAD /")
 
 func _surge_hud() -> void:
     var exchange=session.sim.exchange
     var tier:int=exchange.tier()
     var tint:Color=[Tokens.TEAL,Tokens.LIME,Tokens.MAGENTA][tier-1]
-    var jump:float=0.0 if session.reduced_effects else sin(session.surge_pulse/.45*PI)*4.0
-    _plate(Vector2(548,86-jump),Vector2(184,64),INK)
-    _center(Vector2(640,110-jump),"SURGE %02d"%roundi(exchange.pressure),24,tint)
-    _center(Vector2(640,137-jump),["FLOW","HEAT","SURGE"][tier-1],24,tint)
     for i in 3:
-        draw_rect(Rect2(556+i*56,143-jump,52,4),Color(tint,.2))
-        draw_rect(Rect2(556+i*56,143-jump,52*clampf((exchange.pressure-i*30)/30.0,0,1),4),tint)
+        draw_rect(Rect2(568+i*49,85,45,5),Color(tint,.2))
+        draw_rect(Rect2(568+i*49,85,45*clampf((exchange.pressure-i*30)/30.0,0,1),5),tint)
+    if session.practice or session.coach!=null:
+        _center(Vector2(640,116),"SURGE %02d / %s"%[roundi(exchange.pressure),["FLOW","HEAT","SURGE"][tier-1]],24,tint)
+    elif session.surge_pulse>0:
+        _center(Vector2(640,116),["FLOW","HEAT","SURGE"][tier-1],24,tint)
+    if not session.practice:return
     for side in 2:
         var slot:Dictionary=session.sim.continuation.slots[side]
         if not slot.is_empty() and slot.choice!="" and not slot.spent:
