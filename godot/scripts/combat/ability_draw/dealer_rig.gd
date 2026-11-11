@@ -76,8 +76,8 @@ func orient_hand(side:String,fingers:Vector3,palm:Vector3,curl:float) -> void:
     for finger in ["Index","Middle","Ring","Pinky","Thumb"]:
         for digit in range(1,4):
             var index:=bone(side+"Hand"+finger+str(digit))
-            var global_basis:=skeleton.get_bone_global_pose(index).basis.orthonormalized()
-            rotate_global(index,Basis(Quaternion(axis,curl*(.32 if finger=="Thumb" else .63)))*global_basis)
+            var finger_basis:=skeleton.get_bone_global_pose(index).basis.orthonormalized()
+            rotate_global(index,Basis(Quaternion(axis,curl*(.32 if finger=="Thumb" else .63)))*finger_basis)
 
 func sample(t:float,travel:float,rolling:float,reveal:float,chassis:Node3D,travel_direction:=1.0) -> void:
     var turn:=1-smoothstep(.91,1.24,t)

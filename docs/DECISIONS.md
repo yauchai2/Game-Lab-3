@@ -308,3 +308,7 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 推送前再次核對遠端，combat-escalation-next已從3389fa9前進至3ea0691，故再合併該提交。包含手動DRAW／CONTINUE、2.05秒入場／2.20秒逐輪抽獎、新音訊及共用bitmap UI；Demo也等待玩家確認，覆蓋下方自動抽領的歷史描述。群戰／黑衣人相容處理保留。更新回合測試以明示Enter確認抽獎，不移除最新手動要求。
 
 最新合併來源再跑109項原生檢查：回合24、模型22、抽獎流程／輸入／節奏63，全部通過，無ERROR／SCRIPT ERROR；證據見evidence/main-integration/latest-final。前一整合477項與初次測試器失敗保留，非宣稱使用者本機／真人驗收。兩次合併保留987d4d2、3389fa9、3ea0691完整歷史；日常取main，Web未更新。
+
+## 2026-11-11：修正Godot4.7.2腳本警告
+
+依使用者截圖，以實際同版本重現四類共15項warning後修正根因，不以warning_ignore或關閉warnings處理。數值保持、局部名稱明確，static由型別呼叫。嚴格測試須在Godot程序啟動前設定warning等級（parser會快取）；新runner使用臨時project override.cfg而不改使用者project偏好。沿集中main交付，公開Web不更新。

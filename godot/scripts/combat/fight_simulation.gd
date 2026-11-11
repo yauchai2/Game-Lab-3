@@ -14,7 +14,8 @@ var last_service_enabled:=false
 var service_perks:Array=[[],[]]
 var service_contacts:Array=[]
 const ServiceProfiles=preload("res://scripts/combat/last_service/profiles.gd")
-var service_rules=preload("res://scripts/combat/last_service/rules.gd").new()
+const ServiceRules=preload("res://scripts/combat/last_service/rules.gd")
+var service_rules=ServiceRules.new()
 func profile_for(index:int) -> Dictionary:
     return ServiceProfiles.profile(index) if last_service_enabled else Profiles.profile(index)
 
@@ -103,7 +104,7 @@ func reset_round() -> void:
             "buffer": "", "buffer_ttl": 0, "chain": 0, "chain_ttl": 0, "dash_cd": 0,
             "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "entry_parry_window":0, "counter_window":0, "counter_attack":false, "break_lock":0, "impact_load":0.0, "jump_buffer":0, "juggle":0, "hit_confirmed":false,"throw_cd":0,"tech_window":0,"wall_bounces":0,"wall_tech_window":0,"wall_tech_buffer":0})
     for i in 2:
-        fighters[i]["service"]=service_rules.fresh()
+        fighters[i]["service"]=ServiceRules.fresh()
         fighters[i]["perks"]=service_perks[i].duplicate()
     phase = "ready"
     countdown = 72
@@ -639,7 +640,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
             events.append({"kind":"parry","target":1-i,"attacker":i,"move":move_name,"distance":absf(a.x-b.x)})
             return
         var guard_pressure:float=8.0 if last_service_enabled and a.character==1 and a.service.preload>=2 else 0.0
-        if last_service_enabled and a.character==1 and service_rules.perk(a,"rivet_guard"):guard_pressure+=5.0
+        if last_service_enabled and a.character==1 and ServiceRules.perk(a,"rivet_guard"):guard_pressure+=5.0
         b.guard = maxf(0.0, b.guard - m.damage * 2.8-guard_pressure)
         b.state = "blockstun"
         b.stun = 10

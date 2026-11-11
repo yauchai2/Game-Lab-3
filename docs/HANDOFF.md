@@ -1,5 +1,9 @@
 ## 2026-11-11：main 收入最後一筆遠端更新
 
+## 2026-11-11：Godot4.7.2的15項腳本警告
+
+依使用者兩張Debugger截圖修正五檔：ServiceRules static呼叫、round_theatre／ability_draw數值ternary、city_breaker／dealer_rig局部遮蔽及兩個明確取整。以官方4.7.2在啟動前將四類warning設Error，基線ffffd15恰好重現15項，修正後5/5嚴格編譯＋90規則＋189回合／KO原生＋85抽獎／模型，共369項通過；最終無ERROR／SCRIPT ERROR。詳[證據](evidence/godot-warnings/README.md)。新增tools/verify_godot_warnings.py以臨時project在啟動前設定warning，因動態改ProjectSettings會被Godot快取忽略。原project設定／GLB／節奏不變；日常main，公開Web不更新。使用者Pull後清掉舊Debugger紀錄並重開遊戲；Mac／實聽待驗。
+
 推送前再次核對遠端，combat-escalation-next已從3389fa9前進至3ea0691，故再合併該提交。包含手動DRAW／CONTINUE、2.05秒入場／2.20秒逐輪抽獎、新音訊及共用bitmap UI；Demo也等待玩家確認，覆蓋下方自動抽領的歷史描述。群戰／黑衣人相容處理保留。更新回合測試以明示Enter確認抽獎，不移除最新手動要求。
 
 最新合併來源再跑109項原生檢查：回合24、模型22、抽獎流程／輸入／節奏63，全部通過，無ERROR／SCRIPT ERROR；證據見evidence/main-integration/latest-final。前一整合477項與初次測試器失敗保留，非宣稱使用者本機／真人驗收。兩次合併保留987d4d2、3389fa9、3ea0691完整歷史；日常取main，Web未更新。
