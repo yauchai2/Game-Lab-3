@@ -285,8 +285,8 @@ func _break_building(body: MeshInstance3D, bounds: AABB, start: float) -> void:
             for z in 3:
                 var mesh := BoxMesh.new(); mesh.size = cell * .985
                 var local_at := -size*.5 + cell*(Vector3(x,y,z)+Vector3.ONE*.5)
-                var transform := body.global_transform * Transform3D(Basis.IDENTITY, local_at)
-                _add_piece(mesh, body.get_active_material(0), transform, start, bounds.get_center(), false)
+                var piece_transform := body.global_transform * Transform3D(Basis.IDENTITY, local_at)
+                _add_piece(mesh, body.get_active_material(0), piece_transform, start, bounds.get_center(), false)
     # All facade parts in this footprint are removed at the same instant.
     var region := bounds.grow(1.5)
     for node in session.backdrop.street.find_children("*", "MeshInstance3D", true, false):
@@ -304,13 +304,13 @@ func _collect_batch_details() -> void:
         if batch.multimesh == null: continue
         var entries: Array = []
         for i in batch.multimesh.instance_count:
-            var transform: Transform3D = batch.multimesh.get_instance_transform(i)
-            var world: Transform3D = batch.global_transform * transform
+            var piece_transform: Transform3D = batch.multimesh.get_instance_transform(i)
+            var world: Transform3D = batch.global_transform * piece_transform
             var at: Vector3 = world.origin
             for source in hidden_sources:
                 if not source.has("bounds"): continue
                 if source.bounds.grow(1.5).has_point(at) and at.y > .3:
-                    entries.append({"index":i, "transform":transform, "start":source.start})
+                    entries.append({"index":i, "transform":piece_transform, "start":source.start})
                     break
         if not entries.is_empty(): batches.append({"node":batch, "entries":entries})
 
@@ -329,10 +329,10 @@ func _extend_city() -> void:
         var key := material.get_instance_id()
         if not source_groups.has(key):source_groups[key]={"material":material,"transforms":[]}
         for offset in [Vector3(-35,0,-22),Vector3(35,0,-22),Vector3(-70,0,-44),Vector3(70,0,-44),Vector3(0,0,-80),Vector3(-35,0,-102),Vector3(35,0,-102)]:
-            var transform: Transform3D = node.global_transform
-            transform.origin+=offset
-            transform.basis=transform.basis.scaled_local(node.mesh.size)
-            source_groups[key].transforms.append(transform)
+            var piece_transform: Transform3D = node.global_transform
+            piece_transform.origin+=offset
+            piece_transform.basis=piece_transform.basis.scaled_local(node.mesh.size)
+            source_groups[key].transforms.append(piece_transform)
     for group in source_groups.values():
         var mm:=MultiMesh.new();mm.transform_format=MultiMesh.TRANSFORM_3D;mm.mesh=unit;mm.instance_count=group.transforms.size()
         for i in mm.instance_count:mm.set_instance_transform(i,group.transforms[i])
@@ -410,9 +410,9 @@ func _sources_at(time: float) -> void:
     for group in batches:
         var mm: MultiMesh = group.node.multimesh
         for entry in group.entries:
-            var transform: Transform3D = entry.transform
-            if time >= entry.start: transform.basis = Basis.IDENTITY.scaled(Vector3.ZERO)
-            mm.set_instance_transform(entry.index, transform)
+            var piece_transform: Transform3D = entry.transform
+            if time >= entry.start: piece_transform.basis = Basis.IDENTITY.scaled(Vector3.ZERO)
+            mm.set_instance_transform(entry.index, piece_transform)
 
 func _pieces_at(time: float) -> void:
     for p in pieces:
@@ -420,23 +420,23 @@ func _pieces_at(time: float) -> void:
         p.node.visible = dt >= 0.0
         if dt < 0.0: continue
         var move: Vector3 = p.velocity*dt + Vector3(0,-(1.8 if p.plane else 3.0)*dt*dt,0)
-        var transform: Transform3D = p.base
+        var piece_transform: Transform3D = p.base
         var spin := Basis.from_euler(p.spin*dt)
         if p.has("pivot"):
-            transform.origin = p.pivot + spin*(p.base.origin-p.pivot)+move
+            piece_transform.origin = p.pivot + spin*(p.base.origin-p.pivot)+move
         else:
-            transform.origin += move
-            transform.origin.y = maxf(.3, transform.origin.y)
-        transform.basis = spin*p.base.basis
+            piece_transform.origin += move
+            piece_transform.origin.y = maxf(.3, piece_transform.origin.y)
+        piece_transform.basis = spin*p.base.basis
         if not p.plane and not p.has("rubble"):
             var settle: float = clampf(1.0-maxf(0,dt-2.2)/2.0,.001,1.0)
-            transform.basis = transform.basis.scaled(Vector3.ONE*settle)
-        p.node.transform = transform
+            piece_transform.basis = piece_transform.basis.scaled(Vector3.ONE*settle)
+        p.node.transform = piece_transform
 
 func _make_burst(at: Vector3, start: float, radius: float) -> void:
     var nodes: Array = []
     for i in 20:
-        var color := Color(["ffcf18","ff8a12","f74c24","f727a0","422039"][mini(4,i/4)])
+        var color := Color(["ffcf18","ff8a12","f74c24","f727a0","422039"][mini(4,floori(i/4.0))])
         var node := _mesh(_octahedron(),_unlit(color))
         var offset := Vector3(rng.randf_range(-1,1),rng.randf_range(-.6,1),rng.randf_range(-1,1)).normalized()*rng.randf_range(.2,.9)
         nodes.append({"node":node,"offset":offset,"rotation":Vector3(rng.randf(),rng.randf(),rng.randf())*TAU,"scale":rng.randf_range(.28,.55),"smoke":i>=15})
@@ -634,12 +634,12 @@ func _draw_speed_ink(canvas: Control) -> void:
         var dt:float=age-cue[0]
         if dt<0 or dt>.36:continue
         var slide:float=maxf(0,.07-dt)*600
-        var scale:Vector2=canvas.size/Vector2(1280,720)
-        canvas.draw_set_transform(Vector2(62-slide,548)*scale,-.10,scale)
+        var canvas_scale:Vector2=canvas.size/Vector2(1280,720)
+        canvas.draw_set_transform(Vector2(62-slide,548)*canvas_scale,-.10,canvas_scale)
         var alpha:float=minf(1,(.36-dt)*7)
         canvas.draw_string(session.hud.bold,Vector2(5,6),cue[1],HORIZONTAL_ALIGNMENT_LEFT,-1,78,Color("15101f",alpha))
         canvas.draw_string(session.hud.bold,Vector2.ZERO,cue[1],HORIZONTAL_ALIGNMENT_LEFT,-1,78,Color("fff3a8",alpha))
-        canvas.draw_set_transform(Vector2.ZERO,0,scale)
+        canvas.draw_set_transform(Vector2.ZERO,0,canvas_scale)
 
 
 func source_time(seconds: float) -> float:

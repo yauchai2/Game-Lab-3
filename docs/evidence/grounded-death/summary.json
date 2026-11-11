@@ -1,0 +1,11 @@
+{
+  "baseline": "7d3cab2",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "grounding_native": 104,
+  "strict_compile": 8,
+  "headless_regressions": 33,
+  "native_regressions": 189,
+  "total_passed": 334,
+  "failed": 0,
+  "scope": "Linux Compatibility llvmpipe / Dummy; not user Mac validation"
+}

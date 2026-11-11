@@ -771,6 +771,9 @@ func _present(delta: float) -> void:
         for id in squad_visuals.size():
             if id==sim.squad_focus:continue
             var pose:Dictionary=sim.squad_members[id].duplicate()
+            if screen=="result" and pose.health<=0:
+                pose.y=maxf(0,pose.y-maxf(0,result_clock-.15)*5.0)
+                if result_clock>.18:pose.flash=0
             pose["air_enabled"]=true;pose["rush_visual"]=not reduced_effects
             squad_visuals[id].present(pose,delta,sim.hitstop>0,reduced_effects,sim.fighters[0].x)
     for i in fighters.size():

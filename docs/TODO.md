@@ -1,3 +1,10 @@
+## 2026-11-11：死亡屍體貼地
+
+- [x] 修復死亡骨盆限幅、死亡姿態被活人動作覆寫及重播。
+- [x] 五角色真skin貼地校正、停止屍體旋轉；群戰非focus結算落地。
+- [x] 334項編譯／原生變形網格／回合／KO回歸通過，保留原GLB和判定。
+- [ ] 使用者Pull main後覆核本機死亡、群戰清場及F2畫面。
+
 ## 2026-11-11：同步 main 至 codex/combat-escalation-next
 
 使用者明確要求也推到codex/combat-escalation-next。以遠端最新91db1f1合併main的ffffd15，保留九核心與Demo定時自動抽領，以及main的黑衣人群戰／頸部領帶修補／過場相容處理，不強推、不改Web。此輪只推指定開發分支；main維持ffffd15。最新Demo自動節奏以ABILITY_CORE_POOL.zh-TW.md為準，覆蓋較早手動Demo契約，一般FIGHT／Street Run仍手動。
@@ -11,6 +18,12 @@
 見 [ABILITY_CORE_POOL.zh-TW.md](ABILITY_CORE_POOL.zh-TW.md)。Demo 代幣展示3秒後自動抽，獎品展示3.5秒後自動領取；覆蓋上一輪Demo必須手動的契約，正常模式仍手動。獎池3→9：新增FURY增傷15%、PLATE減傷15%、FLOW命中能量30%、ECO技能耗能-20%、BREACH盾損25%、SIPHON命中回2／整局最多12HP。九種等機率、下一局限定，實際simulation／AI節能門檻／HUD刻度及圖示／輪盤色彩皆接入。263項通過，證據evidence/ability-draw/expanded-pool；原GLB／音訊／XP／公開Web保持，Mac／真人平衡待驗。
 
 ## 2026-11-11：main 收入最後一筆遠端更新
+
+## 2026-11-11：Godot4.7.2警告
+
+- [x] 重現並修正使用者截圖15項警告，不關閉警告。
+- [x] 新增啟動前warning-as-error回歸工具，五檔嚴格編譯及相關規則／原生流程共369項通過。
+- [ ] 使用者Pull main後停止舊遊戲、清除舊Debugger紀錄、F5覆核本機Godot4.7.2。
 
 推送前再次核對遠端，combat-escalation-next已從3389fa9前進至3ea0691，故再合併該提交。包含手動DRAW／CONTINUE、2.05秒入場／2.20秒逐輪抽獎、新音訊及共用bitmap UI；Demo也等待玩家確認，覆蓋下方自動抽領的歷史描述。群戰／黑衣人相容處理保留。更新回合測試以明示Enter確認抽獎，不移除最新手動要求。
 

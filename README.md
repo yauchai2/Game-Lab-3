@@ -1,5 +1,9 @@
 # Afterhours / Game-Lab-3
 
+最新：[死亡後凌空已修正](docs/evidence/grounded-death/README.md)。完整死亡下落、五角色按實際skin貼地、群戰其他死者也在結算落地；334項檢查通過，來源main。
+
+最新：[Godot4.7.2截圖15項GDScript警告已修正](docs/evidence/godot-warnings/README.md)。型別直接呼叫static、統一數值分支型別及局部變數改名；原版15項已重現，修正後369項編譯／玩法／原生回歸通過。來源main，Pull後停止舊遊戲／清除舊Debugger紀錄再F5。
+
 同步：使用者要求將main `ffffd15` 的完整更新也合併到 `codex/combat-escalation-next`；保留該分支最新九核心及Demo自動抽獎，144項整合檢查通過。
 最新澄清已落實：[反彈只用於指定強化技能／大招](docs/evidence/ricochet-scope/README.md)。普通攻擊／挑空／投技回原擊退，盒狀圍場僅效果期間出現。
 

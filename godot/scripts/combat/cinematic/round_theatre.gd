@@ -30,7 +30,7 @@ func begin_intro() -> void:
     saved_visibility.clear()
     for actor in session.fighters:saved_visibility.append(actor.visible)
     intro=true;age=0.0
-    score.volume_db=-80 if session.audio.muted or session.audio.effects_level<=0 else -9+linear_to_db(session.audio.effects_level)
+    score.volume_db=-80.0 if session.audio.muted or session.audio.effects_level<=0 else -9.0+linear_to_db(session.audio.effects_level)
     score.play()
     sample_intro()
 func clear() -> void:
@@ -59,7 +59,7 @@ func advance(delta:float,paused:bool) -> void:
     if intro:
         if session.reduced_effects:clear();return
         score.stream_paused=paused
-        score.volume_db=-80 if session.audio.muted or session.audio.effects_level<=0 else -9+linear_to_db(session.audio.effects_level)
+        score.volume_db=-80.0 if session.audio.muted or session.audio.effects_level<=0 else -9.0+linear_to_db(session.audio.effects_level)
         if not paused:age+=delta
         if age>=INTRO_SECONDS:clear();session.pending.clear();return
         sample_intro()

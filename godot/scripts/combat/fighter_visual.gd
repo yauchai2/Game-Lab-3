@@ -12,6 +12,9 @@ var character_index := 0
 var model_scale := 2.1
 var oversized_bones: Array[int]=[]
 var elapsed := 0.0
+var death_ground_offset:=0.0
+var death_ground_cached:=false
+var death_surfaces:Array=[]
 var motions := preload("res://scripts/combat/combat_motions.gd").new()
 
 func setup(color: Color, selection := 0, model_path_override:="") -> void:
@@ -33,6 +36,9 @@ func setup(color: Color, selection := 0, model_path_override:="") -> void:
     oversized_bones.clear()
     motions=preload("res://scripts/combat/combat_motions.gd").new()
     elapsed=0.0
+    death_ground_cached=false
+    death_ground_offset=0.0
+    death_surfaces.clear()
     model_scale=entry.scale
     model = (load(entry.path if model_path_override.is_empty() else model_path_override) as PackedScene).instantiate()
     model.scale = Vector3.ONE * model_scale
@@ -61,6 +67,17 @@ func setup(color: Color, selection := 0, model_path_override:="") -> void:
     if not list.is_empty():
         skeleton = list[0]
         motions.setup(skeleton,model)
+        for mesh in model.find_children("*","MeshInstance3D",true,false):
+            if mesh.skin==null:continue
+            var binds:Array=[]
+            for index in mesh.skin.get_bind_count():
+                var bone:int=mesh.skin.get_bind_bone(index)
+                if bone<0:bone=skeleton.find_bone(mesh.skin.get_bind_name(index))
+                binds.append({"bone":bone,"pose":mesh.skin.get_bind_pose(index)})
+            for surface in mesh.mesh.get_surface_count():
+                var arrays:Array=mesh.mesh.surface_get_arrays(surface)
+                if arrays[Mesh.ARRAY_BONES]==null or arrays[Mesh.ARRAY_WEIGHTS]==null:continue
+                death_surfaces.append({"vertices":arrays[Mesh.ARRAY_VERTEX],"bones":arrays[Mesh.ARRAY_BONES],"weights":arrays[Mesh.ARRAY_WEIGHTS],"binds":binds})
         if character_index==3:_add_signal_baton()
 
 static func _release_retired_materials() -> void:
@@ -123,8 +140,8 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         mat.set_shader_parameter("flash", 1.0 if f.flash > 0 and not reduced else 0.0)
     if skeleton:
         motions.present(f,delta,stopped)
-        if neon_enabled:preload("res://scripts/combat/neon/neon_signature_motion.gd").apply(motions,f)
-        if f.get("rush_visual",false) and f.state=="attack":
+        if neon_enabled and f.health>0:preload("res://scripts/combat/neon/neon_signature_motion.gd").apply(motions,f)
+        if f.health>0 and f.get("rush_visual",false) and f.state=="attack":
             var move: Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
             if f.frame>=move.startup-1 and f.frame<move.startup+move.active:
                 var limbs:Array=["LeftHand","RightHand"] if f.move in ["meteor","overdrive"] else ["RightFoot" if f.move in ["air_kick","air_counter"] else ("LeftHand" if f.move in ["jab","air_jab"] else "RightHand")]
@@ -136,6 +153,35 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
                         skeleton.set_bone_pose_scale(index,Vector3.ONE*2.1)
                         oversized_bones.append(index)
                 model.scale*=Vector3(1.05,.94,1.20)
+        if f.health>0:death_ground_cached=false
+        elif f.y<=.01 and f.get("ko_theatre",-1.0)<0:
+            # A grounded corpse is no longer a spinning/airborne hit pose.
+            model.rotation=Vector3.ZERO
+            model.scale=Vector3.ONE*model_scale
+            model.position=Vector3.ZERO
+            _ground_death_pose()
+
+func _ground_death_pose() -> void:
+    if not death_ground_cached:
+        var lowest:=INF
+        # CPU skinning avoids render-server registration/readback, including on
+        # the first frame and in headless tests. Source arrays are cached at setup.
+        for surface in death_surfaces:
+            var transforms:Array[Transform3D]=[]
+            for bind in surface.binds:
+                transforms.append(skeleton.global_transform*skeleton.get_bone_global_pose(bind.bone)*bind.pose)
+            var slots:int=floori(float(surface.bones.size())/surface.vertices.size())
+            for vertex in surface.vertices.size():
+                var at:=Vector3.ZERO
+                for slot in slots:
+                    var offset:int=vertex*slots+slot
+                    var weight:float=surface.weights[offset]
+                    if weight>0:at+=(transforms[surface.bones[offset]]*surface.vertices[vertex])*weight
+                lowest=minf(lowest,at.y)
+        death_ground_offset=global_position.y+.015-lowest if is_finite(lowest) else 0.0
+        # Only the fall changes the skin. Settled corpses reuse the offset.
+        death_ground_cached=motions.clip_elapsed>=motions.library.clips.Death01.duration
+    model.position.y=death_ground_offset
 
 func capture_echo() -> Array:
     var segments: Array=[]

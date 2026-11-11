@@ -52,7 +52,7 @@ func setup(owner_session:Node3D) -> void:
     ui=CanvasLayer.new();ui.layer=4;add_child(ui)
     action=Button.new();action.name="AbilityDrawAction";action.theme=Tokens.build()
     action.add_theme_font_override("font",Tokens.DISPLAY)
-    action.add_theme_font_size_override("font_size",Tokens.ACTION_SIZE/2)
+    action.add_theme_font_size_override("font_size",floori(Tokens.ACTION_SIZE/2.0))
     for kind in ["normal","hover","pressed","disabled"]:
         var color:Color=Tokens.PAPER if kind=="normal" else (Tokens.TEAL if kind=="pressed" else (Tokens.MUTED if kind=="disabled" else Tokens.MAGENTA))
         var style:=Tokens.plate(color,Tokens.INK,2);style.set_content_margin_all(4)
@@ -164,7 +164,7 @@ func _accent(id:String) -> void:
 func _sync_audio(paused:bool) -> void:
     for p in [arrival,spin,reveal,accent]:
         p.stream_paused=paused
-        p.volume_db=-80 if session.audio.muted or session.audio.effects_level<=0 else -9+linear_to_db(maxf(.001,session.audio.effects_level))
+        p.volume_db=-80.0 if session.audio.muted or session.audio.effects_level<=0 else -9.0+linear_to_db(maxf(.001,session.audio.effects_level))
     session.audio.cinematic_duck=.18 if state in ["offer","result"] else (.80 if state=="spin" and age>=1.48 and age<Timing.REVEAL_AT else .55)
 
 func sample() -> void:
@@ -215,7 +215,7 @@ func sample() -> void:
     session.camera.look_at(to_global(target),Vector3.UP);session.camera.rotation.z+=roll
     session.camera.fov=fov
     material.set_shader_parameter("fisheye",distortion)
-    material.set_shader_parameter("blur",0.0 if session.reduced_effects or state=="result" else punch*.15+(.035 if state=="spin" and t<3.25 else 0))
+    material.set_shader_parameter("blur",0.0 if session.reduced_effects or state=="result" else punch*.15+(.035 if state=="spin" and t<3.25 else 0.0))
     material.set_shader_parameter("impact",punch*.7)
     material.set_shader_parameter("ring_phase",clampf((t-3.5)*3,0,1))
     lens.visible=not session.reduced_effects and state!="result"
