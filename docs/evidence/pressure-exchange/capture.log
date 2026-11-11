@@ -1,0 +1,15 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+PRESSURE_CAPTURE 01_drill_ready error=0
+PRESSURE_CAPTURE 02_read_press error=0
+PRESSURE_CAPTURE 03_turn_locked error=0
+PRESSURE_CAPTURE 04_turn_wins error=0
+PRESSURE_CAPTURE 05_rival_slip_cue error=0
+PRESSURE_CAPTURE 06_press_chases error=0
+PRESSURE_CAPTURE 07_slip_distance error=0
+PRESSURE_CAPTURE 08_tie error=0
+PRESSURE_CAPTURE 09_reduced_clash error=0
+PRESSURE_CAPTURE 10_pause error=0

@@ -1,0 +1,125 @@
+{
+  "checks": [
+    {
+      "name": "four source characters are available",
+      "passed": true
+    },
+    {
+      "name": "character 0 has a complete retargeted rig",
+      "passed": true
+    },
+    {
+      "name": "character 0 deforms and enlarges its active limbs",
+      "passed": true
+    },
+    {
+      "name": "character 0 bone transforms remain finite",
+      "passed": true
+    },
+    {
+      "name": "character 0 restores active limb scales",
+      "passed": true
+    },
+    {
+      "name": "character 1 has a complete retargeted rig",
+      "passed": true
+    },
+    {
+      "name": "character 1 deforms and enlarges its active limbs",
+      "passed": true
+    },
+    {
+      "name": "character 1 bone transforms remain finite",
+      "passed": true
+    },
+    {
+      "name": "character 1 restores active limb scales",
+      "passed": true
+    },
+    {
+      "name": "character 2 has a complete retargeted rig",
+      "passed": true
+    },
+    {
+      "name": "character 2 deforms and enlarges its active limbs",
+      "passed": true
+    },
+    {
+      "name": "character 2 bone transforms remain finite",
+      "passed": true
+    },
+    {
+      "name": "character 2 restores active limb scales",
+      "passed": true
+    },
+    {
+      "name": "character 3 has a complete retargeted rig",
+      "passed": true
+    },
+    {
+      "name": "character 3 deforms and enlarges its active limbs",
+      "passed": true
+    },
+    {
+      "name": "character 3 bone transforms remain finite",
+      "passed": true
+    },
+    {
+      "name": "character 3 restores active limb scales",
+      "passed": true
+    },
+    {
+      "name": "swapping profiles leaves health position and resources untouched",
+      "passed": true
+    },
+    {
+      "name": "title exposes two four-way roster selectors",
+      "passed": true
+    },
+    {
+      "name": "native selector callback updates the live model",
+      "passed": true
+    },
+    {
+      "name": "both locales and three viewport sizes contain the roster controls",
+      "passed": true
+    },
+    {
+      "name": "selection 1 cannot change during combat/result",
+      "passed": true
+    },
+    {
+      "name": "selection 2 cannot change during combat/result",
+      "passed": true
+    },
+    {
+      "name": "selection 3 cannot change during combat/result",
+      "passed": true
+    },
+    {
+      "name": "all three new models play a real air chain through KO",
+      "passed": false
+    },
+    {
+      "name": "endless demo keeps the selected distinct pair",
+      "passed": true
+    },
+    {
+      "name": "repeated preview swaps keep one model and one retarget cache",
+      "passed": true
+    },
+    {
+      "name": "invalid roster indices clamp safely",
+      "passed": true
+    },
+    {
+      "name": "roster preferences persist independently",
+      "passed": true
+    },
+    {
+      "name": "corrupt numeric preferences stay in the roster",
+      "passed": true
+    }
+  ],
+  "scope": "Native Godot model, retargeting, presentation and UI callbacks; fixed-step injected input, software GL, not human playtest."
+}

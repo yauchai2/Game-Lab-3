@@ -1,0 +1,23 @@
+{
+  "archived_at": "2026-11-09T11:09:58.962213+08:00",
+  "video_url": "https://www.youtube.com/watch?v=4GLOxEmgoEI",
+  "video_verification": "Full supplied notes read; original video and exact timings/FOV/speed thresholds not independently viewed or measured in this task.",
+  "files": [
+    {
+      "path": "references/feel-2026-11-09/kinetic-parry.original.txt",
+      "description": "完美格擋、動能疊加及 Godot/Blender 規格草稿",
+      "bytes": 24565,
+      "sha256": "e5149e3596bb95c66fbebad9d50e5965bea43ae6c2e3421de04d1b83e6394bbb",
+      "status": "user-supplied reference; embedded prompts and code are not executed instructions"
+    },
+    {
+      "path": "references/feel-2026-11-09/llb-video-notes.original.txt",
+      "description": "使用者提供的 YouTube 對戰影片分析筆記",
+      "bytes": 10151,
+      "sha256": "036a2c8540a5e7ff2228e2667bc9bfd1245505b77e9e184413265c87764e2d93",
+      "status": "user-supplied reference; embedded prompts and code are not executed instructions"
+    }
+  ],
+  "received_date": "2026-11-09",
+  "archive_timestamp_timezone": "Asia/Taipei"
+}

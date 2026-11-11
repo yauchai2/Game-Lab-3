@@ -1,0 +1,143 @@
+{
+  "checks": [
+    {
+      "check": "New model 0 mapped and animated",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "New model 1 mapped and animated",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "New model 2 mapped and animated",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "New model 3 mapped and animated",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Held RIVET shows no premature strike VFX",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Strike VFX begins on actual active frames",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Interrupted skill clears tracked charge and strike graphics",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Real pointer opens skill page",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Locked skills do not consume points",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Street Run starts with new mechanics and isolated save",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Real victory awards XP and a point",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Repeated result handling cannot duplicate reward",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pointer unlocks and equips earned ZIP skill",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Next stop changes rival and applies selected build",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Stop 2 finishes through a real contact",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Stop 3 finishes through a real contact",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Three-stop clear returns to roster with saved mastery",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Standard fight removes all progression modifiers",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Free AI remains alive and both new roles hit",
+      "detail": [
+        20,
+        25
+      ],
+      "pass": true
+    },
+    {
+      "check": "AI uses legal LOOP nodes",
+      "detail": {
+        "peak": 1,
+        "placed": 5,
+        "pulses": 4
+      },
+      "pass": true
+    },
+    {
+      "check": "Demo grants no XP",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Replacement materials retire cleanly",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "demo_events": {
+    "air_counter_choice": 3,
+    "air_counter_end": 3,
+    "air_counter_release": 3,
+    "air_counter_start": 3,
+    "air_counter_windup": 3,
+    "air_land": 19,
+    "air_parry_attempt": 3,
+    "break_finish": 4,
+    "chase_arrive": 7,
+    "dash": 10,
+    "ground_bounce": 4,
+    "hit": 45,
+    "homing_chase": 7,
+    "node_broken": 1,
+    "node_placed": 5,
+    "node_pulse_fx": 4,
+    "parry": 1,
+    "swing": 75,
+    "wall_tech": 4
+  },
+  "scope": "Real pointer inputs, model mapping/rendering, low-health standing-opponent result fixture, actual free AI. Linux Compatibility, not target Mac hardware or human-play proof."
+}

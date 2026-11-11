@@ -1,0 +1,8 @@
+{
+  "version": "4.7.2.stable.official.ed1daf0bf",
+  "source": "https://github.com/godotengine/godot-builds/releases/tag/4.7.2-stable",
+  "binary_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e",
+  "platform": "Linux x86_64",
+  "renderer": "Compatibility OpenGL3 / Mesa llvmpipe, Xvfb",
+  "not_verified": "Target Mac driver, hardware audio or human gameplay"
+}

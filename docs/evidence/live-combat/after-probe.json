@@ -1,0 +1,477 @@
+{
+  "combos": [
+    {
+      "character": 0,
+      "first_three_tick": 41,
+      "gap": 1.2,
+      "hits": 8,
+      "max_chain": 6,
+      "swings": 9
+    },
+    {
+      "character": 0,
+      "first_three_tick": 41,
+      "gap": 1.5,
+      "hits": 8,
+      "max_chain": 6,
+      "swings": 9
+    },
+    {
+      "character": 1,
+      "first_three_tick": 43,
+      "gap": 1.2,
+      "hits": 8,
+      "max_chain": 6,
+      "swings": 9
+    },
+    {
+      "character": 1,
+      "first_three_tick": 43,
+      "gap": 1.5,
+      "hits": 8,
+      "max_chain": 6,
+      "swings": 9
+    },
+    {
+      "character": 2,
+      "first_three_tick": 41,
+      "gap": 1.2,
+      "hits": 8,
+      "max_chain": 6,
+      "swings": 9
+    },
+    {
+      "character": 2,
+      "first_three_tick": 41,
+      "gap": 1.5,
+      "hits": 8,
+      "max_chain": 6,
+      "swings": 9
+    },
+    {
+      "character": 3,
+      "first_three_tick": 41,
+      "gap": 1.2,
+      "hits": 8,
+      "max_chain": 6,
+      "swings": 9
+    },
+    {
+      "character": 3,
+      "first_three_tick": 41,
+      "gap": 1.5,
+      "hits": 8,
+      "max_chain": 6,
+      "swings": 9
+    }
+  ],
+  "guard": [
+    {
+      "character": 0,
+      "events": {
+        "air_land": 20,
+        "block": 17,
+        "chase_arrive": 5,
+        "ground_bounce": 3,
+        "guard_break": 5,
+        "hit": 32,
+        "homing_chase": 5,
+        "ko": 2,
+        "swing": 53,
+        "wall_bounce": 3
+      },
+      "level": 0,
+      "moves": {
+        "air_jab": 5,
+        "air_kick": 5,
+        "grab": 12,
+        "heavy": 6,
+        "jab": 9,
+        "launcher": 5,
+        "meteor": 5,
+        "special": 6
+      },
+      "rounds": 2
+    },
+    {
+      "character": 0,
+      "events": {
+        "air_escape": 2,
+        "air_land": 19,
+        "block": 16,
+        "chase_arrive": 4,
+        "ground_bounce": 2,
+        "guard_break": 5,
+        "hit": 37,
+        "homing_chase": 4,
+        "ko": 2,
+        "swing": 54,
+        "wall_bounce": 2
+      },
+      "level": 1,
+      "moves": {
+        "air_jab": 4,
+        "air_kick": 4,
+        "cross": 3,
+        "grab": 11,
+        "heavy": 8,
+        "jab": 10,
+        "launcher": 5,
+        "meteor": 4,
+        "special": 5
+      },
+      "rounds": 2
+    },
+    {
+      "character": 0,
+      "events": {
+        "air_land": 18,
+        "block": 17,
+        "chase_arrive": 4,
+        "ground_bounce": 2,
+        "guard_break": 8,
+        "hit": 30,
+        "homing_chase": 4,
+        "ko": 2,
+        "swing": 49,
+        "wall_bounce": 5
+      },
+      "level": 2,
+      "moves": {
+        "air_jab": 4,
+        "air_kick": 2,
+        "cross": 2,
+        "grab": 9,
+        "heavy": 11,
+        "jab": 7,
+        "launcher": 6,
+        "meteor": 2,
+        "special": 6
+      },
+      "rounds": 2
+    },
+    {
+      "character": 1,
+      "events": {
+        "air_land": 13,
+        "block": 16,
+        "chase_arrive": 5,
+        "ground_bounce": 3,
+        "guard_break": 8,
+        "hit": 34,
+        "homing_chase": 5,
+        "ko": 2,
+        "swing": 52
+      },
+      "level": 0,
+      "moves": {
+        "air_jab": 5,
+        "air_kick": 3,
+        "cross": 5,
+        "grab": 8,
+        "heavy": 5,
+        "jab": 9,
+        "launcher": 11,
+        "meteor": 3,
+        "overdrive": 3
+      },
+      "rounds": 2
+    },
+    {
+      "character": 1,
+      "events": {
+        "air_land": 15,
+        "block": 12,
+        "chase_arrive": 5,
+        "ground_bounce": 4,
+        "guard_break": 9,
+        "hit": 32,
+        "homing_chase": 5,
+        "ko": 2,
+        "preload_tier": 10,
+        "swing": 49
+      },
+      "level": 1,
+      "moves": {
+        "air_jab": 5,
+        "air_kick": 5,
+        "cross": 2,
+        "grab": 5,
+        "heavy": 4,
+        "jab": 8,
+        "launcher": 10,
+        "meteor": 5,
+        "special": 5
+      },
+      "rounds": 2
+    },
+    {
+      "character": 1,
+      "events": {
+        "air_land": 14,
+        "block": 14,
+        "chase_arrive": 5,
+        "ground_bounce": 4,
+        "guard_break": 7,
+        "hit": 37,
+        "homing_chase": 5,
+        "ko": 2,
+        "preload_tier": 10,
+        "swing": 55
+      },
+      "level": 2,
+      "moves": {
+        "air_jab": 5,
+        "air_kick": 5,
+        "cross": 5,
+        "grab": 7,
+        "heavy": 2,
+        "jab": 13,
+        "launcher": 8,
+        "meteor": 5,
+        "special": 5
+      },
+      "rounds": 2
+    },
+    {
+      "character": 2,
+      "events": {
+        "air_land": 18,
+        "block": 13,
+        "chase_arrive": 2,
+        "ground_bounce": 2,
+        "guard_break": 4,
+        "hit": 32,
+        "homing_chase": 2,
+        "ko": 2,
+        "no_chase_meter": 8,
+        "swing": 50
+      },
+      "level": 0,
+      "moves": {
+        "air_jab": 2,
+        "air_kick": 2,
+        "cross": 4,
+        "grab": 12,
+        "heavy": 8,
+        "jab": 9,
+        "launcher": 6,
+        "meteor": 2,
+        "overdrive": 2,
+        "special": 3
+      },
+      "rounds": 2
+    },
+    {
+      "character": 2,
+      "events": {
+        "air_land": 17,
+        "block": 15,
+        "chase_arrive": 3,
+        "ground_bounce": 2,
+        "guard_break": 7,
+        "hit": 31,
+        "homing_chase": 3,
+        "ko": 2,
+        "swing": 51,
+        "wall_bounce": 4
+      },
+      "level": 1,
+      "moves": {
+        "air_jab": 3,
+        "air_kick": 2,
+        "cross": 3,
+        "grab": 11,
+        "heavy": 13,
+        "jab": 9,
+        "launcher": 3,
+        "meteor": 2,
+        "overdrive": 2,
+        "special": 3
+      },
+      "rounds": 2
+    },
+    {
+      "character": 2,
+      "events": {
+        "air_land": 18,
+        "block": 14,
+        "chase_arrive": 4,
+        "ground_bounce": 4,
+        "guard_break": 8,
+        "hit": 28,
+        "homing_chase": 4,
+        "ko": 2,
+        "swing": 49
+      },
+      "level": 2,
+      "moves": {
+        "air_jab": 4,
+        "air_kick": 4,
+        "grab": 8,
+        "heavy": 10,
+        "jab": 6,
+        "launcher": 8,
+        "meteor": 4,
+        "special": 5
+      },
+      "rounds": 2
+    },
+    {
+      "character": 3,
+      "events": {
+        "air_land": 18,
+        "block": 15,
+        "chase_arrive": 3,
+        "ground_bounce": 3,
+        "guard_break": 3,
+        "hit": 37,
+        "homing_chase": 3,
+        "ko": 2,
+        "node_placed": 6,
+        "node_pulse_fx": 6,
+        "swing": 61,
+        "wall_bounce": 3
+      },
+      "level": 0,
+      "moves": {
+        "air_jab": 3,
+        "air_kick": 3,
+        "cross": 5,
+        "grab": 12,
+        "heavy": 3,
+        "jab": 12,
+        "launcher": 8,
+        "meteor": 3,
+        "node_pulse": 6,
+        "special": 6
+      },
+      "rounds": 2
+    },
+    {
+      "character": 3,
+      "events": {
+        "air_land": 17,
+        "block": 18,
+        "chase_arrive": 3,
+        "ground_bounce": 2,
+        "guard_break": 7,
+        "hit": 31,
+        "homing_chase": 3,
+        "ko": 2,
+        "node_placed": 6,
+        "node_pulse_fx": 6,
+        "swing": 58,
+        "wall_bounce": 4
+      },
+      "level": 1,
+      "moves": {
+        "air_jab": 3,
+        "air_kick": 3,
+        "cross": 3,
+        "grab": 11,
+        "heavy": 5,
+        "jab": 10,
+        "launcher": 7,
+        "meteor": 2,
+        "node_pulse": 6,
+        "overdrive": 2,
+        "special": 6
+      },
+      "rounds": 2
+    },
+    {
+      "character": 3,
+      "events": {
+        "air_land": 17,
+        "block": 16,
+        "chase_arrive": 4,
+        "ground_bounce": 4,
+        "guard_break": 5,
+        "hit": 38,
+        "homing_chase": 5,
+        "ko": 2,
+        "node_placed": 6,
+        "node_pulse_fx": 6,
+        "swing": 64
+      },
+      "level": 2,
+      "moves": {
+        "air_jab": 4,
+        "air_kick": 4,
+        "cross": 5,
+        "grab": 11,
+        "heavy": 5,
+        "jab": 12,
+        "launcher": 7,
+        "meteor": 4,
+        "node_pulse": 6,
+        "special": 6
+      },
+      "rounds": 2
+    }
+  ],
+  "neutral": [
+    {
+      "character": 0,
+      "idle_at_distance": 36,
+      "moves": {
+        "air_jab": 6,
+        "air_kick": 6,
+        "cross": 3,
+        "jab": 6,
+        "launcher": 6,
+        "meteor": 5,
+        "overdrive": 3
+      },
+      "ticks": 1200
+    },
+    {
+      "character": 1,
+      "idle_at_distance": 77,
+      "moves": {
+        "air_jab": 3,
+        "air_kick": 3,
+        "cross": 3,
+        "heavy": 3,
+        "jab": 6,
+        "launcher": 4,
+        "meteor": 3,
+        "overdrive": 3,
+        "special": 2
+      },
+      "ticks": 1200
+    },
+    {
+      "character": 2,
+      "idle_at_distance": 54,
+      "moves": {
+        "air_jab": 6,
+        "air_kick": 6,
+        "heavy": 4,
+        "jab": 3,
+        "launcher": 7,
+        "meteor": 6,
+        "special": 4
+      },
+      "ticks": 1200
+    },
+    {
+      "character": 3,
+      "idle_at_distance": 41,
+      "moves": {
+        "air_jab": 7,
+        "air_kick": 7,
+        "cross": 4,
+        "heavy": 1,
+        "jab": 9,
+        "launcher": 8,
+        "meteor": 5,
+        "overdrive": 1,
+        "special": 3
+      },
+      "ticks": 1200
+    }
+  ],
+  "scope": "Normal FIGHT Simulation rules and normal AI policy; deterministic input scenarios, rounds reset after real KO. Fixed game ticks, not wall-time FPS or fun measurement."
+}

@@ -1,0 +1,89 @@
+{
+  "created_utc": "20261109T062213Z",
+  "source_commit": "70ded9998c1091bc8cc09033a345e5053a37fb25",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/fight_audio.gd",
+    "godot/scripts/combat/fight_hud.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": true,
+  "passed": 103,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_combat_polish",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "be10e49db4aad723132048fa095ab2f37fd6fc544364aed1070ac7f54b246b78",
+      "seconds": 0.815,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat_polish.gd"
+      ],
+      "report_written": true,
+      "passed": 35,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_scene_audio_vfx",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "781ebc5001bbaae68a5b647536026ea227bc9990906100e0f36f9f0f0fab039f",
+      "seconds": 1.185,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_scene_audio_vfx.gd"
+      ],
+      "report_written": true,
+      "passed": 33,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    },
+    {
+      "name": "verify_game_ui",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "e85f827a5f8e2fb0abd0c1140b3342fbe6d02100b9d0c96ad210c8c3fd7c4f6f",
+      "seconds": 1.089,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_game_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 35,
+      "failed": 0,
+      "skipped": [
+        {
+          "name": "residential billboard transform readback",
+          "reason": "Dummy renderer returns identity MultiMesh transforms; requires native GL verification"
+        }
+      ],
+      "diagnostics": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

@@ -1,0 +1,52 @@
+{
+  "actual_events": {
+    "air_counter_choice": 1,
+    "air_counter_end": 1,
+    "air_counter_release": 1,
+    "air_counter_start": 1,
+    "air_counter_windup": 1,
+    "air_land": 5,
+    "air_parry_attempt": 1,
+    "break_finish": 1,
+    "chase_arrive": 2,
+    "dash": 1,
+    "ground_bounce": 1,
+    "hit/air_jab": 2,
+    "hit/air_kick": 2,
+    "hit/cross": 2,
+    "hit/jab": 4,
+    "hit/launcher": 2,
+    "hit/meteor": 1,
+    "hit/overdrive": 1,
+    "hit/special": 1,
+    "homing_chase": 2,
+    "swing": 18,
+    "wall_tech": 1
+  },
+  "demo_frames": 120,
+  "fps": 15,
+  "hits_after": [
+    13,
+    2
+  ],
+  "hits_before": [
+    0,
+    0
+  ],
+  "scope": "Native fixed wall-step capture; no sound, no human input, not measured frame rate.",
+  "screens": [
+    "fighter-0",
+    "fighter-0-special",
+    "fighter-0-overdrive",
+    "fighter-1",
+    "fighter-1-special",
+    "fighter-1-overdrive",
+    "fighter-2",
+    "fighter-2-special",
+    "fighter-2-overdrive",
+    "fighter-3",
+    "fighter-3-special",
+    "fighter-3-overdrive"
+  ],
+  "wall_steps": 480
+}

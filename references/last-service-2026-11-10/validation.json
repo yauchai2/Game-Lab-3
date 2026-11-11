@@ -1,0 +1,9 @@
+{
+  "asset_count": 20,
+  "png_count": 14,
+  "video_count": 6,
+  "all_asset_sha256_match": true,
+  "all_png_decode": true,
+  "new_document_local_links_checked": 18,
+  "limitations": "No game runtime changes or tests; no 3D reconstruction. Generated sheets require modeling corrections."
+}

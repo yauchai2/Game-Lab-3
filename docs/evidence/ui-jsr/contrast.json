@@ -1,0 +1,47 @@
+{
+  "scope": "Proposed exact token-pair contrast, not pixel contrast of AI mockups or native accessibility acceptance.",
+  "pairs": [
+    {
+      "foreground": "ink",
+      "background": "paper",
+      "ratio": 15.93,
+      "passes_4_5": true
+    },
+    {
+      "foreground": "ink",
+      "background": "orange",
+      "ratio": 6.22,
+      "passes_4_5": true
+    },
+    {
+      "foreground": "ink",
+      "background": "lime",
+      "ratio": 14.3,
+      "passes_4_5": true
+    },
+    {
+      "foreground": "ink",
+      "background": "player_cyan",
+      "ratio": 9.6,
+      "passes_4_5": true
+    },
+    {
+      "foreground": "ink",
+      "background": "rival_coral",
+      "ratio": 6.8,
+      "passes_4_5": true
+    },
+    {
+      "foreground": "ink",
+      "background": "disabled",
+      "ratio": 5.49,
+      "passes_4_5": true
+    },
+    {
+      "foreground": "paper",
+      "background": "orange",
+      "ratio": 2.56,
+      "passes_4_5": false
+    }
+  ]
+}

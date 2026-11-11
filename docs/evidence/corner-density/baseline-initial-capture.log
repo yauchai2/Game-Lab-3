@@ -1,0 +1,11 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+CORNER_CAPTURE {"adapter":"llvmpipe (LLVM 19.1.7, 256 bits)","camera_transform":"[X: (1.0, 0.0, 0.0), Y: (0.0, 0.99846, 0.05547), Z: (0.0, -0.05547, 0.99846), O: (0.0, 1.7, 16.5)]","draw_calls":963,"fov":48.0,"image_error":0,"primitives":118766,"shot":"01_fight_center"}
+CORNER_CAPTURE {"adapter":"llvmpipe (LLVM 19.1.7, 256 bits)","camera_transform":"[X: (0.995953, 0.0, 0.089874), Y: (-0.004985, 0.99846, 0.055246), Z: (-0.089736, -0.05547, 0.99442), O: (-5.213123, 1.7, 16.44538)]","draw_calls":954,"fov":48.0,"image_error":0,"primitives":116546,"shot":"02_fight_left"}
+CORNER_CAPTURE {"adapter":"llvmpipe (LLVM 19.1.7, 256 bits)","camera_transform":"[X: (0.995953, 0.0, -0.089877), Y: (0.004985, 0.99846, 0.055245), Z: (0.089739, -0.05547, 0.994419), O: (5.213297, 1.7, 16.44538)]","draw_calls":959,"fov":48.0,"image_error":0,"primitives":119607,"shot":"03_fight_right"}
+CORNER_CAPTURE {"adapter":"llvmpipe (LLVM 19.1.7, 256 bits)","camera_transform":"[X: (1.0, 0.0, 0.0), Y: (0.0, 0.984301, 0.176495), Z: (0.0, -0.176495, 0.984301), O: (0.0, 2.6, 22.0)]","draw_calls":1022,"fov":68.0,"image_error":0,"primitives":119878,"shot":"04_wide_reference"}
+CORNER_CAPTURE {"adapter":"llvmpipe (LLVM 19.1.7, 256 bits)","camera_transform":"[X: (0.999133, 0.0, -0.041631), Y: (0.011339, 0.962189, 0.272148), Z: (0.040056, -0.272384, 0.961355), O: (-15.0, 3.4, 12.0)]","draw_calls":934,"fov":62.0,"image_error":0,"primitives":79226,"shot":"05_left_shops"}
+CORNER_CAPTURE {"adapter":"llvmpipe (LLVM 19.1.7, 256 bits)","camera_transform":"[X: (0.999133, 0.0, 0.041631), Y: (-0.012857, 0.951113, 0.308576), Z: (-0.039595, -0.308844, 0.950288), O: (15.0, 3.4, 12.0)]","draw_calls":949,"fov":62.0,"image_error":0,"primitives":93357,"shot":"06_right_shops"}

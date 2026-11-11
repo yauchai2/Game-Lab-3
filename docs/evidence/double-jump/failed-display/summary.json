@@ -1,0 +1,190 @@
+{
+  "created_utc": "20261110T142930Z",
+  "source_commit": "f53c378f4658141a7680dd522a8f0137e6abd04c",
+  "tracked_runtime_changes": [
+    "godot/assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb.import",
+    "godot/assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb.import",
+    "godot/assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb.import",
+    "godot/assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb.import",
+    "godot/assets/fonts/RadioPixelBody.png.import",
+    "godot/assets/fonts/RadioPixelBodyReadable.png.import",
+    "godot/assets/fonts/RadioPixelDisplay.png.import",
+    "godot/assets/fonts/RadioPixelDisplayReadable.png.import",
+    "godot/scripts/combat/aerial_motion.gd",
+    "godot/scripts/combat/aerial_poses.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/ui/ui_text.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": false,
+  "passed": 0,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_double_jump_input",
+      "mode": "native",
+      "exit_code": 1,
+      "harness_sha256": "0471bfe6bf35083e800c476a72ecaf526d1b5b360f5ce9343e68f1746125ec7c",
+      "seconds": 0.071,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_double_jump_input.gd"
+      ],
+      "report_written": false,
+      "passed": 0,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "ERROR: X11 Display is not available",
+        "WARNING: Display driver x11 failed, falling back to wayland.",
+        "ERROR: Can't connect to a Wayland display.",
+        "ERROR: Could not initialize the Wayland thread.",
+        "ERROR: Can't create the Wayland display server.",
+        "ERROR: Unable to create DisplayServer, all display drivers failed.",
+        "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+      ],
+      "engine_errors": [
+        "ERROR: X11 Display is not available",
+        "ERROR: Can't connect to a Wayland display.",
+        "ERROR: Could not initialize the Wayland thread.",
+        "ERROR: Can't create the Wayland display server.",
+        "ERROR: Unable to create DisplayServer, all display drivers failed."
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_reference_ui",
+      "mode": "native",
+      "exit_code": 1,
+      "harness_sha256": "166c034f9a19f853236686ab97e2cf021a595634e1f75212d9342a95c5ed5ca3",
+      "seconds": 0.059,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_reference_ui.gd"
+      ],
+      "report_written": false,
+      "passed": 0,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "ERROR: X11 Display is not available",
+        "WARNING: Display driver x11 failed, falling back to wayland.",
+        "ERROR: Can't connect to a Wayland display.",
+        "ERROR: Could not initialize the Wayland thread.",
+        "ERROR: Can't create the Wayland display server.",
+        "ERROR: Unable to create DisplayServer, all display drivers failed.",
+        "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+      ],
+      "engine_errors": [
+        "ERROR: X11 Display is not available",
+        "ERROR: Can't connect to a Wayland display.",
+        "ERROR: Could not initialize the Wayland thread.",
+        "ERROR: Can't create the Wayland display server.",
+        "ERROR: Unable to create DisplayServer, all display drivers failed."
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_cannon_input",
+      "mode": "native",
+      "exit_code": 1,
+      "harness_sha256": "b2096b22c22d79619f039f49060d38a57fd5a557ddeb0da56c9158dd022ae292",
+      "seconds": 0.057,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_cannon_input.gd"
+      ],
+      "report_written": false,
+      "passed": 0,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "ERROR: X11 Display is not available",
+        "WARNING: Display driver x11 failed, falling back to wayland.",
+        "ERROR: Can't connect to a Wayland display.",
+        "ERROR: Could not initialize the Wayland thread.",
+        "ERROR: Can't create the Wayland display server.",
+        "ERROR: Unable to create DisplayServer, all display drivers failed.",
+        "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+      ],
+      "engine_errors": [
+        "ERROR: X11 Display is not available",
+        "ERROR: Can't connect to a Wayland display.",
+        "ERROR: Could not initialize the Wayland thread.",
+        "ERROR: Can't create the Wayland display server.",
+        "ERROR: Unable to create DisplayServer, all display drivers failed."
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_aerial_input",
+      "mode": "native",
+      "exit_code": 1,
+      "harness_sha256": "6db82eb6c4d0c7c09106ff55866982286ad188a813647514f9a351fef9607798",
+      "seconds": 0.053,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_aerial_input.gd"
+      ],
+      "report_written": false,
+      "passed": 0,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "ERROR: X11 Display is not available",
+        "WARNING: Display driver x11 failed, falling back to wayland.",
+        "ERROR: Can't connect to a Wayland display.",
+        "ERROR: Could not initialize the Wayland thread.",
+        "ERROR: Can't create the Wayland display server.",
+        "ERROR: Unable to create DisplayServer, all display drivers failed.",
+        "WARNING: ObjectDB instances leaked at exit (run with --verbose for details)."
+      ],
+      "engine_errors": [
+        "ERROR: X11 Display is not available",
+        "ERROR: Can't connect to a Wayland display.",
+        "ERROR: Could not initialize the Wayland thread.",
+        "ERROR: Can't create the Wayland display server.",
+        "ERROR: Unable to create DisplayServer, all display drivers failed."
+      ],
+      "success": false
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

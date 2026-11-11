@@ -1,0 +1,12 @@
+{
+  "engine": "4.7.2 Linux Compatibility / Mesa llvmpipe",
+  "neon_checks": 21,
+  "native_checks": 53,
+  "rules_checks": 134,
+  "audio_checks": 6,
+  "strong_stage_duty_fraction": 0.07444444444444444,
+  "renderer_errors": 0,
+  "source_baseline": "885f1c10573ce3e7831f313b130b34a05a62112e",
+  "performance": "not measured; software-rendered evidence does not establish Mac FPS",
+  "scope": "M1 playable visual slice, not complete M2-M6 rollout; native logs retain unsupported V-Sync warning. Import metadata and historical captures restored after checks."
+}

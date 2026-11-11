@@ -1,0 +1,81 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+ERROR: AIR INPUT FAIL: viewport W K selects launcher in air lab
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:54)
+       [2] key (res://tools/verify_aerial_input.gd:14)
+ERROR: AIR INPUT FAIL: native launcher actually confirms
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:58)
+       [2] key (res://tools/verify_aerial_input.gd:14)
+ERROR: AIR INPUT FAIL: viewport E buffers into ten tick physical chase
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:63)
+       [2] key (res://tools/verify_aerial_input.gd:14)
+ERROR: AIR INPUT FAIL: native chase arrives without a free hit
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:65)
+       [2] key (res://tools/verify_aerial_input.gd:14)
+ERROR: AIR INPUT FAIL: viewport J chooses air jab
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:68)
+       [2] key (res://tools/verify_aerial_input.gd:14)
+ERROR: AIR INPUT FAIL: native chain contacts air_jab
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:74)
+       [2] key (res://tools/verify_aerial_input.gd:14)
+ERROR: AIR INPUT FAIL: native chain contacts air_kick
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:74)
+       [2] key (res://tools/verify_aerial_input.gd:14)
+ERROR: AIR INPUT FAIL: native chain contacts air_finisher
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:74)
+       [2] key (res://tools/verify_aerial_input.gd:14)
+ERROR: AIR INPUT FAIL: native chain records real combo damage
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:76)
+       [2] key (res://tools/verify_aerial_input.gd:14)
+ERROR: AIR INPUT FAIL: viewport down K selects meteor
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:82)
+       [2] key (res://tools/verify_aerial_input.gd:14)
+ERROR: AIR INPUT FAIL: air camera keeps both envelopes visible (1280, 720)
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:123)
+ERROR: AIR INPUT FAIL: air camera keeps both envelopes visible (960, 540)
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:123)
+ERROR: AIR INPUT FAIL: air camera keeps both envelopes visible (960, 720)
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_aerial_input.gd:8)
+       [1] run (res://tools/verify_aerial_input.gd:123)
+AIR_INPUT_CHECKS 17/30

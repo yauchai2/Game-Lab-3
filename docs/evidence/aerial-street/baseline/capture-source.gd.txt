@@ -1,0 +1,37 @@
+extends SceneTree
+var scene: Node
+func _initialize() -> void:call_deferred("run")
+func run() -> void:
+    scene=preload("res://scenes/combat/street_fight.tscn").instantiate()
+    scene.preferences_path=""
+    root.add_child(scene)
+    scene.set_process(false)
+    scene.set_physics_process(false)
+    scene.audio.muted=true
+    scene.backdrop.freeze_for_capture()
+    scene.start_match(true)
+    scene.sim.fighters[0].x=-1
+    scene.sim.fighters[1].x=2
+    for i in 80:scene._present(1.0/60)
+    var frames: Array=[]
+    var peak:=0.0
+    var shot:=false
+    for tick in 65:
+        scene.sim.tick({"jump":true} if tick==0 else {})
+        for event in scene.sim.events:scene._handle_event(event)
+        scene._process(1.0/60)
+        var f: Dictionary=scene.sim.fighters[0]
+        peak=maxf(peak,f.y)
+        frames.append({"tick":tick+1,"y":f.y,"vy":f.vy,"state":f.state})
+        if not shot and f.vy<=0:
+            scene.hud.queue_redraw()
+            await process_frame
+            await RenderingServer.frame_post_draw
+            root.get_texture().get_image().save_png("res://../docs/evidence/aerial-street/baseline/jump-apex.png")
+            shot=true
+    var file:=FileAccess.open("res://../docs/evidence/aerial-street/baseline/jump.json",FileAccess.WRITE)
+    file.store_string(JSON.stringify({"source":"1b81ba6 before edits","peak_m":peak,"frames":frames,"method":"native fixed-step original simulation and scene; not realtime performance"},"  "))
+    print("AIR_BASELINE_PEAK ",peak)
+    scene.queue_free()
+    await process_frame
+    quit()

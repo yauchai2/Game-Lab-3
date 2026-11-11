@@ -1,0 +1,243 @@
+{
+  "checks": [
+    {
+      "name": "strict compile kinetic_rally",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_spectacle",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_simulation",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_session",
+      "passed": true
+    },
+    {
+      "name": "strict compile fighter_visual",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_vfx",
+      "passed": true
+    },
+    {
+      "name": "strict compile combat_motions",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_hud",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_audio",
+      "passed": true
+    },
+    {
+      "name": "strict compile ui/ui_text",
+      "passed": true
+    },
+    {
+      "name": "initial parry opens for defender 0",
+      "passed": true
+    },
+    {
+      "name": "initial parry does not damage 0",
+      "passed": true
+    },
+    {
+      "name": "new mode never opens legacy menu 0",
+      "passed": true
+    },
+    {
+      "name": "tier progression 0/1",
+      "passed": true
+    },
+    {
+      "name": "transfer 0/1",
+      "passed": true
+    },
+    {
+      "name": "tier progression 0/2",
+      "passed": true
+    },
+    {
+      "name": "transfer 0/2",
+      "passed": true
+    },
+    {
+      "name": "tier progression 0/3",
+      "passed": true
+    },
+    {
+      "name": "transfer 0/3",
+      "passed": true
+    },
+    {
+      "name": "tier progression 0/4",
+      "passed": true
+    },
+    {
+      "name": "fifth successful parry vents safely 0",
+      "passed": true
+    },
+    {
+      "name": "rally pauses timer 0",
+      "passed": true
+    },
+    {
+      "name": "end flushes attack and pressure 0",
+      "passed": true
+    },
+    {
+      "name": "initial parry opens for defender 1",
+      "passed": true
+    },
+    {
+      "name": "initial parry does not damage 1",
+      "passed": true
+    },
+    {
+      "name": "new mode never opens legacy menu 1",
+      "passed": true
+    },
+    {
+      "name": "tier progression 1/1",
+      "passed": true
+    },
+    {
+      "name": "transfer 1/1",
+      "passed": true
+    },
+    {
+      "name": "tier progression 1/2",
+      "passed": true
+    },
+    {
+      "name": "transfer 1/2",
+      "passed": true
+    },
+    {
+      "name": "tier progression 1/3",
+      "passed": true
+    },
+    {
+      "name": "transfer 1/3",
+      "passed": true
+    },
+    {
+      "name": "tier progression 1/4",
+      "passed": true
+    },
+    {
+      "name": "fifth successful parry vents safely 1",
+      "passed": true
+    },
+    {
+      "name": "rally pauses timer 1",
+      "passed": true
+    },
+    {
+      "name": "end flushes attack and pressure 1",
+      "passed": true
+    },
+    {
+      "name": "no commitment dissipates",
+      "passed": true
+    },
+    {
+      "name": "counter cashes out once",
+      "passed": true
+    },
+    {
+      "name": "no second ordinary damage after cashout",
+      "passed": true
+    },
+    {
+      "name": "held guard is block not auto parry",
+      "passed": true
+    },
+    {
+      "name": "spamming early fresh presses cannot extend window",
+      "passed": true
+    },
+    {
+      "name": "escape has real geometry dash",
+      "passed": true
+    },
+    {
+      "name": "fast counter can catch a jump startup",
+      "passed": true
+    },
+    {
+      "name": "escape has real geometry distance",
+      "passed": true
+    },
+    {
+      "name": "hold exact before 1",
+      "passed": true
+    },
+    {
+      "name": "hold exact after 1",
+      "passed": true
+    },
+    {
+      "name": "absolute five second cap 1",
+      "passed": true
+    },
+    {
+      "name": "hold exact before 2",
+      "passed": true
+    },
+    {
+      "name": "hold exact after 2",
+      "passed": true
+    },
+    {
+      "name": "absolute five second cap 2",
+      "passed": true
+    },
+    {
+      "name": "hold exact before 3",
+      "passed": true
+    },
+    {
+      "name": "hold exact after 3",
+      "passed": true
+    },
+    {
+      "name": "absolute five second cap 3",
+      "passed": true
+    },
+    {
+      "name": "hold exact before 4",
+      "passed": true
+    },
+    {
+      "name": "hold exact after 4",
+      "passed": true
+    },
+    {
+      "name": "absolute five second cap 4",
+      "passed": true
+    },
+    {
+      "name": "reset exits rally experiment",
+      "passed": true
+    },
+    {
+      "name": "formal fight cannot start experimental rally",
+      "passed": true
+    },
+    {
+      "name": "25000 tick deterministic mixed replay",
+      "passed": true
+    }
+  ],
+  "passed": 59,
+  "replay_ticks": 25000,
+  "total": 59
+}

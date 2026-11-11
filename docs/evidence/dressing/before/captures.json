@@ -1,0 +1,18 @@
+{
+  "display_driver": "X11",
+  "hardware_gpu_verified": false,
+  "human_playtest": false,
+  "plane_frozen": true,
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "screen_size": [
+    1280,
+    720
+  ],
+  "shots": [
+    "01_entry.png",
+    "02_entry_image_sky.png",
+    "03_street_level.png",
+    "04_midstreet.png",
+    "05_alley_return.png"
+  ]
+}

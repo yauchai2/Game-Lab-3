@@ -1,0 +1,92 @@
+[
+  {
+    "id": "01_entry",
+    "image": "01_entry.png",
+    "camera_position_godot": [
+      0,
+      1.1,
+      8
+    ],
+    "camera_target_godot": [
+      0,
+      13,
+      -24
+    ],
+    "renderer": "Blender Cycles CPU",
+    "same_godot_geometry": true,
+    "lighting_matches_godot": false,
+    "godot_gpu_capture": false
+  },
+  {
+    "id": "02_midstreet",
+    "image": "02_midstreet.png",
+    "camera_position_godot": [
+      0,
+      1.6,
+      -25
+    ],
+    "camera_target_godot": [
+      0,
+      14,
+      -48
+    ],
+    "renderer": "Blender Cycles CPU",
+    "same_godot_geometry": true,
+    "lighting_matches_godot": false,
+    "godot_gpu_capture": false
+  },
+  {
+    "id": "03_alley",
+    "image": "03_alley.png",
+    "camera_position_godot": [
+      -12,
+      1.6,
+      -32
+    ],
+    "camera_target_godot": [
+      3,
+      6,
+      -30
+    ],
+    "renderer": "Blender Cycles CPU",
+    "same_godot_geometry": true,
+    "lighting_matches_godot": false,
+    "godot_gpu_capture": false
+  },
+  {
+    "id": "04_sidewalk",
+    "image": "04_sidewalk.png",
+    "camera_position_godot": [
+      5.1,
+      1.6,
+      -9
+    ],
+    "camera_target_godot": [
+      -3,
+      20,
+      -21
+    ],
+    "renderer": "Blender Cycles CPU",
+    "same_godot_geometry": true,
+    "lighting_matches_godot": false,
+    "godot_gpu_capture": false
+  },
+  {
+    "id": "05_layout",
+    "image": "05_layout.png",
+    "camera_position_godot": [
+      0,
+      105,
+      -28
+    ],
+    "camera_target_godot": [
+      0,
+      0,
+      -28
+    ],
+    "renderer": "Blender Cycles CPU",
+    "same_godot_geometry": true,
+    "lighting_matches_godot": false,
+    "godot_gpu_capture": false
+  }
+]

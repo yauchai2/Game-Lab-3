@@ -1,0 +1,17 @@
+Music: family ties (wev edit)
+Artist / edit: wev (worldwidewev)
+Official source: https://worldwidewev.bandcamp.com/track/family-ties-wev-edit
+Artist: https://soundcloud.com/worldwidewev
+
+The user confirmed wev music is available for this game, then explicitly requested
+that the agent obtain and use the artist's music (2026-11-09).
+Obtained through the artist's official Bandcamp free-download flow, MP3 320;
+not extracted from a SoundCloud stream. The title identifies an edit; no claim
+is made that underlying composition/recording rights are owned solely by wev.
+This file is NOT CC0 and is NOT covered by the Kenney/Juhani licenses.
+
+family_ties_game.ogg is the game derivative: full track, loudness adjusted,
+short fade at each endpoint, Vorbis q5, 44.1 kHz stereo. No samples were
+extracted for SFX. Original MP3 is not committed to the repository.
+Source and processing hashes: references/audio-sources/worldwidewev/admitted.json
+Public Web deployment remains unchanged until the user requests it.

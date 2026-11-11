@@ -1,0 +1,215 @@
+{
+  "attack_scope": "Actual legal commands and contact/release events for all 13 moves and four signature pairs; fixed wall steps, not human input.",
+  "attacks": [
+    {
+      "character": 0,
+      "max_effects": 6,
+      "move": "air_counter",
+      "stages": {
+        "contact": 14,
+        "release": 37,
+        "swing": 21
+      },
+      "true_hit": true
+    },
+    {
+      "character": 0,
+      "max_effects": 2,
+      "move": "air_jab",
+      "stages": {
+        "contact": 6,
+        "release": 9,
+        "swing": 6
+      },
+      "true_hit": true
+    },
+    {
+      "character": 0,
+      "max_effects": 2,
+      "move": "air_kick",
+      "stages": {
+        "contact": 8,
+        "release": 12,
+        "swing": 8
+      },
+      "true_hit": true
+    },
+    {
+      "character": 0,
+      "max_effects": 4,
+      "move": "air_finisher",
+      "stages": {
+        "contact": 12,
+        "release": 20,
+        "swing": 12
+      },
+      "true_hit": true
+    },
+    {
+      "character": 0,
+      "max_effects": 4,
+      "move": "meteor",
+      "stages": {
+        "contact": 14,
+        "release": 40,
+        "swing": 21
+      },
+      "true_hit": true
+    },
+    {
+      "character": 0,
+      "max_effects": 3,
+      "move": "grab",
+      "stages": {
+        "contact": 11,
+        "release": 20,
+        "swing": 11
+      },
+      "true_hit": true
+    },
+    {
+      "character": 0,
+      "max_effects": 2,
+      "move": "jab",
+      "stages": {
+        "contact": 5,
+        "release": 8,
+        "swing": 5
+      },
+      "true_hit": true
+    },
+    {
+      "character": 0,
+      "max_effects": 2,
+      "move": "cross",
+      "stages": {
+        "contact": 6,
+        "release": 10,
+        "swing": 6
+      },
+      "true_hit": true
+    },
+    {
+      "character": 0,
+      "max_effects": 3,
+      "move": "finisher",
+      "stages": {
+        "contact": 9,
+        "release": 18,
+        "swing": 9
+      },
+      "true_hit": true
+    },
+    {
+      "character": 0,
+      "max_effects": 5,
+      "move": "heavy",
+      "stages": {
+        "contact": 16,
+        "release": 27,
+        "swing": 16
+      },
+      "true_hit": true
+    },
+    {
+      "character": 0,
+      "max_effects": 2,
+      "move": "launcher",
+      "stages": {
+        "contact": 13,
+        "release": 29,
+        "swing": 17
+      },
+      "true_hit": true
+    },
+    {
+      "character": 0,
+      "max_effects": 5,
+      "move": "overdrive",
+      "stages": {
+        "contact": 49,
+        "release": 83,
+        "swing": 46
+      },
+      "true_hit": true
+    },
+    {
+      "character": 0,
+      "max_effects": 4,
+      "move": "special",
+      "stages": {
+        "contact": 35,
+        "release": 65,
+        "swing": 34
+      },
+      "true_hit": true
+    },
+    {
+      "character": 1,
+      "max_effects": 4,
+      "move": "overdrive",
+      "stages": {
+        "contact": 49,
+        "release": 83,
+        "swing": 46
+      },
+      "true_hit": true
+    },
+    {
+      "character": 1,
+      "max_effects": 5,
+      "move": "special",
+      "stages": {
+        "contact": 34,
+        "release": 64,
+        "swing": 32
+      },
+      "true_hit": true
+    },
+    {
+      "character": 2,
+      "max_effects": 4,
+      "move": "overdrive",
+      "stages": {
+        "contact": 52,
+        "release": 86,
+        "swing": 48
+      },
+      "true_hit": true
+    },
+    {
+      "character": 2,
+      "max_effects": 5,
+      "move": "special",
+      "stages": {
+        "contact": 38,
+        "release": 68,
+        "swing": 36
+      },
+      "true_hit": true
+    },
+    {
+      "character": 3,
+      "max_effects": 5,
+      "move": "overdrive",
+      "stages": {
+        "contact": 45,
+        "release": 79,
+        "swing": 43
+      },
+      "true_hit": true
+    },
+    {
+      "character": 3,
+      "max_effects": 4,
+      "move": "special",
+      "stages": {
+        "contact": 32,
+        "release": 62,
+        "swing": 31
+      },
+      "true_hit": true
+    }
+  ],
+  "defense_capture_scope": "Isolated render diagnostics; not claimed as actual parry/block gameplay events."
+}

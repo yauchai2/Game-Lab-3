@@ -1,0 +1,230 @@
+{
+  "checks": [
+    {
+      "name": "strict compile aerial_motion",
+      "passed": true
+    },
+    {
+      "name": "strict compile aerial_poses",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_simulation",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_session",
+      "passed": true
+    },
+    {
+      "name": "strict compile combat_motions",
+      "passed": true
+    },
+    {
+      "name": "strict compile fighter_visual",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_hud",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_vfx",
+      "passed": true
+    },
+    {
+      "name": "strict compile fight_audio",
+      "passed": true
+    },
+    {
+      "name": "STEP translation holds before a key",
+      "passed": true
+    },
+    {
+      "name": "STEP translation switches exactly on a key",
+      "passed": true
+    },
+    {
+      "name": "STEP final key is not the previous pose",
+      "passed": true
+    },
+    {
+      "name": "STEP rotations do not interpolate",
+      "passed": true
+    },
+    {
+      "name": "STEP rotation reaches the final pose",
+      "passed": true
+    },
+    {
+      "name": "all new air attack cels triangulate in both directions",
+      "passed": true
+    },
+    {
+      "name": "jump begins with ground load",
+      "passed": true
+    },
+    {
+      "name": "three full load ticks stay grounded",
+      "passed": true
+    },
+    {
+      "name": "fourth tick takes off exactly once",
+      "passed": true
+    },
+    {
+      "name": "jump matches bounded metre scale",
+      "passed": true
+    },
+    {
+      "name": "apex hang is finite and visible",
+      "passed": true
+    },
+    {
+      "name": "one tap returns to grounded idle",
+      "passed": true
+    },
+    {
+      "name": "jump exposes rise apex fall landing phases",
+      "passed": true
+    },
+    {
+      "name": "fresh down triggers real fast fall",
+      "passed": true
+    },
+    {
+      "name": "plain fast fall has no contact damage",
+      "passed": true
+    },
+    {
+      "name": "fast fall lands and resets once-per-flight flag",
+      "passed": true
+    },
+    {
+      "name": "down cannot cancel hitstun",
+      "passed": true
+    },
+    {
+      "name": "empty swings consume shared twelve tick stall budget",
+      "passed": true
+    },
+    {
+      "name": "repeated air swings cannot fly forever",
+      "passed": true
+    },
+    {
+      "name": "launcher starts one finite victim timer 0",
+      "passed": true
+    },
+    {
+      "name": "buffered chase works before victim leaves ground 0",
+      "passed": true
+    },
+    {
+      "name": "ten tick chase arrives without an automatic hit 0",
+      "passed": true
+    },
+    {
+      "name": "chase path stays inside the arena 0",
+      "passed": true
+    },
+    {
+      "name": "second chase cannot spend again 0",
+      "passed": true
+    },
+    {
+      "name": "launcher starts one finite victim timer 1",
+      "passed": true
+    },
+    {
+      "name": "buffered chase works before victim leaves ground 1",
+      "passed": true
+    },
+    {
+      "name": "ten tick chase arrives without an automatic hit 1",
+      "passed": true
+    },
+    {
+      "name": "chase path stays inside the arena 1",
+      "passed": true
+    },
+    {
+      "name": "second chase cannot spend again 1",
+      "passed": true
+    },
+    {
+      "name": "insufficient chase energy is not a free fallback dash",
+      "passed": true
+    },
+    {
+      "name": "air chain selects air_jab",
+      "passed": true
+    },
+    {
+      "name": "air move really contacts air_jab",
+      "passed": true
+    },
+    {
+      "name": "air chain selects air_kick",
+      "passed": true
+    },
+    {
+      "name": "air move really contacts air_kick",
+      "passed": true
+    },
+    {
+      "name": "air chain selects air_finisher",
+      "passed": true
+    },
+    {
+      "name": "air move really contacts air_finisher",
+      "passed": true
+    },
+    {
+      "name": "three follow-up contacts consume juggle allowance",
+      "passed": true
+    },
+    {
+      "name": "fourth airborne hit is rejected",
+      "passed": true
+    },
+    {
+      "name": "down heavy maps to airborne meteor",
+      "passed": true
+    },
+    {
+      "name": "meteor earns exactly one ground bounce",
+      "passed": true
+    },
+    {
+      "name": "combo wall-clock limit releases even during hitstop",
+      "passed": true
+    },
+    {
+      "name": "an old victim timer cannot interrupt regained control",
+      "passed": true
+    },
+    {
+      "name": "reset exits air scenario and clears all budgets",
+      "passed": true
+    },
+    {
+      "name": "formal baseline still jumps immediately with original gravity",
+      "passed": true
+    },
+    {
+      "name": "25000 mixed air ticks remain deterministic",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "metrics": {
+    "jump": {
+      "air_ticks": 51,
+      "apex_ticks": 21,
+      "peak_m": 2.18166666666667
+    }
+  },
+  "passed": 54,
+  "replay_ticks": 25000
+}

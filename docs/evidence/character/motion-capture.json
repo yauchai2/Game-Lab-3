@@ -1,0 +1,9 @@
+{
+  "audio": false,
+  "capture_fps": 20,
+  "fixed_simulation_fps": 60,
+  "frames": 51,
+  "human_playtest": false,
+  "real_controller_input": true,
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)"
+}

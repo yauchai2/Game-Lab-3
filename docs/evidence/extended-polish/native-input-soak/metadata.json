@@ -1,0 +1,6 @@
+{
+  "source_commit": "0d759fc2fbe444e0190ad096ebd8e9e977b978be",
+  "method": "1200-second actual native game physics with viewport input injection; later UI change only affects shortcut-hover color",
+  "audio": "muted, Dummy driver",
+  "renderer": "Godot 4.6.3 Compatibility / Mesa llvmpipe; concurrent processes on 3 CPU cores, not a target GPU benchmark"
+}

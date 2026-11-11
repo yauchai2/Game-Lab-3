@@ -1,0 +1,140 @@
+{
+  "checks": [
+    {
+      "name": "F11 retains ordinary air practice",
+      "passed": true
+    },
+    {
+      "name": "context F8 enters read-first counter lesson",
+      "passed": true
+    },
+    {
+      "name": "lesson exposes native Start and free-air return",
+      "passed": true
+    },
+    {
+      "name": "lesson can be read indefinitely without falling",
+      "passed": true
+    },
+    {
+      "name": "native K starts the real finisher",
+      "passed": true
+    },
+    {
+      "name": "native parry is enabled in a valid attack window",
+      "passed": true
+    },
+    {
+      "name": "native Shift really intercepts the incoming hit",
+      "passed": true
+    },
+    {
+      "name": "held contact shows two native choices",
+      "passed": true
+    },
+    {
+      "name": "parry has a distinct original key pose",
+      "passed": true
+    },
+    {
+      "name": "pause freezes the counter and both logical bodies",
+      "passed": true
+    },
+    {
+      "name": "pause hides gameplay choice buttons",
+      "passed": true
+    },
+    {
+      "name": "resume returns to the same reversal",
+      "passed": true
+    },
+    {
+      "name": "pointer uses the same first valid commitment",
+      "passed": true
+    },
+    {
+      "name": "locked choice gets a visible selected skin",
+      "passed": true
+    },
+    {
+      "name": "pointer kick causes eighteen real damage",
+      "passed": true
+    },
+    {
+      "name": "review offers an explicit retry",
+      "passed": true
+    },
+    {
+      "name": "native retry restores resources and starts fresh",
+      "passed": true
+    },
+    {
+      "name": "native E chooses safe escape without damage",
+      "passed": true
+    },
+    {
+      "name": "escape leaves no held counter core",
+      "passed": true
+    },
+    {
+      "name": "F2 suppresses grade and model stretch during reversal",
+      "passed": true
+    },
+    {
+      "name": "F2 keeps the core and choice information",
+      "passed": true
+    },
+    {
+      "name": "F11 exits lesson and reversal cleanly",
+      "passed": true
+    },
+    {
+      "name": "pointer can also enter the lesson",
+      "passed": true
+    },
+    {
+      "name": "pointer parry uses the real six tick rule",
+      "passed": true
+    },
+    {
+      "name": "F5 clears lesson and return windows",
+      "passed": true
+    },
+    {
+      "name": "settings pauses a ready lesson",
+      "passed": true
+    },
+    {
+      "name": "title clears reversal clocks core grade and choices",
+      "passed": true
+    },
+    {
+      "name": "choices fit viewport zh(1280, 720)",
+      "passed": true
+    },
+    {
+      "name": "choices fit viewport zh(960, 540)",
+      "passed": true
+    },
+    {
+      "name": "choices fit viewport zh(960, 720)",
+      "passed": true
+    },
+    {
+      "name": "choices fit viewport en(1280, 720)",
+      "passed": true
+    },
+    {
+      "name": "choices fit viewport en(960, 540)",
+      "passed": true
+    },
+    {
+      "name": "choices fit viewport en(960, 720)",
+      "passed": true
+    }
+  ],
+  "display": "X11",
+  "failed": 0,
+  "method": "native viewport key events and native Button callbacks through the real session and 60Hz simulation; not human feel/target GPU",
+  "passed": 33
+}

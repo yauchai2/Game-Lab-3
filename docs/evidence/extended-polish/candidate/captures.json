@@ -1,0 +1,200 @@
+[
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "title",
+    "shot": "01_title_zh",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "en",
+    "page": "main",
+    "png_error": 0,
+    "screen": "title",
+    "shot": "02_title_en",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "settings",
+    "png_error": 0,
+    "screen": "title",
+    "shot": "03_settings_top",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "settings",
+    "png_error": 0,
+    "screen": "title",
+    "shot": "03a_language_popup",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "settings",
+    "png_error": 0,
+    "screen": "title",
+    "shot": "04_settings_bottom",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "help",
+    "png_error": 0,
+    "screen": "title",
+    "shot": "05_help",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "06_training",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "07_training_details",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "08_drill_ready",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "09_clash",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "10_locked",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "11_counter",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "pause",
+    "shot": "12_pause",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "12a_throw_startup",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "12b_throw_hit",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "12bb_throw_release",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "12c_edge_bounce",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "12d_recovery_prompt",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "12e_recovery",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "result",
+    "shot": "13_result",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "14_street_front",
+    "size": "(1280, 720)"
+  },
+  {
+    "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+    "language": "zh",
+    "page": "main",
+    "png_error": 0,
+    "screen": "play",
+    "shot": "15_blue_facade",
+    "size": "(1280, 720)"
+  }
+]

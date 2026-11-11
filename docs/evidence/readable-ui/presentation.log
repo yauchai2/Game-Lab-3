@@ -1,0 +1,27 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+READABLE Shared framebuffer 640x360 true
+READABLE World-only pixel filter retired true
+READABLE Live hero selection 0 true
+READABLE Live hero selection 1 true
+READABLE Live hero selection 2 true
+READABLE Live hero selection 3 true
+READABLE Four different pose rotations true
+READABLE Roster viewports bounded true
+READABLE Hidden roster rendering disabled true
+READABLE Background respects pause true
+READABLE Distant car moves true
+READABLE Crowd reactions rate limited true
+READABLE Decoration count bounded true
+READABLE Silent title recovery visible true
+READABLE Recovery restores audible settings true
+READABLE Body controls at least 14 internal pixels true
+READABLE Wide menu fits logical frame true
+READABLE Settings captions at least 12 internal pixels true
+READABLE Readable sound action 1 true
+READABLE Readable sound action 2 true
+READABLE Both sound actions present true
+READABLE All rendered surfaces have live materials true

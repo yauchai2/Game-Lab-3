@@ -1,0 +1,52 @@
+{
+  "checks": [
+    {
+      "check": "front_wall_enrolled",
+      "passed": true
+    },
+    {
+      "check": "wall_uses_world_projection",
+      "passed": true
+    },
+    {
+      "check": "samplers_use_same_wall_texture",
+      "passed": true
+    },
+    {
+      "check": "world_texture_nearest_with_mipmaps",
+      "passed": true
+    },
+    {
+      "check": "imported_texture_linear_filter_preserved",
+      "passed": true
+    },
+    {
+      "check": "wall_density_32_texels_per_metre",
+      "passed": true
+    },
+    {
+      "check": "road_nearest_with_mipmaps",
+      "passed": true
+    },
+    {
+      "check": "road_density_32_texels_per_metre",
+      "passed": true
+    },
+    {
+      "check": "character_uses_original_uv_sampler",
+      "passed": true
+    },
+    {
+      "check": "original_material_mode_restored",
+      "passed": true
+    },
+    {
+      "check": "toon_material_mode_restored",
+      "passed": true
+    }
+  ],
+  "display_driver": "headless",
+  "engine": "4.6.3-stable (official)",
+  "human_playtest": false,
+  "passed": true
+}

@@ -1,0 +1,90 @@
+{
+  "clips": [
+    {
+      "id": 1,
+      "file_id": "file_0000000035ac8211bee0f9c1b027ed73",
+      "filename": "x-downloader.com_MdNmuM.mp4",
+      "duration_seconds": 5.0,
+      "resolution": [
+        900,
+        720
+      ],
+      "container_fps": "25/1",
+      "audio_present": false,
+      "sha256": "808057e249bf923e390c52317ea5c659e01bb06992c26276945fed6feb616c7a",
+      "sampling": "2fps across full clip,6x4 contact sheet; last sheet can contain blank cells"
+    },
+    {
+      "id": 2,
+      "file_id": "file_00000000ecb482118fe1bbcc09a72457",
+      "filename": "TR3B_-_WUkiHouS3________________INeWdV.mp4",
+      "duration_seconds": 17.386667,
+      "resolution": [
+        1054,
+        720
+      ],
+      "container_fps": "78150000/2603609",
+      "audio_present": true,
+      "sha256": "779aaac20a1e46921a278eb00fe6ab1d93df6615488c920bc9fe7bee3d6ae20e",
+      "sampling": "2fps across full clip,6x4 contact sheet; last sheet can contain blank cells"
+    },
+    {
+      "id": 3,
+      "file_id": "file_0000000029b0821198e71f965c39d18f",
+      "filename": "TR3B_-__BTS__O__blender_lowpoly_sK94ux.mp4",
+      "duration_seconds": 15.957333,
+      "resolution": [
+        1130,
+        720
+      ],
+      "container_fps": "898125/29878",
+      "audio_present": true,
+      "sha256": "736f9ba2479449003a3984b22e0c62381ced3189b700ba237503257ceccdaada",
+      "sampling": "2fps across full clip,6x4 contact sheet; last sheet can contain blank cells"
+    },
+    {
+      "id": 4,
+      "file_id": "file_00000000d76c82118ac88407f0fc4fd1",
+      "filename": "TR3B_-__LaGaNga______-_lowpoly_blender_mfCeKM.mp4",
+      "duration_seconds": 6.314667,
+      "resolution": [
+        900,
+        720
+      ],
+      "container_fps": "30/1",
+      "audio_present": true,
+      "sha256": "69c3edc3b80b8e2a7d3425cb471b240baafbd3d579774477ef02ec786ab25a3f",
+      "sampling": "2fps across full clip,6x4 contact sheet; last sheet can contain blank cells"
+    },
+    {
+      "id": 5,
+      "file_id": "file_000000000fb882118664d1c133f71513",
+      "filename": "TR3B_-___uWu__BTS_DanZ_Tet0__-_Lowpoly_blender_7o3epD.mp4",
+      "duration_seconds": 14.442667,
+      "resolution": [
+        1148,
+        720
+      ],
+      "container_fps": "65100000/2163533",
+      "audio_present": true,
+      "sha256": "f19010423f40010e015b5491e74148539715b384255dbd4b9e7e5e9e512a3d19",
+      "sampling": "2fps across full clip,6x4 contact sheet; last sheet can contain blank cells"
+    },
+    {
+      "id": 6,
+      "file_id": "file_000000007788821189943a553a9e010a",
+      "filename": "TR3B_-___GanGA______-___wip_-_lowpoly_blender_z3Qbse.mp4",
+      "duration_seconds": 21.098667,
+      "resolution": [
+        1134,
+        720
+      ],
+      "container_fps": "94950000/3161597",
+      "audio_present": true,
+      "sha256": "45d3bf5a076d768100471668d6fa191607b856414796ac86eb6cc255ccce1d05",
+      "sampling": "2fps across full clip,6x4 contact sheet; last sheet can contain blank cells"
+    }
+  ],
+  "stills": "Four inline user portrait references visually inspected in chat; no original local image pointer supplied.",
+  "scope": "Visual sampling, not source-frame-by-frame viewing, asset topology inspection, Blender project inspection or verified tempo analysis."
+}

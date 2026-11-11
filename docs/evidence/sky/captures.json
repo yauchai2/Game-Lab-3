@@ -1,0 +1,14 @@
+{
+  "display_driver": "X11",
+  "entry_comparison_same_camera": true,
+  "hardware_gpu_verified": false,
+  "human_playtest": false,
+  "plane_frozen": true,
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "shots": [
+    "01_clouds_entry.png",
+    "02_flat_entry.png",
+    "03_clouds_midstreet.png",
+    "04_clouds_reverse.png"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "fixtures": [
+    {
+      "contact": "launcher",
+      "first_live_action_wall_frames": 10,
+      "native_hitstop_ticks": 9,
+      "nominal_seconds": 0.166666666666667,
+      "simulation_steps": 11,
+      "surge": 0
+    },
+    {
+      "contact": "parry",
+      "first_live_action_wall_frames": 11,
+      "native_hitstop_ticks": 8,
+      "nominal_seconds": 0.183333333333333,
+      "simulation_steps": 9,
+      "surge": 0
+    },
+    {
+      "contact": "overdrive",
+      "first_live_action_wall_frames": 23,
+      "native_hitstop_ticks": 26,
+      "nominal_seconds": 0.383333333333333,
+      "simulation_steps": 27,
+      "surge": 0
+    },
+    {
+      "contact": "launcher",
+      "first_live_action_wall_frames": 13,
+      "native_hitstop_ticks": 9,
+      "nominal_seconds": 0.216666666666667,
+      "simulation_steps": 10,
+      "surge": 60
+    },
+    {
+      "contact": "parry",
+      "first_live_action_wall_frames": 16,
+      "native_hitstop_ticks": 8,
+      "nominal_seconds": 0.266666666666667,
+      "simulation_steps": 9,
+      "surge": 60
+    },
+    {
+      "contact": "overdrive",
+      "first_live_action_wall_frames": 30,
+      "native_hitstop_ticks": 26,
+      "nominal_seconds": 0.5,
+      "simulation_steps": 27,
+      "surge": 60
+    }
+  ],
+  "scope": "Real contact setup then virtual 60Hz wall stepping until actor state advances; no hardware latency or human response claim."
+}

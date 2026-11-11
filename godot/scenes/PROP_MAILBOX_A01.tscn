@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://assets/PROP_MAILBOX_A01.glb" id="1_model"]
+[sub_resource type="BoxShape3D" id="Body"]
+size = Vector3(0.6005871498421448, 1.1, 0.6996087419543482)
+[node name="PROP_MAILBOX_A01" type="StaticBody3D"]
+metadata/asset_id = "PROP_MAILBOX_A01"
+metadata/scale_target_axis = 1
+metadata/scale_target_value = 1.1
+[node name="Visual" parent="." instance=ExtResource("1_model")]
+scale = Vector3(1.1021526418786693, 1.1021526418786693, 1.1021526418786693)
+[node name="Collision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.55, 0)
+shape = SubResource("Body")

@@ -1,0 +1,370 @@
+{
+  "created_utc": "2026-11-09T00:48:08.951137+00:00",
+  "runtime_source_commit": "a238e3e6734f4b9bd63a1447cd01dc0c3c4c55dc",
+  "minimum_active_work_met": true,
+  "active_work_seconds_lower_bound": 11299.221,
+  "rules_integration": {
+    "passed": 374,
+    "failed": 0,
+    "report": "final-suite/headless/summary.json"
+  },
+  "native_ui_input": {
+    "passed": 104,
+    "failed": 0,
+    "report": "final-suite/native/summary.json"
+  },
+  "final_ui_targeted": {
+    "passed": 53,
+    "failed": 0,
+    "report": "final-suite/slim-scrollbar-native/summary.json"
+  },
+  "post_result_fix": {
+    "created_utc": "20261109T004441Z",
+    "source_commit": "a238e3e6734f4b9bd63a1447cd01dc0c3c4c55dc",
+    "tracked_runtime_changes": [],
+    "mode": "headless",
+    "all_assertions_passed": true,
+    "passed": 69,
+    "failed": 0,
+    "cases": [
+      {
+        "name": "verify_combat",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "522f3c7daa81539a1d8466ef069a66f4c4bdfb7a05afb157f04fc4db7e5139fd",
+        "seconds": 0.723,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_combat.gd"
+        ],
+        "report_written": true,
+        "passed": 34,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true
+      },
+      {
+        "name": "verify_game_ui",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "e85f827a5f8e2fb0abd0c1140b3342fbe6d02100b9d0c96ad210c8c3fd7c4f6f",
+        "seconds": 1.0,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_game_ui.gd"
+        ],
+        "report_written": true,
+        "passed": 35,
+        "failed": 0,
+        "skipped": [
+          {
+            "name": "residential billboard transform readback",
+            "reason": "Dummy renderer returns identity MultiMesh transforms; requires native GL verification"
+          }
+        ],
+        "diagnostics": [],
+        "success": true
+      }
+    ],
+    "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+  },
+  "native_result": {
+    "checks": [
+      {
+        "name": "result 0 resets its own presentation clock",
+        "passed": true
+      },
+      {
+        "name": "result 0 keeps a brief initial impact flash",
+        "passed": true
+      },
+      {
+        "name": "result 0 clears the frozen simulation flash in the visual pose",
+        "passed": true
+      },
+      {
+        "name": "result 0 visual cleanup leaves the simulation snapshot intact",
+        "passed": true
+      },
+      {
+        "name": "result 0 actors settle onto the crossing",
+        "passed": true
+      },
+      {
+        "name": "result 1 resets its own presentation clock",
+        "passed": true
+      },
+      {
+        "name": "result 1 keeps a brief initial impact flash",
+        "passed": true
+      },
+      {
+        "name": "result 1 clears the frozen simulation flash in the visual pose",
+        "passed": true
+      },
+      {
+        "name": "result 1 visual cleanup leaves the simulation snapshot intact",
+        "passed": true
+      },
+      {
+        "name": "result 1 actors settle onto the crossing",
+        "passed": true
+      },
+      {
+        "name": "result -1 resets its own presentation clock",
+        "passed": true
+      },
+      {
+        "name": "result -1 keeps a brief initial impact flash",
+        "passed": true
+      },
+      {
+        "name": "result -1 clears the frozen simulation flash in the visual pose",
+        "passed": true
+      },
+      {
+        "name": "result -1 visual cleanup leaves the simulation snapshot intact",
+        "passed": true
+      },
+      {
+        "name": "result -1 actors settle onto the crossing",
+        "passed": true
+      }
+    ],
+    "display": "X11",
+    "failed": 0,
+    "method": "real KO/timeout transitions with a stale prior-round result clock and active hit flash; frozen simulation compared with settled visual poses",
+    "passed": 15
+  },
+  "os_focus": {
+    "checks": [
+      {
+        "name": "Godot owns actual X11 keyboard focus before the test",
+        "passed": true
+      },
+      {
+        "name": "leaving the OS window pauses active gameplay",
+        "passed": true
+      },
+      {
+        "name": "simulation stays frozen while the application is unfocused",
+        "passed": true
+      },
+      {
+        "name": "returning OS focus keeps the pause menu open",
+        "passed": true
+      },
+      {
+        "name": "Escape explicitly resumes the same game after focus returns",
+        "passed": true
+      },
+      {
+        "name": "OS focus loss freezes an active clash deadline",
+        "passed": true
+      },
+      {
+        "name": "focus return cannot silently consume or resume the clash",
+        "passed": true
+      }
+    ],
+    "failed": 0,
+    "method": "X11 XSetInputFocus away/from native window plus Godot viewport Escape; no direct notification call",
+    "passed": 7
+  },
+  "ui_lifecycle": {
+    "checks": [
+      {
+        "name": "menu rebuilds retain a stable live-node count after warmup",
+        "passed": true
+      },
+      {
+        "name": "512 page and language cycles leave no extra orphan nodes",
+        "passed": true
+      },
+      {
+        "name": "steady-state object growth stays within four transient resources",
+        "passed": true
+      }
+    ],
+    "failed": 0,
+    "method": "headless Control/Callable lifecycle after 16 warmup cycles; native renderer memory is observed separately",
+    "passed": 3,
+    "samples": [
+      {
+        "cycles": 0,
+        "nodes": 523.0,
+        "objects": 3020.0,
+        "orphans": 0.0,
+        "static_memory": 91691844.0
+      },
+      {
+        "cycles": 64,
+        "nodes": 523.0,
+        "objects": 3020.0,
+        "orphans": 0.0,
+        "static_memory": 92122928.0
+      },
+      {
+        "cycles": 128,
+        "nodes": 523.0,
+        "objects": 3020.0,
+        "orphans": 0.0,
+        "static_memory": 92614996.0
+      },
+      {
+        "cycles": 192,
+        "nodes": 523.0,
+        "objects": 3020.0,
+        "orphans": 0.0,
+        "static_memory": 92615744.0
+      },
+      {
+        "cycles": 256,
+        "nodes": 523.0,
+        "objects": 3020.0,
+        "orphans": 0.0,
+        "static_memory": 92616516.0
+      },
+      {
+        "cycles": 320,
+        "nodes": 523.0,
+        "objects": 3020.0,
+        "orphans": 0.0,
+        "static_memory": 93600440.0
+      },
+      {
+        "cycles": 384,
+        "nodes": 523.0,
+        "objects": 3020.0,
+        "orphans": 0.0,
+        "static_memory": 93601236.0
+      },
+      {
+        "cycles": 448,
+        "nodes": 523.0,
+        "objects": 3020.0,
+        "orphans": 0.0,
+        "static_memory": 93601960.0
+      },
+      {
+        "cycles": 512,
+        "nodes": 523.0,
+        "objects": 3020.0,
+        "orphans": 0.0,
+        "static_memory": 93602684.0
+      }
+    ]
+  },
+  "strict_compile": {
+    "checks": [
+      {
+        "passed": true,
+        "path": "res://scripts/aircraft_flyby.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/combat_motions.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/fight_audio.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/fight_hud.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/fight_preferences.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/fight_session.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/fight_simulation.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/fight_vfx.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/impact_shapes.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/pressure_exchange.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/static_street_batches.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/street_backdrop.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/ui/street_hud.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/ui/ui_text.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/combat/ui/ui_theme.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/corner_streetscape.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/street_dressing.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/style_sample.gd"
+      },
+      {
+        "passed": true,
+        "path": "res://scripts/walk_session.gd"
+      }
+    ],
+    "failed": 0,
+    "passed": 19
+  },
+  "source_preservation": {
+    "baseline": "dcd004971e0d45667da2d54fe0abd0260118ab42",
+    "source_assets_checked": 33,
+    "unchanged": true,
+    "changed_files": [],
+    "scope": "pre-existing GLB, PNG, OGG and WAV bytes; new UI fonts are separately licensed and documented"
+  },
+  "completed_observations": [
+    "native-input-soak/complete.json",
+    "candidate-resumed/complete.json"
+  ],
+  "interrupted_observations": [
+    "baseline-soak",
+    "candidate-soak"
+  ],
+  "public_web_ref_expected": "2908503295c24b918b293b463ec962797a7ccb06",
+  "scope": "Automated checks and native captures. No human balance/listening, target GPU claim or user-PC synchronization. Source-only publication."
+}

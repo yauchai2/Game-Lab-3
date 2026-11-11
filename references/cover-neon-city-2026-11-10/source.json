@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-10",
+  "method": "Host ImageGen, original faceless promotional artwork; not a screenshot of gameplay or an edit to original GLBs.",
+  "asset": "godot/assets/ui/last_service/cover-neon-city.png",
+  "sha256": "df74fc441205642c58c140939bd56f04a58846b3099cacd1ae9da565101fd450",
+  "bytes": 1492844,
+  "source_dimensions": [
+    1672,
+    941
+  ],
+  "runtime": "Opaque texture; nearest sampling, no mipmaps, shared 640x360 viewport; native UI remains separate.",
+  "generation_source": "exec-e0095829-e456-497a-ab46-4b9cb29dee8a.png",
+  "prompt": "references/cover-neon-city-2026-11-10/prompt.txt",
+  "references": [
+    {
+      "upload_id": "file_00000000615c82118daf4c642bf34f94",
+      "preserved_file": "references/last-service-2026-11-10/sources/TR3B_-__LaGaNga______-_lowpoly_blender_mfCeKM.mp4",
+      "bytes": 1058262,
+      "sha256": "69c3edc3b80b8e2a7d3425cb471b240baafbd3d579774477ef02ec786ab25a3f"
+    },
+    {
+      "upload_id": "file_000000008c348207926d5033d27aa703",
+      "preserved_file": "references/last-service-2026-11-10/sources/TR3B_-___GanGA______-___wip_-_lowpoly_blender_z3Qbse.mp4",
+      "bytes": 3769891,
+      "sha256": "45d3bf5a076d768100471668d6fa191607b856414796ac86eb6cc255ccce1d05"
+    }
+  ],
+  "composition_reference": "User inline title screenshot, not available as original downloadable bytes; previous engine poster supplied as local composition guide.",
+  "reference_review": "Representative extracted frames from both current uploads, hashes match archived original clips. No claim of a new full-frame video analysis.",
+  "scope": "Title background only. No GIF added; source original art and previous poster preserved. game-dev CLI unavailable; no canonical CLI package or paid external provider receipt claimed."
+}

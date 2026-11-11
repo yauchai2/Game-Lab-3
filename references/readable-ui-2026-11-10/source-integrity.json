@@ -1,0 +1,6 @@
+{
+  "baseline": "e457043b718aa6092fbbbaf982996c2e320907e7",
+  "previous_game_assets_checked": 69,
+  "changed_existing_assets": [],
+  "scope": "Previously tracked GLB, PNG, JPG, OGG, MP3, TTF under game assets/audio; new readable font derivatives are separate files."
+}

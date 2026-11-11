@@ -1,0 +1,94 @@
+{
+  "created_utc": "20261110T143029Z",
+  "source_commit": "f53c378f4658141a7680dd522a8f0137e6abd04c",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/aerial_motion.gd",
+    "godot/scripts/combat/aerial_poses.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/ui/ui_text.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": false,
+  "passed": 109,
+  "failed": 1,
+  "cases": [
+    {
+      "name": "verify_double_jump",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "1b49443fb7d7cb1ee12a7e8b41194203ac5894e6844212d09112c3dc2311c950",
+      "seconds": 1.521,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_double_jump.gd"
+      ],
+      "report_written": true,
+      "passed": 62,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_combat_polish",
+      "mode": "headless",
+      "exit_code": 1,
+      "harness_sha256": "17be5ebae5d1b0dfddfdce10ed7361c12f0a091eef233da6e1d812a63dc26930",
+      "seconds": 1.662,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat_polish.gd"
+      ],
+      "report_written": true,
+      "passed": 34,
+      "failed": 1,
+      "skipped": [],
+      "diagnostics": [
+        "ERROR: POLISH FAIL: saved startup mute prevents the music player starting"
+      ],
+      "engine_errors": [
+        "ERROR: POLISH FAIL: saved startup mute prevents the music player starting"
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_combat_framing",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "319b1771d883ea42c4b0cfe99156abe745db3ace475b84b381cc85f1ac19a37e",
+      "seconds": 0.989,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat_framing.gd"
+      ],
+      "report_written": true,
+      "passed": 13,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

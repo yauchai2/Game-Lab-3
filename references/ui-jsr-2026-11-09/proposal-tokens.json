@@ -1,0 +1,40 @@
+{
+  "status": "Proposal, not adopted in runtime ui_theme.gd; generated PNG palette is illustrative, not guaranteed to match token pixels exactly.",
+  "colors": {
+    "ink": "#20102F",
+    "orange": "#FF6A00",
+    "lime": "#D7F400",
+    "paper": "#FFF1D0",
+    "player_cyan": "#4ACFE0",
+    "rival_coral": "#FF765E",
+    "disabled": "#988A9E"
+  },
+  "type": {
+    "brand": "Generated custom AFTERHOURS wordmark, not a font",
+    "latin_candidates": [
+      "Bungee",
+      "Barlow Condensed ExtraBold"
+    ],
+    "body_current": "Afterhours UI HK / bundled OFL Noto Sans CJK HK subset",
+    "numbers_current": "DejaVu Sans Condensed Bold"
+  },
+  "logical_canvas": [
+    1280,
+    720
+  ],
+  "hud_top_height": 96,
+  "hud_bottom_hint_height": 32,
+  "unobstructed_regular_hud_region_xywh": [
+    240,
+    112,
+    800,
+    480
+  ],
+  "motion_ms": {
+    "menu_enter": 180,
+    "item_stagger": 45,
+    "focus_change": 80,
+    "press_recover": 120
+  },
+  "motion_scope": "Proposed original parameters; not measured from JSR. F2 should remove translation/rotation and keep immediate focus feedback."
+}

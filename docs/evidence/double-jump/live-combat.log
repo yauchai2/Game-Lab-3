@@ -1,0 +1,47 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+LIVE_COMBAT close held-J ground chain reaches launcher for 0 at 1.2 true
+LIVE_COMBAT close held-J ground chain reaches launcher for 0 at 1.5 true
+LIVE_COMBAT close held-J ground chain reaches launcher for 1 at 1.2 true
+LIVE_COMBAT close held-J ground chain reaches launcher for 1 at 1.5 true
+LIVE_COMBAT close held-J ground chain reaches launcher for 2 at 1.2 true
+LIVE_COMBAT close held-J ground chain reaches launcher for 2 at 1.5 true
+LIVE_COMBAT close held-J ground chain reaches launcher for 3 at 1.2 true
+LIVE_COMBAT close held-J ground chain reaches launcher for 3 at 1.5 true
+LIVE_COMBAT LOOP regression was reproduced before tuning true
+LIVE_COMBAT normal AI punishes held guard with actual throw starts 0/0 true
+LIVE_COMBAT normal AI punishes held guard with actual throw starts 0/1 true
+LIVE_COMBAT normal AI punishes held guard with actual throw starts 0/2 true
+LIVE_COMBAT normal AI punishes held guard with actual throw starts 1/0 true
+LIVE_COMBAT normal AI punishes held guard with actual throw starts 1/1 true
+LIVE_COMBAT normal AI punishes held guard with actual throw starts 1/2 true
+LIVE_COMBAT normal AI punishes held guard with actual throw starts 2/0 true
+LIVE_COMBAT normal AI punishes held guard with actual throw starts 2/1 true
+LIVE_COMBAT normal AI punishes held guard with actual throw starts 2/2 true
+LIVE_COMBAT normal AI punishes held guard with actual throw starts 3/0 true
+LIVE_COMBAT normal AI punishes held guard with actual throw starts 3/1 true
+LIVE_COMBAT normal AI punishes held guard with actual throw starts 3/2 true
+LIVE_COMBAT old guard policy had no throw attempts in all twelve scenarios true
+LIVE_COMBAT unfunded character 0 closes and fights instead of idling true
+LIVE_COMBAT unfunded character 1 closes and fights instead of idling true
+LIVE_COMBAT unfunded character 2 closes and fights instead of idling true
+LIVE_COMBAT unfunded character 3 closes and fights instead of idling true
+LIVE_COMBAT held guard creates a committed legal throw true
+LIVE_COMBAT opponent change cannot replace a committed plan true
+LIVE_COMBAT hidden buffered player intent cannot change AI choice true
+LIVE_COMBAT AI holds guard continuously through contact freeze true
+LIVE_COMBAT blockstun cannot silently release an existing guard plan true
+LIVE_COMBAT CPU throw damages a real guarding opponent true
+LIVE_COMBAT jump still avoids the committed throw by position true
+LIVE_COMBAT whiff recovery is met with a normal punish input true
+LIVE_COMBAT new rounds clear AI commitments and burst history true
+LIVE_COMBAT air counter choices vary by exchange instead of locking to a global beat true
+LIVE_COMBAT low guard retreats with a legal dash rather than defending to break true
+LIVE_COMBAT native freeze drains without slow-motion double stretching true
+LIVE_COMBAT contact resumes earlier for launcher at SURGE 0 true
+LIVE_COMBAT contact resumes earlier for parry at SURGE 0 true
+LIVE_COMBAT contact resumes earlier for overdrive at SURGE 0 true
+LIVE_COMBAT contact resumes earlier for launcher at SURGE 60 true
+LIVE_COMBAT contact resumes earlier for parry at SURGE 60 true
+LIVE_COMBAT contact resumes earlier for overdrive at SURGE 60 true
+LIVE_COMBAT twelve thousand competitive-policy steps replay identically true

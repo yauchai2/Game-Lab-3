@@ -1,0 +1,44 @@
+{
+  "source_commit": "b6e439b208dc7941e6b364cf6b5cdf3290f49c65",
+  "method": "native fixed simulation-step capture, 2 x 60 Hz ticks per image; GIF 30/30/40 ms cadence averages 30 FPS; not measured real-time FPS, audio or human playtesting",
+  "clips": [
+    {
+      "clip": "throw",
+      "native_size": [
+        960,
+        540
+      ],
+      "gif_size": [
+        640,
+        360
+      ],
+      "mp4_bytes": 831284,
+      "native_frames": 90,
+      "encoded_frames": 90,
+      "encoded_duration_ms": 3000,
+      "average_fps": 30,
+      "png_sequence_sha256": "fa904277d45e59cffb0faedd78d08ba6e4eb2830e68f5d0896a3ee393474c7e7",
+      "gif_sha256": "f9de218d2e905e1dade5a5e89985f9469ac3a473ffc3b8ccfa75422b8b71c291",
+      "bytes": 4751431
+    },
+    {
+      "clip": "edge_recovery",
+      "native_size": [
+        960,
+        540
+      ],
+      "gif_size": [
+        640,
+        360
+      ],
+      "mp4_bytes": 1038477,
+      "native_frames": 90,
+      "encoded_frames": 90,
+      "encoded_duration_ms": 3000,
+      "average_fps": 30,
+      "png_sequence_sha256": "4297c2cabceeb7516a2f9ba6c47cf5464fc7fd8c2d9dc2e434b47bff56918f92",
+      "gif_sha256": "b7770f5bb9f385d134130f793d9adbaad1b9d3b433f475456781add1da02c515",
+      "bytes": 4825849
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "panorama_size": [
+    1774,
+    887
+  ],
+  "panorama_edge_mean_channel_difference": 0.7177752724539647,
+  "panorama_edge_max_channel_difference": 6,
+  "yaw_0_360_changed_pixels": 0,
+  "yaw_plus_minus180_changed_pixels": 109,
+  "renderer": "Godot Compatibility / Mesa llvmpipe",
+  "scope": "texture edge values and equivalent camera headings; not a comprehensive seam or GPU performance test"
+}

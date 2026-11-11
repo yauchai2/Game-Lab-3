@@ -1,0 +1,7 @@
+{
+  "method": "Godot native render of actual ZIP/HUSH GLBs, pure-colour silhouettes, no UI baked into image",
+  "builder": "godot/tools/build_last_service_cover.gd",
+  "output": "godot/assets/ui/last_service/cover.png",
+  "sha256": "7230b11d6a9f4cc65fda69a485233581b0354192815817f3448bdd691476e74a",
+  "asset_policy": "Original GLBs preserved; existing CC0 animation library retargeted; no paid generation; game-dev CLI unavailable, no canonical CLI receipt claimed."
+}

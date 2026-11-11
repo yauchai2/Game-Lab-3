@@ -1,0 +1,8 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: AIR COUNTER FAIL: early repeated parries cannot refresh the window
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_air_counter.gd:8)
+       [1] run (res://tools/verify_air_counter.gd:82)
+AIR_COUNTER_CHECKS 56/57

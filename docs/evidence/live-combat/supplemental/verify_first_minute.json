@@ -1,0 +1,440 @@
+{
+  "checks": [
+    {
+      "name": "character 0 lesson 0 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 0 lesson 0 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 0 lesson 1 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 0 lesson 1 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 0 lesson 2 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 0 lesson 2 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 0 lesson 3 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 0 lesson 3 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 1 lesson 0 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 1 lesson 0 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 1 lesson 1 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 1 lesson 1 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 1 lesson 2 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 1 lesson 2 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 1 lesson 3 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 1 lesson 3 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 2 lesson 0 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 2 lesson 0 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 2 lesson 1 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 2 lesson 1 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 2 lesson 2 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 2 lesson 2 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 2 lesson 3 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 2 lesson 3 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 3 lesson 0 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 3 lesson 0 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 3 lesson 1 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 3 lesson 1 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 3 lesson 2 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 3 lesson 2 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "character 3 lesson 3 completes only with real actions",
+      "passed": true
+    },
+    {
+      "name": "character 3 lesson 3 cannot complete on a whiff",
+      "passed": true
+    },
+    {
+      "name": "whiff cannot pass combo and gives distance feedback",
+      "passed": true
+    },
+    {
+      "name": "low energy cannot pass burst lesson",
+      "passed": true
+    },
+    {
+      "name": "paid startup alone is not success",
+      "passed": true
+    },
+    {
+      "name": "ordinary block alone never passes counter lesson",
+      "passed": true
+    },
+    {
+      "name": "holding guard gets a release-and-tap timing hint",
+      "passed": true
+    },
+    {
+      "name": "blocked attacks do not count as combo success",
+      "passed": true
+    },
+    {
+      "name": "startup counter hit cannot replace parry counter objective",
+      "passed": true
+    },
+    {
+      "name": "real parry alone never claims completed counter",
+      "passed": true
+    },
+    {
+      "name": "expired counter opportunity does not keep a false ready cue",
+      "passed": true
+    },
+    {
+      "name": "real launcher alone cannot pass air lesson",
+      "passed": true
+    },
+    {
+      "name": "expired chase opportunity asks for a fresh launcher",
+      "passed": true
+    },
+    {
+      "name": "windup cue never promises guard during player stun",
+      "passed": true
+    },
+    {
+      "name": "companion is deterministic and never edits fighter state",
+      "passed": true
+    },
+    {
+      "name": "C enters explicit fixture without experimental window",
+      "passed": true
+    },
+    {
+      "name": "ready screen waits for deliberate start without queued attacks",
+      "passed": true
+    },
+    {
+      "name": "native begin button starts current lesson",
+      "passed": true
+    },
+    {
+      "name": "session route completes actual combo",
+      "passed": true
+    },
+    {
+      "name": "key echo cannot skip lesson",
+      "passed": true
+    },
+    {
+      "name": "Enter continues and resets explicit next fixture",
+      "passed": true
+    },
+    {
+      "name": "session route completes real parry counter",
+      "passed": true
+    },
+    {
+      "name": "Esc preserves objective, pending and clocks",
+      "passed": true
+    },
+    {
+      "name": "session route completes paid chase and real air hit",
+      "passed": true
+    },
+    {
+      "name": "F2 retains final paid-hit objective",
+      "passed": true
+    },
+    {
+      "name": "tutorial never awards XP or changes loadout",
+      "passed": true
+    },
+    {
+      "name": "retry keeps prior achievements and resets current attempt",
+      "passed": true
+    },
+    {
+      "name": "free AI demo never inherits coach",
+      "passed": true
+    },
+    {
+      "name": "SURGE comparison never inherits coach",
+      "passed": true
+    },
+    {
+      "name": "old F8 classroom remains isolated",
+      "passed": true
+    },
+    {
+      "name": "standard FIGHT stays fixed and uncoached",
+      "passed": true
+    },
+    {
+      "name": "exit clears all tutorial state",
+      "passed": true
+    },
+    {
+      "name": "music transport survives all lesson and mode switches",
+      "passed": true
+    }
+  ],
+  "display": "headless",
+  "engine": "4.6.3-stable (official)",
+  "passed": 63,
+  "scope": "Automated students and explicit training fixtures, not human learning or fun validation.",
+  "total": 63,
+  "trials": [
+    {
+      "character": 0,
+      "events": {
+        "hit": 2,
+        "swing": 2
+      },
+      "lesson": 0,
+      "passed": true,
+      "steps": 20
+    },
+    {
+      "character": 0,
+      "events": {
+        "counter_success": 1,
+        "hit": 1,
+        "parry": 1,
+        "swing": 2
+      },
+      "lesson": 1,
+      "passed": true,
+      "steps": 122
+    },
+    {
+      "character": 0,
+      "events": {
+        "chase_arrive": 1,
+        "hit": 2,
+        "homing_chase": 1,
+        "swing": 2
+      },
+      "lesson": 2,
+      "passed": true,
+      "steps": 40
+    },
+    {
+      "character": 0,
+      "events": {
+        "hit": 1,
+        "swing": 1
+      },
+      "lesson": 3,
+      "passed": true,
+      "steps": 25
+    },
+    {
+      "character": 1,
+      "events": {
+        "hit": 2,
+        "swing": 2
+      },
+      "lesson": 0,
+      "passed": true,
+      "steps": 22
+    },
+    {
+      "character": 1,
+      "events": {
+        "counter_success": 1,
+        "hit": 1,
+        "parry": 1,
+        "swing": 2
+      },
+      "lesson": 1,
+      "passed": true,
+      "steps": 120
+    },
+    {
+      "character": 1,
+      "events": {
+        "chase_arrive": 1,
+        "hit": 2,
+        "homing_chase": 1,
+        "swing": 2
+      },
+      "lesson": 2,
+      "passed": true,
+      "steps": 40
+    },
+    {
+      "character": 1,
+      "events": {
+        "hit": 1,
+        "swing": 1
+      },
+      "lesson": 3,
+      "passed": true,
+      "steps": 39
+    },
+    {
+      "character": 2,
+      "events": {
+        "hit": 2,
+        "swing": 2
+      },
+      "lesson": 0,
+      "passed": true,
+      "steps": 20
+    },
+    {
+      "character": 2,
+      "events": {
+        "counter_success": 1,
+        "hit": 1,
+        "parry": 1,
+        "sample_gained": 1,
+        "swing": 2
+      },
+      "lesson": 1,
+      "passed": true,
+      "steps": 120
+    },
+    {
+      "character": 2,
+      "events": {
+        "chase_arrive": 1,
+        "hit": 2,
+        "homing_chase": 1,
+        "swing": 2
+      },
+      "lesson": 2,
+      "passed": true,
+      "steps": 40
+    },
+    {
+      "character": 2,
+      "events": {
+        "hit": 1,
+        "swing": 1
+      },
+      "lesson": 3,
+      "passed": true,
+      "steps": 23
+    },
+    {
+      "character": 3,
+      "events": {
+        "hit": 2,
+        "swing": 2
+      },
+      "lesson": 0,
+      "passed": true,
+      "steps": 20
+    },
+    {
+      "character": 3,
+      "events": {
+        "counter_success": 1,
+        "hit": 1,
+        "parry": 1,
+        "swing": 2
+      },
+      "lesson": 1,
+      "passed": true,
+      "steps": 120
+    },
+    {
+      "character": 3,
+      "events": {
+        "chase_arrive": 1,
+        "hit": 2,
+        "homing_chase": 1,
+        "swing": 2
+      },
+      "lesson": 2,
+      "passed": true,
+      "steps": 40
+    },
+    {
+      "character": 3,
+      "events": {
+        "hit": 1,
+        "swing": 1
+      },
+      "lesson": 3,
+      "passed": true,
+      "steps": 29
+    }
+  ]
+}

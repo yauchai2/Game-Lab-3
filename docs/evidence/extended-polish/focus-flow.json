@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "name": "Godot owns actual X11 keyboard focus before the test",
+      "passed": true
+    },
+    {
+      "name": "leaving the OS window pauses active gameplay",
+      "passed": true
+    },
+    {
+      "name": "simulation stays frozen while the application is unfocused",
+      "passed": true
+    },
+    {
+      "name": "returning OS focus keeps the pause menu open",
+      "passed": true
+    },
+    {
+      "name": "Escape explicitly resumes the same game after focus returns",
+      "passed": true
+    },
+    {
+      "name": "OS focus loss freezes an active clash deadline",
+      "passed": true
+    },
+    {
+      "name": "focus return cannot silently consume or resume the clash",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "method": "X11 XSetInputFocus away/from native window plus Godot viewport Escape; no direct notification call",
+  "passed": 7
+}

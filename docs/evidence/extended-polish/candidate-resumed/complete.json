@@ -1,0 +1,11 @@
+{
+  "clashes": 14,
+  "completed": true,
+  "elapsed_seconds": 1800.025,
+  "frames": 16464,
+  "matches": 21,
+  "menu_cycles": 7,
+  "method": "native software GL bot observation driven by Timer callbacks; audio muted, not human playtesting or target hardware FPS",
+  "recoveries": 5,
+  "throws": 1
+}

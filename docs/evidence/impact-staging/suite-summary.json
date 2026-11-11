@@ -1,0 +1,39 @@
+{
+  "suites": [
+    {
+      "suite": "verification",
+      "passed": 24,
+      "failed": 0
+    },
+    {
+      "suite": "combat",
+      "passed": 34,
+      "failed": 0
+    },
+    {
+      "suite": "combat-polish",
+      "passed": 35,
+      "failed": 0
+    },
+    {
+      "suite": "scene-audio",
+      "passed": 33,
+      "failed": 0
+    },
+    {
+      "suite": "sky-motion",
+      "passed": 18,
+      "failed": 0
+    },
+    {
+      "suite": "native-input",
+      "passed": 11,
+      "failed": 0
+    }
+  ],
+  "passed": 155,
+  "human_playtest": false,
+  "target_gpu_verified": false,
+  "native_input_method": "Input.parse_input_event through X11 viewport, not physical keyboard",
+  "web_updated": false
+}

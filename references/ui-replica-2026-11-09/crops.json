@@ -1,0 +1,117 @@
+{
+  "method": "User explicitly authorized cropping; PIL crop/polygon alpha only, no invented character art.",
+  "entries": [
+    {
+      "file": "godot/assets/ui/replica/pause.png",
+      "source_box": [
+        1490,
+        111,
+        1648,
+        161
+      ],
+      "polygon": [
+        [
+          1505,
+          116
+        ],
+        [
+          1646,
+          111
+        ],
+        [
+          1631,
+          150
+        ],
+        [
+          1490,
+          161
+        ]
+      ],
+      "sha256": "a654ad4c6de54feb3f5613c8916381858a3e4552f7325820a1e890b30d405e43"
+    },
+    {
+      "file": "godot/assets/ui/replica/headphones.png",
+      "source_box": [
+        75,
+        18,
+        150,
+        98
+      ],
+      "polygon": [
+        [
+          113,
+          19
+        ],
+        [
+          135,
+          27
+        ],
+        [
+          149,
+          47
+        ],
+        [
+          149,
+          69
+        ],
+        [
+          134,
+          90
+        ],
+        [
+          111,
+          98
+        ],
+        [
+          88,
+          87
+        ],
+        [
+          76,
+          65
+        ],
+        [
+          78,
+          42
+        ],
+        [
+          92,
+          25
+        ]
+      ],
+      "sha256": "f6ed28b7a3ad5269e230c9536aca43717120ddb45c9f0c0e1a53d052fafa2fc2"
+    },
+    {
+      "file": "godot/assets/ui/replica/controls.png",
+      "source_box": [
+        359,
+        855,
+        1312,
+        913
+      ],
+      "polygon": [
+        [
+          360,
+          872
+        ],
+        [
+          396,
+          855
+        ],
+        [
+          1304,
+          855
+        ],
+        [
+          1270,
+          902
+        ],
+        [
+          382,
+          913
+        ]
+      ],
+      "sha256": "8788abf9aa4f3920b4f7a2ca6777eaa4944cfa64246d8001282aab0ebf80df3e"
+    }
+  ]
+}

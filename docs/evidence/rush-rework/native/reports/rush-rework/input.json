@@ -1,0 +1,126 @@
+{
+  "checks": [
+    {
+      "name": "F12 starts endless live combat",
+      "passed": true
+    },
+    {
+      "name": "only restart and exit transport remain",
+      "passed": true
+    },
+    {
+      "name": "no player laboratory controls cover the demo",
+      "passed": true
+    },
+    {
+      "name": "old Next and player keys cannot reset or control the fight",
+      "passed": true
+    },
+    {
+      "name": "pause freezes both autonomous agents",
+      "passed": true
+    },
+    {
+      "name": "resume continues the same fight",
+      "passed": true
+    },
+    {
+      "name": "native scene keeps fighting without KO pages or chapters",
+      "passed": true
+    },
+    {
+      "name": "both live agents hit naturally",
+      "passed": true
+    },
+    {
+      "name": "native demo includes chase and meteor payoff",
+      "passed": true
+    },
+    {
+      "name": "effects remain bounded",
+      "passed": true
+    },
+    {
+      "name": "active attacks really enlarge a hand or foot",
+      "passed": true
+    },
+    {
+      "name": "new heavyweight effects actually spawn",
+      "passed": true
+    },
+    {
+      "name": "explicit restart returns to fresh live opening",
+      "passed": true
+    },
+    {
+      "name": "restart retains original player preferences",
+      "passed": true
+    },
+    {
+      "name": "F2 stops oversized bones and strong grading",
+      "passed": true
+    },
+    {
+      "name": "compact transport bounds zh(960, 540)",
+      "passed": true
+    },
+    {
+      "name": "compact transport bounds zh(1280, 720)",
+      "passed": true
+    },
+    {
+      "name": "compact transport bounds zh(1920, 1080)",
+      "passed": true
+    },
+    {
+      "name": "compact transport bounds en(960, 540)",
+      "passed": true
+    },
+    {
+      "name": "compact transport bounds en(1280, 720)",
+      "passed": true
+    },
+    {
+      "name": "compact transport bounds en(1920, 1080)",
+      "passed": true
+    },
+    {
+      "name": "F12 exits and restores partner preference",
+      "passed": true
+    },
+    {
+      "name": "native held J earns an aerial combo on first play",
+      "passed": true
+    },
+    {
+      "name": "first-play player can win a real round",
+      "passed": true
+    },
+    {
+      "name": "free practice uses the same accessible core",
+      "passed": true
+    },
+    {
+      "name": "manual air lab stays available separately",
+      "passed": true
+    },
+    {
+      "name": "pointer starts endless demo",
+      "passed": true
+    },
+    {
+      "name": "pointer exit clears combat effects and pending commands",
+      "passed": true
+    }
+  ],
+  "max_effects": 12,
+  "player_moves": {
+    "air_jab": true,
+    "air_kick": true,
+    "cross": true,
+    "jab": true,
+    "launcher": true,
+    "meteor": true
+  },
+  "scope": "Native viewport inputs with manual simulation/presentation steps. Not human judgement."
+}

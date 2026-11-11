@@ -1,0 +1,49 @@
+{
+  "created_utc": "20261109T070250Z",
+  "source_commit": "18141ccc23125545ebaccb2eb27146a41b4c9e3f",
+  "tracked_runtime_changes": [
+    "godot/assets/fonts/AfterhoursUIHK.otf",
+    "godot/scripts/combat/air_counter.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/kinetic_rally.gd",
+    "godot/scripts/combat/pressure_exchange.gd",
+    "godot/scripts/combat/ui/ui_text.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 13,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_friendly_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "34d63ae8b485a7a290182d9f754bd9bbbd44d9f81c405d821c704dcac6ef8381",
+      "seconds": 4.174,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_friendly_input.gd"
+      ],
+      "report_written": true,
+      "passed": 13,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

@@ -1,0 +1,11 @@
+{
+  "source_assets_unchanged": true,
+  "style_checks": 12,
+  "walk_checks": 28,
+  "asset_regression": true,
+  "software_godot_captures": 6,
+  "hardware_gpu_tested": false,
+  "human_playtest": false,
+  "font_cross_platform_verified": false,
+  "canonical_links_ok": true
+}

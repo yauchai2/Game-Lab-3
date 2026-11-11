@@ -1,0 +1,70 @@
+WorkerThreadPool: 3 threads, 1 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+SDL: Init OK!
+Accessibility: AccessKit driver loaded.
+Xshape 1.1 detected.
+Xinerama 1.1 detected.
+Xrandr 1.6 detected.
+Xrender 0.11 detected.
+Xinput 2.2 detected.
+XInput: Refreshing devices.
+XInput: No touch devices found.
+Input method started.
+Detecting GPUs, set DRI_PRIME in the environment to override GPU detection logic.
+Only one GPU found, using default.
+Accessibility: window 0 adapter created.
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+XcursorGetTheme could not get cursor theme
+Failed loading custom cursor: crossed_circle
+DBus 1.16.2 detected.
+Using "default" pen tablet driver...
+Shader 'CanvasSdfShaderGLES3' SHA256: e1fc4015d45db07fce0346b99c312728ab006030520ec796da1461e1428345c5
+Shader 'SkeletonShaderGLES3' SHA256: e42116215ed2a92dea7085176e3b3f1089edcb71a3405ab67073ce8e77114587
+Shader 'ParticlesShaderGLES3' SHA256: ffb4401639aafac71f9f113685cb6db157587dac2f1a352495327188f37419b2
+Shader 'ParticlesCopyShaderGLES3' SHA256: 826f4c822241d48a5251f5069f9781b034e657d580e0c94bb916da952bee53b5
+Shader 'CopyShaderGLES3' SHA256: 8e9443aa4b684ddd8943bffac4063cca51daba573b73bd6ebb6a15a023b35d42
+Shader 'CubemapFilterShaderGLES3' SHA256: 7d0f7673e184bb74d9f911e0aa90b55d157f7c33b79e4672b4fca4fb3573ac00
+Shader 'GlowShaderGLES3' SHA256: 427cfd9bd0cc4045ecaa4bc4f23055a2a40660411d8e1663897a7c2cd3c80665
+Shader 'PostShaderGLES3' SHA256: d42fe4516c6fdc8d420760c688277f65a0eb2c3ab6939c556404e04b25605697
+Shader 'FeedShaderGLES3' SHA256: 9c5f15371d9ed62661ff3bb3ecc28f82cb15be9a4be89518b1f6fd8d372fbe4b
+Shader 'CanvasShaderGLES3' SHA256: 16f1396f2f5ac39d277138cd33a6d284e2d97309f2a547816c220d0ef0318826
+Shader 'CanvasOcclusionShaderGLES3' SHA256: 6baa8caaecef40c331cf27f156879d8ca7d8bf94ec84f8168903490f61264d2d
+Shader 'SceneShaderGLES3' SHA256: 31a20b10164e4dec5c32d2d55b7815f3753e61e5a14deee17dcbc8ad8ddad8d8
+Shader 'SkyShaderGLES3' SHA256: 018037c76675d5aa479b8d6fab4462587586616124093692f099b74ed4b847ef
+Shader 'TexBlitShaderGLES3' SHA256: 164ea8204afa014fcb0dc8b854e570f311fcde3c83c12332ea81730620f6a63d
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+READABLE Shared framebuffer 640x360 true
+READABLE World-only pixel filter retired true
+READABLE Live hero selection 0 true
+READABLE Live hero selection 1 true
+READABLE Live hero selection 2 true
+READABLE Live hero selection 3 true
+READABLE Four different pose rotations true
+READABLE Roster viewports bounded true
+READABLE Hidden roster rendering disabled true
+READABLE Background respects pause true
+READABLE Distant car moves true
+READABLE Crowd reactions rate limited true
+READABLE Decoration count bounded true
+READABLE Silent title recovery visible true
+READABLE Recovery restores audible settings true
+READABLE Body controls at least 14 internal pixels true
+READABLE Wide menu fits logical frame true
+READABLE Settings captions at least 12 internal pixels true
+READABLE Readable sound action 1 true
+READABLE Readable sound action 2 true
+READABLE Both sound actions present true
+READABLE All rendered surfaces have live materials true
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Accessibility: window 0 adapter destroyed.

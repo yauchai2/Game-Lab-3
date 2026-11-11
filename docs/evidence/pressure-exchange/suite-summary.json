@@ -1,0 +1,57 @@
+{
+  "suites": [
+    {
+      "suite": "verification",
+      "passed": 59,
+      "failed": 0
+    },
+    {
+      "suite": "input-verification",
+      "passed": 11,
+      "failed": 0
+    },
+    {
+      "suite": "combat",
+      "passed": 34,
+      "failed": 0
+    },
+    {
+      "suite": "combat-polish",
+      "passed": 35,
+      "failed": 0
+    },
+    {
+      "suite": "impact",
+      "passed": 24,
+      "failed": 0
+    },
+    {
+      "suite": "scene-audio",
+      "passed": 33,
+      "failed": 0
+    },
+    {
+      "suite": "backdrop",
+      "passed": 30,
+      "failed": 0
+    },
+    {
+      "suite": "sky-motion",
+      "passed": 18,
+      "failed": 0
+    },
+    {
+      "suite": "native-regression",
+      "passed": 11,
+      "failed": 0
+    }
+  ],
+  "passed": 255,
+  "new_core_checks": 59,
+  "new_native_input_checks": 11,
+  "mixed_simulation_ticks": 20000,
+  "natural_clashes_in_mixed_run": 20,
+  "human_playtest": false,
+  "target_hardware_verified": false,
+  "public_web_updated": false
+}

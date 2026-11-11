@@ -1,0 +1,36 @@
+{
+  "author": "Quaternius",
+  "license": "CC0-1.0",
+  "official_page": "https://quaternius.com/packs/universalanimationlibrary.html",
+  "mirror": "https://github.com/J-Ponzo/gltf-universal-animation-library",
+  "commit": "e24c23cf2a1323488a3faa226ea7ea21f644b73e",
+  "clips": [
+    "Punch_Enter",
+    "Punch_Jab",
+    "Punch_Cross",
+    "Hit_Chest",
+    "Hit_Head",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Death01",
+    "Spell_Simple_Shoot",
+    "Dance_Loop",
+    "Crouch_Idle_Loop",
+    "Spell_Simple_Idle_Loop",
+    "Sword_Attack",
+    "Idle_Loop"
+  ],
+  "raw_sha256": {
+    "AnimationLibrary_Godot_Standard.gltf": "0ff075c7ad6855c5c2c37a171592ee8f0d6ab2f58259e2be77a9b63dd8027765",
+    "AnimationLibrary_Godot_Standard.bin": "6e65377d81558333c4093dbb144a48fd19019343d82b1a3a7992a98ec0e0543c",
+    "LICENSE": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+  },
+  "derived_file": "godot/assets/animations/quaternius_combat.json",
+  "derived_sha256": "60a97a63905abf1944cfe68bafe6dd47885f5c5e0417da910a1906808a3bc7bd",
+  "derivation": "Selected rotation tracks and hip translations, 6 decimal places; meshes omitted. Runtime retargets rest-relative rotations onto user Mixamo skeleton. No paid or Mixamo account download used."
+}

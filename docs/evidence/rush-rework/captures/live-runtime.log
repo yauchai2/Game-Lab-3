@@ -1,0 +1,6 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+LIVE_DEMO_CAPTURE {"events":{"air_counter_choice":3,"air_counter_end":3,"air_counter_release":3,"air_counter_start":3,"air_counter_windup":3,"air_land":12,"air_parry_attempt":3,"break_finish":2,"chase_arrive":5,"dash":3,"ground_bounce":2,"hit/air_counter":2,"hit/air_jab":5,"hit/air_kick":5,"hit/cross":4,"hit/jab":4,"hit/launcher":5,"hit/meteor":2,"hit/special":2,"homing_chase":5,"swing":38,"wall_tech":2},"frames":225,"hits":[8,21],"one_continuous_take":true,"output_fps":15,"simulation_ticks":900}

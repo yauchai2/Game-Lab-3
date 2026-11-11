@@ -1,0 +1,55 @@
+{
+  "checks": [
+    {
+      "name": "legacy development help is hidden",
+      "passed": true
+    },
+    {
+      "name": "street uses the shared CJK UI font",
+      "passed": true
+    },
+    {
+      "name": "exploration controls start compact",
+      "passed": true
+    },
+    {
+      "name": "H expands street controls through viewport input",
+      "passed": true
+    },
+    {
+      "name": "H collapses controls without changing reference camera",
+      "passed": true
+    },
+    {
+      "name": "reference view keys still reach the street",
+      "passed": true
+    },
+    {
+      "name": "walk and camera mode shortcuts still work",
+      "passed": true
+    },
+    {
+      "name": "Escape frees the pointer for native UI",
+      "passed": true
+    },
+    {
+      "name": "street mute cancels active or pending flyby playback",
+      "passed": true
+    },
+    {
+      "name": "street unmute restarts engine audio during the same flyby",
+      "passed": true
+    },
+    {
+      "name": "English return action is localized",
+      "passed": true
+    },
+    {
+      "name": "mouse return action opens fight title",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "method": "native Godot viewport key/mouse injection and rendered screenshots",
+  "passed": 12
+}

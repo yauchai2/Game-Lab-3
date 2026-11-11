@@ -1,0 +1,586 @@
+{
+  "headless": {
+    "mode": "headless",
+    "scope": "Composite of identified latest applicable case receipts across this task, not one invocation; repeated assertions counted once. Final runtime priority/beam refinements additionally covered by native final checks and fresh captures.",
+    "passed": 504,
+    "failed": 0,
+    "cases": [
+      {
+        "name": "verify_charged_cannon",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "d6f515c59afb2e8637ec29e4468bf893f47996cd38d3c9d5fa8c85e1b5e97aee",
+        "seconds": 0.659,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_charged_cannon.gd"
+        ],
+        "report_written": true,
+        "passed": 10,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/earned-rules/summary.json"
+      },
+      {
+        "name": "verify_rush_arcade",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "1bf5444e6ecfa367f06188e6062629f363f3d3768b40178bfbc29aadd8deca5b",
+        "seconds": 0.246,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_rush_arcade.gd"
+        ],
+        "report_written": true,
+        "passed": 21,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      },
+      {
+        "name": "verify_friendly_defense",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "dde4d21c520176fc936cea54d29decd55b381fb5053d9d99c450675f2d4e4679",
+        "seconds": 0.255,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_friendly_defense.gd"
+        ],
+        "report_written": true,
+        "passed": 25,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      },
+      {
+        "name": "verify_demo",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "3f6451b2f352bbd7dde8dfca121b4d169f4e7a8faebb576ead363c086b2ab5a8",
+        "seconds": 3.285,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_demo.gd"
+        ],
+        "report_written": true,
+        "passed": 21,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/earned-rules/summary.json"
+      },
+      {
+        "name": "verify_air_counter",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "9ed67036d0a5b130b895be9c5816edc5c745152739fd83f41480b1c0243fd37d",
+        "seconds": 2.117,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_air_counter.gd"
+        ],
+        "report_written": true,
+        "passed": 57,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      },
+      {
+        "name": "verify_aerial_street",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "662d73cc8869abf3d57dbd496f727f6ee46413941b09477657ccd98fc6be438c",
+        "seconds": 2.022,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_aerial_street.gd"
+        ],
+        "report_written": true,
+        "passed": 54,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      },
+      {
+        "name": "verify_kinetic_rally",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "edd5ba4089c0a19a4a1d7fba8f83b2685bb94272779cd93caadfca8e5220ad61",
+        "seconds": 1.835,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_kinetic_rally.gd"
+        ],
+        "report_written": true,
+        "passed": 60,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      },
+      {
+        "name": "verify_result_presentation",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "4d98cddff04aaf8246d03a4ea5839a66e1dd08dff925ddfa353da022a7a1dc80",
+        "seconds": 0.713,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_result_presentation.gd"
+        ],
+        "report_written": true,
+        "passed": 15,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      },
+      {
+        "name": "verify_combat",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "522f3c7daa81539a1d8466ef069a66f4c4bdfb7a05afb157f04fc4db7e5139fd",
+        "seconds": 0.804,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_combat.gd"
+        ],
+        "report_written": true,
+        "passed": 34,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      },
+      {
+        "name": "verify_combat_polish",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "17be5ebae5d1b0dfddfdce10ed7361c12f0a091eef233da6e1d812a63dc26930",
+        "seconds": 0.904,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_combat_polish.gd"
+        ],
+        "report_written": true,
+        "passed": 35,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      },
+      {
+        "name": "verify_impact_staging",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "48439d74a0e46adebcfcff016615b2e3d42aedc464262fa77691e45b704bb7c2",
+        "seconds": 0.713,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_impact_staging.gd"
+        ],
+        "report_written": true,
+        "passed": 24,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      },
+      {
+        "name": "verify_pressure_exchange",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "b4c6dbacab9cf2164308cb6cc5156b5c3177062313b1b3ba0054b73f69876e64",
+        "seconds": 1.747,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_pressure_exchange.gd"
+        ],
+        "report_written": true,
+        "passed": 59,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      },
+      {
+        "name": "verify_close_combat",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "6b1b1322f8b7f0323d26e97f8301fcbb59cf60d41c6de7048e121f8298f8d144",
+        "seconds": 0.803,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_close_combat.gd"
+        ],
+        "report_written": true,
+        "passed": 41,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      },
+      {
+        "name": "verify_game_ui",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "e85f827a5f8e2fb0abd0c1140b3342fbe6d02100b9d0c96ad210c8c3fd7c4f6f",
+        "seconds": 1.272,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_game_ui.gd"
+        ],
+        "report_written": true,
+        "passed": 35,
+        "failed": 0,
+        "skipped": [
+          {
+            "name": "residential billboard transform readback",
+            "reason": "Dummy renderer returns identity MultiMesh transforms; requires native GL verification"
+          }
+        ],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      },
+      {
+        "name": "verify_combat_framing",
+        "mode": "headless",
+        "exit_code": 0,
+        "harness_sha256": "319b1771d883ea42c4b0cfe99156abe745db3ace475b84b381cc85f1ac19a37e",
+        "seconds": 0.817,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--headless",
+          "--script",
+          "res://tools/verify_combat_framing.gd"
+        ],
+        "report_written": true,
+        "passed": 13,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/headless/summary.json"
+      }
+    ]
+  },
+  "native": {
+    "mode": "native",
+    "scope": "Composite of identified latest applicable case receipts across this task, not one invocation; repeated assertions counted once. Final runtime priority/beam refinements additionally covered by native final checks and fresh captures.",
+    "passed": 144,
+    "failed": 0,
+    "cases": [
+      {
+        "name": "verify_cannon_input",
+        "mode": "native",
+        "exit_code": 0,
+        "harness_sha256": "b2096b22c22d79619f039f49060d38a57fd5a557ddeb0da56c9158dd022ae292",
+        "seconds": 4.132,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--resolution",
+          "1280x720",
+          "--script",
+          "res://tools/verify_cannon_input.gd"
+        ],
+        "report_written": true,
+        "passed": 7,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [
+          "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+        ],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/priority-final/summary.json"
+      },
+      {
+        "name": "verify_combat_rhythm",
+        "mode": "native",
+        "exit_code": 0,
+        "harness_sha256": "36593c6e07e3dc2a2d1d461f4119c85dedcf523d4e538a6564679c79aa802331",
+        "seconds": 2.912,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--resolution",
+          "1280x720",
+          "--script",
+          "res://tools/verify_combat_rhythm.gd"
+        ],
+        "report_written": true,
+        "passed": 29,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [
+          "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+        ],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/priority-final/summary.json"
+      },
+      {
+        "name": "verify_fighter_roster",
+        "mode": "native",
+        "exit_code": 0,
+        "harness_sha256": "0e6a68a31faf89b9afb8350c6f8943bdce5e757c49b0cb581e4a0a8e4e72bce3",
+        "seconds": 14.514,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--resolution",
+          "1280x720",
+          "--script",
+          "res://tools/verify_fighter_roster.gd"
+        ],
+        "report_written": true,
+        "passed": 30,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [
+          "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+        ],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/native/summary.json"
+      },
+      {
+        "name": "verify_red_theatre",
+        "mode": "native",
+        "exit_code": 0,
+        "harness_sha256": "8666730bb78b6c793729d883919c7f4502c04637548c8ae0746dae443cae5052",
+        "seconds": 1.495,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--resolution",
+          "1280x720",
+          "--script",
+          "res://tools/verify_red_theatre.gd"
+        ],
+        "report_written": true,
+        "passed": 18,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [
+          "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+        ],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/priority-final/summary.json"
+      },
+      {
+        "name": "verify_demo_input",
+        "mode": "native",
+        "exit_code": 0,
+        "harness_sha256": "36c5340e3a78524d53809be4cd62236a8bc79a6b13f90dfc588996a405ea9d22",
+        "seconds": 10.302,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--resolution",
+          "1280x720",
+          "--script",
+          "res://tools/verify_demo_input.gd"
+        ],
+        "report_written": true,
+        "passed": 28,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [
+          "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+        ],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/priority-final/summary.json"
+      },
+      {
+        "name": "verify_ui_input",
+        "mode": "native",
+        "exit_code": 0,
+        "harness_sha256": "13b18f0f153fdca5e7f7b3656a97d6f512bec0843952a62e491dd53037672be8",
+        "seconds": 12.954,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--resolution",
+          "1280x720",
+          "--script",
+          "res://tools/verify_ui_input.gd"
+        ],
+        "report_written": true,
+        "passed": 17,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [
+          "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+        ],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/priority-final/summary.json"
+      },
+      {
+        "name": "verify_combat_input",
+        "mode": "native",
+        "exit_code": 0,
+        "harness_sha256": "181113f43dd461e1912548f984785c9ea3eb5fa96deaa0b880510a7c357937b2",
+        "seconds": 6.863,
+        "command": [
+          "godot",
+          "--path",
+          "godot",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--resolution",
+          "1280x720",
+          "--script",
+          "res://tools/verify_combat_input.gd"
+        ],
+        "report_written": true,
+        "passed": 15,
+        "failed": 0,
+        "skipped": [],
+        "diagnostics": [
+          "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+        ],
+        "success": true,
+        "receipt": "docs/evidence/charged-cannon/native/summary.json"
+      }
+    ]
+  }
+}

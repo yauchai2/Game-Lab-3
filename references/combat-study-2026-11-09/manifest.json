@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-09",
+  "method": "Complete-file decode at 8 fps, 160x90 red-area candidate scan; manually inspect selected full-size frames. Not every source frame watched or source gameplay timings measured.",
+  "raw_videos_committed": false,
+  "sources": [
+    {
+      "drive_id": "1PMGu19aOh-Xa61gq4WlWMpAbYNHEH3OH",
+      "url": "https://drive.google.com/file/d/1PMGu19aOh-Xa61gq4WlWMpAbYNHEH3OH/view",
+      "title": "We Played The Most Unique Fighting Game | Lethal League Blaze",
+      "resolution": "1280x720",
+      "source_fps": 60,
+      "bytes": 293890682,
+      "duration_seconds": 862.336122,
+      "sha256": "14ab121a6b38f89247a100b87d0806d83637aea55f5d616c2d9f88dfee843806",
+      "sampled_frames": 6898,
+      "red_candidate_intervals": 63,
+      "scan_file": "video-a.json",
+      "manually_inspected_seconds": [
+        78.625,
+        230.625,
+        362.5,
+        647.875,
+        800
+      ]
+    },
+    {
+      "drive_id": "14umRoL39F5hDiDY7-REG6sa5Jqg3QGjD",
+      "url": "https://drive.google.com/file/d/14umRoL39F5hDiDY7-REG6sa5Jqg3QGjD/view",
+      "title": "Just_Gas vs Mauri985 Cyan League FT5 | Lethal League Blaze - Just Gas",
+      "resolution": "1920x1080",
+      "source_fps": 30,
+      "bytes": 344300575,
+      "duration_seconds": 1088.654467,
+      "sha256": "02249702c2a85d792ca683263288c92f7e0faad5aadab567ef34320375ecc6d0",
+      "sampled_frames": 8709,
+      "red_candidate_intervals": 0,
+      "scan_file": "video-b.json",
+      "manually_inspected_seconds": [
+        60,
+        180,
+        360,
+        600,
+        840,
+        1030
+      ]
+    }
+  ]
+}

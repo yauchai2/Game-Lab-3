@@ -1,0 +1,24 @@
+{
+  "completed": true,
+  "elapsed_seconds": 120.019,
+  "event_counts": {
+    "air_finisher": 25,
+    "air_jab": 25,
+    "air_kick": 25,
+    "air_land": 75,
+    "chase_arrive": 25,
+    "fast_fall": 25,
+    "hit": 100,
+    "homing_chase": 25,
+    "jump": 25,
+    "launcher": 25,
+    "swing": 101
+  },
+  "input_events": 458,
+  "loops": 25,
+  "max_effects": 8,
+  "max_nodes": 530,
+  "max_orphans": 0,
+  "method": "real native Godot physics and viewport key events, combat_event signal observes every dispatched event; Dummy audio, software GL; no human/target GPU claim",
+  "resets": 26
+}

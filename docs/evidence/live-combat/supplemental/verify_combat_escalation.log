@@ -1,0 +1,32 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ESCALATION each side locks its own first intent true
+ESCALATION presentation and native hitstop do not expire intent true
+ESCALATION stun does not grant action true
+ESCALATION intent consumed once true
+ESCALATION fixed simulation lifetime is bounded true
+ESCALATION interruption cancels other side independently true
+ESCALATION real launcher opens attacker continuation true
+ESCALATION queued E chases through native hitstop and pays energy true
+ESCALATION low energy cannot buy chase true
+ESCALATION whiff never increases SURGE true
+ESCALATION one connected strike increments only once true
+ESCALATION remaining active frames cannot rescore same contact true
+ESCALATION SURGE caps at ninety true
+ESCALATION quiet separated fighters cool back to FLOW true
+ESCALATION reset clears SURGE and intents true
+ESCALATION real parry opens defender intent and adds sixteen true
+ESCALATION queued parry followup earns success only on real hit true
+ESCALATION queued E without chase withdraws from opponent true
+ESCALATION LOOP placement never heats SURGE true
+ESCALATION real hit invalidates defender continuation true
+ESCALATION KO clears both sides true
+ESCALATION two thousand fixed steps replay identically true
+ESCALATION low pressure hold is shorter on same clock true
+ESCALATION SFX limiter is installed exactly once true
+ESCALATION key handler accepts K immediately during presentation hold true
+ESCALATION later key cannot replace locked K true
+ESCALATION Esc preserves locked intent without countdown true
+ESCALATION restart clears intent true
+ESCALATION F2 keeps legal intent consumption on normal clock true
+ESCALATION exit clears intent and rhythm true

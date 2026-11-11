@@ -1,0 +1,28 @@
+[
+  {
+    "file": "references/combat-study-2026-11-09/videos/llb-reference-a-study.mp4",
+    "sha256": "0c9021e0e983431efde51bb24c6f767ffe831ed6ee12f89a31100a4f916eff3a",
+    "bytes": 36748684,
+    "duration_seconds": 862.336009,
+    "width": 640,
+    "height": 360,
+    "fps": "20/1",
+    "audio_present": true,
+    "original_sha256": "14ab121a6b38f89247a100b87d0806d83637aea55f5d616c2d9f88dfee843806",
+    "original_drive_url": "https://drive.google.com/file/d/1PMGu19aOh-Xa61gq4WlWMpAbYNHEH3OH/view",
+    "derivation": "Full-duration lossy research copy: ffmpeg fps=20, scale640, H264 CRF31, AAC48k. Not the original bitstream."
+  },
+  {
+    "file": "references/combat-study-2026-11-09/videos/llb-reference-b-study.mp4",
+    "sha256": "12fee30d8f281f481abf352148affa1afb499ba3d973ec4b8aa640b05e7b90aa",
+    "bytes": 31726580,
+    "duration_seconds": 1088.653991,
+    "width": 640,
+    "height": 360,
+    "fps": "20/1",
+    "audio_present": true,
+    "original_sha256": "02249702c2a85d792ca683263288c92f7e0faad5aadab567ef34320375ecc6d0",
+    "original_drive_url": "https://drive.google.com/file/d/14umRoL39F5hDiDY7-REG6sa5Jqg3QGjD/view",
+    "derivation": "Full-duration lossy research copy: ffmpeg fps=20, scale640, H264 CRF31, AAC48k. Not the original bitstream."
+  }
+]

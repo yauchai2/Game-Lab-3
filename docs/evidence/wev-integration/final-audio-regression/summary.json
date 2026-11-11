@@ -1,0 +1,38 @@
+{
+  "created_utc": "20261109T062451Z",
+  "source_commit": "70ded9998c1091bc8cc09033a345e5053a37fb25",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/fight_audio.gd",
+    "godot/scripts/combat/fight_hud.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": true,
+  "passed": 33,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_scene_audio_vfx",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "781ebc5001bbaae68a5b647536026ea227bc9990906100e0f36f9f0f0fab039f",
+      "seconds": 1.28,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_scene_audio_vfx.gd"
+      ],
+      "report_written": true,
+      "passed": 33,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

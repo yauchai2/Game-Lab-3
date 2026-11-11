@@ -1,0 +1,41 @@
+{
+  "artist": "wev",
+  "title": "family ties (wev edit)",
+  "source_url": "https://worldwidewev.bandcamp.com/track/family-ties-wev-edit",
+  "artist_url": "https://soundcloud.com/worldwidewev",
+  "retrieved_utc": "2026-11-09T06:22:44.757618+00:00",
+  "acquisition": "Official Bandcamp free-download page → statdownload → server-provided expired-link retry → MP3 320; HTTP 200 audio/mpeg. No SoundCloud stream extraction, account, email, payment or outreach.",
+  "user_permission": "User confirmed wev music available, then explicitly requested downloading and using music in game. Not independently verified rights paperwork; not CC0.",
+  "master": {
+    "bytes": 9075311,
+    "sha256": "535767f39a5bfc5401174cb30c9368b11235891a06951549bb9dd6bd8b2cdeb7",
+    "duration_seconds": 225.802449,
+    "format": "MP3 320kbps; original retained outside repository"
+  },
+  "game": {
+    "path": "godot/audio/wev/family_ties_game.ogg",
+    "bytes": 4047248,
+    "sha256": "a4c11da48bb3c2e11bbb15bc5f6dc11b0802f7aa391390ae90dc1b591514bbc3",
+    "role": "continuous title / training / battle / result music; context volume and contact duck retained",
+    "processing": "FFmpeg measured two-pass linear loudnorm target -18 LUFS-I, TP -2 dBTP, LRA11; fade in .04s, fade out 225.3–225.75s; Vorbis q5, 44.1kHz stereo, metadata reset to title/artist. Full-song wrap with softened endpoints, not a bar-aligned seamless remix.",
+    "context_gain_db": {
+      "play": -6,
+      "title_or_result": -12,
+      "contact_duck": -4,
+      "default_music_slider": 0.75
+    }
+  },
+  "measurements": {
+    "source": {
+      "input_i": "-6.94",
+      "input_tp": "0.04",
+      "input_lra": "3.80"
+    },
+    "game": {
+      "input_i": "-18.02",
+      "input_tp": "-10.01",
+      "input_lra": "3.90"
+    }
+  },
+  "scope": "Only this acquired track admitted; OST paid tracks not downloaded; no samples extracted for SFX. Public Web unchanged."
+}

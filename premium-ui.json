@@ -1,0 +1,24 @@
+{
+  "profile": "native-game",
+  "sourceRoots": [
+    "godot/scripts/combat"
+  ],
+  "locale": "en",
+  "canonicalMap": "UX-CONTRACT.md",
+  "requiredCapabilities": [
+    "Select/Listbox",
+    "Scrollbar",
+    "Toast"
+  ],
+  "ownership": {
+    "Select/Listbox": "native",
+    "Scrollbar": "native",
+    "Toast": "authored"
+  },
+  "requiredCommands": [],
+  "commands": {},
+  "evidence": {
+    "nativeChecks": "docs/evidence/ink-ui/",
+    "nativeRuntime": "godot/tools/verify_ink_ui.gd"
+  }
+}

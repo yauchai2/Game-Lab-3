@@ -1,0 +1,6 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+AIR_NATIVE_SOAK {"completed":true,"elapsed_seconds":120.019,"event_counts":{"air_finisher":25,"air_jab":25,"air_kick":25,"air_land":75,"chase_arrive":25,"fast_fall":25,"hit":100,"homing_chase":25,"jump":25,"launcher":25,"swing":101},"input_events":458,"loops":25,"max_effects":8,"max_nodes":530,"max_orphans":0,"method":"real native Godot physics and viewport key events, combat_event signal observes every dispatched event; Dummy audio, software GL; no human/target GPU claim","resets":26}

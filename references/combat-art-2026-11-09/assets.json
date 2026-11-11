@@ -1,0 +1,254 @@
+[
+  {
+    "path": "godot/assets/vfx/street_actions.png",
+    "sha256": "23bc2c316211b357ec893c4ac72ada873614344b5279c3b02a223674aa419cbc",
+    "size": [
+      1261,
+      1247
+    ],
+    "alpha_corners": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "cells": [
+      {
+        "index": 0,
+        "region_xywh": [
+          0,
+          0,
+          315,
+          311
+        ]
+      },
+      {
+        "index": 1,
+        "region_xywh": [
+          315,
+          0,
+          315,
+          311
+        ]
+      },
+      {
+        "index": 2,
+        "region_xywh": [
+          630,
+          0,
+          315,
+          311
+        ]
+      },
+      {
+        "index": 3,
+        "region_xywh": [
+          945,
+          0,
+          316,
+          311
+        ]
+      },
+      {
+        "index": 4,
+        "region_xywh": [
+          0,
+          311,
+          315,
+          312
+        ]
+      },
+      {
+        "index": 5,
+        "region_xywh": [
+          315,
+          311,
+          315,
+          312
+        ]
+      },
+      {
+        "index": 6,
+        "region_xywh": [
+          630,
+          311,
+          315,
+          312
+        ]
+      },
+      {
+        "index": 7,
+        "region_xywh": [
+          945,
+          311,
+          316,
+          312
+        ]
+      },
+      {
+        "index": 8,
+        "region_xywh": [
+          0,
+          623,
+          315,
+          312
+        ]
+      },
+      {
+        "index": 9,
+        "region_xywh": [
+          315,
+          623,
+          315,
+          312
+        ]
+      },
+      {
+        "index": 10,
+        "region_xywh": [
+          630,
+          623,
+          315,
+          312
+        ]
+      },
+      {
+        "index": 11,
+        "region_xywh": [
+          945,
+          623,
+          316,
+          312
+        ]
+      },
+      {
+        "index": 12,
+        "region_xywh": [
+          0,
+          935,
+          315,
+          312
+        ]
+      },
+      {
+        "index": 13,
+        "region_xywh": [
+          315,
+          935,
+          315,
+          312
+        ]
+      },
+      {
+        "index": 14,
+        "region_xywh": [
+          630,
+          935,
+          315,
+          312
+        ]
+      },
+      {
+        "index": 15,
+        "region_xywh": [
+          945,
+          935,
+          316,
+          312
+        ]
+      }
+    ],
+    "generator": "image_gen.imagegen",
+    "transform": "Original PNG copied unchanged; slicing uses AtlasTexture. General atlas has one alpha=1 corner, visually negligible; not falsely reported as zero."
+  },
+  {
+    "path": "godot/assets/vfx/fighter_signatures.png",
+    "sha256": "e508181f68f5fc0988dd02009fc42739b3d356f3ed4ca371a8ecd091398482c7",
+    "size": [
+      1774,
+      887
+    ],
+    "alpha_corners": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cells": [
+      {
+        "index": 0,
+        "region_xywh": [
+          0,
+          0,
+          443,
+          443
+        ]
+      },
+      {
+        "index": 1,
+        "region_xywh": [
+          443,
+          0,
+          444,
+          443
+        ]
+      },
+      {
+        "index": 2,
+        "region_xywh": [
+          887,
+          0,
+          443,
+          443
+        ]
+      },
+      {
+        "index": 3,
+        "region_xywh": [
+          1330,
+          0,
+          444,
+          443
+        ]
+      },
+      {
+        "index": 4,
+        "region_xywh": [
+          0,
+          443,
+          443,
+          444
+        ]
+      },
+      {
+        "index": 5,
+        "region_xywh": [
+          443,
+          443,
+          444,
+          444
+        ]
+      },
+      {
+        "index": 6,
+        "region_xywh": [
+          887,
+          443,
+          443,
+          444
+        ]
+      },
+      {
+        "index": 7,
+        "region_xywh": [
+          1330,
+          443,
+          444,
+          444
+        ]
+      }
+    ],
+    "generator": "image_gen.imagegen",
+    "transform": "Original PNG copied unchanged; slicing uses AtlasTexture. General atlas has one alpha=1 corner, visually negligible; not falsely reported as zero."
+  }
+]

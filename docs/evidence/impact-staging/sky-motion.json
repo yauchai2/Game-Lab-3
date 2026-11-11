@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "name": "uses original image panorama",
+      "passed": true
+    },
+    {
+      "name": "cloud image drifts 4.8 degrees per minute",
+      "passed": true
+    },
+    {
+      "name": "pause freezes sky",
+      "passed": true
+    },
+    {
+      "name": "reduced effects freezes sky",
+      "passed": true
+    },
+    {
+      "name": "capture freeze freezes sky",
+      "passed": true
+    },
+    {
+      "name": "sun and ambient lighting remain fixed",
+      "passed": true
+    },
+    {
+      "name": "F2 session state reaches sky controller",
+      "passed": true
+    },
+    {
+      "name": "pause session state reaches sky controller",
+      "passed": true
+    },
+    {
+      "name": "long sessions keep finite bounded angle",
+      "passed": true
+    },
+    {
+      "name": "negative delta cannot reverse drift",
+      "passed": true
+    },
+    {
+      "name": "walk also animates original sky",
+      "passed": true
+    },
+    {
+      "name": "flat sky stops drift",
+      "passed": true
+    },
+    {
+      "name": "procedural sky drifts too",
+      "passed": true
+    },
+    {
+      "name": "switching sky keeps drift without reset",
+      "passed": true
+    },
+    {
+      "name": "four blank supported sign anchors in Street",
+      "passed": true
+    },
+    {
+      "name": "four blank supported sign anchors in StreetWalk",
+      "passed": true
+    },
+    {
+      "name": "duplicate distant sign label removed",
+      "passed": true
+    },
+    {
+      "name": "no visible 3D sign text",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 18
+}

@@ -1,0 +1,47 @@
+{
+  "created_utc": "20261109T103036Z",
+  "source_commit": "135515fc25bec595b41494c3edbb44e7ed5c1ab3",
+  "tracked_runtime_changes": [
+    "godot/assets/fonts/AfterhoursUIHK.otf",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_preferences.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fighter_visual.gd",
+    "godot/scripts/combat/ui/ui_text.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 30,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_fighter_roster",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "c593ed23255169818c9f9df338a260d6b2fbb831e6c4b1f708d4029c6237fccd",
+      "seconds": 12.793,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_fighter_roster.gd"
+      ],
+      "report_written": true,
+      "passed": 30,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

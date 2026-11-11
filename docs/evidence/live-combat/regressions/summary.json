@@ -1,0 +1,199 @@
+{
+  "created_utc": "20261110T134357Z",
+  "source_commit": "baa6950861a2b13f737e281346f510927261dfb7",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/combat_rhythm.gd",
+    "godot/scripts/combat/demo_director.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/last_service/profiles.gd",
+    "godot/scripts/combat/rush_agent.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": false,
+  "passed": 256,
+  "failed": 4,
+  "cases": [
+    {
+      "name": "verify_charged_cannon",
+      "mode": "headless",
+      "exit_code": 1,
+      "harness_sha256": "d6f515c59afb2e8637ec29e4468bf893f47996cd38d3c9d5fa8c85e1b5e97aee",
+      "seconds": 2.422,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_charged_cannon.gd"
+      ],
+      "report_written": true,
+      "passed": 9,
+      "failed": 1,
+      "skipped": [],
+      "diagnostics": [
+        "ERROR: CANNON FAIL: new cannon does not end or reset the live duel"
+      ],
+      "engine_errors": [
+        "ERROR: CANNON FAIL: new cannon does not end or reset the live duel"
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_rush_arcade",
+      "mode": "headless",
+      "exit_code": 1,
+      "harness_sha256": "1bf5444e6ecfa367f06188e6062629f363f3d3768b40178bfbc29aadd8deca5b",
+      "seconds": 0.985,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_rush_arcade.gd"
+      ],
+      "report_written": true,
+      "passed": 18,
+      "failed": 3,
+      "skipped": [],
+      "diagnostics": [
+        "ERROR: RUSH ARCADE FAIL: holding one button earns contact within two seconds",
+        "ERROR: RUSH ARCADE FAIL: one-button chain actually hits with meteor",
+        "ERROR: RUSH ARCADE FAIL: beginner can finish a real round"
+      ],
+      "engine_errors": [
+        "ERROR: RUSH ARCADE FAIL: holding one button earns contact within two seconds",
+        "ERROR: RUSH ARCADE FAIL: one-button chain actually hits with meteor",
+        "ERROR: RUSH ARCADE FAIL: beginner can finish a real round"
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_friendly_defense",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "dde4d21c520176fc936cea54d29decd55b381fb5053d9d99c450675f2d4e4679",
+      "seconds": 0.803,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_friendly_defense.gd"
+      ],
+      "report_written": true,
+      "passed": 25,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_air_counter",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "9ed67036d0a5b130b895be9c5816edc5c745152739fd83f41480b1c0243fd37d",
+      "seconds": 8.491,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_air_counter.gd"
+      ],
+      "report_written": true,
+      "passed": 57,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_aerial_street",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "662d73cc8869abf3d57dbd496f727f6ee46413941b09477657ccd98fc6be438c",
+      "seconds": 6.117,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_aerial_street.gd"
+      ],
+      "report_written": true,
+      "passed": 54,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_combat",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "522f3c7daa81539a1d8466ef069a66f4c4bdfb7a05afb157f04fc4db7e5139fd",
+      "seconds": 2.594,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat.gd"
+      ],
+      "report_written": true,
+      "passed": 34,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_pressure_exchange",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "b4c6dbacab9cf2164308cb6cc5156b5c3177062313b1b3ba0054b73f69876e64",
+      "seconds": 4.905,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_pressure_exchange.gd"
+      ],
+      "report_written": true,
+      "passed": 59,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

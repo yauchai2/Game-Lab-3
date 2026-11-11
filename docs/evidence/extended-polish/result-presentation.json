@@ -1,0 +1,68 @@
+{
+  "checks": [
+    {
+      "name": "result 0 resets its own presentation clock",
+      "passed": true
+    },
+    {
+      "name": "result 0 keeps a brief initial impact flash",
+      "passed": true
+    },
+    {
+      "name": "result 0 clears the frozen simulation flash in the visual pose",
+      "passed": true
+    },
+    {
+      "name": "result 0 visual cleanup leaves the simulation snapshot intact",
+      "passed": true
+    },
+    {
+      "name": "result 0 actors settle onto the crossing",
+      "passed": true
+    },
+    {
+      "name": "result 1 resets its own presentation clock",
+      "passed": true
+    },
+    {
+      "name": "result 1 keeps a brief initial impact flash",
+      "passed": true
+    },
+    {
+      "name": "result 1 clears the frozen simulation flash in the visual pose",
+      "passed": true
+    },
+    {
+      "name": "result 1 visual cleanup leaves the simulation snapshot intact",
+      "passed": true
+    },
+    {
+      "name": "result 1 actors settle onto the crossing",
+      "passed": true
+    },
+    {
+      "name": "result -1 resets its own presentation clock",
+      "passed": true
+    },
+    {
+      "name": "result -1 keeps a brief initial impact flash",
+      "passed": true
+    },
+    {
+      "name": "result -1 clears the frozen simulation flash in the visual pose",
+      "passed": true
+    },
+    {
+      "name": "result -1 visual cleanup leaves the simulation snapshot intact",
+      "passed": true
+    },
+    {
+      "name": "result -1 actors settle onto the crossing",
+      "passed": true
+    }
+  ],
+  "display": "X11",
+  "failed": 0,
+  "method": "real KO/timeout transitions with a stale prior-round result clock and active hit flash; frozen simulation compared with settled visual poses",
+  "passed": 15
+}

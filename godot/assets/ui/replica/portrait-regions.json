@@ -1,0 +1,23 @@
+{
+  "regions": [
+    [
+      215,
+      1,
+      362,
+      723
+    ],
+    [
+      868,
+      10,
+      404,
+      713
+    ],
+    [
+      1571,
+      0,
+      438,
+      723
+    ]
+  ],
+  "method": "Read-only alpha>=16 inspection; AtlasTexture slicing of unchanged original PNG."
+}

@@ -1,0 +1,66 @@
+{
+  "assets": [
+    {
+      "path": "godot/assets/ui/replica/controls.png",
+      "sha256": "8788abf9aa4f3920b4f7a2ca6777eaa4944cfa64246d8001282aab0ebf80df3e",
+      "bytes": 83823
+    },
+    {
+      "path": "godot/assets/ui/replica/fighter-portraits.png",
+      "sha256": "ce435520cc464bcb0a2789272f3d8ad93ddb7ad4fa5a8e257038f9fefc76619c",
+      "bytes": 1000191
+    },
+    {
+      "path": "godot/assets/ui/replica/headphones.png",
+      "sha256": "f6ed28b7a3ad5269e230c9536aca43717120ddb45c9f0c0e1a53d052fafa2fc2",
+      "bytes": 13829
+    },
+    {
+      "path": "godot/assets/ui/replica/pause.png",
+      "sha256": "a654ad4c6de54feb3f5613c8916381858a3e4552f7325820a1e890b30d405e43",
+      "bytes": 14423
+    },
+    {
+      "path": "godot/assets/ui/replica/roster-backplate.png",
+      "sha256": "72ef28b8630c772c32b643fa45086dc8eec2b9282e06c78309c3e491f9fbd98c",
+      "bytes": 1869406
+    },
+    {
+      "path": "godot/assets/ui/replica/roster-reference.png",
+      "sha256": "05491e956ed7799d16995f94e5cd2ea865dbe110b2149b9acccac7acda65cbca",
+      "bytes": 2122554
+    },
+    {
+      "path": "godot/assets/ui/replica/title.png",
+      "sha256": "8b669019a3a9e9a67ca76da53ae07a5403e92abc406b023a4102b79ac9ba3249",
+      "bytes": 2404392
+    }
+  ],
+  "input_sources": [
+    "references/ui-jsr-2026-11-09/generated/01-main-menu-direction.png",
+    "references/ui-jsr-2026-11-09/generated/02-hud-direction.png",
+    "references/ui-jsr-2026-11-09/generated/03-roster-direction.png"
+  ],
+  "cropping_authorization": "Current user explicitly allowed crop tools. tools/crop_reference_ui.py copies title/roster and crops only fixed HUD art. No whole combat screenshot is used as a playable background.",
+  "generated": [
+    {
+      "path": "godot/assets/ui/replica/roster-backplate.png",
+      "id": "exec-a18b4974-aef0-4f29-b592-1b44d1794f8a",
+      "prompt": "backplate-prompt.txt"
+    },
+    {
+      "path": "godot/assets/ui/replica/fighter-portraits.png",
+      "id": "exec-83c96589-3fb5-4686-ab1d-bd12e155c823",
+      "prompt": "portraits-prompt.txt",
+      "method": "Original PNG unchanged; alpha-bbox AtlasTexture regions."
+    }
+  ],
+  "font": {
+    "path": "godot/assets/fonts/BarlowCondensed-BlackItalic.ttf",
+    "sha256": "e1ed5d7e50c6a4498454d40509ce2362384a2c7870df3418fdbd010f81dffad3",
+    "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/barlowcondensed/BarlowCondensed-BlackItalic.ttf",
+    "license": "SIL OFL 1.1",
+    "license_file": "godot/assets/fonts/LICENSE-BarlowCondensed.txt"
+  },
+  "explorations": "Early manual character masks were rejected after native review for rough paper chunks, archived, and are not loaded by the game."
+}

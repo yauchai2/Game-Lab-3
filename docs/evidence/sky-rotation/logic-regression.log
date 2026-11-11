@@ -1,0 +1,3 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SKY_VERIFIED {"checks":[{"check":"cloud_sky_enabled_by_default","passed":true},{"check":"whitebox_environment_unchanged","passed":true},{"check":"c_restores_flat_sky","passed":true},{"check":"sky_toggle_preserves_style_and_ambient_setting","passed":true},{"check":"sky_toggle_keeps_camera_and_controls","passed":true},{"check":"c_restores_clouds","passed":true},{"check":"material_toggle_keeps_sky","passed":true}],"display_driver":"headless","engine":"4.6.3-stable (official)","hardware_gpu_verified":false,"human_playtest":false,"passed":true}

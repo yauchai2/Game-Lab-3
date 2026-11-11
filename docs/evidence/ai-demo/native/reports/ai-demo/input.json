@@ -1,0 +1,161 @@
+{
+  "checks": [
+    {
+      "name": "F12 starts autonomous showcase",
+      "passed": true
+    },
+    {
+      "name": "demo has three visible native transport buttons",
+      "passed": true
+    },
+    {
+      "name": "demo hides manual air and clash choices",
+      "passed": true
+    },
+    {
+      "name": "gameplay keys cannot control either AI or change scenario",
+      "passed": true
+    },
+    {
+      "name": "Escape pauses agents and simulation",
+      "passed": true
+    },
+    {
+      "name": "paused transport buttons hidden",
+      "passed": true
+    },
+    {
+      "name": "resume continues original chapter",
+      "passed": true
+    },
+    {
+      "name": "N advances chapter and clears previous effects",
+      "passed": true
+    },
+    {
+      "name": "native Next uses same transition",
+      "passed": true
+    },
+    {
+      "name": "R restarts whole demo",
+      "passed": true
+    },
+    {
+      "name": "restart preserves original partner preference",
+      "passed": true
+    },
+    {
+      "name": "F2 can reduce demo effects",
+      "passed": true
+    },
+    {
+      "name": "settings opens over paused demo",
+      "passed": true
+    },
+    {
+      "name": "demo settings cannot change scripted partner",
+      "passed": true
+    },
+    {
+      "name": "native scene completes and loops all chapters",
+      "passed": true
+    },
+    {
+      "name": "KO goes through real result presentation",
+      "passed": true
+    },
+    {
+      "name": "native event dispatch includes air and ground exchanges",
+      "passed": true
+    },
+    {
+      "name": "effects remain bounded",
+      "passed": true
+    },
+    {
+      "name": "wev is retained as demo background music",
+      "passed": true
+    },
+    {
+      "name": "transport bounds zh(960, 540)",
+      "passed": true
+    },
+    {
+      "name": "transport bounds zh(1280, 720)",
+      "passed": true
+    },
+    {
+      "name": "transport bounds zh(1920, 1080)",
+      "passed": true
+    },
+    {
+      "name": "transport bounds en(960, 540)",
+      "passed": true
+    },
+    {
+      "name": "transport bounds en(1280, 720)",
+      "passed": true
+    },
+    {
+      "name": "transport bounds en(1920, 1080)",
+      "passed": true
+    },
+    {
+      "name": "F12 exits demo to title cleanly",
+      "passed": true
+    },
+    {
+      "name": "exit restores original partner preference",
+      "passed": true
+    },
+    {
+      "name": "normal match retains player control and ordinary AI",
+      "passed": true
+    },
+    {
+      "name": "title exposes a native demo entry",
+      "passed": true
+    },
+    {
+      "name": "pointer also starts showcase",
+      "passed": true
+    },
+    {
+      "name": "pointer Exit clears director",
+      "passed": true
+    }
+  ],
+  "events": {
+    "air_counter_choice": 3,
+    "air_counter_end": 3,
+    "air_counter_release": 2,
+    "air_counter_start": 3,
+    "air_counter_windup": 2,
+    "air_land": 26,
+    "air_parry_attempt": 3,
+    "block": 2,
+    "chase_arrive": 3,
+    "clash_end": 3,
+    "clash_start": 3,
+    "dash": 4,
+    "fast_fall": 2,
+    "ground_bounce": 1,
+    "guard_break": 1,
+    "hit": 38,
+    "homing_chase": 3,
+    "jump": 4,
+    "ko": 1,
+    "land": 8,
+    "parry": 2,
+    "rally_contact": 4,
+    "rally_end": 1,
+    "rally_release": 4,
+    "rally_windup": 4,
+    "swing": 62,
+    "throw_tech": 1,
+    "wall_bounce": 1,
+    "wall_tech": 1
+  },
+  "max_effects": 8,
+  "scope": "Native viewport key dispatch and real session/controller simulation, manually stepped; not a human or target GPU playtest."
+}

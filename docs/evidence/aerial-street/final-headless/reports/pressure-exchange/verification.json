@@ -1,0 +1,242 @@
+{
+  "checks": [
+    {
+      "name": "strict compile res://scripts/combat/pressure_exchange.gd",
+      "passed": true
+    },
+    {
+      "name": "strict compile res://scripts/combat/fight_simulation.gd",
+      "passed": true
+    },
+    {
+      "name": "strict compile res://scripts/combat/fight_session.gd",
+      "passed": true
+    },
+    {
+      "name": "strict compile res://scripts/combat/fight_hud.gd",
+      "passed": true
+    },
+    {
+      "name": "pressure begins in calm tier",
+      "passed": true
+    },
+    {
+      "name": "second tier begins at thirty",
+      "passed": true
+    },
+    {
+      "name": "third tier begins at sixty",
+      "passed": true
+    },
+    {
+      "name": "pressure is capped",
+      "passed": true
+    },
+    {
+      "name": "nearby quiet grace period keeps pressure",
+      "passed": true
+    },
+    {
+      "name": "quiet exchanges lose pressure",
+      "passed": true
+    },
+    {
+      "name": "separation starts faster pressure release",
+      "passed": true
+    },
+    {
+      "name": "pressure decay never goes negative",
+      "passed": true
+    },
+    {
+      "name": "low pressure heavy remains a normal eighteen damage hit",
+      "passed": true
+    },
+    {
+      "name": "perfect guard builds pressure without damage",
+      "passed": true
+    },
+    {
+      "name": "ordinary block builds pressure",
+      "passed": true
+    },
+    {
+      "name": "simultaneous jab and high pressure heavy treats side 0 fairly",
+      "passed": true
+    },
+    {
+      "name": "simultaneous jab and high pressure heavy treats side 1 fairly",
+      "passed": true
+    },
+    {
+      "name": "a simultaneous normal trade cannot unlock a clash halfway through resolution",
+      "passed": true
+    },
+    {
+      "name": "grounded high pressure heavy opens a single decision window",
+      "passed": true
+    },
+    {
+      "name": "opening clash defers damage",
+      "passed": true
+    },
+    {
+      "name": "clash freezes positions fighter states and round clock",
+      "passed": true
+    },
+    {
+      "name": "normal movement attacks and jump do not leak through clash",
+      "passed": true
+    },
+    {
+      "name": "first valid decision is locked for both players",
+      "passed": true
+    },
+    {
+      "name": "choices do not resolve early",
+      "passed": true
+    },
+    {
+      "name": "decision matrix press vs press",
+      "passed": true
+    },
+    {
+      "name": "decision matrix press vs turn",
+      "passed": true
+    },
+    {
+      "name": "decision matrix press vs slip",
+      "passed": true
+    },
+    {
+      "name": "decision matrix turn vs press",
+      "passed": true
+    },
+    {
+      "name": "decision matrix turn vs turn",
+      "passed": true
+    },
+    {
+      "name": "decision matrix turn vs slip",
+      "passed": true
+    },
+    {
+      "name": "decision matrix slip vs press",
+      "passed": true
+    },
+    {
+      "name": "decision matrix slip vs turn",
+      "passed": true
+    },
+    {
+      "name": "decision matrix slip vs slip",
+      "passed": true
+    },
+    {
+      "name": "resolution releases shared pressure and enforces cooldown",
+      "passed": true
+    },
+    {
+      "name": "double timeout separates safely without damage",
+      "passed": true
+    },
+    {
+      "name": "single timeout concedes rather than granting free guard",
+      "passed": true
+    },
+    {
+      "name": "clash damage is applied once and normal buffers stay clear",
+      "passed": true
+    },
+    {
+      "name": "cooldown prevents immediate repeated clashes",
+      "passed": true
+    },
+    {
+      "name": "airborne heavy does not open grounded clash",
+      "passed": true
+    },
+    {
+      "name": "stunned defenders are not forced into repeated decisions",
+      "passed": true
+    },
+    {
+      "name": "whiffs neither open clash nor build pressure",
+      "passed": true
+    },
+    {
+      "name": "AI commits to preselected visible intent without reading player choice",
+      "passed": true
+    },
+    {
+      "name": "successful slip creates distance and deals no damage",
+      "passed": true
+    },
+    {
+      "name": "round reset clears pressure choices cooldown and prior result",
+      "passed": true
+    },
+    {
+      "name": "lethal clash resolves a normal round",
+      "passed": true
+    },
+    {
+      "name": "lethal clash respects endless training",
+      "passed": true
+    },
+    {
+      "name": "slip cannot move fighters outside arena edges",
+      "passed": true
+    },
+    {
+      "name": "twenty thousand mixed AI ticks keep bounded fighters and pressure",
+      "passed": true
+    },
+    {
+      "name": "replaying identical commands preserves clash and fighter states",
+      "passed": true
+    },
+    {
+      "name": "ordinary mixed combat reaches high pressure clashes",
+      "passed": true
+    },
+    {
+      "name": "practice drill primes nearby third tier without autoattacking",
+      "passed": true
+    },
+    {
+      "name": "drill waits without losing pressure while instructions are read",
+      "passed": true
+    },
+    {
+      "name": "session opens held clash effect and no contact release",
+      "passed": true
+    },
+    {
+      "name": "rapid keys in one frame retain the first commitment",
+      "passed": true
+    },
+    {
+      "name": "pause freezes decision deadline and retains chosen action",
+      "passed": true
+    },
+    {
+      "name": "training standing partner teaches turn against press",
+      "passed": true
+    },
+    {
+      "name": "resolved clash clears held clash effect",
+      "passed": true
+    },
+    {
+      "name": "F8 drill can be repeated and clears pending VFX",
+      "passed": true
+    },
+    {
+      "name": "main menu clears active choice overlay",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 59
+}

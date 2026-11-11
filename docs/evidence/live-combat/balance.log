@@ -1,0 +1,7 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+AIR_CHOICES { "kick": 23, "escape": 5 } stale-hitstop steps 0
+DEMO_BALANCE [80, 63] / { "swing": 232, "hit/jab": 15, "hit/cross": 15, "hit/launcher": 28, "homing_chase": 28, "chase_arrive": 28, "hit/air_jab": 28, "hit/air_kick": 28, "air_parry_attempt": 28, "air_land": 71, "air_counter_start": 28, "air_counter_choice": 28, "air_counter_windup": 22, "air_counter_release": 22, "hit/air_counter": 15, "air_counter_end": 27, "block": 13, "guard_break": 9, "hit/heavy": 4, "break_finish": 16, "hit/overdrive": 9, "dash": 35, "parry": 19, "counter_success": 10, "wall_bounce": 2, "wall_tech": 2, "fast_fall": 7, "hit/special": 1 }
+BEGINNER 0 59 0 { "jab": 2, "cross": 3, "launcher": 3, "air_jab": 2, "air_kick": 1, "meteor": 1 } health 22 / 0
+BEGINNER 1 344 1 { "jab": 1, "cross": 1, "launcher": 1, "air_jab": 1, "air_kick": 1 } health 0 / 66
+BEGINNER 2 59 1 { "jab": 2, "cross": 1, "launcher": 1, "air_jab": 1, "air_kick": 1 } health 0 / 59

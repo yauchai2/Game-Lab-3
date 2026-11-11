@@ -1,0 +1,57 @@
+{
+  "checks": [
+    {
+      "name": "native early Shift earns a real parry",
+      "passed": false
+    },
+    {
+      "name": "parry toast tells player what to do next",
+      "passed": false
+    },
+    {
+      "name": "localized counter prompt is positive",
+      "passed": true
+    },
+    {
+      "name": "pause does not consume counter opportunity",
+      "passed": true
+    },
+    {
+      "name": "held Shift does not swallow the counter input",
+      "passed": false
+    },
+    {
+      "name": "actual contact earns success feedback",
+      "passed": false
+    },
+    {
+      "name": "ordinary block also gets positive feedback",
+      "passed": true
+    },
+    {
+      "name": "restart clears counter hint and buffered attack",
+      "passed": true
+    },
+    {
+      "name": "dojo offers earlier visible parry access",
+      "passed": true
+    },
+    {
+      "name": "early air input succeeds before damage",
+      "passed": false
+    },
+    {
+      "name": "air choice gets half a second",
+      "passed": true
+    },
+    {
+      "name": "reduced effects retain native choice feedback",
+      "passed": false
+    },
+    {
+      "name": "exit clears feedback opportunity",
+      "passed": true
+    }
+  ],
+  "scope": "Native key dispatch and actual simulation contacts; controlled fixtures and manual 60Hz stepping, not human playtest."
+}

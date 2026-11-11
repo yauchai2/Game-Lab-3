@@ -1,0 +1,21 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+IMPACT_CAPTURE jab_contact error=0
+IMPACT_CAPTURE jab_release error=0
+IMPACT_CAPTURE cross_contact error=0
+IMPACT_CAPTURE cross_release error=0
+IMPACT_CAPTURE finisher_contact error=0
+IMPACT_CAPTURE finisher_release error=0
+IMPACT_CAPTURE heavy_contact error=0
+IMPACT_CAPTURE heavy_release error=0
+IMPACT_CAPTURE launcher_contact error=0
+IMPACT_CAPTURE launcher_release error=0
+IMPACT_CAPTURE special_contact error=0
+IMPACT_CAPTURE special_release error=0
+IMPACT_CAPTURE heavy_whiff error=0
+IMPACT_CAPTURE launcher_mirrored_whiff error=0
+IMPACT_CAPTURE special_reduced_contact error=0
+IMPACT_CAPTURE special_reduced_release error=0

@@ -1,0 +1,52 @@
+{
+  "engine": "Godot 4.6.3",
+  "passed": 163,
+  "total": 163,
+  "suites": [
+    {
+      "report": "verification.json",
+      "passed": 33,
+      "total": 33
+    },
+    {
+      "report": "editor-warnings.json",
+      "passed": 3,
+      "total": 3
+    },
+    {
+      "report": "combat-regression.json",
+      "passed": 34,
+      "total": 34
+    },
+    {
+      "report": "backdrop-regression.json",
+      "passed": 30,
+      "total": 30
+    },
+    {
+      "report": "input-regression.json",
+      "passed": 11,
+      "total": 11
+    },
+    {
+      "report": "walk-regression.json",
+      "passed": 28,
+      "total": 28
+    },
+    {
+      "report": "dressing-regression.json",
+      "passed": 13,
+      "total": 13
+    },
+    {
+      "report": "flyby-regression.json",
+      "passed": 11,
+      "total": 11
+    }
+  ],
+  "scope": "Automated logic, resource, compiler and viewport checks; not human playtest or listening",
+  "remaining_warnings": [
+    "Legacy standalone dressing/flyby test AudioStreamWAV ObjectDB cleanup at exit",
+    "llvmpipe cannot set VSync; movie writer disk-space precaution; recording completed"
+  ]
+}

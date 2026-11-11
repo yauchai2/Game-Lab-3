@@ -1,0 +1,14 @@
+{
+  "source": "references/ui-jsr-2026-11-09/generated/01-main-menu-direction.png",
+  "capture": "title.png",
+  "size": [
+    1280,
+    720
+  ],
+  "method": "Mean absolute RGB difference against Pillow bilinear reference at the actual capture size; GPU sampling differences remain. No blanket pixel-perfect interaction/state claim.",
+  "mean_abs_rgb_0_255": [
+    1.3181532118055554,
+    1.2418077256944444,
+    0.8614246961805555
+  ]
+}

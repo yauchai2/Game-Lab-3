@@ -1,0 +1,8 @@
+{
+  "scene_base_commit": "f9cd82d",
+  "character": "godot/assets/CHAR_PLAYER_A01.glb",
+  "character_sha256": "12bb38212d67c8b28eeb6bbb64e3c354e2e9841d5fca51bdc1860e48691150ad",
+  "llb_reference_sha256": "2d3bd6fd75353857f6c8f75d63c6cba87ff9e0657043e84824c111e9ae0fe3f7",
+  "raw_character_changed": false,
+  "source_note": "Original GLB retained; all combat changes are wrapper scenes, scripts and external shaders."
+}

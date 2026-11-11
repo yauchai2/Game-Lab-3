@@ -1,0 +1,2524 @@
+{
+  "checks": [
+    {
+      "check": "Actor 0 real paid overdrive hits",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Actor 0 has five-stage signature choreography",
+      "detail": {
+        "aim": 38,
+        "drive": 72,
+        "gather": 0,
+        "open": 13,
+        "settle": 91
+      },
+      "pass": true
+    },
+    {
+      "check": "Actor 0 longer charge and slow time",
+      "detail": 1.2,
+      "pass": true
+    },
+    {
+      "check": "Actor 0 stronger roll and close lens",
+      "detail": {
+        "fov": 36.0,
+        "roll": 14.0000009587679
+      },
+      "pass": true
+    },
+    {
+      "check": "Actor 0 cinematic keeps both body bounds in view",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Actor 1 real paid overdrive hits",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Actor 1 has five-stage signature choreography",
+      "detail": {
+        "aim": 38,
+        "drive": 72,
+        "gather": 0,
+        "open": 13,
+        "settle": 91
+      },
+      "pass": true
+    },
+    {
+      "check": "Actor 1 longer charge and slow time",
+      "detail": 1.2,
+      "pass": true
+    },
+    {
+      "check": "Actor 1 stronger roll and close lens",
+      "detail": {
+        "fov": 36.0,
+        "roll": 14.0000001049943
+      },
+      "pass": true
+    },
+    {
+      "check": "Actor 1 cinematic keeps both body bounds in view",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Actor 2 real paid overdrive hits",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Actor 2 has five-stage signature choreography",
+      "detail": {
+        "aim": 38,
+        "drive": 75,
+        "gather": 0,
+        "open": 13,
+        "settle": 94
+      },
+      "pass": true
+    },
+    {
+      "check": "Actor 2 longer charge and slow time",
+      "detail": 1.25,
+      "pass": true
+    },
+    {
+      "check": "Actor 2 stronger roll and close lens",
+      "detail": {
+        "fov": 36.0,
+        "roll": 14.0000001049943
+      },
+      "pass": true
+    },
+    {
+      "check": "Actor 2 cinematic keeps both body bounds in view",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Actor 3 real paid overdrive hits",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Actor 3 has five-stage signature choreography",
+      "detail": {
+        "aim": 38,
+        "drive": 68,
+        "gather": 0,
+        "open": 13,
+        "settle": 87
+      },
+      "pass": true
+    },
+    {
+      "check": "Actor 3 longer charge and slow time",
+      "detail": 1.13333333333333,
+      "pass": true
+    },
+    {
+      "check": "Actor 3 stronger roll and close lens",
+      "detail": {
+        "fov": 36.0,
+        "roll": 13.9999975436733
+      },
+      "pass": true
+    },
+    {
+      "check": "Actor 3 cinematic keeps both body bounds in view",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Corner/air/separation camera grid keeps both bodies",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Armor hit does not cancel a still-active real charge",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Actual attack interruption cancels cinematic",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "True parry transfers cinematic ownership to defender",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Non-signature heavy effects retain six-degree limit",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pause freezes long choreography",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "F2 cancels long camera and signature",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Title resets camera",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "scope": "Four actual paid overdrive attacks; separate projection/interruption fixtures. Linux software Compatibility rendering, not target hardware performance.",
+  "timeline": [
+    {
+      "fov": 47.5302886962891,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 0.463018150309194,
+      "sim_tick": 1,
+      "wall_seconds": 0.0
+    },
+    {
+      "fov": 45.880615234375,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 0.893427376695161,
+      "sim_tick": 1,
+      "wall_seconds": 0.0166666666666667
+    },
+    {
+      "fov": 42.9999694824219,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 1.32389364583287,
+      "sim_tick": 1,
+      "wall_seconds": 0.0333333333333333
+    },
+    {
+      "fov": 40.2854995727539,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 1.78146552069177,
+      "sim_tick": 1,
+      "wall_seconds": 0.05
+    },
+    {
+      "fov": 38.870964050293,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 2.27787918725665,
+      "sim_tick": 1,
+      "wall_seconds": 0.0666666666666667
+    },
+    {
+      "fov": 37.5860061645508,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 2.8059813030324,
+      "sim_tick": 1,
+      "wall_seconds": 0.0833333333333333
+    },
+    {
+      "fov": 36.5925941467285,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 3.34221817410963,
+      "sim_tick": 1,
+      "wall_seconds": 0.1
+    },
+    {
+      "fov": 36.0526924133301,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 3.85471544206602,
+      "sim_tick": 1,
+      "wall_seconds": 0.116666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 4.32623840519149,
+      "sim_tick": 1,
+      "wall_seconds": 0.133333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 4.78828149263581,
+      "sim_tick": 1,
+      "wall_seconds": 0.15
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 5.24449287918941,
+      "sim_tick": 1,
+      "wall_seconds": 0.166666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 5.69431206245353,
+      "sim_tick": 1,
+      "wall_seconds": 0.183333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "gather",
+      "rate": 0.0,
+      "roll": 6.13719689616279,
+      "sim_tick": 1,
+      "wall_seconds": 0.2
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.0,
+      "roll": 6.57260096518359,
+      "sim_tick": 1,
+      "wall_seconds": 0.216666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 6.99999919872349,
+      "sim_tick": 1,
+      "wall_seconds": 0.233333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 7.41886866042416,
+      "sim_tick": 1,
+      "wall_seconds": 0.25
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 7.82870050119244,
+      "sim_tick": 1,
+      "wall_seconds": 0.266666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 8.22899654410573,
+      "sim_tick": 1,
+      "wall_seconds": 0.283333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 8.61926074667556,
+      "sim_tick": 2,
+      "wall_seconds": 0.3
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 8.99902950981203,
+      "sim_tick": 2,
+      "wall_seconds": 0.316666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 9.3678298429151,
+      "sim_tick": 2,
+      "wall_seconds": 0.333333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 9.72521522236779,
+      "sim_tick": 2,
+      "wall_seconds": 0.35
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 10.0707570537997,
+      "sim_tick": 2,
+      "wall_seconds": 0.366666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 10.404027596614,
+      "sim_tick": 3,
+      "wall_seconds": 0.383333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 10.7246196007815,
+      "sim_tick": 3,
+      "wall_seconds": 0.4
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 11.0321505757086,
+      "sim_tick": 3,
+      "wall_seconds": 0.416666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 11.3262371770282,
+      "sim_tick": 3,
+      "wall_seconds": 0.433333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 11.6065267962243,
+      "sim_tick": 4,
+      "wall_seconds": 0.45
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 11.8726728011967,
+      "sim_tick": 4,
+      "wall_seconds": 0.466666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 12.1243550268279,
+      "sim_tick": 4,
+      "wall_seconds": 0.483333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 12.3612661146053,
+      "sim_tick": 4,
+      "wall_seconds": 0.5
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 12.5831183428102,
+      "sim_tick": 4,
+      "wall_seconds": 0.516666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 12.7896376501019,
+      "sim_tick": 5,
+      "wall_seconds": 0.533333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 12.9805738808024,
+      "sim_tick": 5,
+      "wall_seconds": 0.55
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 13.1556982235742,
+      "sim_tick": 5,
+      "wall_seconds": 0.566666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 13.3147929661377,
+      "sim_tick": 5,
+      "wall_seconds": 0.583333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 13.457664301875,
+      "sim_tick": 6,
+      "wall_seconds": 0.6
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "open",
+      "rate": 0.22,
+      "roll": 13.5841389147362,
+      "sim_tick": 6,
+      "wall_seconds": 0.616666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.6940639792384,
+      "sim_tick": 6,
+      "wall_seconds": 0.633333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.7873088680137,
+      "sim_tick": 6,
+      "wall_seconds": 0.65
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.8637514914309,
+      "sim_tick": 6,
+      "wall_seconds": 0.666666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.9233064721251,
+      "sim_tick": 7,
+      "wall_seconds": 0.683333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.9658952629211,
+      "sim_tick": 7,
+      "wall_seconds": 0.7
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.9914717600419,
+      "sim_tick": 7,
+      "wall_seconds": 0.716666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 14.0000009587679,
+      "sim_tick": 7,
+      "wall_seconds": 0.733333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.9914734675892,
+      "sim_tick": 8,
+      "wall_seconds": 0.75
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.9658978242421,
+      "sim_tick": 8,
+      "wall_seconds": 0.766666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.9233073258988,
+      "sim_tick": 8,
+      "wall_seconds": 0.783333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.8637566140727,
+      "sim_tick": 8,
+      "wall_seconds": 0.8
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.787310575561,
+      "sim_tick": 8,
+      "wall_seconds": 0.816666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.6940682481066,
+      "sim_tick": 9,
+      "wall_seconds": 0.833333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.5841414760571,
+      "sim_tick": 9,
+      "wall_seconds": 0.85
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.4576600330068,
+      "sim_tick": 9,
+      "wall_seconds": 0.866666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.3147938199113,
+      "sim_tick": 9,
+      "wall_seconds": 0.883333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 13.1556965160269,
+      "sim_tick": 10,
+      "wall_seconds": 0.9
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 12.9805730270287,
+      "sim_tick": 10,
+      "wall_seconds": 0.916666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 12.7896402114229,
+      "sim_tick": 10,
+      "wall_seconds": 0.933333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 12.5831191965838,
+      "sim_tick": 10,
+      "wall_seconds": 0.95
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 12.361266968379,
+      "sim_tick": 10,
+      "wall_seconds": 0.966666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 0.22,
+      "roll": 12.1243541730543,
+      "sim_tick": 11,
+      "wall_seconds": 0.983333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 1.95,
+      "roll": 11.872671947423,
+      "sim_tick": 13,
+      "wall_seconds": 1.0
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 1.95,
+      "roll": 11.606525088677,
+      "sim_tick": 14,
+      "wall_seconds": 1.01666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 1.95,
+      "roll": 11.3262397383491,
+      "sim_tick": 16,
+      "wall_seconds": 1.03333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 1.95,
+      "roll": 11.0321514294822,
+      "sim_tick": 17,
+      "wall_seconds": 1.05
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 1.95,
+      "roll": 10.7246221621024,
+      "sim_tick": 19,
+      "wall_seconds": 1.06666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 1.95,
+      "roll": 10.404027596614,
+      "sim_tick": 20,
+      "wall_seconds": 1.08333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 1.95,
+      "roll": 10.070758761347,
+      "sim_tick": 22,
+      "wall_seconds": 1.1
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 1.95,
+      "roll": 9.72521778368872,
+      "sim_tick": 23,
+      "wall_seconds": 1.11666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 1.95,
+      "roll": 9.36782813536781,
+      "sim_tick": 25,
+      "wall_seconds": 1.13333333333333
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 1.95,
+      "roll": 8.99902694849109,
+      "sim_tick": 26,
+      "wall_seconds": 1.15
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 1.95,
+      "roll": 8.61926245422286,
+      "sim_tick": 28,
+      "wall_seconds": 1.16666666666667
+    },
+    {
+      "fov": 36.0,
+      "health": 100,
+      "phase": "aim",
+      "rate": 1.95,
+      "roll": 8.22899312901114,
+      "sim_tick": 29,
+      "wall_seconds": 1.18333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.0,
+      "roll": 0.861852799544367,
+      "sim_tick": 31,
+      "wall_seconds": 1.2
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.0,
+      "roll": 1.72043607291041,
+      "sim_tick": 31,
+      "wall_seconds": 1.21666666666667
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.0,
+      "roll": 2.57249342068963,
+      "sim_tick": 31,
+      "wall_seconds": 1.23333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.0,
+      "roll": 3.4147923491356,
+      "sim_tick": 31,
+      "wall_seconds": 1.25
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.0,
+      "roll": 4.24413867759429,
+      "sim_tick": 31,
+      "wall_seconds": 1.26666666666667
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.22,
+      "roll": 5.05738368885832,
+      "sim_tick": 31,
+      "wall_seconds": 1.28333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.22,
+      "roll": 5.85144568695155,
+      "sim_tick": 31,
+      "wall_seconds": 1.3
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.22,
+      "roll": 6.6233108509027,
+      "sim_tick": 31,
+      "wall_seconds": 1.31666666666667
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.22,
+      "roll": 7.37004902955785,
+      "sim_tick": 31,
+      "wall_seconds": 1.33333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.22,
+      "roll": 8.0888342321479,
+      "sim_tick": 32,
+      "wall_seconds": 1.35
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.22,
+      "roll": 8.77693310234437,
+      "sim_tick": 32,
+      "wall_seconds": 1.36666666666667
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.22,
+      "roll": 9.43173906920526,
+      "sim_tick": 32,
+      "wall_seconds": 1.38333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.22,
+      "roll": 10.0507667976463,
+      "sim_tick": 32,
+      "wall_seconds": 1.4
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 0.22,
+      "roll": 10.6316684101404,
+      "sim_tick": 32,
+      "wall_seconds": 1.41666666666667
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 1.85,
+      "roll": 11.1722428782274,
+      "sim_tick": 34,
+      "wall_seconds": 1.43333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 1.85,
+      "roll": 11.6704326074199,
+      "sim_tick": 35,
+      "wall_seconds": 1.45
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 1.85,
+      "roll": 12.1243558806016,
+      "sim_tick": 37,
+      "wall_seconds": 1.46666666666667
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 1.85,
+      "roll": 12.5322872212333,
+      "sim_tick": 38,
+      "wall_seconds": 1.48333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "drive",
+      "rate": 1.85,
+      "roll": 12.8926770301471,
+      "sim_tick": 40,
+      "wall_seconds": 1.5
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.85,
+      "roll": 13.20416183083,
+      "sim_tick": 41,
+      "wall_seconds": 1.51666666666667
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.85,
+      "roll": 13.4655591467819,
+      "sim_tick": 43,
+      "wall_seconds": 1.53333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.85,
+      "roll": 13.6758768930259,
+      "sim_tick": 44,
+      "wall_seconds": 1.55
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.85,
+      "roll": 13.8343176449763,
+      "sim_tick": 46,
+      "wall_seconds": 1.56666666666667
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.85,
+      "roll": 13.9402777846653,
+      "sim_tick": 47,
+      "wall_seconds": 1.58333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.85,
+      "roll": 13.993361161121,
+      "sim_tick": 49,
+      "wall_seconds": 1.6
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.85,
+      "roll": 13.9933603073474,
+      "sim_tick": 50,
+      "wall_seconds": 1.61666666666667
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.85,
+      "roll": 13.9402777846653,
+      "sim_tick": 52,
+      "wall_seconds": 1.63333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.85,
+      "roll": 13.8343176449763,
+      "sim_tick": 53,
+      "wall_seconds": 1.65
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.85,
+      "roll": 13.6758760392523,
+      "sim_tick": 55,
+      "wall_seconds": 1.66666666666667
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.85,
+      "roll": 13.4655582930083,
+      "sim_tick": 56,
+      "wall_seconds": 1.68333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.85,
+      "roll": 13.2041626846037,
+      "sim_tick": 58,
+      "wall_seconds": 1.7
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 12.8926761763735,
+      "sim_tick": 59,
+      "wall_seconds": 1.71666666666667
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 12.5322880750069,
+      "sim_tick": 60,
+      "wall_seconds": 1.73333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 12.1243592956961,
+      "sim_tick": 61,
+      "wall_seconds": 1.75
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 11.6704326074199,
+      "sim_tick": 62,
+      "wall_seconds": 1.76666666666667
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 11.1722411706801,
+      "sim_tick": 63,
+      "wall_seconds": 1.78333333333333
+    },
+    {
+      "fov": 41.0,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 10.631669263914,
+      "sim_tick": 64,
+      "wall_seconds": 1.8
+    },
+    {
+      "fov": 41.0020446777344,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 10.0504047976203,
+      "sim_tick": 65,
+      "wall_seconds": 1.81666666666667
+    },
+    {
+      "fov": 41.0698738098145,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 9.41888892205553,
+      "sim_tick": 66,
+      "wall_seconds": 1.83333333333333
+    },
+    {
+      "fov": 41.2222213745117,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 8.73597672676003,
+      "sim_tick": 67,
+      "wall_seconds": 1.85
+    },
+    {
+      "fov": 41.4434432983398,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 8.00949475474903,
+      "sim_tick": 68,
+      "wall_seconds": 1.86666666666667
+    },
+    {
+      "fov": 41.7178802490234,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 7.24936556333925,
+      "sim_tick": 69,
+      "wall_seconds": 1.88333333333333
+    },
+    {
+      "fov": 42.0298843383789,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 6.46631383018808,
+      "sim_tick": 70,
+      "wall_seconds": 1.9
+    },
+    {
+      "fov": 42.3638038635254,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 5.67047982489206,
+      "sim_tick": 71,
+      "wall_seconds": 1.91666666666667
+    },
+    {
+      "fov": 42.7039833068848,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 4.86992274378498,
+      "sim_tick": 72,
+      "wall_seconds": 1.93333333333333
+    },
+    {
+      "fov": 43.0347709655762,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 4.07022157075826,
+      "sim_tick": 73,
+      "wall_seconds": 1.95
+    },
+    {
+      "fov": 43.3405113220215,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 3.28004445619889,
+      "sim_tick": 74,
+      "wall_seconds": 1.96666666666667
+    },
+    {
+      "fov": 43.7641677856445,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 2.47930936328656,
+      "sim_tick": 75,
+      "wall_seconds": 1.98333333333333
+    },
+    {
+      "fov": 44.3108177185059,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 1.67130342728104,
+      "sim_tick": 76,
+      "wall_seconds": 2.0
+    },
+    {
+      "fov": 44.9120674133301,
+      "health": 62,
+      "phase": "settle",
+      "rate": 1.0,
+      "roll": 0.847773378426591,
+      "sim_tick": 77,
+      "wall_seconds": 2.01666666666667
+    },
+    {
+      "fov": 45.4697456359863,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 78,
+      "wall_seconds": 2.03333333333333
+    },
+    {
+      "fov": 45.9284019470215,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 79,
+      "wall_seconds": 2.05
+    },
+    {
+      "fov": 46.3039207458496,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 80,
+      "wall_seconds": 2.06666666666667
+    },
+    {
+      "fov": 46.6113662719727,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 81,
+      "wall_seconds": 2.08333333333333
+    },
+    {
+      "fov": 46.8630828857422,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 82,
+      "wall_seconds": 2.1
+    },
+    {
+      "fov": 47.0691719055176,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 83,
+      "wall_seconds": 2.11666666666667
+    },
+    {
+      "fov": 47.2379035949707,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 84,
+      "wall_seconds": 2.13333333333333
+    },
+    {
+      "fov": 47.376049041748,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 85,
+      "wall_seconds": 2.15
+    },
+    {
+      "fov": 47.4891510009766,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 86,
+      "wall_seconds": 2.16666666666667
+    },
+    {
+      "fov": 47.5817527770996,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 87,
+      "wall_seconds": 2.18333333333333
+    },
+    {
+      "fov": 47.6575698852539,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 88,
+      "wall_seconds": 2.2
+    },
+    {
+      "fov": 47.7196426391602,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 89,
+      "wall_seconds": 2.21666666666667
+    },
+    {
+      "fov": 47.7704620361328,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 90,
+      "wall_seconds": 2.23333333333333
+    },
+    {
+      "fov": 47.812068939209,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 91,
+      "wall_seconds": 2.25
+    },
+    {
+      "fov": 47.846134185791,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 92,
+      "wall_seconds": 2.26666666666667
+    },
+    {
+      "fov": 47.8740234375,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 93,
+      "wall_seconds": 2.28333333333333
+    },
+    {
+      "fov": 47.896858215332,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 94,
+      "wall_seconds": 2.3
+    },
+    {
+      "fov": 47.9155540466309,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 95,
+      "wall_seconds": 2.31666666666667
+    },
+    {
+      "fov": 47.9308624267578,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 96,
+      "wall_seconds": 2.33333333333333
+    },
+    {
+      "fov": 47.9433937072754,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 97,
+      "wall_seconds": 2.35
+    },
+    {
+      "fov": 47.9536552429199,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 98,
+      "wall_seconds": 2.36666666666667
+    },
+    {
+      "fov": 47.9620552062988,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 99,
+      "wall_seconds": 2.38333333333333
+    },
+    {
+      "fov": 47.9689331054688,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 100,
+      "wall_seconds": 2.4
+    },
+    {
+      "fov": 47.9745635986328,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 101,
+      "wall_seconds": 2.41666666666667
+    },
+    {
+      "fov": 47.979175567627,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 102,
+      "wall_seconds": 2.43333333333333
+    },
+    {
+      "fov": 47.9829521179199,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 103,
+      "wall_seconds": 2.45
+    },
+    {
+      "fov": 47.9860420227051,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 104,
+      "wall_seconds": 2.46666666666667
+    },
+    {
+      "fov": 47.9885711669922,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 105,
+      "wall_seconds": 2.48333333333333
+    },
+    {
+      "fov": 47.9906425476074,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 106,
+      "wall_seconds": 2.5
+    },
+    {
+      "fov": 47.9923400878906,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 107,
+      "wall_seconds": 2.51666666666667
+    },
+    {
+      "fov": 47.9937286376953,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 108,
+      "wall_seconds": 2.53333333333333
+    },
+    {
+      "fov": 47.9948654174805,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 109,
+      "wall_seconds": 2.55
+    },
+    {
+      "fov": 47.9957962036133,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 110,
+      "wall_seconds": 2.56666666666667
+    },
+    {
+      "fov": 47.9965591430664,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 111,
+      "wall_seconds": 2.58333333333333
+    },
+    {
+      "fov": 47.997184753418,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 112,
+      "wall_seconds": 2.6
+    },
+    {
+      "fov": 47.9976959228516,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 113,
+      "wall_seconds": 2.61666666666667
+    },
+    {
+      "fov": 47.9981117248535,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 114,
+      "wall_seconds": 2.63333333333333
+    },
+    {
+      "fov": 47.9984550476074,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 115,
+      "wall_seconds": 2.65
+    },
+    {
+      "fov": 47.9987335205078,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 116,
+      "wall_seconds": 2.66666666666667
+    },
+    {
+      "fov": 47.9989624023438,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 117,
+      "wall_seconds": 2.68333333333333
+    },
+    {
+      "fov": 47.9991493225098,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 118,
+      "wall_seconds": 2.7
+    },
+    {
+      "fov": 47.9993019104004,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 119,
+      "wall_seconds": 2.71666666666667
+    },
+    {
+      "fov": 47.9994277954102,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 120,
+      "wall_seconds": 2.73333333333333
+    },
+    {
+      "fov": 47.9995307922363,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 121,
+      "wall_seconds": 2.75
+    },
+    {
+      "fov": 47.9996147155762,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 122,
+      "wall_seconds": 2.76666666666667
+    },
+    {
+      "fov": 47.999683380127,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 123,
+      "wall_seconds": 2.78333333333333
+    },
+    {
+      "fov": 47.9997406005859,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 124,
+      "wall_seconds": 2.8
+    },
+    {
+      "fov": 47.9997863769531,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 125,
+      "wall_seconds": 2.81666666666667
+    },
+    {
+      "fov": 47.9998245239258,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 126,
+      "wall_seconds": 2.83333333333333
+    },
+    {
+      "fov": 47.9998550415039,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 127,
+      "wall_seconds": 2.85
+    },
+    {
+      "fov": 47.9998817443848,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 128,
+      "wall_seconds": 2.86666666666667
+    },
+    {
+      "fov": 47.9999046325684,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 129,
+      "wall_seconds": 2.88333333333333
+    },
+    {
+      "fov": 47.9999237060547,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 130,
+      "wall_seconds": 2.9
+    },
+    {
+      "fov": 47.9999389648438,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 131,
+      "wall_seconds": 2.91666666666667
+    },
+    {
+      "fov": 47.9999504089355,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 132,
+      "wall_seconds": 2.93333333333333
+    },
+    {
+      "fov": 47.9999580383301,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 133,
+      "wall_seconds": 2.95
+    },
+    {
+      "fov": 47.9999656677246,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 134,
+      "wall_seconds": 2.96666666666667
+    },
+    {
+      "fov": 47.9999732971191,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 135,
+      "wall_seconds": 2.98333333333333
+    },
+    {
+      "fov": 47.9999771118164,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 136,
+      "wall_seconds": 3.0
+    },
+    {
+      "fov": 47.9999809265137,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 137,
+      "wall_seconds": 3.01666666666667
+    },
+    {
+      "fov": 47.9999847412109,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 138,
+      "wall_seconds": 3.03333333333333
+    },
+    {
+      "fov": 47.9999885559082,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 139,
+      "wall_seconds": 3.05
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 140,
+      "wall_seconds": 3.06666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 141,
+      "wall_seconds": 3.08333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 142,
+      "wall_seconds": 3.1
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 143,
+      "wall_seconds": 3.11666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 144,
+      "wall_seconds": 3.13333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 145,
+      "wall_seconds": 3.15
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 146,
+      "wall_seconds": 3.16666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 147,
+      "wall_seconds": 3.18333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 148,
+      "wall_seconds": 3.2
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 149,
+      "wall_seconds": 3.21666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 150,
+      "wall_seconds": 3.23333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 151,
+      "wall_seconds": 3.25
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 152,
+      "wall_seconds": 3.26666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 153,
+      "wall_seconds": 3.28333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 154,
+      "wall_seconds": 3.3
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 155,
+      "wall_seconds": 3.31666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 156,
+      "wall_seconds": 3.33333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 157,
+      "wall_seconds": 3.35
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 158,
+      "wall_seconds": 3.36666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 159,
+      "wall_seconds": 3.38333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 160,
+      "wall_seconds": 3.4
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 161,
+      "wall_seconds": 3.41666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 162,
+      "wall_seconds": 3.43333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 163,
+      "wall_seconds": 3.45
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 164,
+      "wall_seconds": 3.46666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 165,
+      "wall_seconds": 3.48333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 166,
+      "wall_seconds": 3.5
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 167,
+      "wall_seconds": 3.51666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 168,
+      "wall_seconds": 3.53333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 169,
+      "wall_seconds": 3.55
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 170,
+      "wall_seconds": 3.56666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 171,
+      "wall_seconds": 3.58333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 172,
+      "wall_seconds": 3.6
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 173,
+      "wall_seconds": 3.61666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 174,
+      "wall_seconds": 3.63333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 175,
+      "wall_seconds": 3.65
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 176,
+      "wall_seconds": 3.66666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 177,
+      "wall_seconds": 3.68333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 178,
+      "wall_seconds": 3.7
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 179,
+      "wall_seconds": 3.71666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 180,
+      "wall_seconds": 3.73333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 181,
+      "wall_seconds": 3.75
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 182,
+      "wall_seconds": 3.76666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 183,
+      "wall_seconds": 3.78333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 184,
+      "wall_seconds": 3.8
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 185,
+      "wall_seconds": 3.81666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 186,
+      "wall_seconds": 3.83333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 187,
+      "wall_seconds": 3.85
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 188,
+      "wall_seconds": 3.86666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 189,
+      "wall_seconds": 3.88333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 190,
+      "wall_seconds": 3.9
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 191,
+      "wall_seconds": 3.91666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 192,
+      "wall_seconds": 3.93333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 193,
+      "wall_seconds": 3.95
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 194,
+      "wall_seconds": 3.96666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 195,
+      "wall_seconds": 3.98333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 196,
+      "wall_seconds": 4.0
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 197,
+      "wall_seconds": 4.01666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 198,
+      "wall_seconds": 4.03333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 199,
+      "wall_seconds": 4.05
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 200,
+      "wall_seconds": 4.06666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 201,
+      "wall_seconds": 4.08333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 202,
+      "wall_seconds": 4.1
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 203,
+      "wall_seconds": 4.11666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 204,
+      "wall_seconds": 4.13333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 205,
+      "wall_seconds": 4.15
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 206,
+      "wall_seconds": 4.16666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 207,
+      "wall_seconds": 4.18333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 208,
+      "wall_seconds": 4.2
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 209,
+      "wall_seconds": 4.21666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 210,
+      "wall_seconds": 4.23333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 211,
+      "wall_seconds": 4.25
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 212,
+      "wall_seconds": 4.26666666666667
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 213,
+      "wall_seconds": 4.28333333333333
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 214,
+      "wall_seconds": 4.3
+    },
+    {
+      "fov": 47.9999923706055,
+      "health": 62,
+      "phase": "",
+      "rate": 1.0,
+      "roll": 0.0,
+      "sim_tick": 215,
+      "wall_seconds": 4.31666666666667
+    }
+  ]
+}

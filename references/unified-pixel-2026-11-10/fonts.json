@@ -1,0 +1,20 @@
+[
+  {
+    "font": "RadioPixelDisplay",
+    "source": "BarlowCondensed-BlackItalic.ttf",
+    "source_sha256": "e1ed5d7e50c6a4498454d40509ce2362384a2c7870df3418fdbd010f81dffad3",
+    "bitmap_size": 24,
+    "characters": 103,
+    "atlas_sha256": "2e577d74ae393131b980d07349df8d9fdacffefd9a7c47174ddacf5fd0bc4c54",
+    "derivation": "Binary-alpha bitmap rendering of licensed bundled typeface. Display preserves the heavy italic radio lettering; custom AFTERHOURS logo remains reference artwork."
+  },
+  {
+    "font": "RadioPixelBody",
+    "source": "DejaVuSansCondensed-Bold.ttf",
+    "source_sha256": "21f02ebcea75529d3ed9d26e089cd1b9c59a4b784119ba3a96e9bc83cf755ec7",
+    "bitmap_size": 16,
+    "characters": 103,
+    "atlas_sha256": "9d275f533fbadd1adcee8aee179ab5c05470278ebee8b0a016d26c3e7ea4b491",
+    "derivation": "Binary-alpha bitmap rendering of licensed bundled typeface. Display preserves the heavy italic radio lettering; custom AFTERHOURS logo remains reference artwork."
+  }
+]

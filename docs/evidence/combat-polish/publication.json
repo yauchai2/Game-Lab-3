@@ -1,0 +1,10 @@
+{
+  "url": "https://yauchai2.github.io/Game-Lab-3/",
+  "status": "built",
+  "pages_commit": "2908503295c24b918b293b463ec962797a7ccb06",
+  "game_source_commit": "e2c7e10468329badbeb71aebf3a237e13cf0ae1e",
+  "source_dirty": false,
+  "bytes": 18697565,
+  "browser_report": "final-browser/browser.json",
+  "http_report": "public-http.json"
+}

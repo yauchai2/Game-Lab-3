@@ -1,0 +1,32 @@
+{
+  "scope": "Two explicitly configured fixtures, identical K-at-step-0 / E-at-step-8 intended inputs, ordinary rules. No human or free-AI claim.",
+  "segments": [
+    {
+      "events": {
+        "air_land": 1,
+        "hit": 1,
+        "swing": 1
+      },
+      "fps": 15,
+      "frames": 45,
+      "silent": true,
+      "virtual_wall_seconds": 3,
+      "window": false
+    },
+    {
+      "events": {
+        "air_land": 1,
+        "dash": 2,
+        "hit": 1,
+        "surge_decision_end": 1,
+        "surge_decision_start": 1,
+        "swing": 1
+      },
+      "fps": 15,
+      "frames": 45,
+      "silent": true,
+      "virtual_wall_seconds": 3,
+      "window": true
+    }
+  ]
+}

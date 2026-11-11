@@ -1,0 +1,153 @@
+{
+  "checks": [
+    {
+      "check": "Lab profile enabled with bounded FX",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Whole viewport is 640x360",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Environment styled before static batching",
+      "detail": {
+        "batches": 21,
+        "primitive": "unit BoxMesh",
+        "source_boxes": 219,
+        "source_nodes_preserved": true,
+        "walk_material_comparison_unmodified": true
+      },
+      "pass": true
+    },
+    {
+      "check": "Normal actors retain textured materials",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "parry owns a brief poster stage",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "parry restores world and actor texture",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "charge owns a brief poster stage",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "charge restores world and actor texture",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "release owns a brief poster stage",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "release restores world and actor texture",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pause freezes director",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "F2 clears poster and silhouette",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Title clears stage owner",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "KO owns the winner and cannot be replaced by parry",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Recovery prevents immediate next full-screen",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lab preferences create their own directory",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Free AI stays alive and both sides land hits",
+      "detail": [
+        19,
+        32
+      ],
+      "pass": true
+    },
+    {
+      "check": "Strong poster duty stays below 20 percent",
+      "detail": 0.0744444444444444,
+      "pass": true
+    },
+    {
+      "check": "Effect pool bound",
+      "detail": 10,
+      "pass": true
+    },
+    {
+      "check": "Camera roll bound",
+      "detail": 6.00000016696521,
+      "pass": true
+    },
+    {
+      "check": "Material retirement queue drained",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "demo": {
+    "accepted": 17,
+    "events": {
+      "air_counter_choice": 5,
+      "air_counter_end": 5,
+      "air_counter_release": 5,
+      "air_counter_start": 5,
+      "air_counter_windup": 5,
+      "air_escape": 1,
+      "air_land": 24,
+      "air_parry_attempt": 5,
+      "break_finish": 6,
+      "chase_arrive": 8,
+      "dash": 4,
+      "fast_fall": 3,
+      "ground_bounce": 2,
+      "hit": 51,
+      "homing_chase": 8,
+      "swing": 62,
+      "wall_bounce": 2,
+      "wall_tech": 4
+    },
+    "modes": {
+      "BREAK": 60,
+      "CHARGE": 81,
+      "PARRY": 85,
+      "RELEASE": 66
+    },
+    "poster_frames": 134,
+    "simulation_tick": 1699,
+    "suppressed": 21,
+    "wall_steps": 1800
+  },
+  "engine": "4.7.2-stable (official)",
+  "scope": "Linux Compatibility renders; state fixtures for neutral/parry/charge/release, seeded real AI for 1800 wall steps; not target Mac performance or human playtest."
+}

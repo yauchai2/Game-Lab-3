@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-09",
+  "generator": "image_gen.imagegen",
+  "scope": "Two original runtime VFX atlases, PNG originals unchanged; engine animates geometry/staged scales, not GIF or hand-authored flipbook.",
+  "outputs": [
+    {
+      "path": "godot/assets/vfx/street_actions.png",
+      "prompt": "actions-prompt.txt",
+      "original_id": "exec-1ded6977-8192-4038-9ed4-2b1c7a0d27c5",
+      "grid": [
+        4,
+        4
+      ],
+      "sha256": "23bc2c316211b357ec893c4ac72ada873614344b5279c3b02a223674aa419cbc"
+    },
+    {
+      "path": "godot/assets/vfx/fighter_signatures.png",
+      "prompt": "alpha-cleanup-prompt.txt",
+      "original_id": "exec-e4890173-f251-4633-aa17-ba3ad587a93c",
+      "grid": [
+        4,
+        2
+      ],
+      "parent_prompt": "signatures-prompt.txt",
+      "superseded_parent_id": "exec-16ac273f-863c-4e2a-b5ba-4e3fa2fe618a",
+      "superseded_reason": "Partially opaque white fog background; corrected by ImageGen edit.",
+      "sha256": "e508181f68f5fc0988dd02009fc42739b3d356f3ed4ca371a8ecd091398482c7"
+    }
+  ]
+}

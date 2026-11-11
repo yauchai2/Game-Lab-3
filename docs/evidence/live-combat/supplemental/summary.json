@@ -1,0 +1,34 @@
+[
+  {
+    "name": "verify_first_minute",
+    "passed": 63,
+    "total": 63,
+    "exit_code": 0,
+    "engine_errors": [],
+    "success": true
+  },
+  {
+    "name": "verify_surge_window",
+    "passed": 46,
+    "total": 46,
+    "exit_code": 0,
+    "engine_errors": [],
+    "success": true
+  },
+  {
+    "name": "verify_combat_escalation",
+    "passed": 30,
+    "total": 30,
+    "exit_code": 0,
+    "engine_errors": [],
+    "success": true
+  },
+  {
+    "name": "verify_last_service_rules",
+    "passed": 46,
+    "total": 46,
+    "exit_code": 0,
+    "engine_errors": [],
+    "success": true
+  }
+]

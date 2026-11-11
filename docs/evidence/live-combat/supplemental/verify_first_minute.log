@@ -1,0 +1,65 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+FIRST_MINUTE character 0 lesson 0 completes only with real actions true
+FIRST_MINUTE character 0 lesson 0 cannot complete on a whiff true
+FIRST_MINUTE character 0 lesson 1 completes only with real actions true
+FIRST_MINUTE character 0 lesson 1 cannot complete on a whiff true
+FIRST_MINUTE character 0 lesson 2 completes only with real actions true
+FIRST_MINUTE character 0 lesson 2 cannot complete on a whiff true
+FIRST_MINUTE character 0 lesson 3 completes only with real actions true
+FIRST_MINUTE character 0 lesson 3 cannot complete on a whiff true
+FIRST_MINUTE character 1 lesson 0 completes only with real actions true
+FIRST_MINUTE character 1 lesson 0 cannot complete on a whiff true
+FIRST_MINUTE character 1 lesson 1 completes only with real actions true
+FIRST_MINUTE character 1 lesson 1 cannot complete on a whiff true
+FIRST_MINUTE character 1 lesson 2 completes only with real actions true
+FIRST_MINUTE character 1 lesson 2 cannot complete on a whiff true
+FIRST_MINUTE character 1 lesson 3 completes only with real actions true
+FIRST_MINUTE character 1 lesson 3 cannot complete on a whiff true
+FIRST_MINUTE character 2 lesson 0 completes only with real actions true
+FIRST_MINUTE character 2 lesson 0 cannot complete on a whiff true
+FIRST_MINUTE character 2 lesson 1 completes only with real actions true
+FIRST_MINUTE character 2 lesson 1 cannot complete on a whiff true
+FIRST_MINUTE character 2 lesson 2 completes only with real actions true
+FIRST_MINUTE character 2 lesson 2 cannot complete on a whiff true
+FIRST_MINUTE character 2 lesson 3 completes only with real actions true
+FIRST_MINUTE character 2 lesson 3 cannot complete on a whiff true
+FIRST_MINUTE character 3 lesson 0 completes only with real actions true
+FIRST_MINUTE character 3 lesson 0 cannot complete on a whiff true
+FIRST_MINUTE character 3 lesson 1 completes only with real actions true
+FIRST_MINUTE character 3 lesson 1 cannot complete on a whiff true
+FIRST_MINUTE character 3 lesson 2 completes only with real actions true
+FIRST_MINUTE character 3 lesson 2 cannot complete on a whiff true
+FIRST_MINUTE character 3 lesson 3 completes only with real actions true
+FIRST_MINUTE character 3 lesson 3 cannot complete on a whiff true
+FIRST_MINUTE whiff cannot pass combo and gives distance feedback true
+FIRST_MINUTE low energy cannot pass burst lesson true
+FIRST_MINUTE paid startup alone is not success true
+FIRST_MINUTE ordinary block alone never passes counter lesson true
+FIRST_MINUTE holding guard gets a release-and-tap timing hint true
+FIRST_MINUTE blocked attacks do not count as combo success true
+FIRST_MINUTE startup counter hit cannot replace parry counter objective true
+FIRST_MINUTE real parry alone never claims completed counter true
+FIRST_MINUTE expired counter opportunity does not keep a false ready cue true
+FIRST_MINUTE real launcher alone cannot pass air lesson true
+FIRST_MINUTE expired chase opportunity asks for a fresh launcher true
+FIRST_MINUTE windup cue never promises guard during player stun true
+FIRST_MINUTE companion is deterministic and never edits fighter state true
+FIRST_MINUTE C enters explicit fixture without experimental window true
+FIRST_MINUTE ready screen waits for deliberate start without queued attacks true
+FIRST_MINUTE native begin button starts current lesson true
+FIRST_MINUTE session route completes actual combo true
+FIRST_MINUTE key echo cannot skip lesson true
+FIRST_MINUTE Enter continues and resets explicit next fixture true
+FIRST_MINUTE session route completes real parry counter true
+FIRST_MINUTE Esc preserves objective, pending and clocks true
+FIRST_MINUTE session route completes paid chase and real air hit true
+FIRST_MINUTE F2 retains final paid-hit objective true
+FIRST_MINUTE tutorial never awards XP or changes loadout true
+FIRST_MINUTE retry keeps prior achievements and resets current attempt true
+FIRST_MINUTE free AI demo never inherits coach true
+FIRST_MINUTE SURGE comparison never inherits coach true
+FIRST_MINUTE old F8 classroom remains isolated true
+FIRST_MINUTE standard FIGHT stays fixed and uncoached true
+FIRST_MINUTE exit clears all tutorial state true
+FIRST_MINUTE music transport survives all lesson and mode switches true

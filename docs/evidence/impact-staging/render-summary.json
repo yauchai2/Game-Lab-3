@@ -1,0 +1,10 @@
+{
+  "native_captures": 16,
+  "sequence_frames": 32,
+  "simulation_hz": 60,
+  "sample_every_ticks": 2,
+  "gif_final_frame_hold_ms": 300,
+  "capture_method": "Godot Compatibility X11 / llvmpipe, manually advanced simulation and session presentation; native images encoded/resized with Pillow. Not realtime performance.",
+  "same_contact_stop_for_special_and_reduced": 17,
+  "gif_sha256": "6c3950b95147654ba032dd0d72b9f7954883f3552ab07b3debb28b08ab70843e"
+}

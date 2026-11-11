@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://assets/VEH_CAR_A01.glb" id="1_model"]
+[sub_resource type="BoxShape3D" id="Body"]
+size = Vector3(2.1359062, 1.75427434, 4.2)
+[node name="VEH_CAR_A01" type="StaticBody3D"]
+metadata/asset_id = "VEH_CAR_A01"
+metadata/scale_target_axis = 2
+metadata/scale_target_value = 4.2
+[node name="Visual" parent="." instance=ExtResource("1_model")]
+scale = Vector3(4.202051, 4.202051, 4.202051)
+[node name="Collision" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.87713717, 0)
+shape = SubResource("Body")

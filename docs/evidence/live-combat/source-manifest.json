@@ -1,0 +1,29 @@
+{
+  "baseline_commit": "baa6950861a2b13f737e281346f510927261dfb7",
+  "files": {
+    "godot/scripts/combat/rush_agent.gd": {
+      "before_sha256": "3831a83d3df5d139253aa6b127014b756b4e75da49ddfb59fe64fa5d902cc2ad",
+      "after_sha256": "f9c3d7cc32c23bdda66e7dbcf011049e754ab8e08b12ce474c594121c9900508"
+    },
+    "godot/scripts/combat/last_service/profiles.gd": {
+      "before_sha256": "8f2acc8b19db4faf291e50c7082ed05613da2f18a0a3d06efbf3d9536c0d93b2",
+      "after_sha256": "c8de0ce78ae2b63488ac7178b26e0b06dbaa11ac5799dcbc9be80988d79a28bb"
+    },
+    "godot/scripts/combat/combat_rhythm.gd": {
+      "before_sha256": "f6b3359e8d16df6643c87c06e6736c36a417d338938d3b71c88d99c5bc50c2e8",
+      "after_sha256": "0fd21ba5c217b4a3206e52d7871c7e539e176bae6e06c7c44f282251fcffaa77"
+    },
+    "godot/scripts/combat/fight_session.gd": {
+      "before_sha256": "3278387700a16bc4ace95c6d7386ebfc7b978137e5d639ea12eb82a693be0bd8",
+      "after_sha256": "e8a28733f495dd1ec538598aac51cf06f914e923669c7acc4a740380884cd4f7"
+    },
+    "godot/scripts/combat/fight_simulation.gd": {
+      "before_sha256": "c129c4e7c21914cddfae807a317d652baab72433a400d26345def52f5e1d29ba",
+      "after_sha256": "6f8d25a349a14268349ec31319e0626c5dd305c9f8210377197d82058325b505"
+    },
+    "godot/scripts/combat/demo_director.gd": {
+      "before_sha256": "9fb783ba5a2709508621006aed6dfd37aa2aadf6e5c06e798aff3530efb33812",
+      "after_sha256": "3c8282a521c89cec6256ce7550c8784e432cd4224fb08bcd87ca8169615c4b84"
+    }
+  }
+}

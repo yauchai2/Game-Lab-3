@@ -1,0 +1,40 @@
+{
+  "authoring": "Original deterministic code-generated grayscale albedo multipliers; no photo pixels extracted",
+  "generator": "tools/create_corner_textures.py",
+  "seed": 20261108,
+  "textures": [
+    {
+      "file": "godot/assets/textures/corner_plaster_128.png",
+      "sha256": "a26ed0cadfa1d175b0af4683ddf3338d6fb40fe94f677d04531f96e334fe6c18",
+      "bytes": 3851,
+      "size": [
+        128,
+        128
+      ],
+      "palette_values": 4,
+      "mipmaps": 7
+    },
+    {
+      "file": "godot/assets/textures/corner_shutter_128.png",
+      "sha256": "654a7a847a4b96b680901202349342dae219f8a6d3da168cb6b1207ac326655c",
+      "bytes": 542,
+      "size": [
+        128,
+        128
+      ],
+      "palette_values": 14,
+      "mipmaps": 7
+    },
+    {
+      "file": "godot/assets/textures/corner_tiles_128.png",
+      "sha256": "acc47e8fa5bbe83cf6cc9e3f558dfdb6d3d83d020d58c764628afe00c17fa180",
+      "bytes": 554,
+      "size": [
+        128,
+        128
+      ],
+      "palette_values": 6,
+      "mipmaps": 7
+    }
+  ]
+}

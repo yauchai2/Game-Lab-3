@@ -1,0 +1,99 @@
+{
+  "base_url": "https://afterhours-street-fight.beamingladybird1.chatgpt.site/",
+  "anonymous_http": true,
+  "passed": 0,
+  "total": 15,
+  "files": [
+    {
+      "file": "cover.webp",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "credits.html",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "game.apple-touch-icon.png",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "game.audio.position.worklet.js",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "game.audio.worklet.js",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "game.icon.png",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "game.js",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "game.pck",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "game.png",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "game.wasm.gz",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "index.html",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "licenses/Godot-COPYRIGHT.txt",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "licenses/LICENSE-Juhani.txt",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "licenses/LICENSE-Kenney.txt",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    },
+    {
+      "file": "licenses/LICENSE-Quaternius.txt",
+      "http": 403,
+      "hash_matches": false,
+      "error_body": "error code: 1010\n"
+    }
+  ],
+  "scope": "Anonymous HTTP downloads and hashes, not browser rendering or input"
+}

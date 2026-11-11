@@ -1,0 +1,128 @@
+{
+  "checks": [
+    {
+      "name": "each side locks its own first intent",
+      "passed": true
+    },
+    {
+      "name": "presentation and native hitstop do not expire intent",
+      "passed": true
+    },
+    {
+      "name": "stun does not grant action",
+      "passed": true
+    },
+    {
+      "name": "intent consumed once",
+      "passed": true
+    },
+    {
+      "name": "fixed simulation lifetime is bounded",
+      "passed": true
+    },
+    {
+      "name": "interruption cancels other side independently",
+      "passed": true
+    },
+    {
+      "name": "real launcher opens attacker continuation",
+      "passed": true
+    },
+    {
+      "name": "queued E chases through native hitstop and pays energy",
+      "passed": true
+    },
+    {
+      "name": "low energy cannot buy chase",
+      "passed": true
+    },
+    {
+      "name": "whiff never increases SURGE",
+      "passed": true
+    },
+    {
+      "name": "one connected strike increments only once",
+      "passed": true
+    },
+    {
+      "name": "remaining active frames cannot rescore same contact",
+      "passed": true
+    },
+    {
+      "name": "SURGE caps at ninety",
+      "passed": true
+    },
+    {
+      "name": "quiet separated fighters cool back to FLOW",
+      "passed": true
+    },
+    {
+      "name": "reset clears SURGE and intents",
+      "passed": true
+    },
+    {
+      "name": "real parry opens defender intent and adds sixteen",
+      "passed": true
+    },
+    {
+      "name": "queued parry followup earns success only on real hit",
+      "passed": true
+    },
+    {
+      "name": "queued E without chase withdraws from opponent",
+      "passed": true
+    },
+    {
+      "name": "LOOP placement never heats SURGE",
+      "passed": true
+    },
+    {
+      "name": "real hit invalidates defender continuation",
+      "passed": true
+    },
+    {
+      "name": "KO clears both sides",
+      "passed": true
+    },
+    {
+      "name": "two thousand fixed steps replay identically",
+      "passed": true
+    },
+    {
+      "name": "low pressure hold is shorter on same clock",
+      "passed": true
+    },
+    {
+      "name": "SFX limiter is installed exactly once",
+      "passed": true
+    },
+    {
+      "name": "key handler accepts K immediately during presentation hold",
+      "passed": true
+    },
+    {
+      "name": "later key cannot replace locked K",
+      "passed": true
+    },
+    {
+      "name": "Esc preserves locked intent without countdown",
+      "passed": true
+    },
+    {
+      "name": "restart clears intent",
+      "passed": true
+    },
+    {
+      "name": "F2 keeps legal intent consumption on normal clock",
+      "passed": true
+    },
+    {
+      "name": "exit clears intent and rhythm",
+      "passed": true
+    }
+  ],
+  "display": "X11",
+  "engine": "4.6.3-stable (official)",
+  "passed": 30,
+  "total": 30
+}

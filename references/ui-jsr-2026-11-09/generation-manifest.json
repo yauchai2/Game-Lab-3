@@ -1,0 +1,192 @@
+{
+  "date": "2026-11-09",
+  "project": "AFTERHOURS / Game-Lab-3",
+  "scope": "Original JSR-inspired design research and generated PNG assets. No runtime UI replacement or public Web deployment.",
+  "assets": [
+    {
+      "id": "main-menu",
+      "path": "generated/01-main-menu-direction.png",
+      "status": "concept",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "bytes": 2404392,
+      "sha256": "8b669019a3a9e9a67ca76da53ae07a5403e92abc406b023a4102b79ac9ba3249",
+      "generator": "image_gen.imagegen",
+      "prompt": "prompt-01.txt",
+      "prompt_sha256": "b8c4997a54bbfba9f24c11a9793c5a4b0902c4dbbebcfaa7c28e1fc0390a8e26",
+      "input_images": [],
+      "transparent_background_requested": false
+    },
+    {
+      "id": "hud-exploration",
+      "path": "explorations/hud-large.png",
+      "status": "superseded",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "bytes": 1882939,
+      "sha256": "866263198734e882246bca6c983577533e1dbae77826cedac2af67feb7effbb7",
+      "generator": "image_gen.imagegen",
+      "prompt": "prompt-02.txt",
+      "prompt_sha256": "c48c63311be85222ecfa66711e675628e7f2bf6e5242c80296ee9c0bf6fe27b9",
+      "input_images": [
+        "docs/evidence/charged-cannon/captures/flow.png",
+        "generated/01-main-menu-direction.png"
+      ],
+      "transparent_background_requested": false
+    },
+    {
+      "id": "logo-exploration",
+      "path": "explorations/logo-before-padding.png",
+      "status": "superseded",
+      "dimensions": [
+        2146,
+        733
+      ],
+      "mode": "RGBA",
+      "bytes": 1390240,
+      "sha256": "70786d1c124be482c8889b98eedd730914cc0999b0b301ace55dda928b53bbe4",
+      "generator": "image_gen.imagegen",
+      "prompt": "prompt-03.txt",
+      "prompt_sha256": "c884ef85134a514edd9e3627b24f2f3f74cfb49fcfe4245d3dc71105a080d843",
+      "input_images": [
+        "generated/01-main-menu-direction.png"
+      ],
+      "transparent_background_requested": true
+    },
+    {
+      "id": "frames-exploration",
+      "path": "explorations/frames-first.png",
+      "status": "superseded",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 1543624,
+      "sha256": "8a8e816b0c6fd466d2c508c8dde9de27c89e488c34bf0675eb623c28df178dd5",
+      "generator": "image_gen.imagegen",
+      "prompt": "prompt-04.txt",
+      "prompt_sha256": "9914c1d2ed598a97df1140ad81d69a399ca76f5dd77e7faabeff5b67b6ed9b28",
+      "input_images": [
+        "generated/01-main-menu-direction.png"
+      ],
+      "transparent_background_requested": true
+    },
+    {
+      "id": "frames",
+      "path": "assets/ui-frames.png",
+      "status": "alpha_asset",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 1543725,
+      "sha256": "88d91d93ac23b9e87a350fc9a0fb5c632bf5fdc87effaafb83a88e641d259d4e",
+      "generator": "image_gen.imagegen",
+      "prompt": "prompt-05.txt",
+      "prompt_sha256": "ec0727749cfe03f9babb2aba140031af233197524c7a392f5894f0c61ad63359",
+      "input_images": [
+        "explorations/frames-first.png"
+      ],
+      "transparent_background_requested": true
+    },
+    {
+      "id": "hud",
+      "path": "generated/02-hud-direction.png",
+      "status": "concept",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "bytes": 1752358,
+      "sha256": "1a0a6c3caa9a2242e85dc44dcccc213926709086fdada557457291c1149bfcb4",
+      "generator": "image_gen.imagegen",
+      "prompt": "prompt-06.txt",
+      "prompt_sha256": "59672405136383265a1c7ca87743739d8ad524a134e79c0085db457e64ec99d4",
+      "input_images": [
+        "explorations/hud-large.png"
+      ],
+      "transparent_background_requested": false
+    },
+    {
+      "id": "icons",
+      "path": "assets/action-icons.png",
+      "status": "alpha_asset",
+      "dimensions": [
+        1261,
+        1247
+      ],
+      "mode": "RGBA",
+      "bytes": 1067835,
+      "sha256": "bb40a6ac4ba961f4aea5a73ab42c36330690758ef8e731bbe41fc71a96ef232a",
+      "generator": "image_gen.imagegen",
+      "prompt": "prompt-07.txt",
+      "prompt_sha256": "aba06f57ef7af04c9d4b92f2507b462c3630b2ccdaccc795c49b5a5b4e8325a9",
+      "input_images": [
+        "generated/01-main-menu-direction.png"
+      ],
+      "transparent_background_requested": true
+    },
+    {
+      "id": "roster",
+      "path": "generated/03-roster-direction.png",
+      "status": "concept",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "bytes": 2122554,
+      "sha256": "05491e956ed7799d16995f94e5cd2ea865dbe110b2149b9acccac7acda65cbca",
+      "generator": "image_gen.imagegen",
+      "prompt": "prompt-08.txt",
+      "prompt_sha256": "e2ce0c3238bb15c1d978ebb75024655b7be1b0dc6548571e7b33f3f1d034c97d",
+      "input_images": [
+        "roster-model-reference.png",
+        "generated/01-main-menu-direction.png"
+      ],
+      "transparent_background_requested": false
+    },
+    {
+      "id": "logo",
+      "path": "assets/afterhours-logo.png",
+      "status": "alpha_asset",
+      "dimensions": [
+        2146,
+        733
+      ],
+      "mode": "RGBA",
+      "bytes": 1039931,
+      "sha256": "2d205bab1b23b2565a47e0dbfc9672906ecb4ca79148e876c4bbb0c94baf9797",
+      "generator": "image_gen.imagegen",
+      "prompt": "prompt-09.txt",
+      "prompt_sha256": "c9b9046e49e5d4050762fa724052d6858788d6b1a2612691c687f96fe780db35",
+      "input_images": [
+        "explorations/logo-before-padding.png"
+      ],
+      "transparent_background_requested": true
+    }
+  ],
+  "model_reference": {
+    "path": "roster-model-reference.png",
+    "sha256": "f451d0f422c55b93c62e2f48189cd0a37c56b76abe5eb4e020946851c094474c",
+    "method": "Native Godot rendering of existing four supplied models, unchanged source meshes. See capture_ui_roster_reference.gd."
+  },
+  "input_gameplay": {
+    "path": "docs/evidence/charged-cannon/captures/flow.png",
+    "sha256": "d0801f4f0f6330d942a2d4223e9247ae594f0bc0b8e2127049c06fa893bd3574"
+  },
+  "notes": [
+    "Reference SEGA art is studied, not shipped in this asset pack.",
+    "Concept pictures contain rasterized English sample labels. Production action labels, Chinese text, HP, energy, timer, combo numbers and focus states must remain live native UI.",
+    "Roster hero is an illustration with simplified hair/outfit; it is not a canonical replacement for the actual model or a new rig."
+  ]
+}

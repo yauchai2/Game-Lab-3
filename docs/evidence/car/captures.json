@@ -1,0 +1,10 @@
+{
+  "display_driver": "X11",
+  "hardware_gpu_verified": false,
+  "human_playtest": false,
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "shots": [
+    "01_front_street.png",
+    "02_back_street.png"
+  ]
+}
