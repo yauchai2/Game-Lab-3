@@ -1,0 +1,26 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+COMPACT_HUD formal HUD suppresses routine notice DOUBLE JUMP true
+COMPACT_HUD formal HUD suppresses routine notice CHASE true
+COMPACT_HUD formal HUD suppresses routine notice ROUTE +1 true
+COMPACT_HUD formal HUD suppresses routine notice SAMPLE READY true
+COMPACT_HUD formal HUD suppresses routine notice PRELOAD 2 / 2 true
+COMPACT_HUD formal HUD suppresses routine notice RICOCHET x2 / FLOOR true
+COMPACT_HUD formal HUD suppresses routine notice NICE BLOCK true
+COMPACT_HUD formal HUD suppresses routine notice SPECIAL NEEDS 50 ENERGY true
+COMPACT_HUD formal HUD retains meaningful outcome FIGHT! true
+COMPACT_HUD formal HUD retains meaningful outcome PERFECT GUARD true
+COMPACT_HUD formal HUD retains meaningful outcome COUNTER SUCCESS true
+COMPACT_HUD formal HUD retains meaningful outcome GUARD BREAK true
+COMPACT_HUD training keeps explanatory notices true
+COMPACT_HUD double jump uses immediate local feedback without text true
+COMPACT_HUD unfunded skill warns only its own resource bar true
+COMPACT_HUD pause freezes resource feedback true
+COMPACT_HUD resource warning clears after one brief pulse true
+COMPACT_HUD compact pause retains a readable label and tooltip true
+COMPACT_HUD compact pause target still works true
+COMPACT_HUD HUD draw leaves real resources unchanged true
+COMPACT_HUD restart clears transient resource feedback true

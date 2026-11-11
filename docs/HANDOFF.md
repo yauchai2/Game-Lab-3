@@ -1,5 +1,7 @@
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 
+最後合併最新main compact HUD（fda61d1），額外21項原生整合及嚴格8項重跑通過；交付main與codex/combat-escalation-next，Web不動。
+
 見 [ABILITY_EQUIP_RUNTIME.zh-TW.md](ABILITY_EQUIP_RUNTIME.zh-TW.md)。按EQUIP／Demo結果停3.5秒後，當局原選角演出副本接取→握緊→腰扣→鎖定→能量到鞋→踩地，4.10秒（F2開始1.15秒）。九核心真腰掛跟隨骨盆保留到下一局重置；不露臉，原街景／stage profile沿用，聲效／魚眼／短模糊／震動／漫畫線／煙塵同步。先演再一次套用，Space跳過不重抽；pause／cancel／R恢復。113新＋69流程＋75核心＋34戰鬥＋46角色／成長＋8嚴格編譯＝345項，證據evidence/ability-equip。原GLB／XP／Web保持，Mac／真人待驗；覆蓋舊腰側裝備僅規劃。
 
 ## 2026-11-11：HUD簡化已落實並同步main

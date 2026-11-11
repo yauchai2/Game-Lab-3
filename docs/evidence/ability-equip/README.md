@@ -21,3 +21,8 @@
 `initial-flow-exit.log` 保留初跑69項後兩個退出資源未釋放；後續顯式 stop/stream 解除路徑及較長混音 drain 的 verbose／最終原生退出乾淨，沒有證據把它宣稱為引擎全局修復。Movie Writer 同錄原創 PCM，再轉 AAC；audio-check.json 有非靜音峰值／RMS／零削波，沒有事後配音。
 
 Godot4.6.3／Linux／Compatibility llvmpipe／Dummy。固定30fps匯出不代表即時GPU效能，未驗使用者 Mac／Godot4.7.2／真人手感或音效裝置。原 GLB／音訊／歷史證據保留，Web 未更新。
+
+
+## 最後同步覆核
+
+製作期間 main 新增 fda61d1 的 compact HUD 更新；完成裝備後再合併並保留全部 HUD 簡化／資源回饋。嚴格編譯重新8/8，另以原 verify_compact_hud runner（僅改輸出路徑）驗 21/21 通過，見 compact-hud/；原345項屬裝備／抽獎／戰鬥驗證範圍。所有來源同步main及codex/combat-escalation-next，沒有更新Web。
