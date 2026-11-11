@@ -1,5 +1,9 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-11：角色台詞與對手記憶
+
+`verify_banter.gd` 107/107（headless）＋兩張 xvfb／llvmpipe 畫面。非 Mac／真人驗收。見 [BANTER.zh-TW.md](BANTER.zh-TW.md)。
+
 ## 2026-11-11：時段預設
 
 `verify_time_of_day.gd` 11/11（headless），xvfb／llvmpipe 四時段截圖。`verify_combat_polish.gd` 的靜音啟動斷言失敗於未改動基線同樣重現（非本次造成）。其餘既有套件未全數重跑；非 Mac／真人驗收。詳見 [TIME_OF_DAY.zh-TW.md](TIME_OF_DAY.zh-TW.md)。

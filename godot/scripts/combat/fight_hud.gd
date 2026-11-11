@@ -386,6 +386,7 @@ func _result_page() -> void:
         _plain_action("SKILLS / FREE RESPEC","skills",func():open_page("skills"))
         return
     if session.sim.winner==1:_caption("runback")
+    if not session.result_line.is_empty():menu_stack.add_child(_label(session.result_line,24))
     menu_stack.add_child(_label("%d  —  %d"%[session.sim.wins[0],session.sim.wins[1]],48,Tokens.GOLD,true))
     _caption("wins")
     var complete: bool=session.sim.phase=="match_over"

@@ -18,6 +18,9 @@ var run_techniques:Dictionary={}
 var run_base_difficulty:=1
 var run_original_rival:=1
 var time_of_day_choice:=0
+const Banter=preload("res://scripts/combat/banter.gd")
+var banter_store=null
+var result_line:=""
 var signature_camera=preload("res://scripts/combat/neon/neon_signature_camera.gd").new()
 var neon_profile:Resource=preload("res://scripts/combat/neon/neon_style_profile.tres")
 var spectacle := preload("res://scripts/combat/fight_spectacle.gd").new()
@@ -91,6 +94,7 @@ func _ready() -> void:
     audio = FightAudio.new()
     add_child(audio)
     _restore_options()
+    banter_store=Banter.Store.new("" if preferences_path.is_empty() else preferences_path.get_base_dir()+"/banter.cfg")
     var pixel_layer:=CanvasLayer.new()
     pixel_layer.layer=0
     add_child(pixel_layer)
@@ -201,7 +205,10 @@ func start_match(training := false) -> void:
     _clear_impacts()
     pending.clear()
     trauma = 0
+    result_line=""
     screen = "play"
+    if not practice and banter_store!=null:
+        hud.notice=Banter.start_line(character_choices[0],character_choices[1],banter_store.streak_against(character_choices[1]),int(Time.get_ticks_msec()/1000),language=="en");hud.notice_time=2.4
     hud.rebuild_menu()
 
 func _physics_process(delta: float) -> void:
@@ -261,6 +268,10 @@ func _combat_step() -> void:
     if sim.phase in ["round_over", "match_over"]:
         _release_impacts(false)
         if run_active:_award_run()
+        result_line=""
+        if sim.phase=="match_over" and not practice and not run_active and demo==null and sim.winner>=0 and banter_store!=null:
+            banter_store.record(character_choices[1],sim.winner==0)
+            result_line=Banter.win_line(character_choices[sim.winner],int(Time.get_ticks_msec()/1000),language=="en")
         result_clock=0.0
         screen = "result"
         finish_menu_open=false
