@@ -1,0 +1,81 @@
+{
+  "created_utc": "20261111T080643Z",
+  "source_commit": "738c740dd6ee5cefc7e7be7eb15b0feb4b0ac404",
+  "tracked_runtime_changes": [
+    "godot/assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb.import",
+    "godot/assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb.import",
+    "godot/assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb.import",
+    "godot/assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb.import",
+    "godot/assets/fonts/RadioPixelBody.png.import",
+    "godot/assets/fonts/RadioPixelBodyReadable.png.import",
+    "godot/assets/fonts/RadioPixelDisplay.png.import",
+    "godot/assets/fonts/RadioPixelDisplayReadable.png.import",
+    "godot/scripts/combat/combat_motions.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_preferences.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fighter_roster.gd",
+    "godot/scripts/combat/fighter_visual.gd",
+    "godot/scripts/combat/last_service/presentation.gd",
+    "godot/scripts/combat/last_service/profiles.gd",
+    "godot/scripts/combat/neon/neon_style_profile.gd",
+    "godot/scripts/combat/ui/reference_art.gd",
+    "godot/scripts/combat/ui/roster_preview.gd",
+    "godot/scripts/combat/ui/ui_text.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": true,
+  "passed": 87,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_double_jump",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "1b49443fb7d7cb1ee12a7e8b41194203ac5894e6844212d09112c3dc2311c950",
+      "seconds": 0.799,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_double_jump.gd"
+      ],
+      "report_written": true,
+      "passed": 62,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_friendly_defense",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "dde4d21c520176fc936cea54d29decd55b381fb5053d9d99c450675f2d4e4679",
+      "seconds": 0.238,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_friendly_defense.gd"
+      ],
+      "report_written": true,
+      "passed": 25,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

@@ -16,7 +16,7 @@ var motions := preload("res://scripts/combat/combat_motions.gd").new()
 
 func setup(color: Color, selection := 0) -> void:
     team = color
-    character_index=clampi(selection,0,Roster.ENTRIES.size()-1)
+    character_index=clampi(selection,0,Roster.BLACK_SUIT_INDEX)
     var entry:Dictionary=Roster.entry(character_index)
     if is_instance_valid(model):
         # Compatibility may still process dependencies for an outgoing instance
@@ -43,6 +43,7 @@ func setup(color: Color, selection := 0) -> void:
             var mat := ShaderMaterial.new()
             mat.shader = preload("res://shaders/neon/neon_actor.gdshader") if neon_enabled else Toon
             mat.set_shader_parameter("tint", Color.WHITE.lerp(team, 0.50))
+            if character_index==Roster.BLACK_SUIT_INDEX:mat.set_shader_parameter("tint",Color.WHITE)
             if original is BaseMaterial3D and original.albedo_texture:
                 mat.set_shader_parameter("use_texture", true)
                 mat.set_shader_parameter("base_texture", original.albedo_texture)

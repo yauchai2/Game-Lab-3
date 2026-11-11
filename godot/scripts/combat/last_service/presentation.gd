@@ -4,6 +4,9 @@ func draw(canvas:Control,s:Node) -> void:
     if not s.sim.last_service_enabled:return
     for side in 2:
         var f:Dictionary=s.sim.fighters[side];var r:Dictionary=f.service
+        if f.character==4:
+            canvas.draw_string(s.hud.font,Vector2(755,104),"BLACK SUIT / COLLECTOR",HORIZONTAL_ALIGNMENT_LEFT,-1,24,s.effect_color_for(side))
+            continue
         var label:String=P.NAMES[f.character]+" / "+["ROUTE %d/2"%r.routes,"PRELOAD %d/2"%r.preload,"SAMPLE "+("READY" if r.sample>0 else "--"),"NODES %d/2"%r.nodes.size()][f.character]
         canvas.draw_string(s.hud.font,Vector2(330 if side==0 else 755,104),label,HORIZONTAL_ALIGNMENT_LEFT,-1,24,s.effect_color_for(side))
         var duration:float=0.0;var capacity:float=1.0

@@ -222,3 +222,8 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 ## 2026-11-11：以main交付最新完整遊戲
 
 使用者明確授權推送最新遊戲至main。將codex/combat-escalation-next的4177ef9完整合併，保留main54a520d及來源歷史，正常push，不使用force。此次授權為來源整合，沒有更新gh-pages或另行公開部署。
+
+
+## 2026-11-11：黑衣人角色接入
+
+使用者要求新GLB作敵人及其他用途。保留原檔，四名主角ID／成長不變；索引4專供P2黑衣人。敵人使用共用近身simulation與合法AI，獨立50／75能量招式，不附加主角資源或XP。非戰鬥用途由獨立black_suit_actor.tscn提供三種姿態，scene/director擁有根transform；不把演出動畫當命中權威。不自動替換Street Run三站或新增槍械／劇情／Web部署。

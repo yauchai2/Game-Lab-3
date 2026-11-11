@@ -1085,7 +1085,7 @@ func _restore_options() -> void:
 
 func set_character(side:int,index:int) -> void:
     if screen!="title" or side not in [0,1]:return
-    var selected:=clampi(index,0,FighterVisual.Roster.ENTRIES.size()-1)
+    var selected:=clampi(index,0,FighterVisual.Roster.BLACK_SUIT_INDEX if side==1 else FighterVisual.Roster.ENTRIES.size()-1)
     if character_choices[side]==selected:return
     character_choices[side]=selected
     sim.character_choices[side]=selected
@@ -1117,7 +1117,7 @@ func return_to_title() -> void:
 func effect_color_for(side:int) -> Color:
     var character:int=character_choices[clampi(side,0,1)]
     var color:Color=neon_profile.accent(character)
-    if growth.records[growth.Profiles.IDS[character]].palette:return color.lerp(Color.WHITE,.65)
+    if character<growth.Profiles.IDS.size() and growth.records[growth.Profiles.IDS[character]].palette:return color.lerp(Color.WHITE,.65)
     return color
 
 func _leave_run() -> void:

@@ -1,0 +1,47 @@
+{
+  "asset_id": "black_suit",
+  "source_filename": "tripo_convert_6bb9e9c2-dd66-4f86-864f-2ceab3aa0a09.glb",
+  "source_file_id": "file_00000000771c8211be654cfe36574a77",
+  "source_uuid": "6bb9e9c2-dd66-4f86-864f-2ceab3aa0a09",
+  "model": "godot/assets/characters/black_suit/source/tripo_convert_6bb9e9c2-dd66-4f86-864f-2ceab3aa0a09.glb",
+  "bytes": 177472,
+  "sha256": "8fcacf156af8a28e8eddc5ff0bd2be677e99bc2e58031bc4968de5ab038dcbc7",
+  "triangles": 1116,
+  "vertices": 976,
+  "joints": 65,
+  "animations": 0,
+  "mesh_count": 1,
+  "textures": [
+    {
+      "size": [
+        1024,
+        1024
+      ],
+      "sha256": "d02f370a019abd93a6cac80579b9f05daa36b2453af2f51177921237de836f44",
+      "mime": "image/jpeg"
+    }
+  ],
+  "max_weight_sum_error": 9.033828973770142e-08,
+  "bounds": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 976,
+      "max": [
+        0.2509766221046448,
+        0.9980467557907104,
+        0.09863263368606567
+      ],
+      "min": [
+        -0.2509763836860657,
+        -2.244464667455759e-07,
+        -0.09863284230232239
+      ],
+      "type": "VEC3"
+    }
+  ],
+  "runtime_scale": 2.15,
+  "visual_index": 4,
+  "provenance": "User-uploaded Tripo GLB preserved byte-for-byte. No paid generation, source edits or new licensing claim.",
+  "validation_scope": "Binary GLB, finite vertices/normals/UV/weights/binds, weight sums, joint/index bounds and embedded texture decoding. Native rendering and animation checks are separate."
+}

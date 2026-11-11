@@ -83,5 +83,10 @@ func _pose(visual:Node3D,index:int,time:float,confirm:float,reduced:bool) -> voi
             m._aim_limb("RightArm","RightForeArm",forward*.7-up*.4,1.0)
             m._aim_limb("RightForeArm","RightHand",forward+up*sin(time)*.12,.9)
             visual.model.rotation.z=.04+breath
+        4:
+            # Reserved, upright posture for the suited enemy/cinematic actor.
+            for side in ["Left","Right"]:
+                m._aim_limb(side+"Arm",side+"ForeArm",-up+forward*.1,.95)
+                m._aim_limb(side+"ForeArm",side+"Hand",-up+forward*.15,.95)
 func hero_texture() -> Texture2D:return viewports[4].get_texture()
 func card_texture(index:int) -> Texture2D:return viewports[index].get_texture()

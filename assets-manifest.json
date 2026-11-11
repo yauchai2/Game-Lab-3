@@ -250,6 +250,20 @@
       "embedded_animations": 0,
       "status": "existing_shared_combat_roster",
       "provenance": "Previously supplied user character-1.glb, preserved unchanged. See docs/CHARACTER_TEXTURES.zh-TW.md."
+    },
+    {
+      "asset_id": "CHAR_BLACK_SUIT",
+      "model": "godot/assets/characters/black_suit/source/tripo_convert_6bb9e9c2-dd66-4f86-864f-2ceab3aa0a09.glb",
+      "scene": "godot/scenes/characters/black_suit_actor.tscn",
+      "triangles": 1116,
+      "joints": 65,
+      "animation_count": 0,
+      "bytes": 177472,
+      "sha256": "8fcacf156af8a28e8eddc5ff0bd2be677e99bc2e58031bc4968de5ab038dcbc7",
+      "scale": 2.15,
+      "status": "enemy_opponent_and_reusable_actor",
+      "inspection": "references/characters/black-suit/inspection.json",
+      "provenance": "User-uploaded Tripo GLB preserved byte-for-byte. No paid generation, source edits or new licensing claim."
     }
   ],
   "pending_reference_only": [],

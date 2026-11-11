@@ -1,5 +1,9 @@
 # 接續工作交接
 
+## 2026-11-11：黑衣人敵人與可重用演出角色
+
+使用者上傳6bb9e9c2 GLB並要求入遊戲。基於main738c740，在codex/black-suit-enemy加入P2獨立敵人索引4（四張主角卡／四個成長ID保留），真3D預覽、正式FIGHT／TRAINING／Demo、偏好保存、Street Run退出還原。1,116面／65關節／52骨重定向，無內建動畫；原GLB SHA保留。場景black_suit_actor.tscn有idle／walk／guard，根transform不被動作覆寫；沒有AI／傷害，不把角色場景當戰鬥simulation。詳見[整合](BLACK_SUIT_ENEMY.zh-TW.md)／[208項檢查與畫面](evidence/black-suit/README.md)。Godot4.6.3 Linux llvmpipe／Dummy音訊，最終log無ERROR／SCRIPT ERROR；VSync警告保留，Mac／真人平衡待驗收。未做六章故事、槍械或新地圖；main／Web不動。
+
 ## 2026-11-11：最新遊戲來源合併 main
 
 使用者明確要求「推送最新遊戲到main」。以遠端 main 54a520d 與最新遊戲來源 codex/combat-escalation-next 4177ef9 進行非強制合併，保留兩邊歷史及main既有JSR／BRC文件，無衝突。合併後godot／tools兩棵Git tree與已驗證4177ef9完全一致；本輪沒有改玩法或重跑上輪測試，上輪四個既有舊斷言失敗仍見double-jump證據。日常拉取可改選main；開發分支保留。公開Web未更新。

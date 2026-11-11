@@ -93,15 +93,20 @@ func roster(c:Control,s:Node) -> void:
     corners(c,Rect2(657,121,420,476),T.EDGE,30)
     c.draw_texture_rect(s.hud.roster_preview.hero_texture(),Rect2(662,117,420,486),false)
     plate(c,Rect2(1094,142,140,128),T.NIGHT,10)
-    text(c,Vector2(1124,243),["Z","R","H","L"][choice],106,T.PAPER)
+    text(c,Vector2(1124,243),["Z","R","H","L","B"][choice],106,T.PAPER)
     for label in [["SKILLS",Rect2(1094,300,140,60)],["STREET",Rect2(1094,380,140,86)]]:
         plate(c,label[1],T.NIGHT,8)
         text(c,label[1].position+Vector2(12,37),label[0],28,T.PAPER)
     text(c,Vector2(1107,447),"RUN",28,T.TEAL)
+    var enemy_rect:=Rect2(1094,486,140,86)
+    plate(c,enemy_rect,T.MAGENTA if s.character_choices[1]==4 else T.NIGHT,8)
+    text(c,Vector2(1106,521),"BLACK",28,T.PAPER)
+    text(c,Vector2(1106,553),"SUIT / P2",26,T.PAPER)
+    if focused_key=="enemy_black_suit":corners(c,enemy_rect.grow(2),T.TEAL)
     var fight_rect:Rect2=fit(Rect2(849,773,550,100))
     plate(c,fight_rect,T.TEAL if focused_key=="roster_fight" else T.PAPER,12)
     text(c,fight_rect.position+Vector2(54,58),"FIGHT",64,T.INK)
-    var name:String=["ZIP / ROUTE KICKS","RIVET / PRELOAD","HUSH / SAMPLE","LOOP / PATCH NODES"][choice]
+    var name:String=["ZIP / ROUTE KICKS","RIVET / PRELOAD","HUSH / SAMPLE","LOOP / PATCH NODES","BLACK SUIT / ENEMY"][choice]
     plate(c,Rect2(672,666,250,38),T.NIGHT,8)
     text(c,Vector2(686,697),name,26,T.PAPER)
     hints(c)

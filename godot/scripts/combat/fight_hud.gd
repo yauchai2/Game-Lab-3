@@ -243,7 +243,8 @@ func rebuild_menu(requested_focus := "") -> void:
 
 func _restore_focus() -> void:
     if art_controls.visible:
-        var target:String=focus_key if art_buttons.has(focus_key) else ("card_"+str(session.character_choices[art.roster_side]) if menu_page=="roster" else "fight")
+        var choice:int=session.character_choices[art.roster_side]
+        var target:String=focus_key if art_buttons.has(focus_key) else (("enemy_black_suit" if choice==4 else "card_"+str(choice)) if menu_page=="roster" else "fight")
         art_buttons[target].grab_focus()
         return
     if not menu.visible:return
@@ -908,6 +909,11 @@ func _build_art_controls() -> void:
             _art_button("side_"+str(side),"SELECT P%d"%(side+1),art.fit(Rect2(18,241+side*100,160,84)),func():art.roster_side=selected_side;queue_redraw())
         _art_button("skills","SKILLS",Rect2(1094,300,140,60),func():open_page("skills"))
         _art_button("street_run","STREET RUN",Rect2(1094,380,140,86),session.start_run)
+        _art_button("enemy_black_suit","BLACK SUIT / P2",Rect2(1094,486,140,86),func():
+            art.roster_side=1
+            focus_key="enemy_black_suit"
+            session.set_character(1,session.FighterVisual.Roster.BLACK_SUIT_INDEX)
+            queue_redraw())
         _art_button("roster_fight","FIGHT",art.fit(Rect2(849,773,550,100)),func():session.start_match(false))
         _art_button("back","BACK",art.fit(Rect2(1507,875,145,50)),close_page)
         for i in 4:
@@ -916,6 +922,14 @@ func _build_art_controls() -> void:
             button.focus_neighbor_right=art_buttons["card_"+str(i^1)].get_path()
             button.focus_neighbor_top=art_buttons["card_"+str((i+2)%4)].get_path()
             button.focus_neighbor_bottom=art_buttons["card_"+str(i+2)].get_path() if i<2 else art_buttons.roster_fight.get_path()
+        art_buttons.skills.focus_neighbor_bottom=art_buttons.street_run.get_path()
+        art_buttons.street_run.focus_neighbor_top=art_buttons.skills.get_path()
+        art_buttons.street_run.focus_neighbor_bottom=art_buttons.enemy_black_suit.get_path()
+        art_buttons.enemy_black_suit.focus_neighbor_top=art_buttons.street_run.get_path()
+        art_buttons.enemy_black_suit.focus_neighbor_bottom=art_buttons.roster_fight.get_path()
+        art_buttons.enemy_black_suit.focus_neighbor_left=art_buttons.card_3.get_path()
+        art_buttons.card_1.focus_neighbor_right=art_buttons.skills.get_path()
+        art_buttons.card_3.focus_neighbor_right=art_buttons.enemy_black_suit.get_path()
 
 func _restore_sound() -> void:
     session.audio.restore_output()

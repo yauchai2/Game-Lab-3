@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[黑衣人敵人與演出角色](docs/BLACK_SUIT_ENEMY.zh-TW.md)。FIGHTERS → BLACK SUIT / P2，正式FIGHT／練習／AI Demo沿用；原始GLB保留，另有可重用待機／走路／防守場景。[原生畫面及208項檢查](docs/evidence/black-suit/README.md)。來源分支codex/black-suit-enemy，main／公開Web未更新。
+
 最新：已按使用者要求將含二段跳的完整遊戲來源 `4177ef9` 合併到 `main`；之後可於 GitHub Desktop 選 `main` Fetch／Pull。公開 Web 仍為獨立部署。
 
 最新：[二段跳與落地操作改善](docs/DOUBLE_JUMP.zh-TW.md)。正式 FIGHT／Street Run：Space 起跳，空中放開再按二段跳；每次離地一次，加入姿態／局部聲畫回饋，修正硬落地預輸入。來源同一開發分支，公開 Web 未更新。

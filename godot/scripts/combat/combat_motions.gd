@@ -108,7 +108,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         elif character==3:selected="Idle_Loop";loop=true
     if f.state=="attack" and character==1 and f.move in ["cross","finisher","special"]:selected="Sword_Attack";loop=false
     if f.get("showcase",false):
-        selected=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop"][character];loop=true
+        selected=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop","Idle_Loop"][clampi(character,0,4)];loop=true
     var state_key := selected + "/" + str(f.state) + ("/"+str(f.move) if f.state=="attack" else "")
     if state_key != previous_state:
         blend_from.clear()
@@ -214,6 +214,11 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         for side in ["Left","Right"]:
             _aim_limb(side+"Arm",side+"ForeArm",model_forward*.45+model_up*.3,.6)
             _aim_limb(side+"ForeArm",side+"Hand",model_up+model_forward*.25,.8)
+        if character==4:
+            # The suit's long arms need lower elbows to keep the gloves at face height.
+            for side in ["Left","Right"]:
+                _aim_limb(side+"Arm",side+"ForeArm",model_forward*.55-model_up*.65,.95)
+                _aim_limb(side+"ForeArm",side+"Hand",model_up+model_forward*.25,.95)
     if f.get("rally_phase","")=="compress":
         var amount: float=clampf(f.get("rally_amount",0.0),0,1)
         if f.get("rally_owner",false):
@@ -241,7 +246,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
             _aim_limb("RightForeArm","RightHand",model_forward if winding else model_up,.9)
 
     if f.state=="attack" and f.move in ["special","overdrive"]:
-        air_pose_name=["Boxer_DoublePalm","Dancer_SpinKick","Bass_Hammer","Spark_Drive"][character]
+        air_pose_name=["Boxer_DoublePalm","Dancer_SpinKick","Bass_Hammer","Spark_Drive","Collector_Drive"][clampi(character,0,4)]
         var active:bool=f.frame>=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]).startup
         if active and character==1:
             _aim_limb("RightUpLeg","RightLeg",model_forward+model_up*.35,1.0)

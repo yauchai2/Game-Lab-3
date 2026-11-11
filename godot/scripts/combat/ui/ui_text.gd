@@ -2,6 +2,10 @@ extends RefCounted
 ## Product copy is keyed; simulation events and save identifiers stay language-independent.
 var language := "zh"
 const COPY := {
+"fighter_black_suit":["黑衣人 BLACK SUIT","BLACK SUIT"],
+"trait_black_suit":["收貨員：近身壓迫","COLLECTOR / CLOSE PRESSURE"],
+"skill_black_suit":["強制收件","FORCED RECEIPT"],
+"cannon_black_suit":["簽收完畢","SIGNED OFF"],
 "skill_loop_pulse":["交叉接線","CROSS PATCH"],
 "fighter_zip":["疾扣 ZIP","ZIP"],"fighter_rivet":["鉚釘 RIVET","RIVET"],"fighter_hush":["靜噪 HUSH","HUSH"],"fighter_loop":["迴路 LOOP","LOOP"],
 "trait_zip":["路線追擊","ZIP / ROUTE KICKS"],"trait_rivet":["蓄力破防","RIVET / PRELOAD"],"trait_hush":["截擊取樣","HUSH / SAMPLE"],"trait_loop":["接點控場","LOOP / PATCH NODES"],

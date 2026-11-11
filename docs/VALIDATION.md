@@ -1,5 +1,9 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-11：黑衣人接入
+
+[報告及原生畫面](evidence/black-suit/README.md)：32敵人原生整合＋46四角技能＋62二段跳＋25防禦＋37原生UI＋6材質生命週期，共208項通過。原GLB hash比對、有限值／權重／joint與vertex索引／貼圖解碼另見references/characters/black-suit/inspection.json。實際指標選P2、真simulation命中與招架、30秒自由AI、三視窗、保存／Street Run還原與角色場景根transform均覆核。Godot4.6.3 Compatibility／Mesa llvmpipe／Dummy audio；最終native log無ERROR／SCRIPT ERROR，保留不支援VSync警告。初版測試器step呼叫錯誤、Dummy material診斷及早期退出警告保留在證據說明，不算通過；已改native-only及退出等待。不是Mac／硬件效能／真人平衡或喇叭實聽驗收。公開Web未更新。
+
 ## 2026-11-11：main整合核對
 
 合併來源4177ef9至main54a520d，無衝突。以Git tree object ID核對godot及tools，兩者與4177ef9完全相同；原main的docs/JSR-BRC-style-reference.md亦與來源相同並保留。只更改整合紀錄，沒有重跑引擎測試或聲稱修正上輪四個舊測試失敗。既有二段跳／正式戰鬥驗證詳見docs/evidence/double-jump/README.md。公開Web分支沒有更新。
