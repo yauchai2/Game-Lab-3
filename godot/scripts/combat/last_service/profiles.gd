@@ -36,4 +36,10 @@ static func move(base:Dictionary,index:int,name:String,f:Dictionary={}) -> Dicti
             if name=="cross":m.reach=2.0;m.push=3.4
             if name=="special":m.damage=0;m.reach=0.0;m.startup=14;m.active=1;m.recovery=20
             if name=="overdrive":m.damage=24;m.startup=28;m.active=12;m.recovery=44;m.reach=2.5
+    # Only authored power accents use the multi-wall cinematic trajectory.
+    # ZIP's early flurry hits keep their ordinary push; only its final hit qualifies.
+    m["ricochet"]=name=="overdrive" and m.push>=7
+    if name=="special":
+        var resources:Dictionary=f.get("service",{})
+        m["ricochet"]=(index==1 and resources.get("preload",0)>=2) or (index==2 and resources.get("sample_boost",false))
     return m

@@ -1,0 +1,271 @@
+{
+  "checks": [
+    {
+      "name": "a legal paid overdrive hit arms the box trajectory",
+      "passed": true
+    },
+    {
+      "name": "one overdrive makes multiple genuine boundary contacts",
+      "passed": true
+    },
+    {
+      "name": "flight remains inside all four limits",
+      "passed": true
+    },
+    {
+      "name": "ricochets never create additional health damage",
+      "passed": true
+    },
+    {
+      "name": "finite flight restores control without a permanent stun",
+      "passed": true
+    },
+    {
+      "name": "left reverses the normal velocity and loses energy",
+      "passed": true
+    },
+    {
+      "name": "left E tech spends 20 and releases the flight",
+      "passed": true
+    },
+    {
+      "name": "right reverses the normal velocity and loses energy",
+      "passed": true
+    },
+    {
+      "name": "right E tech spends 20 and releases the flight",
+      "passed": true
+    },
+    {
+      "name": "ceiling reverses the normal velocity and loses energy",
+      "passed": true
+    },
+    {
+      "name": "ceiling E tech spends 20 and releases the flight",
+      "passed": true
+    },
+    {
+      "name": "floor reverses the normal velocity and loses energy",
+      "passed": true
+    },
+    {
+      "name": "floor E tech spends 20 and releases the flight",
+      "passed": true
+    },
+    {
+      "name": "native hitstop freezes trajectory and lifetime",
+      "passed": true
+    },
+    {
+      "name": "time limit releases with protection",
+      "passed": true
+    },
+    {
+      "name": "spent contact budget cannot be refreshed before landing",
+      "passed": true
+    },
+    {
+      "name": "ordinary 0/jab never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 0/cross never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 0/heavy never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 0/finisher never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 0/launcher never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 0/meteor never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 0/air_finisher never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 0/air_counter never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 0/grab never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 0/special never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 1/jab never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 1/cross never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 1/heavy never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 1/finisher never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 1/launcher never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 1/meteor never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 1/air_finisher never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 1/air_counter never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 1/grab never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 1/special never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 2/jab never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 2/cross never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 2/heavy never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 2/finisher never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 2/launcher never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 2/meteor never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 2/air_finisher never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 2/air_counter never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 2/grab never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 2/special never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 3/jab never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 3/cross never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 3/heavy never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 3/finisher never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 3/launcher never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 3/meteor never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 3/air_finisher never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 3/air_counter never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 3/grab never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "ordinary 3/special never arms multi-bounce",
+      "passed": true
+    },
+    {
+      "name": "character 0 overdrive final impact opts in",
+      "passed": true
+    },
+    {
+      "name": "character 1 overdrive final impact opts in",
+      "passed": true
+    },
+    {
+      "name": "character 2 overdrive final impact opts in",
+      "passed": true
+    },
+    {
+      "name": "character 3 overdrive final impact opts in",
+      "passed": true
+    },
+    {
+      "name": "partial RIVET charge remains ordinary",
+      "passed": true
+    },
+    {
+      "name": "full RIVET charge opts in",
+      "passed": true
+    },
+    {
+      "name": "boosted HUSH special opts in",
+      "passed": true
+    },
+    {
+      "name": "ordinary movement has no temporary box ceiling",
+      "passed": true
+    },
+    {
+      "name": "10000 normal AI ticks are deterministic",
+      "passed": true
+    }
+  ],
+  "scope": "Pure simulation, legal overdrive plus explicit boundary and input fixtures; not a human balance test",
+  "surfaces_from_one_overdrive": [
+    "right",
+    "ceiling",
+    "left",
+    "floor"
+  ]
+}

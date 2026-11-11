@@ -1,0 +1,84 @@
+{
+  "contacts": [
+    {
+      "chain": 1,
+      "seconds": 2.53333333333333,
+      "speed": 22.9671516418457,
+      "surface": "right"
+    },
+    {
+      "chain": 2,
+      "seconds": 2.7,
+      "speed": 21.5285949707031,
+      "surface": "ceiling"
+    },
+    {
+      "chain": 3,
+      "seconds": 3.23333333333333,
+      "speed": 23.7283897399902,
+      "surface": "floor"
+    },
+    {
+      "chain": 4,
+      "seconds": 3.56666666666666,
+      "speed": 18.9556064605713,
+      "surface": "left"
+    },
+    {
+      "chain": 5,
+      "seconds": 4.59999999999999,
+      "speed": 17.5356254577637,
+      "surface": "right"
+    },
+    {
+      "chain": 6,
+      "seconds": 4.86666666666666,
+      "speed": 17.8097667694092,
+      "surface": "floor"
+    },
+    {
+      "chain": 1,
+      "seconds": 7.73333333333332,
+      "speed": 21.8853015899658,
+      "surface": "right"
+    },
+    {
+      "chain": 2,
+      "seconds": 7.89999999999998,
+      "speed": 20.4374256134033,
+      "surface": "ceiling"
+    },
+    {
+      "chain": 3,
+      "seconds": 8.43333333333331,
+      "speed": 22.7204475402832,
+      "surface": "floor"
+    },
+    {
+      "chain": 4,
+      "seconds": 8.79999999999998,
+      "speed": 17.7848834991455,
+      "surface": "left"
+    },
+    {
+      "chain": 5,
+      "seconds": 9.89999999999998,
+      "speed": 17.8736820220947,
+      "surface": "right"
+    },
+    {
+      "chain": 6,
+      "seconds": 10.0333333333333,
+      "speed": 16.9751987457275,
+      "surface": "floor"
+    }
+  ],
+  "scope": "Standing CPU / x=0 and 1 / paid overdrive final hits / initial meter 100. No damage, launch velocity or boundary fixtures. Both pairs show all four current models; no E recovery so ricochet can be inspected.",
+  "seconds": 12.0,
+  "shots": {
+    "ceiling": 2.73333333333333,
+    "floor": 3.26666666666666,
+    "left": 3.6,
+    "right": 2.56666666666667
+  }
+}

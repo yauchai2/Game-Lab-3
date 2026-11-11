@@ -1,0 +1,46 @@
+{
+  "created_utc": "20261111T150737Z",
+  "source_commit": "85188f6d3672fb3cc04eeb0757ac51ace1e004f4",
+  "tracked_runtime_changes": [
+    "godot/assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb.import",
+    "godot/assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb.import",
+    "godot/assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb.import",
+    "godot/assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb.import"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 25,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_arena_results",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "6504680e1fad33ae0a87082a5e47903afddf56254f5dc562cff545978e547311",
+      "seconds": 8.584,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_arena_results.gd"
+      ],
+      "report_written": true,
+      "passed": 25,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

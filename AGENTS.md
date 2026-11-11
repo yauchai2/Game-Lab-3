@@ -122,3 +122,4 @@
 - 2026-11-11 使用者最新更正覆蓋前輪Demo手動契約：見docs/ABILITY_CORE_POOL.zh-TW.md。Demo offer等3秒／result等3.5秒後自動抽領，可手動提前，pause凍結；正式FIGHT／Run仍手動。獎池9種等權，6新modifier及9圖示／輪盤、active-core HUD／ECO共用cost供AI及meter刻度。SIPHON真命中回2、上限實回12、不能復活；所有能力下一局限定、不存XP。263項通過，原GLB／音軌及公開Web保持；Mac／真人平衡待驗。
 
 - 2026-11-11 使用者也要求同步codex/combat-escalation-next：以最新91db1f1合併mainffffd15，保留九核心／Demo自動抽領（覆蓋舊Demo手動規則）及黑衣人群戰修補。本輪推指定開發分支，不改main或Web；144項整合檢查見docs/evidence/branch-sync-combat-escalation。
+- 2026-11-11 最新澄清：多面球狀反彈僅指定技能／大招，覆蓋一般重擊／挑空／投技皆觸發。ServiceProfiles.move以ricochet旗標opt-in：四人overdrive最後重擊、RIVET preload2 special、HUSH sample_boost special；其他normal／未強化技能不啟動。平常不顯示臨時盒或限制跳躍天花，僅反彈效果期間。原RESULT／決勝KO與能力抽取保持，見evidence/ricochet-scope；同branch推送、Web不更新。

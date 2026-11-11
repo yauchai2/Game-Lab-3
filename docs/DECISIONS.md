@@ -318,3 +318,9 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 使用者明確要求也推到codex/combat-escalation-next。以遠端最新91db1f1合併main的ffffd15，保留九核心與Demo定時自動抽領，以及main的黑衣人群戰／頸部領帶修補／過場相容處理，不強推、不改Web。此輪只推指定開發分支；main維持ffffd15。最新Demo自動節奏以ABILITY_CORE_POOL.zh-TW.md為準，覆蓋較早手動Demo契約，一般FIGHT／Street Run仍手動。
 
 合併後144項通過：九核心75、群戰規則35、原生群戰10、原生回合24；無ERROR／SCRIPT ERROR。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy，非使用者本機或真人平衡驗收。證據docs/evidence/branch-sync-combat-escalation。
+
+## 2026-11-11：反彈限指定強化技能／大招
+
+使用者澄清球狀連續反彈只屬特殊攻擊／大招，覆蓋前輪普通重擊／挑空／投技也發射的範圍。一般jab／cross／heavy／finisher／launcher／meteor／air_finisher／air_counter／grab及未強化special不啟動ArenaBox，保留原擊退／既有單次牆彈。四角色大招最後重擊（ZIP連打末段）及RIVET滿蓄、HUSH強化special由move metadata明確opt-in；傷害／消耗不改。
+
+圍場只在反彈效果期間可見，平常不加臨時天花限制。仍有6接觸／180tick／E20受身、衰減、跟鏡與F2。65反彈規則＋25原生結果／鏡頭＋62二段跳＋10重砲＋7Demo＋34戰鬥＋75能力核心共278項通過；原結果頁修復、決勝KO及能力抽取功能保留。[新證據與大招預覽](evidence/ricochet-scope/README.md)。同branch／PR #6來源更新，不發佈Web，真人／本機驗收待辦。

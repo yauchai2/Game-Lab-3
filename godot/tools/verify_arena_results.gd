@@ -55,9 +55,12 @@ func run() -> void:
     check("Street Run final stop has full KO",s.run_stage==3 and s.city_breaker.active())
     s.return_to_title();s.start_match(false);s.sim.phase="fight";s.round_theatre.clear();s.sim.ai_enabled=false
     var health:int=s.sim.fighters[1].health;s.sim.fighters[0].x=0;s.sim.fighters[1].x=1
-    s.pending={"attack":"launcher"}
+    s.return_to_title();s.set_character(0,1);s.start_match(false);s.round_theatre.clear();s.sim.phase="fight";s.sim.ai_enabled=false
+    s.sim.fighters[0].x=0;s.sim.fighters[1].x=1;s.sim.fighters[0].meter=100
+    check("ordinary fight hides the temporary cage",not s.arena_cage.visible)
+    s.pending={"attack":"overdrive"}
     var framed:=true;var flight_frames:=0
-    for tick in 150:
+    for tick in 300:
         step()
         if s.sim.fighters.any(func(f:Dictionary)->bool:return s.Simulation.ArenaBox.active(f)):
             flight_frames+=1
@@ -66,7 +69,7 @@ func run() -> void:
                     var uv:Vector2=s.camera.unproject_position(Vector3(f.x,f.y+y,s.FIGHT_Z))/root.get_visible_rect().size
                     framed=framed and uv.y>=.239 and uv.y<=.821 and uv.x>=.099 and uv.x<=.901
     check("fast ricochets keep both complete bodies clear of HUD",framed and flight_frames>15)
-    check("formal battle has real wire-cage and bounded impact meshes",s.arena_cage.visible and s.arena_cage.impacts.size()==4 and s.arena_cage.get_child_count()==16)
+    check("temporary cage clears after the power flight; bounded impact meshes remain",not s.arena_cage.visible and s.arena_cage.impacts.size()==4 and s.arena_cage.get_child_count()==16)
     check("reduced effects never disables physical boundaries",s.sim.box_active())
     s.return_to_title()
     check("title clears all cage flashes and temporary lenses",s.arena_cage.impacts.all(func(v:Dictionary)->bool:return not v.node.visible) and not s.round_theatre.lens.visible and not s.city_breaker.active())

@@ -1,0 +1,75 @@
+{
+  "checks": [
+    {
+      "name": "normal-health exhibition starts in ready",
+      "passed": true
+    },
+    {
+      "name": "thirty thousand steps replay deterministically",
+      "passed": true
+    },
+    {
+      "name": "normal health and resources stay bounded",
+      "passed": true
+    },
+    {
+      "name": "real damage and zero-health KO occur",
+      "passed": true
+    },
+    {
+      "name": "both autonomous agents land real hits",
+      "passed": true
+    },
+    {
+      "name": "natural rounds and matches continue indefinitely",
+      "passed": true
+    },
+    {
+      "name": "round resets do not erase cumulative demo statistics",
+      "passed": true
+    }
+  ],
+  "events": {
+    "air_counter_choice": 99,
+    "air_counter_end": 99,
+    "air_counter_release": 86,
+    "air_counter_start": 99,
+    "air_counter_windup": 86,
+    "air_escape": 11,
+    "air_land": 305,
+    "air_parry_attempt": 99,
+    "air_parry_no_meter": 41,
+    "arena_bounce": 18,
+    "block": 29,
+    "chase_arrive": 145,
+    "counter_success": 54,
+    "dash": 45,
+    "fast_fall": 22,
+    "fight": 40,
+    "ground_bounce": 22,
+    "hit/air_counter": 61,
+    "hit/air_jab": 145,
+    "hit/air_kick": 138,
+    "hit/cross": 112,
+    "hit/heavy": 7,
+    "hit/jab": 118,
+    "hit/launcher": 166,
+    "hit/meteor": 34,
+    "hit/overdrive": 31,
+    "hit/special": 32,
+    "homing_chase": 145,
+    "ko": 39,
+    "no_chase_meter": 2,
+    "parry": 71,
+    "swing": 1132,
+    "wall_tech": 28
+  },
+  "hits": [
+    359,
+    485
+  ],
+  "matches": 16,
+  "rounds": 39,
+  "scope": "Normal-stat input policies and natural KO boundaries; actual scene presentations tested in verify_round_flow",
+  "ticks": 30000
+}

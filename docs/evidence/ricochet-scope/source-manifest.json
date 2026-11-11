@@ -1,0 +1,11 @@
+{
+  "base_commit": "91db1f18da69600f459f743dd959f1edd65f0481",
+  "sha256": {
+    "godot/scripts/combat/fight_session.gd": "561b00c88c5c3df5a8b4c9672d0767767bec136b7ab43c778bd8424e9a40291c",
+    "godot/scripts/combat/fight_simulation.gd": "590bee5906c258fcb19ab50848d37d38b583bb84033ce1c77af9e6fcba89c223",
+    "godot/scripts/combat/last_service/profiles.gd": "ab9bfad84c6316f40176a858ada1802c9d695a6b9cbe0f9a63e02cf55c244875",
+    "godot/tools/capture_arena_box.gd": "500e694a38d98845379c78304d5bd3cc8be0c14991725083c3e8904745c867ee",
+    "godot/tools/verify_arena_box.gd": "ed7241e82f1835bb0780385172ff2d379188e76c805367c12cfc74034cdb90ca",
+    "godot/tools/verify_arena_results.gd": "6504680e1fad33ae0a87082a5e47903afddf56254f5dc562cff545978e547311"
+  }
+}

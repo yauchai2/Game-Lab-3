@@ -6,6 +6,8 @@
 
 ## 2026-11-11：九核心獎池與 Demo 延時自動抽領（最新）
 
+最新澄清已落實：[反彈只用於指定強化技能／大招](evidence/ricochet-scope/README.md)。普通攻擊／挑空／投技回原擊退，盒狀圍場僅效果期間出現。
+
 見 [ABILITY_CORE_POOL.zh-TW.md](ABILITY_CORE_POOL.zh-TW.md)。Demo 代幣展示3秒後自動抽，獎品展示3.5秒後自動領取；覆蓋上一輪Demo必須手動的契約，正常模式仍手動。獎池3→9：新增FURY增傷15%、PLATE減傷15%、FLOW命中能量30%、ECO技能耗能-20%、BREACH盾損25%、SIPHON命中回2／整局最多12HP。九種等機率、下一局限定，實際simulation／AI節能門檻／HUD刻度及圖示／輪盤色彩皆接入。263項通過，證據evidence/ability-draw/expanded-pool；原GLB／音訊／XP／公開Web保持，Mac／真人平衡待驗。
 
 ## 2026-11-11：main 收入最後一筆遠端更新

@@ -700,7 +700,7 @@ func _process(delta: float) -> void:
         # that hides its controls and used to leave an empty RESULT page forever.
         finish_menu_open=true
         hud.rebuild_menu()
-    arena_cage.visible=screen in ["play","pause"] and sim.phase=="fight" and sim.box_active() and not round_theatre.intro
+    arena_cage.visible=screen in ["play","pause"] and sim.phase=="fight" and sim.box_active() and not round_theatre.intro and sim.fighters.any(func(f:Dictionary)->bool:return Simulation.ArenaBox.active(f))
     if screen=="play" and sim.fighters.any(func(f:Dictionary)->bool:return Simulation.ArenaBox.active(f)):
         _fit_box_camera()
     arena_cage.advance(delta,screen in ["pause","help"],reduced_effects)

@@ -470,8 +470,6 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
                 if previous_y > 0.0:
                     f.juggle = 0
                     events.append({"kind": "land", "target": i})
-        if box_active() and f.y>ArenaBox.CEILING:
-            f.y=ArenaBox.CEILING;f.vy=minf(f.vy,-2.0)
     f.guard_frames = f.guard_frames+1 if f.guarding and was_guarding else (1 if f.guarding else 0)
     f.guard = minf(100.0, f.guard + (0.06 if f.guarding else 0.30)*(1.35 if f.get("draw_core","")=="guard" else 1.0))
     # Landing recovery is bounded (4/8 ticks). Preserve an early Space press
@@ -697,7 +695,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     if is_aerial() and move_name=="meteor":
         b.vy=-16.0
         b.air.bounce_granted=not b.air.bounce_used and b.wall_bounces==0
-    if box_active() and not armor and move_name in ["heavy","finisher","launcher","meteor","special","overdrive","air_finisher","air_counter","grab"] and (m.push>=7 or move_name in ["launcher","meteor","air_counter"]):
+    if box_active() and not armor and m.get("ricochet",move_name=="overdrive") and m.push>=7:
         ArenaBox.arm(b,move_name,hit_face,m.push)
     var stop_ticks: int={"jab":3,"cross":4,"launcher":9,"air_jab":3,"air_kick":4,"meteor":14,"special":20,"overdrive":26}.get(move_name,m.stop) if arcade_enabled else m.stop
     b.flash = stop_ticks + 7

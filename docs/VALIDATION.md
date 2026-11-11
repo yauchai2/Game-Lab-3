@@ -6,6 +6,12 @@
 
 ## 2026-11-11：九核心獎池與 Demo 延時自動抽領（最新）
 
+## 2026-11-11：反彈限指定強化技能／大招
+
+使用者澄清球狀連續反彈只屬特殊攻擊／大招，覆蓋前輪普通重擊／挑空／投技也發射的範圍。一般jab／cross／heavy／finisher／launcher／meteor／air_finisher／air_counter／grab及未強化special不啟動ArenaBox，保留原擊退／既有單次牆彈。四角色大招最後重擊（ZIP連打末段）及RIVET滿蓄、HUSH強化special由move metadata明確opt-in；傷害／消耗不改。
+
+圍場只在反彈效果期間可見，平常不加臨時天花限制。仍有6接觸／180tick／E20受身、衰減、跟鏡與F2。65反彈規則＋25原生結果／鏡頭＋62二段跳＋10重砲＋7Demo＋34戰鬥＋75能力核心共278項通過；原結果頁修復、決勝KO及能力抽取功能保留。[新證據與大招預覽](evidence/ricochet-scope/README.md)。同branch／PR #6來源更新，不發佈Web，真人／本機驗收待辦。
+
 見 [ABILITY_CORE_POOL.zh-TW.md](ABILITY_CORE_POOL.zh-TW.md)。Demo 代幣展示3秒後自動抽，獎品展示3.5秒後自動領取；覆蓋上一輪Demo必須手動的契約，正常模式仍手動。獎池3→9：新增FURY增傷15%、PLATE減傷15%、FLOW命中能量30%、ECO技能耗能-20%、BREACH盾損25%、SIPHON命中回2／整局最多12HP。九種等機率、下一局限定，實際simulation／AI節能門檻／HUD刻度及圖示／輪盤色彩皆接入。263項通過，證據evidence/ability-draw/expanded-pool；原GLB／音訊／XP／公開Web保持，Mac／真人平衡待驗。
 
 ## 2026-11-11：main 收入最後一筆遠端更新

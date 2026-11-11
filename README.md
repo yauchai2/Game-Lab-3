@@ -1,6 +1,7 @@
 # Afterhours / Game-Lab-3
 
 同步：使用者要求將main `ffffd15` 的完整更新也合併到 `codex/combat-escalation-next`；保留該分支最新九核心及Demo自動抽獎，144項整合檢查通過。
+最新澄清已落實：[反彈只用於指定強化技能／大招](docs/evidence/ricochet-scope/README.md)。普通攻擊／挑空／投技回原擊退，盒狀圍場僅效果期間出現。
 
 最新：[九種抽獎能力／Demo延時自動抽領](docs/ABILITY_CORE_POOL.zh-TW.md)／[九核心總覽](docs/evidence/ability-draw/expanded-pool/pool-overview.png)／[有聲預覽](docs/evidence/ability-draw/expanded-pool/demo-auto-draw.mp4)。Demo停3秒再抽、結果停3.5秒繼續；正常遊戲手動，263項通過，Web不更新。
 

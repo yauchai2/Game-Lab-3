@@ -1,0 +1,9 @@
+{
+  "integrated_remote": "2c1483e",
+  "sha256": {
+    "godot/scripts/combat/last_service/profiles.gd": "4f152cacd824cf538d506c813e3690773b2e8a244b4118d755ddc00ced242f04",
+    "godot/scripts/combat/fight_simulation.gd": "ca6b4f78837e4699ce721cadbc214c694b8303f6ec058d8a4589881b062d0dcd",
+    "godot/scripts/combat/fight_session.gd": "19dcc3f872bb0f72998632f2a37ce48231ed83550e1786075239dd769f5bc952"
+  },
+  "squad_checks": 35
+}
