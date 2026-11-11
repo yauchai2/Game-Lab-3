@@ -1,5 +1,9 @@
 # 接續工作交接
 
+## 2026-11-11：CITY BREAKER 正式 3D KO 過場
+
+使用者指定 codex/combat-escalation-next，按所附10秒影片接正式KO，現況與差異見 [CITY_BREAKER.zh-TW.md](CITY_BREAKER.zh-TW.md)。八鏡按24fps剪接點對齊、當局人物直接演出、同一街景／飛機可逆分件、回合結果延後、Enter／Space跳過與Esc暫停／F2／重開／退出清理。simulation傷害與獎勵保持權威，無影片貼圖或固定角色。164新過場＋17結果＋37UI／音樂＋62二段跳＋45正式玩法＋30SURGE通過；舊Rhythm23/29在未改4177ef9重現。Godot4.6.3／llvmpipe／Dummy audio，原生影片為15fps無聲取樣，不是Mac效能或逐像素復刻。沿同一branch／PR #6推來源，Web不更新。
+
 ## 2026-11-10：正式二段跳與落地輸入改善
 
 已在現行共用空中 simulation 加入每次離地一次二段跳，Space 放開再按，10.5m/s，不取消攻擊／受擊／追擊或補回空中資源。落地恢復保留 8 tick 跳躍預輸入，加入收腿、月牙、上揚聲及操作提示。詳見 [DOUBLE_JUMP.zh-TW.md](DOUBLE_JUMP.zh-TW.md)／[本輪驗證](evidence/double-jump/README.md)。62 新規則、11 原生輸入、45 現行正式戰鬥、201 相關規則、13 鏡頭、37 原生 UI 通過。另 4 個舊斷言失敗已於未改動 f53c378 重現，完整 suite 並非零失敗；詳見證據。Godot4.6.3 Linux llvmpipe／Dummy audio，Mac／真人／實聽待驗收。沿同一來源 branch／PR #6；公開 Web 未更新。

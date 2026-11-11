@@ -28,10 +28,13 @@ func run() -> void:
         check("result %d resets its own presentation clock"%outcome,scene.screen=="result" and scene.sim.winner==outcome and scene.result_clock==0)
         var frozen: Array=scene.sim.fighters.duplicate(true)
         scene._process(.1)
-        check("result %d keeps a brief initial impact flash"%outcome,scene.fighters.all(func(f:Node)->bool:return f.materials.all(func(m:ShaderMaterial)->bool:return m.get_shader_parameter("flash")==1.0)))
+        check("result %d has the expected flash owner"%outcome,scene.fighters.filter(func(f:Node)->bool:return f.visible).all(func(f:Node)->bool:return f.materials.all(func(m:ShaderMaterial)->bool:return m.get_shader_parameter("flash")== (0.0 if scene.city_breaker.active() else 1.0))))
         scene._process(.7)
         check("result %d clears the frozen simulation flash in the visual pose"%outcome,scene.fighters.all(func(f:Node)->bool:return f.materials.all(func(m:ShaderMaterial)->bool:return m.get_shader_parameter("flash")==0.0)))
         check("result %d visual cleanup leaves the simulation snapshot intact"%outcome,scene.sim.fighters==frozen)
+        if scene.city_breaker.active():
+            check("result %d launches the loser before settling"%outcome,scene.fighters[1-outcome].position.y>5 and not scene.finish_menu_open)
+            scene.skip_city_breaker()
         check("result %d actors settle onto the crossing"%outcome,scene.fighters.all(func(f:Node3D)->bool:return is_zero_approx(f.position.y)))
         scene.hud.rebuild_menu()
         if DisplayServer.get_name()!="headless":

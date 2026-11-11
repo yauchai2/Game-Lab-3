@@ -198,7 +198,7 @@ func rebuild_menu(requested_focus := "") -> void:
         menu_stack.remove_child(child)
         child.queue_free()
     art_controls.visible=false
-    menu.visible=session.screen!="play" and not (session.screen=="result" and session.result_clock<session.FINISH_SECONDS and not session.reduced_effects)
+    menu.visible=session.screen!="play" and not session.result_presentation_active()
     back_button.visible=menu.visible and menu_page!="main"
     back_button.text="ESC  BACK"
     if not menu.visible:
@@ -588,6 +588,9 @@ func _draw() -> void:
         elif menu_page=="roster":art.roster(self,session)
         else:art.secondary(self,"LOADOUT" if menu_page=="skills" else ("SETTINGS" if menu_page=="settings" else "HOW TO PLAY"))
         return
+    if session.city_breaker.active() and session.screen=="result":
+        session.city_breaker.draw(self)
+        return
     if session.neon_enabled:
         session.neon.draw(self,session)
     else:
@@ -633,7 +636,7 @@ func _draw() -> void:
         _text(Vector2(34,690),"J "+tr_text("light")+"   K "+tr_text("heavy")+"   G "+tr_text("throw")+"   Shift "+tr_text("guard")+"   E "+tr_text("dodge"),13,PAPER)
 
     if session.hitboxes_visible:_draw_hitboxes()
-    if session.screen!="play" and not (session.screen=="result" and session.result_clock<session.FINISH_SECONDS and not session.reduced_effects):
+    if session.screen!="play" and not session.result_presentation_active():
         art.secondary(self,"SETTINGS" if menu_page=="settings" else ("HOW TO PLAY" if menu_page=="help" else ("PAUSED" if session.screen in ["pause","help"] else "RESULT")))
 
 func _health(x: float, fighter: Dictionary, tint: Color, reverse: bool, index: int) -> void:

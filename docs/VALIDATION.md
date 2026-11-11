@@ -522,3 +522,8 @@ Godot4.7.2 Linux Compatibility：37原生操作、10頁面／3D剪影／popup／
 ## 2026-11-10 Neon Facets規劃分支
 
 完成六檔下載／ffprobe／SHA及完整時間軸2fps接觸圖檢視，總長80.200s；4張inline圖於對話檢視。分支基線885f1c1，godot runtime差異為空。僅驗證文件鏈接／JSON／來源雜湊與分支隔離；未跑新的shader／玩法／性能測試，也不拿基線通過結果當新風格證據。詳見 [計劃](NEON_FACETS_PLAN.zh-TW.md)。Web與穩定分支不變。
+
+
+## 2026-11-11：CITY BREAKER 原生 KO
+
+164新過場、17結果、37原生UI／持續音樂、62二段跳、45正式玩法、30SURGE通過；四角×雙方、真special傷害KO、逐鏡有限相機、資料不變、靜態batch／飛機／模型清理、輸入跳過、暫停、F2、重開與超時不誤觸。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy audio，最終過場／UI log無ERROR或SCRIPT ERROR，最終過場無ObjectDB警告。舊Rhythm23/29六失敗在未改4177ef9隔離worktree重現相同結果；不稱全套零失敗。畫面與150幀15fps無聲影片見evidence/city-breaker，來源／切點／差異見CITY_BREAKER.zh-TW.md。初期headless換模null material及早期測試修正有界線紀錄；未將Dummy或renderer載入當作Mac、實聽或效能證明。

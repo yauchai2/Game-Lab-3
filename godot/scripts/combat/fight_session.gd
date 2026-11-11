@@ -29,6 +29,8 @@ var fighters: Array[Node3D] = []
 var theatre=preload("res://scripts/combat/impact_theatre.gd").new()
 var rhythm=preload("res://scripts/combat/combat_rhythm.gd").new()
 const FINISH_SECONDS := 1.4
+var city_breaker = preload("res://scripts/combat/cinematic/city_breaker.gd").new()
+var pause_resume_screen := "play"
 var red_environment: Environment
 var camera: Camera3D
 var hud: Control
@@ -120,6 +122,8 @@ func _ready() -> void:
     hud = FightHUD.new()
     hud.session = self
     canvas.add_child(hud)
+    add_child(city_breaker)
+    city_breaker.setup(self)
     _present(0.0)
 
 func _build_stage() -> void:
@@ -269,6 +273,9 @@ func _combat_step() -> void:
         else:theatre.clear()
         audio.stop_all()
         audio.play_sound("ko")
+        if sim.winner >= 0 and sim.fighters[1-sim.winner].health <= 0 and not reduced_effects:
+            theatre.clear(); neon.clear(); rhythm.clear(); spectacle.clear(); effects.clear()
+            city_breaker.begin(sim.winner)
         hud.rebuild_menu()
 
 func start_demo() -> void:
@@ -554,6 +561,7 @@ func _handle_event(event: Dictionary) -> void:
     if neon_enabled and not reduced_effects:neon.trigger(event,sim.fighters,sim.exchange.tier())
 
 func _clear_impacts() -> void:
+    city_breaker.clear()
     sim.exchange.cancel_decision();sim.surge_release.clear();sim.surge_guards=[0,0]
     sim.continuation.clear()
     surge_pulse=0.0
@@ -599,7 +607,7 @@ func _process(delta: float) -> void:
         if settings_save_clock<0:save_options()
     if screen=="result":
         result_clock+=delta
-        if result_clock>=FINISH_SECONDS and not finish_menu_open:
+        if result_clock>=finish_seconds() and not finish_menu_open:
             finish_menu_open=true
             hud.rebuild_menu()
     if neon_enabled:neon.advance(delta,screen in ["pause","help"],reduced_effects)
@@ -632,9 +640,19 @@ func _process(delta: float) -> void:
     _present((delta*rhythm.view_speed() if screen=="play" and not reduced_effects else delta) if screen in ["play", "title", "result"] else 0.0)
     _grade_world()
     _apply_red_stage()
+    if city_breaker.active():
+        if reduced_effects or screen not in ["result", "pause", "help"]:
+            skip_city_breaker()
+        else:
+            city_breaker.advance(delta, screen != "result")
     hud.queue_redraw()
 
 func _apply_red_stage() -> void:
+    if city_breaker.active():
+        backdrop.visible=true
+        camera.environment=null
+        grade.visible=false
+        return
     if neon_enabled:
         var poster:bool=neon.stage() and not reduced_effects and screen in ["play","result"]
         backdrop.visible=not poster
@@ -792,16 +810,19 @@ func project(point: Vector2) -> Vector2:
     return camera.unproject_position(Vector3(point.x,point.y,FIGHT_Z)) * Vector2(1280,720) / get_viewport().get_visible_rect().size
 
 func pause_game() -> void:
-    if screen == "play":
+    if screen == "play" or (screen == "result" and city_breaker.active()):
+        pause_resume_screen = screen
         screen = "pause"
         audio.stop_all()
         hud.rebuild_menu()
 
 func resume_game() -> void:
-    screen = "play"
+    screen = pause_resume_screen
+    pause_resume_screen = "play"
     hud.rebuild_menu()
 
 func advance_round() -> void:
+    city_breaker.clear()
     sim.next_round()
     finish_menu_open=false
     effects.clear()
@@ -811,11 +832,15 @@ func advance_round() -> void:
     hud.rebuild_menu()
 
 func return_to_street() -> void:
+    city_breaker.clear()
     audio.stop_all()
     get_tree().change_scene_to_file("res://scenes/street_walk.tscn")
 
 func _unhandled_key_input(event: InputEvent) -> void:
     if not event.is_pressed() or event.is_echo():
+        return
+    if city_breaker.active() and screen == "result" and event.keycode in [KEY_ENTER, KEY_SPACE]:
+        skip_city_breaker()
         return
     if hud.handle_shortcut(event):return
     if event.keycode==KEY_C and (screen=="title" or (practice and demo==null and screen=="play")):
@@ -873,7 +898,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
     elif event.keycode == KEY_F3:
         hitboxes_visible = not hitboxes_visible
     elif event.keycode == KEY_ESCAPE:
-        if screen == "play":
+        if screen == "play" or (screen == "result" and city_breaker.active()):
             pause_game()
         elif screen in ["pause", "help"]:
             resume_game()
@@ -951,6 +976,7 @@ func set_volume(kind: String, value: float) -> void:
     settings_save_clock=.35
 
 func _exit_tree() -> void:
+    city_breaker.clear()
     # A scene switch or immediate quit can happen before the slider debounce.
     if settings_save_clock>=0 and is_instance_valid(audio) and is_instance_valid(ink_pass):
         save_options()
@@ -1201,3 +1227,18 @@ func continue_coach() -> void:
     if coach.status=="complete":return_to_title();return
     if coach.advance():_prepare_coach_fixture()
     pending.clear()
+
+func finish_seconds() -> float:
+    return city_breaker.DURATION if city_breaker.active() else FINISH_SECONDS
+
+func result_presentation_active() -> bool:
+    return screen == "result" and not reduced_effects and (city_breaker.active() or result_clock < FINISH_SECONDS)
+
+func skip_city_breaker() -> void:
+    city_breaker.clear()
+    result_clock = maxf(result_clock, FINISH_SECONDS)
+    finish_menu_open = true
+    audio.stop_all()
+    _present(0.0)
+    _apply_red_stage()
+    hud.rebuild_menu()

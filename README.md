@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[CITY BREAKER 3D KO 回合過場](docs/CITY_BREAKER.zh-TW.md)／[10 秒原生錄像及八鏡畫面](docs/evidence/city-breaker/README.md)。真正 KO 後沿用當局四角色、戰鬥街景與客機，拋飛／爆街／空爆／KO；Enter或Space跳過、Esc暫停、F2短版。來源同分支，公開Web未更新。
+
 最新：[二段跳與落地操作改善](docs/DOUBLE_JUMP.zh-TW.md)。正式 FIGHT／Street Run：Space 起跳，空中放開再按二段跳；每次離地一次，加入姿態／局部聲畫回饋，修正硬落地預輸入。來源同一開發分支，公開 Web 未更新。
 
 最新：[正式街鬥玩法改善](docs/LIVE_COMBAT_IMPROVEMENTS.zh-TW.md)／[正式FIGHT真按鍵及30秒前後錄像](docs/evidence/live-combat/README.md)。CPU加入投守勢／揮空恢復／低guard後撤及角色資源決策，LOOP J連段能接第三段，接觸後更快回到動作。直接選FIGHT／STREET RUN體驗；同一來源branch，公開Web不變。

@@ -5,11 +5,16 @@ uniform vec4 tint : source_color = vec4(1.0);
 uniform bool use_texture = false;
 uniform float flash = 0.0;
 uniform bool silhouette_preview = false;
+uniform bool ko_silhouette = false;
 uniform float neon_silhouette = 0.0;
 uniform vec4 neon_accent : source_color = vec4(0.0,0.84,0.91,1.0);
 void fragment() {
     vec3 c = tint.rgb * (use_texture ? texture(base_texture, UV).rgb : vec3(1.0));
-    if (silhouette_preview) {
+    if (ko_silhouette) {
+        float edge = step(0.64, 1.0 - abs(dot(normalize(NORMAL), normalize(VIEW))));
+        ALBEDO = vec3(0.0);
+        EMISSION = mix(vec3(0.035, 0.025, 0.055), vec3(0.02, 0.92, 0.95), edge);
+    } else if (silhouette_preview) {
         ALBEDO = vec3(0.0);
         EMISSION = tint.rgb;
     } else {
