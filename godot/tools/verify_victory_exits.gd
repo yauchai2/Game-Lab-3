@@ -61,7 +61,8 @@ func run() -> void:
         else:s.return_to_title()
         check(action+" during winner closeup releases fisheye / sound / near plane",not s.city_breaker.active() and not s.city_breaker.score_player.playing and is_equal_approx(s.camera.near,.1) and s.city_breaker.lens_material.get_shader_parameter("fisheye")==0)
     s.audio.set_process(false);s.audio.music.stop();s.audio.fading_music.stop()
-    await create_timer(.12).timeout;s.queue_free();s=null
+    # Let the threaded Dummy mixer release stopped playback before engine exit.
+    await create_timer(.35).timeout;s.queue_free();s=null
     for i in 8:await process_frame
     var failed:int=checks.filter(func(v:Dictionary)->bool:return not v.passed).size()
     FileAccess.open(OUT+"verification.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"passed":checks.size()-failed,"failed":failed,"engine":Engine.get_version_info().string,"display":DisplayServer.get_name()},"  "))

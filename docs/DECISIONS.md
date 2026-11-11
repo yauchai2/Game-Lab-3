@@ -238,3 +238,12 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 ## 2026-11-11：勝者後段與單一演出owner
 
 新要求是在K.O.之後接近鏡／專屬離場，因此保留5秒破壞節奏、追加3.2秒，總長8.2秒，不把已有爆破再壓縮。四角色直接用現有骨架做獨立姿態／離場方向及原創exit音軌；module無獨立時鐘，由CityBreaker掌鏡與音軌切換。依rig頭部位置近鏡，124°FOV結合螢幕桶形畸變；真出框後出結果，避免只淡出模型。near／fisheye／音軌全部走同一clear；原GLB與simulation不變。
+
+
+## 2026-11-11：完整回合演出、AI Demo循環與煙霧
+
+正式FIGHT／Street Run加入2.8秒同場3D開場：街景、P1／P2角色近鏡、ROUND，再交回原倒數及對戰。Enter／Space跳過，Esc暫停，練習保持即玩。AI Demo改正常有限生命、不回血，真KO後播完整5秒破壞＋3.2秒勝者魚眼與離場，之後自動下一回合；兩勝完場也繼續loop，沿用選角、不發XP。覆蓋舊Demo endless／無KO契約，正常FIGHT結果仍由玩家確認。
+
+場景加入有界屋頂／街邊煙、命中揚塵及64團KO殘煙；重擊後可短暫魚眼近鏡，避讓Neon大招與KO，保持雙人及HUD留白。新增原創2.8秒開場音軌，沿原SFX／mute／pause及BGM duck。詳見evidence/round-flow/README.md。來源同codex/combat-escalation-next／PR #6，公開Web不更新；Mac／硬件效能與真人強度仍待驗收。
+
+開場是獨立presentation owner，在ready時凍結simulation但不改其資料；KO仍由CityBreaker唯一掌鏡。戰鬥accent只在其他鏡頭空檔、真重擊後觸發，0.28秒／至少1.6秒冷卻，不改遊戲時間或傷害。Demo只在正式結算及演出完成後呼叫next_round／restart_match；不在live fight重設生命、注入命中或替AI補傷害。煙霧用世界座標billboard及量化噪聲，18環境＋12命中池＋64KO固定上限。

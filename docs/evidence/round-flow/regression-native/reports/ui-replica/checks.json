@@ -1,0 +1,155 @@
+{
+  "checks": [
+    {
+      "name": "English interface default",
+      "passed": true
+    },
+    {
+      "name": "exactly five native main actions",
+      "passed": true
+    },
+    {
+      "name": "native buttons retain meaningful English names",
+      "passed": true
+    },
+    {
+      "name": "five actions fit (960, 540)",
+      "passed": true
+    },
+    {
+      "name": "five actions fit (1280, 720)",
+      "passed": true
+    },
+    {
+      "name": "five actions fit (1920, 1080)",
+      "passed": true
+    },
+    {
+      "name": "arrow moves Fight to Fighters",
+      "passed": true
+    },
+    {
+      "name": "Enter opens four-card Fighters page",
+      "passed": true
+    },
+    {
+      "name": "pointer selects LOOP for P1",
+      "passed": true
+    },
+    {
+      "name": "P2 card controls independently update actual rival",
+      "passed": true
+    },
+    {
+      "name": "card 0 changes actual P1 profile",
+      "passed": true
+    },
+    {
+      "name": "card 1 changes actual P1 profile",
+      "passed": true
+    },
+    {
+      "name": "card 2 changes actual P1 profile",
+      "passed": true
+    },
+    {
+      "name": "Esc returns to five-option menu",
+      "passed": true
+    },
+    {
+      "name": "pointer opens native Settings",
+      "passed": true
+    },
+    {
+      "name": "keyboard opens native difficulty popup",
+      "passed": true
+    },
+    {
+      "name": "popup Esc preserves Settings page",
+      "passed": true
+    },
+    {
+      "name": "settings retain actual native sliders",
+      "passed": true
+    },
+    {
+      "name": "music slider changes real gain",
+      "passed": true
+    },
+    {
+      "name": "settings scrollbar reaches lower options",
+      "passed": true
+    },
+    {
+      "name": "Training starts actual play",
+      "passed": true
+    },
+    {
+      "name": "Esc pauses gameplay",
+      "passed": true
+    },
+    {
+      "name": "pause keeps same music player and advances head",
+      "passed": true
+    },
+    {
+      "name": "pause smoothly lowers music gain",
+      "passed": true
+    },
+    {
+      "name": "pause Settings music continues without restart",
+      "passed": true
+    },
+    {
+      "name": "resume restores gain on same advancing song",
+      "passed": true
+    },
+    {
+      "name": "song change starts an overlapping crossfade",
+      "passed": true
+    },
+    {
+      "name": "rapid navigation reverses existing crossfade",
+      "passed": true
+    },
+    {
+      "name": "crossfade retires old deck only after fading",
+      "passed": true
+    },
+    {
+      "name": "music has exactly two bounded decks",
+      "passed": true
+    },
+    {
+      "name": "zero volume silences without stopping transport",
+      "passed": true
+    },
+    {
+      "name": "AI Demo starts real endless battle",
+      "passed": false
+    },
+    {
+      "name": "native HUD pause target works",
+      "passed": true
+    },
+    {
+      "name": "F2 remains an independent effects control",
+      "passed": true
+    },
+    {
+      "name": "all 13 vector attacks have finite staged geometry",
+      "passed": true
+    },
+    {
+      "name": "active renderer has no generated raster stamps",
+      "passed": true
+    },
+    {
+      "name": "title clears all combat effects",
+      "passed": true
+    }
+  ],
+  "passed": 36,
+  "scope": "Native injected pointer/keyboard, two-deck audio transport and geometry. No human/target GPU claim.",
+  "total": 37
+}

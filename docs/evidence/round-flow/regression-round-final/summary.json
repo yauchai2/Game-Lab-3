@@ -1,0 +1,49 @@
+{
+  "created_utc": "20261111T031925Z",
+  "source_commit": "18eb6f54df71a0c35e289067f1060af632e1b7a7",
+  "tracked_runtime_changes": [
+    "godot/audio/city_breaker/README.md",
+    "godot/scripts/combat/cinematic/city_breaker.gd",
+    "godot/scripts/combat/demo_director.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/street_backdrop.gd",
+    "godot/scripts/combat/ui/reference_art.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 26,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_round_flow",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "ff90e43a03a8d744a556e8e10fd22435b769a90c30bce6361a64cd0bc5bc7117",
+      "seconds": 8.71,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_round_flow.gd"
+      ],
+      "report_written": true,
+      "passed": 26,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

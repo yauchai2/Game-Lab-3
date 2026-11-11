@@ -198,7 +198,7 @@ func rebuild_menu(requested_focus := "") -> void:
         menu_stack.remove_child(child)
         child.queue_free()
     art_controls.visible=false
-    menu.visible=session.screen!="play" and not session.result_presentation_active()
+    menu.visible=session.screen!="play" and not (session.demo!=null and session.screen=="result") and not session.result_presentation_active()
     back_button.visible=menu.visible and menu_page!="main"
     back_button.text="ESC  BACK"
     if not menu.visible:
@@ -588,6 +588,9 @@ func _draw() -> void:
         elif menu_page=="roster":art.roster(self,session)
         else:art.secondary(self,"LOADOUT" if menu_page=="skills" else ("SETTINGS" if menu_page=="settings" else "HOW TO PLAY"))
         return
+    if session.round_theatre.intro and session.screen=="play":
+        session.round_theatre.draw(self)
+        return
     if session.city_breaker.active() and session.screen=="result":
         session.city_breaker.draw(self)
         return
@@ -636,7 +639,7 @@ func _draw() -> void:
         _text(Vector2(34,690),"J "+tr_text("light")+"   K "+tr_text("heavy")+"   G "+tr_text("throw")+"   Shift "+tr_text("guard")+"   E "+tr_text("dodge"),13,PAPER)
 
     if session.hitboxes_visible:_draw_hitboxes()
-    if session.screen!="play" and not session.result_presentation_active():
+    if session.screen!="play" and not (session.demo!=null and session.screen=="result") and not session.result_presentation_active():
         art.secondary(self,"SETTINGS" if menu_page=="settings" else ("HOW TO PLAY" if menu_page=="help" else ("PAUSED" if session.screen in ["pause","help"] else "RESULT")))
 
 func _health(x: float, fighter: Dictionary, tint: Color, reverse: bool, index: int) -> void:
@@ -687,7 +690,7 @@ func _pressure_hud() -> void:
 
 func _demo_hud() -> void:
     _plate(Vector2(28,78),Vector2(270,38),INK)
-    _text(Vector2(37,105),"AI DEMO  /  LIVE",14,PAPER)
+    _text(Vector2(37,105),"AI DEMO / ROUND %02d"%session.presentation_round(),14,PAPER)
 
 func _surge_hud() -> void:
     var exchange=session.sim.exchange

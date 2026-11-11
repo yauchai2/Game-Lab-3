@@ -129,3 +129,20 @@ for character in ['zip','rivet','hush','loop']:
     with wave.open(str(wav),'wb') as f:f.setnchannels(2);f.setsampwidth(2);f.setframerate(RATE);f.writeframes((mix*32767).astype('<i2').tobytes())
     subprocess.run(['ffmpeg','-v','error','-i',str(wav),'-c:a','libvorbis','-q:a','5',str(out/('exit_'+character+'.ogg')),'-y'],check=True)
 (out/'exit-provenance.json').write_text(json.dumps({'source':'Original procedural synthesis, no external samples','duration':3.2,'characters':['zip','rivet','hush','loop'],'sample_rate':RATE,'channels':2,'generator':'tools/build_city_breaker_audio.py'},indent=2)+'\n')
+
+# Entry sequence: city reveal, both portrait cuts, round title.
+DURATION=2.8
+mix=np.zeros((int(RATE*DURATION),2),dtype=np.float64)
+for at,f,pan in [(0.04,82,0),(.36,440,-.65),(.50,660,-.45),(1.11,550,.65),(1.25,825,.45),(1.88,110,0),(2.15,165,0)]:tone(at,f,.35,.10,pan)
+for at,pan in [(.30,-.7),(1.05,.7),(1.82,0)]:
+    t=np.arange(int(RATE*.24))/RATE
+    add(at,low_noise(len(t),2600)*np.sin(np.pi*t/.24)**2,.11,pan)
+impact(1.88,.25,0)
+mix=np.tanh(mix);mix*=10**(-3/20)/max(.001,np.max(np.abs(mix)))
+mix[-int(.15*RATE):]*=np.linspace(1,0,int(.15*RATE))[:,None]
+wav=Path('/tmp/round-intro.wav')
+with wave.open(str(wav),'wb') as f:f.setnchannels(2);f.setsampwidth(2);f.setframerate(RATE);f.writeframes((mix*32767).astype('<i2').tobytes())
+subprocess.run(['ffmpeg','-v','error','-i',str(wav),'-c:a','libvorbis','-q:a','5',str(out/'intro.ogg'),'-y'],check=True)
+import hashlib
+decoded=np.frombuffer(subprocess.check_output(['ffmpeg','-v','error','-i',str(out/'intro.ogg'),'-f','f32le','pipe:1']),dtype='<f4')
+(out/'intro-provenance.json').write_text(json.dumps({'source':'Original procedural synthesis; no external samples','generator':'tools/build_city_breaker_audio.py','duration_seconds':len(decoded)/(RATE*2),'sample_rate':RATE,'channels':2,'peak_dbfs_decoded':float(20*np.log10(np.max(np.abs(decoded)))),'rms_dbfs_decoded':float(20*np.log10(np.sqrt(np.mean(decoded*decoded)))),'sha256':hashlib.sha256((out/'intro.ogg').read_bytes()).hexdigest(),'cues_seconds':[0,.36,1.11,1.88,2.15]},indent=2)+'\n')

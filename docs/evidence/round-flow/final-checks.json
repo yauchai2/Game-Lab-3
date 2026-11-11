@@ -1,0 +1,237 @@
+{
+  "cases": {
+    "verify_demo": {
+      "name": "verify_demo",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "af4779cece0784e9c72b868508ff1958b5854fa50a2fabc5e611a8f2db5d3fba",
+      "seconds": 3.818,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_demo.gd"
+      ],
+      "report_written": true,
+      "passed": 7,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true,
+      "report_folder": "regression-headless"
+    },
+    "verify_result_presentation": {
+      "name": "verify_result_presentation",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "34da6baa1969a644a4a2509d648b43e8d8974d0d24440f4e9a2c3feaf0787290",
+      "seconds": 1.275,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_result_presentation.gd"
+      ],
+      "report_written": true,
+      "passed": 17,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true,
+      "report_folder": "regression-headless"
+    },
+    "verify_round_flow": {
+      "name": "verify_round_flow",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "ff90e43a03a8d744a556e8e10fd22435b769a90c30bce6361a64cd0bc5bc7117",
+      "seconds": 8.71,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_round_flow.gd"
+      ],
+      "report_written": true,
+      "passed": 26,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true,
+      "report_folder": "regression-round-final"
+    },
+    "verify_victory_exits": {
+      "name": "verify_victory_exits",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "bbc2b03f4c1d03f45e70915ecc39847f20a4eb33a918a88c83b599dd5a21737f",
+      "seconds": 5.669,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_victory_exits.gd"
+      ],
+      "report_written": true,
+      "passed": 86,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true,
+      "report_folder": "regression-exit-final"
+    },
+    "verify_city_breaker_fx": {
+      "name": "verify_city_breaker_fx",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "bd3d390d660b074d1cea1832a0b7066d5a649caa402157cb9e83f8563f65f57a",
+      "seconds": 4.049,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_city_breaker_fx.gd"
+      ],
+      "report_written": true,
+      "passed": 20,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true,
+      "report_folder": "regression-final"
+    },
+    "verify_city_breaker": {
+      "name": "verify_city_breaker",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "579019de1d2ca6bbfbe33ad4eabc78f35b8f8185709cb4af89cefef085c53710",
+      "seconds": 5.636,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_city_breaker.gd"
+      ],
+      "report_written": true,
+      "passed": 165,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true,
+      "report_folder": "regression-final"
+    },
+    "verify_reference_ui": {
+      "name": "verify_reference_ui",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "b9a61a32d0e0ab556ba0acdc7d16834cdd7aeed770fc61f3d9fa3059ef3c19b0",
+      "seconds": 16.586,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_reference_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 37,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true,
+      "report_folder": "regression-final"
+    },
+    "verify_demo_input": {
+      "name": "verify_demo_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "3bc41bb1fc94e3fc17a8364a4c919634207c2f8582331931b54a1c7da9f8ff60",
+      "seconds": 8.544,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_demo_input.gd"
+      ],
+      "report_written": true,
+      "passed": 11,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true,
+      "report_folder": "regression-final"
+    }
+  },
+  "passed": 369,
+  "failed": 0,
+  "scope": "Latest per-case reports, retaining initial failures and superseded contracts in earlier folders."
+}

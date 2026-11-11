@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[完整開場→KO→勝者離場與AI Demo循環](docs/evidence/round-flow/README.md)。正式回合3D開場、真KO完整演出後自動接下一round的雙AI Demo、更強煙霧及戰鬥魚眼重音。來源同branch，Web不更新。
+
 最新：[勝者魚眼特寫與四種離場](docs/evidence/victory-exits/README.md)。保留5秒KO爆破，追加3.2秒超近廣角／魚眼與四角專屬動作、慢步出框和角色聲效；結果等離場後出現。來源同branch，Web不更新。
 
 最新：[五秒快節奏KO](docs/evidence/city-breaker-fast/README.md)。整段10→5秒，穿街／追天加快，保留撞擊／空爆重拍與約0.9秒KO收尾；聲效重新合成、不倍速變調。來源同branch，Web不更新。

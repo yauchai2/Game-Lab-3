@@ -1,5 +1,11 @@
 # 接續工作交接
 
+## 2026-11-11：完整回合演出、AI Demo循環與煙霧
+
+正式FIGHT／Street Run加入2.8秒同場3D開場：街景、P1／P2角色近鏡、ROUND，再交回原倒數及對戰。Enter／Space跳過，Esc暫停，練習保持即玩。AI Demo改正常有限生命、不回血，真KO後播完整5秒破壞＋3.2秒勝者魚眼與離場，之後自動下一回合；兩勝完場也繼續loop，沿用選角、不發XP。覆蓋舊Demo endless／無KO契約，正常FIGHT結果仍由玩家確認。
+
+場景加入有界屋頂／街邊煙、命中揚塵及64團KO殘煙；重擊後可短暫魚眼近鏡，避讓Neon大招與KO，保持雙人及HUD留白。新增原創2.8秒開場音軌，沿原SFX／mute／pause及BGM duck。26回合／選角／清理＋86勝者＋20FX＋165KO＋37UI＋11Demo輸入＋7Demo規則＋17結果共369項通過；40.4秒連續兩個真KO有聲錄像。詳見[本輪證據](evidence/round-flow/README.md)。來源同codex/combat-escalation-next／PR #6，公開Web不更新；Mac／硬件效能與真人強度仍待驗收。
+
 ## 2026-11-11：勝者超近魚眼與專屬離場
 
 依最新要求在K.O.後追加3.2秒，總長8.2秒，前5秒不變。victory_exit.gd以當局勝者／真骨架做四套姿態與離場：ZIP甩手側滑、RIVET雙拳重步、HUSH側頭回眸、LOOP右手花式轉身。124°FOV＋桶形fisheye，依各rig頭部取景，慢步真正出框後才出結果；背景破壞繼續慢動態。4套原創exit音軌第5秒切入，BGM／mute／pause保持；clear還原near／fisheye並停音，F2／重開／返回皆測。86新勝者＋20FX＋165KO＋17結果通過，四角及完整有聲影片在evidence/victory-exits。不是mocap／足底IK或物理魚眼校準；Mac／真人實聽／目標GPU待驗，來源同branch／PR #6，Web不更新。

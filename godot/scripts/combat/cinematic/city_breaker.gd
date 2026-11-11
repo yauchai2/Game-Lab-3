@@ -38,6 +38,7 @@ var rng := RandomNumberGenerator.new()
 var body_position := Vector3.ZERO
 var burst_materials: Array[Material] = []
 var prepared := false
+var smoke_clouds:Array=[]
 const IMPACTS := [0.02, .82, 1.72, 2.82, 3.18, 3.65, 6.4, 172.0/24, 189.0/24]
 var score_player: AudioStreamPlayer
 var lens: ColorRect
@@ -144,6 +145,7 @@ func sample(time: float) -> void:
     _sources_at(age)
     _pieces_at(age)
     _bursts_at(age)
+    _smoke_at(age)
     _wave_at(age)
     _actors_at(age)
     _camera_at(u)
@@ -446,6 +448,12 @@ func _make_burst(at: Vector3, start: float, radius: float) -> void:
     var torus:=TorusMesh.new();torus.inner_radius=.94;torus.outer_radius=1.0;torus.rings=32;torus.ring_segments=4
     var shock:=_mesh(torus,_unlit(Color("a4ffef")))
     nodes.append({"node":shock,"offset":Vector3.ZERO,"shock_ring":true,"smoke":false,"scale":1.0,"rotation":Vector3.ZERO})
+    for i in 8:
+        var puff:=preload("res://scripts/combat/street_smoke.gd").puff(Color("65536f") if i%2==0 else Color("9b829d"),start*11+i)
+        container.add_child(puff)
+        var smoke_origin:=at
+        if start<6.0 and i%2==0:smoke_origin.y*=.35
+        smoke_clouds.append({"node":puff,"at":smoke_origin,"start":start,"radius":radius,"offset":Vector3(rng.randf_range(-1,1),rng.randf_range(-.2,.8),rng.randf_range(-.6,.6))})
     bursts.append({"at":at,"start":start,"radius":radius,"nodes":nodes})
 
 func _bursts_at(time: float) -> void:
@@ -650,6 +658,7 @@ func _map_time(seconds: float, inputs: Array, outputs: Array) -> float:
 func _victory_at(seconds: float) -> void:
     _pieces_at(SOURCE_DURATION+seconds*.22)
     _bursts_at(SOURCE_DURATION+seconds*.22)
+    _smoke_at(SOURCE_DURATION+seconds*.22)
     session.fighters[victim].visible=false
     victory_state= victory.apply(session,winner,seconds)
     lens_material.set_shader_parameter("fisheye",victory_state.fish)
@@ -687,3 +696,15 @@ func _draw_victory(canvas: Control) -> void:
     if t>2.98:
         var wipe:float=smoothstep(2.98,3.2,t)
         canvas.draw_colored_polygon(PackedVector2Array([Vector2(-160,0),Vector2(1440*wipe,0),Vector2(1440*wipe-140,720),Vector2(-160,720)]),ink)
+
+
+func _smoke_at(time:float) -> void:
+    for cloud in smoke_clouds:
+        var dt:float=time-cloud.start
+        cloud.node.visible=dt>=0 and dt<8.0
+        if not cloud.node.visible:continue
+        var growth:float=clampf(dt/.55,0,1)
+        cloud.node.position=cloud.at+cloud.offset*cloud.radius*(.5+dt*.12)+Vector3(dt*.25,dt*1.1,0)
+        cloud.node.scale=Vector3.ONE*maxf(.01,cloud.radius*(.65+minf(dt,4.0)*.25)*growth)
+        cloud.node.material_override.set_shader_parameter("age",dt+cloud.start)
+        cloud.node.material_override.set_shader_parameter("opacity",.55*growth*clampf((8.0-dt)/2.0,0,1))

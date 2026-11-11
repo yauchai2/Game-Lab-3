@@ -1,0 +1,49 @@
+{
+  "checks": [
+    {
+      "name": "F12 starts a normal-health demo with full entry",
+      "passed": true
+    },
+    {
+      "name": "agents cannot act inside entry",
+      "passed": true
+    },
+    {
+      "name": "entry rejects attacks and retired next-chapter key",
+      "passed": true
+    },
+    {
+      "name": "Esc pauses opening and its audio",
+      "passed": true
+    },
+    {
+      "name": "demo still has the native pause menu",
+      "passed": true
+    },
+    {
+      "name": "Enter skips entry, normal countdown enters fight",
+      "passed": true
+    },
+    {
+      "name": "player keys do not feed the autonomous agents",
+      "passed": true
+    },
+    {
+      "name": "normal controls survive two complete KO loops",
+      "passed": true
+    },
+    {
+      "name": "R starts a fresh opening and statistics",
+      "passed": true
+    },
+    {
+      "name": "restart retains original partner preference",
+      "passed": true
+    },
+    {
+      "name": "F12 clears all presentations and restores preference",
+      "passed": true
+    }
+  ],
+  "scope": "Native input handler / real normal-health AI rounds / entry and KO loop. Replaces obsolete regeneration-only Demo contract."
+}

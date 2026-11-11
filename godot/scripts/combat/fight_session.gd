@@ -29,6 +29,7 @@ var fighters: Array[Node3D] = []
 var theatre=preload("res://scripts/combat/impact_theatre.gd").new()
 var rhythm=preload("res://scripts/combat/combat_rhythm.gd").new()
 const FINISH_SECONDS := 1.4
+var round_theatre = preload("res://scripts/combat/cinematic/round_theatre.gd").new()
 var city_breaker = preload("res://scripts/combat/cinematic/city_breaker.gd").new()
 var pause_resume_screen := "play"
 var red_environment: Environment
@@ -124,6 +125,8 @@ func _ready() -> void:
     canvas.add_child(hud)
     add_child(city_breaker)
     city_breaker.setup(self)
+    add_child(round_theatre)
+    round_theatre.setup(self)
     _present(0.0)
 
 func _build_stage() -> void:
@@ -204,10 +207,12 @@ func start_match(training := false) -> void:
     pending.clear()
     trauma = 0
     screen = "play"
+    if not practice:round_theatre.begin_intro()
     hud.rebuild_menu()
 
 func _physics_process(delta: float) -> void:
     if screen!="play":return
+    if round_theatre.hold_simulation():return
     if coach!=null:
         if coach.status=="ready":return
         if coach.status=="running":coach.elapsed+=delta
@@ -227,6 +232,7 @@ func _physics_process(delta: float) -> void:
 func _combat_step() -> void:
     if screen != "play":
         return
+    if round_theatre.hold_simulation():return
     var input := pending.duplicate()
     pending.clear()
     input["axis"] = float(Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT)) - float(Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT))
@@ -274,13 +280,14 @@ func _combat_step() -> void:
         audio.stop_all()
         audio.play_sound("ko")
         if sim.winner >= 0 and sim.fighters[1-sim.winner].health <= 0 and not reduced_effects:
+            round_theatre.clear()
             theatre.clear(); neon.clear(); rhythm.clear(); spectacle.clear(); effects.clear()
             city_breaker.begin(sim.winner)
         hud.rebuild_menu()
 
 func start_demo() -> void:
     var original_partner: int=demo_partner if demo!=null else sim.partner_mode
-    start_match(true)
+    start_match(false)
     demo_partner=original_partner
     demo=preload("res://scripts/combat/demo_director.gd").new()
     _prepare_demo_state()
@@ -298,6 +305,7 @@ func _prepare_demo_state() -> void:
     finish_menu_open=false
     screen="play"
     hud.notice_time=0
+    round_theatre.begin_intro()
     hud.rebuild_menu()
 
 func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}) -> void:
@@ -559,8 +567,14 @@ func _handle_event(event: Dictionary) -> void:
         hud.notice_time = 1.5
 
     if neon_enabled and not reduced_effects:neon.trigger(event,sim.fighters,sim.exchange.tier())
+    round_theatre.trigger(event)
+    if event.kind=="hit" and not reduced_effects:
+        var target:int=clampi(event.get("target",0),0,1)
+        backdrop.smoke.react(Vector3(sim.fighters[target].x,sim.fighters[target].y,FIGHT_Z))
 
 func _clear_impacts() -> void:
+    round_theatre.clear()
+    if is_instance_valid(backdrop) and is_instance_valid(backdrop.smoke):backdrop.smoke.clear_impacts()
     city_breaker.clear()
     sim.exchange.cancel_decision();sim.surge_release.clear();sim.surge_guards=[0,0]
     sim.continuation.clear()
@@ -607,7 +621,7 @@ func _process(delta: float) -> void:
         if settings_save_clock<0:save_options()
     if screen=="result":
         result_clock+=delta
-        if result_clock>=finish_seconds() and not finish_menu_open:
+        if demo==null and result_clock>=finish_seconds() and not finish_menu_open:
             finish_menu_open=true
             hud.rebuild_menu()
     if neon_enabled:neon.advance(delta,screen in ["pause","help"],reduced_effects)
@@ -645,10 +659,16 @@ func _process(delta: float) -> void:
             skip_city_breaker()
         else:
             city_breaker.advance(delta, screen != "result")
+    if not city_breaker.active():
+        round_theatre.advance(delta,screen in ["pause","help"])
+    backdrop.smoke.visible=screen in ["play","pause","result","help"]
+    backdrop.smoke.advance(delta*(rhythm.view_speed() if screen=="play" and not reduced_effects else 1.0),screen in ["pause","help"],reduced_effects)
+    if screen=="result" and demo!=null and not city_breaker.active() and result_clock>=FINISH_SECONDS:
+        _advance_demo_round()
     hud.queue_redraw()
 
 func _apply_red_stage() -> void:
-    if city_breaker.active():
+    if city_breaker.active() or round_theatre.intro:
         backdrop.visible=true
         camera.environment=null
         grade.visible=false
@@ -829,9 +849,11 @@ func advance_round() -> void:
     _clear_impacts()
     pending.clear()
     screen = "play"
+    round_theatre.begin_intro()
     hud.rebuild_menu()
 
 func return_to_street() -> void:
+    round_theatre.clear()
     city_breaker.clear()
     audio.stop_all()
     get_tree().change_scene_to_file("res://scenes/street_walk.tscn")
@@ -839,6 +861,10 @@ func return_to_street() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if not event.is_pressed() or event.is_echo():
         return
+    if round_theatre.intro and screen=="play":
+        if event.keycode in [KEY_ENTER,KEY_SPACE]:
+            round_theatre.clear();pending.clear();return
+        if event.physical_keycode in [KEY_J,KEY_K,KEY_L,KEY_G,KEY_E,KEY_SHIFT]:return
     if city_breaker.active() and screen == "result" and event.keycode in [KEY_ENTER, KEY_SPACE]:
         skip_city_breaker()
         return
@@ -976,6 +1002,7 @@ func set_volume(kind: String, value: float) -> void:
     settings_save_clock=.35
 
 func _exit_tree() -> void:
+    round_theatre.clear()
     city_breaker.clear()
     # A scene switch or immediate quit can happen before the slider debounce.
     if settings_save_clock>=0 and is_instance_valid(audio) and is_instance_valid(ink_pass):
@@ -1169,10 +1196,10 @@ func advance_run() -> void:
     sim.character_choices=character_choices.duplicate()
     sim.service_perks=[growth.equipped(run_character),[]]
     sim.difficulty=clampi(run_base_difficulty+run_stage-1,0,2)
-    sim.training=false;sim.ai_enabled=true;sim.restart_match();sim.phase="fight"
+    sim.training=false;sim.ai_enabled=true;sim.restart_match()
     for i in 2:fighters[i].setup(COLORS[i],character_choices[i])
     effects.clear();pending.clear();_clear_impacts();result_clock=0;finish_menu_open=false;trauma=0
-    screen="play";hud.notice="STREET RUN / STOP %d OF 3"%run_stage;hud.notice_time=1.5;hud.rebuild_menu()
+    screen="play";hud.notice="STREET RUN / STOP %d OF 3"%run_stage;hud.notice_time=1.5;round_theatre.begin_intro();hud.rebuild_menu()
 
 func _award_run() -> void:
     if run_awarded or demo!=null:return
@@ -1242,3 +1269,16 @@ func skip_city_breaker() -> void:
     _present(0.0)
     _apply_red_stage()
     hud.rebuild_menu()
+
+
+func presentation_round() -> int:
+    return demo.rounds_finished+1 if demo!=null else sim.round_number
+
+func _advance_demo_round() -> void:
+    var director:RefCounted=demo
+    _clear_impacts();effects.clear();pending.clear()
+    director.advance_round(sim)
+    result_clock=0.0;finish_menu_open=false;trauma=0.0
+    screen="play"
+    round_theatre.begin_intro()
+    hud.notice_time=0;hud.rebuild_menu()

@@ -1,0 +1,34 @@
+{
+  "events": {
+    "air_counter_choice": 4,
+    "air_counter_end": 4,
+    "air_counter_release": 4,
+    "air_counter_start": 4,
+    "air_counter_windup": 4,
+    "air_land": 13,
+    "air_parry_attempt": 4,
+    "chase_arrive": 4,
+    "dash": 3,
+    "fast_fall": 1,
+    "fight": 2,
+    "hit": 24,
+    "homing_chase": 4,
+    "ko": 2,
+    "swing": 33,
+    "wall_bounce": 1,
+    "wall_tech": 1
+  },
+  "real_ko_events": 2,
+  "rounds_completed": 2,
+  "scope": "Actual unmodified-stat AI Demo. Full title, entries, KO and winner sequences followed by next-round loop; no injected hits.",
+  "seconds": 39.766666666667,
+  "shots": {
+    "combat-fisheye": 3.83333333333333,
+    "p1-entry": 0.766666666666667,
+    "p2-entry": 1.43333333333333,
+    "round-entry": 2.23333333333334,
+    "smoke-explosion": 15.7666666666666,
+    "street-smoke": 5.03333333333333,
+    "winner": 17.5666666666667
+  }
+}

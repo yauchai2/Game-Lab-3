@@ -98,3 +98,5 @@
 - 2026-11-11 最新節奏覆蓋原10秒KO：正式播放5秒，以timing.json把原10秒作者時間非線性壓縮，保留撞樓／空爆短重拍、0.92秒KO收尾；playback_elapsed是真時鐘，age仍是作者時間。聲效按同profile重新合成5秒、不變調；不要用Engine.time_scale或把整段pitch_scale=2。來源同branch，Web不更新；最新證據evidence/city-breaker-fast。
 
 - 2026-11-11 最新K.O.後要求覆蓋5秒直接結果：保留5秒基段，再追加3.2秒當局勝者近鏡／專屬離場，整段8.2秒。victory_exit.gd由同一CityBreaker時鐘掌管，四套程序骨架／方向與exit音軌；124°FOV＋桶形fisheye依真head anchor取景，真出框再出結果。clear必須還原near／fisheye、停止score；F2／暫停／重開保持。原GLB／simulation不變，最新證據evidence/victory-exits；來源同branch推送，Web不更新。
+
+- 2026-11-11 最新完整過場要求覆蓋Demo endless／無自動重設歷史契約：見docs/evidence/round-flow/README.md。正式FIGHT／Street Run有2.8秒可跳過3D開場，練習即玩；Demo正常有限生命、真KO完整8.2秒後自動next round／next match，無XP、不在live fight補傷或改健康。round_theatre掌開場／稀疏0.28秒戰鬥魚眼，避讓Neon及CityBreaker；煙霧固定18＋12＋64上限。暫停／F2／R／F12／退出須清理lens與score。來源同branch／PR #6，Web不更新。

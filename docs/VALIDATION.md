@@ -1,5 +1,11 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-11：完整回合演出、AI Demo循環與煙霧
+
+正式FIGHT／Street Run加入2.8秒同場3D開場：街景、P1／P2角色近鏡、ROUND，再交回原倒數及對戰。Enter／Space跳過，Esc暫停，練習保持即玩。AI Demo改正常有限生命、不回血，真KO後播完整5秒破壞＋3.2秒勝者魚眼與離場，之後自動下一回合；兩勝完場也繼續loop，沿用選角、不發XP。覆蓋舊Demo endless／無KO契約，正常FIGHT結果仍由玩家確認。
+
+場景加入有界屋頂／街邊煙、命中揚塵及64團KO殘煙；重擊後可短暫魚眼近鏡，避讓Neon大招與KO，保持雙人及HUD留白。新增原創2.8秒開場音軌，沿原SFX／mute／pause及BGM duck。26回合／選角／清理＋86勝者＋20FX＋165KO＋37UI＋11Demo輸入＋7Demo規則＋17結果共369項通過；40.4秒連續兩個真KO有聲錄像。詳見[本輪證據](evidence/round-flow/README.md)。來源同codex/combat-escalation-next／PR #6，公開Web不更新；Mac／硬件效能與真人強度仍待驗收。
+
 ## 2026-11-10：二段跳與落地預輸入
 
 [規格與範圍](DOUBLE_JUMP.zh-TW.md)／[本輪 log、report、畫面及修改前對照](evidence/double-jump/README.md)。新增規則62/62、原生輸入11/11；相關戰鬥規則201/201、現行正式戰鬥45/45、鏡頭13/13、原生UI37/37。舊combat_polish34/35、cannon_input5/7、aerial_input30/31：四個斷言於未改動f53c378得到相同失敗，未冒稱全套零失敗。首次native因未設Xauthority失敗，修正執行環境後正常渲染；原始log保留。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy audio，輸入為注入；非Mac／人手／音訊裝置／FPS提升證據。模型、字體及舊證據未改，公開Web不更新。
