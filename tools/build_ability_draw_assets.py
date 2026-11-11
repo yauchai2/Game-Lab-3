@@ -69,4 +69,5 @@ manifest={'origin':'Original programmatic polygon icon art and deterministic syn
 storyboard=ROOT/'references/ability-draw/equip-storyboard.png'
 if storyboard.exists():manifest['equip_storyboard']={'origin':'ImageGen concept sheet using existing capsule screenshot as design reference','status':'planning_only_not_runtime','sha256':hashlib.sha256(storyboard.read_bytes()).hexdigest()}
 (ROOT/'references/ability-draw/manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-print('Built reel art, 5 original stereo cues and provenance manifest')
+subprocess.run(['python3',str(ROOT/'tools/build_ability_core_art.py')],check=True)
+print('Built reel art, expanded core pool, 5 original stereo cues and provenance manifest')

@@ -138,7 +138,7 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
         plate(c,Rect2(meter.position-Vector2(3,3),meter.size+Vector2(6,6)),T.INK,4)
         plate(c,meter,T.LIME.darkened(.7),3)
         if f.meter>0:plate(c,Rect2(meter.position,meter.size*Vector2(f.meter/100,1)),T.LIME,3)
-        var marks:Array=[10,20,75] if f.character==3 else [50,75]
+        var marks:Array=[s.sim.skill_cost(f,"node_pulse"),s.sim.skill_cost(f,"special"),s.sim.skill_cost(f,"overdrive")] if s.sim.last_service_enabled and f.character==3 else [s.sim.skill_cost(f,"special"),s.sim.skill_cost(f,"overdrive")]
         for threshold in marks:
             var tx:float=meter.position.x+meter.size.x*threshold/100
             c.draw_line(Vector2(tx,61),Vector2(tx,73),T.PAPER,2)

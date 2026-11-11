@@ -32,6 +32,7 @@ func click_action() -> void:
         root.push_input(e,true);await process_frame
 
 func run() -> void:
+    if "--expanded-pool" in OS.get_cmdline_user_args():output="res://../docs/evidence/ability-draw/expanded-pool/"
     if "--rhythm-ui" in OS.get_cmdline_user_args():output="res://../docs/evidence/ability-draw/rhythm-ui/"
     if "--tripo-models" in OS.get_cmdline_user_args():output="res://../docs/evidence/ability-draw/tripo-models/"
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";s.progression_path="/tmp/ability-growth.cfg";root.add_child(s)
@@ -118,12 +119,21 @@ func run() -> void:
     var growth:Dictionary=s.growth.records.duplicate(true)
     s.return_to_title();s.start_demo();s.round_theatre.clear();s.sim.round_number=2;s.sim.wins=[1,1];s.sim.phase="round_over";s.sim.winner=0;s.screen="result";s.result_clock=2
     s._advance_demo_round();check("Demo uses same intermission",s.ability_draw.active())
-    step(360);await process_frame
-    check("Demo waits indefinitely for player draw",s.ability_draw.state=="offer" and s.ability_draw.result.is_empty() and s.sim.round_number==2)
-    await click_action();step(140);await process_frame
-    check("Demo also waits for explicit claim",s.ability_draw.state=="result" and s.sim.round_number==2)
-    step(12);await click_action()
-    check("Demo click continues to round three",not s.ability_draw.active() and s.sim.round_number==3 and s.sim.fighters[0].has("draw_core"))
+    s.ability_draw.skip();step(177);await process_frame
+    check("Demo holds offer for almost three seconds",s.ability_draw.state=="offer" and s.ability_draw.result.is_empty())
+    s.pause_game();var demo_wait:float=s.ability_draw.age;step(180)
+    check("Demo pause freezes automatic draw countdown",s.ability_draw.age==demo_wait and s.ability_draw.state=="offer")
+    s.resume_game();Input.action_press("ui_accept");step(8);await process_frame
+    check("Demo automatically draws after three seconds",s.ability_draw.state=="spin" and not s.ability_draw.result.is_empty())
+    step(140);await process_frame
+    check("Demo reaches the same stable reward page",s.ability_draw.state=="result" and s.sim.round_number==2)
+    step(180);await process_frame
+    check("Demo displays reward for at least three seconds",s.ability_draw.state=="result" and s.sim.round_number==2)
+    s.pause_game();demo_wait=s.ability_draw.age;step(120)
+    check("Demo pause freezes automatic claim countdown",s.ability_draw.age==demo_wait and s.ability_draw.state=="result")
+    s.resume_game();step(30);await process_frame
+    Input.action_release("ui_accept")
+    check("Demo automatically claims after 3.5 seconds even with a held key",not s.ability_draw.active() and s.sim.round_number==3 and s.sim.fighters[0].has("draw_core"))
     check("Demo does not grant permanent growth",s.growth.records==growth)
     s.return_to_title()
     var profile=preload("res://scripts/combat/ability_draw/stage_profile.gd").new()

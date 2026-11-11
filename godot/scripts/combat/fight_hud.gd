@@ -608,6 +608,7 @@ func _draw() -> void:
     if not session.neon_enabled and session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
     art.hud(self,session,health_lag)
     service_art.draw(self,session)
+    _draw_core_tag()
     if session.sim.arcade_enabled:_surge_hud()
     if session.sim.exchange.decision_active():_surge_decision_hud()
     if session.neon_enabled:draw_string(font,Vector2(16,160),"NEON FACETS LAB",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color("bdff00"))
@@ -646,6 +647,19 @@ func _draw() -> void:
     if session.screen!="play" and not (session.demo!=null and session.screen=="result") and not session.result_presentation_active():
         art.secondary(self,"SETTINGS" if menu_page=="settings" else ("HOW TO PLAY" if menu_page=="help" else ("PAUSED" if session.screen in ["pause","help"] else "RESULT")))
 
+func _draw_core_tag() -> void:
+    if session.screen!="play":return
+    var rewards=preload("res://scripts/combat/ability_draw/rewards.gd")
+    for side in 2:
+        var f:Dictionary=session.sim.fighters[side]
+        var core:Dictionary=rewards.item(f.get("draw_core",""))
+        if core.is_empty():continue
+        var at:=Vector2(34 if side==0 else 894,204)
+        _plate(at,Vector2(352,32),Tokens.NIGHT)
+        draw_rect(Rect2(at,Vector2(4,32)),core.color)
+        draw_texture_rect(load("res://assets/ability_draw/pool/"+core.id+".png"),Rect2(at+Vector2(10,2),Vector2(28,28)),false)
+        _text(at+Vector2(46,25),core.title+((" %d/12"%(12-int(f.get("draw_healed",0)))) if core.id=="siphon" else ""),24,core.color)
+
 func _health(x: float, fighter: Dictionary, tint: Color, reverse: bool, index: int) -> void:
     var fighter_tag: String=("AI 1" if index==0 else "AI 2") if session.demo!=null else tr_text("you" if index==0 else ("practice" if session.practice else "rival"))
     _text(Vector2(x+8,28),fighter_tag+" / "+tr_text(session.FighterVisual.Roster.entry(session.character_choices[index]).label),13,PAPER)
@@ -659,10 +673,10 @@ func _health(x: float, fighter: Dictionary, tint: Color, reverse: bool, index: i
     _text(Vector2(x+14,55),str(fighter.health),14,INK,true)
     _plate(Vector2(x+6,72),Vector2(458,6),INK)
     _plate(Vector2(x+6,72),Vector2(458*clampf(fighter.meter/100.0,0,1),6),Tokens.LIME)
-    for threshold in [50,75]:
+    for threshold in [session.sim.skill_cost(fighter,"special"),session.sim.skill_cost(fighter,"overdrive")]:
         var tx: float=x+6+458*threshold/100.0
         draw_line(Vector2(tx,69),Vector2(tx,81),PAPER,2)
-    _text(Vector2(x+6,96),"L 50 / W+L 75   ·   %d"%fighter.meter,11,Tokens.LIME)
+    _text(Vector2(x+6,96),"L %d / W+L %d   ·   %d"%[session.sim.skill_cost(fighter,"special"),session.sim.skill_cost(fighter,"overdrive"),fighter.meter],11,Tokens.LIME)
     _text(Vector2(x+345,96),tr_text("guard")+" %d"%fighter.guard,11,PAPER)
 
 func _pressure_hud() -> void:

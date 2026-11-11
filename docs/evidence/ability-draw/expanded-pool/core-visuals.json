@@ -1,0 +1,83 @@
+{
+  "checks": [
+    {
+      "name": "speed winning reel texture and stop agree",
+      "passed": true
+    },
+    {
+      "name": "speed capsule tint icon and readable action agree",
+      "passed": true
+    },
+    {
+      "name": "guard winning reel texture and stop agree",
+      "passed": true
+    },
+    {
+      "name": "guard capsule tint icon and readable action agree",
+      "passed": true
+    },
+    {
+      "name": "charge winning reel texture and stop agree",
+      "passed": true
+    },
+    {
+      "name": "charge capsule tint icon and readable action agree",
+      "passed": true
+    },
+    {
+      "name": "fury winning reel texture and stop agree",
+      "passed": true
+    },
+    {
+      "name": "fury capsule tint icon and readable action agree",
+      "passed": true
+    },
+    {
+      "name": "plate winning reel texture and stop agree",
+      "passed": true
+    },
+    {
+      "name": "plate capsule tint icon and readable action agree",
+      "passed": true
+    },
+    {
+      "name": "flow winning reel texture and stop agree",
+      "passed": true
+    },
+    {
+      "name": "flow capsule tint icon and readable action agree",
+      "passed": true
+    },
+    {
+      "name": "eco winning reel texture and stop agree",
+      "passed": true
+    },
+    {
+      "name": "eco capsule tint icon and readable action agree",
+      "passed": true
+    },
+    {
+      "name": "breach winning reel texture and stop agree",
+      "passed": true
+    },
+    {
+      "name": "breach capsule tint icon and readable action agree",
+      "passed": true
+    },
+    {
+      "name": "siphon winning reel texture and stop agree",
+      "passed": true
+    },
+    {
+      "name": "siphon capsule tint icon and readable action agree",
+      "passed": true
+    },
+    {
+      "name": "ECO HUD thresholds use actual 40 and 60 costs",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 19,
+  "scope": "Forced catalog fixture; actual 3D reels/core colors/icons/GUI and combat HUD render, not a random-drop recording."
+}

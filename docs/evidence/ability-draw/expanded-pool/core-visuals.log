@@ -1,0 +1,25 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+CORE_VISUAL speed winning reel texture and stop agree true
+CORE_VISUAL speed capsule tint icon and readable action agree true
+CORE_VISUAL guard winning reel texture and stop agree true
+CORE_VISUAL guard capsule tint icon and readable action agree true
+CORE_VISUAL charge winning reel texture and stop agree true
+CORE_VISUAL charge capsule tint icon and readable action agree true
+CORE_VISUAL fury winning reel texture and stop agree true
+CORE_VISUAL fury capsule tint icon and readable action agree true
+CORE_VISUAL plate winning reel texture and stop agree true
+CORE_VISUAL plate capsule tint icon and readable action agree true
+CORE_VISUAL flow winning reel texture and stop agree true
+CORE_VISUAL flow capsule tint icon and readable action agree true
+CORE_VISUAL eco winning reel texture and stop agree true
+CORE_VISUAL eco capsule tint icon and readable action agree true
+CORE_VISUAL breach winning reel texture and stop agree true
+CORE_VISUAL breach capsule tint icon and readable action agree true
+CORE_VISUAL siphon winning reel texture and stop agree true
+CORE_VISUAL siphon capsule tint icon and readable action agree true
+CORE_VISUAL ECO HUD thresholds use actual 40 and 60 costs true
+CORE_VISUAL_CHECKS 19/19

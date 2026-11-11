@@ -8,6 +8,7 @@ func check(label:String,ok:bool) -> void:
     checks.append({"name":label,"passed":ok});print("ABILITY_MODELS ",label," ",ok)
     if not ok:push_error(label)
 func run() -> void:
+    if "--expanded-pool" in OS.get_cmdline_user_args():OUT="res://../docs/evidence/ability-draw/expanded-pool/"
     if "--rhythm-ui" in OS.get_cmdline_user_args():OUT="res://../docs/evidence/ability-draw/rhythm-ui/"
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";s.progression_path="/tmp/ability-models-growth.cfg";root.add_child(s);s.set_process(false);s.set_physics_process(false);s.audio.muted=true
     await process_frame;await process_frame

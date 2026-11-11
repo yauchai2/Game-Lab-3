@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[九種抽獎能力／Demo延時自動抽領](docs/ABILITY_CORE_POOL.zh-TW.md)／[九核心總覽](docs/evidence/ability-draw/expanded-pool/pool-overview.png)／[有聲預覽](docs/evidence/ability-draw/expanded-pool/demo-auto-draw.mp4)。Demo停3秒再抽、結果停3.5秒繼續；正常遊戲手動，263項通過，Web不更新。
+
 最新：[抽獎節奏／手動按鈕／共用遊戲字體](docs/ABILITY_DRAW_RHYTHM_UI.zh-TW.md)／[有聲預覽](docs/evidence/ability-draw/rhythm-ui/ability-draw-rhythm-ui.mp4)。按 DRAW 才抽，三輪鎖定、短靜拍、揭曉後另按 CONTINUE；85 項檢查通過，Web 不更新。
 
 最新：[使用者Tripo蒙面NPC／機身已接入](docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md)／[有聲引擎預覽](docs/evidence/ability-draw/tripo-models/tripo-ability-draw.mp4)。原65骨NPC拖行／拍機／展示／開獎，原機殼＋獨立活動件，來源原檔保留；74項原生檢查通過，Web不更新。

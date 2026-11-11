@@ -1,3 +1,7 @@
+## 2026-11-11：九核心獎池與 Demo 延時自動抽領（最新）
+
+見 [ABILITY_CORE_POOL.zh-TW.md](ABILITY_CORE_POOL.zh-TW.md)。Demo 代幣展示3秒後自動抽，獎品展示3.5秒後自動領取；覆蓋上一輪Demo必須手動的契約，正常模式仍手動。獎池3→9：新增FURY增傷15%、PLATE減傷15%、FLOW命中能量30%、ECO技能耗能-20%、BREACH盾損25%、SIPHON命中回2／整局最多12HP。九種等機率、下一局限定，實際simulation／AI節能門檻／HUD刻度及圖示／輪盤色彩皆接入。263項通過，證據evidence/ability-draw/expanded-pool；原GLB／音訊／XP／公開Web保持，Mac／真人平衡待驗。
+
 ## 2026-11-11：手動抽獎、節奏及共用字體（最新）
 
 見 [ABILITY_DRAW_RHYTHM_UI.zh-TW.md](ABILITY_DRAW_RHYTHM_UI.zh-TW.md)。2.05 秒入場／2.20 秒抽獎，三輪鎖定後靜拍再揭曉；必須新按 DRAW，結果另按 CONTINUE，Demo 也等待玩家，覆蓋舊自動抽領。刪減口號與裝飾、統一黑白桃紅青綠 UI；修正獨立 Button 未繼承遊戲 bitmap Theme。63 流程／輸入／節奏＋22 原模型檢查通過，原生有聲證據在 evidence/ability-draw/rhythm-ui；原模型／音訊保留，Mac／真人待驗，Web 不更新。

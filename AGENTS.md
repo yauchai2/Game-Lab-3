@@ -112,3 +112,5 @@
 - 2026-11-11 本聊天已提供275dc57f…機身與36d4f0c3…65骨NPC，覆蓋前述待模型狀態：見docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md。原GLB／albedo byte保留，真骨架CC0 gait＋作者IK接觸／手指／代幣；機身窗口多層封面用包裝材質／outline開窗，活動件獨立。短入場／抽獎cue用原OGG解碼PCM（build_ability_pcm.py），原OGG／長BGM保持，避免重現的快速重開Ogg退出滯留；不要擅自改回舊程序人物／機殼。74項原生及有聲fixture有證據，Mac／真人待驗，腰側裝備仍未實作，來源同branch／Web不更新。
 
 - 2026-11-11 最新抽獎要求：見docs/ABILITY_DRAW_RHYTHM_UI.zh-TW.md。2.05秒入場／2.20秒逐輪抽獎；必須新按DRAW才抽、結果另按CONTINUE，包含Demo，覆蓋原Demo自動抽領契約。共用bitmap字體／原生Button theme、放鍵與160ms防穿透，原模型／音訊／跨場景入口保留，85項通過；Web不更新。
+
+- 2026-11-11 使用者最新更正覆蓋前輪Demo手動契約：見docs/ABILITY_CORE_POOL.zh-TW.md。Demo offer等3秒／result等3.5秒後自動抽領，可手動提前，pause凍結；正式FIGHT／Run仍手動。獎池9種等權，6新modifier及9圖示／輪盤、active-core HUD／ECO共用cost供AI及meter刻度。SIPHON真命中回2、上限實回12、不能復活；所有能力下一局限定、不存XP。263項通過，原GLB／音軌及公開Web保持；Mac／真人平衡待驗。

@@ -1,0 +1,151 @@
+{
+  "checks": [
+    {
+      "name": "uploaded character is the visible 65-bone rig",
+      "passed": true
+    },
+    {
+      "name": "uploaded cabinet is actually in the moving chassis",
+      "passed": true
+    },
+    {
+      "name": "all two-bone and finger chains resolve",
+      "passed": true
+    },
+    {
+      "name": "existing CC0 gait retargets actual source skeleton",
+      "passed": true
+    },
+    {
+      "name": "shell retains source embedded albedo",
+      "passed": true
+    },
+    {
+      "name": "three drums four wheels and flap remain independent",
+      "passed": true
+    },
+    {
+      "name": "pose 0.30 remains finite",
+      "passed": true
+    },
+    {
+      "name": "pose 0.55 remains finite",
+      "passed": true
+    },
+    {
+      "name": "pose 0.82 remains finite",
+      "passed": true
+    },
+    {
+      "name": "pose 1.05 remains finite",
+      "passed": true
+    },
+    {
+      "name": "pose 1.42 remains finite",
+      "passed": true
+    },
+    {
+      "name": "pose 1.70 remains finite",
+      "passed": true
+    },
+    {
+      "name": "pose 2.16 remains finite",
+      "passed": true
+    },
+    {
+      "name": "pose 2.85 remains finite",
+      "passed": true
+    },
+    {
+      "name": "pose 3.75 remains finite",
+      "passed": true
+    },
+    {
+      "name": "drag and slap wrist contacts stay within 15cm",
+      "passed": true
+    },
+    {
+      "name": "gait articulates leg bones rather than sliding a static model",
+      "passed": true
+    },
+    {
+      "name": "hand animation changes with authored phases",
+      "passed": true
+    },
+    {
+      "name": "token follows actual animated wrist",
+      "passed": true
+    },
+    {
+      "name": "real reel faces are visible through the uploaded bay",
+      "passed": true
+    },
+    {
+      "name": "pause preserves uploaded skeleton pose",
+      "passed": true
+    },
+    {
+      "name": "return clears uploaded actors and temporary lens",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 22,
+  "samples": [
+    {
+      "contact_error_m": 0.000000546285605196317,
+      "hand": "(-6.496923, 1.891105, 2.44)",
+      "pose": "drag",
+      "time": 0.3
+    },
+    {
+      "contact_error_m": 0.000000119209289550781,
+      "hand": "(-4.458132, 1.902917, 2.44)",
+      "pose": "drag",
+      "time": 0.55
+    },
+    {
+      "contact_error_m": 0.000000357627868652344,
+      "hand": "(-1.943167, 1.889501, 2.44)",
+      "pose": "drag",
+      "time": 0.82
+    },
+    {
+      "contact_error_m": 0.000000168587391158326,
+      "hand": "(-1.040053, 1.981729, 2.44)",
+      "pose": "drag",
+      "time": 1.05
+    },
+    {
+      "contact_error_m": 0.00000038165595128703,
+      "hand": "(-0.465704, 2.348411, 2.82)",
+      "pose": "slap",
+      "time": 1.42
+    },
+    {
+      "contact_error_m": 0.000000338489314799517,
+      "hand": "(-0.435309, 2.429055, 2.82)",
+      "pose": "slap",
+      "time": 1.7
+    },
+    {
+      "contact_error_m": 0.0,
+      "hand": "(-0.9, 2.12, 3.28)",
+      "pose": "offer",
+      "time": 2.16
+    },
+    {
+      "contact_error_m": 0.0,
+      "hand": "(-0.9, 2.12, 3.28)",
+      "pose": "spin",
+      "time": 2.85
+    },
+    {
+      "contact_error_m": 0.0,
+      "hand": "(-0.6, 2.0, 3.02)",
+      "pose": "recoil",
+      "time": 3.75
+    }
+  ],
+  "scope": "Actual uploaded character skin/bones and cabinet plus attached mechanisms; authored boundary fixture"
+}

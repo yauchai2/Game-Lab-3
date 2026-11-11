@@ -5,6 +5,7 @@ const COUNTER_WINDOW := 36
 const INPUT_BUFFER := 14
 const STEP := 1.0 / 60.0
 const EDGE := 8.2
+const DrawRewards=preload("res://scripts/combat/ability_draw/rewards.gd")
 const ArenaBox=preload("res://scripts/combat/arena_box.gd")
 const MAX_HEALTH := 100
 const ROUND_SECONDS := 75.0
@@ -15,6 +16,9 @@ var service_perks:Array=[[],[]]
 var service_contacts:Array=[]
 const ServiceProfiles=preload("res://scripts/combat/last_service/profiles.gd")
 var service_rules=preload("res://scripts/combat/last_service/rules.gd").new()
+func skill_cost(f:Dictionary,name:String) -> int:
+    return DrawRewards.skill_cost(f,name,last_service_enabled)
+
 func profile_for(index:int) -> Dictionary:
     return ServiceProfiles.profile(index) if last_service_enabled else Profiles.profile(index)
 
@@ -499,7 +503,7 @@ func _start_attack(i: int, requested: String) -> void:
             events.append({"kind":"node_unavailable","target":i})
             return
     if name in ["special","overdrive","node_pulse"]:
-        var cost:int=10 if name=="node_pulse" else (75 if name=="overdrive" else (20 if last_service_enabled and f.character==3 else 50))
+        var cost:int=skill_cost(f,name)
         if f.meter < cost:
             f.buffer = ""
             f.buffer_ttl = 0
@@ -640,7 +644,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
             return
         var guard_pressure:float=8.0 if last_service_enabled and a.character==1 and a.service.preload>=2 else 0.0
         if last_service_enabled and a.character==1 and service_rules.perk(a,"rivet_guard"):guard_pressure+=5.0
-        b.guard = maxf(0.0, b.guard - m.damage * 2.8-guard_pressure)
+        b.guard = maxf(0.0, b.guard - (m.damage * 2.8+guard_pressure)*(1.25 if a.get("draw_core","")=="breach" else 1.0))
         b.state = "blockstun"
         b.stun = 10
         b.vx = hit_face * 2.2
@@ -667,6 +671,8 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     combo_hits += 1
     var damage: int = maxi(3, roundi(m.damage * maxf(0.45, 1.0 - (combo_hits - 1) * 0.12)))
     if counter: damage = roundi(damage*1.15)
+    if a.get("draw_core","")=="fury":damage=maxi(1,roundi(damage*1.15))
+    if b.get("draw_core","")=="plate":damage=maxi(1,roundi(damage*.85))
     combo_damage += damage
     last_combo_hits = combo_hits
     last_combo_damage = combo_damage
@@ -703,8 +709,13 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     b.buffer = ""
     b.buffer_ttl = 0
     b.chain = 0
-    a.meter = minf(100.0, a.meter + damage * 1.1 * profile_for(a.get("character",0)).gain)
+    a.meter = minf(100.0, a.meter + damage * 1.1 * profile_for(a.get("character",0)).gain*(1.3 if a.get("draw_core","")=="flow" else 1.0))
     b.meter = minf(100.0, b.meter + damage * 0.5)
+    if a.get("draw_core","")=="siphon" and a.health>0:
+        var healed:int=mini(2,mini(MAX_HEALTH-int(a.health),12-int(a.get("draw_healed",0))))
+        if healed>0:
+            a.health+=healed;a["draw_healed"]=int(a.get("draw_healed",0))+healed
+            events.append({"kind":"core_heal","target":i,"amount":healed})
     a.chain = (a.chain + 1) % 3 if move_name in ["jab", "cross", "finisher","air_jab","air_kick","air_finisher"] else 0
     a.chain_ttl = 45
     hitstop = maxi(hitstop, stop_ticks)

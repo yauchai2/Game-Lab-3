@@ -1,5 +1,7 @@
 extends Node3D
 ## Live-world, reversible intermission. One local timeline owns all sound and lens.
+const DEMO_DRAW_DELAY:=3.0
+const DEMO_CLAIM_DELAY:=3.5
 const Timing=preload("res://scripts/combat/ability_draw/timing.gd")
 const Tokens=preload("res://scripts/combat/ui/ui_theme.gd")
 const Visuals=preload("res://scripts/combat/ability_draw/visuals.gd")
@@ -115,6 +117,7 @@ func advance(delta:float,paused:bool) -> void:
         if age>=Timing.SPIN_DURATION:_wait("result")
     elif state=="result":source_age=4.1
     if state in ["offer","result"] and age>=Timing.INPUT_SETTLE and not _accept_held():input_armed=true
+    if session.demo!=null and state in ["offer","result"] and age>=(DEMO_DRAW_DELAY if state=="offer" else DEMO_CLAIM_DELAY):confirm(true)
     action.disabled=not input_armed
     sample()
 
@@ -132,14 +135,15 @@ func handle_key(event:InputEventKey) -> void:
         if event.keycode==KEY_SPACE and age>=.25:skip()
     else:confirm()
 
-func confirm() -> void:
+func confirm(automatic:=false) -> void:
+    if automatic and session.demo==null:return
     if not active() or session.screen!="result":return
     # GUI callbacks and key handlers cannot consume a single press twice.
     var frame:=Engine.get_process_frames()
     if frame==last_confirm_frame:return
     last_confirm_frame=frame
     if state=="arrival":skip();return
-    if state in ["offer","result"] and not input_armed:return
+    if state in ["offer","result"] and not input_armed and not automatic:return
     if state=="offer":
         input_armed=false;reveal_started=false
         result=session.draw_rewards.roll(boundary,seed_value);rolled_count+=1
@@ -240,7 +244,7 @@ func draw(canvas:Control) -> void:
         canvas.draw_rect(Rect2(24,24,6,48),Tokens.MAGENTA)
         canvas.draw_string(bold,Vector2(46,58),"THE DEALER",HORIZONTAL_ALIGNMENT_LEFT,-1,28,Tokens.PAPER)
         var peak:=maxf(maxf(0,1-absf(source_age-1.06)/.11),maxf(0,1-absf(source_age-1.42)/.12))
-        if state=="spin":peak=maxf(peak,maxf(0,1-absf(source_age-3.56)/.20))
+        if state=="spin":peak=maxf(0,1-absf(source_age-3.56)/.20) if age>=Timing.REVEAL_AT else 0.0
         if not session.reduced_effects and peak>0:
             for i in 17:
                 var a:=TAU*i/17+.11;var ray:=Vector2(cos(a),sin(a));var p:=Vector2(640,350)+ray*260
@@ -253,7 +257,9 @@ func draw(canvas:Control) -> void:
         canvas.draw_line(Vector2(edge-20,0),Vector2(edge-280,720),Color("ed7827"),32)
     if state in ["offer","result"]:
         var x:=920.0 if state=="offer" else 720.0
-        canvas.draw_string(font,Vector2(x,670),"ENTER / SPACE",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
+        var hint:="ENTER / SPACE"
+        if session.demo!=null:hint="AUTO IN %d"%maxi(1,ceili((DEMO_DRAW_DELAY if state=="offer" else DEMO_CLAIM_DELAY)-age))
+        canvas.draw_string(font,Vector2(x,670),hint,HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
     elif state=="spin":
         canvas.draw_string(font,Vector2(28,690),"SPACE  SKIP",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
 
