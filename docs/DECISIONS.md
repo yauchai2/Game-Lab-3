@@ -312,3 +312,7 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 ## 2026-11-11：修正Godot4.7.2腳本警告
 
 依使用者截圖，以實際同版本重現四類共15項warning後修正根因，不以warning_ignore或關閉warnings處理。數值保持、局部名稱明確，static由型別呼叫。嚴格測試須在Godot程序啟動前設定warning等級（parser會快取）；新runner使用臨時project override.cfg而不改使用者project偏好。沿集中main交付，公開Web不更新。
+
+## 2026-11-11：死者落地展示
+
+死亡clip優先並保留完整垂直軌跡，按髖高校準，不再受站立bob／活人空中層影響。只在物理位置已落地後按實際skin最低點校正展示，落地死者停旋轉／伸縮，動畫完成後快取；不改原GLB／生命／傷害／位置判定。群戰凍結結算對非focus死者也套同一result clock落地，保持simulation快照。集中main交付，Web不動。

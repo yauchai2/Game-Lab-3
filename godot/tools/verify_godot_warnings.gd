@@ -1,6 +1,9 @@
 extends SceneTree
 ## Keep the user's four warning categories fatal in the affected runtime scripts.
 const SCRIPTS=[
+    "res://scripts/combat/combat_motions.gd",
+    "res://scripts/combat/fighter_visual.gd",
+    "res://scripts/combat/fight_session.gd",
     "res://scripts/combat/fight_simulation.gd",
     "res://scripts/combat/cinematic/round_theatre.gd",
     "res://scripts/combat/cinematic/city_breaker.gd",

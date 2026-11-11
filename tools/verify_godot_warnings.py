@@ -43,7 +43,7 @@ def main():
     (output / "strict.log").write_text(log)
     errors = re.findall(r"^(?:ERROR|SCRIPT ERROR):.*", log, re.M)
     data = json.loads(report.read_text()) if report.exists() else {}
-    success = (result.returncode == 0 and data.get("passed") == 5
+    success = (result.returncode == 0 and data.get("passed") == 8
                and data.get("failed") == 0 and not errors)
     print(log, end="")
     print("FATAL_WARNING_CHECK:", "PASS" if success else "FAIL")

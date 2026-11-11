@@ -1,0 +1,19 @@
+extends SceneTree
+func _initialize():call_deferred("run")
+func run():
+    var rows=[]
+    for character in 5:
+        var v=preload("res://scripts/combat/fighter_visual.gd").new()
+        root.add_child(v);v.setup(Color.CYAN,character)
+        var s=preload("res://scripts/combat/fight_simulation.gd").new()
+        var f:Dictionary=s.fighters[0].duplicate(true)
+        f.character=character;f.health=0;f.state="stun";f.stun=999;f.flash=0
+        f["air_enabled"]=true;f["rush_visual"]=true
+        for i in 200:v.present(f,1.0/60,false,false)
+        var pts={}
+        for bone in ["Hips","Spine2","Head","LeftFoot","RightFoot"]:
+            pts[bone]=v.skeleton.to_global(v.skeleton.get_bone_global_pose(v.motions.bone_index(bone)).origin).y
+        rows.append({"character":character,"clip":v.motions.clip_name,"hips_offset":v.skeleton.get_bone_pose_position(v.motions.target_hips).y,"points":pts})
+        v.queue_free();await process_frame
+    print(JSON.stringify(rows))
+    quit()

@@ -1,3 +1,7 @@
+## 2026-11-11：死亡姿態／群戰屍體貼地
+
+[前後量測、圖及完整log](evidence/grounded-death/README.md)。基線7d3cab2五角色骨盆／身體懸空已重現；正式修正為完整死亡軌跡、穩定死亡clip、已落地屍體按skin頂點貼地及非focus結果落地。新native104/104以獨立renderer bake驗證地面接觸、兩朝向／F2、無資料改寫與生者跳躍；另strict8/8、規則／結果33/33、回合／KO189/189，共334項通過，最終無ERROR／SCRIPT ERROR。Linux Godot4.7.2 Compatibility llvmpipe／Dummy，不是Mac／真人／硬件音訊驗收；Web不更新。
+
 ## 2026-11-11：main 收入最後一筆遠端更新
 
 ## 2026-11-11：Godot4.7.2腳本警告覆核

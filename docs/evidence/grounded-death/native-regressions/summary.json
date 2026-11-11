@@ -1,0 +1,74 @@
+{
+  "created_utc": "20261111T152030Z",
+  "source_commit": "7d3cab22dd075202849b678860957716af9ded10",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/combat_motions.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fighter_visual.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 189,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_round_flow",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "f2f57adaad2941955fbbb4bd73ee1bb29f315359c5cbe278fb4a3c05734dc8c5",
+      "seconds": 11.668,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_round_flow.gd"
+      ],
+      "report_written": true,
+      "passed": 24,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_city_breaker",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "24879442393ed8e70dc46af7e089a415d6869a937336541f88abbaba0d1bbc0b",
+      "seconds": 6.219,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_city_breaker.gd"
+      ],
+      "report_written": true,
+      "passed": 165,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

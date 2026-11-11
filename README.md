@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[死亡後凌空已修正](docs/evidence/grounded-death/README.md)。完整死亡下落、五角色按實際skin貼地、群戰其他死者也在結算落地；334項檢查通過，來源main。
+
 最新：[Godot4.7.2截圖15項GDScript警告已修正](docs/evidence/godot-warnings/README.md)。型別直接呼叫static、統一數值分支型別及局部變數改名；原版15項已重現，修正後369項編譯／玩法／原生回歸通過。來源main，Pull後停止舊遊戲／清除舊Debugger紀錄再F5。
 
 目前統一使用 **main**：已整合黑衣人群戰／模型修補、完整回合與KO演出、四面反彈、Tripo蒙面NPC／抽能力機器及最新手動抽獎節奏UI；[本輪整合檢查](docs/evidence/main-integration/README.md)。以下分支描述為各輪歷史；以本段及HANDOFF最上方為準。
