@@ -20,6 +20,8 @@ var run_original_rival:=1
 var time_of_day_choice:=0
 const Banter=preload("res://scripts/combat/banter.gd")
 var banter_store=null
+const StreetTags=preload("res://scripts/combat/street_tags.gd")
+var tag_store=null
 var result_line:=""
 var signature_camera=preload("res://scripts/combat/neon/neon_signature_camera.gd").new()
 var neon_profile:Resource=preload("res://scripts/combat/neon/neon_style_profile.tres")
@@ -95,6 +97,8 @@ func _ready() -> void:
     add_child(audio)
     _restore_options()
     banter_store=Banter.Store.new("" if preferences_path.is_empty() else preferences_path.get_base_dir()+"/banter.cfg")
+    tag_store=StreetTags.new("" if preferences_path.is_empty() else preferences_path.get_base_dir()+"/tags.cfg")
+    backdrop.refresh_tags(tag_store)
     var pixel_layer:=CanvasLayer.new()
     pixel_layer.layer=0
     add_child(pixel_layer)
@@ -271,7 +275,11 @@ func _combat_step() -> void:
         result_line=""
         if sim.phase=="match_over" and not practice and not run_active and demo==null and sim.winner>=0 and banter_store!=null:
             banter_store.record(character_choices[1],sim.winner==0)
-            result_line=Banter.win_line(character_choices[sim.winner],int(Time.get_ticks_msec()/1000),language=="en")+"\n"+Banter.radio_line(sim.winner==0,int(Time.get_ticks_msec()/1000)+1,language=="en")
+            var fresh:Array=tag_store.evaluate(character_choices[0],character_choices[1],sim.winner==0,banter_store.streak_against(character_choices[1]),time_of_day_choice,sim.wins[1])
+            backdrop.refresh_tags(tag_store)
+            result_line=Banter.win_line(character_choices[sim.winner],int(Time.get_ticks_msec()/1000),language=="en")+("" if not fresh.is_empty() else "\n"+Banter.radio_line(sim.winner==0,int(Time.get_ticks_msec()/1000)+1,language=="en"))
+            for id in fresh:result_line+="\n"+("NEW TAG: " if language=="en" else "新標記：")+StreetTags.title(id,language=="en")
+            result_line+="\n"+("TAGS %d / %d"%[tag_store.count(),StreetTags.IDS.size()] if language=="en" else "標記 %d / %d"%[tag_store.count(),StreetTags.IDS.size()])
         result_clock=0.0
         screen = "result"
         finish_menu_open=false

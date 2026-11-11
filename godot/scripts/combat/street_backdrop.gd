@@ -25,6 +25,8 @@ var anchor := Vector3(-3,31,-64)
 var retained_materials: Array[Material] = []
 var time_of_day:=0
 var neon_base:Dictionary={}
+const StreetTags=preload("res://scripts/combat/street_tags.gd")
+var tag_nodes:Dictionary={}
 const TimeOfDay=preload("res://scripts/combat/time_of_day.gd")
 
 func _ready() -> void:
@@ -101,6 +103,10 @@ func _ready() -> void:
     if time_of_day!=0 and not neon_enabled:set_time_of_day(time_of_day)
     if static_batches_enabled:
         static_batch_stats=preload("res://scripts/combat/static_street_batches.gd").bake(street,[active_toon,two_sided_shader])
+
+func refresh_tags(store) -> void:
+    if tag_nodes.is_empty():tag_nodes=StreetTags.build_marks(self)
+    for id in tag_nodes:tag_nodes[id].visible=store!=null and store.has(id)
 
 func set_time_of_day(index:int) -> void:
     time_of_day=TimeOfDay.clamp_index(index)

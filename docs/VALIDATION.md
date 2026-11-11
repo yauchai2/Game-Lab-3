@@ -1,5 +1,9 @@
 # 驗證紀錄與證據範圍
 
+## 2026-11-11：街區標記
+
+`verify_street_tags.gd` 27/27 headless；兩張 xvfb／llvmpipe 畫面。非 Mac／真人驗收。見 [STREET_TAGS.zh-TW.md](STREET_TAGS.zh-TW.md)。
+
 ## 2026-11-11：角色台詞與對手記憶
 
 `verify_banter.gd` 107/107（headless）＋兩張 xvfb／llvmpipe 畫面。非 Mac／真人驗收。見 [BANTER.zh-TW.md](BANTER.zh-TW.md)。
