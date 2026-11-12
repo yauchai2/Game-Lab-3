@@ -1,3 +1,9 @@
+# 接續工作交接
+
+## 2026-11-12：UI 精簡 P0 清理
+
+使用者接受 UI_REVIEW_PLAN 的全部建議並要求實作；先做 P0，基準 main ee9e7c0（PR #7、#8 等已合併）。主選單去掉 ESC BACK；結算頁頁首直接寫結果、面板去掉重複的結果／Run it back／FIRST TO TWO、風味文字收成兩行；display 字體數字（0 像 8）改二值化門檻。詳見 [UI_REVIEW_PLAN.zh-TW.md](UI_REVIEW_PLAN.zh-TW.md) 第六節與 [前後對照](evidence/ui-p0-2026-11-12/)。verify_local_versus 68/68，其餘既有失敗在乾淨 main 同樣存在。P1（HUD）起未做；Linux llvmpipe 靜態截圖，Mac／動態觀感／繁中未驗證，Web 不更新。
+
 ## 2026-11-12 開場貼近參考影片
 
 分支 claude/opening-fidelity：開場調暗為黃昏色調、補車房／街景雜物、移除漫畫字與名牌、字幕改影片樣式。詳見 STORY_OPENING.zh-TW.md「對照參考影片 v4」。Tripo 清單見 STORY_OPENING_TRIPO.zh-TW.md。

@@ -172,9 +172,8 @@ func run() -> void:
     # Two humans decide the round; P2 can win.
     scene.sim.phase="fight";scene.sim.fighters[0].health=0;step(2)
     await show_result_menu()
-    var headings:Array=[]
-    for node in hud.menu_stack.find_children("*","Label",true,false):headings.append(node.text)
-    check("result names the winning player",scene.screen=="result" and scene.sim.winner==1 and headings.has("P2 WINS"))
+    # The page header (not a panel label) names the winner since the 2026-11-12 UI simplification.
+    check("result names the winning player",scene.screen=="result" and scene.sim.winner==1 and hud._result_title()=="P2 WINS")
     scene.sim.round_number=2
     check("two-human matches skip the one-sided ability draw",scene.ability_draw_boundary()=="")
     scene.sim.round_number=1

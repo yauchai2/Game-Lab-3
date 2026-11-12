@@ -60,7 +60,7 @@ func title(c:Control) -> void:
             var kick:int=4 if focus_age<.10 else (2 if focus_age<.20 else 0)
             var center:Vector2=Vector2(rect.position.x-14-kick,rect.get_center().y)
             polygon(c,[center,center+Vector2(-15,-10),center+Vector2(-15,10)],T.MAGENTA)
-    hints(c)
+    hints(c,false)
 func logo(c:Control,at:Vector2,width:float) -> void:
     var height:float=width*T.LOGO.get_height()/T.LOGO.get_width()
     c.draw_texture_rect(T.LOGO,Rect2(at,Vector2(width,height)),false)
@@ -121,10 +121,11 @@ func roster(c:Control,s:Node) -> void:
     text(c,Vector2(686,697),name,26,T.PAPER)
     hints(c)
     if focused_key=="back":corners(c,fit(Rect2(1507,875,145,50)),T.TEAL)
-func hints(c:Control) -> void:
+func hints(c:Control,back:=true) -> void:
     c.draw_rect(Rect2(924,658,356,62),T.INK)
     plate(c,Rect2(932,665,178,40),T.PAPER,8)
     text(c,Vector2(944,695),"ENTER SELECT",28)
+    if not back:return
     plate(c,Rect2(1118,665,132,40),T.PAPER,8)
     text(c,Vector2(1130,695),"ESC BACK",28)
 func secondary(c:Control,heading:String) -> void:

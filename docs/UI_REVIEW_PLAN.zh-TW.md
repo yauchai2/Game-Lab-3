@@ -72,3 +72,17 @@
 4. 抽能力：只收齊文字面板和按鈕（建議），還是整段維持現在的獨立配色？
 5. 舊練習（F8／F10／F11／SURGE LAB）：收進 LABS 清單（建議），還是直接從正式選單移除？
 6. 次序：先做 P0（建議），還是等 PR #7、#8 合併後一次做？
+
+## 六、決定與 P0 進度（2026-11-12）
+
+使用者回覆「全部按建議做」，所以第五節六項都採用建議（提示自動收起、PAUSE 縮圖示、HUD 用 P1 青／P2 桃紅、抽能力只收齊面板與按鈕、舊練習收進 LABS、先做 P0）。
+
+P0 已實作，基準為合併後的 main（ee9e7c0）。合併後 main 已先處理掉開發標籤、PAUSE 縮成圖示與部分 HUD，所以本輪只做仍存在的項目：
+
+- 主選單拿掉無處可返回的 ESC BACK，只留 ENTER SELECT。
+- 結算頁頁首直接寫結果（YOU WIN／RIVAL WINS／DRAW／P2 WINS），從結算進 LOADOUT 時頁首寫 LOADOUT；面板內不再重複結果、「Run it back.」與「FIRST TO TWO」。
+- 結算風味文字收成兩行：一行台詞，一行「+N NEW TAGS / STYLE … TAGS x / 8」，解決 PR #7 行數多時勝負被擠出的問題。
+- display 字體數字改用較高的二值化門檻（只影響 0 至 9），0 不再塞成 8；字體由 `tools/build_radio_pixel_font.py --readable` 重生，只有 `RadioPixelDisplayReadable.png` 變動。
+- `verify_local_versus` 改為檢查頁首標題，68/68。
+
+前後對照截圖在 [evidence/ui-p0-2026-11-12](evidence/ui-p0-2026-11-12/)。未做：結算按鈕固定在捲動區外（現在行數少，暫不需要）、P1 之後各階段。已知與本次無關的既有失敗（乾淨 main 上同樣失敗）：verify_reference_ui 37/38、verify_focus_flow 6/7、verify_result_presentation 12/15、verify_readable_ui 的 640x360 檢查、verify_game_ui 在乾淨 main 上逾時。
