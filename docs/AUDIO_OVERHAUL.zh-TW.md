@@ -4,7 +4,7 @@
 量測舊版 Kenney 拳擊音效：頻譜重心約 85–160 Hz、峰值要 20–40 ms 才出現、6 kHz 以上幾乎沒有能量，加上低頻都在 0–150 Hz，所以打擊聽起來像隔著牆。揮拳／衝刺也是 76–93 Hz 的低頻咚聲。
 
 ## 新音效（2026-11-12 第二版：真實 CC0 錄音 + 程序合成低頻）
-Alan 要求「真正格鬥遊戲的音效」，第一版純合成聽起來仍像合成器，所以改用 BigSoundBank（Joseph Sardin，CC0）的真實錄音：真人出拳（Punch #5–#14）、劍／風切、鐵砧、玻璃破碎、人體倒地、爆炸、鑼與鈸，經 `tools/build_real_sfx.py` 切取最強起音、疊層、補高頻齒擦與低頻重量後輸出。來源 id 與授權見 `godot/audio/sfx/SOURCES.md`。原始錄音不入庫（腳本按 id 下載）。以下為第一版合成器說明（仍用於能力類音效與低頻層）：
+Alan 要求「真正格鬥遊戲的音效」，第一版純合成聽起來仍像合成器，所以改用 BigSoundBank（Joseph Sardin，CC0）的真實錄音：真人出拳（Punch #5–#14）、巴掌／拍擊、風切（Whoosh）、人體倒地、爆炸。因為遊戲是徒手街頭格鬥，已移除劍、鐵砧、鈴、鑼、鈸、玻璃等不合題材的音源（Alan 2026-11-12 指正）；格擋／格擋成功／破防改用拍擊、肉體與衝擊聲。另以 Alan 提供的 Lethal League Blaze 影片只量測打擊瞬間的頻譜（中位數 0–150／150–500／500–2k／2–6k／6k+ Hz = -2／-10／-9／-11／-18 dB，重心約 725 Hz）來校準中頻量感，不取樣其聲音，經 `tools/build_real_sfx.py` 切取最強起音、疊層、補高頻齒擦與低頻重量後輸出。來源 id 與授權見 `godot/audio/sfx/SOURCES.md`。原始錄音不入庫（腳本按 id 下載）。以下為第一版合成器說明（仍用於能力類音效與低頻層）：
 - 產生器：`tools/build_combat_sfx.py`（NumPy + SciPy + ffmpeg），輸出 `godot/audio/sfx/*.ogg`（44.1 kHz，Vorbis q6）。
 - 結構：每個打擊 = 1–2 ms 瞬間 click + 2–11 kHz 脆裂層 + 中頻拍擊層 + 較短的低頻身體；峰值在 2 ms 內出現。
 - 18 種音效全換：hit×3、heavy×2、block、parry（鐘響＋金屬）、guard_break（玻璃碎）、swing×2 與 dash／chase／launch（掃頻風聲）、step×2、land、jump、release、ko、charge、slam、rally、sub。
