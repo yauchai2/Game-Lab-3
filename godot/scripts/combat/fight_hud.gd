@@ -244,6 +244,7 @@ func rebuild_menu(requested_focus := "") -> void:
     elif menu_page=="free_play":
         _plain_action("SQUAD","free_squad",session.start_squad)
         _plain_action("AI DEMO","free_demo",session.start_demo)
+        _plain_action("WATCH OPENING","replay_opening",func():session.replay_story_opening())
     elif session.screen=="title":_title_page()
     elif session.screen in ["pause","help"]:_pause_page()
     elif session.screen=="result":_result_page()
@@ -525,7 +526,6 @@ func _settings_page() -> void:
         session.save_options())
     if session.free_battle_unlocked() and session.screen=="title":
         _plain_action("RELOCK FREE BATTLE / REPLAY THE UNLOCK","relock",session.relock_free_battle)
-    if session.screen=="title":_plain_action("REPLAY OPENING","replay_opening",session.replay_story_opening)
     _caption("settings_saved")
 
 func _roster_page() -> void:

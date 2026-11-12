@@ -1,3 +1,7 @@
+## 2026-11-12：重看開場的入口改到 FREE PLAY（Claude）
+
+使用者問開場為何在 main 看不到：程式已在 main，開場預設只在第一次啟動播，本機存檔若已有旗標就不會再播。使用者決定維持首次播放，但要有地方重看。原本的 `REPLAY OPENING` 在 SETTINGS 頁最底、需捲動才找得到，現移到主選單 FREE PLAY 頁，改名 `WATCH OPENING`（SQUAD、AI DEMO 之下），SETTINGS 不再重複。播完或 Enter／Space 跳過後回主選單。`verify_story_opening` 37/37，含「FREE PLAY 有按鈕、SETTINGS 沒有、按下會播、跳過後回主選單」。
+
 ## 2026-11-12：完整短篇故事、雙巨型Boss與技巧優先成長
 
 最新見[CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)，覆蓋下方「Boss／城市九核心／獨立場景／完整短篇故事未做」的舊狀態。六區18場、兩／三階段Boss與讀招弱點、有限增援／新敵型、危險地面預告／破箱連鎖、分支休息與補給、六章劇本／三NPC／五能力課程／12專屬招式三選二、九核心真DRAW→EQUIP與一次性出擊預算、工坊及裝備骨架外觀已接正式STORY。12個原創低模GLB與Blender來源可重建；原Tripo及英雄GLB保持。schema3保v2樹／裝／局內進度並留.v2.bak，v1遷移仍保持。
