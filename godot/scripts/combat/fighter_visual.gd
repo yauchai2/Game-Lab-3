@@ -65,7 +65,7 @@ func setup(color: Color, selection := 0, model_path_override:="") -> void:
                 mat.set_shader_parameter("neon_accent",preload("res://scripts/combat/neon/neon_style_profile.tres").accent(character_index))
             var outline := ShaderMaterial.new()
             outline.shader = Outline
-            outline.set_shader_parameter("repaired_suit_neck",character_index==Roster.BLACK_SUIT_INDEX)
+            outline.set_shader_parameter("repaired_suit_neck",false)
             if character_index!=Roster.BLACK_SUIT_INDEX or not str(mesh.name).begins_with("Repair") and str(mesh.name) not in ["NeckBridge","CleanShirtInsert","TieKnot","TieBlade"]:
                 mat.next_pass = outline
             mesh.set_surface_override_material(surface, mat)

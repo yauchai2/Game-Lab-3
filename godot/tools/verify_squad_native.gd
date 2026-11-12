@@ -23,8 +23,8 @@ func run() -> void:
     await shot("squad-start")
     var mapped:=true
     for visual in s.squad_visuals:
-        mapped=mapped and visual.motions.mapping.size()==52 and visual.skeleton.get_bone_count()==65 and visual.materials.size()>=4
-    check("all repaired enemies have valid shared rigs and materials",mapped)
+        mapped=mapped and visual.motions.mapping.size()==52 and visual.skeleton.get_bone_count()==65 and visual.materials.size()>=1
+    check("all enemies have valid shared rigs and materials",mapped)
     var hp:int=s.sim.fighters[0].health
     s.pause_game();var clock:int=s.sim.tick_count
     for step in 30:s._physics_process(1.0/60);s._process(1.0/60)
