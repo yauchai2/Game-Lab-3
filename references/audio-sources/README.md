@@ -10,3 +10,6 @@
 ## 指定音樂研究（尚未錄用）
 
 使用者指定 wev／worldwidewev，並確認尚未取得授權，先做選曲及接入規劃。已查公開曲目／授權 metadata，見 [worldwidewev](worldwidewev/README.md)；沒有下載／加入其音訊，以上 CC0 音樂與音效維持現版。
+
+## 2026-11-12 音訊重做
+`godot/audio/sfx/` 為原創程序合成（`tools/build_combat_sfx.py`），`godot/audio/music/` 為 Starjunk 95 曲目的剪輯循環（`tools/build_music_loops.py`，出處見該資料夾 provenance.json）。Kenney 檔案保留為缺檔 fallback。詳見 [docs/AUDIO_OVERHAUL.zh-TW.md](../../docs/AUDIO_OVERHAUL.zh-TW.md)。
