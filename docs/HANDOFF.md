@@ -1,3 +1,33 @@
+## 2026-11-12：完整短篇故事、雙巨型Boss與技巧優先成長
+
+最新見[CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)，覆蓋下方「Boss／城市九核心／獨立場景／完整短篇故事未做」的舊狀態。六區18場、兩／三階段Boss與讀招弱點、有限增援／新敵型、危險地面預告／破箱連鎖、分支休息與補給、六章劇本／三NPC／五能力課程／12專屬招式三選二、九核心真DRAW→EQUIP與一次性出擊預算、工坊及裝備骨架外觀已接正式STORY。12個原創低模GLB與Blender來源可重建；原Tripo及英雄GLB保持。schema3保v2樹／裝／局內進度並留.v2.bak，v1遷移仍保持。
+
+裝備直接增傷封頂12%，不增最大HP／parry窗口／無敵；總條件增傷50%／真parry反擊60%，Boss閉甲／弱點限制不可略過，合約HP／傷害亦封頂。四角從零合法掉落／解鎖／付費補給通18場、八組裸裝讀招Boss通關；九種極端裝／核心攻擊spam都敗於最終Boss。這是自動測例，非真人平衡或FPS驗收；簡單原創低模及無配音仍是本版本美術範圍。本輪437項最終通過（規則50／原生23及完整回歸），最終log無ERROR／SCRIPT ERROR。證據見[evidence/campaign-complete](evidence/campaign-complete/README.md)。只推codex/story-waves-m1／草稿PR #12，main／Web不動。
+
+## 2026-11-12：960解像度、完整天賦與合約刷圖已接實作
+
+見[CITY_PROGRESSION_EXPANSION.zh-TW.md](CITY_PROGRESSION_EXPANSION.zh-TW.md)。依最新要求由640×360升960×540，title／city及roster同步、保留最近鄰／toon輪廓／bitmap字體、logical UI與1280視窗（fractional填滿）。故事入口／能力解鎖沿既有；天賦擴48節點／25點／單關鍵天賦與真連線、縮放／拖曳／免費重置；真首次撞體擴散與parry／追擊有界回能。六區主題程序佈置、T1–T5合約seed配方／四詞綴／三次機會／同階返圖與兩次完圖升階；每場真裝備掉落、詞綴／四特製取捨、比較、各角配裝、60背包＋120倉庫。
+
+schema2沿原city_v1路徑，保留技能／錢裝、退舊樹等值點數，首次交易留.v1.bak；舊標準模式／GLB不改。巨型Boss／完整劇情及全新場景美術仍待做；城市仍簡單幾何，戰鬥六區共用基底。來源只推codex/story-waves-m1／草稿PR #12，main與Web不動。
+
+[359項驗證／960畫面](evidence/city-expansion/README.md)：城市86、原生22、strict18、M1 37／二段跳62／戰鬥34／九核心75、原生整體15／Ink10；最終log無ERROR／SCRIPT ERROR。四角Easy普通輸入、真掉落／解鎖通首區，無補血傷害注入；後期結算採fixture，非真人／Mac／FPS／實聽驗收。舊v1城市fixture歸檔，公開verify_city入口改跑新套件；兩舊UI framebuffer斷言按新960契約更新，其他斷言保持。
+
+## 2026-11-12：Hades式城市回城循環已可玩
+
+最新使用者要求覆蓋前輪純城市圖／規劃狀態，見 [CITY_ROGUELITE_RUNTIME.zh-TW.md](CITY_ROGUELITE_RUNTIME.zh-TW.md)。主選單STORY進45°正交可行走安全城、五互動站；六區×三場共用街道佈置、回城升技／12節點8點天賦／三槽永久裝備／保底抽裝／短故事。清場銀行化錢零件並選一次臨時強化，敗退清出擊、保留永久進度；獨立city_v1存檔／備援／交易回滾／逐場快照。標準FIGHT與Demo在FREE PLAY，原M1預覽仍在FIGHTERS；原GLB及舊進度不改。
+
+[226項驗證及畫面](evidence/city-hub/README.md)：城市62／原生17／strict14／舊M1 37／二段跳62／戰鬥34；accepted無ERROR／SCRIPT ERROR。四角Easy普通輸入無裝備補血通首區，後期開區採fixture；Linux軟體渲染／Dummy，Mac與真人平衡待驗。城市人形／建物程序佔位、戰鬥六區共用基底；未有巨型多階段Boss、完整48點樹／T1–T5／複雜詞綴／九核心城市接入。本輪只推codex/story-waves-m1／草稿PR #12，main與Web保持。
+
+## 2026-11-12：城市ARPG成長與刷圖規劃（未實作）
+
+新增 [完整設計](CITY_ARPG_PROGRESSION_PLAN.zh-TW.md)：故事放主選單首位、新故事能力保證漸解鎖、原創48節點／25點城市電路天賦、六區城市圖、免費重刷及T1–T5合約、三裝備槽、兩貨幣與定向抽裝／保底。所有數值為提案。永久裝備與九臨時晶片分離；故事晶片擬改為下一整次出擊，取代先前兩關區段提案，現有模式未改。先做一區完整循環，再擴完整戰役。現況仍是M1三波；本輪只文件，未改主選單、能力、存檔或經濟。只同步codex/story-waves-m1，不合併main／不發佈Web。
+
+## 2026-11-12：故事波次M1已實作（獨立分支）
+
+依使用者最新要求開codex/story-waves-m1，基於main ef3f8d3，第一個可玩切片見[STORY_WAVES_RUNTIME.zh-TW.md](STORY_WAVES_RUNTIME.zh-TW.md)。FIGHTERS→STORY：3／4／6名三波，普通／承諾突進／真格擋盾衛；敵碰敵掃掠、四目標去重衰減、正面盾擋撞體、一次+4meter、HP／meter跨波、Enter接波、Pause→R及死亡波次重試、第三波遠鏡頭。M1無XP／核心抽取／Boss／退出續關存檔；原模式保留。
+
+[287項最終驗證](evidence/story-waves/README.md)：新規則37、原生17、strict11、既有反彈65／二段跳62／戰鬥34／UI37／回合24；final accepted無ERROR／SCRIPT ERROR。四角Easy普通輸入全通、不注入傷害或補血，非真人驗收。舊round-flow的四intro預期在未改基線亦23/24，已依裝備省略第三局開場契約加入真equip與新match intro驗證，24/24。Linux4.7.2 llvmpipe／Dummy，Mac／手感待驗；只推任務分支及草稿PR，main／Web不動。
+
 ## 2026-11-12：故事波次、連鎖與大型Boss設計（僅規劃）
 
 使用者要求詳細規劃故事模式改有限波次、漸增難度、情境敵型、人海／巨獸拉遠及敵碰敵連鎖。已查最新main e725c99、現有3站Street Run／黑衣人群戰／指定技球狀反彈／九核心及裝備，提案見[STORY_WAVES_PLAN.zh-TW.md](STORY_WAVES_PLAN.zh-TW.md)。六關逐波配方、N/R/G/C/H/E分工、兩場大型Boss、三相機profile與32px投影下限、連鎖去重／衰減／預算、休息核心區段及checkpoint均為待驗證設計，不是runtime已加入。建議先M1三波／三敵型／6人／一次連鎖切片，再白盒大型中Boss。一般FIGHT／Demo與指定技才開四面盒契約保持；本輪僅文件，未執行新玩法測試，未更新Web。

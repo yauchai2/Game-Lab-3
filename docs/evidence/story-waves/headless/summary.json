@@ -1,0 +1,117 @@
+{
+  "created_utc": "20261112T040409Z",
+  "source_commit": "ef3f8d39b032606cc5c4da73e1c92ecf374515dc",
+  "tracked_runtime_changes": [
+    "godot/assets/ability_draw/source/tripo_convert_275dc57f-e328-47e0-89e5-10195d3209c4.glb.import",
+    "godot/assets/ability_draw/source/tripo_convert_36d4f0c3-b64c-4ea1-841e-104fd70e96ae.glb.import",
+    "godot/assets/characters/black_suit/derived/black_suit_repaired.glb.import",
+    "godot/assets/characters/black_suit/source/tripo_convert_6bb9e9c2-dd66-4f86-864f-2ceab3aa0a09.glb.import",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/last_service/presentation.gd",
+    "godot/scripts/combat/ui/reference_art.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": true,
+  "passed": 184,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_story_waves",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "8fc0bb9ad8538c82a9a470b207479b455d5ff868f48eb6e929ec1c993b7782c8",
+      "seconds": 0.994,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_story_waves.gd"
+      ],
+      "report_written": true,
+      "passed": 23,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_arena_box",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "ed7241e82f1835bb0780385172ff2d379188e76c805367c12cfc74034cdb90ca",
+      "seconds": 1.279,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_arena_box.gd"
+      ],
+      "report_written": true,
+      "passed": 65,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_double_jump",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "1b49443fb7d7cb1ee12a7e8b41194203ac5894e6844212d09112c3dc2311c950",
+      "seconds": 1.085,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_double_jump.gd"
+      ],
+      "report_written": true,
+      "passed": 62,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_combat",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "522f3c7daa81539a1d8466ef069a66f4c4bdfb7a05afb157f04fc4db7e5139fd",
+      "seconds": 1.548,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat.gd"
+      ],
+      "report_written": true,
+      "passed": 34,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

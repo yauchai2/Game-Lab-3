@@ -1,0 +1,224 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "three finite waves with role escalation",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "clear enters a safe break instead of ending match",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "break cannot spawn early",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "next wave carries HP and meter",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "rushers have lower actual HP",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "player death fails current wave",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "checkpoint repeats same wave and layout",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "retry supplies are explicit and bounded",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "last wave has six real independent enemies and guards",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "final clear is a real completed encounter",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "shield role actually blocks damage",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "shield can be countered by an ordinary throw",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "rusher visibly commits before dashing",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "rusher cannot retarget through its committed tell",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "attacker": 0,
+          "chain": 1,
+          "damage": 11,
+          "face": 1.0,
+          "kind": "story_chain_hit",
+          "prop": false,
+          "source_id": 0,
+          "splash": false,
+          "squad_id": 1,
+          "target": 1
+        }
+      ],
+      "name": "real heavy creates at least one swept body impact",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "one chain cannot hit a target twice",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "player cannot be hurt by own body chain",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "body chains expire without permanent airborne locks",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "fast swept collision cannot tunnel through target",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "repeated overlap cannot duplicate chain damage",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "root budget stops at four secondary targets",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "damage falls off across the shared root",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "chain resource reward occurs once per source attack",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "facing shield blocks a body without losing HP",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "settled corpse cannot become a damaging projectile",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "waiting story corpses do not stay white forever",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "leaving story removes all encounter data",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "story-off simulation matches original squad class",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "mixed wave/chain replay remains deterministic",
+      "passed": true
+    },
+    {
+      "detail": {
+        "attackers": 1,
+        "chains": 4,
+        "hits": 45,
+        "ticks": 2168
+      },
+      "name": "hero 0 clears Easy through ordinary inputs without reset",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 0 encounter respects one attack slot",
+      "passed": true
+    },
+    {
+      "detail": {
+        "attackers": 1,
+        "chains": 2,
+        "hits": 40,
+        "ticks": 1790
+      },
+      "name": "hero 1 clears Easy through ordinary inputs without reset",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 1 encounter respects one attack slot",
+      "passed": true
+    },
+    {
+      "detail": {
+        "attackers": 1,
+        "chains": 4,
+        "hits": 45,
+        "ticks": 2168
+      },
+      "name": "hero 2 clears Easy through ordinary inputs without reset",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 2 encounter respects one attack slot",
+      "passed": true
+    },
+    {
+      "detail": {
+        "attackers": 1,
+        "chains": 4,
+        "hits": 47,
+        "ticks": 2109
+      },
+      "name": "hero 3 clears Easy through ordinary inputs without reset",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 3 encounter respects one attack slot",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 37
+}

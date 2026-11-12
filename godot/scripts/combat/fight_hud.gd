@@ -234,6 +234,10 @@ func rebuild_menu(requested_focus := "") -> void:
     elif menu_page=="settings":_settings_page()
     elif menu_page=="roster":_roster_page()
     elif menu_page=="help":_help_page()
+    elif menu_page=="free_play":
+        _plain_action("FIGHT","free_fight",func():session.start_match(false))
+        _plain_action("SQUAD","free_squad",session.start_squad)
+        _plain_action("AI DEMO","free_demo",session.start_demo)
     elif session.screen=="title":_title_page()
     elif session.screen in ["pause","help"]:_pause_page()
     elif session.screen=="result":_result_page()
@@ -373,6 +377,7 @@ func _pause_page() -> void:
     if session.demo!=null:_action(menu_stack,"demo_restart","R",func():session.start_demo())
     else:_action(menu_stack,"reset_training" if session.practice else "restart","F5" if session.practice else "R",func():
         if session.practice:session.reset_training()
+        elif session.sim.story_enabled:session.retry_story_wave()
         elif session.sim.squad_enabled:session.start_squad()
         elif session.run_active:session.start_run()
         else:session.start_match(false))
@@ -381,7 +386,19 @@ func _pause_page() -> void:
     _action(menu_stack,"main_menu","",func():session.return_to_title())
 
 func _result_page() -> void:
+    if is_instance_valid(session.city_campaign) and session.city_campaign.active:
+        menu_stack.add_child(_label(session.city_campaign.result_text(),28))
+        _plain_action("RETURN TO CITY / ENTER","city_return",session.city_campaign.return_from_encounter)
+        if session.city_campaign.profile.error!="":
+            menu_stack.add_child(_label(session.city_campaign.profile.error,24))
+            _plain_action("RELOAD SAVE / RETRY RETURN","city_save_retry",func():session.city_campaign.profile.retry_save();rebuild_menu())
+        return
     _heading("draw" if session.sim.winner<0 else ("win" if session.sim.winner==0 else "lose"))
+    if session.sim.story_enabled:
+        menu_stack.add_child(_label("STORY PREVIEW CLEARED" if session.sim.story_state=="complete" else "WAVE %d / RETRY WITH SUPPLIES"%(session.sim.wave_index+1),28))
+        if session.sim.story_state=="failed":_plain_action("RETRY WAVE / ENTER","story_retry",session.retry_story_wave)
+        _plain_action("RETURN TO FIGHTERS","story_exit",func():session.return_to_title();open_page("roster"))
+        return
     if session.run_active:
         menu_stack.add_child(_label("STOP %d / +%d XP / %d SKILL POINTS"%[session.run_stage,session.run_reward,session.growth.points(session.run_character)],28))
         if session.sim.winner==0 and session.run_stage<3:
@@ -504,6 +521,8 @@ func _roster_page() -> void:
     _action(menu_stack,"fight","Enter",func():session.start_match(false),true)
 
 func _help_page() -> void:
+    if session.screen=="title":_plain_action("STORY WAVES / THREE-WAVE SLICE","story_slice",session.start_story)
+    menu_stack.add_child(_label("MAIN MENU > STORY: city, skills, talents, gear and contracts. Clear an encounter, then Enter returns to town. FIGHTERS > STORY WAVES keeps the original three-wave preview.",24,Tokens.MUTED))
     _plain_action("FIRST MINUTE / C - START LESSONS","first_minute",session.start_first_minute)
     _plain_action("SURGE LAB / B - COMPARE DECISION WINDOW","surge_lab",session.start_surge_lab)
     for line in ["ZIP: evade a nearby strike for ROUTE. Spend it on E dash. L confirms a second kick.","RIVET: hold L to PRELOAD I / II, then release. Slow windup, strong guard pressure.","HUSH: frontal perfect guard stores SAMPLE. Cross / K / L / W+L spends it.","LOOP: L places a node (20). Move+L places farther. S+L pulses nodes (10). W+L: ENCORE.","FIGHTERS > STREET RUN: win stops for XP and skill points. Equip 2 in SKILLS. Standard FIGHT uses fixed stats."]:
@@ -594,7 +613,7 @@ func _draw() -> void:
     if session.screen=="title":
         if menu_page=="main":art.title(self)
         elif menu_page=="roster":art.roster(self,session)
-        else:art.secondary(self,"LOADOUT" if menu_page=="skills" else ("SETTINGS" if menu_page=="settings" else "HOW TO PLAY"))
+        else:art.secondary(self,"LOADOUT" if menu_page=="skills" else ("SETTINGS" if menu_page=="settings" else ("FREE PLAY" if menu_page=="free_play" else "HOW TO PLAY")))
         return
     if session.ability_draw.active() and session.screen=="result":
         session.ability_draw.draw(self)
@@ -616,8 +635,18 @@ func _draw() -> void:
     if not session.neon_enabled and session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
     art.hud(self,session,health_lag)
     service_art.draw(self,session)
+    if session.sim.story_enabled:
+        if session.sim.arrival_left>0:
+            var heading:String=session.sim.campaign_caption if session.sim.campaign_enabled else "WAVE %d / 3"%(session.sim.wave_index+1)
+            _center(Vector2(640,180),heading,32,Tokens.TEAL)
+        if session.sim.story_state=="break":_center(Vector2(640,180),"WAVE CLEAR / ENTER TO CONTINUE",28,Tokens.TEAL)
+    if session.sim.campaign_enabled and session.city_campaign.lesson_active!="" and session.city_campaign.lesson_active!="boss":
+        _plate(Vector2(190,548),Vector2(900,62),INK)
+        _center(Vector2(640,575),session.city_campaign.profile.Story.LESSONS.get(session.city_campaign.lesson_active,"PRACTICE"),24,Tokens.TEAL)
+        _center(Vector2(640,601),"PRACTICE / FULL ENERGY FIXTURE / NO REWARDS",24,PAPER)
     _draw_core_tag()
-    if session.sim.arcade_enabled:_surge_hud()
+    if session.sim.campaign_enabled and session.sim.campaign_boss!="":_campaign_boss_hud()
+    elif session.sim.arcade_enabled:_surge_hud()
     if session.sim.exchange.decision_active():_surge_decision_hud()
     if skill_time>0 and skill_key!="" and session.screen=="play":
         _plate(Vector2(460,154),Vector2(360,34),INK)
@@ -927,8 +956,8 @@ func _build_art_controls() -> void:
     art_buttons.clear();art_controls.visible=true
     if menu_page=="main":
         var keys:Array=["fight","roster","training","settings","demo"]
-        var labels:Array=["FIGHT","FIGHTERS","TRAINING","SETTINGS","AI DEMO"]
-        var calls:Array=[func():session.start_match(false),func():open_page("roster"),func():session.start_match(true),func():open_page("settings"),func():session.start_demo()]
+        var labels:Array=["STORY","FIGHTERS","TRAINING","SETTINGS","FREE PLAY"]
+        var calls:Array=[func():session.city_campaign.open_city(),func():open_page("roster"),func():session.start_match(true),func():open_page("settings"),func():open_page("free_play")]
         for i in 5:_art_button(keys[i],labels[i],art.MAIN_RECTS[i],calls[i])
         for i in 5:
             art_buttons[keys[i]].focus_neighbor_top=art_buttons[keys[(i+4)%5]].get_path()
@@ -944,7 +973,8 @@ func _build_art_controls() -> void:
             var selected_side:int=side
             _art_button("side_"+str(side),"SELECT P%d"%(side+1),art.fit(Rect2(18,241+side*100,160,84)),func():art.roster_side=selected_side;queue_redraw())
         _art_button("skills","SKILLS",Rect2(1094,300,140,60),func():open_page("skills"))
-        _art_button("street_run","STREET RUN",Rect2(1094,380,140,86),session.start_run)
+        _art_button("story_waves","STORY WAVES",Rect2(1094,380,140,40),session.start_story).tooltip_text="Three-wave preview / no XP"
+        _art_button("street_run","STREET RUN",Rect2(1094,430,140,42),session.start_run)
         _art_button("enemy_black_suit","BLACK SUIT / P2",Rect2(1094,486,140,86),func():
             art.roster_side=1
             focus_key="enemy_black_suit"
@@ -959,8 +989,10 @@ func _build_art_controls() -> void:
             button.focus_neighbor_right=art_buttons["card_"+str(i^1)].get_path()
             button.focus_neighbor_top=art_buttons["card_"+str((i+2)%4)].get_path()
             button.focus_neighbor_bottom=art_buttons["card_"+str(i+2)].get_path() if i<2 else art_buttons.roster_fight.get_path()
-        art_buttons.skills.focus_neighbor_bottom=art_buttons.street_run.get_path()
-        art_buttons.street_run.focus_neighbor_top=art_buttons.skills.get_path()
+        art_buttons.skills.focus_neighbor_bottom=art_buttons.story_waves.get_path()
+        art_buttons.story_waves.focus_neighbor_top=art_buttons.skills.get_path()
+        art_buttons.story_waves.focus_neighbor_bottom=art_buttons.street_run.get_path()
+        art_buttons.street_run.focus_neighbor_top=art_buttons.story_waves.get_path()
         art_buttons.street_run.focus_neighbor_bottom=art_buttons.enemy_black_suit.get_path()
         art_buttons.enemy_black_suit.focus_neighbor_top=art_buttons.street_run.get_path()
         art_buttons.enemy_black_suit.focus_neighbor_bottom=art_buttons.enemy_squad.get_path()
@@ -1001,3 +1033,12 @@ func _skills_page() -> void:
     palette.disabled=record.xp<120
     if growth.last_error!=OK:menu_stack.add_child(_label("SAVE FAILED / PROGRESS IS IN MEMORY",28,Tokens.MAGENTA))
     if session.screen=="title":_plain_action("START 3-STOP STREET RUN","start_run",session.start_run)
+
+func _campaign_boss_hud() -> void:
+    for boss in session.sim.squad_members:
+        if not boss.has("boss"):continue
+        _plate(Vector2(390,116),Vector2(500,44),INK)
+        _text(Vector2(404,142),("GANTRY WARDEN" if boss.boss.kind=="gantry" else "SIGNAL LEVIATHAN")+" / PHASE %d"%int(boss.boss.phase),24,PAPER)
+        _plate(Vector2(404,151),Vector2(472,5),Tokens.EDGE)
+        _plate(Vector2(404,151),Vector2(472*clampf(float(boss.boss.open)/150.0,0,1),5),Tokens.TEAL if int(boss.boss.open)>0 else Tokens.MAGENTA)
+    if session.city_campaign.lesson_active!="":_center(Vector2(640,600),"PRACTICE / NO LOOT",24,Tokens.TEAL)

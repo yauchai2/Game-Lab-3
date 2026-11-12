@@ -1,0 +1,22 @@
+[
+  {
+    "test": "verify_story_waves",
+    "passed": true,
+    "exit": 0
+  },
+  {
+    "test": "verify_double_jump",
+    "passed": true,
+    "exit": 0
+  },
+  {
+    "test": "verify_combat",
+    "passed": true,
+    "exit": 0
+  },
+  {
+    "test": "verify_ability_core_rules",
+    "passed": true,
+    "exit": 0
+  }
+]

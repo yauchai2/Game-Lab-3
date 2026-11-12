@@ -1,0 +1,11 @@
+{
+  "passed": 359,
+  "failed": 0,
+  "engine": "Godot 4.7.2",
+  "environment": "Linux Compatibility llvmpipe / Dummy",
+  "viewport": [
+    960,
+    540
+  ],
+  "note": "Includes 25 native presentation and ink UI checks with only framebuffer expectations updated to 960x540."
+}

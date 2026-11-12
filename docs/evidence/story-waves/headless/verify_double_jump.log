@@ -1,0 +1,65 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+DOUBLE_JUMP ground press cannot also spend air jump 0/0 true
+DOUBLE_JUMP second impulse with steering 0/0 true
+DOUBLE_JUMP no resource refill 0/0 true
+DOUBLE_JUMP third press rejected 0/0 true
+DOUBLE_JUMP bounded flight returns to ground 0/0 true
+DOUBLE_JUMP landing restores exactly one air jump 0/0 true
+DOUBLE_JUMP ground press cannot also spend air jump 0/1 true
+DOUBLE_JUMP second impulse with steering 0/1 true
+DOUBLE_JUMP no resource refill 0/1 true
+DOUBLE_JUMP third press rejected 0/1 true
+DOUBLE_JUMP bounded flight returns to ground 0/1 true
+DOUBLE_JUMP landing restores exactly one air jump 0/1 true
+DOUBLE_JUMP ground press cannot also spend air jump 1/0 true
+DOUBLE_JUMP second impulse with steering 1/0 true
+DOUBLE_JUMP no resource refill 1/0 true
+DOUBLE_JUMP third press rejected 1/0 true
+DOUBLE_JUMP bounded flight returns to ground 1/0 true
+DOUBLE_JUMP landing restores exactly one air jump 1/0 true
+DOUBLE_JUMP ground press cannot also spend air jump 1/1 true
+DOUBLE_JUMP second impulse with steering 1/1 true
+DOUBLE_JUMP no resource refill 1/1 true
+DOUBLE_JUMP third press rejected 1/1 true
+DOUBLE_JUMP bounded flight returns to ground 1/1 true
+DOUBLE_JUMP landing restores exactly one air jump 1/1 true
+DOUBLE_JUMP ground press cannot also spend air jump 2/0 true
+DOUBLE_JUMP second impulse with steering 2/0 true
+DOUBLE_JUMP no resource refill 2/0 true
+DOUBLE_JUMP third press rejected 2/0 true
+DOUBLE_JUMP bounded flight returns to ground 2/0 true
+DOUBLE_JUMP landing restores exactly one air jump 2/0 true
+DOUBLE_JUMP ground press cannot also spend air jump 2/1 true
+DOUBLE_JUMP second impulse with steering 2/1 true
+DOUBLE_JUMP no resource refill 2/1 true
+DOUBLE_JUMP third press rejected 2/1 true
+DOUBLE_JUMP bounded flight returns to ground 2/1 true
+DOUBLE_JUMP landing restores exactly one air jump 2/1 true
+DOUBLE_JUMP ground press cannot also spend air jump 3/0 true
+DOUBLE_JUMP second impulse with steering 3/0 true
+DOUBLE_JUMP no resource refill 3/0 true
+DOUBLE_JUMP third press rejected 3/0 true
+DOUBLE_JUMP bounded flight returns to ground 3/0 true
+DOUBLE_JUMP landing restores exactly one air jump 3/0 true
+DOUBLE_JUMP ground press cannot also spend air jump 3/1 true
+DOUBLE_JUMP second impulse with steering 3/1 true
+DOUBLE_JUMP no resource refill 3/1 true
+DOUBLE_JUMP third press rejected 3/1 true
+DOUBLE_JUMP bounded flight returns to ground 3/1 true
+DOUBLE_JUMP landing restores exactly one air jump 3/1 true
+DOUBLE_JUMP fixture is falling true
+DOUBLE_JUMP falling jump reverses vertical motion true
+DOUBLE_JUMP hitstop preserves jump without moving true
+DOUBLE_JUMP buffer fires once after hitstop true
+DOUBLE_JUMP Space cannot cancel stun true
+DOUBLE_JUMP Space cannot cancel blockstun true
+DOUBLE_JUMP Space cannot cancel attack true
+DOUBLE_JUMP Space cannot cancel chase true
+DOUBLE_JUMP fast fall begins true
+DOUBLE_JUMP air jump brakes fast fall without rearming it true
+DOUBLE_JUMP hard landing records the early input true
+DOUBLE_JUMP early Space survives hard landing recovery true
+DOUBLE_JUMP restart clears air jump state true
+DOUBLE_JUMP 6000 mixed ticks replay deterministically true
+DOUBLE_JUMP_CHECKS 62/62

@@ -21,6 +21,8 @@ ROOT = Path(__file__).resolve().parents[1]
 # UI replica replaces old dropdown/Chinese-menu and pause-silence harnesses.
 # Their source and historical evidence remain; verify_reference_ui covers the new contract.
 CASES = [
+    ("verify_story_waves", "story-waves/rules.json", "headless"),
+    ("verify_story_native", "story-waves/native.json", "native"),
     ("verify_compact_hud", "compact-hud/verification.json", "native"),
     ("verify_grounded_death", "grounded-death/verification.json", "native"),
     ("verify_arena_box", "arena-box/rules.json", "headless"),

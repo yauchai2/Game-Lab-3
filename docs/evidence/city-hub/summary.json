@@ -1,0 +1,7 @@
+{
+  "passed": 226,
+  "failed": 0,
+  "engine": "Godot4.7.2",
+  "environment": "Linux Compatibility llvmpipe / Dummy audio",
+  "scope": "Rules, native input, strict compilation and selected regressions; no human/Mac/hardware performance acceptance"
+}

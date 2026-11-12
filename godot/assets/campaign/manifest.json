@@ -1,0 +1,90 @@
+{
+  "author": "Game-Lab-3 procedural source tools/build_campaign_models.py",
+  "generator": "Blender 4.3.2 glTF exporter",
+  "models": [
+    {
+      "file": "city_dealer.glb",
+      "bytes": 19300,
+      "sha256": "2e1db6addce75e508f4c9012e18a5d7438f154b49088cc0120158e8fdfe2074a",
+      "nodes": 12,
+      "meshes": 12
+    },
+    {
+      "file": "city_keeper.glb",
+      "bytes": 19008,
+      "sha256": "8118b3564403947908a71974647ed0dec064938a44e0840bffe3e7b403d00bc8",
+      "nodes": 12,
+      "meshes": 12
+    },
+    {
+      "file": "city_mechanic.glb",
+      "bytes": 19292,
+      "sha256": "97199cc5a90038b8aff51f607f2e2691ddb98406364b808db3fbb70a659825e2",
+      "nodes": 12,
+      "meshes": 12
+    },
+    {
+      "file": "district_0.glb",
+      "bytes": 151292,
+      "sha256": "238238e9870574c18e5f5431c46ece38248b4c463084375a5f6364b809f72387",
+      "nodes": 101,
+      "meshes": 101
+    },
+    {
+      "file": "district_1.glb",
+      "bytes": 149648,
+      "sha256": "a1139263ec193760c29e014ae6c4aeeda6e02b8a1245602ef952b2d31134db64",
+      "nodes": 100,
+      "meshes": 100
+    },
+    {
+      "file": "district_2.glb",
+      "bytes": 157020,
+      "sha256": "e24afdf87c9a49e1864f704ed92dd0075ac68d83eb67d4f90208f6ab850b72d9",
+      "nodes": 105,
+      "meshes": 105
+    },
+    {
+      "file": "district_3.glb",
+      "bytes": 196628,
+      "sha256": "3ec7ea27e03011cd6fd2056ef991c1538c0550937fd7c1709a9fd743db54aea0",
+      "nodes": 131,
+      "meshes": 131
+    },
+    {
+      "file": "district_4.glb",
+      "bytes": 153788,
+      "sha256": "269daff2d5e44d37ff822ea833a0273cdbcc8a988d80e13b585ab48701aead33",
+      "nodes": 101,
+      "meshes": 101
+    },
+    {
+      "file": "district_5.glb",
+      "bytes": 146672,
+      "sha256": "626e8ae399b49a4a10ac3dcce8965223e0ebf521a99e2bdd76f4d8f46fd17507",
+      "nodes": 97,
+      "meshes": 97
+    },
+    {
+      "file": "gantry_warden.glb",
+      "bytes": 49636,
+      "sha256": "a82a1a6cddae5f29c2ec6655886745890e92a39108d3db7eb5454c1bf7d6d554",
+      "nodes": 34,
+      "meshes": 30
+    },
+    {
+      "file": "safe_block.glb",
+      "bytes": 193340,
+      "sha256": "9aae4744d11cd6c503aac4bc72111773a3e3fa175418e54dc82be891eeee3981",
+      "nodes": 127,
+      "meshes": 127
+    },
+    {
+      "file": "signal_leviathan.glb",
+      "bytes": 66680,
+      "sha256": "47dba46fd5e11802f1852b015bfad2d2fde346447c9bc1ac453c355007f592ce",
+      "nodes": 43,
+      "meshes": 39
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+CITY_NATIVE main Story pointer opens an actual independent 3D hub true
+CITY_NATIVE city uses orthographic yaw45 pitch45 camera false
+ERROR: city uses orthographic yaw45 pitch45 camera
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_city_native.gd:8)
+       [1] run (res://tools/verify_city_native.gd:37)
+       [2] click (res://tools/verify_city_native.gd:20)
+       [3] frames (res://tools/verify_city_native.gd:11)
+CITY_NATIVE native WASD moves the hub avatar on the city plane true
+CITY_NATIVE nearby E opens the physical skill station true
+ERROR: Index p_index = 0 is out of bounds ((int)data.children_cache.size() - data.internal_children_front_count_cache - data.internal_children_back_count_cache = 0).
+   at: get_child (scene/main/node.cpp:1861)
+   GDScript backtrace (most recent call first):
+       [0] run (res://tools/verify_city_native.gd:49)
+       [1] shot (res://tools/verify_city_native.gd:22)
+       [2] frames (res://tools/verify_city_native.gd:11)
+SCRIPT ERROR: Cannot call method 'get_global_rect' on a null value.
+          at: click (res://tools/verify_city_native.gd:19)
+          GDScript backtrace (most recent call first):
+              [0] click (res://tools/verify_city_native.gd:19)
+              [1] run (res://tools/verify_city_native.gd:49)
+              [2] shot (res://tools/verify_city_native.gd:22)
+              [3] frames (res://tools/verify_city_native.gd:11)
+CITY_NATIVE native map pointer starts a saved campaign fight false
+ERROR: native map pointer starts a saved campaign fight
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_city_native.gd:8)
+       [1] run (res://tools/verify_city_native.gd:50)
+       [2] shot (res://tools/verify_city_native.gd:22)
+       [3] frames (res://tools/verify_city_native.gd:11)
+SCRIPT ERROR: Invalid access of index '0' on a base object of type: 'Array[Dictionary]'.
+          at: run (res://tools/verify_city_native.gd:52)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_city_native.gd:52)
+              [1] shot (res://tools/verify_city_native.gd:22)
+              [2] frames (res://tools/verify_city_native.gd:11)

@@ -1,6 +1,6 @@
 extends RefCounted
 ## Shared native Godot UI tokens. See DESIGN.md and UX-CONTRACT.md.
-## Logical sizes are halved by the shared 640x360 framebuffer.
+## Logical 1280x720 coordinates scale into the shared 960x540 framebuffer.
 const CAPTION_SIZE:=24
 const BODY_SIZE:=28
 const ACTION_SIZE:=32

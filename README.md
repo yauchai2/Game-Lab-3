@@ -1,5 +1,15 @@
 # Afterhours / Game-Lab-3
 
+最新：[完整短篇故事／雙巨型Boss／技巧優先平衡](docs/CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)。六區18場、獨立場景模型、城市NPC故事／能力課程／專屬招式、九核心裝備演出、工坊及有限增援／危險分支已接入；[測試與原生畫面](docs/evidence/campaign-complete/README.md)。F5→STORY；仍推codex/story-waves-m1／草稿PR #12，main及Web保持。以下各段是較早階段紀錄，以本段為準。
+
+最新：[960復古畫面＋城市成長擴充](docs/CITY_PROGRESSION_EXPANSION.zh-TW.md)。48節點／25點、T1–T5詞綴刷圖、真裝備掉落／比較／各角配裝與倉庫；[359項驗證及畫面](docs/evidence/city-expansion/README.md)。主選單STORY，來源仍codex/story-waves-m1。下方舊首版範圍為歷史，以此最新實作為準；巨型Boss／完整故事及場景美術仍待續。
+
+最新可玩：[Hades式城市回城循環](docs/CITY_ROGUELITE_RUNTIME.zh-TW.md)。F5→STORY：45°可行走安全城、升技／天賦／抽裝／故事／六區出擊，永久與局內成長分層；[畫面及226項檢查](docs/evidence/city-hub/README.md)。使用程序佔位美術及共用戰鬥街道，完整Boss與大型天賦樹待做。
+
+新規劃：[城市故事ARPG：能力解鎖、天賦樹、刷圖與抽裝](docs/CITY_ARPG_PROGRESSION_PLAN.zh-TW.md)。主選單故事入口、48節點／25點、六區與T1–T5、三槽裝備及兩貨幣；僅設計，尚未實作。
+
+本分支：[故事波次M1可玩預覽](docs/STORY_WAVES_RUNTIME.zh-TW.md)。FIGHTERS → STORY，三波／三敵型／最多六人、真敵碰敵連鎖及波次重試；[畫面及287項驗證](docs/evidence/story-waves/README.md)。本輪只推codex/story-waves-m1，未合併main，尚未有大型Boss／完整六關。
+
 規劃：[故事波次街鬥、敵碰敵連鎖與大型Boss六關設計](docs/STORY_WAVES_PLAN.zh-TW.md)。含逐波敵型配方、拉遠鏡頭、核心與checkpoint及製作順序；本輪僅規劃，尚未加入遊戲。
 
 最新：[抽獎後3D裝備已實裝](docs/ABILITY_EQUIP_RUNTIME.zh-TW.md)／[有聲預覽](docs/evidence/ability-equip/ability-equip.mp4)／[完整Demo](docs/evidence/ability-equip/demo-draw-equip.mp4)。五選角不露臉接握／腰扣／鞋底啟動，九核心實體腰掛，345項通過，Web不更新。

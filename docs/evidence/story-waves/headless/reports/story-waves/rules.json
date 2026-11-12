@@ -1,0 +1,132 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "three finite waves with role escalation",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "clear enters a safe break instead of ending match",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "break cannot spawn early",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "next wave carries HP and meter",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "rushers have lower actual HP",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "player death fails current wave",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "checkpoint repeats same wave and layout",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "retry supplies are explicit and bounded",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "last wave has six real independent enemies and guards",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "final clear is a real completed encounter",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "shield role actually blocks damage",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "shield can be countered by an ordinary throw",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "rusher visibly commits before dashing",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "rusher cannot retarget through its committed tell",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "attacker": 0,
+          "chain": 1,
+          "damage": 11,
+          "face": 1.0,
+          "kind": "story_chain_hit",
+          "source_id": 0,
+          "squad_id": 1,
+          "target": 1
+        }
+      ],
+      "name": "real heavy creates at least one swept body impact",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "one chain cannot hit a target twice",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "player cannot be hurt by own body chain",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "body chains expire without permanent airborne locks",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "fast swept collision cannot tunnel through target",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "repeated overlap cannot duplicate chain damage",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "leaving story removes all encounter data",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "story-off simulation matches original squad class",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "mixed wave/chain replay remains deterministic",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 23
+}
