@@ -42,3 +42,7 @@ AI 沿既有合法輸入決策，不直接改血量、命中或位置。沒有 Z
 - 新敵人原生整合 32 項：實際指標選擇、三視窗尺寸、52 骨映射、各攻擊姿態、真命中／招架、30 秒自由 AI 互打、對手保存、成長隔離、Street Run 還原及多次換模清理。
 - 原有四角技能規則 46 項；二段跳 62 項、防禦 25 項；原生 UI 37 項、材質生命週期 6 項。共 208 項檢查通過。
 - 不是使用者 Mac／硬件 GPU／真人手感或喇叭驗收。保留 llvmpipe 不支援 VSync 的警告；引擎 ERROR／SCRIPT ERROR 必須獨立檢查，不能只看 JSON。
+
+## 2026-11-12：改回原始 GLB
+
+Alan 確認修補版仍有奇怪問題，要求直接使用上傳的原始 GLB（SHA-256 `8fcacf15…`，與 `source/` 內檔案逐位元相同）。runtime 現載入 `source/tripo_convert_6bb9e9c2-….glb`；`derived/black_suit_repaired.glb` 與修補工具保留，可隨時改回。後頸細描邊只在模型含 `NeckBridge` 補丁時啟用。`verify_black_suit` / `verify_squad_native` 原本要求 ≥4 材質（含修補件），已改成 ≥1。前後對比：[before](evidence/black-suit-raw/before-repaired.png)、[after](evidence/black-suit-raw/after-raw-glb.png)。Linux llvmpipe／Dummy audio，非 Mac／真人手感驗收。
