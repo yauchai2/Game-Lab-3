@@ -1,0 +1,119 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+EQUIP selected actor 0 enters equip before gameplay claim true
+EQUIP selected actor 0 uses original current rig true
+EQUIP actor 0 t0.20 keeps head outside frame true
+EQUIP actor 0 t0.20 wrist target is reachable true
+EQUIP actor 0 t0.60 keeps head outside frame true
+EQUIP actor 0 t0.60 wrist target is reachable true
+EQUIP actor 0 t1.70 keeps head outside frame true
+EQUIP actor 0 t1.70 wrist target is reachable true
+EQUIP actor 0 t2.44 keeps head outside frame true
+EQUIP actor 0 t2.44 wrist target is reachable true
+EQUIP actor 0 t3.30 keeps head outside frame true
+EQUIP actor 0 t3.30 wrist target is reachable true
+EQUIP actor 0 t3.90 keeps head outside frame true
+EQUIP actor 0 t3.90 wrist target is reachable true
+EQUIP pause freezes equip and cue 0 true
+EQUIP repeated Enter does not skip equip 0 true
+EQUIP playback claims once and starts round three 0 true
+EQUIP physical core follows live selected actor 0 true
+EQUIP installed module follows live movement 0 true
+EQUIP new round removes visible module 0 true
+EQUIP selected actor 1 enters equip before gameplay claim true
+EQUIP selected actor 1 uses original current rig true
+EQUIP actor 1 t0.20 keeps head outside frame true
+EQUIP actor 1 t0.20 wrist target is reachable true
+EQUIP actor 1 t0.60 keeps head outside frame true
+EQUIP actor 1 t0.60 wrist target is reachable true
+EQUIP actor 1 t1.70 keeps head outside frame true
+EQUIP actor 1 t1.70 wrist target is reachable true
+EQUIP actor 1 t2.44 keeps head outside frame true
+EQUIP actor 1 t2.44 wrist target is reachable true
+EQUIP actor 1 t3.30 keeps head outside frame true
+EQUIP actor 1 t3.30 wrist target is reachable true
+EQUIP actor 1 t3.90 keeps head outside frame true
+EQUIP actor 1 t3.90 wrist target is reachable true
+EQUIP pause freezes equip and cue 1 true
+EQUIP repeated Enter does not skip equip 1 true
+EQUIP playback claims once and starts round three 1 true
+EQUIP physical core follows live selected actor 1 true
+EQUIP installed module follows live movement 1 true
+EQUIP new round removes visible module 1 true
+EQUIP selected actor 2 enters equip before gameplay claim true
+EQUIP selected actor 2 uses original current rig true
+EQUIP actor 2 t0.20 keeps head outside frame true
+EQUIP actor 2 t0.20 wrist target is reachable true
+EQUIP actor 2 t0.60 keeps head outside frame true
+EQUIP actor 2 t0.60 wrist target is reachable true
+EQUIP actor 2 t1.70 keeps head outside frame true
+EQUIP actor 2 t1.70 wrist target is reachable true
+EQUIP actor 2 t2.44 keeps head outside frame true
+EQUIP actor 2 t2.44 wrist target is reachable true
+EQUIP actor 2 t3.30 keeps head outside frame true
+EQUIP actor 2 t3.30 wrist target is reachable true
+EQUIP actor 2 t3.90 keeps head outside frame true
+EQUIP actor 2 t3.90 wrist target is reachable true
+EQUIP pause freezes equip and cue 2 true
+EQUIP repeated Enter does not skip equip 2 true
+EQUIP playback claims once and starts round three 2 true
+EQUIP physical core follows live selected actor 2 true
+EQUIP installed module follows live movement 2 true
+EQUIP new round removes visible module 2 true
+EQUIP selected actor 3 enters equip before gameplay claim true
+EQUIP selected actor 3 uses original current rig true
+EQUIP actor 3 t0.20 keeps head outside frame true
+EQUIP actor 3 t0.20 wrist target is reachable true
+EQUIP actor 3 t0.60 keeps head outside frame true
+EQUIP actor 3 t0.60 wrist target is reachable true
+EQUIP actor 3 t1.70 keeps head outside frame true
+EQUIP actor 3 t1.70 wrist target is reachable true
+EQUIP actor 3 t2.44 keeps head outside frame true
+EQUIP actor 3 t2.44 wrist target is reachable true
+EQUIP actor 3 t3.30 keeps head outside frame true
+EQUIP actor 3 t3.30 wrist target is reachable true
+EQUIP actor 3 t3.90 keeps head outside frame true
+EQUIP actor 3 t3.90 wrist target is reachable true
+EQUIP pause freezes equip and cue 3 true
+EQUIP repeated Enter does not skip equip 3 true
+EQUIP playback claims once and starts round three 3 true
+EQUIP physical core follows live selected actor 3 true
+EQUIP installed module follows live movement 3 true
+EQUIP new round removes visible module 3 true
+EQUIP selected actor 4 enters equip before gameplay claim true
+EQUIP selected actor 4 uses original current rig true
+EQUIP actor 4 t0.20 keeps head outside frame true
+EQUIP actor 4 t0.20 wrist target is reachable true
+EQUIP actor 4 t0.60 keeps head outside frame true
+EQUIP actor 4 t0.60 wrist target is reachable true
+EQUIP actor 4 t1.70 keeps head outside frame true
+EQUIP actor 4 t1.70 wrist target is reachable true
+EQUIP actor 4 t2.44 keeps head outside frame true
+EQUIP actor 4 t2.44 wrist target is reachable true
+EQUIP actor 4 t3.30 keeps head outside frame true
+EQUIP actor 4 t3.30 wrist target is reachable true
+EQUIP actor 4 t3.90 keeps head outside frame true
+EQUIP actor 4 t3.90 wrist target is reachable true
+EQUIP pause freezes equip and cue 4 true
+EQUIP repeated Enter does not skip equip 4 true
+EQUIP playback claims once and starts round three 4 true
+EQUIP physical core follows live selected actor 4 true
+EQUIP installed module follows live movement 4 true
+EQUIP new round removes visible module 4 true
+EQUIP equip preserves selected core speed true
+EQUIP equip preserves selected core guard true
+EQUIP equip preserves selected core charge true
+EQUIP equip preserves selected core fury true
+EQUIP equip preserves selected core plate true
+EQUIP equip preserves selected core flow true
+EQUIP equip preserves selected core eco true
+EQUIP equip preserves selected core breach true
+EQUIP equip preserves selected core siphon true
+EQUIP equip follows alternate stage origin and heading true
+EQUIP F2 shortened equip claims the same core true
+EQUIP skip equip claims once without reroll true
+EQUIP cancel restores visibility camera and stops score true
+EQUIP_CHECKS 113/113

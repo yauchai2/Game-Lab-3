@@ -20,7 +20,7 @@
     },
     {
       "detail": null,
-      "name": "black suit preserves texture and original color",
+      "name": "black suit preserves original texture and repair materials",
       "passed": true
     },
     {
@@ -111,27 +111,32 @@
     {
       "detail": {
         "events": {
-          "air_counter_choice": 6,
-          "air_counter_end": 6,
-          "air_counter_release": 5,
-          "air_counter_start": 6,
-          "air_counter_windup": 5,
-          "air_land": 19,
-          "air_parry_attempt": 6,
+          "air_counter_choice": 4,
+          "air_counter_end": 4,
+          "air_counter_release": 4,
+          "air_counter_start": 4,
+          "air_counter_windup": 4,
+          "air_land": 11,
+          "air_parry_attempt": 4,
+          "air_parry_no_meter": 1,
+          "arena_bounce": 2,
           "block": 1,
-          "break_finish": 4,
           "chase_arrive": 6,
-          "counter_success": 3,
-          "dash": 11,
+          "counter_success": 2,
+          "dash": 2,
           "fast_fall": 1,
-          "hit": 39,
+          "fight": 2,
+          "ground_bounce": 1,
+          "hit": 36,
           "homing_chase": 6,
-          "parry": 4,
-          "swing": 59
+          "ko": 2,
+          "parry": 3,
+          "swing": 52,
+          "wall_tech": 2
         },
         "hits": [
-          13,
-          26
+          21,
+          15
         ]
       },
       "name": "free AI actually fights as the enemy",
@@ -160,6 +165,21 @@
     {
       "detail": null,
       "name": "enemy persists after run without changing player save",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy supports round entry portrait",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy win starts deciding KO",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy winner exit has valid pose and fallback score",
       "passed": true
     },
     {

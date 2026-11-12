@@ -13,6 +13,8 @@ var neon_enabled:=false
 var character_index := 0
 var model_scale := 2.1
 var oversized_bones: Array[int]=[]
+var fx_flash_age:=1.0
+var fx_bones:Dictionary={}
 var elapsed := 0.0
 var death_ground_offset:=0.0
 var death_ground_cached:=false
@@ -35,6 +37,8 @@ func setup(color: Color, selection := 0, model_path_override:="") -> void:
         remove_child(model)
         model.queue_free()
     skeleton=null
+    fx_bones.clear()
+    fx_flash_age=1.0
     materials.clear()
     oversized_bones.clear()
     motions=preload("res://scripts/combat/combat_motions.gd").new()
@@ -140,7 +144,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         stretch*=Vector3(1.07,.93,1.07)
     model.scale=Vector3.ONE*model_scale*stretch
     for mat in materials:
-        mat.set_shader_parameter("flash", 1.0 if f.flash > 0 and not reduced else 0.0)
+        mat.set_shader_parameter("flash", (1.0 if fx_flash_age<.045 else .16) if f.flash > 0 and not reduced else 0.0)
     if skeleton:
         motions.present(f,delta,stopped)
         if neon_enabled and f.health>0:preload("res://scripts/combat/neon/neon_signature_motion.gd").apply(motions,f)
@@ -240,3 +244,20 @@ func _add_signal_baton() -> void:
         box.material=mat
         var node:=MeshInstance3D.new();node.name="SignalBatonMesh";node.mesh=box;node.position=spec[0];mount.add_child(node)
         materials.append(mat)
+
+## Socket positions belong to presentation; never used as gameplay hitboxes.
+func fx_socket(label:String) -> Vector3:
+    if is_instance_valid(skeleton):
+        if not fx_bones.has(label):fx_bones[label]=motions.bone_index(label)
+        var index:int=fx_bones[label]
+        if index>=0:
+            return skeleton.global_transform*skeleton.get_bone_global_pose(index).origin
+    return global_position+Vector3(0,.10 if label.ends_with("Foot") else model_scale*.60,0)
+
+func fx_advance_flash(delta:float,reduced:bool) -> void:
+    fx_flash_age+=maxf(0,delta)
+    if reduced:fx_flash_age=1.0
+    if fx_flash_age>=.045:
+        for mat in materials:
+            var current:float=mat.get_shader_parameter("flash")
+            if current>.16:mat.set_shader_parameter("flash",0.0 if reduced else .16)

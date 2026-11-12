@@ -152,5 +152,77 @@
         "probe_score": 100
       }
     }
+  },
+  {
+    "source_id": "file_01XWaHEtqGysypnho3JNcRir",
+    "original_name": "Starjunk 95 - Beat Keep Rockin Official Music Video.mp3",
+    "source_sha256": "e396d36423e82e29078f5f7c5a95571a9e304568baaaf7474953373dd39846fe",
+    "output": "godot/audio/user-tracks/beat_keep_rockin.ogg",
+    "output_sha256": "79bd8239d6808b72924be96ae95db025ff70b5465dca42858d11d914f5d72278",
+    "context": "story opening score (cut into godot/audio/story_opening/score.wav)",
+    "admission": "User supplied on 2026-11-12, asked for it to be used and uploaded, and allowed free editing; no CC0 claim.",
+    "transform": "ffmpeg loudnorm I=-17 TP=-2 LRA=9, 48 kHz, libvorbis q5, metadata stripped",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "48000",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "185.100000",
+        "size": "3035533"
+      }
+    }
+  },
+  {
+    "source_id": "file_019EgXM1tRGa9GSDZpxMHa7M",
+    "original_name": "Starjunk 95 - State Your Name.mp3",
+    "source_sha256": "f86bbf67daec6e50189e29132d7ee17019e02ef93e73a29405741a44444ef0f8",
+    "output": "godot/audio/user-tracks/state_your_name.ogg",
+    "output_sha256": "a7632c3cf5eb40c9120a9467176d30f65d0685103518b53dbfeeb11437bcef5e",
+    "context": "unassigned (available for menus or fights)",
+    "admission": "User supplied on 2026-11-12, asked for it to be used and uploaded, and allowed free editing; no CC0 claim.",
+    "transform": "ffmpeg loudnorm I=-17 TP=-2 LRA=9, 48 kHz, libvorbis q5, metadata stripped",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "48000",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "162.600021",
+        "size": "2731918"
+      }
+    }
+  },
+  {
+    "source_id": "file_01EU2fsPFP5RzPhScwy8Ln1e",
+    "original_name": "Starjunk 95 Groovy Funky Disco Future House Mix.mp3",
+    "source_sha256": "20392f80229e7f97424d0c0ca2faf78b7d920bf0c0a96994dff84d92b30196be",
+    "output": "references/audio/user-tracks/groovy_funky_disco_future_house_mix.ogg",
+    "output_sha256": "3d82b4772130156df74006f9193083e598d03ab67ac479e8925ce653c3258c06",
+    "context": "unassigned 16-minute mix, kept outside godot/ as cutting material",
+    "admission": "User supplied on 2026-11-12, asked for it to be used and uploaded, and allowed free editing; no CC0 claim.",
+    "transform": "ffmpeg loudnorm I=-17 TP=-2 LRA=9, 48 kHz, libvorbis q4, metadata stripped",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "48000",
+          "channels": 2
+        }
+      ],
+      "format": {
+        "duration": "974.700000",
+        "size": "14265318"
+      }
+    }
   }
 ]

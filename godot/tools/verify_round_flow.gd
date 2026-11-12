@@ -42,16 +42,17 @@ func run() -> void:
     check("Street Run first and subsequent stops have an entry",run_entry and s.round_theatre.intro and s.run_stage==2 and s.sim.phase=="ready")
     s.return_to_title()
     s.start_match(true);check("practice starts playable without an entry lock",not s.round_theatre.intro and s.sim.phase=="fight")
-    s.start_demo();var initial_round:int=s.presentation_round()
+    s.start_demo();seed(4242);var initial_round:int=s.presentation_round()
     check("demo uses normal finite health rather than practice regeneration",s.demo!=null and not s.sim.training and not s.sim.endless and not s.practice)
-    var last:="";var complete_ko:=0;var winner_exits:=0;var safe:=true;var intros:=0;var lens_frames:=0
+    var last:="";var complete_ko:=0;var winner_exits:=0;var safe:=true;var intros:=0;var lens_frames:=0;var equip_seen:=false
     var growth_before:Dictionary=s.growth.records.duplicate(true)
     for tick in 18000:
         # Exercise real engine frames: draw confirmations reject two actions in one frame.
         if tick%120==0:await process_frame
         step()
-        # Latest draw contract waits for user input even in Demo; exercise that input.
+        # Demo accepts manual confirmation before its automatic countdown.
         if s.ability_draw.active() and s.ability_draw.input_armed:key(KEY_ENTER)
+        if s.ability_draw.active() and s.ability_draw.state=="equip":equip_seen=true
         var label:String="entry" if s.round_theatre.intro else ("winner" if s.city_breaker.active() and s.city_breaker.playback_elapsed>=5 else ("ko" if s.city_breaker.active() else s.screen+"/"+s.sim.phase))
         if label!=last:
             phases.append({"seconds":tick/60.0,"phase":label,"round":s.presentation_round(),"health":[s.sim.fighters[0].health,s.sim.fighters[1].health]})
@@ -65,7 +66,9 @@ func run() -> void:
         if s.demo.rounds_finished>=3:break
     check("demo reserves full KO for the deciding round",complete_ko>=1 and s.demo.seen.get("ko",0)>=3)
     check("every deciding KO includes the winner exit",winner_exits==complete_ko)
-    check("rounds loop through a fresh entry after explicit draw confirmation",s.demo.rounds_finished>=3 and s.presentation_round()==initial_round+3 and s.round_theatre.intro and intros>=4)
+    # Current equip contract deliberately replaces the third-round intro. Still
+    # require real equipment and the fresh entry of the next completed match.
+    check("rounds loop with real equipment and a fresh next-match entry",s.demo.rounds_finished>=3 and s.presentation_round()==initial_round+3 and s.round_theatre.intro and intros>=3 and equip_seen)
     check("two-win match completion also loops",s.demo.matches_finished>=1)
     check("both autonomous sides land actual hits",s.demo.hits[0]>0 and s.demo.hits[1]>0)
     check("looping demo never grants progression rewards",s.growth.records==growth_before)

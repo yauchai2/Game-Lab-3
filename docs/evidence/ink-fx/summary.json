@@ -1,0 +1,22 @@
+{
+  "passed": 420,
+  "components": {
+    "ink_fx": 26,
+    "strict": 14,
+    "combat": 34,
+    "rush": 21,
+    "friendly_defense": 25,
+    "squad_rules": 35,
+    "live_combat": 45,
+    "last_service": 46,
+    "squad_native": 10,
+    "round_flow": 24,
+    "audio": 6,
+    "equip": 113,
+    "neon": 21
+  },
+  "accepted_log_errors": {},
+  "gameplay_trajectory_identical": true,
+  "trajectory_sha256": "c0812b7f2e87cc8762d12f38d65036ddfc96675009128175c8d6a80986c187e4",
+  "scope": "Godot4.6.3 Linux Compatibility llvmpipe / Dummy mixer; not target Mac, human or GPU performance acceptance."
+}

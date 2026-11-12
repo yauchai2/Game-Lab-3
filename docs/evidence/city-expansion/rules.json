@@ -1,0 +1,350 @@
+{
+  "checks": [
+    {
+      "name": "48 nodes split 28 minors 12 notables 4 keystones 4 gateways",
+      "passed": true
+    },
+    {
+      "name": "node IDs are unique",
+      "passed": true
+    },
+    {
+      "name": "hero 0 cannot allocate remote endpoint without a path",
+      "passed": true
+    },
+    {
+      "name": "hero 0 connected paths spend exactly 25 points",
+      "passed": true
+    },
+    {
+      "name": "hero 0 cannot allocate a 26th node",
+      "passed": true
+    },
+    {
+      "name": "hero 0 free respec retains full budget",
+      "passed": true
+    },
+    {
+      "name": "hero 1 cannot allocate remote endpoint without a path",
+      "passed": true
+    },
+    {
+      "name": "hero 1 connected paths spend exactly 25 points",
+      "passed": true
+    },
+    {
+      "name": "hero 1 cannot allocate a 26th node",
+      "passed": true
+    },
+    {
+      "name": "hero 1 free respec retains full budget",
+      "passed": true
+    },
+    {
+      "name": "hero 2 cannot allocate remote endpoint without a path",
+      "passed": true
+    },
+    {
+      "name": "hero 2 connected paths spend exactly 25 points",
+      "passed": true
+    },
+    {
+      "name": "hero 2 cannot allocate a 26th node",
+      "passed": true
+    },
+    {
+      "name": "hero 2 free respec retains full budget",
+      "passed": true
+    },
+    {
+      "name": "hero 3 cannot allocate remote endpoint without a path",
+      "passed": true
+    },
+    {
+      "name": "hero 3 connected paths spend exactly 25 points",
+      "passed": true
+    },
+    {
+      "name": "hero 3 cannot allocate a 26th node",
+      "passed": true
+    },
+    {
+      "name": "hero 3 free respec retains full budget",
+      "passed": true
+    },
+    {
+      "name": "keystone has actual bounded damage versus target tradeoff",
+      "passed": true
+    },
+    {
+      "name": "a second keystone is explicitly refused",
+      "passed": true
+    },
+    {
+      "name": "first clear banks enough for a pull and actual equipment",
+      "passed": true
+    },
+    {
+      "name": "repeat settlement cannot duplicate money loot or XP",
+      "passed": true
+    },
+    {
+      "name": "first-clear double jump remains free and deterministic",
+      "passed": true
+    },
+    {
+      "name": "unlearned skill affixes cannot appear in generated gear",
+      "passed": true
+    },
+    {
+      "name": "signature pity is exact and shares one atomic purchase",
+      "passed": true
+    },
+    {
+      "name": "per-hero equipment can differ without deleting shared items",
+      "passed": true
+    },
+    {
+      "name": "recycling protects equipment worn by any hero",
+      "passed": true
+    },
+    {
+      "name": "rare pity counts pulls rather than combat drops",
+      "passed": true
+    },
+    {
+      "name": "failed write restores debit inventory and pity",
+      "passed": true
+    },
+    {
+      "name": "full bag routes actual loot to stash",
+      "passed": true
+    },
+    {
+      "name": "full bag and stash recycle overflow with visible receipt",
+      "passed": true
+    },
+    {
+      "name": "contract consumes one entrance item and persists the run",
+      "passed": true
+    },
+    {
+      "name": "contract failure 0 retries the same wave without refunding entry",
+      "passed": true
+    },
+    {
+      "name": "contract failure 1 retries the same wave without refunding entry",
+      "passed": true
+    },
+    {
+      "name": "third defeat ends challenge and preserves banked rewards",
+      "passed": true
+    },
+    {
+      "name": "T1 wave0 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T1 wave1 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T1 wave2 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T2 wave0 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T2 wave1 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T2 wave2 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T3 wave0 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T3 wave1 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T3 wave2 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T3 wave3 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T4 wave0 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T4 wave1 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T4 wave2 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T4 wave3 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T5 wave0 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T5 wave1 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T5 wave2 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T5 wave3 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "T5 wave4 finite seeded arrival recipes",
+      "passed": true
+    },
+    {
+      "name": "two map clears guarantee higher tier and return same-tier maps",
+      "passed": true
+    },
+    {
+      "name": "free completed district replenishes T1 maps",
+      "passed": true
+    },
+    {
+      "name": "legacy migration retains abilities money and point budget",
+      "passed": true
+    },
+    {
+      "name": "expanded tree refunds old allocations without overwriting original",
+      "passed": true
+    },
+    {
+      "name": "first migrated transaction preserves immutable v1 backup",
+      "passed": true
+    },
+    {
+      "name": "version2 profile reloads without further migration",
+      "passed": true
+    },
+    {
+      "name": "build changes actual heavy damage launch and guard pressure",
+      "passed": true
+    },
+    {
+      "name": "sky keystone changes damage by actual aerial state",
+      "passed": true
+    },
+    {
+      "name": "real parries get bounded bonus and a timed counter",
+      "passed": true
+    },
+    {
+      "name": "real homing chase refunds cap at ten per encounter",
+      "passed": true
+    },
+    {
+      "name": "first collision produces genuine splash sharing one hit set",
+      "passed": true
+    },
+    {
+      "name": "splash and chain share target and resource hard caps",
+      "passed": true
+    },
+    {
+      "name": "same-source splash never repeats against struck targets",
+      "passed": true
+    },
+    {
+      "name": "standard preview restores full permissions and modifiers",
+      "passed": true
+    },
+    {
+      "name": "full story banks 18 drops, guaranteed first signature and an initial T1",
+      "passed": true
+    },
+    {
+      "name": "tower replay gives rare floor without repeating forced signature",
+      "passed": true
+    },
+    {
+      "name": "hero 0 clears district one Easy using ordinary inputs and real earned loot, no healing",
+      "passed": true
+    },
+    {
+      "name": "hero 0 retains single attack slot",
+      "passed": true
+    },
+    {
+      "name": "hero 1 clears district one Easy using ordinary inputs and real earned loot, no healing",
+      "passed": true
+    },
+    {
+      "name": "hero 1 retains single attack slot",
+      "passed": true
+    },
+    {
+      "name": "hero 2 clears district one Easy using ordinary inputs and real earned loot, no healing",
+      "passed": true
+    },
+    {
+      "name": "hero 2 retains single attack slot",
+      "passed": true
+    },
+    {
+      "name": "hero 3 clears district one Easy using ordinary inputs and real earned loot, no healing",
+      "passed": true
+    },
+    {
+      "name": "hero 3 retains single attack slot",
+      "passed": true
+    },
+    {
+      "name": "v2 reload retains exact HP meter loot hero and temporary boon",
+      "passed": true
+    },
+    {
+      "name": "corrupt primary recovers validated backup",
+      "passed": true
+    },
+    {
+      "name": "recovery can safely save without replacing good backup with corrupt bytes",
+      "passed": true
+    },
+    {
+      "name": "two bad saves retain original bytes and disable transactions",
+      "passed": true
+    },
+    {
+      "name": "held-J cannot bypass the locked launcher",
+      "passed": true
+    },
+    {
+      "name": "locked overdrive resolves to the legal basic class skill",
+      "passed": true
+    },
+    {
+      "name": "held air combo cannot bypass the locked finisher",
+      "passed": true
+    },
+    {
+      "name": "second jump and auto-chase buffers respect permissions",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 86
+}

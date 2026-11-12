@@ -643,7 +643,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
             return
         var guard_pressure:float=8.0 if last_service_enabled and a.character==1 and a.service.preload>=2 else 0.0
         if last_service_enabled and a.character==1 and ServiceRules.perk(a,"rivet_guard"):guard_pressure+=5.0
-        b.guard = maxf(0.0, b.guard - (m.damage * 2.8+guard_pressure)*(1.25 if a.get("draw_core","")=="breach" else 1.0))
+        b.guard = maxf(0.0, b.guard - (m.damage * 2.8+guard_pressure)*(1.25 if a.get("draw_core","")=="breach" else 1.0)*float(m.get("guard_multiplier",1.0)))
         b.state = "blockstun"
         b.stun = 10
         b.vx = hit_face * 2.2

@@ -1,0 +1,67 @@
+[
+  {
+    "log": "last-service.log",
+    "errors": [],
+    "summary": []
+  },
+  {
+    "log": "verify_ability_equip.log",
+    "errors": [],
+    "summary": [
+      "EQUIP_CHECKS 113/113"
+    ]
+  },
+  {
+    "log": "verify_combat.log",
+    "errors": [],
+    "summary": [
+      "COMBAT_CHECKS 34/34"
+    ]
+  },
+  {
+    "log": "verify_friendly_defense.log",
+    "errors": [],
+    "summary": [
+      "FRIENDLY_DEFENSE_CHECKS 25/25"
+    ]
+  },
+  {
+    "log": "verify_live_combat.log",
+    "errors": [],
+    "summary": []
+  },
+  {
+    "log": "verify_neon_facets.log",
+    "errors": [],
+    "summary": []
+  },
+  {
+    "log": "verify_round_flow.log",
+    "errors": [],
+    "summary": [
+      "ROUND_FLOW_CHECKS 24/24"
+    ]
+  },
+  {
+    "log": "verify_rush_arcade.log",
+    "errors": [],
+    "summary": [
+      "RUSH_ARCADE_CHECKS 21/21"
+    ]
+  },
+  {
+    "log": "verify_squad_native.log",
+    "errors": [],
+    "summary": []
+  },
+  {
+    "log": "verify_squad_rules.log",
+    "errors": [],
+    "summary": []
+  },
+  {
+    "log": "verify_unified_audio.log",
+    "errors": [],
+    "summary": []
+  }
+]

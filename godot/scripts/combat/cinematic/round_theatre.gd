@@ -131,6 +131,8 @@ func draw(canvas:Control) -> void:
         var id:int=session.fighters[side].character_index
         var text:String="P%d / "%int(side+1)+["ZIP","RIVET","HUSH","LOOP","BLACK SUIT"][id]
         canvas.draw_string(session.hud.bold,Vector2(62,605),text,HORIZONTAL_ALIGNMENT_LEFT,-1,74,[Color("00e9ef"),Color("ff9824"),Color("ff3d97"),Color("c4ff00"),Color("a888ff")][id])
+        if side==1 and not session.intro_line.is_empty():
+            canvas.draw_string(session.hud.font,Vector2(62,642),session.intro_line,HORIZONTAL_ALIGNMENT_LEFT,1150,28,Color("ded6eb"))
 
 func safe_framing() -> bool:
     if not framing.fits(session.camera,session):return false

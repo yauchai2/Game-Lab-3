@@ -19,7 +19,7 @@ var ready_texture:=false
 var shot_index:=0
 var batches:Array[MultiMeshInstance3D]=[]
 func _ready() -> void:
-    viewport=SubViewport.new();viewport.name="TitleStage";viewport.size=Vector2i(640,360)
+    viewport=SubViewport.new();viewport.name="TitleStage";viewport.size=Vector2i(960,540)
     viewport.own_world_3d=true;viewport.render_target_update_mode=SubViewport.UPDATE_DISABLED
     viewport.msaa_3d=Viewport.MSAA_DISABLED;viewport.screen_space_aa=Viewport.SCREEN_SPACE_AA_DISABLED
     add_child(viewport)

@@ -1,0 +1,63 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
+ERROR: Condition "status < 0" is true. Returning: ERR_CANT_OPEN
+   at: init_output_device (drivers/alsa/audio_driver_alsa.cpp:90)
+WARNING: All audio drivers failed, falling back to the dummy driver.
+     at: initialize (servers/audio/audio_server.cpp:247)
+
+SERVICE ZIP confirmed two-kick skill deals bounded real damage true { "hits": 2, "health": 79 }
+SERVICE ZIP overdrive confirms at most three legal contacts true { "hits": 3, "health": 65 }
+SERVICE ZIP whiff does not auto-track or damage true <null>
+SERVICE ZIP genuine dodge earns a route true { "routes": 1, "route_ttl": 180, "evade_serial": 1, "evade_candidate": 1, "candidate_ticks": 13, "preload": 0, "preload_age": 0, "sample": 0, "sample_ttl": 0, "sample_boost": false, "nodes": [], "node_cd": 0, "serial": 0, "placed": false, "zip_second": false, "followup": 0, "flurry_left": 0, "encore": [], "refund_serial": -1, "use_route": false }
+SERVICE Same enemy swing cannot generate repeated routes true <null>
+SERVICE Route is spent on a legal dash true <null>
+SERVICE RIVET hold reaches visible tier two true 2
+SERVICE RIVET tier-two strike hits with a long recovery budget true 67
+SERVICE Interrupted RIVET cannot damage during hold true <null>
+SERVICE HUSH real frontal parry stores one sample true [{ "kind": "parry", "target": 1, "attacker": 0, "move": "jab", "distance": 0.96666666666667 }, { "kind": "sample_gained", "target": 1 }]
+SERVICE HUSH sample is spent on a stronger normal counter true <null>
+SERVICE HUSH is usable without first earning a sample true 81
+SERVICE LOOP placement costs20 and creates one real node without a fake hit true <null>
+SERVICE Third LOOP placement replaces oldest, maximum two true <null>
+SERVICE Manual LOOP pulse spends10, clears nodes and deals real damage true 88
+SERVICE LOOP pulse is blockable true { "health": 100, "guard": 68.0800000000001 }
+SERVICE Opponent can destroy a LOOP node with an active strike true <null>
+SERVICE LOOP nodes expire on simulation time true <null>
+SERVICE Simultaneous node pulse and ordinary jab can trade true { "health": [94, 88] }
+SERVICE Airborne LOOP placement has no zero-damage body hit true <null>
+SERVICE ZIP does not inherit generic full-startup armor true <null>
+SERVICE RIVET late startup armor still takes damage true <null>
+SERVICE RIVET early startup remains interruptible true <null>
+SERVICE Throw beats RIVET late armor true <null>
+SERVICE HUSH can parry a remote pulse but does not sample it true <null>
+SERVICE Encore keeps pending nodes visible and destructible true <null>
+SERVICE Encore consumes at most two real nodes without unbounded damage true { "pulses": 2, "health": 67 }
+SERVICE New player has four characters and no locked base mechanics true <null>
+SERVICE First victory grants a point once true <null>
+SERVICE Skill unlock consumes a point and can equip true <null>
+SERVICE At most two skills can be equipped true <null>
+SERVICE XP, purchases, slots and cosmetic choice survive reload true <null>
+SERVICE Respec returns spent points without erasing XP true <null>
+SERVICE ZIP skill point does not alter raw jab damage true <null>
+SERVICE LOOP equipped life skill extends actual placed node true <null>
+SERVICE LOOP equipped cooldown skill changes actual pulse lockout true <null>
+SERVICE RIVET equipped charge skill reaches second tier sooner true <null>
+SERVICE RIVET equipped recovery skill changes charged recovery true <null>
+SERVICE HUSH equipped memory skill extends actual parry sample true <null>
+SERVICE HUSH equipped recovery skill changes sampled move true <null>
+SERVICE ZIP equipped dash skill changes the paid route dash true <null>
+SERVICE ZIP confirmed-kick refund is once per attack true <null>
+SERVICE HUSH sampled-hit refund actually grants five energy true <null>
+SERVICE LOOP pulse refund actually grants four energy true <null>
+SERVICE RIVET pressure skill adds five real guard drain true <null>
+SERVICE ZIP route skill extends a genuinely earned route true <null>

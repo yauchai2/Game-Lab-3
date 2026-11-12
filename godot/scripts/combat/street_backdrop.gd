@@ -24,6 +24,13 @@ const FLIGHT_SECONDS := 12.0
 var cycle := 24.0
 var anchor := Vector3(-3,31,-64)
 var retained_materials: Array[Material] = []
+var time_of_day:=0
+var neon_base:Dictionary={}
+const StreetTags=preload("res://scripts/combat/street_tags.gd")
+var tag_nodes:Dictionary={}
+var flyby_cooldown:=0.0
+const FLYBY_COOLDOWN:=40.0
+const TimeOfDay=preload("res://scripts/combat/time_of_day.gd")
 
 func _ready() -> void:
     street = preload("res://scenes/street_whitebox.tscn").instantiate()
@@ -96,10 +103,37 @@ func _ready() -> void:
         preload("res://scripts/combat/neon/neon_style_adapter.gd").style_living(living)
         environment.ambient_light_color=Color("c6b7d4")
         sun.light_color=Color("e8ecff")
+    if time_of_day!=0 and not neon_enabled:set_time_of_day(time_of_day)
     smoke=preload("res://scripts/combat/street_smoke.gd").new()
     add_child(smoke)
     if static_batches_enabled:
         static_batch_stats=preload("res://scripts/combat/static_street_batches.gd").bake(street,[active_toon,two_sided_shader])
+
+## D3: a bounded, visual-only aircraft pass for SURGE peaks. Returns false while cooling down or frozen.
+func request_flyby() -> bool:
+    if frozen or flyby_cooldown>0.0 or plane==null:return false
+    flyby_cooldown=FLYBY_COOLDOWN
+    elapsed=fposmod(cycle-FLIGHT_SECONDS*0.5,cycle)
+    return true
+
+func refresh_tags(store) -> void:
+    if tag_nodes.is_empty():tag_nodes=StreetTags.build_marks(self)
+    for id in tag_nodes:tag_nodes[id].visible=store!=null and store.has(id)
+
+func set_time_of_day(index:int) -> void:
+    time_of_day=TimeOfDay.clamp_index(index)
+    if environment==null or street==null:return
+    var sun:DirectionalLight3D=street.get_node("Sun")
+    if neon_enabled:
+        # Neon style owns its palette; keep that look and only vary brightness/fog.
+        var p:Dictionary=TimeOfDay.PRESETS[time_of_day]
+        if not neon_base.has("sun"):neon_base={"sun":sun.light_energy,"amb":environment.ambient_light_energy}
+        sun.light_energy=neon_base.sun*p.sun_e/0.85;environment.ambient_light_energy=neon_base.amb*p.amb_e/0.7
+        environment.adjustment_enabled=time_of_day!=0
+        environment.adjustment_brightness=p.nb;environment.adjustment_saturation=p.sat
+        environment.fog_enabled=p.nfog>0.0;environment.fog_light_color=p.fog_c;environment.fog_density=p.nfog
+        return
+    TimeOfDay.apply(environment,sun,time_of_day)
 
 static func strip_scene_text(root: Node) -> void:
     for label in root.find_children("*","Label3D",true,false):
@@ -153,6 +187,7 @@ func present(delta: float, paused: bool, reduced := false) -> void:
     if frozen or paused: return
     living.advance(delta,false,reduced)
     sky_motion.advance(environment,delta,PI*0.5,reduced)
+    flyby_cooldown=maxf(0.0,flyby_cooldown-delta)
     elapsed = fmod(elapsed+delta,cycle)
     var phase := fmod(elapsed+FLIGHT_SECONDS*0.5,cycle)
     plane.visible = phase<=FLIGHT_SECONDS

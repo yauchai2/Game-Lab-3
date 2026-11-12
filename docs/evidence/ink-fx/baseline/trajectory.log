@@ -1,0 +1,157 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+WARNING: 'res://assets/ability_draw/source/tripo_convert_275dc57f-e328-47e0-89e5-10195d3209c4.glb': In external resource #0, invalid UID: 'uid://25eg7x8pv2hx' - using text path instead: 'res://assets/ability_draw/source/tripo_convert_275dc57f-e328-47e0-89e5-10195d3209c4_industrial_loot_box_3d_model_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+WARNING: 'res://assets/ability_draw/source/tripo_convert_36d4f0c3-b64c-4ea1-841e-104fd70e96ae.glb': In external resource #0, invalid UID: 'uid://c15pdpnmrt8io' - using text path instead: 'res://assets/ability_draw/source/tripo_convert_36d4f0c3-b64c-4ea1-841e-104fd70e96ae_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+WARNING: 'res://assets/PROP_HYDRANT_A01.glb': In external resource #0, invalid UID: 'uid://6j30q0kadn6i' - using text path instead: 'res://assets/PROP_HYDRANT_A01_fire_hydrant_3d_model_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+WARNING: 'res://assets/PROP_BIN_A01.glb': In external resource #0, invalid UID: 'uid://cjl5c2o87hw07' - using text path instead: 'res://assets/PROP_BIN_A01_trash_can_3d_model_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+WARNING: 'res://assets/VEH_VAN_A01.glb': In external resource #0, invalid UID: 'uid://cmg8mc583am4t' - using text path instead: 'res://assets/VEH_VAN_A01_van_3d_model_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+WARNING: 'res://assets/PROP_SHOP_STOOL_A01.glb': In external resource #0, invalid UID: 'uid://cqaha6u7jpu2k' - using text path instead: 'res://assets/PROP_SHOP_STOOL_A01_red_stool_3d_model_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+WARNING: 'res://assets/PROP_CRATES_A01.glb': In external resource #0, invalid UID: 'uid://chytynure5csx' - using text path instead: 'res://assets/PROP_CRATES_A01_stacked_crates_3d_model_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+WARNING: 'res://assets/PROP_MAILBOX_A01.glb': In external resource #0, invalid UID: 'uid://o8ioujowxxko' - using text path instead: 'res://assets/PROP_MAILBOX_A01_mailbox_3d_model_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+WARNING: 'res://assets/VEH_CAR_A01.glb': In external resource #0, invalid UID: 'uid://dpqyydlpotceh' - using text path instead: 'res://assets/VEH_CAR_A01_car_3d_model_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+WARNING: 'res://assets/VEH_TRUCK_A01.glb': In external resource #0, invalid UID: 'uid://lhj3dx67qxmd' - using text path instead: 'res://assets/VEH_TRUCK_A01_box_truck_3d_model_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb': In external resource #0, invalid UID: 'uid://bsxbgblw67voq' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/living_street.gd:40)
+         [2] _ready (res://scripts/combat/street_backdrop.gd:94)
+         [3] _build_stage (res://scripts/combat/fight_session.gd:148)
+         [4] _ready (res://scripts/combat/fight_session.gd:94)
+         [5] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb': In external resource #0, invalid UID: 'uid://5qn7clqmddha' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/living_street.gd:40)
+         [2] _ready (res://scripts/combat/street_backdrop.gd:94)
+         [3] _build_stage (res://scripts/combat/fight_session.gd:148)
+         [4] _ready (res://scripts/combat/fight_session.gd:94)
+         [5] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb': In external resource #0, invalid UID: 'uid://dbhai8wdl3i3w' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/living_street.gd:40)
+         [2] _ready (res://scripts/combat/street_backdrop.gd:94)
+         [3] _build_stage (res://scripts/combat/fight_session.gd:148)
+         [4] _ready (res://scripts/combat/fight_session.gd:94)
+         [5] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb': In external resource #0, invalid UID: 'uid://d0igrndovoaim' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36_anime_action_figure_3d_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/living_street.gd:40)
+         [2] _ready (res://scripts/combat/street_backdrop.gd:94)
+         [3] _build_stage (res://scripts/combat/fight_session.gd:148)
+         [4] _ready (res://scripts/combat/fight_session.gd:94)
+         [5] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb': In external resource #0, invalid UID: 'uid://bsxbgblw67voq' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/fight_session.gd:99)
+         [2] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb': In external resource #0, invalid UID: 'uid://5qn7clqmddha' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/fight_session.gd:99)
+         [2] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb': In external resource #0, invalid UID: 'uid://dbhai8wdl3i3w' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/ui/title_motion.gd:31)
+         [2] _ready (res://scripts/combat/fight_hud.gd:62)
+         [3] _ready (res://scripts/combat/fight_session.gd:133)
+         [4] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb': In external resource #0, invalid UID: 'uid://bsxbgblw67voq' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/ui/title_motion.gd:31)
+         [2] _ready (res://scripts/combat/fight_hud.gd:62)
+         [3] _ready (res://scripts/combat/fight_session.gd:133)
+         [4] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb': In external resource #0, invalid UID: 'uid://5qn7clqmddha' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/ui/title_motion.gd:31)
+         [2] _ready (res://scripts/combat/fight_hud.gd:62)
+         [3] _ready (res://scripts/combat/fight_session.gd:133)
+         [4] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb': In external resource #0, invalid UID: 'uid://d0igrndovoaim' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36_anime_action_figure_3d_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/ui/title_motion.gd:31)
+         [2] _ready (res://scripts/combat/fight_hud.gd:62)
+         [3] _ready (res://scripts/combat/fight_session.gd:133)
+         [4] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb': In external resource #0, invalid UID: 'uid://bsxbgblw67voq' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/ui/title_motion.gd:31)
+         [2] _ready (res://scripts/combat/fight_hud.gd:62)
+         [3] _ready (res://scripts/combat/fight_session.gd:133)
+         [4] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb': In external resource #0, invalid UID: 'uid://bsxbgblw67voq' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/ui/roster_preview.gd:27)
+         [2] _ready (res://scripts/combat/fight_hud.gd:65)
+         [3] _ready (res://scripts/combat/fight_session.gd:133)
+         [4] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb': In external resource #0, invalid UID: 'uid://5qn7clqmddha' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/ui/roster_preview.gd:27)
+         [2] _ready (res://scripts/combat/fight_hud.gd:65)
+         [3] _ready (res://scripts/combat/fight_session.gd:133)
+         [4] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb': In external resource #0, invalid UID: 'uid://dbhai8wdl3i3w' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/ui/roster_preview.gd:27)
+         [2] _ready (res://scripts/combat/fight_hud.gd:65)
+         [3] _ready (res://scripts/combat/fight_session.gd:133)
+         [4] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb': In external resource #0, invalid UID: 'uid://d0igrndovoaim' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36_anime_action_figure_3d_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] _ready (res://scripts/combat/ui/roster_preview.gd:27)
+         [2] _ready (res://scripts/combat/fight_hud.gd:65)
+         [3] _ready (res://scripts/combat/fight_session.gd:133)
+         [4] run (res://tools/probe_ink_equivalence.gd:5)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb': In external resource #0, invalid UID: 'uid://dbhai8wdl3i3w' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed_stylized_3d_character_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] set_character (res://scripts/combat/fight_session.gd:1226)
+         [2] run (res://tools/probe_ink_equivalence.gd:12)
+WARNING: 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb': In external resource #0, invalid UID: 'uid://d0igrndovoaim' - using text path instead: 'res://assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36_anime_action_figure_3d_basecolor.jpg'.
+     at: open (core/io/resource_format_binary.cpp:1089)
+     GDScript backtrace (most recent call first):
+         [0] setup (res://scripts/combat/fighter_visual.gd:46)
+         [1] set_character (res://scripts/combat/fight_session.gd:1226)
+         [2] run (res://tools/probe_ink_equivalence.gd:12)

@@ -1,0 +1,74 @@
+{
+  "checks": [
+    {
+      "name": "main Story pointer opens an actual independent 3D hub",
+      "passed": true
+    },
+    {
+      "name": "city uses orthographic yaw45 pitch45 camera",
+      "passed": true
+    },
+    {
+      "name": "native WASD moves the hub avatar on the city plane",
+      "passed": true
+    },
+    {
+      "name": "nearby E opens the physical skill station",
+      "passed": true
+    },
+    {
+      "name": "native map pointer starts a saved campaign fight",
+      "passed": true
+    },
+    {
+      "name": "native J causes actual damage in the expedition",
+      "passed": true
+    },
+    {
+      "name": "clear presents a city return instead of silently respawning",
+      "passed": true
+    },
+    {
+      "name": "native Enter banks once and returns to the city",
+      "passed": true
+    },
+    {
+      "name": "skill station learns guaranteed double jump for free",
+      "passed": true
+    },
+    {
+      "name": "native connected node spends the available point",
+      "passed": true
+    },
+    {
+      "name": "city offers one temporary reward before continuing",
+      "passed": true
+    },
+    {
+      "name": "next fight carries HP, permissions and real combined damage",
+      "passed": true
+    },
+    {
+      "name": "defeat returns home and clears only the expedition",
+      "passed": true
+    },
+    {
+      "name": "campaign never touches old character XP",
+      "passed": true
+    },
+    {
+      "name": "native dealer button debits and persists one permanent item",
+      "passed": true
+    },
+    {
+      "name": "standard Fight restores full kit and disables city modifiers",
+      "passed": true
+    },
+    {
+      "name": "normal Fight can still use overdrive without story unlock",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 17
+}

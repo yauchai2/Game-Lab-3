@@ -98,10 +98,10 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             _star(canvas,at,radius*(1.0 if reduced else 1.15),4,tint)
             canvas.draw_circle(at,5,paper)
         "swing","hit","release","clash","wall":
-            var phase: float = fmod(effect.age,0.15)/0.15 if effect.kind in ["hit","clash"] and effect.get("held",false) else time
+            var phase: float = 0.12 if effect.kind in ["hit","clash"] and effect.get("held",false) else time
             var shapes: Array[Dictionary] = impact_shapes.build("hit" if effect.kind=="clash" else ("release" if effect.kind=="wall" else effect.kind),effect.get("move","jab"),phase,tint,face,reduced,effect.get("character",0))
             var pixels_per_meter: float = (session.project(effect.at+Vector2(1,0))-at).length()
-            var perspective_scale := clampf(pixels_per_meter/56.0,.65,1.5)*(1.28 if effect.get("rush",false) and effect.get("move","") in ["meteor","launcher","special","air_kick"] and not reduced else 1.0)
+            var perspective_scale := clampf(pixels_per_meter/56.0,.45,1.35)*(1.28 if effect.get("rush",false) and effect.get("move","") in ["meteor","launcher","special","air_kick"] and not reduced else 1.0)
             for shape in shapes:
                 var points: PackedVector2Array=shape.points.duplicate()
                 for i in points.size(): points[i]=at+points[i]*perspective_scale
@@ -140,15 +140,24 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             if not reduced:
                 canvas.draw_colored_polygon(PackedVector2Array([at+Vector2(0,-height*0.4),tip,at+Vector2(0,height*0.4)]),paper)
         "block","parry":
-            var radius := (45.0+stage*35.0)*(1.2 if effect.kind=="parry" else 1.0)
-            var points := PackedVector2Array()
-            for i in 7: points.append(at+Vector2.from_angle(i*TAU/6)*radius)
-            canvas.draw_polyline(points,tint,5.0*(1.0-time)+1)
-            if effect.kind=="parry":
-                _star(canvas,at,radius*1.4,4,paper)
-                canvas.draw_arc(at,radius*0.65,0,TAU,12,paper,3)
+            var perfect:bool=effect.kind=="parry"
+            var radius:float=(24.0 if not perfect else 34.0)*(1.0+minf(time*2,.5))*(.75 if reduced else 1.0)
+            if perfect:
+                for i in (3 if reduced else 6):
+                    if time>.65 and i%2:continue
+                    var direction:=Vector2.from_angle(i*TAU/6+.18)
+                    var center:=at+direction*radius
+                    var tangent:=direction.orthogonal()*(3.5 if time<.35 else 1.5)
+                    canvas.draw_colored_polygon(PackedVector2Array([center-tangent,center+direction*(17*(1-time)+2),center+tangent,center-direction*3]),paper if time<.20 else tint)
+                if time<.35:canvas.draw_circle(at,4,paper)
             else:
-                canvas.draw_line(at+Vector2(-10,-28)*(1-time),at+Vector2(12,28)*(1-time),paper,5)
+                for i in 3:
+                    var angle:float=-1.0+i*.67
+                    var points:=PackedVector2Array()
+                    for a in [angle,angle+.48]:points.append(at+Vector2(cos(a)*face,sin(a))*radius)
+                    canvas.draw_line(points[0],points[1],ink,6 if not reduced else 3)
+                    canvas.draw_line(points[0],points[1],tint,3 if not reduced else 2)
+                if time<.35:canvas.draw_line(at+Vector2(-4,-9),at+Vector2(5,9),paper,2)
         "guard_break":
             for i in 6:
                 var direction := Vector2.from_angle(i*TAU/6)

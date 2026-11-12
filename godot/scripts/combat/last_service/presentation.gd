@@ -40,10 +40,14 @@ func draw(canvas:Control,s:Node) -> void:
     if s.sim.squad_enabled:
         for id in s.sim.squad_members.size():
             var f:Dictionary=s.sim.squad_members[id]
-            if f.health<=0:continue
+            if f.health<=0 or f.has("boss"):continue
             var at:Vector2=s.project(Vector2(f.x,f.y+2.25))
             canvas.draw_rect(Rect2(at-Vector2(32,0),Vector2(64,7)),Color("15101f"))
-            canvas.draw_rect(Rect2(at-Vector2(32,0),Vector2(64*float(f.health)/f.max_health,7)),Color("a888ff"))
+            if s.sim.story_enabled:
+                var role_color:Color={"guard":Color("ffd84c"),"rusher":Color("00d7d7"),"jammer":Color("dd27ff"),"heavy":Color("e87d39"),"captain":Color("d8ff39")}.get(f.story_role,Color("a888ff"))
+                canvas.draw_rect(Rect2(at-Vector2(32,0),Vector2(64*float(f.health)/f.max_health,7)),role_color)
+                if f.rush_charge>0:canvas.draw_string(s.hud.font,at+Vector2(-6,-15),"!",HORIZONTAL_ALIGNMENT_LEFT,-1,32,Color("ffd84c"))
+            if not s.sim.story_enabled:canvas.draw_rect(Rect2(at-Vector2(32,0),Vector2(64*float(f.health)/f.max_health,7)),Color("a888ff"))
             if id==s.sim.squad_focus:canvas.draw_colored_polygon(PackedVector2Array([at+Vector2(-8,-14),at+Vector2(8,-14),at+Vector2(0,-4)]),Color.WHITE)
             if f.state=="attack" and f.frame<s.sim.move_for(f,f.move).startup:
                 canvas.draw_string(s.hud.font,at+Vector2(-5,-22),"!",HORIZONTAL_ALIGNMENT_LEFT,-1,32,Color("ff459d"))

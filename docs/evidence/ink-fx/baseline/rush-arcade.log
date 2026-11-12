@@ -1,0 +1,8 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: RUSH ARCADE FAIL: beginner can finish a real round
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_rush_arcade.gd:7)
+       [1] run (res://tools/verify_rush_arcade.gd:23)
+RUSH_ARCADE_CHECKS 20/21

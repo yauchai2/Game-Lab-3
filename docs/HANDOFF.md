@@ -1,6 +1,61 @@
+## 2026-11-12：完整短篇故事、雙巨型Boss與技巧優先成長
+
+最新見[CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)，覆蓋下方「Boss／城市九核心／獨立場景／完整短篇故事未做」的舊狀態。六區18場、兩／三階段Boss與讀招弱點、有限增援／新敵型、危險地面預告／破箱連鎖、分支休息與補給、六章劇本／三NPC／五能力課程／12專屬招式三選二、九核心真DRAW→EQUIP與一次性出擊預算、工坊及裝備骨架外觀已接正式STORY。12個原創低模GLB與Blender來源可重建；原Tripo及英雄GLB保持。schema3保v2樹／裝／局內進度並留.v2.bak，v1遷移仍保持。
+
+裝備直接增傷封頂12%，不增最大HP／parry窗口／無敵；總條件增傷50%／真parry反擊60%，Boss閉甲／弱點限制不可略過，合約HP／傷害亦封頂。四角從零合法掉落／解鎖／付費補給通18場、八組裸裝讀招Boss通關；九種極端裝／核心攻擊spam都敗於最終Boss。這是自動測例，非真人平衡或FPS驗收；簡單原創低模及無配音仍是本版本美術範圍。本輪437項最終通過（規則50／原生23及完整回歸），最終log無ERROR／SCRIPT ERROR。證據見[evidence/campaign-complete](evidence/campaign-complete/README.md)。只推codex/story-waves-m1／草稿PR #12，main／Web不動。
+
+## 2026-11-12：960解像度、完整天賦與合約刷圖已接實作
+
+見[CITY_PROGRESSION_EXPANSION.zh-TW.md](CITY_PROGRESSION_EXPANSION.zh-TW.md)。依最新要求由640×360升960×540，title／city及roster同步、保留最近鄰／toon輪廓／bitmap字體、logical UI與1280視窗（fractional填滿）。故事入口／能力解鎖沿既有；天賦擴48節點／25點／單關鍵天賦與真連線、縮放／拖曳／免費重置；真首次撞體擴散與parry／追擊有界回能。六區主題程序佈置、T1–T5合約seed配方／四詞綴／三次機會／同階返圖與兩次完圖升階；每場真裝備掉落、詞綴／四特製取捨、比較、各角配裝、60背包＋120倉庫。
+
+schema2沿原city_v1路徑，保留技能／錢裝、退舊樹等值點數，首次交易留.v1.bak；舊標準模式／GLB不改。巨型Boss／完整劇情及全新場景美術仍待做；城市仍簡單幾何，戰鬥六區共用基底。來源只推codex/story-waves-m1／草稿PR #12，main與Web不動。
+
+[359項驗證／960畫面](evidence/city-expansion/README.md)：城市86、原生22、strict18、M1 37／二段跳62／戰鬥34／九核心75、原生整體15／Ink10；最終log無ERROR／SCRIPT ERROR。四角Easy普通輸入、真掉落／解鎖通首區，無補血傷害注入；後期結算採fixture，非真人／Mac／FPS／實聽驗收。舊v1城市fixture歸檔，公開verify_city入口改跑新套件；兩舊UI framebuffer斷言按新960契約更新，其他斷言保持。
+
+## 2026-11-12：Hades式城市回城循環已可玩
+
+最新使用者要求覆蓋前輪純城市圖／規劃狀態，見 [CITY_ROGUELITE_RUNTIME.zh-TW.md](CITY_ROGUELITE_RUNTIME.zh-TW.md)。主選單STORY進45°正交可行走安全城、五互動站；六區×三場共用街道佈置、回城升技／12節點8點天賦／三槽永久裝備／保底抽裝／短故事。清場銀行化錢零件並選一次臨時強化，敗退清出擊、保留永久進度；獨立city_v1存檔／備援／交易回滾／逐場快照。標準FIGHT與Demo在FREE PLAY，原M1預覽仍在FIGHTERS；原GLB及舊進度不改。
+
+[226項驗證及畫面](evidence/city-hub/README.md)：城市62／原生17／strict14／舊M1 37／二段跳62／戰鬥34；accepted無ERROR／SCRIPT ERROR。四角Easy普通輸入無裝備補血通首區，後期開區採fixture；Linux軟體渲染／Dummy，Mac與真人平衡待驗。城市人形／建物程序佔位、戰鬥六區共用基底；未有巨型多階段Boss、完整48點樹／T1–T5／複雜詞綴／九核心城市接入。本輪只推codex/story-waves-m1／草稿PR #12，main與Web保持。
+
+## 2026-11-12：城市ARPG成長與刷圖規劃（未實作）
+
+新增 [完整設計](CITY_ARPG_PROGRESSION_PLAN.zh-TW.md)：故事放主選單首位、新故事能力保證漸解鎖、原創48節點／25點城市電路天賦、六區城市圖、免費重刷及T1–T5合約、三裝備槽、兩貨幣與定向抽裝／保底。所有數值為提案。永久裝備與九臨時晶片分離；故事晶片擬改為下一整次出擊，取代先前兩關區段提案，現有模式未改。先做一區完整循環，再擴完整戰役。現況仍是M1三波；本輪只文件，未改主選單、能力、存檔或經濟。只同步codex/story-waves-m1，不合併main／不發佈Web。
+
+## 2026-11-12：故事波次M1已實作（獨立分支）
+
+依使用者最新要求開codex/story-waves-m1，基於main ef3f8d3，第一個可玩切片見[STORY_WAVES_RUNTIME.zh-TW.md](STORY_WAVES_RUNTIME.zh-TW.md)。FIGHTERS→STORY：3／4／6名三波，普通／承諾突進／真格擋盾衛；敵碰敵掃掠、四目標去重衰減、正面盾擋撞體、一次+4meter、HP／meter跨波、Enter接波、Pause→R及死亡波次重試、第三波遠鏡頭。M1無XP／核心抽取／Boss／退出續關存檔；原模式保留。
+
+[287項最終驗證](evidence/story-waves/README.md)：新規則37、原生17、strict11、既有反彈65／二段跳62／戰鬥34／UI37／回合24；final accepted無ERROR／SCRIPT ERROR。四角Easy普通輸入全通、不注入傷害或補血，非真人驗收。舊round-flow的四intro預期在未改基線亦23/24，已依裝備省略第三局開場契約加入真equip與新match intro驗證，24/24。Linux4.7.2 llvmpipe／Dummy，Mac／手感待驗；只推任務分支及草稿PR，main／Web不動。
+## 2026-11-12：正式戰鬥VFX實作完成
+
+正式戰鬥VFX已接入FIGHT／Demo／Run／SQUAD，見COMBAT_VFX_RUNTIME.zh-TW.md與evidence/ink-fx。12世界煙配方／6持幀輪廓／3變體、真骨骼短尾、分段四角色弧／真命中核心、45ms強閃、方向反衝／局部背景對比、新原創PCM接觸層與優先池。36世界／18裝飾／32短尾、Canvas24；步煙用0.72m距離備援並取較低鞋骨，並非新增動畫marker／IK。420項最終通過；1800步前後玩法SHA一致，12秒有聲前後片。舊Rush／Neon／回合fixture對齊現行有限生命與裝備契約；初次失敗保留。Linux4.6.3 llvmpipe／Dummy，Mac／真人／目標GPU待驗，未發佈Web。原模型／判定／BGM保持；來源沿codex/combat-vfx-quality-plan。
+
+## 2026-11-12：SEPAK原片視覺分析補件
+
+已取得13.792653s／1440p60原片，8fps全時間範圍取樣＋0.55／1.35／12.0起三段來源連續幀，觀察分段弧、雙色煙尾、小腳塵、背景退讓及近鏡，詳SEPAK_VFX_VIDEO_STUDY.zh-TW.md與references/vfx-quality-2026-11-12。未正常速度含聲播放／聆聽，未知引擎／素材／內部公式；LLB新附件超過32MiB工具上限，未取得，需較短或壓縮版補分析。修訂先做小白塵、分段弧、指定事件短雙色煙；runtime與Web未改。
+
+## 2026-11-12：戰鬥VFX品質研究（僅規劃）
+
+見[COMBAT_VFX_QUALITY_PLAN.zh-TW.md](COMBAT_VFX_QUALITY_PLAN.zh-TW.md)。基線ef3f8d3，核對active向量renderer、步行聲無同步腳煙、比例接觸錨點、既有track_attack／serial、世界煙池與Neon仲裁；看3張歷史原生截圖與舊Demo 3–15秒每秒取樣12張。X原片403／雲端browser初始化失敗，未觀看或量測，不確認片中遊戲／引擎／素材來源。六項正式玩法切片、12組動畫規格、素材候選、10–15工作天粗估及驗收皆為提案；runtime未改、未跑新遊戲測試，Web未更新。下一步M0最新有聲基線＋M1腳步／世界煙＋M2普通打擊，避免再以獨立展示替代正式優化。
+
 ## 2026-11-12：故事波次、連鎖與大型Boss設計（僅規劃）
 
 使用者要求詳細規劃故事模式改有限波次、漸增難度、情境敵型、人海／巨獸拉遠及敵碰敵連鎖。已查最新main e725c99、現有3站Street Run／黑衣人群戰／指定技球狀反彈／九核心及裝備，提案見[STORY_WAVES_PLAN.zh-TW.md](STORY_WAVES_PLAN.zh-TW.md)。六關逐波配方、N/R/G/C/H/E分工、兩場大型Boss、三相機profile與32px投影下限、連鎖去重／衰減／預算、休息核心區段及checkpoint均為待驗證設計，不是runtime已加入。建議先M1三波／三敵型／6人／一次連鎖切片，再白盒大型中Boss。一般FIGHT／Demo與指定技才開四面盒契約保持；本輪僅文件，未執行新玩法測試，未更新Web。
+## 2026-11-12：PR #8 整合進內容擴充分支（F1 本機連戰比分板）
+
+把 PR #8（故事解鎖 VERSUS、同鍵盤雙人、手柄）與最新 main 合進 claude/project-thread-oo92do，解掉 fight_session／hud／preferences／reference_art 衝突（保留 main 的第 5 角色與簡化 HUD，與 PR #8 的控制器／STORY 門檻）。`verify_local_versus` 在新 main 的能力抽取流程下需要更新 next_stop 輔助（改為逐階段 skip／arm／confirm），已更新，68/68。新增 F1：本機雙人結算頁「SESSION P1 a - b P2」與連勝（只在記憶體，不存檔）；雙人局不觸發標記、台詞連勝、風格稱號。`verify_versus_social` 8/8，其餘 banter 129／tags 27／secret 9／time_of_day 12／flyby 8／reference_ui 37 通過。實體手柄、鍵盤鬼鍵、雙人手感仍待 Alan 驗收。
+## 2026-11-12：開場改用 Starjunk 95〈Beat Keep Rockin〉，新增三首使用者音樂（Claude，PR #10）
+
+使用者上傳三首 Starjunk 95 音樂，要求使用並上傳，且可自由剪輯。已轉檔入庫：`godot/audio/user-tracks/beat_keep_rockin.ogg`（140 BPM）、`state_your_name.ogg`（125 BPM），以及 16 分鐘的 mix 放在 `references/audio/user-tracks/`（不進 godot/，避免匯入與 Web 體積）；來源與 SHA 記在 `admitted.json`。開場配樂改成把〈Beat Keep Rockin〉剪進畫面：140 BPM 下 3 秒剛好 7 拍，所以每個剪接點都在拍上。0–3 秒是歌曲第一次 drop 前的鋪陳（收音機濾波），3.0 秒第一次 drop；6.0–7.5 沉底，7.5 刮碟倒帶、抽空半秒，8.0 黑箱砸下時同一個 drop 再來一次；9.75 tape stop；12.0–16.1 用歌曲第二段鋪陳由遠而近，16.1 標題重擊接第二次 drop；17.6 起主選單曲淡入。上一版自寫的 160 BPM 節奏已移除，實錄音效與重擊保留，低頻 drone 改成歌曲的降 E。全遊戲音樂與戰鬥音效的重做在另一條討論串／分支進行，不在本 PR。35/35 通過，真實啟動錄影已重錄；仍未經真人試聽。
+
+## 2026-11-12：開場配樂與音效重做（Claude，PR #10）
+
+使用者回饋開場聲音太無聊，並提供一支參考 MV（只作風格參考，未取用其音軌）。`score.wav` 全部重做：原創 160 BPM 半拍重低音節奏，每鏡剛好兩小節，所以每個剪接點都落在強拍。0–3 秒節奏由小收音機透出，3.0 秒 drop；6.0–7.5 秒沉到地板下配巨大鞋底；7.5–8.0 秒抽空後黑箱在 8.0 秒砸下、8.25 秒節奏回來；9.75 秒 tape stop 抽音只剩燈管；12–16 秒不用鼓，改由車、三扇門、皮鞋、手套組成越來越密的脈衝加上升低頻；16.0 合箱、16.1 標題重擊後一小節收尾。實錄素材改用 BigSoundBank CC0（電車、街聲、棘輪、氣動扳手、唱盤刮碟、公事包扣、車門、踏步、鼓組、鑼、雷、爆炸），節選存在 `references/story-opening-audio/` 並附 provenance。主選單曲在開場期間全程靜音，17.0 秒起淡入，transport 不停。原生檢查 35/35；真實啟動錄影的音軌與 score 逐段一致。混音只以頻段比例對照參考調整，仍未經真人試聽。
+
+## 2026-11-11：開機劇情開場 18 秒六鏡（Claude，草稿 PR 待審）
+
+見 [STORY_OPENING.zh-TW.md](STORY_OPENING.zh-TW.md)。依使用者影片／分鏡／鏡頭表，以即時3D做啟動後、主選單前的18秒開場：城市俯衝→三人日常→ZIP帶黑箱→送錯貨俯拍→黑衣人下車→合箱撞擊切AFTERHOURS。四主角原GLB＋修補版黑衣人、程序場景、專屬lens、原創音效軌、粵語字幕；主選單曲淡入／9.75秒抽走／隨標題回歸，transport不停。首次啟動自動播，旗標存story_opening.cfg，設定頁可重播；Enter／Space跳過、Esc暫停、F2減少特效。只在場景為current_scene時自動播，既有測試不受影響。34/34原生檢查＋真實啟動錄影，證據evidence/story-opening。分支claude/project-thread-frl810→codex/combat-escalation-next，未合併、Web不動；simulation／XP／原GLB未改。真人實聽、Mac、4.7.2待驗，對白無配音。
 
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 
@@ -48,6 +103,26 @@
 
 # 接續工作交接
 
+## 2026-11-11：G5／G6／G8 完成精簡版
+
+風格稱號、Z Z X X Q 解鎖 MONO 時段、集齊標記後的製作筆記，見 [BANTER.zh-TW.md](BANTER.zh-TW.md)。129＋9＋12＋27 項檢查通過。
+
+## 2026-11-11：街區標記收集（G1）
+
+標準 FIGHT 成就解鎖 8 塊無文字路緣告示板，結算頁列出，本機 tags.cfg。見 [STREET_TAGS.zh-TW.md](STREET_TAGS.zh-TW.md)；27 項檢查。G2 站名牌因無文字規則未做。
+
+## 2026-11-11：角色台詞與對手記憶（G3／G4／G7）
+
+依 Alan「先做 G 的台詞和彩蛋」。標準 FIGHT 開場叫陣、鏡像戰、同對手連勝 5 場台詞、結算勝利句，本機 banter.cfg。見 [BANTER.zh-TW.md](BANTER.zh-TW.md)。107 項檢查通過；台詞暫定待 Alan 審稿。後續 E → F（F 輸入抽象由另一討論串負責，這裡只做其上的社交內容）。
+
+## 2026-11-11：時段預設（企劃 D1）
+
+使用者指示可先做 D 場景／E 音樂演出／F 雙人社交／G 彩蛋。第一批只完成 D1：N 鍵切換白晝／黃昏／深夜／霧晨（純燈光霧），見 [TIME_OF_DAY.zh-TW.md](TIME_OF_DAY.zh-TW.md)。F（雙人）需先做輸入抽象，尚未開始；E、G 其餘未做。「Nam Mac」使用者說明為某位 Artist 的風格，網路搜尋未能確認是誰，等待參考圖／連結。
+
+## 2026-11-11：玩法與創意擴充企劃（僅文件）
+
+使用者要求：開局只有故事模式、通關解鎖自由對戰、同機鍵盤雙人、雙手柄，並詳細規劃玩法與創意點子。企劃見 [CONTENT_EXPANSION_PLAN.zh-TW.md](CONTENT_EXPANSION_PLAN.zh-TW.md)。**只有文件，未改遊戲程式、存檔、規則或Web。** 讀碼確認：`fight_simulation.gd` 的 `tick(player, opponent)` 已能吃雙方指令，但`fight_session.gd`輸入硬寫P1鍵盤，且沒有任何手柄支援；雙人／手柄需先抽象輸入來源。待 Alan 決定 D1–D5。
+
 ## 2026-11-11：來源集中整合至 main
 
 使用者要求「把所有的更新都推到最常用的branch」。以 main738c740 為基礎，整合黑衣人分支987d4d2與正式戰鬥／過場／抽能力分支3389fa9，保留雙方提交及來源資產；往後 GitHub Desktop 選 main Fetch／Pull。此節覆蓋下方歷史的「main未更新」狀態；公開Web不更新。
@@ -68,6 +143,26 @@
 ## 2026-11-11：最新遊戲來源合併 main
 
 使用者明確要求「推送最新遊戲到main」。以遠端 main 54a520d 與最新遊戲來源 codex/combat-escalation-next 4177ef9 進行非強制合併，保留兩邊歷史及main既有JSR／BRC文件，無衝突。合併後godot／tools兩棵Git tree與已驗證4177ef9完全一致；本輪沒有改玩法或重跑上輪測試，上輪四個既有舊斷言失敗仍見double-jump證據。日常拉取可改選main；開發分支保留。公開Web未更新。
+
+
+## 2026-11-11：故事解鎖、同鍵盤雙人、雙手柄（Claude 對話）
+
+使用者要求：遊戲一開始只有故事模式、通關後解鎖自由對戰；同一鍵盤雙打；雙手柄；另要一份豐富遊戲的詳細點子計劃。前三項已實作，見 [LOCAL_VERSUS.zh-TW.md](LOCAL_VERSUS.zh-TW.md)；第四項只規劃，見 [GAME_ENRICHMENT_IDEAS.zh-TW.md](GAME_ENRICHMENT_IDEAS.zh-TW.md)。
+
+主選單改 6 項：STORY（現有 Street Run 三站）、VERSUS（未通關灰色鎖定）、FIGHTERS、TRAINING、SETTINGS、AI DEMO。第三站勝出寫入 `story_cleared`（既有 progression.cfg）。解鎖後 VERSUS 進 FREE BATTLE 頁：1P VS CPU、2P LOCAL VERSUS、P1／P2 裝置選擇。新 `fight_controls.gd` 為唯一裝置擁有者：分鍵盤（P1 WASD＋F G R T／P2 方向鍵＋K L O P 或數字鍵盤）、手柄（X Y B A、LB RB、扳機防禦、Start 暫停）、AUTO 分配及熱插拔（拔除即暫停並退回鍵盤，插回自動取回）。單人模式鍵盤與所有手柄同時控制 P1。`fight_simulation.gd` 未改，傷害／能量／判定／AI 不變。
+
+新驗證 68/68（`verify_local_versus.gd`，於 Codex 分支上）；既有 Codex 分支上：reference_ui 37/37（兩項斷言隨 6 選項更新）、live_combat 45/45、last_service_rules 通過。combat_input 12/15、double_jump_input 8/11、first_minute 60/63、last_service_native 失敗，這四套在未改動的 3389fa9 上同機重跑得到完全相同的失敗項，屬 Codex 分支既有狀況（與新的開場演出／回合流程有關），本輪沒有修。先前在 main 738c740 上這七套改動前後全數通過。[證據](evidence/local-versus/README.md)。Godot 4.6.3 Linux Compatibility／Xvfb llvmpipe／Dummy audio，輸入全為注入事件。
+
+**未驗證**：實體手柄、鍵盤鬼鍵、雙人手感與平衡、macOS 左右 Shift、Godot 4.7.2、公開 Web。本輪未跑完整舊 suite（上輪已知 4 個舊斷言失敗仍未處理）；verify_ui_input、verify_jsr_runtime、verify_demo_input 在改動前於本機已逾時或失敗，未作為回歸依據。未讀取：DESIGN.md、UX-CONTRACT.md 全文、`codex/*` 其他分支內容。
+
+分支 `claude/project-thread-xmgtx2`。最初由 main 738c740 開出，其後依使用者確認的流程改接到 `codex/combat-escalation-next` 3389fa9，草稿 PR 指向該 Codex 分支；未合併、未更新 gh-pages。改接時處理：雙人對戰停用只給 P1 的回合間能力抽取；手柄 A／Start 可跳過開場、確認抽取、跳過 KO 演出。使用者同日確認「只鎖對戰」，並說明 AI DEMO 是測試用、正式不推出（入口尚未移除）。下一步：使用者 Fetch 此分支於本機 Godot 用實體手柄與鍵盤驗收，並回覆點子文件末尾四個問題。
+
+## 2026-11-11：最新遊戲來源合併 main
+## 2026-11-11：全遊戲 UI 檢視與精簡計劃（僅規劃）
+
+使用者要求檢視所有 UI 並計劃優化，保留現有 Ink 風格，其後補充「整體簡潔，可優化掉重複的東西」。已在 3389fa9 以及 PR #7、PR #8 分支實機截圖約 75 張，整理成 [UI_REVIEW_PLAN.zh-TW.md](UI_REVIEW_PLAN.zh-TW.md)：十項重複（模式入口與命名、暫停、操作提示、HUD 文字、結算、音訊設定、HOW TO PLAY、抽能力、標題雜項、LOADOUT）、五項一致性問題（display 數字 0／6／8 難辨、調色盤外顏色等）、四個檢視時發現的問題，以及 P0 至 P3 分階段做法與六個待使用者決定的事。合成截圖見 [evidence/ui-review-2026-11-11](evidence/ui-review-2026-11-11/)，重跑工具為 godot/tools/capture_ui_audit.gd 與 capture_ui_audit2.gd。
+
+runtime 沒有改動，等使用者審閱後才實作。Godot 4.6.3 Linux／llvmpipe／Dummy audio 靜態截圖，結算等頁面用明示 fixture 進入；動態觀感、聲音、手柄、Mac 與繁中介面未驗證。分支 claude/project-thread-a9wwri，草稿 PR 指回 codex/combat-escalation-next，Web 不更新。
 
 ## 2026-11-11：上傳Tripo NPC與機殼正式接入
 

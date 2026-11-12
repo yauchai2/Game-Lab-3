@@ -1,0 +1,1 @@
+Historical city-v1 verification source from a9e6cce. Text copies are retained for provenance; they expect the old 12-node / 8-point economy and must not be executed against schema2. Public verify_city_campaign.gd / verify_city_native.gd now delegate to the expanded current suites. Historical accepted evidence remains under docs/evidence/city-hub.

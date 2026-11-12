@@ -1,0 +1,458 @@
+{
+  "author": "Joseph Sardin / BigSoundBank",
+  "license": "CC0 1.0 Universal",
+  "license_url": "https://bigsoundbank.com/licenses.html",
+  "retrieved": "2026-11-12",
+  "files": [
+    {
+      "file": "tram_pass.ogg",
+      "bigsoundbank_id": "3374",
+      "title": "Tram Passing #4",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/3374.ogg",
+      "excerpt_start": 1.5,
+      "excerpt_length": 8.0,
+      "sha256": "96d79f7426010cd6a5dc2c6e882db18899c8adace969f2c2e4e89749a56b4d6a"
+    },
+    {
+      "file": "street_bus_stop.ogg",
+      "bigsoundbank_id": "0909",
+      "title": "Bus stop in Japan",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0909.ogg",
+      "excerpt_start": 30.0,
+      "excerpt_length": 7.0,
+      "sha256": "54eea4dc164bd35733ae71c95dce493fed4c9240dcc752c2d183436d2b6f0f35"
+    },
+    {
+      "file": "ratchet.ogg",
+      "bigsoundbank_id": "0794",
+      "title": "Small ratchet",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0794.ogg",
+      "excerpt_start": 0.9,
+      "excerpt_length": 2.2,
+      "sha256": "52a698b8e09d68d4ac848535ba00b20db12c66cf2bcc70f85eefaac2cbc1f18a"
+    },
+    {
+      "file": "impact_wrench.ogg",
+      "bigsoundbank_id": "0964",
+      "title": "Impact wrench #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0964.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 1.0,
+      "sha256": "cf4db31e7419dd9aa00ddbb973c34f9ba7d15e988a77c95508e3521a2d572b82"
+    },
+    {
+      "file": "straw.ogg",
+      "bigsoundbank_id": "1244",
+      "title": "Straw, suction #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1244.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "b9a59e2777a1aee2214cc0473f063654ca17f5b2c9a1cd602c65a3d8edb50522"
+    },
+    {
+      "file": "straw_end.ogg",
+      "bigsoundbank_id": "0508",
+      "title": "Straw, end of glass",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0508.ogg",
+      "excerpt_start": 5.3,
+      "excerpt_length": 1.6,
+      "sha256": "5c2c8493fdd5043a6547d2585b386423c8f4867a4318a5d6190fa0f15c9b61df"
+    },
+    {
+      "file": "vinyl_crackle.ogg",
+      "bigsoundbank_id": "2547",
+      "title": "Vinyl Disc",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2547.ogg",
+      "excerpt_start": 3.0,
+      "excerpt_length": 5.0,
+      "sha256": "9003deb0c14331cead1addb4cff646de19ebc5a4024b30b596f1ace8ffa13205"
+    },
+    {
+      "file": "scratch_a.ogg",
+      "bigsoundbank_id": "2858",
+      "title": "Vinyl Scratch #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2858.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "b30c70ca2cc2f83f6e1664cb397f0da1ce64b68b58877b20f02b6fc27694a992"
+    },
+    {
+      "file": "scratch_b.ogg",
+      "bigsoundbank_id": "2861",
+      "title": "Vinyl Scratch #4",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2861.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "dcf3f83784650f7d5f96f97ae0a45ea735728e33a511f72c922798a561c5274f"
+    },
+    {
+      "file": "scratch_c.ogg",
+      "bigsoundbank_id": "2868",
+      "title": "Vinyl Scratch #11",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2868.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "ba386582833f0238c8b1a1c30696049f1bcccdeab5201409d872d67993da84a7"
+    },
+    {
+      "file": "scratch_d.ogg",
+      "bigsoundbank_id": "2875",
+      "title": "Vinyl Scratch #18",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2875.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "ca005431c68e26e52ab63b414c17062b9071c25aa7cbd844a850f8692ab2015e"
+    },
+    {
+      "file": "radio_crackle.ogg",
+      "bigsoundbank_id": "0312",
+      "title": "Crackling Radio #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0312.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "d601d95648924559f804b80c5aa72ff97e5dc7a993153dce3e486abb825fdc02"
+    },
+    {
+      "file": "radio_sweep.ogg",
+      "bigsoundbank_id": "2618",
+      "title": "Radio, Frequency Sweep #2",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2618.ogg",
+      "excerpt_start": 0.5,
+      "excerpt_length": 4.0,
+      "sha256": "ec5dd625a1198ca356b1ca382c2aba6ad374c0bb511f538c7c8f68717659e2d5"
+    },
+    {
+      "file": "neon.ogg",
+      "bigsoundbank_id": "2118",
+      "title": "Neon or transformer #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2118.ogg",
+      "excerpt_start": 1.0,
+      "excerpt_length": 4.0,
+      "sha256": "b54c6de764a7b91906ac57dc6b6dac3c42a38338d97863df1dec6e0ef06c4693"
+    },
+    {
+      "file": "briefcase.ogg",
+      "bigsoundbank_id": "0803",
+      "title": "Briefcase",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0803.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 14.0,
+      "sha256": "3adbd3ba2e11eb7961ecc22732cbe9af9a547ec644aa46c8563bf814f983a9d9"
+    },
+    {
+      "file": "suitcase.ogg",
+      "bigsoundbank_id": "0802",
+      "title": "Suitcase",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0802.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 4.5,
+      "sha256": "56305473fcc5c80fd71980e6333a4c5cc2e5c5c453846d97827f6ec0e76aaa19"
+    },
+    {
+      "file": "cartridge.ogg",
+      "bigsoundbank_id": "1355",
+      "title": "Cartridge case 9 mm on concrete #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1355.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "0a8eb58a5f5a0abd7870018f34efd8bdbb8a77378348245f7d33b9f42c6f7eed"
+    },
+    {
+      "file": "cocking.ogg",
+      "bigsoundbank_id": "1984",
+      "title": "Pistol, cocking #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1984.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "6c2a2af271b649604d9ac7b0cc63b18ac74746455f9b033f5ffc33c353be2fb5"
+    },
+    {
+      "file": "loading.ogg",
+      "bigsoundbank_id": "1988",
+      "title": "Gun, loading #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1988.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "ddc19a9d5ad9d4a80209ef7aa417346dfe76c75f25c789ac79a3797264579c55"
+    },
+    {
+      "file": "car_arrival.ogg",
+      "bigsoundbank_id": "0187",
+      "title": "Car (Arrival, Stop, Departure)",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0187.ogg",
+      "excerpt_start": 12.0,
+      "excerpt_length": 8.0,
+      "sha256": "6b099a462428888ee1ddc39b5dd05e74492ce3109b9f64e644c62ade328d7493"
+    },
+    {
+      "file": "tires.ogg",
+      "bigsoundbank_id": "2371",
+      "title": "Screeching Tires #4",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2371.ogg",
+      "excerpt_start": 1.4,
+      "excerpt_length": 5.2,
+      "sha256": "6053d463d4e7c97980e085a8f531a73924144b78f9c64bb73604f3868b2df81b"
+    },
+    {
+      "file": "car_door.ogg",
+      "bigsoundbank_id": "0655",
+      "title": "Car door",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0655.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 8.0,
+      "sha256": "30b5a404d457821428b996ace2f691ce996a83cb2dbb2a913a84944736d66599"
+    },
+    {
+      "file": "shoe_concrete.ogg",
+      "bigsoundbank_id": "0514",
+      "title": "Footsteps, Shoe on Concrete",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0514.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 5.0,
+      "sha256": "5ca27d3ad73ea44ca0ae502b7b5ce4d65df5136726bc219b1f02401cf39d63a6"
+    },
+    {
+      "file": "marching.ogg",
+      "bigsoundbank_id": "3023",
+      "title": "Marching in #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/3023.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 5.0,
+      "sha256": "0940c497b48a40b4d96cf5f2318d9bc01dcde771ed9a728eb26aa564ad627cfd"
+    },
+    {
+      "file": "whoosh_a.ogg",
+      "bigsoundbank_id": "1796",
+      "title": "Whoosh #4",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1796.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "91dad68e2580f550955610af163b87026cbee0fca8c3efa1a5c301337a9671b3"
+    },
+    {
+      "file": "whoosh_b.ogg",
+      "bigsoundbank_id": "1801",
+      "title": "Whoosh #8",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1801.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "10bd184aeb0f7938698fcd5f48a1d9d642a5decfb8b1b5b2d41c8a775bf324e5"
+    },
+    {
+      "file": "whoosh_c.ogg",
+      "bigsoundbank_id": "1795",
+      "title": "Whoosh #3",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1795.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "7d1cf25fbba61ec2d4e35545256bf3a9d1ab356787b583cb68ec3d232ff6e016"
+    },
+    {
+      "file": "whoosh_d.ogg",
+      "bigsoundbank_id": "1798",
+      "title": "Whoosh #10",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1798.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "5af0dd3e359db9832ad4497053f5c90910edbb251e851a5c2ca0143793083c6f"
+    },
+    {
+      "file": "snare_a.ogg",
+      "bigsoundbank_id": "2304",
+      "title": "Snare drum #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2304.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "23b3196a18eeda0d57ce3496510f411bfed7190c0dd4215052e7a22ed2b1f63a"
+    },
+    {
+      "file": "snare_b.ogg",
+      "bigsoundbank_id": "2308",
+      "title": "Snare drum #5",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2308.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "61fcfb567261bbcadd1f8e358ce7d57e57c327ea51057b1f79447f449f6736f8"
+    },
+    {
+      "file": "snare_c.ogg",
+      "bigsoundbank_id": "2310",
+      "title": "Snare drum #7",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2310.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "a9b9764bffac8eccafade3c626bbbbea082901c842b28049579953551a3b5deb"
+    },
+    {
+      "file": "hat_a.ogg",
+      "bigsoundbank_id": "2292",
+      "title": "Hi-hat close #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2292.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 0.5,
+      "sha256": "557b9a75b3256ea4248fc390fc62fe501796a111f0e3099433b73230f3c90ae2"
+    },
+    {
+      "file": "hat_b.ogg",
+      "bigsoundbank_id": "2293",
+      "title": "Hi-hat close #2",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2293.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 0.5,
+      "sha256": "23e005a191d88617062bfadf993fd20632d2a16f70dc7e97d4a455335ee1c703"
+    },
+    {
+      "file": "hat_c.ogg",
+      "bigsoundbank_id": "2301",
+      "title": "Hi-hat close #6",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2301.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "aa89885389478095735fd185cc033c9e7ecd4ac5c8953ffdb4925975eaa194fb"
+    },
+    {
+      "file": "hat_open.ogg",
+      "bigsoundbank_id": "2290",
+      "title": "Hi-hat open #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2290.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 2.5,
+      "sha256": "3a30cc8a24d4e7dafac6deaacf713c341ff3c453315cdfbfcfcac67784d89e2a"
+    },
+    {
+      "file": "crash_a.ogg",
+      "bigsoundbank_id": "2311",
+      "title": "Cymbale 16\" #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2311.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 5.0,
+      "sha256": "076fd55cffaa5e42a56eb5f72d9171ef12086a5eca76bbd8e439bacc0a4442b9"
+    },
+    {
+      "file": "crash_b.ogg",
+      "bigsoundbank_id": "2314",
+      "title": "Cymbale 16\" #4",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2314.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 5.0,
+      "sha256": "5d822ca32ecb24f39d469de2362f08fd3debb73fa66449e00d82d527ef27bd98"
+    },
+    {
+      "file": "tom_low.ogg",
+      "bigsoundbank_id": "2338",
+      "title": "Bass Tom, #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2338.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "e1429c2933f774a16b2bfd25c29d7e2d6144648a412645b44f2342c9aec51254"
+    },
+    {
+      "file": "tom_mid.ogg",
+      "bigsoundbank_id": "2333",
+      "title": "Medium tom, #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2333.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 3.0,
+      "sha256": "355406eb2d99d0614fe837dae9ab7c46e5031bbb6e307977eaf13722e809657f"
+    },
+    {
+      "file": "drum_roll.ogg",
+      "bigsoundbank_id": "2400",
+      "title": "Drum roll 1 S",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2400.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "ef4f141a8f23ef15441a87a759e2350707ca94381ec15ef85236b51fb8528cd4"
+    },
+    {
+      "file": "explosion_a.ogg",
+      "bigsoundbank_id": "1807",
+      "title": "Explosion #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1807.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "8dfe3f71e7e4e38abdfe48d7c4a82057840261e0bfde18b734db55ce4f51a7f7"
+    },
+    {
+      "file": "explosion_b.ogg",
+      "bigsoundbank_id": "1808",
+      "title": "Explosion #2",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1808.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "00a4cc687d9c969acc861c89f880a0619b6b7f1be8fe509b8156ad55aa8431c3"
+    },
+    {
+      "file": "explosion_far.ogg",
+      "bigsoundbank_id": "1023",
+      "title": "Explosion far Away #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1023.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "198a369f3e0315af9513411b1565ee1041ca38ecc50568317b735170e85492b7"
+    },
+    {
+      "file": "thunder.ogg",
+      "bigsoundbank_id": "3113",
+      "title": "Thunder #2",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/3113.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "3413a7e644971c9149bc8e34dd5c81a80a399c0b632231de6fafc03faf193841"
+    },
+    {
+      "file": "gong_hard.ogg",
+      "bigsoundbank_id": "1485",
+      "title": "Gong, very strong",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1485.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 7.0,
+      "sha256": "742a405d570f7bef12ae23db536f1a201590dda8add0427392e955458fe2a874"
+    },
+    {
+      "file": "gong.ogg",
+      "bigsoundbank_id": "1483",
+      "title": "Gong, strong #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/1483.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": 8.0,
+      "sha256": "4fb6a2c86329767ab8167e00f47c1e8cc7c5692c541aa43068c94d35a9342a11"
+    },
+    {
+      "file": "punch.ogg",
+      "bigsoundbank_id": "2460",
+      "title": "Punch #5",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/2460.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "0683040f1d3967c7c1c19518ed356f281bafac6df472649362839430b63a4d04"
+    },
+    {
+      "file": "dog.ogg",
+      "bigsoundbank_id": "0682",
+      "title": "Barking of a Spitz",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0682.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "20eb20b16f143799ea991be3405d193962d82cdffd0b94f869cfc82bd8063e28"
+    },
+    {
+      "file": "moto_start.ogg",
+      "bigsoundbank_id": "0884",
+      "title": "Starting a motorcycle",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0884.ogg",
+      "excerpt_start": 0.3,
+      "excerpt_length": 3.2,
+      "sha256": "6a4c9b9a69f89545a5a0d85a8b428cacc32a722702c4365dad58708a2966cd77"
+    },
+    {
+      "file": "gate.ogg",
+      "bigsoundbank_id": "0303",
+      "title": "Grinding Metal Gate #1",
+      "url": "https://bigsoundbank.com/UPLOAD/ogg/0303.ogg",
+      "excerpt_start": 0.0,
+      "excerpt_length": null,
+      "sha256": "eef91fb084a460419e97d39312d37ac1aa480c24da956b001b146a2ad6f7cba3"
+    }
+  ]
+}

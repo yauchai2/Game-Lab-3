@@ -127,3 +127,16 @@
 - 2026-11-11 本聊天最新已要求以新影片實作抽獎後裝備：見docs/ABILITY_EQUIP_RUNTIME.zh-TW.md，覆蓋腰側僅規劃。結果按EQUIP／Demo停3.5秒後播4.10秒，F2開始1.15秒；使用當局五原選角副本、只拍手腰腿鞋，正式fighter以Hips跟隨九核心腰掛。一次套用在演出後，skip不重抽、cancel無獎、pause／clear還原；不重播多餘第三局人物開場。345項通過／新原創PCM，原GLB／XP／Web保留，Mac／真人待驗。
 
 - 2026-11-12 使用者要求詳細故事波次／敵碰敵連鎖／大型Boss／人海遠鏡頭規劃：見docs/STORY_WAVES_PLAN.zh-TW.md。本輪僅設計，六關／新敵型／Boss／傷害倍率／相機／核心兩關區段都未實作或驗證；不要把提案寫成已完成功能。未來若開始實作先M1三波切片；保留既有FIGHT／Demo及指定技才開四面盒契約，Web不更新。
+
+- 2026-11-12 使用者已要求「開一個分支實做」：codex/story-waves-m1的M1已可玩，見docs/STORY_WAVES_RUNTIME.zh-TW.md，覆蓋前輪M1僅規劃。STORY入口3波／N-R-G／6人、有限真撞體、同場retry及遠鏡頭；無XP／Boss／六關／持久checkpoint。StorySimulation繼承Squad，舊模式委派保持。只推獨立分支／草稿PR，不把此次分支工作自動合併main或發佈Web；原GLB及指定技才開四面盒規則保持。
+
+- 2026-11-12 最新城市ARPG詳細提案見docs/CITY_ARPG_PROGRESSION_PLAN.zh-TW.md。本輪僅規劃：新故事保證能力漸解鎖、主選單入口、48節點／25點、城市刷圖／三槽永久裝備／兩貨幣／定向抽裝保底未實作。故事晶片擬持續下一整張圖，覆蓋舊兩關區段提案；標準模式九核心契約不改。保留舊存檔能力；先一區小循環再擴六區Boss，現況仍M1三波。只推codex/story-waves-m1，不自動合併main或發佈Web。
+
+- 2026-11-12 最新使用者要求Hades式回城升值／故事，缺assets先簡單做：已接主選單STORY→45°正交程序城市／五站／六區18遭遇，見docs/CITY_ROGUELITE_RUNTIME.zh-TW.md，覆蓋城市僅規劃。12節點8點、基本L三級、三槽數值裝／保底、短對話、永久與局內分層、獨立city_v1快照存檔；敗退清局內、清場Enter回城。FREE PLAY收FIGHT／SQUAD／Demo，舊M1保留FIGHTERS。六區共用街道佈置、隊長沿盾衛，沒有巨型Boss／完整48樹／T1–5／城市九核心，不得冒稱。226項最終驗證，Linux llvmpipe非真人／Mac；只推codex/story-waves-m1／草稿PR #12，main與Web不動，原GLB／舊進度保持。
+
+- 2026-11-12 最新要求稍提高解像度並完成城市成長：現況docs/CITY_PROGRESSION_EXPANSION.zh-TW.md。960×540／較清晰title-city-roster覆蓋舊640要求，nearest／無AA／toon輪廓／logical UI保持、fractional填1280視窗。48節點25點／一keystone、縮放拖曳／相連／互動天賦，T1–T5合約四詞綴／seed／3次／返圖晉級，真掉裝／詞綴／特製取捨／比較／各角三槽與倉庫已實作。v1城市遷schema2保技能錢裝、退樹保等值預算、.v1.bak；公開city驗證入口轉新套件舊fixture保archive。359項／960原生圖，仍非真人／Mac／FPS；巨型多階段Boss／完整劇情美術與城市九核心仍待做。原GLB、FIGHT／Demo／舊進度保持，只推codex/story-waves-m1／草稿PR #12，不合main／Web。
+
+- 2026-11-12 最新使用者要求實作所有既定ideas並技巧優先：現況docs/CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md，覆蓋上一輪Boss／城市核心／新場景／完整短篇未做。六區18場／六章、兩種多階段巨型Boss、有限增援／重裝干擾隊長／危險地面／破箱連鎖／分支補給休息、五技能課程／12專屬招式、九核心真DRAW→EQUIP、工坊及裝備外觀；12原創Blender低模GLB可重建（使用者本輪允許生成模型），原Tripo保持。schema3保v2樹裝及局內進度並留.v2.bak。裝備直傷12%、條件總50%／parry60%、核心減傷／省能合併上限及Boss閉甲限制；裸裝四角／全故事正常輸入測例可過，九種極端裝攻擊spam敗於最終Boss，非真人／Mac／FPS驗收。證據evidence/campaign-complete。仍只推codex/story-waves-m1／草稿PR #12，不合main／Web。
+- 2026-11-12 使用者已授權實作VFX方案：COMBAT_VFX_RUNTIME.zh-TW.md覆蓋前輪planning-only。正式FIGHT／Demo／Run／SQUAD沿原創ink cels、五角骨骼短尾與真命中提示、36世界／18裝飾／32短尾／Canvas24優先池、短材質強閃及聲畫預算。來源GLB／判定／BGM保持，不恢復退役噪聲圖集；距離腳步備援非marker／IK。420項與同輸入玩法SHA／有聲前後片；Mac／真人／GPU待驗，LLB新附件仍未讀取，Web不更新。
+- 2026-11-11 使用者要求故事先行／通關解鎖自由對戰、同鍵盤雙人、雙手柄：現況見 docs/LOCAL_VERSUS.zh-TW.md，主選單 6 項（STORY 首位、VERSUS 鎖定至第三站勝出），覆蓋前述「僅5主選項」。fight_controls.gd 為唯一輸入裝置 owner，單人鍵盤原路徑與 fight_simulation.gd 不改；通關旗標在既有 progression.cfg。豐富遊戲點子 docs/GAME_ENRICHMENT_IDEAS.zh-TW.md 只屬提案，不得當成已實作或已確認設定。實體手柄／鬼鍵／雙人手感未驗證。使用者確認只鎖對戰；AI DEMO 為測試用、正式不推出（入口待移除）。雙人對戰停用只給P1的能力抽取。此項由 Claude 對話在分支 claude/project-thread-xmgtx2 完成，基線 codex/combat-escalation-next 3389fa9，草稿PR回Codex分支，未合併；Web 不更新。
+- 2026-11-11 使用者提供開場影片／六格分鏡／18秒鏡頭表：現況見docs/STORY_OPENING.zh-TW.md。啟動後、主選單前的18秒即時3D開場，cinematic/story_opening.gd為唯一導演，無狀態sample(t)，clear須還原相機／街景／lens／score／duck。只在場景為current_scene時自動播，首次啟動旗標存story_opening.cfg，設定頁可重播；音樂只調音量不停transport，音效軌由tools/build_story_opening_audio.py重建，不用參考片音軌。第一拳與黑衣人上門短動畫留待「開始故事」，尚未實作。分支claude/project-thread-frl810草稿PR指向codex/combat-escalation-next，未合併、Web不更新。

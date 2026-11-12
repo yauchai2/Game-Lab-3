@@ -1,0 +1,47 @@
+{
+  "menu": {
+    "file": "menu.ogg",
+    "bpm": 116.0,
+    "bar_seconds": 2.06897,
+    "intro_seconds": 8.27587,
+    "loop_seconds": 33.10345,
+    "source_loop_start_s": 39.401,
+    "role": "main menu: track 1 build-up (4 bars, plays once) then its first full groove"
+  },
+  "fight_a": {
+    "file": "fight_a.ogg",
+    "bpm": 130.01,
+    "bar_seconds": 1.84601,
+    "intro_seconds": 0.0,
+    "loop_seconds": 29.53619,
+    "source_loop_start_s": 1989.916,
+    "role": "fight deck: 130 BPM track, strongest sustained section"
+  },
+  "fight_b": {
+    "file": "fight_b.ogg",
+    "bpm": 131.51,
+    "bar_seconds": 1.82496,
+    "intro_seconds": 0.0,
+    "loop_seconds": 29.1993,
+    "source_loop_start_s": 1912.062,
+    "role": "fight deck: 131.5 BPM track"
+  },
+  "fight_c": {
+    "file": "fight_c.ogg",
+    "bpm": 112.99,
+    "bar_seconds": 2.12408,
+    "intro_seconds": 0.0,
+    "loop_seconds": 33.98531,
+    "source_loop_start_s": 661.959,
+    "role": "fight deck: 113 BPM track, loudest stable section"
+  },
+  "result": {
+    "file": "result.ogg",
+    "bpm": 110.01,
+    "bar_seconds": 2.18162,
+    "intro_seconds": 0.0,
+    "loop_seconds": 34.90592,
+    "source_loop_start_s": 856.979,
+    "role": "result screen: steadier, lower-energy 110 BPM section"
+  }
+}

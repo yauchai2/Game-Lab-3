@@ -14,40 +14,53 @@ const PROFILES := {
 }
 func build(kind: String, move: String, phase: float, tint: Color, face: float, reduced: bool, character := 0) -> Array[Dictionary]:
     var shapes: Array[Dictionary]=[]
-    var frame:=clampi(int(clampf(phase,0,.9999)*6),0,5)
+    var frame:int=preload("res://scripts/combat/ink_fx/fx_recipes.gd").cel(clampf(phase,0,.9999))
     var profile: Vector3=PROFILES.get(move,PROFILES.jab)
     var gain:float={"heavy":1.35,"launcher":1.45,"finisher":1.35,"meteor":1.55,"air_finisher":1.45,"special":1.8,"overdrive":2.15}.get(move,1.0)
     var radius:=profile.x*(.62 if reduced else gain)
     if kind=="swing":
-        if frame<3:
-            var extent:=Vector2(1.0,.75 if move=="heavy" else 1.0)
-            _crescent(shapes,radius,profile.y*(1.0-frame*.19),profile.z,extent,tint)
-            if not reduced:_crescent(shapes,radius-5,profile.y*.35,profile.z,extent,PAPER)
+        radius*=.65 if move in ["jab","cross","air_jab"] else .82
+        var extent:=Vector2(1.0,.76 if move in ["heavy","cross"] else 1.0)
+        var angle:float=profile.z+[-.25,-.12,.04,.16,.25,.30][frame]
+        if character==2:
+            if frame<4:
+                _diamond(shapes,Vector2(radius*.15,0),Vector2(radius,2.5 if reduced else 4.0),angle,PAPER)
+                _diamond(shapes,Vector2(-radius*.40,8),Vector2(radius*.24,2),angle,tint)
         else:
-            for i in (2 if reduced else 4):
-                var angle:float=-1.2+i*.72+profile.z
-                var center:=Vector2.from_angle(angle)*radius*(1.0+(frame-3)*.06)
-                _diamond(shapes,center,Vector2(13.0-(frame-3)*4,3.0),angle,tint)
-    elif kind=="hit":
-        radius=(12.0+profile.x*.18)*(.72 if reduced else 1.0)+(1 if frame%2 else 0)
-        _star(shapes,radius+5,4 if reduced else 8,frame*.11,INK)
-        _star(shapes,radius,4 if reduced else 8,frame*.11,tint)
-        _star(shapes,radius*.48,4,0,PAPER)
-    elif kind=="release":
-        var progress:=float(frame)/5.0
-        radius=radius*(.50+progress*.55)
-        var width:=maxf(2,7-frame)
-        if frame<2 and not reduced:_star(shapes,radius*.8,4,profile.z,PAPER)
-        var count:=4 if reduced else 8
-        for i in count:
-            if frame>=3 and i%2:continue
-            var angle:=i*TAU/count
-            _ring_piece(shapes,radius,width,angle,angle+TAU/count*.64,Vector2(.66,1) if move=="launcher" else Vector2(1,.65),tint)
+            var pieces:=2 if reduced else (4 if character==3 else 3)
+            for i in pieces:
+                if frame>=4 and i%2==1:continue
+                var start:float=-1.35+float(i)*2.5/pieces+frame*.04
+                var end:float=start+(2.5/pieces)*(.60 if character==3 else .82)
+                var thickness:float=profile.y*(.62 if character==1 else .38)*[.65,1.0,.80,.53,.32,.12][frame]
+                _arc_cel(shapes,radius,thickness,start,end,angle,extent,tint)
+                if frame<3 and not reduced:_arc_cel(shapes,radius-2,2.5,start+.08,end-.04,angle,extent,PAPER)
         if not reduced and frame>=2:
-            for i in 5:
-                var angle:=i*TAU/5+.17
-                var center:=Vector2.from_angle(angle)*(radius+8+frame*3)
-                _diamond(shapes,center,Vector2(9-frame,3),angle,PAPER if i%2 else tint)
+            for i in (2 if character==2 else 4):
+                var a:float=-1.2+i*.71+profile.z
+                var center:=Vector2.from_angle(a)*radius*(1.0+(frame-2)*.10)
+                _diamond(shapes,center,Vector2(maxf(1,9-frame),2),a,tint)
+    elif kind=="hit":
+        radius=(10.0+profile.x*.14)*(.65 if reduced else 1.0)*[.76,1.0,.78,.54,.30,.10][frame]
+        var angle:float=profile.z
+        var stretch:=Vector2(1.20,.62) if move in ["jab","cross","air_jab"] else Vector2(1.0,.85)
+        if character==1:stretch*=Vector2(1.15,1.15)
+        if character==2:stretch=Vector2(1.60,.42)
+        _burst(shapes,radius+3,angle,stretch,INK)
+        _burst(shapes,radius,angle,stretch,tint)
+        if frame<3:_burst(shapes,radius*.48,angle,stretch,PAPER)
+    elif kind=="release":
+        # Directional wedges and staggered debris, instead of a full concentric ring.
+        var progress:float=[.10,.23,.39,.58,.78,1.0][frame]
+        radius*=.40+progress*.44
+        var count:=3 if reduced else (4 if character==2 else 6)
+        for i in count:
+            if frame>=4 and i%2:continue
+            var angle:float=profile.z+(float(i)/maxf(1,count-1)-.5)*2.9
+            var center:=Vector2.from_angle(angle)*radius
+            var size:=Vector2(maxf(1,(14.0-float(i%3)*2)*(1.0-progress)),maxf(1,3.5*(1.0-progress)))
+            _diamond(shapes,center,size,angle,PAPER if i%3==0 and frame<3 else tint)
+        if frame<2 and not reduced:_diamond(shapes,Vector2.ZERO,Vector2(radius*.50,2),profile.z,PAPER)
     if move in ["special","overdrive"] and kind in ["swing","release"]:
         shapes.clear()
         var pulse:float=[.72,1.0,1.12,1.2,1.26,1.30][frame]
@@ -57,8 +70,10 @@ func build(kind: String, move: String, phase: float, tint: Color, face: float, r
         match character:
             0:
                 for angle in [-.45,.45]:
-                    _crescent(shapes,radius,w,angle,Vector2(1,.86),color)
-                    if frame<3:_crescent(shapes,radius-4,w*.28,angle,Vector2(1,.86),PAPER)
+                    for piece in 3:
+                        var a:float=-1.4+piece*.94
+                        _arc_cel(shapes,radius,w*.55,a,a+.70,angle,Vector2(1,.86),color)
+                        if frame<3:_arc_cel(shapes,radius-4,w*.16,a+.08,a+.60,angle,Vector2(1,.86),PAPER)
             1:
                 for side in [-1,1]:
                     var y:float=side*radius*.18
@@ -107,4 +122,21 @@ func _crescent(shapes: Array[Dictionary], radius: float, width: float, angle: fl
     for i in range(12,-1,-1):
         var inner:=radius-width*(.18+.82*sin(i/12.0*PI))
         points.append((Vector2.from_angle(lerpf(-1.4,1.4,i/12.0))*inner*extent).rotated(angle))
+    _poly(shapes,points,color)
+
+func _arc_cel(shapes:Array[Dictionary],radius:float,width:float,start:float,end:float,angle:float,extent:Vector2,color:Color) -> void:
+    var points:=PackedVector2Array()
+    for i in 7:
+        var a:float=lerpf(start,end,i/6.0)
+        points.append((Vector2.from_angle(a)*radius*extent).rotated(angle))
+    for i in range(6,-1,-1):
+        var a:float=lerpf(start,end,i/6.0)
+        points.append((Vector2.from_angle(a)*(radius-width*(.18+.82*sin(i/6.0*PI)))*extent).rotated(angle))
+    _poly(shapes,points,color)
+func _burst(shapes:Array[Dictionary],radius:float,angle:float,extent:Vector2,color:Color) -> void:
+    var points:=PackedVector2Array()
+    for i in 12:
+        var a:float=i*TAU/12.0+.08
+        var length:float=radius*([1.38,.24,.82,.30,1.0,.23,1.16,.32,.72,.22,.92,.28][i])
+        points.append((Vector2.from_angle(a)*length*extent).rotated(angle))
     _poly(shapes,points,color)

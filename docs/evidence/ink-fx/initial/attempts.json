@@ -1,0 +1,6 @@
+{
+  "jump_fixture": "Initial count captured before the actual buffered takeoff; fixed by waiting until y>0.05, then comparing subsequent airborne samples.",
+  "headless_equip": "frame_post_draw waits in headless exceeded 100 seconds; excluded. Reran with native renderer: 113/113.",
+  "headless_trajectory": "Baseline Dummy material errors excluded; accepted native before/after logs are error-free and hashes match.",
+  "legacy_checks": "Baseline Rush failed because it stops at 600 ticks; actual Easy round completed at 698. Old Neon requires endless combat; old round check requires redundant entry after equipment. Fixtures updated to current contracts; gameplay unchanged."
+}

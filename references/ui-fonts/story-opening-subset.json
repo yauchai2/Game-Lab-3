@@ -1,0 +1,11 @@
+{
+  "source": "https://github.com/notofonts/noto-cjk (Sans/SubsetOTF/HK/NotoSansHK-Bold.otf)",
+  "source_sha256": "4bce16fbed09278cbdfb4d57749500038cdda70737925a846e3f6c59327ab46e",
+  "license": "SIL OFL 1.1",
+  "derivative_family": "Afterhours Story HK",
+  "generator": "tools/subset_story_opening_font.py",
+  "output": "godot/assets/fonts/StoryOpeningHK.otf",
+  "output_sha256": "22f60ca63c40a1ae1edb4ae921e7213dcf0f9741bc9b75920ea77104193d1d5c",
+  "non_ascii_characters": "…。「」件到呢咗喎我貨買音響？",
+  "bytes": 21348
+}

@@ -45,23 +45,15 @@
       "passed": true
     },
     {
-      "name": "KO 2 has a real defeated fighter",
+      "name": "demo reserves full KO for the deciding round",
       "passed": true
     },
     {
-      "name": "KO 3 has a real defeated fighter",
+      "name": "every deciding KO includes the winner exit",
       "passed": true
     },
     {
-      "name": "demo completes at least three true KO cinematics",
-      "passed": true
-    },
-    {
-      "name": "every KO includes the winner exit",
-      "passed": true
-    },
-    {
-      "name": "rounds loop through a fresh entry automatically",
+      "name": "rounds loop with real equipment and a fresh next-match entry",
       "passed": true
     },
     {
@@ -108,7 +100,7 @@
   "display": "X11",
   "engine": "4.6.3-stable (official)",
   "failed": 0,
-  "passed": 26,
+  "passed": 24,
   "phases": [
     {
       "health": [
@@ -142,27 +134,18 @@
         73,
         0
       ],
-      "phase": "ko",
+      "phase": "result/round_over",
       "round": 1,
       "seconds": 12.1333333333333
     },
     {
       "health": [
-        73,
-        0
-      ],
-      "phase": "winner",
-      "round": 1,
-      "seconds": 17.1333333333333
-    },
-    {
-      "health": [
         100,
         100
       ],
       "phase": "entry",
       "round": 2,
-      "seconds": 20.3333333333333
+      "seconds": 13.5166666666667
     },
     {
       "health": [
@@ -171,7 +154,7 @@
       ],
       "phase": "play/ready",
       "round": 2,
-      "seconds": 23.15
+      "seconds": 16.3333333333333
     },
     {
       "health": [
@@ -180,34 +163,16 @@
       ],
       "phase": "play/fight",
       "round": 2,
-      "seconds": 23.75
+      "seconds": 16.9333333333333
     },
     {
       "health": [
         0,
         46
       ],
-      "phase": "ko",
+      "phase": "result/round_over",
       "round": 2,
-      "seconds": 30.9166666666667
-    },
-    {
-      "health": [
-        0,
-        46
-      ],
-      "phase": "winner",
-      "round": 2,
-      "seconds": 35.9166666666667
-    },
-    {
-      "health": [
-        100,
-        100
-      ],
-      "phase": "entry",
-      "round": 3,
-      "seconds": 39.1166666666667
+      "seconds": 24.0333333333333
     },
     {
       "health": [
@@ -216,7 +181,7 @@
       ],
       "phase": "play/ready",
       "round": 3,
-      "seconds": 41.9333333333333
+      "seconds": 34.15
     },
     {
       "health": [
@@ -225,25 +190,25 @@
       ],
       "phase": "play/fight",
       "round": 3,
-      "seconds": 42.5333333333333
+      "seconds": 34.75
     },
     {
       "health": [
-        64,
+        29,
         0
       ],
       "phase": "ko",
       "round": 3,
-      "seconds": 52.4333333333333
+      "seconds": 49.0
     },
     {
       "health": [
-        64,
+        29,
         0
       ],
       "phase": "winner",
       "round": 3,
-      "seconds": 57.4333333333333
+      "seconds": 54.0
     },
     {
       "health": [
@@ -252,7 +217,7 @@
       ],
       "phase": "entry",
       "round": 4,
-      "seconds": 60.6333333333333
+      "seconds": 57.2
     }
   ],
   "scope": "Normal-health autonomous commands and real KO transitions; no injected damage or health fixtures in the looping-demo portion"

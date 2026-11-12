@@ -1,0 +1,35 @@
+[
+  {
+    "script": "verify_combat",
+    "errors": [],
+    "summary": [
+      "COMBAT_CHECKS 34/34"
+    ]
+  },
+  {
+    "script": "verify_friendly_defense",
+    "errors": [],
+    "summary": [
+      "FRIENDLY_DEFENSE_CHECKS 25/25"
+    ]
+  },
+  {
+    "script": "verify_live_combat",
+    "errors": [],
+    "summary": []
+  },
+  {
+    "script": "verify_rush_arcade",
+    "errors": [
+      "ERROR: RUSH ARCADE FAIL: beginner can finish a real round"
+    ],
+    "summary": [
+      "RUSH_ARCADE_CHECKS 20/21"
+    ]
+  },
+  {
+    "script": "verify_squad_rules",
+    "errors": [],
+    "summary": []
+  }
+]

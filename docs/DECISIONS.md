@@ -1,3 +1,40 @@
+## 2026-11-12：完整短篇故事、雙巨型Boss與技巧優先成長
+
+最新見[CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)，覆蓋下方「Boss／城市九核心／獨立場景／完整短篇故事未做」的舊狀態。六區18場、兩／三階段Boss與讀招弱點、有限增援／新敵型、危險地面預告／破箱連鎖、分支休息與補給、六章劇本／三NPC／五能力課程／12專屬招式三選二、九核心真DRAW→EQUIP與一次性出擊預算、工坊及裝備骨架外觀已接正式STORY。12個原創低模GLB與Blender來源可重建；原Tripo及英雄GLB保持。schema3保v2樹／裝／局內進度並留.v2.bak，v1遷移仍保持。
+
+裝備直接增傷封頂12%，不增最大HP／parry窗口／無敵；總條件增傷50%／真parry反擊60%，Boss閉甲／弱點限制不可略過，合約HP／傷害亦封頂。四角從零合法掉落／解鎖／付費補給通18場、八組裸裝讀招Boss通關；九種極端裝／核心攻擊spam都敗於最終Boss。這是自動測例，非真人平衡或FPS驗收；簡單原創低模及無配音仍是本版本美術範圍。證據見[evidence/campaign-complete](evidence/campaign-complete/README.md)。只推codex/story-waves-m1／草稿PR #12，main／Web不動。
+## 2026-11-12：正式戰鬥VFX實作完成
+
+使用者授權全面實作；採原創可編輯硬邊mesh cels＋骨骼ribbon＋原有Neon／Rhythm，直接作用正式玩法。沿640×360及現有黑白／青粉palette，沒有引入生成噪聲圖集、素材採購或新角色模型。世界煙預留重要容量，Canvas按提示重要性淘汰；不為FX改傷害／能量／hitstop。腳步先距離備援＋較低鞋骨，不冒稱marker／IK。聲畫及shader globals均可逆；Web不更新。詳COMBAT_VFX_RUNTIME.zh-TW.md。
+
+## 2026-11-12：SEPAK原片視覺分析補件
+
+已取得13.792653s／1440p60原片，8fps全時間範圍取樣＋0.55／1.35／12.0起三段來源連續幀，觀察分段弧、雙色煙尾、小腳塵、背景退讓及近鏡，詳SEPAK_VFX_VIDEO_STUDY.zh-TW.md與references/vfx-quality-2026-11-12。未正常速度含聲播放／聆聽，未知引擎／素材／內部公式；LLB新附件超過32MiB工具上限，未取得，需較短或壓縮版補分析。修訂先做小白塵、分段弧、指定事件短雙色煙；runtime與Web未改。
+
+## 2026-11-12：戰鬥VFX品質優化提案
+
+依使用者要求詳細研究，新增COMBAT_VFX_QUALITY_PLAN.zh-TW.md。推薦作者化flipbook＋真世界錨點／socket＋既有Rhythm／Neon混合方案，先六項正式玩法品質切片再四角招牌技；採購僅候選、不重啟退役生成噪聲圖集。數值／排程／新FxRecipe架構均待實作比較，不改既有玩法權威。原X影片尚未取得，未把一般方法當影片實際做法。
+## 2026-11-12：開場配樂採用使用者提供的〈Beat Keep Rockin〉
+
+- 使用者指定使用其上傳的 Starjunk 95 音樂並允許自由剪輯；沿用既有 user-tracks 做法：記錄來源 SHA、不宣稱 CC0。
+- 選〈Beat Keep Rockin〉是因為 140 BPM 時 3 秒＝7 拍，不必變速就能讓六個鏡頭全部切在拍上，而且它有兩個 drop 可分別對上進車房與標題。〈State Your Name〉（125 BPM）與 mix 先入庫未指派。
+- 歌曲仍烘進 `score.wav`，主選單曲（Berlin）不變，17.6 秒起淡入。
+
+## 2026-11-12：開場改用烘焙的原創節奏，主選單曲不再充當開場音樂
+
+- 原因：主選單曲的拍點無法對上 3 秒一鏡的剪接，聽起來與畫面無關。現在配樂寫在 `tools/build_story_opening_audio.py`，160 BPM 半拍，一鏡兩小節。
+- 主選單曲在 `MENU_MUSIC_AT`（17.0 秒）前靜音（只調音量，transport 不停），之後淡入。
+- 外部素材只收 CC0：BigSoundBank（Joseph Sardin）。節選放 `references/story-opening-audio/`，不在 `godot/` 內，不會被匯入或匯出；`tools/fetch_story_opening_sources.py` 可重新下載與裁切。
+- 使用者提供的參考 MV 只用來量測速度與頻段比例，沒有取樣、沒有重製旋律。
+- 已知取捨：配樂與音效烘在同一個檔並走 SFX 音量，單獨關音樂不會關掉開場節奏；全靜音仍有效。
+
+## 2026-11-11：開機劇情開場的掛接與存檔
+
+- 依使用者最新鏡頭表，開場放在啟動後、主選單前（覆蓋同一對話較早的「第一次開始故事時播放」）。
+- 預設只首次啟動自動播放並可在設定頁重播；旗標用獨立的story_opening.cfg，不改progression存檔格式。是否每次啟動都播留給使用者決定。
+- 即時3D、沿用現有模型與資產，不用影片檔、不用參考影片音軌、不做付費生成。音樂沿用主選單曲並只調音量，不停transport。
+- 新增唯一導演story_opening.gd；不改simulation。combat_motions僅加一個演出專用的clip指定鍵。
+
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 
 見 [ABILITY_EQUIP_RUNTIME.zh-TW.md](ABILITY_EQUIP_RUNTIME.zh-TW.md)。按EQUIP／Demo結果停3.5秒後，當局原選角演出副本接取→握緊→腰扣→鎖定→能量到鞋→踩地，4.10秒（F2開始1.15秒）。九核心真腰掛跟隨骨盆保留到下一局重置；不露臉，原街景／stage profile沿用，聲效／魚眼／短模糊／震動／漫畫線／煙塵同步。先演再一次套用，Space跳過不重抽；pause／cancel／R恢復。113新＋69流程＋75核心＋34戰鬥＋46角色／成長＋8嚴格編譯＝345項，證據evidence/ability-equip。原GLB／XP／Web保持，Mac／真人待驗；覆蓋舊腰側裝備僅規劃。
@@ -344,3 +381,41 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 ## 2026-11-12：故事波次方向（提案，非實作）
 
 使用者要求詳細關卡規劃。建議六關有限波次、敵型分工／進攻名額、真敵碰敵有界連鎖與大型中Boss／最終巨獸；以投影可讀性限制遠鏡頭，維持原2.5D操作。新故事核心以兩關區段定義作用期，原FIGHT／Demo下一局與指定技才開四面盒規則不變。詳細數值待M1／白盒／真人與目標機器驗證；本輪不改runtime／存檔，不把文件當已完成功能。
+
+## 2026-11-12：故事M1獨立分支實作
+
+使用者要求開新分支開始製作，故在codex/story-waves-m1先完成三波切片，覆蓋上輪M1僅規劃狀態。StorySimulation繼承Squad，Story關閉完全委派；獨立有限波序／角色行為／掃掠撞體，普通攻擊不自動開四面盒。checkpoint僅同場，無XP／永久核心，Boss／六關／存檔後續；原GLB保留，新增程序道具。此次明確要求獨立分支優先於先前main集中交付慣例，不自動合併或更新Web。
+
+## 2026-11-12：城市ARPG下一階段設計提案
+
+使用者要求故事主選單、能力漸解鎖、類POE2天賦樹、城市刷圖與抽裝，詳細方案見 [CITY_ARPG_PROGRESSION_PLAN.zh-TW.md](CITY_ARPG_PROGRESSION_PLAN.zh-TW.md)。新故事進度擬採保證能力里程碑，覆蓋故事永遠全招式可用的舊方向；標準模式／訓練／Demo及舊存檔既有能力保留。原創48節點與25點、三裝備槽、兩貨幣及機率／保底均為待驗證提案。永久裝備與九臨時核心分層；故事核心下一整張圖持續，替代早期兩關區段提案，標準下一局契約維持。先一區完整循環，後六區／Boss／高階合約；本輪不改runtime或save schema，只推獨立任務分支。
+
+## 2026-11-12：Hades式城市循環首版
+
+使用者要求開始用簡單assets製作Hades式回城升值與故事。已接主選單STORY／45°正交可行走小城，採永久金錢裝備技能天賦＋本次出擊臨時強化分層。城市與戰鬥視角分離；六區共用戰鬥基底、隊長暫沿盾衛AI。先12節點8點／三槽單詞條品質／短對話／18遭遇及獨立存檔，不將完整POE式樹或巨型Boss冒稱完成。舊M1與標準模式保持，規劃與實作差異見CITY_ROGUELITE_RUNTIME.zh-TW.md；只推任務分支及更新草稿PR，不合併／不發佈。
+
+## 2026-11-12：提高解像度與補完城市主要成長系統
+
+使用者要求整體稍高清仍保持JSR／BRC／LLB復古風，並實作前述尚缺成長。最新960×540覆蓋640統一解像度舊規範；保留nearest、無AA、toon輪廓、logical UI與音樂。48節點／25點與T1–T5、詞綴、掉落／倉庫／比較／角色配裝現已接runtime，取代僅12節點／數值裝／無合約狀態。舊技能與資產保留，v1城市樹退點、schema2／.v1.bak。詳CITY_PROGRESSION_EXPANSION.zh-TW.md；未做巨型Boss、完整故事與新場景美術，不因主要系統落地就冒稱整份大計劃全完成。只推原任務分支／草稿PR，main／Web不改。
+使用者明確授權推送最新遊戲至main。將codex/combat-escalation-next的4177ef9完整合併，保留main54a520d及來源歷史，正常push，不使用force。此次授權為來源整合，沒有更新gh-pages或另行公開部署。
+
+## 2026-11-11：故事解鎖與本機雙人輸入（Claude 對話）
+
+| ID | 決策 | 依據與影響 |
+|---|---|---|
+| D-LV1 | 「故事模式」＝現有 Street Run 三站；「自由對戰」＝標準 FIGHT（1P VS CPU）與新的 2P LOCAL VERSUS。通關前只鎖自由對戰；訓練、教學、AI DEMO、設定保持開放 | 使用者要求「一開始只有故事模式，完成故事後解鎖自由對戰」。教學類不是對戰模式，新玩家在故事前需要練習入口。使用者 2026-11-11 確認「只鎖對戰」，並說明 AI DEMO 是測試用、正式不推出 |
+| D-LV2 | 通關條件為第三站勝出；旗標 `story_cleared` 存在既有 progression.cfg，版本號不變，舊存檔視為未通關 | 沿用已有的 tmp／bak 換檔流程，不另開存檔；不追溯以 XP 推斷通關，避免誤判 |
+| D-LV3 | 主選單由 5 項改 6 項，覆蓋 REFERENCE_UI「僅 5 主選項」 | 新模式結構需要 STORY 與 VERSUS 兩個入口；版面在原左欄內重新分配，文字仍原生繪製 |
+| D-LV4 | 新增 `fight_controls.gd` 作唯一裝置擁有者；單人鍵盤原有輪詢與按鍵處理不動，手柄以 OR 併入；`fight_simulation.gd` 不改 | 模擬本來接受兩方指令。保留原路徑使既有輸入測試結果不變，降低回歸風險 |
+| D-LV5 | 雙人 AUTO：兩支手柄各一；一支給 P2；沒有則分鍵盤。已持有手柄的玩家在熱插拔時不被換走 | P1 在故事已學會完整鍵盤配置；避免拔一支手柄令另一人的手柄易主 |
+| D-LV6 | 分鍵盤 P1：WASD＋F G R T、左 Shift、E、Space；P2：方向鍵＋K L O P、右 Shift、I、;，另有數字鍵盤替代 | 兩組鍵互不重疊，避開 H／M 等全域快捷鍵；筆電無數字鍵盤亦可用。位置未經真人及鬼鍵實測，可按回饋調整 |
+| D-LV8 | 雙人對戰停用回合間能力抽取 | Codex 分支的抽取只把強化給 P1；兩名真人對打需對等。其他模式不變 |
+| D-LV9 | PR 由指向 main 改為指向 `codex/combat-escalation-next`，並以其最新提交為基線 | 使用者確認的協作流程：Claude 分支由最新 Codex 分支開出，草稿 PR 回 Codex 分支 |
+| D-LV7 | 實體手柄、鬼鍵、雙人手感一律標為未驗證 | 雲端只有注入事件；依 AGENTS.md 不把 headless／注入輸入當成實機驗收 |
+
+## D-merge-2026-11-12：全部草稿 PR 合入 main（Alan 要求）
+
+- 合入 #12（城市故事）→ #13（VFX）→ #7（含 #8 本機對戰）→ #9（UI 計劃）→ #10（開場）→ #11（音訊）。#12 PR 內「不合 main」已由 Alan 的最新指示覆蓋。
+- 主選單整合：STORY＝#12 城市；VERSUS＝#8 的 FREE BATTLE（1P VS CPU／2P LOCAL／裝置），仍由 Street Run 第三站通關鎖住（`growth.story_cleared`），Street Run 入口在 FIGHTERS 頁；FREE PLAY（原 #12 的 FIGHT／SQUAD／Demo 頁）改為 SQUAD＋AI DEMO，FIGHT 併入 VERSUS 以免繞過鎖。尚未決定：鎖是否該改綁城市故事通關。
+- 音訊：#11 的 CC0／程序音效與合輯音樂取代 #13 前的程序 tone；保留 #13 新增的 ink_snap／ink_scrape。
+- #1／#2／#5 是更舊的堆疊 PR，與 main 大量衝突且內容已被取代，未合併。

@@ -1,0 +1,200 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "difficulty creates independent live enemies 0",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy health is independent 0",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "group damage is below solo enemy damage 0",
+      "passed": true
+    },
+    {
+      "detail": {
+        "hits": 18,
+        "max_attackers": 0,
+        "winner": 0
+      },
+      "name": "coordinator allows at most one attacker 0",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "all live enemy states remain bounded 0",
+      "passed": true
+    },
+    {
+      "detail": 9,
+      "name": "idle player is threatened by real attacks 0",
+      "passed": true
+    },
+    {
+      "detail": 123,
+      "name": "damage leaves a fair breathing interval 0",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "difficulty creates independent live enemies 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy health is independent 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "group damage is below solo enemy damage 1",
+      "passed": true
+    },
+    {
+      "detail": {
+        "hits": 25,
+        "max_attackers": 1,
+        "winner": 0
+      },
+      "name": "coordinator allows at most one attacker 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "all live enemy states remain bounded 1",
+      "passed": true
+    },
+    {
+      "detail": 11,
+      "name": "idle player is threatened by real attacks 1",
+      "passed": true
+    },
+    {
+      "detail": 92,
+      "name": "damage leaves a fair breathing interval 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "difficulty creates independent live enemies 2",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy health is independent 2",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "group damage is below solo enemy damage 2",
+      "passed": true
+    },
+    {
+      "detail": {
+        "hits": 52,
+        "max_attackers": 1,
+        "winner": 0
+      },
+      "name": "coordinator allows at most one attacker 2",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "all live enemy states remain bounded 2",
+      "passed": true
+    },
+    {
+      "detail": 13,
+      "name": "idle player is threatened by real attacks 2",
+      "passed": true
+    },
+    {
+      "detail": 68,
+      "name": "damage leaves a fair breathing interval 2",
+      "passed": true
+    },
+    {
+      "detail": {
+        "0": 1,
+        "1": 1,
+        "2": 1
+      },
+      "name": "one sweep contacts multiple live opponents",
+      "passed": true
+    },
+    {
+      "detail": {
+        "0": 1,
+        "1": 1,
+        "2": 1
+      },
+      "name": "one strike cannot damage one member repeatedly",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "waiting member retains bounded air-combo escape",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "waiting member events identify their actual model",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "LOOP pulse damages every real member in range",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "defeating one member does not finish the encounter",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "victory requires defeating the full squad",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "player KO ends the group encounter",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "timer ends encounter without silently despawning enemies",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "ordinary two-person fight restores after group mode",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 0 supports squad rules and own resources",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 1 supports squad rules and own resources",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 2 supports squad rules and own resources",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 3 supports squad rules and own resources",
+      "passed": true
+    }
+  ],
+  "scope": "Deterministic group fixture/rule checks and legal-AI samples; not human difficulty validation."
+}

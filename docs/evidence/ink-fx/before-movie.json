@@ -1,0 +1,24 @@
+{
+  "capture_fps": 30,
+  "draw_calls_peak": 590,
+  "frames": 360,
+  "presentation_cpu_ms_p95": 8.002,
+  "scope": "Movie Writer native Compatibility llvmpipe with real mixer, fixed virtual wall steps; CPU includes two simulation and presentation steps, not target hardware FPS.",
+  "segments": [
+    {
+      "hits": 7,
+      "pair": [
+        0,
+        1
+      ]
+    },
+    {
+      "hits": 11,
+      "pair": [
+        2,
+        3
+      ]
+    }
+  ],
+  "virtual_seconds": 12
+}

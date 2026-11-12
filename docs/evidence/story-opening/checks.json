@@ -1,0 +1,147 @@
+{
+  "checks": [
+    {
+      "name": "tools that instantiate the scene stay on the menu",
+      "passed": true
+    },
+    {
+      "name": "a fresh save has not seen the opening",
+      "passed": true
+    },
+    {
+      "name": "timeline is 18 seconds in six 3-second shots",
+      "passed": true
+    },
+    {
+      "name": "begin owns the frame",
+      "passed": true
+    },
+    {
+      "name": "menu and art buttons are hidden during the opening",
+      "passed": true
+    },
+    {
+      "name": "cast is the four roster models plus three collectors",
+      "passed": true
+    },
+    {
+      "name": "each second maps to its shot",
+      "passed": true
+    },
+    {
+      "name": "sampling is stateless and repeatable",
+      "passed": true
+    },
+    {
+      "name": "ZIP carries the case in on shot three",
+      "passed": true
+    },
+    {
+      "name": "ZIP and the collectors are absent from the city shot",
+      "passed": true
+    },
+    {
+      "name": "case lands closed on the bench with a camera jolt",
+      "passed": true
+    },
+    {
+      "name": "overhead reveal shows the open case",
+      "passed": true
+    },
+    {
+      "name": "three collectors walk in step",
+      "passed": true
+    },
+    {
+      "name": "lid is driven shut for the slam frame",
+      "passed": true
+    },
+    {
+      "name": "slam holds a black impact frame",
+      "passed": true
+    },
+    {
+      "name": "title shows wordmark, ink city and flat silhouettes",
+      "passed": true
+    },
+    {
+      "name": "silhouettes are released outside the title",
+      "passed": true
+    },
+    {
+      "name": "reduced effects removes fisheye, blur, flash and shake",
+      "passed": true
+    },
+    {
+      "name": "the clock advances with the game frame",
+      "passed": true
+    },
+    {
+      "name": "other keys cannot start a mode during the opening",
+      "passed": true
+    },
+    {
+      "name": "Esc pauses clock and score",
+      "passed": true
+    },
+    {
+      "name": "Esc resumes",
+      "passed": true
+    },
+    {
+      "name": "menu music stays silent under the baked score, never stopped",
+      "passed": true
+    },
+    {
+      "name": "menu music is still silent for the reveal",
+      "passed": true
+    },
+    {
+      "name": "menu music fades back in after the title hit",
+      "passed": true
+    },
+    {
+      "name": "the opening ends by itself on the main menu",
+      "passed": true
+    },
+    {
+      "name": "camera, lens and street are restored",
+      "passed": true
+    },
+    {
+      "name": "main menu buttons are back and usable",
+      "passed": true
+    },
+    {
+      "name": "seen flag is saved beside progression",
+      "passed": true
+    },
+    {
+      "name": "replay starts from the title",
+      "passed": true
+    },
+    {
+      "name": "Space skips straight to the menu and restores the camera",
+      "passed": true
+    },
+    {
+      "name": "a match starts normally afterwards",
+      "passed": true
+    },
+    {
+      "name": "leaving the scene mid-opening clears it",
+      "passed": true
+    },
+    {
+      "name": "the next launch remembers it was seen",
+      "passed": true
+    },
+    {
+      "name": "without being the running game it still never autoplays",
+      "passed": true
+    }
+  ],
+  "passed": 35,
+  "suite": "story_opening",
+  "total": 35
+}

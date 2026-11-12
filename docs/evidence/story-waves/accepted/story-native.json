@@ -1,0 +1,92 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "real Fighters story button starts an isolated finite wave",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "native J causes real damage in story",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "native down-K creates actual chain damage and feedback",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "pause freezes the inter-wave timer",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "native Enter advances one wave and carries resources",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "rushers carry distinct derived accessories",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "story KO uses result without giant two-person cinematic",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "native R retries current checkpoint without duplicating visuals",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "third wave contains six actual rigs and two shields",
+      "passed": true
+    },
+    {
+      "detail": 68.1738739013672,
+      "name": "crowd framing keeps player above 32 internal pixels",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "six real enemies stay inside the readable camera area",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "F2 preserves six-member story physics",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "last wave reaches its actual completion result",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "M1 gives no accidental XP or permanent core",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "exit removes wave simulation and extras and restores P2",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "ordinary FIGHT remains two-person",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "old squad remains independent",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 17,
+  "scope": "Linux 4.7.2 Compatibility; injected real UI/J/Esc/Enter/R and explicit boundary fixtures, not human playtest or target GPU validation."
+}

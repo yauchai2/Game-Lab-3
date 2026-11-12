@@ -1,6 +1,55 @@
+## 2026-11-12：完整短篇故事、雙巨型Boss與技巧優先成長
+
+最新見[CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)，覆蓋下方「Boss／城市九核心／獨立場景／完整短篇故事未做」的舊狀態。六區18場、兩／三階段Boss與讀招弱點、有限增援／新敵型、危險地面預告／破箱連鎖、分支休息與補給、六章劇本／三NPC／五能力課程／12專屬招式三選二、九核心真DRAW→EQUIP與一次性出擊預算、工坊及裝備骨架外觀已接正式STORY。12個原創低模GLB與Blender來源可重建；原Tripo及英雄GLB保持。schema3保v2樹／裝／局內進度並留.v2.bak，v1遷移仍保持。
+
+裝備直接增傷封頂12%，不增最大HP／parry窗口／無敵；總條件增傷50%／真parry反擊60%，Boss閉甲／弱點限制不可略過，合約HP／傷害亦封頂。四角從零合法掉落／解鎖／付費補給通18場、八組裸裝讀招Boss通關；九種極端裝／核心攻擊spam都敗於最終Boss。這是自動測例，非真人平衡或FPS驗收；簡單原創低模及無配音仍是本版本美術範圍。本輪437項最終通過（規則50／原生23及完整回歸），最終log無ERROR／SCRIPT ERROR。證據見[evidence/campaign-complete](evidence/campaign-complete/README.md)。只推codex/story-waves-m1／草稿PR #12，main／Web不動。
+
+## 2026-11-12：960解像度、完整天賦與合約刷圖已接實作
+
+見[CITY_PROGRESSION_EXPANSION.zh-TW.md](CITY_PROGRESSION_EXPANSION.zh-TW.md)。依最新要求由640×360升960×540，title／city及roster同步、保留最近鄰／toon輪廓／bitmap字體、logical UI與1280視窗（fractional填滿）。故事入口／能力解鎖沿既有；天賦擴48節點／25點／單關鍵天賦與真連線、縮放／拖曳／免費重置；真首次撞體擴散與parry／追擊有界回能。六區主題程序佈置、T1–T5合約seed配方／四詞綴／三次機會／同階返圖與兩次完圖升階；每場真裝備掉落、詞綴／四特製取捨、比較、各角配裝、60背包＋120倉庫。
+
+schema2沿原city_v1路徑，保留技能／錢裝、退舊樹等值點數，首次交易留.v1.bak；舊標準模式／GLB不改。巨型Boss／完整劇情及全新場景美術仍待做；城市仍簡單幾何，戰鬥六區共用基底。來源只推codex/story-waves-m1／草稿PR #12，main與Web不動。
+
+[359項驗證／960畫面](evidence/city-expansion/README.md)：城市86、原生22、strict18、M1 37／二段跳62／戰鬥34／九核心75、原生整體15／Ink10；最終log無ERROR／SCRIPT ERROR。四角Easy普通輸入、真掉落／解鎖通首區，無補血傷害注入；後期結算採fixture，非真人／Mac／FPS／實聽驗收。舊v1城市fixture歸檔，公開verify_city入口改跑新套件；兩舊UI framebuffer斷言按新960契約更新，其他斷言保持。
+
+## 2026-11-12：Hades式城市回城循環已可玩
+
+最新使用者要求覆蓋前輪純城市圖／規劃狀態，見 [CITY_ROGUELITE_RUNTIME.zh-TW.md](CITY_ROGUELITE_RUNTIME.zh-TW.md)。主選單STORY進45°正交可行走安全城、五互動站；六區×三場共用街道佈置、回城升技／12節點8點天賦／三槽永久裝備／保底抽裝／短故事。清場銀行化錢零件並選一次臨時強化，敗退清出擊、保留永久進度；獨立city_v1存檔／備援／交易回滾／逐場快照。標準FIGHT與Demo在FREE PLAY，原M1預覽仍在FIGHTERS；原GLB及舊進度不改。
+
+[226項驗證及畫面](evidence/city-hub/README.md)：城市62／原生17／strict14／舊M1 37／二段跳62／戰鬥34；accepted無ERROR／SCRIPT ERROR。四角Easy普通輸入無裝備補血通首區，後期開區採fixture；Linux軟體渲染／Dummy，Mac與真人平衡待驗。城市人形／建物程序佔位、戰鬥六區共用基底；未有巨型多階段Boss、完整48點樹／T1–T5／複雜詞綴／九核心城市接入。本輪只推codex/story-waves-m1／草稿PR #12，main與Web保持。
+
+## 2026-11-12：城市ARPG設計文件核對
+
+本輪只新增 [城市成長規劃](CITY_ARPG_PROGRESSION_PLAN.zh-TW.md) 並同步紀錄。核對既有三階角色成長／兩技能槽、主選單五項、九核心與M1實際範圍；區分必得能力、可洗天賦、永久裝備、臨時晶片。文件數量核對：28＋12＋4＋4＝48節點；19等級點＋6主線點＝25點；抽裝提案25＋55＋19＋1＝100%。檢查文件diff、連結與runtime未變；沒有執行或宣稱新玩法／經濟／存檔／平衡測試。main及Web不更新。
+
+## 2026-11-12：故事波次M1
+
+[accepted報告與原生圖](evidence/story-waves/README.md)。最終287項：Story37、native Story17、startup warnings11、Arena65、二段跳62、戰鬥34、UI37、回合24，對應log無ERROR／SCRIPT ERROR，VSync警告保留。四英雄Easy普通輸入完整通三波，不注入傷害／補血／重設；真pointer／J／↓+K／Esc／Enter／R及六骨架，另有邊界fixture；玩家投影約68內部像素。基線舊Demo測試同樣23/24的重複intro預期已按現行裝備契約修正且增加真equip觀察，初次失敗保留。Linux4.7.2 Compatibility llvmpipe／Dummy，不是Mac／真人／硬件FPS／實聽驗收。未做Boss／六關／持久checkpoint；任務分支交付，main與Web不更新。
+## 2026-11-12：正式戰鬥VFX實作完成
+
+Godot4.6.3 Linux Compatibility llvmpipe／Dummy：26新FX＋14 strict＋380相關回歸＝420通過；最終log無ERROR／SCRIPT ERROR。1800步前後玩法／資源／事件SHA一致；12秒360幀Movie Writer含真混音，AAC解碼peak .507、零滿幅樣本，另6混音檢查。原生錄製約37秒，非Mac／硬件FPS或聆聽驗收。舊Rush600tick不足（實際698勝出）、Neon永不結束與多餘第三局entry假設已修fixture；headless裝備等draw超時改原生113項通過，初次／基線log保留於evidence/ink-fx。詳COMBAT_VFX_RUNTIME.zh-TW.md，Web未更新。
+
+## 2026-11-12：SEPAK原片視覺分析補件
+
+已取得13.792653s／1440p60原片，8fps全時間範圍取樣＋0.55／1.35／12.0起三段來源連續幀，觀察分段弧、雙色煙尾、小腳塵、背景退讓及近鏡，詳SEPAK_VFX_VIDEO_STUDY.zh-TW.md與references/vfx-quality-2026-11-12。未正常速度含聲播放／聆聽，未知引擎／素材／內部公式；LLB新附件超過32MiB工具上限，未取得，需較短或壓縮版補分析。修訂先做小白塵、分段弧、指定事件短雙色煙；runtime與Web未改。
+
+## 2026-11-12：戰鬥VFX研究範圍
+
+本輪為文件研究，基線ef3f8d3；核對Godot640×360 Compatibility、active fight_vfx／impact_shapes／fight_session／street_smoke／Neon路徑，看compact-hud/fight.png及round-flow兩圖；舊combat-escalation/zip-rivet.mp4之3–15秒取12張1Hz接觸表，不能驗短閃／聲音／當前build。X原片web403、替代讀取未取得、cloud browser初始化失敗；未觀看。來源候選查Kenney官方CC0頁、GDQuest及Real Time VFX拆解、Vefects產品搜尋，未下載或驗引擎相容。僅文件檢查與git diff --check，不跑runtime測試、不宣稱Mac／真人／效能通過；Web未更新。
+
 ## 2026-11-12：故事波次設計文件
 
 本輪只新增STORY_WAVES_PLAN.zh-TW.md及相關紀錄。查閱基線main e725c99的三站Run、黑衣人群戰、opt-in反彈、九核心與裝備契約；文件區分既有與待做。波次／角色量／倍率／像素高度／時長是試作目標，未跑新玩法測試，未宣稱現有可支援10–12同場或大型Boss。僅檢查文件diff與runtime未變，原遊戲及Web不更新。
+## 2026-11-12：開場配樂與音效重做
+
+- `verify_story_opening` 35/35（新增「開場期間主選單曲靜音」「標題後淡入」）。Godot 4.6.3 Linux、Compatibility／llvmpipe、Dummy 音訊。
+- Movie Maker 真實啟動錄影：錄到的音軌與 `score.wav` 每 0.25 秒響度曲線一致、沒有時間偏移；18 秒後主選單曲淡入。
+- 量測：節奏段 RMS 約 −11 dBFS、抽音段約 −34 dBFS、峰值 −0.5 dBFS；3–6 秒頻段比例（20–60／60–150／150–400／400–1.5k／1.5–5k／5k+）為 −5.0／−4.5／−8.4／−9.3／−15.7／−17.7 dB，參考片約 −5／−4／−8／−9／−13／−18。
+- 未驗證：真人試聽。律動好不好聽、音色是否刺耳、音效與畫面觀感都只能由人判斷；Mac／實機喇叭亦未測。
+
+## 2026-11-11：開機劇情開場
+
+verify_story_opening 34/34（擁有權、六鏡對應、無狀態取樣、黑箱／車／黑衣人節點、減少特效、暫停、音樂duck、自動結束、相機／街景還原、旗標存取、重播與跳過）。Movie Maker真實啟動錄影確認開場→主選單及第二次啟動直入主選單。回歸：reference_ui 37/37、ability_draw 69、black_suit 35；round_flow 23/24，失敗項於未修改e725c99相同。Godot4.6.3 Linux llvmpipe／Dummy音訊，非使用者本機、真實音效或觀感驗收；4.7.2 warning工具未跑。
 
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 
@@ -48,6 +97,26 @@
 
 # 驗證紀錄與證據範圍
 
+## 2026-11-11：D3 飛機掠過
+
+`verify_flyby_event.gd` 8/8（headless）。見 [TIME_OF_DAY.zh-TW.md](TIME_OF_DAY.zh-TW.md)。
+
+## 2026-11-11：G5／G6／G8
+
+`verify_secret_notes.gd` 9/9，`verify_banter` 129、`verify_time_of_day` 12、`verify_street_tags` 27（headless）。非 Mac／真人驗收。
+
+## 2026-11-11：街區標記
+
+`verify_street_tags.gd` 27/27 headless；兩張 xvfb／llvmpipe 畫面。非 Mac／真人驗收。見 [STREET_TAGS.zh-TW.md](STREET_TAGS.zh-TW.md)。
+
+## 2026-11-11：角色台詞與對手記憶
+
+`verify_banter.gd` 107/107（headless）＋兩張 xvfb／llvmpipe 畫面。非 Mac／真人驗收。見 [BANTER.zh-TW.md](BANTER.zh-TW.md)。
+
+## 2026-11-11：時段預設
+
+`verify_time_of_day.gd` 11/11（headless），xvfb／llvmpipe 四時段截圖。`verify_combat_polish.gd` 的靜音啟動斷言失敗於未改動基線同樣重現（非本次造成）。其餘既有套件未全數重跑；非 Mac／真人驗收。詳見 [TIME_OF_DAY.zh-TW.md](TIME_OF_DAY.zh-TW.md)。
+
 ## 2026-11-11：來源集中整合至 main
 
 使用者要求「把所有的更新都推到最常用的branch」。以 main738c740 為基礎，整合黑衣人分支987d4d2與正式戰鬥／過場／抽能力分支3389fa9，保留雙方提交及來源資產；往後 GitHub Desktop 選 main Fetch／Pull。此節覆蓋下方歷史的「main未更新」狀態；公開Web不更新。
@@ -69,6 +138,20 @@
 
 合併來源4177ef9至main54a520d，無衝突。以Git tree object ID核對godot及tools，兩者與4177ef9完全相同；原main的docs/JSR-BRC-style-reference.md亦與來源相同並保留。只更改整合紀錄，沒有重跑引擎測試或聲稱修正上輪四個舊測試失敗。既有二段跳／正式戰鬥驗證詳見docs/evidence/double-jump/README.md。公開Web分支沒有更新。
 
+
+## 2026-11-11：故事解鎖、同鍵盤雙人、雙手柄
+
+[規格](LOCAL_VERSUS.zh-TW.md)／[log、report、畫面](evidence/local-versus/README.md)。基線 `codex/combat-escalation-next` 3389fa9（先前在 main 738c740 上亦跑過同一套，結果一致）；Godot 4.6.3 Linux Compatibility，Xvfb＋Mesa llvmpipe，Dummy audio。
+
+- 新增 `verify_local_versus.gd` 68/68：雙人對戰不觸發能力抽取、手柄 A 跳過開場、全新存檔鎖定、鎖定入口拒絕、第三站落敗不解鎖、三站勝出解鎖並寫檔、重啟後保持、分鍵盤各自攻擊／移動／左右 Shift／跳／數字鍵盤、綁定鍵不觸發快捷鍵、結算與重開保持雙人、兩支手柄、搖桿死區、扳機、Start、拔除暫停與退回、插回取回、鍵盤＋手柄混用、裝置選項存檔、故事中手柄與鍵盤並用、手柄操作選單、RELOCK。log 除 ALSA 開啟失敗（無音效裝置）外無 ERROR／SCRIPT ERROR。
+- 既有回歸，Codex 分支 3389fa9 上：reference_ui 37/37（兩項斷言由「5 選項」改為「6 選項，故事在首」）、live_combat 45/45、last_service_rules exit 0。combat_input 12/15、double_jump_input 8/11、first_minute 60/63、last_service_native exit 1：**在未改動的 3389fa9 乾淨 worktree 同機重跑，失敗項逐行相同**，不是本輪造成，本輪也沒有修。
+- 先前在 main 738c740 上：上述七套改動前後各跑一次全數通過（15/15、22/22、11/11、45/45、63/63、37/37），`verify.gd` 道具庫通過。
+- 沒有跑 Codex 分支新增的 verify_ability_draw、verify_round_flow、verify_city_breaker 等套件。
+- 改動前已有問題、未作依據：verify_ui_input（SCRIPT ERROR 後逾時）、verify_jsr_runtime（多項 FAIL 後逾時）、verify_demo_input（多項 FAIL）。本輪沒有修這些，也沒有重跑上輪記錄的另外 4 個舊失敗 suite。
+
+**範圍限制**：輸入全部是程式注入的 InputEvent 與注入的手柄清單，不是實體手柄、不是真人按鍵；不能證明按鍵映射、鬼鍵、延遲、手感或平衡。未在 Godot 4.7.2、macOS、目標 GPU 或 Web 驗證。未操作使用者電腦。
+
+## 2026-11-11：main整合核對
 ## 2026-11-11：上傳Tripo角色／機身
 
 最終Godot4.6.3 Compatibility／llvmpipe原生模型22/22＋既有流程52/52共74項，最終log無ERROR／SCRIPT ERROR／SHADER ERROR及退出洩漏。原檔逐byte相同、原65骨／skin／albedo實際載入；骨骼鏈、CC0重定向、有限姿態、手腕接觸、代幣跟手、渲染輪盤可見性及原有回合／mute／pause／F2／清理皆驗。證據evidence/ability-draw/tripo-models含原檔預覽、完整有聲Movie Writer、PCM及log。
@@ -649,3 +732,12 @@ Godot4.7.2 Linux Compatibility：37原生操作、10頁面／3D剪影／popup／
 ## 2026-11-11：勝者魚眼與四角色離場
 
 86新檢查：四角×雙方、真模型／頭部構圖／不同骨架姿態、正確exit音軌、pause／resume／skip、實際出框、資料不變、near／fisheye／音訊還原、F2／重開／標題與自然結算。20FX＋165KO＋17結果回歸通過，最終log無ERROR／SCRIPT ERROR／洩漏。四套3.2秒原生Movie Writer聲畫與8.2秒完整KO流程、PCM量測見evidence/victory-exits。原5秒聲軌與HEAD版PCM解碼比對相同，未改基段音高。Godot4.6.3／llvmpipe／Dummy；不是Mac、即時GPU效能或真人實聽驗收。早期近鏡曾發現RIVET裁臉與LOOP手部遮擋，已按真head anchor與姿態改位，最終四角實際擷取並檢視。歷史suite未全重跑，舊Rhythm基線失敗仍保留。
+
+## 2026-11-12 音訊重做
+`verify_combat_sfx.gd` 32/32；`verify_unified_audio.gd` 無削波；`verify_music_audio.gd` 舊套件 13/20（改動前 12/20）。無人耳／Mac／真實喇叭驗證，見 docs/AUDIO_OVERHAUL.zh-TW.md。
+
+## 2026-11-12 全部 PR 合併後驗證（Godot 4.6.3 Linux，xvfb＋llvmpipe，Dummy audio）
+
+通過：warnings 嚴格檢查（17 腳本）、local_versus 68/68、story_opening 35/35、round_flow 24/24、city_campaign 50/50、city_expansion 86/86、ability_draw 69/69、banter 129/129、time_of_day 12/12、flyby_event 8/8，story_waves／live_combat／ink_fx／unified_audio／black_suit／street_tags／versus_social／secret_notes／combat_sfx 無失敗項。
+失敗：reference_ui 37/38，「rapid navigation reverses existing crossfade」；在 PR #11 分支單獨同樣失敗（#11 把選單／戰鬥改成不同曲目，舊斷言過時），合併未改。reference_ui 與兩處原始碼已為合併調整：FREE PLAY 頁、`/1000`→`/1000.0`、`basis` 改名。
+未驗證：實聽、Mac、實機手柄、目標 GPU、公開 Web。

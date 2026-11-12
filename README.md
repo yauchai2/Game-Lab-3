@@ -1,5 +1,20 @@
 # Afterhours / Game-Lab-3
 
+最新：[完整短篇故事／雙巨型Boss／技巧優先平衡](docs/CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)。六區18場、獨立場景模型、城市NPC故事／能力課程／專屬招式、九核心裝備演出、工坊及有限增援／危險分支已接入；[測試與原生畫面](docs/evidence/campaign-complete/README.md)。F5→STORY；仍推codex/story-waves-m1／草稿PR #12，main及Web保持。以下各段是較早階段紀錄，以本段為準。
+
+最新：[960復古畫面＋城市成長擴充](docs/CITY_PROGRESSION_EXPANSION.zh-TW.md)。48節點／25點、T1–T5詞綴刷圖、真裝備掉落／比較／各角配裝與倉庫；[359項驗證及畫面](docs/evidence/city-expansion/README.md)。主選單STORY，來源仍codex/story-waves-m1。下方舊首版範圍為歷史，以此最新實作為準；巨型Boss／完整故事及場景美術仍待續。
+
+最新可玩：[Hades式城市回城循環](docs/CITY_ROGUELITE_RUNTIME.zh-TW.md)。F5→STORY：45°可行走安全城、升技／天賦／抽裝／故事／六區出擊，永久與局內成長分層；[畫面及226項檢查](docs/evidence/city-hub/README.md)。使用程序佔位美術及共用戰鬥街道，完整Boss與大型天賦樹待做。
+
+新規劃：[城市故事ARPG：能力解鎖、天賦樹、刷圖與抽裝](docs/CITY_ARPG_PROGRESSION_PLAN.zh-TW.md)。主選單故事入口、48節點／25點、六區與T1–T5、三槽裝備及兩貨幣；僅設計，尚未實作。
+
+本分支：[故事波次M1可玩預覽](docs/STORY_WAVES_RUNTIME.zh-TW.md)。FIGHTERS → STORY，三波／三敵型／最多六人、真敵碰敵連鎖及波次重試；[畫面及287項驗證](docs/evidence/story-waves/README.md)。本輪只推codex/story-waves-m1，未合併main，尚未有大型Boss／完整六關。
+最新：[正式戰鬥VFX重製](docs/COMBAT_VFX_RUNTIME.zh-TW.md)／[12秒有聲前後對照](docs/evidence/ink-fx/comparison.mp4)。世界腳塵／分段弧／骨骼短尾、真接觸短閃、角色差異與群戰優先池；420項通過，Web未更新。
+
+研究補件：[SEPAK原片VFX實證與優化修訂](docs/SEPAK_VFX_VIDEO_STUDY.zh-TW.md)／[四類畫面](references/vfx-quality-2026-11-12/sepak-four-layers.jpg)。新LLB附件仍受工具32MiB上限，尚未讀取。
+
+規劃：[戰鬥VFX品質研究與詳細製作方案](docs/COMBAT_VFX_QUALITY_PLAN.zh-TW.md)。含原始碼診斷、腳步煙／打擊閃光／素材規格與優化次序；X原片尚未取得，本輪未改runtime。
+
 規劃：[故事波次街鬥、敵碰敵連鎖與大型Boss六關設計](docs/STORY_WAVES_PLAN.zh-TW.md)。含逐波敵型配方、拉遠鏡頭、核心與checkpoint及製作順序；本輪僅規劃，尚未加入遊戲。
 
 最新：[抽獎後3D裝備已實裝](docs/ABILITY_EQUIP_RUNTIME.zh-TW.md)／[有聲預覽](docs/evidence/ability-equip/ability-equip.mp4)／[完整Demo](docs/evidence/ability-equip/demo-draw-equip.mp4)。五選角不露臉接握／腰扣／鞋底啟動，九核心實體腰掛，345項通過，Web不更新。
@@ -25,6 +40,10 @@
 
 最新：[抽獎節奏／手動按鈕／共用遊戲字體](docs/ABILITY_DRAW_RHYTHM_UI.zh-TW.md)／[有聲預覽](docs/evidence/ability-draw/rhythm-ui/ability-draw-rhythm-ui.mp4)。按 DRAW 才抽，三輪鎖定、短靜拍、揭曉後另按 CONTINUE；85 項檢查通過，Web 不更新。
 
+
+最新：[故事通關解鎖自由對戰、同鍵盤雙人、雙手柄](docs/LOCAL_VERSUS.zh-TW.md)。主選單由 **STORY** 開始；第三站勝出後 **VERSUS** 解鎖 1P VS CPU 與 2P 本機對戰。P1 WASD＋F G R T，P2 方向鍵＋K L O P；手柄 X Y B A，可熱插拔及與鍵盤混用。實體手柄與雙人手感待本機驗收。另有[豐富遊戲的點子計劃](docs/GAME_ENRICHMENT_IDEAS.zh-TW.md)（僅規劃）。分支 `claude/project-thread-xmgtx2`（草稿 PR 回 `codex/combat-escalation-next`），公開 Web 未更新。
+
+最新：已按使用者要求將含二段跳的完整遊戲來源 `4177ef9` 合併到 `main`；之後可於 GitHub Desktop 選 `main` Fetch／Pull。公開 Web 仍為獨立部署。
 最新：[使用者Tripo蒙面NPC／機身已接入](docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md)／[有聲引擎預覽](docs/evidence/ability-draw/tripo-models/tripo-ability-draw.mp4)。原65骨NPC拖行／拍機／展示／開獎，原機殼＋獨立活動件，來源原檔保留；74項原生檢查通過，Web不更新。
 
 最新：[蒙面NPC與抽獎機三視圖／Tripo生成建議](references/ability-draw/tripo/README.zh-TW.md)。含NPC A-pose、機器完整外觀及建議生成的機殼版，另附英文提示詞；只有設計參考，未換runtime模型。

@@ -1,0 +1,68 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ARENA a legal paid overdrive hit arms the box trajectory true
+ARENA one overdrive makes multiple genuine boundary contacts true
+ARENA flight remains inside all four limits true
+ARENA ricochets never create additional health damage true
+ARENA finite flight restores control without a permanent stun true
+ARENA left reverses the normal velocity and loses energy true
+ARENA left E tech spends 20 and releases the flight true
+ARENA right reverses the normal velocity and loses energy true
+ARENA right E tech spends 20 and releases the flight true
+ARENA ceiling reverses the normal velocity and loses energy true
+ARENA ceiling E tech spends 20 and releases the flight true
+ARENA floor reverses the normal velocity and loses energy true
+ARENA floor E tech spends 20 and releases the flight true
+ARENA native hitstop freezes trajectory and lifetime true
+ARENA time limit releases with protection true
+ARENA spent contact budget cannot be refreshed before landing true
+ARENA ordinary 0/jab never arms multi-bounce true
+ARENA ordinary 0/cross never arms multi-bounce true
+ARENA ordinary 0/heavy never arms multi-bounce true
+ARENA ordinary 0/finisher never arms multi-bounce true
+ARENA ordinary 0/launcher never arms multi-bounce true
+ARENA ordinary 0/meteor never arms multi-bounce true
+ARENA ordinary 0/air_finisher never arms multi-bounce true
+ARENA ordinary 0/air_counter never arms multi-bounce true
+ARENA ordinary 0/grab never arms multi-bounce true
+ARENA ordinary 0/special never arms multi-bounce true
+ARENA ordinary 1/jab never arms multi-bounce true
+ARENA ordinary 1/cross never arms multi-bounce true
+ARENA ordinary 1/heavy never arms multi-bounce true
+ARENA ordinary 1/finisher never arms multi-bounce true
+ARENA ordinary 1/launcher never arms multi-bounce true
+ARENA ordinary 1/meteor never arms multi-bounce true
+ARENA ordinary 1/air_finisher never arms multi-bounce true
+ARENA ordinary 1/air_counter never arms multi-bounce true
+ARENA ordinary 1/grab never arms multi-bounce true
+ARENA ordinary 1/special never arms multi-bounce true
+ARENA ordinary 2/jab never arms multi-bounce true
+ARENA ordinary 2/cross never arms multi-bounce true
+ARENA ordinary 2/heavy never arms multi-bounce true
+ARENA ordinary 2/finisher never arms multi-bounce true
+ARENA ordinary 2/launcher never arms multi-bounce true
+ARENA ordinary 2/meteor never arms multi-bounce true
+ARENA ordinary 2/air_finisher never arms multi-bounce true
+ARENA ordinary 2/air_counter never arms multi-bounce true
+ARENA ordinary 2/grab never arms multi-bounce true
+ARENA ordinary 2/special never arms multi-bounce true
+ARENA ordinary 3/jab never arms multi-bounce true
+ARENA ordinary 3/cross never arms multi-bounce true
+ARENA ordinary 3/heavy never arms multi-bounce true
+ARENA ordinary 3/finisher never arms multi-bounce true
+ARENA ordinary 3/launcher never arms multi-bounce true
+ARENA ordinary 3/meteor never arms multi-bounce true
+ARENA ordinary 3/air_finisher never arms multi-bounce true
+ARENA ordinary 3/air_counter never arms multi-bounce true
+ARENA ordinary 3/grab never arms multi-bounce true
+ARENA ordinary 3/special never arms multi-bounce true
+ARENA character 0 overdrive final impact opts in true
+ARENA character 1 overdrive final impact opts in true
+ARENA character 2 overdrive final impact opts in true
+ARENA character 3 overdrive final impact opts in true
+ARENA partial RIVET charge remains ordinary true
+ARENA full RIVET charge opts in true
+ARENA boosted HUSH special opts in true
+ARENA ordinary movement has no temporary box ceiling true
+ARENA 10000 normal AI ticks are deterministic true
+ARENA_CHECKS 65/65
