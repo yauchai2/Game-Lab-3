@@ -32,11 +32,12 @@ var music_trim_db := 0.0
 
 func _ready() -> void:
     _ensure_buses()
-    # Combat SFX: original procedural set (tools/build_combat_sfx.py). Kenney CC0 impacts stay as fallback.
+    # Combat SFX: real CC0 recordings (BigSoundBank) layered with synthetic low end, see godot/audio/sfx/SOURCES.md.
+    # Procedural-only kinds come from tools/build_combat_sfx.py. Kenney CC0 impacts stay as fallback.
     var files := {
-        "hit":["hit_0","hit_1","hit_2"], "heavy":["heavy_0","heavy_1"],
-        "block":["block_0"], "parry":["parry_0"], "guard_break":["guard_break_0"],
-        "swing":["swing_0","swing_1"], "dash":["dash_0"], "step":["step_0","step_1"],
+        "hit":["hit_0","hit_1","hit_2","hit_3","hit_4"], "heavy":["heavy_0","heavy_1","heavy_2"],
+        "block":["block_0","block_1"], "parry":["parry_0"], "guard_break":["guard_break_0"],
+        "swing":["swing_0","swing_1","swing_2"], "dash":["dash_0"], "step":["step_0","step_1"],
         "land":["land_0"], "jump":["jump_0"], "release":["release_0"], "ko":["ko_0"],
         "charge":["charge_0"], "slam":["slam_0"], "launch":["launch_0"], "chase":["chase_0"],
         "rally":["rally_0"], "sub":["sub_0"]}
