@@ -160,7 +160,7 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
     c.draw_circle(Vector2(640,44),35,T.INK);c.draw_circle(Vector2(640,44),32,T.PAPER);c.draw_circle(Vector2(640,44),29,T.GOLD)
     var clock:String="∞" if s.practice or s.sim.endless else "%02d"%ceili(s.sim.remaining)
     if s.sim.story_enabled:clock="%d/3"%(s.sim.wave_index+1)
-    if s.sim.campaign_enabled:clock="%d/18"%(s.sim.campaign_room+1)
+    if s.sim.campaign_enabled:clock=s.sim.campaign_counter
     var clock_size:int=36 if clock.length()>2 else 48
     var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,clock_size).x
     text(c,Vector2(640-width*.5,59),clock,clock_size)
@@ -168,6 +168,9 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
     plate(c,Rect2(154,646,972,54),T.PAPER,20)
     var skill_label:String="NODE" if s.character_choices[0]==3 else ("HOLD" if s.character_choices[0]==1 else "SKILL")
     var shortcuts:Array=[["J","RUSH",174],["K","LAUNCH",382],["L",skill_label,616],["W+L","SUPER",820]]
+    if s.sim.campaign_enabled:
+        if "launcher" not in s.sim.campaign_skills:shortcuts[1][1]="HEAVY"
+        if "overdrive" not in s.sim.campaign_skills:shortcuts[3]=["E","DODGE",820]
     for entry in shortcuts:
         var key_width:float=72 if entry[0]=="W+L" else 44
         plate(c,Rect2(entry[2],655,key_width,34),T.INK,6)

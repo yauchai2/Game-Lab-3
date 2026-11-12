@@ -16,7 +16,7 @@ func run() -> void:
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";root.add_child(s)
     s.set_process(false);s.set_physics_process(false);s.audio.muted=true
     await frames()
-    check("Shared640x360 framebuffer",root.get_texture().get_size()==Vector2(640,360))
+    check("Shared960x540 framebuffer",root.get_texture().get_size()==Vector2(960,540))
     check("New logo has its own modular asset",s.hud.Tokens.LOGO.resource_path=="res://assets/ui/ink/logo.tres")
     await shot("title")
     s.hud.open_page("roster")

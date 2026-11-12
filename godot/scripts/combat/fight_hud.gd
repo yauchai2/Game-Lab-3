@@ -522,7 +522,7 @@ func _roster_page() -> void:
 
 func _help_page() -> void:
     if session.screen=="title":_plain_action("STORY WAVES / THREE-WAVE SLICE","story_slice",session.start_story)
-    menu_stack.add_child(_label("STORY: three finite waves, no XP. Down+K knocks bodies into enemies. Enter skips the wave break. Pause, then R retries this wave with supplies.",24,Tokens.MUTED))
+    menu_stack.add_child(_label("MAIN MENU > STORY: city, skills, talents, gear and contracts. Clear an encounter, then Enter returns to town. FIGHTERS > STORY WAVES keeps the original three-wave preview.",24,Tokens.MUTED))
     _plain_action("FIRST MINUTE / C - START LESSONS","first_minute",session.start_first_minute)
     _plain_action("SURGE LAB / B - COMPARE DECISION WINDOW","surge_lab",session.start_surge_lab)
     for line in ["ZIP: evade a nearby strike for ROUTE. Spend it on E dash. L confirms a second kick.","RIVET: hold L to PRELOAD I / II, then release. Slow windup, strong guard pressure.","HUSH: frontal perfect guard stores SAMPLE. Cross / K / L / W+L spends it.","LOOP: L places a node (20). Move+L places farther. S+L pulses nodes (10). W+L: ENCORE.","FIGHTERS > STREET RUN: win stops for XP and skill points. Equip 2 in SKILLS. Standard FIGHT uses fixed stats."]:
@@ -637,7 +637,7 @@ func _draw() -> void:
     service_art.draw(self,session)
     if session.sim.story_enabled:
         if session.sim.arrival_left>0:
-            var heading:String="ENCOUNTER %d / 18"%(session.sim.campaign_room+1) if session.sim.campaign_enabled else "WAVE %d / 3"%(session.sim.wave_index+1)
+            var heading:String=session.sim.campaign_caption if session.sim.campaign_enabled else "WAVE %d / 3"%(session.sim.wave_index+1)
             _center(Vector2(640,180),heading,32,Tokens.TEAL)
         if session.sim.story_state=="break":_center(Vector2(640,180),"WAVE CLEAR / ENTER TO CONTINUE",28,Tokens.TEAL)
     _draw_core_tag()

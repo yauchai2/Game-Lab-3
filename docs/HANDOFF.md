@@ -1,3 +1,11 @@
+## 2026-11-12：960解像度、完整天賦與合約刷圖已接實作
+
+見[CITY_PROGRESSION_EXPANSION.zh-TW.md](CITY_PROGRESSION_EXPANSION.zh-TW.md)。依最新要求由640×360升960×540，title／city及roster同步、保留最近鄰／toon輪廓／bitmap字體、logical UI與1280視窗（fractional填滿）。故事入口／能力解鎖沿既有；天賦擴48節點／25點／單關鍵天賦與真連線、縮放／拖曳／免費重置；真首次撞體擴散與parry／追擊有界回能。六區主題程序佈置、T1–T5合約seed配方／四詞綴／三次機會／同階返圖與兩次完圖升階；每場真裝備掉落、詞綴／四特製取捨、比較、各角配裝、60背包＋120倉庫。
+
+schema2沿原city_v1路徑，保留技能／錢裝、退舊樹等值點數，首次交易留.v1.bak；舊標準模式／GLB不改。巨型Boss／完整劇情及全新場景美術仍待做；城市仍簡單幾何，戰鬥六區共用基底。來源只推codex/story-waves-m1／草稿PR #12，main與Web不動。
+
+[359項驗證／960畫面](evidence/city-expansion/README.md)：城市86、原生22、strict18、M1 37／二段跳62／戰鬥34／九核心75、原生整體15／Ink10；最終log無ERROR／SCRIPT ERROR。四角Easy普通輸入、真掉落／解鎖通首區，無補血傷害注入；後期結算採fixture，非真人／Mac／FPS／實聽驗收。舊v1城市fixture歸檔，公開verify_city入口改跑新套件；兩舊UI framebuffer斷言按新960契約更新，其他斷言保持。
+
 ## 2026-11-12：Hades式城市回城循環已可玩
 
 最新使用者要求覆蓋前輪純城市圖／規劃狀態，見 [CITY_ROGUELITE_RUNTIME.zh-TW.md](CITY_ROGUELITE_RUNTIME.zh-TW.md)。主選單STORY進45°正交可行走安全城、五互動站；六區×三場共用街道佈置、回城升技／12節點8點天賦／三槽永久裝備／保底抽裝／短故事。清場銀行化錢零件並選一次臨時強化，敗退清出擊、保留永久進度；獨立city_v1存檔／備援／交易回滾／逐場快照。標準FIGHT與Demo在FREE PLAY，原M1預覽仍在FIGHTERS；原GLB及舊進度不改。

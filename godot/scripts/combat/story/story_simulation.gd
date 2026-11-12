@@ -6,6 +6,12 @@ var campaign_enabled:=false
 var campaign_skills:Array=[]
 var campaign_stats:Dictionary={}
 var campaign_room:=0
+var campaign_tier:=0
+var campaign_captain:=false
+var campaign_caption:=""
+var campaign_counter:=""
+var parry_refund_left:=12.0
+var chase_refund_left:=10.0
 var wave_recipes:Array=WAVES.duplicate(true)
 var story_enabled:=false
 var wave_index:=0
@@ -22,12 +28,13 @@ func begin_story() -> void:
     _load_wave(0,100,60.0)
 
 func end_squad() -> void:
+    campaign_tier=0;campaign_captain=false;campaign_caption="";campaign_counter=""
     campaign_enabled=false;campaign_skills.clear();campaign_stats.clear();wave_recipes=WAVES.duplicate(true)
     story_enabled=false;story_state="";checkpoint.clear();body_chain.clear()
     super.end_squad()
 
 func _load_wave(index:int,hp:int,meter:float) -> void:
-    wave_index=index;wave_revision+=1;body_chain.clear()
+    wave_index=index;wave_revision+=1;body_chain.clear();parry_refund_left=12.0;chase_refund_left=10.0
     reset_round();phase="fight";countdown=0;remaining=99999.0
     squad_enabled=true;squad_level=clampi(difficulty,0,2);squad_clock=0;squad_focus=0;next_attack_at=75
     struck.clear();strike_serial=-1;squad_members.clear()
@@ -38,8 +45,9 @@ func _load_wave(index:int,hp:int,meter:float) -> void:
         f["max_health"]={"grunt":35,"rusher":28,"guard":48}[role]
         if campaign_enabled:
             f.max_health+=floori(float(campaign_room)/3.0)*4
-            if campaign_room%3==2 and id==0:
-                f.max_health=80+campaign_room*4;f["captain"]=true
+            if (campaign_captain if campaign_tier>0 else campaign_room%3==2) and id==0:
+                f.max_health=80+campaign_room*4+campaign_tier*15;f["captain"]=true
+            f.max_health=ceili(f.max_health*(1.0+float(campaign_stats.get("enemy_hp",0))))
         f.health=f.max_health;f.x=SPAWNS[id];f.face=1 if f.x<0 else -1;f.meter=0.0
         f["rush_charge"]=0;f["rush_cd"]=0;f["rush_follow"]=false;f["rush_direction"]=f.face
         squad_members.append(f)
@@ -93,6 +101,8 @@ func ai_command() -> Dictionary:
 
 func _advance_fighter(i:int,command:Dictionary) -> void:
     var f:Dictionary=fighters[i]
+    var event_start:=events.size()
+    if campaign_enabled and i==0:f["city_counter"]=maxi(0,int(f.get("city_counter",0))-1)
     if story_enabled and i==1 and f.health<=0:f.flash=maxi(0,f.flash-1)
     if story_enabled and i==1 and f.has("story_role") and f.health>0:
         command=command.duplicate()
@@ -113,6 +123,11 @@ func _advance_fighter(i:int,command:Dictionary) -> void:
         if "chase" not in campaign_skills:
             f.air.chase_window=0;f.air.chase_buffer=0
     super._advance_fighter(i,command)
+    if campaign_enabled and i==0:
+        for event in events.slice(event_start):
+            if event.kind=="homing_chase" and event.target==0:
+                var refund:=minf(chase_refund_left,float(campaign_stats.get("chase_refund",0)))
+                chase_refund_left-=refund;f.meter=minf(100,f.meter+refund)
     if story_enabled and i==1 and f.has("rush_charge") and f.rush_charge>0:f.face=f.rush_direction
 
 func _choose_focus(player:Dictionary) -> void:
@@ -130,7 +145,12 @@ func _resolve_hit(side:int,allow_exchange:=true) -> void:
     super._resolve_hit(side,allow_exchange)
     if not story_enabled:return
     for event in events.slice(start):
+        if campaign_enabled and event.kind=="parry" and event.target==0:
+            fighters[0]["city_counter"]=180
+            var refund:=minf(parry_refund_left,float(campaign_stats.get("parry_meter",0)))
+            parry_refund_left-=refund;fighters[0].meter=minf(100,fighters[0].meter+refund)
         if event.kind=="hit" and side==0:
+            if campaign_enabled:fighters[0]["city_counter"]=0
             var serial:int=fighters[0].service.serial
             if not body_chain.roots.has(serial):body_chain.roots[serial]={"hit":{},"count":0,"age":0}
             body_chain.roots[serial].hit[fighters[1].squad_id]=true
@@ -170,10 +190,17 @@ func move_for(fighter:Dictionary,name:String) -> Dictionary:
     if not campaign_enabled:return move
     move=move.duplicate(true)
     if fighter.get("character",4)==4:
-        move.damage=maxi(1,roundi(float(move.damage)*(1.0-float(campaign_stats.get("defence",0)))))
+        move.damage=maxi(1,roundi(float(move.damage)*(1.0+float(campaign_stats.get("enemy_damage",0)))*(1.0-float(campaign_stats.get("defence",0)))))
     else:
         var bonus:float=float(campaign_stats.get("damage",0))
         if name=="special":bonus+=float(campaign_stats.get("skill_damage",0))
+        if fighter.y>.01:bonus+=float(campaign_stats.get("aerial_damage",0))
+        else:bonus+=float(campaign_stats.get("ground_penalty",0))
+        if name in ["heavy","finisher"]:bonus+=float(campaign_stats.get("heavy_damage",0))
+        if name in ["meteor","air_finisher"]:bonus+=float(campaign_stats.get("finisher_damage",0))
+        if int(fighter.get("city_counter",0))>0:bonus+=minf(.6,float(campaign_stats.get("counter_damage",0)))
+        move["guard_multiplier"]=1.0+minf(.4,float(campaign_stats.get("guard_damage",0)))
+        if name in ["heavy","grab","meteor","air_finisher","overdrive"]:move.push*=1.0+minf(.3,float(campaign_stats.get("launch_force",0)))
         move.damage=maxi(1,roundi(float(move.damage)*(1.0+bonus)))
     return move
 

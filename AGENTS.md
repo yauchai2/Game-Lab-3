@@ -133,3 +133,5 @@
 - 2026-11-12 最新城市ARPG詳細提案見docs/CITY_ARPG_PROGRESSION_PLAN.zh-TW.md。本輪僅規劃：新故事保證能力漸解鎖、主選單入口、48節點／25點、城市刷圖／三槽永久裝備／兩貨幣／定向抽裝保底未實作。故事晶片擬持續下一整張圖，覆蓋舊兩關區段提案；標準模式九核心契約不改。保留舊存檔能力；先一區小循環再擴六區Boss，現況仍M1三波。只推codex/story-waves-m1，不自動合併main或發佈Web。
 
 - 2026-11-12 最新使用者要求Hades式回城升值／故事，缺assets先簡單做：已接主選單STORY→45°正交程序城市／五站／六區18遭遇，見docs/CITY_ROGUELITE_RUNTIME.zh-TW.md，覆蓋城市僅規劃。12節點8點、基本L三級、三槽數值裝／保底、短對話、永久與局內分層、獨立city_v1快照存檔；敗退清局內、清場Enter回城。FREE PLAY收FIGHT／SQUAD／Demo，舊M1保留FIGHTERS。六區共用街道佈置、隊長沿盾衛，沒有巨型Boss／完整48樹／T1–5／城市九核心，不得冒稱。226項最終驗證，Linux llvmpipe非真人／Mac；只推codex/story-waves-m1／草稿PR #12，main與Web不動，原GLB／舊進度保持。
+
+- 2026-11-12 最新要求稍提高解像度並完成城市成長：現況docs/CITY_PROGRESSION_EXPANSION.zh-TW.md。960×540／較清晰title-city-roster覆蓋舊640要求，nearest／無AA／toon輪廓／logical UI保持、fractional填1280視窗。48節點25點／一keystone、縮放拖曳／相連／互動天賦，T1–T5合約四詞綴／seed／3次／返圖晉級，真掉裝／詞綴／特製取捨／比較／各角三槽與倉庫已實作。v1城市遷schema2保技能錢裝、退樹保等值預算、.v1.bak；公開city驗證入口轉新套件舊fixture保archive。359項／960原生圖，仍非真人／Mac／FPS；巨型多階段Boss／完整劇情美術與城市九核心仍待做。原GLB、FIGHT／Demo／舊進度保持，只推codex/story-waves-m1／草稿PR #12，不合main／Web。

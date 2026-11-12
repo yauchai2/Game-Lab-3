@@ -21,6 +21,9 @@ var page:=""
 var selected_slot:=0
 var notice:=""
 var walk_clock:=0.0
+var talent_tree:Control
+var inventory_page:=0
+var selected_item:=-1
 var nearest:=-1
 
 func _ready() -> void:
@@ -28,7 +31,7 @@ func _ready() -> void:
     root=Control.new();root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);root.theme=T.build();add_child(root)
     var container:=SubViewportContainer.new();container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);container.stretch=true
     container.mouse_filter=Control.MOUSE_FILTER_IGNORE;container.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;root.add_child(container)
-    viewport=SubViewport.new();viewport.size=Vector2i(640,360);viewport.own_world_3d=true;container.add_child(viewport)
+    viewport=SubViewport.new();viewport.size=Vector2i(960,540);viewport.own_world_3d=true;container.add_child(viewport)
     world=Node3D.new();viewport.add_child(world);_build_city()
     layout=Control.new();layout.mouse_filter=Control.MOUSE_FILTER_IGNORE;root.add_child(layout)
     header=_label("",30,T.PAPER);header.position=Vector2(34,22);header.size=Vector2(1220,74);layout.add_child(header)
@@ -46,6 +49,7 @@ func _ready() -> void:
     panel.add_theme_stylebox_override("panel",T.plate(Color("10121f"),T.TEAL,2));layout.add_child(panel)
     var scroll:=ScrollContainer.new();scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;panel.add_child(scroll)
     stack=VBoxContainer.new();stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL;stack.add_theme_constant_override("separation",10);scroll.add_child(stack)
+    talent_tree=preload("res://scripts/combat/city/city_talent_tree.gd").new();layout.add_child(talent_tree)
     root.resized.connect(_resize);_resize();hide_city()
 
 func _resize() -> void:
@@ -123,19 +127,22 @@ func show_city() -> void:
 
 func hide_city() -> void:
     visible=false
+    if is_instance_valid(talent_tree):talent_tree.hide()
     get_viewport().disable_3d=false
     if is_instance_valid(root):root.visible=false;viewport.render_target_update_mode=SubViewport.UPDATE_DISABLED
 
 func refresh_header() -> void:
     var p=campaign.profile;var d:Dictionary=p.data
     var progress:="NEW EXPEDITION" if d.run.is_empty() else "ROOM %d / 18   HP %d"%[int(d.run.room)+1,int(d.run.hp)]
-    header.text="SAFE BLOCK   /   %s\n%d CREDITS    %d PARTS    %d TALENT POINTS"%[progress,int(d.credits),int(d.parts),int(d.points)]
+    header.text="SAFE BLOCK / %s\n%d CREDITS   %d PARTS   LV%d   %d POINTS"%[progress,int(d.credits),int(d.parts),p.level(),int(d.points)]
+    if not d.run.is_empty() and d.run.get("mode","story")=="contract":
+        header.text="SAFE BLOCK / T%d / WAVE %d OF %d / %d ATTEMPTS\n%d CREDITS / LV%d / HP %d"%[int(d.run.contract.tier),int(d.run.wave)+1,int(d.run.contract.waves),int(d.run.tries),int(d.credits),p.level(),int(d.run.hp)]
     if p.error!="":notice=p.error
 
 func _process(delta:float) -> void:
     if not visible:return
     var movement:=Vector2.ZERO
-    if not panel.visible:
+    if not panel.visible and not talent_tree.visible:
         movement=Vector2(float(Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT))-float(Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT)),float(Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN))-float(Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP))).normalized()
         # Screen-relative input under a 45-degree camera.
         var direction:=Vector3(movement.x+movement.y,0,movement.y-movement.x).normalized()
@@ -159,6 +166,9 @@ func _process(delta:float) -> void:
 
 func _input(event:InputEvent) -> void:
     if not visible or not event is InputEventKey or not event.pressed or event.echo:return
+    if talent_tree.visible:
+        if event.keycode==KEY_ESCAPE:talent_tree.hide();refresh_header();get_viewport().set_input_as_handled()
+        return
     if event.keycode==KEY_ESCAPE:
         if panel.visible:close_panel()
         else:campaign.leave_city()
@@ -197,6 +207,7 @@ func open_station(index:int) -> void:
     for child in stack.get_children():stack.remove_child(child);child.queue_free()
     _text(page,T.TEAL)
     _button("CLOSE / ESC",close_panel)
+    if campaign.profile.migration_notice!="":_text(campaign.profile.migration_notice,T.GOLD)
     if campaign.profile.error!="":
         _text(campaign.profile.error,T.GOLD)
         _button("RELOAD SAVED PROFILE",func():act(campaign.profile.retry_save,"Save reloaded"))
@@ -207,6 +218,7 @@ func open_station(index:int) -> void:
         2:_shop()
         3:_story()
         4:_map()
+    if talent_tree.visible:return
     for child in stack.get_children():
         if child is Button and not child.disabled:child.call_deferred("grab_focus");break
 
@@ -224,53 +236,51 @@ func _skills() -> void:
     _text("Movement, dodge, guard, throws and your basic class skill are available from the start.")
 
 func _talents() -> void:
-    var p=campaign.profile;var hero_id:int=campaign.hero_id();var tree:Array=p.data.talents[hero_id]
-    _text("%s / %d OF %d POINTS"%[["ZIP","RIVET","HUSH","LOOP"][hero_id],tree.size(),int(p.data.points)])
-    _text("Four connected circuits. Each node needs the previous node in its branch.")
-    var board:=Control.new();board.set_meta("city_board","talents");board.custom_minimum_size=Vector2(474,184);stack.add_child(board)
-    board.draw.connect(func():
-        for branch in 4:
-            var x:=float(50+branch*120)
-            board.draw_line(Vector2(x,16),Vector2(x,156),COLORS[branch],3))
-    for i in Profile.TALENTS.size():
-        var node:Dictionary=Profile.TALENTS[i];var id:String=node.id
-        var owned:bool=id in tree
-        var available:bool=not owned and tree.size()<int(p.data.points) and (int(node.rank)==0 or Profile.TALENTS[i-1].id in tree)
-        var button:=Button.new();button.position=Vector2(18+int(node.branch)*120,10+int(node.rank)*55);button.size=Vector2(66,44)
-        button.text=("* " if owned else "+ ")+str(int(node.rank)+1);button.disabled=not available
-        button.tooltip_text=node.name+" / "+node.stat+" +%d"%roundi(float(node.amount)*100)
-        button.pressed.connect(func():act(func():return p.allocate(hero_id,id),"Talent connected"));board.add_child(button)
-    _text("BREAK / SKILL / GUARD / ENTRY",T.GOLD)
-    _text("Each column: +4%, +6%, then a keystone.\nBreak: +12% damage / take +6%.\nSkill: -10% skill cost.\nGuard: -10% incoming / deal -6%.\nEntry: +15 starting meter / skill cost +6%.")
-    var stats:Dictionary=p.stats(hero_id)
-    _text("TOTAL incl. gear/boons: damage %+d%% / defence %+d%% / skill saving %+d%% / entry +%d"%[roundi(stats.damage*100),roundi(stats.defence*100),roundi(stats.economy*100),int(stats.entry)])
-    _button("FREE RESET THIS CHARACTER",func():act(func():return p.respec(hero_id),"Talents reset"))
-    _button("5 PARTS > 1 POINT (CAP 8)",func():act(p.buy_point,"Point acquired"),p.data.parts<5 or int(p.data.points)>=8)
+    panel.visible=false;talent_tree.open(campaign.profile,campaign.hero_id())
 
 func _shop() -> void:
-    var p=campaign.profile
-    _text("SLOT: %s / 100 CREDITS"%Profile.SLOTS[selected_slot],T.GOLD)
+    var p=campaign.profile;var hero_id:int=campaign.hero_id()
+    _text("%s / 100 CREDITS"%Profile.SLOTS[selected_slot],T.GOLD)
     _button("CHANGE SLOT > "+Profile.SLOTS[(selected_slot+1)%3],func():selected_slot=(selected_slot+1)%3;open_station(2))
     _button("DRAW SELECTED SLOT / 100 CREDITS",func():
-        var item:Dictionary=p.pull(selected_slot)
-        notice="Received "+str(item.get("name","nothing"));refresh_header();open_station(2),p.data.credits<100 or p.data.inventory.size()>=60)
-    _text("White 25 / Blue 55 / Rare 19 / Signature 1%%.
-PITY: %d / 10 RARE     %d / 40 SIGNATURE"%[int(p.data.pity),int(p.data.unique_pity)])
+        var item:Dictionary=p.pull(selected_slot,hero_id)
+        notice="Received "+str(item.get("name","nothing"));refresh_header();open_station(2),p.data.credits<100 or p.data.inventory.size()+p.data.stash.size()>=180)
+    _text("WHITE25 / BLUE55 / RARE19 / SIGNATURE1%%
+PITY %d/10 RARE / %d/40 SIGNATURE"%[int(p.data.pity),int(p.data.unique_pity)])
     _button("HEAL 40 HP / 25 CREDITS",func():act(p.heal,"Recovered up to 40 HP"),p.data.run.is_empty() or p.data.credits<25 or int(p.data.run.get("hp",100))>=100)
+    var all_items:Array=p.data.inventory+p.data.stash
+    for item in all_items:
+        if int(item.id)!=selected_item:continue
+        _text("COMPARE / SELECTED",T.TEAL);stack.get_child(stack.get_child_count()-1).set_meta("compare_start",true);_text(p.Loot.describe(item))
+        var current:Dictionary=p.gear_for(hero_id)[int(item.slot)]
+        _text("CURRENT: "+p.Loot.describe(current),T.GOLD)
+        var before:Dictionary=p.stats(hero_id)
+        p.data.loadouts[hero_id][int(item.slot)]=item
+        var after:Dictionary=p.stats(hero_id);p.data.loadouts[hero_id][int(item.slot)]=current
+        _text("BUILD CHANGE: DAMAGE %+d%% / DEFENCE %+d%% / SAVING %+d%%"%[roundi((after.damage-before.damage)*100),roundi((after.defence-before.defence)*100),roundi((after.economy-before.economy)*100)])
+        var id:=int(item.id)
+        _button("EQUIP FOR THIS HERO",func():act(func():return p.equip(id,hero_id),"Equipment fitted"),not current.is_empty() and int(current.id)==id)
+        _button("RECYCLE / +%d PARTS"%(1+int(item.tier)),func():act(func():return p.salvage(id),"Equipment recycled"),p.is_equipped(id))
+        break
+    _text("EQUIPPED / "+["ZIP","RIVET","HUSH","LOOP"][hero_id],T.TEAL)
     for i in 3:
-        var gear:Dictionary=p.data.gear[i]
-        _text(Profile.SLOTS[i]+": "+("EMPTY" if gear.is_empty() else gear.name),T.GOLD)
-    _text("Inventory %d / 60. Wrists: damage; soles: skill saving; waist: defence. Values 2/4/7/10%% by quality."%p.data.inventory.size())
-    for item in p.data.inventory:
-        var id:=int(item.id);var equipped:bool=not p.data.gear[int(item.slot)].is_empty() and int(p.data.gear[int(item.slot)].id)==id
-        _button(("EQUIPPED " if equipped else "EQUIP ")+item.name,func():act(func():return p.equip(id),"Equipment fitted"),equipped)
-        if not equipped:_button("RECYCLE #%d / +%d PARTS"%[id,1+int(item.tier)],func():act(func():return p.salvage(id),"Equipment recycled"))
+        var slot:=i;var gear:Dictionary=p.gear_for(hero_id)[i]
+        _text(p.Loot.describe(gear))
+        if not gear.is_empty():_button("UNEQUIP "+Profile.SLOTS[i],func():act(func():return p.unequip(slot,hero_id),"Slot cleared"))
+    _text("BAG %d/60 / STASH %d/120"%[p.data.inventory.size(),p.data.stash.size()],T.GOLD)
+    inventory_page=clampi(inventory_page,0,maxi(0,floori(float(all_items.size()-1)/8.0)))
+    for i in range(inventory_page*8,mini(all_items.size(),inventory_page*8+8)):
+        var item:Dictionary=all_items[i];var id:=int(item.id)
+        _button("INSPECT #%d %s"%[id,item.name],func():selected_item=id;open_station(2);call_deferred("_scroll_compare"))
+    _button("PREVIOUS ITEMS",func():inventory_page-=1;open_station(2),inventory_page==0)
+    _button("NEXT ITEMS",func():inventory_page+=1;open_station(2),(inventory_page+1)*8>=all_items.size())
 
 func _story() -> void:
     var p=campaign.profile
     var line:int=mini(4,int(p.data.dialogue))
     var lines:=["RADIO KEEPER: The city went quiet when the tower took our signal. Start with the alley. Bring back anything the patrols leave behind.","RADIO KEEPER: A retreat is not the end. Your gear and training stay here. The current you borrow out there disappears when you fall.","RADIO KEEPER: The gates are shielded. Throw the front line or find an opening. One flying body can break a whole formation.","RADIO KEEPER: Freight crews answer to the tower. Our map marks six routes. Clear three encounters to open the next district.","RADIO KEEPER: The tower captain is waiting. This block is still your home. Come back, prepare, and take another run."]
     _text(lines[line])
+    for reward in p.data.last_loot:_text(str(reward),T.GOLD)
     _text("Attempts %d / furthest encounter %d / 18"%[int(p.data.attempts),int(p.data.best)],T.GOLD)
     _button("CONTINUE CONVERSATION",func():
         var before:Dictionary=p.data.duplicate(true);p.data.dialogue=mini(4,int(p.data.dialogue)+1)
@@ -283,9 +293,12 @@ func _map() -> void:
             _text("SALVAGED CURRENT / CHOOSE ONE\n+5% this expedition. Lost on defeat.",T.GOLD)
             for stat in ["damage","defence","economy"]:
                 var id:String=stat
-                _button("TAKE "+stat.to_upper(),func():act(func():return p.choose_boon(id),"Current absorbed"))
+                _button("TAKE "+stat.to_upper(),func():act(func():return p.choose_boon(id),"Current absorbed"),float(p.data.run.boons.get(id,0))>=.30)
         var room:=int(p.data.run.room)
-        _text("CONTINUE: %s / %d OF 3\nHP %d / METER %d"%[Profile.DISTRICTS[mini(5,floori(float(room)/3.0))],room%3+1,int(p.data.run.hp),int(p.data.run.meter)])
+        if p.data.run.get("mode","story")=="contract":
+            _text(p.Contracts.describe(p.data.run.contract),T.GOLD)
+            _text("WAVE %d / %d / ATTEMPTS %d"%[int(p.data.run.wave)+1,int(p.data.run.contract.waves),int(p.data.run.tries)])
+        else:_text("CONTINUE: %s / %d OF 3\nHP %d / METER %d"%[Profile.DISTRICTS[mini(5,floori(float(room)/3.0))],room%3+1,int(p.data.run.hp),int(p.data.run.meter)])
         _button("DEPART / CONTINUE",campaign.depart,bool(p.data.run.boon_due))
         _button("END EXPEDITION / KEEP BANKED LOOT",func():act(p.abandon,"Expedition ended; temporary current cleared"))
     else:
@@ -306,4 +319,17 @@ func _map() -> void:
     if p.data.run.is_empty():
         _text("HERO: "+["ZIP","RIVET","HUSH","LOOP"][campaign.hero_id()])
         _button("CHANGE HERO",func():campaign.selected_hero=(campaign.selected_hero+1)%4;open_station(4))
+    if p.data.best>=18:
+        _text("STREET CONTRACTS / T%d UNLOCKED"%int(p.data.contract_tier),T.TEAL)
+        _text("Clear returns a same-tier contract. Two clears of a tier guarantee the next tier. Free district clears supply T1.")
+        for contract in p.data.contracts:
+            var id:=int(contract.id)
+            _text(Profile.DISTRICTS[int(contract.sector)]+" / "+p.Contracts.describe(contract))
+            _button("START CONTRACT #%d"%id,func():
+                if p.start_contract(campaign.hero_id(),id):campaign.depart(),not p.data.run.is_empty())
     _text("Defeat ends the expedition; credits, gear, skills and talents stay. Cleared encounters bank rewards once. Safe returns preserve HP and current.")
+
+func _scroll_compare() -> void:
+    await get_tree().process_frame
+    for child in stack.get_children():
+        if child.get_meta("compare_start",false):panel.get_child(0).scroll_vertical=int(child.position.y);return
