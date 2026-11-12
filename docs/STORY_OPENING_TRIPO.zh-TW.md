@@ -41,7 +41,7 @@
 
 ## ChatGPT Image 提示詞（每項一條，附上對應裁圖作風格參考）
 
-通用前綴：「low-poly stylized 3D game prop, flat toon shading with dark ink outlines, grungy dusk garage palette, single object centered on plain mid-gray background, front/side/top three-view orthographic turnaround, no text, no logos, no ground」
+通用前綴（風格見 `docs/LOWPOLY_STYLE.zh-TW.md`，背景一律純白）：「chunky Blender low-poly game prop in PS1/Y2K indie style, very few large flat faceted polygons, hard angular silhouette, pixelated 16-bit texture details, soft vertex-colour gradient shading, single object centered on pure solid white (#FFFFFF) background, no floor, no cast shadow, front/side/top three-view orthographic turnaround, no text, no logos, no ground」
 
 - **A1**：`…, black aluminium flight case with silver corner guards and two metal latches on the front, closed, slightly scuffed, rectangular 1.5 x 0.78 m`
 - **A1b**：`…, same black flight case opened, lid up, interior filled with black cut-out foam holding one suppressed submachine gun, one compact submachine gun, three orange magazines and a blank clipboard sheet`
