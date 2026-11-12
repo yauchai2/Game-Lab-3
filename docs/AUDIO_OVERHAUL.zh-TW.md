@@ -33,3 +33,9 @@ heavy×3、slam×2、launch、release（特殊／超載釋放，爆炸前有 0.2
 - 新增 5 個介面音效（ui_move／confirm／back／toggle／pause，原創合成，短而乾）：滑鼠移入、鍵盤焦點、按下按鈕、切換開關、拖音量條、暫停。選單重建時的程式焦點 250 ms 內不發聲，且同類音效 55 ms 節流。
 - 修正：回合結算（round_over）不再換歌，只有整場結束（match_over）才切到結算曲；再戰才輪到下一首戰鬥曲。
 - 驗證：`verify_combat_sfx.gd` 42/42。`verify_focus_flow.gd` 的 "leaving the OS window pauses active gameplay" 在未修改的程式碼上同樣失敗，與本次無關。
+
+## 第二輪：打擊更兇（Alan 回饋「音效還不夠兇」）
+- 音源：重擊／重摔／KO 再疊一層降八度的拳擊（重量）；所有打擊類音效（hit／block／parry／guard_break／heavy／slam／ko／launch／release）在 `tools/build_real_sfx.py` 中先把前 150 ms 的 RMS 拉到目標（普通 -12 dB，重擊／KO 約 -9.5 dB），再 tanh 軟削波，讓聲音密而不只是尖。量測：普通擊 RMS150 約 -9～-13 dB、重擊約 -9～-10 dB（舊版約 -15 dB）。
+- 混音：`fight_audio.gd` 對打擊類音效只保留 35% 的衰減（呼叫端原本要求 -6～-12 dB，使打擊壓在音樂下面），基準 -3→-1 dB；SFX bus 在 limiter 前加壓縮器（-14 dB、4:1、attack 1.5 ms）；重擊／重摔／KO／破防的音樂閃避加深到 9 dB 且延長到 0.34 s，普通打擊 5 dB。
+- 音樂備選：額外 6 段循環放在專案檔案 `audio-overhaul/music-candidates/`（不在 repo），供 Alan 選曲。
+- 驗證：`verify_combat_sfx.gd` 49/49；`verify_unified_audio.gd` 無削波。仍然沒有人耳驗證，響度與聽感需 Alan 試聽；若太吵或失真，調整點是 `IMPACT_TARGET`、`peak` 與壓縮器 threshold。
