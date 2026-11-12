@@ -48,8 +48,8 @@ func _physics_process(delta: float) -> void:
     _pose("RightForeArm",.08*motion_blend)
     _pose("Spine",.025*sin(elapsed*2.2) + .06*motion_blend)
 
-func _pose(name: String, angle: float) -> void:
-    if not base_rotations.has(name):
+func _pose(pose_name: String, angle: float) -> void:
+    if not base_rotations.has(pose_name):
         return
-    var index: int = bone_indices[name]
-    skeleton.set_bone_pose_rotation(index,base_rotations[name]*Quaternion(local_axes[name],angle))
+    var index: int = bone_indices[pose_name]
+    skeleton.set_bone_pose_rotation(index,base_rotations[pose_name]*Quaternion(local_axes[pose_name],angle))

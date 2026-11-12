@@ -685,7 +685,9 @@ func _draw_victory(canvas: Control) -> void:
     canvas.draw_rect(Rect2(0,690,1280,30),ink)
     if t<1.12:
         var width:float=235*(1.0-smoothstep(.95,1.12,t))
-        canvas.draw_colored_polygon(PackedVector2Array([Vector2(0,104),Vector2(width,86),Vector2(width-36,119),Vector2(0,142)]),color)
+        # Below ~40px the quad folds over itself and Godot cannot triangulate it.
+        if width>40.0:
+            canvas.draw_colored_polygon(PackedVector2Array([Vector2(0,104),Vector2(width,86),Vector2(width-36,119),Vector2(0,142)]),color)
         canvas.draw_string(session.hud.bold,Vector2(32,652),victory_state.label,HORIZONTAL_ALIGNMENT_LEFT,-1,36,color)
     canvas.draw_string(session.hud.font,Vector2(28,710),"ENTER / SPACE  SKIP     ESC  PAUSE",HORIZONTAL_ALIGNMENT_LEFT,-1,22,Color("d9d2e5"))
     # A few broad ink cuts punctuate the gesture, then leave the slow exit clean.
