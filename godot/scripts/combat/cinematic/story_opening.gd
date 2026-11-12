@@ -234,11 +234,11 @@ func _camera_at(t:float) -> Dictionary:
 	var table:Vector3=Stage.TABLE
 	if t<3.0:
 		# Dive from beside the train, through the wires, down to the garage door.
-		var u:=ease_io(seg(t,0,3.0));var v:=pow(seg(t,0.0,3.0),1.6)
+		var u1:=ease_io(seg(t,0,3.0));var v:=pow(seg(t,0.0,3.0),1.6)
 		var start:=Vector3(27,12.9,17.4);var mid:=Vector3(18,9.6,12.5);var end:=Vector3(5.2,1.9,5.6)
 		var at:Vector3=start.lerp(mid,v).lerp(mid.lerp(end,v),v)
 		var look:Vector3=Vector3(6,10.5,21).lerp(Vector3(0,1.9,-2.5),ease_io(seg(t,.35,2.4)))
-		return {"at":at,"look":look,"fov":lerpf(84,60,u),"roll":lerpf(-16,2,u),"fisheye":lerpf(.62,.2,u),"blur":sin(seg(t,.4,2.8)*PI)*.05,"radial":sin(seg(t,.5,2.8)*PI)*.8}
+		return {"at":at,"look":look,"fov":lerpf(84,60,u1),"roll":lerpf(-16,2,u1),"fisheye":lerpf(.62,.2,u1),"blur":sin(seg(t,.4,2.8)*PI)*.05,"radial":sin(seg(t,.5,2.8)*PI)*.8}
 	if t<6.0:
 		# Lateral track through the workshop: three short holds joined by whip moves.
 		var stops:=[Vector3(-3.25,1.3,-.55),Vector3(1.05,1.05,-.15),Vector3(2.85,1.2,-1.55)]
@@ -259,32 +259,32 @@ func _camera_at(t:float) -> Dictionary:
 		return {"at":table+Vector3(-1.75,.42,-1.5).lerp(Vector3(-1.2,.3,-1.25),push)+Vector3(0,(1-pre)*.25,0),"look":table+Vector3(0,.22+(1-pre)*.5,0),"fov":lerpf(64,50,push),"roll":4.0-push*3.0,"fisheye":.3,"blur":maxf(0,1-absf(t-8.0)/.16)*.07,"radial":maxf(0,1-absf(t-8.02)/.3),"shake":.12}
 	if t<MUSIC_CUT:
 		# Latches: close, shallow, silent push.
-		var u:=seg(t,9.0,MUSIC_CUT)
-		return {"at":table+Vector3(1.25,.55,-2.0).lerp(Vector3(.95,.48,-1.75),u),"look":table+Vector3(0,.14,-.3),"fov":40,"roll":-2.0,"fisheye":.1,"shake":.035}
+		var u2:=seg(t,9.0,MUSIC_CUT)
+		return {"at":table+Vector3(1.25,.55,-2.0).lerp(Vector3(.95,.48,-1.75),u2),"look":table+Vector3(0,.14,-.3),"fov":40,"roll":-2.0,"fisheye":.1,"shake":.035}
 	if t<12.0:
 		# Hard cut to the overhead: contents, manifest, four frozen heads.
-		var u:=seg(t,MUSIC_CUT,12.0)
-		return {"at":table+Vector3(.02,lerpf(3.7,3.1,ease_io(u)),.16),"look":table+Vector3(0,.2,.18),"up":Vector3(sin(deg_to_rad(lerpf(-4,7,u))),0,-cos(deg_to_rad(lerpf(-4,7,u)))),"fov":70,"fisheye":.62,"chroma":.003,"vignette":.55}
+		var u3:=seg(t,MUSIC_CUT,12.0)
+		return {"at":table+Vector3(.02,lerpf(3.7,3.1,ease_io(u3)),.16),"look":table+Vector3(0,.2,.18),"up":Vector3(sin(deg_to_rad(lerpf(-4,7,u3))),0,-cos(deg_to_rad(lerpf(-4,7,u3)))),"fov":70,"fisheye":.62,"chroma":.003,"vignette":.55}
 	if t<12.88:
 		# The black car brakes in, seen low from the kerb.
-		var u:=seg(t,12.0,12.88)
-		return {"at":Vector3(6.4,.34,2.9),"look":Vector3(lerpf(9,-.5,ease_io(u)),.75,6.2),"fov":62,"roll":-5.0,"fisheye":.35,"smear":(1-u)*.045,"side":(1-u)*1.0,"shake":.07}
+		var u4:=seg(t,12.0,12.88)
+		return {"at":Vector3(6.4,.34,2.9),"look":Vector3(lerpf(9,-.5,ease_io(u4)),.75,6.2),"fov":62,"roll":-5.0,"fisheye":.35,"smear":(1-u4)*.045,"side":(1-u4)*1.0,"shake":.07}
 	if t<13.3:
 		# Three doors, one beat.
 		return {"at":Vector3(-3.6,.5,2.6),"look":Vector3(.4,.95,5.6),"fov":54,"roll":5.0,"fisheye":.3,"shake":.08}
 	if t<14.0:
 		# Low on the polished shoes, in step.
-		var u:=seg(t,13.3,14.0)
-		return {"at":Vector3(.5,.1,2.05+u*.12),"look":Vector3(.1,.42,4.0),"fov":76,"roll":-4.0,"fisheye":.7,"chroma":.004,"shake":.07}
+		var u5:=seg(t,13.3,14.0)
+		return {"at":Vector3(.5,.1,2.05+u5*.12),"look":Vector3(.1,.42,4.0),"fov":76,"roll":-4.0,"fisheye":.7,"chroma":.004,"shake":.07}
 	if t<15.0:
 		# Push in on the leader's sunglasses while the glove is pulled tight.
-		var u:=ease_io(seg(t,14.0,15.0))
+		var u6:=ease_io(seg(t,14.0,15.0))
 		var head:Vector3=suits[0].point("Head")-ORIGIN+Vector3(0,.1,0)
-		return {"at":Vector3(.75,1.25,1.5).lerp(head+Vector3(.16,-.06,-.82),u),"look":head,"fov":lerpf(52,34,u),"roll":lerpf(6,0,u),"fisheye":lerpf(.3,.5,u),"blur":u*.018,"radial":u*.5,"shake":.03}
+		return {"at":Vector3(.75,1.25,1.5).lerp(head+Vector3(.16,-.06,-.82),u6),"look":head,"fov":lerpf(52,34,u6),"roll":lerpf(6,0,u6),"fisheye":lerpf(.3,.5,u6),"blur":u6*.018,"radial":u6*.5,"shake":.03}
 	if t<15.55:
 		# From the bench: ZIP's back, the open case, and the collectors framed in the door.
-		var u:=ease_io(seg(t,15.0,15.55))
-		return {"at":Vector3(1.45,1.78,-7.5).lerp(Vector3(1.3,1.72,-7.0),u),"look":Vector3(-.1,1.25,4.2),"fov":lerpf(58,33,u),"roll":-3.0,"fisheye":.15,"blur":sin(u*PI)*.04,"radial":sin(u*PI)*.7}
+		var u7:=ease_io(seg(t,15.0,15.55))
+		return {"at":Vector3(1.45,1.78,-7.5).lerp(Vector3(1.3,1.72,-7.0),u7),"look":Vector3(-.1,1.25,4.2),"fov":lerpf(58,33,u7),"roll":-3.0,"fisheye":.15,"blur":sin(u7*PI)*.04,"radial":sin(u7*PI)*.7}
 	if t<TITLE_AT:
 		# Inside the case looking up: the lid comes down on the lens.
 		return {"at":table+Vector3(.05,.215,-.08),"look":table+Vector3(.0,1.25,.62),"fov":104,"roll":3.0,"fisheye":.85,"chroma":.006,"shake":.02}
