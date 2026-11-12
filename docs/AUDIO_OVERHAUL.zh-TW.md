@@ -11,14 +11,17 @@ Alan 要求「真正格鬥遊戲的音效」，第一版純合成聽起來仍像
 - `fight_audio.gd`：優先載入新檔，缺檔時退回 Kenney CC0，再退回舊合成音。SFX 音量基準 -4→-3 dB，SFX bus limiter 由 -6/-6 改為 ceiling -2 / threshold -3，避免把瞬間峰值壓平。
 - 保留 `cinematic_duck`、`music_gain_db` 兩個屬性（開場動畫使用）。
 
-## 音樂（Starjunk 95，Alan 提供，允許自由剪輯）
-- 剪輯器：`tools/build_music_loops.py`（原曲 mp3 不入庫）。小節對齊、接縫 12 ms 等功率交叉淡化，loudnorm I=-17。出處與切點見 `godot/audio/music/provenance.json`。
-- 戰鬥 pool（每場新比賽輪流，暫停／回合間不換曲）：`fight_a_drop`（Beat Keep Rockin 第一段 drop，140 BPM、16 小節）→ `fight_b_groove`（State Your Name 主段，125 BPM、16 小節）→ 既有 Groove District。
-- 主選單：沿用 Berlin。結算畫面：`result_breakdown`（Groove District 第 24–31 小節 breakdown，8 小節循環）。
-- 開場動畫的配樂不在此改動（PR #10）。
+## 音樂（2026-11-12 更新：全部改用 Alan 提供的合輯 mp3）
+來源：「High-Energy Hip Hop Breakbeat Playlist — Music Inspired by Jet Set Radio」（Alan 提供，約 80 分鐘；曲目作者與授權未知，視為使用者提供並授權用於本遊戲，**不聲稱 CC0**，檔案不入庫）。這份合輯前 ~40 分鐘整段重複一次，只用 0–2430 秒。
+- 分析：16 秒視窗估速度 → 11 個穩定速度段（100–131.5 BPM，整數 BPM，數位製作）→ 以 0.01 BPM 擬合節拍格線 → 以每小節 mel 相似度找「N 小節後重複」的段落當循環（相似度 0.85–0.99），接縫 12 ms 等功率交叉淡化，接縫處波形跳變不大於該檔 99.9 百分位。切點表在 `tools/build_playlist_music.py`，每檔時間資訊在 `godot/audio/music/music.json`。
+- 情境：主選單 `menu`（第 1 首 116 BPM：4 小節前奏 + 16 小節循環）、戰鬥 `fight_a`（130 BPM）、`fight_b`（131.5 BPM）、`fight_c`（113 BPM），每開新一場輪流；結算 `result`（110 BPM、能量較低的段落）。每檔約 0.5–0.7 MB。
+- **前奏只播一次：** 前奏與循環放在同一個 OGG，Godot 用 `loop_offset` 只循環 16 小節循環段。第一次進主選單從 0 秒（前奏）開始並寫入 `user://neon_lab/music.cfg`；之後每次進主選單，從循環段的隨機小節線開始，不再聽前奏。設定頁新增「重播音樂前奏」。
+- 戰鬥曲永遠從小節頭開始；回合結算不換歌，整場結束才切結算曲。
+- 舊的 Berlin／Groove District／WEV／Level 1 不再播放，檔案仍保留於 repo（`user-tracks/` 等），僅作為新檔缺失時的 fallback。
+- 開場動畫（PR #10）自己的音訊未改；它只調整 `cinematic_duck` 與 `music_gain_db`，選單音樂在開場期間靜音播放，所以第一次的前奏會在開場動畫中被消耗，不衝突。
 
 ## 驗證（誠實說明）
-- `godot/tools/verify_combat_sfx.gd`：32/32（載入、輪替、暫停保曲、結算換曲）。
+- `godot/tools/verify_combat_sfx.gd`：49/49（音效載入、輪替、暫停保曲、結算換曲、前奏只播一次、隨機循環起點、前奏重播）。
 - `verify_unified_audio.gd` 引擎混音 PCM 擷取：無削波。
 - `verify_music_audio.gd` 這套舊測試在改動前就是 12/20，現為 13/20；失敗項是舊斷言（假設兩曲固定、暫停會 pause 串流）。未修改。
 - **沒有人耳驗證**：Claude 聽不到聲音，新音效只以頻譜數字（高頻能量、attack 時間）對照舊版調整；實際聽感、Mac 真實喇叭、音樂接縫、曲目輪替的觀感都需要 Alan 試聽。

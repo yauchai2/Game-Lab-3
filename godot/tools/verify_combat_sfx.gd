@@ -34,6 +34,22 @@ func run() -> void:
     check("rematch advances the pool",audio.current_track!=before and not audio.match_over)
     audio.play_sound("ui_move");var first:int=audio.voice_index;audio.play_sound("ui_move")
     check("ui sounds are throttled",audio.voice_index==first)
+    # menu intro: heard once, then random bar inside the loop; replay on request
+    var info:Dictionary=audio.music_meta.get("menu",{})
+    check("music.json describes the menu track",not info.is_empty() and info.intro_seconds>4.0 and info.loop_seconds>20.0)
+    var menu_stream:=audio.music_stream(audio.MENU_TRACK) as AudioStreamOggVorbis
+    check("menu loop_offset equals the intro length",absf(menu_stream.loop_offset-float(info.intro_seconds))<.001 and menu_stream.get_length()>info.intro_seconds+info.loop_seconds-.2,[menu_stream.loop_offset,menu_stream.get_length()])
+    audio.intro_seen=false
+    check("first launch starts at the intro",audio.start_position(audio.MENU_TRACK)==0.0 and audio.intro_seen)
+    var positions:Array[float]=[]
+    for i in 12:positions.append(audio.start_position(audio.MENU_TRACK))
+    var inside:=positions.all(func(v:float)->bool:return v>=info.intro_seconds-.001 and v<info.intro_seconds+info.loop_seconds)
+    check("later launches start inside the loop on a bar line",inside and positions.any(func(v:float)->bool:return v!=positions[0]),positions.slice(0,4))
+    check("fight tracks never start mid-loop",audio.start_position(audio.FIGHT_POOL[0])==0.0)
+    audio.replay_intro()
+    check("replay_intro away from the menu re-arms the build-up",audio.intro_seen==false)
+    var cfg:=ConfigFile.new();check("intro flag persisted",cfg.load(audio.MUSIC_STATE_PATH)==OK and cfg.get_value("music","intro_seen",true)==false)
+    DirAccess.remove_absolute(ProjectSettings.globalize_path(audio.MUSIC_STATE_PATH))
     audio.queue_free();await process_frame
     var bad:=checks.filter(func(c):return not c.pass).size()
     print("COMBAT_SFX_CHECKS ",checks.size()-bad,"/",checks.size())

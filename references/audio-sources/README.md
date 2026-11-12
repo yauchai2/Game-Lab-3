@@ -13,3 +13,5 @@
 
 ## 2026-11-12 音訊重做
 `godot/audio/sfx/` 為原創程序合成（`tools/build_combat_sfx.py`），`godot/audio/music/` 為 Starjunk 95 曲目的剪輯循環（`tools/build_music_loops.py`，出處見該資料夾 provenance.json）。Kenney 檔案保留為缺檔 fallback。詳見 [docs/AUDIO_OVERHAUL.zh-TW.md](../../docs/AUDIO_OVERHAUL.zh-TW.md)。
+
+**2026-11-12 更新：** 遊戲內音樂已全部改為 Alan 提供的 Jet Set Radio 風格合輯 mp3 的剪輯（`godot/audio/music/`，`tools/build_playlist_music.py`），作者與授權未知，視為使用者提供並授權，不聲稱 CC0。前述 Starjunk 95 的剪輯循環已移除。

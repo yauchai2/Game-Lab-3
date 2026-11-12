@@ -13,6 +13,7 @@ const COPY := {
 "cannon_zip":["末班快送","LAST DELIVERY"],"cannon_rivet":["停工通知","STOP WORK"],"cannon_hush":["全場靜音","TOTAL SILENCE"],"cannon_loop":["安可迴圈","ENCORE LOOP"],
 
 "test_audio":["測試聲音","TEST SOUND"],
+"replay_intro":["重播音樂前奏","REPLAY MUSIC INTRO"],
 "restore_audio":["恢復聲音","RESTORE SOUND"],
 "retro_pixels":["復古低解像畫面", "Retro low resolution"],
 "trait_boxer":["拳手：均衡拳擊・穩定反擊", "BOXER · balanced fists / counters"],

@@ -13,8 +13,14 @@ var duck_time := 0.0
 var cinematic_duck := 0.0
 const OPEN := "res://audio/open/"
 const SFX := "res://audio/sfx/"
-const FIGHT_POOL:Array[String]=["res://audio/music/fight_a_drop.ogg","res://audio/music/fight_b_groove.ogg","res://audio/user-tracks/groove_district.ogg"]
-const RESULT_TRACK:="res://audio/music/result_breakdown.ogg"
+# All music is cut from one supplied playlist (tools/build_playlist_music.py). music.json has each file's intro/loop timing.
+const MUSIC_DIR:="res://audio/music/"
+const MENU_TRACK:="res://audio/music/menu.ogg"
+const FIGHT_POOL:Array[String]=["res://audio/music/fight_a.ogg","res://audio/music/fight_b.ogg","res://audio/music/fight_c.ogg"]
+const RESULT_TRACK:="res://audio/music/result.ogg"
+const MUSIC_STATE_PATH:="user://neon_lab/music.cfg"
+var music_meta:Dictionary={}
+var intro_seen:=false # the menu build-up plays only until it has been heard once; later launches start inside the loop
 var fight_index:=0
 var fight_pick:String=FIGHT_POOL[0]
 var last_context:="title"
@@ -68,7 +74,8 @@ func _ready() -> void:
     # Long tracks must stream on Web instead of decoding entire 192kHz songs as samples.
     if OS.has_feature("web"):music.playback_type=AudioServer.PLAYBACK_TYPE_STREAM
     music.bus="Afterhours Music"
-    current_track=BERLIN
+    _load_music_state()
+    current_track=MENU_TRACK
     music.stream = music_stream(current_track)
     music.volume_db = -19.0+music_trim_db
     add_child(music)
@@ -79,16 +86,48 @@ func _ready() -> void:
     fading_music.volume_db=-80.0
     fading_music.stream=music_stream(FIGHT_POOL[0])
     fading_track=FIGHT_POOL[0]
-    music_credit="Berlin"
+    music_credit=credit_for(MENU_TRACK)
     add_child(fading_music)
 
 func credit_for(path:String) -> String:
+    if path.begins_with(MUSIC_DIR):return "Breakbeat playlist (supplied) / "+path.get_file().get_basename().replace("_"," ")
     if path==BERLIN:return "Berlin"
     if path==GROOVE:return "Starjunk 95 / Groove District"
-    if path.contains("fight_a_drop"):return "Starjunk 95 / Beat Keep Rockin (edit)"
-    if path.contains("fight_b_groove"):return "Starjunk 95 / State Your Name (edit)"
-    if path==RESULT_TRACK:return "Starjunk 95 / Groove District (breakdown edit)"
     return "Juhani Junkala / Level 1 (CC0)"
+
+func _load_music_state() -> void:
+    if FileAccess.file_exists(MUSIC_DIR+"music.json"):
+        var parsed:Variant=JSON.parse_string(FileAccess.get_file_as_string(MUSIC_DIR+"music.json"))
+        if parsed is Dictionary:music_meta=parsed
+    var cfg:=ConfigFile.new()
+    if cfg.load(MUSIC_STATE_PATH)==OK:intro_seen=bool(cfg.get_value("music","intro_seen",false))
+
+func _save_music_state() -> void:
+    DirAccess.make_dir_recursive_absolute(MUSIC_STATE_PATH.get_base_dir())
+    var cfg:=ConfigFile.new()
+    cfg.set_value("music","intro_seen",intro_seen)
+    cfg.save(MUSIC_STATE_PATH)
+
+func _meta(path:String) -> Dictionary:
+    return music_meta.get(path.get_file().get_basename(),{})
+
+## Where a track starts. The menu build-up is heard once; afterwards the menu starts at a random bar inside its loop.
+func start_position(path:String) -> float:
+    var info:=_meta(path)
+    if path!=MENU_TRACK or info.is_empty():return 0.0
+    var offset:float=float(info.get("intro_seconds",0.0))
+    if not intro_seen:
+        intro_seen=true;_save_music_state()
+        return 0.0
+    var bars:int=maxi(1,roundi(float(info.get("loop_seconds",0.0))/float(info.get("bar_seconds",1.0))))
+    return offset+float(randi()%bars)*float(info.get("bar_seconds",0.0))
+
+## Settings action: forget that the intro was heard and play it again now if the menu track is playing.
+func replay_intro() -> void:
+    intro_seen=false;_save_music_state()
+    if current_track==MENU_TRACK and is_instance_valid(music):
+        intro_seen=true;_save_music_state()
+        music.seek(0.0)
 
 func music_stream(path: String) -> AudioStreamOggVorbis:
     var selected:=path if ResourceLoader.exists(path,"AudioStreamOggVorbis") else OPEN+"level1.ogg"
@@ -100,6 +139,8 @@ func music_stream(path: String) -> AudioStreamOggVorbis:
     music_credit=credit_for(selected)
     var track: AudioStreamOggVorbis=source.duplicate(true)
     track.loop=true
+    var info:=_meta(selected)
+    if not info.is_empty():track.loop_offset=float(info.get("intro_seconds",0.0))
     return track
 
 func _process(delta: float) -> void:
@@ -110,10 +151,10 @@ func _process(delta: float) -> void:
     if context=="play" and (last_context=="title" or (last_context=="result" and match_over)):
         fight_pick=FIGHT_POOL[fight_index%FIGHT_POOL.size()];fight_index+=1;match_over=false
     last_context=context
-    var desired:String=fight_pick if context=="play" else (BERLIN if context=="title" else (RESULT_TRACK if context=="result" and match_over else current_track))
+    var desired:String=fight_pick if context=="play" else (MENU_TRACK if context=="title" else (RESULT_TRACK if context=="result" and match_over else current_track))
     if desired!=current_track:_switch_track(desired)
     # Navigation never pauses the transport. Explicit mute/zero volume silence it.
-    if not music.playing:music.play()
+    if not music.playing:music.play(start_position(current_track))
     music.stream_paused=false
     fading_music.stream_paused=false
     var target_db:float=(-4.0 if context=="play" else (-15.0 if context in ["pause","help"] else -7.0))-(4.0 if duck_time>0 else 0.0)-cinematic_duck*8.0
@@ -141,7 +182,7 @@ func _switch_track(path:String) -> void:
     music.stream=music_stream(path)
     music_credit=credit_for(path)
     music.volume_db=-80.0
-    music.play()
+    music.play(start_position(path))
     crossfade=0.0
 
 func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:

@@ -485,6 +485,7 @@ func _settings_page() -> void:
     _volume("sound",session.audio.effects_level)
     menu_stack.add_child(_label(session.audio.status_text(),17,PAPER))
     _action(menu_stack,"test_audio","",func():session.audio.play_sound("parry",1.0,0.0))
+    _action(menu_stack,"replay_intro","",func():session.audio.replay_intro())
     _action(menu_stack,"restore_audio","",_restore_sound)
     _toggle("reduced",session.reduced_effects,func(value:bool):
         session.reduced_effects=value
