@@ -46,3 +46,10 @@ heavy×3、slam×2、launch、release（特殊／超載釋放，爆炸前有 0.2
 - 其他場景各有位置：選單 -8.5 dB／7.5 kHz（比戰鬥輕鬆）、結算 -8 dB／5.2 kHz、暫停 -15 dB／1.4 kHz（悶住）。開場電影音效不動（仍只透過 `cinematic_duck`、`music_gain_db`）。
 - 沒有改動音樂檔與判定，只是混音；聽起來是否自然、有沒有「忽暗忽亮」要 Alan 試聽，調整點是 `HEAT_BUMP`、`HEAT_COOL_PER_SECOND`、`CALM_CUTOFF_HZ`、`CALM_GAIN_DB`。
 - 驗證：`verify_combat_sfx.gd` 56/56（新增 7 項：新戰鬥從喘息開始、平靜時變暗變小、連擊後打開並升音量、自動冷卻、暫停悶住、恢復保留熱度、bus 只有一個低通濾波器）；`verify_unified_audio.gd` 戰鬥混音無削波。仍沒有人耳驗證。
+
+## 第四輪：收斂誇張、拉開強弱（Alan 回饋「音效有點太誇張，音樂也要有大有細」）
+- 判斷：不退回第二輪，而是分層。第二輪把所有打擊都推到同一個大聲水準，輕擊也像重擊，聽久就誇張。
+- 音源（`tools/build_real_sfx.py`）：輕擊 hit／block／parry 目標 RMS150 降到 -15～-15.5 dB、飽和 drive 1.0、peak .5；中層 launch／guard_break -12.5／-12；heavy／slam／ko／release -11～-10 dB，drive 1.3 左右、peak .62。解碼後量測：輕擊 RMS150 約 -16～-21 dB，重擊／KO 約 -12～-14 dB，差距約 5–8 dB。
+- 混音（`fight_audio.gd`）：打擊衰減保留 60%（原 35%，呼叫端要求較輕的招式自然更小聲），基準 -2 dB；壓縮器 -12 dB／3:1；音樂閃避 重擊 7 dB／普通 4 dB。
+- 音樂起伏加大：激烈時 -3 dB 全開，平靜時再降 7 dB 並濾到 1.5 kHz，總落差約 7 dB（原 4 dB）。
+- 驗證：`verify_combat_sfx.gd` 56/56（平靜降幅門檻同步收緊）、`verify_unified_audio.gd` 戰鬥混音無削波。仍無人耳驗證；調整點：`IMPACT_TARGET`／`IMPACT_DRIVE`、`CALM_GAIN_DB`、`CALM_CUTOFF_HZ`。

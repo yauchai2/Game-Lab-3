@@ -33,9 +33,9 @@ const BIG_KINDS:=["heavy","slam","ko","release","guard_break"]
 # Pacing: "heat" rises with impacts and cools while nothing lands. A cool fight sits back (darker, quieter) and a hot one opens up.
 const HEAT_BUMP:={"block":.05,"hit":.10,"parry":.14,"launch":.2,"heavy":.22,"guard_break":.3,"slam":.34,"release":.4,"ko":.5}
 const HEAT_COOL_PER_SECOND:=.085
-const CALM_CUTOFF_HZ:=1900.0
+const CALM_CUTOFF_HZ:=1500.0
 const OPEN_CUTOFF_HZ:=20000.0
-const CALM_GAIN_DB:=-4.0
+const CALM_GAIN_DB:=-7.0 # calm sits this far under the hot level (round 3: wider swing)
 const MENU_CUTOFF_HZ:=7500.0
 const RESULT_CUTOFF_HZ:=5200.0
 const PAUSE_CUTOFF_HZ:=1400.0
@@ -179,7 +179,7 @@ func _process(delta: float) -> void:
     music.stream_paused=false
     fading_music.stream_paused=false
     var calm:=1.0-smoothstep(.05,.55,heat)
-    var base_db:float=-4.0+CALM_GAIN_DB*calm if context=="play" else (-15.0 if context in ["pause","help"] else (-8.5 if context=="title" else -8.0))
+    var base_db:float=-3.0+CALM_GAIN_DB*calm if context=="play" else (-15.0 if context in ["pause","help"] else (-8.5 if context=="title" else -8.0))
     var target_db:float=base_db-(duck_db if duck_time>0 else 0.0)-cinematic_duck*8.0
     if muted or music_muted or music_level<=0:target_db=-80.0
     else:target_db+=linear_to_db(maxf(.001,music_level))
@@ -234,12 +234,12 @@ func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
     voice_index += 1
     # Impacts keep most of their level: call sites ask for -6..-12 dB, which made hits sit under the music.
     var impact:bool=kind in IMPACT_KINDS
-    voice.volume_db = (-1.0 if impact else -3.0)+minf(0.0,level_db*(.35 if impact else 1.0))+linear_to_db(maxf(.001,effects_level))
+    voice.volume_db = (-2.0 if impact else -3.0)+minf(0.0,level_db*(.6 if impact else 1.0))+linear_to_db(maxf(.001,effects_level))
     voice.pitch_scale = clampf(pitch,0.65,1.55)
     voice.play()
     if kind in ["hit","heavy","parry","guard_break","rally","release","slam","ko","launch"]:
         duck_time = 0.34 if kind in BIG_KINDS else 0.18
-        duck_db = 9.0 if kind in BIG_KINDS else 5.0
+        duck_db = 7.0 if kind in BIG_KINDS else 4.0
 
 func stop_all() -> void:
     for voice in voices: voice.stop()
@@ -304,7 +304,7 @@ func _ensure_buses() -> void:
         if AudioServer.get_bus_effect(sfx_bus,i) is AudioEffectCompressor:has_compressor=true
     if not has_compressor:
         var compressor:=AudioEffectCompressor.new()
-        compressor.threshold=-14.0;compressor.ratio=4.0;compressor.attack_us=1500.0;compressor.release_ms=120.0;compressor.gain=3.0
+        compressor.threshold=-12.0;compressor.ratio=3.0;compressor.attack_us=1500.0;compressor.release_ms=120.0;compressor.gain=3.0
         AudioServer.add_bus_effect(sfx_bus,compressor,0)
     if not has_limiter:
         var limiter:=AudioEffectLimiter.new()

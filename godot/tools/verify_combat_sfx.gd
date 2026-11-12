@@ -55,10 +55,10 @@ func run() -> void:
     check("a new fight starts on a breather",audio.heat<=.21,audio.heat)
     for i in 400:audio._process(.05)
     var calm_db:float=audio.music_gain_db;var calm_hz:float=audio.music_cutoff_hz
-    check("quiet stretch darkens and lowers the music",audio.heat<.05 and calm_hz<2600.0 and calm_db<-6.0,[audio.heat,calm_hz,calm_db])
+    check("quiet stretch darkens and lowers the music",audio.heat<.05 and calm_hz<2200.0 and calm_db<-8.0,[audio.heat,calm_hz,calm_db])
     for i in 14:audio.play_sound("hit");audio.play_sound("heavy")
     for i in 60:audio._process(.05)
-    check("a flurry of impacts opens and raises the music",audio.heat>.5 and audio.music_cutoff_hz>12000.0 and audio.music_gain_db>calm_db+2.5,[audio.heat,audio.music_cutoff_hz,audio.music_gain_db])
+    check("a flurry of impacts opens and raises the music",audio.heat>.5 and audio.music_cutoff_hz>12000.0 and audio.music_gain_db>calm_db+4.5,[audio.heat,audio.music_cutoff_hz,audio.music_gain_db])
     for i in 400:audio._process(.05)
     check("it cools back down without new hits",audio.heat<.2 and audio.music_cutoff_hz<5000.0,[audio.heat,audio.music_cutoff_hz])
     audio.context="pause";for i in 80:audio._process(.05)
