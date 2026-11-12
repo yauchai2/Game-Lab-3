@@ -142,6 +142,13 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         # Rotate about the torso instead of driving the head through the floor.
         model.position.y+=1.1*(1-cos(spin));model.position.z-=1.1*sin(spin)
         stretch*=Vector3(1.07,.93,1.07)
+    if f.has("ko_spin") and not reduced:
+        # KO flight tumbles about the torso so the body arcs instead of pivoting at the feet.
+        var tumble:float=f.ko_spin
+        model.rotation.x=tumble
+        model.position.y+=1.1*(1-cos(tumble));model.position.z-=1.1*sin(tumble)
+        var squash:float=f.get("ko_squash",0.0)
+        stretch*=Vector3(1.0+squash*.12,1.0-squash*.16,1.0+squash*.12)
     model.scale=Vector3.ONE*model_scale*stretch
     for mat in materials:
         mat.set_shader_parameter("flash", (1.0 if fx_flash_age<.045 else .16) if f.flash > 0 and not reduced else 0.0)

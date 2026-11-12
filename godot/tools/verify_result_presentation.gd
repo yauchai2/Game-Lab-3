@@ -35,6 +35,7 @@ func run() -> void:
         if scene.city_breaker.active():
             check("result %d launches the loser before settling"%outcome,scene.fighters[1-outcome].position.y>5 and not scene.finish_menu_open)
             scene.skip_city_breaker()
+        scene._process(.7) # KO tumble (1.31s) finishes inside the 1.4s finish window.
         check("result %d actors settle onto the crossing"%outcome,scene.fighters.all(func(f:Node3D)->bool:return is_zero_approx(f.position.y)))
         scene.hud.rebuild_menu()
         if DisplayServer.get_name()!="headless":

@@ -34,6 +34,7 @@ var versus_streak:=0
 var signature_camera=preload("res://scripts/combat/neon/neon_signature_camera.gd").new()
 var neon_profile:Resource=preload("res://scripts/combat/neon/neon_style_profile.tres")
 var spectacle := preload("res://scripts/combat/fight_spectacle.gd").new()
+var ko_tumble := preload("res://scripts/combat/ko_tumble.gd").new()
 var grade: ColorRect
 var grade_material: ShaderMaterial
 var ink_fx=preload("res://scripts/combat/ink_fx/world_ink_fx.gd").new()
@@ -352,6 +353,10 @@ func _combat_step() -> void:
         else:theatre.clear()
         audio.stop_all()
         audio.play_sound("ko" if final_ko() else "rally")
+        ko_tumble.clear()
+        if not reduced_effects and not sim.squad_enabled and not (final_ko() and not reduced_effects) and sim.winner>=0 and sim.fighters[1-sim.winner].health<=0 and not (is_instance_valid(city_campaign) and city_campaign.active):
+            var fallen:Dictionary=sim.fighters[1-sim.winner]
+            ko_tumble.begin(1-sim.winner,sim.fighters[sim.winner].x,fallen.x,fallen.y,fallen.face)
         if final_ko() and not reduced_effects:
             round_theatre.clear()
             theatre.clear(); neon.clear(); rhythm.clear(); spectacle.clear(); effects.clear(); ink_fx.clear()
@@ -925,6 +930,7 @@ func _process(delta: float) -> void:
         effects = effects.filter(func(e: Dictionary) -> bool: return e.age < e.life and not e.get("expired",false))
         recoil_age += delta
         trauma = move_toward(trauma, 0.0, delta * 2.0)
+    _advance_ko_tumble(delta)
     # Motion paths already communicate pursuit; omit opaque skeleton-stick ghosts.
     backdrop.present(delta, screen in ["pause", "help", "result"] or (screen=="play" and rhythm.phase()=="hold"), reduced_effects)
     _present((delta*rhythm.view_speed() if screen=="play" and not reduced_effects else delta) if screen in ["play", "title", "result"] else 0.0)
@@ -1051,6 +1057,12 @@ func _present(delta: float) -> void:
                 if i!=sim.winner:pose.y+=.18
             if result_clock>.18:pose.flash=0
             pose.y=maxf(0,pose.y-maxf(0,result_clock-.15)*5.0)
+            if ko_tumble.active() and i==ko_tumble.victim:
+                var body:Dictionary=ko_tumble.sample()
+                pose.x=body.x;pose.y=body.y
+                pose["ko_spin"]=body.spin;pose["ko_squash"]=body.squash
+                pose.flash=1 if body.phase=="freeze" else 0
+                pose.vx=0.0;pose.vy=0.0
             if i==sim.winner and result_clock>.45:
                 pose.state="idle"
                 pose.vx=0.0
@@ -1109,7 +1121,8 @@ func _present(delta: float) -> void:
     if screen=="result" and result_clock<FINISH_SECONDS and sim.winner>=0 and not reduced_effects:
         finish_zoom=sin(clampf(result_clock/FINISH_SECONDS,0,1)*PI)
         var victim: Dictionary=sim.fighters[1-sim.winner]
-        target_focus=target_focus.lerp(Vector3(victim.x*.6,1.3,FIGHT_Z),finish_zoom*.65)
+        var victim_x:float=ko_tumble.sample().x if ko_tumble.active() else victim.x
+        target_focus=target_focus.lerp(Vector3(victim_x*.6,1.3,FIGHT_Z),finish_zoom*.65)
         target_position=target_position.lerp(Vector3(target_focus.x+.45,1.3,FIGHT_Z+(6.0 if sim.arcade_enabled else 7.8)),finish_zoom)
     var blend := 1.0-exp(-delta*4.0)
     camera_focus = camera_focus.lerp(target_focus,blend)
@@ -1736,6 +1749,30 @@ func continue_coach() -> void:
     if coach.status=="complete":return_to_title();return
     if coach.advance():_prepare_coach_fixture()
     pending.clear()
+
+func _advance_ko_tumble(delta: float) -> void:
+    if not ko_tumble.active():return
+    if screen!="result" or reduced_effects or city_breaker.active():
+        ko_tumble.clear();return
+    var victim:int=ko_tumble.victim
+    var body:Dictionary=ko_tumble.sample()
+    var character:int=fighters[victim].character_index
+    for beat in ko_tumble.advance(delta):
+        var at:=Vector3(body.x,.045,FIGHT_Z)
+        match beat:
+            "launch":
+                trauma=maxf(trauma,.55)
+                ink_fx.emit_puff("launch",Vector3(body.x,body.y+1.0,FIGHT_Z-.25),-ko_tumble.dir,1,character,1.3)
+                ink_fx.emit_puff("heavy",Vector3(body.x,body.y+.8,FIGHT_Z-.25),ko_tumble.dir,1,character,1.0)
+            "land":
+                trauma=maxf(trauma,.42)
+                ink_fx.ground("slam",at,ko_tumble.dir,character,false)
+                audio.play_sound("land",.8,2.0)
+            "bounce":
+                trauma=maxf(trauma,.2)
+                ink_fx.ground("land",at,ko_tumble.dir,character,false)
+                audio.play_sound("land",1.1,-3.0)
+            "dust":ink_fx.emit_puff("brake",Vector3(body.x,.05,FIGHT_Z+.1),ko_tumble.dir,0,character,1.0)
 
 func finish_seconds() -> float:
     return city_breaker.DURATION if city_breaker.active() else FINISH_SECONDS
