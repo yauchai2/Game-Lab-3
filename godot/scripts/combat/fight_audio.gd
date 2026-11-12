@@ -28,6 +28,20 @@ var fight_pick:String=FIGHT_POOL[0]
 var last_context:="title"
 var match_over:=false # set by the session when a result screen ends the whole match (not just a round)
 var ui_last:Dictionary={}
+const IMPACT_KINDS:=["hit","heavy","slam","ko","launch","release","guard_break","block","parry"]
+const BIG_KINDS:=["heavy","slam","ko","release","guard_break"]
+# Pacing: "heat" rises with impacts and cools while nothing lands. A cool fight sits back (darker, quieter) and a hot one opens up.
+const HEAT_BUMP:={"block":.05,"hit":.10,"parry":.14,"launch":.2,"heavy":.22,"guard_break":.3,"slam":.34,"release":.4,"ko":.5}
+const HEAT_COOL_PER_SECOND:=.085
+const CALM_CUTOFF_HZ:=1500.0
+const OPEN_CUTOFF_HZ:=20000.0
+const CALM_GAIN_DB:=-7.0 # calm sits this far under the hot level (round 3: wider swing)
+const MENU_CUTOFF_HZ:=7500.0
+const RESULT_CUTOFF_HZ:=5200.0
+const PAUSE_CUTOFF_HZ:=1400.0
+var heat:=0.25
+var music_cutoff_hz:=OPEN_CUTOFF_HZ
+var duck_db:=4.0 # how far the music dips under the last impact (bigger for finishers)
 const BERLIN := "res://audio/user-tracks/berlin.ogg"
 const GROOVE := "res://audio/user-tracks/groove_district.ogg"
 var current_track := ""
@@ -155,21 +169,37 @@ func _process(delta: float) -> void:
     # A new match (title/result -> play) advances through the fight pool; pause/help/rounds keep the track.
     if context=="play" and (last_context=="title" or (last_context=="result" and match_over)):
         fight_pick=FIGHT_POOL[fight_index%FIGHT_POOL.size()];fight_index+=1;match_over=false
+    if context=="play" and last_context!="play" and last_context!="pause" and last_context!="help":heat=.2 # every new fight starts on a breather
     last_context=context
+    if context=="play":heat=maxf(0.0,heat-HEAT_COOL_PER_SECOND*delta)
     var desired:String=fight_pick if context=="play" else (MENU_TRACK if context=="title" else (RESULT_TRACK if context=="result" and match_over else current_track))
     if desired!=current_track:_switch_track(desired)
     # Navigation never pauses the transport. Explicit mute/zero volume silence it.
     if not music.playing:music.play(start_position(current_track))
     music.stream_paused=false
     fading_music.stream_paused=false
-    var target_db:float=(-4.0 if context=="play" else (-15.0 if context in ["pause","help"] else -7.0))-(4.0 if duck_time>0 else 0.0)-cinematic_duck*8.0
+    var calm:=1.0-smoothstep(.05,.55,heat)
+    var base_db:float=-3.0+CALM_GAIN_DB*calm if context=="play" else (-15.0 if context in ["pause","help"] else (-8.5 if context=="title" else -8.0))
+    var target_db:float=base_db-(duck_db if duck_time>0 else 0.0)-cinematic_duck*8.0
     if muted or music_muted or music_level<=0:target_db=-80.0
     else:target_db+=linear_to_db(maxf(.001,music_level))
-    music_gain_db=lerpf(music_gain_db,target_db,1.0-exp(-delta*7.0))
+    music_gain_db=lerpf(music_gain_db,target_db,1.0-exp(-delta*(7.0 if context!="play" else 2.2)))
+    _update_music_filter(calm,delta)
     crossfade=minf(1.0,crossfade+delta/CROSSFADE_SECONDS)
     music.volume_db=music_gain_db+linear_to_db(maxf(.0001,sin(crossfade*PI*.5)))
     fading_music.volume_db=music_gain_db+linear_to_db(maxf(.0001,cos(crossfade*PI*.5)))
     if crossfade>=1.0 and fading_music.playing:fading_music.stop()
+
+## Calm stretches roll the highs off the music bus; heat opens them again. Menus sit in between, pause is muffled.
+func _update_music_filter(calm:float,delta:float) -> void:
+    var wanted:float=lerpf(OPEN_CUTOFF_HZ,CALM_CUTOFF_HZ,calm) if context=="play" else (PAUSE_CUTOFF_HZ if context in ["pause","help"] else (MENU_CUTOFF_HZ if context=="title" else RESULT_CUTOFF_HZ))
+    var rate:=(3.0 if wanted>music_cutoff_hz else 1.4)*delta # opens quickly on action, closes slowly during a lull
+    music_cutoff_hz=exp(lerpf(log(music_cutoff_hz),log(wanted),clampf(rate,0.0,1.0)))
+    var bus:int=AudioServer.get_bus_index("Afterhours Music")
+    if bus<0:return
+    for i in AudioServer.get_bus_effect_count(bus):
+        var effect:=AudioServer.get_bus_effect(bus,i)
+        if effect is AudioEffectLowPassFilter:(effect as AudioEffectLowPassFilter).cutoff_hz=music_cutoff_hz
 
 func _switch_track(path:String) -> void:
     if fading_music.playing and path==fading_track:
@@ -191,6 +221,7 @@ func _switch_track(path:String) -> void:
     crossfade=0.0
 
 func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
+    if HEAT_BUMP.has(kind) and context=="play":heat=minf(1.0,heat+float(HEAT_BUMP[kind]))
     if muted or effects_level<=0 or not sounds.has(kind): return
     if kind.begins_with("ui_"):
         var now:=Time.get_ticks_msec()
@@ -201,10 +232,14 @@ func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
     voice.stop()
     voice.stream = variants[voice_index % variants.size()]
     voice_index += 1
-    voice.volume_db = -3.0+minf(0.0,level_db)+linear_to_db(maxf(.001,effects_level))
+    # Impacts keep most of their level: call sites ask for -6..-12 dB, which made hits sit under the music.
+    var impact:bool=kind in IMPACT_KINDS
+    voice.volume_db = (-2.0 if impact else -3.0)+minf(0.0,level_db*(.6 if impact else 1.0))+linear_to_db(maxf(.001,effects_level))
     voice.pitch_scale = clampf(pitch,0.65,1.55)
     voice.play()
-    if kind in ["hit","heavy","parry","guard_break","rally","release"]: duck_time = 0.18
+    if kind in ["hit","heavy","parry","guard_break","rally","release","slam","ko","launch"]:
+        duck_time = 0.34 if kind in BIG_KINDS else 0.18
+        duck_db = 7.0 if kind in BIG_KINDS else 4.0
 
 func stop_all() -> void:
     for voice in voices: voice.stop()
@@ -252,10 +287,25 @@ func _ensure_buses() -> void:
             AudioServer.add_bus();AudioServer.set_bus_name(AudioServer.bus_count-1,label)
             AudioServer.set_bus_send(AudioServer.bus_count-1,"Master")
 
+    var music_bus:int=AudioServer.get_bus_index("Afterhours Music")
+    var has_filter:=false
+    for i in AudioServer.get_bus_effect_count(music_bus):
+        if AudioServer.get_bus_effect(music_bus,i) is AudioEffectLowPassFilter:has_filter=true
+    if not has_filter:
+        var filter:=AudioEffectLowPassFilter.new()
+        filter.cutoff_hz=OPEN_CUTOFF_HZ;filter.resonance=.6
+        AudioServer.add_bus_effect(music_bus,filter)
     var sfx_bus:int=AudioServer.get_bus_index("Afterhours SFX")
     var has_limiter:=false
     for i in AudioServer.get_bus_effect_count(sfx_bus):
         if AudioServer.get_bus_effect(sfx_bus,i) is AudioEffectLimiter:has_limiter=true
+    var has_compressor:=false
+    for i in AudioServer.get_bus_effect_count(sfx_bus):
+        if AudioServer.get_bus_effect(sfx_bus,i) is AudioEffectCompressor:has_compressor=true
+    if not has_compressor:
+        var compressor:=AudioEffectCompressor.new()
+        compressor.threshold=-12.0;compressor.ratio=3.0;compressor.attack_us=1500.0;compressor.release_ms=120.0;compressor.gain=3.0
+        AudioServer.add_bus_effect(sfx_bus,compressor,0)
     if not has_limiter:
         var limiter:=AudioEffectLimiter.new()
         limiter.ceiling_db=-2.0
