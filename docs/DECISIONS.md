@@ -1,3 +1,7 @@
+## 2026-11-12 開場貼近參考影片
+
+Alan 要求開場更貼近參考影片但只做小調整：保留 18 秒結構，移除影片沒有的漫畫字／名牌，場景改暗並補雜物；對白字句沿用 Alan 的表（影片字幕不同，待決定）。
+
 ## 2026-11-12：開場 polygon／警告截圖修正
 
 修復眼鏡 glint 零半徑及細小ray的triangulation錯誤：略過不可見burst並以draw_primitive直接提交三角形；整理外層title_progress、未用_t與equipment metadata的獨立ternary。19腳本／七類fatal warnings、288組原生burst及既有37項開場流程通過，15個3D抽格無ERROR／SCRIPT ERROR。證據[evidence/opening-bugfix](evidence/opening-bugfix/README.md)。來源codex/fix-opening-polygons；Godot4.6.3 Linux llvmpipe，Mac／4.7.2待使用者覆核，Web未更新。

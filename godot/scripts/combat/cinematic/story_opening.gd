@@ -20,7 +20,6 @@ const SUBTITLES:=[
 	{"from":4.55,"to":5.9,"who":"LOOP","color":Color("c4ff00"),"zh":"「件貨呢？」","en":"\"Where's the parcel?\""},
 	{"from":6.95,"to":7.95,"who":"ZIP","color":Color("00e9ef"),"zh":"「到咗。」","en":"\"It's here.\""},
 	{"from":10.35,"to":11.9,"who":"LOOP","color":Color("c4ff00"),"zh":"「……我買音響喎。」","en":"\"...I ordered speakers.\""}]
-const TAGS:=[[3.15,4.1,"RIVET",Color("ff9824")],[4.1,5.0,"LOOP",Color("c4ff00")],[5.0,5.95,"HUSH",Color("ff3d97")],[7.0,7.7,"ZIP",Color("00e9ef")]]
 const SUIT_MARKS:=[Vector3(.1,0,4.0),Vector3(-1.5,0,4.35),Vector3(1.7,0,4.35)]
 const TITLE_MARKS:=[Vector3(.3,27.0,-1.5),Vector3(-1.25,27.0,-1.45),Vector3(-4.1,27.0,-1.45),Vector3(-2.75,27.0,-1.5)]
 const TITLE_FLOOR:=27.0
@@ -124,7 +123,7 @@ func _prepare() -> void:
 		var puff:=MeshInstance3D.new();var ball:=SphereMesh.new();ball.radius=.5;ball.height=.8;ball.radial_segments=6;ball.rings=3
 		puff.mesh=ball;puff.material_override=smoke;puff.hide();stage.add_child(puff);puffs.append(puff)
 	environment=Environment.new();environment.background_mode=Environment.BG_COLOR;environment.background_color=Stage.SKY
-	environment.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR;environment.ambient_light_color=Color("e2cdea");environment.ambient_light_energy=.8
+	environment.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR;environment.ambient_light_color=Color("9a86b4");environment.ambient_light_energy=.62
 
 func advance(delta:float) -> void:
 	if not running:return
@@ -556,33 +555,20 @@ func draw(canvas:Control) -> void:
 	else:
 		canvas.draw_rect(Rect2(0,0,1280,58),ink);canvas.draw_rect(Rect2(0,662,1280,58),ink)
 	if t>=SLAM_AT and t<TITLE_AT and not reduced:_draw_slam(canvas,t)
-	for tag in TAGS:
-		if t<tag[0] or t>=tag[1]:continue
-		var enter:=1.0 if reduced else 1.0-pow(1.0-seg(t,tag[0],tag[0]+.12),3.0)
-		var leave:=seg(t,tag[1]-.1,tag[1])
-		var x:=lerpf(-420,70,enter)+leave*-60.0
-		canvas.draw_set_transform(Vector2(x,560)*canvas.size/Vector2(1280,720),-.07,canvas.size/Vector2(1280,720))
-		var width:float=bold.get_string_size(tag[2],HORIZONTAL_ALIGNMENT_LEFT,-1,72).x+60
-		canvas.draw_colored_polygon(PackedVector2Array([Vector2(-20,-64),Vector2(width,-64),Vector2(width-26,22),Vector2(-46,22)]),ink)
-		canvas.draw_colored_polygon(PackedVector2Array([Vector2(width+6,-64),Vector2(width+30,-64),Vector2(width+4,22),Vector2(width-20,22)]),tag[3])
-		canvas.draw_string(bold,Vector2(4,6),tag[2],HORIZONTAL_ALIGNMENT_LEFT,-1,72,tag[3])
-		canvas.draw_set_transform(Vector2.ZERO,0,canvas.size/Vector2(1280,720))
 	for line in SUBTITLES:
 		if t<line.from or t>=line.to:continue
-		# Cantonese is the authored line; English rides underneath for every player.
+		# Reference style: small white speaker name over a centred line, no box. Cantonese is authored; English rides underneath.
 		var zh:bool=subtitle_font!=null
 		var text:String=line.zh if zh else line.en
 		var face:Font=subtitle_font if zh else font
-		var size:=40 if zh else 30
+		var size:=34 if zh else 28
 		var width:float=face.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x
-		var name_width:float=bold.get_string_size(line.who,HORIZONTAL_ALIGNMENT_LEFT,-1,30).x
-		var total:float=name_width+26+width
-		var left:float=640-total*.5
-		canvas.draw_rect(Rect2(left-22,596,total+44,56),Color(ink,.86))
-		canvas.draw_rect(Rect2(left-22,596,8,56),line.color)
-		canvas.draw_string(bold,Vector2(left,636),line.who,HORIZONTAL_ALIGNMENT_LEFT,-1,30,line.color)
-		canvas.draw_string(face,Vector2(left+name_width+26,638 if zh else 635),text,HORIZONTAL_ALIGNMENT_LEFT,-1,size,Color("f7f4ee"))
-		if zh:canvas.draw_string(font,Vector2(left,682),line.en,HORIZONTAL_ALIGNMENT_LEFT,-1,20,Color("bcb6c6"))
+		var name_width:float=bold.get_string_size(line.who,HORIZONTAL_ALIGNMENT_LEFT,-1,24).x
+		for shadow in [Vector2(2,2),Vector2.ZERO]:
+			var col:=Color(ink,.9) if shadow!=Vector2.ZERO else Color("f7f4ee")
+			canvas.draw_string(bold,Vector2(640-name_width*.5,598)+shadow,line.who,HORIZONTAL_ALIGNMENT_LEFT,-1,24,col)
+			canvas.draw_string(face,Vector2(640-width*.5,636)+shadow,text,HORIZONTAL_ALIGNMENT_LEFT,-1,size,col if shadow!=Vector2.ZERO else line.color.lerp(Color("f7f4ee"),.7))
+		if zh:canvas.draw_string(font,Vector2(640-font.get_string_size(line.en,HORIZONTAL_ALIGNMENT_LEFT,-1,20).x*.5,672),line.en,HORIZONTAL_ALIGNMENT_LEFT,-1,20,Color("bcb6c6"))
 	if paused:
 		canvas.draw_rect(Rect2(0,0,1280,720),Color(ink,.55))
 		canvas.draw_string(bold,Vector2(70,372),"PAUSED",HORIZONTAL_ALIGNMENT_LEFT,-1,84,Color("f7f4ee"))
@@ -626,13 +612,6 @@ func _burst(canvas:Control,at:Vector2,radius:float,rays:int,color:Color,spin:=0.
 		var long:float=radius*(1.0 if i%2==0 else .55)
 		canvas.draw_primitive(PackedVector2Array([at+direction*radius*.18,at+direction*long+direction.orthogonal()*radius*.05,at+direction*long-direction.orthogonal()*radius*.05]),PackedColorArray([color]),PackedVector2Array())
 
-func _word(canvas:Control,text:String,at:Vector2,size:int,color:Color,angle:float,alpha:float) -> void:
-	var bold:Font=session.hud.bold
-	canvas.draw_set_transform(at*canvas.size/Vector2(1280,720),angle,canvas.size/Vector2(1280,720))
-	canvas.draw_string(bold,Vector2(5,6),text,HORIZONTAL_ALIGNMENT_LEFT,-1,size,Color("120c1a",alpha))
-	canvas.draw_string(bold,Vector2.ZERO,text,HORIZONTAL_ALIGNMENT_LEFT,-1,size,Color(color,alpha))
-	canvas.draw_set_transform(Vector2.ZERO,0,canvas.size/Vector2(1280,720))
-
 func _draw_accents(canvas:Control,t:float) -> void:
 	# Comic accents pinned to the action, each a few frames long.
 	if t>=3.0 and t<4.1:
@@ -646,19 +625,16 @@ func _draw_accents(canvas:Control,t:float) -> void:
 				var points:=PackedVector2Array()
 				for k in 7:points.append(Vector2(at.x+40.0+k*22.0,y+(10.0 if (k+int(t*20.0)+i)%2==0 else -10.0)))
 				canvas.draw_polyline(points,Color("27e6ee"),5.0)
-	for hit in [[6.55,Vector3(.12,.02,-1.6),"DOM",Color("fff3a8")],[8.0,Stage.TABLE+Vector3(0,.1,0),"BAM!",Color("ff2789")],[13.1,Vector3(.2,.9,5.4),"KLAK",Color("fff3a8")]]:
+	for hit in [[6.55,Vector3(.12,.02,-1.6)],[8.0,Stage.TABLE+Vector3(0,.1,0)],[13.1,Vector3(.2,.9,5.4)]]:
 		var dt:float=t-hit[0]
 		if dt<0 or dt>.34:continue
 		var at:Vector2=project(hit[1])
 		_burst(canvas,at,90.0+dt*520.0,12,Color("fff6fb",maxf(0,1.0-dt*3.2)),hit[0])
-		_word(canvas,hit[2],Vector2(clampf(at.x+60,80,900),clampf(at.y-90,150,560)),88,hit[3],-.12,minf(1.0,(.34-dt)*8.0))
 	for click in [9.15,9.45]:
 		var dt:float=t-click
 		if dt>=0 and dt<.2:
 			var side:=-.45 if click<9.3 else .45
 			_burst(canvas,project(Stage.TABLE+Vector3(side,.16,-.42)),26.0+dt*200.0,6,Color("fff6fb",1.0-dt*5.0),click)
-	if t>=12.0 and t<12.8:
-		_word(canvas,"SKRRRT",Vector2(120+sin(t*60.0)*4.0,250),70,Color("fff3a8"),-.08,minf(1.0,(12.8-t)*6.0)*seg(t,12.25,12.35))
 	for stomp in [13.55,13.85]:
 		var dt:float=t-stomp
 		if dt>=0 and dt<.18:_burst(canvas,project(Vector3(.1,.02,4.2)),60.0+dt*500.0,10,Color("fff6fb",1.0-dt*5.5),stomp)
@@ -675,7 +651,6 @@ func _draw_slam(canvas:Control,_t:float) -> void:
 	_burst(canvas,centre,720.0,26,Color("f5129a"),.11)
 	_burst(canvas,centre,520.0,18,Color("fff6fb"),.37)
 	_burst(canvas,centre,210.0,12,Color("0b0910"),.2)
-	_word(canvas,"KRAK!",Vector2(400,420),150,Color("fff6fb"),-.1,1.0)
 
 func _draw_title(canvas:Control,t:float,reduced:bool) -> void:
 	var land:=1.0 if reduced else seg(t,TITLE_AT+.06,TITLE_AT+.3)
