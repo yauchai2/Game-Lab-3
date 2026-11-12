@@ -51,6 +51,7 @@ func _ready() -> void:
         "land":["land_0"], "jump":["jump_0"], "release":["release_0"], "ko":["ko_0"],
         "charge":["charge_0"], "slam":["slam_0","slam_1"], "launch":["launch_0"], "chase":["chase_0"],
         "rally":["rally_0"], "sub":["sub_0"],
+        "gun_aim":["gun_aim_0"], "gun_shot":["gun_shot_0"], "gun_hit":["gun_hit_0"], "gun_ricochet":["gun_ricochet_0"],
         "ui_move":["ui_move_0"], "ui_confirm":["ui_confirm_0"], "ui_back":["ui_back_0"], "ui_toggle":["ui_toggle_0"], "ui_pause":["ui_pause_0"]}
     var fallback := {
         "hit":["impactPunch_medium_000","impactPunch_medium_001"], "heavy":["impactPunch_heavy_000"],

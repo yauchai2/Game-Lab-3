@@ -32,7 +32,12 @@ var arcade_enabled:=false
 var endless:=false
 var rush_agent=preload("res://scripts/combat/rush_agent.gd").new()
 var practice_scenario:="free"
+const GunShot=preload("res://scripts/combat/enemies/gun_shot.gd")
+# Black Suit pistol bullets in flight (rules: enemies/gun_shot.gd). Presentation only reads this.
+var projectiles:Array[Dictionary]=[]
+var gun_next_ok:=0
 const MOVES := {
+    "gun":{"startup":30,"active":1,"recovery":34,"damage":10,"reach":0.0,"stun":16,"push":3.0,"lift":0.0,"stop":6},
     "node_pulse":{"startup":8,"active":1,"recovery":32,"damage":12,"reach":0.0,"stun":18,"push":5.0,"lift":2.0,"stop":7},
     "air_counter":{"startup":14,"active":4,"recovery":22,"damage":18,"reach":2.3,"stun":28,"push":7.0,"lift":-10.0,"stop":10},
     "air_jab":{"startup":6,"active":3,"recovery":12,"damage":6,"reach":1.7,"stun":22,"push":1.2,"lift":1.0,"stop":4},
@@ -87,6 +92,7 @@ func _init() -> void:
 
 func reset_round() -> void:
     rush_agent.reset()
+    projectiles.clear();gun_next_ok=0
     surge_lab_enabled=false;surge_lab_fixture=false;surge_release.clear();surge_guards=[0,0]
     exchange.reset()
     continuation.clear()
@@ -164,6 +170,7 @@ func ai_command() -> Dictionary:
     if ai_tick % attack_period == 0 and distance < 2.5:
         command["attack"] = "grab" if b.guarding and distance<1.15 and a.throw_cd==0 else ("special" if a.meter >= 50 and ai_tick % 100 == 0 else ("heavy" if ai_tick % 75 == 0 else "light"))
     if a.wall_tech_window>0 and a.wall_tech_window<=(6 if level==1 else 9) and a.meter>=20 and level>0:command["dash"]=true
+    if GunShot.wants(self,1,ai_tick,level):command["attack"]="gun";command["axis"]=0.0
     if b.y > 1.0 and ai_tick % [72,48,36][level] == 0:
         command["jump"] = true
     if is_aerial() and level>0 and not a.air.parry_used and b.move in ["air_finisher","meteor"] and b.state=="attack" and b.frame==move_for(b,b.move).startup-5 and (ai_tick+round_number)%3<level:
@@ -299,6 +306,7 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         _advance_fighter(i, commands[i])
     _separate_bodies()
     if last_service_enabled:service_rules.advance(self)
+    GunShot.advance(self)
     # Resolve simultaneous active attacks from the same frame; trades are allowed.
     var contacts: Array[int] = []
     for i in 2:
@@ -343,6 +351,7 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
     var other: Dictionary = fighters[1-i]
     f.parry_allowed = command.get("allow_parry",true)
     f.break_lock=maxi(0,f.break_lock-1)
+    GunShot.tick_cooldown(f)
     f.counter_window=maxi(0,f.counter_window-1)
     f.entry_parry_window=PARRY_WINDOW if command.get("guard_pressed",false) else maxi(0,f.entry_parry_window-1)
     var was_guarding: bool = f.guarding
@@ -487,6 +496,9 @@ func _start_attack(i: int, requested: String) -> void:
     if requested == "light":
         name = (["air_jab","air_kick","meteor" if arcade_enabled else "air_finisher"] if is_aerial() and f.y>.01 else ["jab", "cross", "launcher" if arcade_enabled else "finisher"])[mini(f.chain, 2)]
     if name=="node_pulse" and (not last_service_enabled or f.character!=3):return
+    if name=="gun" and not GunShot.begin(self,f):
+        f.buffer="";f.buffer_ttl=0
+        return
     if not MOVES.has(name):
         return
     if name=="grab":
@@ -540,6 +552,7 @@ func _can_hit(i: int) -> bool:
     var b: Dictionary = fighters[1-i]
     if a.state != "attack" or a.connected or b.invuln > 0 or (b.y>0.1 and b.juggle>=3):
         return false
+    if a.move=="gun":return false # ranged: resolved by GunShot, never by a melee hitbox
     var m: Dictionary = move_for(a,a.move)
     if last_service_enabled and a.character==3 and a.move in ["special","node_pulse"]:return false
     if a.move=="grab" and (a.y>.01 or b.y>.01 or b.state in ["stun","blockstun"]):return false

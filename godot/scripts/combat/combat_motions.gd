@@ -220,6 +220,15 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         elif character==2:
             _aim_limb("Spine","Spine1",model_up+model_forward*.5,w*.7)
             _aim_limb("RightArm","RightForeArm",model_forward+model_up*.3,w*.9)
+        elif f.move=="gun":
+            # Draw, aim along the line of fire with a two-hand grip, then kick up on the shot.
+            var kick:float=1.0-clampf(float(f.frame-move.startup)/9.0,0,1) if f.frame>=move.startup else 0.0
+            var lift:Vector3=model_up*(.04+.55*kick)
+            _aim_limb("Spine","Spine1",model_up-model_forward*(.10+.25*kick),w*.7)
+            _aim_limb("RightArm","RightForeArm",model_forward+lift,w)
+            _aim_limb("RightForeArm","RightHand",model_forward+lift,w)
+            _aim_limb("LeftArm","LeftForeArm",model_forward*.9-model_up*.15,w*.9)
+            _aim_limb("LeftForeArm","LeftHand",model_forward+model_up*.05,w*.9)
         elif character==3:
             _aim_limb("Spine","Spine1",model_up+model_forward*.75,w*.65)
             _aim_limb("LeftUpLeg","LeftLeg",-model_forward+model_up*.1,w*.75)
