@@ -40,7 +40,8 @@ static func equipment(visual:Node,items:Array) -> void:
         var mat:=StandardMaterial3D.new();mat.albedo_color=[Color("ded9e5"),Color("00cbd9"),Color("d3eb30"),Color("ff008c")][int(items[slot].tier)];mat.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
         mesh.material_override=mat;attachment.add_child(mesh)
 static func clear_equipment(visual:Node) -> void:
-    visual.remove_meta("city_loadout") if visual.has_meta("city_loadout") else null
+    if visual.has_meta("city_loadout"):
+        visual.remove_meta("city_loadout")
     if visual.skeleton!=null:
         for child in visual.skeleton.get_children():
             if str(child.name).begins_with("CityGear"):visual.skeleton.remove_child(child);child.queue_free()

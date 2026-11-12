@@ -1,6 +1,8 @@
 extends SceneTree
-## Keep the user's four warning categories fatal in the affected runtime scripts.
+## Keep the user's reported warning categories fatal in the affected runtime scripts.
 const SCRIPTS=[
+    "res://scripts/combat/cinematic/story_opening.gd",
+    "res://scripts/combat/city/campaign_visuals.gd",
     "res://scripts/combat/story/story_simulation.gd",
     "res://scripts/combat/story/body_chain.gd",
     "res://scripts/combat/story/enemy_props.gd",
@@ -24,7 +26,7 @@ func run() -> void:
     # Godot caches warning levels before loading the main script. The Python
     # runner supplies override.cfg at process startup; changing settings here
     # would silently miss the warnings we are meant to detect.
-    for category in ["static_called_on_instance","incompatible_ternary","shadowed_variable_base_class","integer_division"]:
+    for category in ["static_called_on_instance","incompatible_ternary","shadowed_variable_base_class","integer_division","confusable_local_declaration","unused_parameter","standalone_ternary"]:
         if ProjectSettings.get_setting("debug/gdscript/warnings/"+category)!=2:
             push_error("Run tools/verify_godot_warnings.py so warning levels are set at startup")
             quit(2)
@@ -39,5 +41,5 @@ func run() -> void:
     var args:=OS.get_cmdline_user_args()
     var output:String=args[0] if not args.is_empty() else "res://../docs/evidence/godot-warnings/strict.json"
     DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(output.get_base_dir()))
-    FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify({"engine":Engine.get_version_info().string,"checks":checks,"failed":failed,"passed":checks.size()-failed,"scope":"Four screenshot warning categories treated as compile errors; no warning suppression."},"  "))
+    FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify({"engine":Engine.get_version_info().string,"checks":checks,"failed":failed,"passed":checks.size()-failed,"scope":"Seven screenshot warning categories treated as compile errors; no warning suppression."},"  "))
     quit(1 if failed else 0)

@@ -117,7 +117,15 @@
       "passed": true
     },
     {
+      "name": "FREE PLAY has WATCH OPENING and settings no longer repeats it",
+      "passed": true
+    },
+    {
       "name": "replay starts from the title",
+      "passed": true
+    },
+    {
+      "name": "after the replay the main menu is back",
       "passed": true
     },
     {
@@ -141,7 +149,7 @@
       "passed": true
     }
   ],
-  "passed": 35,
+  "passed": 37,
   "suite": "story_opening",
-  "total": 35
+  "total": 37
 }

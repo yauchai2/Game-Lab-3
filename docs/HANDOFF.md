@@ -4,6 +4,14 @@
 
 [實際引擎畫面與驗證](evidence/nightshift-hub/README.md)：211行為／原生／城市戰役回歸＋14嚴格編譯，共225項通過，accepted無ERROR／SCRIPT ERROR。樓梯轉角／延遲焦點／舊fixture STORY鍵與排版等待已修，初次失敗保留。Linux4.6.3 llvmpipe／Dummy，非Mac／真人／FPS驗收。這是概念的可玩3D重建，非逐像素完稿；後續角色關係／黑箱劇情回城演出仍屬規劃。只推任務分支／draft PR，未發Web。
 
+## 2026-11-12：開場 polygon／警告截圖修正
+
+修復眼鏡 glint 零半徑及細小ray的triangulation錯誤：略過不可見burst並以draw_primitive直接提交三角形；整理外層title_progress、未用_t與equipment metadata的獨立ternary。19腳本／七類fatal warnings、288組原生burst及既有37項開場流程通過，15個3D抽格無ERROR／SCRIPT ERROR。證據[evidence/opening-bugfix](evidence/opening-bugfix/README.md)。來源codex/fix-opening-polygons；Godot4.6.3 Linux llvmpipe，Mac／4.7.2待使用者覆核，Web未更新。
+
+## 2026-11-12：重看開場的入口改到 FREE PLAY（Claude）
+
+使用者問開場為何在 main 看不到：程式已在 main，開場預設只在第一次啟動播，本機存檔若已有旗標就不會再播。使用者決定維持首次播放，但要有地方重看。原本的 `REPLAY OPENING` 在 SETTINGS 頁最底、需捲動才找得到，現移到主選單 FREE PLAY 頁，改名 `WATCH OPENING`（SQUAD、AI DEMO 之下），SETTINGS 不再重複。播完或 Enter／Space 跳過後回主選單。`verify_story_opening` 37/37，含「FREE PLAY 有按鈕、SETTINGS 沒有、按下會播、跳過後回主選單」。
+
 ## 2026-11-12：完整短篇故事、雙巨型Boss與技巧優先成長
 
 最新見[CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)，覆蓋下方「Boss／城市九核心／獨立場景／完整短篇故事未做」的舊狀態。六區18場、兩／三階段Boss與讀招弱點、有限增援／新敵型、危險地面預告／破箱連鎖、分支休息與補給、六章劇本／三NPC／五能力課程／12專屬招式三選二、九核心真DRAW→EQUIP與一次性出擊預算、工坊及裝備骨架外觀已接正式STORY。12個原創低模GLB與Blender來源可重建；原Tripo及英雄GLB保持。schema3保v2樹／裝／局內進度並留.v2.bak，v1遷移仍保持。

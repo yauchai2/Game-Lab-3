@@ -4,6 +4,12 @@
 
 [實際引擎畫面與驗證](evidence/nightshift-hub/README.md)：211行為／原生／城市戰役回歸＋14嚴格編譯，共225項通過，accepted無ERROR／SCRIPT ERROR。樓梯轉角／延遲焦點／舊fixture STORY鍵與排版等待已修，初次失敗保留。Linux4.6.3 llvmpipe／Dummy，非Mac／真人／FPS驗收。這是概念的可玩3D重建，非逐像素完稿；後續角色關係／黑箱劇情回城演出仍屬規劃。只推任務分支／draft PR，未發Web。
 
+## 2026-11-12：開場錯誤修正
+
+- [x] 零半徑／細小burst不再進polygon triangulator；截圖三類警告清理。
+- [x] 19腳本嚴格編譯、288組burst、37項開場流程及15個3D抽格；見evidence/opening-bugfix。
+- [ ] Mac／Godot4.7.2：更新來源後停止舊遊戲、清除Debugger舊紀錄，FREE PLAY → WATCH OPENING覆核。
+
 ## 2026-11-12：完整短篇故事版本
 
 - [x] 六區獨立場景、實際城市英雄／NPC、六章故事及結局。
