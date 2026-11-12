@@ -1,0 +1,125 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "city now uses original hero skeleton and authored NPC models",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "six authored chapters have objectives and a persistent technique journal",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "native city class-technique choices persist exactly two",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "native lesson starts an isolated full-energy fixture",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "real Space double-jump event completes the lesson",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "lesson exit preserves expedition HP money loot and core state",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "city dealer enters shared 3D draw with one saved token",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "native DRAW reveals the already-saved core rather than rerolling",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "actual selected-character equip presentation is active",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "equip completion atomically prepares exactly one core",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "story freight finale owns a real Boss, core and class perks",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "generated giant is an articulated mesh model, not the old suit",
+      "passed": true
+    },
+    {
+      "detail": {
+        "player_px": 72.8965301513672
+      },
+      "name": "giant camera keeps a readable player projection",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "authored arena replaces the shared street and owns environment",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "boss windup is visible in model cue and ground mark",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "native pause freezes Boss attack countdown",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "real phase director changes phase and clears pending attacks",
+      "passed": true
+    },
+    {
+      "detail": {
+        "lowest_y": 0.0200000405311584
+      },
+      "name": "defeated giant is grounded instead of floating",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "tower finale has its own distinct giant model and three-phase data",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "native workshop recalibrates and debits only the stated cost",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "standard mode exit restores the original street and removes Boss visuals",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "city equipment bonuses and visual sockets do not leak into standard Fight",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "native heavy/body impact visibly destroys a real arena prop",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 23
+}

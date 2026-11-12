@@ -1,0 +1,14 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+POSE (0.0, 1.0, 0.0) (0.518778, -0.071796, -0.099812, 0.846022)
+REFERENCE calibrated scene contains real depth geometry and five rigged actors true
+REFERENCE reference station 0 remains reachable true
+REFERENCE reference station 1 remains reachable true
+REFERENCE reference station 2 remains reachable true
+REFERENCE reference station 3 remains reachable true
+REFERENCE reference station 4 remains reachable true
+REFERENCE reference station 5 remains reachable true
+REFERENCE reduced effects disables beams smoke and electrical arcs true

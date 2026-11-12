@@ -1,0 +1,32 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+COMPLETE_NATIVE city now uses original hero skeleton and authored NPC models true
+COMPLETE_NATIVE six authored chapters have objectives and a persistent technique journal true
+COMPLETE_NATIVE native city class-technique choices persist exactly two false
+ERROR: native city class-technique choices persist exactly two
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_campaign_complete_native.gd:8)
+       [1] run (res://tools/verify_campaign_complete_native.gd:50)
+       [2] click (res://tools/verify_campaign_complete_native.gd:28)
+       [3] frames (res://tools/verify_campaign_complete_native.gd:11)
+COMPLETE_NATIVE native lesson starts an isolated full-energy fixture true
+COMPLETE_NATIVE real Space double-jump event completes the lesson true
+COMPLETE_NATIVE lesson exit preserves expedition HP money loot and core state true
+COMPLETE_NATIVE city dealer enters shared 3D draw with one saved token false
+ERROR: city dealer enters shared 3D draw with one saved token
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_campaign_complete_native.gd:8)
+       [1] run (res://tools/verify_campaign_complete_native.gd:60)
+       [2] click (res://tools/verify_campaign_complete_native.gd:28)
+       [3] frames (res://tools/verify_campaign_complete_native.gd:11)
+SCRIPT ERROR: Invalid access to property or key 'id' on a base object of type 'Dictionary'.
+          at: run (res://tools/verify_campaign_complete_native.gd:61)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_campaign_complete_native.gd:61)
+              [1] click (res://tools/verify_campaign_complete_native.gd:28)
+              [2] frames (res://tools/verify_campaign_complete_native.gd:11)

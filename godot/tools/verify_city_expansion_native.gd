@@ -12,6 +12,7 @@ func frames(n:=3) -> void:
 func tap(code:Key) -> void:
     for down in [true,false]:
         var e:=InputEventKey.new();e.physical_keycode=code;e.keycode=code;e.pressed=down;Input.parse_input_event(e);await frames(2)
+    await station_travel()
 func click(control:Control) -> void:
     # Rebuilt long station panels need a layout pass before ensure_control_visible.
     await frames(3)
@@ -21,7 +22,7 @@ func click(control:Control) -> void:
         parent=parent.get_parent()
     for down in [true,false]:
         var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_LEFT;e.pressed=down
-        e.position=root.get_screen_transform()*control.get_global_rect().get_center();e.global_position=e.position;Input.parse_input_event(e);await frames(2)
+        e.position=control.get_global_rect().get_center();e.global_position=e.position;root.push_input(e,true);await frames(2)
 func button(parent:Node,prefix:String) -> Button:
     for child in parent.find_children("*","Button",true,false):
         if child.text.begins_with(prefix):return child
@@ -41,7 +42,7 @@ func run() -> void:
     check("nearest texture filter and AA-free toon renderer retained",ProjectSettings.get_setting("rendering/textures/canvas_textures/default_texture_filter")==0 and root.msaa_3d==Viewport.MSAA_DISABLED and root.screen_space_aa==Viewport.SCREEN_SPACE_AA_DISABLED)
     check("title preview also renders at new resolution",s.hud.title_motion.viewport.size==Vector2i(960,540))
     await shot("main-menu")
-    await click(s.hud.art_buttons.fight)
+    await click(s.hud.art_buttons.story)
     var c=s.city_campaign;var h=c.hub;var p=c.profile
     check("main Story still opens the isometric city",s.screen=="city" and h.visible and not s.hud.visible)
     check("city viewport matches upgraded whole-game resolution",h.viewport.size==Vector2i(960,540))
@@ -66,13 +67,13 @@ func run() -> void:
     check("native node selection plus Connect spends one actual point",p.data.talents[0]==["break_1"] and p.stats(0).heavy_damage>0)
     var old_zoom:float=tree.zoom
     var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_WHEEL_UP;e.pressed=true
-    e.position=root.get_screen_transform()*tree.board.get_global_rect().get_center();e.global_position=e.position;Input.parse_input_event(e);await frames()
+    e.position=tree.board.get_global_rect().get_center();e.global_position=e.position;root.push_input(e,true);await frames()
     check("native mouse wheel zooms the tree",tree.zoom>old_zoom)
     var old_pan:Vector2=tree.pan
     var drag:=InputEventMouseButton.new();drag.button_index=MOUSE_BUTTON_RIGHT;drag.pressed=true
-    drag.position=root.get_screen_transform()*tree.board.get_global_rect().get_center();drag.global_position=drag.position;Input.parse_input_event(drag);await frames(2)
-    var motion:=InputEventMouseMotion.new();motion.position=drag.position+Vector2(35,20);motion.global_position=motion.position;motion.relative=Vector2(35,20);motion.button_mask=MOUSE_BUTTON_MASK_RIGHT;Input.parse_input_event(motion);await frames(2)
-    drag.pressed=false;drag.position=motion.position;drag.global_position=drag.position;Input.parse_input_event(drag);await frames(2)
+    drag.position=tree.board.get_global_rect().get_center();drag.global_position=drag.position;root.push_input(drag,true);await frames(2)
+    var motion:=InputEventMouseMotion.new();motion.position=drag.position+Vector2(35,20);motion.global_position=motion.position;motion.relative=Vector2(35,20);motion.button_mask=MOUSE_BUTTON_MASK_RIGHT;root.push_input(motion,true);await frames(2)
+    drag.pressed=false;drag.position=motion.position;drag.global_position=drag.position;root.push_input(drag,true);await frames(2)
     check("native right drag pans the connected tree",tree.pan.distance_to(old_pan)>1)
     # Explicit advanced-tree fixture for readability, not earned progression.
     p.data.xp=1900;p.data.best=18;p._points();p.respec(0)
@@ -106,3 +107,12 @@ func run() -> void:
     var file:=FileAccess.open(OUT+"native.json",FileAccess.WRITE);file.store_string(JSON.stringify({"passed":checks.size()-failed,"failed":failed,"checks":checks},"  "));file.close()
     s.queue_free();await frames(8);await create_timer(.3).timeout
     print("EXPANSION_NATIVE RESULT ",checks.size()-failed,"/",checks.size());quit(1 if failed else 0)
+
+func station_travel() -> void:
+    if s.screen!="city":return
+    var h=s.city_campaign.hub
+    for tick in 1500:
+        if h.route_station<0:return
+        h._process(1.0/60)
+        if tick%120==0:await frames(1)
+    check("station travel completes before UI assertions",false)
