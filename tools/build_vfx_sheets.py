@@ -4,11 +4,11 @@ game's hard-edged pixel-cel look: 1-bit alpha, flat tones, baked 1px ink outline
 (drawn with nearest filtering at about 1 texel per 640x360 game pixel).
 
 Usage: build_vfx_sheets.py <hit_sheet_4096.png> <kenney_white_puff_dir> <slash_sheet.png> <out_dir>
-  hit sheet   = Sinestesia "Hit Animation | Frame by frame" (hit - yellow.png)   CC0
+  hit burst   = authored in this script (original, no source art); first argument is ignored
   puffs       = Kenney "Smoke particle assets" / White puff                       CC0
   slash sheet = tbbk "Pixel art sword slash effect" (192x141, 3x3 of 64x47)       CC0
 Outputs (all white where tinted, RGB is a grey level the game multiplies by a colour):
-  hit_spark_{tint,core,ink}.png  4x4 cells of 96px (frames 7-13 used in game)
+  hit_spark_{tint,core,ink}.png  4x2 cells of 64px, 8 frames of an authored comic starburst
   puffs.png                      3x2 cells of 48px; grey bands = flat cel shading, darkest = ink rim
   slash_{tint,core,ink}.png      3x3 cells of 64x47 -> padded to 66x49 cells
 """
@@ -33,30 +33,59 @@ def layer(mask):
     a[..., 3] = mask.astype(np.uint8) * 255
     return a
 
-hit_src, puff_dir, slash_src, out = sys.argv[1:5]
+_unused, puff_dir, slash_src, out = sys.argv[1:5]  # first arg kept for compatibility (hit art is authored now)
 os.makedirs(out, exist_ok=True)
 
-# ---- hit spark -------------------------------------------------------------------------
-sheet = Image.open(hit_src).convert("RGBA")
-CELL, OUT, HALF = 1024, 96, 330
-frames = [np.asarray(sheet.crop(((i % 4) * CELL, (i // 4) * CELL, (i % 4 + 1) * CELL, (i // 4 + 1) * CELL))).astype(np.float32) / 255 for i in range(16)]
-best = max(range(16), key=lambda i: frames[i][..., 3].sum())
-a = frames[best][..., 3]
-ys, xs = np.mgrid[0:CELL, 0:CELL]
-cx = (a * xs).sum() / a.sum(); cy = (a * ys).sum() / a.sum()
-sheets = {k: np.zeros((OUT * 4, OUT * 4, 4), np.uint8) for k in ("tint", "core", "ink")}
-for i, f in enumerate(frames):
-    def cell(arr2d):
-        im = Image.fromarray((arr2d * 255).astype(np.uint8)).crop((int(cx - HALF), int(cy - HALF), int(cx + HALF), int(cy + HALF)))
-        return np.asarray(im.resize((OUT, OUT), Image.BOX)).astype(np.float32) / 255
-    body = cell(np.clip((f[..., 3] - 0.10) / 0.25, 0, 1)) >= 0.16
-    hot = (cell(np.clip((f[..., 2] - 0.30) / 0.4, 0, 1) * (f[..., 3] > 0.5)) >= 0.35) & body
+# ---- hit burst: authored comic starburst (original art, no source) ------------------------------
+# 8 frames, 4x2 cells of 64px. Frame 0-1 grow, 2-3 hold, 4-7 break into outward shards.
+# Spikes point along +x (the game rotates it to the hit direction).
+import math, random
+from PIL import ImageDraw
+OUT = 64; SS = 8
+def star_points(r, rng, spikes=11, stretch=1.45, inner=0.42):
+    pts = []
+    for i in range(spikes * 2):
+        a = i * math.pi / spikes
+        long_spike = (i % 2 == 0)
+        rad = r * (1.0 if long_spike else inner) * (0.78 + 0.34 * rng.random() if long_spike else 1.0)
+        # a few long speed spikes toward +x / -x
+        if long_spike and abs(math.cos(a)) > 0.8 and abs(math.sin(a)) < 0.45:
+            rad *= 1.35
+        pts.append((OUT / 2 + math.cos(a) * rad * stretch, OUT / 2 + math.sin(a) * rad))
+    return pts
+def raster(draw_fn):
+    im = Image.new("L", (OUT * SS, OUT * SS), 0)
+    draw_fn(ImageDraw.Draw(im))
+    return np.asarray(im.resize((OUT, OUT), Image.BOX)) >= 128
+sheets = {k: np.zeros((OUT * 2, OUT * 4, 4), np.uint8) for k in ("tint", "core", "ink")}
+radii = [0.15, 0.25, 0.30, 0.28, 0.25, 0.22, 0.20, 0.17]
+for i in range(8):
+    rng = random.Random(7)
+    r = radii[i] * OUT
+    def body_fn(d, r=r, i=i):
+        if i < 4:
+            d.polygon([(x * SS, y * SS) for x, y in star_points(r, random.Random(7))], fill=255)
+        else:  # shards: ring of small triangles flying outward
+            grow = (i - 3) / 4.0
+            for k in range(9):
+                a = k * 2 * math.pi / 9 + 0.3
+                c = (OUT / 2 + math.cos(a) * r * 1.45 * (0.7 + grow * 0.6) * 1.2, OUT / 2 + math.sin(a) * r * 1.45 * (0.7 + grow * 0.6))
+                sz = max(1.5, 5.5 * (1 - grow * 0.65))
+                tri = [(c[0] + math.cos(a) * sz * 1.6, c[1] + math.sin(a) * sz * 1.6),
+                       (c[0] + math.cos(a + 2.4) * sz, c[1] + math.sin(a + 2.4) * sz),
+                       (c[0] + math.cos(a - 2.4) * sz, c[1] + math.sin(a - 2.4) * sz)]
+                d.polygon([(x * SS, y * SS) for x, y in tri], fill=255)
+    def core_fn(d, r=r, i=i):
+        if i < 4:
+            d.polygon([(x * SS, y * SS) for x, y in star_points(r * 0.52, random.Random(3), inner=0.45)], fill=255)
+    body = raster(body_fn); hot = raster(core_fn) & body
     x0, y0 = (i % 4) * OUT, (i // 4) * OUT
     sheets["tint"][y0:y0 + OUT, x0:x0 + OUT] = layer(body)
     sheets["core"][y0:y0 + OUT, x0:x0 + OUT] = layer(hot)
-    sheets["ink"][y0:y0 + OUT, x0:x0 + OUT] = layer(dilate(body, 1))
+    sheets["ink"][y0:y0 + OUT, x0:x0 + OUT] = layer(dilate(body, 2))
 for k, v in sheets.items():
     png(v, os.path.join(out, f"hit_spark_{k}.png"))
+cx = cy = 0
 
 # ---- dust puffs: flat 3-tone cel with ink rim ---------------------------------------------
 P = 48

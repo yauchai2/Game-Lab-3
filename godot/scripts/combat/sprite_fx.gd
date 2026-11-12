@@ -3,12 +3,12 @@ extends RefCounted
 ## baked white+alpha so every fighter colour comes from `tint` at draw time. Presentation only.
 const INK := Color("111a32")
 const PAPER := Color("fff8dc")
-const CELL := 96.0
-## Frames 0-5 of the source sheet carry a smooth shockwave ring, so playback starts at the jagged burst (frame 6 still shows a faint ring remnant).
-const FIRST_FRAME := 7
-const LAST_FRAME := 13
-## Sheet art travels toward the upper-right (-45 degrees on screen).
-const NATIVE_ANGLE := -PI / 4.0
+const CELL := 64.0
+## Authored comic starburst: frames 0-3 grow/hold, 4-7 break into shards.
+const FIRST_FRAME := 0
+const LAST_FRAME := 7
+## Burst spikes point along +x.
+const NATIVE_ANGLE := 0.0
 var tint_sheet: Texture2D = load("res://assets/vfx/hit_spark_tint.png")
 var core_sheet: Texture2D = load("res://assets/vfx/hit_spark_core.png")
 var ink_sheet: Texture2D = load("res://assets/vfx/hit_spark_ink.png")
@@ -30,9 +30,9 @@ func hit_spark(canvas: Control, at: Vector2, phase: float, tint: Color, heading:
     var frame: int = FIRST_FRAME + clampi(floori(clampf(phase, 0.0, 0.9999) * float(LAST_FRAME - FIRST_FRAME + 1)), 0, LAST_FRAME - FIRST_FRAME)
     var src := Rect2(Vector2(frame % 4, frame / 4) * CELL, Vector2(CELL, CELL))
     # Cel style: no alpha fade. The burst shrinks away on its last frames instead.
-    var shrink: float = 1.0 - maxf(0.0, phase - 0.7) / 0.3 * 0.35
+    var shrink: float = 1.0
     var roll: float = heading - NATIVE_ANGLE
-    var edge := Vector2(size, size) * shrink
+    var edge := Vector2(size, size) * shrink * 1.25
     _quad(canvas, ink_sheet, src, at, edge, roll, INK)
     _quad(canvas, tint_sheet, src, at, edge, roll, tint)
     _quad(canvas, core_sheet, src, at, edge, roll, PAPER)
@@ -70,9 +70,13 @@ func ground_shock(canvas: Control, at: Vector2, time: float, color: Color, count
         var life: float = 1.0 - maxf(0.0, time - 0.45) / 0.55
         puff(canvas, p, i, Vector2(edge, edge * 0.8) * life, float(i) * 0.9, color)
 
-## Charge-up: small sparks streaming inward to `at` on a shrinking radius, .
+## Charge-up: a few thick ink speed streaks sliding inward to `at` (hard polygons, same language as the game's wedges).
 func converge(canvas: Control, at: Vector2, time: float, tint: Color, radius: float, count: int) -> void:
     for i in count:
-        var a: float = float(i) / float(count) * TAU + time * 0.9
-        var p: Vector2 = at + Vector2.from_angle(a) * radius
-        hit_spark(canvas, p, 0.15 + 0.35 * fposmod(time * 3.0 + float(i) * 0.37, 1.0), tint, a + PI, 96.0)
+        var a: float = float(i) / float(count) * TAU + 0.35
+        var dir: Vector2 = Vector2.from_angle(a)
+        var tip: Vector2 = at + dir * maxf(radius * 0.55, 10.0)
+        var tail: Vector2 = at + dir * (radius + 26.0)
+        var side: Vector2 = dir.orthogonal()
+        canvas.draw_colored_polygon(PackedVector2Array([tail + side * 5.0, tip, tail - side * 5.0]), INK)
+        canvas.draw_colored_polygon(PackedVector2Array([tail + side * 2.5, tip + dir * 3.0, tail - side * 2.5]), tint)

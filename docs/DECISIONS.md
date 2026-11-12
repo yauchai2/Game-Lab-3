@@ -7,6 +7,10 @@
 
 Alan指出命中特效（紫／青多邊形線圈、五邊形、放射線）、地面白色碎片與腳下深藍橢圓影子品質劣質，要求改用線上素材。命中／釋放／格擋破防／蓄力改為Sinestesia CC0命中火花flipbook（白色＋alpha烘焙，按角色色著色，加深色墊底以保可讀）；腳步／落地／滑行塵與slam／ground_ring改為Kenney CC0白煙貼圖；影子改程式生成的三階平色橢圓影，離地時變淡。來源與授權見godot/assets/vfx/SOURCES.md，烘焙腳本tools/build_vfx_sheets.py。不改傷害／hitstop／Rhythm／Neon；swing弧線保留。此決定取代上條「不引入素材採購」中關於命中圖形的部分。未在實機GPU／Mac／真人手感驗收。
 
+## 2026-11-12：命中爆裂改為自製漫畫星爆，蓄力改墨線速度線
+
+Alan回報新特效仍不融入（滿屏樹葉狀火花）。Sinestesia素材縮成像素後像葉片，已停用；`tools/build_vfx_sheets.py`程序化生成8格漫畫星爆（尖角、粗墨線、紙白核心、後四格碎裂成碎片），命中／釋放／格擋等沿用。蓄力／rally／抓取預告改為少量粗墨線速度線（無貼圖），數量減少。劍氣弧線（tbbk CC0）與Kenney煙塵保留。
+
 ## 2026-11-12：VFX風格校正為Jet Set Radio式像素cel，並改回原始黑衣人GLB
 
 Alan指出首版發光火花不合風格（本作類Jet Set Radio）。素材改烘成低解析、1-bit alpha、平色＋烘焙墨線、nearest取樣，不做alpha淡出而是縮小消失；揮拳弧線改用tbbk的CC0像素劍氣（所有招式共用，依招式／角色調長度與厚度）；環境煙霧shader改三階平色；影子改三階平色。蓄力／rally／格擋／紅色演出等圈形線條全部改為火花。同回合：Alan提供的GLB與`black_suit/source/`原檔SHA-256相同，已把黑衣人runtime改回此原始GLB（不再用`derived/black_suit_repaired.glb`，該檔仍保留未刪），並放寬verify_black_suit／verify_squad_native對修補材質數量的斷言（>=4 → >=1）。原始模型的後頸／領帶問題未再修補，未經實機視覺驗收。
