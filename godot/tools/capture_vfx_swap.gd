@@ -45,6 +45,13 @@ func run() -> void:
     for i in 5:
         scene._process(1.0/60)
     await shot("gallery")
+    # Contact staging: paper-white flash frame, then ink speed lines.
+    scene.spectacle.clear()
+    scene.neon.trigger({"kind":"hit","move":"special","attacker":0,"target":1},scene.sim.fighters,3)
+    scene._process(1.0/600)
+    await shot("contact_flash")
+    scene._process(.1)
+    await shot("contact_lines")
     scene.queue_free()
     await process_frame
     quit()

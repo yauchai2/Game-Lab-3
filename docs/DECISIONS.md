@@ -7,6 +7,10 @@
 
 Alan指出命中特效（紫／青多邊形線圈、五邊形、放射線）、地面白色碎片與腳下深藍橢圓影子品質劣質，要求改用線上素材。命中／釋放／格擋破防／蓄力改為Sinestesia CC0命中火花flipbook（白色＋alpha烘焙，按角色色著色，加深色墊底以保可讀）；腳步／落地／滑行塵與slam／ground_ring改為Kenney CC0白煙貼圖；影子改程式生成的三階平色橢圓影，離地時變淡。來源與授權見godot/assets/vfx/SOURCES.md，烘焙腳本tools/build_vfx_sheets.py。不改傷害／hitstop／Rhythm／Neon；swing弧線保留。此決定取代上條「不引入素材採購」中關於命中圖形的部分。未在實機GPU／Mac／真人手感驗收。
 
+## 2026-11-12：命中閃白、墨線速度線、雙色星爆
+
+依Jet Set Radio／Bomb Rush Cyberfunk／Lethal League Blaze方向：重擊星爆改雙色疊層（隊色＋黃色底層，粗黑邊）；Neon RELEASE／BREAK／K.O.在開頭兩幀加紙白全屏閃（Neon仍是唯一全屏owner；F2降低演出時不顯示），並加2px對齊的墨線速度線；Neon原本的斷線菱形與蓄力弧線改為星爆／匯聚墨線。fight_spectacle的放射線與圓點同步改為速度線與方塊（僅非Neon路徑使用）。
+
 ## 2026-11-12：特效像素格對齊場景（1素材像素＝1遊戲像素）
 
 Alan指出特效像素比場景／UI粗、不吻合。規則：HUD畫布為1280×720、最終640×360，故特效1 texel＝2 HUD px，一律不旋轉、不任意縮放、座標對齊2px格，只用「小／大」兩套圖集切換強度（星爆64／128格、劍氣固定64×47、煙塵24格）；煙塵以消失代替縮放。風格目標：Jet Set Radio、Bomb Rush Cyberfunk、Lethal League Blaze（平色、粗墨線、強對比、命中閃白）。

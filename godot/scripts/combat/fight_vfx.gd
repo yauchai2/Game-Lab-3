@@ -73,6 +73,18 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             var level: int=effect.get("tier",1)
             sprites.converge(canvas,at,time,tint,(30.0+level*6.0)*(1.0-time*.4),4 if reduced else 7)
             sprites.hit_spark(canvas,at,.15+.3*fposmod(time*2.0,1.0),paper,-0.8,56.0+level*10.0)
+        "hit","clash","release","wall":
+            var phase: float = 0.12 if effect.kind in ["hit","clash"] and effect.get("held",false) else time
+            var hit_move: String = effect.get("move","jab")
+            var hit_profile: Vector3 = impact_shapes.PROFILES.get(hit_move,impact_shapes.PROFILES.jab)
+            var hit_gain: float = {"heavy":1.0,"launcher":1.05,"finisher":1.0,"meteor":1.15,"air_finisher":1.05,"special":1.4,"overdrive":1.7}.get(hit_move,0.8)
+            var heading: float = (PI - hit_profile.z) if face < 0 else hit_profile.z
+            # Sheet choice, not scaling, sets the strength: small burst for light hits, big for heavy classes.
+            var big_hit: bool = not reduced and effect.kind != "release" and (hit_gain >= 1.0 or strength >= .7)
+            var edge: float = 260.0 if big_hit else 120.0
+            if effect.kind == "release":phase = 0.3 + phase * 0.7
+            if big_hit:sprites.hit_spark(canvas,at+Vector2(-face*16.0,8.0),minf(1.0,phase+.1),Color("ffd83e"),heading,edge)
+            sprites.hit_spark(canvas,at,phase,tint,heading,edge)
         "swing":
             var move: String = effect.get("move","jab")
             var profile: Vector3 = impact_shapes.PROFILES.get(move,impact_shapes.PROFILES.jab)
