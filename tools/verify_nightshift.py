@@ -9,7 +9,7 @@ import subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
 CASES=[
-    ('verify_nightshift_hub','nightshift-hub/verification.json',True),
+    ('verify_nightshift_hub','nightshift-reference/verification.json',True),
     ('verify_campaign_complete_native','campaign-complete/native.json',True),
     ('verify_city_expansion_native','city-expansion/native.json',True),
     ('verify_campaign_complete','campaign-complete/rules.json',False),
@@ -20,7 +20,7 @@ def main():
     parser.add_argument('--only',help='Comma-separated script names')
     args=parser.parse_args();selected=set(args.only.split(',')) if args.only else {c[0] for c in CASES}
     if selected-{c[0] for c in CASES}:parser.error('Unknown case')
-    out=ROOT/'docs/evidence/nightshift-hub/regression';out.mkdir(parents=True,exist_ok=True);results=[]
+    out=ROOT/'docs/evidence/nightshift-reference/regression';out.mkdir(parents=True,exist_ok=True);results=[]
     for name,report,native in CASES:
         if name not in selected:continue
         if native and not os.environ.get('DISPLAY'):parser.error('Native checks require DISPLAY')

@@ -1,0 +1,176 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "formal Story uses the new workshop in its isolated 960 viewport",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "orthographic camera uses cutaway map framing",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "all heroes retain real production skeletons",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "station route exists 0",
+      "passed": true
+    },
+    {
+      "detail": {
+        "height": 0.0,
+        "position": "(-1.0, 0.0, 3.5)"
+      },
+      "name": "walk to station 0 reaches its real approach without clipping",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "station route exists 1",
+      "passed": true
+    },
+    {
+      "detail": {
+        "height": 0.0,
+        "position": "(3.5, 0.0, 3.5)"
+      },
+      "name": "walk to station 1 reaches its real approach without clipping",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "station route exists 2",
+      "passed": true
+    },
+    {
+      "detail": {
+        "height": 0.0,
+        "position": "(3.5, 0.0, -1.5)"
+      },
+      "name": "walk to station 2 reaches its real approach without clipping",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "station route exists 3",
+      "passed": true
+    },
+    {
+      "detail": {
+        "height": 1.60000002384186,
+        "position": "(-4.5, 1.6, 6.5)"
+      },
+      "name": "walk to station 3 reaches its real approach without clipping",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "radio route physically climbs the loft stairs",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "station route exists 4",
+      "passed": true
+    },
+    {
+      "detail": {
+        "height": 0.0,
+        "position": "(10.5, 0.0, 7.5)"
+      },
+      "name": "walk to station 4 reaches its real approach without clipping",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "station route exists 5",
+      "passed": true
+    },
+    {
+      "detail": {
+        "height": 0.0,
+        "position": "(0.5, 0.0, -1.5)"
+      },
+      "name": "walk to station 5 reaches its real approach without clipping",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "center has no remote interaction prompt",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "real keyboard input moves the hub avatar",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "click floor computes a real walking route",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 0 keeps one instance of each companion",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 1 keeps one instance of each companion",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 2 keeps one instance of each companion",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 3 keeps one instance of each companion",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "E at shop opens the real purchase and crafting interface",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "visiting facilities does not award money XP or consume a core",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "loft side cannot be entered without stairs",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "station shortcut requests walking rather than teleport",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "departure starts existing campaign with hub renderer off",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "safe return restores new hub with expedition snapshot",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "leaving hub disables its renderer and restores title",
+      "passed": true
+    }
+  ],
+  "display": "X11",
+  "engine": "4.6.3-stable (official)",
+  "failed": 0,
+  "passed": 30
+}

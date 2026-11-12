@@ -2,8 +2,8 @@ extends CanvasLayer
 ## Nightshift workshop: spatial interactions over the existing campaign/save systems.
 const T=preload("res://scripts/combat/ui/ui_theme.gd")
 const Profile=preload("res://scripts/combat/city/city_profile.gd")
-const Set=preload("res://scripts/combat/city/nightshift/workshop.gd")
-const STATIONS=Set.STATIONS
+const Set=preload("res://scripts/combat/city/nightshift/reference_workshop.gd")
+var STATIONS:Array[Vector3]=[]
 const NAMES=["SKILLS","CIRCUIT","DEALER","RADIO","DEPART","SHOP"]
 const COLORS=Set.ACCENTS
 var workshop:Node3D
@@ -11,6 +11,8 @@ var route:=PackedVector3Array()
 var route_station:=-1
 var active_station:=-1
 var station_buttons:Array[Button]=[]
+var station_bar:HBoxContainer
+var hud_expanded:=false
 var arrival_hint:Label
 var npc_sample:=0.0
 var campaign:Node
@@ -48,7 +50,7 @@ func _ready() -> void:
     layout=Control.new();layout.mouse_filter=Control.MOUSE_FILTER_IGNORE;root.add_child(layout)
     header=_label("",28,T.PAPER);header.add_theme_stylebox_override("normal",T.plate(T.INK,T.INK,1));header.position=Vector2(34,22);header.size=Vector2(1000,74);layout.add_child(header)
     hint=_label("",24,T.PAPER);hint.add_theme_stylebox_override("normal",T.plate(T.INK,T.INK,1));hint.position=Vector2(34,594);hint.size=Vector2(1200,38);layout.add_child(hint)
-    var bar:=HBoxContainer.new();bar.position=Vector2(30,649);bar.size=Vector2(1220,48);bar.add_theme_constant_override("separation",8);layout.add_child(bar)
+    var bar:=HBoxContainer.new();station_bar=bar;bar.position=Vector2(30,649);bar.size=Vector2(1220,48);bar.add_theme_constant_override("separation",8);layout.add_child(bar)
     for i in 7:
         var index:=i
         var button:=Button.new();button.text=(str(i+1)+" "+NAMES[i]) if i<6 else "TITLE"
@@ -84,14 +86,15 @@ func _sign(text:String,at:Vector3,tint:Color) -> void:
 
 func _build_city() -> void:
     workshop=Set.new();world.add_child(workshop);workshop.build()
-    view_camera=workshop.camera
+    view_camera=workshop.camera;STATIONS=workshop.stations
     hero=Node3D.new();hero.name="ControllableHero";world.add_child(hero)
 
 func show_city() -> void:
     visible=true;root.visible=true;viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS
     get_viewport().disable_3d=true
-    hero.position=Vector3(0,0,1.5);route.clear();route_station=-1;page="";panel.visible=false;refresh_header()
+    hero.position=workshop.spawns[campaign.hero_id()];route.clear();route_station=-1;page="";panel.visible=false;refresh_header()
     notice=""
+    header.visible=hud_expanded;hint.visible=hud_expanded;station_bar.visible=hud_expanded
 
 func hide_city() -> void:
     visible=false
@@ -114,7 +117,9 @@ func _process(delta:float) -> void:
     var movement:=Vector2.ZERO
     if not panel.visible and not talent_tree.visible:
         movement=Vector2(float(Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT))-float(Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT)),float(Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN))-float(Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP))).normalized()
-        var direction:=Vector3(movement.x+movement.y,0,movement.y-movement.x).normalized()
+        var right:Vector3=view_camera.global_basis.x;right.y=0
+        var back:Vector3=view_camera.global_basis.z;back.y=0
+        var direction:Vector3=(right.normalized()*movement.x+back.normalized()*movement.y).normalized()
         if movement.length()>.01:route.clear();route_station=-1
         elif not route.is_empty():
             var toward:Vector3=route[0]-hero.position;toward.y=0
@@ -152,6 +157,9 @@ func request_station(index:int) -> void:
 
 func _input(event:InputEvent) -> void:
     if not visible or not event is InputEventKey or not event.pressed or event.echo:return
+    if event.keycode==KEY_TAB:
+        hud_expanded=not hud_expanded;header.visible=hud_expanded;hint.visible=hud_expanded;station_bar.visible=hud_expanded
+        get_viewport().set_input_as_handled();return
     if talent_tree.visible:
         if event.keycode==KEY_ESCAPE:talent_tree.hide();refresh_header();get_viewport().set_input_as_handled()
         return
@@ -165,6 +173,7 @@ func _input(event:InputEvent) -> void:
 
 func close_panel() -> void:
     panel.visible=false;page="";notice=""
+    header.visible=hud_expanded
     var focused:=get_viewport().gui_get_focus_owner()
     if focused:focused.release_focus()
 
@@ -191,7 +200,7 @@ func open_station(index:int) -> void:
     if index<0 or index>=NAMES.size():return
     route.clear();route_station=-1;active_station=index;workshop.trigger(index)
     campaign.session.audio.play_sound("ui_confirm",1.0,-10)
-    page=NAMES[index];panel.visible=true
+    page=NAMES[index];panel.visible=true;header.visible=true
     for child in stack.get_children():stack.remove_child(child);child.queue_free()
     _text(Set.TITLES[index],COLORS[index])
     _text(["RIVET: Don't bleed on the tools.","LOOP: Plug in. Don't lick the contacts.","DEALER: One core. No refunds.","HUSH: Your footsteps are off-beat.","LAST DEPARTURE / STILL OPEN.","COUNTER: Cash first. Questions later."][index],T.MUTED)
@@ -381,7 +390,8 @@ func _avatar(delta:float,movement:Vector2) -> void:
     for slot in town_npcs.size():
         var npc:Node3D=town_npcs[slot];var id:int=companions[slot]
         if npc.character_index!=id:npc.setup(Color.WHITE,id)
-        npc.position=[Vector3(-5.8,2.1,-4.6),Vector3(-3.25,0,-3.1),Vector3(-7,2.1,-3.8),Vector3(.2,0,-3.6)][id]
+        npc.position=workshop.spawns[id]
+    workshop.pose_actor(hero_visual,campaign.hero_id(),movement.length()>.01,campaign.session.reduced_effects)
     npc_sample+=delta
     if npc_sample>=1.0/12:
         for npc in town_npcs:
@@ -389,6 +399,7 @@ func _avatar(delta:float,movement:Vector2) -> void:
             var old:Transform3D=npc.transform
             var idle_pose:Dictionary=pose.duplicate(true);idle_pose.character=npc.character_index;idle_pose.vx=0;idle_pose.draw_core=""
             npc.present(idle_pose,npc_sample,false,true);npc.transform=old
+            workshop.pose_actor(npc,npc.character_index,false,campaign.session.reduced_effects)
             var job:int=[-1,0,3,1][npc.character_index]
             if workshop.action_station==job and workshop.action_age<.85:
                 var weight:float=sin(workshop.action_age/.85*PI)
@@ -406,7 +417,7 @@ func _unhandled_input(event:InputEvent) -> void:
     if not visible or panel.visible or talent_tree.visible:return
     if not event is InputEventMouseButton or event.button_index!=MOUSE_BUTTON_LEFT or not event.pressed:return
     var point:Vector2=event.position
-    var aims:Array=[Vector3(-3,1.5,-4.3),Vector3(.1,1.5,-4.3),Vector3(7.2,1.5,-3.6),Vector3(-7,3,-2.7),Vector3(8.2,1.5,3.3),Vector3(2.9,1.5,-4.6)]
+    var aims:Array=workshop.aims
     var picked:=-1;var gap:=42.0
     for i in aims.size():
         var distance:float=view_camera.unproject_position(aims[i]).distance_to(point)
@@ -414,8 +425,8 @@ func _unhandled_input(event:InputEvent) -> void:
     if picked>=0:request_station(picked);get_viewport().set_input_as_handled();return
     var origin:Vector3=view_camera.project_ray_origin(point);var direction:Vector3=view_camera.project_ray_normal(point)
     var target:Variant=Plane(Vector3.UP,0).intersects_ray(origin,direction)
-    var upstairs:Variant=Plane(Vector3.UP,2.1).intersects_ray(origin,direction)
-    if upstairs!=null and Set.LOFT.has_point(Vector2(upstairs.x,upstairs.z)):target=upstairs
+    var upstairs:Variant=Plane(Vector3.UP,Set.LOFT_Y).intersects_ray(origin,direction)
+    if upstairs!=null and workshop.in_loft(upstairs):target=upstairs
     if target!=null and workshop.walkable(target):
         route=workshop.route(hero.position,target);route_station=-1
         get_viewport().set_input_as_handled()

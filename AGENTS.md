@@ -142,3 +142,5 @@
 - 2026-11-11 使用者提供開場影片／六格分鏡／18秒鏡頭表：現況見docs/STORY_OPENING.zh-TW.md。啟動後、主選單前的18秒即時3D開場，cinematic/story_opening.gd為唯一導演，無狀態sample(t)，clear須還原相機／街景／lens／score／duck。只在場景為current_scene時自動播，首次啟動旗標存story_opening.cfg，設定頁可重播；音樂只調音量不停transport，音效軌由tools/build_story_opening_audio.py重建，不用參考片音軌。第一拳與黑衣人上門短動畫留待「開始故事」，尚未實作。分支claude/project-thread-frl810草稿PR指向codex/combat-escalation-next，未合併、Web不更新。
 
 - 2026-11-12 本聊天使用者要求復刻確認的黑白工廈／桃紅背景回城圖並近區互動：見docs/NIGHTSHIFT_HUB.zh-TW.md。基於main6fdd3a6在codex/nightshift-hub改造正式CityHub，workshop.gd是場景／高度／障礙／尋路唯一owner；六設施保留原經濟／schema3／戰役，數字快捷走過去，不遠端花錢。四英雄原模型、原Tripo來源保持，hub instance黑白wrapper；舊safe_block保留不用，衍生GLB可重建。211回歸＋14strict；後續關係事件／Tripo精修是規劃，影片每段最多15秒。只推任務分支及draft PR，不自動發Web。
+
+- 2026-11-12 最新據點更正：NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md覆蓋上一版粗模美術。使用者要求原圖／15秒附件動畫，採固定視角投影空場材質＋3D深度／真骨架／程序光煙電動作；不是全角度建築，不冒稱角色或動畫逐幀完美。移除接線大機、戰利品牆與站位框，HUD預設收起Tab展開；現有存檔經濟維持。新影片15.000秒，原始參考15.083不改；Tripo無必需件，選配清單另存。211回歸＋15strict，歷史粗模225項不可冒稱新結果；同分支PR #19，Web不更新。
