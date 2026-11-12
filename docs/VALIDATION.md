@@ -1,3 +1,7 @@
+## 2026-11-12：戰鬥VFX研究範圍
+
+本輪為文件研究，基線ef3f8d3；核對Godot640×360 Compatibility、active fight_vfx／impact_shapes／fight_session／street_smoke／Neon路徑，看compact-hud/fight.png及round-flow兩圖；舊combat-escalation/zip-rivet.mp4之3–15秒取12張1Hz接觸表，不能驗短閃／聲音／當前build。X原片web403、替代讀取未取得、cloud browser初始化失敗；未觀看。來源候選查Kenney官方CC0頁、GDQuest及Real Time VFX拆解、Vefects產品搜尋，未下載或驗引擎相容。僅文件檢查與git diff --check，不跑runtime測試、不宣稱Mac／真人／效能通過；Web未更新。
+
 ## 2026-11-12：故事波次設計文件
 
 本輪只新增STORY_WAVES_PLAN.zh-TW.md及相關紀錄。查閱基線main e725c99的三站Run、黑衣人群戰、opt-in反彈、九核心與裝備契約；文件區分既有與待做。波次／角色量／倍率／像素高度／時長是試作目標，未跑新玩法測試，未宣稱現有可支援10–12同場或大型Boss。僅檢查文件diff與runtime未變，原遊戲及Web不更新。

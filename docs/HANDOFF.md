@@ -1,3 +1,7 @@
+## 2026-11-12：戰鬥VFX品質研究（僅規劃）
+
+見[COMBAT_VFX_QUALITY_PLAN.zh-TW.md](COMBAT_VFX_QUALITY_PLAN.zh-TW.md)。基線ef3f8d3，核對active向量renderer、步行聲無同步腳煙、比例接觸錨點、既有track_attack／serial、世界煙池與Neon仲裁；看3張歷史原生截圖與舊Demo 3–15秒每秒取樣12張。X原片403／雲端browser初始化失敗，未觀看或量測，不確認片中遊戲／引擎／素材來源。六項正式玩法切片、12組動畫規格、素材候選、10–15工作天粗估及驗收皆為提案；runtime未改、未跑新遊戲測試，Web未更新。下一步M0最新有聲基線＋M1腳步／世界煙＋M2普通打擊，避免再以獨立展示替代正式優化。
+
 ## 2026-11-12：故事波次、連鎖與大型Boss設計（僅規劃）
 
 使用者要求詳細規劃故事模式改有限波次、漸增難度、情境敵型、人海／巨獸拉遠及敵碰敵連鎖。已查最新main e725c99、現有3站Street Run／黑衣人群戰／指定技球狀反彈／九核心及裝備，提案見[STORY_WAVES_PLAN.zh-TW.md](STORY_WAVES_PLAN.zh-TW.md)。六關逐波配方、N/R/G/C/H/E分工、兩場大型Boss、三相機profile與32px投影下限、連鎖去重／衰減／預算、休息核心區段及checkpoint均為待驗證設計，不是runtime已加入。建議先M1三波／三敵型／6人／一次連鎖切片，再白盒大型中Boss。一般FIGHT／Demo與指定技才開四面盒契約保持；本輪僅文件，未執行新玩法測試，未更新Web。

@@ -1,3 +1,7 @@
+## 2026-11-12：戰鬥VFX品質優化提案
+
+依使用者要求詳細研究，新增COMBAT_VFX_QUALITY_PLAN.zh-TW.md。推薦作者化flipbook＋真世界錨點／socket＋既有Rhythm／Neon混合方案，先六項正式玩法品質切片再四角招牌技；採購僅候選、不重啟退役生成噪聲圖集。數值／排程／新FxRecipe架構均待實作比較，不改既有玩法權威。原X影片尚未取得，未把一般方法當影片實際做法。
+
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 
 見 [ABILITY_EQUIP_RUNTIME.zh-TW.md](ABILITY_EQUIP_RUNTIME.zh-TW.md)。按EQUIP／Demo結果停3.5秒後，當局原選角演出副本接取→握緊→腰扣→鎖定→能量到鞋→踩地，4.10秒（F2開始1.15秒）。九核心真腰掛跟隨骨盆保留到下一局重置；不露臉，原街景／stage profile沿用，聲效／魚眼／短模糊／震動／漫畫線／煙塵同步。先演再一次套用，Space跳過不重抽；pause／cancel／R恢復。113新＋69流程＋75核心＋34戰鬥＋46角色／成長＋8嚴格編譯＝345項，證據evidence/ability-equip。原GLB／XP／Web保持，Mac／真人待驗；覆蓋舊腰側裝備僅規劃。
