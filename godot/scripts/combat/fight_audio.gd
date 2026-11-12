@@ -28,6 +28,9 @@ var fight_pick:String=FIGHT_POOL[0]
 var last_context:="title"
 var match_over:=false # set by the session when a result screen ends the whole match (not just a round)
 var ui_last:Dictionary={}
+const IMPACT_KINDS:=["hit","heavy","slam","ko","launch","release","guard_break","block","parry"]
+const BIG_KINDS:=["heavy","slam","ko","release","guard_break"]
+var duck_db:=4.0 # how far the music dips under the last impact (bigger for finishers)
 const BERLIN := "res://audio/user-tracks/berlin.ogg"
 const GROOVE := "res://audio/user-tracks/groove_district.ogg"
 var current_track := ""
@@ -162,7 +165,7 @@ func _process(delta: float) -> void:
     if not music.playing:music.play(start_position(current_track))
     music.stream_paused=false
     fading_music.stream_paused=false
-    var target_db:float=(-4.0 if context=="play" else (-15.0 if context in ["pause","help"] else -7.0))-(4.0 if duck_time>0 else 0.0)-cinematic_duck*8.0
+    var target_db:float=(-4.0 if context=="play" else (-15.0 if context in ["pause","help"] else -7.0))-(duck_db if duck_time>0 else 0.0)-cinematic_duck*8.0
     if muted or music_muted or music_level<=0:target_db=-80.0
     else:target_db+=linear_to_db(maxf(.001,music_level))
     music_gain_db=lerpf(music_gain_db,target_db,1.0-exp(-delta*7.0))
@@ -201,10 +204,14 @@ func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
     voice.stop()
     voice.stream = variants[voice_index % variants.size()]
     voice_index += 1
-    voice.volume_db = -3.0+minf(0.0,level_db)+linear_to_db(maxf(.001,effects_level))
+    # Impacts keep most of their level: call sites ask for -6..-12 dB, which made hits sit under the music.
+    var impact:bool=kind in IMPACT_KINDS
+    voice.volume_db = (-1.0 if impact else -3.0)+minf(0.0,level_db*(.35 if impact else 1.0))+linear_to_db(maxf(.001,effects_level))
     voice.pitch_scale = clampf(pitch,0.65,1.55)
     voice.play()
-    if kind in ["hit","heavy","parry","guard_break","rally","release"]: duck_time = 0.18
+    if kind in ["hit","heavy","parry","guard_break","rally","release","slam","ko","launch"]:
+        duck_time = 0.34 if kind in BIG_KINDS else 0.18
+        duck_db = 9.0 if kind in BIG_KINDS else 5.0
 
 func stop_all() -> void:
     for voice in voices: voice.stop()
@@ -256,6 +263,13 @@ func _ensure_buses() -> void:
     var has_limiter:=false
     for i in AudioServer.get_bus_effect_count(sfx_bus):
         if AudioServer.get_bus_effect(sfx_bus,i) is AudioEffectLimiter:has_limiter=true
+    var has_compressor:=false
+    for i in AudioServer.get_bus_effect_count(sfx_bus):
+        if AudioServer.get_bus_effect(sfx_bus,i) is AudioEffectCompressor:has_compressor=true
+    if not has_compressor:
+        var compressor:=AudioEffectCompressor.new()
+        compressor.threshold=-14.0;compressor.ratio=4.0;compressor.attack_us=1500.0;compressor.release_ms=120.0;compressor.gain=3.0
+        AudioServer.add_bus_effect(sfx_bus,compressor,0)
     if not has_limiter:
         var limiter:=AudioEffectLimiter.new()
         limiter.ceiling_db=-2.0

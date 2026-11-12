@@ -116,12 +116,12 @@ def build():
         return out
     for k, (pids, ex, f0, pitch) in enumerate([((2465, 2466), 1808, 62, 1.0), ((2466, 2459, 2465), 1807, 54, .9), ((2459, 2465), 1806, 48, .85)]):
         n = int(.95 * SR); e = norm(syn.filt(speed(hit_of(ex, 0, .5), pitch), "high", 50, 2), .9)
-        S[f"heavy_{k}"] = syn.tail(syn.sat(layer(n, (2.1, stack(pids)), (.55, e), (1.1, mid(1.0, 2461)), (.7, shock(n)), (.7, boom(n, f0 * 3, f0, 300)),
+        S[f"heavy_{k}"] = syn.tail(syn.sat(layer(n, (2.1, stack(pids)), (.8, speed(stack(pids), .5)), (.55, e), (1.1, mid(1.0, 2461)), (.7, shock(n)), (.7, boom(n, f0 * 3, f0, 300)),
                                                (.5, syn.click(n, 1.6))), 3.0), .32, .2)
     n = int(1.2 * SR)
     for k, (ex, f0) in enumerate([(1806, 40), (1807, 46)]):
         S[f"slam_{k}"] = syn.tail(syn.sat(layer(n, (1.0, norm(syn.filt(hit_of(ex, 0, .8), "high", 40, 2), .9)), (.9, norm(cut(fetch(2452), onsets(fetch(2452), 1)[0], .6, .2), .9)),
-                         (1.8, stack((2465, 2466, 2464), .03)), (.9, boom(n, 170, f0, 420)), (.8, shock(n)), (.9, mid(1.0, 2464))), 3.2), .38, .3)
+                         (1.8, stack((2465, 2466, 2464), .03)), (.8, speed(stack((2465, 2466), .03), .5)), (.9, boom(n, 170, f0, 420)), (.8, shock(n)), (.9, mid(1.0, 2464))), 3.2), .38, .3)
     n = int(.5 * SR)   # launcher / uppercut: crack, rising whoosh, hit
     wh = fetch(1795); wh = norm(speed(cut(wh, max(0, onsets(wh, 1)[0] - 2000), .4, .15), 1.5), .9)
     S["launch_0"] = syn.sat(layer(n, (1.4, norm(punchy(hit_of(2466, 0, .35), g=1.8), .9)), (.9, wh[::-1] * np.linspace(.2, 1, len(wh)) * 0 + wh), (.6, mid(1.0, 2461)), (.5, boom(n, 200, 70, 120))), 2.4)
@@ -138,15 +138,27 @@ def build():
     d = np.zeros(n)
     for o, ex, g in ((0, 1023, 1.0), (.09, 1806, .9), (.2, 1808, .8)):
         r = norm(syn.filt(hit_of(ex, 0, 1.0), "high", 40, 2), .9); i = int(o * SR); d[i:i + len(r)] += g * r[:n - i]
-    S["ko_0"] = syn.tail(syn.sat(layer(n, (1.0, d), (2.0, stack((2465, 2466, 2459), .04)), (.9, norm(cut(fetch(2452), onsets(fetch(2452), 1)[0], 1.0, .3), .9)),
+    S["ko_0"] = syn.tail(syn.sat(layer(n, (1.0, d), (2.0, stack((2465, 2466, 2459), .04)), (.9, speed(stack((2465, 2466), .04), .5)), (.9, norm(cut(fetch(2452), onsets(fetch(2452), 1)[0], 1.0, .3), .9)),
                   (.9, boom(n, 150, 30, 700)), (.8, shock(n))), 3.0), .4, .4)
     return S
+
+IMPACT_TARGET = {"hit": -12.0, "block": -12.0, "parry": -13.0, "guard_break": -10.0, "heavy": -9.5, "slam": -9.5, "ko": -9.5, "launch": -11.0, "release": -10.0}
+
+def aggressive(name, x):
+    """Make impacts hit harder: lift RMS of the first 150 ms to a target, then soft-clip (tanh) so the body is dense, not just peaky."""
+    kind = name.rsplit("_", 1)[0]
+    if kind not in IMPACT_TARGET: return x
+    seg = x[:int(.15 * SR)]; rms = np.sqrt((seg ** 2).mean()) + 1e-9
+    g = 10 ** (IMPACT_TARGET[kind] / 20) / rms
+    y = x * g; drive = 1.5
+    return np.tanh(y * drive) / np.tanh(drive)
 
 def main():
     syn.main()
     S = build()
     for name, x in S.items():
-        peak = .8
+        x = aggressive(name, x)
+        peak = .62 if name.rsplit('_', 1)[0] in IMPACT_TARGET else .8
         st = syn.finish(x, peak)
         raw = (st * 32767).astype("<i2").tobytes()
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "2", "-i", "-", "-c:a", "libvorbis", "-q:a", "6",
