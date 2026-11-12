@@ -125,3 +125,5 @@
 - 2026-11-11 最新澄清：多面球狀反彈僅指定技能／大招，覆蓋一般重擊／挑空／投技皆觸發。ServiceProfiles.move以ricochet旗標opt-in：四人overdrive最後重擊、RIVET preload2 special、HUSH sample_boost special；其他normal／未強化技能不啟動。平常不顯示臨時盒或限制跳躍天花，僅反彈效果期間。原RESULT／決勝KO與能力抽取保持，見evidence/ricochet-scope；同branch推送、Web不更新。
 
 - 2026-11-11 本聊天最新已要求以新影片實作抽獎後裝備：見docs/ABILITY_EQUIP_RUNTIME.zh-TW.md，覆蓋腰側僅規劃。結果按EQUIP／Demo停3.5秒後播4.10秒，F2開始1.15秒；使用當局五原選角副本、只拍手腰腿鞋，正式fighter以Hips跟隨九核心腰掛。一次套用在演出後，skip不重抽、cancel無獎、pause／clear還原；不重播多餘第三局人物開場。345項通過／新原創PCM，原GLB／XP／Web保留，Mac／真人待驗。
+
+- 2026-11-11 使用者要求故事先行／通關解鎖自由對戰、同鍵盤雙人、雙手柄：現況見 docs/LOCAL_VERSUS.zh-TW.md，主選單 6 項（STORY 首位、VERSUS 鎖定至第三站勝出），覆蓋前述「僅5主選項」。fight_controls.gd 為唯一輸入裝置 owner，單人鍵盤原路徑與 fight_simulation.gd 不改；通關旗標在既有 progression.cfg。豐富遊戲點子 docs/GAME_ENRICHMENT_IDEAS.zh-TW.md 只屬提案，不得當成已實作或已確認設定。實體手柄／鬼鍵／雙人手感未驗證。使用者確認只鎖對戰；AI DEMO 為測試用、正式不推出（入口待移除）。雙人對戰停用只給P1的能力抽取。此項由 Claude 對話在分支 claude/project-thread-xmgtx2 完成，基線 codex/combat-escalation-next 3389fa9，草稿PR回Codex分支，未合併；Web 不更新。

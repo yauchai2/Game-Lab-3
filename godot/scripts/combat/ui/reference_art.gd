@@ -5,17 +5,22 @@ const LARGE_TYPE=preload("res://assets/fonts/RadioPixelDisplay.fnt")
 const TITLE=preload("res://assets/ui/last_service/cover-ensemble.png")
 const CITY=preload("res://assets/ui/ink/city-band.png")
 const SLASHES=preload("res://assets/ui/ink/slashes.png")
-const MAIN_RECTS=[Rect2(56,260,408,84),Rect2(56,354,408,66),Rect2(56,430,408,66),Rect2(56,506,408,66),Rect2(56,604,282,54)]
+const MAIN_RECTS=[Rect2(56,248,408,78),Rect2(56,338,408,54),Rect2(56,402,408,54),Rect2(56,466,408,54),Rect2(56,530,408,54),Rect2(56,604,282,48)]
+const MAIN_KEYS=["story","fight","roster","training","settings","demo"]
+const MAIN_LABELS=["STORY","VERSUS","FIGHTERS","TRAINING","SETTINGS","AI DEMO"]
+var free_locked:=true
+var locked_flash:=0.0
 const CARD_RECTS=[Rect2(198,155,300,349),Rect2(485,159,301,345),Rect2(191,509,298,332),Rect2(491,510,304,330)]
 var title_stage:Node
 var roster_side:=0
 var focus_age:=1.0
-var focused_key:="fight":
+var focused_key:="story":
     set(value):
         if value!=focused_key:focus_age=0.0
         focused_key=value
 func advance(delta:float,reduced:bool) -> void:
     focus_age=1.0 if reduced else minf(1.0,focus_age+delta)
+    locked_flash=maxf(0.0,locked_flash-delta)
 func fit(rect:Rect2) -> Rect2:
     return Rect2(rect.position*Vector2(1280.0/1672,720.0/941),rect.size*Vector2(1280.0/1672,720.0/941))
 func polygon(c:Control,pts:Array,color:Color) -> void:
@@ -36,21 +41,25 @@ func title(c:Control) -> void:
     logo(c,Vector2(48,70),560)
     text(c,Vector2(58,222),"LAST SERVICE / STREET FIGHT",28,T.PAPER)
     c.draw_texture_rect(SLASHES,Rect2(514,198,56,36),false)
-    var keys:Array=["fight","roster","training","settings","demo"]
-    var labels:Array=["FIGHT","FIGHTERS","TRAINING","SETTINGS","AI DEMO"]
-    for i in 5:
-        var active:bool=focused_key==keys[i]
+    for i in MAIN_KEYS.size():
+        var active:bool=focused_key==MAIN_KEYS[i]
+        var locked:bool=free_locked and MAIN_KEYS[i]=="fight"
         var rect:Rect2=MAIN_RECTS[i]
         plate(c,Rect2(rect.position+Vector2(6,7),rect.size),Color("07030d"),14)
-        plate(c,rect.grow(3),Color.WHITE,14)
-        plate(c,rect,T.MAGENTA if active else T.NIGHT,14)
-        var point_size:int=64 if i==0 else (34 if i==4 else 46)
-        text(c,rect.position+Vector2(24,62 if i==0 else (40 if i==4 else 49)),labels[i],point_size,T.INK if active else Color.WHITE)
+        plate(c,rect.grow(3),T.MUTED if locked else Color.WHITE,14)
+        plate(c,rect,(T.MUTED if locked else T.MAGENTA) if active else T.NIGHT,14)
+        var point_size:int=64 if i==0 else (34 if i==5 else 40)
+        var ink:Color=T.INK if active else (T.MUTED if locked else Color.WHITE)
+        text(c,rect.position+Vector2(24,60 if i==0 else (37 if i==5 else 42)),MAIN_LABELS[i],point_size,ink)
+        if locked:
+            # Native text, never baked: the lock reads from the saved story flag.
+            var tag:=Rect2(rect.end.x-196,rect.position.y+9,176,36)
+            plate(c,tag,T.GOLD if locked_flash>0 else T.INK,6)
+            text(c,tag.position+Vector2(12,28),"CLEAR STORY",24,T.INK if locked_flash>0 else T.GOLD)
         if active:
             var kick:int=4 if focus_age<.10 else (2 if focus_age<.20 else 0)
             var center:Vector2=Vector2(rect.position.x-14-kick,rect.get_center().y)
             polygon(c,[center,center+Vector2(-15,-10),center+Vector2(-15,10)],T.MAGENTA)
-    text(c,Vector2(64,594),"FIGHTERS: XP / SKILLS",24,T.MUTED)
     hints(c)
 func logo(c:Control,at:Vector2,width:float) -> void:
     var height:float=width*T.LOGO.get_height()/T.LOGO.get_width()
@@ -107,7 +116,7 @@ func roster(c:Control,s:Node) -> void:
     text(c,Vector2(1106,623),"SQUAD",28,T.INK)
     var fight_rect:Rect2=fit(Rect2(849,773,550,100))
     plate(c,fight_rect,T.TEAL if focused_key=="roster_fight" else T.PAPER,12)
-    text(c,fight_rect.position+Vector2(54,58),"FIGHT",64,T.INK)
+    text(c,fight_rect.position+Vector2(54,58),"STORY" if free_locked else "FIGHT",64,T.INK)
     var name:String=["ZIP / ROUTE KICKS","RIVET / PRELOAD","HUSH / SAMPLE","LOOP / PATCH NODES","BLACK SUIT / ENEMY"][choice]
     plate(c,Rect2(672,666,250,38),T.NIGHT,8)
     text(c,Vector2(686,697),name,26,T.PAPER)
@@ -165,15 +174,20 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
     text(c,Vector2(640-width*.5,59),clock,clock_size)
     plate(c,Rect2(150,644,980,60),T.INK,20)
     plate(c,Rect2(154,646,972,54),T.PAPER,20)
-    var skill_label:String="NODE" if s.character_choices[0]==3 else ("HOLD" if s.character_choices[0]==1 else "SKILL")
-    var shortcuts:Array=[["J","RUSH",174],["K","LAUNCH",382],["L",skill_label,616],["W+L","SUPER",820]]
-    for entry in shortcuts:
-        var key_width:float=72 if entry[0]=="W+L" else 44
-        plate(c,Rect2(entry[2],655,key_width,34),T.INK,6)
-        text(c,Vector2(entry[2]+7,683),entry[0],32,T.PAPER)
-        text(c,Vector2(entry[2]+key_width+10,683),entry[1],30)
+    if s.versus:
+        # Two humans: show each player's own device row instead of the solo keyboard row.
+        for side in 2:
+            text(c,Vector2(176 if side==0 else 660,683),"P%d  %s"%[side+1,s.controls.short_legend(side)],24)
+    else:
+        var skill_label:String="NODE" if s.character_choices[0]==3 else ("HOLD" if s.character_choices[0]==1 else "SKILL")
+        var shortcuts:Array=[["J","RUSH",174],["K","LAUNCH",382],["L",skill_label,616],["W+L","SUPER",820]]
+        for entry in shortcuts:
+            var key_width:float=72 if entry[0]=="W+L" else 44
+            plate(c,Rect2(entry[2],655,key_width,34),T.INK,6)
+            text(c,Vector2(entry[2]+7,683),entry[0],32,T.PAPER)
+            text(c,Vector2(entry[2]+key_width+10,683),entry[1],30)
 
-    if s.character_choices[0]==3:
+    if s.character_choices[0]==3 and not s.versus:
         plate(c,Rect2(990,606,238,32),T.INK,6)
         text(c,Vector2(1000,631),"S+L  PULSE",24,T.LIME)
     if s.sim.combo_hits>=2 and s.sim.combo_owner>=0 and s.sim.fighters[1-s.sim.combo_owner].state=="stun":

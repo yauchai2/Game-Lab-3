@@ -19,66 +19,66 @@
   "samples": [
     {
       "cycles": 0,
-      "nodes": 523.0,
-      "objects": 3020.0,
+      "nodes": 934.0,
+      "objects": 4194.0,
       "orphans": 0.0,
-      "static_memory": 91691844.0
+      "static_memory": 97895490.0
     },
     {
       "cycles": 64,
-      "nodes": 523.0,
-      "objects": 3020.0,
+      "nodes": 934.0,
+      "objects": 4194.0,
       "orphans": 0.0,
-      "static_memory": 92122928.0
+      "static_memory": 97896294.0
     },
     {
       "cycles": 128,
-      "nodes": 523.0,
-      "objects": 3020.0,
+      "nodes": 934.0,
+      "objects": 4194.0,
       "orphans": 0.0,
-      "static_memory": 92614996.0
+      "static_memory": 97897018.0
     },
     {
       "cycles": 192,
-      "nodes": 523.0,
-      "objects": 3020.0,
+      "nodes": 934.0,
+      "objects": 4194.0,
       "orphans": 0.0,
-      "static_memory": 92615744.0
+      "static_memory": 97897766.0
     },
     {
       "cycles": 256,
-      "nodes": 523.0,
-      "objects": 3020.0,
+      "nodes": 934.0,
+      "objects": 4194.0,
       "orphans": 0.0,
-      "static_memory": 92616516.0
+      "static_memory": 97898538.0
     },
     {
       "cycles": 320,
-      "nodes": 523.0,
-      "objects": 3020.0,
+      "nodes": 934.0,
+      "objects": 4194.0,
       "orphans": 0.0,
-      "static_memory": 93600440.0
+      "static_memory": 97899262.0
     },
     {
       "cycles": 384,
-      "nodes": 523.0,
-      "objects": 3020.0,
+      "nodes": 934.0,
+      "objects": 4194.0,
       "orphans": 0.0,
-      "static_memory": 93601236.0
+      "static_memory": 97900058.0
     },
     {
       "cycles": 448,
-      "nodes": 523.0,
-      "objects": 3020.0,
+      "nodes": 934.0,
+      "objects": 4194.0,
       "orphans": 0.0,
-      "static_memory": 93601960.0
+      "static_memory": 97900782.0
     },
     {
       "cycles": 512,
-      "nodes": 523.0,
-      "objects": 3020.0,
+      "nodes": 934.0,
+      "objects": 4194.0,
       "orphans": 0.0,
-      "static_memory": 93602684.0
+      "static_memory": 97901506.0
     }
   ]
 }

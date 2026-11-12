@@ -21,14 +21,14 @@ func run() -> void:
     scene=preload("res://scenes/combat/street_fight.tscn").instantiate();scene.preferences_path="";root.add_child(scene);scene.set_process(false);scene.set_physics_process(false);scene.backdrop.freeze_for_capture()
     await frames();var hud:Node=scene.hud
     check("English interface default",scene.language=="en")
-    check("exactly five native main actions",hud.art_buttons.keys()==["fight","roster","training","settings","demo"] and hud.art_controls.visible and not hud.menu.visible)
+    check("six native main actions, story first",hud.art_buttons.keys()==["story","fight","roster","training","settings","demo"] and hud.art_controls.visible and not hud.menu.visible)
     check("native buttons retain meaningful English names",hud.art_buttons.values().all(func(b:Button)->bool:return not b.text.is_empty() and b.focus_mode==Control.FOCUS_ALL))
     for dimensions in [Vector2i(960,540),Vector2i(1280,720),Vector2i(1920,1080)]:
         root.size=dimensions;await frames();var fit:=true
         for b in hud.art_buttons.values():fit=fit and b.get_global_rect().position.x>=0 and b.get_global_rect().end.x<=root.get_visible_rect().size.x+1 and b.get_global_rect().end.y<=root.get_visible_rect().size.y+1
-        check("five actions fit "+str(dimensions),fit)
+        check("main actions fit "+str(dimensions),fit)
     root.size=Vector2i(1280,720);hud.art_buttons.fight.grab_focus();hud.art.focused_key="fight";await shot("title")
-    await tap(KEY_DOWN);check("arrow moves Fight to Fighters",hud.art_buttons.roster.has_focus())
+    await tap(KEY_DOWN);check("arrow moves Versus to Fighters",hud.art_buttons.roster.has_focus())
     await tap(KEY_ENTER);print("ENTER_STATE ",scene.screen," ",hud.menu_page," ",hud.art_buttons.keys());check("Enter opens four-card Fighters page",hud.menu_page=="roster" and hud.art_buttons.has("card_3"))
     await click(hud.art_buttons.card_3);check("pointer selects LOOP for P1",scene.character_choices[0]==3 and scene.sim.character_choices[0]==3)
     await click(hud.art_buttons.side_1);await click(hud.art_buttons.card_1)
@@ -38,7 +38,7 @@ func run() -> void:
         await click(hud.art_buttons["card_"+str(index)])
         check("card %d changes actual P1 profile"%index,scene.character_choices[0]==index and scene.sim.fighters[0].character==index)
         await shot("fighter-card-"+str(index))
-    await tap(KEY_ESCAPE);check("Esc returns to five-option menu",hud.menu_page=="main" and hud.art_buttons.size()==5)
+    await tap(KEY_ESCAPE);check("Esc returns to six-option menu",hud.menu_page=="main" and hud.art_buttons.size()==6)
     await click(hud.art_buttons.settings);check("pointer opens native Settings",hud.menu_page=="settings" and hud.menu.visible)
     var options:Array=hud.menu_stack.find_children("*","OptionButton",true,false)
     options[0].grab_focus();await tap(KEY_SPACE)

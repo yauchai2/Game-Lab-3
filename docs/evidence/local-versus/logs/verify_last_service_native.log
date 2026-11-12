@@ -1,0 +1,44 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
+ERROR: Condition "status < 0" is true. Returning: ERR_CANT_OPEN
+   at: init_output_device (drivers/alsa/audio_driver_alsa.cpp:90)
+WARNING: All audio drivers failed, falling back to the dummy driver.
+     at: initialize (servers/audio/audio_server.cpp:247)
+
+SERVICE_NATIVE New model 0 mapped and animated true <null>
+SERVICE_NATIVE New model 1 mapped and animated true <null>
+SERVICE_NATIVE New model 2 mapped and animated true <null>
+SERVICE_NATIVE New model 3 mapped and animated true <null>
+SERVICE_NATIVE Held RIVET shows no premature strike VFX true <null>
+SERVICE_NATIVE Strike VFX begins on actual active frames true <null>
+SERVICE_NATIVE Interrupted skill clears tracked charge and strike graphics true <null>
+SERVICE_NATIVE Real pointer opens skill page true <null>
+SERVICE_NATIVE Locked skills do not consume points true <null>
+SERVICE_NATIVE Street Run starts with new mechanics and isolated save true <null>
+SERVICE_NATIVE Real victory awards XP and a point false <null>
+SERVICE_NATIVE Repeated result handling cannot duplicate reward false <null>
+SERVICE_NATIVE Requested native button exists false <null>
+SERVICE_NATIVE Requested native button exists false <null>
+SERVICE_NATIVE Requested native button exists false <null>
+SERVICE_NATIVE Pointer unlocks and equips earned ZIP skill false <null>
+SERVICE_NATIVE Requested native button exists false <null>
+SERVICE_NATIVE Next stop changes rival and applies selected build false <null>
+SERVICE_NATIVE Stop 2 finishes through a real contact false <null>
+SERVICE_NATIVE Stop 3 finishes through a real contact false <null>
+SERVICE_NATIVE Requested native button exists false <null>
+SERVICE_NATIVE Three-stop clear returns to roster with saved mastery false <null>
+SERVICE_NATIVE Standard fight removes all progression modifiers true <null>
+SERVICE_NATIVE Free AI remains alive and both new roles hit true [13, 23]
+SERVICE_NATIVE AI uses legal LOOP nodes true { "placed": 2, "pulses": 0, "peak": 1 }
+SERVICE_NATIVE Demo grants no XP true <null>
+SERVICE_NATIVE Replacement materials retire cleanly true <null>
