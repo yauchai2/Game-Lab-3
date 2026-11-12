@@ -25,6 +25,17 @@ schema2沿原city_v1路徑，保留技能／錢裝、退舊樹等值點數，首
 ## 2026-11-12：故事波次M1
 
 [accepted報告與原生圖](evidence/story-waves/README.md)。最終287項：Story37、native Story17、startup warnings11、Arena65、二段跳62、戰鬥34、UI37、回合24，對應log無ERROR／SCRIPT ERROR，VSync警告保留。四英雄Easy普通輸入完整通三波，不注入傷害／補血／重設；真pointer／J／↓+K／Esc／Enter／R及六骨架，另有邊界fixture；玩家投影約68內部像素。基線舊Demo測試同樣23/24的重複intro預期已按現行裝備契約修正且增加真equip觀察，初次失敗保留。Linux4.7.2 Compatibility llvmpipe／Dummy，不是Mac／真人／硬件FPS／實聽驗收。未做Boss／六關／持久checkpoint；任務分支交付，main與Web不更新。
+## 2026-11-12：正式戰鬥VFX實作完成
+
+Godot4.6.3 Linux Compatibility llvmpipe／Dummy：26新FX＋14 strict＋380相關回歸＝420通過；最終log無ERROR／SCRIPT ERROR。1800步前後玩法／資源／事件SHA一致；12秒360幀Movie Writer含真混音，AAC解碼peak .507、零滿幅樣本，另6混音檢查。原生錄製約37秒，非Mac／硬件FPS或聆聽驗收。舊Rush600tick不足（實際698勝出）、Neon永不結束與多餘第三局entry假設已修fixture；headless裝備等draw超時改原生113項通過，初次／基線log保留於evidence/ink-fx。詳COMBAT_VFX_RUNTIME.zh-TW.md，Web未更新。
+
+## 2026-11-12：SEPAK原片視覺分析補件
+
+已取得13.792653s／1440p60原片，8fps全時間範圍取樣＋0.55／1.35／12.0起三段來源連續幀，觀察分段弧、雙色煙尾、小腳塵、背景退讓及近鏡，詳SEPAK_VFX_VIDEO_STUDY.zh-TW.md與references/vfx-quality-2026-11-12。未正常速度含聲播放／聆聽，未知引擎／素材／內部公式；LLB新附件超過32MiB工具上限，未取得，需較短或壓縮版補分析。修訂先做小白塵、分段弧、指定事件短雙色煙；runtime與Web未改。
+
+## 2026-11-12：戰鬥VFX研究範圍
+
+本輪為文件研究，基線ef3f8d3；核對Godot640×360 Compatibility、active fight_vfx／impact_shapes／fight_session／street_smoke／Neon路徑，看compact-hud/fight.png及round-flow兩圖；舊combat-escalation/zip-rivet.mp4之3–15秒取12張1Hz接觸表，不能驗短閃／聲音／當前build。X原片web403、替代讀取未取得、cloud browser初始化失敗；未觀看。來源候選查Kenney官方CC0頁、GDQuest及Real Time VFX拆解、Vefects產品搜尋，未下載或驗引擎相容。僅文件檢查與git diff --check，不跑runtime測試、不宣稱Mac／真人／效能通過；Web未更新。
 
 ## 2026-11-12：故事波次設計文件
 

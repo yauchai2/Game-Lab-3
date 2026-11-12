@@ -1,0 +1,7 @@
+{
+  "scope": "Decoded stereo movie audio: presence and numeric range only, not hardware listening or perceptual mix review. AAC decode can overshoot slightly.",
+  "samples": 1153024,
+  "peak": 0.5073594450950623,
+  "rms": 0.07438936894528074,
+  "samples_at_or_over_1": 0
+}

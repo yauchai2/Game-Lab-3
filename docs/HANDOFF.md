@@ -27,6 +27,17 @@ schema2沿原city_v1路徑，保留技能／錢裝、退舊樹等值點數，首
 依使用者最新要求開codex/story-waves-m1，基於main ef3f8d3，第一個可玩切片見[STORY_WAVES_RUNTIME.zh-TW.md](STORY_WAVES_RUNTIME.zh-TW.md)。FIGHTERS→STORY：3／4／6名三波，普通／承諾突進／真格擋盾衛；敵碰敵掃掠、四目標去重衰減、正面盾擋撞體、一次+4meter、HP／meter跨波、Enter接波、Pause→R及死亡波次重試、第三波遠鏡頭。M1無XP／核心抽取／Boss／退出續關存檔；原模式保留。
 
 [287項最終驗證](evidence/story-waves/README.md)：新規則37、原生17、strict11、既有反彈65／二段跳62／戰鬥34／UI37／回合24；final accepted無ERROR／SCRIPT ERROR。四角Easy普通輸入全通、不注入傷害或補血，非真人驗收。舊round-flow的四intro預期在未改基線亦23/24，已依裝備省略第三局開場契約加入真equip與新match intro驗證，24/24。Linux4.7.2 llvmpipe／Dummy，Mac／手感待驗；只推任務分支及草稿PR，main／Web不動。
+## 2026-11-12：正式戰鬥VFX實作完成
+
+正式戰鬥VFX已接入FIGHT／Demo／Run／SQUAD，見COMBAT_VFX_RUNTIME.zh-TW.md與evidence/ink-fx。12世界煙配方／6持幀輪廓／3變體、真骨骼短尾、分段四角色弧／真命中核心、45ms強閃、方向反衝／局部背景對比、新原創PCM接觸層與優先池。36世界／18裝飾／32短尾、Canvas24；步煙用0.72m距離備援並取較低鞋骨，並非新增動畫marker／IK。420項最終通過；1800步前後玩法SHA一致，12秒有聲前後片。舊Rush／Neon／回合fixture對齊現行有限生命與裝備契約；初次失敗保留。Linux4.6.3 llvmpipe／Dummy，Mac／真人／目標GPU待驗，未發佈Web。原模型／判定／BGM保持；來源沿codex/combat-vfx-quality-plan。
+
+## 2026-11-12：SEPAK原片視覺分析補件
+
+已取得13.792653s／1440p60原片，8fps全時間範圍取樣＋0.55／1.35／12.0起三段來源連續幀，觀察分段弧、雙色煙尾、小腳塵、背景退讓及近鏡，詳SEPAK_VFX_VIDEO_STUDY.zh-TW.md與references/vfx-quality-2026-11-12。未正常速度含聲播放／聆聽，未知引擎／素材／內部公式；LLB新附件超過32MiB工具上限，未取得，需較短或壓縮版補分析。修訂先做小白塵、分段弧、指定事件短雙色煙；runtime與Web未改。
+
+## 2026-11-12：戰鬥VFX品質研究（僅規劃）
+
+見[COMBAT_VFX_QUALITY_PLAN.zh-TW.md](COMBAT_VFX_QUALITY_PLAN.zh-TW.md)。基線ef3f8d3，核對active向量renderer、步行聲無同步腳煙、比例接觸錨點、既有track_attack／serial、世界煙池與Neon仲裁；看3張歷史原生截圖與舊Demo 3–15秒每秒取樣12張。X原片403／雲端browser初始化失敗，未觀看或量測，不確認片中遊戲／引擎／素材來源。六項正式玩法切片、12組動畫規格、素材候選、10–15工作天粗估及驗收皆為提案；runtime未改、未跑新遊戲測試，Web未更新。下一步M0最新有聲基線＋M1腳步／世界煙＋M2普通打擊，避免再以獨立展示替代正式優化。
 
 ## 2026-11-12：故事波次、連鎖與大型Boss設計（僅規劃）
 

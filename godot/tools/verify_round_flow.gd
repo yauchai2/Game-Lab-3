@@ -42,7 +42,7 @@ func run() -> void:
     check("Street Run first and subsequent stops have an entry",run_entry and s.round_theatre.intro and s.run_stage==2 and s.sim.phase=="ready")
     s.return_to_title()
     s.start_match(true);check("practice starts playable without an entry lock",not s.round_theatre.intro and s.sim.phase=="fight")
-    s.start_demo();var initial_round:int=s.presentation_round()
+    s.start_demo();seed(4242);var initial_round:int=s.presentation_round()
     check("demo uses normal finite health rather than practice regeneration",s.demo!=null and not s.sim.training and not s.sim.endless and not s.practice)
     var last:="";var complete_ko:=0;var winner_exits:=0;var safe:=true;var intros:=0;var lens_frames:=0;var equip_seen:=false
     var growth_before:Dictionary=s.growth.records.duplicate(true)

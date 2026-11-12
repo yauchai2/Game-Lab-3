@@ -22,6 +22,7 @@ var neon_profile:Resource=preload("res://scripts/combat/neon/neon_style_profile.
 var spectacle := preload("res://scripts/combat/fight_spectacle.gd").new()
 var grade: ColorRect
 var grade_material: ShaderMaterial
+var ink_fx=preload("res://scripts/combat/ink_fx/world_ink_fx.gd").new()
 var echo_clock := 0.0
 var finish_menu_open := false
 var sim := preload("res://scripts/combat/story/story_simulation.gd").new()
@@ -96,6 +97,7 @@ func _ready() -> void:
         if preferences_path=="user://afterhours.cfg":preferences_path="user://neon_lab/options.cfg"
         DisplayServer.window_set_title("Afterhours — NEON FACETS LAB")
     _build_stage()
+    add_child(ink_fx)
     for i in 2:
         var fighter := FighterVisual.new()
         fighter.neon_enabled=neon_enabled
@@ -314,7 +316,7 @@ func _combat_step() -> void:
         audio.play_sound("ko" if final_ko() else "rally")
         if final_ko() and not reduced_effects:
             round_theatre.clear()
-            theatre.clear(); neon.clear(); rhythm.clear(); spectacle.clear(); effects.clear()
+            theatre.clear(); neon.clear(); rhythm.clear(); spectacle.clear(); effects.clear(); ink_fx.clear()
             city_breaker.begin(sim.winner)
         hud.rebuild_menu()
 
@@ -344,7 +346,18 @@ func _prepare_demo_state() -> void:
 func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}) -> void:
     if sim.last_service_enabled and kind=="wave":return
     if reduced_effects and kind in ["speed","trail"]: return
-    if effects.size()>=(neon_profile.effect_limit if neon_enabled else 64): effects.pop_front()
+    var limit:int=neon_profile.effect_limit if neon_enabled else 64
+    if effects.size()>=limit:
+        var rank:int=preload("res://scripts/combat/ink_fx/fx_recipes.gd").rank(kind)
+        var candidate:=-1
+        var lowest:=rank
+        for index in effects.size():
+            var current:int=preload("res://scripts/combat/ink_fx/fx_recipes.gd").rank(effects[index].kind)
+            if current<lowest:lowest=current;candidate=index
+        if candidate<0:
+            if rank<3:return
+            candidate=0
+        effects.remove_at(candidate)
     var effect := {"rush":sim.arcade_enabled,"kind":kind,"at":at,"age":0.0,"life":life,"strength":0.5,"face":1,"color":COLORS[0]}
     effect.merge(options,true)
     var actor:int=effect.get("attacker",effect.get("owner",0 if effect.color==COLORS[0] else 1))
@@ -355,6 +368,7 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
         effect["owner"]=clampi(actor,0,1)
         effect["attack_serial"]=sim.fighters[effect.owner].service.serial
         effect["track_attack"]=true
+        if sim.squad_enabled and effect.owner==1:effect["squad_id"]=sim.fighters[1].get("squad_id",sim.squad_focus)
     effects.append(effect)
 
 func _handle_event(event: Dictionary) -> void:
@@ -400,6 +414,7 @@ func _handle_event(event: Dictionary) -> void:
         elif event.kind in ["route_gained","sample_gained"]:
             hud.notice="ROUTE +1" if event.kind=="route_gained" else "SAMPLE READY";hud.notice_time=.7
         elif event.kind=="node_unavailable":hud.notice="PLACE A NODE / WAIT FOR PULSE";hud.notice_time=.7
+    ink_fx.on_event(self,event)
     combat_event.emit(event)
     if event.kind=="swing" and event.get("move","") in ["special","node_pulse"] and sim.last_service_enabled and character_choices[event.target]==3:
         audio.play_sound("charge",1.15,-12)
@@ -466,7 +481,7 @@ func _handle_event(event: Dictionary) -> void:
         var point:=Vector2(fighter.x,fighter.y+.8)
         if kind in ["air_land","ground_bounce"]:
             _spawn_vfx("ground_ring",Vector2(fighter.x,.04),.30,{"color":COLORS[event.target]})
-            _spawn_vfx("dust",Vector2(fighter.x,.08),.22,{"color":Color("fff5db")})
+            # Land / ground-bounce ink cels are emitted once in world space.
             if kind=="ground_bounce" or event.get("hard",false):
                 _spawn_vfx("slam_crater",Vector2(fighter.x,.04),.32,{"color":COLORS[event.target]})
                 trauma=maxf(trauma,.28)
@@ -552,15 +567,14 @@ func _handle_event(event: Dictionary) -> void:
         hud.notice_time=1.2
         if result=="turn":audio.play_sound("parry",1.0,-3)
     elif kind in ["hit","block","parry","guard_break"]:
-        var target: Dictionary = sim.fighters[event.target]
         var strength: float = event.get("strength",0.8 if kind in ["parry","guard_break"] else 0.25)
         if sim.arcade_enabled:strength*= [0.65,0.85,1.0][sim.exchange.tier()-1]
         var tint: Color = Color("eaf078") if kind in ["parry","guard_break"] else COLORS[event.get("attacker",0)]
         var attacker: int = event.get("attacker",0)
         var move: String = event.get("move","jab")
         var face: float = event.get("face",sim.fighters[attacker].face)
-        var point := Vector2(target.x,target.y+fighters[event.target].model_scale*.57)
-        _spawn_vfx(kind,point,0.38,{"strength":strength,"color":tint,"move":move,"face":face,"attacker":attacker,"held":kind=="hit" and sim.hitstop>0})
+        var point:Vector2=ink_fx.contact_point(self,event)
+        _spawn_vfx(kind,point,0.16 if kind=="hit" else .24,{"strength":strength,"color":tint,"move":move,"face":face,"attacker":attacker,"held":kind=="hit" and sim.hitstop>0})
         if kind=="hit":
             if sim.arcade_enabled and move in ["meteor","special","overdrive"]:theatre.begin("cannon_hit" if move=="overdrive" else "impact",attacker)
             if sim.arcade_enabled and move=="meteor":_spawn_vfx("meteor_streak",point,.22,{"color":COLORS[attacker],"face":face})
@@ -572,6 +586,7 @@ func _handle_event(event: Dictionary) -> void:
             if sim.hitstop==0:_release_impacts()
         trauma = maxf(trauma,strength*0.6)
         audio.play_sound(("slam" if sim.arcade_enabled and move=="meteor" else ("launch" if sim.arcade_enabled and move=="launcher" else ("heavy" if strength>0.55 else "hit"))) if kind=="hit" else kind,1.0+sim.combo_hits*0.04,[-5.0,-3.0,-1.0][sim.exchange.tier()-1] if sim.arcade_enabled else 0.0)
+        if kind=="hit":audio.play_contact_layer(fighters[attacker].character_index,move,strength)
         if kind=="hit" and strength>0.55: audio.play_sound("sub",0.9,-9.0)
         if kind=="hit" and move=="grab":
             hud.notice="THROW"
@@ -606,7 +621,7 @@ func _handle_event(event: Dictionary) -> void:
         audio.play_sound("chase",1.25,-8.0)
     elif kind in ["land","dash","jump"]:
         var fighter: Dictionary = sim.fighters[event.target]
-        _spawn_vfx("dust",Vector2(fighter.x,0.08),0.22,{"color":Color("f1edcf")})
+        # World-space authored ink dust is emitted by ink_fx from the same event.
         audio.play_sound(kind,1.0,-6.0)
         if kind=="dash":
             _spawn_vfx("speed",Vector2(fighter.x,fighter.y+0.9),0.2,{"face":signf(fighter.vx),"color":COLORS[event.target]})
@@ -627,6 +642,8 @@ func _handle_event(event: Dictionary) -> void:
         backdrop.smoke.react(Vector3(sim.fighters[target].x,sim.fighters[target].y,FIGHT_Z))
 
 func _clear_impacts() -> void:
+    ink_fx.clear()
+    step_distance.fill(0.0)
     ability_draw.clear()
     round_theatre.clear()
     arena_cage.clear()
@@ -639,7 +656,8 @@ func _clear_impacts() -> void:
     surge_reaction_cd=0.0
     theatre.clear()
     neon.clear()
-    for fighter in fighters: fighter.set_neon_silhouette(false)
+    for fighter in fighters+squad_visuals:
+        fighter.set_neon_silhouette(false);fighter.fx_flash_age=1.0
     rhythm.clear()
     if is_instance_valid(backdrop):backdrop.visible=true
     if is_instance_valid(camera):camera.environment=null
@@ -697,21 +715,13 @@ func _process(delta: float) -> void:
         effects = effects.filter(func(e: Dictionary) -> bool: return e.age < e.life and not e.get("expired",false))
         recoil_age += delta
         trauma = move_toward(trauma, 0.0, delta * 2.0)
-    if screen=="play" and sim.hitstop==0 and not sim.exchange.active():
-        trail_clock += delta
-        for i in 2:
-            var fighter: Dictionary = sim.fighters[i]
-            if fighter.state=="idle" and fighter.y<=0.01 and absf(fighter.vx)>2:
-                step_distance[i] += absf(fighter.vx)*delta
-                if step_distance[i]>1.25:
-                    step_distance[i] = 0.0
-                    audio.play_sound("step",1.0,-12.0)
-            if fighter.state=="stun" and absf(fighter.vx)>6 and trail_clock>0.06:
-                _spawn_vfx("trail",Vector2(fighter.x,fighter.y+1),0.15,{"face":signf(fighter.vx),"color":COLORS[i]})
-        if trail_clock>0.06: trail_clock = 0.0
     # Motion paths already communicate pursuit; omit opaque skeleton-stick ghosts.
     backdrop.present(delta, screen in ["pause", "help", "result"] or (screen=="play" and rhythm.phase()=="hold"), reduced_effects)
     _present((delta*rhythm.view_speed() if screen=="play" and not reduced_effects else delta) if screen in ["play", "title", "result"] else 0.0)
+    # Resolve bone-bound cels after the current pose, not the previous render.
+    for effect in effects:
+        if effect.get("track_attack",false):_track_service_effect(effect)
+    ink_fx.advance(self,delta)
     _grade_world()
     _apply_red_stage()
     if city_breaker.active():
@@ -853,7 +863,7 @@ func _present(delta: float) -> void:
         if sim.story_enabled and i==1:preload("res://scripts/combat/story/enemy_props.gd").present(fighters[i],pose)
         silhouettes[i].position = Vector3(fighters[i].model.global_position.x,0.03,FIGHT_Z)
         silhouettes[i].scale = Vector3.ONE * clampf(1.0 - pose.y * 0.08, 0.5, 1.0)*(fighters[i].model_scale/2.1)
-    var shake := 0.0 if reduced_effects else trauma * trauma * 0.60
+    var shake := 0.0 if reduced_effects else trauma * trauma * 0.24
     var midpoint: float = (sim.fighters[0].x + sim.fighters[1].x) * 0.5
     var separation: float = absf(sim.fighters[0].x - sim.fighters[1].x)
     var distance := clampf(8.1+separation*.22,8.4,15.0) if sim.arcade_enabled else clampf(10.0 + separation * 0.35,10.7,17.2)
@@ -895,6 +905,7 @@ func _present(delta: float) -> void:
     var punch := Vector2.ZERO
     if not reduced_effects and recoil_age<0.24:
         punch=recoil*exp(-recoil_age*18.0)*cos(recoil_age*23.0)
+    if not reduced_effects and screen=="play":punch+=ink_fx.camera_kick()
     var cinematic:=spectacle.camera_punch(reduced_effects)
     var desired_fov:=48.0-finish_zoom*6.0
     if screen=="title" and hud.menu_page=="roster":desired_fov=40.0
@@ -1410,10 +1421,18 @@ func _award_run() -> void:
 
 func _track_service_effect(effect:Dictionary) -> void:
     var side:int=effect.owner;var fighter:Dictionary=sim.fighters[side]
+    var visual:Node3D=fighters[side]
+    if effect.has("squad_id"):
+        var id:int=effect.squad_id
+        if not sim.squad_enabled or id>=sim.squad_members.size():effect["expired"]=true;return
+        fighter=sim.squad_members[id];visual=squad_visuals[id]
     if screen!="play" or fighter.health<=0 or fighter.state!="attack" or fighter.service.serial!=effect.attack_serial:
         effect["expired"]=true;return
     var move:Dictionary=sim.move_for(fighter,fighter.move)
-    effect.at=Vector2(fighter.x+(fighter.face*.9 if effect.kind=="swing" else 0),fighter.y+fighters[side].model_scale*.55)
+    if effect.kind=="swing":
+        var socket:Vector3=visual.fx_socket(preload("res://scripts/combat/ink_fx/fx_recipes.gd").limb(fighter.move,visual.character_index))
+        effect.at=Vector2(socket.x+fighter.x-visual.position.x,socket.y+fighter.y-visual.position.y)
+    else:effect.at=Vector2(fighter.x,fighter.y+visual.model_scale*.55)
     effect.face=fighter.face
     if effect.kind=="swing":
         effect.age=float(fighter.frame-move.startup)/60.0

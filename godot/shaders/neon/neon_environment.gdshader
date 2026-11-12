@@ -10,6 +10,8 @@ uniform bool use_instance_color = false;
 uniform bool use_world_uv = false;
 uniform vec3 texture_scale = vec3(1.0);
 uniform vec3 texture_offset = vec3(0.0);
+global uniform float ink_fx_focus;
+global uniform vec3 ink_fx_focus_at;
 varying vec3 world_position;
 void vertex() {
     world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
@@ -40,6 +42,9 @@ void fragment() {
     if (value_role == 1) neutral = vec3(0.065,0.070,0.095) * (0.8 + value * 0.5);
     if (value_role == 2) neutral = vec3(0.035,0.045,0.065) * (0.8 + value * 0.6);
     ALBEDO = mix(ALBEDO, neutral, palette_strength);
+    // Quiet the street around live contact; keep sky, UI and actor shaders separate.
+    float focus = ink_fx_focus * (1.0 - smoothstep(1.5, 7.0, length(world_position.xz - ink_fx_focus_at.xz)));
+    ALBEDO = mix(ALBEDO, ALBEDO * 0.66 + vec3(0.055,0.050,0.070), focus);
     ROUGHNESS = 1.0;
     SPECULAR = 0.0;
 }

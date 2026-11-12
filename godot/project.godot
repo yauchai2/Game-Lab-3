@@ -21,3 +21,14 @@ window/stretch/scale_mode="fractional"
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.14, 0.17, 0.21, 1)
+
+[shader_globals]
+
+ink_fx_focus={
+"type": "float",
+"value": 0.0
+}
+ink_fx_focus_at={
+"type": "vec3",
+"value": Vector3(0, 1, 3)
+}

@@ -80,7 +80,7 @@ func run() -> void:
         if s.neon.stage():poster_frames+=1
         if s.neon.active():modes[s.neon.mode]=modes.get(s.neon.mode,0)+1
         if tick in [300,900,1500]:await shot("demo-"+str(tick))
-    check("Free AI stays alive and both sides land hits",s.screen=="play" and s.demo.hits[0]>0 and s.demo.hits[1]>0,s.demo.hits)
+    check("Finite-health AI reaches a valid live or result state and both sides hit",s.screen in ["play","result"] and s.demo!=null and s.demo.hits[0]>0 and s.demo.hits[1]>0,s.demo.hits)
     check("Strong poster duty stays below 20 percent",float(poster_frames)/1800.0<=.2,float(poster_frames)/1800.0)
     check("Effect pool bound",max_effects<=24,max_effects)
     check("Camera roll bound",max_roll<=deg_to_rad(s.neon_profile.signature_roll_degrees+.01),rad_to_deg(max_roll))

@@ -1,0 +1,26 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+INK_FX five characters and both facings have finite bounded bone sockets true <null>
+INK_FX idle never emits movement smoke true <null>
+INK_FX actual grounded movement emits pooled foot dust true 3
+INK_FX render-only frames cannot invent new footsteps true <null>
+INK_FX airborne movement has no repeated ground dust false <null>
+INK_FX true hit produces a contact accent true <null>
+INK_FX contact remains within victim body region true <null>
+INK_FX whiff has no contact flash or impact puff true <null>
+INK_FX launcher keeps a finite directional accent true <null>
+INK_FX pause freezes all world cels true <null>
+INK_FX F2 clears smoke ribbons and camera accent true <null>
+INK_FX decorative pool is capped with reserved space true <null>
+INK_FX important smoke survives decorative saturation true <null>
+INK_FX canvas decoration cannot evict parry true <null>
+INK_FX all authored move cels triangulate in both directions true <null>
+INK_FX four hero normal effects have distinct shape language true <null>
+INK_FX menu transition drains all effects true <null>
+INK_FX squad tracks each visual independently true <null>
+INK_FX squad remains within fixed pools true <null>
+INK_FX fight after squad has no stale member tracks true <null>
+INK_FX material retirement drained true <null>

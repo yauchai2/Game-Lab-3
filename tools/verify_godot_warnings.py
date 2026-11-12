@@ -43,7 +43,11 @@ def main():
     (output / "strict.log").write_text(log)
     errors = re.findall(r"^(?:ERROR|SCRIPT ERROR):.*", log, re.M)
     data = json.loads(report.read_text()) if report.exists() else {}
-    success = (result.returncode == 0 and data.get("passed") == 11
+<<<<<<< HEAD
+    success = (result.returncode == 0 and data.get("passed") == 17
+=======
+    success = (result.returncode == 0 and data.get("passed") == 14
+>>>>>>> origin/codex/combat-vfx-quality-plan
                and data.get("failed") == 0 and not errors)
     print(log, end="")
     print("FATAL_WARNING_CHECK:", "PASS" if success else "FAIL")

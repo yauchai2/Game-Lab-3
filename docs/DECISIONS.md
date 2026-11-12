@@ -3,6 +3,17 @@
 最新見[CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)，覆蓋下方「Boss／城市九核心／獨立場景／完整短篇故事未做」的舊狀態。六區18場、兩／三階段Boss與讀招弱點、有限增援／新敵型、危險地面預告／破箱連鎖、分支休息與補給、六章劇本／三NPC／五能力課程／12專屬招式三選二、九核心真DRAW→EQUIP與一次性出擊預算、工坊及裝備骨架外觀已接正式STORY。12個原創低模GLB與Blender來源可重建；原Tripo及英雄GLB保持。schema3保v2樹／裝／局內進度並留.v2.bak，v1遷移仍保持。
 
 裝備直接增傷封頂12%，不增最大HP／parry窗口／無敵；總條件增傷50%／真parry反擊60%，Boss閉甲／弱點限制不可略過，合約HP／傷害亦封頂。四角從零合法掉落／解鎖／付費補給通18場、八組裸裝讀招Boss通關；九種極端裝／核心攻擊spam都敗於最終Boss。這是自動測例，非真人平衡或FPS驗收；簡單原創低模及無配音仍是本版本美術範圍。證據見[evidence/campaign-complete](evidence/campaign-complete/README.md)。只推codex/story-waves-m1／草稿PR #12，main／Web不動。
+## 2026-11-12：正式戰鬥VFX實作完成
+
+使用者授權全面實作；採原創可編輯硬邊mesh cels＋骨骼ribbon＋原有Neon／Rhythm，直接作用正式玩法。沿640×360及現有黑白／青粉palette，沒有引入生成噪聲圖集、素材採購或新角色模型。世界煙預留重要容量，Canvas按提示重要性淘汰；不為FX改傷害／能量／hitstop。腳步先距離備援＋較低鞋骨，不冒稱marker／IK。聲畫及shader globals均可逆；Web不更新。詳COMBAT_VFX_RUNTIME.zh-TW.md。
+
+## 2026-11-12：SEPAK原片視覺分析補件
+
+已取得13.792653s／1440p60原片，8fps全時間範圍取樣＋0.55／1.35／12.0起三段來源連續幀，觀察分段弧、雙色煙尾、小腳塵、背景退讓及近鏡，詳SEPAK_VFX_VIDEO_STUDY.zh-TW.md與references/vfx-quality-2026-11-12。未正常速度含聲播放／聆聽，未知引擎／素材／內部公式；LLB新附件超過32MiB工具上限，未取得，需較短或壓縮版補分析。修訂先做小白塵、分段弧、指定事件短雙色煙；runtime與Web未改。
+
+## 2026-11-12：戰鬥VFX品質優化提案
+
+依使用者要求詳細研究，新增COMBAT_VFX_QUALITY_PLAN.zh-TW.md。推薦作者化flipbook＋真世界錨點／socket＋既有Rhythm／Neon混合方案，先六項正式玩法品質切片再四角招牌技；採購僅候選、不重啟退役生成噪聲圖集。數值／排程／新FxRecipe架構均待實作比較，不改既有玩法權威。原X影片尚未取得，未把一般方法當影片實際做法。
 
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 

@@ -9,6 +9,8 @@ var sounds: Dictionary = {}
 var voice_index := 0
 var music: AudioStreamPlayer
 var context := "title"
+var contact_budget := 0.0
+var contact_layers_played := 0
 var duck_time := 0.0
 var cinematic_duck := 0.0
 const OPEN := "res://audio/open/"
@@ -37,6 +39,8 @@ func _ready() -> void:
     for kind in files:
         sounds[kind] = []
         for filename in files[kind]: sounds[kind].append(load(OPEN+filename+".ogg"))
+    sounds["ink_snap"]=[_tone(.045,1700.0,260.0,.32)]
+    sounds["ink_scrape"]=[_tone(.09,480.0,110.0,.48)]
     sounds["charge"] = [_tone(0.28,65.0,120.0,0.08)]
     sounds["slam"] = [_tone(.25,120.0,32.0,.24)]
     sounds["launch"] = [_tone(.15,140.0,700.0,.08)]
@@ -81,6 +85,7 @@ func music_stream(path: String) -> AudioStreamOggVorbis:
     return track
 
 func _process(delta: float) -> void:
+    contact_budget=maxf(0.0,contact_budget-delta)
     duck_time = maxf(0.0,duck_time-delta)
     if not is_instance_valid(music): return
     # Keep a fight track across pause/settings; switch only when entering title/play.
@@ -205,3 +210,12 @@ func status_text() -> String:
     if AudioServer.is_bus_mute(0):return "Output muted / restore sound"
     if music_muted or music_level<=0:return "Music off / effects level %d%%"%roundi(effects_level*100)
     return "Music %d%% / Effects %d%%"%[roundi(music_level*100),roundi(effects_level*100)]
+
+## Short authored material layer. Existing CC0 body hit and SFX limiter stay owners.
+func play_contact_layer(character:int,move:String,strength:float) -> void:
+    if contact_budget>0 or muted or effects_level<=0:return
+    contact_budget=.075
+    var pitch:float=[1.22,.78,1.38,1.02,.92][clampi(character,0,4)]
+    var scrape:bool=move in ["meteor","heavy","air_kick","air_counter"]
+    play_sound("ink_scrape" if scrape else "ink_snap",pitch,-17.0 if strength<.55 else -12.0)
+    contact_layers_played+=1

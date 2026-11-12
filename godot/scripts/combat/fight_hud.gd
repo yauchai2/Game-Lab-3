@@ -630,6 +630,7 @@ func _draw() -> void:
         session.theatre.draw(self,session)
         session.rhythm.draw(self,session)
         if not (session.theatre.active() and session.theatre.mode in ["ko","skill","overdrive"] and not session.reduced_effects):session.spectacle.draw(self,session)
+    session.ink_fx.draw(self,session)
     for effect in session.effects:
         if effect.age>=0:vfx_renderer.draw_effect(self,session,effect)
     if not session.neon_enabled and session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
