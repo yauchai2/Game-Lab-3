@@ -342,6 +342,7 @@ func _combat_step() -> void:
             result_line+="\n"+("STYLE: " if language=="en" else "風格：")+Banter.style_title(style_stats,int(Time.get_ticks_msec()/1000)+2,language=="en")+"  /  "+tag_part
             if tag_store.count()==StreetTags.IDS.size():result_line+="\n"+Banter.dev_note(int(Time.get_ticks_msec()/1000)+3,language=="en")
         result_clock=0.0
+        audio.match_over=sim.phase=="match_over"
         screen = "result"
         finish_menu_open=false
         var winning_side:=maxi(0,sim.winner)
@@ -1170,6 +1171,7 @@ func pause_game() -> void:
         pause_resume_screen = screen
         screen = "pause"
         audio.stop_all()
+        audio.play_sound("ui_pause",1.0,-4.0)
         hud.rebuild_menu()
 
 func resume_game() -> void:
