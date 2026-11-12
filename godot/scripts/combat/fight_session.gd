@@ -269,7 +269,7 @@ func start_match(training := false, two_player := false) -> void:
     screen = "play"
     intro_line=""
     if not practice and not versus and banter_store!=null:
-        intro_line=Banter.start_line(character_choices[0],character_choices[1],banter_store.streak_against(character_choices[1]),int(Time.get_ticks_msec()/1000),language=="en")
+        intro_line=Banter.start_line(character_choices[0],character_choices[1],banter_store.streak_against(character_choices[1]),int(Time.get_ticks_msec()/1000.0),language=="en")
     if not practice:round_theatre.begin_intro()
     hud.rebuild_menu()
 
@@ -336,11 +336,11 @@ func _combat_step() -> void:
             banter_store.record(character_choices[1],sim.winner==0)
             var fresh:Array=tag_store.evaluate(character_choices[0],character_choices[1],sim.winner==0,banter_store.streak_against(character_choices[1]),time_of_day_choice,sim.wins[1])
             backdrop.refresh_tags(tag_store)
-            result_line=Banter.win_line(character_choices[sim.winner],int(Time.get_ticks_msec()/1000),language=="en")+("" if not fresh.is_empty() else "\n"+Banter.radio_line(sim.winner==0,int(Time.get_ticks_msec()/1000)+1,language=="en"))
+            result_line=Banter.win_line(character_choices[sim.winner],int(Time.get_ticks_msec()/1000.0),language=="en")+("" if not fresh.is_empty() else "\n"+Banter.radio_line(sim.winner==0,int(Time.get_ticks_msec()/1000.0)+1,language=="en"))
             for id in fresh:result_line+="\n"+("NEW TAG: " if language=="en" else "新標記：")+StreetTags.title(id,language=="en")
             var tag_part:String=("TAGS %d / %d"%[tag_store.count(),StreetTags.IDS.size()]) if language=="en" else ("標記 %d / %d"%[tag_store.count(),StreetTags.IDS.size()])
-            result_line+="\n"+("STYLE: " if language=="en" else "風格：")+Banter.style_title(style_stats,int(Time.get_ticks_msec()/1000)+2,language=="en")+"  /  "+tag_part
-            if tag_store.count()==StreetTags.IDS.size():result_line+="\n"+Banter.dev_note(int(Time.get_ticks_msec()/1000)+3,language=="en")
+            result_line+="\n"+("STYLE: " if language=="en" else "風格：")+Banter.style_title(style_stats,int(Time.get_ticks_msec()/1000.0)+2,language=="en")+"  /  "+tag_part
+            if tag_store.count()==StreetTags.IDS.size():result_line+="\n"+Banter.dev_note(int(Time.get_ticks_msec()/1000.0)+3,language=="en")
         result_clock=0.0
         audio.match_over=sim.phase=="match_over"
         screen = "result"

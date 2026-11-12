@@ -110,7 +110,7 @@
     },
     {
       "name": "rapid navigation reverses existing crossfade",
-      "passed": true
+      "passed": false
     },
     {
       "name": "crossfade retires old deck only after fading",
@@ -122,6 +122,10 @@
     },
     {
       "name": "zero volume silences without stopping transport",
+      "passed": true
+    },
+    {
+      "name": "FREE PLAY opens the free-play page",
       "passed": true
     },
     {
@@ -151,5 +155,5 @@
   ],
   "passed": 37,
   "scope": "Native injected pointer/keyboard, two-deck audio transport and geometry. No human/target GPU claim.",
-  "total": 37
+  "total": 38
 }

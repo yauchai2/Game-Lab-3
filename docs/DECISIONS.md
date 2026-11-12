@@ -412,3 +412,10 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 | D-LV8 | 雙人對戰停用回合間能力抽取 | Codex 分支的抽取只把強化給 P1；兩名真人對打需對等。其他模式不變 |
 | D-LV9 | PR 由指向 main 改為指向 `codex/combat-escalation-next`，並以其最新提交為基線 | 使用者確認的協作流程：Claude 分支由最新 Codex 分支開出，草稿 PR 回 Codex 分支 |
 | D-LV7 | 實體手柄、鬼鍵、雙人手感一律標為未驗證 | 雲端只有注入事件；依 AGENTS.md 不把 headless／注入輸入當成實機驗收 |
+
+## D-merge-2026-11-12：全部草稿 PR 合入 main（Alan 要求）
+
+- 合入 #12（城市故事）→ #13（VFX）→ #7（含 #8 本機對戰）→ #9（UI 計劃）→ #10（開場）→ #11（音訊）。#12 PR 內「不合 main」已由 Alan 的最新指示覆蓋。
+- 主選單整合：STORY＝#12 城市；VERSUS＝#8 的 FREE BATTLE（1P VS CPU／2P LOCAL／裝置），仍由 Street Run 第三站通關鎖住（`growth.story_cleared`），Street Run 入口在 FIGHTERS 頁；FREE PLAY（原 #12 的 FIGHT／SQUAD／Demo 頁）改為 SQUAD＋AI DEMO，FIGHT 併入 VERSUS 以免繞過鎖。尚未決定：鎖是否該改綁城市故事通關。
+- 音訊：#11 的 CC0／程序音效與合輯音樂取代 #13 前的程序 tone；保留 #13 新增的 ink_snap／ink_scrape。
+- #1／#2／#5 是更舊的堆疊 PR，與 main 大量衝突且內容已被取代，未合併。

@@ -73,7 +73,7 @@ func run() -> void:
     scene.audio.music_level=0;var p:float=scene.audio.music.get_playback_position();await create_timer(.2).timeout
     check("zero volume silences without stopping transport",scene.audio.music.playing and not scene.audio.music.stream_paused and scene.audio.music.get_playback_position()>p)
     scene.audio.music_level=.7;scene.audio.muted=true
-    scene.return_to_title();hud.close_page();await click(hud.art_buttons.demo);scene._process(.016)
+    scene.return_to_title();hud.close_page();await click(hud.art_buttons.demo);check("FREE PLAY opens the free-play page",hud.menu_page=="free_play");scene.start_demo();scene._process(.016)
     check("AI Demo starts normal-health looping battle with entry",scene.demo!=null and not scene.sim.endless and not scene.sim.training and scene.round_theatre.intro)
     for i in 180:scene._physics_process(1.0/60);scene._process(1.0/60)
     await shot("hud")

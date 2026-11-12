@@ -45,11 +45,23 @@
       "passed": true
     },
     {
+      "name": "held accept cannot arm or auto roll",
+      "passed": true
+    },
+    {
       "name": "offer has visible native action",
       "passed": true
     },
     {
+      "name": "button uses the shared game display font",
+      "passed": true
+    },
+    {
       "name": "native button locks a random result once",
+      "passed": true
+    },
+    {
+      "name": "repeated Enter cannot skip the spin",
       "passed": true
     },
     {
@@ -58,6 +70,10 @@
     },
     {
       "name": "claim page is stable and lens is released",
+      "passed": true
+    },
+    {
+      "name": "claim enters physical equip before applying",
       "passed": true
     },
     {
@@ -90,6 +106,30 @@
     },
     {
       "name": "temporary core never survives reset",
+      "passed": true
+    },
+    {
+      "name": "slap has a brief authored hold",
+      "passed": true
+    },
+    {
+      "name": "first reel locks while last reel is still turning",
+      "passed": true
+    },
+    {
+      "name": "all reels lock before prize reveal",
+      "passed": true
+    },
+    {
+      "name": "reveal follows the quiet stop",
+      "passed": true
+    },
+    {
+      "name": "result settles after 2.2 seconds",
+      "passed": true
+    },
+    {
+      "name": "result waits without automatic claim",
       "passed": true
     },
     {
@@ -141,7 +181,35 @@
       "passed": true
     },
     {
-      "name": "Demo auto selects and claims before third round",
+      "name": "Demo holds offer for almost three seconds",
+      "passed": true
+    },
+    {
+      "name": "Demo pause freezes automatic draw countdown",
+      "passed": true
+    },
+    {
+      "name": "Demo automatically draws after three seconds",
+      "passed": true
+    },
+    {
+      "name": "Demo reaches the same stable reward page",
+      "passed": true
+    },
+    {
+      "name": "Demo displays reward for at least three seconds",
+      "passed": true
+    },
+    {
+      "name": "Demo pause freezes automatic claim countdown",
+      "passed": true
+    },
+    {
+      "name": "Demo begins equip after the 3.5 second reward hold",
+      "passed": true
+    },
+    {
+      "name": "Demo automatically equips and claims even with a held key",
       "passed": true
     },
     {
@@ -211,6 +279,6 @@
   ],
   "engine": "4.6.3-stable (official)",
   "failed": 0,
-  "passed": 52,
+  "passed": 69,
   "scope": "Explicit 1-1 / Street Run boundary fixtures; actual runtime transition, native callbacks, deterministic rules, no claim of natural-match coverage here"
 }

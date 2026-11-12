@@ -5,8 +5,8 @@
       "detail": {
         "clipped": 0,
         "frames": 20480,
-        "peak": 0.127185106277466,
-        "rms": 0.0370834859501026
+        "peak": 0.127769961953163,
+        "rms": 0.0342119957363552
       },
       "pass": true
     },
@@ -16,14 +16,14 @@
         "sfx": {
           "clipped": 0,
           "frames": 8192,
-          "peak": 0.472036957740784,
-          "rms": 0.112962773899136
+          "peak": 0.534662961959839,
+          "rms": 0.0662787949125914
         },
         "silence": {
           "clipped": 0,
           "frames": 8192,
-          "peak": 0.0000161218940775143,
-          "rms": 0.00000428502678016449
+          "peak": 0.0000416229522670619,
+          "rms": 0.00000858098918585353
         }
       },
       "pass": true
@@ -37,17 +37,17 @@
       "check": "Restore recovers zero levels and muted Master",
       "detail": {
         "clipped": 0,
-        "frames": 20480,
-        "peak": 0.147649541497231,
-        "rms": 0.0403707940778688
+        "frames": 16384,
+        "peak": 0.131102293729782,
+        "rms": 0.0394875735518306
       },
       "pass": true
     },
     {
       "check": "Pause keeps music transport advancing",
       "detail": {
-        "after": 1.76533329486847,
-        "before": 1.3933333158493
+        "after": 1.86049890518188,
+        "before": 1.39609980583191
       },
       "pass": true
     },
@@ -56,8 +56,8 @@
       "detail": {
         "clipped": 0,
         "frames": 12288,
-        "peak": 0.569145500659943,
-        "rms": 0.114616508356871
+        "peak": 0.634229421615601,
+        "rms": 0.22791234454051
       },
       "pass": true
     }

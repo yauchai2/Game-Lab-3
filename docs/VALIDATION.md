@@ -735,3 +735,9 @@ Godot4.7.2 Linux Compatibility：37原生操作、10頁面／3D剪影／popup／
 
 ## 2026-11-12 音訊重做
 `verify_combat_sfx.gd` 32/32；`verify_unified_audio.gd` 無削波；`verify_music_audio.gd` 舊套件 13/20（改動前 12/20）。無人耳／Mac／真實喇叭驗證，見 docs/AUDIO_OVERHAUL.zh-TW.md。
+
+## 2026-11-12 全部 PR 合併後驗證（Godot 4.6.3 Linux，xvfb＋llvmpipe，Dummy audio）
+
+通過：warnings 嚴格檢查（17 腳本）、local_versus 68/68、story_opening 35/35、round_flow 24/24、city_campaign 50/50、city_expansion 86/86、ability_draw 69/69、banter 129/129、time_of_day 12/12、flyby_event 8/8，story_waves／live_combat／ink_fx／unified_audio／black_suit／street_tags／versus_social／secret_notes／combat_sfx 無失敗項。
+失敗：reference_ui 37/38，「rapid navigation reverses existing crossfade」；在 PR #11 分支單獨同樣失敗（#11 把選單／戰鬥改成不同曲目，舊斷言過時），合併未改。reference_ui 與兩處原始碼已為合併調整：FREE PLAY 頁、`/1000`→`/1000.0`、`basis` 改名。
+未驗證：實聽、Mac、實機手柄、目標 GPU、公開 Web。

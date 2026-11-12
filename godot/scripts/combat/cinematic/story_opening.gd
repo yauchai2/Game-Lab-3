@@ -481,9 +481,9 @@ func _props_at(t:float) -> void:
 		# Carried on its side from ZIP's right hand.
 		case.visible=true
 		var hand:Vector3=cast[0].point("RightHand")
-		var basis:=Basis(Vector3(0,0,-1),Vector3(1,0,0),Vector3(0,-1,0))
+		var case_basis:=Basis(Vector3(0,0,-1),Vector3(1,0,0),Vector3(0,-1,0))
 		var sway:=sin(t*7.0)*.04
-		case.global_transform=Transform3D(basis.rotated(Vector3(1,0,0),sway),hand+Vector3(-.15+.02,-.12,0)+Vector3(0,-.02,0))
+		case.global_transform=Transform3D(case_basis.rotated(Vector3(1,0,0),sway),hand+Vector3(-.15+.02,-.12,0)+Vector3(0,-.02,0))
 		stage.pose_case(0,0,0)
 	else:
 		case.visible=true

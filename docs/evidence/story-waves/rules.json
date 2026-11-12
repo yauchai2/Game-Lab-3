@@ -78,7 +78,9 @@
           "damage": 11,
           "face": 1.0,
           "kind": "story_chain_hit",
+          "prop": false,
           "source_id": 0,
+          "splash": false,
           "squad_id": 1,
           "target": 1
         }
@@ -113,6 +115,36 @@
     },
     {
       "detail": null,
+      "name": "root budget stops at four secondary targets",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "damage falls off across the shared root",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "chain resource reward occurs once per source attack",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "facing shield blocks a body without losing HP",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "settled corpse cannot become a damaging projectile",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "waiting story corpses do not stay white forever",
+      "passed": true
+    },
+    {
+      "detail": null,
       "name": "leaving story removes all encounter data",
       "passed": true
     },
@@ -125,8 +157,68 @@
       "detail": null,
       "name": "mixed wave/chain replay remains deterministic",
       "passed": true
+    },
+    {
+      "detail": {
+        "attackers": 1,
+        "chains": 4,
+        "hits": 45,
+        "ticks": 2168
+      },
+      "name": "hero 0 clears Easy through ordinary inputs without reset",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 0 encounter respects one attack slot",
+      "passed": true
+    },
+    {
+      "detail": {
+        "attackers": 1,
+        "chains": 2,
+        "hits": 40,
+        "ticks": 1790
+      },
+      "name": "hero 1 clears Easy through ordinary inputs without reset",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 1 encounter respects one attack slot",
+      "passed": true
+    },
+    {
+      "detail": {
+        "attackers": 1,
+        "chains": 4,
+        "hits": 45,
+        "ticks": 2168
+      },
+      "name": "hero 2 clears Easy through ordinary inputs without reset",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 2 encounter respects one attack slot",
+      "passed": true
+    },
+    {
+      "detail": {
+        "attackers": 1,
+        "chains": 4,
+        "hits": 47,
+        "ticks": 2109
+      },
+      "name": "hero 3 clears Easy through ordinary inputs without reset",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hero 3 encounter respects one attack slot",
+      "passed": true
     }
   ],
   "failed": 0,
-  "passed": 23
+  "passed": 37
 }
