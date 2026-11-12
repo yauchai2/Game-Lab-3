@@ -419,3 +419,9 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 - 主選單整合：STORY＝#12 城市；VERSUS＝#8 的 FREE BATTLE（1P VS CPU／2P LOCAL／裝置），仍由 Street Run 第三站通關鎖住（`growth.story_cleared`），Street Run 入口在 FIGHTERS 頁；FREE PLAY（原 #12 的 FIGHT／SQUAD／Demo 頁）改為 SQUAD＋AI DEMO，FIGHT 併入 VERSUS 以免繞過鎖。尚未決定：鎖是否該改綁城市故事通關。
 - 音訊：#11 的 CC0／程序音效與合輯音樂取代 #13 前的程序 tone；保留 #13 新增的 ink_snap／ink_scrape。
 - #1／#2／#5 是更舊的堆疊 PR，與 main 大量衝突且內容已被取代，未合併。
+
+## 2026-11-12：夜班維修場回城場景
+
+使用者要求將確認的黑白工廈／桃紅背景／低模角色概念落成可互動遊戲地圖。基於最新main6fdd3a6，在codex/nightshift-hub改造既有STORY城市，保留CityProfile／CityCampaign／schema3與六區戰役。實際3D剖面場景、可走DJ閣樓、六設施、靠近E／點設施或1–6實走、點地尋路、三位正式英雄同伴（換角無重複）、原Tripo黑白wrapper、章節戰利品／短環境動作已接入。新場景使用程序幾何，原GLB保持；另交F6預覽與可導入Blender的衍生nightshift_workshop.glb，無需新增Tripo。詳[NIGHTSHIFT_HUB.zh-TW.md](NIGHTSHIFT_HUB.zh-TW.md)。
+
+[實際引擎畫面與驗證](evidence/nightshift-hub/README.md)：211行為／原生／城市戰役回歸＋14嚴格編譯，共225項通過，accepted無ERROR／SCRIPT ERROR。樓梯轉角／延遲焦點／舊fixture STORY鍵與排版等待已修，初次失敗保留。Linux4.6.3 llvmpipe／Dummy，非Mac／真人／FPS驗收。這是概念的可玩3D重建，非逐像素完稿；後續角色關係／黑箱劇情回城演出仍屬規劃。只推任務分支／draft PR，未發Web。

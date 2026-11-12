@@ -303,6 +303,16 @@
       "skeleton_bones": [],
       "source_animation_count": 0,
       "wrapper_scale": 2.0
+    },
+    {
+      "asset_id": "CITY_NIGHTSHIFT_HUB",
+      "model": "godot/assets/city/nightshift_workshop.glb",
+      "scene": "godot/scenes/city/nightshift_workshop.tscn",
+      "builder": "godot/scripts/combat/city/nightshift/workshop.gd",
+      "sha256": "e37d32c6833e1cea7074a174efd54fd6c8d08759ed5a5e96b37ebf082189f59a",
+      "bytes": 396488,
+      "status": "playable_city_hub_instance",
+      "provenance": "Rebuildable original procedural environment based on chat-approved ImageGen concept, plus preserved user-supplied Dealer/cabinet sources through derived materials; source GLBs unchanged."
     }
   ],
   "pending_reference_only": [],

@@ -1,0 +1,12 @@
+{
+  "concept": "approved-concept.png",
+  "concept_sha256": "da40534a5c55f0da36d732985e519c1fe562c78db6505db12fb25a67665d3f4f",
+  "runtime": "godot/scripts/combat/city/nightshift/workshop.gd",
+  "export": "godot/assets/city/nightshift_workshop.glb",
+  "export_sha256": "e37d32c6833e1cea7074a174efd54fd6c8d08759ed5a5e96b37ebf082189f59a",
+  "source_status": "Original user Tripo GLBs and embedded albedo unchanged; instance-only runtime shader and derived duotone export.",
+  "originals": {
+    "godot/assets/ability_draw/source/tripo_convert_275dc57f-e328-47e0-89e5-10195d3209c4.glb": "5e6088d785fbad566305f77054a1bfdbf7d2d45af4995b6651bd58e39bef4e18",
+    "godot/assets/ability_draw/source/tripo_convert_36d4f0c3-b64c-4ea1-841e-104fd70e96ae.glb": "4418a35dd51ea28be6946b3a6cf9e237df094a2cdcbd3ae005b6a9652da2a85d"
+  }
+}

@@ -1,0 +1,43 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+NIGHTSHIFT formal Story uses the new workshop in its isolated 960 viewport true
+NIGHTSHIFT orthographic camera uses cutaway map framing true
+NIGHTSHIFT all heroes retain real production skeletons true
+NIGHTSHIFT station route exists 0 true
+NIGHTSHIFT walk to station 0 reaches its real approach without clipping true
+NIGHTSHIFT station route exists 1 true
+NIGHTSHIFT walk to station 1 reaches its real approach without clipping true
+NIGHTSHIFT station route exists 2 true
+NIGHTSHIFT walk to station 2 reaches its real approach without clipping true
+NIGHTSHIFT station route exists 3 true
+NIGHTSHIFT walk to station 3 reaches its real approach without clipping false
+ERROR: walk to station 3 reaches its real approach without clipping
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_nightshift_hub.gd:8)
+       [1] verify (res://tools/verify_nightshift_hub.gd:39)
+       [2] frames (res://tools/verify_nightshift_hub.gd:11)
+NIGHTSHIFT radio route physically climbs the loft stairs false
+ERROR: radio route physically climbs the loft stairs
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_nightshift_hub.gd:8)
+       [1] verify (res://tools/verify_nightshift_hub.gd:40)
+       [2] frames (res://tools/verify_nightshift_hub.gd:11)
+NIGHTSHIFT station route exists 4 true
+NIGHTSHIFT walk to station 4 reaches its real approach without clipping true
+NIGHTSHIFT station route exists 5 true
+NIGHTSHIFT walk to station 5 reaches its real approach without clipping true
+NIGHTSHIFT center has no remote interaction prompt true
+NIGHTSHIFT E at shop opens the real purchase and crafting interface true
+NIGHTSHIFT visiting facilities does not award money XP or consume a core true
+ERROR: Condition "!is_inside_tree()" is true.
+   at: grab_focus (scene/gui/control.cpp:2363)
+NIGHTSHIFT loft side cannot be entered without stairs true
+NIGHTSHIFT station shortcut requests walking rather than teleport true
+NIGHTSHIFT departure starts existing campaign with hub renderer off true
+NIGHTSHIFT safe return restores new hub with expedition snapshot true
+NIGHTSHIFT leaving hub disables its renderer and restores title true

@@ -1,3 +1,9 @@
+## 2026-11-12：夜班維修場回城場景
+
+使用者要求將確認的黑白工廈／桃紅背景／低模角色概念落成可互動遊戲地圖。基於最新main6fdd3a6，在codex/nightshift-hub改造既有STORY城市，保留CityProfile／CityCampaign／schema3與六區戰役。實際3D剖面場景、可走DJ閣樓、六設施、靠近E／點設施或1–6實走、點地尋路、三位正式英雄同伴（換角無重複）、原Tripo黑白wrapper、章節戰利品／短環境動作已接入。新場景使用程序幾何，原GLB保持；另交F6預覽與可導入Blender的衍生nightshift_workshop.glb，無需新增Tripo。詳[NIGHTSHIFT_HUB.zh-TW.md](NIGHTSHIFT_HUB.zh-TW.md)。
+
+[實際引擎畫面與驗證](evidence/nightshift-hub/README.md)：211行為／原生／城市戰役回歸＋14嚴格編譯，共225項通過，accepted無ERROR／SCRIPT ERROR。樓梯轉角／延遲焦點／舊fixture STORY鍵與排版等待已修，初次失敗保留。Linux4.6.3 llvmpipe／Dummy，非Mac／真人／FPS驗收。這是概念的可玩3D重建，非逐像素完稿；後續角色關係／黑箱劇情回城演出仍屬規劃。只推任務分支／draft PR，未發Web。
+
 ## 2026-11-12：完整短篇故事、雙巨型Boss與技巧優先成長
 
 最新見[CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)，覆蓋下方「Boss／城市九核心／獨立場景／完整短篇故事未做」的舊狀態。六區18場、兩／三階段Boss與讀招弱點、有限增援／新敵型、危險地面預告／破箱連鎖、分支休息與補給、六章劇本／三NPC／五能力課程／12專屬招式三選二、九核心真DRAW→EQUIP與一次性出擊預算、工坊及裝備骨架外觀已接正式STORY。12個原創低模GLB與Blender來源可重建；原Tripo及英雄GLB保持。schema3保v2樹／裝／局內進度並留.v2.bak，v1遷移仍保持。
