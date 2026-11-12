@@ -3,6 +3,10 @@
 最新見[CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)，覆蓋下方「Boss／城市九核心／獨立場景／完整短篇故事未做」的舊狀態。六區18場、兩／三階段Boss與讀招弱點、有限增援／新敵型、危險地面預告／破箱連鎖、分支休息與補給、六章劇本／三NPC／五能力課程／12專屬招式三選二、九核心真DRAW→EQUIP與一次性出擊預算、工坊及裝備骨架外觀已接正式STORY。12個原創低模GLB與Blender來源可重建；原Tripo及英雄GLB保持。schema3保v2樹／裝／局內進度並留.v2.bak，v1遷移仍保持。
 
 裝備直接增傷封頂12%，不增最大HP／parry窗口／無敵；總條件增傷50%／真parry反擊60%，Boss閉甲／弱點限制不可略過，合約HP／傷害亦封頂。四角從零合法掉落／解鎖／付費補給通18場、八組裸裝讀招Boss通關；九種極端裝／核心攻擊spam都敗於最終Boss。這是自動測例，非真人平衡或FPS驗收；簡單原創低模及無配音仍是本版本美術範圍。證據見[evidence/campaign-complete](evidence/campaign-complete/README.md)。只推codex/story-waves-m1／草稿PR #12，main／Web不動。
+## 2026-11-12：命中特效改用CC0素材、影子改柔和（Alan要求）
+
+Alan指出命中特效（紫／青多邊形線圈、五邊形、放射線）、地面白色碎片與腳下深藍橢圓影子品質劣質，要求改用線上素材。命中／釋放／格擋破防／蓄力改為Sinestesia CC0命中火花flipbook（白色＋alpha烘焙，按角色色著色，加深色墊底以保可讀）；腳步／落地／滑行塵與slam／ground_ring改為Kenney CC0白煙貼圖；影子改程式生成的徑向漸層軟影，離地時淡出。來源與授權見godot/assets/vfx/SOURCES.md，烘焙腳本tools/build_vfx_sheets.py。不改傷害／hitstop／Rhythm／Neon；swing弧線保留。此決定取代上條「不引入素材採購」中關於命中圖形的部分。未在實機GPU／Mac／真人手感驗收。
+
 ## 2026-11-12：正式戰鬥VFX實作完成
 
 使用者授權全面實作；採原創可編輯硬邊mesh cels＋骨骼ribbon＋原有Neon／Rhythm，直接作用正式玩法。沿640×360及現有黑白／青粉palette，沒有引入生成噪聲圖集、素材採購或新角色模型。世界煙預留重要容量，Canvas按提示重要性淘汰；不為FX改傷害／能量／hitstop。腳步先距離備援＋較低鞋骨，不冒稱marker／IK。聲畫及shader globals均可逆；Web不更新。詳COMBAT_VFX_RUNTIME.zh-TW.md。

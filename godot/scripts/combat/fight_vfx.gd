@@ -1,6 +1,7 @@
 extends RefCounted
 ## Original hard-edged, staged canvas effects projected from the shared fight world.
 var impact_shapes = preload("res://scripts/combat/impact_shapes.gd").new()
+var sprites = preload("res://scripts/combat/sprite_fx.gd").new()
 func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     var at: Vector2 = session.project(effect.at)
     var time: float = clampf(effect.age/effect.life,0,1)
@@ -21,13 +22,7 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
         "cannon_charge":
             var fighter:Dictionary=session.sim.fighters[effect.owner]
             at=session.project(Vector2(fighter.x-face*.35,fighter.y+session.fighters[effect.owner].model_scale*.6))
-            var radius:float=95.0*(1-time)+18
-            if not reduced:
-                for i in 8:
-                    var direction:=Vector2.from_angle(i*TAU/8+stage)
-                    canvas.draw_line(at+direction*radius,at+direction*(radius+25),tint,4)
-            canvas.draw_arc(at,radius,0,TAU,8,tint,3)
-            canvas.draw_arc(at,16+time*14,0,TAU,6,paper,5)
+            sprites.converge(canvas,at,time,tint,95.0*(1-time)+18,4 if reduced else 8)
         "cannon_blast":
             var source:Dictionary=session.sim.fighters[effect.attacker]
             var muzzle:Vector2=session.project(Vector2(source.x+face*.6,source.y+session.fighters[effect.attacker].model_scale*.60))
@@ -46,14 +41,7 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
                 var base:=at+Vector2(side*22,-155*(1-time))
                 canvas.draw_colored_polygon(PackedVector2Array([base,at+Vector2(side*14,72*time),base+Vector2(side*18,32)]),paper if side>0 else tint)
         "slam_crater":
-            for i in (4 if reduced else 8):
-                var angle:=i*TAU/8
-                var direction:=Vector2(cos(angle),sin(angle)*.34)
-                var radius:=22+time*155
-                var tangent:=direction.orthogonal()*8*(1-time)
-                var tip:=at+direction*(radius+24)
-                canvas.draw_colored_polygon(PackedVector2Array([at+direction*radius-tangent,tip,at+direction*radius+tangent]),tint)
-            if not reduced:canvas.draw_arc(at,24+time*100,0,TAU,10,Color(paper,1-time),4)
+            sprites.ground_shock(canvas,at,time,Color(.80,.76,.88),4 if reduced else 6,150.0)
         "chase_path":
             if reduced:return
             var p: Array=effect.get("points",[])
@@ -75,16 +63,7 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
                 canvas.draw_colored_polygon(PackedVector2Array([a-tangent+drift,b-tangent+drift,b+tangent+drift,a+tangent+drift]),Color(tint,(1.0-time)*(.55 if effect.get("rush",false) else .30)))
         "ground_ring":
             if reduced:return
-            var radius:=.3+time*2.0
-            for i in 12:
-                if i%3==1:continue
-                var a:=i*TAU/12
-                var b:=(i+.7)*TAU/12
-                var points:=PackedVector2Array()
-                for angle in [a,b]:
-                    var world:=Vector3(effect.at.x+cos(angle)*radius,.06,session.FIGHT_Z+sin(angle)*radius*.5)
-                    points.append(session.camera.unproject_position(world)*Vector2(1280,720)/session.get_viewport().get_visible_rect().size)
-                canvas.draw_line(points[0],points[1],Color(tint,1-time),maxf(1,5*(1-time)))
+            sprites.ground_shock(canvas,at,time,Color(tint.lerp(Color(.85,.82,.92),.55)),5,(.3+2.0)*58.0)
         "surge_arc":
             var level: int=effect.get("tier",1)
             var radius: float=(48+level*14)*(0.55 if reduced else 1.0)*(1.0+time*.55)
@@ -97,9 +76,21 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             canvas.draw_circle(at,radius,ink)
             _star(canvas,at,radius*(1.0 if reduced else 1.15),4,tint)
             canvas.draw_circle(at,5,paper)
-        "swing","hit","release","clash","wall":
+        "hit","clash","release","wall":
             var phase: float = 0.12 if effect.kind in ["hit","clash"] and effect.get("held",false) else time
-            var shapes: Array[Dictionary] = impact_shapes.build("hit" if effect.kind=="clash" else ("release" if effect.kind=="wall" else effect.kind),effect.get("move","jab"),phase,tint,face,reduced,effect.get("character",0))
+            var move: String = effect.get("move","jab")
+            var profile: Vector3 = impact_shapes.PROFILES.get(move,impact_shapes.PROFILES.jab)
+            var gain: float = {"heavy":1.0,"launcher":1.05,"finisher":1.0,"meteor":1.15,"air_finisher":1.05,"special":1.4,"overdrive":1.7}.get(move,1.0)
+            var pixels_per_meter: float = (session.project(effect.at+Vector2(1,0))-at).length()
+            var perspective_scale := clampf(pixels_per_meter/56.0,.45,1.35)*(1.28 if effect.get("rush",false) and move in ["meteor","launcher","special","air_kick"] and not reduced else 1.0)
+            var heading: float = (PI - profile.z) if face < 0 else profile.z
+            var edge: float = (88.0 + profile.x * 1.3) * gain * (0.7 if reduced else 1.0) * perspective_scale
+            if effect.kind == "release":
+                edge *= 0.78
+                phase = 0.3 + phase * 0.7
+            sprites.hit_spark(canvas,at,phase,tint,heading,edge)
+        "swing":
+            var shapes: Array[Dictionary] = impact_shapes.build("swing",effect.get("move","jab"),time,tint,face,reduced,effect.get("character",0))
             var pixels_per_meter: float = (session.project(effect.at+Vector2(1,0))-at).length()
             var perspective_scale := clampf(pixels_per_meter/56.0,.45,1.35)*(1.28 if effect.get("rush",false) and effect.get("move","") in ["meteor","launcher","special","air_kick"] and not reduced else 1.0)
             for shape in shapes:
@@ -124,12 +115,7 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
                 var start := at+Vector2(-face*10.0,y)
                 canvas.draw_colored_polygon(PackedVector2Array([start,start+Vector2(-face*length,-2),start+Vector2(-face*length*0.8,3)]),tint)
         "charge":
-            var radius := lerpf(80.0,22.0,stage)
-            canvas.draw_arc(at,radius,0,TAU,12,tint,3)
-            if not reduced:
-                for i in 6:
-                    var direction := Vector2.from_angle(i*TAU/6+stage*0.7)
-                    canvas.draw_line(at+direction*(radius+20),at+direction*radius,paper,3)
+            sprites.converge(canvas,at,stage,tint,lerpf(80.0,22.0,stage),3 if reduced else 6)
         "wave":
             var target: Vector2 = session.project(effect.at+Vector2(face*2.8,0))
             var reach := target-at
@@ -143,13 +129,7 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             var perfect:bool=effect.kind=="parry"
             var radius:float=(24.0 if not perfect else 34.0)*(1.0+minf(time*2,.5))*(.75 if reduced else 1.0)
             if perfect:
-                for i in (3 if reduced else 6):
-                    if time>.65 and i%2:continue
-                    var direction:=Vector2.from_angle(i*TAU/6+.18)
-                    var center:=at+direction*radius
-                    var tangent:=direction.orthogonal()*(3.5 if time<.35 else 1.5)
-                    canvas.draw_colored_polygon(PackedVector2Array([center-tangent,center+direction*(17*(1-time)+2),center+tangent,center-direction*3]),paper if time<.20 else tint)
-                if time<.35:canvas.draw_circle(at,4,paper)
+                sprites.hit_spark(canvas,at,time,tint,-0.6,(70.0 if reduced else 105.0)*(1.0+time*.3))
             else:
                 for i in 3:
                     var angle:float=-1.0+i*.67
@@ -159,21 +139,11 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
                     canvas.draw_line(points[0],points[1],tint,3 if not reduced else 2)
                 if time<.35:canvas.draw_line(at+Vector2(-4,-9),at+Vector2(5,9),paper,2)
         "guard_break":
-            for i in 6:
-                var direction := Vector2.from_angle(i*TAU/6)
-                var center := at+direction*(25.0+time*90.0)
-                var tangent := direction.orthogonal()
-                canvas.draw_colored_polygon(PackedVector2Array([center+direction*18,center-direction*12+tangent*9,center-direction*7-tangent*8]),tint if i%2==0 else paper)
+            sprites.hit_spark(canvas,at,time,Color("eaf078"),-0.35,150.0*(0.7 if reduced else 1.0))
+            if not reduced:sprites.hit_spark(canvas,at+Vector2(face*18,6),minf(1.0,time+.12),paper,PI+0.35,96.0)
         _:
-            var radius := (38.0+stage*100.0)*(0.7+strength*0.55)
-            if strength>=0.65 and time<0.32 and not reduced:
-                canvas.draw_circle(at,22.0,ink)
-                _star(canvas,at,radius*1.15,4,paper)
-            _star(canvas,at,radius,4 if reduced else 10,tint)
-            canvas.draw_arc(at,radius*0.7,0,TAU,16,paper,3.0*(1.0-time)+1)
-            if time<0.55: canvas.draw_circle(at,15.0*(1.0-time),paper)
-            if not reduced:
-                canvas.draw_arc(at,radius*1.05,0,TAU,16,tint,2)
+            var size := (80.0+stage*40.0)*(0.7+strength*0.55)
+            sprites.hit_spark(canvas,at,time,tint,0.0,size*(0.7 if reduced else 1.0))
 
 func _star(canvas: Control, at: Vector2, radius: float, rays: int, tint: Color) -> void:
     for i in rays:

@@ -4,7 +4,6 @@ const Recipes=preload("res://scripts/combat/ink_fx/fx_recipes.gd")
 const LIMIT=36
 const DECOR_LIMIT=18
 var pool:Array[Dictionary]=[]
-var meshes:Array[ArrayMesh]=[]
 var tracking:Dictionary={}
 var traces:Array[Dictionary]=[]
 var serial:=0
@@ -16,30 +15,26 @@ var contact_strength:=0.0
 var contact_axis:=Vector2.RIGHT
 var contact_at:=Vector3.ZERO
 var contact_cooldown:=0.0
-var paper:StandardMaterial3D
-var ink:StandardMaterial3D
-var accent_materials:Array[StandardMaterial3D]=[]
+const PUFF_LIGHT:=Color(.80,.76,.88)
+const PUFF_DARK:=Color(.22,.20,.30)
+var puff_textures:Array[ImageTexture]=[]
+const ACCENTS:=[Color("00d6d8"),Color("ff921c"),Color("ff459d"),Color("b8ff00"),Color("a888ff")]
 func _ready() -> void:
     name="AuthoredInkFX"
-    paper=_material(Recipes.PAPER);ink=_material(Recipes.INK)
-    for color in [Color("00d6d8"),Color("ff921c"),Color("ff459d"),Color("b8ff00"),Color("a888ff")]:accent_materials.append(_material(color))
-    for variant in 3:
-        for frame in 6:
-            var points:PackedVector2Array=Recipes.outline(frame,variant)
-            var indices:=Geometry2D.triangulate_polygon(points)
-            var vertices:=PackedVector3Array()
-            for point in points:vertices.append(Vector3(point.x,point.y,0))
-            var arrays:Array=[];arrays.resize(Mesh.ARRAY_MAX)
-            arrays[Mesh.ARRAY_VERTEX]=vertices;arrays[Mesh.ARRAY_INDEX]=indices
-            var mesh:=ArrayMesh.new();mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays);meshes.append(mesh)
+    # Textured dust puffs (CC0 Kenney smoke particle pack, see assets/vfx/SOURCES.md).
+    var atlas:Image=(load("res://assets/vfx/puffs.png") as Texture2D).get_image()
+    for n in 6:
+        puff_textures.append(ImageTexture.create_from_image(atlas.get_region(Rect2i((n%3)*128,(n/3)*128,128,128))))
+    var quad:=QuadMesh.new();quad.size=Vector2(2,1);quad.center_offset=Vector3(0,.5,0)
     for i in LIMIT:
         var holder:=Node3D.new();add_child(holder)
-        var border:=MeshInstance3D.new();holder.add_child(border);border.material_override=ink
-        var body:=MeshInstance3D.new();holder.add_child(body);body.material_override=paper
-        for node in [border,body]:node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-        border.scale=Vector3(1.12,1.10,1);border.position=Vector3(0,-.012,-.012)
+        var body:=MeshInstance3D.new();holder.add_child(body);body.mesh=quad
+        body.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+        var mat:=_material(Color.WHITE);mat.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA
+        mat.albedo_texture=puff_textures[i%6];mat.disable_receive_shadows=true
+        body.material_override=mat
         holder.hide()
-        pool.append({"node":holder,"body":body,"border":border,"age":1.0,"life":.2,"rank":0,"at":Vector3.ZERO,"velocity":Vector3.ZERO,"size":Vector2.ONE,"variant":i%3,"cel":-1})
+        pool.append({"node":holder,"body":body,"mat":mat,"tint":PUFF_LIGHT,"age":1.0,"life":.2,"rank":0,"at":Vector3.ZERO,"velocity":Vector3.ZERO,"size":Vector2.ONE,"variant":i%3,"roll":0.0,"cel":-1})
 func _material(color:Color) -> StandardMaterial3D:
     var mat:=StandardMaterial3D.new();mat.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
     mat.albedo_color=color;mat.cull_mode=BaseMaterial3D.CULL_DISABLED
@@ -69,7 +64,9 @@ func emit_puff(kind:String,at:Vector3,direction:float,rank:=0,character:=0,gain:
     slot.at=at;slot.rank=rank;slot.variant=serial%3;slot.cel=-1
     slot.size=Vector2(spec.x,spec.y)*gain
     slot.velocity=Vector3(direction*(.30 if kind in ["step","run","jump"] else .9),.35 if kind in ["wake","heavy","launch"] else .12,0)
-    slot.body.material_override=ink if kind=="wake" and serial%3==0 else (accent_materials[clampi(character,0,4)] if kind=="parry" else paper)
+    slot.tint=PUFF_DARK if kind=="wake" and serial%3==0 else (ACCENTS[clampi(character,0,4)] if kind=="parry" else PUFF_LIGHT)
+    slot.roll=float(serial%7-3)*.28
+    slot.mat.albedo_texture=puff_textures[serial%6]
     slot.node.show();peak=maxi(peak,active_count())
 func ground(kind:String,at:Vector3,face:float,character:int,reduced:bool) -> void:
     if reduced:return
@@ -137,12 +134,11 @@ func advance(session:Node,delta:float) -> void:
         item.age+=dt
         if item.age>=item.life:item.node.hide();continue
         var t:float=item.age/item.life
-        var frame:int=Recipes.cel(t)
-        if frame!=item.cel:
-            item.cel=frame;item.body.mesh=meshes[item.variant*6+frame];item.border.mesh=item.body.mesh
         item.node.position=item.at+item.velocity*item.age
-        item.node.basis=session.camera.global_basis
-        item.node.scale=Vector3(item.size.x*(.7+minf(t*3,.5)),item.size.y,1)
+        item.node.basis=session.camera.global_basis*Basis(Vector3.BACK,item.roll)
+        var grow:float=.55+1.0*(1.0-pow(1.0-t,2.0))
+        item.node.scale=Vector3(item.size.x*grow,item.size.x*grow*.9,1)
+        item.mat.albedo_color=Color(item.tint,.78*pow(1.0-t,1.4)*minf(1.0,t*14.0+.35))
     if session.screen!="play" or session.round_theatre.hold_simulation():return
     # Called after visual poses. Distances use actual movement, so render FPS and
     # hitstop cannot create extra footsteps, wakes, or ribbon samples.

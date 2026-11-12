@@ -207,15 +207,34 @@ func _build_stage() -> void:
     add_child(ink_pass)
     for i in 2:
         var shadow := MeshInstance3D.new()
-        var mesh := CylinderMesh.new()
-        mesh.top_radius = 0.58
-        mesh.bottom_radius = 0.58
-        mesh.height = 0.015
-        mesh.radial_segments = 12
+        var mesh := QuadMesh.new()
+        mesh.size = Vector2(1.9, 1.9)
+        mesh.orientation = PlaneMesh.FACE_Y
         shadow.mesh = mesh
-        shadow.material_override = _material(Color("2e344e"), true)
+        shadow.material_override = _soft_shadow_material()
+        shadow.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
         add_child(shadow)
         silhouettes.append(shadow)
+
+## Soft radial contact shadow: dark violet core easing to nothing, no hard silhouette edge.
+func _soft_shadow_material() -> StandardMaterial3D:
+    var gradient := Gradient.new()
+    gradient.offsets = PackedFloat32Array([0.0, 0.45, 1.0])
+    gradient.colors = PackedColorArray([Color(0.03, 0.02, 0.09, 0.78), Color(0.03, 0.02, 0.09, 0.42), Color(0.03, 0.02, 0.09, 0.0)])
+    var texture := GradientTexture2D.new()
+    texture.gradient = gradient
+    texture.fill = GradientTexture2D.FILL_RADIAL
+    texture.fill_from = Vector2(0.5, 0.5)
+    texture.fill_to = Vector2(1.0, 0.5)
+    texture.width = 128
+    texture.height = 128
+    var mat := StandardMaterial3D.new()
+    mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+    mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+    mat.albedo_texture = texture
+    mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+    mat.no_depth_test = false
+    return mat
 
 func _box(at: Vector3, size: Vector3, color: Color, unlit := false) -> void:
     var node := MeshInstance3D.new()
@@ -1074,7 +1093,8 @@ func _present(delta: float) -> void:
         fighters[i].present(pose, delta, (sim.hitstop>0 or sim.exchange.active() or (sim.rally.active() and sim.rally.phase=="compress") or (sim.air_counter.active() and sim.air_counter.phase=="hold")) and screen=="play", reduced_effects, sim.fighters[1-i].x)
         if sim.story_enabled and i==1:preload("res://scripts/combat/story/enemy_props.gd").present(fighters[i],pose)
         silhouettes[i].position = Vector3(fighters[i].model.global_position.x,0.03,FIGHT_Z)
-        silhouettes[i].scale = Vector3.ONE * clampf(1.0 - pose.y * 0.08, 0.5, 1.0)*(fighters[i].model_scale/2.1)
+        silhouettes[i].scale = Vector3.ONE * clampf(1.0 - pose.y * 0.08, 0.5, 1.0)*(fighters[i].model_scale/2.1)*1.15
+        (silhouettes[i].material_override as StandardMaterial3D).albedo_color = Color(1,1,1,clampf(1.0 - pose.y * 0.22, 0.25, 1.0))
     var shake := 0.0 if reduced_effects else trauma * trauma * 0.24
     var midpoint: float = (sim.fighters[0].x + sim.fighters[1].x) * 0.5
     var separation: float = absf(sim.fighters[0].x - sim.fighters[1].x)
