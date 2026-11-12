@@ -45,6 +45,17 @@ schema2沿原city_v1路徑，保留技能／錢裝、退舊樹等值點數，首
 ## 2026-11-12：PR #8 整合進內容擴充分支（F1 本機連戰比分板）
 
 把 PR #8（故事解鎖 VERSUS、同鍵盤雙人、手柄）與最新 main 合進 claude/project-thread-oo92do，解掉 fight_session／hud／preferences／reference_art 衝突（保留 main 的第 5 角色與簡化 HUD，與 PR #8 的控制器／STORY 門檻）。`verify_local_versus` 在新 main 的能力抽取流程下需要更新 next_stop 輔助（改為逐階段 skip／arm／confirm），已更新，68/68。新增 F1：本機雙人結算頁「SESSION P1 a - b P2」與連勝（只在記憶體，不存檔）；雙人局不觸發標記、台詞連勝、風格稱號。`verify_versus_social` 8/8，其餘 banter 129／tags 27／secret 9／time_of_day 12／flyby 8／reference_ui 37 通過。實體手柄、鍵盤鬼鍵、雙人手感仍待 Alan 驗收。
+## 2026-11-12：開場改用 Starjunk 95〈Beat Keep Rockin〉，新增三首使用者音樂（Claude，PR #10）
+
+使用者上傳三首 Starjunk 95 音樂，要求使用並上傳，且可自由剪輯。已轉檔入庫：`godot/audio/user-tracks/beat_keep_rockin.ogg`（140 BPM）、`state_your_name.ogg`（125 BPM），以及 16 分鐘的 mix 放在 `references/audio/user-tracks/`（不進 godot/，避免匯入與 Web 體積）；來源與 SHA 記在 `admitted.json`。開場配樂改成把〈Beat Keep Rockin〉剪進畫面：140 BPM 下 3 秒剛好 7 拍，所以每個剪接點都在拍上。0–3 秒是歌曲第一次 drop 前的鋪陳（收音機濾波），3.0 秒第一次 drop；6.0–7.5 沉底，7.5 刮碟倒帶、抽空半秒，8.0 黑箱砸下時同一個 drop 再來一次；9.75 tape stop；12.0–16.1 用歌曲第二段鋪陳由遠而近，16.1 標題重擊接第二次 drop；17.6 起主選單曲淡入。上一版自寫的 160 BPM 節奏已移除，實錄音效與重擊保留，低頻 drone 改成歌曲的降 E。全遊戲音樂與戰鬥音效的重做在另一條討論串／分支進行，不在本 PR。35/35 通過，真實啟動錄影已重錄；仍未經真人試聽。
+
+## 2026-11-12：開場配樂與音效重做（Claude，PR #10）
+
+使用者回饋開場聲音太無聊，並提供一支參考 MV（只作風格參考，未取用其音軌）。`score.wav` 全部重做：原創 160 BPM 半拍重低音節奏，每鏡剛好兩小節，所以每個剪接點都落在強拍。0–3 秒節奏由小收音機透出，3.0 秒 drop；6.0–7.5 秒沉到地板下配巨大鞋底；7.5–8.0 秒抽空後黑箱在 8.0 秒砸下、8.25 秒節奏回來；9.75 秒 tape stop 抽音只剩燈管；12–16 秒不用鼓，改由車、三扇門、皮鞋、手套組成越來越密的脈衝加上升低頻；16.0 合箱、16.1 標題重擊後一小節收尾。實錄素材改用 BigSoundBank CC0（電車、街聲、棘輪、氣動扳手、唱盤刮碟、公事包扣、車門、踏步、鼓組、鑼、雷、爆炸），節選存在 `references/story-opening-audio/` 並附 provenance。主選單曲在開場期間全程靜音，17.0 秒起淡入，transport 不停。原生檢查 35/35；真實啟動錄影的音軌與 score 逐段一致。混音只以頻段比例對照參考調整，仍未經真人試聽。
+
+## 2026-11-11：開機劇情開場 18 秒六鏡（Claude，草稿 PR 待審）
+
+見 [STORY_OPENING.zh-TW.md](STORY_OPENING.zh-TW.md)。依使用者影片／分鏡／鏡頭表，以即時3D做啟動後、主選單前的18秒開場：城市俯衝→三人日常→ZIP帶黑箱→送錯貨俯拍→黑衣人下車→合箱撞擊切AFTERHOURS。四主角原GLB＋修補版黑衣人、程序場景、專屬lens、原創音效軌、粵語字幕；主選單曲淡入／9.75秒抽走／隨標題回歸，transport不停。首次啟動自動播，旗標存story_opening.cfg，設定頁可重播；Enter／Space跳過、Esc暫停、F2減少特效。只在場景為current_scene時自動播，既有測試不受影響。34/34原生檢查＋真實啟動錄影，證據evidence/story-opening。分支claude/project-thread-frl810→codex/combat-escalation-next，未合併、Web不動；simulation／XP／原GLB未改。真人實聽、Mac、4.7.2待驗，對白無配音。
 
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 

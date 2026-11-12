@@ -14,6 +14,26 @@
 ## 2026-11-12：戰鬥VFX品質優化提案
 
 依使用者要求詳細研究，新增COMBAT_VFX_QUALITY_PLAN.zh-TW.md。推薦作者化flipbook＋真世界錨點／socket＋既有Rhythm／Neon混合方案，先六項正式玩法品質切片再四角招牌技；採購僅候選、不重啟退役生成噪聲圖集。數值／排程／新FxRecipe架構均待實作比較，不改既有玩法權威。原X影片尚未取得，未把一般方法當影片實際做法。
+## 2026-11-12：開場配樂採用使用者提供的〈Beat Keep Rockin〉
+
+- 使用者指定使用其上傳的 Starjunk 95 音樂並允許自由剪輯；沿用既有 user-tracks 做法：記錄來源 SHA、不宣稱 CC0。
+- 選〈Beat Keep Rockin〉是因為 140 BPM 時 3 秒＝7 拍，不必變速就能讓六個鏡頭全部切在拍上，而且它有兩個 drop 可分別對上進車房與標題。〈State Your Name〉（125 BPM）與 mix 先入庫未指派。
+- 歌曲仍烘進 `score.wav`，主選單曲（Berlin）不變，17.6 秒起淡入。
+
+## 2026-11-12：開場改用烘焙的原創節奏，主選單曲不再充當開場音樂
+
+- 原因：主選單曲的拍點無法對上 3 秒一鏡的剪接，聽起來與畫面無關。現在配樂寫在 `tools/build_story_opening_audio.py`，160 BPM 半拍，一鏡兩小節。
+- 主選單曲在 `MENU_MUSIC_AT`（17.0 秒）前靜音（只調音量，transport 不停），之後淡入。
+- 外部素材只收 CC0：BigSoundBank（Joseph Sardin）。節選放 `references/story-opening-audio/`，不在 `godot/` 內，不會被匯入或匯出；`tools/fetch_story_opening_sources.py` 可重新下載與裁切。
+- 使用者提供的參考 MV 只用來量測速度與頻段比例，沒有取樣、沒有重製旋律。
+- 已知取捨：配樂與音效烘在同一個檔並走 SFX 音量，單獨關音樂不會關掉開場節奏；全靜音仍有效。
+
+## 2026-11-11：開機劇情開場的掛接與存檔
+
+- 依使用者最新鏡頭表，開場放在啟動後、主選單前（覆蓋同一對話較早的「第一次開始故事時播放」）。
+- 預設只首次啟動自動播放並可在設定頁重播；旗標用獨立的story_opening.cfg，不改progression存檔格式。是否每次啟動都播留給使用者決定。
+- 即時3D、沿用現有模型與資產，不用影片檔、不用參考影片音軌、不做付費生成。音樂沿用主選單曲並只調音量，不停transport。
+- 新增唯一導演story_opening.gd；不改simulation。combat_motions僅加一個演出專用的clip指定鍵。
 
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 
