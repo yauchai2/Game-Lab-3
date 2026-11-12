@@ -1,3 +1,7 @@
+## 2026-11-12：開場 polygon／警告截圖修正
+
+修復眼鏡 glint 零半徑及細小ray的triangulation錯誤：略過不可見burst並以draw_primitive直接提交三角形；整理外層title_progress、未用_t與equipment metadata的獨立ternary。19腳本／七類fatal warnings、288組原生burst及既有37項開場流程通過，15個3D抽格無ERROR／SCRIPT ERROR。證據[evidence/opening-bugfix](evidence/opening-bugfix/README.md)。來源codex/fix-opening-polygons；Godot4.6.3 Linux llvmpipe，Mac／4.7.2待使用者覆核，Web未更新。
+
 ## 2026-11-12：重看開場的入口改到 FREE PLAY（Claude）
 
 使用者問開場為何在 main 看不到：程式已在 main，開場預設只在第一次啟動播，本機存檔若已有旗標就不會再播。使用者決定維持首次播放，但要有地方重看。原本的 `REPLAY OPENING` 在 SETTINGS 頁最底、需捲動才找得到，現移到主選單 FREE PLAY 頁，改名 `WATCH OPENING`（SQUAD、AI DEMO 之下），SETTINGS 不再重複。播完或 Enter／Space 跳過後回主選單。`verify_story_opening` 37/37，含「FREE PLAY 有按鈕、SETTINGS 沒有、按下會播、跳過後回主選單」。

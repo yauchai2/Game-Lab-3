@@ -1,3 +1,9 @@
+## 2026-11-12：開場錯誤修正
+
+- [x] 零半徑／細小burst不再進polygon triangulator；截圖三類警告清理。
+- [x] 19腳本嚴格編譯、288組burst、37項開場流程及15個3D抽格；見evidence/opening-bugfix。
+- [ ] Mac／Godot4.7.2：更新來源後停止舊遊戲、清除Debugger舊紀錄，FREE PLAY → WATCH OPENING覆核。
+
 ## 2026-11-12：完整短篇故事版本
 
 - [x] 六區獨立場景、實際城市英雄／NPC、六章故事及結局。

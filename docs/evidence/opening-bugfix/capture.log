@@ -1,0 +1,20 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+STORY_OPENING_FRAME 3.0 shot 1
+STORY_OPENING_FRAME 6.55 shot 2
+STORY_OPENING_FRAME 8.0 shot 2
+STORY_OPENING_FRAME 9.15 shot 3
+STORY_OPENING_FRAME 13.1 shot 4
+STORY_OPENING_FRAME 13.55 shot 4
+STORY_OPENING_FRAME 14.55 shot 4
+STORY_OPENING_FRAME 14.55001 shot 4
+STORY_OPENING_FRAME 14.5501 shot 4
+STORY_OPENING_FRAME 14.56 shot 4
+STORY_OPENING_FRAME 14.75 shot 4
+STORY_OPENING_FRAME 14.94999 shot 4
+STORY_OPENING_FRAME 16.0 shot 5
+STORY_OPENING_FRAME 16.1 shot 5
+STORY_OPENING_FRAME 16.2 shot 5
