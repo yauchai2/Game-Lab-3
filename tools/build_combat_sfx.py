@@ -132,12 +132,19 @@ def build():
     S["rally_0"] = sat(rl + 0.5 * pad(click(n, 1), n), 1.6)
     n = int(.4 * SR)
     S["sub_0"] = sat(sweep(n, 95, 28, 9) * env(n, .003, .18) * 1.2, 1.8)
+    # ---- UI (menus, buttons): short, dry, arcade-snappy; no musical pitch clash with the music decks
+    n = int(.06 * SR); S["ui_move_0"] = sat(mix(n, (1, click(n, .8)), (.6, sweep(n, 2600, 1800, 30) * env(n, .0004, .016)), (.3, band(noise(n), 3000, 9000) * env(n, .0003, .01))), 1.5)
+    n = int(.2 * SR); S["ui_confirm_0"] = sat(mix(n, (1, click(n, 1.2)), (.7, sweep(n, 520, 1250, 14) * env(n, .001, .05)), (.5, sweep(n, 1040, 2500, 14) * env(n, .001, .03)),
+                                                 (.8, sweep(n, 190, 85, 40) * env(n, .0005, .05)), (.4, band(noise(n), 1500, 8000) * env(n, .0003, .02))), 2.0)
+    n = int(.16 * SR); S["ui_back_0"] = sat(mix(n, (1, click(n, 1.0)), (.7, sweep(n, 1000, 420, 12) * env(n, .001, .045)), (.6, sweep(n, 160, 80, 40) * env(n, .0005, .05))), 1.8)
+    n = int(.08 * SR); S["ui_toggle_0"] = sat(mix(n, (1, click(n, 1.2)), (.5, sweep(n, 1600, 1100, 40) * env(n, .0005, .02)), (.5, sweep(n, 220, 110, 40) * env(n, .0005, .03))), 1.6)
+    n = int(.25 * SR); S["ui_pause_0"] = sat(mix(n, (1, click(n, .9)), (1, sweep(n, 220, 70, 20) * env(n, .001, .07)), (.4, band(noise(n), 400, 3000) * env(n, .001, .05))), 1.8)
     return S
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     for name, x in build().items():
-        peak = 0.8 if not name.startswith(("sub", "step", "jump", "swing", "dash", "chase", "charge")) else 0.7
+        peak = 0.5 if name.startswith("ui_") else (0.8 if not name.startswith(("sub", "step", "jump", "swing", "dash", "chase", "charge")) else 0.7)
         st = finish(x, peak)
         raw = (st * 32767).astype("<i2").tobytes()
         dst = OUT / f"{name}.ogg"

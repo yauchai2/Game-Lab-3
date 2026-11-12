@@ -9,6 +9,7 @@ var session: Node3D
 var menu: PanelContainer
 var menu_scroll: ScrollContainer
 var menu_stack: VBoxContainer
+var ui_quiet_until:=0
 var layout_root: Control
 var service_art=preload("res://scripts/combat/last_service/presentation.gd").new()
 var art=preload("res://scripts/combat/ui/reference_art.gd").new()
@@ -185,6 +186,7 @@ func tr_text(key: String) -> String:
     return copy.text(key)
 
 func rebuild_menu(requested_focus := "") -> void:
+    ui_quiet_until=Time.get_ticks_msec()+250 # programmatic focus on rebuild must not click
     copy.language=session.language
     var preserve_scroll: bool = previous_screen==session.screen and built_page==menu_page
     var focused:=get_viewport().gui_get_focus_owner()
@@ -320,7 +322,10 @@ func _action(parent: Node, key: String, shortcut: String, callback: Callable, pr
         button.mouse_exited.connect(restore)
         button.button_down.connect(highlight)
         button.button_up.connect(restore)
+    button.pressed.connect(func():session.audio.play_sound("ui_back" if key in ["back","resume","main_menu"] else "ui_confirm",1.0,-2.0 if primary else -6.0))
     button.pressed.connect(callback)
+    button.mouse_entered.connect(func():session.audio.play_sound("ui_move",1.0,-8.0))
+    button.focus_entered.connect(func():if Time.get_ticks_msec()>ui_quiet_until:session.audio.play_sound("ui_move",1.0,-8.0))
     parent.add_child(button)
     return button
 
@@ -443,6 +448,7 @@ func _toggle(key: String, enabled: bool, callback: Callable) -> void:
     button.custom_minimum_size.y=56
     button.set_meta("ui_key",key)
     button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
+    button.toggled.connect(func(_on:bool):session.audio.play_sound("ui_toggle",1.0,-6.0))
     button.toggled.connect(callback)
     menu_stack.add_child(button)
 
@@ -457,6 +463,7 @@ func _volume(key: String, value: float) -> void:
     slider.custom_minimum_size.y=42
     slider.set_meta("ui_key",key+"_volume")
     slider.value_changed.connect(func(level:float):
+        session.audio.play_sound("ui_move",.8+level*.6,-8.0)
         label.text=tr_text(key)+"  %d%%"%roundi(level*100)
         session.set_volume(key,level))
     menu_stack.add_child(slider)

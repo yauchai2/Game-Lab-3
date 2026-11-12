@@ -18,6 +18,8 @@ const RESULT_TRACK:="res://audio/music/result_breakdown.ogg"
 var fight_index:=0
 var fight_pick:String=FIGHT_POOL[0]
 var last_context:="title"
+var match_over:=false # set by the session when a result screen ends the whole match (not just a round)
+var ui_last:Dictionary={}
 const BERLIN := "res://audio/user-tracks/berlin.ogg"
 const GROOVE := "res://audio/user-tracks/groove_district.ogg"
 var current_track := ""
@@ -40,7 +42,8 @@ func _ready() -> void:
         "swing":["swing_0","swing_1","swing_2"], "dash":["dash_0"], "step":["step_0","step_1"],
         "land":["land_0"], "jump":["jump_0"], "release":["release_0"], "ko":["ko_0"],
         "charge":["charge_0"], "slam":["slam_0","slam_1"], "launch":["launch_0"], "chase":["chase_0"],
-        "rally":["rally_0"], "sub":["sub_0"]}
+        "rally":["rally_0"], "sub":["sub_0"],
+        "ui_move":["ui_move_0"], "ui_confirm":["ui_confirm_0"], "ui_back":["ui_back_0"], "ui_toggle":["ui_toggle_0"], "ui_pause":["ui_pause_0"]}
     var fallback := {
         "hit":["impactPunch_medium_000","impactPunch_medium_001"], "heavy":["impactPunch_heavy_000"],
         "block":["impactMetal_light_000"], "parry":["impactBell_heavy_003"], "guard_break":["impactGlass_heavy_000"],
@@ -104,10 +107,10 @@ func _process(delta: float) -> void:
     if not is_instance_valid(music): return
     # Keep a fight track across pause/settings; switch only when entering title/play.
     # A new match (title/result -> play) advances through the fight pool; pause/help/rounds keep the track.
-    if context=="play" and last_context in ["title","result"]:
-        fight_pick=FIGHT_POOL[fight_index%FIGHT_POOL.size()];fight_index+=1
+    if context=="play" and (last_context=="title" or (last_context=="result" and match_over)):
+        fight_pick=FIGHT_POOL[fight_index%FIGHT_POOL.size()];fight_index+=1;match_over=false
     last_context=context
-    var desired:String=fight_pick if context=="play" else (BERLIN if context=="title" else (RESULT_TRACK if context=="result" else current_track))
+    var desired:String=fight_pick if context=="play" else (BERLIN if context=="title" else (RESULT_TRACK if context=="result" and match_over else current_track))
     if desired!=current_track:_switch_track(desired)
     # Navigation never pauses the transport. Explicit mute/zero volume silence it.
     if not music.playing:music.play()
@@ -143,6 +146,10 @@ func _switch_track(path:String) -> void:
 
 func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
     if muted or effects_level<=0 or not sounds.has(kind): return
+    if kind.begins_with("ui_"):
+        var now:=Time.get_ticks_msec()
+        if now-int(ui_last.get(kind,-1000))<55: return
+        ui_last[kind]=now
     var voice: AudioStreamPlayer = voices[voice_index % voices.size()]
     var variants: Array = sounds[kind]
     voice.stop()

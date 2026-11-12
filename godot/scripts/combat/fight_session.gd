@@ -290,6 +290,7 @@ func _combat_step() -> void:
         _release_impacts(false)
         if run_active:_award_run()
         result_clock=0.0
+        audio.match_over=sim.phase=="match_over"
         screen = "result"
         finish_menu_open=false
         var winning_side:=maxi(0,sim.winner)
@@ -906,6 +907,7 @@ func pause_game() -> void:
         pause_resume_screen = screen
         screen = "pause"
         audio.stop_all()
+        audio.play_sound("ui_pause",1.0,-4.0)
         hud.rebuild_menu()
 
 func resume_game() -> void:
