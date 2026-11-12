@@ -76,14 +76,8 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
         "swing":
             var move: String = effect.get("move","jab")
             var profile: Vector3 = impact_shapes.PROFILES.get(move,impact_shapes.PROFILES.jab)
-            var gain: float = {"heavy":1.2,"launcher":1.25,"finisher":1.2,"meteor":1.4,"air_finisher":1.25,"special":1.7,"overdrive":2.1}.get(move,1.0)
-            var pixels_per_meter: float = (session.project(effect.at+Vector2(1,0))-at).length()
-            var perspective_scale := clampf(pixels_per_meter/56.0,.45,1.35)*(1.28 if effect.get("rush",false) and move in ["meteor","launcher","special","air_kick"] and not reduced else 1.0)
-            var length: float = (profile.x * 2.7) * gain * (0.7 if reduced else 1.0) * perspective_scale
-            var thin: float = 0.45 if effect.get("character",0)==2 else (0.8 if move in ["jab","cross","air_jab"] else 1.0)
-            var roll: float = profile.z * (face if face != 0 else 1.0)
-            sprites.slash(canvas,at,time,tint,face,roll,length,thin)
-            if move in ["special","overdrive"] and not reduced:sprites.slash(canvas,at+Vector2(0,10),minf(1.0,time+.15),Color("fff8dc"),face,-roll,length*.8,.7)
+            sprites.slash(canvas,at,time,tint,face,profile.z>.6)
+            if move in ["special","overdrive","meteor","air_finisher"] and not reduced:sprites.slash(canvas,at+Vector2(0,-24),minf(1.0,time+.2),Color("fff8dc"),face,profile.z>.6)
         "grab_tell":
             sprites.converge(canvas,at,stage,tint,26.0*(1.0-stage*.5),3 if reduced else 5)
         "dust":
