@@ -42,6 +42,9 @@ schema2沿原city_v1路徑，保留技能／錢裝、退舊樹等值點數，首
 ## 2026-11-12：故事波次、連鎖與大型Boss設計（僅規劃）
 
 使用者要求詳細規劃故事模式改有限波次、漸增難度、情境敵型、人海／巨獸拉遠及敵碰敵連鎖。已查最新main e725c99、現有3站Street Run／黑衣人群戰／指定技球狀反彈／九核心及裝備，提案見[STORY_WAVES_PLAN.zh-TW.md](STORY_WAVES_PLAN.zh-TW.md)。六關逐波配方、N/R/G/C/H/E分工、兩場大型Boss、三相機profile與32px投影下限、連鎖去重／衰減／預算、休息核心區段及checkpoint均為待驗證設計，不是runtime已加入。建議先M1三波／三敵型／6人／一次連鎖切片，再白盒大型中Boss。一般FIGHT／Demo與指定技才開四面盒契約保持；本輪僅文件，未執行新玩法測試，未更新Web。
+## 2026-11-12：PR #8 整合進內容擴充分支（F1 本機連戰比分板）
+
+把 PR #8（故事解鎖 VERSUS、同鍵盤雙人、手柄）與最新 main 合進 claude/project-thread-oo92do，解掉 fight_session／hud／preferences／reference_art 衝突（保留 main 的第 5 角色與簡化 HUD，與 PR #8 的控制器／STORY 門檻）。`verify_local_versus` 在新 main 的能力抽取流程下需要更新 next_stop 輔助（改為逐階段 skip／arm／confirm），已更新，68/68。新增 F1：本機雙人結算頁「SESSION P1 a - b P2」與連勝（只在記憶體，不存檔）；雙人局不觸發標記、台詞連勝、風格稱號。`verify_versus_social` 8/8，其餘 banter 129／tags 27／secret 9／time_of_day 12／flyby 8／reference_ui 37 通過。實體手柄、鍵盤鬼鍵、雙人手感仍待 Alan 驗收。
 
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 
@@ -89,6 +92,26 @@ schema2沿原city_v1路徑，保留技能／錢裝、退舊樹等值點數，首
 
 # 接續工作交接
 
+## 2026-11-11：G5／G6／G8 完成精簡版
+
+風格稱號、Z Z X X Q 解鎖 MONO 時段、集齊標記後的製作筆記，見 [BANTER.zh-TW.md](BANTER.zh-TW.md)。129＋9＋12＋27 項檢查通過。
+
+## 2026-11-11：街區標記收集（G1）
+
+標準 FIGHT 成就解鎖 8 塊無文字路緣告示板，結算頁列出，本機 tags.cfg。見 [STREET_TAGS.zh-TW.md](STREET_TAGS.zh-TW.md)；27 項檢查。G2 站名牌因無文字規則未做。
+
+## 2026-11-11：角色台詞與對手記憶（G3／G4／G7）
+
+依 Alan「先做 G 的台詞和彩蛋」。標準 FIGHT 開場叫陣、鏡像戰、同對手連勝 5 場台詞、結算勝利句，本機 banter.cfg。見 [BANTER.zh-TW.md](BANTER.zh-TW.md)。107 項檢查通過；台詞暫定待 Alan 審稿。後續 E → F（F 輸入抽象由另一討論串負責，這裡只做其上的社交內容）。
+
+## 2026-11-11：時段預設（企劃 D1）
+
+使用者指示可先做 D 場景／E 音樂演出／F 雙人社交／G 彩蛋。第一批只完成 D1：N 鍵切換白晝／黃昏／深夜／霧晨（純燈光霧），見 [TIME_OF_DAY.zh-TW.md](TIME_OF_DAY.zh-TW.md)。F（雙人）需先做輸入抽象，尚未開始；E、G 其餘未做。「Nam Mac」使用者說明為某位 Artist 的風格，網路搜尋未能確認是誰，等待參考圖／連結。
+
+## 2026-11-11：玩法與創意擴充企劃（僅文件）
+
+使用者要求：開局只有故事模式、通關解鎖自由對戰、同機鍵盤雙人、雙手柄，並詳細規劃玩法與創意點子。企劃見 [CONTENT_EXPANSION_PLAN.zh-TW.md](CONTENT_EXPANSION_PLAN.zh-TW.md)。**只有文件，未改遊戲程式、存檔、規則或Web。** 讀碼確認：`fight_simulation.gd` 的 `tick(player, opponent)` 已能吃雙方指令，但`fight_session.gd`輸入硬寫P1鍵盤，且沒有任何手柄支援；雙人／手柄需先抽象輸入來源。待 Alan 決定 D1–D5。
+
 ## 2026-11-11：來源集中整合至 main
 
 使用者要求「把所有的更新都推到最常用的branch」。以 main738c740 為基礎，整合黑衣人分支987d4d2與正式戰鬥／過場／抽能力分支3389fa9，保留雙方提交及來源資產；往後 GitHub Desktop 選 main Fetch／Pull。此節覆蓋下方歷史的「main未更新」狀態；公開Web不更新。
@@ -110,6 +133,20 @@ schema2沿原city_v1路徑，保留技能／錢裝、退舊樹等值點數，首
 
 使用者明確要求「推送最新遊戲到main」。以遠端 main 54a520d 與最新遊戲來源 codex/combat-escalation-next 4177ef9 進行非強制合併，保留兩邊歷史及main既有JSR／BRC文件，無衝突。合併後godot／tools兩棵Git tree與已驗證4177ef9完全一致；本輪沒有改玩法或重跑上輪測試，上輪四個既有舊斷言失敗仍見double-jump證據。日常拉取可改選main；開發分支保留。公開Web未更新。
 
+
+## 2026-11-11：故事解鎖、同鍵盤雙人、雙手柄（Claude 對話）
+
+使用者要求：遊戲一開始只有故事模式、通關後解鎖自由對戰；同一鍵盤雙打；雙手柄；另要一份豐富遊戲的詳細點子計劃。前三項已實作，見 [LOCAL_VERSUS.zh-TW.md](LOCAL_VERSUS.zh-TW.md)；第四項只規劃，見 [GAME_ENRICHMENT_IDEAS.zh-TW.md](GAME_ENRICHMENT_IDEAS.zh-TW.md)。
+
+主選單改 6 項：STORY（現有 Street Run 三站）、VERSUS（未通關灰色鎖定）、FIGHTERS、TRAINING、SETTINGS、AI DEMO。第三站勝出寫入 `story_cleared`（既有 progression.cfg）。解鎖後 VERSUS 進 FREE BATTLE 頁：1P VS CPU、2P LOCAL VERSUS、P1／P2 裝置選擇。新 `fight_controls.gd` 為唯一裝置擁有者：分鍵盤（P1 WASD＋F G R T／P2 方向鍵＋K L O P 或數字鍵盤）、手柄（X Y B A、LB RB、扳機防禦、Start 暫停）、AUTO 分配及熱插拔（拔除即暫停並退回鍵盤，插回自動取回）。單人模式鍵盤與所有手柄同時控制 P1。`fight_simulation.gd` 未改，傷害／能量／判定／AI 不變。
+
+新驗證 68/68（`verify_local_versus.gd`，於 Codex 分支上）；既有 Codex 分支上：reference_ui 37/37（兩項斷言隨 6 選項更新）、live_combat 45/45、last_service_rules 通過。combat_input 12/15、double_jump_input 8/11、first_minute 60/63、last_service_native 失敗，這四套在未改動的 3389fa9 上同機重跑得到完全相同的失敗項，屬 Codex 分支既有狀況（與新的開場演出／回合流程有關），本輪沒有修。先前在 main 738c740 上這七套改動前後全數通過。[證據](evidence/local-versus/README.md)。Godot 4.6.3 Linux Compatibility／Xvfb llvmpipe／Dummy audio，輸入全為注入事件。
+
+**未驗證**：實體手柄、鍵盤鬼鍵、雙人手感與平衡、macOS 左右 Shift、Godot 4.7.2、公開 Web。本輪未跑完整舊 suite（上輪已知 4 個舊斷言失敗仍未處理）；verify_ui_input、verify_jsr_runtime、verify_demo_input 在改動前於本機已逾時或失敗，未作為回歸依據。未讀取：DESIGN.md、UX-CONTRACT.md 全文、`codex/*` 其他分支內容。
+
+分支 `claude/project-thread-xmgtx2`。最初由 main 738c740 開出，其後依使用者確認的流程改接到 `codex/combat-escalation-next` 3389fa9，草稿 PR 指向該 Codex 分支；未合併、未更新 gh-pages。改接時處理：雙人對戰停用只給 P1 的回合間能力抽取；手柄 A／Start 可跳過開場、確認抽取、跳過 KO 演出。使用者同日確認「只鎖對戰」，並說明 AI DEMO 是測試用、正式不推出（入口尚未移除）。下一步：使用者 Fetch 此分支於本機 Godot 用實體手柄與鍵盤驗收，並回覆點子文件末尾四個問題。
+
+## 2026-11-11：最新遊戲來源合併 main
 ## 2026-11-11：上傳Tripo NPC與機殼正式接入
 
 使用者提供275dc57f…機身及36d4f0c3…蒙面NPC，依先前換模／加動畫要求完成。原GLB在assets/ability_draw/source，逐byte保留，metadata在references/ability-draw/tripo/uploaded-models.json／assets-manifest。NPC1164tris／65骨／無來源動畫，包裝用既有CC0 gait＋作者二骨手腕接觸、手掌／指節、轉身及開獎反應；機身1066tris靜態，保留原albedo，活動件獨立；窗口多層封面用衍生材質／outline開窗，避免輪盤凸出或被遮住。
