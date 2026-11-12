@@ -216,22 +216,24 @@ func _build_stage() -> void:
         add_child(shadow)
         silhouettes.append(shadow)
 
-## Soft radial contact shadow: dark violet core easing to nothing, no hard silhouette edge.
+## Cel contact shadow: three flat dark-violet bands (no gradient), pixel-crisp like the rest of the 640x360 art.
 func _soft_shadow_material() -> StandardMaterial3D:
     var gradient := Gradient.new()
-    gradient.offsets = PackedFloat32Array([0.0, 0.45, 1.0])
-    gradient.colors = PackedColorArray([Color(0.03, 0.02, 0.09, 0.78), Color(0.03, 0.02, 0.09, 0.42), Color(0.03, 0.02, 0.09, 0.0)])
+    gradient.interpolation_mode = Gradient.GRADIENT_INTERPOLATE_CONSTANT
+    gradient.offsets = PackedFloat32Array([0.0, 0.50, 0.86, 1.0])
+    gradient.colors = PackedColorArray([Color(0.03, 0.02, 0.09, 0.80), Color(0.03, 0.02, 0.09, 0.55), Color(0.03, 0.02, 0.09, 0.28), Color(0.03, 0.02, 0.09, 0.0)])
     var texture := GradientTexture2D.new()
     texture.gradient = gradient
     texture.fill = GradientTexture2D.FILL_RADIAL
     texture.fill_from = Vector2(0.5, 0.5)
     texture.fill_to = Vector2(1.0, 0.5)
-    texture.width = 128
-    texture.height = 128
+    texture.width = 64
+    texture.height = 64
     var mat := StandardMaterial3D.new()
     mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
     mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
     mat.albedo_texture = texture
+    mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
     mat.cull_mode = BaseMaterial3D.CULL_DISABLED
     mat.no_depth_test = false
     return mat

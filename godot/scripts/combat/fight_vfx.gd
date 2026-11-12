@@ -74,13 +74,16 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             sprites.converge(canvas,at,time,tint,(30.0+level*6.0)*(1.0-time*.4),4 if reduced else 7)
             sprites.hit_spark(canvas,at,.15+.3*fposmod(time*2.0,1.0),paper,-0.8,56.0+level*10.0)
         "swing":
-            var shapes: Array[Dictionary] = impact_shapes.build("swing",effect.get("move","jab"),time,tint,face,reduced,effect.get("character",0))
+            var move: String = effect.get("move","jab")
+            var profile: Vector3 = impact_shapes.PROFILES.get(move,impact_shapes.PROFILES.jab)
+            var gain: float = {"heavy":1.2,"launcher":1.25,"finisher":1.2,"meteor":1.4,"air_finisher":1.25,"special":1.7,"overdrive":2.1}.get(move,1.0)
             var pixels_per_meter: float = (session.project(effect.at+Vector2(1,0))-at).length()
-            var perspective_scale := clampf(pixels_per_meter/56.0,.45,1.35)*(1.28 if effect.get("rush",false) and effect.get("move","") in ["meteor","launcher","special","air_kick"] and not reduced else 1.0)
-            for shape in shapes:
-                var points: PackedVector2Array=shape.points.duplicate()
-                for i in points.size(): points[i]=at+points[i]*perspective_scale
-                canvas.draw_colored_polygon(points,shape.color)
+            var perspective_scale := clampf(pixels_per_meter/56.0,.45,1.35)*(1.28 if effect.get("rush",false) and move in ["meteor","launcher","special","air_kick"] and not reduced else 1.0)
+            var length: float = (profile.x * 2.7) * gain * (0.7 if reduced else 1.0) * perspective_scale
+            var thin: float = 0.45 if effect.get("character",0)==2 else (0.8 if move in ["jab","cross","air_jab"] else 1.0)
+            var roll: float = profile.z * (face if face != 0 else 1.0)
+            sprites.slash(canvas,at,time,tint,face,roll,length,thin)
+            if move in ["special","overdrive"] and not reduced:sprites.slash(canvas,at+Vector2(0,10),minf(1.0,time+.15),Color("fff8dc"),face,-roll,length*.8,.7)
         "grab_tell":
             sprites.converge(canvas,at,stage,tint,26.0*(1.0-stage*.5),3 if reduced else 5)
         "dust":
@@ -110,14 +113,14 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             var perfect:bool=effect.kind=="parry"
             var radius:float=(24.0 if not perfect else 34.0)*(1.0+minf(time*2,.5))*(.75 if reduced else 1.0)
             if perfect:
-                sprites.hit_spark(canvas,at,time,tint,-0.6,(70.0 if reduced else 105.0)*(1.0+time*.3))
+                sprites.hit_spark(canvas,at,time,tint,-0.6,(120.0 if reduced else 190.0)*(1.0+time*.3))
             else:
-                sprites.hit_spark(canvas,at,time,tint,PI if face<0 else 0.0,(64.0 if not reduced else 44.0)*(1.0+time*.3))
+                sprites.hit_spark(canvas,at,time,tint,PI if face<0 else 0.0,(120.0 if not reduced else 84.0)*(1.0+time*.3))
         "guard_break":
-            sprites.hit_spark(canvas,at,time,Color("eaf078"),-0.35,150.0*(0.7 if reduced else 1.0))
-            if not reduced:sprites.hit_spark(canvas,at+Vector2(face*18,6),minf(1.0,time+.12),paper,PI+0.35,96.0)
+            sprites.hit_spark(canvas,at,time,Color("eaf078"),-0.35,300.0*(0.7 if reduced else 1.0))
+            if not reduced:sprites.hit_spark(canvas,at+Vector2(face*18,6),minf(1.0,time+.12),paper,PI+0.35,170.0)
         _:
-            var size := (80.0+stage*40.0)*(0.7+strength*0.55)
+            var size := (150.0+stage*60.0)*(0.7+strength*0.55)
             sprites.hit_spark(canvas,at,time,tint,0.0,size*(0.7 if reduced else 1.0))
 
 func _star(canvas: Control, at: Vector2, radius: float, rays: int, tint: Color) -> void:

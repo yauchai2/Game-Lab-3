@@ -24,7 +24,7 @@ func _ready() -> void:
     # Textured dust puffs (CC0 Kenney smoke particle pack, see assets/vfx/SOURCES.md).
     var atlas:Image=(load("res://assets/vfx/puffs.png") as Texture2D).get_image()
     for n in 6:
-        puff_textures.append(ImageTexture.create_from_image(atlas.get_region(Rect2i((n%3)*128,(n/3)*128,128,128))))
+        puff_textures.append(ImageTexture.create_from_image(atlas.get_region(Rect2i((n%3)*48,(n/3)*48,48,48))))
     var quad:=QuadMesh.new();quad.size=Vector2(2,1);quad.center_offset=Vector3(0,.5,0)
     for i in LIMIT:
         var holder:=Node3D.new();add_child(holder)
@@ -32,6 +32,7 @@ func _ready() -> void:
         body.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
         var mat:=_material(Color.WHITE);mat.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA
         mat.albedo_texture=puff_textures[i%6];mat.disable_receive_shadows=true
+        mat.texture_filter=BaseMaterial3D.TEXTURE_FILTER_NEAREST;mat.alpha_scissor_threshold=.5;mat.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
         body.material_override=mat
         holder.hide()
         pool.append({"node":holder,"body":body,"mat":mat,"tint":PUFF_LIGHT,"age":1.0,"life":.2,"rank":0,"at":Vector3.ZERO,"velocity":Vector3.ZERO,"size":Vector2.ONE,"variant":i%3,"roll":0.0,"cel":-1})
@@ -136,9 +137,10 @@ func advance(session:Node,delta:float) -> void:
         var t:float=item.age/item.life
         item.node.position=item.at+item.velocity*item.age
         item.node.basis=session.camera.global_basis*Basis(Vector3.BACK,item.roll)
-        var grow:float=.55+1.0*(1.0-pow(1.0-t,2.0))
+        # Cel style: pop in, hold at full opacity, then shrink away (no alpha fade).
+        var grow:float=(.55+.8*(1.0-pow(1.0-t,2.0)))*(1.0-maxf(0.0,t-.55)/.45*.8)
         item.node.scale=Vector3(item.size.x*grow,item.size.x*grow*.9,1)
-        item.mat.albedo_color=Color(item.tint,.78*pow(1.0-t,1.4)*minf(1.0,t*14.0+.35))
+        item.mat.albedo_color=item.tint
     if session.screen!="play" or session.round_theatre.hold_simulation():return
     # Called after visual poses. Distances use actual movement, so render FPS and
     # hitstop cannot create extra footsteps, wakes, or ribbon samples.

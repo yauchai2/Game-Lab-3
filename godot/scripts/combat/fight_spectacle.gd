@@ -108,7 +108,7 @@ func draw(canvas: Control, session: Node3D) -> void:
             var edge:=at+direction*Vector2(900,600)
             var tip:=at+direction*(210.0+age*420)
             _wedge(canvas,edge,tip,(3.0+tier)*fade,Color(color,fade*.65))
-        if mode=="burst" and age<.30:sprites.hit_spark(canvas,at,age/.30,paper,-0.6,230.0+tier*40.0)
+        if mode=="burst" and age<.30:sprites.hit_spark(canvas,at,age/.30,paper,-0.6,380.0+tier*60.0)
 
 func _wedge(canvas: Control, base: Vector2, tip: Vector2, width: float, color: Color) -> void:
     var tangent: Vector2=(tip-base).normalized().orthogonal()*width
