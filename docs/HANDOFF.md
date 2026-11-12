@@ -147,6 +147,12 @@ schema2沿原city_v1路徑，保留技能／錢裝、退舊樹等值點數，首
 分支 `claude/project-thread-xmgtx2`。最初由 main 738c740 開出，其後依使用者確認的流程改接到 `codex/combat-escalation-next` 3389fa9，草稿 PR 指向該 Codex 分支；未合併、未更新 gh-pages。改接時處理：雙人對戰停用只給 P1 的回合間能力抽取；手柄 A／Start 可跳過開場、確認抽取、跳過 KO 演出。使用者同日確認「只鎖對戰」，並說明 AI DEMO 是測試用、正式不推出（入口尚未移除）。下一步：使用者 Fetch 此分支於本機 Godot 用實體手柄與鍵盤驗收，並回覆點子文件末尾四個問題。
 
 ## 2026-11-11：最新遊戲來源合併 main
+## 2026-11-11：全遊戲 UI 檢視與精簡計劃（僅規劃）
+
+使用者要求檢視所有 UI 並計劃優化，保留現有 Ink 風格，其後補充「整體簡潔，可優化掉重複的東西」。已在 3389fa9 以及 PR #7、PR #8 分支實機截圖約 75 張，整理成 [UI_REVIEW_PLAN.zh-TW.md](UI_REVIEW_PLAN.zh-TW.md)：十項重複（模式入口與命名、暫停、操作提示、HUD 文字、結算、音訊設定、HOW TO PLAY、抽能力、標題雜項、LOADOUT）、五項一致性問題（display 數字 0／6／8 難辨、調色盤外顏色等）、四個檢視時發現的問題，以及 P0 至 P3 分階段做法與六個待使用者決定的事。合成截圖見 [evidence/ui-review-2026-11-11](evidence/ui-review-2026-11-11/)，重跑工具為 godot/tools/capture_ui_audit.gd 與 capture_ui_audit2.gd。
+
+runtime 沒有改動，等使用者審閱後才實作。Godot 4.6.3 Linux／llvmpipe／Dummy audio 靜態截圖，結算等頁面用明示 fixture 進入；動態觀感、聲音、手柄、Mac 與繁中介面未驗證。分支 claude/project-thread-a9wwri，草稿 PR 指回 codex/combat-escalation-next，Web 不更新。
+
 ## 2026-11-11：上傳Tripo NPC與機殼正式接入
 
 使用者提供275dc57f…機身及36d4f0c3…蒙面NPC，依先前換模／加動畫要求完成。原GLB在assets/ability_draw/source，逐byte保留，metadata在references/ability-draw/tripo/uploaded-models.json／assets-manifest。NPC1164tris／65骨／無來源動畫，包裝用既有CC0 gait＋作者二骨手腕接觸、手掌／指節、轉身及開獎反應；機身1066tris靜態，保留原albedo，活動件獨立；窗口多層封面用衍生材質／outline開窗，避免輪盤凸出或被遮住。
