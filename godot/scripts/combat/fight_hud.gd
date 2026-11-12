@@ -234,6 +234,10 @@ func rebuild_menu(requested_focus := "") -> void:
     elif menu_page=="settings":_settings_page()
     elif menu_page=="roster":_roster_page()
     elif menu_page=="help":_help_page()
+    elif menu_page=="free_play":
+        _plain_action("FIGHT","free_fight",func():session.start_match(false))
+        _plain_action("SQUAD","free_squad",session.start_squad)
+        _plain_action("AI DEMO","free_demo",session.start_demo)
     elif session.screen=="title":_title_page()
     elif session.screen in ["pause","help"]:_pause_page()
     elif session.screen=="result":_result_page()
@@ -382,6 +386,13 @@ func _pause_page() -> void:
     _action(menu_stack,"main_menu","",func():session.return_to_title())
 
 func _result_page() -> void:
+    if is_instance_valid(session.city_campaign) and session.city_campaign.active:
+        menu_stack.add_child(_label(session.city_campaign.result_text(),28))
+        _plain_action("RETURN TO CITY / ENTER","city_return",session.city_campaign.return_from_encounter)
+        if session.city_campaign.profile.error!="":
+            menu_stack.add_child(_label(session.city_campaign.profile.error,24))
+            _plain_action("RELOAD SAVE / RETRY RETURN","city_save_retry",func():session.city_campaign.profile.retry_save();rebuild_menu())
+        return
     _heading("draw" if session.sim.winner<0 else ("win" if session.sim.winner==0 else "lose"))
     if session.sim.story_enabled:
         menu_stack.add_child(_label("STORY PREVIEW CLEARED" if session.sim.story_state=="complete" else "WAVE %d / RETRY WITH SUPPLIES"%(session.sim.wave_index+1),28))
@@ -602,7 +613,7 @@ func _draw() -> void:
     if session.screen=="title":
         if menu_page=="main":art.title(self)
         elif menu_page=="roster":art.roster(self,session)
-        else:art.secondary(self,"LOADOUT" if menu_page=="skills" else ("SETTINGS" if menu_page=="settings" else "HOW TO PLAY"))
+        else:art.secondary(self,"LOADOUT" if menu_page=="skills" else ("SETTINGS" if menu_page=="settings" else ("FREE PLAY" if menu_page=="free_play" else "HOW TO PLAY")))
         return
     if session.ability_draw.active() and session.screen=="result":
         session.ability_draw.draw(self)
@@ -625,7 +636,9 @@ func _draw() -> void:
     art.hud(self,session,health_lag)
     service_art.draw(self,session)
     if session.sim.story_enabled:
-        if session.sim.arrival_left>0:_center(Vector2(640,180),"WAVE %d / 3"%(session.sim.wave_index+1),32,Tokens.TEAL)
+        if session.sim.arrival_left>0:
+            var heading:String="ENCOUNTER %d / 18"%(session.sim.campaign_room+1) if session.sim.campaign_enabled else "WAVE %d / 3"%(session.sim.wave_index+1)
+            _center(Vector2(640,180),heading,32,Tokens.TEAL)
         if session.sim.story_state=="break":_center(Vector2(640,180),"WAVE CLEAR / ENTER TO CONTINUE",28,Tokens.TEAL)
     _draw_core_tag()
     if session.sim.arcade_enabled:_surge_hud()
@@ -938,8 +951,8 @@ func _build_art_controls() -> void:
     art_buttons.clear();art_controls.visible=true
     if menu_page=="main":
         var keys:Array=["fight","roster","training","settings","demo"]
-        var labels:Array=["FIGHT","FIGHTERS","TRAINING","SETTINGS","AI DEMO"]
-        var calls:Array=[func():session.start_match(false),func():open_page("roster"),func():session.start_match(true),func():open_page("settings"),func():session.start_demo()]
+        var labels:Array=["STORY","FIGHTERS","TRAINING","SETTINGS","FREE PLAY"]
+        var calls:Array=[func():session.city_campaign.open_city(),func():open_page("roster"),func():session.start_match(true),func():open_page("settings"),func():open_page("free_play")]
         for i in 5:_art_button(keys[i],labels[i],art.MAIN_RECTS[i],calls[i])
         for i in 5:
             art_buttons[keys[i]].focus_neighbor_top=art_buttons[keys[(i+4)%5]].get_path()

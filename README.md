@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新可玩：[Hades式城市回城循環](docs/CITY_ROGUELITE_RUNTIME.zh-TW.md)。F5→STORY：45°可行走安全城、升技／天賦／抽裝／故事／六區出擊，永久與局內成長分層；[畫面及226項檢查](docs/evidence/city-hub/README.md)。使用程序佔位美術及共用戰鬥街道，完整Boss與大型天賦樹待做。
+
 新規劃：[城市故事ARPG：能力解鎖、天賦樹、刷圖與抽裝](docs/CITY_ARPG_PROGRESSION_PLAN.zh-TW.md)。主選單故事入口、48節點／25點、六區與T1–T5、三槽裝備及兩貨幣；僅設計，尚未實作。
 
 本分支：[故事波次M1可玩預覽](docs/STORY_WAVES_RUNTIME.zh-TW.md)。FIGHTERS → STORY，三波／三敵型／最多六人、真敵碰敵連鎖及波次重試；[畫面及287項驗證](docs/evidence/story-waves/README.md)。本輪只推codex/story-waves-m1，未合併main，尚未有大型Boss／完整六關。

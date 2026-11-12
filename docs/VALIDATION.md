@@ -1,3 +1,9 @@
+## 2026-11-12：Hades式城市回城循環已可玩
+
+最新使用者要求覆蓋前輪純城市圖／規劃狀態，見 [CITY_ROGUELITE_RUNTIME.zh-TW.md](CITY_ROGUELITE_RUNTIME.zh-TW.md)。主選單STORY進45°正交可行走安全城、五互動站；六區×三場共用街道佈置、回城升技／12節點8點天賦／三槽永久裝備／保底抽裝／短故事。清場銀行化錢零件並選一次臨時強化，敗退清出擊、保留永久進度；獨立city_v1存檔／備援／交易回滾／逐場快照。標準FIGHT與Demo在FREE PLAY，原M1預覽仍在FIGHTERS；原GLB及舊進度不改。
+
+[226項驗證及畫面](evidence/city-hub/README.md)：城市62／原生17／strict14／舊M1 37／二段跳62／戰鬥34；accepted無ERROR／SCRIPT ERROR。四角Easy普通輸入無裝備補血通首區，後期開區採fixture；Linux軟體渲染／Dummy，Mac與真人平衡待驗。城市人形／建物程序佔位、戰鬥六區共用基底；未有巨型多階段Boss、完整48點樹／T1–T5／複雜詞綴／九核心城市接入。本輪只推codex/story-waves-m1／草稿PR #12，main與Web保持。
+
 ## 2026-11-12：城市ARPG設計文件核對
 
 本輪只新增 [城市成長規劃](CITY_ARPG_PROGRESSION_PLAN.zh-TW.md) 並同步紀錄。核對既有三階角色成長／兩技能槽、主選單五項、九核心與M1實際範圍；區分必得能力、可洗天賦、永久裝備、臨時晶片。文件數量核對：28＋12＋4＋4＝48節點；19等級點＋6主線點＝25點；抽裝提案25＋55＋19＋1＝100%。檢查文件diff、連結與runtime未變；沒有執行或宣稱新玩法／經濟／存檔／平衡測試。main及Web不更新。

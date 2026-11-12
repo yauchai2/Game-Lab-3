@@ -37,7 +37,7 @@ func title(c:Control) -> void:
     text(c,Vector2(58,222),"LAST SERVICE / STREET FIGHT",28,T.PAPER)
     c.draw_texture_rect(SLASHES,Rect2(514,198,56,36),false)
     var keys:Array=["fight","roster","training","settings","demo"]
-    var labels:Array=["FIGHT","FIGHTERS","TRAINING","SETTINGS","AI DEMO"]
+    var labels:Array=["STORY","FIGHTERS","TRAINING","SETTINGS","FREE PLAY"]
     for i in 5:
         var active:bool=focused_key==keys[i]
         var rect:Rect2=MAIN_RECTS[i]
@@ -160,6 +160,7 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
     c.draw_circle(Vector2(640,44),35,T.INK);c.draw_circle(Vector2(640,44),32,T.PAPER);c.draw_circle(Vector2(640,44),29,T.GOLD)
     var clock:String="∞" if s.practice or s.sim.endless else "%02d"%ceili(s.sim.remaining)
     if s.sim.story_enabled:clock="%d/3"%(s.sim.wave_index+1)
+    if s.sim.campaign_enabled:clock="%d/18"%(s.sim.campaign_room+1)
     var clock_size:int=36 if clock.length()>2 else 48
     var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,clock_size).x
     text(c,Vector2(640-width*.5,59),clock,clock_size)

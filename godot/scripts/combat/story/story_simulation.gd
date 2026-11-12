@@ -2,6 +2,11 @@ extends "res://scripts/combat/enemies/squad_simulation.gd"
 ## M1: a finite three-wave story encounter, isolated from existing modes.
 const WAVES=[["grunt","grunt","grunt"],["grunt","rusher","grunt","rusher"],["guard","grunt","rusher","grunt","guard","grunt"]]
 const SPAWNS=[2.8,4.6,-3.7,-5.6,7.0,-7.0]
+var campaign_enabled:=false
+var campaign_skills:Array=[]
+var campaign_stats:Dictionary={}
+var campaign_room:=0
+var wave_recipes:Array=WAVES.duplicate(true)
 var story_enabled:=false
 var wave_index:=0
 var wave_revision:=0
@@ -17,6 +22,7 @@ func begin_story() -> void:
     _load_wave(0,100,60.0)
 
 func end_squad() -> void:
+    campaign_enabled=false;campaign_skills.clear();campaign_stats.clear();wave_recipes=WAVES.duplicate(true)
     story_enabled=false;story_state="";checkpoint.clear();body_chain.clear()
     super.end_squad()
 
@@ -26,14 +32,18 @@ func _load_wave(index:int,hp:int,meter:float) -> void:
     squad_enabled=true;squad_level=clampi(difficulty,0,2);squad_clock=0;squad_focus=0;next_attack_at=75
     struck.clear();strike_serial=-1;squad_members.clear()
     var template:Dictionary=fighters[1].duplicate(true)
-    for id in WAVES[index].size():
-        var f:Dictionary=template.duplicate(true);var role:String=WAVES[index][id]
+    for id in wave_recipes[index].size():
+        var f:Dictionary=template.duplicate(true);var role:String=wave_recipes[index][id]
         f.character=4;f["squad_id"]=id;f["story_role"]=role
         f["max_health"]={"grunt":35,"rusher":28,"guard":48}[role]
+        if campaign_enabled:
+            f.max_health+=floori(float(campaign_room)/3.0)*4
+            if campaign_room%3==2 and id==0:
+                f.max_health=80+campaign_room*4;f["captain"]=true
         f.health=f.max_health;f.x=SPAWNS[id];f.face=1 if f.x<0 else -1;f.meter=0.0
         f["rush_charge"]=0;f["rush_cd"]=0;f["rush_follow"]=false;f["rush_direction"]=f.face
         squad_members.append(f)
-    fighters[0].x=0.0;fighters[0].health=hp;fighters[0].meter=meter;fighters[1]=squad_members[0]
+    fighters[0].x=0.0;fighters[0].health=hp;fighters[0].meter=clampf(meter,0,100);fighters[1]=squad_members[0]
     checkpoint={"health":hp,"meter":meter}
     story_state="combat";arrival_left=75;break_left=0
     events=[{"kind":"story_wave_start","wave":index+1}]
@@ -98,6 +108,10 @@ func _advance_fighter(i:int,command:Dictionary) -> void:
         elif f.rush_follow and f.state=="attack":f.rush_follow=false
         if f.story_role=="guard" and f.state=="idle" and f.y<=.01 and f.guard>22 and squad_clock%150<95 and absf(f.x-fighters[0].x)<2.7:
             command={"guard":true,"allow_parry":false};f.buffer="";f.buffer_ttl=0
+    if campaign_enabled and i==0:
+        if "double_jump" not in campaign_skills and f.y>.01:f.jump_buffer=0
+        if "chase" not in campaign_skills:
+            f.air.chase_window=0;f.air.chase_buffer=0
     super._advance_fighter(i,command)
     if story_enabled and i==1 and f.has("rush_charge") and f.rush_charge>0:f.face=f.rush_direction
 
@@ -131,9 +145,39 @@ func _finish_round() -> void:
         events.append({"kind":"ko","winner":1,"squad_id":squad_focus})
     elif remaining_enemies()==0:
         body_chain.clear();hitstop=0;continuation.clear();exchange.cancel_decision()
-        if wave_index==WAVES.size()-1:
+        if wave_index==wave_recipes.size()-1:
             story_state="complete";winner=0;phase="match_over"
             events.append({"kind":"ko","winner":0,"squad_id":squad_focus})
         else:
             story_state="break";break_left=180
             events.append({"kind":"story_wave_clear","wave":wave_index+1})
+
+# Campaign ability permissions are enforced at the move owner, including held-J
+# and buffered/automatic routes. Existing M1 and all standard modes delegate.
+func _start_attack(i:int,requested:String) -> void:
+    if not campaign_enabled or i!=0:super._start_attack(i,requested);return
+    var f:Dictionary=fighters[i]
+    var resolved:=requested
+    if requested=="light":
+        resolved=(["air_jab","air_kick","meteor"] if f.y>.01 else ["jab","cross","launcher"])[mini(f.chain,2)]
+    if resolved=="launcher" and "launcher" not in campaign_skills:requested="finisher"
+    if resolved in ["meteor","air_finisher"] and "finisher" not in campaign_skills:requested="air_kick"
+    if resolved=="overdrive" and "overdrive" not in campaign_skills:requested="special"
+    super._start_attack(i,requested)
+
+func move_for(fighter:Dictionary,name:String) -> Dictionary:
+    var move:Dictionary=super.move_for(fighter,name)
+    if not campaign_enabled:return move
+    move=move.duplicate(true)
+    if fighter.get("character",4)==4:
+        move.damage=maxi(1,roundi(float(move.damage)*(1.0-float(campaign_stats.get("defence",0)))))
+    else:
+        var bonus:float=float(campaign_stats.get("damage",0))
+        if name=="special":bonus+=float(campaign_stats.get("skill_damage",0))
+        move.damage=maxi(1,roundi(float(move.damage)*(1.0+bonus)))
+    return move
+
+func skill_cost(f:Dictionary,name:String) -> int:
+    var cost:int=super.skill_cost(f,name)
+    if campaign_enabled and f.get("character",4)!=4:cost=maxi(1,ceili(cost*(1.0-float(campaign_stats.get("economy",0)))))
+    return cost

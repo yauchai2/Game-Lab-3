@@ -1,0 +1,23 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+CITY_NATIVE main Story pointer opens an actual independent 3D hub true
+CITY_NATIVE city uses orthographic yaw45 pitch45 camera true
+CITY_NATIVE native WASD moves the hub avatar on the city plane true
+CITY_NATIVE nearby E opens the physical skill station true
+CITY_NATIVE native map pointer starts a saved campaign fight true
+CITY_NATIVE native J causes actual damage in the expedition true
+CITY_NATIVE clear presents a city return instead of silently respawning true
+CITY_NATIVE native Enter banks once and returns to the city true
+CITY_NATIVE skill station learns guaranteed double jump for free true
+CITY_NATIVE native connected node spends the available point true
+CITY_NATIVE city offers one temporary reward before continuing true
+CITY_NATIVE next fight carries HP, permissions and real combined damage true
+CITY_NATIVE defeat returns home and clears only the expedition true
+CITY_NATIVE campaign never touches old character XP true
+CITY_NATIVE native dealer button debits and persists one permanent item true
+CITY_NATIVE standard Fight restores full kit and disables city modifiers true
+CITY_NATIVE normal Fight can still use overdrive without story unlock true
+CITY_NATIVE RESULT 17/17

@@ -1,3 +1,9 @@
+## 2026-11-12：Hades式城市回城循環已可玩
+
+最新使用者要求覆蓋前輪純城市圖／規劃狀態，見 [CITY_ROGUELITE_RUNTIME.zh-TW.md](CITY_ROGUELITE_RUNTIME.zh-TW.md)。主選單STORY進45°正交可行走安全城、五互動站；六區×三場共用街道佈置、回城升技／12節點8點天賦／三槽永久裝備／保底抽裝／短故事。清場銀行化錢零件並選一次臨時強化，敗退清出擊、保留永久進度；獨立city_v1存檔／備援／交易回滾／逐場快照。標準FIGHT與Demo在FREE PLAY，原M1預覽仍在FIGHTERS；原GLB及舊進度不改。
+
+[226項驗證及畫面](evidence/city-hub/README.md)：城市62／原生17／strict14／舊M1 37／二段跳62／戰鬥34；accepted無ERROR／SCRIPT ERROR。四角Easy普通輸入無裝備補血通首區，後期開區採fixture；Linux軟體渲染／Dummy，Mac與真人平衡待驗。城市人形／建物程序佔位、戰鬥六區共用基底；未有巨型多階段Boss、完整48點樹／T1–T5／複雜詞綴／九核心城市接入。本輪只推codex/story-waves-m1／草稿PR #12，main與Web保持。
+
 ## 2026-11-12：城市ARPG成長與刷圖規劃（未實作）
 
 新增 [完整設計](CITY_ARPG_PROGRESSION_PLAN.zh-TW.md)：故事放主選單首位、新故事能力保證漸解鎖、原創48節點／25點城市電路天賦、六區城市圖、免費重刷及T1–T5合約、三裝備槽、兩貨幣與定向抽裝／保底。所有數值為提案。永久裝備與九臨時晶片分離；故事晶片擬改為下一整次出擊，取代先前兩關區段提案，現有模式未改。先做一區完整循環，再擴完整戰役。現況仍是M1三波；本輪只文件，未改主選單、能力、存檔或經濟。只同步codex/story-waves-m1，不合併main／不發佈Web。

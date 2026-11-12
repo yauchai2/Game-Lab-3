@@ -1,5 +1,7 @@
 # 故事波次 M1：三波可玩預覽
 
+最新實作更新：[城市Roguelite首版](CITY_ROGUELITE_RUNTIME.zh-TW.md)。本文件保留先前設計／M1範圍，後續城市回城、存檔與成長以新文件為準。
+
 2026-11-12，Asia/Taipei。依使用者「開始開一個分支實做」，在 `codex/story-waves-m1` 完成第一個可玩切片。基於 main `ef3f8d3`，只推此分支，不合併 main 或更新公開 Web。
 
 ## 如何進入

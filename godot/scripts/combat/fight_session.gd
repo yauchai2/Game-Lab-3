@@ -25,6 +25,8 @@ var grade_material: ShaderMaterial
 var echo_clock := 0.0
 var finish_menu_open := false
 var sim := preload("res://scripts/combat/story/story_simulation.gd").new()
+var city_campaign:Node
+@export var city_save_path:="user://neon_lab/city_v1.json"
 var story_visual_revision:=-1
 var story_original_rival:=1
 var squad_visuals:Array[Node3D]=[]
@@ -140,6 +142,8 @@ func _ready() -> void:
     round_theatre.setup(self)
     add_child(ability_draw)
     ability_draw.setup(self)
+    city_campaign=preload("res://scripts/combat/city/city_campaign.gd").new()
+    city_campaign.save_path=city_save_path;add_child(city_campaign);city_campaign.setup(self)
     _present(0.0)
 
 func _build_stage() -> void:
@@ -198,6 +202,8 @@ func _material(color: Color, unlit: bool) -> StandardMaterial3D:
     return mat
 
 func start_match(training := false) -> void:
+    if is_instance_valid(city_campaign):
+        city_campaign.active=false;city_campaign.hub.hide_city();city_campaign.clear_dressing();hud.visible=true
     ability_draw.clear()
     draw_rewards.reset();draw_match_serial+=1;draw_seed=Time.get_ticks_usec()
     coach=null
@@ -289,6 +295,9 @@ func _combat_step() -> void:
             sim.fighters[1]=sim.squad_members[id];fighters[1]=squad_visuals[id]
         _handle_event(event)
     sim.fighters[1]=focused;fighters[1]=focused_visual
+    if is_instance_valid(city_campaign) and city_campaign.encounter_finished():
+        screen="result";result_clock=0;finish_menu_open=false;pending.clear()
+        hud.rebuild_menu();return
     if sim.phase in ["round_over", "match_over"]:
         _release_impacts(false)
         if run_active:_award_run()
@@ -602,7 +611,7 @@ func _handle_event(event: Dictionary) -> void:
         hud.notice = "FIGHT!"
         hud.notice_time = 0.7
     elif kind=="no_meter":
-        hud.notice = "OVERDRIVE NEEDS 75" if event.get("cost",50)==75 else "SPECIAL NEEDS 50 ENERGY"
+        hud.notice = "NEEDS %d ENERGY"%int(event.get("cost",50))
         hud.notice_time = 1.5
 
     if neon_enabled and not reduced_effects and not (event.kind=="ko" and not final_ko()):neon.trigger(event,sim.fighters,sim.exchange.tier())
@@ -658,6 +667,12 @@ func _release_impacts(with_audio := true) -> void:
     impact_queue.clear()
 
 func _process(delta: float) -> void:
+    if screen=="city":
+        audio.context="title"
+        if settings_save_clock>=0:
+            settings_save_clock-=delta
+            if settings_save_clock<0:save_options()
+        return
     if settings_save_clock>=0:
         settings_save_clock-=delta
         if settings_save_clock<0:save_options()
@@ -850,7 +865,7 @@ func _present(delta: float) -> void:
         distance=maxf(distance,(top-bottom+.35)/(2.0*tan(deg_to_rad(24.0))*.58))
         distance=minf(distance,22.0)
     var camera_height:=1.7+maxf(0,target_focus.y-2.1)*.8 if sim.is_aerial() else 1.7
-    if sim.story_enabled:distance=maxf(distance,12.5 if sim.wave_index==2 else 10.0)
+    if sim.story_enabled:distance=maxf(distance,12.5 if sim.wave_index==2 or sim.campaign_enabled else 10.0)
     var target_position := Vector3(target_focus.x+sin(yaw)*distance,camera_height,FIGHT_Z+cos(yaw)*distance)
     if screen=="title" and sim.phase=="ready":
         target_focus=Vector3(.6,2.5,FIGHT_Z)
@@ -948,6 +963,9 @@ func return_to_street() -> void:
     get_tree().change_scene_to_file("res://scenes/street_walk.tscn")
 
 func _unhandled_key_input(event: InputEvent) -> void:
+    if screen=="city":return
+    if is_instance_valid(city_campaign) and city_campaign.active and screen=="result" and event.is_pressed() and not event.is_echo() and event.keycode in [KEY_ENTER,KEY_KP_ENTER,KEY_R]:
+        city_campaign.return_from_encounter();return
     if not event.is_pressed() or event.is_echo():
         return
     if ability_draw.active() and screen=="result" and event.keycode in [KEY_ENTER,KEY_KP_ENTER,KEY_SPACE]:
@@ -1253,6 +1271,8 @@ func save_options() -> void:
     preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":run_base_difficulty if run_active else sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":story_original_rival if sim.story_enabled else (run_original_rival if run_active else character_choices[1])})
 
 func return_to_title() -> void:
+    if is_instance_valid(city_campaign):
+        city_campaign.active=false;city_campaign.hub.hide_city();city_campaign.clear_dressing();hud.visible=true
     coach=null
     _leave_squad()
     _leave_run()
@@ -1322,6 +1342,12 @@ func _sync_story_visuals() -> void:
     effects.clear();pending.clear();_clear_impacts()
 
 func retry_story_wave() -> void:
+    if is_instance_valid(city_campaign) and city_campaign.active:
+        if screen=="result":city_campaign.return_from_encounter()
+        else:
+            # Retiring a live encounter is a defeat, never a free health retry.
+            if city_campaign.profile.settle(false,0,0):city_campaign.show_city()
+        return
     if not sim.story_enabled:return
     sim.retry_story_wave();_sync_story_visuals();screen="play";finish_menu_open=false
     hud.notice_time=0;hud.rebuild_menu();_present(0.0)

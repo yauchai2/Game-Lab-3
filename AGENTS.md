@@ -131,3 +131,5 @@
 - 2026-11-12 使用者已要求「開一個分支實做」：codex/story-waves-m1的M1已可玩，見docs/STORY_WAVES_RUNTIME.zh-TW.md，覆蓋前輪M1僅規劃。STORY入口3波／N-R-G／6人、有限真撞體、同場retry及遠鏡頭；無XP／Boss／六關／持久checkpoint。StorySimulation繼承Squad，舊模式委派保持。只推獨立分支／草稿PR，不把此次分支工作自動合併main或發佈Web；原GLB及指定技才開四面盒規則保持。
 
 - 2026-11-12 最新城市ARPG詳細提案見docs/CITY_ARPG_PROGRESSION_PLAN.zh-TW.md。本輪僅規劃：新故事保證能力漸解鎖、主選單入口、48節點／25點、城市刷圖／三槽永久裝備／兩貨幣／定向抽裝保底未實作。故事晶片擬持續下一整張圖，覆蓋舊兩關區段提案；標準模式九核心契約不改。保留舊存檔能力；先一區小循環再擴六區Boss，現況仍M1三波。只推codex/story-waves-m1，不自動合併main或發佈Web。
+
+- 2026-11-12 最新使用者要求Hades式回城升值／故事，缺assets先簡單做：已接主選單STORY→45°正交程序城市／五站／六區18遭遇，見docs/CITY_ROGUELITE_RUNTIME.zh-TW.md，覆蓋城市僅規劃。12節點8點、基本L三級、三槽數值裝／保底、短對話、永久與局內分層、獨立city_v1快照存檔；敗退清局內、清場Enter回城。FREE PLAY收FIGHT／SQUAD／Demo，舊M1保留FIGHTERS。六區共用街道佈置、隊長沿盾衛，沒有巨型Boss／完整48樹／T1–5／城市九核心，不得冒稱。226項最終驗證，Linux llvmpipe非真人／Mac；只推codex/story-waves-m1／草稿PR #12，main與Web不動，原GLB／舊進度保持。

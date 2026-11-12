@@ -1,0 +1,254 @@
+{
+  "checks": [
+    {
+      "name": "fresh city does not grant free currency or advanced abilities",
+      "passed": true
+    },
+    {
+      "name": "locked districts cannot be entered",
+      "passed": true
+    },
+    {
+      "name": "new expedition saves hero and first room",
+      "passed": true
+    },
+    {
+      "name": "cannot overwrite live expedition",
+      "passed": true
+    },
+    {
+      "name": "cannot settle before an encounter starts",
+      "passed": true
+    },
+    {
+      "name": "clear banks currency, permanent point, parts and exact HP",
+      "passed": true
+    },
+    {
+      "name": "settlement cannot pay twice",
+      "passed": true
+    },
+    {
+      "name": "advanced skill milestone cannot be skipped",
+      "passed": true
+    },
+    {
+      "name": "first clear guarantees free double jump permission",
+      "passed": true
+    },
+    {
+      "name": "boon applies once and remains run-only",
+      "passed": true
+    },
+    {
+      "name": "tree connectivity prevents skipping first node",
+      "passed": true
+    },
+    {
+      "name": "one available point changes the selected hero only",
+      "passed": true
+    },
+    {
+      "name": "free respec returns full budget",
+      "passed": true
+    },
+    {
+      "name": "disk reload preserves run, unlocks, coins and allocated tree",
+      "passed": true
+    },
+    {
+      "name": "paid healing applies exact capped amount",
+      "passed": true
+    },
+    {
+      "name": "insufficient money cannot roll items",
+      "passed": true
+    },
+    {
+      "name": "40th pull guarantees signature with one debit and auto-equip",
+      "passed": true
+    },
+    {
+      "name": "signature resets both pity counters",
+      "passed": true
+    },
+    {
+      "name": "equipped item cannot be recycled",
+      "passed": true
+    },
+    {
+      "name": "10th pull guarantees rare or better",
+      "passed": true
+    },
+    {
+      "name": "changing equipment retains old item and permits recycling",
+      "passed": true
+    },
+    {
+      "name": "defeat ends run but preserves coins, gear, skill and tree",
+      "passed": true
+    },
+    {
+      "name": "defeat clears temporary damage boon",
+      "passed": true
+    },
+    {
+      "name": "corrupt primary recovers a validated backup",
+      "passed": true
+    },
+    {
+      "name": "two invalid saves disable transactions without overwrite",
+      "passed": true
+    },
+    {
+      "name": "save failure rolls back debits and generated gear",
+      "passed": true
+    },
+    {
+      "name": "permanent class skill upgrade pays exact cost",
+      "passed": true
+    },
+    {
+      "name": "held light third hit cannot bypass locked launcher",
+      "passed": true
+    },
+    {
+      "name": "locked overdrive falls back to legal basic class skill",
+      "passed": true
+    },
+    {
+      "name": "held aerial chain cannot bypass locked finisher",
+      "passed": true
+    },
+    {
+      "name": "locked second jump and buffered auto-chase are blocked",
+      "passed": true
+    },
+    {
+      "name": "permanent and temporary stats change real move damage and cost",
+      "passed": true
+    },
+    {
+      "name": "earned permissions enable the original launcher",
+      "passed": true
+    },
+    {
+      "name": "leaving campaign fully restores M1 recipes and full permissions",
+      "passed": true
+    },
+    {
+      "name": "encounter 0 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 1 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 2 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 3 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 4 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 5 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 6 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 7 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 8 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 9 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 10 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 11 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 12 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 13 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 14 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 15 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 16 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "encounter 17 respects six actor budget",
+      "passed": true
+    },
+    {
+      "name": "all eighteen settlements unlock six districts and end the run",
+      "passed": true
+    },
+    {
+      "name": "cleared tower can be replayed without an entrance fee",
+      "passed": true
+    },
+    {
+      "name": "hero 0 clears first district Easy using ordinary inputs, no gear or healing",
+      "passed": true
+    },
+    {
+      "name": "hero 0 campaign keeps one active attack slot",
+      "passed": true
+    },
+    {
+      "name": "hero 1 clears first district Easy using ordinary inputs, no gear or healing",
+      "passed": true
+    },
+    {
+      "name": "hero 1 campaign keeps one active attack slot",
+      "passed": true
+    },
+    {
+      "name": "hero 2 clears first district Easy using ordinary inputs, no gear or healing",
+      "passed": true
+    },
+    {
+      "name": "hero 2 campaign keeps one active attack slot",
+      "passed": true
+    },
+    {
+      "name": "hero 3 clears first district Easy using ordinary inputs, no gear or healing",
+      "passed": true
+    },
+    {
+      "name": "hero 3 campaign keeps one active attack slot",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 62
+}

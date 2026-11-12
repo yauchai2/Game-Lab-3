@@ -1,0 +1,76 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CITY fresh city does not grant free currency or advanced abilities true
+CITY locked districts cannot be entered true
+CITY new expedition saves hero and first room true
+CITY cannot overwrite live expedition true
+CITY cannot settle before an encounter starts true
+CITY clear banks currency, permanent point, parts and exact HP true
+CITY settlement cannot pay twice true
+CITY advanced skill milestone cannot be skipped true
+CITY first clear guarantees free double jump permission true
+CITY boon applies once and remains run-only true
+CITY tree connectivity prevents skipping first node true
+CITY one available point changes the selected hero only true
+CITY free respec returns full budget true
+CITY disk reload preserves run, unlocks, coins and allocated tree true
+CITY paid healing applies exact capped amount true
+CITY insufficient money cannot roll items true
+CITY 40th pull guarantees signature with one debit and auto-equip true
+CITY signature resets both pity counters true
+CITY equipped item cannot be recycled true
+CITY 10th pull guarantees rare or better true
+CITY changing equipment retains old item and permits recycling true
+CITY defeat ends run but preserves coins, gear, skill and tree true
+CITY defeat clears temporary damage boon true
+ERROR: Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'broken'
+   at: parse_string (core/io/json.cpp:629)
+   GDScript backtrace (most recent call first):
+       [0] load_data (res://scripts/combat/city/city_profile.gd:53)
+       [1] run (res://tools/verify_city_campaign.gd:47)
+CITY corrupt primary recovers a validated backup true
+ERROR: Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'broken'
+   at: parse_string (core/io/json.cpp:629)
+   GDScript backtrace (most recent call first):
+       [0] load_data (res://scripts/combat/city/city_profile.gd:53)
+       [1] run (res://tools/verify_city_campaign.gd:50)
+ERROR: Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'broken'
+   at: parse_string (core/io/json.cpp:629)
+   GDScript backtrace (most recent call first):
+       [0] load_data (res://scripts/combat/city/city_profile.gd:53)
+       [1] run (res://tools/verify_city_campaign.gd:50)
+CITY two invalid saves disable transactions without overwrite true
+ERROR: Could not create directory: '/proc/city-test'.
+   at: make_dir_recursive (core/io/dir_access.cpp:179)
+   GDScript backtrace (most recent call first):
+       [0] save_data (res://scripts/combat/city/city_profile.gd:60)
+       [1] commit (res://scripts/combat/city/city_profile.gd:71)
+       [2] pull (res://scripts/combat/city/city_profile.gd:170)
+       [3] run (res://tools/verify_city_campaign.gd:54)
+CITY save failure rolls back debits and generated gear true
+CITY held light third hit cannot bypass locked launcher true
+CITY locked overdrive falls back to legal basic class skill true
+CITY held aerial chain cannot bypass locked finisher true
+CITY locked second jump and buffered auto-chase are blocked true
+CITY permanent and temporary stats change real move damage and cost true
+CITY earned permissions enable the original launcher true
+CITY leaving campaign fully restores M1 recipes and full permissions true
+CITY encounter 0 respects six actor budget true
+CITY encounter 1 respects six actor budget true
+CITY encounter 2 respects six actor budget true
+CITY encounter 3 respects six actor budget true
+CITY encounter 4 respects six actor budget true
+CITY encounter 5 respects six actor budget true
+CITY encounter 6 respects six actor budget true
+CITY encounter 7 respects six actor budget true
+CITY encounter 8 respects six actor budget true
+CITY encounter 9 respects six actor budget true
+CITY encounter 10 respects six actor budget true
+CITY encounter 11 respects six actor budget true
+CITY encounter 12 respects six actor budget true
+CITY encounter 13 respects six actor budget true
+CITY encounter 14 respects six actor budget true
+CITY encounter 15 respects six actor budget true
+CITY encounter 16 respects six actor budget true
+CITY encounter 17 respects six actor budget true
+CITY RESULT 51/51
