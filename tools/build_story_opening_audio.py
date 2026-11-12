@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Deterministic score and sound design for the 18 s boot story opening.
 
-An original 160 BPM half-time beat (one shot = two bars, so every cut lands on a
-downbeat) is written here from scratch and baked together with the diegetic sound.
-Sources: synthesis, the CC0 Kenney impacts in godot/audio/open, and CC0 BigSoundBank
-field recordings and drum hits in references/story-opening-audio (see provenance.json
-there; fetched by tools/fetch_story_opening_sources.py). Nothing is taken from any
-reference video. 48 kHz stereo PCM, noise seed 20261112.
+Music: "Beat Keep Rockin" by Starjunk 95, supplied and cleared for this game by the
+project owner (references/audio/user-tracks/admitted.json), cut to the picture. At
+140 BPM three seconds are exactly seven beats, so every shot change lands on a beat;
+the song's two drops carry the cut to the garage, the case slam and the title.
+Sound: synthesis, the CC0 Kenney impacts in godot/audio/open, and CC0 BigSoundBank
+field recordings in references/story-opening-audio (provenance.json there; fetched by
+tools/fetch_story_opening_sources.py). 48 kHz stereo PCM, noise seed 20261112.
 
 Cue times mirror story_opening.gd (IMPACTS / MUSIC_CUT / SLAM_AT / TITLE_AT). The menu
 track stays silent under this score and fades back in after the title hit.
@@ -28,6 +29,9 @@ N = int(RATE * DURATION)
 STEP = 60.0 / 160.0 / 4.0  # one sixteenth = 0.09375 s
 BAR = STEP * 16  # 1.5 s
 MUSIC_CUT, SLAM_AT, TITLE_AT = 9.75, 16.0, 16.1
+SONG = ROOT / "godot/audio/user-tracks/beat_keep_rockin.ogg"
+DROP_ONE, DROP_TWO = 61.531, 140.609  # seconds into the song: its two drops (measured onsets)
+SONG_GAIN = 2.8
 rng = np.random.default_rng(20261112)
 STEMS = {name: np.zeros((N, 2)) for name in ("kick", "drums", "bass", "music", "sfx", "amb", "hits")}
 
@@ -160,7 +164,7 @@ METAL_HEAVY = kenney("impactMetal_heavy_003.ogg")
 METAL_LIGHT = kenney("impactMetal_light_000.ogg")
 TIN = kenney("impactTin_medium_001.ogg")
 PUNCH = kenney("impactPunch_heavy_000.ogg")
-NOTE = {"Eb1": 38.89, "F1": 43.65, "Gb1": 46.25, "Ab1": 51.91, "C2": 65.41, "F2": 87.31}
+NOTE = {"Eb1": 38.89, "F1": 43.65, "Gb1": 46.25, "Ab1": 51.91, "C2": 65.41, "Eb2": 77.78, "F2": 87.31}
 
 
 def kick(at, gain=1.0, length=0.3, top=230.0, floor=58.0):
@@ -321,21 +325,12 @@ add("amb", 0.0, faded(highpass(street[:int(3.4 * RATE)], 150), 0.3, 0.5), 0.55, 
 add("amb", 2.02, faded(src("dog"), 0.005, 0.05), 0.07, 0.7)
 sweep = src("radio_sweep")
 add("sfx", 0.18, faded(bandpass(sweep[:int(1.25 * RATE)], 500, 5000), 0.02, 0.12), 0.3, np.linspace(-0.4, 0.2, int(1.25 * RATE)))
-beat_bar(0.0, "a", first=8)
-hook(0.0, "a", first=8)
-beat_bar(BAR, "b")
-hook(BAR, "b")
 riser(3.0, 2.3, 0.4)
 reverse_swell(3.0, CRASH_A, 1.4, 0.3, pan=-0.2)
 add("sfx", 2.35, pitched(WHOOSH[0], 0.6), 0.4, np.linspace(-0.3, 0.3, 4000))
 
 # ================================================================== 3-6 s  Four lives
 # The drop: the full beat, with the garage playing along (ratchet, wrench, static, scratch, straw).
-crash(3.0, 1.0, 0)
-beat_bar(2 * BAR, "a")
-hook(2 * BAR, "a")
-beat_bar(3 * BAR, "c")
-hook(3 * BAR, "c")
 ratchet = src("ratchet")
 clicks = events(ratchet, 0.07, 6)
 for k in range(5):  # two ratchet runs, each locked to the sixteenths
@@ -356,9 +351,6 @@ scratch(6.0 - 4 * STEP, 1, 1.0, length=4 * STEP - 0.01)  # LOOP's fill into the 
 
 # ================================================================== 6-9 s  ZIP returns
 # The beat sinks under the floor for the giant sole, drops out, and the case brings it back.
-sub(6.0, "F1", 14, 0.55)
-for s in (0, 4, 8, 12):
-    hat(6.0 + s * STEP, 0.55, which=s // 4)
 steps = events(src("shoe_concrete"), 0.4, 4)
 add("sfx", 6.12, steps[2], 0.4, -0.1)
 add("sfx", 6.0 + 6 * STEP, pitched(steps[0], 0.62), 0.95, 0.0)  # the giant sole, 6.56 s
@@ -376,19 +368,14 @@ add("hits", 8.0, src("explosion_b"), 0.9, 0.0)
 add("hits", 8.0, METAL_HEAVY, 0.6, 0.0)
 add("hits", 8.0, pitched(PUNCH, 0.7), 0.55, 0.0)
 add("sfx", 8.0, pitched(case[0], 0.8), 0.7, 0.0)
-sub(8.0, "F2", 2.4, 1.25, "F1", 0.0)
 kick(8.0, 1.2, 0.45, 210, 40)
 tink = src("cartridge")
 for k, (delay, ratio) in enumerate([(0.06, 1.0), (0.11, 1.4), (0.17, 0.8), (0.25, 1.7), (0.33, 1.2)]):  # tools jump
     add("sfx", 8.0 + delay, pitched(tink if k % 2 else TIN, ratio)[:int(0.3 * RATE)], 0.16, -0.6 + k * 0.3)
-crash(7.5 + 8 * STEP, 0.9, 1)
-beat_bar(5 * BAR, "c", first=8, energy=1.08)
-hook(5 * BAR, "c", first=8)
+scratch(7.52, 2, 0.9, length=0.4, ratio=0.9)  # LOOP pulls the record back for the slam
 
 # ================================================================== 9-12 s  Wrong delivery
 # Half a bar of full beat under the latches, then the music is ripped out on the third beat.
-beat_bar(6 * BAR, "b", last=8, energy=1.08)
-hook(6 * BAR, "b", last=6)
 latch = events(src("briefcase"), 0.22, 4)
 tail_taps = [(0.17, 0.42), (0.34, 0.22), (0.52, 0.1)]
 for at, pan, which in ((9.15, -0.35, 0), (9.45, 0.35, 1)):
@@ -423,7 +410,7 @@ doors = events(src("car_door"), 0.6, 3)
 for k, pan in enumerate((-0.6, 0.0, 0.6)):
     add("sfx", 13.1 + k * 0.006, doors[k], 1.1, pan)
 kick(13.1, 0.75, 0.5, 110, 40)
-sub(13.1, "F1", 4, 0.6)
+sub(13.1, "Eb1", 4, 0.6)
 march = events(src("marching"), 0.3, 6)
 for n, at in enumerate((13.55, 13.85)):
     for k, pan in enumerate((-0.5, 0.0, 0.5)):
@@ -444,7 +431,7 @@ for k, at in enumerate(pulse):
 t = clock(4.0)
 u = t / 4.0
 drone = np.zeros(len(t))
-for freq, level in ((43.65, 0.45), (87.31, 0.8), (92.5, 0.45), (130.8, 0.4), (174.6, 0.25)):  # F with a minor second grinding against it
+for freq, level in ((38.89, 0.45), (77.78, 0.8), (82.41, 0.3), (116.54, 0.4), (155.56, 0.25)):  # the song's E-flat with a minor second grinding against it
     drone += signal.sawtooth(2 * np.pi * freq * t + rng.uniform(0, 6.28)) * level
 moving = np.zeros(len(t))
 for k, cutoff in enumerate((220, 450, 900, 2000)):  # the filter opens as they come closer
@@ -454,7 +441,7 @@ air = highpass(noise(len(t)), 2500) * u ** 4
 add("music", 12.0, air * np.clip((4.0 - t) / 0.008, 0, 1), 0.16, np.linspace(-0.6, 0.6, len(t)))
 reverse_swell(SLAM_AT, src("gong"), 3.2, 0.5, curve=2.6)
 t = clock(0.5)
-low_stab = sum(signal.square(2 * np.pi * f * t) for f in (55, 55.7, 110.4)) * np.exp(-t / 0.16)
+low_stab = sum(signal.square(2 * np.pi * f * t) for f in (77.78, 78.6, 155.9)) * np.exp(-t / 0.16)
 add("music", 15.0, lowpass(low_stab, 900), 0.16, 0.0)
 add("hits", 15.0, faded(pitched(TOM_LOW, 0.7)[:int(0.8 * RATE)], 0.001, 0.3), 0.5, 0.0)
 for k in range(12):  # snare roll into the slam
@@ -474,52 +461,65 @@ add("hits", TITLE_AT, faded(lowpass(thunder[int(1.0 * RATE):int(3.2 * RATE)], 50
 add("hits", TITLE_AT, pitched(METAL_HEAVY, 0.8), 0.45, -0.2)
 crash(TITLE_AT, 1.2, 1, 2.2)
 kick(TITLE_AT, 1.25, 0.5, 220, 38)
-sub(TITLE_AT, "F2", 7, 1.3, "F1", 0.0)
-# Sign-off bar from the title hit: kick, snare, double kick, and a scratch into the last hit.
-tag = TITLE_AT
-for s in range(2, 16):
-    if s not in (13, 14, 15):
-        hat(tag + s * STEP, 0.9 if s % 2 == 0 else 0.5, which=s % 2)
-snare(tag + 8 * STEP, 1.0)
-kick(tag + 10 * STEP, 0.95)
-kick(tag + 11 * STEP, 0.9)
-sub(tag + 10 * STEP, "Ab1", 3, 0.9, "F1")
-stab(tag + 3 * STEP, 0.9, cutoff=2000)
-scratch(tag + 13 * STEP, 1, 1.0, length=3 * STEP - 0.01)
-end = tag + 16 * STEP  # 17.6 s
-kick(end, 1.1, 0.5, 200, 38)
-snare(end, 0.8, which=1)
-sub(end, "F1", 6, 1.1)
-stab(end, 0.8, cutoff=1800)
-crash(end, 0.6, 0, 0.8)
-
 # ================================================================== mix
-music = STEMS["kick"] + STEMS["bass"] + room(STEMS["drums"], 0.6, 0.12, 500, 9000) + room(STEMS["music"], 1.1, 0.25, 400, 7000)
+accents = STEMS["kick"] + STEMS["bass"] + room(STEMS["drums"], 0.6, 0.12, 500, 9000) + room(STEMS["music"], 1.1, 0.25, 400, 7000)
 t = np.arange(N) / RATE
 
-# 0-3 s: the beat is heard through a small radio that grows until the drop at 3.0.
+# The song: "Beat Keep Rockin" (Starjunk 95, supplied and cleared for this game by the
+# project owner), cut to the picture. Both of its drops are used as edit points.
+raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(SONG), "-f", "f32le", "-ac", "2", "-ar", str(RATE), "-"], capture_output=True, check=True).stdout
+song = np.frombuffer(raw, dtype=np.float32).astype(np.float64).reshape(-1, 2)
+music = np.zeros((N, 2))
+
+
+def lay(at, source, length, fade_in=0.004, fade_out=0.004):
+    piece = song[int(round(source * RATE)):int(round((source + length) * RATE))].copy()
+    a_, r_ = int(fade_in * RATE), int(fade_out * RATE)
+    piece[:a_] *= np.linspace(0, 1, a_)[:, None]
+    piece[-r_:] *= np.linspace(1, 0, r_)[:, None]
+    start = int(round(at * RATE))
+    n = min(len(piece), N - start)
+    music[start:start + n] += piece[:n]
+
+
+lay(0.0, DROP_ONE - 3.0, 3.0)  # the build, heard through a radio
+lay(3.0, DROP_ONE, 4.5)  # first drop on the cut to the garage
+lay(8.0, DROP_ONE, MUSIC_CUT - 8.0 + 0.01)  # the record is pulled back: the same drop lands with the case
+lay(12.0, DROP_TWO - (TITLE_AT - 12.0), TITLE_AT - 12.0, 0.4)  # the song's own second build under the collectors
+lay(TITLE_AT, DROP_TWO, DURATION - TITLE_AT, 0.002, 0.6)  # second drop is the title
+
+# 0-3 s: a small radio that grows until the drop at 3.0.
 radio_end = int(3.0 * RATE)
 mono = music[:radio_end].mean(axis=1)
 small = drive(bandpass(mono, 420, 2600, 3) * 3.0, 1.6)
-crackle_bed = np.resize(highpass(src("vinyl_crackle"), 800), radio_end) * 0.35
+crackle_bed = np.resize(highpass(src("vinyl_crackle"), 800), radio_end) * 0.12
 radio_gain = np.clip((t[:radio_end] - 0.75) / 0.5, 0, 1) * (0.3 + 0.7 * (t[:radio_end] / 3.0) ** 1.5)
-radio = (small + crackle_bed) * radio_gain * 0.42
+radio = (small * 0.5 + crackle_bed) * radio_gain
 music[:radio_end, 0] = radio * 0.85
 music[:radio_end, 1] = radio * 1.0
 
-# 6.0-7.5 s: sunk under the floor (only the low end survives).
+# 6.0-7.5 s: sunk under the floor (only the low end survives), then half a second of nothing.
 a, b = int(6.0 * RATE), int(7.5 * RATE)
-music[a:b] = lowpass(music[a - 2400:b], 420)[2400:]
+blend = np.clip((t[a:b] - 6.0) / 0.08, 0, 1)[:, None]
+music[a:b] = music[a:b] * (1 - blend) + lowpass(music[a - 2400:b], 380)[2400:] * blend * 1.2
+music[b - 480:b] *= np.linspace(1, 0, 480)[:, None]
 
 # 9.75 s: the cut. A 90 ms tape stop, then nothing.
 a = int(MUSIC_CUT * RATE)
 stop = int(0.09 * RATE)
 u = np.linspace(0, 1, stop)
 position = a - stop + np.cumsum(1 - u * 0.95)  # replay the last 90 ms slowing to a halt
+held = music.copy()
 for channel in range(2):
-    music[a:a + stop, channel] = np.interp(position, np.arange(N), music[:, channel]) * (1 - u) ** 1.5
-quiet_until = int(12.0 * RATE)
-music[a + stop:quiet_until] = 0.0
+    music[a - stop:a, channel] = np.interp(position, np.arange(N), held[:, channel]) * (1 - u) ** 1.5
+music[a:int(12.0 * RATE)] = 0.0
+
+# 12-16 s: the build creeps in from far away and opens up toward the lid.
+a, b = int(12.0 * RATE), int(TITLE_AT * RATE)
+u = ((t[a:b] - 12.0) / (TITLE_AT - 12.0))[:, None]
+music[a:b] = (lowpass(music[a:b], 700) * (1 - u) + music[a:b] * u) * (0.3 + 0.7 * u ** 1.5)
+music *= SONG_GAIN
+music += accents
 
 sfx = room(STEMS["sfx"], 0.7, 0.1, 300, 8000)
 # The latch echo and the settling brass ring in an empty room.
@@ -534,7 +534,7 @@ key = signal.sosfilt(sos("low", 18, 2), key)
 duck = 1.0 - 0.3 * np.clip(key / max(key.max(), 1e-9) * 2.0, 0, 1)
 amb = amb * duck[:, None]
 
-mix = music * 1.0 + sfx * 0.9 + hits * 0.85 + amb * 0.9
+mix = music * 1.0 + sfx * 1.6 + hits * 1.8 + amb * 0.9
 mix = highpass(mix, 28, 2)
 
 # The 0.1 s freeze: pull everything down between the slam transient and the title.
@@ -563,21 +563,26 @@ with wave.open(str(OUT / "score.wav"), "wb") as handle:
 cues = {
     "duration": 18.0,
     "cuts": [0, 3, 6, 9, 12, 15, 18],
-    "tempo": {"bpm": 160, "feel": "half-time", "bar_seconds": BAR, "bars_per_shot": 2},
-    "music": {"radio_in": [0.75, 3.0], "drop": 3.0, "sunk": [6.0, 7.5], "held_breath": [7.5, 8.0], "back_in": 8.25,
-              "cut": MUSIC_CUT, "sign_off": [TITLE_AT, 17.6], "menu_track_returns": 17.0},
+    "song": {"file": "godot/audio/user-tracks/beat_keep_rockin.ogg", "title": "Starjunk 95 - Beat Keep Rockin", "bpm": 140,
+             "note": "3 s is exactly seven beats, so every cut lands on a beat", "drops_in_song": [DROP_ONE, DROP_TWO]},
+    "music": {"radio_build": [0.0, 3.0], "first_drop": 3.0, "sunk": [6.0, 7.5], "held_breath": [7.5, 8.0], "first_drop_again": 8.0,
+              "cut": MUSIC_CUT, "second_build": [12.0, TITLE_AT], "second_drop": TITLE_AT, "menu_track_returns": 17.6},
     "cues": [
-        [0.0, "tram pass, street bed, radio tuning"], [0.75, "beat through the radio"], [3.0, "drop: full beat, crash"],
+        [0.0, "tram pass, street bed, radio tuning"], [0.75, "song build through the radio"], [3.0, "first drop"],
         [3.19, "ratchet run"], [3.56, "ratchet run"], [3.84, "impact wrench"], [4.125, "speaker static"], [4.5, "scratch"],
-        [5.3, "straw"], [5.625, "scratch fill"], [6.56, "giant sole"], [6.98, "second step"], [7.5, "snare roll, riser"],
-        [8.0, "case slam + sub drop"], [8.25, "beat back in"], [9.15, "latch 1"], [9.45, "latch 2"],
+        [5.3, "straw"], [5.625, "scratch fill"], [6.56, "giant sole"], [6.98, "second step"], [7.5, "record pulled back, snare roll, riser"],
+        [8.0, "case slam + first drop again"], [9.15, "latch 1"], [9.45, "latch 2"],
         [9.75, "tape stop, tubes only"], [10.08, "brass settles"], [11.25, "heartbeat"], [11.625, "heartbeat"],
         [11.9, "car in"], [12.34, "brake"], [13.1, "three doors"], [13.55, "shoes"], [13.85, "shoes"], [14.2, "glove"],
-        [14.46, "glove snap"], [14.75, "pulse tightens, drone rises"], [15.0, "low stab"], [15.62, "snare roll"],
-        [16.0, "lid slam"], [16.035, "held breath"], [16.1, "title hit"], [17.6, "sign-off hit"]],
-    "sources": ["synthesis (seed 20261112)", "godot/audio/open Kenney CC0 impacts",
+        [12.0, "second build fades up"], [14.46, "glove snap"], [14.75, "pulse tightens, drone rises"], [15.0, "low stab"], [15.62, "snare roll"],
+        [16.0, "lid slam"], [16.035, "held breath"], [16.1, "title hit + second drop"]],
+    "sources": ["Starjunk 95 - Beat Keep Rockin (owner-supplied, see references/audio/user-tracks/admitted.json)", "synthesis (seed 20261112)", "godot/audio/open Kenney CC0 impacts",
                 "references/story-opening-audio BigSoundBank CC0 excerpts (provenance.json)"],
     "sha256": hashlib.sha256(pcm.tobytes()).hexdigest(),
 }
 (OUT / "cues.json").write_text(json.dumps(cues, indent=2) + "\n")
 print(json.dumps({"bytes": (OUT / "score.wav").stat().st_size, "peak": peak, "sha256": cues["sha256"]}))
+import os
+if os.environ.get("STEM_DEBUG"):
+    for label, data in (("music", music), ("accents", accents), ("sfx", sfx), ("hits", hits), ("amb", amb), ("kick", STEMS["kick"]), ("bass", STEMS["bass"])):
+        print(label, [int(round(10 * np.log10(np.mean(data[int(a * RATE):int((a + 1) * RATE)] ** 2) + 1e-12))) for a in range(18)])

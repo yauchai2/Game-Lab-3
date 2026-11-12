@@ -13,7 +13,7 @@ const TITLE_AT:=16.1
 const SLAM_AT:=16.0
 const MUSIC_CUT:=9.75
 ## The menu track fades back in here, under the score's sign-off bar.
-const MENU_MUSIC_AT:=17.0
+const MENU_MUSIC_AT:=17.6
 ## [time, strength] camera trauma. Mirrors the cue sheet in audio/story_opening/cues.json.
 const IMPACTS:=[[6.55,.55],[6.98,.3],[8.0,1.0],[9.15,.22],[9.45,.22],[12.78,.45],[13.1,.6],[13.55,.4],[13.85,.4],[14.2,.18],[16.0,1.3],[16.1,.9]]
 const SUBTITLES:=[

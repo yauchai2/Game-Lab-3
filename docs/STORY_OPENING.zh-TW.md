@@ -29,7 +29,7 @@
 - `godot/scripts/combat/story_opening/stage.gd`：程序化場景（街道、高架與列車、樓群、維修場、機車、音響、沙發、黑箱、黑車、路人、標題天台）。沿用既有貼圖與 PROP／VEH 包裝場景。
 - `godot/scripts/combat/story_opening/actor.gd`：演出角色。包裝既有 FighterVisual（四位主角原 GLB 與修補版黑衣人，原檔不動），無狀態取樣共用 CC0 動作再疊加肢體瞄準與雙骨 IK。
 - `godot/shaders/story_opening_lens.gdshader`：魚眼、放射／橫向模糊、色散、閃白、反相、標題的黑白＋純色 ink 分級。
-- `godot/audio/story_opening/score.wav`＋`cues.json`：18 秒原創配樂加音效，由 `tools/build_story_opening_audio.py` 產生（seed 20261112）。160 BPM 半拍節奏，一鏡兩小節；0–3 秒由收音機透出，3.0 drop，6.0–7.5 沉底，8.0 黑箱重砸後 8.25 回來，9.75 tape stop 抽音，12–16 由車門／皮鞋／手套脈衝加上升低頻，16.1 標題重擊加一小節收尾。素材：合成、既有 Kenney CC0、BigSoundBank CC0 節選（`references/story-opening-audio/`，`tools/fetch_story_opening_sources.py`）。沒有使用任何參考影片的音軌。主選單曲開場期間靜音，17.0 秒起淡入，transport 從不停止。
+- `godot/audio/story_opening/score.wav`＋`cues.json`：18 秒配樂加音效，由 `tools/build_story_opening_audio.py` 產生（seed 20261112）。音樂是使用者提供的 Starjunk 95〈Beat Keep Rockin〉（`godot/audio/user-tracks/beat_keep_rockin.ogg`，140 BPM，3 秒＝7 拍）：0–3 秒為第一次 drop 前的鋪陳經收音機濾波，3.0 第一次 drop，6.0–7.5 沉底，7.5 倒帶抽空，8.0 黑箱重砸時同一 drop 再下，9.75 tape stop 抽音，12.0–16.1 第二段鋪陳由遠而近，16.1 標題接第二次 drop。音效：合成、既有 Kenney CC0、BigSoundBank CC0 節選（`references/story-opening-audio/`）。主選單曲開場期間靜音，17.6 秒起淡入，transport 從不停止。
 - `godot/assets/fonts/StoryOpeningHK.otf`：字幕用 Noto Sans HK Bold 子集（OFL），`tools/subset_story_opening_font.py` 產生，來源雜湊見 `references/ui-fonts/story-opening-subset.json`。
 - 改動既有檔案：`fight_session.gd`（建立、開機判斷、輸入攔截、`replay_story_opening`）、`fight_hud.gd`（`opening` 畫面不建選單、繪製轉交、設定頁重播鍵）、`combat_motions.gd`（一行：演出角色可用 `cinematic_clip` 指定動作，戰鬥不會設定此鍵）。`fight_simulation.gd`、XP、原始 GLB 均未改。
 

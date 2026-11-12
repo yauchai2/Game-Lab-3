@@ -1,3 +1,9 @@
+## 2026-11-12：開場配樂採用使用者提供的〈Beat Keep Rockin〉
+
+- 使用者指定使用其上傳的 Starjunk 95 音樂並允許自由剪輯；沿用既有 user-tracks 做法：記錄來源 SHA、不宣稱 CC0。
+- 選〈Beat Keep Rockin〉是因為 140 BPM 時 3 秒＝7 拍，不必變速就能讓六個鏡頭全部切在拍上，而且它有兩個 drop 可分別對上進車房與標題。〈State Your Name〉（125 BPM）與 mix 先入庫未指派。
+- 歌曲仍烘進 `score.wav`，主選單曲（Berlin）不變，17.6 秒起淡入。
+
 ## 2026-11-12：開場改用烘焙的原創節奏，主選單曲不再充當開場音樂
 
 - 原因：主選單曲的拍點無法對上 3 秒一鏡的剪接，聽起來與畫面無關。現在配樂寫在 `tools/build_story_opening_audio.py`，160 BPM 半拍，一鏡兩小節。

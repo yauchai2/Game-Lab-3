@@ -64,7 +64,7 @@ func run() -> void:
     check("menu music stays silent under the baked score, never stopped",s.audio.cinematic_duck>=10.0 and s.audio.music_gain_db<=-79.0 and s.audio.music.playing)
     op.age=10.0;step(2)
     check("menu music is still silent for the reveal",s.audio.cinematic_duck>=10.0 and s.audio.music.playing)
-    op.age=17.2;step(12)
+    op.age=17.8;step(8)
     check("menu music fades back in after the title hit",s.audio.cinematic_duck==0.0 and (s.audio.music_gain_db>-60.0 or s.audio.muted or s.audio.music_muted))
     op.age=17.95;step(6)
     check("the opening ends by itself on the main menu",not op.active() and s.screen=="title" and op.finished_count==1)
