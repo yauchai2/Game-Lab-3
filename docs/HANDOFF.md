@@ -1,3 +1,7 @@
+## 2026-11-12：開場配樂與音效重做（Claude，PR #10）
+
+使用者回饋開場聲音太無聊，並提供一支參考 MV（只作風格參考，未取用其音軌）。`score.wav` 全部重做：原創 160 BPM 半拍重低音節奏，每鏡剛好兩小節，所以每個剪接點都落在強拍。0–3 秒節奏由小收音機透出，3.0 秒 drop；6.0–7.5 秒沉到地板下配巨大鞋底；7.5–8.0 秒抽空後黑箱在 8.0 秒砸下、8.25 秒節奏回來；9.75 秒 tape stop 抽音只剩燈管；12–16 秒不用鼓，改由車、三扇門、皮鞋、手套組成越來越密的脈衝加上升低頻；16.0 合箱、16.1 標題重擊後一小節收尾。實錄素材改用 BigSoundBank CC0（電車、街聲、棘輪、氣動扳手、唱盤刮碟、公事包扣、車門、踏步、鼓組、鑼、雷、爆炸），節選存在 `references/story-opening-audio/` 並附 provenance。主選單曲在開場期間全程靜音，17.0 秒起淡入，transport 不停。原生檢查 35/35；真實啟動錄影的音軌與 score 逐段一致。混音只以頻段比例對照參考調整，仍未經真人試聽。
+
 ## 2026-11-11：開機劇情開場 18 秒六鏡（Claude，草稿 PR 待審）
 
 見 [STORY_OPENING.zh-TW.md](STORY_OPENING.zh-TW.md)。依使用者影片／分鏡／鏡頭表，以即時3D做啟動後、主選單前的18秒開場：城市俯衝→三人日常→ZIP帶黑箱→送錯貨俯拍→黑衣人下車→合箱撞擊切AFTERHOURS。四主角原GLB＋修補版黑衣人、程序場景、專屬lens、原創音效軌、粵語字幕；主選單曲淡入／9.75秒抽走／隨標題回歸，transport不停。首次啟動自動播，旗標存story_opening.cfg，設定頁可重播；Enter／Space跳過、Esc暫停、F2減少特效。只在場景為current_scene時自動播，既有測試不受影響。34/34原生檢查＋真實啟動錄影，證據evidence/story-opening。分支claude/project-thread-frl810→codex/combat-escalation-next，未合併、Web不動；simulation／XP／原GLB未改。真人實聽、Mac、4.7.2待驗，對白無配音。

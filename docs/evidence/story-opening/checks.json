@@ -89,11 +89,15 @@
       "passed": true
     },
     {
-      "name": "menu music is cut for the reveal, never stopped",
+      "name": "menu music stays silent under the baked score, never stopped",
       "passed": true
     },
     {
-      "name": "music returns with the title",
+      "name": "menu music is still silent for the reveal",
+      "passed": true
+    },
+    {
+      "name": "menu music fades back in after the title hit",
       "passed": true
     },
     {
@@ -137,7 +141,7 @@
       "passed": true
     }
   ],
-  "passed": 34,
+  "passed": 35,
   "suite": "story_opening",
-  "total": 34
+  "total": 35
 }

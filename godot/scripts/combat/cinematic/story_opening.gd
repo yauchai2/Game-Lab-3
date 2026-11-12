@@ -12,6 +12,8 @@ const ORIGIN:=Vector3(2400,0,0)
 const TITLE_AT:=16.1
 const SLAM_AT:=16.0
 const MUSIC_CUT:=9.75
+## The menu track fades back in here, under the score's sign-off bar.
+const MENU_MUSIC_AT:=17.0
 ## [time, strength] camera trauma. Mirrors the cue sheet in audio/story_opening/cues.json.
 const IMPACTS:=[[6.55,.55],[6.98,.3],[8.0,1.0],[9.15,.22],[9.45,.22],[12.78,.45],[13.1,.6],[13.55,.4],[13.85,.4],[14.2,.18],[16.0,1.3],[16.1,.9]]
 const SUBTITLES:=[
@@ -180,19 +182,15 @@ func _sync_audio() -> void:
 	var audio:Node=session.audio
 	score.stream_paused=paused
 	score.volume_db=-80.0 if audio.muted or audio.effects_level<=0 else -1.0+linear_to_db(maxf(.001,audio.effects_level))
-	# The menu track is the underground radio: it surfaces, is cut at the reveal
-	# and lands again with the title. The transport itself never stops.
-	var duck:=0.0
-	if age<3.0:duck=lerpf(2.6,1.1,age/3.0)
-	elif age<MUSIC_CUT:duck=lerpf(1.1,.35,clampf((age-3.0)/3.0,0,1))
-	elif age<TITLE_AT:duck=10.0
-	if paused:duck=maxf(duck,1.5)
-	audio.cinematic_duck=duck
-	if age>=MUSIC_CUT and age<TITLE_AT and not music_was_cut:
+	# The baked score carries its own beat, so the menu track stays silent under it
+	# and fades back in once the title has hit. The transport itself never stops.
+	var silent:=age<MENU_MUSIC_AT
+	audio.cinematic_duck=10.0 if silent else (1.5 if paused else 0.0)
+	if silent:
 		music_was_cut=true;audio.music_gain_db=-80.0
-	elif age>=TITLE_AT and music_was_cut:
+	elif music_was_cut:
 		music_was_cut=false
-		if not (audio.muted or audio.music_muted or audio.music_level<=0):audio.music_gain_db=-5.0+linear_to_db(maxf(.001,audio.music_level))
+		if not (audio.muted or audio.music_muted or audio.music_level<=0):audio.music_gain_db=-34.0
 
 # ---------------------------------------------------------------- timeline
 

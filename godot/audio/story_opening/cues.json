@@ -9,38 +9,94 @@
     15,
     18
   ],
+  "tempo": {
+    "bpm": 160,
+    "feel": "half-time",
+    "bar_seconds": 1.5,
+    "bars_per_shot": 2
+  },
   "music": {
     "radio_in": [
-      0.0,
-      6.0
+      0.75,
+      3.0
     ],
+    "drop": 3.0,
+    "sunk": [
+      6.0,
+      7.5
+    ],
+    "held_breath": [
+      7.5,
+      8.0
+    ],
+    "back_in": 8.25,
     "cut": 9.75,
-    "returns_with_title": 16.1
+    "sign_off": [
+      16.1,
+      17.6
+    ],
+    "menu_track_returns": 17.0
   },
   "cues": [
     [
       0.0,
-      "train pass, street bed, dive"
+      "tram pass, street bed, radio tuning"
     ],
     [
-      3.2,
-      "ratchet x3"
+      0.75,
+      "beat through the radio"
     ],
     [
-      4.12,
+      3.0,
+      "drop: full beat, crash"
+    ],
+    [
+      3.19,
+      "ratchet run"
+    ],
+    [
+      3.56,
+      "ratchet run"
+    ],
+    [
+      3.84,
+      "impact wrench"
+    ],
+    [
+      4.125,
       "speaker static"
     ],
     [
-      5.22,
+      4.5,
+      "scratch"
+    ],
+    [
+      5.3,
       "straw"
     ],
     [
-      6.55,
-      "heavy step"
+      5.625,
+      "scratch fill"
+    ],
+    [
+      6.56,
+      "giant sole"
+    ],
+    [
+      6.98,
+      "second step"
+    ],
+    [
+      7.5,
+      "snare roll, riser"
     ],
     [
       8.0,
-      "case + bass drum"
+      "case slam + sub drop"
+    ],
+    [
+      8.25,
+      "beat back in"
     ],
     [
       9.15,
@@ -52,10 +108,22 @@
     ],
     [
       9.75,
-      "music cut, tubes only"
+      "tape stop, tubes only"
     ],
     [
-      12.0,
+      10.08,
+      "brass settles"
+    ],
+    [
+      11.25,
+      "heartbeat"
+    ],
+    [
+      11.625,
+      "heartbeat"
+    ],
+    [
+      11.9,
       "car in"
     ],
     [
@@ -79,8 +147,20 @@
       "glove"
     ],
     [
+      14.46,
+      "glove snap"
+    ],
+    [
       14.75,
-      "pulse tightens, floor rises"
+      "pulse tightens, drone rises"
+    ],
+    [
+      15.0,
+      "low stab"
+    ],
+    [
+      15.62,
+      "snare roll"
     ],
     [
       16.0,
@@ -93,11 +173,16 @@
     [
       16.1,
       "title hit"
+    ],
+    [
+      17.6,
+      "sign-off hit"
     ]
   ],
   "sources": [
     "synthesis (seed 20261112)",
-    "godot/audio/open Kenney CC0 impacts and footsteps"
+    "godot/audio/open Kenney CC0 impacts",
+    "references/story-opening-audio BigSoundBank CC0 excerpts (provenance.json)"
   ],
-  "sha256": "53fcfb99ac7b864221a7505b784be40a008a2828d0d546d946398b203f34ffbd"
+  "sha256": "acdb6d9fe46a1e363f82e1af46ca5a6ea61901b909f3cf0b2766cb91bc07fd51"
 }
