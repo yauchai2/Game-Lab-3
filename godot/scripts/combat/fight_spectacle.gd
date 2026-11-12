@@ -1,4 +1,5 @@
 extends RefCounted
+var sprites = preload("res://scripts/combat/sprite_fx.gd").new()
 ## Original comic staging. Visual clock only; never changes collision or damage.
 var impact_word := ""
 var mode := ""
@@ -60,13 +61,8 @@ func draw(canvas: Control, session: Node3D) -> void:
         color=session.COLORS[rally.owner]
         var amount: float=float(rally.age)/rally.HOLDS[rally.tier-1]
         var radius:=lerpf(115.0,28.0,amount)
-        if not reduced:
-            _border(canvas,color,.3+rally.tier*.08)
-            for i in 10:
-                var direction:=Vector2.from_angle(i*TAU/10+.14)
-                var outer:=at+direction*(radius+40)
-                _wedge(canvas,outer,at+direction*radius,3,color)
-        canvas.draw_arc(at,30.0 if reduced else radius,0,TAU,12,color,3)
+        if not reduced:_border(canvas,color,.3+rally.tier*.08)
+        sprites.converge(canvas,at,amount,color,30.0 if reduced else radius*.8,3 if reduced else 6)
         for i in rally.tier:
             var mark:=at+Vector2(-18+i*12,42)
             canvas.draw_colored_polygon(PackedVector2Array([mark,mark+Vector2(5,-5),mark+Vector2(10,0),mark+Vector2(5,5)]),paper)
@@ -106,17 +102,19 @@ func draw(canvas: Control, session: Node3D) -> void:
             canvas.draw_line(plate[0],plate[1],color,4)
             canvas.draw_string(session.hud.bold,Vector2(x+8+slide,215),impact_word,HORIZONTAL_ALIGNMENT_LEFT,-1,45,paper)
         _border(canvas,color,fade*(.4+tier*.1))
-        var count:=12 if tier<3 else 20
-        for i in count:
-            var direction:=Vector2.from_angle(i*TAU/count+.12)
-            var edge:=at+direction*Vector2(900,600)
-            var tip:=at+direction*(210.0+age*420)
-            _wedge(canvas,edge,tip,(3.0+tier)*fade,Color(color,fade*.65))
-        if mode=="burst" and age<.16:
-            var radius:=50.0+age*700
-            for i in 8:
-                var angle:=i*TAU/8
-                canvas.draw_arc(at,radius,angle,angle+.42,4,Color(paper,fade),3)
+        # Lethal League style hit flash: two crisp frames of paper white over the whole screen, never on reduced FX.
+        if age<.045 and tier>=3:canvas.draw_rect(Rect2(0,0,1280,720),Color(paper,.30 if age<.02 else .14))
+        # Pixel-snapped ink speed lines trailing away from the hit, parallel to the strike.
+        var sign:float=1.0 if owner==0 else -1.0
+        var grow:=1.0-clampf(age/maxf(duration,.05),0,1)*.6
+        for i in (7 if tier<3 else 11):
+            var y:float=roundf((at.y+(float(i)-float(7 if tier<3 else 11)*.5)*30.0+float((i*37)%5)*4.0)/2.0)*2.0
+            var length:float=(240.0+float((i*53)%4)*80.0)*grow
+            var start:float=roundf((at.x-sign*(150.0+float(i%3)*46.0))/2.0)*2.0
+            var rect:=Rect2(Vector2(start if sign>0 else start-length,y),Vector2(length,6.0))
+            canvas.draw_rect(rect,Color(ink,.9))
+            canvas.draw_rect(Rect2(rect.position+Vector2(0,2),Vector2(rect.size.x*.7 if sign>0 else rect.size.x*.7,2.0)),Color(color if i%2==0 else paper,1.0))
+        if mode=="burst" and age<.30:sprites.hit_spark(canvas,at,age/.30,paper,-0.6,250.0+tier*40.0)
 
 func _wedge(canvas: Control, base: Vector2, tip: Vector2, width: float, color: Color) -> void:
     var tangent: Vector2=(tip-base).normalized().orthogonal()*width
@@ -130,4 +128,5 @@ func _border(canvas: Control, color: Color, strength: float) -> void:
         for i in 12:
             var x:=float(i%3)*7 if side==0 else 1280-float(i%3)*7
             var y:=225.0+i*22
-            canvas.draw_circle(Vector2(x,y),2.0+strength*3,Color(color,strength*.65))
+            var dot:=roundf((2.0+strength*3.0)/2.0)*2.0
+            canvas.draw_rect(Rect2(Vector2(roundf(x/2.0)*2.0-dot,roundf(y/2.0)*2.0-dot),Vector2(dot,dot)*2.0),Color(color,strength*.65))

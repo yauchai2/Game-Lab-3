@@ -11,6 +11,26 @@ Alan 要求開場更貼近參考影片但只做小調整：保留 18 秒結構�
 最新見[CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)，覆蓋下方「Boss／城市九核心／獨立場景／完整短篇故事未做」的舊狀態。六區18場、兩／三階段Boss與讀招弱點、有限增援／新敵型、危險地面預告／破箱連鎖、分支休息與補給、六章劇本／三NPC／五能力課程／12專屬招式三選二、九核心真DRAW→EQUIP與一次性出擊預算、工坊及裝備骨架外觀已接正式STORY。12個原創低模GLB與Blender來源可重建；原Tripo及英雄GLB保持。schema3保v2樹／裝／局內進度並留.v2.bak，v1遷移仍保持。
 
 裝備直接增傷封頂12%，不增最大HP／parry窗口／無敵；總條件增傷50%／真parry反擊60%，Boss閉甲／弱點限制不可略過，合約HP／傷害亦封頂。四角從零合法掉落／解鎖／付費補給通18場、八組裸裝讀招Boss通關；九種極端裝／核心攻擊spam都敗於最終Boss。這是自動測例，非真人平衡或FPS驗收；簡單原創低模及無配音仍是本版本美術範圍。證據見[evidence/campaign-complete](evidence/campaign-complete/README.md)。只推codex/story-waves-m1／草稿PR #12，main／Web不動。
+## 2026-11-12：命中特效改用CC0素材、影子改柔和（Alan要求）
+
+Alan指出命中特效（紫／青多邊形線圈、五邊形、放射線）、地面白色碎片與腳下深藍橢圓影子品質劣質，要求改用線上素材。命中／釋放／格擋破防／蓄力改為Sinestesia CC0命中火花flipbook（白色＋alpha烘焙，按角色色著色，加深色墊底以保可讀）；腳步／落地／滑行塵與slam／ground_ring改為Kenney CC0白煙貼圖；影子改程式生成的三階平色橢圓影，離地時變淡。來源與授權見godot/assets/vfx/SOURCES.md，烘焙腳本tools/build_vfx_sheets.py。不改傷害／hitstop／Rhythm／Neon；swing弧線保留。此決定取代上條「不引入素材採購」中關於命中圖形的部分。未在實機GPU／Mac／真人手感驗收。
+
+## 2026-11-12：命中閃白、墨線速度線、雙色星爆
+
+依Jet Set Radio／Bomb Rush Cyberfunk／Lethal League Blaze方向：重擊星爆改雙色疊層（隊色＋黃色底層，粗黑邊）；Neon RELEASE／BREAK／K.O.在開頭兩幀加紙白全屏閃（Neon仍是唯一全屏owner；F2降低演出時不顯示），並加2px對齊的墨線速度線；Neon原本的斷線菱形與蓄力弧線改為星爆／匯聚墨線。fight_spectacle的放射線與圓點同步改為速度線與方塊（僅非Neon路徑使用）。
+
+## 2026-11-12：特效像素格對齊場景（1素材像素＝1遊戲像素）
+
+Alan指出特效像素比場景／UI粗、不吻合。規則：HUD畫布為1280×720、最終640×360，故特效1 texel＝2 HUD px，一律不旋轉、不任意縮放、座標對齊2px格，只用「小／大」兩套圖集切換強度（星爆64／128格、劍氣固定64×47、煙塵24格）；煙塵以消失代替縮放。風格目標：Jet Set Radio、Bomb Rush Cyberfunk、Lethal League Blaze（平色、粗墨線、強對比、命中閃白）。
+
+## 2026-11-12：命中爆裂改為自製漫畫星爆，蓄力改墨線速度線
+
+Alan回報新特效仍不融入（滿屏樹葉狀火花）。Sinestesia素材縮成像素後像葉片，已停用；`tools/build_vfx_sheets.py`程序化生成8格漫畫星爆（尖角、粗墨線、紙白核心、後四格碎裂成碎片），命中／釋放／格擋等沿用。蓄力／rally／抓取預告改為少量粗墨線速度線（無貼圖），數量減少。劍氣弧線（tbbk CC0）與Kenney煙塵保留。
+
+## 2026-11-12：VFX風格校正為Jet Set Radio式像素cel，並改回原始黑衣人GLB
+
+Alan指出首版發光火花不合風格（本作類Jet Set Radio）。素材改烘成低解析、1-bit alpha、平色＋烘焙墨線、nearest取樣，不做alpha淡出而是縮小消失；揮拳弧線改用tbbk的CC0像素劍氣（所有招式共用，依招式／角色調長度與厚度）；環境煙霧shader改三階平色；影子改三階平色。蓄力／rally／格擋／紅色演出等圈形線條全部改為火花。同回合：Alan提供的GLB與`black_suit/source/`原檔SHA-256相同，已把黑衣人runtime改回此原始GLB（不再用`derived/black_suit_repaired.glb`，該檔仍保留未刪），並放寬verify_black_suit／verify_squad_native對修補材質數量的斷言（>=4 → >=1）。原始模型的後頸／領帶問題未再修補，未經實機視覺驗收。
+
 ## 2026-11-12：正式戰鬥VFX實作完成
 
 使用者授權全面實作；採原創可編輯硬邊mesh cels＋骨骼ribbon＋原有Neon／Rhythm，直接作用正式玩法。沿640×360及現有黑白／青粉palette，沒有引入生成噪聲圖集、素材採購或新角色模型。世界煙預留重要容量，Canvas按提示重要性淘汰；不為FX改傷害／能量／hitstop。腳步先距離備援＋較低鞋骨，不冒稱marker／IK。聲畫及shader globals均可逆；Web不更新。詳COMBAT_VFX_RUNTIME.zh-TW.md。
