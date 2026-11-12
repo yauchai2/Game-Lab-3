@@ -39,3 +39,10 @@ heavy×3、slam×2、launch、release（特殊／超載釋放，爆炸前有 0.2
 - 混音：`fight_audio.gd` 對打擊類音效只保留 35% 的衰減（呼叫端原本要求 -6～-12 dB，使打擊壓在音樂下面），基準 -3→-1 dB；SFX bus 在 limiter 前加壓縮器（-14 dB、4:1、attack 1.5 ms）；重擊／重摔／KO／破防的音樂閃避加深到 9 dB 且延長到 0.34 s，普通打擊 5 dB。
 - 音樂備選：額外 6 段循環放在專案檔案 `audio-overhaul/music-candidates/`（不在 repo），供 Alan 選曲。
 - 驗證：`verify_combat_sfx.gd` 49/49；`verify_unified_audio.gd` 無削波。仍然沒有人耳驗證，響度與聽感需 Alan 試聽；若太吵或失真，調整點是 `IMPACT_TARGET`、`peak` 與壓縮器 threshold。
+
+## 第三輪：節奏張弛（Alan 回饋「要有激昂也要有休息或平淡，全部幫我平衡」）
+- 做法：`fight_audio.gd` 新增 `heat`（熱度 0–1）。打擊落地時上升（block .05、hit .10、parry .14、launch .2、heavy .22、guard_break .3、slam .34、release .4、ko .5），沒有打擊時每秒冷卻 0.085，約 5–10 秒的空檔會回到平靜。每場新戰鬥從 0.2（喘息）開始；暫停回來保留原熱度。
+- 音樂跟著張弛：Afterhours Music bus 加一個低通濾波器。平靜時濾到約 1.9 kHz（較暗）並降 4 dB，激烈時完全打開（20 kHz）且回到原音量；打開比關上快（動作一來立刻亮起，空檔慢慢收）。戰鬥音量漸變改為較慢（2.2/s），避免忽大忽小。
+- 其他場景各有位置：選單 -8.5 dB／7.5 kHz（比戰鬥輕鬆）、結算 -8 dB／5.2 kHz、暫停 -15 dB／1.4 kHz（悶住）。開場電影音效不動（仍只透過 `cinematic_duck`、`music_gain_db`）。
+- 沒有改動音樂檔與判定，只是混音；聽起來是否自然、有沒有「忽暗忽亮」要 Alan 試聽，調整點是 `HEAT_BUMP`、`HEAT_COOL_PER_SECOND`、`CALM_CUTOFF_HZ`、`CALM_GAIN_DB`。
+- 驗證：`verify_combat_sfx.gd` 56/56（新增 7 項：新戰鬥從喘息開始、平靜時變暗變小、連擊後打開並升音量、自動冷卻、暫停悶住、恢復保留熱度、bus 只有一個低通濾波器）；`verify_unified_audio.gd` 戰鬥混音無削波。仍沒有人耳驗證。
