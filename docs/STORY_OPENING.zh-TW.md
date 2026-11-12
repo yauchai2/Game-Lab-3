@@ -8,7 +8,7 @@
 
 - 只在「這個場景就是正在執行的遊戲」時自動播放（`get_tree().current_scene==self`），工具／測試自行 instantiate 場景時仍直接進主選單，既有測試不受影響。
 - 預設只在第一次啟動播放，看完或跳過後寫入 `user://neon_lab/story_opening.cfg`（與 progression.cfg 同目錄、獨立檔案，不改 XP 存檔格式，也不與 PR #8 的 `story_cleared` 衝突）。`story_opening_every_boot=true` 可改成每次啟動都播。
-- SETTINGS 頁新增 `REPLAY OPENING` 可隨時重看。
+- 主選單 FREE PLAY 頁的 `WATCH OPENING` 可隨時重看（原本埋在 SETTINGS 最底，已移走，不重複放）。看完回主選單。
 - Enter／Space 跳過，Esc 暫停／恢復，F2 即時切換減少特效，M 靜音。開場期間其他按鍵不會啟動任何模式。
 - 「真正第一拳」留給之後「開始故事」的黑衣人上門短動畫，本輪未做。
 
@@ -35,7 +35,7 @@
 
 ## 驗證與限制
 
-- `godot/tools/verify_story_opening.gd`：35/35 通過（Godot 4.6.3 Linux、Compatibility／llvmpipe、Dummy 音訊），結果在 `docs/evidence/story-opening/`。
+- `godot/tools/verify_story_opening.gd`：37/37 通過（Godot 4.6.3 Linux、Compatibility／llvmpipe、Dummy 音訊），結果在 `docs/evidence/story-opening/`。
 - 以 Movie Maker 模式實際從啟動錄下整段開場到主選單（含混音），抽格見 `storyboard.jpg`；第二次啟動直接到主選單見 `second-launch-menu.png`。
 - 回歸：verify_reference_ui 37/37、verify_ability_draw 69、verify_black_suit 35 通過；verify_round_flow 23/24，唯一失敗項在未修改的 e725c99 上同樣失敗。
 - 未驗證：真人實聽（混音平衡、抽音與標題重擊的觀感）、使用者本機 Mac／GPU／Godot 4.7.2、4.7.2 warning-as-error 工具。對白只有字幕，沒有配音。

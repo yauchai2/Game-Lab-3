@@ -72,11 +72,23 @@ func run() -> void:
     await process_frame
     check("main menu buttons are back and usable",s.hud.art_controls.visible and s.hud.art_buttons.has("fight") and s.hud.art_buttons.fight.is_visible_in_tree())
     check("seen flag is saved beside progression",op.seen and FileAccess.file_exists(SAVE_DIR+"/story_opening.cfg"))
-    # Replay from settings and skip.
-    s.replay_story_opening();step(20)
+    # Replay from FREE PLAY and skip; settings must not repeat the entry.
+    s.hud.open_page("settings");step(4)
+    var in_settings:=false
+    for node in s.hud.menu_stack.get_children():
+        if node is Button and node.get_meta("ui_key","")=="replay_opening":in_settings=true
+    s.hud.close_page();s.hud.open_page("free_play");step(4)
+    var watch:Button=null
+    for node in s.hud.menu_stack.get_children():
+        if node is Button and node.get_meta("ui_key","")=="replay_opening":watch=node
+    check("FREE PLAY has WATCH OPENING and settings no longer repeats it",watch!=null and watch.text=="WATCH OPENING" and not in_settings)
+    var cam_pre:Transform3D=camera.transform
+    watch.pressed.emit();step(20)
     check("replay starts from the title",op.active() and op.replay and s.screen=="opening")
     key(KEY_SPACE)
-    check("Space skips straight to the menu and restores the camera",not op.active() and s.screen=="title" and camera.position.distance_to(before.transform.origin)<1.0 and camera.fov==before.fov and camera.environment==before.environment and s.audio.cinematic_duck==0.0)
+    check("after the replay the main menu is back",s.hud.menu_page=="main" and s.screen=="title")
+
+    check("Space skips straight to the menu and restores the camera",not op.active() and s.screen=="title" and camera.position.distance_to(cam_pre.origin)<1.0 and camera.fov==before.fov and camera.environment==before.environment and s.audio.cinematic_duck==0.0)
     s.start_match(false)
     check("a match starts normally afterwards",s.screen=="play" and s.fighters[0].visible and s.backdrop.visible)
     s.return_to_title();s.replay_story_opening();step(10);s._exit_tree()
