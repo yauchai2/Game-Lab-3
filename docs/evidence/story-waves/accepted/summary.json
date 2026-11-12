@@ -1,0 +1,41 @@
+{
+  "baseline": "ef3f8d3",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "passed": 287,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "story-rules",
+      "passed": 37
+    },
+    {
+      "name": "story-native",
+      "passed": 17
+    },
+    {
+      "name": "strict",
+      "passed": 11
+    },
+    {
+      "name": "arena",
+      "passed": 65
+    },
+    {
+      "name": "double-jump",
+      "passed": 62
+    },
+    {
+      "name": "combat",
+      "passed": 34
+    },
+    {
+      "name": "reference-ui",
+      "passed": 37
+    },
+    {
+      "name": "round-flow",
+      "passed": 24
+    }
+  ],
+  "scope": "Linux Compatibility llvmpipe / Dummy; not human gameplay, target GPU FPS or Mac verification."
+}

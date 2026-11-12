@@ -1,3 +1,9 @@
+## 2026-11-12：故事波次M1已實作（獨立分支）
+
+依使用者最新要求開codex/story-waves-m1，基於main ef3f8d3，第一個可玩切片見[STORY_WAVES_RUNTIME.zh-TW.md](STORY_WAVES_RUNTIME.zh-TW.md)。FIGHTERS→STORY：3／4／6名三波，普通／承諾突進／真格擋盾衛；敵碰敵掃掠、四目標去重衰減、正面盾擋撞體、一次+4meter、HP／meter跨波、Enter接波、Pause→R及死亡波次重試、第三波遠鏡頭。M1無XP／核心抽取／Boss／退出續關存檔；原模式保留。
+
+[287項最終驗證](evidence/story-waves/README.md)：新規則37、原生17、strict11、既有反彈65／二段跳62／戰鬥34／UI37／回合24；final accepted無ERROR／SCRIPT ERROR。四角Easy普通輸入全通、不注入傷害或補血，非真人驗收。舊round-flow的四intro預期在未改基線亦23/24，已依裝備省略第三局開場契約加入真equip與新match intro驗證，24/24。Linux4.7.2 llvmpipe／Dummy，Mac／手感待驗；只推任務分支及草稿PR，main／Web不動。
+
 ## 2026-11-12：故事波次、連鎖與大型Boss設計（僅規劃）
 
 使用者要求詳細規劃故事模式改有限波次、漸增難度、情境敵型、人海／巨獸拉遠及敵碰敵連鎖。已查最新main e725c99、現有3站Street Run／黑衣人群戰／指定技球狀反彈／九核心及裝備，提案見[STORY_WAVES_PLAN.zh-TW.md](STORY_WAVES_PLAN.zh-TW.md)。六關逐波配方、N/R/G/C/H/E分工、兩場大型Boss、三相機profile與32px投影下限、連鎖去重／衰減／預算、休息核心區段及checkpoint均為待驗證設計，不是runtime已加入。建議先M1三波／三敵型／6人／一次連鎖切片，再白盒大型中Boss。一般FIGHT／Demo與指定技才開四面盒契約保持；本輪僅文件，未執行新玩法測試，未更新Web。

@@ -1,0 +1,35 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+STORY three finite waves with role escalation true
+STORY clear enters a safe break instead of ending match true
+STORY break cannot spawn early true
+STORY next wave carries HP and meter true
+STORY rushers have lower actual HP true
+STORY player death fails current wave true
+STORY checkpoint repeats same wave and layout true
+STORY retry supplies are explicit and bounded true
+STORY last wave has six real independent enemies and guards true
+STORY final clear is a real completed encounter true
+STORY shield role actually blocks damage true
+STORY shield can be countered by an ordinary throw true
+STORY rusher visibly commits before dashing false
+ERROR: rusher visibly commits before dashing
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_story_waves.gd:8)
+       [1] run (res://tools/verify_story_waves.gd:54)
+STORY rusher cannot retarget through its committed tell false
+ERROR: rusher cannot retarget through its committed tell
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_story_waves.gd:8)
+       [1] run (res://tools/verify_story_waves.gd:57)
+STORY real heavy creates at least one swept body impact true
+STORY one chain cannot hit a target twice true
+STORY player cannot be hurt by own body chain true
+STORY body chains expire without permanent airborne locks true
+STORY fast swept collision cannot tunnel through target true
+STORY repeated overlap cannot duplicate chain damage true
+STORY leaving story removes all encounter data true
+STORY story-off simulation matches original squad class true
+STORY mixed wave/chain replay remains deterministic true

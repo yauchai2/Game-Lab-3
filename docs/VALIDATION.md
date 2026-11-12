@@ -1,3 +1,7 @@
+## 2026-11-12：故事波次M1
+
+[accepted報告與原生圖](evidence/story-waves/README.md)。最終287項：Story37、native Story17、startup warnings11、Arena65、二段跳62、戰鬥34、UI37、回合24，對應log無ERROR／SCRIPT ERROR，VSync警告保留。四英雄Easy普通輸入完整通三波，不注入傷害／補血／重設；真pointer／J／↓+K／Esc／Enter／R及六骨架，另有邊界fixture；玩家投影約68內部像素。基線舊Demo測試同樣23/24的重複intro預期已按現行裝備契約修正且增加真equip觀察，初次失敗保留。Linux4.7.2 Compatibility llvmpipe／Dummy，不是Mac／真人／硬件FPS／實聽驗收。未做Boss／六關／持久checkpoint；任務分支交付，main與Web不更新。
+
 ## 2026-11-12：故事波次設計文件
 
 本輪只新增STORY_WAVES_PLAN.zh-TW.md及相關紀錄。查閱基線main e725c99的三站Run、黑衣人群戰、opt-in反彈、九核心與裝備契約；文件區分既有與待做。波次／角色量／倍率／像素高度／時長是試作目標，未跑新玩法測試，未宣稱現有可支援10–12同場或大型Boss。僅檢查文件diff與runtime未變，原遊戲及Web不更新。

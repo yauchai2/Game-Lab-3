@@ -1,0 +1,82 @@
+{
+  "created_utc": "20261112T040507Z",
+  "source_commit": "ef3f8d39b032606cc5c4da73e1c92ecf374515dc",
+  "tracked_runtime_changes": [
+    "godot/assets/ability_draw/source/tripo_convert_275dc57f-e328-47e0-89e5-10195d3209c4.glb.import",
+    "godot/assets/ability_draw/source/tripo_convert_36d4f0c3-b64c-4ea1-841e-104fd70e96ae.glb.import",
+    "godot/assets/characters/black_suit/derived/black_suit_repaired.glb.import",
+    "godot/assets/characters/black_suit/source/tripo_convert_6bb9e9c2-dd66-4f86-864f-2ceab3aa0a09.glb.import",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/last_service/presentation.gd",
+    "godot/scripts/combat/ui/reference_art.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": false,
+  "passed": 60,
+  "failed": 1,
+  "cases": [
+    {
+      "name": "verify_round_flow",
+      "mode": "native",
+      "exit_code": 1,
+      "harness_sha256": "f2f57adaad2941955fbbb4bd73ee1bb29f315359c5cbe278fb4a3c05734dc8c5",
+      "seconds": 11.087,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_round_flow.gd"
+      ],
+      "report_written": true,
+      "passed": 23,
+      "failed": 1,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "ERROR: rounds loop through a fresh entry after explicit draw confirmation"
+      ],
+      "engine_errors": [
+        "ERROR: rounds loop through a fresh entry after explicit draw confirmation"
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_reference_ui",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "b9a61a32d0e0ab556ba0acdc7d16834cdd7aeed770fc61f3d9fa3059ef3c19b0",
+      "seconds": 17.237,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_reference_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 37,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

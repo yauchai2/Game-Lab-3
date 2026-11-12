@@ -94,10 +94,9 @@ func roster(c:Control,s:Node) -> void:
     c.draw_texture_rect(s.hud.roster_preview.hero_texture(),Rect2(662,117,420,486),false)
     plate(c,Rect2(1094,142,140,128),T.NIGHT,10)
     text(c,Vector2(1124,243),["Z","R","H","L","B"][choice],106,T.PAPER)
-    for label in [["SKILLS",Rect2(1094,300,140,60)],["STREET",Rect2(1094,380,140,86)]]:
+    for label in [["SKILLS",Rect2(1094,300,140,60)],["STORY",Rect2(1094,380,140,40)],["RUN",Rect2(1094,430,140,42)]]:
         plate(c,label[1],T.NIGHT,8)
-        text(c,label[1].position+Vector2(12,37),label[0],28,T.PAPER)
-    text(c,Vector2(1107,447),"RUN",28,T.TEAL)
+        text(c,label[1].position+Vector2(12,31),label[0],28,T.PAPER)
     var enemy_rect:=Rect2(1094,486,140,86)
     plate(c,enemy_rect,T.MAGENTA if s.character_choices[1]==4 else T.NIGHT,8)
     text(c,Vector2(1106,521),"BLACK",28,T.PAPER)
@@ -160,6 +159,7 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
             c.draw_rect(Rect2(center+Vector2(-15+bar_index*11,-extent*.5),Vector2(7,extent)),T.TEAL if side==0 else T.MAGENTA)
     c.draw_circle(Vector2(640,44),35,T.INK);c.draw_circle(Vector2(640,44),32,T.PAPER);c.draw_circle(Vector2(640,44),29,T.GOLD)
     var clock:String="∞" if s.practice or s.sim.endless else "%02d"%ceili(s.sim.remaining)
+    if s.sim.story_enabled:clock="%d/3"%(s.sim.wave_index+1)
     var clock_size:int=36 if clock.length()>2 else 48
     var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,clock_size).x
     text(c,Vector2(640-width*.5,59),clock,clock_size)
