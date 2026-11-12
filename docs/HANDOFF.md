@@ -1,3 +1,7 @@
+## 2026-11-12：正式戰鬥VFX實作完成
+
+正式戰鬥VFX已接入FIGHT／Demo／Run／SQUAD，見COMBAT_VFX_RUNTIME.zh-TW.md與evidence/ink-fx。12世界煙配方／6持幀輪廓／3變體、真骨骼短尾、分段四角色弧／真命中核心、45ms強閃、方向反衝／局部背景對比、新原創PCM接觸層與優先池。36世界／18裝飾／32短尾、Canvas24；步煙用0.72m距離備援並取較低鞋骨，並非新增動畫marker／IK。420項最終通過；1800步前後玩法SHA一致，12秒有聲前後片。舊Rush／Neon／回合fixture對齊現行有限生命與裝備契約；初次失敗保留。Linux4.6.3 llvmpipe／Dummy，Mac／真人／目標GPU待驗，未發佈Web。原模型／判定／BGM保持；來源沿codex/combat-vfx-quality-plan。
+
 ## 2026-11-12：SEPAK原片視覺分析補件
 
 已取得13.792653s／1440p60原片，8fps全時間範圍取樣＋0.55／1.35／12.0起三段來源連續幀，觀察分段弧、雙色煙尾、小腳塵、背景退讓及近鏡，詳SEPAK_VFX_VIDEO_STUDY.zh-TW.md與references/vfx-quality-2026-11-12。未正常速度含聲播放／聆聽，未知引擎／素材／內部公式；LLB新附件超過32MiB工具上限，未取得，需較短或壓縮版補分析。修訂先做小白塵、分段弧、指定事件短雙色煙；runtime與Web未改。

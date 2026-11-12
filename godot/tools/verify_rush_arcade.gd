@@ -10,7 +10,8 @@ func run() -> void:
     check("burst is ready on the first round",s.fighters[0].meter==60 and s.fighters[1].meter==60)
     check("opening begins close and quickly",s.countdown==36 and s.fighters[1].x-s.fighters[0].x<3.3)
     var seen:={};var first:=-1;var max_combo:=0
-    for t in 600:
+    # Current finite-health Easy duel wins at tick 698; allow 15 game seconds.
+    for t in 900:
         s.tick({"rush":true})
         for e in s.events:
             if e.kind=="hit" and e.attacker==0:

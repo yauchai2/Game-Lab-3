@@ -1,0 +1,32 @@
+[
+  {
+    "script": "verify_squad_native",
+    "exit": 0,
+    "errors": [],
+    "scope": "Final native renderer rerun; not initial headless attempts."
+  },
+  {
+    "script": "verify_round_flow",
+    "exit": 0,
+    "errors": [],
+    "scope": "Final native renderer rerun; not initial headless attempts."
+  },
+  {
+    "script": "verify_unified_audio",
+    "exit": 0,
+    "errors": [],
+    "scope": "Final native renderer rerun; not initial headless attempts."
+  },
+  {
+    "script": "verify_ability_equip",
+    "exit": 0,
+    "errors": [],
+    "scope": "Final native renderer rerun; not initial headless attempts."
+  },
+  {
+    "script": "verify_neon_facets",
+    "exit": 0,
+    "errors": [],
+    "scope": "Final native renderer rerun; not initial headless attempts."
+  }
+]

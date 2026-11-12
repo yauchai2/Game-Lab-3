@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[正式戰鬥VFX重製](docs/COMBAT_VFX_RUNTIME.zh-TW.md)／[12秒有聲前後對照](docs/evidence/ink-fx/comparison.mp4)。世界腳塵／分段弧／骨骼短尾、真接觸短閃、角色差異與群戰優先池；420項通過，Web未更新。
+
 研究補件：[SEPAK原片VFX實證與優化修訂](docs/SEPAK_VFX_VIDEO_STUDY.zh-TW.md)／[四類畫面](references/vfx-quality-2026-11-12/sepak-four-layers.jpg)。新LLB附件仍受工具32MiB上限，尚未讀取。
 
 規劃：[戰鬥VFX品質研究與詳細製作方案](docs/COMBAT_VFX_QUALITY_PLAN.zh-TW.md)。含原始碼診斷、腳步煙／打擊閃光／素材規格與優化次序；X原片尚未取得，本輪未改runtime。

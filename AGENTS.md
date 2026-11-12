@@ -127,3 +127,5 @@
 - 2026-11-11 本聊天最新已要求以新影片實作抽獎後裝備：見docs/ABILITY_EQUIP_RUNTIME.zh-TW.md，覆蓋腰側僅規劃。結果按EQUIP／Demo停3.5秒後播4.10秒，F2開始1.15秒；使用當局五原選角副本、只拍手腰腿鞋，正式fighter以Hips跟隨九核心腰掛。一次套用在演出後，skip不重抽、cancel無獎、pause／clear還原；不重播多餘第三局人物開場。345項通過／新原創PCM，原GLB／XP／Web保留，Mac／真人待驗。
 
 - 2026-11-12 使用者要求詳細故事波次／敵碰敵連鎖／大型Boss／人海遠鏡頭規劃：見docs/STORY_WAVES_PLAN.zh-TW.md。本輪僅設計，六關／新敵型／Boss／傷害倍率／相機／核心兩關區段都未實作或驗證；不要把提案寫成已完成功能。未來若開始實作先M1三波切片；保留既有FIGHT／Demo及指定技才開四面盒契約，Web不更新。
+
+- 2026-11-12 使用者已授權實作VFX方案：COMBAT_VFX_RUNTIME.zh-TW.md覆蓋前輪planning-only。正式FIGHT／Demo／Run／SQUAD沿原創ink cels、五角骨骼短尾與真命中提示、36世界／18裝飾／32短尾／Canvas24優先池、短材質強閃及聲畫預算。來源GLB／判定／BGM保持，不恢復退役噪聲圖集；距離腳步備援非marker／IK。420項與同輸入玩法SHA／有聲前後片；Mac／真人／GPU待驗，LLB新附件仍未讀取，Web不更新。

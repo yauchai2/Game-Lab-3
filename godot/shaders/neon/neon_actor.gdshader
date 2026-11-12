@@ -20,8 +20,10 @@ void fragment() {
     } else {
         // Restrained tint preserves skin and the original atlas design.
         c = floor(c * 12.0 + 0.5) / 12.0;
-        ALBEDO = mix(mix(c, vec3(1.0), flash), vec3(0.0), neon_silhouette);
-        EMISSION = mix(c * 0.16 + vec3(flash * 0.5), neon_accent.rgb, neon_silhouette);
+        float edge = step(0.48, 1.0 - abs(dot(normalize(NORMAL), normalize(VIEW))));
+        vec3 hit_color = mix(c * 0.40 + neon_accent.rgb * 0.20, vec3(1.0,0.98,0.90), edge);
+        ALBEDO = mix(mix(c, hit_color, flash), vec3(0.0), neon_silhouette);
+        EMISSION = mix(c * 0.16 + vec3(flash * 0.18), neon_accent.rgb, neon_silhouette);
     }
     ROUGHNESS = 1.0;
 }

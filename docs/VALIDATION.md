@@ -1,3 +1,7 @@
+## 2026-11-12：正式戰鬥VFX實作完成
+
+Godot4.6.3 Linux Compatibility llvmpipe／Dummy：26新FX＋14 strict＋380相關回歸＝420通過；最終log無ERROR／SCRIPT ERROR。1800步前後玩法／資源／事件SHA一致；12秒360幀Movie Writer含真混音，AAC解碼peak .507、零滿幅樣本，另6混音檢查。原生錄製約37秒，非Mac／硬件FPS或聆聽驗收。舊Rush600tick不足（實際698勝出）、Neon永不結束與多餘第三局entry假設已修fixture；headless裝備等draw超時改原生113項通過，初次／基線log保留於evidence/ink-fx。詳COMBAT_VFX_RUNTIME.zh-TW.md，Web未更新。
+
 ## 2026-11-12：SEPAK原片視覺分析補件
 
 已取得13.792653s／1440p60原片，8fps全時間範圍取樣＋0.55／1.35／12.0起三段來源連續幀，觀察分段弧、雙色煙尾、小腳塵、背景退讓及近鏡，詳SEPAK_VFX_VIDEO_STUDY.zh-TW.md與references/vfx-quality-2026-11-12。未正常速度含聲播放／聆聽，未知引擎／素材／內部公式；LLB新附件超過32MiB工具上限，未取得，需較短或壓縮版補分析。修訂先做小白塵、分段弧、指定事件短雙色煙；runtime與Web未改。
