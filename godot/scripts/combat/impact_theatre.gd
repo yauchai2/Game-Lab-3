@@ -1,4 +1,5 @@
 extends RefCounted
+var sprites = preload("res://scripts/combat/sprite_fx.gd").new()
 ## Original red-stage staging. Rendering clock only, independent of gameplay.
 var mode:=""
 var age:=1.0
@@ -37,7 +38,7 @@ func draw(canvas:Control,session:Node3D) -> void:
         canvas.draw_string(session.hud.bold,Vector2(42,187),"MAX OUT" if mode=="overdrive" else "OVERDRIVE",HORIZONTAL_ALIGNMENT_LEFT,-1,40,yellow)
         for i in 4:
             var radius:float=80+i*42-age*65
-            if radius>15:canvas.draw_arc(center,radius,-.5,4.3,8,Color(yellow,.75-i*.12),4)
+            if radius>15:sprites.hit_spark(canvas,center+Vector2.from_angle(float(i)*1.7+age*3.0)*radius,fposmod(age*2.0+float(i)*.2,1.0),yellow,float(i)*1.7+PI,70.0)
     for i in 18:
         var direction:=Vector2.from_angle(i*TAU/18+.04)
         var outer:=center+direction*Vector2(1050,760)
@@ -45,10 +46,7 @@ func draw(canvas:Control,session:Node3D) -> void:
         var tangent:=direction.orthogonal()*(6.0 if i%3 else 18.0)
         canvas.draw_colored_polygon(PackedVector2Array([outer-tangent,tip,outer+tangent]),Color(ink,.55))
     if mode in ["ko","impact","break","cannon_hit"] and age<.48:
-        var star:=PackedVector2Array()
-        var radius:float=(120 if mode=="break" else 82)+age*70
-        for i in 16:star.append(center+Vector2.from_angle(i*PI/8+.15)*(radius if i%2==0 else radius*.12))
-        canvas.draw_colored_polygon(star,yellow)
+        sprites.hit_spark(canvas,center,age/.48,yellow,-0.7,(360.0 if mode=="break" else 280.0))
     if age<.075:
         for side in [-1,1]:
             var at:=center+Vector2(side*145,-80)

@@ -31,6 +31,20 @@ func run() -> void:
     scene.start_match(true)
     for i in 40:scene._present(1.0/60)
     await shot("idle_shadow")
+    # Gallery of the support effects (charge, rally core, grab tell, block, parry, burst accent).
+    scene.start_match(true)
+    scene.sim.fighters[0].x=-.8
+    scene.sim.fighters[1].x=.8
+    for i in 40:scene._present(1.0/60)
+    var p0:Vector2=Vector2(-.8,1.1)
+    scene._spawn_vfx("charge",p0,.6,{"color":scene.COLORS[0],"owner":0})
+    scene._spawn_vfx("rally_core",Vector2(0,1.2),.6,{"color":scene.COLORS[1],"tier":2,"held":true})
+    scene._spawn_vfx("block",Vector2(.8,1.1),.6,{"color":scene.COLORS[0],"face":1.0})
+    scene._spawn_vfx("parry",Vector2(.1,2.0),.6,{"color":scene.COLORS[1]})
+    scene.spectacle.trigger("burst",0,Vector2(-.3,.6),3)
+    for i in 5:
+        scene._process(1.0/60)
+    await shot("gallery")
     scene.queue_free()
     await process_frame
     quit()

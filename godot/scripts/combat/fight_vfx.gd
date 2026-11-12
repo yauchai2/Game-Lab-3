@@ -33,8 +33,7 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             var front:Vector2=at+direction*(80 if reduced else 220)*(1-time*.4)
             canvas.draw_colored_polygon(PackedVector2Array([muzzle-tangent*width*.5,front-tangent*width*.3,front+direction*70,front+tangent*width*.3,muzzle+tangent*width*.5]),tint)
             canvas.draw_line(muzzle,front,paper,maxf(2,width*.45))
-            if not reduced:
-                for i in 4:canvas.draw_arc(at,40+time*140+i*12,-1.3,1.3,7,paper if i%2 else tint,3)
+            if not reduced:sprites.hit_spark(canvas,at+direction*(40+time*120),time,paper,direction.angle(),150.0)
         "meteor_streak":
             if reduced:return
             for side in [-1,1]:
@@ -72,23 +71,8 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             if not reduced:_crescent(canvas,at,radius-9,4*(1-time)+1,face,paper)
         "rally_core","air_counter_core":
             var level: int=effect.get("tier",1)
-            var radius:=18.0+level*4
-            canvas.draw_circle(at,radius,ink)
-            _star(canvas,at,radius*(1.0 if reduced else 1.15),4,tint)
-            canvas.draw_circle(at,5,paper)
-        "hit","clash","release","wall":
-            var phase: float = 0.12 if effect.kind in ["hit","clash"] and effect.get("held",false) else time
-            var move: String = effect.get("move","jab")
-            var profile: Vector3 = impact_shapes.PROFILES.get(move,impact_shapes.PROFILES.jab)
-            var gain: float = {"heavy":1.0,"launcher":1.05,"finisher":1.0,"meteor":1.15,"air_finisher":1.05,"special":1.4,"overdrive":1.7}.get(move,1.0)
-            var pixels_per_meter: float = (session.project(effect.at+Vector2(1,0))-at).length()
-            var perspective_scale := clampf(pixels_per_meter/56.0,.45,1.35)*(1.28 if effect.get("rush",false) and move in ["meteor","launcher","special","air_kick"] and not reduced else 1.0)
-            var heading: float = (PI - profile.z) if face < 0 else profile.z
-            var edge: float = (88.0 + profile.x * 1.3) * gain * (0.7 if reduced else 1.0) * perspective_scale
-            if effect.kind == "release":
-                edge *= 0.78
-                phase = 0.3 + phase * 0.7
-            sprites.hit_spark(canvas,at,phase,tint,heading,edge)
+            sprites.converge(canvas,at,time,tint,(30.0+level*6.0)*(1.0-time*.4),4 if reduced else 7)
+            sprites.hit_spark(canvas,at,.15+.3*fposmod(time*2.0,1.0),paper,-0.8,56.0+level*10.0)
         "swing":
             var shapes: Array[Dictionary] = impact_shapes.build("swing",effect.get("move","jab"),time,tint,face,reduced,effect.get("character",0))
             var pixels_per_meter: float = (session.project(effect.at+Vector2(1,0))-at).length()
@@ -98,10 +82,7 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
                 for i in points.size(): points[i]=at+points[i]*perspective_scale
                 canvas.draw_colored_polygon(points,shape.color)
         "grab_tell":
-            var radius:=18.0+stage*6.0
-            for side in [-1,1]:
-                var center:=at+Vector2(side*12.0,0)
-                canvas.draw_arc(center,radius,(-PI*.5 if side>0 else PI*.5),(PI*.5 if side>0 else PI*1.5),6,tint,3)
+            sprites.converge(canvas,at,stage,tint,26.0*(1.0-stage*.5),3 if reduced else 5)
         "dust":
             for i in (3 if reduced else 6):
                 var spread := Vector2((i-2.5)*17.0*(time+0.3),-sin(time*PI)*13.0)
@@ -131,13 +112,7 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
             if perfect:
                 sprites.hit_spark(canvas,at,time,tint,-0.6,(70.0 if reduced else 105.0)*(1.0+time*.3))
             else:
-                for i in 3:
-                    var angle:float=-1.0+i*.67
-                    var points:=PackedVector2Array()
-                    for a in [angle,angle+.48]:points.append(at+Vector2(cos(a)*face,sin(a))*radius)
-                    canvas.draw_line(points[0],points[1],ink,6 if not reduced else 3)
-                    canvas.draw_line(points[0],points[1],tint,3 if not reduced else 2)
-                if time<.35:canvas.draw_line(at+Vector2(-4,-9),at+Vector2(5,9),paper,2)
+                sprites.hit_spark(canvas,at,time,tint,PI if face<0 else 0.0,(64.0 if not reduced else 44.0)*(1.0+time*.3))
         "guard_break":
             sprites.hit_spark(canvas,at,time,Color("eaf078"),-0.35,150.0*(0.7 if reduced else 1.0))
             if not reduced:sprites.hit_spark(canvas,at+Vector2(face*18,6),minf(1.0,time+.12),paper,PI+0.35,96.0)

@@ -1,4 +1,5 @@
 extends RefCounted
+var sprites = preload("res://scripts/combat/sprite_fx.gd").new()
 ## Original comic staging. Visual clock only; never changes collision or damage.
 var impact_word := ""
 var mode := ""
@@ -60,13 +61,8 @@ func draw(canvas: Control, session: Node3D) -> void:
         color=session.COLORS[rally.owner]
         var amount: float=float(rally.age)/rally.HOLDS[rally.tier-1]
         var radius:=lerpf(115.0,28.0,amount)
-        if not reduced:
-            _border(canvas,color,.3+rally.tier*.08)
-            for i in 10:
-                var direction:=Vector2.from_angle(i*TAU/10+.14)
-                var outer:=at+direction*(radius+40)
-                _wedge(canvas,outer,at+direction*radius,3,color)
-        canvas.draw_arc(at,30.0 if reduced else radius,0,TAU,12,color,3)
+        if not reduced:_border(canvas,color,.3+rally.tier*.08)
+        sprites.converge(canvas,at,amount,color,30.0 if reduced else radius,3 if reduced else 8)
         for i in rally.tier:
             var mark:=at+Vector2(-18+i*12,42)
             canvas.draw_colored_polygon(PackedVector2Array([mark,mark+Vector2(5,-5),mark+Vector2(10,0),mark+Vector2(5,5)]),paper)
@@ -112,11 +108,7 @@ func draw(canvas: Control, session: Node3D) -> void:
             var edge:=at+direction*Vector2(900,600)
             var tip:=at+direction*(210.0+age*420)
             _wedge(canvas,edge,tip,(3.0+tier)*fade,Color(color,fade*.65))
-        if mode=="burst" and age<.16:
-            var radius:=50.0+age*700
-            for i in 8:
-                var angle:=i*TAU/8
-                canvas.draw_arc(at,radius,angle,angle+.42,4,Color(paper,fade),3)
+        if mode=="burst" and age<.30:sprites.hit_spark(canvas,at,age/.30,paper,-0.6,230.0+tier*40.0)
 
 func _wedge(canvas: Control, base: Vector2, tip: Vector2, width: float, color: Color) -> void:
     var tangent: Vector2=(tip-base).normalized().orthogonal()*width
