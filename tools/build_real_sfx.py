@@ -71,11 +71,11 @@ def build():
     # ---- punches: real recordings + thump
     for k, (pid, f0) in enumerate([(2460, 150), (2461, 120), (2468, 140), (2463, 110), (2464, 130)]):
         n = int(.4 * SR); r = norm(punchy(hit_of(pid, 0, .4)), .9)
-        S[f"hit_{k}"] = syn.tail(syn.sat(layer(n, (1.0, r), (.2, low(n, f0 * 1.6, f0 * .6, 70)), (.5, syn.click(n, 1.0))), 1.9), .15, .06)
+        S[f"hit_{k}"] = syn.tail(syn.sat(layer(n, (1.0, r), (.25, low(n, 190, 110, 120)), (.55, mid(1.0, [2461, 2468, 2463, 2464, 2460][k])), (.5, syn.click(n, 1.0))), 1.9), .15, .06)
     # heavy: punch + real explosion body + sub
     for k, (pid, ex, f0) in enumerate([(2465, 1808, 70), (2466, 1807, 62), (2459, 1806, 56)]):
         n = int(.6 * SR); r = norm(punchy(hit_of(pid, 0, .45), g=1.6), .9); e = norm(syn.filt(hit_of(ex, 0, .5, "strong"), "low", 4000), .9)
-        S[f"heavy_{k}"] = syn.tail(syn.sat(layer(n, (1.5, r), (.28, syn.filt(e, 'high', 70, 2)), (.25, low(n, f0 * 2.4, f0, 160)), (.6, syn.band(r, 1800, 9000)), (.9, mid(1.0, 2461 if k != 1 else 2468)), (.5, syn.click(n, 1.0))), 2.6), .22, .12)
+        S[f"heavy_{k}"] = syn.tail(syn.sat(layer(n, (1.5, r), (.28, syn.filt(e, 'high', 70, 2)), (.25, low(n, f0 * 2.4, f0, 160)), (.6, syn.band(r, 1800, 9000)), (1.6, mid(1.0, 2461 if k != 1 else 2468)), (.5, syn.click(n, 1.0))), 2.6), .22, .12)
     # ---- defence: bare-handed fight, so forearm/slap/body sounds only (no blades, anvils, bells)
     for k in range(2):
         x = fetch(597); st = onsets(x, 4, .4)[k]; n = int(.4 * SR)
@@ -105,6 +105,41 @@ def build():
     n = int(1.4 * SR)
     S["ko_0"] = syn.tail(syn.sat(layer(n, (1.0, norm(syn.filt(hit_of(1023, 0, 1.2, "strong"), "low", 6000), .9)), (.9, norm(cut(fetch(2452), onsets(fetch(2452), 1)[0], .9, .3), .9)),
                   (.8, norm(cut(fetch(1806), onsets(fetch(1806), 1)[0], .6, .2), .9)), (.8, norm(punchy(hit_of(2465, 0, .4)), .9)), (1.2, low(n, 130, 32, 380))), 2.4), .3, .25)
+    # ---- violent, exaggerated finishers: stacked real impacts + explosion body + long sub drop + shockwave tail
+    def boom(n, f0, f1, ms, g=1.0): return g * syn.sweep(n, f0, f1, 7.0) * syn.env(n, .002, ms / 1000)
+    def shock(n, g=1.0):   # filtered noise burst that darkens fast: the "air pressure" of a big hit
+        x = syn.noise(n) * syn.env(n, .0005, .09); return g * syn.filt(x, "low", 3500, 2)
+    def stack(pids, gap=.022, dur=.45, g=1.6):
+        out = np.zeros(int(.7 * SR))
+        for i, pid in enumerate(pids):
+            r = norm(punchy(hit_of(pid, 0, dur), g=g), .9); o = int(i * gap * SR); out[o:o + len(r)] += r[:len(out) - o]
+        return out
+    for k, (pids, ex, f0, pitch) in enumerate([((2465, 2466), 1808, 62, 1.0), ((2466, 2459, 2465), 1807, 54, .9), ((2459, 2465), 1806, 48, .85)]):
+        n = int(.95 * SR); e = norm(syn.filt(speed(hit_of(ex, 0, .5), pitch), "high", 50, 2), .9)
+        S[f"heavy_{k}"] = syn.tail(syn.sat(layer(n, (2.1, stack(pids)), (.55, e), (1.1, mid(1.0, 2461)), (.7, shock(n)), (.7, boom(n, f0 * 3, f0, 300)),
+                                               (.5, syn.click(n, 1.6))), 3.0), .32, .2)
+    n = int(1.2 * SR)
+    for k, (ex, f0) in enumerate([(1806, 40), (1807, 46)]):
+        S[f"slam_{k}"] = syn.tail(syn.sat(layer(n, (1.0, norm(syn.filt(hit_of(ex, 0, .8), "high", 40, 2), .9)), (.9, norm(cut(fetch(2452), onsets(fetch(2452), 1)[0], .6, .2), .9)),
+                         (1.8, stack((2465, 2466, 2464), .03)), (.9, boom(n, 170, f0, 420)), (.8, shock(n)), (.9, mid(1.0, 2464))), 3.2), .38, .3)
+    n = int(.5 * SR)   # launcher / uppercut: crack, rising whoosh, hit
+    wh = fetch(1795); wh = norm(speed(cut(wh, max(0, onsets(wh, 1)[0] - 2000), .4, .15), 1.5), .9)
+    S["launch_0"] = syn.sat(layer(n, (1.4, norm(punchy(hit_of(2466, 0, .35), g=1.8), .9)), (.9, wh[::-1] * np.linspace(.2, 1, len(wh)) * 0 + wh), (.6, mid(1.0, 2461)), (.5, boom(n, 200, 70, 120))), 2.4)
+    n = int(.9 * SR)   # special/overdrive release: explosion + reversed air-suck leading into the blast
+    ex = norm(syn.filt(hit_of(1808, 0, .5), "high", 50, 2), .9); suck = norm(syn.filt(cut(fetch(1796), onsets(fetch(1796), 1)[0], .35, .1)[::-1], "high", 400), .8)
+    pre = int(.2 * SR); y = np.zeros(n + pre); y[:len(suck)] += .8 * suck
+    y[pre:pre + n] += layer(n, (1.0, ex), (1.2, stack((2465, 2468), .02)), (1.1, boom(n, 200, 44, 330)), (.7, shock(n)), (.6, syn.click(n, 1.5)))
+    S["release_0"] = syn.tail(syn.sat(y, 2.8), .3, .25)
+    n = int(.7 * SR)   # charge: crackling energy swell (electric arc) + rising tone + sub rise
+    arc = fetch(134); arc = norm(syn.band(cut(arc, onsets(arc, 1)[0], .7, .1), 800, 9000), .9) * np.linspace(.15, 1, n)
+    ch = sum(a * syn.sweep(n, f * .5, f, .01) for a, f in ((1, 110), (.6, 220), (.4, 330))) * np.linspace(.15, 1, n)
+    S["charge_0"] = syn.sat(layer(n, (.8, arc), (.9, ch), (.6, shock(n) * np.linspace(.1, 1, n))), 2.2)
+    n = int(2.0 * SR)   # KO: three stacked blasts, body falls, long sub, rumble tail
+    d = np.zeros(n)
+    for o, ex, g in ((0, 1023, 1.0), (.09, 1806, .9), (.2, 1808, .8)):
+        r = norm(syn.filt(hit_of(ex, 0, 1.0), "high", 40, 2), .9); i = int(o * SR); d[i:i + len(r)] += g * r[:n - i]
+    S["ko_0"] = syn.tail(syn.sat(layer(n, (1.0, d), (2.0, stack((2465, 2466, 2459), .04)), (.9, norm(cut(fetch(2452), onsets(fetch(2452), 1)[0], 1.0, .3), .9)),
+                  (.9, boom(n, 150, 30, 700)), (.8, shock(n))), 3.0), .4, .4)
     return S
 
 def main():

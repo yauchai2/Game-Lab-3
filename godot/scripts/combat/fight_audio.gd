@@ -39,7 +39,7 @@ func _ready() -> void:
         "block":["block_0","block_1"], "parry":["parry_0"], "guard_break":["guard_break_0"],
         "swing":["swing_0","swing_1","swing_2"], "dash":["dash_0"], "step":["step_0","step_1"],
         "land":["land_0"], "jump":["jump_0"], "release":["release_0"], "ko":["ko_0"],
-        "charge":["charge_0"], "slam":["slam_0"], "launch":["launch_0"], "chase":["chase_0"],
+        "charge":["charge_0"], "slam":["slam_0","slam_1"], "launch":["launch_0"], "chase":["chase_0"],
         "rally":["rally_0"], "sub":["sub_0"]}
     var fallback := {
         "hit":["impactPunch_medium_000","impactPunch_medium_001"], "heavy":["impactPunch_heavy_000"],
