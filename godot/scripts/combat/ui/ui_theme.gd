@@ -15,8 +15,9 @@ const EDGE := Color("505660")
 const MAGENTA := Color("ff008c")
 const LIME := Color("bdff00")
 const LOGO = preload("res://assets/ui/ink/logo.tres")
-const BODY = preload("res://assets/fonts/RadioPixelBodyReadable.fnt")
-const DISPLAY = preload("res://assets/fonts/RadioPixelDisplayReadable.fnt")
+## Finer 28/32 px glyphs retain light pixel steps without the old 14/16 px blocks.
+const BODY = preload("res://assets/fonts/RadioBody.tres")
+const DISPLAY = preload("res://assets/fonts/RadioDisplay.tres")
 static func plate(color: Color, border := Color.TRANSPARENT, width := 0) -> StyleBoxFlat:
     var style:=StyleBoxFlat.new()
     style.bg_color=color

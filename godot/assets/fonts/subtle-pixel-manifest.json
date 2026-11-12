@@ -1,0 +1,30 @@
+[
+  {
+    "font": "RadioSubtleDisplay",
+    "source": "BarlowCondensed-BlackItalic.ttf",
+    "glyph_size": 32,
+    "alpha_levels": [
+      0,
+      85,
+      170,
+      255
+    ],
+    "characters": 103,
+    "source_sha256": "e1ed5d7e50c6a4498454d40509ce2362384a2c7870df3418fdbd010f81dffad3",
+    "atlas_sha256": "bbba90cea65788c92df69b8631a834b1544ec6925f5008cfa8d5c001429cf7ed"
+  },
+  {
+    "font": "RadioSubtleBody",
+    "source": "DejaVuSansCondensed-Bold.ttf",
+    "glyph_size": 28,
+    "alpha_levels": [
+      0,
+      85,
+      170,
+      255
+    ],
+    "characters": 103,
+    "source_sha256": "21f02ebcea75529d3ed9d26e089cd1b9c59a4b784119ba3a96e9bc83cf755ec7",
+    "atlas_sha256": "280f0c991f9dd347559b0f11b10f39b9ff58ebfb41284f6e6fc7aa14ab5d938b"
+  }
+]

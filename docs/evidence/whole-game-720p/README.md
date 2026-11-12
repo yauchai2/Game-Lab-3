@@ -1,3 +1,5 @@
+> 後續文字修補：[輕像素字體](../clear-type/README.md)提高字形細緻度，覆蓋本階段舊bitmap。以下保留當時證據。
+
 # 全遊戲720p：包括UI與文字
 
 整個主viewport由960×540提高至1280×720，視窗預設仍1280×720；logical UI同為1280×720，因此文字／原生按鈕／手繪HUD在預設視窗直接1:1渲染，無需先縮成960再放大。保留viewport統一合成、fractional適應其他視窗、nearest、無AA、toon輪廓及既有bitmap字體；字級與操作面積保持。這是提高實際framebuffer，並非只放大視窗或改3D render scale。

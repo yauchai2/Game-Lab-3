@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[清晰輕像素文字](docs/evidence/clear-type/README.md)。字形細緻度約加倍、保留像素邊緣與粗斜風格，改善舊字圖放大後黏筆畫；1280×720及場景風格保持。
+
 最新：[整個遊戲720p，包含UI及文字](docs/evidence/whole-game-720p/README.md)。原生1280×720合成、主選單／城市／選角同步提高，保留復古bitmap與toon風格；70項原生檢查通過。覆蓋下方舊960設定。
 
 最新：[完整短篇故事／雙巨型Boss／技巧優先平衡](docs/CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)。六區18場、獨立場景模型、城市NPC故事／能力課程／專屬招式、九核心裝備演出、工坊及有限增援／危險分支已接入；[測試與原生畫面](docs/evidence/campaign-complete/README.md)。F5→STORY；仍推codex/story-waves-m1／草稿PR #12，main及Web保持。以下各段是較早階段紀錄，以本段為準。
