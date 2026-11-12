@@ -1,4 +1,9 @@
-## 2026-11-12：開場 polygon／警告截圖修正
+# 接續工作交接
+
+## 2026-11-12：UI 精簡 P0 清理
+
+使用者接受 UI_REVIEW_PLAN 的全部建議並要求實作；先做 P0，基準 main ee9e7c0（PR #7、#8 等已合併）。主選單去掉 ESC BACK；結算頁頁首直接寫結果、面板去掉重複的結果／Run it back／FIRST TO TWO、風味文字收成兩行；display 字體數字（0 像 8）改二值化門檻。詳見 [UI_REVIEW_PLAN.zh-TW.md](UI_REVIEW_PLAN.zh-TW.md) 第六節與 [前後對照](evidence/ui-p0-2026-11-12/)。verify_local_versus 68/68，其餘既有失敗在乾淨 main 同樣存在。P1（HUD）起未做；Linux llvmpipe 靜態截圖，Mac／動態觀感／繁中未驗證，Web 不更新。
+1-12：開場 polygon／警告截圖修正
 
 修復眼鏡 glint 零半徑及細小ray的triangulation錯誤：略過不可見burst並以draw_primitive直接提交三角形；整理外層title_progress、未用_t與equipment metadata的獨立ternary。19腳本／七類fatal warnings、288組原生burst及既有37項開場流程通過，15個3D抽格無ERROR／SCRIPT ERROR。證據[evidence/opening-bugfix](evidence/opening-bugfix/README.md)。來源codex/fix-opening-polygons；Godot4.6.3 Linux llvmpipe，Mac／4.7.2待使用者覆核，Web未更新。
 

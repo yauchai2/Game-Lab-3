@@ -13,7 +13,7 @@ for name,source,point in profiles:
   c=chr(code);box=font.getbbox(c,anchor='ls');w=max(1,box[2]-box[0]);h=max(1,box[3]-box[1]);advance=round(font.getlength(c))
   if x+w+3>=512:x=2;y+=row
   mask=Image.new('L',(w,h));ImageDraw.Draw(mask).text((-box[0],-box[1]),c,font=font,anchor='ls',fill=255)
-  mask=mask.point(lambda n:255 if n>=96 else 0);glyph=Image.new('RGBA',(w,h),'white');glyph.putalpha(mask);atlas.paste(glyph,(x,y))
+  cut=200 if (c.isdigit() and 'Display' in name) else 96;mask=mask.point(lambda n:255 if n>=cut else 0);glyph=Image.new('RGBA',(w,h),'white');glyph.putalpha(mask);atlas.paste(glyph,(x,y))
   chars.append(f'char id={code} x={x} y={y} width={w} height={h} xoffset={box[0]} yoffset={box[1]+point} xadvance={max(1,advance)} page=0 chnl=15');x+=w+4
  target=out/(name+'.png');atlas.save(target)
  text=f'info face="Afterhours {name}" size={point} bold=1 italic={int("Display" in name)} charset="" unicode=1 stretchH=100 smooth=0 aa=1 padding=0,0,0,0 spacing=1,1\ncommon lineHeight={point+4} base={point} scaleW=512 scaleH=256 pages=1 packed=0\npage id=0 file="{name}.png"\nchars count={len(chars)}\n'+'\n'.join(chars)+'\n'

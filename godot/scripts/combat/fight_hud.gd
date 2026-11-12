@@ -403,8 +403,6 @@ func _result_page() -> void:
             menu_stack.add_child(_label(session.city_campaign.profile.error,24))
             _plain_action("RELOAD SAVE / RETRY RETURN","city_save_retry",func():session.city_campaign.profile.retry_save();rebuild_menu())
         return
-    if session.versus:_heading("draw" if session.sim.winner<0 else "P%d WINS"%(session.sim.winner+1))
-    else:_heading("draw" if session.sim.winner<0 else ("win" if session.sim.winner==0 else "lose"))
     if session.sim.story_enabled:
         menu_stack.add_child(_label("STORY PREVIEW CLEARED" if session.sim.story_state=="complete" else "WAVE %d / RETRY WITH SUPPLIES"%(session.sim.wave_index+1),28))
         if session.sim.story_state=="failed":_plain_action("RETRY WAVE / ENTER","story_retry",session.retry_story_wave)
@@ -421,17 +419,40 @@ func _result_page() -> void:
             _plain_action("RETURN TO FIGHTERS","end_run",func():session.return_to_title();open_page("roster"))
         _plain_action("SKILLS / FREE RESPEC","skills",func():open_page("skills"))
         return
-    if session.sim.winner==1 and not session.versus:_caption("runback")
-    if not session.result_line.is_empty():menu_stack.add_child(_label(session.result_line,24))
+    var note:String=_result_note(session.result_line)
+    if not note.is_empty():menu_stack.add_child(_label(note,24))
     menu_stack.add_child(_label("%d  —  %d"%[session.sim.wins[0],session.sim.wins[1]],48,Tokens.GOLD,true))
     if session.sim.squad_enabled:menu_stack.add_child(_label("SQUAD CLEARED" if session.sim.winner==0 else "SQUAD / TRY AGAIN",28))
-    else:_caption("wins")
     var complete: bool=session.sim.phase=="match_over"
     _action(menu_stack,"rematch" if complete else "next_round","Enter",func():
         if session.sim.squad_enabled:session.start_squad()
         elif complete:session.restart_current()
         else:session.advance_round(),true)
     _action(menu_stack,"main_menu","",func():session.return_to_title())
+
+func _result_title() -> String:
+    # The page header carries the outcome, so the panel does not repeat it.
+    if menu_page=="skills":return "LOADOUT"
+    if is_instance_valid(session.city_campaign) and session.city_campaign.active:return "RESULT"
+    if session.sim.winner<0:return "DRAW"
+    if session.versus:return "P%d WINS"%(session.sim.winner+1)
+    return "YOU WIN" if session.sim.winner==0 else "RIVAL WINS"
+
+func _result_note(line: String) -> String:
+    # Keep the result page short: one flavour line, then one STYLE/TAGS line that counts new tags.
+    if line.is_empty():return ""
+    var parts:PackedStringArray=line.split("\n")
+    var fresh:=0
+    var style:=""
+    for part in parts:
+        if part.begins_with("NEW TAG") or part.begins_with("新標記"):fresh+=1
+        elif part.begins_with("STYLE") or part.begins_with("風格"):style=part
+    var result:String=parts[0]
+    if style!="" or fresh>0:
+        var extra:=""
+        if fresh>0:extra=("+%d NEW TAG%s"%[fresh,"" if fresh==1 else "S"]) if session.language=="en" else ("+%d 個新標記"%fresh)
+        result+="\n"+(extra+"  /  " if extra!="" and style!="" else extra)+style
+    return result
 
 func open_page(page: String) -> void:
     if session.screen=="play" or (session.screen=="result" and session.ability_draw.active()):session.pause_game()
@@ -725,7 +746,7 @@ func _draw() -> void:
 
     if session.hitboxes_visible:_draw_hitboxes()
     if session.screen!="play" and not (session.demo!=null and session.screen=="result") and not session.result_presentation_active():
-        art.secondary(self,"SETTINGS" if menu_page=="settings" else ("HOW TO PLAY" if menu_page=="help" else ("PAUSED" if session.screen in ["pause","help"] else "RESULT")))
+        art.secondary(self,"SETTINGS" if menu_page=="settings" else ("HOW TO PLAY" if menu_page=="help" else ("PAUSED" if session.screen in ["pause","help"] else _result_title())))
 
 func _draw_core_tag() -> void:
     if session.screen!="play":return
