@@ -1,3 +1,7 @@
+## 2026-11-12：故事波次、連鎖與大型Boss設計（僅規劃）
+
+使用者要求詳細規劃故事模式改有限波次、漸增難度、情境敵型、人海／巨獸拉遠及敵碰敵連鎖。已查最新main e725c99、現有3站Street Run／黑衣人群戰／指定技球狀反彈／九核心及裝備，提案見[STORY_WAVES_PLAN.zh-TW.md](STORY_WAVES_PLAN.zh-TW.md)。六關逐波配方、N/R/G/C/H/E分工、兩場大型Boss、三相機profile與32px投影下限、連鎖去重／衰減／預算、休息核心區段及checkpoint均為待驗證設計，不是runtime已加入。建議先M1三波／三敵型／6人／一次連鎖切片，再白盒大型中Boss。一般FIGHT／Demo與指定技才開四面盒契約保持；本輪僅文件，未執行新玩法測試，未更新Web。
+
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 
 最後合併最新main compact HUD（fda61d1），額外21項原生整合及嚴格8項重跑通過；交付main與codex/combat-escalation-next，Web不動。

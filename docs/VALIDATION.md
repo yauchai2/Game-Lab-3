@@ -1,3 +1,7 @@
+## 2026-11-12：故事波次設計文件
+
+本輪只新增STORY_WAVES_PLAN.zh-TW.md及相關紀錄。查閱基線main e725c99的三站Run、黑衣人群戰、opt-in反彈、九核心與裝備契約；文件區分既有與待做。波次／角色量／倍率／像素高度／時長是試作目標，未跑新玩法測試，未宣稱現有可支援10–12同場或大型Boss。僅檢查文件diff與runtime未變，原遊戲及Web不更新。
+
 ## 2026-11-11：正式抽獎後 3D 裝備（最新）
 
 最後合併最新main compact HUD（fda61d1），額外21項原生整合及嚴格8項重跑通過；交付main與codex/combat-escalation-next，Web不動。

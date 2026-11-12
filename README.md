@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+規劃：[故事波次街鬥、敵碰敵連鎖與大型Boss六關設計](docs/STORY_WAVES_PLAN.zh-TW.md)。含逐波敵型配方、拉遠鏡頭、核心與checkpoint及製作順序；本輪僅規劃，尚未加入遊戲。
+
 最新：[抽獎後3D裝備已實裝](docs/ABILITY_EQUIP_RUNTIME.zh-TW.md)／[有聲預覽](docs/evidence/ability-equip/ability-equip.mp4)／[完整Demo](docs/evidence/ability-equip/demo-draw-equip.mp4)。五選角不露臉接握／腰扣／鞋底啟動，九核心實體腰掛，345項通過，Web不更新。
 
 最新：[精簡戰鬥HUD](docs/evidence/compact-hud/README.md)。角色資源改小格、SURGE細條、取消二段跳／例行字卡，保留必要提示與教學；78項最終檢查通過，來源main，Web未更新。
