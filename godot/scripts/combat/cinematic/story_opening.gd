@@ -289,8 +289,8 @@ func _camera_at(t:float) -> Dictionary:
 		# Inside the case looking up: the lid comes down on the lens.
 		return {"at":table+Vector3(.05,.215,-.08),"look":table+Vector3(.0,1.25,.62),"fov":104,"roll":3.0,"fisheye":.85,"chroma":.006,"shake":.02}
 	# Title: behind the four on the ledge, city in ink beyond.
-	var u:=seg(t,TITLE_AT,DURATION)
-	return {"at":Vector3(.9,27.3,-9.7+u*.35),"look":Vector3(-.35,28.7+u*.08,10),"fov":40,"roll":-1.5,"fisheye":.1,"ink":1.0,"vignette":.0,"shake":.1}
+	var title_progress:=seg(t,TITLE_AT,DURATION)
+	return {"at":Vector3(.9,27.3,-9.7+title_progress*.35),"look":Vector3(-.35,28.7+title_progress*.08,10),"fov":40,"roll":-1.5,"fisheye":.1,"ink":1.0,"vignette":.0,"shake":.1}
 
 func _lens_at(t:float,cam:Dictionary,reduced:bool) -> void:
 	lens.visible=running
@@ -616,12 +616,15 @@ func _draw_side(canvas:Control,strength:float,t:float) -> void:
 		canvas.draw_colored_polygon(PackedVector2Array([Vector2(x,y),Vector2(x+length,y-1.5-i%3),Vector2(x+length,y+1.5+i%3)]),color)
 
 func _burst(canvas:Control,at:Vector2,radius:float,rays:int,color:Color,spin:=0.0) -> void:
-	if at.x<-500:return
+	# The glint reaches zero at its endpoints; skip collapsed/subpixel rays.
+	# Submit each triangle directly: thin rays at HUD coordinates can also
+	# lose precision in the general polygon triangulator.
+	if at.x<-500 or radius<1.0 or rays<=0 or color.a<=0.0:return
 	for i in rays:
 		var angle:float=i*TAU/rays+spin
 		var direction:=Vector2(cos(angle),sin(angle))
 		var long:float=radius*(1.0 if i%2==0 else .55)
-		canvas.draw_colored_polygon(PackedVector2Array([at+direction*radius*.18,at+direction*long+direction.orthogonal()*radius*.05,at+direction*long-direction.orthogonal()*radius*.05]),color)
+		canvas.draw_primitive(PackedVector2Array([at+direction*radius*.18,at+direction*long+direction.orthogonal()*radius*.05,at+direction*long-direction.orthogonal()*radius*.05]),PackedColorArray([color]),PackedVector2Array())
 
 func _word(canvas:Control,text:String,at:Vector2,size:int,color:Color,angle:float,alpha:float) -> void:
 	var bold:Font=session.hud.bold
@@ -666,7 +669,7 @@ func _draw_accents(canvas:Control,t:float) -> void:
 		_burst(canvas,at,70.0*k,4,Color("ffffff",k),PI*.25)
 		_burst(canvas,at,34.0*k,4,Color("27e6ee",k),0.0)
 
-func _draw_slam(canvas:Control,t:float) -> void:
+func _draw_slam(canvas:Control,_t:float) -> void:
 	# One held impact frame on black before the title lands.
 	var centre:=Vector2(640,360)
 	_burst(canvas,centre,720.0,26,Color("f5129a"),.11)
