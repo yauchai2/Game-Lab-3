@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+研究補件：[SEPAK原片VFX實證與優化修訂](docs/SEPAK_VFX_VIDEO_STUDY.zh-TW.md)／[四類畫面](references/vfx-quality-2026-11-12/sepak-four-layers.jpg)。新LLB附件仍受工具32MiB上限，尚未讀取。
+
 規劃：[戰鬥VFX品質研究與詳細製作方案](docs/COMBAT_VFX_QUALITY_PLAN.zh-TW.md)。含原始碼診斷、腳步煙／打擊閃光／素材規格與優化次序；X原片尚未取得，本輪未改runtime。
 
 規劃：[故事波次街鬥、敵碰敵連鎖與大型Boss六關設計](docs/STORY_WAVES_PLAN.zh-TW.md)。含逐波敵型配方、拉遠鏡頭、核心與checkpoint及製作順序；本輪僅規劃，尚未加入遊戲。

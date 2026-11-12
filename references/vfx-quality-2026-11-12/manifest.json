@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-12",
+  "source_file": "Good_Knight_Collective_-_I_MADE_THIS_GAME.__________Can_I_Prove_I_m_Not_a_FRAUD_Wishlist_SEPAK_nSXmlE.mp4",
+  "sediment_id": "file_000000005e988211adbf8a7cfdf54dc8",
+  "sha256": "2911f1b20cbf2d9bfd2f6aa202fe5f71cc6839d0637ffff300979e65304649cd",
+  "size_bytes": 19685591,
+  "duration_seconds": 13.792653,
+  "encoded_video": "2560x1440 60fps",
+  "review": "8fps whole-duration visual sampling; selected source-rate consecutive frames 0.55-1.05, 1.35-1.95, 12.00-12.60; selected larger stills; no auditory assessment",
+  "llb_attachment": {
+    "sediment_id": "file_00000000d0d88211a8bc6a55197dbd7b",
+    "status": "download rejected: file exceeds executor transfer limit 32 MiB; not viewed"
+  },
+  "reference_use_only": true
+}
