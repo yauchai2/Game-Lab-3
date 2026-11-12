@@ -1,0 +1,11 @@
+[
+  {
+    "name": "verify_campaign_complete_native",
+    "passed": 23,
+    "total": 23,
+    "exit_code": 0,
+    "engine_errors": [],
+    "report_written": true,
+    "success": true
+  }
+]

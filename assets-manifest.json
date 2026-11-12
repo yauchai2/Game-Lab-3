@@ -303,6 +303,16 @@
       "skeleton_bones": [],
       "source_animation_count": 0,
       "wrapper_scale": 2.0
+    },
+    {
+      "asset_id": "CITY_NIGHTSHIFT_HUB",
+      "model": "godot/assets/city/nightshift_workshop.glb",
+      "scene": "godot/scenes/city/nightshift_workshop.tscn",
+      "builder": "godot/scripts/combat/city/nightshift/reference_workshop.gd",
+      "sha256": "938518d8977f2bd99d7d9dd8c27768add5e5fb277013037459ceeb96d56b87f3",
+      "bytes": 127812,
+      "status": "fixed_camera_projection_hub",
+      "provenance": "Replaces blockout after user fidelity correction. ImageGen clean plate derived from approved scene, projected depth geometry, preserved source Dealer; see NIGHTSHIFT_REFERENCE_REBUILD for limits."
     }
   ],
   "pending_reference_only": [],

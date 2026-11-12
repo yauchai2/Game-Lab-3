@@ -12,6 +12,7 @@ var accepted:=0
 var suppressed:=0
 var signature:=false
 var move_name:=""
+var sprites=preload("res://scripts/combat/sprite_fx.gd").new()
 func clear() -> void:
     mode="";age=0.0;duration=0.0;cooldown=0.0;priority=0;signature=false;move_name=""
 func active() -> bool:return mode!="" and age<duration
@@ -59,20 +60,22 @@ func draw(canvas:Control,session:Node3D) -> void:
     canvas.draw_colored_polygon(PackedVector2Array([Vector2(0,130),Vector2(width,130),Vector2(0,340)]),color)
     canvas.draw_colored_polygon(PackedVector2Array([Vector2(1280,570),Vector2(1280-width,620),Vector2(1280,620)]),color)
     if mode=="CHARGE":
-        var r:=95.0-65.0*clampf(age/.30,0,1)
-        for i in 4:
-            var angle:float=i*TAU/4+.3
-            var a:=at+Vector2.from_angle(angle)*r
-            var b:=at+Vector2.from_angle(angle+.5)*r
-            canvas.draw_line(a,b,color,6)
-    elif age<.16:
-        # Single authored broken diamond: large shape, empty centre.
-        var r:=48.0+floorf(age*30.0)*13.0
-        for i in 4:
-            var angle:float=i*TAU/4+.15
-            var a:=at+Vector2.from_angle(angle)*r
-            var b:=at+Vector2.from_angle(angle+.55)*(r*.65)
-            canvas.draw_line(a,b,Color.WHITE,5)
+        sprites.converge(canvas,at,age,color,95.0-65.0*clampf(age/.30,0,1),6)
+    elif age<.30:
+        sprites.hit_spark(canvas,at,age/.30,color,0.0,260.0 if priority>=4 else 120.0)
+    # Lethal League style hit flash: two crisp paper-white frames. This director is the single fullscreen owner.
+    if mode in ["RELEASE","BREAK","K.O."] and age<.045:
+        canvas.draw_rect(Rect2(0,0,1280,720),Color("fff8dc",.32 if age<.02 else .14))
+    # Pixel-snapped ink speed lines away from the point of impact.
+    if mode in ["RELEASE","BREAK","K.O."] and age<duration*.7:
+        var dir:float=1.0 if owner==0 else -1.0
+        for i in 9:
+            var y:float=roundf((at.y+(float(i)-4.0)*30.0+float((i*37)%5)*4.0)/2.0)*2.0
+            var length:float=(240.0+float((i*53)%4)*80.0)*(1.0-age/duration*.6)
+            var start:float=roundf((at.x-dir*(160.0+float(i%3)*46.0))/2.0)*2.0
+            var rect:=Rect2(Vector2(start if dir>0 else start-length,y),Vector2(length,6.0))
+            canvas.draw_rect(rect,ink)
+            canvas.draw_rect(Rect2(rect.position+Vector2(0,2),Vector2(rect.size.x*.7,2.0)),color if i%2==0 else Color("fff8dc"))
     if priority>=5:
         canvas.draw_string(session.hud.bold,Vector2(64,625),mode,HORIZONTAL_ALIGNMENT_LEFT,-1,64,Color.WHITE)
     else:

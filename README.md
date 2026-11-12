@@ -1,5 +1,9 @@
 # Afterhours / Game-Lab-3
 
+最新：[按指定原圖重做據點與15秒動態](docs/NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。固定視角投影美術＋真3D角色／深度與特效，保留原圖佈局、刪除無關設施；[引擎影片／對照](docs/evidence/nightshift-reference/README.md)。現有角色與插畫仍有差異；211回歸＋15strict，Tripo必需0件，選配精修清單已列。下方粗模紀錄為歷史。
+
+最新：[夜班場可互動回城據點](docs/NIGHTSHIFT_HUB.zh-TW.md)／[實際引擎畫面與225項驗證](docs/evidence/nightshift-hub/README.md)。STORY進入黑白工廈／桃紅等距3D；WASD或點地走動、靠近E、1–6走到設施。含DJ閣樓、技能／天賦、Dealer、商店、貨梯出擊，保留既有成長與存檔；有可編修GLB與F6預覽。
+
 最新：[完整短篇故事／雙巨型Boss／技巧優先平衡](docs/CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)。六區18場、獨立場景模型、城市NPC故事／能力課程／專屬招式、九核心裝備演出、工坊及有限增援／危險分支已接入；[測試與原生畫面](docs/evidence/campaign-complete/README.md)。F5→STORY；仍推codex/story-waves-m1／草稿PR #12，main及Web保持。以下各段是較早階段紀錄，以本段為準。
 
 最新：[960復古畫面＋城市成長擴充](docs/CITY_PROGRESSION_EXPANSION.zh-TW.md)。48節點／25點、T1–T5詞綴刷圖、真裝備掉落／比較／各角配裝與倉庫；[359項驗證及畫面](docs/evidence/city-expansion/README.md)。主選單STORY，來源仍codex/story-waves-m1。下方舊首版範圍為歷史，以此最新實作為準；巨型Boss／完整故事及場景美術仍待續。

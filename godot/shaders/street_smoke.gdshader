@@ -11,13 +11,14 @@ void vertex(){
     MODELVIEW_MATRIX=VIEW_MATRIX*facing;
 }
 void fragment(){
-    vec2 uv=floor(UV*96.0)/96.0;
+    vec2 uv=floor(UV*56.0)/56.0;
     vec2 p=(uv-.5)*2.0;
     float n=noise(uv*5.0+vec2(age*.055,-age*.09));
     float small=noise(uv*12.0-vec2(age*.07,age*.04));
     float edge=length(p)+n*.30+small*.08;
     float density=1.0-smoothstep(.36,1.08,edge);
-    density=floor(density*5.0)/5.0;
-    ALBEDO=tint.rgb*(.76+.24*n);
-    ALPHA=density*opacity;
+    // Flat cel bands: pale core, mid body, dark rim. Hard edges, no gradient.
+    float band=density>.66?1.0:(density>.30?.78:(density>.05?.52:0.0));
+    ALBEDO=tint.rgb*band;
+    ALPHA=(band>0.0?1.0:0.0)*opacity;
 }

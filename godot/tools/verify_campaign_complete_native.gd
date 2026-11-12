@@ -15,15 +15,18 @@ func view_step(n:int) -> void:
     for i in n:s._process(1.0/60)
 func key(code:Key,down:bool) -> void:
     var e:=InputEventKey.new();e.physical_keycode=code;e.keycode=code;e.pressed=down;Input.parse_input_event(e);await frames(2)
-func tap(code:Key) -> void:await key(code,true);await key(code,false)
+func tap(code:Key) -> void:
+    await key(code,true);await key(code,false)
+    await station_travel()
 func click(control:Control) -> void:
+    await frames(3) # Rebuilt station panels need a layout pass before scrolling/clicking.
     if control==null:check("requested native control exists",false);return
     var parent:=control.get_parent()
     while parent!=null:
         if parent is ScrollContainer:parent.ensure_control_visible(control);await frames(3);break
         parent=parent.get_parent()
     for down in [true,false]:
-        var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_LEFT;e.pressed=down;e.position=root.get_screen_transform()*control.get_global_rect().get_center();e.global_position=e.position;Input.parse_input_event(e);await frames(2)
+        var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_LEFT;e.pressed=down;e.position=control.get_global_rect().get_center();e.global_position=e.position;root.push_input(e,true);await frames(2)
 func button(parent:Node,prefix:String) -> Button:
     for child in parent.find_children("*","Button",true,false):
         if child.text.begins_with(prefix):return child
@@ -35,7 +38,7 @@ func run() -> void:
     var path:="user://campaign-complete/native.json"
     for suffix in ["",".bak",".tmp"]:DirAccess.remove_absolute(ProjectSettings.globalize_path(path+suffix))
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";s.city_save_path=path;root.add_child(s);s.audio.muted=true;s.set_process(false);s.set_physics_process(false);await frames(6)
-    await click(s.hud.art_buttons.fight)
+    await click(s.hud.art_buttons.story)
     var c=s.city_campaign;var p=c.profile;var h=c.hub;await frames(6)
     check("city now uses original hero skeleton and authored NPC models",h.hero_visual.skeleton!=null and h.town_npcs.size()==3 and h.hero_visual.character_index==0)
     await shot("city")
@@ -112,3 +115,12 @@ func run() -> void:
     var file:=FileAccess.open(OUT+"native.json",FileAccess.WRITE);file.store_string(JSON.stringify({"passed":checks.size()-failed,"failed":failed,"checks":checks},"  "));file.close()
     s.queue_free();await frames(10);await create_timer(.35).timeout
     print("COMPLETE_NATIVE RESULT ",checks.size()-failed,"/",checks.size());quit(1 if failed else 0)
+
+func station_travel() -> void:
+    if s.screen!="city":return
+    var h=s.city_campaign.hub
+    for tick in 1500:
+        if h.route_station<0:return
+        h._process(1.0/60)
+        if tick%120==0:await frames(1)
+    check("station travel completes before UI assertions",false)

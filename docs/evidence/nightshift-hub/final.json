@@ -1,0 +1,45 @@
+{
+  "base": "6fdd3a6",
+  "cases": [
+    {
+      "name": "verify_nightshift_hub",
+      "passed": 30,
+      "total": 30,
+      "engine_errors": []
+    },
+    {
+      "name": "verify_campaign_complete_native",
+      "passed": 23,
+      "total": 23,
+      "engine_errors": []
+    },
+    {
+      "name": "verify_city_expansion_native",
+      "passed": 22,
+      "total": 22,
+      "engine_errors": []
+    },
+    {
+      "name": "verify_campaign_complete",
+      "passed": 50,
+      "total": 50,
+      "engine_errors": []
+    },
+    {
+      "name": "verify_city_expansion",
+      "passed": 86,
+      "total": 86,
+      "engine_errors": []
+    }
+  ],
+  "passed": 211,
+  "strict_scripts": 14,
+  "notes": "Native Godot 4.6.3 Compatibility / Mesa llvmpipe / Dummy; fixtures, not human/Mac/FPS evidence. New scene 30 plus existing campaign/native/economy regressions181; 14 strict compile checks.",
+  "runtime_hashes": {
+    "godot/scripts/combat/city/city_hub.gd": "0b37dce7fd77e8747124746b7b55e9530aff95308740413df1b5accc2234b6e2",
+    "godot/scripts/combat/city/nightshift/workshop.gd": "1b1c4af6ec28ea17822cefcc01f973d8473861f23924b16741d00f25f6ffcafc",
+    "godot/scripts/combat/city/nightshift/preview.gd": "6832daedb38532eb9d053f9fd68b17727522bd22c76560a2599a5a6842f00fad",
+    "godot/scripts/combat/city/nightshift/asset.gdshader": "344ee9ba444118a2825947f65976b46b72011e41d7c3227de4b53515969819da",
+    "godot/scripts/combat/city/nightshift/facet.gdshader": "9b990b3766cfafcf1ea9cc4761bf2965064decb866a9b2949cbdf771443c7d82"
+  }
+}

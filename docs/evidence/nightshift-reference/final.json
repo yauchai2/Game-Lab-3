@@ -1,0 +1,64 @@
+{
+  "passed": 211,
+  "strict_scripts": 15,
+  "cases": [
+    {
+      "name": "verify_nightshift_hub",
+      "passed": 30,
+      "total": 30,
+      "exit_code": 0,
+      "engine_errors": [],
+      "report_written": true,
+      "success": true
+    },
+    {
+      "name": "verify_campaign_complete_native",
+      "passed": 23,
+      "total": 23,
+      "exit_code": 0,
+      "engine_errors": [],
+      "report_written": true,
+      "success": true
+    },
+    {
+      "name": "verify_city_expansion_native",
+      "passed": 22,
+      "total": 22,
+      "exit_code": 0,
+      "engine_errors": [],
+      "report_written": true,
+      "success": true
+    },
+    {
+      "name": "verify_campaign_complete",
+      "passed": 50,
+      "total": 50,
+      "exit_code": 0,
+      "engine_errors": [],
+      "report_written": true,
+      "success": true
+    },
+    {
+      "name": "verify_city_expansion",
+      "passed": 86,
+      "total": 86,
+      "exit_code": 0,
+      "engine_errors": [],
+      "report_written": true,
+      "success": true
+    }
+  ],
+  "video_seconds": 15.0,
+  "render_method": "Fixed-camera projection painting + true 3D rigged heroes/depth proxies/ambient geometry. Not a complete free-camera building model.",
+  "remaining_visual_gap": "Existing hero GLBs and authored poses differ from the generated concept; no claim of pixel-perfect/full-frame or frame-for-frame identity.",
+  "source_hashes": {
+    "godot/scripts/combat/city/city_hub.gd": "8bfb6bfd6cca23fd0c68f64b66d1c00941715479e6fff3583344d699df5830df",
+    "godot/scripts/combat/city/nightshift/workshop.gd": "1b1c4af6ec28ea17822cefcc01f973d8473861f23924b16741d00f25f6ffcafc",
+    "godot/scripts/combat/city/nightshift/reference_workshop.gd": "f2885827f0470b018b7300833cf1b667a4117109efc21eaf767739fedea618e0",
+    "godot/scripts/combat/city/nightshift/preview.gd": "e052fbc058ba57b29efcc5477e63b6cbe6fcb14fba932fc5f08ab1c22289a382",
+    "godot/scripts/combat/city/nightshift/reference.gdshader": "85c158d4113097ab16c9c491f1d5a08727b331fa4ed0a7a4eccb493b2a384f48",
+    "godot/scripts/combat/city/nightshift/asset.gdshader": "344ee9ba444118a2825947f65976b46b72011e41d7c3227de4b53515969819da",
+    "godot/scripts/combat/city/nightshift/light.gdshader": "a31b4e9cc80db5cef5959af22ef10c8a1246e8409516e3efbda889f3c58bc459",
+    "godot/scripts/combat/city/nightshift/facet.gdshader": "9b990b3766cfafcf1ea9cc4761bf2965064decb866a9b2949cbdf771443c7d82"
+  }
+}
