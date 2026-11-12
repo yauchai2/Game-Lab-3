@@ -129,3 +129,5 @@
 - 2026-11-12 使用者要求詳細故事波次／敵碰敵連鎖／大型Boss／人海遠鏡頭規劃：見docs/STORY_WAVES_PLAN.zh-TW.md。本輪僅設計，六關／新敵型／Boss／傷害倍率／相機／核心兩關區段都未實作或驗證；不要把提案寫成已完成功能。未來若開始實作先M1三波切片；保留既有FIGHT／Demo及指定技才開四面盒契約，Web不更新。
 
 - 2026-11-12 使用者已要求「開一個分支實做」：codex/story-waves-m1的M1已可玩，見docs/STORY_WAVES_RUNTIME.zh-TW.md，覆蓋前輪M1僅規劃。STORY入口3波／N-R-G／6人、有限真撞體、同場retry及遠鏡頭；無XP／Boss／六關／持久checkpoint。StorySimulation繼承Squad，舊模式委派保持。只推獨立分支／草稿PR，不把此次分支工作自動合併main或發佈Web；原GLB及指定技才開四面盒規則保持。
+
+- 2026-11-12 最新城市ARPG詳細提案見docs/CITY_ARPG_PROGRESSION_PLAN.zh-TW.md。本輪僅規劃：新故事保證能力漸解鎖、主選單入口、48節點／25點、城市刷圖／三槽永久裝備／兩貨幣／定向抽裝保底未實作。故事晶片擬持續下一整張圖，覆蓋舊兩關區段提案；標準模式九核心契約不改。保留舊存檔能力；先一區小循環再擴六區Boss，現況仍M1三波。只推codex/story-waves-m1，不自動合併main或發佈Web。

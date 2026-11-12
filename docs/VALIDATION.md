@@ -1,3 +1,7 @@
+## 2026-11-12：城市ARPG設計文件核對
+
+本輪只新增 [城市成長規劃](CITY_ARPG_PROGRESSION_PLAN.zh-TW.md) 並同步紀錄。核對既有三階角色成長／兩技能槽、主選單五項、九核心與M1實際範圍；區分必得能力、可洗天賦、永久裝備、臨時晶片。文件數量核對：28＋12＋4＋4＝48節點；19等級點＋6主線點＝25點；抽裝提案25＋55＋19＋1＝100%。檢查文件diff、連結與runtime未變；沒有執行或宣稱新玩法／經濟／存檔／平衡測試。main及Web不更新。
+
 ## 2026-11-12：故事波次M1
 
 [accepted報告與原生圖](evidence/story-waves/README.md)。最終287項：Story37、native Story17、startup warnings11、Arena65、二段跳62、戰鬥34、UI37、回合24，對應log無ERROR／SCRIPT ERROR，VSync警告保留。四英雄Easy普通輸入完整通三波，不注入傷害／補血／重設；真pointer／J／↓+K／Esc／Enter／R及六骨架，另有邊界fixture；玩家投影約68內部像素。基線舊Demo測試同樣23/24的重複intro預期已按現行裝備契約修正且增加真equip觀察，初次失敗保留。Linux4.7.2 Compatibility llvmpipe／Dummy，不是Mac／真人／硬件FPS／實聽驗收。未做Boss／六關／持久checkpoint；任務分支交付，main與Web不更新。
