@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/ability_draw/stage_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+anchor = Vector3(2, 0, 4)
+heading_degrees = 32.0
+entry_offset = Vector3(4, 0, -0.5)
+backup_entry_offset = Vector3(-4, 0, -0.5)
+dust_color = Color(0.63, 0.67, 0.74, 1)

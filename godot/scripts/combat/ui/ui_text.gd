@@ -2,6 +2,10 @@ extends RefCounted
 ## Product copy is keyed; simulation events and save identifiers stay language-independent.
 var language := "zh"
 const COPY := {
+"fighter_black_suit":["黑衣人 BLACK SUIT","BLACK SUIT"],
+"trait_black_suit":["收貨員：近身壓迫","COLLECTOR / CLOSE PRESSURE"],
+"skill_black_suit":["強制收件","FORCED RECEIPT"],
+"cannon_black_suit":["簽收完畢","SIGNED OFF"],
 "skill_loop_pulse":["交叉接線","CROSS PATCH"],
 "fighter_zip":["疾扣 ZIP","ZIP"],"fighter_rivet":["鉚釘 RIVET","RIVET"],"fighter_hush":["靜噪 HUSH","HUSH"],"fighter_loop":["迴路 LOOP","LOOP"],
 "trait_zip":["路線追擊","ZIP / ROUTE KICKS"],"trait_rivet":["蓄力破防","RIVET / PRELOAD"],"trait_hush":["截擊取樣","HUSH / SAMPLE"],"trait_loop":["接點控場","LOOP / PATCH NODES"],
@@ -31,7 +35,7 @@ const COPY := {
 "counter_ready":["格擋成功！J 反擊","PARRY! J TO COUNTER"],
 "rival_parry":["對手擋住了 · 重新找機會","RIVAL PARRIED / FIND AN OPENING"],
 "counter_success":["反擊成功！","COUNTER SUCCESS!"],"nice_block":["擋住了！","NICE BLOCK!"],
-"demo":["雙 AI 無限激鬥","ENDLESS AI FIGHT"],"demo_auto":["雙 AI 自動展示 · 示範情境循環播放","TWO AI AGENTS / SCRIPTED SHOWCASE LOOP"],
+"demo":["雙 AI 回合循環","LOOPING AI BATTLE"],"demo_auto":["雙 AI 真對戰 · 完整開場及 KO 循環","TWO AI AGENTS / FULL ROUND LOOP"],
 "demo_next":["下一段 · N","NEXT / N"],"demo_restart":["重播 · R","RESTART / R"],"demo_exit":["結束 · F12","EXIT / F12"],
 "demo_combo":["拳腳三連", "GROUND COMBO"],
 "demo_heavy":["重擊擊飛", "HEAVY LAUNCH"],

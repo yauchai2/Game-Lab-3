@@ -1,0 +1,63 @@
+{
+  "origin": "Original deterministic synthesis, no source-video audio reused",
+  "files": [
+    {
+      "path": "godot/audio/ability_draw/equip.wav",
+      "seconds": 4.1,
+      "sha256": "aa737f65e1097111d7ef5e11284f0436f292c8ebfbc27b5c7b3106faa4a3b5fa",
+      "events": [
+        {
+          "at": 0.02,
+          "kind": "whoosh"
+        },
+        {
+          "at": 0.42,
+          "kind": "clack"
+        },
+        {
+          "at": 1.32,
+          "kind": "whoosh"
+        },
+        {
+          "at": 2.34,
+          "kind": "clack"
+        },
+        {
+          "at": 2.44,
+          "kind": "hit"
+        },
+        {
+          "at": 2.72,
+          "kind": "spin"
+        },
+        {
+          "at": 3.3,
+          "kind": "hit"
+        },
+        {
+          "at": 3.4,
+          "kind": "drag"
+        }
+      ]
+    },
+    {
+      "path": "godot/audio/ability_draw/equip_short.wav",
+      "seconds": 1.15,
+      "sha256": "0da420ffa6be1758059c6a082e1737c5a81578bc6c3b3ddceb67fb2b94a88f22",
+      "events": [
+        {
+          "at": 0.12,
+          "kind": "clack"
+        },
+        {
+          "at": 0.68,
+          "kind": "hit"
+        },
+        {
+          "at": 0.93,
+          "kind": "hit"
+        }
+      ]
+    }
+  ]
+}

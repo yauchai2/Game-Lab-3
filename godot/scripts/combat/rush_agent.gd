@@ -37,13 +37,13 @@ func choose(s:RefCounted,side:int,clock:int,level:=2,showcase:=false) -> Diction
         if plans[side].get("guard",false):command["guard"]=true;command["axis"]=0.0
         return command
     if f.state=="stun":
-        if f.wall_tech_window>0 and level>0:command["dash"]=true
+        if f.wall_tech_window>0 and level>0 and (not s.ArenaBox.active(f) or f.wall_tech_window<=8):command["dash"]=true
         return command
     if f.air.chase_window>0 and not f.air.chase_used and other.state=="stun" and f.meter>=s.AirMotion.CHASE_COST:
         command["rush"]=true
         return command
     if f.state=="attack":
-        if s.last_service_enabled and f.character==3 and f.move=="special" and f.frame>=14 and _loop_ready(f,other):command["attack"]="node_pulse"
+        if s.last_service_enabled and f.character==3 and f.move=="special" and f.frame>=14 and _loop_ready(s,f,other):command["attack"]="node_pulse"
         if s.last_service_enabled and f.character==1 and f.move=="special":command["skill_held"]=f.service.preload_age<30
         if f.hit_confirmed and f.move in ["jab","cross","air_jab","air_kick"]:command["rush"]=true
         return command
@@ -90,24 +90,24 @@ func _plan(s:RefCounted,side:int,clock:int,level:int,showcase:bool) -> Dictionar
     if attacking and other.frame<enemy_move.startup and distance<=enemy_move.reach+.2 and other.move!="grab" and f.guard>25 and ((level==2 and not showcase) or posmod(floori(clock/8.0)+side+character,4)<=level):
         intent[side]="read_guard";return {"guard":true,"axis":0.0}
     if s.last_service_enabled and character==3 and other.y<1.45:
-        if _loop_ready(f,other):intent[side]="pulse";return {"attack":"node_pulse","axis":0.0}
-        if f.service.nodes.size()<2 and f.meter>=20 and distance>2.2 and distance<5.5 and clock-last_burst[side]>=100:
+        if _loop_ready(s,f,other):intent[side]="pulse";return {"attack":"node_pulse","axis":0.0}
+        if f.service.nodes.size()<2 and f.meter>=s.skill_cost(f,"special") and distance>2.2 and distance<5.5 and clock-last_burst[side]>=100:
             intent[side]="place_node";last_burst[side]=clock
             return {"attack":"special","axis":signf(dx) if f.service.nodes.is_empty() else 0.0}
         if distance<1.2 and f.dash_cd==0 and not f.service.nodes.is_empty() and style==2:
             intent[side]="defend_nodes";return {"dash":true,"axis":-float(f.face)}
     var opportunity:bool=other.state in ["stun","blockstun"] or (attacking and other.frame>=enemy_move.startup+enemy_move.active)
     var super_move:Dictionary=s.move_for(f,"overdrive")
-    if f.meter>=75 and clock-last_cannon[side]>=[600,480,360][level] and clock-last_burst[side]>=140 and distance<=super_move.reach-.15 and absf(other.y-f.y)<1.2 and (opportunity or cannon_primed[side] or (showcase and style==4)):
+    if f.meter>=s.skill_cost(f,"overdrive") and clock-last_cannon[side]>=[600,480,360][level] and clock-last_burst[side]>=140 and distance<=super_move.reach-.15 and absf(other.y-f.y)<1.2 and (opportunity or cannon_primed[side] or (showcase and style==4)):
         intent[side]="super";last_cannon[side]=clock;last_burst[side]=clock;cannon_primed[side]=false
         return {"attack":"overdrive","axis":0.0}
     var special:Dictionary=s.move_for(f,"special")
-    if character!=3 and f.meter>=50 and clock-last_burst[side]>=[330,240,180][level] and distance<=special.reach-.15 and absf(other.y-f.y)<1.2 and (style==3 or opportunity or (character==2 and distance>1.7)):
+    if character!=3 and f.meter>=s.skill_cost(f,"special") and clock-last_burst[side]>=[330,240,180][level] and distance<=special.reach-.15 and absf(other.y-f.y)<1.2 and (style==3 or opportunity or (character==2 and distance>1.7)):
         intent[side]="signature";last_burst[side]=clock
         return {"attack":"special","axis":0.0}
     # HUSH only keeps intercept distance when SAMPLE/energy can pay for that threat.
     # LOOP without a funded node/pulse falls back to melee instead of waiting forever.
-    var desired:float=2.05 if character==2 and f.meter>=50 and clock-last_burst[side]>=180 else (2.6 if character==3 and f.meter>=20 and f.service.nodes.is_empty() else 1.08)
+    var desired:float=2.05 if character==2 and f.meter>=s.skill_cost(f,"special") and clock-last_burst[side]>=180 else (2.6 if character==3 and f.meter>=s.skill_cost(f,"special") and f.service.nodes.is_empty() else 1.08)
     if distance>desired+.12:
         intent[side]="approach"
         if distance>3.4 and f.dash_cd==0:return {"dash":true,"axis":signf(dx)}
@@ -120,9 +120,9 @@ func _plan(s:RefCounted,side:int,clock:int,level:int,showcase:bool) -> Dictionar
         return {"attack":name,"axis":0.0}
     intent[side]="close_melee"
     return {"axis":signf(dx)}
-func _loop_ready(f:Dictionary,other:Dictionary) -> bool:
+func _loop_ready(s:RefCounted,f:Dictionary,other:Dictionary) -> bool:
     var nodes:Array=f.service.nodes
-    if nodes.is_empty() or f.service.node_cd>0 or f.meter<10:return false
+    if nodes.is_empty() or f.service.node_cd>0 or f.meter<s.skill_cost(f,"node_pulse"):return false
     var x:float=other.x+other.vx*.12
     if other.y+other.vy*.12>1.45:return false
     return x>=minf(nodes[0].x,nodes[-1].x)-.75 and x<=maxf(nodes[0].x,nodes[-1].x)+.75

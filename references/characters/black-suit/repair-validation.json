@@ -1,0 +1,15 @@
+{
+  "triangles": 1208,
+  "mesh_count": 5,
+  "joints": 65,
+  "maximum_weight_sum_error": 5.21540641784668e-08,
+  "closed_patches": {
+    "CleanShirtInsert": true,
+    "NeckBridge": true,
+    "TieBlade": true,
+    "TieKnot": true
+  },
+  "finite_positions_normals_weights": true,
+  "joint_vertex_indices_in_range": true,
+  "source_unchanged": true
+}

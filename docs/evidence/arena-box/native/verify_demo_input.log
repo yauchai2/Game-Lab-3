@@ -1,0 +1,17 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+DEMO_INPUT F12 starts a normal-health demo with full entry true
+DEMO_INPUT agents cannot act inside entry true
+DEMO_INPUT entry rejects attacks and retired next-chapter key true
+DEMO_INPUT Esc pauses opening and its audio true
+DEMO_INPUT demo still has the native pause menu true
+DEMO_INPUT Enter skips entry, normal countdown enters fight true
+DEMO_INPUT player keys do not feed the autonomous agents true
+DEMO_INPUT normal controls survive two complete KO loops true
+DEMO_INPUT R starts a fresh opening and statistics true
+DEMO_INPUT restart retains original partner preference true
+DEMO_INPUT F12 clears all presentations and restores preference true
+DEMO_INPUT_CHECKS 11/11

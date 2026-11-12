@@ -1,0 +1,216 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "enemy option restores into real model and simulation",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "four hero identities and mastery records remain isolated",
+      "passed": true
+    },
+    {
+      "detail": {
+        "bones": 65,
+        "mapped": 52
+      },
+      "name": "uploaded rig maps onto animation library",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "black suit preserves original texture and repair materials",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy cannot replace a player hero",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy button selects P2 with preview",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "keyboard navigation reaches enemy button",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "capture enemy-selection",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy control fits viewport (960, 540)",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy control fits viewport (1280, 720)",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy control fits viewport (1600, 900)",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy animated pose jab",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy animated pose heavy",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy animated pose launcher",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy animated pose special",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy animated pose overdrive",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy melee deals real damage",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy strikes remain parryable",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "standard fight uses enemy and fixed stats",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy selection locked during fight",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "capture enemy-fight",
+      "passed": true
+    },
+    {
+      "detail": {
+        "events": {
+          "air_counter_choice": 2,
+          "air_counter_end": 2,
+          "air_counter_release": 2,
+          "air_counter_start": 2,
+          "air_counter_windup": 2,
+          "air_land": 17,
+          "air_parry_attempt": 2,
+          "arena_bounce": 16,
+          "chase_arrive": 7,
+          "chase_unavailable": 14,
+          "counter_success": 1,
+          "dash": 6,
+          "fast_fall": 12,
+          "fight": 2,
+          "hit": 28,
+          "homing_chase": 7,
+          "ko": 2,
+          "parry": 1,
+          "swing": 52,
+          "wall_tech": 7
+        },
+        "hits": [
+          6,
+          22
+        ]
+      },
+      "name": "free AI actually fights as the enemy",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy has no hero-only resources",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "capture enemy-demo",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "existing Street Run retains hero opponents",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "leaving run restores enemy opponent",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy persists after run without changing player save",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy supports round entry portrait",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy win starts deciding KO",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy winner exit has valid pose and fallback score",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "reusable actor idle preserves scene placement",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "reusable actor walk preserves scene placement",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "reusable actor guard preserves scene placement",
+      "passed": true
+    },
+    {
+      "detail": [
+        "Idle_Loop",
+        "Walk_Loop",
+        "Punch_Enter"
+      ],
+      "name": "background actor uses walk animation",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "model swaps retire render materials",
+      "passed": true
+    }
+  ],
+  "engine": "4.6.3-stable (official)",
+  "native": true,
+  "scope": "Enemy registry/UI/preferences, existing simulation contact, free AI, shared retargeting, actor lifecycle and run isolation. No new story, weapons, encounters or human balance claim."
+}

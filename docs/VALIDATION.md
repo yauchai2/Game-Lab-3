@@ -1,3 +1,47 @@
+## 2026-11-11：正式抽獎後 3D 裝備（最新）
+
+最後合併最新main compact HUD（fda61d1），額外21項原生整合及嚴格8項重跑通過；交付main與codex/combat-escalation-next，Web不動。
+
+見 [ABILITY_EQUIP_RUNTIME.zh-TW.md](ABILITY_EQUIP_RUNTIME.zh-TW.md)。按EQUIP／Demo結果停3.5秒後，當局原選角演出副本接取→握緊→腰扣→鎖定→能量到鞋→踩地，4.10秒（F2開始1.15秒）。九核心真腰掛跟隨骨盆保留到下一局重置；不露臉，原街景／stage profile沿用，聲效／魚眼／短模糊／震動／漫畫線／煙塵同步。先演再一次套用，Space跳過不重抽；pause／cancel／R恢復。113新＋69流程＋75核心＋34戰鬥＋46角色／成長＋8嚴格編譯＝345項，證據evidence/ability-equip。原GLB／XP／Web保持，Mac／真人待驗；覆蓋舊腰側裝備僅規劃。
+
+## 2026-11-11：精簡HUD
+
+[最終accepted log、JSON及原生圖](evidence/compact-hud/README.md)。HUD21／二段跳原生12／原生UI音樂37／嚴格編譯8，共78項通過，accepted log沒有ERROR／SCRIPT ERROR。初次typed Array清理、舊fixture Space被intro消費及mixer快速退出錯誤保留在initial-attempts，正式結果以accepted為準。Godot4.7.2 Linux Compatibility llvmpipe／Dummy，非人手可讀性／Mac驗收；保留simulation、費用、GLB、音樂transport和歷史圖片。Web未更新。
+
+## 2026-11-11：死亡姿態／群戰屍體貼地
+
+[前後量測、圖及完整log](evidence/grounded-death/README.md)。基線7d3cab2五角色骨盆／身體懸空已重現；正式修正為完整死亡軌跡、穩定死亡clip、已落地屍體按skin頂點貼地及非focus結果落地。新native104/104以獨立renderer bake驗證地面接觸、兩朝向／F2、無資料改寫與生者跳躍；另strict8/8、規則／結果33/33、回合／KO189/189，共334項通過，最終無ERROR／SCRIPT ERROR。Linux Godot4.7.2 Compatibility llvmpipe／Dummy，不是Mac／真人／硬件音訊驗收；Web不更新。
+
+## 2026-11-11：同步 main 至 codex/combat-escalation-next
+
+使用者明確要求也推到codex/combat-escalation-next。以遠端最新91db1f1合併main的ffffd15，保留九核心與Demo定時自動抽領，以及main的黑衣人群戰／頸部領帶修補／過場相容處理，不強推、不改Web。此輪只推指定開發分支；main維持ffffd15。最新Demo自動節奏以ABILITY_CORE_POOL.zh-TW.md為準，覆蓋較早手動Demo契約，一般FIGHT／Street Run仍手動。
+
+合併後144項通過：九核心75、群戰規則35、原生群戰10、原生回合24；無ERROR／SCRIPT ERROR。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy，非使用者本機或真人平衡驗收。證據docs/evidence/branch-sync-combat-escalation。
+
+## 2026-11-11：九核心獎池與 Demo 延時自動抽領（最新）
+
+## 2026-11-11：反彈限指定強化技能／大招
+
+使用者澄清球狀連續反彈只屬特殊攻擊／大招，覆蓋前輪普通重擊／挑空／投技也發射的範圍。一般jab／cross／heavy／finisher／launcher／meteor／air_finisher／air_counter／grab及未強化special不啟動ArenaBox，保留原擊退／既有單次牆彈。四角色大招最後重擊（ZIP連打末段）及RIVET滿蓄、HUSH強化special由move metadata明確opt-in；傷害／消耗不改。
+
+圍場只在反彈效果期間可見，平常不加臨時天花限制。仍有6接觸／180tick／E20受身、衰減、跟鏡與F2。65反彈規則＋25原生結果／鏡頭＋62二段跳＋10重砲＋7Demo＋34戰鬥＋75能力核心共278項通過；原結果頁修復、決勝KO及能力抽取功能保留。[新證據與大招預覽](evidence/ricochet-scope/README.md)。同branch／PR #6來源更新，不發佈Web，真人／本機驗收待辦。
+
+見 [ABILITY_CORE_POOL.zh-TW.md](ABILITY_CORE_POOL.zh-TW.md)。Demo 代幣展示3秒後自動抽，獎品展示3.5秒後自動領取；覆蓋上一輪Demo必須手動的契約，正常模式仍手動。獎池3→9：新增FURY增傷15%、PLATE減傷15%、FLOW命中能量30%、ECO技能耗能-20%、BREACH盾損25%、SIPHON命中回2／整局最多12HP。九種等機率、下一局限定，實際simulation／AI節能門檻／HUD刻度及圖示／輪盤色彩皆接入。263項通過，證據evidence/ability-draw/expanded-pool；原GLB／音訊／XP／公開Web保持，Mac／真人平衡待驗。
+
+## 2026-11-11：main 收入最後一筆遠端更新
+
+## 2026-11-11：Godot4.7.2腳本警告覆核
+
+[完整前後log／重現方式](evidence/godot-warnings/README.md)。官方Linux4.7.2.ed1daf0bf下，啟動前將static_called_on_instance／incompatible_ternary／shadowed_variable_base_class／integer_division設Error，基線ffffd15重現15項，修改後5檔全部通過。另90無視窗規則、189原生回合／KO、85抽獎流程／Tripo模型，共369項通過，最終log無ERROR／SCRIPT ERROR。最初動態warning設定未觸及快取的探查與editor清理警告保留，不列作通過證據。Compatibility llvmpipe／Dummy audio，不等於使用者Mac／音訊裝置測試；未宣稱全專案所有類別警告皆為零。匯入metadata／舊證據已還原，Web未更新。
+
+推送前再次核對遠端，combat-escalation-next已從3389fa9前進至3ea0691，故再合併該提交。包含手動DRAW／CONTINUE、2.05秒入場／2.20秒逐輪抽獎、新音訊及共用bitmap UI；Demo也等待玩家確認，覆蓋下方自動抽領的歷史描述。群戰／黑衣人相容處理保留。更新回合測試以明示Enter確認抽獎，不移除最新手動要求。
+
+最新合併來源再跑109項原生檢查：回合24、模型22、抽獎流程／輸入／節奏63，全部通過，無ERROR／SCRIPT ERROR；證據見evidence/main-integration/latest-final。前一整合477項與初次測試器失敗保留，非宣稱使用者本機／真人驗收。兩次合併保留987d4d2、3389fa9、3ea0691完整歷史；日常取main，Web未更新。
+
+## 2026-11-11：手動抽獎、節奏及共用字體（最新）
+
+見 [ABILITY_DRAW_RHYTHM_UI.zh-TW.md](ABILITY_DRAW_RHYTHM_UI.zh-TW.md)。2.05 秒入場／2.20 秒抽獎，三輪鎖定後靜拍再揭曉；必須新按 DRAW，結果另按 CONTINUE，Demo 也等待玩家，覆蓋舊自動抽領。刪減口號與裝飾、統一黑白桃紅青綠 UI；修正獨立 Button 未繼承遊戲 bitmap Theme。63 流程／輸入／節奏＋22 原模型檢查通過，原生有聲證據在 evidence/ability-draw/rhythm-ui；原模型／音訊保留，Mac／真人待驗，Web 不更新。
+
 # 驗證紀錄與證據範圍
 
 ## 2026-11-11：D3 飛機掠過
@@ -20,9 +64,64 @@
 
 `verify_time_of_day.gd` 11/11（headless），xvfb／llvmpipe 四時段截圖。`verify_combat_polish.gd` 的靜音啟動斷言失敗於未改動基線同樣重現（非本次造成）。其餘既有套件未全數重跑；非 Mac／真人驗收。詳見 [TIME_OF_DAY.zh-TW.md](TIME_OF_DAY.zh-TW.md)。
 
+## 2026-11-11：來源集中整合至 main
+
+使用者要求「把所有的更新都推到最常用的branch」。以 main738c740 為基礎，整合黑衣人分支987d4d2與正式戰鬥／過場／抽能力分支3389fa9，保留雙方提交及來源資產；往後 GitHub Desktop 選 main Fetch／Pull。此節覆蓋下方歷史的「main未更新」狀態；公開Web不更新。
+
+同時處理整合相容性：黑衣人索引4支援進場名稱／顏色、通用步行勝者離場及既有HUSH離場音軌；群戰保留多人跟鏡與短結算，不套雙人進場／決勝KO／回合抽能力。四英雄正式回合演出、有限生命Demo及抽能力保持；合併空連預算helper與ArenaBox排除，保留3位數群戰倒數。
+
+合併來源已跑477項最終檢查：146無視窗規則、177原生UI／結果／回合／勝者／材質、154群戰／黑衣人／Tripo抽能力。最終無ERROR／SCRIPT ERROR；Linux Godot4.6.3 Compatibility／llvmpipe／Dummy，非使用者Mac或真人手感驗收。最初round-flow 19/23的測試器在單一引擎影格內跑完整Demo，抽能力防重複確認阻止第二次動作；改為定期讓出真引擎影格後24/24。初次失敗與最終結果均保留在 [整合證據](evidence/main-integration/README.md)。
+
+
+## 2026-11-11：群戰與修補版模型
+
+[完整證據](evidence/black-suit-squad/README.md)：35群戰規則＋9原生群戰＋32修補版單敵＋46角色資源＋45正式戰鬥＋62二段跳＋25防禦＋37原生UI＋6材質，共297項通過。確認同場獨立血量、多目標真命中每人一次、一個攻勢名額、全部倒下才勝利及全模式退出清理；三階站立診斷有真攻擊，最短受擊間距123／92／68 tick。修補前後原生正／側／後近鏡、97頸部重權重與4個封閉補片（無boundary edge）、1208面／65關節、權重誤差5.22e-8、原始SHA不變。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy音訊，最終無ERROR／SCRIPT ERROR；VSync警告保留，Mac／真人手感／實聽待驗收。
+
+## 2026-11-11：黑衣人接入
+
+[報告及原生畫面](evidence/black-suit/README.md)：32敵人原生整合＋46四角技能＋62二段跳＋25防禦＋37原生UI＋6材質生命週期，共208項通過。原GLB hash比對、有限值／權重／joint與vertex索引／貼圖解碼另見references/characters/black-suit/inspection.json。實際指標選P2、真simulation命中與招架、30秒自由AI、三視窗、保存／Street Run還原與角色場景根transform均覆核。Godot4.6.3 Compatibility／Mesa llvmpipe／Dummy audio；最終native log無ERROR／SCRIPT ERROR，保留不支援VSync警告。初版測試器step呼叫錯誤、Dummy material診斷及早期退出警告保留在證據說明，不算通過；已改native-only及退出等待。不是Mac／硬件效能／真人平衡或喇叭實聽驗收。公開Web未更新。
+
 ## 2026-11-11：main整合核對
 
 合併來源4177ef9至main54a520d，無衝突。以Git tree object ID核對godot及tools，兩者與4177ef9完全相同；原main的docs/JSR-BRC-style-reference.md亦與來源相同並保留。只更改整合紀錄，沒有重跑引擎測試或聲稱修正上輪四個舊測試失敗。既有二段跳／正式戰鬥驗證詳見docs/evidence/double-jump/README.md。公開Web分支沒有更新。
+
+## 2026-11-11：上傳Tripo角色／機身
+
+最終Godot4.6.3 Compatibility／llvmpipe原生模型22/22＋既有流程52/52共74項，最終log無ERROR／SCRIPT ERROR／SHADER ERROR及退出洩漏。原檔逐byte相同、原65骨／skin／albedo實際載入；骨骼鏈、CC0重定向、有限姿態、手腕接觸、代幣跟手、渲染輪盤可見性及原有回合／mute／pause／F2／清理皆驗。證據evidence/ability-draw/tripo-models含原檔預覽、完整有聲Movie Writer、PCM及log。
+
+來源窗口封面使後移輪盤消失，已用衍生材質開窗並加真render pixel檢查；早期型別parse與outline varying宣告失敗保留。Ogg intro／arrival快速重開退出滯留在顯式stream模式仍重現，最終用原OGG解碼短PCM cue重跑乾淨；保留原OGG／長BGM，不宣稱修好引擎解碼器。錄像是1:1邊界fixture、640×360固定30fps再nearest放大，非自然完整match／使用者Mac／真人實聽或硬件FPS。裝備段未實作、Web未更新。
+
+## 2026-11-11：三視圖參考圖交付
+
+已視覺檢視三份ImageGen三視圖：NPC全身A-pose／正側背、機器完整組裝／正拉桿側背、靜態機殼／活動件留空版；核對主色、朝向、拉桿左右、機殼基準及用途區分，PNG尺寸及SHA-256入references/ability-draw/tripo/manifest.json。這是建模設計參考而非CAD精確投影或Tripo服務驗證；背面為補完設計，不能保證生成後分件／拓撲。此輪只增加圖片／prompt／文件，runtime未改，未重跑引擎測試或發佈Web。
+
+## 2026-11-11：抽獎進場修正與裝備分鏡
+
+最終Godot4.6.3原生52/52，log無ERROR／SCRIPT ERROR或退出洩漏；evidence/ability-draw/entry-v2保存空場首幀、鏡頭外入場、煞停、有聲Movie Writer、PCM及實際街景Physics前後probe。原入口被碰撞判阻塞而退回原地已重現，修正後驗真非零位移、兩演員mesh corners初始均出框、移動／輪轉、雙路受阻遮幕，以及原有獎勵／跨場景／暫停／F2／退出。
+
+首跑52項後仍有4個資源未釋放；verbose是arrival／intro的Ogg playback，補齊兩owner的clear顯式停止及exit解除stream後最終重跑乾淨，初次紀錄保留。不把數字旗標當作初次無錯證明。裝備六鏡為ImageGen概念與規劃，未接runtime；Tripo模型尚待使用者提供。未發Web，Mac／真人裝置與目標GPU仍待驗收。
+
+## 2026-11-11：THE DEALER 3D抽能力
+
+Godot4.6.3 Linux Compatibility／Mesa llvmpipe原生45/45新檢查，加既有headless戰鬥34/34及結果15/15，共94項。最終native log無ERROR／SCRIPT ERROR；VSync warning保留。明示1:1／Street Run邊界fixture測真流程、native pressed callbacks、seed／skip／一次領取、實際移速／回盾／能量／重置、Demo無XP、另一stage原點／方向、障礙備援、mute／設定／暫停／F2與完整還原。真桌面滑鼠／鍵盤到獎品頁亦已觀察。
+
+有聲Movie Writer 172幀／30fps，原生640×360再nearest放大1280×720；PCM非靜音與擷取時序見[evidence/ability-draw](evidence/ability-draw/README.md)。初次headless材質null與測試clock設定、原生profile collision mask及F2繼承失敗已保留及說明；不能把33/33旗標視為該次無錯。不是Mac／真人裝置實聽、自然完整match或目標GPU效能；模型與原片仍有差異。未發Web。
+
+## 2026-11-11：結果頁修復、決勝KO與四面反彈
+
+修正RESULT空白：先前在CityBreaker仍active時提前設finish_menu_open，rebuild把controls隱藏；之後director清場但沒有再建選單。本輪在演出釋放後才建立結果操作，並對空白狀態自我恢復。原生測試驗真visible buttons、視窗內位置及pressed callbacks，涵蓋自動播完／暫停／F2／跳過、下一回合與重賽。
+
+依最新指示完整KO只在兩勝制決勝回合；之前回合短結算。Street Run只在最後一站或本次Run敗退結束播完整KO；超時不偽造零生命KO。Demo仍沿真勝負loop，每場只有決勝KO，之後接下一場開場。
+
+正式Rush／Demo／Street Run加入四面盒狀反彈：x±8.2、腳部y0–5.6（8m頂框），重擊／挑空／終結擊／符合推力的技能真命中才發射，普通輕拳不觸發。法線反射耗能、無額外碰牆傷害；每次飛行最多6個接觸／180物理tick，耗盡自動恢復＋18tick保護，不被新命中刷新預算，落地後才重置。接觸後18tick內可E花20能量受身；AI有有界反應延遲。暫停／hitstop不消耗飛行時間；F2保持物理，只減演出。
+
+真3D透明線框圍場、每面重用一個撞擊格、既有SFX／揚塵／速度尾跡／軀幹中心翻滾。高速飛行鏡頭以雙人body bounds即時退開，避開HUD，反彈字卡移到底部。513項focused checks全數通過；9秒四角合法挑空反彈預覽及約56.7秒自然三回合／下一場有聲錄像。詳見[evidence/arena-box](evidence/arena-box/README.md)。同codex/combat-escalation-next／PR #6推來源，不發佈Web；Mac／真人平衡、鏡頭和混音待驗收。
+
+## 2026-11-11：完整回合演出、AI Demo循環與煙霧
+
+正式FIGHT／Street Run加入2.8秒同場3D開場：街景、P1／P2角色近鏡、ROUND，再交回原倒數及對戰。Enter／Space跳過，Esc暫停，練習保持即玩。AI Demo改正常有限生命、不回血，真KO後播完整5秒破壞＋3.2秒勝者魚眼與離場，之後自動下一回合；兩勝完場也繼續loop，沿用選角、不發XP。覆蓋舊Demo endless／無KO契約，正常FIGHT結果仍由玩家確認。
+
+場景加入有界屋頂／街邊煙、命中揚塵及64團KO殘煙；重擊後可短暫魚眼近鏡，避讓Neon大招與KO，保持雙人及HUD留白。新增原創2.8秒開場音軌，沿原SFX／mute／pause及BGM duck。26回合／選角／清理＋86勝者＋20FX＋165KO＋37UI＋11Demo輸入＋7Demo規則＋17結果共369項通過；40.4秒連續兩個真KO有聲錄像。詳見[本輪證據](evidence/round-flow/README.md)。來源同codex/combat-escalation-next／PR #6，公開Web不更新；Mac／硬件效能與真人強度仍待驗收。
 
 ## 2026-11-10：二段跳與落地預輸入
 
@@ -546,3 +645,23 @@ Godot4.7.2 Linux Compatibility：37原生操作、10頁面／3D剪影／popup／
 ## 2026-11-10 Neon Facets規劃分支
 
 完成六檔下載／ffprobe／SHA及完整時間軸2fps接觸圖檢視，總長80.200s；4張inline圖於對話檢視。分支基線885f1c1，godot runtime差異為空。僅驗證文件鏈接／JSON／來源雜湊與分支隔離；未跑新的shader／玩法／性能測試，也不拿基線通過結果當新風格證據。詳見 [計劃](NEON_FACETS_PLAN.zh-TW.md)。Web與穩定分支不變。
+
+
+## 2026-11-11：CITY BREAKER 原生 KO
+
+164新過場、17結果、37原生UI／持續音樂、62二段跳、45正式玩法、30SURGE通過；四角×雙方、真special傷害KO、逐鏡有限相機、資料不變、靜態batch／飛機／模型清理、輸入跳過、暫停、F2、重開與超時不誤觸。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy audio，最終過場／UI log無ERROR或SCRIPT ERROR，最終過場無ObjectDB警告。舊Rhythm23/29六失敗在未改4177ef9隔離worktree重現相同結果；不稱全套零失敗。畫面與150幀15fps無聲影片見evidence/city-breaker，來源／切點／差異見CITY_BREAKER.zh-TW.md。初期headless換模null material及早期測試修正有界線紀錄；未將Dummy或renderer載入當作Mac、實聽或效能證明。
+
+
+## 2026-11-11：KO聲畫FX
+
+15新增FX／實際PCM／音量／mute／pause／清理，164KO、17結果、37原生UI／音樂及6原混音回歸通過。Godot4.6.3 Linux Compatibility／llvmpipe／Dummy音訊；最終log無ERROR／SCRIPT ERROR／資源洩漏。Movie Writer同錄640×360／30fps與立體聲48kHz，裁準備1幀後10秒，影片AAC解碼峰值0.467／RMS0.040／零削波，沒有事後配音。這不是Mac硬件、即時30fps效能或真人實聽證明；未重跑整個歷史suite，舊Rhythm六個基線失敗仍保留前輪紀錄。過早結束的result測試曾有音訊資源未drain，測試改為先停止player／等待混音後退出，最終17/17無警告。詳見evidence/city-breaker-fx。
+
+
+## 2026-11-11：五秒快節奏KO
+
+20項FX／實際PCM／節奏、165四角雙方KO生命週期、17結果檢查通過。驗證音軌及過場同為5秒、pitch_scale1、時間映射不倒退且正反一致、空爆局部慢拍、KO收尾>=0.9秒、4.983秒仍活動及5秒截止。最終原生log無ERROR／SCRIPT ERROR／洩漏；5秒Movie Writer聲畫及AAC解碼音訊見evidence/city-breaker-fast。Godot4.6.3／llvmpipe／Dummy，固定30fps匯出不代表目標Mac即時效能；未重跑整份歷史suite。
+
+
+## 2026-11-11：勝者魚眼與四角色離場
+
+86新檢查：四角×雙方、真模型／頭部構圖／不同骨架姿態、正確exit音軌、pause／resume／skip、實際出框、資料不變、near／fisheye／音訊還原、F2／重開／標題與自然結算。20FX＋165KO＋17結果回歸通過，最終log無ERROR／SCRIPT ERROR／洩漏。四套3.2秒原生Movie Writer聲畫與8.2秒完整KO流程、PCM量測見evidence/victory-exits。原5秒聲軌與HEAD版PCM解碼比對相同，未改基段音高。Godot4.6.3／llvmpipe／Dummy；不是Mac、即時GPU效能或真人實聽驗收。早期近鏡曾發現RIVET裁臉與LOOP手部遮擋，已按真head anchor與姿態改位，最終四角實際擷取並檢視。歷史suite未全重跑，舊Rhythm基線失敗仍保留。

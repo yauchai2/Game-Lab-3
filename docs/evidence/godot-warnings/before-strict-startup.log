@@ -1,0 +1,67 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: The function "fresh()" is a static function but was called from an instance. Instead, it should be directly called from the type: "res://scripts/combat/last_service/rules.gd.fresh()". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372010397104695.gd:106)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+SCRIPT ERROR: Parse Error: The function "perk()" is a static function but was called from an instance. Instead, it should be directly called from the type: "res://scripts/combat/last_service/rules.gd.perk()". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372010397104695.gd:642)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+STRICT_WARNING res://scripts/combat/fight_simulation.gd false
+SCRIPT ERROR: Parse Error: Values of the ternary operator are not mutually compatible. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372007477869109.gd:33)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+SCRIPT ERROR: Parse Error: Values of the ternary operator are not mutually compatible. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372007477869109.gd:62)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+STRICT_WARNING res://scripts/combat/cinematic/round_theatre.gd false
+SCRIPT ERROR: Parse Error: The local variable "transform" is shadowing an already-declared property in the base class "Node3D". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372006706117171.gd:288)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+SCRIPT ERROR: Parse Error: The local variable "transform" is shadowing an already-declared property in the base class "Node3D". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372006706117171.gd:307)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+SCRIPT ERROR: Parse Error: The local variable "transform" is shadowing an already-declared property in the base class "Node3D". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372006706117171.gd:332)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+SCRIPT ERROR: Parse Error: The local variable "transform" is shadowing an already-declared property in the base class "Node3D". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372006706117171.gd:413)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+SCRIPT ERROR: Parse Error: The local variable "transform" is shadowing an already-declared property in the base class "Node3D". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372006706117171.gd:423)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+SCRIPT ERROR: Parse Error: Integer division. Decimal part will be discarded. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372006706117171.gd:439)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+SCRIPT ERROR: Parse Error: The local variable "scale" is shadowing an already-declared property in the base class "Node3D". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372006706117171.gd:637)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+STRICT_WARNING res://scripts/combat/cinematic/city_breaker.gd false
+SCRIPT ERROR: Parse Error: The local variable "global_basis" is shadowing an already-declared property in the base class "Node3D". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372005967919663.gd:79)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+STRICT_WARNING res://scripts/combat/ability_draw/dealer_rig.gd false
+SCRIPT ERROR: Parse Error: Integer division. Decimal part will be discarded. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372004659296809.gd:53)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+SCRIPT ERROR: Parse Error: Values of the ternary operator are not mutually compatible. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372004659296809.gd:163)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+SCRIPT ERROR: Parse Error: Values of the ternary operator are not mutually compatible. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372004659296809.gd:214)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:17)
+STRICT_WARNING res://scripts/combat/cinematic/ability_draw.gd false

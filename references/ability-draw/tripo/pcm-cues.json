@@ -1,0 +1,59 @@
+{
+  "scope": "Decoded copies of already admitted original short cues; no new music or composition changes. Original OGG files retained.",
+  "files": [
+    {
+      "source": "godot/audio/ability_draw/arrival.ogg",
+      "source_sha256": "57687e89797e2df1cd5ad5617c937f4c6c0466fe699f79a30fd32cb9dd350991",
+      "pcm": "godot/audio/ability_draw/arrival.wav",
+      "pcm_sha256": "cce420e7e5820f5947e350b5202138a665afbc287724611c77e6160df0301d15",
+      "seconds": 1.95,
+      "channels": 2,
+      "rate": 48000
+    },
+    {
+      "source": "godot/audio/ability_draw/coin.ogg",
+      "source_sha256": "65f39eebd85dc208554ae23e0ec0357c99e2bcb7f7371787318065cb4ebb9e3c",
+      "pcm": "godot/audio/ability_draw/coin.wav",
+      "pcm_sha256": "ca3c56ffbc9bd35a7fd37603360d1a2bc421d9063f8a73695cc16f7636ffdd6a",
+      "seconds": 0.3973333333333333,
+      "channels": 2,
+      "rate": 48000
+    },
+    {
+      "source": "godot/audio/ability_draw/confirm.ogg",
+      "source_sha256": "b87d9910090b917de29588343a3751c4908c95be6c211a2b0f29fa037dc0fe5c",
+      "pcm": "godot/audio/ability_draw/confirm.wav",
+      "pcm_sha256": "124498a0baceef9f73b3c1eab3c24937a2c821991d77dcfbf418f8ae6967028e",
+      "seconds": 0.62,
+      "channels": 2,
+      "rate": 48000
+    },
+    {
+      "source": "godot/audio/ability_draw/reveal.ogg",
+      "source_sha256": "028d04159b632a69c03197508859570f42697358099cf2bf38fbc411bba39c2c",
+      "pcm": "godot/audio/ability_draw/reveal.wav",
+      "pcm_sha256": "9d7cd4ef17bf3ae814b1513cd08635c222d1d5cc71eeeeb96162ba636a4b057e",
+      "seconds": 1.85,
+      "channels": 2,
+      "rate": 48000
+    },
+    {
+      "source": "godot/audio/ability_draw/spin.ogg",
+      "source_sha256": "06d64bc3b4d1c3ce4b849c6b3c81f57b411b82c0fd2a8dafc764c82b7e1ea7a9",
+      "pcm": "godot/audio/ability_draw/spin.wav",
+      "pcm_sha256": "4296b5409e757234905e41eea1a4e0064512d47b81a4074151a44362993c4019",
+      "seconds": 1.3,
+      "channels": 2,
+      "rate": 48000
+    },
+    {
+      "source": "godot/audio/city_breaker/intro.ogg",
+      "source_sha256": "93e73718a134e99e68354ae98c997c02ea51bef6640f0f758b2b09a3f768b434",
+      "pcm": "godot/audio/city_breaker/intro.wav",
+      "pcm_sha256": "62a68f66be274d2e2e0859f97573c5bfc7099be156d834b0b35e6c22a889157f",
+      "seconds": 2.8,
+      "channels": 2,
+      "rate": 48000
+    }
+  ]
+}

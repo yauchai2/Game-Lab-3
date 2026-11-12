@@ -1,0 +1,9 @@
+{
+  "channels": 2,
+  "rate": 48000,
+  "seconds": 5.738666666666667,
+  "peak": 0.32926201820373535,
+  "rms": 0.0325838178396225,
+  "non_silent": true,
+  "scope": "Decoded from actual Godot Movie Writer mix with the two uploaded models; existing BGM muted for preview, original short cues as PCM."
+}

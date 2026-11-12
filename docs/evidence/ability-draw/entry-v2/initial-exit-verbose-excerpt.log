@@ -1,0 +1,45 @@
+ABILITY_DRAW alternate entry side is used without negative scale true
+ABILITY_DRAW actors remain excluded at alternate stage true
+ABILITY_DRAW clear restores saved camera exactly true
+ABILITY_DRAW clear restores background actors and music duck true
+ABILITY_DRAW clear is idempotent true
+ABILITY_DRAW obstructed main lane chooses swept-volume backup true
+ABILITY_DRAW both blocked lanes choose explicit animated compact reveal true
+ABILITY_DRAW compact reveal never exposes a newly spawned cast true
+ABILITY_DRAW compact reveal releases cast after the covering wipe true
+ABILITY_DRAW draw respects explicit mute true
+ABILITY_DRAW draw respects zero effects volume true
+ABILITY_DRAW effects volume restores without restarting timeline true
+ABILITY_DRAW settings pauses draw with visible controls true
+ABILITY_DRAW live F2 disables lens without losing draw true
+ABILITY_DRAW_CHECKS 52/52
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)
+ERROR: 4 resources still in use at exit.
+   at: clear (core/io/resource.cpp:805)
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Accessibility: window 0 adapter destroyed.
+Leaked instance: OggPacketSequencePlayback:9223372179326897284 - Reference count: 1
+Leaked instance: AudioStreamOggVorbis:9223372137702624461 - Reference count: 1
+Leaked instance: OggPacketSequence:9223372137719401678 - Reference count: 3
+Leaked instance: OggPacketSequence:9223372149413121658 - Reference count: 3
+Leaked instance: AudioStreamOggVorbis:9223372149429898875 - Reference count: 1
+Leaked instance: OggPacketSequence:9223372161626935586 - Reference count: 5
+Leaked instance: AudioStreamOggVorbis:9223372161643712803 - Reference count: 2
+Leaked instance: OggPacketSequencePlayback:9223372182799782261 - Reference count: 1
+Leaked instance: AudioStreamPlaybackOggVorbis:9223372182783005096 - Reference count: 1
+Leaked instance: OggPacketSequencePlayback:9223372182346797522 - Reference count: 1
+Leaked instance: AudioStreamPlaybackOggVorbis:9223372182330020316 - Reference count: 1
+Leaked instance: AudioStreamPlaybackOggVorbis:9223372182699119069 - Reference count: 1
+Leaked instance: OggPacketSequencePlayback:9223372182715896288 - Reference count: 1
+Leaked instance: AudioStreamPlaybackOggVorbis:9223372179310121494 - Reference count: 1
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Resource still in use: res://audio/city_breaker/intro.ogg::OggPacketSequence_2q8g0 (OggPacketSequence)
+Resource still in use: res://audio/city_breaker/intro.ogg (AudioStreamOggVorbis)
+Resource still in use: res://audio/ability_draw/arrival.ogg::OggPacketSequence_viyc7 (OggPacketSequence)
+Resource still in use: res://audio/ability_draw/arrival.ogg (AudioStreamOggVorbis)
+Orphan StringName: Afterhours Music (static: 0, total: 2)
+Orphan StringName: Afterhours SFX (static: 0, total: 4)
+StringName: 2 unclaimed string names at exit.

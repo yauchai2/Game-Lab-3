@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-11",
+  "origin": "ImageGen original technical reference sheets derived from user-approved earliest nine-panel storyboard; shell sheet derived from assembled-machine sheet",
+  "status": "visual_design_reference_not_exact_CAD_projection_not_Tripo_output",
+  "files": [
+    {
+      "path": "dealer-three-view.png",
+      "pixels": [
+        1672,
+        941
+      ],
+      "sha256": "75f3e9ef0df51d868891067f65b1caa9f072c83a4ff198466c36b7edc8b61a10"
+    },
+    {
+      "path": "machine-assembled-three-view.png",
+      "pixels": [
+        1774,
+        887
+      ],
+      "sha256": "74857ce7afd24172ef3fc6c34b61a327a6b56c140674b724149ab7583abb3d79"
+    },
+    {
+      "path": "machine-shell-three-view.png",
+      "pixels": [
+        1774,
+        887
+      ],
+      "sha256": "b39d1d5c01ac439919a3696389a6a5fd466d6545e262322fd956fecb8be060c4"
+    }
+  ]
+}

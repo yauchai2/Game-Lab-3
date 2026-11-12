@@ -1,0 +1,24 @@
+{
+  "origin": "Original programmatic polygon icon art and deterministic synthesis; no external recordings",
+  "seed": 20261111,
+  "rate": 48000,
+  "source_video_sha256": "58a1bec65293cb98fe0b1c891eef5518a133fca4a899886b578858477e8b4e79",
+  "source_duration_seconds": 4.351969,
+  "source_review": "Full-duration 4fps sampling; cut points approximated, not source-PTS locked",
+  "files": {
+    "godot/assets/ability_draw/charge.png": "67bd9f1bc2829663b1b071d4b4a792f1c502602f8b461e589792047990364d0c",
+    "godot/assets/ability_draw/guard.png": "a6f8d93467b2dae6b4dda025df4eb1645409b7a322cdb1a5e73ff3b7763731db",
+    "godot/assets/ability_draw/reels.png": "b7edb0202842fa6975f18a09276e6e71db32c066d62b8fa51523b95f201d422b",
+    "godot/assets/ability_draw/speed.png": "70c069e210d4e2e9a44a909a7b4df82ae7bd66cc58798edc903190f67fc1b286",
+    "godot/audio/ability_draw/arrival.ogg": "57687e89797e2df1cd5ad5617c937f4c6c0466fe699f79a30fd32cb9dd350991",
+    "godot/audio/ability_draw/coin.ogg": "65f39eebd85dc208554ae23e0ec0357c99e2bcb7f7371787318065cb4ebb9e3c",
+    "godot/audio/ability_draw/confirm.ogg": "b87d9910090b917de29588343a3751c4908c95be6c211a2b0f29fa037dc0fe5c",
+    "godot/audio/ability_draw/reveal.ogg": "028d04159b632a69c03197508859570f42697358099cf2bf38fbc411bba39c2c",
+    "godot/audio/ability_draw/spin.ogg": "06d64bc3b4d1c3ce4b849c6b3c81f57b411b82c0fd2a8dafc764c82b7e1ea7a9"
+  },
+  "equip_storyboard": {
+    "origin": "ImageGen concept sheet using existing capsule screenshot as design reference",
+    "status": "planning_only_not_runtime",
+    "sha256": "7f3bd47665203f84b9949539ce791d5b1c590c792d5b80dba161892b748b9f7e"
+  }
+}

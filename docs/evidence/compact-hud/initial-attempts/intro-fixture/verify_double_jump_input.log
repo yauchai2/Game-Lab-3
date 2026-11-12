@@ -1,0 +1,35 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+DOUBLE_INPUT formal FIGHT uses shared air motion true
+DOUBLE_INPUT first press starts a ground jump false
+ERROR: first press starts a ground jump
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_double_jump_input.gd:8)
+       [1] run (res://tools/verify_double_jump_input.gd:33)
+       [2] key (res://tools/verify_double_jump_input.gd:13)
+DOUBLE_INPUT OS key repeat cannot spend double jump true
+DOUBLE_INPUT released and repressed Space spends one jump false
+ERROR: released and repressed Space spends one jump
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_double_jump_input.gd:8)
+       [1] run (res://tools/verify_double_jump_input.gd:37)
+       [2] key (res://tools/verify_double_jump_input.gd:13)
+DOUBLE_INPUT second jump has readable local feedback false
+ERROR: second jump has readable local feedback
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_double_jump_input.gd:8)
+       [1] run (res://tools/verify_double_jump_input.gd:38)
+       [2] key (res://tools/verify_double_jump_input.gd:13)
+DOUBLE_INPUT existing pooled chase voice provides audio true
+DOUBLE_INPUT pause freezes double-jump budgets true
+DOUBLE_INPUT paused Space cannot queue a new jump true
+DOUBLE_INPUT both fighters fit the double-jump camera true
+DOUBLE_INPUT reduced effects retains double jump true
+DOUBLE_INPUT restart clears effects and used jump true
+DOUBLE_INPUT_CHECKS 8/11

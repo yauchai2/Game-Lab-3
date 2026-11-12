@@ -1,0 +1,13 @@
+{
+  "source": "Original procedural synthesis, no external samples",
+  "duration": 3.2,
+  "characters": [
+    "zip",
+    "rivet",
+    "hush",
+    "loop"
+  ],
+  "sample_rate": 48000,
+  "channels": 2,
+  "generator": "tools/build_city_breaker_audio.py"
+}

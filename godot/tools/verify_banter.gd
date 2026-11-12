@@ -55,14 +55,14 @@ func run() -> void:
     scene.character_choices=[0,1]
     scene.language="en"
     scene.start_match(false)
-    check("standard fight shows rival taunt",scene.hud.notice.begins_with("RIVET: ") and scene.hud.notice_time>1.0)
+    check("standard fight sets the intro taunt for the rival",scene.intro_line.begins_with("RIVET: "))
     scene.character_choices=[2,2]
     scene.start_match(false)
-    check("mirror match shows mirror taunt",scene.hud.notice.begins_with("HUSH: "))
+    check("mirror match sets mirror taunt",scene.intro_line.begins_with("HUSH: "))
     scene.character_choices=[0,1]
     scene.hud.notice=""
     scene.start_match(true)
-    check("training has no banter",scene.hud.notice=="" and scene.result_line=="")
+    check("training has no banter",scene.intro_line=="" and scene.result_line=="")
     scene.start_match(false)
     scene.sim.phase="match_over";scene.sim.winner=0
     scene._physics_process(1.0/60)

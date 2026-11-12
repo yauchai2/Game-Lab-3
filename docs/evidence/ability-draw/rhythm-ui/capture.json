@@ -1,0 +1,22 @@
+{
+  "reward": {
+    "boundary": "match:1/round2",
+    "color": "(0.2667, 1.0, 0.8667, 1.0)",
+    "detail": "MOVE +20% / DASH +10%",
+    "id": "speed",
+    "title": "SPEED CORE"
+  },
+  "scope": "Explicit second-round 1-1 boundary fixture. Actual game scene, 3D NPC, machine, shader FX and original sound. Not a natural-match recording or target hardware benchmark.",
+  "seconds": 7.73333333333333,
+  "shots": {
+    "00-empty": 0.0333333333333333,
+    "01-entry": 0.6,
+    "02-landing": 1.13333333333333,
+    "03-slap": 1.43333333333333,
+    "04-offer": 2.43333333333333,
+    "05-reels": 4.1,
+    "06-lock": 5.43333333333333,
+    "07-jackpot": 5.83333333333333,
+    "08-core": 6.6
+  }
+}

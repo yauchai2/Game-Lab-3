@@ -1,0 +1,32 @@
+{
+  "source": "Original procedural synthesis; no external samples",
+  "generator": "tools/build_city_breaker_audio.py",
+  "seed": 20261111,
+  "duration_seconds": 5.0,
+  "sample_rate": 48000,
+  "channels": 2,
+  "peak_dbfs_before_vorbis": -2,
+  "impact_seconds": [
+    0.016,
+    0.32333333333333325,
+    0.5860000000000001,
+    0.8875,
+    1.2092307692307693,
+    1.5925,
+    3.1938461538461542,
+    3.611025641025641,
+    4.08
+  ],
+  "authored_impact_seconds": [
+    0.02,
+    0.82,
+    1.72,
+    2.82,
+    3.18,
+    3.65,
+    6.4,
+    7.166666666666667,
+    7.875
+  ],
+  "timing_profile": "godot/audio/city_breaker/timing.json"
+}

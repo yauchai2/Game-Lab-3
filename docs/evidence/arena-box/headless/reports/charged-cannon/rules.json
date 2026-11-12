@@ -1,0 +1,73 @@
+{
+  "checks": [
+    {
+      "name": "insufficient energy rejects the cannon with the correct price",
+      "passed": true
+    },
+    {
+      "name": "cannon spends exactly 75 once and has a long real startup",
+      "passed": true
+    },
+    {
+      "name": "cannon hits once through its active frames",
+      "passed": true
+    },
+    {
+      "name": "a missed cannon never damages or refunds energy",
+      "passed": true
+    },
+    {
+      "name": "charge armor still takes real damage",
+      "passed": true
+    },
+    {
+      "name": "throw really interrupts the paid charge",
+      "passed": true
+    },
+    {
+      "name": "manual cannon is not swallowed by held J",
+      "passed": true
+    },
+    {
+      "name": "ordinary L keeps its 50-energy immediate command",
+      "passed": true
+    },
+    {
+      "name": "live agents naturally use the cannon",
+      "passed": false
+    },
+    {
+      "name": "new cannon does not end or reset the live duel",
+      "passed": false
+    }
+  ],
+  "events": {
+    "air_counter_choice": 1,
+    "air_counter_end": 1,
+    "air_counter_release": 1,
+    "air_counter_start": 1,
+    "air_counter_windup": 1,
+    "air_land": 10,
+    "air_parry_attempt": 2,
+    "arena_bounce": 7,
+    "chase_arrive": 3,
+    "dash": 4,
+    "fast_fall": 6,
+    "fight": 1,
+    "hit/air_counter": 1,
+    "hit/air_jab": 3,
+    "hit/air_kick": 2,
+    "hit/cross": 1,
+    "hit/launcher": 7,
+    "hit/special": 1,
+    "homing_chase": 3,
+    "ko": 1,
+    "swing": 20,
+    "wall_tech": 5
+  },
+  "real_offense_or_defense_contacts": [
+    9,
+    7
+  ],
+  "scope": "Actual legal command and simulation contacts; no fake hits."
+}

@@ -1,8 +1,10 @@
 extends Node3D
+const CoreProp=preload("res://scripts/combat/ability_draw/core_prop.gd")
 const Roster = preload("res://scripts/combat/fighter_roster.gd")
 const Toon = preload("res://shaders/fighter_toon.gdshader")
 const Outline = preload("res://shaders/fighter_outline.gdshader")
 static var retired_materials:Array[ShaderMaterial]=[]
+var core_module:Node3D
 var model: Node3D
 var skeleton: Skeleton3D
 var materials: Array[ShaderMaterial] = []
@@ -12,11 +14,15 @@ var character_index := 0
 var model_scale := 2.1
 var oversized_bones: Array[int]=[]
 var elapsed := 0.0
+var death_ground_offset:=0.0
+var death_ground_cached:=false
+var death_surfaces:Array=[]
 var motions := preload("res://scripts/combat/combat_motions.gd").new()
 
-func setup(color: Color, selection := 0) -> void:
+func setup(color: Color, selection := 0, model_path_override:="") -> void:
+    if core_module!=null:core_module.queue_free();core_module=null
     team = color
-    character_index=clampi(selection,0,Roster.ENTRIES.size()-1)
+    character_index=clampi(selection,0,Roster.BLACK_SUIT_INDEX)
     var entry:Dictionary=Roster.entry(character_index)
     if is_instance_valid(model):
         # Compatibility may still process dependencies for an outgoing instance
@@ -33,8 +39,11 @@ func setup(color: Color, selection := 0) -> void:
     oversized_bones.clear()
     motions=preload("res://scripts/combat/combat_motions.gd").new()
     elapsed=0.0
+    death_ground_cached=false
+    death_ground_offset=0.0
+    death_surfaces.clear()
     model_scale=entry.scale
-    model = (load(entry.path) as PackedScene).instantiate()
+    model = (load(entry.path if model_path_override.is_empty() else model_path_override) as PackedScene).instantiate()
     model.scale = Vector3.ONE * model_scale
     add_child(model)
     for mesh in model.find_children("*", "MeshInstance3D", true, false):
@@ -43,21 +52,35 @@ func setup(color: Color, selection := 0) -> void:
             var mat := ShaderMaterial.new()
             mat.shader = preload("res://shaders/neon/neon_actor.gdshader") if neon_enabled else Toon
             mat.set_shader_parameter("tint", Color.WHITE.lerp(team, 0.50))
+            if character_index==Roster.BLACK_SUIT_INDEX:mat.set_shader_parameter("tint",original.albedo_color if original is BaseMaterial3D else Color.WHITE)
             if original is BaseMaterial3D and original.albedo_texture:
                 mat.set_shader_parameter("use_texture", true)
                 mat.set_shader_parameter("base_texture", original.albedo_texture)
             if neon_enabled:
-                mat.set_shader_parameter("tint",Color.WHITE)
+                mat.set_shader_parameter("tint",original.albedo_color if character_index==Roster.BLACK_SUIT_INDEX and original is BaseMaterial3D else Color.WHITE)
                 mat.set_shader_parameter("neon_accent",preload("res://scripts/combat/neon/neon_style_profile.tres").accent(character_index))
             var outline := ShaderMaterial.new()
             outline.shader = Outline
-            mat.next_pass = outline
+            outline.set_shader_parameter("repaired_suit_neck",character_index==Roster.BLACK_SUIT_INDEX)
+            if character_index!=Roster.BLACK_SUIT_INDEX or not str(mesh.name).begins_with("Repair") and str(mesh.name) not in ["NeckBridge","CleanShirtInsert","TieKnot","TieBlade"]:
+                mat.next_pass = outline
             mesh.set_surface_override_material(surface, mat)
             materials.append(mat)
     var list := model.find_children("*", "Skeleton3D", true, false)
     if not list.is_empty():
         skeleton = list[0]
         motions.setup(skeleton,model)
+        for mesh in model.find_children("*","MeshInstance3D",true,false):
+            if mesh.skin==null:continue
+            var binds:Array=[]
+            for index in mesh.skin.get_bind_count():
+                var bone:int=mesh.skin.get_bind_bone(index)
+                if bone<0:bone=skeleton.find_bone(mesh.skin.get_bind_name(index))
+                binds.append({"bone":bone,"pose":mesh.skin.get_bind_pose(index)})
+            for surface in mesh.mesh.get_surface_count():
+                var arrays:Array=mesh.mesh.surface_get_arrays(surface)
+                if arrays[Mesh.ARRAY_BONES]==null or arrays[Mesh.ARRAY_WEIGHTS]==null:continue
+                death_surfaces.append({"vertices":arrays[Mesh.ARRAY_VERTEX],"bones":arrays[Mesh.ARRAY_BONES],"weights":arrays[Mesh.ARRAY_WEIGHTS],"binds":binds})
         if character_index==3:_add_signal_baton()
 
 static func _release_retired_materials() -> void:
@@ -109,13 +132,19 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         if f.health<=0:model.rotation.z=sin(pose_time*PI/.64)*.55
         stretch*=Vector3(1.18,.92,1.18)
     else:model.rotation.z=0.0
+    if f.get("ricochet",{}).get("ticks",0)>0 and f.state=="stun" and not reduced:
+        var spin:float=f.ricochet.spin
+        model.rotation.x=spin
+        # Rotate about the torso instead of driving the head through the floor.
+        model.position.y+=1.1*(1-cos(spin));model.position.z-=1.1*sin(spin)
+        stretch*=Vector3(1.07,.93,1.07)
     model.scale=Vector3.ONE*model_scale*stretch
     for mat in materials:
         mat.set_shader_parameter("flash", 1.0 if f.flash > 0 and not reduced else 0.0)
     if skeleton:
         motions.present(f,delta,stopped)
-        if neon_enabled:preload("res://scripts/combat/neon/neon_signature_motion.gd").apply(motions,f)
-        if f.get("rush_visual",false) and f.state=="attack":
+        if neon_enabled and f.health>0:preload("res://scripts/combat/neon/neon_signature_motion.gd").apply(motions,f)
+        if f.health>0 and f.get("rush_visual",false) and f.state=="attack":
             var move: Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
             if f.frame>=move.startup-1 and f.frame<move.startup+move.active:
                 var limbs:Array=["LeftHand","RightHand"] if f.move in ["meteor","overdrive"] else ["RightFoot" if f.move in ["air_kick","air_counter"] else ("LeftHand" if f.move in ["jab","air_jab"] else "RightHand")]
@@ -127,6 +156,47 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
                         skeleton.set_bone_pose_scale(index,Vector3.ONE*2.1)
                         oversized_bones.append(index)
                 model.scale*=Vector3(1.05,.94,1.20)
+        if f.health>0:death_ground_cached=false
+        elif f.y<=.01 and f.get("ko_theatre",-1.0)<0:
+            # A grounded corpse is no longer a spinning/airborne hit pose.
+            model.rotation=Vector3.ZERO
+            model.scale=Vector3.ONE*model_scale
+            model.position=Vector3.ZERO
+            _ground_death_pose()
+    _present_core(f)
+func _present_core(f:Dictionary) -> void:
+    var id:String=f.get("draw_core","")
+    if id.is_empty():
+        if core_module!=null:core_module.hide()
+        return
+    if core_module==null or core_module.core_id!=id:
+        if core_module!=null:core_module.queue_free()
+        core_module=CoreProp.new();add_child(core_module);core_module.build(id)
+    skeleton.force_update_all_bone_transforms()
+    core_module.show();core_module.global_transform=CoreProp.socket_frame(self)
+
+
+func _ground_death_pose() -> void:
+    if not death_ground_cached:
+        var lowest:=INF
+        # CPU skinning avoids render-server registration/readback, including on
+        # the first frame and in headless tests. Source arrays are cached at setup.
+        for surface in death_surfaces:
+            var transforms:Array[Transform3D]=[]
+            for bind in surface.binds:
+                transforms.append(skeleton.global_transform*skeleton.get_bone_global_pose(bind.bone)*bind.pose)
+            var slots:int=floori(float(surface.bones.size())/surface.vertices.size())
+            for vertex in surface.vertices.size():
+                var at:=Vector3.ZERO
+                for slot in slots:
+                    var offset:int=vertex*slots+slot
+                    var weight:float=surface.weights[offset]
+                    if weight>0:at+=(transforms[surface.bones[offset]]*surface.vertices[vertex])*weight
+                lowest=minf(lowest,at.y)
+        death_ground_offset=global_position.y+.015-lowest if is_finite(lowest) else 0.0
+        # Only the fall changes the skin. Settled corpses reuse the offset.
+        death_ground_cached=motions.clip_elapsed>=motions.library.clips.Death01.duration
+    model.position.y=death_ground_offset
 
 func capture_echo() -> Array:
     var segments: Array=[]

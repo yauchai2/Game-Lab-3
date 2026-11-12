@@ -19,6 +19,7 @@ var art_controls:Control
 var art_buttons:Dictionary={}
 var coach_continue:Button
 var pause_button:Button
+var resource_warning:Array[float]=[0.0,0.0]
 var menu_page := "main"
 var previous_screen := ""
 var built_page := ""
@@ -153,8 +154,9 @@ func _ready() -> void:
     audio_restore.pressed.connect(_restore_sound)
     layout_root.add_child(audio_restore)
     pause_button=Button.new()
-    pause_button.text="II  PAUSE"
-    pause_button.position=Vector2(1094,94);pause_button.size=Vector2(150,42)
+    pause_button.text="II"
+    pause_button.tooltip_text="Pause (Esc)"
+    pause_button.position=Vector2(1200,86);pause_button.size=Vector2(44,36)
     pause_button.add_theme_font_override("font",Tokens.DISPLAY)
     pause_button.add_theme_font_size_override("font_size",Tokens.ACTION_SIZE)
     for state in ["normal","hover","pressed"]:pause_button.add_theme_stylebox_override(state,Tokens.plate(PAPER,INK,2))
@@ -198,7 +200,7 @@ func rebuild_menu(requested_focus := "") -> void:
         menu_stack.remove_child(child)
         child.queue_free()
     art_controls.visible=false
-    menu.visible=session.screen!="play" and not (session.screen=="result" and session.result_clock<session.FINISH_SECONDS and not session.reduced_effects)
+    menu.visible=session.screen!="play" and not (session.demo!=null and session.screen=="result") and not session.result_presentation_active()
     back_button.visible=menu.visible and menu_page!="main"
     back_button.text="ESC  BACK"
     if not menu.visible:
@@ -243,7 +245,8 @@ func rebuild_menu(requested_focus := "") -> void:
 
 func _restore_focus() -> void:
     if art_controls.visible:
-        var target:String=focus_key if art_buttons.has(focus_key) else ("card_"+str(session.character_choices[art.roster_side]) if menu_page=="roster" else "fight")
+        var choice:int=session.character_choices[art.roster_side]
+        var target:String=focus_key if art_buttons.has(focus_key) else (("enemy_black_suit" if choice==4 else "card_"+str(choice)) if menu_page=="roster" else "fight")
         art_buttons[target].grab_focus()
         return
     if not menu.visible:return
@@ -370,6 +373,7 @@ func _pause_page() -> void:
     if session.demo!=null:_action(menu_stack,"demo_restart","R",func():session.start_demo())
     else:_action(menu_stack,"reset_training" if session.practice else "restart","F5" if session.practice else "R",func():
         if session.practice:session.reset_training()
+        elif session.sim.squad_enabled:session.start_squad()
         elif session.run_active:session.start_run()
         else:session.start_match(false))
     _action(menu_stack,"settings","F1",func():open_page("settings"))
@@ -388,15 +392,17 @@ func _result_page() -> void:
     if session.sim.winner==1:_caption("runback")
     if not session.result_line.is_empty():menu_stack.add_child(_label(session.result_line,24))
     menu_stack.add_child(_label("%d  —  %d"%[session.sim.wins[0],session.sim.wins[1]],48,Tokens.GOLD,true))
-    _caption("wins")
+    if session.sim.squad_enabled:menu_stack.add_child(_label("SQUAD CLEARED" if session.sim.winner==0 else "SQUAD / TRY AGAIN",28))
+    else:_caption("wins")
     var complete: bool=session.sim.phase=="match_over"
     _action(menu_stack,"rematch" if complete else "next_round","Enter",func():
-        if complete:session.start_match(session.practice)
+        if session.sim.squad_enabled:session.start_squad()
+        elif complete:session.start_match(session.practice)
         else:session.advance_round(),true)
     _action(menu_stack,"main_menu","",func():session.return_to_title())
 
 func open_page(page: String) -> void:
-    if session.screen=="play":session.pause_game()
+    if session.screen=="play" or (session.screen=="result" and session.ability_draw.active()):session.pause_game()
     page_return_focus="controls" if page=="help" else page
     menu_page=page
     focus_key="back"
@@ -524,6 +530,8 @@ func _process(delta: float) -> void:
     audio_restore.visible=session.screen=="title" and menu_page=="main" and session.audio.silent_settings()
     roster_preview.update_preview(session.screen=="title" and menu_page=="roster",session.character_choices[art.roster_side],delta,session.reduced_effects)
     if session.screen not in ["pause","help"]:notice_time=maxf(0,notice_time-delta)
+    if session.screen not in ["pause","help"]:
+        for side in 2:resource_warning[side]=maxf(0,resource_warning[side]-delta)
     if session.screen=="play":skill_time=maxf(0,skill_time-delta)
     for i in 2:
         var hp: float=session.sim.fighters[i].health
@@ -589,6 +597,15 @@ func _draw() -> void:
         elif menu_page=="roster":art.roster(self,session)
         else:art.secondary(self,"LOADOUT" if menu_page=="skills" else ("SETTINGS" if menu_page=="settings" else "HOW TO PLAY"))
         return
+    if session.ability_draw.active() and session.screen=="result":
+        session.ability_draw.draw(self)
+        return
+    if session.round_theatre.intro and session.screen=="play":
+        session.round_theatre.draw(self)
+        return
+    if session.city_breaker.active() and session.screen=="result":
+        session.city_breaker.draw(self)
+        return
     if session.neon_enabled:
         session.neon.draw(self,session)
     else:
@@ -600,18 +617,19 @@ func _draw() -> void:
     if not session.neon_enabled and session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
     art.hud(self,session,health_lag)
     service_art.draw(self,session)
+    _draw_core_tag()
     if session.sim.arcade_enabled:_surge_hud()
     if session.sim.exchange.decision_active():_surge_decision_hud()
-    if session.neon_enabled:draw_string(font,Vector2(16,160),"NEON FACETS LAB",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color("bdff00"))
     if skill_time>0 and skill_key!="" and session.screen=="play":
         _plate(Vector2(460,154),Vector2(360,34),INK)
         _center(Vector2(640,179),tr_text(skill_key),21,Tokens.LIME)
     if session.sim.phase=="ready" and session.screen=="play":
         _center(Vector2(640,280),tr_text("round")+" %d"%session.sim.round_number,40)
         _center(Vector2(640,316),"準備" if session.language=="zh" else "GET READY",22,Tokens.GOLD)
-    if notice_time>0 and session.demo==null and not session.sim.exchange.decision_active() and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
-        _plate(Vector2(426,196),Vector2(428,40),INK)
-        _center(Vector2(640,225),copy.notice(notice),19,Tokens.GOLD)
+    if notice_time>0 and notice_visible() and session.demo==null and not session.sim.exchange.decision_active() and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
+        var notice_y:float=596 if notice.begins_with("RICOCHET") else 196
+        _plate(Vector2(426,notice_y),Vector2(428,40),INK)
+        _center(Vector2(640,notice_y+29),copy.notice(notice),19,Tokens.GOLD)
     var player: Dictionary=session.sim.fighters[0]
     if session.demo==null and player.wall_tech_window>0 and player.state=="stun" and player.meter>=20:
         var at: Vector2=session.project(Vector2(player.x,player.y+2.3))
@@ -634,8 +652,21 @@ func _draw() -> void:
         _text(Vector2(34,690),"J "+tr_text("light")+"   K "+tr_text("heavy")+"   G "+tr_text("throw")+"   Shift "+tr_text("guard")+"   E "+tr_text("dodge"),13,PAPER)
 
     if session.hitboxes_visible:_draw_hitboxes()
-    if session.screen!="play" and not (session.screen=="result" and session.result_clock<session.FINISH_SECONDS and not session.reduced_effects):
+    if session.screen!="play" and not (session.demo!=null and session.screen=="result") and not session.result_presentation_active():
         art.secondary(self,"SETTINGS" if menu_page=="settings" else ("HOW TO PLAY" if menu_page=="help" else ("PAUSED" if session.screen in ["pause","help"] else "RESULT")))
+
+func _draw_core_tag() -> void:
+    if session.screen!="play":return
+    var rewards=preload("res://scripts/combat/ability_draw/rewards.gd")
+    for side in 2:
+        var f:Dictionary=session.sim.fighters[side]
+        var core:Dictionary=rewards.item(f.get("draw_core",""))
+        if core.is_empty():continue
+        var at:=Vector2(34 if side==0 else 894,204)
+        _plate(at,Vector2(352,32),Tokens.NIGHT)
+        draw_rect(Rect2(at,Vector2(4,32)),core.color)
+        draw_texture_rect(load("res://assets/ability_draw/pool/"+core.id+".png"),Rect2(at+Vector2(10,2),Vector2(28,28)),false)
+        _text(at+Vector2(46,25),core.title+((" %d/12"%(12-int(f.get("draw_healed",0)))) if core.id=="siphon" else ""),24,core.color)
 
 func _health(x: float, fighter: Dictionary, tint: Color, reverse: bool, index: int) -> void:
     var fighter_tag: String=("AI 1" if index==0 else "AI 2") if session.demo!=null else tr_text("you" if index==0 else ("practice" if session.practice else "rival"))
@@ -650,10 +681,10 @@ func _health(x: float, fighter: Dictionary, tint: Color, reverse: bool, index: i
     _text(Vector2(x+14,55),str(fighter.health),14,INK,true)
     _plate(Vector2(x+6,72),Vector2(458,6),INK)
     _plate(Vector2(x+6,72),Vector2(458*clampf(fighter.meter/100.0,0,1),6),Tokens.LIME)
-    for threshold in [50,75]:
+    for threshold in [session.sim.skill_cost(fighter,"special"),session.sim.skill_cost(fighter,"overdrive")]:
         var tx: float=x+6+458*threshold/100.0
         draw_line(Vector2(tx,69),Vector2(tx,81),PAPER,2)
-    _text(Vector2(x+6,96),"L 50 / W+L 75   ·   %d"%fighter.meter,11,Tokens.LIME)
+    _text(Vector2(x+6,96),"L %d / W+L %d   ·   %d"%[session.sim.skill_cost(fighter,"special"),session.sim.skill_cost(fighter,"overdrive"),fighter.meter],11,Tokens.LIME)
     _text(Vector2(x+345,96),tr_text("guard")+" %d"%fighter.guard,11,PAPER)
 
 func _pressure_hud() -> void:
@@ -684,20 +715,26 @@ func _pressure_hud() -> void:
     elif drill:_text(Vector2(34,690),tr_text("drill_exit"),12,Tokens.MUTED)
 
 func _demo_hud() -> void:
-    _plate(Vector2(28,78),Vector2(270,38),INK)
-    _text(Vector2(37,105),"AI DEMO  /  LIVE",14,PAPER)
+    _text(Vector2(34,101),"DEMO",24,Tokens.MUTED)
+
+func notice_visible() -> bool:
+    if session.practice or session.coach!=null:return true
+    # Routine actions already have local motion/audio feedback. Keep outcomes
+    # that change the fight, and explain mechanics fully inside training.
+    return notice in ["FIGHT!","PERFECT GUARD","RIVAL PARRY","GUARD BREAK","COUNTER HIT","COUNTER SUCCESS","CHASE UNAVAILABLE","PLACE A NODE / WAIT FOR PULSE"] or notice.begins_with("STREET RUN /") or notice.begins_with("BLACK SUIT SQUAD /")
 
 func _surge_hud() -> void:
     var exchange=session.sim.exchange
     var tier:int=exchange.tier()
     var tint:Color=[Tokens.TEAL,Tokens.LIME,Tokens.MAGENTA][tier-1]
-    var jump:float=0.0 if session.reduced_effects else sin(session.surge_pulse/.45*PI)*4.0
-    _plate(Vector2(548,86-jump),Vector2(184,64),INK)
-    _center(Vector2(640,110-jump),"SURGE %02d"%roundi(exchange.pressure),24,tint)
-    _center(Vector2(640,137-jump),["FLOW","HEAT","SURGE"][tier-1],24,tint)
     for i in 3:
-        draw_rect(Rect2(556+i*56,143-jump,52,4),Color(tint,.2))
-        draw_rect(Rect2(556+i*56,143-jump,52*clampf((exchange.pressure-i*30)/30.0,0,1),4),tint)
+        draw_rect(Rect2(568+i*49,85,45,5),Color(tint,.2))
+        draw_rect(Rect2(568+i*49,85,45*clampf((exchange.pressure-i*30)/30.0,0,1),5),tint)
+    if session.practice or session.coach!=null:
+        _center(Vector2(640,116),"SURGE %02d / %s"%[roundi(exchange.pressure),["FLOW","HEAT","SURGE"][tier-1]],24,tint)
+    elif session.surge_pulse>0:
+        _center(Vector2(640,116),["FLOW","HEAT","SURGE"][tier-1],24,tint)
+    if not session.practice:return
     for side in 2:
         var slot:Dictionary=session.sim.continuation.slots[side]
         if not slot.is_empty() and slot.choice!="" and not slot.spent:
@@ -909,6 +946,12 @@ func _build_art_controls() -> void:
             _art_button("side_"+str(side),"SELECT P%d"%(side+1),art.fit(Rect2(18,241+side*100,160,84)),func():art.roster_side=selected_side;queue_redraw())
         _art_button("skills","SKILLS",Rect2(1094,300,140,60),func():open_page("skills"))
         _art_button("street_run","STREET RUN",Rect2(1094,380,140,86),session.start_run)
+        _art_button("enemy_black_suit","BLACK SUIT / P2",Rect2(1094,486,140,86),func():
+            art.roster_side=1
+            focus_key="enemy_black_suit"
+            session.set_character(1,session.FighterVisual.Roster.BLACK_SUIT_INDEX)
+            queue_redraw())
+        _art_button("enemy_squad","SQUAD",Rect2(1094,588,140,48),session.start_squad)
         _art_button("roster_fight","FIGHT",art.fit(Rect2(849,773,550,100)),func():session.start_match(false))
         _art_button("back","BACK",art.fit(Rect2(1507,875,145,50)),close_page)
         for i in 4:
@@ -917,6 +960,16 @@ func _build_art_controls() -> void:
             button.focus_neighbor_right=art_buttons["card_"+str(i^1)].get_path()
             button.focus_neighbor_top=art_buttons["card_"+str((i+2)%4)].get_path()
             button.focus_neighbor_bottom=art_buttons["card_"+str(i+2)].get_path() if i<2 else art_buttons.roster_fight.get_path()
+        art_buttons.skills.focus_neighbor_bottom=art_buttons.street_run.get_path()
+        art_buttons.street_run.focus_neighbor_top=art_buttons.skills.get_path()
+        art_buttons.street_run.focus_neighbor_bottom=art_buttons.enemy_black_suit.get_path()
+        art_buttons.enemy_black_suit.focus_neighbor_top=art_buttons.street_run.get_path()
+        art_buttons.enemy_black_suit.focus_neighbor_bottom=art_buttons.enemy_squad.get_path()
+        art_buttons.enemy_squad.focus_neighbor_top=art_buttons.enemy_black_suit.get_path()
+        art_buttons.enemy_squad.focus_neighbor_bottom=art_buttons.roster_fight.get_path()
+        art_buttons.enemy_black_suit.focus_neighbor_left=art_buttons.card_3.get_path()
+        art_buttons.card_1.focus_neighbor_right=art_buttons.skills.get_path()
+        art_buttons.card_3.focus_neighbor_right=art_buttons.enemy_black_suit.get_path()
 
 func _restore_sound() -> void:
     session.audio.restore_output()

@@ -10,6 +10,7 @@ var voice_index := 0
 var music: AudioStreamPlayer
 var context := "title"
 var duck_time := 0.0
+var cinematic_duck := 0.0
 const OPEN := "res://audio/open/"
 const BERLIN := "res://audio/user-tracks/berlin.ogg"
 const GROOVE := "res://audio/user-tracks/groove_district.ogg"
@@ -89,7 +90,7 @@ func _process(delta: float) -> void:
     if not music.playing:music.play()
     music.stream_paused=false
     fading_music.stream_paused=false
-    var target_db:float=(-4.0 if context=="play" else (-15.0 if context in ["pause","help"] else -7.0))-(4.0 if duck_time>0 else 0.0)
+    var target_db:float=(-4.0 if context=="play" else (-15.0 if context in ["pause","help"] else -7.0))-(4.0 if duck_time>0 else 0.0)-cinematic_duck*8.0
     if muted or music_muted or music_level<=0:target_db=-80.0
     else:target_db+=linear_to_db(maxf(.001,music_level))
     music_gain_db=lerpf(music_gain_db,target_db,1.0-exp(-delta*7.0))

@@ -1,0 +1,9 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ENTRY_OFFSET (-6.0, 0.0, 0.0) BACKUP false
+LANE (-6.0, 0.0, 0.0) CAST [1.0, 1.0] INITIAL []
+LANE (6.0, 0.0, 0.0) CAST [1.0, 1.0] INITIAL []
+CLEAR AT Z 3.0: [-6.0, -4.0, -3.0, 3.0, 4.0, 6.0]
+CLEAR AT Z 4.0: [-6.0, -4.0, -3.0, 3.0, 4.0, 6.0]
+CLEAR AT Z 5.0: [-8.0, -6.0, -4.0, -3.0, 3.0, 4.0, 6.0, 8.0]
+CLEAR AT Z 6.0: [-8.0, -6.0, -4.0, -3.0, 3.0, 4.0, 6.0, 8.0]

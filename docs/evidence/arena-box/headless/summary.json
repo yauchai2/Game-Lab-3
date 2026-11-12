@@ -1,0 +1,168 @@
+{
+  "created_utc": "20261111T033320Z",
+  "source_commit": "a89c8fc9f7e4ed8d1731181cbf5b9815be8fcde0",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/fight_spectacle.gd",
+    "godot/scripts/combat/fighter_visual.gd",
+    "godot/scripts/combat/rush_agent.gd"
+  ],
+  "mode": "headless",
+  "all_assertions_passed": false,
+  "passed": 144,
+  "failed": 2,
+  "cases": [
+    {
+      "name": "verify_arena_box",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "95f939fced7a1e5276f2d69f6576d309406b92bbae63eefadc0fba5e37bf03e4",
+      "seconds": 1.399,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_arena_box.gd"
+      ],
+      "report_written": true,
+      "passed": 18,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_double_jump",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "1b49443fb7d7cb1ee12a7e8b41194203ac5894e6844212d09112c3dc2311c950",
+      "seconds": 1.175,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_double_jump.gd"
+      ],
+      "report_written": true,
+      "passed": 62,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_charged_cannon",
+      "mode": "headless",
+      "exit_code": 1,
+      "harness_sha256": "e3f357dddf30e3994e2eebc212a0e7492f7ad919badf24193be2b47e32b3dd17",
+      "seconds": 0.339,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_charged_cannon.gd"
+      ],
+      "report_written": true,
+      "passed": 8,
+      "failed": 2,
+      "skipped": [],
+      "diagnostics": [
+        "ERROR: CANNON FAIL: live agents naturally use the cannon",
+        "ERROR: CANNON FAIL: new cannon does not end or reset the live duel"
+      ],
+      "engine_errors": [
+        "ERROR: CANNON FAIL: live agents naturally use the cannon",
+        "ERROR: CANNON FAIL: new cannon does not end or reset the live duel"
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_demo",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "af4779cece0784e9c72b868508ff1958b5854fa50a2fabc5e611a8f2db5d3fba",
+      "seconds": 3.617,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_demo.gd"
+      ],
+      "report_written": true,
+      "passed": 7,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_result_presentation",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "34da6baa1969a644a4a2509d648b43e8d8974d0d24440f4e9a2c3feaf0787290",
+      "seconds": 1.28,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_result_presentation.gd"
+      ],
+      "report_written": true,
+      "passed": 15,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_combat",
+      "mode": "headless",
+      "exit_code": 0,
+      "harness_sha256": "522f3c7daa81539a1d8466ef069a66f4c4bdfb7a05afb157f04fc4db7e5139fd",
+      "seconds": 1.207,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--headless",
+        "--script",
+        "res://tools/verify_combat.gd"
+      ],
+      "report_written": true,
+      "passed": 34,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

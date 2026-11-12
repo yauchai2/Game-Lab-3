@@ -1,0 +1,106 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+CORE_RULES speed has a distinct ID and valid item true
+CORE_RULES speed icon and matching drum texture exist true
+CORE_RULES speed can be applied exactly once true
+CORE_RULES speed leaves no modifier or healing budget on reset true
+CORE_RULES guard has a distinct ID and valid item true
+CORE_RULES guard icon and matching drum texture exist true
+CORE_RULES guard can be applied exactly once true
+CORE_RULES guard leaves no modifier or healing budget on reset true
+CORE_RULES charge has a distinct ID and valid item true
+CORE_RULES charge icon and matching drum texture exist true
+CORE_RULES charge can be applied exactly once true
+CORE_RULES charge leaves no modifier or healing budget on reset true
+CORE_RULES fury has a distinct ID and valid item true
+CORE_RULES fury icon and matching drum texture exist true
+CORE_RULES fury can be applied exactly once true
+CORE_RULES fury leaves no modifier or healing budget on reset true
+CORE_RULES plate has a distinct ID and valid item true
+CORE_RULES plate icon and matching drum texture exist true
+CORE_RULES plate can be applied exactly once true
+CORE_RULES plate leaves no modifier or healing budget on reset true
+CORE_RULES flow has a distinct ID and valid item true
+CORE_RULES flow icon and matching drum texture exist true
+CORE_RULES flow can be applied exactly once true
+CORE_RULES flow leaves no modifier or healing budget on reset true
+CORE_RULES eco has a distinct ID and valid item true
+CORE_RULES eco icon and matching drum texture exist true
+CORE_RULES eco can be applied exactly once true
+CORE_RULES eco leaves no modifier or healing budget on reset true
+CORE_RULES breach has a distinct ID and valid item true
+CORE_RULES breach icon and matching drum texture exist true
+CORE_RULES breach can be applied exactly once true
+CORE_RULES breach leaves no modifier or healing budget on reset true
+CORE_RULES siphon has a distinct ID and valid item true
+CORE_RULES siphon icon and matching drum texture exist true
+CORE_RULES siphon can be applied exactly once true
+CORE_RULES siphon leaves no modifier or healing budget on reset true
+CORE_RULES all nine equal-weight entries are reachable across seeds true
+CORE_RULES invalid IDs and recipients cannot consume a claim true
+CORE_RULES FURY raises real hit damage for character 0 true
+CORE_RULES PLATE reduces actual incoming damage for character 0 true
+CORE_RULES FLOW grants 30 percent more hit energy for character 0 false
+ERROR: FLOW grants 30 percent more hit energy for character 0
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_ability_core_rules.gd:9)
+       [1] run (res://tools/verify_ability_core_rules.gd:43)
+CORE_RULES BREACH increases guard drain without chip health for character 0 true
+CORE_RULES ECO exact affordability and payment 0 special true
+CORE_RULES ECO exact affordability and payment 0 overdrive true
+CORE_RULES FURY raises real hit damage for character 1 true
+CORE_RULES PLATE reduces actual incoming damage for character 1 true
+CORE_RULES FLOW grants 30 percent more hit energy for character 1 false
+ERROR: FLOW grants 30 percent more hit energy for character 1
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_ability_core_rules.gd:9)
+       [1] run (res://tools/verify_ability_core_rules.gd:43)
+CORE_RULES BREACH increases guard drain without chip health for character 1 true
+CORE_RULES ECO exact affordability and payment 1 special true
+CORE_RULES ECO exact affordability and payment 1 overdrive true
+CORE_RULES FURY raises real hit damage for character 2 true
+CORE_RULES PLATE reduces actual incoming damage for character 2 true
+CORE_RULES FLOW grants 30 percent more hit energy for character 2 false
+ERROR: FLOW grants 30 percent more hit energy for character 2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_ability_core_rules.gd:9)
+       [1] run (res://tools/verify_ability_core_rules.gd:43)
+CORE_RULES BREACH increases guard drain without chip health for character 2 true
+CORE_RULES ECO exact affordability and payment 2 special true
+CORE_RULES ECO exact affordability and payment 2 overdrive true
+CORE_RULES FURY raises real hit damage for character 3 true
+CORE_RULES PLATE reduces actual incoming damage for character 3 true
+CORE_RULES FLOW grants 30 percent more hit energy for character 3 false
+ERROR: FLOW grants 30 percent more hit energy for character 3
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_ability_core_rules.gd:9)
+       [1] run (res://tools/verify_ability_core_rules.gd:43)
+CORE_RULES BREACH increases guard drain without chip health for character 3 true
+CORE_RULES ECO exact affordability and payment 3 special true
+CORE_RULES ECO exact affordability and payment 3 overdrive true
+CORE_RULES ECO exact affordability and payment 3 node_pulse true
+CORE_RULES SIPHON heals two per hit and stops at twelve per round true
+CORE_RULES SIPHON full health neither overheals nor spends its cap true
+CORE_RULES SIPHON only spends actual restored HP at health cap true
+CORE_RULES SIPHON cannot heal from block or parry false true
+CORE_RULES FLOW cannot farm energy from block or parry false false
+ERROR: FLOW cannot farm energy from block or parry false
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_ability_core_rules.gd:9)
+       [1] run (res://tools/verify_ability_core_rules.gd:67)
+CORE_RULES SIPHON cannot heal from block or parry true true
+CORE_RULES FLOW cannot farm energy from block or parry true false
+ERROR: FLOW cannot farm energy from block or parry true
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_ability_core_rules.gd:9)
+       [1] run (res://tools/verify_ability_core_rules.gd:67)
+CORE_RULES SIPHON cannot revive a KO in a trade true
+CORE_RULES FLOW never exceeds energy cap true
+CORE_RULES FURY is active through legal combat ticks true
+CORE_RULE_CHECKS 67/73

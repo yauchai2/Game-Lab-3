@@ -1,6 +1,47 @@
 # Afterhours / Game-Lab-3
 
+最新：[抽獎後3D裝備已實裝](docs/ABILITY_EQUIP_RUNTIME.zh-TW.md)／[有聲預覽](docs/evidence/ability-equip/ability-equip.mp4)／[完整Demo](docs/evidence/ability-equip/demo-draw-equip.mp4)。五選角不露臉接握／腰扣／鞋底啟動，九核心實體腰掛，345項通過，Web不更新。
+
+最新：[精簡戰鬥HUD](docs/evidence/compact-hud/README.md)。角色資源改小格、SURGE細條、取消二段跳／例行字卡，保留必要提示與教學；78項最終檢查通過，來源main，Web未更新。
+
+最新：[死亡後凌空已修正](docs/evidence/grounded-death/README.md)。完整死亡下落、五角色按實際skin貼地、群戰其他死者也在結算落地；334項檢查通過，來源main。
+
+最新：[Godot4.7.2截圖15項GDScript警告已修正](docs/evidence/godot-warnings/README.md)。型別直接呼叫static、統一數值分支型別及局部變數改名；原版15項已重現，修正後369項編譯／玩法／原生回歸通過。來源main，Pull後停止舊遊戲／清除舊Debugger紀錄再F5。
+
+同步：使用者要求將main `ffffd15` 的完整更新也合併到 `codex/combat-escalation-next`；保留該分支最新九核心及Demo自動抽獎，144項整合檢查通過。
+最新澄清已落實：[反彈只用於指定強化技能／大招](docs/evidence/ricochet-scope/README.md)。普通攻擊／挑空／投技回原擊退，盒狀圍場僅效果期間出現。
+
+最新：[九種抽獎能力／Demo延時自動抽領](docs/ABILITY_CORE_POOL.zh-TW.md)／[九核心總覽](docs/evidence/ability-draw/expanded-pool/pool-overview.png)／[有聲預覽](docs/evidence/ability-draw/expanded-pool/demo-auto-draw.mp4)。Demo停3秒再抽、結果停3.5秒繼續；正常遊戲手動，263項通過，Web不更新。
+
+目前統一使用 **main**：已整合黑衣人群戰／模型修補、完整回合與KO演出、四面反彈、Tripo蒙面NPC／抽能力機器及最新手動抽獎節奏UI；[本輪整合檢查](docs/evidence/main-integration/README.md)。以下分支描述為各輪歷史；以本段及HANDOFF最上方為準。
+
+最新：[黑衣人群戰＋後頸／領帶修補](docs/BLACK_SUIT_SQUAD.zh-TW.md)。FIGHTERS → SQUAD，Easy／Normal／Hard為3／4／5名同場敵人，有獨立血量、協調進攻及多人受擊；全隊清除才勝利。黑衣人runtime改用衍生修補GLB，原始檔保留。[修補前後及297項檢查](docs/evidence/black-suit-squad/README.md)。仍在codex/black-suit-enemy，main／Web不更新。
+
+最新：[黑衣人敵人與演出角色](docs/BLACK_SUIT_ENEMY.zh-TW.md)。FIGHTERS → BLACK SUIT / P2，正式FIGHT／練習／AI Demo沿用；原始GLB保留，另有可重用待機／走路／防守場景。[原生畫面及208項檢查](docs/evidence/black-suit/README.md)。來源分支codex/black-suit-enemy，main／公開Web未更新。
+
 最新：已按使用者要求將含二段跳的完整遊戲來源 `4177ef9` 合併到 `main`；之後可於 GitHub Desktop 選 `main` Fetch／Pull。公開 Web 仍為獨立部署。
+
+最新：[抽獎節奏／手動按鈕／共用遊戲字體](docs/ABILITY_DRAW_RHYTHM_UI.zh-TW.md)／[有聲預覽](docs/evidence/ability-draw/rhythm-ui/ability-draw-rhythm-ui.mp4)。按 DRAW 才抽，三輪鎖定、短靜拍、揭曉後另按 CONTINUE；85 項檢查通過，Web 不更新。
+
+最新：[使用者Tripo蒙面NPC／機身已接入](docs/ABILITY_DRAW_TRIPO_MODELS.zh-TW.md)／[有聲引擎預覽](docs/evidence/ability-draw/tripo-models/tripo-ability-draw.mp4)。原65骨NPC拖行／拍機／展示／開獎，原機殼＋獨立活動件，來源原檔保留；74項原生檢查通過，Web不更新。
+
+最新：[蒙面NPC與抽獎機三視圖／Tripo生成建議](references/ability-draw/tripo/README.zh-TW.md)。含NPC A-pose、機器完整外觀及建議生成的機殼版，另附英文提示詞；只有設計參考，未換runtime模型。
+
+最新：[NPC拖機器進場修正與有聲預覽](docs/evidence/ability-draw/entry-v2/README.md)／[1.8秒裝備動畫六格分鏡](docs/ABILITY_EQUIP_STORYBOARD.zh-TW.md)。已修正街景碰撞導致原地出現；裝備段為規劃與概念圖，待Tripo模型後續換模／綁動畫。
+
+最新：[THE DEALER 回合間3D抽能力](docs/ABILITY_DRAW.zh-TW.md)／[有聲預覽](docs/evidence/ability-draw/ability-draw.mp4)。第二回合1:1或Street Run第二站勝出後，NPC拖機器入場、抽取下一局暫時能力；可暫停／跳過／F2、不同場景原點與備援入口。來源同branch，Web不更新。
+
+最新：[結果頁修復、決勝KO與四面反彈](docs/evidence/arena-box/README.md)。修好空白RESULT；只有整場決勝回合播放完整KO，之前短結算。正式戰鬥可撞天花／牆／地面連續反彈，加入受身、耗能、真3D撞擊回饋與跟鏡。來源同branch，Web不更新。
+
+最新：[完整開場→KO→勝者離場與AI Demo循環](docs/evidence/round-flow/README.md)。正式回合3D開場、真KO完整演出後自動接下一round的雙AI Demo、更強煙霧及戰鬥魚眼重音。來源同branch，Web不更新。
+
+最新：[勝者魚眼特寫與四種離場](docs/evidence/victory-exits/README.md)。保留5秒KO爆破，追加3.2秒超近廣角／魚眼與四角專屬動作、慢步出框和角色聲效；結果等離場後出現。來源同branch，Web不更新。
+
+最新：[五秒快節奏KO](docs/evidence/city-breaker-fast/README.md)。整段10→5秒，穿街／追天加快，保留撞擊／空爆重拍與約0.9秒KO收尾；聲效重新合成、不倍速變調。來源同branch，Web不更新。
+
+最新：[有聲 KO 演出與漫畫鏡頭](docs/evidence/city-breaker-fx/README.md)。真正KO後自動播放原創立體聲爆破／風壓／碎片／引擎／KO重音，配合速度線、短模糊、震動及FOV反衝。可跳過／暫停、F2短版，來源同branch，Web不更新。
+
+最新：[CITY BREAKER 3D KO 回合過場](docs/CITY_BREAKER.zh-TW.md)／[10 秒原生錄像及八鏡畫面](docs/evidence/city-breaker/README.md)。真正 KO 後沿用當局四角色、戰鬥街景與客機，拋飛／爆街／空爆／KO；Enter或Space跳過、Esc暫停、F2短版。來源同分支，公開Web未更新。
 
 最新：[二段跳與落地操作改善](docs/DOUBLE_JUMP.zh-TW.md)。正式 FIGHT／Street Run：Space 起跳，空中放開再按二段跳；每次離地一次，加入姿態／局部聲畫回饋，修正硬落地預輸入。來源同一開發分支，公開 Web 未更新。
 

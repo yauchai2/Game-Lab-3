@@ -1,0 +1,14 @@
+{
+  "source_sha256": "8fcacf156af8a28e8eddc5ff0bd2be677e99bc2e58031bc4968de5ab038dcbc7",
+  "derived_sha256": "f5b586441760ba486c66275d9d6c202cbf1722017bd6c0f1eb5b66b2674fa0b4",
+  "source": "godot/assets/characters/black_suit/source/tripo_convert_6bb9e9c2-dd66-4f86-864f-2ceab3aa0a09.glb",
+  "derived": "godot/assets/characters/black_suit/derived/black_suit_repaired.glb",
+  "reweighted_neck_vertices": 97,
+  "patches": [
+    "NeckBridge",
+    "CleanShirtInsert",
+    "TieKnot",
+    "TieBlade"
+  ],
+  "method": "Skinned low-poly geometry and flat material repair; source GLB and original texture preserved. No image repaint or external generation."
+}

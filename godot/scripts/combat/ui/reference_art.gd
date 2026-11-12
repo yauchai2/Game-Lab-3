@@ -93,15 +93,22 @@ func roster(c:Control,s:Node) -> void:
     corners(c,Rect2(657,121,420,476),T.EDGE,30)
     c.draw_texture_rect(s.hud.roster_preview.hero_texture(),Rect2(662,117,420,486),false)
     plate(c,Rect2(1094,142,140,128),T.NIGHT,10)
-    text(c,Vector2(1124,243),["Z","R","H","L"][choice],106,T.PAPER)
+    text(c,Vector2(1124,243),["Z","R","H","L","B"][choice],106,T.PAPER)
     for label in [["SKILLS",Rect2(1094,300,140,60)],["STREET",Rect2(1094,380,140,86)]]:
         plate(c,label[1],T.NIGHT,8)
         text(c,label[1].position+Vector2(12,37),label[0],28,T.PAPER)
     text(c,Vector2(1107,447),"RUN",28,T.TEAL)
+    var enemy_rect:=Rect2(1094,486,140,86)
+    plate(c,enemy_rect,T.MAGENTA if s.character_choices[1]==4 else T.NIGHT,8)
+    text(c,Vector2(1106,521),"BLACK",28,T.PAPER)
+    text(c,Vector2(1106,553),"SUIT / P2",26,T.PAPER)
+    if focused_key=="enemy_black_suit":corners(c,enemy_rect.grow(2),T.TEAL)
+    plate(c,Rect2(1094,588,140,48),T.TEAL if focused_key=="enemy_squad" else T.PAPER,8)
+    text(c,Vector2(1106,623),"SQUAD",28,T.INK)
     var fight_rect:Rect2=fit(Rect2(849,773,550,100))
     plate(c,fight_rect,T.TEAL if focused_key=="roster_fight" else T.PAPER,12)
     text(c,fight_rect.position+Vector2(54,58),"FIGHT",64,T.INK)
-    var name:String=["ZIP / ROUTE KICKS","RIVET / PRELOAD","HUSH / SAMPLE","LOOP / PATCH NODES"][choice]
+    var name:String=["ZIP / ROUTE KICKS","RIVET / PRELOAD","HUSH / SAMPLE","LOOP / PATCH NODES","BLACK SUIT / ENEMY"][choice]
     plate(c,Rect2(672,666,250,38),T.NIGHT,8)
     text(c,Vector2(686,697),name,26,T.PAPER)
     hints(c)
@@ -124,8 +131,8 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
         c.draw_polyline(PackedVector2Array([outer[0],outer[1],outer[2],outer[3],outer[0]]),T.PAPER,4)
         c.draw_colored_polygon(outer,T.INK)
         var bar:Rect2=Rect2(704 if reverse else 227,40,350,14)
-        var ratio:float=clampf(f.health/100.0,0,1)
-        var lag:float=clampf(hp_lag[side]/100,0,1)
+        var ratio:float=clampf(float(f.health)/f.get("max_health",100.0),0,1)
+        var lag:float=clampf(hp_lag[side]/f.get("max_health",100.0),0,1)
         var x:float=bar.end.x-bar.size.x*lag if reverse else bar.position.x
         plate(c,Rect2(x,bar.position.y,bar.size.x*lag,bar.size.y),T.PAPER,7)
         x=bar.end.x-bar.size.x*ratio if reverse else bar.position.x
@@ -135,13 +142,16 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
         text(c,Vector2(1137 if reverse else 124,50),"P2" if reverse else "P1",32)
         text(c,Vector2(1070 if reverse else 177,50),str(f.health),36,T.PAPER)
         var meter:Rect2=Rect2(start+117,65,254,6)
-        plate(c,Rect2(meter.position-Vector2(3,3),meter.size+Vector2(6,6)),T.INK,4)
+        plate(c,Rect2(meter.position-Vector2(3,3),meter.size+Vector2(6,6)),T.INK.lerp(T.CORAL,clampf(c.resource_warning[side]/.45,0,1)),4)
         plate(c,meter,T.LIME.darkened(.7),3)
         if f.meter>0:plate(c,Rect2(meter.position,meter.size*Vector2(f.meter/100,1)),T.LIME,3)
-        var marks:Array=[10,20,75] if f.character==3 else [50,75]
+        var marks:Array=[s.sim.skill_cost(f,"node_pulse"),s.sim.skill_cost(f,"special"),s.sim.skill_cost(f,"overdrive")] if s.sim.last_service_enabled and f.character==3 else [s.sim.skill_cost(f,"special"),s.sim.skill_cost(f,"overdrive")]
         for threshold in marks:
             var tx:float=meter.position.x+meter.size.x*threshold/100
             c.draw_line(Vector2(tx,61),Vector2(tx,73),T.PAPER,2)
+        for win in 2:
+            var won:bool=s.sim.wins[side]>win
+            c.draw_circle(Vector2((492+win*20) if side==0 else (788-win*20),88),5,T.GOLD if won else T.MUTED.darkened(.6))
         var center:=Vector2(87 if side==0 else 1192,45)
         c.draw_circle(center,29,T.INK)
         c.draw_arc(center,27,0,TAU,24,T.PAPER,2)
@@ -149,9 +159,10 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
             var extent:float=[14.0,26.0,20.0][bar_index]
             c.draw_rect(Rect2(center+Vector2(-15+bar_index*11,-extent*.5),Vector2(7,extent)),T.TEAL if side==0 else T.MAGENTA)
     c.draw_circle(Vector2(640,44),35,T.INK);c.draw_circle(Vector2(640,44),32,T.PAPER);c.draw_circle(Vector2(640,44),29,T.GOLD)
-    var clock:String="∞" if s.practice or s.demo!=null else "%02d"%ceili(s.sim.remaining)
-    var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,48).x
-    text(c,Vector2(640-width*.5,59),clock,48)
+    var clock:String="∞" if s.practice or s.sim.endless else "%02d"%ceili(s.sim.remaining)
+    var clock_size:int=36 if clock.length()>2 else 48
+    var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,clock_size).x
+    text(c,Vector2(640-width*.5,59),clock,clock_size)
     plate(c,Rect2(150,644,980,60),T.INK,20)
     plate(c,Rect2(154,646,972,54),T.PAPER,20)
     var skill_label:String="NODE" if s.character_choices[0]==3 else ("HOLD" if s.character_choices[0]==1 else "SKILL")

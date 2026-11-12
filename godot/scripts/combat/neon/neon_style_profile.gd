@@ -13,4 +13,5 @@ extends Resource
     "parry":[.07,.12,.24,1.65,2],"skill":[.14,.42,.34,1.8,3],
     "overdrive":[.22,.78,.44,1.95,4],"impact":[.08,.14,.28,1.85,5],
     "break":[.16,.22,.34,2.0,6]}
-func accent(index:int) -> Color:return actor_accents[clampi(index,0,3)]
+func accent(index:int) -> Color:
+    return Color("a888ff") if index==4 else actor_accents[clampi(index,0,3)]

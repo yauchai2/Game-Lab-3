@@ -1,0 +1,166 @@
+{
+  "created_utc": "20261111T031052Z",
+  "source_commit": "18eb6f54df71a0c35e289067f1060af632e1b7a7",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/cinematic/city_breaker.gd",
+    "godot/scripts/combat/demo_director.gd",
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/street_backdrop.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": false,
+  "passed": 318,
+  "failed": 1,
+  "cases": [
+    {
+      "name": "verify_victory_exits",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "2b6bd533374096da8545360f286af3536a9bdaae0ef37f3688596f940dfe3c9b",
+      "seconds": 6.321,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_victory_exits.gd"
+      ],
+      "report_written": true,
+      "passed": 86,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_city_breaker_fx",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "bd3d390d660b074d1cea1832a0b7066d5a649caa402157cb9e83f8563f65f57a",
+      "seconds": 3.724,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_city_breaker_fx.gd"
+      ],
+      "report_written": true,
+      "passed": 20,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_city_breaker",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "579019de1d2ca6bbfbe33ad4eabc78f35b8f8185709cb4af89cefef085c53710",
+      "seconds": 5.353,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_city_breaker.gd"
+      ],
+      "report_written": true,
+      "passed": 165,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    },
+    {
+      "name": "verify_reference_ui",
+      "mode": "native",
+      "exit_code": 1,
+      "harness_sha256": "166c034f9a19f853236686ab97e2cf021a595634e1f75212d9342a95c5ed5ca3",
+      "seconds": 16.723,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_reference_ui.gd"
+      ],
+      "report_written": true,
+      "passed": 36,
+      "failed": 1,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "ERROR: REFERENCE UI: AI Demo starts real endless battle"
+      ],
+      "engine_errors": [
+        "ERROR: REFERENCE UI: AI Demo starts real endless battle"
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_demo_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "3bc41bb1fc94e3fc17a8364a4c919634207c2f8582331931b54a1c7da9f8ff60",
+      "seconds": 9.125,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_demo_input.gd"
+      ],
+      "report_written": true,
+      "passed": 11,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

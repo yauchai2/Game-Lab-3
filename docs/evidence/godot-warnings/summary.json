@@ -1,0 +1,12 @@
+{
+  "baseline": "ffffd15689d7e6181b99fd82f6ec912f45f3a5e5",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "reproduced_screenshot_warnings": 15,
+  "strict_compile_passed": 5,
+  "headless_passed": 90,
+  "native_passed": 189,
+  "ability_passed": 85,
+  "total_passed": 369,
+  "failed": 0,
+  "scope": "Linux Compatibility llvmpipe, Dummy audio. Not Mac device or human/audio validation."
+}

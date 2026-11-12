@@ -1,0 +1,40 @@
+{
+  "origin": "Original hand-authored Pillow polygon icons; first three retain original project art; no external images",
+  "drum_panels": [
+    "speed",
+    "guard",
+    "charge",
+    "selected_reward"
+  ],
+  "ids": [
+    "speed",
+    "guard",
+    "charge",
+    "fury",
+    "plate",
+    "flow",
+    "eco",
+    "breach",
+    "siphon"
+  ],
+  "files": {
+    "breach.png": "1bb2f3f2dde0f003e8da15d056fb5df0cbd47ed57989e770dcd160201a972623",
+    "charge.png": "67bd9f1bc2829663b1b071d4b4a792f1c502602f8b461e589792047990364d0c",
+    "eco.png": "cb29f383a26d9e0b4b8cd592afea8ae0e09c3ae71ad437bbd09beadc9be4e1d9",
+    "flow.png": "de71310aea6b5ee7c08e9383c7d84e9e1c255ce99c2de1ec03afd2081912a3d9",
+    "fury.png": "3abb9a23bd32ace4bcb505aad74c4f874376cab4f2ad0a5bfaca58e92940cb1e",
+    "guard.png": "a6f8d93467b2dae6b4dda025df4eb1645409b7a322cdb1a5e73ff3b7763731db",
+    "plate.png": "b535907afd3021146730be2442d0e5109288ddf37fac25757b27c21fd5883559",
+    "reels_breach.png": "43d3903b010b2b96bc3537f2d8e4893218ab8e1273f82f6f75c5fc2cf274c8fd",
+    "reels_charge.png": "7627ad3a90161592fee8434001d3bfbe34dc268b09700fe16a994a6d8d368550",
+    "reels_eco.png": "d97da338b212323b10f4c9512ed7b5ba4657b72aca4fecaf2afb29cc1d738721",
+    "reels_flow.png": "9bf5c428b11a3b337310c8fe0fcea32d54d8637cd6747788c862d0b35939b3d6",
+    "reels_fury.png": "043a179f557afaf981dbe5a97fc6fa899e7b5d36654aa8c376701db71a4109ee",
+    "reels_guard.png": "3857236dd4b457208c569ac76ef8f0e076bb264e64d817a70ddb8a8054a2eb66",
+    "reels_plate.png": "b6f72dd01e3fa981862c225347ebe2592b9fd726b25bf6dcea6c05ed2f15cf00",
+    "reels_siphon.png": "71ef898f4af49c00945ecf9dca762ffa9d3d70490bb4c2e4597ec41f1eb02802",
+    "reels_speed.png": "b7edb0202842fa6975f18a09276e6e71db32c066d62b8fa51523b95f201d422b",
+    "siphon.png": "711dabe22ca90cb5cb8ef3de82023bd5f97798d6d0341e31a5caf42e9e939f0c",
+    "speed.png": "70c069e210d4e2e9a44a909a7b4df82ae7bd66cc58798edc903190f67fc1b286"
+  }
+}

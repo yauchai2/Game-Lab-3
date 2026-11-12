@@ -1,0 +1,45 @@
+{
+  "checks": [
+    {
+      "name": "real pointer starts squad encounter",
+      "passed": true
+    },
+    {
+      "name": "squad keeps multiplayer view without duel intro or ability draw",
+      "passed": true
+    },
+    {
+      "name": "all repaired enemies have valid shared rigs and materials",
+      "passed": true
+    },
+    {
+      "name": "pause freezes the whole squad",
+      "passed": true
+    },
+    {
+      "name": "no squad action grants hero mastery",
+      "passed": true
+    },
+    {
+      "name": "restart recreates exactly one squad",
+      "passed": true
+    },
+    {
+      "name": "return to menu removes group visuals and simulation",
+      "passed": true
+    },
+    {
+      "name": "demo keeps original two-person simulation",
+      "passed": true
+    },
+    {
+      "name": "ordinary fight clears the group",
+      "passed": true
+    },
+    {
+      "name": "materials retire after group teardown",
+      "passed": true
+    }
+  ],
+  "scope": "Linux Compatibility pointer/UI/model render and lifecycle checks. Automated command sample is not a human playtest."
+}

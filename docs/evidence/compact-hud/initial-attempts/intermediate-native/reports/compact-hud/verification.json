@@ -1,0 +1,92 @@
+{
+  "checks": [
+    {
+      "name": "formal HUD suppresses routine notice DOUBLE JUMP",
+      "passed": true
+    },
+    {
+      "name": "formal HUD suppresses routine notice CHASE",
+      "passed": true
+    },
+    {
+      "name": "formal HUD suppresses routine notice ROUTE +1",
+      "passed": true
+    },
+    {
+      "name": "formal HUD suppresses routine notice SAMPLE READY",
+      "passed": true
+    },
+    {
+      "name": "formal HUD suppresses routine notice PRELOAD 2 / 2",
+      "passed": true
+    },
+    {
+      "name": "formal HUD suppresses routine notice RICOCHET x2 / FLOOR",
+      "passed": true
+    },
+    {
+      "name": "formal HUD suppresses routine notice NICE BLOCK",
+      "passed": true
+    },
+    {
+      "name": "formal HUD suppresses routine notice SPECIAL NEEDS 50 ENERGY",
+      "passed": true
+    },
+    {
+      "name": "formal HUD retains meaningful outcome FIGHT!",
+      "passed": true
+    },
+    {
+      "name": "formal HUD retains meaningful outcome PERFECT GUARD",
+      "passed": true
+    },
+    {
+      "name": "formal HUD retains meaningful outcome COUNTER SUCCESS",
+      "passed": true
+    },
+    {
+      "name": "formal HUD retains meaningful outcome GUARD BREAK",
+      "passed": true
+    },
+    {
+      "name": "training keeps explanatory notices",
+      "passed": true
+    },
+    {
+      "name": "double jump uses immediate local feedback without text",
+      "passed": true
+    },
+    {
+      "name": "unfunded skill warns only its own resource bar",
+      "passed": true
+    },
+    {
+      "name": "pause freezes resource feedback",
+      "passed": true
+    },
+    {
+      "name": "resource warning clears after one brief pulse",
+      "passed": true
+    },
+    {
+      "name": "compact pause retains a readable label and tooltip",
+      "passed": true
+    },
+    {
+      "name": "compact pause target still works",
+      "passed": true
+    },
+    {
+      "name": "HUD draw leaves real resources unchanged",
+      "passed": true
+    },
+    {
+      "name": "restart clears transient resource feedback",
+      "passed": true
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "failed": 0,
+  "passed": 21,
+  "scope": "Native rendering, injected pointer pause, UI policy and real-state preservation; not human usability validation."
+}

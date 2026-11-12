@@ -1,0 +1,5 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ENTRY_OFFSET (0.0, 0.0, 0.0) BACKUP true
+LANE (-5.0, 0.0, -0.25) CAST [1.0, 1.0] INITIAL [{ "rid": RID(1576252997638), "collider_id": 71336724415, "collider": StaticCollision:<StaticBody3D#71336724415>, "shape": 0 }]
+LANE (5.0, 0.0, -0.25) CAST [1.0, 1.0] INITIAL [{ "rid": RID(2005749727242), "collider_id": 73014446115, "collider": StaticCollision:<StaticBody3D#73014446115>, "shape": 0 }]

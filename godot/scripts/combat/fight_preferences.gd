@@ -11,7 +11,8 @@ func read_options(path: String) -> Dictionary:
         if typeof(value)==typeof(DEFAULTS[key]): values[key]=value
     values.difficulty = clampi(values.difficulty,0,2)
     values.partner_mode = clampi(values.partner_mode,0,2)
-    for key in ["player_character","rival_character"]:values[key]=clampi(values[key],0,3)
+    values.player_character=clampi(values.player_character,0,3)
+    values.rival_character=clampi(values.rival_character,0,4)
     values.time_of_day=clampi(values.time_of_day,0,4)
     if not values.secret_mono and values.time_of_day==4:values.time_of_day=0
     values.language=values.language if values.language in ["zh","en"] else "zh"
@@ -25,7 +26,8 @@ func write_options(path: String, values: Dictionary) -> Error:
         var value: Variant = values.get(key,DEFAULTS[key])
         if typeof(value)!=typeof(DEFAULTS[key]): value=DEFAULTS[key]
         if key in ["difficulty","partner_mode"]: value=clampi(value,0,2)
-        if key in ["player_character","rival_character"]:value=clampi(value,0,3)
+        if key=="player_character":value=clampi(value,0,3)
+        if key=="rival_character":value=clampi(value,0,4)
         if key=="time_of_day":value=clampi(value,0,4)
         if key=="language" and value not in ["zh","en"]:value="zh"
         if key in ["music_level","effects_level"]:value=clampf(value,0,1)

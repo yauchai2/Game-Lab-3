@@ -1,0 +1,30 @@
+{
+  "base_commit": "18eb6f54df71a0c35e289067f1060af632e1b7a7",
+  "sha256": {
+    "godot/audio/city_breaker/README.md": "a174084c357bff8f59f4e0d5603f68887a2bb019e133e3ac9eeb1767fc439c3e",
+    "godot/audio/city_breaker/intro-provenance.json": "66d7b123c55a1bee4e372df70a24f9a425cde89de1ad1caf0c02bb5834e54a8c",
+    "godot/audio/city_breaker/intro.ogg": "93e73718a134e99e68354ae98c997c02ea51bef6640f0f758b2b09a3f768b434",
+    "godot/audio/city_breaker/intro.ogg.import": "8b120235ad3f4c054972650d1acc1c03949161bf368646fd385432adb1f09d63",
+    "godot/scripts/combat/cinematic/city_breaker.gd": "945de815908765b7b164dc2de0ce617e4dfefd07120d1f7b6d804527364a1913",
+    "godot/scripts/combat/cinematic/round_theatre.gd": "37009e3d364203fccb9fff15cc36bc2c471dc29e6574419e380a19b2cdeec780",
+    "godot/scripts/combat/cinematic/round_theatre.gd.uid": "f7390c679a4152598a4a592fa806f30aec1c710243d7506ffb465a048f2a0526",
+    "godot/scripts/combat/demo_director.gd": "d8f7ff994775dd7d8b0c9f6d253ec7c33e576903e9150beeb0bc7a69d2ccd205",
+    "godot/scripts/combat/fight_hud.gd": "3dc4329ae222ed8a28410324a623e85f412fde228208d8d32d5484410a99ec47",
+    "godot/scripts/combat/fight_session.gd": "cf6ff02068d051bb78a1f9732275f8c0c01cf1067c5bd9c582cc2ea28df98b37",
+    "godot/scripts/combat/street_backdrop.gd": "393ae4666ad5e70d57cc1f006559e99ea387d8406b7e0e80b3fc628450152396",
+    "godot/scripts/combat/street_smoke.gd": "ba263ad61d74a1273bdb4ec8123902974e6accbd33831ef2938ff731c8ed9a45",
+    "godot/scripts/combat/street_smoke.gd.uid": "5ce9da42283fb42d87830cb1a62aaf46134c19a1fcfc534be7c724cad5dc1430",
+    "godot/scripts/combat/ui/reference_art.gd": "fb0bf685a4b4915d355fa078fa37c2703fbc2bcb8a533b2ba937e0a5f0da40e8",
+    "godot/scripts/combat/ui/ui_text.gd": "f8e754d97438930398aab2d864ba314853eaf1c83b0400f2a44a16447b710839",
+    "godot/shaders/street_smoke.gdshader": "029e9318545d43d4025ee366eb09e8a9df2c817080a90e0c6f782c53d8b0d1c2",
+    "godot/shaders/street_smoke.gdshader.uid": "9a03c79ea52869cebc60483db2263e28fa56ffad2f8fa4ef1029409251a65eb6",
+    "godot/tools/capture_round_flow.gd": "6bf10567a0af235d83f370e8d1c72ffa2313973343f2de976f4123d46f9ca2e6",
+    "godot/tools/verify_demo.gd": "af4779cece0784e9c72b868508ff1958b5854fa50a2fabc5e611a8f2db5d3fba",
+    "godot/tools/verify_demo_input.gd": "3bc41bb1fc94e3fc17a8364a4c919634207c2f8582331931b54a1c7da9f8ff60",
+    "godot/tools/verify_reference_ui.gd": "b9a61a32d0e0ab556ba0acdc7d16834cdd7aeed770fc61f3d9fa3059ef3c19b0",
+    "godot/tools/verify_round_flow.gd": "ff90e43a03a8d744a556e8e10fd22435b769a90c30bce6361a64cd0bc5bc7117",
+    "godot/tools/verify_victory_exits.gd": "bbc2b03f4c1d03f45e70915ecc39847f20a4eb33a918a88c83b599dd5a21737f",
+    "tools/build_city_breaker_audio.py": "978b52f7e6af46a7ec53978e6272aee872672179bfe880605901ead753501d87",
+    "tools/verify_game_polish.py": "24158226342ff577c5c4697985017304409c973fc277702f9c302877eec2389f"
+  }
+}

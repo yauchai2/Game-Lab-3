@@ -6,10 +6,16 @@ const PROFILES=[
  {"trait":"trait_rivet","speed":.88,"gain":.95,"color":"ff921c","special_name":"skill_rivet","overdrive_name":"cannon_rivet"},
  {"trait":"trait_hush","speed":.96,"gain":1.02,"color":"ff459d","special_name":"skill_hush","overdrive_name":"cannon_hush"},
  {"trait":"trait_loop","speed":1.0,"gain":1.0,"color":"b8ff00","special_name":"skill_loop","overdrive_name":"cannon_loop"}]
-static func profile(index:int) -> Dictionary:return PROFILES[clampi(index,0,3)]
+const BLACK_SUIT_PROFILE={"trait":"trait_black_suit","speed":.98,"gain":1.0,"color":"a888ff","special_name":"skill_black_suit","overdrive_name":"cannon_black_suit"}
+static func profile(index:int) -> Dictionary:
+    return BLACK_SUIT_PROFILE if index==4 else PROFILES[clampi(index,0,3)]
 static func move(base:Dictionary,index:int,name:String,f:Dictionary={}) -> Dictionary:
     var m:Dictionary=base.duplicate()
     match index:
+        4:
+            # A melee enemy, without hero resource mechanics or growth perks.
+            if name=="special":m.damage=24;m.startup=18;m.active=6;m.recovery=34;m.reach=2.5;m.push=10.0
+            if name=="overdrive":m.damage=38;m.startup=28;m.active=8;m.recovery=44;m.reach=2.8;m.push=16.0
         0:
             if name in ["jab","cross","air_jab","air_kick"]:m.damage=maxi(4,m.damage-1);m.recovery=maxi(8,m.recovery-2)
             if name=="special":m.damage=10 if f.get("service",{}).get("zip_second",false) else 12;m.startup=14;m.active=10;m.recovery=28;m.reach=2.7;m.push=8.0 if f.get("service",{}).get("zip_second",false) else 2.0
@@ -30,4 +36,10 @@ static func move(base:Dictionary,index:int,name:String,f:Dictionary={}) -> Dicti
             if name=="cross":m.reach=2.0;m.push=3.4
             if name=="special":m.damage=0;m.reach=0.0;m.startup=14;m.active=1;m.recovery=20
             if name=="overdrive":m.damage=24;m.startup=28;m.active=12;m.recovery=44;m.reach=2.5
+    # Only authored power accents use the multi-wall cinematic trajectory.
+    # ZIP's early flurry hits keep their ordinary push; only its final hit qualifies.
+    m["ricochet"]=name=="overdrive" and m.push>=7
+    if name=="special":
+        var resources:Dictionary=f.get("service",{})
+        m["ricochet"]=(index==1 and resources.get("preload",0)>=2) or (index==2 and resources.get("sample_boost",false))
     return m

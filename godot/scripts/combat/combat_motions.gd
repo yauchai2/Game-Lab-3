@@ -11,6 +11,7 @@ var alignment := Quaternion.IDENTITY
 var source_hips := -1
 var target_hips := -1
 var height_scale := 1.0
+var death_height_scale := 1.0
 var contact_phases := {"Punch_Jab":0.30,"Punch_Cross":0.30,"Spell_Simple_Shoot":0.42}
 var clip_name := ""
 var clip_elapsed := 0.0
@@ -63,6 +64,9 @@ func setup(target: Skeleton3D, model: Node3D) -> void:
     var target_hip := skeleton.get_bone_global_rest(target_hips).origin
     alignment = (_frame(target_right-target_left,target_head-target_hip) * _frame(source_right-source_left,source_head-source_hip).inverse()).get_rotation_quaternion()
     height_scale = (target_head-target_hip).length() / maxf((source_head-source_hip).length(),0.01)
+    # Stylized rigs have different leg/torso proportions. Falling to the floor
+    # must scale by hip height, rather than the upper-body retargeting ratio.
+    death_height_scale=target_hip.dot(model_up)/maxf((alignment*source_hip).dot(model_up),.01)
     # The supplied rig has lowered arms; calibrate each limb against the source
     # bind directions so a boxing guard does not inherit that lowered-arm offset.
     for bone in mapping:
@@ -108,8 +112,12 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         elif character==3:selected="Idle_Loop";loop=true
     if f.state=="attack" and character==1 and f.move in ["cross","finisher","special"]:selected="Sword_Attack";loop=false
     if f.get("showcase",false):
-        selected=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop"][character];loop=true
-    var state_key := selected + "/" + str(f.state) + ("/"+str(f.move) if f.state=="attack" else "")
+        selected=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop","Idle_Loop"][clampi(character,0,4)];loop=true
+    # Death owns the pose even when an outgoing attack or idle state remains in
+    # the frozen result/squad snapshot. State changes must not restart the fall.
+    var dead:bool=f.health<=0
+    if dead:selected="Death01";loop=false
+    var state_key := "Death01/dead" if dead else selected + "/" + str(f.state) + ("/"+str(f.move) if f.state=="attack" else "")
     if state_key != previous_state:
         blend_from.clear()
         for bone in skeleton.get_bone_count(): blend_from.append(skeleton.get_bone_pose_rotation(bone))
@@ -126,7 +134,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         if f.vx*f.face<0: sample_time = duration-sample_time
     if selected == "Punch_Enter":
         sample_time = duration # Authored boxing stance, with breathing layered below.
-    elif f.state == "attack":
+    elif f.state == "attack" and not dead:
         var move: Dictionary = f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
         var contact: float = contact_phases.get(selected,0.42)
         if f.frame < move.startup:
@@ -166,15 +174,19 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
             local_rotation = blend_from[bone].slerp(local_rotation,blend)
         desired[bone] = parent_rotation * local_rotation
         skeleton.set_bone_pose_rotation(bone,local_rotation)
-    # Keep horizontal root motion in the combat simulation. Preserve modest hip bob.
+    # Keep horizontal root motion in simulation. Death needs the full downward
+    # hip track; the standing bob clamp leaves a prone body floating at hip height.
     var hips_position := skeleton.get_bone_rest(target_hips).origin
     if clip.tracks.has(str(source_hips)) and clip.tracks[str(source_hips)].has("translation"):
         var translation: Vector3 = _sample_vector(clip.tracks[str(source_hips)].translation,sample_time)
         var source_base := _vec(library.nodes[source_hips].translation)
         var parent: int = library.nodes[source_hips].parent
-        var offset := alignment * (source_global_rest[parent] * (translation-source_base)) * height_scale
-        hips_position.y += clampf(offset.y,-0.15,0.12)
+        var offset := alignment * (source_global_rest[parent] * (translation-source_base)) * (death_height_scale if dead else height_scale)
+        hips_position.y += offset.y if dead else clampf(offset.y,-0.15,0.12)
     skeleton.set_bone_pose_position(target_hips,hips_position)
+    if dead:
+        air_pose_name=""
+        return # Air/stunt/guard layers must not overwrite the death clip.
     if f.state == "attack":
         var move: Dictionary = f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
         var attack_weight := clampf(float(f.frame)/move.startup,0,1)
@@ -214,6 +226,11 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         for side in ["Left","Right"]:
             _aim_limb(side+"Arm",side+"ForeArm",model_forward*.45+model_up*.3,.6)
             _aim_limb(side+"ForeArm",side+"Hand",model_up+model_forward*.25,.8)
+        if character==4:
+            # The suit's long arms need lower elbows to keep the gloves at face height.
+            for side in ["Left","Right"]:
+                _aim_limb(side+"Arm",side+"ForeArm",model_forward*.55-model_up*.65,.95)
+                _aim_limb(side+"ForeArm",side+"Hand",model_up+model_forward*.25,.95)
     if f.get("rally_phase","")=="compress":
         var amount: float=clampf(f.get("rally_amount",0.0),0,1)
         if f.get("rally_owner",false):
@@ -241,7 +258,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
             _aim_limb("RightForeArm","RightHand",model_forward if winding else model_up,.9)
 
     if f.state=="attack" and f.move in ["special","overdrive"]:
-        air_pose_name=["Boxer_DoublePalm","Dancer_SpinKick","Bass_Hammer","Spark_Drive"][character]
+        air_pose_name=["Boxer_DoublePalm","Dancer_SpinKick","Bass_Hammer","Spark_Drive","Collector_Drive"][clampi(character,0,4)]
         var active:bool=f.frame>=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]).startup
         if active and character==1:
             _aim_limb("RightUpLeg","RightLeg",model_forward+model_up*.35,1.0)

@@ -1,0 +1,79 @@
+{
+  "created_utc": "20261111T153302Z",
+  "source_commit": "679b42b7e1326c33e11a458a9593a1eab77b8096",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/fight_hud.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/last_service/presentation.gd",
+    "godot/scripts/combat/ui/reference_art.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": false,
+  "passed": 33,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_compact_hud",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "d3d0aec356121655dbd220149e8a93ff9da861c1be5e8b64b47cb593e2908d38",
+      "seconds": 3.534,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_compact_hud.gd"
+      ],
+      "report_written": true,
+      "passed": 21,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details).",
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "engine_errors": [
+        "ERROR: 1 resources still in use at exit (run with --verbose for details)."
+      ],
+      "success": false
+    },
+    {
+      "name": "verify_double_jump_input",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "9bf8e9f12de09624e0fad5bc0e8d173061839457a28e9c4fb2576a1bae9fcda2",
+      "seconds": 4.776,
+      "command": [
+        "/tmp/godot-4.7.2/Godot_v4.7.2-stable_linux.x86_64",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_double_jump_input.gd"
+      ],
+      "report_written": true,
+      "passed": 12,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}
