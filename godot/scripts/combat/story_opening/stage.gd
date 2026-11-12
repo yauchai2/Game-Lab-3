@@ -113,6 +113,30 @@ func _starburst() -> ImageTexture:
 			image.set_pixel(x,y,c)
 	return ImageTexture.create_from_image(image)
 
+const PROPS:="res://assets/story_opening/"
+
+func prop(parent:Node3D,name:String,at:Vector3,size:Vector3,yaw:=0.0) -> Node3D:
+	# Tripo prop (256 px derived texture, raw GLB kept in source/): fitted per axis to `size` in the model's own
+	# axes, bottom-centre on `at`, then yawed. Nearest filtering keeps the JSR-style crunch.
+	var path:=PROPS+name+".glb"
+	var holder:=group(parent,at,"Prop_"+name);holder.rotation_degrees.y=yaw
+	if not ResourceLoader.exists(path):return holder
+	var model:Node3D=(load(path) as PackedScene).instantiate();holder.add_child(model)
+	var box_bounds:=AABB();var first:=true
+	for mesh in model.find_children("*","MeshInstance3D",true,false):
+		var m:=mesh as MeshInstance3D
+		var local:=model.global_transform.affine_inverse()*m.global_transform
+		var a:AABB=local*m.get_aabb();box_bounds=a if first else box_bounds.merge(a);first=false
+		for i in m.get_surface_override_material_count():
+			var base:=m.mesh.surface_get_material(i) as StandardMaterial3D
+			if base==null:continue
+			var copy:=base.duplicate() as StandardMaterial3D;copy.texture_filter=BaseMaterial3D.TEXTURE_FILTER_NEAREST;copy.roughness=1.0;copy.metallic=0.0
+			m.set_surface_override_material(i,copy)
+	var factor:=Vector3(size.x/maxf(box_bounds.size.x,.001),size.y/maxf(box_bounds.size.y,.001),size.z/maxf(box_bounds.size.z,.001))
+	model.scale=factor
+	model.position=Vector3(-(box_bounds.position.x+box_bounds.size.x*.5)*factor.x,-box_bounds.position.y*factor.y,-(box_bounds.position.z+box_bounds.size.z*.5)*factor.z)
+	return holder
+
 func build() -> void:
 	rng.seed=20261112
 	var asphalt:=mat(Color("8c8794"),false,preload("res://assets/textures/road_asphalt_128.png"),4.0)
@@ -225,26 +249,17 @@ func _garage(concrete:Material,plaster:Material,shutter:Material,tiles:Material,
 		var lamp:=OmniLight3D.new();lamp.position=at;lamp.omni_range=11.0;lamp.light_energy=1.7;lamp.light_color=Color("ffe9c4")
 		lamp.shadow_enabled=false;root.add_child(lamp);interior_lights.append(lamp)
 	# Back wall: pegboard, tools, shelves, poster, fan.
-	box(root,Vector3(-3.6,2.5,-8.95),Vector3(4.6,2.2,.08),mat(Color("3c3744")))
-	for i in 9:
-		var tool_color:Color=[Color("d8d4de"),Color("e0146f"),Color("27e6ee")][i%3]
-		box(root,Vector3(-5.5+i*.47,2.6+.18*sin(i*1.7),-8.88),Vector3(.09,.7+.25*cos(i*2.3),.05),mat(tool_color))
-	for level in 4:
-		box(root,Vector3(-6.4,.5+level*.85,-6.6),Vector3(1.0,.06,2.6),steel)
-		for i in 4:box(root,Vector3(-6.4,.72+level*.85,-7.6+i*.62),Vector3(.5,.36,.4),mat([Color("7c5a3a"),Color("3e6f7a"),Color("93334d"),Color("c7b46a")][(i+level)%4]))
-	for z in [-7.85,-5.35]:box(root,Vector3(-6.4,1.8,z),Vector3(1.0,3.5,.08),steel)
+	for x in [-4.9,-2.5]:prop(root,"pegboard_tools",Vector3(x,1.4,-8.9),Vector3(.12,2.2,2.3),90.0)
+	prop(root,"shelf_bottles",Vector3(-6.2,0,-6.4),Vector3(2.6,3.3,.9),90.0)
 	var poster:=MeshInstance3D.new();var quad:=QuadMesh.new();quad.size=Vector2(1.7,1.7);poster.mesh=quad
 	var poster_material:=StandardMaterial3D.new();poster_material.albedo_texture=_starburst()
 	poster_material.texture_filter=BaseMaterial3D.TEXTURE_FILTER_NEAREST;poster_material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
 	poster.material_override=poster_material;poster.position=Vector3(2.4,2.7,-8.97);root.add_child(poster)
 	box(root,Vector3(2.4,2.7,-8.99),Vector3(1.85,1.85,.03),mat(Color("1a1420")))
-	cyl(root,Vector3(5.6,3.7,-8.9),.62,.16,steel,10).rotation_degrees.x=90
-	cyl(root,Vector3(5.6,3.7,-8.8),.5,.05,dark,6).rotation_degrees.x=90
+	prop(root,"wall_fan",Vector3(5.6,3.1,-8.9),Vector3(1.3,1.3,.55))
 	# Centre bench the case lands on, with loose tools that jump.
 	var bench:=group(root,Vector3(TABLE.x,0,TABLE.z),"Bench")
-	box(bench,Vector3(0,.9,0),Vector3(2.6,.1,1.25),mat(Color.WHITE,false,_rust(),1.2))
-	for corner in [Vector3(-1.2,.43,-.52),Vector3(1.2,.43,-.52),Vector3(-1.2,.43,.52),Vector3(1.2,.43,.52)]:box(bench,corner,Vector3(.1,.86,.1),steel)
-	box(bench,Vector3(0,.3,0),Vector3(2.4,.05,1.05),steel)
+	prop(bench,"workbench",Vector3.ZERO,Vector3(1.25,.9,2.6),90.0)
 	for spec in [[Vector3(-1.05,.99,-.38),Vector3(.34,.05,.07),Color("d8d4de")],[Vector3(-1.0,.99,.34),Vector3(.07,.05,.3),Color("e0146f")],[Vector3(1.08,1.02,.38),Vector3(.14,.12,.14),Color("27e6ee")],[Vector3(1.02,.99,-.4),Vector3(.3,.05,.06),Color("c7b46a")]]:
 		var loose:=box(bench,spec[0],spec[1],mat(spec[2]));table_props.append(loose);table_rest.append(loose.position)
 	# RIVET's bike, LOOP's speaker, HUSH's sofa.
@@ -314,17 +329,9 @@ func _street_dressing(steel:Material,dark:Material) -> void:
 func _garage_clutter(steel:Material,dark:Material) -> void:
 	# Small set dressing from the reference: bottles, boombox, drawer cabinet, cable, paper scraps, side table with bowl.
 	var root:=group(self,Vector3.ZERO,"GarageClutter")
-	var glass:=[mat(Color("3e8f5a")),mat(Color("c4852e")),mat(Color("8f3a4a"))]
-	for level in 4:
-		for i in 3:
-			cyl(root,Vector3(-6.45+(i-1)*.28,.78+level*.85,-6.2-i*.55),.055,.26,glass[(i+level)%3],6,.03)
-	var boombox:=group(root,Vector3(-6.4,2.55,-7.4),"Boombox")
-	box(boombox,Vector3.ZERO,Vector3(.52,.26,.24),mat(Color("2a2733")))
-	for x in [-.15,.15]:cyl(boombox,Vector3(x,0,.125),.08,.03,mat(Color("55515f")),8).rotation_degrees.x=90
-	box(boombox,Vector3(0,.16,0),Vector3(.3,.03,.03),steel)
-	var cabinet:=group(root,Vector3(-6.45,0,-3.0),"DrawerCabinet")
-	box(cabinet,Vector3(0,.6,0),Vector3(.6,1.2,.9),mat(Color("5b5865")))
-	for i in 4:box(cabinet,Vector3(.31,.2+i*.28,0),Vector3(.02,.2,.8),mat(Color("3a3745")))
+	prop(root,"drawer_cabinet",Vector3(-6.45,0,-3.0),Vector3(.5,1.25,.9),90.0)
+	prop(root,"boombox",Vector3(-6.45,1.25,-3.0),Vector3(.3,.35,.62),90.0)
+	prop(root,"case_closed",Vector3(-5.2,0,-1.2),Vector3(.8,.45,.6),20.0)
 	var side:=group(root,Vector3(4.6,0,-1.6),"SideTable")
 	box(side,Vector3(0,.36,0),Vector3(.9,.06,.7),mat(Color("4a3a30")))
 	for corner in [Vector3(-.4,.18,-.3),Vector3(.4,.18,-.3),Vector3(-.4,.18,.3),Vector3(.4,.18,.3)]:box(side,corner,Vector3(.05,.36,.05),steel)
@@ -334,51 +341,22 @@ func _garage_clutter(steel:Material,dark:Material) -> void:
 		var cable:=box(root,Vector3(-3.0+i*.6,.02,-8.5),Vector3(.04,.03,1.4),mat(INK));cable.rotation_degrees.y=18.0*i-12.0
 	var rug:=box(root,Vector3(.2,.01,-1.9),Vector3(2.4,.012,1.0),mat(Color("c7b46a")))
 	for i in 6:box(root,Vector3(-.85+i*.34,.017,-1.9),Vector3(.16,.004,1.02),mat(INK))
-	for x in [-1.5,3.4]:
-		var fan:=cyl(root,Vector3(x,3.6,-8.9),.5,.06,steel,10);fan.rotation_degrees.x=90
+	prop(root,"wall_fan",Vector3(-.8,3.2,-8.9),Vector3(1.1,1.1,.5))
 
 func _street_signals(steel:Material,dark:Material) -> void:
 	var root:=group(self,Vector3.ZERO,"StreetSignals")
-	var red:=mat(Color("ff2a2a"),true);var green:=mat(Color("38e872"),true)
-	for spec in [[-12.0,6.0,red],[-4.5,12.4,green],[12.0,7.0,red],[3.5,12.4,red],[-26.0,6.5,green]]:
-		var pole:=group(root,Vector3(spec[0],0,spec[1]),"Signal")
-		box(pole,Vector3(0,2.6,0),Vector3(.12,5.2,.12),steel)
-		box(pole,Vector3(0,4.9,.1),Vector3(.38,.95,.28),dark)
-		box(pole,Vector3(0,5.15,.26),Vector3(.18,.18,.05),spec[2])
-		box(pole,Vector3(0,4.75,.26),Vector3(.18,.18,.05),mat(Color("1a1a1a")))
-	var small:=group(root,Vector3(-3.0,0,11.6),"RedCar")
-	box(small,Vector3(0,.55,0),Vector3(3.8,.7,1.6),mat(Color("c01830")))
-	box(small,Vector3(-.2,1.1,0),Vector3(2.0,.5,1.4),mat(Color("3a3550")))
-	for x in [-1.2,1.2]:
-		for z in [-.8,.8]:cyl(small,Vector3(x,.3,z),.3,.2,mat(INK),8).rotation_degrees.x=90
-	box(small,Vector3(-1.92,.7,.5),Vector3(.04,.14,.3),mat(Color("ff2255"),true))
-	box(small,Vector3(-1.92,.7,-.5),Vector3(.04,.14,.3),mat(Color("ff2255"),true))
+	for spec in [[-12.0,6.0],[-4.5,12.4],[12.0,7.0],[3.5,12.4],[-26.0,6.5]]:
+		prop(root,"traffic_light",Vector3(spec[0],0,spec[1]),Vector3(1.1,5.2,.5),180.0)
+	prop(root,"red_car",Vector3(-3.0,0,11.6),Vector3(1.7,1.45,3.8),90.0)
+	prop(root,"shop_front",Vector3(13.0,0,17.4),Vector3(5.0,4.2,3.2),180.0)
 
 func _case() -> void:
 	# Black flight case. Lid hinges on the door side (+Z) so it opens toward the room.
 	case_root=group(self,TABLE,"FlightCase")
 	var shell:=mat(Color("1b1823"));var trim:=mat(Color("b9b6c4"));var foam:=mat(Color("0c0b10"))
-	box(case_root,Vector3(0,.09,0),Vector3(1.5,.18,.78),shell)
-	box(case_root,Vector3(0,.175,0),Vector3(1.4,.02,.68),foam)
-	for x in [-.75,.75]:
-		for z in [-.39,.39]:box(case_root,Vector3(x,.09,z),Vector3(.07,.2,.07),trim)
-	for z in [-.39,.39]:box(case_root,Vector3(0,.18,z),Vector3(1.5,.025,.03),trim)
-	# Two collector devices and the manifest: blocky, clearly props.
-	var metal:=mat(Color("3d3a48"));var metal2:=mat(Color("555262"))
-	for spec in [[Vector3(-.28,.2,.12),1.0],[Vector3(-.12,.2,-.17),.82]]:
-		var gun:=group(case_root,spec[0],"Device");gun.scale=Vector3.ONE*spec[1]
-		box(gun,Vector3(0,.02,0),Vector3(.62,.05,.12),metal)
-		box(gun,Vector3(.42,.02,.005),Vector3(.3,.045,.075),metal2)
-		box(gun,Vector3(-.2,.02,-.1),Vector3(.1,.05,.16),metal).rotation_degrees.y=14
-		box(gun,Vector3(.02,.02,-.1),Vector3(.07,.05,.13),metal2)
-		box(gun,Vector3(-.33,.02,.01),Vector3(.1,.05,.1),metal2)
-		box(gun,Vector3(.1,.05,.01),Vector3(.2,.02,.03),mat(CYAN,true))
-	for i in 3:box(case_root,Vector3(-.62,.2,-.2+i*.1),Vector3(.1,.04,.05),mat(Color("f0731c")))
-	var sheet:=mat(Color("efe6d2"))
-	for i in 3:box(case_root,Vector3(.47+i*.012,.19+i*.006,.02),Vector3(.3,.006,.42),sheet).rotation_degrees.y=-6+i*5.0
-	for i in 6:box(case_root,Vector3(.46,.206,-.12+i*.055),Vector3(.2-.03*(i%3),.004,.016),mat(Color("77737f")))
-	box(case_root,Vector3(.47,.206,.2),Vector3(.1,.008,.04),mat(Color("e0146f")))
-	case_glow=box(case_root,Vector3(0,.2,0),Vector3(1.36,.01,.64),mat(Color(1,.95,.8,.0),true))
+	# Case body, foam cut-outs, devices, magazines and manifest come from the Tripo open-case model.
+	prop(case_root,"case_open",Vector3.ZERO,Vector3(1.5,.2,.78))
+	case_glow=box(case_root,Vector3(0,.215,0),Vector3(1.36,.01,.64),mat(Color(1,.95,.8,.0),true))
 	var glow_material:=StandardMaterial3D.new();glow_material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
 	glow_material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA;glow_material.albedo_color=Color(1,.96,.82,0);case_glow.material_override=glow_material
 	case_lid=group(case_root,Vector3(0,.18,.39),"Lid")
