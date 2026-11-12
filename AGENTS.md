@@ -137,3 +137,5 @@
 - 2026-11-12 最新要求稍提高解像度並完成城市成長：現況docs/CITY_PROGRESSION_EXPANSION.zh-TW.md。960×540／較清晰title-city-roster覆蓋舊640要求，nearest／無AA／toon輪廓／logical UI保持、fractional填1280視窗。48節點25點／一keystone、縮放拖曳／相連／互動天賦，T1–T5合約四詞綴／seed／3次／返圖晉級，真掉裝／詞綴／特製取捨／比較／各角三槽與倉庫已實作。v1城市遷schema2保技能錢裝、退樹保等值預算、.v1.bak；公開city驗證入口轉新套件舊fixture保archive。359項／960原生圖，仍非真人／Mac／FPS；巨型多階段Boss／完整劇情美術與城市九核心仍待做。原GLB、FIGHT／Demo／舊進度保持，只推codex/story-waves-m1／草稿PR #12，不合main／Web。
 
 - 2026-11-12 最新使用者要求實作所有既定ideas並技巧優先：現況docs/CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md，覆蓋上一輪Boss／城市核心／新場景／完整短篇未做。六區18場／六章、兩種多階段巨型Boss、有限增援／重裝干擾隊長／危險地面／破箱連鎖／分支補給休息、五技能課程／12專屬招式、九核心真DRAW→EQUIP、工坊及裝備外觀；12原創Blender低模GLB可重建（使用者本輪允許生成模型），原Tripo保持。schema3保v2樹裝及局內進度並留.v2.bak。裝備直傷12%、條件總50%／parry60%、核心減傷／省能合併上限及Boss閉甲限制；裸裝四角／全故事正常輸入測例可過，九種極端裝攻擊spam敗於最終Boss，非真人／Mac／FPS驗收。證據evidence/campaign-complete。仍只推codex/story-waves-m1／草稿PR #12，不合main／Web。
+
+- 2026-11-12 最新澄清：整個遊戲包括UI／文字提高解像度。正式root／title／city1280×720覆蓋舊960，logical UI在預設視窗1:1；選角cards192×256／hero448×512。保留nearest／無AA／bitmap／toon，不能又將UI先縮低再放大。70項原生檢查見docs/evidence/whole-game-720p；未驗硬件FPS／Mac，UI runner退出8ObjectDB警告明示未解。仍同branch／PR #12，main及Web不動。

@@ -1,3 +1,7 @@
+## 2026-11-12：整個遊戲含UI／文字提高至720p
+
+使用者澄清解像度要求包括所有UI及文字。正式root viewport由960×540升1280×720，預設1280視窗及1280logical UI直接1:1渲染；主選單／城市viewport同步，選角預覽提高。原字級／布局保持，不先下採樣再放大；保留nearest、無AA、bitmap字形、toon／黑白桃紅青綠復古風格。這覆蓋先前960設定，不改戰鬥／成長。70項原生UI及城市／故事流程通過，實際1280PNG與限制見[evidence/whole-game-720p](evidence/whole-game-720p/README.md)；未驗Mac／硬件FPS。仍codex/story-waves-m1／草稿PR #12，main／Web不動。
+
 ## 2026-11-12：完整短篇故事版本
 
 - [x] 六區獨立場景、實際城市英雄／NPC、六章故事及結局。

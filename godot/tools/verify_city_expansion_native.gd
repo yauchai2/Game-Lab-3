@@ -37,14 +37,14 @@ func run() -> void:
     for suffix in ["",".bak",".tmp"]:DirAccess.remove_absolute(ProjectSettings.globalize_path(path+suffix))
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";s.city_save_path=path
     root.add_child(s);s.audio.muted=true;s.set_process(false);s.set_physics_process(false);await frames(5)
-    check("actual game viewport is 960x540",root.get_visible_rect().size==Vector2(960,540))
+    check("actual game viewport is 1280x720",root.get_visible_rect().size==Vector2(1280,720))
     check("nearest texture filter and AA-free toon renderer retained",ProjectSettings.get_setting("rendering/textures/canvas_textures/default_texture_filter")==0 and root.msaa_3d==Viewport.MSAA_DISABLED and root.screen_space_aa==Viewport.SCREEN_SPACE_AA_DISABLED)
-    check("title preview also renders at new resolution",s.hud.title_motion.viewport.size==Vector2i(960,540))
+    check("title preview also renders at new resolution",s.hud.title_motion.viewport.size==Vector2i(1280,720))
     await shot("main-menu")
     await click(s.hud.art_buttons.fight)
     var c=s.city_campaign;var h=c.hub;var p=c.profile
     check("main Story still opens the isometric city",s.screen=="city" and h.visible and not s.hud.visible)
-    check("city viewport matches upgraded whole-game resolution",h.viewport.size==Vector2i(960,540))
+    check("city viewport matches upgraded whole-game resolution",h.viewport.size==Vector2i(1280,720))
     await shot("city")
     await tap(KEY_5)
     var board:Control=h.stack.get_children().filter(func(n:Node)->bool:return n.get_meta("city_board","")=="map")[0]
@@ -54,7 +54,7 @@ func run() -> void:
     await tap(KEY_J)
     for i in 18:s._combat_step();s._process(1.0/60)
     check("real input still causes combat damage",s.sim.squad_members[0].health<35)
-    await shot("battle-960")
+    await shot("battle-720p")
     await complete_fixture();await tap(KEY_ENTER)
     check("clear banks an equipment drop and spendable talent point",s.screen=="city" and p.data.inventory.size()==1 and p.data.points==1 and p.data.credits==100)
     await tap(KEY_1);await click(button(h.stack,"LEARN  DOUBLE"))

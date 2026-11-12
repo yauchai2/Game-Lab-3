@@ -1,3 +1,7 @@
+## 2026-11-12：整個遊戲含UI／文字提高至720p
+
+使用者澄清解像度要求包括所有UI及文字。正式root viewport由960×540升1280×720，預設1280視窗及1280logical UI直接1:1渲染；主選單／城市viewport同步，選角預覽提高。原字級／布局保持，不先下採樣再放大；保留nearest、無AA、bitmap字形、toon／黑白桃紅青綠復古風格。這覆蓋先前960設定，不改戰鬥／成長。70項原生UI及城市／故事流程通過，實際1280PNG與限制見[evidence/whole-game-720p](evidence/whole-game-720p/README.md)；未驗Mac／硬件FPS。仍codex/story-waves-m1／草稿PR #12，main／Web不動。
+
 ## 2026-11-12：完整短篇故事、雙巨型Boss與技巧優先成長
 
 最新見[CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)，覆蓋下方「Boss／城市九核心／獨立場景／完整短篇故事未做」的舊狀態。六區18場、兩／三階段Boss與讀招弱點、有限增援／新敵型、危險地面預告／破箱連鎖、分支休息與補給、六章劇本／三NPC／五能力課程／12專屬招式三選二、九核心真DRAW→EQUIP與一次性出擊預算、工坊及裝備骨架外觀已接正式STORY。12個原創低模GLB與Blender來源可重建；原Tripo及英雄GLB保持。schema3保v2樹／裝／局內進度並留.v2.bak，v1遷移仍保持。

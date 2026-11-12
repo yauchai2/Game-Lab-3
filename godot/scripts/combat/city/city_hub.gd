@@ -35,7 +35,7 @@ func _ready() -> void:
     root=Control.new();root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);root.theme=T.build();add_child(root)
     var container:=SubViewportContainer.new();container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);container.stretch=true
     container.mouse_filter=Control.MOUSE_FILTER_IGNORE;container.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;root.add_child(container)
-    viewport=SubViewport.new();viewport.size=Vector2i(960,540);viewport.own_world_3d=true;container.add_child(viewport)
+    viewport=SubViewport.new();viewport.size=Vector2i(1280,720);viewport.own_world_3d=true;container.add_child(viewport)
     world=Node3D.new();viewport.add_child(world);_build_city()
     layout=Control.new();layout.mouse_filter=Control.MOUSE_FILTER_IGNORE;root.add_child(layout)
     header=_label("",30,T.PAPER);header.position=Vector2(34,22);header.size=Vector2(1220,74);layout.add_child(header)
