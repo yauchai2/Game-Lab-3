@@ -13,7 +13,7 @@ static func make(id:int,slot:int,quality:int,item_level:int,skills:Array,seed_va
         var index:=random.randi_range(0,candidates.size()-1)
         affixes.append(candidates.pop_at(index))
     var special:String=["relay_brace","anchor_brace","counter_cell","broadcast_cell"][posmod(seed_value,4)] if quality==3 else ""
-    return {"id":id,"slot":slot,"tier":quality,"level":item_level,"stat":["damage","economy","defence"][slot],"amount":minf(.10,[.02,.035,.05,.065][quality]+item_level*.002),"name":["SALVAGED","TUNED","RARE","SIGNATURE"][quality]+" "+SLOTS[slot],"affixes":affixes,"special":special}
+    return {"id":id,"slot":slot,"tier":quality,"level":item_level,"stat":["damage","economy","defence"][slot],"amount":[.015,.025,.035,.045][quality],"name":["SALVAGED","TUNED","RARE","SIGNATURE"][quality]+" "+SLOTS[slot],"affixes":affixes,"special":special}
 
 static func effects(item:Dictionary) -> Dictionary:
     var result:Dictionary={}

@@ -25,6 +25,10 @@ var talent_tree:Control
 var inventory_page:=0
 var selected_item:=-1
 var nearest:=-1
+var hero_visual:Node3D
+var town_npcs:Array[Node3D]=[]
+var speaker:=0
+var chapter_review:=-1
 
 func _ready() -> void:
     layer=6
@@ -50,6 +54,7 @@ func _ready() -> void:
     var scroll:=ScrollContainer.new();scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;panel.add_child(scroll)
     stack=VBoxContainer.new();stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL;stack.add_theme_constant_override("separation",10);scroll.add_child(stack)
     talent_tree=preload("res://scripts/combat/city/city_talent_tree.gd").new();layout.add_child(talent_tree)
+    _upgrade_city()
     root.resized.connect(_resize);_resize();hide_city()
 
 func _resize() -> void:
@@ -158,6 +163,7 @@ func _process(delta:float) -> void:
         hero.position.x=clampf(hero.position.x,-6.6,6.6);hero.position.z=clampf(hero.position.z,-6,6)
         if direction.length()>.1:hero.rotation.y=atan2(-direction.x,-direction.z)
         walk_clock+=delta*12*movement.length()
+    _avatar(delta,movement)
     for i in feet.size():feet[i].position.y=.22+sin(walk_clock+i*PI)*.09*movement.length()
     nearest=-1
     for i in 5:
@@ -229,10 +235,18 @@ func _skills() -> void:
     _text("CLASS SKILL RANK %d / 3. Each rank: +5%% basic L damage."%rank,T.GOLD)
     _button("UPGRADE L / 30 CREDITS + %d PARTS"%(2+rank),func():act(func():return p.upgrade_skill(hero_id),"Class skill upgraded"),rank>=3 or p.data.credits<30 or p.data.parts<2+rank)
     _text("Permanent skills / story milestones. No random unlocks.")
+    _text("PRACTICE lessons use safe fixtures and award no loot.",T.GOLD)
     for skill in Profile.SKILLS:
         var id:String=skill.id
         var owned:bool=id in p.data.skills
         _button(("LEARNED  " if owned else "LEARN  ")+skill.name+" / CLEAR %d"%skill.at,func():act(func():return p.learn(id),"Skill learned"),owned or int(p.data.best)<skill.at)
+        if owned:_button("PRACTICE "+skill.name,func():campaign.start_lesson(id))
+    _text("CLASS TECHNIQUES / EQUIP TWO",T.TEAL)
+    for i in 3:
+        var skill:Dictionary=p.Advanced.SKILLS[hero_id][i];var id:String=skill.id
+        var owned:bool=id in p.data.advanced[hero_id]
+        _text(skill.desc)
+        _button(("UNEQUIP " if owned else "EQUIP ")+skill.name+" / CLEAR %d"%[9,12,15][i],func():act(func():return p.advanced_skill(hero_id,id),"Class technique updated"),int(p.data.best)<[9,12,15][i] or (not owned and p.data.advanced[hero_id].size()>=2))
     _text("Movement, dodge, guard, throws and your basic class skill are available from the start.")
 
 func _talents() -> void:
@@ -240,6 +254,10 @@ func _talents() -> void:
 
 func _shop() -> void:
     var p=campaign.profile;var hero_id:int=campaign.hero_id()
+    _text("GEAR CAPS: +12% direct damage / +10% defence. Total damage +50%, mitigation 20%, saving 20%. Read openings; gear does not add invulnerability.",T.GOLD)
+    _text("CORE READY: "+str(p.data.pending_core).to_upper())
+    _text("Nine equally likely cores. One slot per expedition; healing budget survives retries. Prepare here between encounters.")
+    _button("DEALER / CORE DRAW + EQUIP / 1 PART",campaign.start_core_draw,not p.can_prepare_core() or (p.data.parts<1 and p.data.core_offer.is_empty()))
     _text("%s / 100 CREDITS"%Profile.SLOTS[selected_slot],T.GOLD)
     _button("CHANGE SLOT > "+Profile.SLOTS[(selected_slot+1)%3],func():selected_slot=(selected_slot+1)%3;open_station(2))
     _button("DRAW SELECTED SLOT / 100 CREDITS",func():
@@ -260,6 +278,8 @@ PITY %d/10 RARE / %d/40 SIGNATURE"%[int(p.data.pity),int(p.data.unique_pity)])
         _text("BUILD CHANGE: DAMAGE %+d%% / DEFENCE %+d%% / SAVING %+d%%"%[roundi((after.damage-before.damage)*100),roundi((after.defence-before.defence)*100),roundi((after.economy-before.economy)*100)])
         var id:=int(item.id)
         _button("EQUIP FOR THIS HERO",func():act(func():return p.equip(id,hero_id),"Equipment fitted"),not current.is_empty() and int(current.id)==id)
+        _button("RECALIBRATE FIRST AFFIX / 80 + 5 PARTS",func():act(func():return p.craft(id,"recalibrate",0),"Affix recalibrated"),item.get("affixes",[]).is_empty() or p.data.credits<80 or p.data.parts<5)
+        _button("TEMPER / REROLL / 120 + 6 / MAX RARE",func():act(func():return p.craft(id,"temper"),"Equipment tempered"),int(item.tier)>=2 or p.data.credits<120 or p.data.parts<6)
         _button("RECYCLE / +%d PARTS"%(1+int(item.tier)),func():act(func():return p.salvage(id),"Equipment recycled"),p.is_equipped(id))
         break
     _text("EQUIPPED / "+["ZIP","RIVET","HUSH","LOOP"][hero_id],T.TEAL)
@@ -277,23 +297,44 @@ PITY %d/10 RARE / %d/40 SIGNATURE"%[int(p.data.pity),int(p.data.unique_pity)])
 
 func _story() -> void:
     var p=campaign.profile
-    var line:int=mini(4,int(p.data.dialogue))
-    var lines:=["RADIO KEEPER: The city went quiet when the tower took our signal. Start with the alley. Bring back anything the patrols leave behind.","RADIO KEEPER: A retreat is not the end. Your gear and training stay here. The current you borrow out there disappears when you fall.","RADIO KEEPER: The gates are shielded. Throw the front line or find an opening. One flying body can break a whole formation.","RADIO KEEPER: Freight crews answer to the tower. Our map marks six routes. Clear three encounters to open the next district.","RADIO KEEPER: The tower captain is waiting. This block is still your home. Come back, prepare, and take another run."]
-    _text(lines[line])
+    var current:int=p.Story.chapter(int(p.data.best))
+    var chapter:int=current if chapter_review<0 else mini(current,chapter_review)
+    var entry:Dictionary=p.Story.CHAPTERS[chapter]
+    _text(entry.title,T.GOLD)
+    for i in 3:
+        var index:=i
+        _button(["KEEPER","DEALER","MECHANIC"][i],func():speaker=index;open_station(3))
+    _text(p.Story.dialogue(int(p.data.best),speaker) if chapter_review<0 else str(entry.intro))
+    _text("MISSION: "+str(entry.objective),T.TEAL)
+    if int(p.data.best)>=(chapter+1)*3:_text(entry.outro)
+    _text("TECHNIQUE JOURNAL / FIRST SUCCESS REWARDS",T.GOLD)
+    for id in p.Story.TECHNIQUES:_text(("DONE / " if id in p.data.quest_claims else "TRY / ")+str(p.Story.TECHNIQUES[id]))
+    for i in mini(6,current+1):
+        var index:=i
+        _button("REVIEW "+str(p.Story.CHAPTERS[i].title),func():chapter_review=index;open_station(3))
+    _button("CURRENT CHAPTER",func():chapter_review=-1;open_station(3))
+    _button("PRACTICE GANTRY WARDEN",func():campaign.start_lesson("boss","gantry"),p.data.best<9)
+    _button("PRACTICE SIGNAL LEVIATHAN",func():campaign.start_lesson("boss","signal"),p.data.best<15)
     for reward in p.data.last_loot:_text(str(reward),T.GOLD)
-    _text("Attempts %d / furthest encounter %d / 18"%[int(p.data.attempts),int(p.data.best)],T.GOLD)
-    _button("CONTINUE CONVERSATION",func():
-        var before:Dictionary=p.data.duplicate(true);p.data.dialogue=mini(4,int(p.data.dialogue)+1)
-        p.commit(before);open_station(3),line>=mini(4,int(p.data.attempts)+floori(float(p.data.best)/3.0)))
 
 func _map() -> void:
     var p=campaign.profile
+    var chapter:int=p.Story.chapter(int(p.data.best))
+    _text(p.Story.CHAPTERS[chapter].title,T.GOLD)
+    _button("MISSION BRIEF / STORY",func():open_station(3))
     if not p.data.run.is_empty():
         if p.data.run.boon_due:
-            _text("SALVAGED CURRENT / CHOOSE ONE\n+5% this expedition. Lost on defeat.",T.GOLD)
+            _text("SALVAGED CURRENT / CHOOSE ONE\nActual gain shown after caps. Lost on defeat.",T.GOLD)
             for stat in ["damage","defence","economy"]:
                 var id:String=stat
-                _button("TAKE "+stat.to_upper(),func():act(func():return p.choose_boon(id),"Current absorbed"),float(p.data.run.boons.get(id,0))>=.30)
+                _button("TAKE "+stat.to_upper()+" (+%d%%)"%roundi(p.boon_gain(id)*100),func():act(func():return p.choose_boon(id),"Current absorbed"),p.boon_gain(id)<=0)
+        if p.data.run.boon_due:_button("TAKE 10 CREDITS INSTEAD",func():act(p.skip_boon,"Current exchanged"))
+        if p.data.run.get("route_due",false):
+            _text("CHOOSE NEXT ROUTE / CONTINUE DEFAULTS TO COMBAT",T.TEAL)
+            for route in p.route_options():
+                var id:String=route
+                _button({"combat":"COMBAT / NORMAL LOOT","cache":"SALVAGE / EXTRA HEAVY + EXTRA ITEM","hazard":"CHARGED STREET / DANGER +20% CREDITS","rest":"REST STOP / +20 HP ONCE"}[route],func():act(func():return p.choose_route(id),"Route committed"))
+        _text("EXPEDITION CORE: "+str(p.data.run.get("core","NONE")).to_upper())
         var room:=int(p.data.run.room)
         if p.data.run.get("mode","story")=="contract":
             _text(p.Contracts.describe(p.data.run.contract),T.GOLD)
@@ -325,6 +366,7 @@ func _map() -> void:
         for contract in p.data.contracts:
             var id:=int(contract.id)
             _text(Profile.DISTRICTS[int(contract.sector)]+" / "+p.Contracts.describe(contract))
+            if int(contract.tier)==5:_text("FINAL BOSS: "+("GANTRY WARDEN" if int(contract.sector)<4 else "SIGNAL LEVIATHAN"),T.GOLD)
             _button("START CONTRACT #%d"%id,func():
                 if p.start_contract(campaign.hero_id(),id):campaign.depart(),not p.data.run.is_empty())
     _text("Defeat ends the expedition; credits, gear, skills and talents stay. Cleared encounters bank rewards once. Safe returns preserve HP and current.")
@@ -333,3 +375,25 @@ func _scroll_compare() -> void:
     await get_tree().process_frame
     for child in stack.get_children():
         if child.get_meta("compare_start",false):panel.get_child(0).scroll_vertical=int(child.position.y);return
+
+func _upgrade_city() -> void:
+    for child in world.get_children():
+        if child is MeshInstance3D:world.remove_child(child);child.queue_free()
+    var scene:Node3D=load("res://assets/campaign/generated/safe_block.glb").instantiate();world.add_child(scene)
+    preload("res://scripts/combat/city/campaign_stage_view.gd").paint(scene)
+    feet.clear()
+    for child in hero.get_children():hero.remove_child(child);child.queue_free()
+    for i in 3:
+        var npc:Node3D=load("res://assets/campaign/generated/%s.glb"%["city_keeper","city_dealer","city_mechanic"][i]).instantiate()
+        world.add_child(npc);npc.position=[Vector3(5,0,.8),Vector3(2,0,-3),Vector3(-3,0,-3.1)][i];town_npcs.append(npc)
+        preload("res://scripts/combat/city/campaign_stage_view.gd").paint(npc)
+func _avatar(delta:float,movement:Vector2) -> void:
+    if hero_visual==null:
+        hero_visual=preload("res://scripts/combat/fighter_visual.gd").new();hero_visual.neon_enabled=true;hero.add_child(hero_visual);hero_visual.setup(Color("00cad7"),campaign.hero_id());hero_visual.scale=Vector3.ONE*.9
+    if hero_visual.character_index!=campaign.hero_id():hero_visual.setup(Color("00cad7"),campaign.hero_id())
+    var pose:Dictionary=campaign.session.sim.fighters[0].duplicate(true)
+    pose.character=campaign.hero_id();pose.health=100;pose.state="idle";pose.move="";pose.frame=0;pose.x=0.0;pose.y=0.0;pose.vx=movement.length()*4;pose.vy=0.0;pose.face=1;pose.guarding=false;pose.flash=0;pose["air_enabled"]=false
+    pose["draw_core"]=campaign.profile.data.pending_core if campaign.profile.data.run.is_empty() else campaign.profile.data.run.get("core","")
+    hero_visual.present(pose,delta,false,true);hero_visual.position=Vector3.ZERO;hero_visual.rotation.y=PI
+    preload("res://scripts/combat/city/campaign_visuals.gd").equipment(hero_visual,campaign.profile.gear_for(campaign.hero_id()))
+    for npc in town_npcs:npc.rotation.y=atan2(hero.position.x-npc.position.x,hero.position.z-npc.position.z)

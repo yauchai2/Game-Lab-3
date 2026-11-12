@@ -37,7 +37,7 @@ func run() -> void:
         check("hero %d free respec retains full budget"%hero,p.data.talents[hero].is_empty() and p.data.points==25)
     var p=fresh();p.data.points=25
     for id in ["break_1","break_2","break_3","break_4","break_5","break_6","break_10","break_11"]:p.allocate(0,id)
-    check("keystone has actual bounded damage versus target tradeoff",is_equal_approx(p.stats(0).chain_damage,.40) and p.stats(0).chain_targets==-1)
+    check("keystone has actual bounded damage versus target tradeoff",is_equal_approx(p.stats(0).chain_damage,.35) and p.stats(0).chain_targets==-1)
     for id in ["air_2","air_3","air_4","air_5","air_6","air_10"]:p.allocate(0,id)
     check("a second keystone is explicitly refused",not p.allocate(0,"air_11"))
     p=fresh();p.start_run(0);flight(p)
@@ -75,7 +75,7 @@ func run() -> void:
         var c:Dictionary=p.Contracts.make(tier,tier,0,1147+tier)
         for wave in int(c.waves):
             var recipe:Array=p.Contracts.recipe(c,wave)
-            check("T%d wave%d seeded roles respect six actors"%[tier,wave],recipe.size()<=6 and recipe.size()>=3 and recipe==p.Contracts.recipe(c,wave))
+            check("T%d wave%d finite seeded arrival recipes"%[tier,wave],recipe.size()<=9 and recipe.size()>=3 and recipe==p.Contracts.recipe(c,wave))
     p=fresh();p.data.best=18;p.data.xp=1900;p._points();p._contract(1,0,1147)
     for complete in 2:
         id=int(p.data.contracts[0].id);p.start_contract(0,id)
@@ -93,7 +93,7 @@ func run() -> void:
     DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(p.path.get_base_dir()))
     var legacy:={"version":1,"credits":234,"parts":9,"best":8,"points":8,"skills":["double_jump","launcher"],"skill_levels":[1,0,0,0],"talents":[["break_1","break_2"],[],[],[]],"gear":[{},{},{}],"inventory":[],"pulls":4,"pity":4,"unique_pity":4,"serial":2,"attempts":2,"dialogue":1,"claims":[],"run":{}}
     var file:=FileAccess.open(p.path,FileAccess.WRITE);var original:=JSON.stringify(legacy);file.store_string(original);file.close();p.load_data()
-    check("legacy migration retains abilities money and point budget",p.error=="" and p.data.version==2 and p.data.points==8 and p.data.credits==234 and p.data.skills==legacy.skills and p.data.skill_levels[0]==1)
+    check("legacy migration retains abilities money and point budget",p.error=="" and p.data.version==3 and p.data.points==8 and p.data.credits==234 and p.data.skills==legacy.skills and p.data.skill_levels[0]==1)
     check("expanded tree refunds old allocations without overwriting original",p.data.talents[0].is_empty() and FileAccess.get_file_as_string(p.path)==original)
     p.learn("chase")
     check("first migrated transaction preserves immutable v1 backup",FileAccess.get_file_as_string(p.path+".v1.bak")==original)

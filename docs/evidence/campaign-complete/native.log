@@ -1,0 +1,29 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+COMPLETE_NATIVE city now uses original hero skeleton and authored NPC models true
+COMPLETE_NATIVE six authored chapters have objectives and a persistent technique journal true
+COMPLETE_NATIVE native city class-technique choices persist exactly two true
+COMPLETE_NATIVE native lesson starts an isolated full-energy fixture true
+COMPLETE_NATIVE real Space double-jump event completes the lesson true
+COMPLETE_NATIVE lesson exit preserves expedition HP money loot and core state true
+COMPLETE_NATIVE city dealer enters shared 3D draw with one saved token true
+COMPLETE_NATIVE native DRAW reveals the already-saved core rather than rerolling true
+COMPLETE_NATIVE actual selected-character equip presentation is active true
+COMPLETE_NATIVE equip completion atomically prepares exactly one core true
+COMPLETE_NATIVE story freight finale owns a real Boss, core and class perks true
+COMPLETE_NATIVE generated giant is an articulated mesh model, not the old suit true
+COMPLETE_NATIVE giant camera keeps a readable player projection true
+COMPLETE_NATIVE authored arena replaces the shared street and owns environment true
+COMPLETE_NATIVE boss windup is visible in model cue and ground mark true
+COMPLETE_NATIVE native pause freezes Boss attack countdown true
+COMPLETE_NATIVE real phase director changes phase and clears pending attacks true
+COMPLETE_NATIVE defeated giant is grounded instead of floating true
+COMPLETE_NATIVE tower finale has its own distinct giant model and three-phase data true
+COMPLETE_NATIVE native workshop recalibrates and debits only the stated cost true
+COMPLETE_NATIVE standard mode exit restores the original street and removes Boss visuals true
+COMPLETE_NATIVE city equipment bonuses and visual sockets do not leak into standard Fight true
+COMPLETE_NATIVE native heavy/body impact visibly destroys a real arena prop true
+COMPLETE_NATIVE RESULT 23/23

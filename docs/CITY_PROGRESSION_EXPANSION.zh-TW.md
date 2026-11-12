@@ -1,3 +1,5 @@
+> 最新實作：[完整短篇故事、Boss及技巧優先成長](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)。下文保留本文件原階段範圍。
+
 # 城市成長擴充與960×540復古畫面
 
 2026-11-12，Asia/Taipei。使用者要求提高一點解像度，保持Jet Set Radio／Bomb Rush Cyberfunk／Lethal League Blaze式復古街頭風，並將之前城市成長規劃尚未完成的主要系統開始實作。本輪已接既有正式STORY城市循環，非另一個獨立示範。

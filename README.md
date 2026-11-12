@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[完整短篇故事／雙巨型Boss／技巧優先平衡](docs/CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)。六區18場、獨立場景模型、城市NPC故事／能力課程／專屬招式、九核心裝備演出、工坊及有限增援／危險分支已接入；[測試與原生畫面](docs/evidence/campaign-complete/README.md)。F5→STORY；仍推codex/story-waves-m1／草稿PR #12，main及Web保持。以下各段是較早階段紀錄，以本段為準。
+
 最新：[960復古畫面＋城市成長擴充](docs/CITY_PROGRESSION_EXPANSION.zh-TW.md)。48節點／25點、T1–T5詞綴刷圖、真裝備掉落／比較／各角配裝與倉庫；[359項驗證及畫面](docs/evidence/city-expansion/README.md)。主選單STORY，來源仍codex/story-waves-m1。下方舊首版範圍為歷史，以此最新實作為準；巨型Boss／完整故事及場景美術仍待續。
 
 最新可玩：[Hades式城市回城循環](docs/CITY_ROGUELITE_RUNTIME.zh-TW.md)。F5→STORY：45°可行走安全城、升技／天賦／抽裝／故事／六區出擊，永久與局內成長分層；[畫面及226項檢查](docs/evidence/city-hub/README.md)。使用程序佔位美術及共用戰鬥街道，完整Boss與大型天賦樹待做。

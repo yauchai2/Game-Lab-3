@@ -295,6 +295,7 @@ func _combat_step() -> void:
             sim.fighters[1]=sim.squad_members[id];fighters[1]=squad_visuals[id]
         _handle_event(event)
     sim.fighters[1]=focused;fighters[1]=focused_visual
+    if is_instance_valid(city_campaign) and city_campaign.active:city_campaign.observe()
     if is_instance_valid(city_campaign) and city_campaign.encounter_finished():
         screen="result";result_clock=0;finish_menu_open=false;pending.clear()
         hud.rebuild_menu();return
@@ -357,6 +358,11 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
     effects.append(effect)
 
 func _handle_event(event: Dictionary) -> void:
+    if event.kind=="prop_break":
+        _spawn_vfx("hit",Vector2(event.x,.4),.24,{"color":Color("ffd24b"),"strength":.7,"move":"heavy","face":1.0,"attacker":0});audio.play_sound("guard_break",1.0,-10)
+    if event.kind=="boss_cue":audio.play_sound("charge",.75,-12)
+    elif event.kind=="boss_attack":audio.play_sound("release",.8,-9)
+    elif event.kind=="boss_phase":audio.play_sound("rally",.8,-10)
     if event.kind=="story_chain_block":
         var victim:Dictionary=sim.squad_members[event.squad_id]
         _spawn_vfx("block",Vector2(victim.x,victim.y+1.0),.18,{"color":COLORS[1],"strength":.4,"move":"heavy","face":event.face})
@@ -754,6 +760,10 @@ func _apply_red_stage() -> void:
         camera.environment=null
         grade.visible=false
         return
+    if is_instance_valid(city_campaign) and city_campaign.active and sim.campaign_enabled and is_instance_valid(city_campaign.dressing):
+        backdrop.hide();camera.environment=city_campaign.dressing.environment;grade.visible=false
+        for actor in fighters+squad_visuals:actor.set_neon_silhouette(neon.stage() and neon.silhouette() and not reduced_effects)
+        return
     if neon_enabled:
         var poster:bool=neon.stage() and not reduced_effects and screen in ["play","result"]
         backdrop.visible=not poster
@@ -864,6 +874,8 @@ func _present(delta: float) -> void:
         target_focus.y=maxf(2.1,(bottom+top)*.5-.35)
         distance=maxf(distance,(top-bottom+.35)/(2.0*tan(deg_to_rad(24.0))*.58))
         distance=minf(distance,22.0)
+    if sim.campaign_enabled and sim.campaign_boss!="":
+        distance=maxf(distance,17.5);target_focus.y=maxf(target_focus.y,2.6)
     var camera_height:=1.7+maxf(0,target_focus.y-2.1)*.8 if sim.is_aerial() else 1.7
     if sim.story_enabled:distance=maxf(distance,12.5 if sim.wave_index==2 or sim.campaign_enabled else 10.0)
     var target_position := Vector3(target_focus.x+sin(yaw)*distance,camera_height,FIGHT_Z+cos(yaw)*distance)
@@ -1316,6 +1328,13 @@ func _leave_squad() -> void:
         fighters[1]=squad_visuals[0]
         for id in range(1,squad_visuals.size()):squad_visuals[id].queue_free()
         squad_visuals.clear()
+    for visual in fighters:
+        preload("res://scripts/combat/city/campaign_visuals.gd").clear_equipment(visual)
+        var arrival:Node=visual.get_node_or_null("ArrivalCue")
+        if arrival!=null:visual.remove_child(arrival);arrival.queue_free()
+        var boss:Node=visual.get_node_or_null("CampaignBoss")
+        if boss!=null:visual.remove_child(boss);boss.queue_free()
+        visual.model.show()
     sim.end_squad()
     if was_story:
         character_choices[1]=story_original_rival;sim.character_choices=character_choices.duplicate()
@@ -1333,6 +1352,8 @@ func _sync_story_visuals() -> void:
     if not squad_visuals.is_empty():
         fighters[1]=squad_visuals[0]
         for id in range(1,squad_visuals.size()):squad_visuals[id].queue_free()
+    var old_boss:Node=fighters[1].get_node_or_null("CampaignBoss")
+    if old_boss!=null:fighters[1].remove_child(old_boss);old_boss.queue_free()
     fighters[1].setup(COLORS[1],4);squad_visuals=[fighters[1]]
     for id in range(1,sim.squad_members.size()):
         var visual:=FighterVisual.new();visual.neon_enabled=neon_enabled
@@ -1343,6 +1364,7 @@ func _sync_story_visuals() -> void:
 
 func retry_story_wave() -> void:
     if is_instance_valid(city_campaign) and city_campaign.active:
+        if city_campaign.lesson_active!="":city_campaign.show_city();return
         if screen=="result":city_campaign.return_from_encounter()
         else:
             # Retiring a live encounter is a defeat, never a free health retry.
@@ -1491,6 +1513,8 @@ func _begin_ability_draw(next_kind:String) -> bool:
     return true
 
 func complete_ability_draw(item:Dictionary,next_kind:String) -> void:
+    if next_kind=="city_core":
+        city_campaign.profile.claim_core();city_campaign.show_city();return
     # Reset the next round first: its fighter dictionaries must exist before a
     # one-round modifier is installed. The director owns no gameplay writes.
     draw_continuing=true

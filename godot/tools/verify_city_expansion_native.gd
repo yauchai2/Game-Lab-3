@@ -13,6 +13,8 @@ func tap(code:Key) -> void:
     for down in [true,false]:
         var e:=InputEventKey.new();e.physical_keycode=code;e.keycode=code;e.pressed=down;Input.parse_input_event(e);await frames(2)
 func click(control:Control) -> void:
+    # Rebuilt long station panels need a layout pass before ensure_control_visible.
+    await frames(3)
     var parent:=control.get_parent()
     while parent!=null:
         if parent is ScrollContainer:parent.ensure_control_visible(control);await frames(3);break

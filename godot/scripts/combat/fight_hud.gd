@@ -640,8 +640,13 @@ func _draw() -> void:
             var heading:String=session.sim.campaign_caption if session.sim.campaign_enabled else "WAVE %d / 3"%(session.sim.wave_index+1)
             _center(Vector2(640,180),heading,32,Tokens.TEAL)
         if session.sim.story_state=="break":_center(Vector2(640,180),"WAVE CLEAR / ENTER TO CONTINUE",28,Tokens.TEAL)
+    if session.sim.campaign_enabled and session.city_campaign.lesson_active!="" and session.city_campaign.lesson_active!="boss":
+        _plate(Vector2(190,548),Vector2(900,62),INK)
+        _center(Vector2(640,575),session.city_campaign.profile.Story.LESSONS.get(session.city_campaign.lesson_active,"PRACTICE"),24,Tokens.TEAL)
+        _center(Vector2(640,601),"PRACTICE / FULL ENERGY FIXTURE / NO REWARDS",24,PAPER)
     _draw_core_tag()
-    if session.sim.arcade_enabled:_surge_hud()
+    if session.sim.campaign_enabled and session.sim.campaign_boss!="":_campaign_boss_hud()
+    elif session.sim.arcade_enabled:_surge_hud()
     if session.sim.exchange.decision_active():_surge_decision_hud()
     if skill_time>0 and skill_key!="" and session.screen=="play":
         _plate(Vector2(460,154),Vector2(360,34),INK)
@@ -1028,3 +1033,12 @@ func _skills_page() -> void:
     palette.disabled=record.xp<120
     if growth.last_error!=OK:menu_stack.add_child(_label("SAVE FAILED / PROGRESS IS IN MEMORY",28,Tokens.MAGENTA))
     if session.screen=="title":_plain_action("START 3-STOP STREET RUN","start_run",session.start_run)
+
+func _campaign_boss_hud() -> void:
+    for boss in session.sim.squad_members:
+        if not boss.has("boss"):continue
+        _plate(Vector2(390,116),Vector2(500,44),INK)
+        _text(Vector2(404,142),("GANTRY WARDEN" if boss.boss.kind=="gantry" else "SIGNAL LEVIATHAN")+" / PHASE %d"%int(boss.boss.phase),24,PAPER)
+        _plate(Vector2(404,151),Vector2(472,5),Tokens.EDGE)
+        _plate(Vector2(404,151),Vector2(472*clampf(float(boss.boss.open)/150.0,0,1),5),Tokens.TEAL if int(boss.boss.open)>0 else Tokens.MAGENTA)
+    if session.city_campaign.lesson_active!="":_center(Vector2(640,600),"PRACTICE / NO LOOT",24,Tokens.TEAL)

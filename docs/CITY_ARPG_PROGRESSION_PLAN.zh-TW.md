@@ -1,3 +1,5 @@
+> 最新實作：[完整短篇故事、Boss及技巧優先成長](CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md)。下文保留本文件原階段範圍。
+
 # 城市故事ARPG：能力解鎖、天賦樹、刷圖與裝備經濟
 
 2026-11-12最新覆蓋：[960畫面、48節點天賦與T1–T5刷圖實作](CITY_PROGRESSION_EXPANSION.zh-TW.md)。下方保留原規劃／首版歷史數值與範圍。

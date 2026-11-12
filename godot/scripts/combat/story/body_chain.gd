@@ -24,20 +24,22 @@ func _impact(s:RefCounted,body:Dictionary,id:int,source:Dictionary,from:Vector2,
     var power:float=1.0+float(s.campaign_stats.get("chain_damage",0)) if s.campaign_enabled else 1.0
     var decay:float=.25 if splash else [.60,.40,.25,.15,.10,.08][root.count-1]
     var damage:int=maxi(1,roundi(body.damage*decay*power))
+    if target.has("boss"):
+        damage=mini(6,damage);target.boss.open=150;target.boss.cue="BODY IMPACT / CORE OPEN"
     target.health=maxi(0,target.health-damage);s.air_motion.cancel_stall(target)
     target.state="stun";target.stun=maxi(target.stun,18);target.flash=8
     target.buffer="";target.buffer_ttl=0;target.jump_buffer=0;target.guarding=false
     target.vx=signf(source.vx)*maxf(6,absf(source.vx)*.72);target.vy=maxf(target.vy,3.5)
     target.air.combo_left=mini(60,108-root.age) if target.air.combo_left<=0 else mini(target.air.combo_left,108-root.age)
     target.air.bounce_granted=false
-    if not splash:additions.append({"id":id,"serial":body.serial,"damage":body.damage,"depth":body.depth+1,"left":mini(72,108-root.age)})
-    s.events.append({"kind":"story_chain_hit","target":1,"attacker":0,"squad_id":id,"source_id":body.id,"damage":damage,"chain":root.count,"face":signf(source.vx),"splash":splash})
+    if not splash and not target.has("boss"):additions.append({"id":id,"serial":body.serial,"damage":body.damage,"depth":body.depth+1,"left":mini(72,108-root.age)})
+    s.events.append({"kind":"story_chain_hit","target":1,"attacker":0,"squad_id":id,"source_id":body.id,"damage":damage,"chain":root.count,"face":signf(source.vx),"splash":splash,"prop":body.get("prop",false)})
     if not root.get("rewarded",false):
         var reward:float=4.0+clampf(float(s.campaign_stats.get("chain_meter",0)),0,4) if s.campaign_enabled else 4.0
         s.fighters[0].meter=minf(100,s.fighters[0].meter+reward);root["rewarded"]=true
     return true
 func advance(s:RefCounted,previous:Array) -> void:
-    for root in roots.values():root.age+=1
+    for root in roots.values():root.age+=1;root["keep"]=maxi(0,int(root.get("keep",0))-1)
     var additions:Array=[]
     for body in bodies:
         body.left-=1;var root:Dictionary=roots[body.serial]
@@ -64,4 +66,4 @@ func advance(s:RefCounted,previous:Array) -> void:
     var used:Dictionary={}
     for body in bodies:used[body.serial]=true
     for serial in roots.keys():
-        if not used.has(serial):roots.erase(serial)
+        if not used.has(serial) and int(roots[serial].get("keep",0))<=0:roots.erase(serial)

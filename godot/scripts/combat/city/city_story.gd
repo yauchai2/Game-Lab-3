@@ -1,0 +1,17 @@
+extends RefCounted
+const CHAPTERS=[
+    {"title":"01 / DEAD AIR","intro":"KEEPER: The tower cut our neighbourhood signal. Find the relay in Neon Alley. A body thrown into a crowd can open a path no weapon can.","outro":"KEEPER: The first receiver is alive. Our neighbours can hear us again. The gate patrol took the remaining signal keys.","objective":"Clear the alley. Try a heavy kick into another enemy."},
+    {"title":"02 / TOLL GATE","intro":"FIXER: The patrol charges people to cross their own street. Their shields face forward. Throw, break guard, or bait the recovery.","outro":"FIXER: The gates are open. We found a freight order signed by the city service. Follow its route under the flyover.","objective":"Break the patrol line. Frontal light spam meets armour."},
+    {"title":"03 / UNDER THE STATIC","intro":"KEEPER: A jammer is drowning our channel under the bridge. Its marked blast commits to your old position. Move before it lands.","outro":"KEEPER: The interference is gone. Freight crews are moving a city-cleaning machine, and our block is on its route.","objective":"Prioritise purple jammer packs; watch the marked ground."},
+    {"title":"04 / LAST FREIGHT","intro":"MECHANIC: The Gantry Warden was built to carry homes, not crush them. Its arm comes down where you stood. Crack a knee or reflect a shot to expose its power core.","outro":"MECHANIC: The Warden is stopped. We recovered the command tape. The tower is turning a maintenance signal into an eviction order.","objective":"Defeat the Warden. Jump sweep, leave slam marks, reflect bolts."},
+    {"title":"05 / OPEN CHANNEL","intro":"FIXER: We will broadcast that tape. Clear the avenue and keep moving when the road capacitors light up. Their captains protect the jammer crews.","outro":"KEEPER: The whole district heard the tape. The tower's last machine is awake. This time, the signal is on our side.","objective":"Clear mixed reinforcements and avoid charged street zones."},
+    {"title":"06 / AFTERHOURS","intro":"KEEPER: The Signal Leviathan feeds on the stolen channel. Read its three rhythms. Break its legs, return its shots, and strike the exposed core. Come home when it is over.","outro":"KEEPER: The channel belongs to the city again. People are returning to their streets. Patrol contracts remain, but now we choose the route. Welcome home.","objective":"Stop the Leviathan across three phases. Gear cannot bypass its armour."}]
+const LESSONS={"double_jump":"Jump twice before landing.","launcher":"Land a launcher on the practice opponent.","chase":"Launch, then spend energy on a real homing chase.","finisher":"Land an aerial finisher or dive.","overdrive":"Commit a paid overdrive start."}
+const TECHNIQUES={"parry":"A successful timed parry","chain":"A real enemy-to-enemy collision","chase":"A paid air chase","finisher":"A real aerial finisher","boss":"A giant machine defeated"}
+static func chapter(best:int) -> int:return clampi(floori(float(best)/3.0),0,5)
+static func dialogue(best:int,speaker:int) -> String:
+    var entry:Dictionary=CHAPTERS[chapter(best)]
+    if best>=18:return CHAPTERS[5].outro
+    if speaker==0:return entry.intro
+    if speaker==1:return "DEALER: Every module has a limit. A rare roll changes your options; it will not dodge a hammer for you. Read the caps and keep the parts you actually use."
+    return "MECHANIC: Recalibration changes one affix. Tempering stops at rare quality. A machine's sealed core ignores expensive gear: break its pattern first."

@@ -1,0 +1,89 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+EXPANSION 48 nodes split 28 minors 12 notables 4 keystones 4 gateways true
+EXPANSION node IDs are unique true
+EXPANSION hero 0 cannot allocate remote endpoint without a path true
+EXPANSION hero 0 connected paths spend exactly 25 points true
+EXPANSION hero 0 cannot allocate a 26th node true
+EXPANSION hero 0 free respec retains full budget true
+EXPANSION hero 1 cannot allocate remote endpoint without a path true
+EXPANSION hero 1 connected paths spend exactly 25 points true
+EXPANSION hero 1 cannot allocate a 26th node true
+EXPANSION hero 1 free respec retains full budget true
+EXPANSION hero 2 cannot allocate remote endpoint without a path true
+EXPANSION hero 2 connected paths spend exactly 25 points true
+EXPANSION hero 2 cannot allocate a 26th node true
+EXPANSION hero 2 free respec retains full budget true
+EXPANSION hero 3 cannot allocate remote endpoint without a path true
+EXPANSION hero 3 connected paths spend exactly 25 points true
+EXPANSION hero 3 cannot allocate a 26th node true
+EXPANSION hero 3 free respec retains full budget true
+EXPANSION keystone has actual bounded damage versus target tradeoff true
+EXPANSION a second keystone is explicitly refused true
+EXPANSION first clear banks enough for a pull and actual equipment true
+EXPANSION repeat settlement cannot duplicate money loot or XP true
+EXPANSION first-clear double jump remains free and deterministic true
+EXPANSION unlearned skill affixes cannot appear in generated gear true
+EXPANSION signature pity is exact and shares one atomic purchase true
+EXPANSION per-hero equipment can differ without deleting shared items true
+EXPANSION recycling protects equipment worn by any hero true
+EXPANSION rare pity counts pulls rather than combat drops true
+EXPANSION failed write restores debit inventory and pity true
+EXPANSION full bag routes actual loot to stash true
+EXPANSION full bag and stash recycle overflow with visible receipt true
+EXPANSION contract consumes one entrance item and persists the run true
+EXPANSION contract failure 0 retries the same wave without refunding entry true
+EXPANSION contract failure 1 retries the same wave without refunding entry true
+EXPANSION third defeat ends challenge and preserves banked rewards true
+EXPANSION T1 wave0 finite seeded arrival recipes true
+EXPANSION T1 wave1 finite seeded arrival recipes true
+EXPANSION T1 wave2 finite seeded arrival recipes true
+EXPANSION T2 wave0 finite seeded arrival recipes true
+EXPANSION T2 wave1 finite seeded arrival recipes true
+EXPANSION T2 wave2 finite seeded arrival recipes true
+EXPANSION T3 wave0 finite seeded arrival recipes true
+EXPANSION T3 wave1 finite seeded arrival recipes true
+EXPANSION T3 wave2 finite seeded arrival recipes true
+EXPANSION T3 wave3 finite seeded arrival recipes true
+EXPANSION T4 wave0 finite seeded arrival recipes true
+EXPANSION T4 wave1 finite seeded arrival recipes true
+EXPANSION T4 wave2 finite seeded arrival recipes true
+EXPANSION T4 wave3 finite seeded arrival recipes true
+EXPANSION T5 wave0 finite seeded arrival recipes true
+EXPANSION T5 wave1 finite seeded arrival recipes true
+EXPANSION T5 wave2 finite seeded arrival recipes true
+EXPANSION T5 wave3 finite seeded arrival recipes true
+EXPANSION T5 wave4 finite seeded arrival recipes true
+EXPANSION two map clears guarantee higher tier and return same-tier maps true
+EXPANSION free completed district replenishes T1 maps true
+EXPANSION legacy migration retains abilities money and point budget true
+EXPANSION expanded tree refunds old allocations without overwriting original true
+EXPANSION first migrated transaction preserves immutable v1 backup true
+EXPANSION version2 profile reloads without further migration true
+EXPANSION build changes actual heavy damage launch and guard pressure true
+EXPANSION sky keystone changes damage by actual aerial state true
+EXPANSION real parries get bounded bonus and a timed counter true
+EXPANSION real homing chase refunds cap at ten per encounter true
+EXPANSION first collision produces genuine splash sharing one hit set true
+EXPANSION splash and chain share target and resource hard caps true
+EXPANSION same-source splash never repeats against struck targets true
+EXPANSION standard preview restores full permissions and modifiers true
+EXPANSION full story banks 18 drops, guaranteed first signature and an initial T1 true
+EXPANSION tower replay gives rare floor without repeating forced signature true
+EXPANSION hero 0 clears district one Easy using ordinary inputs and real earned loot, no healing true
+EXPANSION hero 0 retains single attack slot true
+EXPANSION hero 1 clears district one Easy using ordinary inputs and real earned loot, no healing true
+EXPANSION hero 1 retains single attack slot true
+EXPANSION hero 2 clears district one Easy using ordinary inputs and real earned loot, no healing true
+EXPANSION hero 2 retains single attack slot true
+EXPANSION hero 3 clears district one Easy using ordinary inputs and real earned loot, no healing true
+EXPANSION hero 3 retains single attack slot true
+EXPANSION v2 reload retains exact HP meter loot hero and temporary boon true
+EXPANSION corrupt primary recovers validated backup true
+EXPANSION recovery can safely save without replacing good backup with corrupt bytes true
+EXPANSION two bad saves retain original bytes and disable transactions true
+EXPANSION held-J cannot bypass the locked launcher true
+EXPANSION locked overdrive resolves to the legal basic class skill true
+EXPANSION held air combo cannot bypass the locked finisher true
+EXPANSION second jump and auto-chase buffers respect permissions true
+EXPANSION RESULT 86/86

@@ -1,0 +1,15 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+INK_UI Shared960x540 framebuffer true
+INK_UI New logo has its own modular asset true
+INK_UI Real3D textured LAST SERVICE preview 0 true
+INK_UI Real3D textured LAST SERVICE preview 1 true
+INK_UI Real3D textured LAST SERVICE preview 2 true
+INK_UI Real3D textured LAST SERVICE preview 3 true
+INK_UI Native select popup opens true
+INK_UI Gameplay retains textured character materials true
+INK_UI Shared readable body font true
+INK_UI Result has real rematch action true

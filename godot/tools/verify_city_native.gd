@@ -1,2 +1,2 @@
-extends "res://tools/verify_city_expansion_native.gd"
-## Public verification entry; v1 fixture preserved in tools/archive/city-v1.
+extends "res://tools/verify_campaign_complete_native.gd"
+## Full campaign native entry. Earlier fixtures remain under tools/archive.
