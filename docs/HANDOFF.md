@@ -737,3 +737,6 @@ SKILLS／RADIO（故事）／DEPART 三頁與頂部資源列由文字清單改�
 ## 故事連續打波與完整劇情（2026-11-13）
 
 見 [STORY_FLOW.zh-TW.md](STORY_FLOW.zh-TW.md)。真實遊玩時清場進「繼續面板」（Enter 預設能量／路線直接下一場，Esc 回城），合約可無限接龍；新增序章、六章開收尾卡、18句電台、Boss登場、四結局＋真結局。分支 claude/project-thread-ggypi3。未動 city_hub.gd 與存檔 schema。
+
+## 2026-11-13 opening music flow
+- Opening score no longer drops to dead air at 10–13 s: second build + drone now enter at 10.3 s (BUILD_AT in `tools/build_story_opening_audio.py`) and rise into the lid slam. Measured RMS there went from about -30 dB to about -20 dB. The tape stop at 9.75 and the 0.5 s held breath at 7.5 stay on purpose.
