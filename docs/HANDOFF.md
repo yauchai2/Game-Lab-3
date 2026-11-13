@@ -1,3 +1,7 @@
+## 2026-11-13：指定HaD0Yun Mixamo MCP已安裝、待網路與登入
+
+使用者指定unity-mcp-mixamo，已採獨立Python Server，固定6170d5e；不需Unity，Godot可後續用FBX。雲端Codex CLI註冊mixamo-direct，實際initialize／6工具／combat keywords通過；搜尋回未認證，無token，HTTP API仍ProxyError403。首次SDK2.3.0不相容已固定1.30.0，launcher將client print轉stderr。見[MIXAMO_MCP_SETUP.zh-TW.md](MIXAMO_MCP_SETUP.zh-TW.md)最新節及direct-server.json。尚無官方FBX／完整摔投；不貼token到聊天，同主機私有token檔才可供server讀。未操作Mac、未改Godot／main／Web。
+
 ## 2026-11-13：官方Playwright MCP已安裝及實測，Mixamo被網路403擋住
 
 見[MIXAMO_MCP_SETUP.zh-TW.md](MIXAMO_MCP_SETUP.zh-TW.md)與[evidence/mixamo-mcp/setup.json](evidence/mixamo-mcp/setup.json)。使用者要求用MCP，已在本對話雲端安裝官方@playwright/mcp0.0.85並註冊雲端Codex CLI的playwright-mixamo；註冊命令initialize／tools/list25工具通過，實際MCP開GitHub並點擊錨點成功。不是使用者Mac已設定，也不代表此宿主對話工具自動熱載入。Mixamo導航ERR_TUNNEL_CONNECTION_FAILED，獨立HTTP proxy403；目前障礙是網路政策，未到Adobe登入，無FBX／完整摔投。需雲端允許mixamo.com及www.mixamo.com後再開登入頁；本輪沒有網路變更工具，不繞過政策。另附本機tools/setup_mixamo_mcp.sh供Codex＋Playwright Extension註冊，僅Linux語法／print驗證，未操作使用者Mac。私有profile／下載在workspace/shared內，不入repo；同profile只啟一個實例。Godot／來源動畫不改、674是歷史結果，main f69fc9f未合併、Web不更新。

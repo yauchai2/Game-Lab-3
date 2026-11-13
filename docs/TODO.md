@@ -1,3 +1,9 @@
+## 2026-11-13：指定Mixamo MCP
+
+- [x] 安裝固定6170d5e獨立Server、相容SDK1.30.0及stdio launcher，6工具／keywords實測。
+- [ ] 目前雲端網路規則實際生效（API仍proxy403）；同主機私有Adobe認證，勿傳聊天。
+- [ ] 官方Shoulder Throw攻守兩段搜尋／下載／同步量測／Godot完整摔投；目前未完成。
+
 ## 2026-11-13：MCP工具已就緒，等待Mixamo網路存取
 
 - [x] 雲端安裝／註冊官方Playwright MCP0.0.85；initialize、25tools、MCP開頁／點擊驗證。

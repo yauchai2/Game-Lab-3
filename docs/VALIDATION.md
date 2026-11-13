@@ -1,3 +1,7 @@
+## 2026-11-13：HaD0Yun Mixamo MCP實測
+
+固定上游6170d5e，在雲端私有venv安裝；首次mcp2.3.0啟動失敗（Server無list_tools），固定mcp1.30.0後pip check通過。以實際註冊launcher完成initialize／tools/list共6工具、combat關鍵字成功；mixamo-auth顯示無token，Shoulder Throw搜尋回未認證（雖isError=false，不能算搜尋成功）。同httpx API無憑證probe仍ProxyError403。證據[evidence/mixamo-mcp/direct-server.json](evidence/mixamo-mcp/direct-server.json)。未下載FBX、未驗配對／完整摔投；無Godot修改，不重跑歷史674。未測使用者Mac／本機MCP／Web。
+
 ## 2026-11-13：Playwright MCP接入驗證（非遊戲runtime）
 
 [evidence/mixamo-mcp/setup.json](evidence/mixamo-mcp/setup.json)：npm官方0.0.85安裝、雲端Codex CLI註冊、從註冊命令initialize與tools/list25工具成功；真MCP開官方GitHub及點Skip to content到#start-of-content成功，但部分站點資產有console錯誤。Mixamo ERR_TUNNEL_CONNECTION_FAILED／獨立HTTP proxy403；local HTTP403、data URL被admin拒絕，未繞過。沒有Adobe登入／FBX下載／Godot接入。新增本機helper bash -n與--print、JSON／diff通過，未在Mac執行。Godot未改，不重跑674歷史檢查，不稱完整摔投完成。

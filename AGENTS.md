@@ -150,3 +150,5 @@
 - 2026-11-13 本聊天最新要求「用免費的資源做」並追問Mixamo，覆蓋前述付費候選建議。優先核實Shoulder Throw, Aggressor／Victim，官方FBX與同步尚未取得／驗證，不用第三方索引冒稱官方素材已到手；完整摔投仍未完成，勿自行採購。見docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md最新節。
 
 - 2026-11-13 使用者確認使用MCP：現docs/MIXAMO_MCP_SETUP.zh-TW.md，官方Playwright MCP0.0.85已在雲端註冊／真工具驗證，但Mixamo被網路proxy403拒絕。這不是使用者Mac已連接／Adobe已登入／官方FBX已取得，完整摔投仍未完成；不繞過政策。tools/setup_mixamo_mcp.sh供本機Codex＋Extension設定，僅Linux語法與print驗證，profile／下載不入公開repo。
+
+- 2026-11-13 最新使用者指定HaD0Yun unity-mcp-mixamo：已裝獨立Python Server6170d5e／SDK1.30.0，不需Unity；雲端mixamo-direct真6工具與keywords通過。無token、Mixamo API仍proxy403，未下載FBX或完成摔投。見MIXAMO_MCP_SETUP最新節；token僅同主機私有檔，不貼聊天／公開repo，Mac／宿主熱載入未驗。

@@ -1,6 +1,6 @@
 # Afterhours / Game-Lab-3
 
-最新工具：[Mixamo MCP設定及驗證](docs/MIXAMO_MCP_SETUP.zh-TW.md)。雲端官方Playwright MCP已安裝並通過開頁／點擊；Mixamo目前被網路403拒絕，尚未登入或取得摔投FBX。另附本機Extension設定helper。
+最新工具：[Mixamo MCP設定及驗證](docs/MIXAMO_MCP_SETUP.zh-TW.md)。已安裝使用者指定HaD0Yun獨立Python MCP，6工具及關鍵字實測通過；尚無Adobe token，Mixamo API仍被proxy403拒絕，未取得摔投FBX。雲端設定不等於使用者Mac已連接。
 
 最新約束：完整摔投只用免費資源，優先核實Mixamo Shoulder Throw攻守配對；官方FBX尚未取得，完整摔投未完成。詳[資源研究](docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md)。
 

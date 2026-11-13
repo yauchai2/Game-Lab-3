@@ -1,5 +1,31 @@
 # Mixamo MCP：已安裝、連線驗證與下一步
 
+## 2026-11-13 更新：採用使用者指定的 HaD0Yun Mixamo MCP
+
+已在雲端安裝[指定專案](https://github.com/HaD0Yun/unity-mcp-mixamo/blob/master/README_EN.md)的獨立Python Server，固定來源commit `6170d5eca609eb5cdbbbd6b1a3fc6276362f6701`。不需Unity；下載時明確指定repo外的outputDir，取得FBX後才進Godot配對／重定向。Playwright保留作官網預覽備援。
+
+實測JSON-RPC initialize、tools/list通過，共6工具：mixamo-config、mixamo-auth、mixamo-search、mixamo-download、mixamo-batch、mixamo-keywords。combat關鍵字工具回應正常；auth回報未存token，Shoulder Throw搜尋回報未認證，不能當官方目錄查詢成功。無憑證HTTP讀取 `https://www.mixamo.com/api/v1/products` 仍為 `httpx.ProxyError: 403 Forbidden`。證據：[direct-server.json](evidence/mixamo-mcp/direct-server.json)。
+
+### 安裝時實際修正
+
+- 上游僅要求mcp>=1，首次解析到2.3.0會在list_tools decorator報AttributeError。此環境改固定 `mcp==1.30.0` 後成功；pip check通過。
+- 上游client的除錯print會混入stdio通訊。[launcher](../tools/run_mixamo_mcp.py)將該模組print導向stderr，並設umask077；沒有修改下載API或繞過網路政策。
+- 上游根LICENSE寫BSD-3-Clause，pyproject／Server README寫Apache-2.0，根README曾寫MIT；標示不一致，保留原LICENSE，不將其當Adobe素材授權。
+
+### 已註冊的雲端設定
+
+名稱 `mixamo-direct`，命令為雲端私有venv Python加本repo launcher。來源／venv在 `/workspace/shared/had0yun-mixamo-mcp/`；不commit第三方程式、venv、token、登入狀態或FBX。這是雲端Codex CLI設定及直接協議驗證，未熱載入宿主對話工具，亦未安裝使用者Mac。
+
+另一台電腦需在該電腦安裝固定commit的 `Server/` 及 `mcp==1.30.0`，再用該venv Python執行本launcher；Linux路徑不能直接複製當Mac路徑。
+
+### 登入及真正下載的剩餘條件
+
+此社群server不是Adobe官方OAuth登入服務，不能自動沿用另一台電腦Chrome的登入。它讀取執行server的使用者家目錄 `~/.mixamo_mcp_token`。使用者在Mixamo自行登入後，應透過私有終端／秘密設定把token放到**同一主機**的該檔，檔案權限600；不要貼聊天、不要放MCP設定明文參數或公開repo。原mixamo-auth帶token參數可能被客戶端記錄，這裡未用它傳送任何憑證。
+
+網路放行仍須實際生效；若設定已加但此環境仍403，需在環境管理介面確認套用至目前執行環境。下載CDN只按實際返回URL確認，不預先猜測網域。網路和認證皆可用後，才搜尋Shoulder Throw, Aggressor／Victim、核對完整時長／同角色／30fps／root、下載並量測接觸與落地。MCP目前export預設FBX2019、skin=true、30fps、無減key；並不保證兩段已同步。完整柔道摔投仍未完成，Godot／Web未改。
+
+---
+
 2026-11-13。使用者要求使用MCP，採Microsoft官方Playwright MCP，固定版本`@playwright/mcp@0.0.85`。沒有購買素材、沒有使用第三方Mixamo鏡像；完整柔道摔投仍待取得官方配對檔及實作。
 
 ## 本輪實際完成範圍
