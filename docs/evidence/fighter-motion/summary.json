@@ -1,0 +1,2132 @@
+{
+  "scope": "Fixed-root pose fixtures, bone sockets after tick 10; excursion includes intentional steps/kicks. Does not measure shoe geometry or floor IK.",
+  "measurements": [
+    {
+      "variant": "before",
+      "action": "idle",
+      "character": 0,
+      "clips": [
+        "Dance_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.12337713261015894,
+        "right_foot": 0.1090839531087466
+      }
+    },
+    {
+      "variant": "before",
+      "action": "idle",
+      "character": 1,
+      "clips": [
+        "Spell_Simple_Idle_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0013326751497835406,
+        "right_foot": 0.00655855728206109
+      }
+    },
+    {
+      "variant": "before",
+      "action": "idle",
+      "character": 2,
+      "clips": [
+        "Punch_Enter"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0,
+        "right_foot": 0.0
+      }
+    },
+    {
+      "variant": "before",
+      "action": "idle",
+      "character": 3,
+      "clips": [
+        "Idle_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.007362296891570628,
+        "right_foot": 0.007117346334454453
+      }
+    },
+    {
+      "variant": "before",
+      "action": "walk",
+      "character": 0,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.5672086069852154,
+        "right_foot": 0.7737146585810304
+      }
+    },
+    {
+      "variant": "before",
+      "action": "walk",
+      "character": 1,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.5452851866677243,
+        "right_foot": 0.6901865482590668
+      }
+    },
+    {
+      "variant": "before",
+      "action": "walk",
+      "character": 2,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.5411995790982114,
+        "right_foot": 0.7362173678418651
+      }
+    },
+    {
+      "variant": "before",
+      "action": "walk",
+      "character": 3,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.5037328285811743,
+        "right_foot": 0.6823970050741979
+      }
+    },
+    {
+      "variant": "before",
+      "action": "backward",
+      "character": 0,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.8231026692731364,
+        "right_foot": 0.8016908386836237
+      }
+    },
+    {
+      "variant": "before",
+      "action": "backward",
+      "character": 1,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.780048549750389,
+        "right_foot": 0.7670246127783007
+      }
+    },
+    {
+      "variant": "before",
+      "action": "backward",
+      "character": 2,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.784812510120815,
+        "right_foot": 0.7671149512262618
+      }
+    },
+    {
+      "variant": "before",
+      "action": "backward",
+      "character": 3,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.7308347210315592,
+        "right_foot": 0.715605431334586
+      }
+    },
+    {
+      "variant": "before",
+      "action": "dash",
+      "character": 0,
+      "clips": [
+        "Roll"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.19160442379546283,
+        "right_foot": 0.1775947959352221
+      }
+    },
+    {
+      "variant": "before",
+      "action": "dash",
+      "character": 1,
+      "clips": [
+        "Roll"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.05885749130481858,
+        "right_foot": 0.08289328944760663
+      }
+    },
+    {
+      "variant": "before",
+      "action": "dash",
+      "character": 2,
+      "clips": [
+        "Roll"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.17391287849619894,
+        "right_foot": 0.16372090439832845
+      }
+    },
+    {
+      "variant": "before",
+      "action": "dash",
+      "character": 3,
+      "clips": [
+        "Roll"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.1179103015885019,
+        "right_foot": 0.11100205895144605
+      }
+    },
+    {
+      "variant": "before",
+      "action": "guard",
+      "character": 0,
+      "clips": [
+        "Dance_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.12337713261015894,
+        "right_foot": 0.1090839531087466
+      }
+    },
+    {
+      "variant": "before",
+      "action": "guard",
+      "character": 1,
+      "clips": [
+        "Spell_Simple_Idle_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0013326751497835406,
+        "right_foot": 0.00655855728206109
+      }
+    },
+    {
+      "variant": "before",
+      "action": "guard",
+      "character": 2,
+      "clips": [
+        "Punch_Enter"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0,
+        "right_foot": 0.0
+      }
+    },
+    {
+      "variant": "before",
+      "action": "guard",
+      "character": 3,
+      "clips": [
+        "Idle_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.007362296891570628,
+        "right_foot": 0.007117346334454453
+      }
+    },
+    {
+      "variant": "before",
+      "action": "jab",
+      "character": 0,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 1.516331384845237,
+        "right_foot": 0.3955732160257516
+      }
+    },
+    {
+      "variant": "before",
+      "action": "jab",
+      "character": 1,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3911712822260813,
+        "right_foot": 0.3855629478932954
+      }
+    },
+    {
+      "variant": "before",
+      "action": "jab",
+      "character": 2,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3918400832389672,
+        "right_foot": 0.3965215985295044
+      }
+    },
+    {
+      "variant": "before",
+      "action": "jab",
+      "character": 3,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.94352546249447,
+        "right_foot": 0.39315094967272485
+      }
+    },
+    {
+      "variant": "before",
+      "action": "cross",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.4615249516261,
+        "right_foot": 1.8921711830095362
+      }
+    },
+    {
+      "variant": "before",
+      "action": "cross",
+      "character": 1,
+      "clips": [
+        "Sword_Attack"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.81215531569904,
+        "right_foot": 1.094615328651515
+      }
+    },
+    {
+      "variant": "before",
+      "action": "cross",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.45432131190407843,
+        "right_foot": 0.44581648192250756
+      }
+    },
+    {
+      "variant": "before",
+      "action": "cross",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.9174431275005825,
+        "right_foot": 0.463512190732483
+      }
+    },
+    {
+      "variant": "before",
+      "action": "finisher",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.6132388312086537,
+        "right_foot": 2.101780214484318
+      }
+    },
+    {
+      "variant": "before",
+      "action": "finisher",
+      "character": 1,
+      "clips": [
+        "Sword_Attack"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.9080205195599361,
+        "right_foot": 1.9261725398098803
+      }
+    },
+    {
+      "variant": "before",
+      "action": "finisher",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.6049059777383842,
+        "right_foot": 2.0344264600992794
+      }
+    },
+    {
+      "variant": "before",
+      "action": "finisher",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.8695823759646177,
+        "right_foot": 2.0178807608203244
+      }
+    },
+    {
+      "variant": "before",
+      "action": "heavy",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3625300702455154,
+        "right_foot": 1.5914873471139308
+      }
+    },
+    {
+      "variant": "before",
+      "action": "heavy",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3177542504415069,
+        "right_foot": 1.4787960859257292
+      }
+    },
+    {
+      "variant": "before",
+      "action": "heavy",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.36237946597291026,
+        "right_foot": 1.5474808396598125
+      }
+    },
+    {
+      "variant": "before",
+      "action": "heavy",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.565480133063797,
+        "right_foot": 1.530294516222286
+      }
+    },
+    {
+      "variant": "before",
+      "action": "launcher",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.35395580899718637,
+        "right_foot": 0.34127480248029285
+      }
+    },
+    {
+      "variant": "before",
+      "action": "launcher",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3341132883466176,
+        "right_foot": 0.38212061852208257
+      }
+    },
+    {
+      "variant": "before",
+      "action": "launcher",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3487582127453485,
+        "right_foot": 0.3388097522170185
+      }
+    },
+    {
+      "variant": "before",
+      "action": "launcher",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.7174734992265904,
+        "right_foot": 0.353375820192475
+      }
+    },
+    {
+      "variant": "before",
+      "action": "special",
+      "character": 0,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 1.276795920547047,
+        "right_foot": 0.2915951837249672
+      }
+    },
+    {
+      "variant": "before",
+      "action": "special",
+      "character": 1,
+      "clips": [
+        "Sword_Attack"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.9775448913751724,
+        "right_foot": 1.7232235681435806
+      }
+    },
+    {
+      "variant": "before",
+      "action": "special",
+      "character": 2,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.4269395707765816,
+        "right_foot": 0.43141219202301667
+      }
+    },
+    {
+      "variant": "before",
+      "action": "special",
+      "character": 3,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.7171486285287952,
+        "right_foot": 0.34817024145262193
+      }
+    },
+    {
+      "variant": "before",
+      "action": "overdrive",
+      "character": 0,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.29715515505930595,
+        "right_foot": 1.0811855348120227
+      }
+    },
+    {
+      "variant": "before",
+      "action": "overdrive",
+      "character": 1,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3763852399270037,
+        "right_foot": 1.8040647518796797
+      }
+    },
+    {
+      "variant": "before",
+      "action": "overdrive",
+      "character": 2,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.27579533000206,
+        "right_foot": 0.24681676063449884
+      }
+    },
+    {
+      "variant": "before",
+      "action": "overdrive",
+      "character": 3,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.05866979340271918,
+        "right_foot": 0.2858659850962218
+      }
+    },
+    {
+      "variant": "before",
+      "action": "grab",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.42062300866427194,
+        "right_foot": 0.41097524950237774
+      }
+    },
+    {
+      "variant": "before",
+      "action": "grab",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3950789545626583,
+        "right_foot": 0.45764098867684844
+      }
+    },
+    {
+      "variant": "before",
+      "action": "grab",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.41342860400731585,
+        "right_foot": 0.40723987011013646
+      }
+    },
+    {
+      "variant": "before",
+      "action": "grab",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.8436185100701153,
+        "right_foot": 0.42462915064323525
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_jab",
+      "character": 0,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.36560459521310434,
+        "right_foot": 0.39981185744309206
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_jab",
+      "character": 1,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3728432622605245,
+        "right_foot": 0.40053870639793765
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_jab",
+      "character": 2,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.37264656929550394,
+        "right_foot": 0.4080768866257759
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_jab",
+      "character": 3,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.8552842966969072,
+        "right_foot": 0.4024134626448873
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_kick",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.4623486108733674,
+        "right_foot": 1.906426979124211
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_kick",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.43476032060519815,
+        "right_foot": 1.9550001311112901
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_kick",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.4546064338125175,
+        "right_foot": 1.8480186287304299
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_kick",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.9136076176460453,
+        "right_foot": 1.8287653479123114
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_finisher",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.4176153867434081,
+        "right_foot": 0.3785916333654743
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_finisher",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.39946253518754843,
+        "right_foot": 0.426562337622193
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_finisher",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.40928162128052925,
+        "right_foot": 0.3746519093306703
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_finisher",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.6556543261063712,
+        "right_foot": 0.3920001028572699
+      }
+    },
+    {
+      "variant": "before",
+      "action": "meteor",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3273395655572188,
+        "right_foot": 0.23044817035967927
+      }
+    },
+    {
+      "variant": "before",
+      "action": "meteor",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.31106453221949126,
+        "right_foot": 0.2531061140602425
+      }
+    },
+    {
+      "variant": "before",
+      "action": "meteor",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.32328460269712006,
+        "right_foot": 0.23039158473468666
+      }
+    },
+    {
+      "variant": "before",
+      "action": "meteor",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.7026545769731251,
+        "right_foot": 0.24132829393923425
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_counter",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3273395655572188,
+        "right_foot": 1.3115715095331493
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_counter",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.31106453221949126,
+        "right_foot": 1.3533313165748824
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_counter",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.32328460269712006,
+        "right_foot": 1.2760935380244736
+      }
+    },
+    {
+      "variant": "before",
+      "action": "air_counter",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.7026545769731251,
+        "right_foot": 1.2806654626925331
+      }
+    },
+    {
+      "variant": "before",
+      "action": "node_pulse",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.44747230977644853,
+        "right_foot": 0.43617560312381226
+      }
+    },
+    {
+      "variant": "before",
+      "action": "node_pulse",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.42105804910294703,
+        "right_foot": 0.4830649623469818
+      }
+    },
+    {
+      "variant": "before",
+      "action": "node_pulse",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.44043853550034984,
+        "right_foot": 0.43269378602200975
+      }
+    },
+    {
+      "variant": "before",
+      "action": "node_pulse",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.8797011808434406,
+        "right_foot": 0.44995052773581035
+      }
+    },
+    {
+      "variant": "before",
+      "action": "stun",
+      "character": 0,
+      "clips": [
+        "Hit_Chest"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0014457454448830174,
+        "right_foot": 0.0008594815116335093
+      }
+    },
+    {
+      "variant": "before",
+      "action": "stun",
+      "character": 1,
+      "clips": [
+        "Hit_Chest"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0009543906014119199,
+        "right_foot": 0.0008622409018313933
+      }
+    },
+    {
+      "variant": "before",
+      "action": "stun",
+      "character": 2,
+      "clips": [
+        "Hit_Chest"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0014104807779018996,
+        "right_foot": 0.0005808977255440005
+      }
+    },
+    {
+      "variant": "before",
+      "action": "stun",
+      "character": 3,
+      "clips": [
+        "Hit_Chest"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0012793870662126915,
+        "right_foot": 0.0004855109964985392
+      }
+    },
+    {
+      "variant": "before",
+      "action": "jump",
+      "character": 0,
+      "clips": [
+        "Jump_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.08743982206388637,
+        "right_foot": 0.040614835368568594
+      }
+    },
+    {
+      "variant": "before",
+      "action": "jump",
+      "character": 1,
+      "clips": [
+        "Jump_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.08677987833581631,
+        "right_foot": 0.032649898995887695
+      }
+    },
+    {
+      "variant": "before",
+      "action": "jump",
+      "character": 2,
+      "clips": [
+        "Jump_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.08163012427603113,
+        "right_foot": 0.03874560167746848
+      }
+    },
+    {
+      "variant": "before",
+      "action": "jump",
+      "character": 3,
+      "clips": [
+        "Jump_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.07410221470864932,
+        "right_foot": 0.032849818180408184
+      }
+    },
+    {
+      "variant": "before",
+      "action": "death",
+      "character": 0,
+      "clips": [
+        "Death01"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.7315307417909858,
+        "right_foot": 1.1672349553266113
+      }
+    },
+    {
+      "variant": "before",
+      "action": "death",
+      "character": 1,
+      "clips": [
+        "Death01"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.5880040490233851,
+        "right_foot": 1.1182854737458758
+      }
+    },
+    {
+      "variant": "before",
+      "action": "death",
+      "character": 2,
+      "clips": [
+        "Death01"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.6746109105639665,
+        "right_foot": 1.1441091314538425
+      }
+    },
+    {
+      "variant": "before",
+      "action": "death",
+      "character": 3,
+      "clips": [
+        "Death01"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.714925695405418,
+        "right_foot": 1.1945105343329827
+      }
+    },
+    {
+      "variant": "after",
+      "action": "idle",
+      "character": 0,
+      "clips": [
+        "Dance_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.12337713261015894,
+        "right_foot": 0.1090839531087466
+      }
+    },
+    {
+      "variant": "after",
+      "action": "idle",
+      "character": 1,
+      "clips": [
+        "Punch_Enter"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0,
+        "right_foot": 0.0
+      }
+    },
+    {
+      "variant": "after",
+      "action": "idle",
+      "character": 2,
+      "clips": [
+        "Punch_Enter"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0,
+        "right_foot": 0.0
+      }
+    },
+    {
+      "variant": "after",
+      "action": "idle",
+      "character": 3,
+      "clips": [
+        "Idle_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.007362296891570628,
+        "right_foot": 0.007117346334454453
+      }
+    },
+    {
+      "variant": "after",
+      "action": "walk",
+      "character": 0,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.5672086069852154,
+        "right_foot": 0.7737146585810304
+      }
+    },
+    {
+      "variant": "after",
+      "action": "walk",
+      "character": 1,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.5452851866677243,
+        "right_foot": 0.6901865482590668
+      }
+    },
+    {
+      "variant": "after",
+      "action": "walk",
+      "character": 2,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.5411995790982114,
+        "right_foot": 0.7362173678418651
+      }
+    },
+    {
+      "variant": "after",
+      "action": "walk",
+      "character": 3,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.5037328285811743,
+        "right_foot": 0.6823970050741979
+      }
+    },
+    {
+      "variant": "after",
+      "action": "backward",
+      "character": 0,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.8231026692731364,
+        "right_foot": 0.8016908386836237
+      }
+    },
+    {
+      "variant": "after",
+      "action": "backward",
+      "character": 1,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.780048549750389,
+        "right_foot": 0.7670246127783007
+      }
+    },
+    {
+      "variant": "after",
+      "action": "backward",
+      "character": 2,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.784812510120815,
+        "right_foot": 0.7671149512262618
+      }
+    },
+    {
+      "variant": "after",
+      "action": "backward",
+      "character": 3,
+      "clips": [
+        "Walk_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.7308347210315592,
+        "right_foot": 0.715605431334586
+      }
+    },
+    {
+      "variant": "after",
+      "action": "dash",
+      "character": 0,
+      "clips": [
+        "Roll"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.19160442379546283,
+        "right_foot": 0.1775947959352221
+      }
+    },
+    {
+      "variant": "after",
+      "action": "dash",
+      "character": 1,
+      "clips": [
+        "Roll"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.05885749130481858,
+        "right_foot": 0.08289328944760663
+      }
+    },
+    {
+      "variant": "after",
+      "action": "dash",
+      "character": 2,
+      "clips": [
+        "Roll"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.17391287849619894,
+        "right_foot": 0.16372090439832845
+      }
+    },
+    {
+      "variant": "after",
+      "action": "dash",
+      "character": 3,
+      "clips": [
+        "Roll"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.1179103015885019,
+        "right_foot": 0.11100205895144605
+      }
+    },
+    {
+      "variant": "after",
+      "action": "guard",
+      "character": 0,
+      "clips": [
+        "Dance_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.12337713261015894,
+        "right_foot": 0.1090839531087466
+      }
+    },
+    {
+      "variant": "after",
+      "action": "guard",
+      "character": 1,
+      "clips": [
+        "Punch_Enter"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0,
+        "right_foot": 0.0
+      }
+    },
+    {
+      "variant": "after",
+      "action": "guard",
+      "character": 2,
+      "clips": [
+        "Punch_Enter"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0,
+        "right_foot": 0.0
+      }
+    },
+    {
+      "variant": "after",
+      "action": "guard",
+      "character": 3,
+      "clips": [
+        "Idle_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.007362296891570628,
+        "right_foot": 0.007117346334454453
+      }
+    },
+    {
+      "variant": "after",
+      "action": "jab",
+      "character": 0,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 1.516331384845237,
+        "right_foot": 0.3955732160257516
+      }
+    },
+    {
+      "variant": "after",
+      "action": "jab",
+      "character": 1,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0,
+        "right_foot": 0.0
+      }
+    },
+    {
+      "variant": "after",
+      "action": "jab",
+      "character": 2,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3918400832389672,
+        "right_foot": 0.3965215985295044
+      }
+    },
+    {
+      "variant": "after",
+      "action": "jab",
+      "character": 3,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.94352546249447,
+        "right_foot": 0.39315094967272485
+      }
+    },
+    {
+      "variant": "after",
+      "action": "cross",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.4615249516261,
+        "right_foot": 1.8921711830095362
+      }
+    },
+    {
+      "variant": "after",
+      "action": "cross",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0,
+        "right_foot": 0.0
+      }
+    },
+    {
+      "variant": "after",
+      "action": "cross",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.45432131190407843,
+        "right_foot": 0.44581648192250756
+      }
+    },
+    {
+      "variant": "after",
+      "action": "cross",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.9174431275005825,
+        "right_foot": 0.463512190732483
+      }
+    },
+    {
+      "variant": "after",
+      "action": "finisher",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.6132388312086537,
+        "right_foot": 2.101780214484318
+      }
+    },
+    {
+      "variant": "after",
+      "action": "finisher",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0,
+        "right_foot": 0.0
+      }
+    },
+    {
+      "variant": "after",
+      "action": "finisher",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.6049059777383842,
+        "right_foot": 2.0344264600992794
+      }
+    },
+    {
+      "variant": "after",
+      "action": "finisher",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.8695823759646177,
+        "right_foot": 2.0178807608203244
+      }
+    },
+    {
+      "variant": "after",
+      "action": "heavy",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3625300702455154,
+        "right_foot": 1.5914873471139308
+      }
+    },
+    {
+      "variant": "after",
+      "action": "heavy",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0,
+        "right_foot": 0.0
+      }
+    },
+    {
+      "variant": "after",
+      "action": "heavy",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.36237946597291026,
+        "right_foot": 1.5474808396598125
+      }
+    },
+    {
+      "variant": "after",
+      "action": "heavy",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.565480133063797,
+        "right_foot": 1.530294516222286
+      }
+    },
+    {
+      "variant": "after",
+      "action": "launcher",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.35395580899718637,
+        "right_foot": 0.34127480248029285
+      }
+    },
+    {
+      "variant": "after",
+      "action": "launcher",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3341132883466176,
+        "right_foot": 0.38212061852208257
+      }
+    },
+    {
+      "variant": "after",
+      "action": "launcher",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3487582127453485,
+        "right_foot": 0.3388097522170185
+      }
+    },
+    {
+      "variant": "after",
+      "action": "launcher",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.7174734992265904,
+        "right_foot": 0.353375820192475
+      }
+    },
+    {
+      "variant": "after",
+      "action": "special",
+      "character": 0,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 1.276795920547047,
+        "right_foot": 0.2915951837249672
+      }
+    },
+    {
+      "variant": "after",
+      "action": "special",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0,
+        "right_foot": 0.0
+      }
+    },
+    {
+      "variant": "after",
+      "action": "special",
+      "character": 2,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.4269395707765816,
+        "right_foot": 0.43141219202301667
+      }
+    },
+    {
+      "variant": "after",
+      "action": "special",
+      "character": 3,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.7171486285287952,
+        "right_foot": 0.34817024145262193
+      }
+    },
+    {
+      "variant": "after",
+      "action": "overdrive",
+      "character": 0,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.29715515505930595,
+        "right_foot": 1.0811855348120227
+      }
+    },
+    {
+      "variant": "after",
+      "action": "overdrive",
+      "character": 1,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3763852399270037,
+        "right_foot": 1.8040647518796797
+      }
+    },
+    {
+      "variant": "after",
+      "action": "overdrive",
+      "character": 2,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.27579533000206,
+        "right_foot": 0.24681676063449884
+      }
+    },
+    {
+      "variant": "after",
+      "action": "overdrive",
+      "character": 3,
+      "clips": [
+        "Spell_Simple_Shoot"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.05866979340271918,
+        "right_foot": 0.2858659850962218
+      }
+    },
+    {
+      "variant": "after",
+      "action": "grab",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.42062300866427194,
+        "right_foot": 0.41097524950237774
+      }
+    },
+    {
+      "variant": "after",
+      "action": "grab",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3950789545626583,
+        "right_foot": 0.45764098867684844
+      }
+    },
+    {
+      "variant": "after",
+      "action": "grab",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.41342860400731585,
+        "right_foot": 0.40723987011013646
+      }
+    },
+    {
+      "variant": "after",
+      "action": "grab",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.8436185100701153,
+        "right_foot": 0.42462915064323525
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_jab",
+      "character": 0,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.36560459521310434,
+        "right_foot": 0.39981185744309206
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_jab",
+      "character": 1,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3728432622605245,
+        "right_foot": 0.40053870639793765
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_jab",
+      "character": 2,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.37264656929550394,
+        "right_foot": 0.4080768866257759
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_jab",
+      "character": 3,
+      "clips": [
+        "Punch_Jab"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.8552842966969072,
+        "right_foot": 0.4024134626448873
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_kick",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.4623486108733674,
+        "right_foot": 1.906426979124211
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_kick",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.43476032060519815,
+        "right_foot": 1.9550001311112901
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_kick",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.4546064338125175,
+        "right_foot": 1.8480186287304299
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_kick",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.9136076176460453,
+        "right_foot": 1.8287653479123114
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_finisher",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.4176153867434081,
+        "right_foot": 0.3785916333654743
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_finisher",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.39946253518754843,
+        "right_foot": 0.426562337622193
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_finisher",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.40928162128052925,
+        "right_foot": 0.3746519093306703
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_finisher",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.6556543261063712,
+        "right_foot": 0.3920001028572699
+      }
+    },
+    {
+      "variant": "after",
+      "action": "meteor",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3273395655572188,
+        "right_foot": 0.23044817035967927
+      }
+    },
+    {
+      "variant": "after",
+      "action": "meteor",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.31106453221949126,
+        "right_foot": 0.2531061140602425
+      }
+    },
+    {
+      "variant": "after",
+      "action": "meteor",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.32328460269712006,
+        "right_foot": 0.23039158473468666
+      }
+    },
+    {
+      "variant": "after",
+      "action": "meteor",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.7026545769731251,
+        "right_foot": 0.24132829393923425
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_counter",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.3273395655572188,
+        "right_foot": 1.3115715095331493
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_counter",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.31106453221949126,
+        "right_foot": 1.3533313165748824
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_counter",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.32328460269712006,
+        "right_foot": 1.2760935380244736
+      }
+    },
+    {
+      "variant": "after",
+      "action": "air_counter",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.7026545769731251,
+        "right_foot": 1.2806654626925331
+      }
+    },
+    {
+      "variant": "after",
+      "action": "node_pulse",
+      "character": 0,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.44747230977644853,
+        "right_foot": 0.43617560312381226
+      }
+    },
+    {
+      "variant": "after",
+      "action": "node_pulse",
+      "character": 1,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.42105804910294703,
+        "right_foot": 0.4830649623469818
+      }
+    },
+    {
+      "variant": "after",
+      "action": "node_pulse",
+      "character": 2,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.44043853550034984,
+        "right_foot": 0.43269378602200975
+      }
+    },
+    {
+      "variant": "after",
+      "action": "node_pulse",
+      "character": 3,
+      "clips": [
+        "Punch_Cross"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.8797011808434406,
+        "right_foot": 0.44995052773581035
+      }
+    },
+    {
+      "variant": "after",
+      "action": "stun",
+      "character": 0,
+      "clips": [
+        "Hit_Chest"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0014457454448830174,
+        "right_foot": 0.0008594815116335093
+      }
+    },
+    {
+      "variant": "after",
+      "action": "stun",
+      "character": 1,
+      "clips": [
+        "Hit_Chest"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0009543906014119199,
+        "right_foot": 0.0008622409018313933
+      }
+    },
+    {
+      "variant": "after",
+      "action": "stun",
+      "character": 2,
+      "clips": [
+        "Hit_Chest"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0014104807779018996,
+        "right_foot": 0.0005808977255440005
+      }
+    },
+    {
+      "variant": "after",
+      "action": "stun",
+      "character": 3,
+      "clips": [
+        "Hit_Chest"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.0012793870662126915,
+        "right_foot": 0.0004855109964985392
+      }
+    },
+    {
+      "variant": "after",
+      "action": "jump",
+      "character": 0,
+      "clips": [
+        "Jump_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.08743982206388637,
+        "right_foot": 0.040614835368568594
+      }
+    },
+    {
+      "variant": "after",
+      "action": "jump",
+      "character": 1,
+      "clips": [
+        "Jump_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.08677987833581631,
+        "right_foot": 0.032649898995887695
+      }
+    },
+    {
+      "variant": "after",
+      "action": "jump",
+      "character": 2,
+      "clips": [
+        "Jump_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.08163012427603113,
+        "right_foot": 0.03874560167746848
+      }
+    },
+    {
+      "variant": "after",
+      "action": "jump",
+      "character": 3,
+      "clips": [
+        "Jump_Loop"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.07410221470864932,
+        "right_foot": 0.032849818180408184
+      }
+    },
+    {
+      "variant": "after",
+      "action": "death",
+      "character": 0,
+      "clips": [
+        "Death01"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.7315307417909858,
+        "right_foot": 1.1672349553266113
+      }
+    },
+    {
+      "variant": "after",
+      "action": "death",
+      "character": 1,
+      "clips": [
+        "Death01"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.5880040490233851,
+        "right_foot": 1.1182854737458758
+      }
+    },
+    {
+      "variant": "after",
+      "action": "death",
+      "character": 2,
+      "clips": [
+        "Death01"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.6746109105639665,
+        "right_foot": 1.1441091314538425
+      }
+    },
+    {
+      "variant": "after",
+      "action": "death",
+      "character": 3,
+      "clips": [
+        "Death01"
+      ],
+      "foot_bone_excursion": {
+        "left_foot": 0.714925695405418,
+        "right_foot": 1.1945105343329827
+      }
+    }
+  ],
+  "unmodified_hero_samples": [
+    {
+      "character": 0,
+      "same_samples": true
+    },
+    {
+      "character": 2,
+      "same_samples": true
+    },
+    {
+      "character": 3,
+      "same_samples": true
+    }
+  ],
+  "trajectory_equal": true
+}

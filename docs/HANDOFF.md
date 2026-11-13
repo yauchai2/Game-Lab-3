@@ -1,3 +1,7 @@
+## 2026-11-13：四角基準抽樣與RIVET地面動作首切片
+
+已實作，見[RIVET_MOTION_SLICE.zh-TW.md](RIVET_MOTION_SLICE.zh-TW.md)與[evidence/fighter-motion](evidence/fighter-motion/README.md)。RIVET地面靜止護架及jab／cross／heavy／finisher／special改採既有CC0拳擊、固定站姿來源遮罩、frame7/8預壓取樣與單一pose owner，繞開Sword／踢技／Neon覆寫、lunge／2.1倍膨脹。不是地形IK／新外部mocap；步法、launcher／overdrive／空戰與其餘三角仍待重製。四角22類90tick抽樣、12秒正常L按持放錄影3次真命中；19新＋46角色規則＋104死亡通過，1800步玩法SHA一致，其他三角骨socket一致。四變更runtime嚴格編譯通過；全19腳本套件基線／新版同4處既有失敗。Web工具已可查官方Mixamo／Fab拳擊67動作／Rokoko／AccuRIG／Quaternius2資料；尚無帳戶下載／採購，不能把查閱當錄用。原GLB／判定／存檔／BGM與公開Web保持；同任務分支codex/four-fighter-motion-plan，下一步完整拳擊／踢技選樣與步法、轉髖，再擴三角。雲端4.6.3 llvmpipe，Mac／真人／性能待驗。
+
 ## 2026-11-13：四英雄全動作 review 與素材庫製作規劃（未實作）
 
 使用者要求四人各自招式／動作／特性與明顯不同戰鬥風格，並全面review現有怪動作、採Mixamo／AccuRIG／Rokoko／Unreal Marketplace等library。完整[FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md](FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)含逐動作家族、四角編排、素材取得／公開repo授權、重定向／marker／接地／唯一pose owner、畫面聲音與17–27工作日粗估。基線main 7aac2c1，origin/main已核對；直接解析四GLB皆65 joints／0 animation，現用庫19clips。確認RIVET Sword_Attack底片、重複骨骼層、special無階段覆寫、共用contact／lunge／scale／倒播步態問題。僅抽查兩張歷史片格，未完成最新runtime全招動態／真人驗收。四官方入口均被雲端proxy 403，未核實今日商品／價格／授權或下載新素材。下一步P0全招動態量測→P1選樣→正式FIGHT RIVET完整切片，四角與既有模式相容。僅文件、原模型／runtime／存檔／Web不變；任務分支codex/four-fighter-motion-plan。

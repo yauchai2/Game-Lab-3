@@ -1,3 +1,14 @@
+## 2026-11-13：四角動作第一輪實作狀態
+
+詳[RIVET_MOTION_SLICE.zh-TW.md](RIVET_MOTION_SLICE.zh-TW.md)，覆蓋下段「完全未實作」的本輪進度：
+
+- [x] 建立四角22類固定root呈現抽樣與前後資料，非完整真人／全招動態驗收。
+- [x] RIVET五個地面move與靜止護架採CC0拳擊＋站姿遮罩／單一owner，預壓、出拳、收勢；正式共用visual接入。
+- [x] 19新／46機制／104死亡回歸、四腳本嚴格編譯、1800步玩法雜湊與三角抽樣相同；12秒原生片。
+- [ ] P1取得官方帳戶動作、授權與完整全身轉接選樣；已可透過Web工具查閱具體Fab拳擊包及官方說明，尚未下載。
+- [ ] 補RIVET完整前後步／轉髖／launcher／overdrive，替換首版固定腿遮罩；其餘三角獨立動作及VFX仍未重製。
+- [ ] 全模式／鞋底幾何接觸／成對投技／真人與Mac驗收；既有全套strict四處警告另案整理。
+
 ## 2026-11-13：四英雄動作與戰鬥風格重製（規劃）
 
 詳細規格見[FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md](FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)，本輪尚未實作：

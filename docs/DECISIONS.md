@@ -1,3 +1,7 @@
+## 2026-11-13：先以現有可散佈拳擊片段修RIVET層衝突
+
+使用者要求繼續製作；依[RIVET_MOTION_SLICE.zh-TW.md](RIVET_MOTION_SLICE.zh-TW.md)先在正式共用visual落RIVET地面五招。保留既有CC0來源，使用source stance遮罩穩住骨盆／腿，拳擊全身片段上身曲線接分段時序；明確單一pose owner，舊Neon／air／kick層不重寫。這是可替換的第一輪管線，不冒稱IK、全身mocap、四角全招完成。後續正式外部素材先核Godot與公開repo權利，完整轉髖／步法替換固定腿遮罩；玩法權威不動。原GLB、存檔、音樂及公開Web保持。
+
 ## 2026-11-13：四英雄動作先於特效，外部素材採樣後轉接（規劃）
 
 使用者要求四角招式、動作、特性與戰鬥畫面有明顯區別；依[FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md](FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)採ZIP路線踢技／RIVET預壓巨拳／HUSH留白截擊／LOOP短棍接點。保留現有核心資源與原始GLB，先完整全身motion、接地與contact，再做VFX／鏡頭／聲音。外部來源分工：Mixamo基底、AccuRIG條件式綁骨（非動作庫）、ActorCore動作、Rokoko素材／補錄、Fab完整戰鬥包；Godot格式與公開GitHub原檔／衍生授權必須合格才錄用。來源入口本輪proxy403，所有具體商品與新動作尚未錄用。文件不構成已完成動畫或新採購；不改判定／進度／BGM持續播放契約，不發Web。先RIVET正式FIGHT切片驗證管線，保留黑衣人index4相容。

@@ -1,6 +1,8 @@
 extends RefCounted
 ## Rest-relative retargeting of the CC0 Quaternius library onto the supplied rig.
+const RivetMotion=preload("res://scripts/combat/last_service/rivet_motion.gd")
 static var library: Dictionary = {}
+var pose_owner:="legacy"
 var skeleton: Skeleton3D
 var source_rest: Array[Quaternion] = []
 var source_global_rest: Array[Quaternion] = []
@@ -86,6 +88,8 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         land_time += delta
         if previous_y > 0.05 and f.y <= 0.01: land_time = 0.0
     previous_y = f.y
+    var rivet_owned:bool=RivetMotion.owns(f)
+    pose_owner="rivet_boxing" if rivet_owned else "legacy"
     var selected := "Punch_Enter"
     var loop := false
     if f.health <= 0:
@@ -115,11 +119,13 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         selected=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop","Idle_Loop"][clampi(character,0,4)];loop=true
     # Cinematic performers name a library clip directly; combat never sets this key.
     if f.has("cinematic_clip") and library.clips.has(f.cinematic_clip):selected=f.cinematic_clip;loop=true
+    if rivet_owned:selected=RivetMotion.clip(f);loop=false
     # Death owns the pose even when an outgoing attack or idle state remains in
     # the frozen result/squad snapshot. State changes must not restart the fall.
     var dead:bool=f.health<=0
     if dead:selected="Death01";loop=false
     var state_key := "Death01/dead" if dead else selected + "/" + str(f.state) + ("/"+str(f.move) if f.state=="attack" else "")
+    if rivet_owned and f.state=="attack":state_key+="/"+str(f.get("service",{}).get("serial",0))
     if state_key != previous_state:
         blend_from.clear()
         for bone in skeleton.get_bone_count(): blend_from.append(skeleton.get_bone_pose_rotation(bone))
@@ -151,15 +157,21 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         sample_time = duration * clampf(air_time/0.12,0,1)
     elif selected == "Jump_Land":
         sample_time = duration * clampf(land_time / 0.22,0,1)
+    if rivet_owned:sample_time=RivetMotion.sample(f,duration,f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES.get(f.move,{})))
     var locals: Array[Quaternion] = source_rest.duplicate()
     for index in clip.tracks:
         var track: Dictionary = clip.tracks[index]
         if track.has("rotation"):
             locals[int(index)] = _sample_quat(track.rotation,sample_time)
+    if rivet_owned:
+        var stance:Dictionary=library.clips.Punch_Enter
+        for index in stance.tracks:
+            if RivetMotion.planted_source(library.nodes[int(index)].name) and stance.tracks[index].has("rotation"):
+                locals[int(index)]=_sample_quat(stance.tracks[index].rotation,stance.duration)
     var globals: Dictionary = {}
     var desired: Array[Quaternion] = []
     desired.resize(skeleton.get_bone_count())
-    var blend := clampf(clip_elapsed/0.06,0,1)
+    var blend := clampf(clip_elapsed/(.025 if rivet_owned and f.state=="attack" else .06),0,1)
     for bone in skeleton.get_bone_count():
         var parent := skeleton.get_bone_parent(bone)
         var parent_rotation := Quaternion.IDENTITY if parent<0 else desired[parent]
@@ -179,7 +191,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     # Keep horizontal root motion in simulation. Death needs the full downward
     # hip track; the standing bob clamp leaves a prone body floating at hip height.
     var hips_position := skeleton.get_bone_rest(target_hips).origin
-    if clip.tracks.has(str(source_hips)) and clip.tracks[str(source_hips)].has("translation"):
+    if not rivet_owned and clip.tracks.has(str(source_hips)) and clip.tracks[str(source_hips)].has("translation"):
         var translation: Vector3 = _sample_vector(clip.tracks[str(source_hips)].translation,sample_time)
         var source_base := _vec(library.nodes[source_hips].translation)
         var parent: int = library.nodes[source_hips].parent
@@ -189,6 +201,9 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     if dead:
         air_pose_name=""
         return # Air/stunt/guard layers must not overwrite the death clip.
+    if rivet_owned:
+        air_pose_name="Rivet_Boxing_"+f.move if f.state=="attack" else "Rivet_Boxing_Guard"
+        return # This profile owns the complete grounded pose.
     if f.state == "attack":
         var move: Dictionary = f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
         var attack_weight := clampf(float(f.frame)/move.startup,0,1)

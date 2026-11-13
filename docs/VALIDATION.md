@@ -1,3 +1,7 @@
+## 2026-11-13：RIVET地面動作切片及四角基準
+
+詳[evidence/fighter-motion](evidence/fighter-motion/README.md)：19新原生＋46角色機制＋104死亡／群戰回歸全通過；四個變更runtime七類warning當error編譯通過。全19腳本strict為15/19，未改基線同四處失敗，前後log保留；不能宣稱全套strict通過。兩組角色1800步相同玩法SHA／事件完全一致；其餘三角22類每類90tick骨socket完全相同。RIVET五地面招Foot骨tick10後位移0，屬固定source stance遮罩，不是鞋幾何／地形IK量測；hold7/8、真二階放拳、F2／hitstop／左右朝向、owner交還通過。12秒360幀正常L按／持／放三段重設練習，3次真命中，有聲錄影，約67秒錄製，非真人或硬件FPS。accepted原生log無ERROR／SCRIPT ERROR；初次缺快取已editor import後重跑。Mac／真人／逐幀全招與外部新素材待驗；本輪原GLB／判定／BGM／Web不變。
+
 ## 2026-11-13：四英雄動作 review 與詳細方案（僅文件）
 
 基線main／origin/main均7aac2c1、工作區起始乾淨。依[FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md](FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)查閱所有動作家族的來源選片／層疊／時序／視覺變形與選角／勝出／據點路徑；四份GLB直接解析皆65 joints、0 animations；現用JSON動作庫19clips。只目視兩個歷史影片抽格（ink-fx/after第3秒、last-service-runtime/zip-rivet-demo第5秒），未聲稱當前逐招錄影或完整影片審查。以正常HTTPS讀四官方入口回Tunnel connection failed:403 Forbidden，未確認最新目錄／授權／價格及新下載。Markdown本地連結與git diff --check覆核；無runtime修改，因此未跑Godot玩法測試；未驗Mac／真人／GPU效能。所有製作門檻和工期為提案，非本輪測試結果。

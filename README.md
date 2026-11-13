@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[RIVET地面動作第一輪修正與四角抽樣](docs/RIVET_MOTION_SLICE.zh-TW.md)／[12秒原生預覽](docs/evidence/fighter-motion/rivet-motion.mp4)。站穩出拳、預壓分段及單一pose owner，169項新／機制／死亡檢查通過；仍屬首切片，未重製全四角。
+
 規劃：[四英雄全動作 review、外部動畫素材與差異化戰鬥製作方案](docs/FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)。含四角逐招／步法／空戰、素材庫分工、骨架與接地管線、四種鏡頭聲音及驗收；本輪僅review與規劃，未替換runtime。
 
 最新：[按指定原圖重做據點與15秒動態](docs/NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。固定視角投影美術＋真3D角色／深度與特效，保留原圖佈局、刪除無關設施；[引擎影片／對照](docs/evidence/nightshift-reference/README.md)。現有角色與插畫仍有差異；211回歸＋15strict，Tripo必需0件，選配精修清單已列。下方粗模紀錄為歷史。
