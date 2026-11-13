@@ -15,14 +15,20 @@ func apply(camera:Camera3D,session:Node3D) -> void:
     var center:=Vector3((a.x+b.x)*.5,(minf(a.y,b.y)+maxf(a.y,b.y)+2.4)*.5,session.FIGHT_Z)
     var progress:float=director.age/director.duration
     var direction:=1.0 if director.owner==0 else -1.0
-    var orbit:float=direction*lerpf(-.28,.40,smoothstep(0.0,1.0,progress))
-    if director.mode=="RELEASE":orbit=direction*lerpf(.28,-.36,progress)
-    var desired_fov:=36.0 if director.mode=="CHARGE" else 41.0
+    var character:int=session.character_choices[clampi(director.owner,0,1)]
+    var style=preload("res://scripts/combat/fighter_effect_style.gd")
+    var profile:Vector4=style.camera_profile(character)
+    var orbit:float=direction*lerpf(profile.x,profile.y,smoothstep(0.0,1.0,progress))
+    if director.mode=="RELEASE":
+        orbit=direction*lerpf(profile.y,profile.x,progress)
+        if character<0 or character>3:orbit=direction*lerpf(.28,-.36,progress)
+    var desired_fov:float=profile.z+(0.0 if director.mode=="CHARGE" else 3.0)
+    if character<0 or character>3:desired_fov=36.0 if director.mode=="CHARGE" else 41.0
     var distance:=maxf(5.2,camera.position.distance_to(center)*.76)
     for iteration in 12:
-        camera.position=center+Vector3(sin(orbit)*distance,.30,cos(orbit)*distance)
+        camera.position=center+Vector3(sin(orbit)*distance,profile.w,cos(orbit)*distance)
         camera.look_at(center)
-        camera.rotation.z=director.camera_roll()
+        camera.rotation.z=director.camera_roll()*(float(style.ROLL[character]) if character>=0 and character<4 else 1.0)
         camera.fov=desired_fov
         last_iterations=iteration+1
         if fits(camera,session):break

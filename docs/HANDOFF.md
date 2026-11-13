@@ -1,3 +1,7 @@
+## 2026-11-13：四角聲光與大招鏡頭接入
+
+見[FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md](FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md)及[evidence/fighter-style](evidence/fighter-style/README.md)。ZIP雙箭／RIVET厚框／HUSH細切／LOOP方波共用有限局部圖形，真命中與釋放、大招Neon、招架／撞牆歸屬同步；單一全屏與鏡頭owner，大招四profile保兩人HUD邊界。保CC0打擊底層、加入四種固定PCM原創材質層與既有音效預算，BGM不改。51新＋407回歸共458全過；72鏡頭間距／空中組合、F2／暫停／靜音驗證，11腳本strict過。修sprite舊警告後全suite16/19，仍三處既有失敗。1800 tick同指令與701f0c7狀態hash一致、0呈現改寫。12秒四段連續PLAY真命中2/1/1/1，HUSH真sample與LOOP先放點encore，無預塞sample／node／damage。Linux llvmpipe／Dummy，非Mac／真人／目標GPU。空戰／投技／受擊家族、完整轉髖／foot IK及跨選角pose仍待後續；同分支codex/four-fighter-motion-plan／draft PR #29，Web不更新。
+
 ## 2026-11-13：HUSH截擊與LOOP短棍已接地面動作
 
 見[HUSH_LOOP_MOTION.zh-TW.md](HUSH_LOOP_MOTION.zh-TW.md)／[evidence/hush-loop-motion](evidence/hush-loop-motion/README.md)。同一固定KayKit CC0 melee檔新增7個單手／block片段＋Punch全身反射，擴充庫19／合計38clips，原11衍生及19原庫不變。HUSH七地面id／LOOP八id（含pulse）與idle、guard／blockstun、移動／閃有獨立owner；HUSH真撤步無假前移、parry取樣／消耗姿態；LOOP刺掃劈、近遠點指令、真pulse／encore手勢。grip手指遮罩與掌心握點、當前骨矩陣BatonTip／FX同步及換角清理；不是新短棍模型或專用eskrima mocap。122新＋285既有共407通過、七motion／recipe strict通過；全19suite仍同4處既有失敗。1800固定tick基線471b21e與新版SHA一致且0呈現改寫，ZIP／RIVET22類抽樣也相同。15秒450幀連續play，真parry→sample L、兩點S+L、一點W+L，三段各1真命中、後兩段各1真pulse，無預塞節點／sample／傷害；錄影單獨跑防失焦。原模型／判定／資源／進度／BGM／Web保持，同分支／PR #29續推。仍待完整轉髖／足部IK、空戰／成對投技、選角勝出據點及四角VFX／鏡頭音色；非四角全部完工，Mac／真人／GPU待驗。

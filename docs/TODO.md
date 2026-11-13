@@ -1,3 +1,13 @@
+## 2026-11-13：第四輪四角聲光風格
+
+詳[FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md](FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md)。
+
+- [x] 四角命中／釋放／起招輪廓、招架／撞牆歸屬、大招Neon幾何與四種signature鏡頭。
+- [x] 四種原創PCM材質層，保留CC0打擊主體／音效預算／BGM；F2／暫停／靜音，458項及12秒真事件預覽。
+- [ ] 空戰／投技／受擊／倒地家族逐角色review與素材接入；完整轉髖／步法與foot IK。
+- [ ] 選角／登場／勝出／據點共用profile；全模式／六人群戰藝術驗收、Mac／真人／目標GPU。
+- [ ] 全strict剩story_opening、world_ink_fx、reference_workshop相依三處警告；目前16/19。
+
 ## 2026-11-13：第三輪HUSH／LOOP地面動作狀態
 
 詳[HUSH_LOOP_MOTION.zh-TW.md](HUSH_LOOP_MOTION.zh-TW.md)：

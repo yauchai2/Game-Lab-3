@@ -1,3 +1,7 @@
+## 2026-11-13：第四輪四角聲光驗證
+
+[evidence/fighter-style](evidence/fighter-style/README.md)：51新＋122counter＋90street＋19rivet＋46規則＋104死亡／群戰＋26FX共458通過。72組距離／空中／owner鏡頭邊界，F2／暫停／靜音／音效預算及PCM四種可重建；11腳本七類fatal warning全過，全19suite16/19（sprite舊警告修正，另三處既有失敗保留）。701f0c7隔離scripts與新版相同1800 tick輸入／狀態SHA022cef61…、21命中、0差異／骨架呈現改寫；全scene另以sim快照確認新增呈現不改資料。12秒360幀連續PLAY真命中2/1/1/1、真sample及先放點encore，音軌非靜音，未預塞sample／node／damage；2fps全長畫面覆核。accepted原生log無ERROR／SCRIPT ERROR；同色輪廓圖為明示fixture。Linux4.6.3 llvmpipe／Dummy，非人耳／Mac／真人／硬體FPS驗收。
+
 ## 2026-11-13：HUSH／LOOP第三輪驗證
 
 [evidence/hush-loop-motion](evidence/hush-loop-motion/README.md)：122新motion／合法起招／雙朝向／F2／hitstop／owner交還／握點棍尖／真sample／放點脈衝／明示encore變體＋90ZIP/RIVET＋19首輪＋46規則＋104死亡／群戰＋26FX，共407全通過。七motion／recipe腳本七類fatal warning通過；全19suite仍15/19，同四處基線失敗。固定1800 simulation ticks、同指令hash，471b21e與新版狀態SHA均022cef61…、21真命中、0sim差異／呈現改寫。ZIP／RIVET22類逐tick骨socket相同，原11曲線及19原庫hash不變。15秒450幀連續play實錄，真parry取得／消耗sample、正常兩點pulse、一點encore；各段1真命中、後兩段各1真pulse事件。未預塞sample／node／damage（對手首jab為明示合法起招fixture）；骨socket／握姿不等於地形IK、真人或硬體FPS驗收。accepted原生log無ERROR／SCRIPT ERROR，原GLB／判定／BGM／公開Web不變。Linux4.6.3 llvmpipe／Dummy，Mac／真人／GPU待驗。

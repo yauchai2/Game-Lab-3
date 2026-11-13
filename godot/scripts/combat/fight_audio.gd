@@ -81,6 +81,8 @@ func _ready() -> void:
         if sounds[kind].is_empty():sounds[kind].append(_tone(.2,120.0,40.0,.1))
     sounds["ink_snap"]=[_tone(.045,1700.0,260.0,.32)]
     sounds["ink_scrape"]=[_tone(.09,480.0,110.0,.48)]
+    for character in 4:
+        sounds["fighter_%d"%character]=[_fighter_tone(character)]
     for i in 10:
         var voice := AudioStreamPlayer.new()
         add_child(voice)
@@ -337,7 +339,43 @@ func status_text() -> String:
 func play_contact_layer(character:int,move:String,strength:float) -> void:
     if contact_budget>0 or muted or effects_level<=0:return
     contact_budget=.075
-    var pitch:float=[1.22,.78,1.38,1.02,.92][clampi(character,0,4)]
-    var scrape:bool=move in ["meteor","heavy","air_kick","air_counter"]
-    play_sound("ink_scrape" if scrape else "ink_snap",pitch,-17.0 if strength<.55 else -12.0)
+    if character<0 or character>3:
+        var scrape:bool=move in ["meteor","heavy","air_kick","air_counter"]
+        play_sound("ink_scrape" if scrape else "ink_snap",.92,-17.0 if strength<.55 else -12.0)
+        contact_layers_played+=1
+        return
+    var family:String="fighter_%d"%character
+    play_sound(family,.94 if move in ["heavy","overdrive"] else 1.0,-13.0 if strength<.55 else -8.0)
     contact_layers_played+=1
+
+## Original deterministic material accents; CC0 recorded body impact remains beneath.
+func _fighter_tone(character:int) -> AudioStreamWAV:
+    var rate:=22050
+    var duration:float=[.11,.19,.055,.14][character]
+    var count:=int(duration*rate)
+    var data:=PackedByteArray();data.resize(count*2)
+    var rng:=RandomNumberGenerator.new();rng.seed=170+character
+    var phase:=0.0
+    var previous:=0.0
+    for i in count:
+        var t:float=float(i)/rate
+        var u:float=float(i)/count
+        var noise:float=rng.randf_range(-1.0,1.0)
+        var sample:=0.0
+        match character:
+            0:
+                phase+=TAU*lerpf(2600,650,u)/rate
+                sample=(noise-previous)*.24+sin(phase)*.18
+            1:
+                phase+=TAU*lerpf(140,48,u)/rate
+                sample=sin(phase)*.65+sin(phase*3.13)*.18+noise*.08
+            2:sample=(noise-previous)*.45*exp(-u*7.0)
+            3:
+                sample=(sin(TAU*740*t)+sin(TAU*1190*t)*.4)*.32
+                if u>.32 and u<.48:sample=0.0
+        previous=noise
+        sample*=minf(1.0,u*100.0)*pow(1.0-u,2.0)
+        data.encode_s16(i*2,int(clampf(sample,-.95,.95)*28000))
+    var stream:=AudioStreamWAV.new()
+    stream.format=AudioStreamWAV.FORMAT_16_BITS;stream.mix_rate=rate;stream.data=data
+    return stream

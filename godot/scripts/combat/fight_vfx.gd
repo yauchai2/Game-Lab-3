@@ -4,6 +4,7 @@ var impact_shapes = preload("res://scripts/combat/impact_shapes.gd").new()
 var sprites = preload("res://scripts/combat/sprite_fx.gd").new()
 func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     var at: Vector2 = session.project(effect.at)
+    if preload("res://scripts/combat/fighter_effect_style.gd").draw(canvas,at,effect,session.reduced_effects):return
     var time: float = clampf(effect.age/effect.life,0,1)
     var stage := floorf(time*6.0)/6.0
     var tint: Color = effect.color

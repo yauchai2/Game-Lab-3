@@ -768,7 +768,7 @@ func _handle_event(event: Dictionary) -> void:
     elif kind=="arena_bounce":
         arena_cage.react(event)
         var point:=Vector2(event.x,event.y)
-        _spawn_vfx("ground_ring" if event.surface=="floor" else "wall",point,.24,{"color":Color("c4f7ff"),"face":-signf(event.x),"move":"heavy"})
+        _spawn_vfx("ground_ring" if event.surface=="floor" else "wall",point,.24,{"color":Color("c4f7ff"),"face":-signf(event.x),"move":"heavy","owner":event.target})
         backdrop.smoke.react(Vector3(event.x,clampf(event.y,0,7),FIGHT_Z))
         trauma=maxf(trauma,.25 if event.surface in ["left","right"] else .34)
         audio.play_sound("slam",.85+event.chain*.07,-7)
@@ -778,7 +778,7 @@ func _handle_event(event: Dictionary) -> void:
         var fighter: Dictionary=sim.fighters[event.target]
         var point:=Vector2(fighter.x,fighter.y+1.0)
         if kind=="wall_bounce":
-            _spawn_vfx("wall",point,.22,{"color":Color("eebd4c"),"face":-signf(fighter.x),"move":"heavy"})
+            _spawn_vfx("wall",point,.22,{"color":Color("eebd4c"),"face":-signf(fighter.x),"move":"heavy","owner":event.target})
             trauma=maxf(trauma,.25)
             audio.play_sound("heavy",.85,-8)
         else:
@@ -810,7 +810,7 @@ func _handle_event(event: Dictionary) -> void:
         var move: String = event.get("move","jab")
         var face: float = event.get("face",sim.fighters[attacker].face)
         var point:Vector2=ink_fx.contact_point(self,event)
-        _spawn_vfx(kind,point,0.16 if kind=="hit" else .24,{"strength":strength,"color":tint,"move":move,"face":face,"attacker":attacker,"held":kind=="hit" and sim.hitstop>0})
+        _spawn_vfx(kind,point,0.16 if kind=="hit" else .24,{"strength":strength,"color":tint,"move":move,"face":face,"attacker":event.target if kind=="parry" else attacker,"held":kind=="hit" and sim.hitstop>0})
         if kind=="hit":
             if sim.arcade_enabled and move in ["meteor","special","overdrive"]:theatre.begin("cannon_hit" if move=="overdrive" else "impact",attacker)
             if sim.arcade_enabled and move=="meteor":_spawn_vfx("meteor_streak",point,.22,{"color":COLORS[attacker],"face":face})
