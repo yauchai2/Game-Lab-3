@@ -15,7 +15,7 @@ const EDGE := Color("505660")
 const MAGENTA := Color("ff008c")
 const LIME := Color("bdff00")
 const LOGO = preload("res://assets/ui/ink/logo.tres")
-## Finer 28/32 px glyphs retain light pixel steps without the old 14/16 px blocks.
+## Medium 24 px glyphs add visible pixel steps while preserving letter gaps.
 const BODY = preload("res://assets/fonts/RadioBody.tres")
 const DISPLAY = preload("res://assets/fonts/RadioDisplay.tres")
 static func plate(color: Color, border := Color.TRANSPARENT, width := 0) -> StyleBoxFlat:

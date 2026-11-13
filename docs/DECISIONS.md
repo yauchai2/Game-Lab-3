@@ -1,3 +1,7 @@
+## 2026-11-13：文字像素感調強一級
+
+依使用者要求，字圖由28px內文／32pxdisplay調至24px，alpha四階→三階，像素階梯更明顯；保持比原14／16px更多字形資訊、字母間隙與720p清晰度。nearest／字級／布局／繁中fallback及場景保持。32項原生介面／城市檢查通過，見[evidence/medium-pixel-type](evidence/medium-pixel-type/README.md)。仍只推codex/story-waves-m1／PR #12，main／Web不動。
+
 ## 2026-11-12：減輕文字像素化，保留輕像素風格
 
 使用者截圖指出720p後FIGHT／SQUAD及暫停字仍黏筆畫；原因是舊字圖僅14／16px且二值alpha，單提高framebuffer不能補回細節。依最新要求保留像素感，改新28px內文／32px粗斜display字圖及四階alpha，nearest保持；不改成全平滑字體。手繪頁面的大字亦用同一新display，原bitmap資產留作歷史。繁中沿現有打包字體作fallback；1280×720、toon／硬邊場景及布局保持。實際畫面／驗證見[evidence/clear-type](evidence/clear-type/README.md)。只推codex/story-waves-m1／PR #12，不合main／Web。

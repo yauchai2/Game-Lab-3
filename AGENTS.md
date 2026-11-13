@@ -141,3 +141,5 @@
 - 2026-11-12 最新澄清：整個遊戲包括UI／文字提高解像度。正式root／title／city1280×720覆蓋舊960，logical UI在預設視窗1:1；選角cards192×256／hero448×512。保留nearest／無AA／bitmap／toon，不能又將UI先縮低再放大。70項原生檢查見docs/evidence/whole-game-720p；未驗硬件FPS／Mac，UI runner退出8ObjectDB警告明示未解。仍同branch／PR #12，main及Web不動。
 
 - 2026-11-12 最新文字澄清：像素風保留但減輕到可讀，不能又恢復粗大14／16px字圖，也不要改成全平滑全新風格。ui_theme改RadioBody／RadioDisplay.tres→新28／32px RadioSubtle bitmap，四階alpha＋nearest；reference_art大字共用display。生成tools/build_subtle_pixel_fonts.py，舊字圖／原TTF不改；AfterhoursUIHK打包fallback以MSDF。720p場景保持，證據docs/evidence/clear-type；同branch／PR #12，main／Web不動。
+
+- 2026-11-13 最新使用者希望像素風強返一點：RadioSubtle兩字圖現24px／三階alpha（0,128,255），覆蓋上一版28／32px四階，保留字母間隙／720p／nearest及繁中fallback。32項原生Ink／城市檢查見docs/evidence/medium-pixel-type，舊clear-type證據保持。同branch／PR #12，不合main／Web。
