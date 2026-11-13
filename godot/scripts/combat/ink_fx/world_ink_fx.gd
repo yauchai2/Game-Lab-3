@@ -50,7 +50,7 @@ func active_count(decor_only:=false) -> int:
     for item in pool:
         if item.age<item.life and (not decor_only or item.rank==0):count+=1
     return count
-func emit_puff(kind:String,at:Vector3,direction:float,rank:=0,character:=0,gain:=1.0) -> void:
+func emit_puff(kind:String,at:Vector3,direction:float,rank:=0,character:=0,gain:=1.0,tint_override:=Color.TRANSPARENT) -> void:
     if not Recipes.RECIPES.has(kind):return
     if rank==0 and active_count(true)>=DECOR_LIMIT:dropped+=1;return
     var slot:Dictionary={}
@@ -67,16 +67,17 @@ func emit_puff(kind:String,at:Vector3,direction:float,rank:=0,character:=0,gain:
     slot.size=Vector2(spec.x,spec.y)*gain
     slot.velocity=Vector3(direction*(.30 if kind in ["step","run","jump"] else .9),.35 if kind in ["wake","heavy","launch"] else .12,0)
     slot.tint=PUFF_DARK if kind=="wake" and serial%3==0 else (ACCENTS[clampi(character,0,4)] if kind=="parry" else PUFF_LIGHT)
+    if tint_override.a>0:slot.tint=tint_override
     slot.roll=float(serial%7-3)*.28
     slot.mat.albedo_texture=puff_textures[serial%6]
     slot.node.show();peak=maxi(peak,active_count())
-func ground(kind:String,at:Vector3,face:float,character:int,reduced:bool) -> void:
+func ground(kind:String,at:Vector3,face:float,character:int,reduced:bool,tint_override:=Color.TRANSPARENT) -> void:
     if reduced:return
     var count:=1 if kind in ["step","run"] else (5 if kind=="slam" else 3)
     for i in count:
         var direction:float=-face if kind in ["dash","run","step"] else (-1.0 if i%2==0 else 1.0)
         var p:=at+Vector3(direction*float(i)*.11,.045,.12 if i%2==0 else -.12)
-        emit_puff(kind,p,direction,1 if kind=="slam" else 0,character,1.0+float(i%2)*.12)
+        emit_puff(kind,p,direction,1 if kind=="slam" else 0,character,1.0+float(i%2)*.12,tint_override)
 func contact_point(session:Node,event:Dictionary) -> Vector2:
     var side:int=clampi(event.get("attacker",0),0,1)
     var target:int=clampi(event.get("target",1-side),0,1)
@@ -180,6 +181,16 @@ func _actor(session:Node,id:int,f:Dictionary,visual:Node,_delta:float) -> void:
             track.wake=fmod(track.wake,.32)
             emit_puff("wake",Vector3(f.x,f.y+.70,session.FIGHT_Z-.16),-signf(f.vx),0,visual.character_index,.8 if id>1 else 1.0)
     else:track.wake=0.0
+    if f.character==0 and f.state=="attack" and f.move=="special" and f.y<=.015 and not session.reduced_effects:
+        var zip_key:String=str(f.service.serial)+"/"+str(f.service.get("zip_second",false))
+        if track.get("zip_key","")!=zip_key:
+            track["zip_key"]=zip_key
+            ground("brake" if f.service.zip_second else "dash",Vector3(f.x,.045,session.FIGHT_Z),f.face,0,false,Color("f7fff9"))
+        var return_frame:int=session.sim.move_for(f,f.move).startup+8
+        if f.frame>=return_frame and track.get("zip_plant",-1)!=f.service.serial:
+            track["zip_plant"]=f.service.serial
+            ground("land",Vector3(f.x,.045,session.FIGHT_Z),f.face,0,false,Color("f7fff9"))
+    elif f.state!="attack":track["zip_key"]=""
     if session.reduced_effects or f.state!="attack":track.serial=-1;return
     var move:Dictionary=session.sim.move_for(f,f.move)
     var attack_serial:int=f.service.serial

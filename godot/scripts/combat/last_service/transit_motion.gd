@@ -125,6 +125,8 @@ static func finish(m:RefCounted,f:Dictionary,motion:Dictionary,move:Dictionary) 
 static func zip_segment(f:Dictionary,move:Dictionary) -> Dictionary:
     var frame:float=f.frame
     var r:Dictionary=f.get("service",{})
+    if preload("res://scripts/combat/last_service/zip_express.gd").owns(f):
+        return {"mirrored":preload("res://scripts/combat/last_service/zip_express.gd").second(f,move),"frame":frame}
     var mirrored:bool=f.move in ["cross","finisher"]
     if f.move=="special" and (r.get("zip_second",false) or (r.get("followup",0)>0 and frame>float(r.followup)-4.0)):
         mirrored=true

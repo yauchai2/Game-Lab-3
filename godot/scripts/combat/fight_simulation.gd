@@ -555,6 +555,9 @@ func _can_hit(i: int) -> bool:
     if a.move=="gun":return false # ranged: resolved by GunShot, never by a melee hitbox
     var m: Dictionary = move_for(a,a.move)
     if last_service_enabled and a.character==3 and a.move in ["special","node_pulse"]:return false
+    if last_service_enabled and a.character==0 and a.move=="special":
+        var contact:int=int(a.service.zip_second_at) if a.service.zip_second else int(m.startup)
+        if a.frame<contact or a.frame>=contact+4:return false # planted turn has no invisible hitbox
     if a.move=="grab" and (a.y>.01 or b.y>.01 or b.state in ["stun","blockstun"]):return false
     if a.frame < m.startup or a.frame >= m.startup + m.active:
         return false

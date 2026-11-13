@@ -1,7 +1,7 @@
 extends RefCounted
 ## Fixed-tick character resources and real, blockable contact. No presentation authority.
 static func fresh() -> Dictionary:
-    return {"routes":0,"route_ttl":0,"evade_serial":-1,"evade_candidate":-1,"candidate_ticks":0,"preload":0,"preload_age":0,"sample":0,"sample_ttl":0,"sample_boost":false,"nodes":[],"node_cd":0,"serial":0,"placed":false,"zip_second":false,"followup":0,"flurry_left":0,"encore":[],"refund_serial":-1}
+    return {"routes":0,"route_ttl":0,"evade_serial":-1,"evade_candidate":-1,"candidate_ticks":0,"preload":0,"preload_age":0,"sample":0,"sample_ttl":0,"sample_boost":false,"nodes":[],"node_cd":0,"serial":0,"placed":false,"zip_second":false,"zip_second_at":0,"followup":0,"flurry_left":0,"encore":[],"refund_serial":-1}
 static func perk(f:Dictionary,id:String) -> bool:return id in f.get("perks",[])
 func before(s:RefCounted,i:int,command:Dictionary) -> void:
     var f:Dictionary=s.fighters[i];var r:Dictionary=f.service
@@ -22,7 +22,7 @@ func before(s:RefCounted,i:int,command:Dictionary) -> void:
         if command.get("skill_held",false) and r.preload_age<36:f.frame=7
 func started(s:RefCounted,i:int,name:String) -> void:
     var f:Dictionary=s.fighters[i];var r:Dictionary=f.service
-    r.serial+=1;r.placed=false;r.zip_second=false;r.followup=0;r.flurry_left=2
+    r.serial+=1;r.placed=false;r.zip_second=false;r.zip_second_at=0;r.followup=0;r.flurry_left=2
     r.preload=0;r.preload_age=0;r.sample_boost=false
     if f.character==2 and r.sample>0 and name in ["cross","heavy","launcher","special","overdrive"]:
         r.sample=0;r.sample_ttl=0;r.sample_boost=true
@@ -92,7 +92,9 @@ func observe(s:RefCounted,event:Dictionary) -> void:
             s.events.append({"kind":"route_spent","target":event.target})
     if kind=="hit":
         var f:Dictionary=s.fighters[event.attacker];var r:Dictionary=f.service
-        if f.character==0 and event.move=="special" and not r.zip_second:r.followup=f.frame+4
+        if f.character==0 and event.move=="special" and not r.zip_second:
+            r.followup=f.frame+preload("res://scripts/combat/last_service/zip_express.gd").FOLLOWUP_DELAY
+            r.zip_second_at=r.followup
         if f.character==0 and event.move=="overdrive" and r.flurry_left>0:r.flurry_left-=1;r.followup=f.frame+5
         if r.refund_serial!=r.serial:
             var refund:=0.0
