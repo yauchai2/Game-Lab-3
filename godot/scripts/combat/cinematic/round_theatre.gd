@@ -51,7 +51,7 @@ func hold_simulation() -> bool:
     if intro and session.sim.phase!="ready":clear()
     return intro
 func trigger(event:Dictionary) -> void:
-    if session.sim.last_service_enabled and event.get("move","")=="special" and session.sim.fighters[clampi(event.get("attacker",0),0,1)].character==0:return
+    if session.sim.last_service_enabled and event.get("move","") in ["special","overdrive"] and session.sim.fighters[clampi(event.get("attacker",0),0,1)].character==0:return
     if session.sim.squad_enabled:return
     if intro or cooldown>0 or session.screen!="play" or session.reduced_effects:return
     if event.kind!="hit" or event.get("move","") not in ["heavy","finisher","launcher","meteor","special","overdrive","air_counter"]:return
@@ -69,7 +69,7 @@ func advance(delta:float,paused:bool) -> void:
     if paused:return
     cooldown=maxf(0,cooldown-delta)
     lens.hide()
-    if session.sim.last_service_enabled and session.sim.fighters.any(func(f:Dictionary)->bool:return f.character==0 and f.health>0 and f.state=="attack" and f.move=="special"):
+    if session.sim.last_service_enabled and session.sim.fighters.any(func(f:Dictionary)->bool:return f.character==0 and f.health>0 and f.state=="attack" and f.move in ["special","overdrive"]):
         close_age=1.0
         return
     if session.neon.signature:close_age=1.0;return

@@ -1,3 +1,9 @@
+## 2026-11-13：ZIP 末班快送影片動作／VFX
+
+接續急件簽收，新增末班快送的有界短衝、低位連踢抽動、換腿踢、最後側踹、白灰鞋腿長殘影與白芯青綠前向爆光。三次真命中才逐段接續，前兩段不開反彈；75能量／13＋13＋15基礎傷害保持，後續延遲5／5→24／16 tick、active17→52，各段4tick接觸。動作非循環、按招式幀取樣，修正停頓仍微移的首版問題。見[實作／來源／限制](ZIP_LAST_DELIVERY_REFERENCE.zh-TW.md)及[12秒左右預覽](evidence/zip-delivery/zip-last-delivery.mp4)。
+
+新44＋急件簽收23＋既有動作90＋角色規則46＋基本戰鬥34＋編譯13＝250項通過；accepted原生log無ERROR／SCRIPT ERROR。原片6.583秒／158幀及12fps抽樣保存；影片額外微踢／閃光整合為三個真攻擊重音，不增假傷害。Mac／真人／逐幀美術驗收待使用者看；同分支codex/zip-express-reference／draft PR #36，未合main／發Web。
+
 ## 2026-11-13：ZIP 急件簽收影片動作／VFX
 
 已依使用者4秒附件接正式ZIP special：兩踢之間落腳轉髖、白芯青綠尖刺、向下月牙、白色腳塵及可讀雙人鏡頭。第二踢確認延遲4→16 tick，active10→26，兩段各4 tick接觸窗；50能量／12＋10基礎傷害保持，未加必中。防守parry演出保持。見[實作／時序／限制](ZIP_EXPRESS_REFERENCE.zh-TW.md)及[8秒左右換邊預覽](evidence/zip-express/zip-express.mp4)。

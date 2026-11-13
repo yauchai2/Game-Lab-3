@@ -19,7 +19,7 @@ static func move(base:Dictionary,index:int,name:String,f:Dictionary={}) -> Dicti
         0:
             if name in ["jab","cross","air_jab","air_kick"]:m.damage=maxi(4,m.damage-1);m.recovery=maxi(8,m.recovery-2)
             if name=="special":m.damage=10 if f.get("service",{}).get("zip_second",false) else 12;m.startup=14;m.active=26;m.recovery=28;m.reach=2.7;m.push=8.0 if f.get("service",{}).get("zip_second",false) else 2.0
-            if name=="overdrive":m.damage=15 if f.get("service",{}).get("flurry_left",2)==0 else 13;m.startup=24;m.active=17;m.recovery=34;m.reach=3.0;m.push=15.0 if f.get("service",{}).get("flurry_left",2)==0 else 2.0;m.lift=3.0
+            if name=="overdrive":m.damage=15 if f.get("service",{}).get("delivery_stage",0)==2 else 13;m.startup=24;m.active=52;m.recovery=34;m.reach=3.0;m.push=15.0 if f.get("service",{}).get("delivery_stage",0)==2 else 2.0;m.lift=3.0
         1:
             if name in ["cross","heavy","finisher"]:m.damage+=3;m.startup+=2
             if name=="special":

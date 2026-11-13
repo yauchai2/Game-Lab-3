@@ -558,6 +558,9 @@ func _can_hit(i: int) -> bool:
     if last_service_enabled and a.character==0 and a.move=="special":
         var contact:int=int(a.service.zip_second_at) if a.service.zip_second else int(m.startup)
         if a.frame<contact or a.frame>=contact+4:return false # planted turn has no invisible hitbox
+    if last_service_enabled and a.character==0 and a.move=="overdrive":
+        var contact:int=a.service.delivery_contact
+        if a.frame<contact or a.frame>=contact+4:return false
     if a.move=="grab" and (a.y>.01 or b.y>.01 or b.state in ["stun","blockstun"]):return false
     if a.frame < m.startup or a.frame >= m.startup + m.active:
         return false

@@ -59,7 +59,7 @@ static func describe(f:Dictionary,move:Dictionary,markers:Dictionary) -> Diction
         if markers.has(clip):contact=float(markers[clip].contact)
         var frame:float=f.frame
         if hero==0 and f.move in GROUND_ATTACKS:frame=zip_segment(f,move).frame
-        motion.phase=attack_phase(frame,move,contact)
+        motion.phase=preload("res://scripts/combat/last_service/zip_delivery.gd").phase(f,move,contact) if preload("res://scripts/combat/last_service/zip_delivery.gd").owns(f) else attack_phase(frame,move,contact)
         if hero==1 and f.move=="special":motion.phase=Rivet.sample(f,1.0,move)
         return motion
     var phase:String=air.get("phase","ground")
@@ -90,6 +90,9 @@ static func limb(f:Dictionary) -> String:
     if f.character==3:return "BatonTip"
     return "LeftHand" if f.move in ["jab","air_jab"] else "RightHand"
 static func finish(m:RefCounted,f:Dictionary,motion:Dictionary,move:Dictionary) -> void:
+    if preload("res://scripts/combat/last_service/zip_delivery.gd").owns(f):
+        preload("res://scripts/combat/last_service/zip_delivery.gd").finish(m,f,move)
+        return
     if motion.get("counter_transition",false):
         Counter.finish(m,f,motion,move)
         return
@@ -127,6 +130,8 @@ static func zip_segment(f:Dictionary,move:Dictionary) -> Dictionary:
     var r:Dictionary=f.get("service",{})
     if preload("res://scripts/combat/last_service/zip_express.gd").owns(f):
         return {"mirrored":preload("res://scripts/combat/last_service/zip_express.gd").second(f,move),"frame":frame}
+    if preload("res://scripts/combat/last_service/zip_delivery.gd").owns(f):
+        return preload("res://scripts/combat/last_service/zip_delivery.gd").segment(f,move)
     var mirrored:bool=f.move in ["cross","finisher"]
     if f.move=="special" and (r.get("zip_second",false) or (r.get("followup",0)>0 and frame>float(r.followup)-4.0)):
         mirrored=true

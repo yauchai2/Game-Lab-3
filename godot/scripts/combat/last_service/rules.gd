@@ -1,13 +1,15 @@
 extends RefCounted
 ## Fixed-tick character resources and real, blockable contact. No presentation authority.
 static func fresh() -> Dictionary:
-    return {"routes":0,"route_ttl":0,"evade_serial":-1,"evade_candidate":-1,"candidate_ticks":0,"preload":0,"preload_age":0,"sample":0,"sample_ttl":0,"sample_boost":false,"nodes":[],"node_cd":0,"serial":0,"placed":false,"zip_second":false,"zip_second_at":0,"followup":0,"flurry_left":0,"encore":[],"refund_serial":-1}
+    return {"routes":0,"route_ttl":0,"evade_serial":-1,"evade_candidate":-1,"candidate_ticks":0,"preload":0,"preload_age":0,"sample":0,"sample_ttl":0,"sample_boost":false,"nodes":[],"node_cd":0,"serial":0,"placed":false,"zip_second":false,"zip_second_at":0,"followup":0,"delivery_stage":0,"delivery_contact":24,"flurry_left":0,"encore":[],"refund_serial":-1}
 static func perk(f:Dictionary,id:String) -> bool:return id in f.get("perks",[])
 func before(s:RefCounted,i:int,command:Dictionary) -> void:
     var f:Dictionary=s.fighters[i];var r:Dictionary=f.service
     if f.character==3 and command.get("attack","")=="special" and command.get("down",false):command.attack="node_pulse"
     if command.get("attack","")=="special":f["node_far"]=absf(command.get("axis",0.0))>.1
     if s.hitstop>0:return
+    if f.character==0 and f.state=="attack" and f.move=="overdrive" and f.y<=.01 and f.frame>=4 and f.frame<14:
+        f.vx=f.face*3.8 # bounded run-in, no invulnerability or target tracking
     var enemy:Dictionary=s.fighters[1-i]
     if command.get("dash",false) and f.character==0 and f.state=="idle" and f.dash_cd==0 and enemy.state=="attack" and absf(f.x-enemy.x)<=s.move_for(enemy,enemy.move).reach+.5 and (f.x-enemy.x)*enemy.face>0:
         r.evade_candidate=enemy.service.serial;r.candidate_ticks=14
@@ -22,7 +24,7 @@ func before(s:RefCounted,i:int,command:Dictionary) -> void:
         if command.get("skill_held",false) and r.preload_age<36:f.frame=7
 func started(s:RefCounted,i:int,name:String) -> void:
     var f:Dictionary=s.fighters[i];var r:Dictionary=f.service
-    r.serial+=1;r.placed=false;r.zip_second=false;r.zip_second_at=0;r.followup=0;r.flurry_left=2
+    r.serial+=1;r.placed=false;r.zip_second=false;r.zip_second_at=0;r.followup=0;r.flurry_left=2;r.delivery_stage=0;r.delivery_contact=int(s.move_for(f,name).startup) if name=="overdrive" else 24
     r.preload=0;r.preload_age=0;r.sample_boost=false
     if f.character==2 and r.sample>0 and name in ["cross","heavy","launcher","special","overdrive"]:
         r.sample=0;r.sample_ttl=0;r.sample_boost=true
@@ -42,7 +44,9 @@ func advance(s:RefCounted) -> void:
                 r.evade_serial=b.service.serial;r.routes=mini(2,r.routes+1);r.route_ttl=300 if perk(f,"zip_route") else 180
                 s.events.append({"kind":"route_gained","target":i})
             if r.followup>0 and f.state=="attack" and f.frame>=r.followup:
-                r.followup=0;r.zip_second=true;f.connected=false
+                if f.move=="overdrive":r.delivery_stage=mini(2,r.delivery_stage+1);r.delivery_contact=r.followup
+                else:r.zip_second=true
+                r.followup=0;f.connected=false
         if f.character==3:
             if b.state=="attack" and b.y<1.2 and b.frame>=s.move_for(b,b.move).startup and b.frame<s.move_for(b,b.move).startup+s.move_for(b,b.move).active:
                 var old:int=r.nodes.size()
@@ -95,7 +99,9 @@ func observe(s:RefCounted,event:Dictionary) -> void:
         if f.character==0 and event.move=="special" and not r.zip_second:
             r.followup=f.frame+preload("res://scripts/combat/last_service/zip_express.gd").FOLLOWUP_DELAY
             r.zip_second_at=r.followup
-        if f.character==0 and event.move=="overdrive" and r.flurry_left>0:r.flurry_left-=1;r.followup=f.frame+5
+        if f.character==0 and event.move=="overdrive" and r.flurry_left>0:
+            r.flurry_left-=1
+            r.followup=f.frame+preload("res://scripts/combat/last_service/zip_delivery.gd").DELAYS[r.delivery_stage]
         if r.refund_serial!=r.serial:
             var refund:=0.0
             if f.character==0 and event.move in ["special","overdrive"] and perk(f,"zip_confirm"):refund=4

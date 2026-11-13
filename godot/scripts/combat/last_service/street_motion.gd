@@ -1,5 +1,6 @@
 extends RefCounted
 ## Data-only grounded motion selection for the four heroes. Never writes simulation.
+const Delivery=preload("res://scripts/combat/last_service/zip_delivery.gd")
 const Express=preload("res://scripts/combat/last_service/zip_express.gd")
 const Transit=preload("res://scripts/combat/last_service/transit_motion.gd")
 const Counter=preload("res://scripts/combat/last_service/counter_motion.gd")
@@ -38,6 +39,12 @@ static func describe(f:Dictionary,move:Dictionary,markers:Dictionary) -> Diction
         frame=segment.frame
         motion.clip="KK_Kick_Mirror" if mirrored else "KK_Kick"
         motion.launch_kick=f.move=="launcher"
+        if Delivery.owns(f):
+            motion.loop=false
+            if f.frame<move.startup-10 and f.y<=.01:
+                motion.clip="KK_Run";motion.loop=false;motion.phase=fposmod(float(f.frame)/12.0,1.0)
+            else:motion.phase=Delivery.phase(f,move,float(markers[motion.clip].contact))
+            return motion
         motion.phase=Express.phase(f,move,float(markers[motion.clip].contact)) if Express.owns(f) else attack_phase(frame,move,float(markers[motion.clip].contact),.75)
     elif f.move in ["heavy","finisher","overdrive"]:
         motion.clip="UAL2_Hook"
@@ -70,6 +77,9 @@ static func guard_bone(label:String) -> bool:
 static func finish(m:RefCounted,f:Dictionary,motion:Dictionary,move:Dictionary) -> void:
     if motion.get("transit",false):
         Transit.finish(m,f,motion,move)
+        return
+    if Delivery.owns(f):
+        Delivery.finish(m,f,move)
         return
     if Express.owns(f):
         Express.finish(m,f,move)

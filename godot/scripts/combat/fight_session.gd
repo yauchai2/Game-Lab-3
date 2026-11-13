@@ -589,6 +589,9 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
     if sim.last_service_enabled and effect.character==0 and effect.get("move","")=="special":
         effect["zip_express"]=true
         if not effect.has("zip_second"):effect["zip_second"]=sim.fighters[clampi(actor,0,1)].service.zip_second
+    if sim.last_service_enabled and effect.character==0 and effect.get("move","")=="overdrive":
+        effect["zip_delivery"]=true
+        if not effect.has("delivery_stage"):effect["delivery_stage"]=sim.fighters[clampi(actor,0,1)].service.delivery_stage
     effects.append(effect)
 
 func _tier_up_feedback() -> void:
@@ -675,7 +678,7 @@ func _handle_event(event: Dictionary) -> void:
         hud.skill_key="skill_loop" if event.move=="special" else "skill_loop_pulse";hud.skill_time=.5
         return
     var kind: String = event.kind
-    var zip_express_event:bool=kind in ["swing","hit"] and sim.last_service_enabled and event.get("move","")=="special" and character_choices[clampi(event.get("attacker",event.get("target",0)),0,1)]==0
+    var zip_express_event:bool=kind in ["swing","hit"] and sim.last_service_enabled and event.get("move","") in ["special","overdrive"] and character_choices[clampi(event.get("attacker",event.get("target",0)),0,1)]==0
     if kind in ["break_finish","ko"] and is_instance_valid(backdrop.living):backdrop.living.react()
     if sim.arcade_enabled and not reduced_effects:
         var side:int=event.get("attacker",event.get("target",0))
@@ -837,7 +840,7 @@ func _handle_event(event: Dictionary) -> void:
                 spectacle.trigger("contact",attacker,point,clampi(ceili(strength*4),1,4))
                 if sim.arcade_enabled:spectacle.tag_move(move)
             if impact_queue.size()>=4:impact_queue.pop_front()
-            impact_queue.append({"at":point,"strength":strength,"color":tint,"move":move,"face":face,"attacker":attacker,"zip_second":sim.fighters[attacker].service.zip_second})
+            impact_queue.append({"at":point,"strength":strength,"color":tint,"move":move,"face":face,"attacker":attacker,"zip_second":sim.fighters[attacker].service.zip_second,"delivery_stage":sim.fighters[attacker].service.delivery_stage})
             if sim.hitstop==0:_release_impacts()
         trauma = maxf(trauma,strength*0.6)
         audio.play_sound(("slam" if sim.arcade_enabled and move=="meteor" else ("launch" if sim.arcade_enabled and move=="launcher" else ("heavy" if strength>0.55 else "hit"))) if kind=="hit" else kind,1.0+sim.combo_hits*0.04,[-5.0,-3.0,-1.0][sim.exchange.tier()-1] if sim.arcade_enabled else 0.0)
@@ -869,7 +872,7 @@ func _handle_event(event: Dictionary) -> void:
             _spawn_vfx("wave",Vector2(fighter.x+fighter.face*0.6,fighter.y+1.2),0.26,{"age":-startup,"face":fighter.face,"color":COLORS[event.target]})
             audio.play_sound("charge",1.0,-4.0)
             if event.move=="overdrive":
-                _spawn_vfx("cannon_charge",Vector2(fighter.x,fighter.y+fighters[event.target].model_scale*.6),.5,{"face":fighter.face,"color":COLORS[event.target],"owner":event.target})
+                _spawn_vfx("cannon_charge",Vector2(fighter.x,fighter.y+fighters[event.target].model_scale*.6),.5,{"face":fighter.face,"color":COLORS[event.target],"owner":event.target,"move":event.move})
     elif kind=="double_jump":
         var fighter:Dictionary=sim.fighters[event.target]
         _spawn_vfx("surge_arc",Vector2(fighter.x,fighter.y+.15),.22,{"face":fighter.face,"color":COLORS[event.target]})
@@ -1151,7 +1154,7 @@ func _present(delta: float) -> void:
         distance=minf(distance,22.0)
     # Express Receipt keeps both full bodies legible through its planted turn.
     # Use the same camera owner and projection-based margins, no cutscene camera.
-    var express_framing:bool=not reduced_effects and sim.last_service_enabled and sim.fighters.any(func(f:Dictionary)->bool:return f.character==0 and f.health>0 and f.state=="attack" and f.move=="special")
+    var express_framing:bool=not reduced_effects and sim.last_service_enabled and sim.fighters.any(func(f:Dictionary)->bool:return f.character==0 and f.health>0 and f.state=="attack" and f.move in ["special","overdrive"])
     if express_framing and not sim.squad_enabled:
         var bottom:float=minf(sim.fighters[0].y,sim.fighters[1].y)
         var top:float=maxf(sim.fighters[0].y,sim.fighters[1].y)+2.4
@@ -1761,7 +1764,7 @@ func _track_service_effect(effect:Dictionary) -> void:
         effect.at=Vector2(socket.x+fighter.x-visual.position.x,socket.y+fighter.y-visual.position.y)
     else:effect.at=Vector2(fighter.x,fighter.y+visual.model_scale*.55)
     effect.face=fighter.face
-    if effect.kind=="swing" and effect.get("zip_express",false):
+    if effect.kind=="swing" and (effect.get("zip_express",false) or effect.get("zip_delivery",false)):
         effect.age=maxf(0.0,float(fighter.frame-move.startup+5)/60.0)
         effect.life=float(move.active+move.recovery+5)/60.0
         return

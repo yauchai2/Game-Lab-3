@@ -181,6 +181,16 @@ func _actor(session:Node,id:int,f:Dictionary,visual:Node,_delta:float) -> void:
             track.wake=fmod(track.wake,.32)
             emit_puff("wake",Vector3(f.x,f.y+.70,session.FIGHT_Z-.16),-signf(f.vx),0,visual.character_index,.8 if id>1 else 1.0)
     else:track.wake=0.0
+    if f.character==0 and f.state=="attack" and f.move=="overdrive" and f.y<=.015 and not session.reduced_effects:
+        var delivery_key:String=str(f.service.serial)+"/"+str(f.service.delivery_stage)
+        var stride:int=floori(float(f.frame)/5.0) if f.frame<14 else -1
+        var run_key:String=str(f.service.serial)+"/"+str(stride)
+        if stride>=0 and track.get("delivery_run","")!=run_key:
+            track["delivery_run"]=run_key
+            ground("run",Vector3(f.x,.045,session.FIGHT_Z),f.face,0,false,Color("f7fff9"))
+        if f.frame>=14 and track.get("delivery_key","")!=delivery_key:
+            track["delivery_key"]=delivery_key
+            ground("brake",Vector3(f.x,.045,session.FIGHT_Z),f.face,0,false,Color("f7fff9"))
     if f.character==0 and f.state=="attack" and f.move=="special" and f.y<=.015 and not session.reduced_effects:
         var zip_key:String=str(f.service.serial)+"/"+str(f.service.get("zip_second",false))
         if track.get("zip_key","")!=zip_key:
