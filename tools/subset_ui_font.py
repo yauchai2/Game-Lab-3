@@ -8,6 +8,7 @@ from fontTools import subset
 root=Path(__file__).resolve().parents[1]
 source=Path('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc')
 text=''.join(p.read_text() for p in (root/'godot/scripts/combat').rglob('*.gd'))
+text+=''.join(p.read_text() for p in (root/'godot/assets/localization').glob('*.json'))
 text+=''.join(chr(i) for i in range(32,127))+'…→·：／％（）？！，。１２３'
 font=TTFont(source,fontNumber=4,recalcTimestamp=False)
 options=subset.Options()

@@ -162,3 +162,5 @@
 - 2026-11-13 最新已接受字體像素強度5／邊緣硬度8／文字大小100%。pixel-type-preset.json為字圖生成來源，5→24px、8→80%二值＋20%coverage；保持display字距／720p／原字級，不恢復較粗20px完全硬邊。這是相對美術尺度，非遊戲內滑桿，其他文字百分比需先做UI重排。證據docs/evidence/pixel-preset-5-8；同branch／PR #12，不合main／Web。
 
 - 2026-11-13 使用者已明確要求「好，推上main」：以main f69fc9f合併story-waves-m1 f4f0742，保留main其他進度，5／8／100成為main正式字體設定。此條覆蓋本聊天先前不合main的歷史限制；公開Web仍不更新。121項整合／UI／城市／strict通過，證據docs/evidence/main-pixel-preset-merge；既有Mac／真人／實體手柄／配對投技限制保持。
+
+- 2026-11-13 最新繁中實作：設定English／繁體中文可保存重啟，禁止再強制language=en。TranslationServer+GameLocale autoload、locale_text安全preload helper、1034條zh_TW.json處理原生及Canvas文字／量測／動態格式；不翻譯save ID／simulation。已中文名稱不可再重複翻譯，故事typewriter按中文長度；FIT VIEW為全覽、FIT為穿戴。AfterhoursUIHK補catalog字形、保留OFL與拉丁5／8／100，export必須打包raw JSON。264項見docs/evidence/traditional-chinese，品牌／按鍵／曲名及內嵌美術字樣保留。來源同步main，不部署Web；Mac／真人／硬件驗收仍不冒稱。

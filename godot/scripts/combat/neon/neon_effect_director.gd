@@ -1,4 +1,5 @@
 extends RefCounted
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 ## One fullscreen owner, presentation seconds only. No damage/input/audio authority.
 var profile:Resource=preload("res://scripts/combat/neon/neon_style_profile.tres")
 var mode:=""
@@ -86,10 +87,10 @@ func draw(canvas:Control,session:Node3D) -> void:
                 canvas.draw_rect(rect,ink)
                 canvas.draw_rect(Rect2(rect.position+Vector2(0,2),Vector2(rect.size.x*.7,2.0)),color if i%2==0 else Color("fff8dc"))
     if priority>=5:
-        canvas.draw_string(session.hud.bold,Vector2(64,625),mode,HORIZONTAL_ALIGNMENT_LEFT,-1,64,Color.WHITE)
+        canvas.draw_string(session.hud.bold,Vector2(64,625),L10n.text(mode),HORIZONTAL_ALIGNMENT_LEFT,-1,64,Color.WHITE)
     else:
         canvas.draw_rect(Rect2(62,594,170,36),ink)
-        canvas.draw_string(session.hud.bold,Vector2(72,620),mode,HORIZONTAL_ALIGNMENT_LEFT,-1,28,color)
+        canvas.draw_string(session.hud.bold,Vector2(72,620),L10n.text(mode),HORIZONTAL_ALIGNMENT_LEFT,-1,28,color)
 func camera_roll() -> float:
     if not active():return 0.0
     var limit:float=profile.signature_roll_degrees if signature else (6.0 if priority>=3 else profile.accent_roll_degrees)

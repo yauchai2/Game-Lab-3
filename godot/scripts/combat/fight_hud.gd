@@ -1,4 +1,5 @@
 extends Control
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 ## Native game UI; the world stays visible and gameplay copy is localized centrally.
 const Tokens = preload("res://scripts/combat/ui/ui_theme.gd")
 const Copy = preload("res://scripts/combat/ui/ui_text.gd")
@@ -434,7 +435,7 @@ func _result_title() -> String:
     # The page header carries the outcome, so the panel does not repeat it.
     if menu_page=="skills":return "LOADOUT"
     if is_instance_valid(session.city_campaign) and session.city_campaign.active:return "RESULT"
-    if session.sim.winner<0:return "DRAW"
+    if session.sim.winner<0:return tr_text("draw").to_upper()
     if session.versus:return "P%d WINS"%(session.sim.winner+1)
     return "YOU WIN" if session.sim.winner==0 else "RIVAL WINS"
 
@@ -518,6 +519,7 @@ func _volume(key: String, value: float) -> void:
     menu_stack.add_child(slider)
 
 func _settings_page() -> void:
+    _choice("language",["English","繁體中文"],1 if session.language=="zh" else 0,func(index:int):session.set_language("zh" if index==1 else "en"))
     _choice("difficulty",["relaxed","standard","challenging"],session.run_base_difficulty if session.run_active else session.sim.difficulty,session.set_difficulty)
     _caption("difficulty_hint")
     if session.sim.is_air_lesson():_caption("air_fixed_partner")
@@ -609,7 +611,7 @@ func _process(delta: float) -> void:
     elif session.screen=="play" and session.sim.phase=="fight":hint_elapsed+=delta
     title_motion.update_stage(session.screen=="title" and menu_page=="main",delta,session.reduced_effects)
     art.advance(delta,session.reduced_effects)
-    copy.language="en"
+    copy.language=session.language
     art.free_locked=not session.free_battle_unlocked()
     pause_button.visible=session.screen=="play" and not session.result_presentation_active() and not session.ability_draw.active() and not session.round_theatre.intro
     coach_continue.visible=session.screen=="play" and session.coach!=null and session.coach.status in ["ready","passed","complete"]
@@ -659,11 +661,11 @@ func _sync_choices() -> void:
             button.remove_theme_color_override("font_disabled_color")
 
 func _text(at: Vector2, value: String, point_size: int, color := PAPER, display := false) -> void:
-    draw_string(bold if display else font,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(Tokens.CAPTION_SIZE,point_size),color)
+    draw_string(bold if display else font,at,L10n.text(value),HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(Tokens.CAPTION_SIZE,point_size),color)
 
 func _center(at: Vector2, value: String, point_size: int, color := PAPER, display := false) -> void:
     var face: Font=bold if display else font
-    _text(at-Vector2(face.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(Tokens.CAPTION_SIZE,point_size)).x*.5,0),value,point_size,color,display)
+    _text(at-Vector2(face.get_string_size(L10n.text(value),HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(Tokens.CAPTION_SIZE,point_size)).x*.5,0),value,point_size,color,display)
 
 func _plate(at: Vector2, extent: Vector2, color: Color) -> void:
     draw_colored_polygon(PackedVector2Array([at,at+Vector2(extent.x,0),at+extent,at+Vector2(0,extent.y)]),color)

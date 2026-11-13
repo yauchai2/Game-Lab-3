@@ -1,3 +1,7 @@
+## 2026-11-13：繁體中文語言已加入
+
+設定最上方新增English／繁體中文，選擇保存並於重啟恢復。1034條共用catalog涵蓋選單／HUD／教學、城市六站、成長／裝備／合約／核心、六章及各結局。原生控制項與Canvas繪字統一，中文字體補齊，動態數字及百分比／角色佔位符保持；故事打字按中文長度，天賦全覽與穿戴分開譯。拉丁字體5／8／100、simulation、資料ID與存檔schema保持。264項規則／原生／英文回歸／strict／PCK檢查通過，見[evidence/traditional-chinese](evidence/traditional-chinese/README.md)。品牌、按鍵、音樂名及原圖內文字保留，沒有新增配音；來源同步main，Web未部署。
+
 ## 2026-11-13：使用者授權字體最新設定合入main
 
 依「好，推上main」，以main f69fc9f合併story-waves-m1 f4f0742。main原已含352c524及其他分支更新；本輪補入最後兩輪字體設定，保留5／8／100及現有main的介面／據點／開場／角色動作。只有文件衝突，兩邊歷史保持。121項最終檢查通過（整合70／Ink10／城市22／strict19），log無ERROR／SCRIPT ERROR，見[evidence/main-pixel-preset-merge](evidence/main-pixel-preset-merge/README.md)。此授權覆蓋以下舊「不合main」指示；來源同步main，公開Web不更新。既有真人／Mac／硬件及配對投技限制保持。

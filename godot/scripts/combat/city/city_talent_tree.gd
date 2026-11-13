@@ -27,7 +27,7 @@ func _ready() -> void:
     detail=VBoxContainer.new();stack=detail;detail.position=Vector2(906,116);detail.size=Vector2(340,510);detail.add_theme_constant_override("separation",13);add_child(detail)
     footer=Label.new();footer.position=Vector2(30,646);footer.size=Vector2(1220,60);footer.add_theme_font_size_override("font_size",24);footer.add_theme_color_override("font_color",T.MUTED);footer.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;add_child(footer)
     for index in 3:
-        var i:=index;var b:=Button.new();b.position=Vector2(912+i*108,38);b.size=Vector2(100,45);b.text=["-","+","FIT"][i];b.tooltip_text=["ZOOM OUT","ZOOM IN","FIT"][i]
+        var i:=index;var b:=Button.new();b.position=Vector2(912+i*108,38);b.size=Vector2(100,45);b.text=["-","+","FIT VIEW"][i];b.tooltip_text=["ZOOM OUT","ZOOM IN","FIT VIEW"][i]
         b.pressed.connect(func():
             if i==2:zoom=.68;pan=Vector2(420,260)
             else:zoom=clampf(zoom*(1.25 if i==1 else .8),.4,2.2)

@@ -1418,6 +1418,7 @@ func commit_clash_choice(choice: String) -> void:
 
 func set_language(value: String) -> void:
     language=value if value in ["zh","en"] else "zh"
+    get_node("/root/GameLocale").set_language(language)
     save_options()
     hud.rebuild_menu()
 
@@ -1560,7 +1561,8 @@ func _restore_options() -> void:
     if backdrop!=null:backdrop.set_time_of_day(time_of_day_choice)
     retro_pixels=options.retro_pixels
     ink_pass.visible=options.scene_edges
-    language="en"
+    language=options.language
+    get_node("/root/GameLocale").set_language(language)
     training_details=options.training_details
     control_hints=options.control_hints
     audio.music_level=options.music_level

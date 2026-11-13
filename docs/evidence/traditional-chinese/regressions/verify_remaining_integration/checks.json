@@ -1,0 +1,357 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "Five main actions, no public AI demo",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Settings expose controls, labs and opening replay",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Exactly two audio level controls",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "No duplicate music switch or intro replay",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Music slider can restore a legacy muted music preference",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Legacy drills collected under LABS",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "One lesson entry and no duplicated per-hero pages",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Roster selects fighters without duplicate mode launches",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Auto hints visible on opening round",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Auto hints expire after six seconds",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Pause freezes hint timer",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Always hints override timer",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Off preference also hides ordinary training legend",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Auto hints stay hidden in later rounds",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Finite planted pose 0 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Foot solver preserves simulation 0 / -1",
+      "passed": true
+    },
+    {
+      "detail": 0.04176140204072,
+      "name": "Bounded foot target error 0 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Ground attack contact and recovery stay finite 0 / -1",
+      "passed": true
+    },
+    {
+      "detail": 0.04176140204072,
+      "name": "Ground motion support error stays bounded 0 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Airborne clears plant anchors 0 / -1",
+      "passed": true
+    },
+    {
+      "detail": "zip_kicks",
+      "name": "Showcase shares hero motion profile 0 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Finite planted pose 0 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Foot solver preserves simulation 0 / 1",
+      "passed": true
+    },
+    {
+      "detail": 0.000000379321647869801,
+      "name": "Bounded foot target error 0 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Ground attack contact and recovery stay finite 0 / 1",
+      "passed": true
+    },
+    {
+      "detail": 0.000000448027151378483,
+      "name": "Ground motion support error stays bounded 0 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Airborne clears plant anchors 0 / 1",
+      "passed": true
+    },
+    {
+      "detail": "zip_kicks",
+      "name": "Showcase shares hero motion profile 0 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Finite planted pose 1 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Foot solver preserves simulation 1 / -1",
+      "passed": true
+    },
+    {
+      "detail": 0.00000522271466252278,
+      "name": "Bounded foot target error 1 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Ground attack contact and recovery stay finite 1 / -1",
+      "passed": true
+    },
+    {
+      "detail": 0.000174752669408917,
+      "name": "Ground motion support error stays bounded 1 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Airborne clears plant anchors 1 / -1",
+      "passed": true
+    },
+    {
+      "detail": "rivet_boxing",
+      "name": "Showcase shares hero motion profile 1 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Finite planted pose 1 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Foot solver preserves simulation 1 / 1",
+      "passed": true
+    },
+    {
+      "detail": 0.00000471677640234702,
+      "name": "Bounded foot target error 1 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Ground attack contact and recovery stay finite 1 / 1",
+      "passed": true
+    },
+    {
+      "detail": 0.000182813222636469,
+      "name": "Ground motion support error stays bounded 1 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Airborne clears plant anchors 1 / 1",
+      "passed": true
+    },
+    {
+      "detail": "rivet_boxing",
+      "name": "Showcase shares hero motion profile 1 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Finite planted pose 2 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Foot solver preserves simulation 2 / -1",
+      "passed": true
+    },
+    {
+      "detail": 0.000845407659653574,
+      "name": "Bounded foot target error 2 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Ground attack contact and recovery stay finite 2 / -1",
+      "passed": true
+    },
+    {
+      "detail": 0.0185922160744667,
+      "name": "Ground motion support error stays bounded 2 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Airborne clears plant anchors 2 / -1",
+      "passed": true
+    },
+    {
+      "detail": "hush_intercept",
+      "name": "Showcase shares hero motion profile 2 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Finite planted pose 2 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Foot solver preserves simulation 2 / 1",
+      "passed": true
+    },
+    {
+      "detail": 0.000000475204558370024,
+      "name": "Bounded foot target error 2 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Ground attack contact and recovery stay finite 2 / 1",
+      "passed": true
+    },
+    {
+      "detail": 0.0185922160744667,
+      "name": "Ground motion support error stays bounded 2 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Airborne clears plant anchors 2 / 1",
+      "passed": true
+    },
+    {
+      "detail": "hush_intercept",
+      "name": "Showcase shares hero motion profile 2 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Finite planted pose 3 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Foot solver preserves simulation 3 / -1",
+      "passed": true
+    },
+    {
+      "detail": 0.0368002243340015,
+      "name": "Bounded foot target error 3 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Ground attack contact and recovery stay finite 3 / -1",
+      "passed": true
+    },
+    {
+      "detail": 0.0368002243340015,
+      "name": "Ground motion support error stays bounded 3 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Airborne clears plant anchors 3 / -1",
+      "passed": true
+    },
+    {
+      "detail": "loop_baton",
+      "name": "Showcase shares hero motion profile 3 / -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Finite planted pose 3 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Foot solver preserves simulation 3 / 1",
+      "passed": true
+    },
+    {
+      "detail": 0.000000256369276030455,
+      "name": "Bounded foot target error 3 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Ground attack contact and recovery stay finite 3 / 1",
+      "passed": true
+    },
+    {
+      "detail": 0.000167724865605123,
+      "name": "Ground motion support error stays bounded 3 / 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Airborne clears plant anchors 3 / 1",
+      "passed": true
+    },
+    {
+      "detail": "loop_baton",
+      "name": "Showcase shares hero motion profile 3 / 1",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 70,
+  "scope": "Linux llvmpipe native renderer, explicit UI/pose fixtures. No physical controllers, human feel, Mac GPU, terrain IK or paired throw asset validation."
+}

@@ -1,4 +1,5 @@
 extends Control
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 ## Compact companion to the fight UI; the street remains the main view.
 const Tokens=preload("res://scripts/combat/ui/ui_theme.gd")
 var copy=preload("res://scripts/combat/ui/ui_text.gd").new()
@@ -28,7 +29,7 @@ func refresh() -> void:
     if is_instance_valid(back_button):back_button.text=copy.text("back_fight")
     queue_redraw()
 func _text(at: Vector2, value: String, point_size: int, color := Tokens.PAPER) -> void:
-    draw_string(Tokens.BODY,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(Tokens.CAPTION_SIZE,point_size),color)
+    draw_string(Tokens.BODY,at,L10n.text(value),HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(Tokens.CAPTION_SIZE,point_size),color)
 func _plate(at: Vector2, panel_size: Vector2) -> void:
     draw_rect(Rect2(at,panel_size),Color(Tokens.NIGHT,.94))
     draw_rect(Rect2(at,panel_size),Tokens.EDGE,false,1)

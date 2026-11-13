@@ -1,4 +1,5 @@
 extends Node3D
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 ## Boot story opening: 15 seconds, follows the reference video's beats, real-time 3D with the roster models.
 ## One stateless authored timeline (sample(t) is repeatable), its own lens and score.
 ## Owns the session camera only while running; clear() restores everything it touched.
@@ -557,23 +558,23 @@ func draw(canvas:Control) -> void:
 	for line in SUBTITLES:
 		if t<line.from or t>=line.to:continue
 		# Reference style: small white speaker name over a centred line, no box. Cantonese is authored; English rides underneath.
-		var zh:bool=subtitle_font!=null
+		var zh:bool=TranslationServer.get_locale().begins_with("zh") and subtitle_font!=null
 		var text:String=line.zh if zh else line.en
 		var face:Font=subtitle_font if zh else font
 		var size:=34 if zh else 28
-		var width:float=face.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x
-		var name_width:float=bold.get_string_size(line.who,HORIZONTAL_ALIGNMENT_LEFT,-1,24).x
+		var width:float=face.get_string_size(L10n.text(text),HORIZONTAL_ALIGNMENT_LEFT,-1,size).x
+		var name_width:float=bold.get_string_size(L10n.text(line.who),HORIZONTAL_ALIGNMENT_LEFT,-1,24).x
 		for shadow in [Vector2(2,2),Vector2.ZERO]:
 			var col:=Color(ink,.9) if shadow!=Vector2.ZERO else Color("f7f4ee")
-			canvas.draw_string(bold,Vector2(640-name_width*.5,598)+shadow,line.who,HORIZONTAL_ALIGNMENT_LEFT,-1,24,col)
-			canvas.draw_string(face,Vector2(640-width*.5,636)+shadow,text,HORIZONTAL_ALIGNMENT_LEFT,-1,size,col if shadow!=Vector2.ZERO else line.color.lerp(Color("f7f4ee"),.7))
+			canvas.draw_string(bold,Vector2(640-name_width*.5,598)+shadow,L10n.text(line.who),HORIZONTAL_ALIGNMENT_LEFT,-1,24,col)
+			canvas.draw_string(face,Vector2(640-width*.5,636)+shadow,L10n.text(text),HORIZONTAL_ALIGNMENT_LEFT,-1,size,col if shadow!=Vector2.ZERO else line.color.lerp(Color("f7f4ee"),.7))
 		if zh:canvas.draw_string(font,Vector2(640-font.get_string_size(line.en,HORIZONTAL_ALIGNMENT_LEFT,-1,20).x*.5,672),line.en,HORIZONTAL_ALIGNMENT_LEFT,-1,20,Color("bcb6c6"))
 	if paused:
 		canvas.draw_rect(Rect2(0,0,1280,720),Color(ink,.55))
-		canvas.draw_string(bold,Vector2(70,372),"PAUSED",HORIZONTAL_ALIGNMENT_LEFT,-1,84,Color("f7f4ee"))
-		canvas.draw_string(font,Vector2(74,420),"ESC  RESUME     ENTER / SPACE  SKIP",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color("d9d2e5"))
+		canvas.draw_string(bold,Vector2(70,372),L10n.text("PAUSED"),HORIZONTAL_ALIGNMENT_LEFT,-1,84,Color("f7f4ee"))
+		canvas.draw_string(font,Vector2(74,420),L10n.text("ESC  RESUME     ENTER / SPACE  SKIP"),HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color("d9d2e5"))
 	elif t<TITLE_AT and (t<3.2 or replay):
-		canvas.draw_string(font,Vector2(1000,704),"ENTER / SPACE  SKIP",HORIZONTAL_ALIGNMENT_LEFT,-1,20,Color("d9d2e5",.9 if t<2.8 or replay else (3.2-t)/.4*.9))
+		canvas.draw_string(font,Vector2(1000,704),L10n.text("ENTER / SPACE  SKIP"),HORIZONTAL_ALIGNMENT_LEFT,-1,20,Color("d9d2e5",.9 if t<2.8 or replay else (3.2-t)/.4*.9))
 
 func _draw_radial(canvas:Control,strength:float,t:float) -> void:
 	if strength<.03:return

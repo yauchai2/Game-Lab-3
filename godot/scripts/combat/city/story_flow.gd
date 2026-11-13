@@ -1,4 +1,5 @@
 extends CanvasLayer
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 ## Single owner of the between-encounter flow: story cards, the "keep going" intermission and encounter captions.
 ## It never touches combat state or the save except through CityProfile's own transactions.
 ## It only runs in a real session (`live()`); scene-instantiating tests keep the old return-to-city behaviour
@@ -107,7 +108,7 @@ func _next_card(advance:=true) -> void:
     hint_label.text="%d / %d    ENTER: NEXT    ESC: SKIP"%[queue_total-queue.size()+1,queue_total]
 
 func _advance_card() -> void:
-    if text_label.visible_characters>=0 and text_label.visible_characters<text_label.text.length():
+    if text_label.visible_characters>=0 and text_label.visible_characters<L10n.text(text_label.text).length():
         text_label.visible_characters=-1;typed=INF;return
     _next_card(true)
 
@@ -245,7 +246,7 @@ func _home() -> void:
 func _process(delta:float) -> void:
     if mode=="cards" and not queue.is_empty():
         typed+=delta*70.0
-        if typed!=INF:text_label.visible_characters=mini(text_label.text.length(),floori(typed))
+        if typed!=INF:text_label.visible_characters=mini(L10n.text(text_label.text).length(),floori(typed))
     if caption.visible:
         caption_left-=delta
         if caption_left<=0 or not campaign.active:caption.visible=false

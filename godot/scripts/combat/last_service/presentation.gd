@@ -1,4 +1,5 @@
 extends RefCounted
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 const Tokens=preload("res://scripts/combat/ui/ui_theme.gd")
 func draw(canvas:Control,s:Node) -> void:
     if not s.sim.last_service_enabled:return
@@ -6,7 +7,7 @@ func draw(canvas:Control,s:Node) -> void:
         var f:Dictionary=s.sim.fighters[side];var r:Dictionary=f.service
         if f.character==4:
             var caption:String="%d LEFT"%s.sim.remaining_enemies() if s.sim.squad_enabled else "BLACK SUIT"
-            canvas.draw_string(s.hud.font,Vector2(820,100),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,24,s.effect_color_for(side))
+            canvas.draw_string(s.hud.font,Vector2(820,100),L10n.text(caption),HORIZONTAL_ALIGNMENT_LEFT,-1,24,s.effect_color_for(side))
             continue
         var x:float=227.0 if side==0 else 820.0
         var tint:Color=Tokens.TEAL if side==0 else Tokens.MAGENTA
@@ -33,9 +34,9 @@ func draw(canvas:Control,s:Node) -> void:
             var points:=PackedVector2Array([at+Vector2(-14,0),at+Vector2(0,-9),at+Vector2(14,0),at+Vector2(0,9)])
             canvas.draw_colored_polygon(points,s.effect_color_for(side));canvas.draw_polyline(PackedVector2Array([points[0],points[1],points[2],points[3],points[0]]),Color.WHITE,2)
             canvas.draw_rect(Rect2(at+Vector2(-15,9),Vector2(38,22)),Color("08090d"))
-            canvas.draw_string(s.hud.font,at+Vector2(-10,27),"P%d"%(side+1),HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color.WHITE)
+            canvas.draw_string(s.hud.font,at+Vector2(-10,27),L10n.text("P%d"%(side+1)),HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color.WHITE)
     if s.run_active and (s.sim.phase=="ready" or s.screen in ["pause","result"]):
-        canvas.draw_string(s.hud.font,Vector2(488,252),"STREET RUN %d/3 / BUILD ON"%s.run_stage,HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color.WHITE)
+        canvas.draw_string(s.hud.font,Vector2(488,252),L10n.text("STREET RUN %d/3 / BUILD ON"%s.run_stage),HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color.WHITE)
     if s.sim.squad_enabled:
         for id in s.sim.squad_members.size():
             var f:Dictionary=s.sim.squad_members[id]
@@ -45,8 +46,8 @@ func draw(canvas:Control,s:Node) -> void:
             if s.sim.story_enabled:
                 var role_color:Color={"guard":Color("ffd84c"),"rusher":Color("00d7d7"),"jammer":Color("dd27ff"),"heavy":Color("e87d39"),"captain":Color("d8ff39")}.get(f.story_role,Color("a888ff"))
                 canvas.draw_rect(Rect2(at-Vector2(32,0),Vector2(64*float(f.health)/f.max_health,7)),role_color)
-                if f.rush_charge>0:canvas.draw_string(s.hud.font,at+Vector2(-6,-15),"!",HORIZONTAL_ALIGNMENT_LEFT,-1,32,Color("ffd84c"))
+                if f.rush_charge>0:canvas.draw_string(s.hud.font,at+Vector2(-6,-15),L10n.text("!"),HORIZONTAL_ALIGNMENT_LEFT,-1,32,Color("ffd84c"))
             if not s.sim.story_enabled:canvas.draw_rect(Rect2(at-Vector2(32,0),Vector2(64*float(f.health)/f.max_health,7)),Color("a888ff"))
             if id==s.sim.squad_focus:canvas.draw_colored_polygon(PackedVector2Array([at+Vector2(-8,-14),at+Vector2(8,-14),at+Vector2(0,-4)]),Color.WHITE)
             if f.state=="attack" and f.frame<s.sim.move_for(f,f.move).startup:
-                canvas.draw_string(s.hud.font,at+Vector2(-5,-22),"!",HORIZONTAL_ALIGNMENT_LEFT,-1,32,Color("ff459d"))
+                canvas.draw_string(s.hud.font,at+Vector2(-5,-22),L10n.text("!"),HORIZONTAL_ALIGNMENT_LEFT,-1,32,Color("ff459d"))

@@ -1,4 +1,5 @@
 extends RefCounted
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 ## Approved image composition; fixed art is raster, live game state remains native.
 const T=preload("res://scripts/combat/ui/ui_theme.gd")
 const LARGE_TYPE=T.DISPLAY
@@ -26,7 +27,7 @@ func fit(rect:Rect2) -> Rect2:
 func polygon(c:Control,pts:Array,color:Color) -> void:
     c.draw_colored_polygon(PackedVector2Array(pts),color)
 func text(c:Control,at:Vector2,value:String,size:int,color:Color=T.INK) -> void:
-    c.draw_string(LARGE_TYPE if size>=40 else T.DISPLAY,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,size,color)
+    c.draw_string(LARGE_TYPE if size>=40 else T.DISPLAY,at,L10n.text(value),HORIZONTAL_ALIGNMENT_LEFT,-1,size,color)
 func plate(c:Control,rect:Rect2,color:Color,cut:=14.0) -> void:
     var p:Vector2=rect.position;var e:Vector2=rect.end
     polygon(c,[p+Vector2(cut,0),Vector2(e.x,p.y),e-Vector2(cut,0),Vector2(p.x,e.y)],color)
@@ -168,7 +169,7 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
     if s.sim.story_enabled:clock="%d/3"%(s.sim.wave_index+1)
     if s.sim.campaign_enabled:clock=s.sim.campaign_counter
     var clock_size:int=36 if clock.length()>2 else 48
-    var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,clock_size).x
+    var width:float=T.DISPLAY.get_string_size(L10n.text(clock),HORIZONTAL_ALIGNMENT_LEFT,-1,clock_size).x
     text(c,Vector2(640-width*.5,59),clock,clock_size)
     if s.hud.hints_visible() and s.coach==null and not s.sim.pressure_drill and not s.sim.rally.active() and not s.sim.is_aerial():
         plate(c,Rect2(150,644,980,60),T.INK,20)

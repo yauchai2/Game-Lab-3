@@ -1,3 +1,5 @@
+最新：[繁體中文語言](docs/evidence/traditional-chinese/README.md)已加入。設定→Language／語言→繁體中文，切換可保存；主介面、HUD、城市、成長及全故事已翻譯，264項檢查通過。
+
 最新：已依使用者要求將字體設定 **5／8／100** 合入最新main，保留既有故事、介面、據點及動作更新；[121項整合檢查及畫面](docs/evidence/main-pixel-preset-merge/README.md)。GitHub Desktop使用main Fetch／Pull；以下分支限制為歷史，公開Web未更新。
 
 最新：已依「全合到main／完成剩餘工作」整合四角色動作、720p字體、完整據點UI、開場配樂與手柄震動，並完成UI P1–P3、共用角色基礎profile、有界轉髖／平地接地IK及全部19 strict。[本輪狀態與851項驗證](docs/REMAINING_WORK_INTEGRATION.zh-TW.md)。完整免費攻守配對摔投仍受官方原檔未取得所限；目標電腦／真人／實體手柄仍待驗，公開Web未更新。以下分支／待辦文字是各輪歷史，以本輪狀態為準。
