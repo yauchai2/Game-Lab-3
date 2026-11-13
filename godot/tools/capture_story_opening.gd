@@ -21,7 +21,7 @@ func run() -> void:
         for i in 3:await process_frame
         var image:Image=root.get_texture().get_image()
         image.save_png(out.path_join("t%05.2f.png"%t))
-        print("STORY_OPENING_FRAME ",t," shot ",op.shot)
+        print("STORY_OPENING_FRAME ",t," shot ",op.shot," cam ",s.camera.global_position-op.ORIGIN," fov ",s.camera.fov)
     op.clear();s.screen="title"
     s.set_process(false);s.set_physics_process(false);s.audio.set_process(false);s.audio.music.stop();s.audio.fading_music.stop()
     await create_timer(.2).timeout;s.queue_free();s=null

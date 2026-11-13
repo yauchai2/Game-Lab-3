@@ -23,9 +23,12 @@ func click(control:Control) -> void:
     for down in [true,false]:
         var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_LEFT;e.pressed=down
         e.position=control.get_global_rect().get_center();e.global_position=e.position;root.push_input(e,true);await frames(2)
+const ACT_ALIAS={"REVIEW 06":"chapter:6","PRACTICE SIGNAL":"practice:boss_signal","EQUIP LONG ROUTE":"tech:zip_route","EQUIP SIGNED RECEIPT":"tech:zip_confirm","EQUIP EXIT PLAN":"tech:zip_dash","PRACTICE DOUBLE JUMP":"practice:double_jump","LEARN  DOUBLE":"learn:double_jump"}
 func button(parent:Node,prefix:String) -> Button:
+    var act:String=ACT_ALIAS.get(prefix,"contract:"+prefix.substr(prefix.find("#")+1) if prefix.begins_with("START CONTRACT #") else "")
     for child in parent.find_children("*","Button",true,false):
-        if child.text.begins_with(prefix):return child
+        if act!="" and child.get_meta("act","")==act:return child
+        if act=="" and child.text.begins_with(prefix):return child
     return null
 func shot(name:String) -> void:
     await frames();root.get_texture().get_image().save_png(OUT+name+".png")
@@ -48,8 +51,8 @@ func run() -> void:
     check("city viewport matches upgraded whole-game resolution",h.viewport.size==Vector2i(960,540))
     await shot("city")
     await tap(KEY_5)
-    var board:Control=h.stack.get_children().filter(func(n:Node)->bool:return n.get_meta("city_board","")=="map")[0]
-    await click(board.get_child(0))
+    var first_district:Button=h.stack.find_children("*","Button",true,false).filter(func(n:Node)->bool:return n.get_meta("act","")=="sector:0")[0]
+    await click(first_district)
     check("native map pointer starts the first story encounter",s.screen=="play" and s.sim.campaign_enabled and p.data.run.room==0)
     s.sim.ai_enabled=false;s.sim.arrival_left=0;s.sim.squad_members[0].x=.9
     await tap(KEY_J)

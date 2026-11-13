@@ -55,6 +55,11 @@ func choose(s:RefCounted,side:int,clock:int,level:=2,showcase:=false) -> Diction
     if f.counter_window>0:
         intent[side]="counter";plans[side]={};command["rush"]=true
         return command
+    # Black Suit pistol: a rare opener from range (rules and gates live in enemies/gun_shot.gd).
+    if s.GunShot.wants(s,side,clock,level):
+        plans[side]={};plan_until[side]=clock+12;issued[side]=true;intent[side]="gun"
+        command["attack"]="gun";command["axis"]=0.0
+        return command
     if plans[side].is_empty() or clock>=plan_until[side]:
         plans[side]=_plan(s,side,clock,level,showcase)
         plan_until[side]=clock+[20,14,9][level]

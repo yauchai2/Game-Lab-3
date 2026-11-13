@@ -1,0 +1,179 @@
+{
+  "checks": [
+    {
+      "name": "tools that instantiate the scene stay on the menu",
+      "passed": true
+    },
+    {
+      "name": "a fresh save has not seen the opening",
+      "passed": true
+    },
+    {
+      "name": "timeline follows the reference video: ends on the lid slam, nine shots",
+      "passed": true
+    },
+    {
+      "name": "begin owns the frame",
+      "passed": true
+    },
+    {
+      "name": "the old bike, speaker, wrench and black car are gone from the set",
+      "passed": true
+    },
+    {
+      "name": "menu and art buttons are hidden during the opening",
+      "passed": true
+    },
+    {
+      "name": "cast is the four roster models plus three collectors",
+      "passed": true
+    },
+    {
+      "name": "each moment maps to its shot",
+      "passed": true
+    },
+    {
+      "name": "sampling is stateless and repeatable",
+      "passed": true
+    },
+    {
+      "name": "the bench starts empty with ZIP behind it",
+      "passed": true
+    },
+    {
+      "name": "the case slides in from the left along the bench",
+      "passed": true
+    },
+    {
+      "name": "RIVET works the latches; HUSH, LOOP and the collectors are not in shot",
+      "passed": true
+    },
+    {
+      "name": "case lands closed on the bench with a camera jolt",
+      "passed": true
+    },
+    {
+      "name": "both latches are thrown",
+      "passed": true
+    },
+    {
+      "name": "overhead reveal shows the open case with LOOP at the manifest",
+      "passed": true
+    },
+    {
+      "name": "ZIP's face is framed close with the collectors already walking",
+      "passed": true
+    },
+    {
+      "name": "three collectors walk in step",
+      "passed": true
+    },
+    {
+      "name": "the cut to the case turns it so the lid stands clear",
+      "passed": true
+    },
+    {
+      "name": "the collectors step forward on the shoe beats",
+      "passed": true
+    },
+    {
+      "name": "lid is driven shut for the slam frame",
+      "passed": true
+    },
+    {
+      "name": "slam holds a black impact frame",
+      "passed": true
+    },
+    {
+      "name": "title shows wordmark, ink city and flat silhouettes",
+      "passed": true
+    },
+    {
+      "name": "silhouettes are released outside the title",
+      "passed": true
+    },
+    {
+      "name": "reduced effects removes fisheye, blur, flash and shake",
+      "passed": true
+    },
+    {
+      "name": "the clock advances with the game frame",
+      "passed": true
+    },
+    {
+      "name": "other keys cannot start a mode during the opening",
+      "passed": true
+    },
+    {
+      "name": "Esc pauses clock and score",
+      "passed": true
+    },
+    {
+      "name": "Esc resumes",
+      "passed": true
+    },
+    {
+      "name": "menu music stays silent under the baked score, never stopped",
+      "passed": true
+    },
+    {
+      "name": "menu music is still silent for the stand-off",
+      "passed": true
+    },
+    {
+      "name": "menu music fades back in after the title hit",
+      "passed": true
+    },
+    {
+      "name": "the opening ends by itself on the main menu",
+      "passed": true
+    },
+    {
+      "name": "camera, lens and street are restored",
+      "passed": true
+    },
+    {
+      "name": "main menu buttons are back and usable",
+      "passed": true
+    },
+    {
+      "name": "seen flag is saved beside progression",
+      "passed": true
+    },
+    {
+      "name": "FREE PLAY has WATCH OPENING and settings no longer repeats it",
+      "passed": true
+    },
+    {
+      "name": "replay starts from the title",
+      "passed": true
+    },
+    {
+      "name": "after the replay the main menu is back",
+      "passed": true
+    },
+    {
+      "name": "Space skips straight to the menu and restores the camera",
+      "passed": true
+    },
+    {
+      "name": "a match starts normally afterwards",
+      "passed": true
+    },
+    {
+      "name": "leaving the scene mid-opening clears it",
+      "passed": true
+    },
+    {
+      "name": "the next launch remembers it was seen",
+      "passed": true
+    },
+    {
+      "name": "without being the running game it still never autoplays",
+      "passed": true
+    }
+  ],
+  "passed": 43,
+  "suite": "story_opening",
+  "total": 43
+}

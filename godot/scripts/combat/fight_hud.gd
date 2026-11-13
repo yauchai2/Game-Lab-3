@@ -398,7 +398,7 @@ func _pause_page() -> void:
 func _result_page() -> void:
     if is_instance_valid(session.city_campaign) and session.city_campaign.active:
         menu_stack.add_child(_label(session.city_campaign.result_text(),28))
-        _plain_action("RETURN TO CITY / ENTER","city_return",session.city_campaign.return_from_encounter)
+        _plain_action(session.city_campaign.result_action(),"city_return",session.city_campaign.return_from_encounter)
         if session.city_campaign.profile.error!="":
             menu_stack.add_child(_label(session.city_campaign.profile.error,24))
             _plain_action("RELOAD SAVE / RETRY RETURN","city_save_retry",func():session.city_campaign.profile.retry_save();rebuild_menu())
@@ -696,6 +696,7 @@ func _draw() -> void:
         if not (session.theatre.active() and session.theatre.mode in ["ko","skill","overdrive"] and not session.reduced_effects):session.spectacle.draw(self,session)
     session.ink_fx.draw(self,session)
     session.ko_tumble.draw(self,session)
+    preload("res://scripts/combat/enemies/gun_presentation.gd").draw_overlay(self,session)
     for effect in session.effects:
         if effect.age>=0:vfx_renderer.draw_effect(self,session,effect)
     if not session.neon_enabled and session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return

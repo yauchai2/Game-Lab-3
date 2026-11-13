@@ -8,21 +8,16 @@ const CYAN:=Color("27e6ee")
 var mats:Dictionary={}
 var rng:=RandomNumberGenerator.new()
 var train:Node3D
-var car:Node3D
-var car_doors:Array[Node3D]=[]
-var car_wheels:Array[Node3D]=[]
 var case_root:Node3D
 var case_lid:Node3D
 var case_latches:Array[Node3D]=[]
 var case_glow:MeshInstance3D
+var case_print:MeshInstance3D
 var table_props:Array[Node3D]=[]
 var table_rest:Array[Vector3]=[]
 var tubes:Array[MeshInstance3D]=[]
 var tube_material:StandardMaterial3D
-var speaker_cone:Node3D
 var cup:Node3D
-var wrench:Node3D
-var bike:Node3D
 var walkers:Array[Dictionary]=[]
 var ledge:Node3D
 var interior_lights:Array[OmniLight3D]=[]
@@ -115,11 +110,11 @@ func _starburst() -> ImageTexture:
 
 const PROPS:="res://assets/story_opening/"
 
-func prop(parent:Node3D,name:String,at:Vector3,size:Vector3,yaw:=0.0) -> Node3D:
+func prop(parent:Node3D,prop_name:String,at:Vector3,size:Vector3,yaw:=0.0) -> Node3D:
 	# Tripo prop (256 px derived texture, raw GLB kept in source/): fitted per axis to `size` in the model's own
 	# axes, bottom-centre on `at`, then yawed. Nearest filtering keeps the JSR-style crunch.
-	var path:=PROPS+name+".glb"
-	var holder:=group(parent,at,"Prop_"+name);holder.rotation_degrees.y=yaw
+	var path:=PROPS+prop_name+".glb"
+	var holder:=group(parent,at,"Prop_"+prop_name);holder.rotation_degrees.y=yaw
 	if not ResourceLoader.exists(path):return holder
 	var model:Node3D=(load(path) as PackedScene).instantiate();holder.add_child(model)
 	var box_bounds:=AABB();var first:=true
@@ -169,7 +164,6 @@ func build() -> void:
 	_garage_clutter(steel,dark)
 	_street_signals(steel,dark)
 	_case()
-	_car()
 	_walkers()
 	# Rooftop ledge for the title silhouettes: cyan cap like the storyboard.
 	ledge=group(self,Vector3(-1.5,27.0,-2.0),"TitleLedge")
@@ -250,7 +244,7 @@ func _garage(concrete:Material,plaster:Material,shutter:Material,tiles:Material,
 		lamp.shadow_enabled=false;root.add_child(lamp);interior_lights.append(lamp)
 	# Back wall: pegboard, tools, shelves, poster, fan.
 	for x in [-4.9,-2.5]:prop(root,"pegboard_tools",Vector3(x,1.4,-8.9),Vector3(.12,2.2,2.3),90.0)
-	prop(root,"shelf_bottles",Vector3(-6.2,0,-6.4),Vector3(2.6,3.3,.9),90.0)
+	prop(root,"shelf_bottles",Vector3(5.6,0,-1.9),Vector3(2.6,3.3,.9),-90.0)
 	var poster:=MeshInstance3D.new();var quad:=QuadMesh.new();quad.size=Vector2(1.7,1.7);poster.mesh=quad
 	var poster_material:=StandardMaterial3D.new();poster_material.albedo_texture=_starburst()
 	poster_material.texture_filter=BaseMaterial3D.TEXTURE_FILTER_NEAREST;poster_material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
@@ -262,40 +256,20 @@ func _garage(concrete:Material,plaster:Material,shutter:Material,tiles:Material,
 	prop(bench,"workbench",Vector3.ZERO,Vector3(1.25,.9,2.6),90.0)
 	for spec in [[Vector3(-1.05,.99,-.38),Vector3(.34,.05,.07),Color("d8d4de")],[Vector3(-1.0,.99,.34),Vector3(.07,.05,.3),Color("e0146f")],[Vector3(1.08,1.02,.38),Vector3(.14,.12,.14),Color("27e6ee")],[Vector3(1.02,.99,-.4),Vector3(.3,.05,.06),Color("c7b46a")]]:
 		var loose:=box(bench,spec[0],spec[1],mat(spec[2]));table_props.append(loose);table_rest.append(loose.position)
-	# RIVET's bike, LOOP's speaker, HUSH's sofa.
-	bike=group(root,Vector3(-3.9,0,-3.0),"Bike")
-	for x in [-.82,.82]:
-		var tyre:=MeshInstance3D.new();var torus:=TorusMesh.new();torus.inner_radius=.25;torus.outer_radius=.40;torus.rings=10;torus.ring_segments=5
-		tyre.mesh=torus;tyre.material_override=mat(INK);tyre.position=Vector3(x,.40,0);tyre.rotation_degrees.x=90;bike.add_child(tyre)
-		cyl(bike,Vector3(x,.40,0),.2,.07,steel,8).rotation_degrees.x=90
-	box(bike,Vector3(.1,.82,0),Vector3(.72,.28,.34),mat(Color("d81f4f")))
-	box(bike,Vector3(-.5,.86,0),Vector3(.66,.14,.3),mat(INK))
-	box(bike,Vector3(0,.52,0),Vector3(.62,.36,.3),steel)
-	box(bike,Vector3(-.45,.6,0),Vector3(.9,.08,.1),mat(Color("efe9da"))).rotation_degrees.z=-12
-	box(bike,Vector3(.62,.86,0),Vector3(.08,.9,.08),steel).rotation_degrees.z=-24
-	box(bike,Vector3(.48,1.22,0),Vector3(.08,.06,.66),steel)
-	box(bike,Vector3(-.2,.16,.2),Vector3(.5,.04,.04),steel)
-	wrench=group(root,Vector3.ZERO,"Wrench")
-	box(wrench,Vector3(0,0,.13),Vector3(.045,.03,.34),mat(Color("d8d4de")))
-	box(wrench,Vector3(0,0,.32),Vector3(.11,.035,.08),mat(Color("d8d4de")))
-	var speaker:=group(root,Vector3(1.6,0,-2.7),"Speaker")
-	box(speaker,Vector3(0,.55,0),Vector3(.8,1.1,.7),mat(Color("1d1a26")))
-	speaker_cone=cyl(speaker,Vector3(0,.42,.36),.27,.06,mat(Color("4d4958")),10);speaker_cone.rotation_degrees.x=90
-	cyl(speaker,Vector3(0,.42,.39),.11,.04,mat(CYAN,true),8).rotation_degrees.x=90
-	cyl(speaker,Vector3(0,.86,.36),.1,.05,mat(Color("4d4958")),8).rotation_degrees.x=90
+	# Floor scraps and the sofa, as in the reference garage.
 	for i in 4:box(root,Vector3(1.0-i*.32,.03,-2.2+.2*sin(i*2.0)),Vector3(.36,.04,.05),mat([Color("e0146f"),Color("f0d94a")][i%2])).rotation_degrees.y=i*23.0
 	box(root,Vector3(.9,.2,-1.5),Vector3(.5,.4,.4),mat(Color("3a3644")))
-	var sofa:=group(root,Vector3(4.6,0,-3.4),"Sofa")
+	var sofa:=group(root,Vector3(-4.7,0,-3.0),"Sofa");sofa.rotation_degrees.y=180.0
 	var leather:=mat(Color("7a4a34"));var patch:=mat(Color("5f3626"))
 	box(sofa,Vector3(0,.3,0),Vector3(1.1,.5,2.3),leather)
 	box(sofa,Vector3(.5,.75,0),Vector3(.3,.9,2.3),patch)
 	for z in [-1.2,1.2]:box(sofa,Vector3(0,.5,z),Vector3(1.1,.75,.28),patch)
 	box(sofa,Vector3(-.05,.57,.3),Vector3(.9,.05,.5),mat(Color("93334d")))
-	cup=group(root,Vector3.ZERO,"Cup")
+	cup=group(root,Vector3(-3.55,.44,-5.5),"Cup")
 	cyl(cup,Vector3.ZERO,.045,.15,mat(Color("f3efe6")),7,.058)
 	box(cup,Vector3(.01,.13,0),Vector3(.014,.16,.014),mat(Color("e0146f")))
 	# Crates, stool and bin from the existing prop library (wrappers; GLBs untouched).
-	for spec in [["res://scenes/PROP_CRATES_A01.tscn",Vector3(5.9,0,-7.6),0.0],["res://scenes/PROP_SHOP_STOOL_A01.tscn",Vector3(-2.2,0,-5.6),30.0],["res://scenes/PROP_BIN_A01.tscn",Vector3(6.3,0,-1.2),0.0],["res://scenes/PROP_CRATES_A01.tscn",Vector3(-6.3,0,-1.3),90.0]]:
+	for spec in [["res://scenes/PROP_CRATES_A01.tscn",Vector3(5.9,0,-7.6),0.0],["res://scenes/PROP_SHOP_STOOL_A01.tscn",Vector3(1.9,0,-6.4),30.0],["res://scenes/PROP_BIN_A01.tscn",Vector3(6.3,0,-1.2),0.0],["res://scenes/PROP_CRATES_A01.tscn",Vector3(-6.3,0,-1.3),90.0]]:
 		if not ResourceLoader.exists(spec[0]):continue
 		var prop:Node3D=(load(spec[0]) as PackedScene).instantiate();prop.position=spec[1];prop.rotation_degrees.y=spec[2];root.add_child(prop)
 		for body in prop.find_children("*","CollisionObject3D",true,false):body.process_mode=Node.PROCESS_MODE_DISABLED
@@ -326,16 +300,16 @@ func _street_dressing(steel:Material,dark:Material) -> void:
 		var prop:Node3D=(load(spec[0]) as PackedScene).instantiate();prop.position=spec[1];prop.rotation_degrees.y=spec[2];root.add_child(prop)
 		for body in prop.find_children("*","CollisionObject3D",true,false):body.process_mode=Node.PROCESS_MODE_DISABLED
 
-func _garage_clutter(steel:Material,dark:Material) -> void:
+func _garage_clutter(steel:Material,_dark:Material) -> void:
 	# Small set dressing from the reference: bottles, boombox, drawer cabinet, cable, paper scraps, side table with bowl.
 	var root:=group(self,Vector3.ZERO,"GarageClutter")
 	prop(root,"drawer_cabinet",Vector3(-6.45,0,-3.0),Vector3(.5,1.25,.9),90.0)
 	prop(root,"boombox",Vector3(-6.45,1.25,-3.0),Vector3(.3,.35,.62),90.0)
 	prop(root,"case_closed",Vector3(-5.2,0,-1.2),Vector3(.8,.45,.6),20.0)
-	var side:=group(root,Vector3(4.6,0,-1.6),"SideTable")
+	var side:=group(root,Vector3(-3.55,0,-5.5),"SideTable")
 	box(side,Vector3(0,.36,0),Vector3(.9,.06,.7),mat(Color("4a3a30")))
 	for corner in [Vector3(-.4,.18,-.3),Vector3(.4,.18,-.3),Vector3(-.4,.18,.3),Vector3(.4,.18,.3)]:box(side,corner,Vector3(.05,.36,.05),steel)
-	cyl(side,Vector3(-.12,.42,.05),.1,.05,mat(Color("2a2733")),8,.14)
+	cyl(side,Vector3(.2,.42,.05),.1,.05,mat(Color("2a2733")),8,.14)
 	for i in 5:box(root,Vector3(-2.0+i*1.3,.012,-1.4-.9*(i%3)),Vector3(.3,.004,.22),mat(Color("e9e2d0"))).rotation_degrees.y=i*37.0
 	for i in 3:
 		var cable:=box(root,Vector3(-3.0+i*.6,.02,-8.5),Vector3(.04,.03,1.4),mat(INK));cable.rotation_degrees.y=18.0*i-12.0
@@ -343,7 +317,7 @@ func _garage_clutter(steel:Material,dark:Material) -> void:
 	for i in 6:box(root,Vector3(-.85+i*.34,.017,-1.9),Vector3(.16,.004,1.02),mat(INK))
 	prop(root,"wall_fan",Vector3(-.8,3.2,-8.9),Vector3(1.1,1.1,.5))
 
-func _street_signals(steel:Material,dark:Material) -> void:
+func _street_signals(_steel:Material,_dark:Material) -> void:
 	var root:=group(self,Vector3.ZERO,"StreetSignals")
 	for spec in [[-12.0,6.0],[-4.5,12.4],[12.0,7.0],[3.5,12.4],[-26.0,6.5]]:
 		prop(root,"traffic_light",Vector3(spec[0],0,spec[1]),Vector3(1.1,5.2,.5),180.0)
@@ -364,8 +338,14 @@ func _case() -> void:
 	box(case_lid,Vector3(0,.005,-.39),Vector3(1.4,.02,.68),foam)
 	for x in [-.75,.75]:
 		for z in [-.78,0.0]:box(case_lid,Vector3(x,.06,z),Vector3(.07,.14,.07),trim)
-	box(case_lid,Vector3(0,.125,-.39),Vector3(.5,.02,.06),trim)
-	box(case_lid,Vector3(0,.15,-.39),Vector3(.34,.05,.05),shell)
+	# The game's own wordmark (white on black) printed on the lid, as on the reference case.
+	var mark:=AtlasTexture.new();mark.atlas=preload("res://assets/ui/ink/logo-source.png");mark.region=Rect2(96,204,1990,286)
+	var print_material:=StandardMaterial3D.new();print_material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
+	print_material.albedo_texture=mark;print_material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA;print_material.blend_mode=BaseMaterial3D.BLEND_MODE_ADD
+	print_material.albedo_color=Color(.85,.85,.85,1)
+	var print:=MeshInstance3D.new();var quad:=QuadMesh.new();quad.size=Vector2(.9,.9*286.0/1990.0);print.mesh=quad
+	print.material_override=print_material;print.position=Vector3(0,.1215,-.39);print.rotation_degrees=Vector3(-90,0,0);case_lid.add_child(print);case_print=print
+	box(case_lid,Vector3(0,.125,-.7),Vector3(.5,.02,.04),trim)
 	for x in [-.45,.45]:
 		var latch:=group(case_root,Vector3(x,.17,-.4),"Latch")
 		box(latch,Vector3(0,-.03,-.012),Vector3(.12,.1,.025),trim);case_latches.append(latch)
@@ -374,38 +354,6 @@ func pose_case(open:float,latch:float,glow:float) -> void:
 	case_lid.rotation.x=deg_to_rad(108)*open
 	for i in case_latches.size():case_latches[i].rotation.x=-deg_to_rad(95)*clampf(latch*2.0-i,0,1)
 	(case_glow.material_override as StandardMaterial3D).albedo_color.a=glow
-
-func _car() -> void:
-	# Boxy black saloon built from primitives; doors swing for the synchronised exit.
-	car=group(self,Vector3(60,0,6.4),"CollectorCar")
-	var paint:=mat(Color("15131c"));var glass:=mat(Color("3a3550"));var chrome:=mat(Color("b9b6c4"))
-	box(car,Vector3(0,.62,0),Vector3(4.7,.62,1.84),paint)
-	box(car,Vector3(-.15,1.18,0),Vector3(2.5,.56,1.66),paint)
-	box(car,Vector3(-.15,1.2,0),Vector3(2.3,.4,1.7),glass)
-	box(car,Vector3(1.0,1.15,0),Vector3(.5,.45,1.5),glass).rotation_degrees.z=-38
-	box(car,Vector3(-1.32,1.15,0),Vector3(.5,.45,1.5),glass).rotation_degrees.z=38
-	box(car,Vector3(2.37,.52,0),Vector3(.1,.16,1.9),chrome)
-	box(car,Vector3(-2.37,.52,0),Vector3(.1,.16,1.9),chrome)
-	box(car,Vector3(2.37,.74,0),Vector3(.06,.2,1.1),chrome)
-	for z in [-.7,.7]:
-		box(car,Vector3(2.38,.76,z),Vector3(.05,.16,.3),mat(Color("fff5c4"),true))
-		box(car,Vector3(-2.38,.76,z),Vector3(.05,.14,.36),mat(Color("ff2255"),true))
-	for x in [-1.5,1.5]:
-		for z in [-.93,.93]:
-			var wheel:=cyl(car,Vector3(x,.36,z),.36,.24,mat(INK),10);wheel.rotation_degrees.x=90;car_wheels.append(wheel)
-			cyl(wheel,Vector3(0,.13*signf(z),0),.2,.02,chrome,8)
-	# Three doors on the kerb side (-Z) hinge at their front edge.
-	for x in [.72,-.42]:
-		var door:=group(car,Vector3(x,.62,-.93),"Door")
-		box(door,Vector3(-.52,0,0),Vector3(1.04,.6,.06),paint)
-		box(door,Vector3(-.52,.5,0),Vector3(.96,.36,.04),glass);car_doors.append(door)
-	var far_door:=group(car,Vector3(.72,.62,.93),"Door")
-	box(far_door,Vector3(-.52,0,0),Vector3(1.04,.6,.06),paint);box(far_door,Vector3(-.52,.5,0),Vector3(.96,.36,.04),glass);car_doors.append(far_door)
-
-func pose_car(x:float,doors:float,dip:float) -> void:
-	car.position=Vector3(x,-dip*.05,6.4);car.rotation.z=dip*.035
-	for wheel in car_wheels:wheel.rotation.y=-x*2.6
-	for i in car_doors.size():car_doors[i].rotation.y=deg_to_rad(64)*doors*(-1.0 if i<2 else 1.0)
 
 func _walkers() -> void:
 	# Blocky passers-by: enough life for the wide shots, never close-ups.

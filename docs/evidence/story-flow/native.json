@@ -1,0 +1,271 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "test session is not a live scene so older flows stay unchanged",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "non-live depart starts the fight with no cards",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "non-live clear returns to the city exactly as before",
+      "passed": true
+    },
+    {
+      "detail": {
+        "cards": 9
+      },
+      "name": "first departure plays prologue and chapter 1 as cards",
+      "passed": true
+    },
+    {
+      "detail": {
+        "presses": 18
+      },
+      "name": "cards advance with Enter and then the encounter begins",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter opens with a radio caption from the crew",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "seen scenes are stored apart from the city save",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "clear shows result first",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "short pause later the keep-going panel opens without a key",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "panel offers the three currents, route choices and the next radio line",
+      "passed": true
+    },
+    {
+      "detail": {
+        "damage": 0.15,
+        "defence": 0.1,
+        "economy": 0.2
+      },
+      "name": "ENTER takes the default current and route and launches encounter 2",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "chain counter and radio line advance with the encounter",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "route choice was tallied for the ending",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "number keys choose current and route before continuing",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "mouse button also continues",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "end of chapter plays its outro cards first",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "then the keep-going panel",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "next chapter intro plays before the fight and only once",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "fight starts after the intro",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "ESC returns to the safe block with the expedition banked and chain reset",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "home keeps the pending current so the hub still asks for it",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 5 running",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 6 running",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 7 running",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 8 running",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 9 running",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 10 running",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 11 running",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 12 running",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 13 running",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 14 running",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 15 running",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 16 running",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "encounter 17 running",
+      "passed": true
+    },
+    {
+      "detail": {
+        "chained": 13
+      },
+      "name": "thirteen clears chained into one another",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "final encounter is the tower boss",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "final clear plays the earned ending then the true ending",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "ending hands back to the city, run closed, story cleared",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "ending is recorded once",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "ending selection rules",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "contracts exist after the story",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "contract departs with no story cards",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "contract wave 1 chains",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "next contract wave launches",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "contract wave 2 chains",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "next contract wave launches",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "lost contract wave offers a retry panel",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "retry relaunches the same wave",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "finishing a contract offers the next one",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "ENTER starts the next contract immediately",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "standard mode after the chain is clean",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 51
+}

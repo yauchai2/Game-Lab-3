@@ -86,6 +86,7 @@ func setup(color: Color, selection := 0, model_path_override:="") -> void:
                 if arrays[Mesh.ARRAY_BONES]==null or arrays[Mesh.ARRAY_WEIGHTS]==null:continue
                 death_surfaces.append({"vertices":arrays[Mesh.ARRAY_VERTEX],"bones":arrays[Mesh.ARRAY_BONES],"weights":arrays[Mesh.ARRAY_WEIGHTS],"binds":binds})
         if character_index==3:_add_signal_baton()
+        if character_index==Roster.BLACK_SUIT_INDEX:_add_pistol()
 
 static func _release_retired_materials() -> void:
     retired_materials.clear()
@@ -104,7 +105,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         var amount := clampf(float(f.frame)/move.startup,0,1)
         if f.frame>move.startup+move.active:
             amount = 1.0-clampf(float(f.frame-move.startup-move.active)/move.recovery,0,1)
-        lunge = amount * (0.60 if f.move in ["heavy","finisher"] else 0.45)
+        lunge = 0.0 if f.move=="gun" else amount * (0.60 if f.move in ["heavy","finisher"] else 0.45)
         if is_finite(opponent_x): lunge = minf(lunge,maxf(0.0,absf(opponent_x-f.x)-0.8))
     model.position = Vector3(sin(elapsed * 137.0) * shake,0,lunge)
     var exchange_choice: String=f.get("exchange_choice","")
@@ -154,8 +155,9 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         mat.set_shader_parameter("flash", (1.0 if fx_flash_age<.045 else .16) if f.flash > 0 and not reduced else 0.0)
     if skeleton:
         motions.present(f,delta,stopped)
+        _present_pistol(f)
         if neon_enabled and f.health>0:preload("res://scripts/combat/neon/neon_signature_motion.gd").apply(motions,f)
-        if f.health>0 and f.get("rush_visual",false) and f.state=="attack":
+        if f.health>0 and f.get("rush_visual",false) and f.state=="attack" and f.move!="gun":
             var move: Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
             if f.frame>=move.startup-1 and f.frame<move.startup+move.active:
                 var limbs:Array=["LeftHand","RightHand"] if f.move in ["meteor","overdrive"] else ["RightFoot" if f.move in ["air_kick","air_counter"] else ("LeftHand" if f.move in ["jab","air_jab"] else "RightHand")]
@@ -251,6 +253,27 @@ func _add_signal_baton() -> void:
         box.material=mat
         var node:=MeshInstance3D.new();node.name="SignalBatonMesh";node.mesh=box;node.position=spec[0];mount.add_child(node)
         materials.append(mat)
+
+## Chunky low-poly pistol (flat unshaded blocks + ink outline pass). Only shown while the gun move is playing.
+func _add_pistol() -> void:
+    var hand:int=motions.bone_index("RightHand")
+    if hand<0:return
+    var mount:=BoneAttachment3D.new();mount.name="Pistol";mount.bone_name=skeleton.get_bone_name(hand);skeleton.add_child(mount)
+    mount.visible=false
+    # Slide/barrel run along the hand's long axis (+Y), grip hangs off -Z, muzzle tip is the hot accent.
+    for spec in [[Vector3(0,.14,.02),Vector3(.06,.22,.07),Color("15191f")],[Vector3(0,.27,.02),Vector3(.035,.05,.035),Color("ff3d6e")],[Vector3(0,.07,-.05),Vector3(.055,.09,.05),Color("2a2f3a")]]:
+        var box:=BoxMesh.new();box.size=spec[1]
+        var mat:=ShaderMaterial.new();mat.shader=preload("res://shaders/neon/neon_actor.gdshader") if neon_enabled else Toon
+        mat.set_shader_parameter("tint",spec[2])
+        if neon_enabled:mat.set_shader_parameter("neon_accent",Color("ff3d6e"))
+        var border:=ShaderMaterial.new();border.shader=Outline;mat.next_pass=border
+        box.material=mat
+        var node:=MeshInstance3D.new();node.name="PistolMesh";node.mesh=box;node.position=spec[0];mount.add_child(node)
+        materials.append(mat)
+
+func _present_pistol(f:Dictionary) -> void:
+    var mount:=skeleton.get_node_or_null("Pistol")
+    if mount!=null:mount.visible=f.health>0 and f.state=="attack" and f.move=="gun"
 
 ## Socket positions belong to presentation; never used as gameplay hitboxes.
 func fx_socket(label:String) -> Vector3:
