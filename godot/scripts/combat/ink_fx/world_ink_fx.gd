@@ -183,12 +183,14 @@ func _actor(session:Node,id:int,f:Dictionary,visual:Node,_delta:float) -> void:
     else:track.wake=0.0
     if f.character==0 and f.state=="attack" and f.move=="overdrive" and f.y<=.015 and not session.reduced_effects:
         var delivery_key:String=str(f.service.serial)+"/"+str(f.service.delivery_stage)
-        var stride:int=floori(float(f.frame)/5.0) if f.frame<14 else -1
-        var run_key:String=str(f.service.serial)+"/"+str(stride)
-        if stride>=0 and track.get("delivery_run","")!=run_key:
-            track["delivery_run"]=run_key
-            ground("run",Vector3(f.x,.045,session.FIGHT_Z),f.face,0,false,Color("f7fff9"))
-        if f.frame>=14 and track.get("delivery_key","")!=delivery_key:
+        var delivery=preload("res://scripts/combat/last_service/zip_delivery.gd")
+        if delivery.running(f) and moved>.001:
+            track["delivery_stride"]=float(track.get("delivery_stride",0.0))+moved
+            if track.delivery_stride>=.38:
+                track.delivery_stride=fmod(track.delivery_stride,.38)
+                ground("run",Vector3(f.x,.045,session.FIGHT_Z),f.face,0,false,Color("f7fff9"))
+        else:track["delivery_stride"]=0.0
+        if f.frame>=delivery.RUN_END and track.get("delivery_key","")!=delivery_key:
             track["delivery_key"]=delivery_key
             ground("brake",Vector3(f.x,.045,session.FIGHT_Z),f.face,0,false,Color("f7fff9"))
     if f.character==0 and f.state=="attack" and f.move=="special" and f.y<=.015 and not session.reduced_effects:

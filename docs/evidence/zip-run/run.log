@@ -1,0 +1,24 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ZIP_RUN Visible world-space running displacement -1 true
+ZIP_RUN Run never passes through the opponent -1 true
+ZIP_RUN Run creates no free invulnerability -1 true
+ZIP_RUN Transition brakes before first kick -1 true
+ZIP_RUN Near opponent skips in-place running -1 true
+ZIP_RUN Blocked run uses a planted guard pose -1 true
+ZIP_RUN Render-only frames cannot move feet or actor -1 true
+ZIP_RUN Run gait follows actual travelled distance -1 true
+ZIP_RUN Arena boundary remains solid -1 true
+ZIP_RUN Hitstop freezes real run displacement -1 true
+ZIP_RUN Airborne overdrive keeps existing horizontal momentum -1 true
+ZIP_RUN Visible world-space running displacement 1 true
+ZIP_RUN Run never passes through the opponent 1 true
+ZIP_RUN Run creates no free invulnerability 1 true
+ZIP_RUN Transition brakes before first kick 1 true
+ZIP_RUN Near opponent skips in-place running 1 true
+ZIP_RUN Blocked run uses a planted guard pose 1 true
+ZIP_RUN Render-only frames cannot move feet or actor 1 true
+ZIP_RUN Run gait follows actual travelled distance 1 true
+ZIP_RUN Arena boundary remains solid 1 true
+ZIP_RUN Hitstop freezes real run displacement 1 true
+ZIP_RUN Airborne overdrive keeps existing horizontal momentum 1 true

@@ -41,8 +41,9 @@ static func describe(f:Dictionary,move:Dictionary,markers:Dictionary) -> Diction
         motion.launch_kick=f.move=="launcher"
         if Delivery.owns(f):
             motion.loop=false
-            if f.frame<move.startup-10 and f.y<=.01:
-                motion.clip="KK_Run";motion.loop=false;motion.phase=fposmod(float(f.frame)/12.0,1.0)
+            if f.frame<Delivery.RUN_END and f.y<=.01:
+                motion.clip="KK_Run" if Delivery.running(f) else "KK_Guard"
+                motion.phase=fposmod(Delivery.run_distance(f)/Delivery.RUN_STRIDE,1.0) if Delivery.running(f) else .25
             else:motion.phase=Delivery.phase(f,move,float(markers[motion.clip].contact))
             return motion
         motion.phase=Express.phase(f,move,float(markers[motion.clip].contact)) if Express.owns(f) else attack_phase(frame,move,float(markers[motion.clip].contact),.75)

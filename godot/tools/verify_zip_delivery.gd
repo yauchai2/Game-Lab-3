@@ -48,7 +48,7 @@ func run() -> void:
     await process_frame;await RenderingServer.frame_post_draw
     var sim:RefCounted=fresh();var f:Dictionary=sim.fighters[0]
     sim._start_attack(0,"overdrive");f.air_enabled=true;f.rush_visual=true
-    f.frame=8
+    for tick in 8:sim.tick()
     for i in 3:actor.present(f,1.0/60,false,false)
     check("Startup uses full-body running source",actor.motions.clip_name=="KK_Run")
     for stage in 3:

@@ -1,0 +1,146 @@
+{
+  "checks": [
+    {
+      "detail": [
+        {
+          "damage": 12,
+          "frame": 14,
+          "second": false
+        },
+        {
+          "damage": 9,
+          "frame": 30,
+          "second": true
+        }
+      ],
+      "name": "Two real contacts facing -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Plant and pivot separate contacts facing -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Normal cost and bounded damage facing -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Whiff never invents contact or second kick -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Block prevents hit-confirm followup -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Interruption stops confirmed followup -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Second kick still checks distance -1",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "damage": 12,
+          "frame": 14,
+          "second": false
+        },
+        {
+          "damage": 9,
+          "frame": 30,
+          "second": true
+        }
+      ],
+      "name": "Two real contacts facing 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Plant and pivot separate contacts facing 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Normal cost and bounded damage facing 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Whiff never invents contact or second kick 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Block prevents hit-confirm followup 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Interruption stops confirmed followup 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Second kick still checks distance 1",
+      "passed": true
+    },
+    {
+      "detail": [
+        16,
+        32
+      ],
+      "name": "Late first contact keeps its actual second-contact frame",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "Entering during the planted turn cannot hit invisibly",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "True hit uses ZIP-specific burst",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Reference skill avoids generic charge stage",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Pose rendering does not write simulation",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Pause freezes effect phases",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "F2 clears decorative dust and ribbons",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Exit clears attack effects and trails",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Parrying ZIP retains the defender's PARRY presentation",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 23
+}

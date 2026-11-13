@@ -1,15 +1,20 @@
 extends RefCounted
 ## Fixed-tick character resources and real, blockable contact. No presentation authority.
 static func fresh() -> Dictionary:
-    return {"routes":0,"route_ttl":0,"evade_serial":-1,"evade_candidate":-1,"candidate_ticks":0,"preload":0,"preload_age":0,"sample":0,"sample_ttl":0,"sample_boost":false,"nodes":[],"node_cd":0,"serial":0,"placed":false,"zip_second":false,"zip_second_at":0,"followup":0,"delivery_stage":0,"delivery_contact":24,"flurry_left":0,"encore":[],"refund_serial":-1}
+    return {"routes":0,"route_ttl":0,"evade_serial":-1,"evade_candidate":-1,"candidate_ticks":0,"preload":0,"preload_age":0,"sample":0,"sample_ttl":0,"sample_boost":false,"nodes":[],"node_cd":0,"serial":0,"placed":false,"zip_second":false,"zip_second_at":0,"followup":0,"delivery_origin":0.0,"delivery_running":false,"delivery_stage":0,"delivery_contact":24,"flurry_left":0,"encore":[],"refund_serial":-1}
 static func perk(f:Dictionary,id:String) -> bool:return id in f.get("perks",[])
 func before(s:RefCounted,i:int,command:Dictionary) -> void:
     var f:Dictionary=s.fighters[i];var r:Dictionary=f.service
     if f.character==3 and command.get("attack","")=="special" and command.get("down",false):command.attack="node_pulse"
     if command.get("attack","")=="special":f["node_far"]=absf(command.get("axis",0.0))>.1
     if s.hitstop>0:return
-    if f.character==0 and f.state=="attack" and f.move=="overdrive" and f.y<=.01 and f.frame>=4 and f.frame<14:
-        f.vx=f.face*3.8 # bounded run-in, no invulnerability or target tracking
+    if f.character==0 and f.state=="attack" and f.move=="overdrive" and f.frame<24 and f.y<=.01:
+        var delivery=preload("res://scripts/combat/last_service/zip_delivery.gd")
+        var space:float=(float(s.fighters[1-i].x)-float(f.x))*float(f.face)-delivery.STOP_GAP
+        var remaining:float=minf(delivery.RUN_LIMIT-delivery.run_distance(f),s.EDGE-float(f.x)*float(f.face))
+        r.delivery_running=f.y<=.01 and f.frame<delivery.RUN_END and space>.01 and remaining>.01
+        f.vx=f.face*minf(delivery.RUN_SPEED,minf(space,remaining)/s.STEP) if r.delivery_running else 0.0
+        # Stop before the opponent/edge; no invulnerability, teleport or auto-turn.
     var enemy:Dictionary=s.fighters[1-i]
     if command.get("dash",false) and f.character==0 and f.state=="idle" and f.dash_cd==0 and enemy.state=="attack" and absf(f.x-enemy.x)<=s.move_for(enemy,enemy.move).reach+.5 and (f.x-enemy.x)*enemy.face>0:
         r.evade_candidate=enemy.service.serial;r.candidate_ticks=14
@@ -24,7 +29,7 @@ func before(s:RefCounted,i:int,command:Dictionary) -> void:
         if command.get("skill_held",false) and r.preload_age<36:f.frame=7
 func started(s:RefCounted,i:int,name:String) -> void:
     var f:Dictionary=s.fighters[i];var r:Dictionary=f.service
-    r.serial+=1;r.placed=false;r.zip_second=false;r.zip_second_at=0;r.followup=0;r.flurry_left=2;r.delivery_stage=0;r.delivery_contact=int(s.move_for(f,name).startup) if name=="overdrive" else 24
+    r.serial+=1;r.placed=false;r.zip_second=false;r.zip_second_at=0;r.followup=0;r.flurry_left=2;r.delivery_stage=0;r.delivery_origin=f.x;r.delivery_running=false;r.delivery_contact=int(s.move_for(f,name).startup) if name=="overdrive" else 24
     r.preload=0;r.preload_age=0;r.sample_boost=false
     if f.character==2 and r.sample>0 and name in ["cross","heavy","launcher","special","overdrive"]:
         r.sample=0;r.sample_ttl=0;r.sample_boost=true

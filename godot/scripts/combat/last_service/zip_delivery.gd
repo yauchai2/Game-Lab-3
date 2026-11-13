@@ -2,6 +2,15 @@ extends RefCounted
 ## Last Delivery: run-in, low kick, switch kick, held heel drive.
 ## Pose sampling follows confirmed simulation stages, never creates contacts.
 const DELAYS := [24,16]
+const RUN_END := 18
+const RUN_SPEED := 7.2
+const RUN_LIMIT := 2.2
+const STOP_GAP := 1.15
+const RUN_STRIDE := 1.8
+static func run_distance(f:Dictionary) -> float:
+    return clampf((float(f.x)-float(f.get("service",{}).get("delivery_origin",f.x)))*float(f.face),0.0,RUN_LIMIT)
+static func running(f:Dictionary) -> bool:
+    return owns(f) and f.y<=.01 and f.frame<RUN_END and f.get("service",{}).get("delivery_running",false)
 static func owns(f:Dictionary) -> bool:
     return f.get("character",-1)==0 and f.get("state","")=="attack" and f.get("move","")=="overdrive" and f.get("health",0)>0 and not f.get("showcase",false) and not f.has("cinematic_clip")
 static func stage(f:Dictionary) -> int:return clampi(f.get("service",{}).get("delivery_stage",0),0,2)
@@ -24,7 +33,7 @@ static func phase(f:Dictionary,move:Dictionary,marker:float) -> float:
     var end:float=hit+8.0 if beat.stage<2 else float(move.startup+move.active+move.recovery*.55)
     return lerpf(.54,1.0,smoothstep(hit+3.0,end,frame))
 static func finish(m:RefCounted,f:Dictionary,move:Dictionary) -> void:
-    if f.frame<move.startup-10:return # full-body running source owns approach
+    if f.frame<RUN_END:return # full-body running source owns approach
     var beat:Dictionary=segment(f,move)
     var frame:float=f.frame;var hit:float=beat.hit
     var decay:float=hit+(17.0 if beat.stage==2 else 8.0)
