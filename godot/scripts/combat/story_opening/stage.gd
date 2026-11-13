@@ -292,7 +292,7 @@ func _street_dressing(steel:Material,dark:Material) -> void:
 		var prop:Node3D=(load(spec[0]) as PackedScene).instantiate();prop.position=spec[1];prop.rotation_degrees.y=spec[2];root.add_child(prop)
 		for body in prop.find_children("*","CollisionObject3D",true,false):body.process_mode=Node.PROCESS_MODE_DISABLED
 
-func _garage_clutter(steel:Material,_dark:Material) -> void:
+func _garage_clutter(_steel:Material,_dark:Material) -> void:
 	# Small set dressing from the reference: bottles, boombox, drawer cabinet, cable, paper scraps, side table with bowl.
 	var root:=group(self,Vector3.ZERO,"GarageClutter")
 	prop(root,"drawer_cabinet",Vector3(-6.45,0,-3.0),Vector3(.5,1.25,.9),90.0)
