@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[更強像素及清楚階梯鋸齒](docs/evidence/crisp-pixel-type/README.md)。20px字圖／二值硬邊／較開標題字距；1280×720保持。
+
 最新：[文字像素感調強一級](docs/evidence/medium-pixel-type/README.md)。中等24px字圖／三階邊緣，保留可讀性及720p；32項原生介面／城市檢查通過。
 
 最新：[清晰輕像素文字](docs/evidence/clear-type/README.md)。字形細緻度約加倍、保留像素邊緣與粗斜風格，改善舊字圖放大後黏筆畫；1280×720及場景風格保持。

@@ -1,0 +1,94 @@
+{
+  "checks": [
+    {
+      "name": "actual game viewport is 1280x720",
+      "passed": true
+    },
+    {
+      "name": "nearest texture filter and AA-free toon renderer retained",
+      "passed": true
+    },
+    {
+      "name": "title preview also renders at new resolution",
+      "passed": true
+    },
+    {
+      "name": "main Story still opens the isometric city",
+      "passed": true
+    },
+    {
+      "name": "city viewport matches upgraded whole-game resolution",
+      "passed": true
+    },
+    {
+      "name": "native map pointer starts the first story encounter",
+      "passed": true
+    },
+    {
+      "name": "real input still causes combat damage",
+      "passed": true
+    },
+    {
+      "name": "clear banks an equipment drop and spendable talent point",
+      "passed": true
+    },
+    {
+      "name": "native skill station preserves gradual unlock",
+      "passed": true
+    },
+    {
+      "name": "full-screen connected talent board contains all 48 nodes",
+      "passed": true
+    },
+    {
+      "name": "native node selection plus Connect spends one actual point",
+      "passed": true
+    },
+    {
+      "name": "native mouse wheel zooms the tree",
+      "passed": true
+    },
+    {
+      "name": "native right drag pans the connected tree",
+      "passed": true
+    },
+    {
+      "name": "native dealer rolls and persists a signature affix item",
+      "passed": true
+    },
+    {
+      "name": "inventory inspection shows real before-after comparison",
+      "passed": true
+    },
+    {
+      "name": "equipment compare action changes the selected hero loadout",
+      "passed": true
+    },
+    {
+      "name": "native contract entry consumes only its one item",
+      "passed": true
+    },
+    {
+      "name": "contract tier and modifiers reach actual simulation HP",
+      "passed": true
+    },
+    {
+      "name": "challenge defeat returns home with two saved attempts",
+      "passed": true
+    },
+    {
+      "name": "real disk reload preserves challenge seed attempts and item balance",
+      "passed": true
+    },
+    {
+      "name": "ordinary Fight restores full kit with no city stat modifiers",
+      "passed": true
+    },
+    {
+      "name": "ordinary Fight overdrive does not require story unlock",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 22
+}

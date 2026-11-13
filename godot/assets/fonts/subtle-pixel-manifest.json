@@ -2,27 +2,27 @@
   {
     "font": "RadioSubtleDisplay",
     "source": "BarlowCondensed-BlackItalic.ttf",
-    "glyph_size": 24,
+    "glyph_size": 20,
     "alpha_levels": [
       0,
-      128,
       255
     ],
+    "display_tracking": 1,
     "characters": 103,
     "source_sha256": "e1ed5d7e50c6a4498454d40509ce2362384a2c7870df3418fdbd010f81dffad3",
-    "atlas_sha256": "b77e3abe27e6923155940ef9cc968a9a9944870323dd95a615660864e30fbfe7"
+    "atlas_sha256": "6209ef69a299b21994c5809c0b1b72d15ff077641a9f89a1aba57b7f33accebe"
   },
   {
     "font": "RadioSubtleBody",
     "source": "DejaVuSansCondensed-Bold.ttf",
-    "glyph_size": 24,
+    "glyph_size": 20,
     "alpha_levels": [
       0,
-      128,
       255
     ],
+    "display_tracking": 0,
     "characters": 103,
     "source_sha256": "21f02ebcea75529d3ed9d26e089cd1b9c59a4b784119ba3a96e9bc83cf755ec7",
-    "atlas_sha256": "ed7a99f87c49bc6c02858a7d04fe78d285366db3c14ff07f95678d5c7e1d07e8"
+    "atlas_sha256": "4256eb6a12b078540507a8a3b9c947f54855cc264b5cfb44f8661363ad2c082f"
   }
 ]

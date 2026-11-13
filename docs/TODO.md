@@ -1,3 +1,7 @@
+## 2026-11-13：加強像素與清晰階梯鋸齒
+
+依使用者最新要求，文字字圖24px→20px，alpha三階→二值0／255，去除灰色柔邊；display每字多一個來源像素間距，防止粗斜字黏連。採128中性切割而非最初96加粗閾值，保留字腔。720p／nearest、字級／布局／繁中fallback與無AA toon場景保持。來源tools/build_subtle_pixel_fonts.py及manifest可重建；畫面及檢查見[evidence/crisp-pixel-type](evidence/crisp-pixel-type/README.md)。仍同branch／PR #12，不合main／Web。
+
 ## 2026-11-13：文字像素感調強一級
 
 依使用者要求，字圖由28px內文／32pxdisplay調至24px，alpha四階→三階，像素階梯更明顯；保持比原14／16px更多字形資訊、字母間隙與720p清晰度。nearest／字級／布局／繁中fallback及場景保持。32項原生介面／城市檢查通過，見[evidence/medium-pixel-type](evidence/medium-pixel-type/README.md)。仍只推codex/story-waves-m1／PR #12，main／Web不動。
