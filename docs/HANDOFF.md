@@ -16,6 +16,10 @@
 
 使用者接受 UI_REVIEW_PLAN 的全部建議並要求實作；先做 P0，基準 main ee9e7c0（PR #7、#8 等已合併）。主選單去掉 ESC BACK；結算頁頁首直接寫結果、面板去掉重複的結果／Run it back／FIRST TO TWO、風味文字收成兩行；display 字體數字（0 像 8）改二值化門檻。詳見 [UI_REVIEW_PLAN.zh-TW.md](UI_REVIEW_PLAN.zh-TW.md) 第六節與 [前後對照](evidence/ui-p0-2026-11-12/)。verify_local_versus 68/68，其餘既有失敗在乾淨 main 同樣存在。P1（HUD）起未做；Linux llvmpipe 靜態截圖，Mac／動態觀感／繁中未驗證，Web 不更新。
 
+## 2026-11-13 開場照參考影片分鏡重排（v5，Claude）
+
+分支 claude/opening-fidelity-2。Alan：開場沒完全跟 03e5fa13 影片，要盡量完美復刻；其後要求標題直接接主選單、整體節奏放慢。查出舊 18 秒表與影片是兩個不同故事，已重排：車房工作台 → 手提箱滑入 → RIVET 開鎖 → 開箱俯拍（槍、彈匣、文件，LOOP 點文件）→ ZIP 面部 → 黑衣人上門 → 從箱內看出去（對白）→ 逼近 → 合箱，收在黑場後直接接主選單（不再重播 AFTERHOURS）。移除機車、喇叭、扳手、黑車、巨大鞋底與漫畫字；沙發移到右側；箱蓋印遊戲自己的 logo。節奏用 `WARP` 把作者時間拉成約 16.1 秒、對在音樂拍點上。詳見 STORY_OPENING.zh-TW.md「現行版本」。verify_story_opening 43/43，Linux llvmpipe、Dummy 音訊；未經真人實聽／Mac。第一拳與打鬥仍留給「開始故事」。Tripo 還欠沙發＋旁桌＋紙杯／碗（A2 圖已生成）。
+
 ## 2026-11-12 開場貼近參考影片
 
 分支 claude/opening-fidelity：開場調暗為黃昏色調、補車房／街景雜物、移除漫畫字與名牌、字幕改影片樣式。詳見 STORY_OPENING.zh-TW.md「對照參考影片 v4」。Tripo 清單見 STORY_OPENING_TRIPO.zh-TW.md。

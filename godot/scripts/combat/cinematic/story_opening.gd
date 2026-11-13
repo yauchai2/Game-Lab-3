@@ -1,26 +1,37 @@
 extends Node3D
-## Boot story opening: 18 seconds, six shots, real-time 3D with the roster models.
+## Boot story opening: 15 seconds, follows the reference video's beats, real-time 3D with the roster models.
 ## One stateless authored timeline (sample(t) is repeatable), its own lens and score.
 ## Owns the session camera only while running; clear() restores everything it touched.
 ## Presentation only: no simulation, XP or combat state is read or written.
 const Stage=preload("res://scripts/combat/story_opening/stage.gd")
 const Actor=preload("res://scripts/combat/story_opening/actor.gd")
-const DURATION:=18.0
-const CUTS:=[0.0,3.0,6.0,9.0,12.0,15.0,18.0]
-const SHOTS:=["CITY AWAKE","FOUR LIVES","ZIP RETURNS","WRONG DELIVERY","COLLECTORS","TITLE DROP"]
+## The opening ends on the lid slam's black frame and cuts straight into the main menu (which carries the AFTERHOURS title itself).
+## Real running time. The shots below are authored on the tighter edit timeline; WARP stretches it
+## (slower holds on the case, the manifest and ZIP's face) so the cuts land on the music's own beats.
+const DURATION:=16.12
+## [real seconds, authored seconds] knots; after the last knot the two clocks run 3.0 s apart.
+const WARP:=[[0.0,0.0],[1.5,1.3],[3.0,2.6],[6.0,4.5],[8.0,5.0]]
+const WARP_TAIL:=3.0
+const AUTHORED_END:=13.12
+## Shot starts, then the end. Each shot is one beat of the reference video.
+const CUTS:=[0.0,1.3,2.6,4.5,5.0,6.75,9.0,12.0,13.0,13.12]  # authored time
+const SHOTS:=["BENCH","UNLATCH","MANIFEST","ZIP LOOKS UP","COLLECTORS ARRIVE","FROM THE CASE","HOLD","BENCH AGAIN","LID SLAM"]
 const ORIGIN:=Vector3(2400,0,0)
-const TITLE_AT:=16.1
-const SLAM_AT:=16.0
-const MUSIC_CUT:=9.75
+const TITLE_AT:=13.1
+const SLAM_AT:=13.0
+const MUSIC_CUT:=6.75
 ## The menu track fades back in here, under the score's sign-off bar.
-const MENU_MUSIC_AT:=17.6
+const MENU_MUSIC_AT:=13.1
 ## [time, strength] camera trauma. Mirrors the cue sheet in audio/story_opening/cues.json.
-const IMPACTS:=[[6.55,.55],[6.98,.3],[8.0,1.0],[9.15,.22],[9.45,.22],[12.78,.45],[13.1,.6],[13.55,.4],[13.85,.4],[14.2,.18],[16.0,1.3],[16.1,.9]]
+const IMPACTS:=[[1.3,.3],[1.95,.14],[2.25,.14],[2.5,.22],[5.0,.55],[10.55,.4],[10.85,.4],[11.2,.18],[13.0,1.3]]
 const SUBTITLES:=[
-	{"from":4.55,"to":5.9,"who":"LOOP","color":Color("c4ff00"),"zh":"「件貨呢？」","en":"\"Where's the parcel?\""},
-	{"from":6.95,"to":7.95,"who":"ZIP","color":Color("00e9ef"),"zh":"「到咗。」","en":"\"It's here.\""},
-	{"from":10.35,"to":11.9,"who":"LOOP","color":Color("c4ff00"),"zh":"「……我買音響喎。」","en":"\"...I ordered speakers.\""}]
-const SUIT_MARKS:=[Vector3(.1,0,4.0),Vector3(-1.5,0,4.35),Vector3(1.7,0,4.35)]
+	{"from":1.4,"to":2.3,"who":"RIVET","color":Color("ff8a1f"),"zh":"「吓！？」","en":"\"Huh?!\""},
+	{"from":2.75,"to":4.3,"who":"LOOP","color":Color("c4ff00"),"zh":"「……我買音響喎。」","en":"\"...I ordered speakers.\""},
+	{"from":6.95,"to":8.0,"who":"LOOP","color":Color("c4ff00"),"zh":"「開工？！」","en":"\"Work?!\""},
+	{"from":8.05,"to":9.0,"who":"ZIP","color":Color("00e9ef"),"zh":"「退貨。」","en":"\"Return to sender.\""}]
+## Where the collectors stop in the street, then where they step to later.
+const SUIT_MARKS:=[Vector3(.1,0,4.1),Vector3(-1.5,0,4.45),Vector3(1.7,0,4.45)]
+const SUIT_STEP:=Vector3(0,0,-1.0)
 const TITLE_MARKS:=[Vector3(.3,27.0,-1.5),Vector3(-1.25,27.0,-1.45),Vector3(-4.1,27.0,-1.45),Vector3(-2.75,27.0,-1.5)]
 const TITLE_FLOOR:=27.0
 
@@ -131,14 +142,14 @@ func advance(delta:float) -> void:
 	if paused:return
 	if scrub:sample(age);return
 	age+=maxf(0.0,delta)
-	if age>=DURATION:finish(false);return
+	if age>=DURATION:finish(false,true);return
 	sample(age)
 
-func finish(skipped:bool) -> void:
+func finish(skipped:bool,let_score_ring:=false) -> void:
 	if not running:return
 	finished_count+=1
 	if not seen:mark_seen()
-	clear()
+	clear(let_score_ring)
 	# Music always resumes at menu level, including after a skip during the silence.
 	session.audio.cinematic_duck=0.0
 	if skipped and music_was_cut:session.audio.music_gain_db=-12.0
@@ -157,12 +168,13 @@ func handle_key(event:InputEvent) -> bool:
 		session.audio.muted=not session.audio.muted;session.save_options()
 	return true
 
-func clear() -> void:
+func clear(let_score_ring:=false) -> void:
 	var was_running:=running
 	running=false;paused=false
 	if is_instance_valid(score):
 		score.stream_paused=false
-		score.stop()
+		# On a natural end the title hit and second drop ring on under the menu.
+		if not let_score_ring:score.stop()
 	if is_instance_valid(lens):lens.hide()
 	if is_instance_valid(logo):logo.hide();logo_shadow.hide()
 	if is_instance_valid(stage):stage.hide()
@@ -183,7 +195,7 @@ func _sync_audio() -> void:
 	score.volume_db=-80.0 if audio.muted or audio.effects_level<=0 else -1.0+linear_to_db(maxf(.001,audio.effects_level))
 	# The baked score carries its own beat, so the menu track stays silent under it
 	# and fades back in once the title has hit. The transport itself never stops.
-	var silent:=age<MENU_MUSIC_AT
+	var silent:=authored(age)<MENU_MUSIC_AT
 	audio.cinematic_duck=10.0 if silent else (1.5 if paused else 0.0)
 	if silent:
 		music_was_cut=true;audio.music_gain_db=-80.0
@@ -197,10 +209,20 @@ static func seg(t:float,a:float,b:float) -> float:return clampf((t-a)/(b-a),0.0,
 static func ease_io(u:float) -> float:return u*u*(3.0-2.0*u)
 func w(point:Vector3) -> Vector3:return ORIGIN+point
 
+static func authored(real:float) -> float:
+	for i in WARP.size()-1:
+		if real<WARP[i+1][0]:return lerpf(WARP[i][1],WARP[i+1][1],(real-WARP[i][0])/(WARP[i+1][0]-WARP[i][0]))
+	return real-WARP_TAIL
+
+static func real_time(auth:float) -> float:
+	for i in WARP.size()-1:
+		if auth<WARP[i+1][1]:return lerpf(WARP[i][0],WARP[i+1][0],(auth-WARP[i][1])/(WARP[i+1][1]-WARP[i][1]))
+	return auth+WARP_TAIL
+
 func shot_at(t:float) -> int:
-	for i in 6:
+	for i in CUTS.size()-1:
 		if t<CUTS[i+1]:return i
-	return 5
+	return CUTS.size()-2
 
 func trauma_at(t:float) -> float:
 	var total:=0.0
@@ -209,8 +231,9 @@ func trauma_at(t:float) -> float:
 		if dt>=0 and dt<.6:total+=hit[1]*exp(-dt*8.5)
 	return minf(total,1.4)
 
-func sample(t:float) -> void:
-	age=t;shot=shot_at(t)
+func sample(real:float) -> void:
+	age=real
+	var t:=authored(real);shot=shot_at(t)
 	var reduced:bool=session.reduced_effects
 	stage.pose_train(t)
 	stage.pose_walkers(t)
@@ -231,62 +254,52 @@ func sample(t:float) -> void:
 
 func _camera_at(t:float) -> Dictionary:
 	var table:Vector3=Stage.TABLE
-	if t<3.0:
-		# Dive from beside the train, through the wires, down to the garage door.
-		var u1:=ease_io(seg(t,0,3.0));var v:=pow(seg(t,0.0,3.0),1.6)
-		var start:=Vector3(27,12.9,17.4);var mid:=Vector3(18,9.6,12.5);var end:=Vector3(5.2,1.9,5.6)
-		var at:Vector3=start.lerp(mid,v).lerp(mid.lerp(end,v),v)
-		var look:Vector3=Vector3(6,10.5,21).lerp(Vector3(0,1.9,-2.5),ease_io(seg(t,.35,2.4)))
-		return {"at":at,"look":look,"fov":lerpf(84,60,u1),"roll":lerpf(-16,2,u1),"fisheye":lerpf(.62,.2,u1),"blur":sin(seg(t,.4,2.8)*PI)*.05,"radial":sin(seg(t,.5,2.8)*PI)*.8}
-	if t<6.0:
-		# Lateral track through the workshop: three short holds joined by whip moves.
-		var stops:=[Vector3(-3.25,1.3,-.55),Vector3(1.05,1.05,-.15),Vector3(2.85,1.2,-1.55)]
-		var looks:=[Vector3(-3.9,.85,-3.5),Vector3(1.1,.75,-2.8),Vector3(4.5,1.0,-3.35)]
-		var i:=0 if t<4.1 else 1
-		var move:=seg(t,3.8,4.1) if t<4.1 else seg(t,4.9,5.2)
-		var f:=ease_io(move);var whip:=sin(move*PI)
-		var drift:=Vector3((t-3.0)*.12,0,0)
-		return {"at":stops[i].lerp(stops[i+1],f)+drift,"look":looks[i].lerp(looks[i+1],f)+drift*.5,"fov":56.0-whip*4.0,"roll":-3.0+whip*6.0,"fisheye":.2,"smear":whip*.04,"side":whip*.8}
-	if t<7.7:
-		# Ground-level wide: the sole lands in the doorway, then tilt up to ZIP and the case.
-		var tilt:=ease_io(seg(t,6.7,7.45))
-		return {"at":Vector3(-.5,.13,-2.5).lerp(Vector3(-.62,.42,-2.95),tilt),"look":Vector3(.0,.3,-.6).lerp(Vector3(.12,1.5,-1.75),tilt),"fov":lerpf(98,80,tilt),"roll":lerpf(-7,-2,tilt),"fisheye":lerpf(.85,.5,tilt),"chroma":.004,"shake":.06}
-	if t<9.0:
-		# Case slams onto the bench; punch in after the hit.
-		var push:=ease_io(seg(t,8.0,9.0))
-		var pre:=seg(t,7.7,8.0)
-		return {"at":table+Vector3(-1.75,.42,-1.5).lerp(Vector3(-1.2,.3,-1.25),push)+Vector3(0,(1-pre)*.25,0),"look":table+Vector3(0,.22+(1-pre)*.5,0),"fov":lerpf(64,50,push),"roll":4.0-push*3.0,"fisheye":.3,"blur":maxf(0,1-absf(t-8.0)/.16)*.07,"radial":maxf(0,1-absf(t-8.02)/.3),"shake":.12}
+	var zip_head:Vector3=cast[0].point("Head")-ORIGIN
+	if t<1.3:
+		# Behind the bench: ZIP waits in the doorway light and the case slides in from the left.
+		var u:=ease_io(seg(t,0.0,1.3))
+		return {"at":Vector3(.4,1.3,-6.95).lerp(Vector3(.36,1.22,-6.3),u),"look":Vector3(.3,1.4,-3.0),"fov":lerpf(54,50,u),"roll":-1.0,"fisheye":.14,"shake":.04}
+	if t<2.6:
+		# Close on the case front: RIVET's gloves work the latches.
+		var u1:=seg(t,1.3,2.6)
+		return {"at":table+Vector3(.2,.6,-1.5).lerp(Vector3(.12,.52,-1.15),u1),"look":table+Vector3(.0,.2,.0),"fov":44.0,"roll":-2.0,"fisheye":.1,"shake":.035}
+	if t<4.5:
+		# Overhead on the open case: two guns, the silencer, the manifest.
+		var u2:=seg(t,2.6,4.5)
+		return {"at":table+Vector3(.2,lerpf(1.28,1.12,ease_io(u2)),0),"look":table+Vector3(.12,.2,0),"up":Vector3(1,0,0),"fov":56,"fisheye":.18,"vignette":.4}
+	if t<5.0:
+		# ZIP's face, tilted, eyes already on the door.
+		var u3:=ease_io(seg(t,4.5,5.0))
+		return {"at":zip_head+Vector3(.42,.06,-1.2).lerp(Vector3(.38,.05,-1.1),u3),"look":zip_head+Vector3(-.1,-.04,0),"fov":38.0,"roll":-9.0,"fisheye":.1,"blur":.012,"shake":.03}
 	if t<MUSIC_CUT:
-		# Latches: close, shallow, silent push.
-		var u2:=seg(t,9.0,MUSIC_CUT)
-		return {"at":table+Vector3(1.25,.55,-2.0).lerp(Vector3(.95,.48,-1.75),u2),"look":table+Vector3(0,.14,-.3),"fov":40,"roll":-2.0,"fisheye":.1,"shake":.035}
-	if t<12.0:
-		# Hard cut to the overhead: contents, manifest, four frozen heads.
-		var u3:=seg(t,MUSIC_CUT,12.0)
-		return {"at":table+Vector3(.02,lerpf(3.7,3.1,ease_io(u3)),.16),"look":table+Vector3(0,.2,.18),"up":Vector3(sin(deg_to_rad(lerpf(-4,7,u3))),0,-cos(deg_to_rad(lerpf(-4,7,u3)))),"fov":70,"fisheye":.62,"chroma":.003,"vignette":.55}
-	if t<12.88:
-		# The black car brakes in, seen low from the kerb.
-		var u4:=seg(t,12.0,12.88)
-		return {"at":Vector3(6.4,.34,2.9),"look":Vector3(lerpf(9,-.5,ease_io(u4)),.75,6.2),"fov":62,"roll":-5.0,"fisheye":.35,"smear":(1-u4)*.045,"side":(1-u4)*1.0,"shake":.07}
-	if t<13.3:
-		# Three doors, one beat.
-		return {"at":Vector3(-3.6,.5,2.6),"look":Vector3(.4,.95,5.6),"fov":54,"roll":5.0,"fisheye":.3,"shake":.08}
-	if t<14.0:
+		# Over ZIP's shoulder: three collectors walk up the street.
+		var u4:=seg(t,5.0,MUSIC_CUT)
+		return {"at":Vector3(-.15,1.5,-1.05).lerp(Vector3(-.12,1.46,-.75),u4),"look":Vector3(.15,1.25,5.0),"fov":52.0,"roll":-1.0,"fisheye":.12,"shake":.05}
+	if t<9.0:
+		# Cut to the case: the open lid at the edge, ZIP's back, the collectors framed in the door.
+		var u5:=seg(t,MUSIC_CUT,9.0)
+		return {"at":table+Vector3(.04,.34,-.62).lerp(Vector3(.04,.32,-.74),u5),"look":Vector3(-.1,1.25,3.9),"fov":lerpf(66,60,u5),"roll":-2.0,"fisheye":.22,"vignette":.5,"shake":.01}
+	if t<10.3:
+		# Ground-level from the doorway: three suits hold the street.
+		var u6:=seg(t,9.0,10.3)
+		return {"at":Vector3(-2.6,.5,.4).lerp(Vector3(-2.1,.45,.5),u6),"look":Vector3(.3,1.0,3.9),"fov":58.0,"roll":4.0,"fisheye":.3,"shake":.04}
+	if t<11.0:
 		# Low on the polished shoes, in step.
-		var u5:=seg(t,13.3,14.0)
-		return {"at":Vector3(.5,.1,2.05+u5*.12),"look":Vector3(.1,.42,4.0),"fov":76,"roll":-4.0,"fisheye":.7,"chroma":.004,"shake":.07}
-	if t<15.0:
+		var u7:=seg(t,10.3,11.0)
+		return {"at":Vector3(.5,.1,1.0+u7*.12),"look":Vector3(.1,.42,3.0),"fov":76,"roll":-4.0,"fisheye":.7,"chroma":.004,"shake":.07}
+	if t<12.0:
 		# Push in on the leader's sunglasses while the glove is pulled tight.
-		var u6:=ease_io(seg(t,14.0,15.0))
+		var u8:=ease_io(seg(t,11.0,12.0))
 		var head:Vector3=suits[0].point("Head")-ORIGIN+Vector3(0,.1,0)
-		return {"at":Vector3(.75,1.25,1.5).lerp(head+Vector3(.16,-.06,-.82),u6),"look":head,"fov":lerpf(52,34,u6),"roll":lerpf(6,0,u6),"fisheye":lerpf(.3,.5,u6),"blur":u6*.018,"radial":u6*.5,"shake":.03}
-	if t<15.55:
-		# From the bench: ZIP's back, the open case, and the collectors framed in the door.
-		var u7:=ease_io(seg(t,15.0,15.55))
-		return {"at":Vector3(1.45,1.78,-7.5).lerp(Vector3(1.3,1.72,-7.0),u7),"look":Vector3(-.1,1.25,4.2),"fov":lerpf(58,33,u7),"roll":-3.0,"fisheye":.15,"blur":sin(u7*PI)*.04,"radial":sin(u7*PI)*.7}
+		return {"at":Vector3(.75,1.25,.4).lerp(head+Vector3(.16,-.06,-.82),u8),"look":head,"fov":lerpf(52,34,u8),"roll":lerpf(6,0,u8),"fisheye":lerpf(.3,.5,u8),"blur":u8*.018,"radial":u8*.5,"shake":.03}
+	if t<12.55:
+		# Back at the bench: the case, ZIP's back and the collectors in the door, closing in.
+		var u9:=ease_io(seg(t,12.0,12.55))
+		return {"at":Vector3(1.5,1.78,-7.5).lerp(Vector3(1.3,1.72,-7.0),u9),"look":Vector3(-.1,1.25,3.6),"fov":lerpf(56,34,u9),"roll":-3.0,"fisheye":.15,"blur":sin(u9*PI)*.04,"radial":sin(u9*PI)*.7}
 	if t<TITLE_AT:
-		# Inside the case looking up: the lid comes down on the lens.
-		return {"at":table+Vector3(.05,.215,-.08),"look":table+Vector3(.0,1.25,.62),"fov":104,"roll":3.0,"fisheye":.85,"chroma":.006,"shake":.02}
+		# Above the case as the lid comes down on the wordmark.
+		var look:Vector3=stage.case_root.global_position-ORIGIN+Vector3(-.1,.28,0)
+		return {"at":table+Vector3(1.05,1.02,-.28),"look":look,"fov":66,"roll":3.0,"fisheye":.5,"chroma":.006,"shake":.02}
 	# Title: behind the four on the ledge, city in ink beyond.
 	var title_progress:=seg(t,TITLE_AT,DURATION)
 	return {"at":Vector3(.9,27.3,-9.7+title_progress*.35),"look":Vector3(-.35,28.7+title_progress*.08,10),"fov":40,"roll":-1.5,"fisheye":.1,"ink":1.0,"vignette":.0,"shake":.1}
@@ -304,8 +317,8 @@ func _lens_at(t:float,cam:Dictionary,reduced:bool) -> void:
 	speed_side=0.0 if reduced else cam.get("side",0.0)
 	var flash:=0.0;var fade:=0.0;var invert:=0.0
 	if not reduced:
-		flash=maxf(maxf(0,1-absf(t-8.01)/.07)*.3,maxf(0,1-(t-TITLE_AT)/.26) if t>=TITLE_AT else 0.0)
-		if t>=9.75 and t<9.83:flash=maxf(flash,.5)
+		flash=maxf(maxf(0,1-absf(t-5.01)/.07)*.3,maxf(0,1-(t-TITLE_AT)/.26) if t>=TITLE_AT else 0.0)
+		if t>=MUSIC_CUT and t<MUSIC_CUT+.08:flash=maxf(flash,.5)
 		if t>=SLAM_AT-.02 and t<SLAM_AT+.04:invert=1.0
 	if t>=SLAM_AT and t<TITLE_AT:fade=1.0
 	if t<.25:fade=1.0-t/.25
@@ -345,10 +358,8 @@ func _cast_at(t:float) -> void:
 	var zip:Node3D=cast[0];var rivet:Node3D=cast[1];var hush:Node3D=cast[2];var loop:Node3D=cast[3]
 	var table:Vector3=Stage.TABLE
 	var title:=t>=TITLE_AT
-	var gathered:=t>=MUSIC_CUT and not title
 	for actor in cast:
 		actor.visible=true;actor.visual.set_neon_silhouette(title)
-	zip.visible=t>=6.0
 	if title:
 		# Backs to camera on the ledge, four distinct stances.
 		for i in 4:
@@ -367,161 +378,134 @@ func _cast_at(t:float) -> void:
 		loop.aim("RightArm","RightForeArm",Vector3.DOWN*.4+loop.right()*.9,1.0)
 		loop.aim("RightForeArm","RightHand",Vector3.UP*.8+loop.right()*.3,1.0)
 		for actor in cast:actor.finish(TITLE_FLOOR,false)
-	elif gathered:
-		# Around the bench. Frozen at the reveal; heads snap to the door when the car arrives.
-		var alert:=t>=15.0
-		var spots:=[[Vector3(table.x,0,table.z+1.02),180.0],[Vector3(table.x-1.72,0,table.z-.1),90.0],[Vector3(table.x+.25,0,table.z-1.18),0.0],[Vector3(table.x+1.72,0,table.z-.15),-90.0]]
-		for i in 4:
-			var actor:Node3D=cast[i]
-			actor.place(spots[i][0],spots[i][1])
-			actor.clip("Idle_Loop",.4+i*.5+(t-MUSIC_CUT)*.04)
-			_arms_down(actor)
-			if alert and i>0:
-				var away:Vector3=(Vector3(0,1.4,4)-spots[i][0]).normalized()
-				actor.twist("Spine1",Vector3.UP,clampf(actor.forward().signed_angle_to(away,Vector3.UP),-1.0,1.0)*.55)
-				actor.twist("Head",Vector3.UP,clampf(actor.forward().signed_angle_to(away,Vector3.UP),-1.0,1.0)*.45)
-			else:_lean(actor,.5 if i!=1 else .42)
-		if t>=15.0 and t<15.55:
-			# ZIP has turned to the door.
-			zip.place(Vector3(table.x-.05,0,table.z+1.05),0.0);zip.clip("Idle_Loop",.4);_arms_down(zip)
-		elif t>=15.55:
-			# ZIP's hand on the lid, driving it shut.
-			var grip:Vector3=stage.case_lid.to_global(Vector3(-.12,.14,-.62))
-			_lean(zip,.75)
-			zip.reach("Right",grip,grip+Vector3(-.6,.4,.5))
-		if not alert:rivet.reach("Right",w(table+Vector3(-.9,.06,-.1)),w(table+Vector3(-1.6,.6,-.8)))
-		for actor in cast:actor.finish(0.0)
 	else:
-		# Daily life: RIVET on the bike, LOOP on the speaker, HUSH on the sofa.
-		var notice:=ease_io(seg(t,6.3,6.8))
-		rivet.place(Vector3(-3.85,0,-3.82),4.0)
-		rivet.clip("Crouch_Idle_Loop",t)
-		rivet.ground(0.0)
-		var crank:=sin(t*9.0)*(1.0-notice)
-		var bolt:Vector3=w(Vector3(-3.72,.66+crank*.05,-3.18))
-		rivet.reach("Right",bolt+Vector3(.02,.08,-.2+crank*.04),bolt+Vector3(.9,-.3,-.6))
-		rivet.reach("Left",w(Vector3(-4.38,.95,-3.2)),w(Vector3(-5.2,.4,-3.9)))
-		rivet.twist("Head",Vector3.UP,notice*.5)
-		stage.wrench.global_position=rivet.point("RightHand")
-		stage.wrench.global_rotation=Vector3(deg_to_rad(-20+crank*22.0),deg_to_rad(10),0)
-		loop.place(Vector3(.72,0,-2.95),74.0)
-		loop.clip("Crouch_Idle_Loop",t+1.1)
-		loop.ground(0.0)
-		var fiddle:=sin(t*17.0)*.03*(1.0-notice)
-		loop.reach("Right",w(Vector3(1.22,.9+fiddle,-2.45)),w(Vector3(.6,.4,-1.6)))
-		loop.reach("Left",w(Vector3(1.2,.5,-3.0)),w(Vector3(.3,.1,-3.6)))
-		loop.twist("Head",Vector3.UP,-.35*seg(t,4.5,4.8)*(1.0-notice)-notice*.9)
-		hush.place(Vector3(4.42,0,-3.35),-90.0)
-		hush.clip("Idle_Loop",t)
-		for side in ["Left","Right"]:
-			var spread:Vector3=hush.right()*(.22 if side=="Right" else -.22)
-			hush.aim(side+"UpLeg",side+"Leg",hush.forward()+spread+Vector3.DOWN*.12,1.0)
-			hush.aim(side+"Leg",side+"Foot",Vector3.DOWN+hush.forward()*.35,1.0)
-		hush.aim("Spine","Spine1",Vector3.UP-hush.forward()*.3,1.0)
-		hush.seat(.66)
-		var nod:=sin(t*7.2)*.07
-		hush.twist("Head",hush.right(),nod+.08)
-		var sip:=ease_io(seg(t,5.05,5.3))*(1.0-seg(t,5.8,6.2))
-		var mouth:Vector3=hush.point("Head")+hush.forward()*.2+Vector3.DOWN*.02
-		var rest:Vector3=hush.point("Hips")+hush.forward()*.35+hush.right()*.2+Vector3.UP*.28
-		hush.reach("Right",rest.lerp(mouth+Vector3.DOWN*.1,.55+sip*.45),rest+hush.right()*.6+Vector3.DOWN*.4)
-		hush.aim("LeftArm","LeftForeArm",Vector3.DOWN*.7-hush.right()*.5+hush.forward()*.3,1.0)
-		hush.aim("LeftForeArm","LeftHand",hush.forward()-hush.right()*.2+Vector3.DOWN*.2,1.0)
-		stage.cup.global_position=hush.point("RightHand")+hush.forward()*.05+Vector3.UP*.04
-		rivet.finish(0.0);loop.finish(0.0);hush.finish(0.0,false)
-		if t>=6.0 and t<7.7:
-			# The walk in. One heavy landing right in front of the lens.
-			var travel:=seg(t,6.0,6.85)
-			zip.place(Vector3(.12,0,lerpf(.5,-1.75,travel)),180.0)
-			if travel<1.0:zip.clip("Walk_Loop",(t-6.0)*1.25+.2,3.2)
-			else:zip.clip("Idle_Loop",t)
-			zip.aim("LeftArm","LeftForeArm",Vector3.DOWN+zip.right()*-.15,.8)
-			zip.aim("RightArm","RightForeArm",Vector3.DOWN+zip.right()*.2,1.0)
-			zip.aim("RightForeArm","RightHand",Vector3.DOWN+zip.right()*.1,1.0)
+		hush.visible=false
+		rivet.visible=t<2.6
+		loop.visible=(t>=2.6 and t<4.5) or (t>=5.0 and t<MUSIC_CUT)
+		# ZIP: behind the bench (to 5.0), at the door (to the cut), then beside the open case.
+		if t<5.0:
+			zip.place(Vector3(table.x,0,table.z+1.0),180.0)
+			zip.clip("Idle_Loop",t*.8)
+			_arms_down(zip)
+			var dip:=ease_io(seg(t,1.0,1.6))*(1.0-seg(t,3.9,4.4))
+			_lean(zip,.35*dip)
+			zip.twist("Head",Vector3.UP,0.0)
+			if t>=4.4:
+				# Eyes up and to the door: the head swings aside on the cut-in.
+				zip.twist("Head",Vector3.UP,-.9*ease_io(seg(t,4.4,4.65)))
 			zip.finish(0.0)
-		elif t>=7.7:
-			zip.place(Vector3(table.x,0,table.z+1.02),180.0)
-			zip.clip("Idle_Loop",t)
-			var release:=seg(t,8.05,8.5)
-			_lean(zip,.45*(1.0-release))
-			var handle:Vector3=stage.case_root.to_global(Vector3(.1,.36,.3))
-			if release<1.0:zip.reach("Right",handle.lerp(zip.point("Hips")+zip.right()*.34+Vector3.DOWN*.25,release),handle+zip.right()*.7+Vector3.UP*.3)
-			zip.aim("LeftArm","LeftForeArm",Vector3.DOWN+zip.right()*-.15,.9)
+		elif t<MUSIC_CUT:
+			zip.place(Vector3(.55,0,-.1),0.0)
+			zip.clip("Idle_Loop",t*.8)
+			_arms_down(zip)
 			zip.finish(0.0)
+		else:
+			zip.place(Vector3(table.x+.9,0,-2.7) if t<12.0 else Vector3(table.x+.3,0,table.z+1.0),0.0)
+			zip.clip("Idle_Loop",t*.6)
+			_arms_down(zip)
+			if t<12.55:
+				# ZIP turns his head to the case on his own line.
+				zip.twist("Head",Vector3.UP,.5*ease_io(seg(t,8.0,8.5)))
+			else:
+				# Hand on the lid, driving it shut.
+				var grip:Vector3=stage.case_lid.to_global(Vector3(-.12,.14,-.62))
+				_lean(zip,.75)
+				zip.reach("Right",grip,grip+Vector3(-.6,.4,.5))
+			zip.finish(0.0)
+		# RIVET at the near end of the bench: gloves on the latches.
+		if rivet.visible:
+			rivet.place(Vector3(table.x+(2.0 if t<1.3 else 1.2),0,table.z-.62),-62.0)
+			rivet.clip("Idle_Loop",t*.7+.4)
+			_arms_down(rivet)
+			_lean(rivet,.5)
+			var latch_b:Vector3=w(table+Vector3(.45,.2,-.46))
+			var corner:Vector3=w(table+Vector3(.72,.24,-.4))
+			if t<1.0:
+				rivet.reach("Right",w(table+Vector3(1.0,.25,-.55)),w(table+Vector3(1.5,.6,-1.5)))
+				rivet.reach("Left",corner,w(table+Vector3(1.5,.3,-1.5)))
+			elif t<2.6:
+				var tug_b:=sin(seg(t,2.05,2.25)*PI)*.05
+				rivet.reach("Right",latch_b+Vector3(0,tug_b,-.04),latch_b+Vector3(.4,.5,-.9))
+				rivet.reach("Left",corner+Vector3(0,sin(seg(t,1.7,1.95)*PI)*.04,0),corner+Vector3(.4,.4,-.9))
+			rivet.finish(0.0)
+		# LOOP at the far end: a finger on the manifest.
+		if loop.visible:
+			if t<MUSIC_CUT and t>=5.0:
+				# Over ZIP's shoulder, bottom of frame: green hair and a shoulder.
+				loop.place(Vector3(-.6,0,-.4),0.0)
+				loop.clip("Idle_Loop",t*.7)
+				_arms_down(loop)
+			else:
+				loop.place(Vector3(table.x+.95,0,table.z+1.0),180.0)
+				loop.clip("Idle_Loop",t*.7+1.1)
+				_arms_down(loop)
+				_lean(loop,.55)
+				var rest:Vector3=w(table+Vector3(.4,.3,1.0))
+				var page:Vector3=stage.case_root.to_global(Vector3(.52,.22,.0))
+				var point:=ease_io(seg(t,2.9,3.3))*(1.0-ease_io(seg(t,3.55,3.8)))
+				var pull:=ease_io(seg(t,3.75,4.2))
+				var hand:Vector3=rest.lerp(page+Vector3(.05,.04,0),maxf(point,pull))
+				hand+=Vector3(0,0,.12*pull)
+				if t>=2.7:loop.reach("Left",hand,hand+Vector3(.5,.5,.5))
+			loop.finish(0.0)
 	# Collectors.
-	var arrived:=t>=12.95
+	var walk_from:=3.6;var walk_to:=6.0
 	for i in 3:
-		var suit:Node3D=suits[i];suit.visible=arrived
-		if not arrived:continue
+		var suit:Node3D=suits[i];suit.visible=t>=walk_from and t<TITLE_AT
+		if not suit.visible:continue
 		var mark:Vector3=SUIT_MARKS[i]
-		var step:=seg(t,12.95,14.0)
-		var from:=Vector3(mark.x,0,5.15)
-		suit.place(from.lerp(mark,step),180.0)
-		if step<1.0:suit.clip("Walk_Loop",(t-12.95)*1.05,1.6)
-		else:suit.clip("Idle_Loop",.3+(t-14.0)*.25)
+		var step:=seg(t,walk_from,walk_to)
+		var from:=Vector3(mark.x,0,mark.z+4.8)
+		var walking:=step<1.0
+		var advance:=.5*ease_io(seg(t,10.45,10.7))+.5*ease_io(seg(t,10.78,11.0))
+		if advance>0 and advance<1.0:walking=true
+		suit.place(from.lerp(mark,step)+SUIT_STEP*advance,180.0)
+		if walking:suit.clip("Walk_Loop",(t-walk_from)*1.05,1.6)
+		else:suit.clip("Idle_Loop",.3+t*.25)
 		_arms_down(suit)
-		if i==0 and t>=14.0 and t<TITLE_AT:
+		if i==0 and t>=5.9 and t<TITLE_AT:
 			# Pull the left glove tight across the chest.
-			var raise:=ease_io(seg(t,14.0,14.25))
+			var raise:=ease_io(seg(t,5.9,6.2))
 			var chest:Vector3=suit.point("Spine2") if suit.visual.motions.bone_index("Spine2")>=0 else suit.point("Hips")+Vector3.UP*.5
 			var wrist:Vector3=chest+suit.forward()*.34+Vector3.DOWN*.08+suit.right()*-.06
 			var arm:Vector3=suit.point("LeftArm")
 			suit.reach("Left",arm.lerp(wrist,raise)+Vector3.DOWN*(1.0-raise)*.5,wrist+suit.right()*-.7+Vector3.DOWN*.5)
-			var tug:=sin(seg(t,14.2,14.5)*PI)*.07
+			var tug:=sin(seg(t,11.2,11.5)*PI)*.07
 			suit.reach("Right",(suit.point("RightArm")+Vector3.DOWN*.5).lerp(wrist+suit.right()*(.1+tug)+Vector3.DOWN*.02,raise),wrist+suit.right()*.7+Vector3.DOWN*.5)
 		suit.finish(-.1)
 
 func _props_at(t:float) -> void:
 	var table:Vector3=Stage.TABLE
 	var case:Node3D=stage.case_root
-	if t<6.0 or t>=TITLE_AT:
-		case.visible=false
-	elif t<7.7:
-		# Carried on its side from ZIP's right hand.
-		case.visible=true
-		var hand:Vector3=cast[0].point("RightHand")
-		var case_basis:=Basis(Vector3(0,0,-1),Vector3(1,0,0),Vector3(0,-1,0))
-		var sway:=sin(t*7.0)*.04
-		case.global_transform=Transform3D(case_basis.rotated(Vector3(1,0,0),sway),hand+Vector3(-.15+.02,-.12,0)+Vector3(0,-.02,0))
-		stage.pose_case(0,0,0)
-	else:
-		case.visible=true
-		var fall:=seg(t,7.7,8.0)
-		var height:=(1.0-fall*fall)*.85
-		if t>=8.0:height=maxf(0.0,sin(seg(t,8.0,8.16)*PI))*.035
-		case.transform=Transform3D(Basis(Vector3.UP,deg_to_rad((1.0-fall)*9.0)).rotated(Vector3(1,0,0),(1.0-fall)*-.22),table+Vector3(0,height,0))
-		var latch:=0.0
-		if t>=9.15:latch=.5*seg(t,9.15,9.22)
-		if t>=9.45:latch=.5+.5*seg(t,9.45,9.52)
-		var open:=0.0
-		if t>=9.5:open=.22*ease_io(seg(t,9.5,MUSIC_CUT))
-		if t>=MUSIC_CUT:open=1.0
-		if t>=15.55:open=1.0-pow(seg(t,15.68,SLAM_AT),2.6)
-		var glow:=0.0
-		if t>=9.5 and t<MUSIC_CUT:glow=.6*seg(t,9.5,MUSIC_CUT)
-		elif t>=MUSIC_CUT and t<12.0:glow=lerpf(.35,.08,seg(t,MUSIC_CUT,10.6))
-		stage.pose_case(open,latch,glow)
-	stage.pose_table(seg(t,8.0,8.34) if t>=8.0 and t<8.34 else 0.0)
+	case.visible=t>=.72 and t<TITLE_AT
+	# The case slides in from the left and lands with a hop. On the cut to the overhead it turns on the bench so the open lid stands on the side, clear of ZIP.
+	var slide:=ease_io(seg(t,.72,1.3))
+	var hop:=maxf(0.0,sin(seg(t,1.3,1.46)*PI))*.03
+	var yaw:=0.0 if t<2.6 else -90.0
+	case.transform=Transform3D(Basis(Vector3.UP,deg_to_rad(yaw)),table+Vector3((1.0-slide)*1.7,hop,0))
+	var latch:=0.0
+	if t>=1.85:latch=.5*seg(t,1.85,1.95)
+	if t>=2.15:latch=.5+.5*seg(t,2.15,2.25)
+	var open:=0.0
+	if t>=2.4:open=ease_io(seg(t,2.4,2.62))
+	if t>=12.55:open=1.0-pow(seg(t,12.68,SLAM_AT),2.6)
+	var glow:=0.0
+	if t>=2.45 and t<MUSIC_CUT:glow=lerpf(.5,.1,seg(t,2.45,3.4))
+	elif t>=MUSIC_CUT and t<9.0:glow=lerpf(.3,.06,seg(t,MUSIC_CUT,8.0))
+	stage.pose_case(open,latch,glow)
+	stage.case_print.visible=t>=12.4
+	stage.pose_table(seg(t,1.3,1.62) if t>=1.3 and t<1.62 else 0.0)
 	# Fluorescent tubes stutter in the silence after the music is cut.
 	var level:=1.0
-	if t>=MUSIC_CUT and t<12.0 and not session.reduced_effects:
+	if t>=MUSIC_CUT and t<9.0 and not session.reduced_effects:
 		level=.82+.18*signf(sin(t*31.0)+sin(t*47.0)+.9)
-		if absf(t-10.05)<.05 or absf(t-11.2)<.04:level=.35
+		if absf(t-7.05)<.05 or absf(t-8.2)<.04:level=.35
 	stage.set_tube_flicker(level)
-	stage.speaker_cone.scale=Vector3.ONE*(1.0+(.12*absf(sin(t*25.0)) if t>=3.0 and t<6.0 else 0.0))
-	stage.wrench.visible=t<MUSIC_CUT;stage.cup.visible=t<MUSIC_CUT
-	# Car: brake in, dip on the stop, doors open then slam together.
-	var arrive:=seg(t,12.0,12.78)
-	var x:=60.0 if t<12.0 else lerpf(34.0,.2,1.0-pow(1.0-arrive,2.4))
-	var dip:=sin(seg(t,12.7,13.0)*PI) if t>=12.7 else 0.0
-	var doors:=0.0
-	if t>=12.88:doors=ease_io(seg(t,12.88,13.0))*(1.0-pow(seg(t,13.04,13.1),3.0))
-	stage.pose_car(x,doors,dip)
 	stage.ledge.visible=true
 
 func _puffs_at(t:float,reduced:bool) -> void:
 	# [time, centre, count, spread, life, size]; deterministic, capped at the pool.
-	var bursts:=[[6.55,Vector3(.1,.02,-1.6),7,.8,.7,.22],[8.0,Stage.TABLE+Vector3(0,.02,0),12,1.3,.7,.2],[12.35,Vector3(7.5,.05,6.4),6,1.6,.9,.5],[12.7,Vector3(1.8,.05,6.4),8,1.8,1.0,.55],[13.55,Vector3(.1,.02,4.4),5,1.4,.5,.2],[13.85,Vector3(.1,.02,4.15),5,1.4,.5,.2]]
+	var bursts:=[[.95,Stage.TABLE+Vector3(.7,.0,-.2),5,.7,.45,.1],[1.3,Stage.TABLE+Vector3(0,.0,-.2),7,.9,.5,.1],[10.55,Vector3(.1,.02,3.2),5,1.4,.5,.2],[10.85,Vector3(.1,.02,2.95),5,1.4,.5,.2]]
 	var used:=0
 	for burst in bursts:
 		var life:float=(t-burst[0])/burst[4]
@@ -545,7 +529,7 @@ func project(local:Vector3) -> Vector2:
 
 func draw(canvas:Control) -> void:
 	if not running:return
-	var t:=age;var reduced:bool=session.reduced_effects
+	var t:=authored(age);var reduced:bool=session.reduced_effects
 	var ink:=Color("0b0910");var bold:Font=session.hud.bold;var font:Font=session.hud.font
 	if not reduced:
 		_draw_radial(canvas,speed_radial,t)
@@ -614,33 +598,22 @@ func _burst(canvas:Control,at:Vector2,radius:float,rays:int,color:Color,spin:=0.
 
 func _draw_accents(canvas:Control,t:float) -> void:
 	# Comic accents pinned to the action, each a few frames long.
-	if t>=3.0 and t<4.1:
-		var spark:float=fposmod(t*4.5,1.0)
-		if spark<.3:_burst(canvas,project(Vector3(-3.72,.7,-3.2)),30.0+spark*90.0,8,Color("fff3a8",1.0-spark*2.5),t*3.0)
-	if t>=4.1 and t<5.0:
-		var at:Vector2=project(Vector3(1.6,.6,-2.3))
-		if at.x>-500:
-			for i in 3:
-				var y:float=at.y-30.0+i*26.0
-				var points:=PackedVector2Array()
-				for k in 7:points.append(Vector2(at.x+40.0+k*22.0,y+(10.0 if (k+int(t*20.0)+i)%2==0 else -10.0)))
-				canvas.draw_polyline(points,Color("27e6ee"),5.0)
-	for hit in [[6.55,Vector3(.12,.02,-1.6)],[8.0,Stage.TABLE+Vector3(0,.1,0)],[13.1,Vector3(.2,.9,5.4)]]:
+	for hit in [[1.3,Stage.TABLE+Vector3(0,.1,0)],[5.0,Vector3(.1,1.0,4.3)]]:
 		var dt:float=t-hit[0]
 		if dt<0 or dt>.34:continue
 		var at:Vector2=project(hit[1])
 		_burst(canvas,at,90.0+dt*520.0,12,Color("fff6fb",maxf(0,1.0-dt*3.2)),hit[0])
-	for click in [9.15,9.45]:
+	for click in [1.95,2.25]:
 		var dt:float=t-click
 		if dt>=0 and dt<.2:
-			var side:=-.45 if click<9.3 else .45
+			var side:=-.45 if click<2.1 else .45
 			_burst(canvas,project(Stage.TABLE+Vector3(side,.16,-.42)),26.0+dt*200.0,6,Color("fff6fb",1.0-dt*5.0),click)
-	for stomp in [13.55,13.85]:
+	for stomp in [10.55,10.85]:
 		var dt:float=t-stomp
-		if dt>=0 and dt<.18:_burst(canvas,project(Vector3(.1,.02,4.2)),60.0+dt*500.0,10,Color("fff6fb",1.0-dt*5.5),stomp)
-	if t>=14.55 and t<14.95 and suits.size()>0:
+		if dt>=0 and dt<.18:_burst(canvas,project(Vector3(.1,.02,3.1)),60.0+dt*500.0,10,Color("fff6fb",1.0-dt*5.5),stomp)
+	if t>=11.55 and t<11.95 and suits.size()>0:
 		# Glint across the leader's sunglasses.
-		var k:=sin(seg(t,14.55,14.95)*PI)
+		var k:=sin(seg(t,11.55,11.95)*PI)
 		var at:Vector2=project(suits[0].point("Head")-ORIGIN+Vector3(.07,.04,-.12))
 		_burst(canvas,at,70.0*k,4,Color("ffffff",k),PI*.25)
 		_burst(canvas,at,34.0*k,4,Color("27e6ee",k),0.0)
