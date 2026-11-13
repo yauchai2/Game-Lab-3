@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[字體設定5／8／100](docs/evidence/pixel-preset-5-8/README.md)：像素強度5、邊緣硬度8、文字大小100%，以固定設定檔重建，方便按數字微調。
+
 最新：[更強像素及清楚階梯鋸齒](docs/evidence/crisp-pixel-type/README.md)。20px字圖／二值硬邊／較開標題字距；1280×720保持。
 
 最新：[文字像素感調強一級](docs/evidence/medium-pixel-type/README.md)。中等24px字圖／三階邊緣，保留可讀性及720p；32項原生介面／城市檢查通過。

@@ -145,3 +145,5 @@
 - 2026-11-13 最新使用者希望像素風強返一點：RadioSubtle兩字圖現24px／三階alpha（0,128,255），覆蓋上一版28／32px四階，保留字母間隙／720p／nearest及繁中fallback。32項原生Ink／城市檢查見docs/evidence/medium-pixel-type，舊clear-type證據保持。同branch／PR #12，不合main／Web。
 
 - 2026-11-13 最新要求「再加強像素感，鋸齒要清晰」：字圖20px，alpha只0／255、128閾值；display加1來源像素字距。覆蓋24px／三階版，不恢復原14／16px及96過粗閾值。720p／nearest及無AA場景保持，繁中fallback未改。證據docs/evidence/crisp-pixel-type；同branch／PR #12，不合main／Web。
+
+- 2026-11-13 最新已接受字體像素強度5／邊緣硬度8／文字大小100%。pixel-type-preset.json為字圖生成來源，5→24px、8→80%二值＋20%coverage；保持display字距／720p／原字級，不恢復較粗20px完全硬邊。這是相對美術尺度，非遊戲內滑桿，其他文字百分比需先做UI重排。證據docs/evidence/pixel-preset-5-8；同branch／PR #12，不合main／Web。

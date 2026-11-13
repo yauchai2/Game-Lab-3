@@ -15,7 +15,7 @@ const EDGE := Color("505660")
 const MAGENTA := Color("ff008c")
 const LIME := Color("bdff00")
 const LOGO = preload("res://assets/ui/ink/logo.tres")
-## Crisp 20 px binary glyphs use hard pixel steps and preserve letter gaps.
+## Pixel preset 5 / hardness 8 / text size 100%; see assets/fonts/pixel-type-preset.json.
 const BODY = preload("res://assets/fonts/RadioBody.tres")
 const DISPLAY = preload("res://assets/fonts/RadioDisplay.tres")
 static func plate(color: Color, border := Color.TRANSPARENT, width := 0) -> StyleBoxFlat:
