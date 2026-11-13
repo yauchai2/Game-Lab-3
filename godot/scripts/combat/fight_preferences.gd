@@ -1,6 +1,6 @@
 extends RefCounted
 ## Small, validated local preferences; no player data or telemetry.
-const DEFAULTS := {"muted":false,"retro_pixels":true,"music_muted":false,"reduced_effects":false,"scene_edges":false,"difficulty":1,"partner_mode":0,"language":"en","training_details":false,"music_level":0.75,"effects_level":0.85,"player_character":0,"rival_character":1,"p1_device":0,"p2_device":0,"time_of_day":0,"secret_mono":false}
+const DEFAULTS := {"muted":false,"retro_pixels":true,"music_muted":false,"reduced_effects":false,"scene_edges":false,"difficulty":1,"partner_mode":0,"language":"en","training_details":false,"music_level":0.75,"effects_level":0.85,"player_character":0,"rival_character":1,"p1_device":0,"p2_device":0,"time_of_day":0,"secret_mono":false,"rumble":true}
 func read_options(path: String) -> Dictionary:
     var values := DEFAULTS.duplicate()
     if path.is_empty(): return values

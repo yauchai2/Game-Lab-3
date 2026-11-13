@@ -539,6 +539,10 @@ func _settings_page() -> void:
     _toggle("reduced",session.reduced_effects,func(value:bool):
         session.reduced_effects=value
         session.save_options())
+    _toggle("rumble",session.controls.rumble_enabled,func(value:bool):
+        session.controls.rumble_enabled=value
+        if not value:session.controls.stop_rumble()
+        session.save_options())
     _toggle("scene_edges",session.ink_pass.visible,func(value:bool):
         session.ink_pass.visible=value
         session.save_options())
