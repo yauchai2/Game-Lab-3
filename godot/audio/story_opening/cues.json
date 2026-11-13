@@ -39,7 +39,7 @@
     "drop_again_on_collectors": 8.0,
     "cut": 9.75,
     "second_build": [
-      12.0,
+      10.3,
       16.1
     ],
     "second_drop": 16.1,
@@ -111,8 +111,8 @@
       "heartbeat"
     ],
     [
-      12.0,
-      "second build fades up"
+      10.3,
+      "second build fades up (no dead air after the tape stop)"
     ],
     [
       13.55,
@@ -161,5 +161,5 @@
     "godot/audio/open Kenney CC0 impacts",
     "references/story-opening-audio BigSoundBank CC0 excerpts (provenance.json)"
   ],
-  "sha256": "139616cca9c249a84650618340ca298b49b39750282aea266da71be837a936ab"
+  "sha256": "c46f95d16af95b7f05c6d3b6174c77c7e9bf812c53b7537139ae410a91709932"
 }

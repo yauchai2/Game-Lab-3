@@ -1,0 +1,75 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+INTEGRATION Five main actions, no public AI demo true
+INTEGRATION Settings expose controls, labs and opening replay true
+INTEGRATION Exactly two audio level controls true
+INTEGRATION No duplicate music switch or intro replay true
+INTEGRATION Music slider can restore a legacy muted music preference true
+INTEGRATION Legacy drills collected under LABS true
+INTEGRATION One lesson entry and no duplicated per-hero pages true
+INTEGRATION Roster selects fighters without duplicate mode launches true
+INTEGRATION Auto hints visible on opening round true
+INTEGRATION Auto hints expire after six seconds true
+INTEGRATION Pause freezes hint timer true
+INTEGRATION Always hints override timer true
+INTEGRATION Off preference also hides ordinary training legend true
+INTEGRATION Auto hints stay hidden in later rounds true
+INTEGRATION Finite planted pose 0 / -1 true
+INTEGRATION Foot solver preserves simulation 0 / -1 true
+INTEGRATION Bounded foot target error 0 / -1 true
+INTEGRATION Ground attack contact and recovery stay finite 0 / -1 true
+INTEGRATION Ground motion support error stays bounded 0 / -1 true
+INTEGRATION Airborne clears plant anchors 0 / -1 true
+INTEGRATION Showcase shares hero motion profile 0 / -1 true
+INTEGRATION Finite planted pose 0 / 1 true
+INTEGRATION Foot solver preserves simulation 0 / 1 true
+INTEGRATION Bounded foot target error 0 / 1 true
+INTEGRATION Ground attack contact and recovery stay finite 0 / 1 true
+INTEGRATION Ground motion support error stays bounded 0 / 1 true
+INTEGRATION Airborne clears plant anchors 0 / 1 true
+INTEGRATION Showcase shares hero motion profile 0 / 1 true
+INTEGRATION Finite planted pose 1 / -1 true
+INTEGRATION Foot solver preserves simulation 1 / -1 true
+INTEGRATION Bounded foot target error 1 / -1 true
+INTEGRATION Ground attack contact and recovery stay finite 1 / -1 true
+INTEGRATION Ground motion support error stays bounded 1 / -1 true
+INTEGRATION Airborne clears plant anchors 1 / -1 true
+INTEGRATION Showcase shares hero motion profile 1 / -1 true
+INTEGRATION Finite planted pose 1 / 1 true
+INTEGRATION Foot solver preserves simulation 1 / 1 true
+INTEGRATION Bounded foot target error 1 / 1 true
+INTEGRATION Ground attack contact and recovery stay finite 1 / 1 true
+INTEGRATION Ground motion support error stays bounded 1 / 1 true
+INTEGRATION Airborne clears plant anchors 1 / 1 true
+INTEGRATION Showcase shares hero motion profile 1 / 1 true
+INTEGRATION Finite planted pose 2 / -1 true
+INTEGRATION Foot solver preserves simulation 2 / -1 true
+INTEGRATION Bounded foot target error 2 / -1 true
+INTEGRATION Ground attack contact and recovery stay finite 2 / -1 true
+INTEGRATION Ground motion support error stays bounded 2 / -1 true
+INTEGRATION Airborne clears plant anchors 2 / -1 true
+INTEGRATION Showcase shares hero motion profile 2 / -1 true
+INTEGRATION Finite planted pose 2 / 1 true
+INTEGRATION Foot solver preserves simulation 2 / 1 true
+INTEGRATION Bounded foot target error 2 / 1 true
+INTEGRATION Ground attack contact and recovery stay finite 2 / 1 true
+INTEGRATION Ground motion support error stays bounded 2 / 1 true
+INTEGRATION Airborne clears plant anchors 2 / 1 true
+INTEGRATION Showcase shares hero motion profile 2 / 1 true
+INTEGRATION Finite planted pose 3 / -1 true
+INTEGRATION Foot solver preserves simulation 3 / -1 true
+INTEGRATION Bounded foot target error 3 / -1 true
+INTEGRATION Ground attack contact and recovery stay finite 3 / -1 true
+INTEGRATION Ground motion support error stays bounded 3 / -1 true
+INTEGRATION Airborne clears plant anchors 3 / -1 true
+INTEGRATION Showcase shares hero motion profile 3 / -1 true
+INTEGRATION Finite planted pose 3 / 1 true
+INTEGRATION Foot solver preserves simulation 3 / 1 true
+INTEGRATION Bounded foot target error 3 / 1 true
+INTEGRATION Ground attack contact and recovery stay finite 3 / 1 true
+INTEGRATION Ground motion support error stays bounded 3 / 1 true
+INTEGRATION Airborne clears plant anchors 3 / 1 true
+INTEGRATION Showcase shares hero motion profile 3 / 1 true

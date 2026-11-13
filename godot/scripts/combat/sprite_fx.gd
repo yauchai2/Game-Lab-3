@@ -45,8 +45,7 @@ func hit_spark(canvas: Control, at: Vector2, phase: float, tint: Color, heading:
     var big: bool = size >= BIG_AT
     var cell: float = BIG_CELL if big else CELL
     var frame: int = FIRST_FRAME + clampi(floori(clampf(phase, 0.0, 0.9999) * float(LAST_FRAME - FIRST_FRAME + 1)), 0, LAST_FRAME - FIRST_FRAME)
-    @warning_ignore("integer_division")
-    var src := Rect2(Vector2(frame % 4, frame / 4) * cell, Vector2(cell, cell))
+    var src := Rect2(Vector2(frame % 4, floori(float(frame) / 4.0)) * cell, Vector2(cell, cell))
     var edge := Vector2(cell, cell) * PX
     var flip: bool = cos(heading) < 0.0
     _quad(canvas, big_ink if big else ink_sheet, src, at, edge, flip, false, INK)
@@ -59,8 +58,7 @@ const SLASH_H := 49.0
 ## `down` flips it vertically for downward swings.
 func slash(canvas: Control, at: Vector2, phase: float, tint: Color, facing: float, down: bool) -> void:
     var frame: int = clampi(floori(clampf(phase, 0.0, 0.9999) * 9.0), 0, 8)
-    @warning_ignore("integer_division")
-    var src := Rect2(Vector2(frame % 3, frame / 3) * Vector2(SLASH_W, SLASH_H), Vector2(SLASH_W, SLASH_H))
+    var src := Rect2(Vector2(frame % 3, floori(float(frame) / 3.0)) * Vector2(SLASH_W, SLASH_H), Vector2(SLASH_W, SLASH_H))
     var size := Vector2(SLASH_W, SLASH_H) * PX
     var center: Vector2 = at + Vector2(facing * SLASH_W * PX * 0.18, 0)
     var mirror: bool = facing < 0.0
@@ -72,8 +70,7 @@ var puff_sheet: Texture2D = load("res://assets/vfx/puffs.png")
 ## One soft dust puff (CC0 Kenney smoke pack) from the 3x2 atlas; `index` picks the silhouette.
 func puff(canvas: Control, at: Vector2, index: int, _size: Vector2, _roll: float, color: Color) -> void:
     # Always whole texels at PX screen px each, no rotation; the caller makes it vanish instead of scaling.
-    @warning_ignore("integer_division")
-    _quad(canvas, puff_sheet, Rect2(Vector2(index % 3, (index / 3) % 2) * 24.0, Vector2(24, 24)), at, Vector2(24, 24) * PX, index % 2 == 1, false, color)
+    _quad(canvas, puff_sheet, Rect2(Vector2(index % 3, floori(float(index) / 3.0) % 2) * 24.0, Vector2(24, 24)), at, Vector2(24, 24) * PX, index % 2 == 1, false, color)
 
 ## Ground shock: puffs rolling outward along the floor ellipse, with a dust sheet fading behind them.
 func ground_shock(canvas: Control, at: Vector2, time: float, color: Color, count: int, reach: float) -> void:

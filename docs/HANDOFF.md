@@ -1,3 +1,9 @@
+## 2026-11-13：main全來源整合與程式收尾（最新）
+
+見[整合與剩餘限制](REMAINING_WORK_INTEGRATION.zh-TW.md)。以main3915c2d整合story-waves352c524、four-fighter2b413bc、opening-music-flow、完整hub圖像頁與rumble。UI P1–P3／5主選項、AUTO提示／單一模式入口、LOADOUT、音訊設定、共用tokens與取景；四角有界轉髖／平地兩骨IK、選角與勝出／登場共用基礎profile。showcase共用明確opt-in，裝備導演不跟隨新中性姿態，避免露頭。
+
+851項最終檢查／19 strict通過，1,800tick呈現與純規則SHA一致。原模型／存檔／音樂保留，Web不變。仍未完成：免費Mixamo攻守原FBX取得與真配對柔道投技、目標電腦／真人／真手柄驗收；既有grab不能冒稱完整摔投。歷史分支文件全本保存在integration-history，以下舊未完清單以此最新段落為準。
+
 ## 2026-11-12：按原圖重做據點＋15秒動態（覆蓋粗模）
 
 使用者回報上一版差距大，要求照指定圖、移除無關物件，並給15.083秒動畫。正式入口改用reference_workshop.gd：固定鏡頭投影空場貼圖／3D深度片與可走地面、既有四英雄／Dealer骨架、活動橙色臂、掃燈／光斑／煙／電光／閘門開口與門內剪影；Loop移向機器後回位。移除接線大機／戰利品牆／站位框，天賦綁LOOP區，Tab展開HUD。這是**2.5D／3D混合固定視角方案，不是全角度實體建築**；人物外形／姿態仍有差異，不稱逐像素或逐來源幀完美。詳[NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md](NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。
@@ -737,3 +743,13 @@ SKILLS／RADIO（故事）／DEPART 三頁與頂部資源列由文字清單改�
 ## 故事連續打波與完整劇情（2026-11-13）
 
 見 [STORY_FLOW.zh-TW.md](STORY_FLOW.zh-TW.md)。真實遊玩時清場進「繼續面板」（Enter 預設能量／路線直接下一場，Esc 回城），合約可無限接龍；新增序章、六章開收尾卡、18句電台、Boss登場、四結局＋真結局。分支 claude/project-thread-ggypi3。未動 city_hub.gd 與存檔 schema。
+
+
+## 2026-11-13 全分支整合來源
+
+- 完整來源紀錄：docs/integration-history/story-waves-m1/docs/HANDOFF.md
+- 完整來源紀錄：docs/integration-history/four-fighter-motion-plan/docs/HANDOFF.md
+
+## 2026-11-13：只用免費素材，Mixamo過肩摔配對優先
+
+使用者最新要求免費資源並追問Mixamo；優先核實Shoulder Throw, Aggressor／Victim，不再按付費候選採購。詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)最新節。只有目錄名稱線索與Adobe免費商用FAQ；官方FBX／配對時序／完整翻摔仍未驗。瀏覽器啟動兩次失敗，無官方會話；沒有下載第三方鏡像、購買或runtime修改。若提供官方同角色／FPS且保留root／完整時長的兩個FBX，可先做同步量測與配對接入。SFU禁商用未採用，Tuffles未核實成對且下載403未取得。完整柔道摔投仍未完成。

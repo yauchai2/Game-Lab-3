@@ -1,0 +1,280 @@
+{
+  "checks": [
+    {
+      "name": "fresh save starts with free battle locked",
+      "passed": true
+    },
+    {
+      "name": "main menu lists story first then locked versus",
+      "passed": true
+    },
+    {
+      "name": "story has the default focus",
+      "passed": true
+    },
+    {
+      "name": "locked versus button does not open a mode",
+      "passed": true
+    },
+    {
+      "name": "free battle entry points refuse while locked",
+      "passed": true
+    },
+    {
+      "name": "Enter without focus opens the current Story city",
+      "passed": true
+    },
+    {
+      "name": "fighters page confirms selection without a duplicate mode",
+      "passed": true
+    },
+    {
+      "name": "fighters confirmation returns to main",
+      "passed": true
+    },
+    {
+      "name": "run reaches the third stop",
+      "passed": true
+    },
+    {
+      "name": "losing the final stop does not unlock",
+      "passed": true
+    },
+    {
+      "name": "stop 1 is live play",
+      "passed": true
+    },
+    {
+      "name": "winning stop 1 alone keeps the lock",
+      "passed": true
+    },
+    {
+      "name": "stop 2 is live play",
+      "passed": true
+    },
+    {
+      "name": "winning stop 2 alone keeps the lock",
+      "passed": true
+    },
+    {
+      "name": "stop 3 is live play",
+      "passed": true
+    },
+    {
+      "name": "winning the third stop unlocks free battle",
+      "passed": true
+    },
+    {
+      "name": "result screen announces the unlock",
+      "passed": true
+    },
+    {
+      "name": "unlock is written to the save file",
+      "passed": true
+    },
+    {
+      "name": "a new session reads the unlock and keeps XP",
+      "passed": true
+    },
+    {
+      "name": "restarted game is unlocked",
+      "passed": true
+    },
+    {
+      "name": "versus opens the free battle page",
+      "passed": true
+    },
+    {
+      "name": "free battle page offers CPU and local 2P",
+      "passed": true
+    },
+    {
+      "name": "local versus is a normal match with no CPU",
+      "passed": true
+    },
+    {
+      "name": "no gamepad splits the keyboard",
+      "passed": true
+    },
+    {
+      "name": "F attacks for P1 only",
+      "passed": true
+    },
+    {
+      "name": "K attacks for P2 only",
+      "passed": true
+    },
+    {
+      "name": "solo J is not a versus key",
+      "passed": true
+    },
+    {
+      "name": "both players walk at the same time",
+      "passed": true
+    },
+    {
+      "name": "left Shift guards P1 only",
+      "passed": true
+    },
+    {
+      "name": "right Shift guards P2 only",
+      "passed": true
+    },
+    {
+      "name": "each player has an own jump key",
+      "passed": true
+    },
+    {
+      "name": "numpad is an alternate P2 attack",
+      "passed": true
+    },
+    {
+      "name": "P2 skill key is not the scene-edge shortcut",
+      "passed": true
+    },
+    {
+      "name": "result names the winning player",
+      "passed": true
+    },
+    {
+      "name": "two-human matches skip the one-sided ability draw",
+      "passed": true
+    },
+    {
+      "name": "next round keeps both humans",
+      "passed": true
+    },
+    {
+      "name": "restart keeps local versus",
+      "passed": true
+    },
+    {
+      "name": "gamepad A skips the round intro",
+      "passed": true
+    },
+    {
+      "name": "two gamepads take both players",
+      "passed": true
+    },
+    {
+      "name": "gamepad 1 X attacks for P1 only",
+      "passed": true
+    },
+    {
+      "name": "gamepad 2 X attacks for P2 only",
+      "passed": true
+    },
+    {
+      "name": "stick and d-pad both move",
+      "passed": true
+    },
+    {
+      "name": "stick inside the dead zone stops",
+      "passed": true
+    },
+    {
+      "name": "trigger guards for its own player",
+      "passed": true
+    },
+    {
+      "name": "A jumps",
+      "passed": true
+    },
+    {
+      "name": "keyboard halves are off when both players hold gamepads",
+      "passed": true
+    },
+    {
+      "name": "Start pauses",
+      "passed": true
+    },
+    {
+      "name": "Start resumes",
+      "passed": true
+    },
+    {
+      "name": "unplugging an active gamepad pauses",
+      "passed": true
+    },
+    {
+      "name": "the unplugged player falls back to the keyboard",
+      "passed": true
+    },
+    {
+      "name": "fallback keyboard plays P2 at once",
+      "passed": true
+    },
+    {
+      "name": "replugging restores the gamepad without a restart",
+      "passed": true
+    },
+    {
+      "name": "replugged gamepad attacks again",
+      "passed": true
+    },
+    {
+      "name": "one gamepad goes to P2 and P1 keeps the full keyboard",
+      "passed": true
+    },
+    {
+      "name": "mixed: keyboard J is P1",
+      "passed": true
+    },
+    {
+      "name": "mixed: gamepad X is P2",
+      "passed": true
+    },
+    {
+      "name": "P1 can claim the only gamepad",
+      "passed": true
+    },
+    {
+      "name": "a missing second gamepad falls back with a warning",
+      "passed": true
+    },
+    {
+      "name": "device choices are saved",
+      "passed": true
+    },
+    {
+      "name": "story is single player against the CPU",
+      "passed": true
+    },
+    {
+      "name": "a gamepad plays P1 in story",
+      "passed": true
+    },
+    {
+      "name": "the keyboard still plays P1 beside the gamepad",
+      "passed": true
+    },
+    {
+      "name": "stick moves P1 and never P2 in story",
+      "passed": true
+    },
+    {
+      "name": "d-pad moves the menu focus",
+      "passed": true
+    },
+    {
+      "name": "A confirms a menu entry",
+      "passed": true
+    },
+    {
+      "name": "B goes back",
+      "passed": true
+    },
+    {
+      "name": "A cycles a device choice",
+      "passed": true
+    },
+    {
+      "name": "relock clears the saved flag only",
+      "passed": true
+    }
+  ],
+  "engine": "4.6.3-stable (official)",
+  "failed": 0,
+  "passed": 68,
+  "scope": "Linux Compatibility rendering under Xvfb; injected InputEvents and an injected gamepad list, Dummy audio. Not a real controller, keyboard-ghosting, human feel, Mac or GPU validation."
+}

@@ -4,6 +4,7 @@ const Roster = preload("res://scripts/combat/fighter_roster.gd")
 const Toon = preload("res://shaders/fighter_toon.gdshader")
 const Outline = preload("res://shaders/fighter_outline.gdshader")
 static var retired_materials:Array[ShaderMaterial]=[]
+var baton_tip:Node3D
 var core_module:Node3D
 var model: Node3D
 var skeleton: Skeleton3D
@@ -19,10 +20,12 @@ var elapsed := 0.0
 var death_ground_offset:=0.0
 var death_ground_cached:=false
 var death_surfaces:Array=[]
+var foot_contact:=preload("res://scripts/combat/last_service/foot_contact.gd").new()
 var motions := preload("res://scripts/combat/combat_motions.gd").new()
 
 func setup(color: Color, selection := 0, model_path_override:="") -> void:
     if core_module!=null:core_module.queue_free();core_module=null
+    foot_contact=preload("res://scripts/combat/last_service/foot_contact.gd").new()
     team = color
     character_index=clampi(selection,0,Roster.BLACK_SUIT_INDEX)
     var entry:Dictionary=Roster.entry(character_index)
@@ -37,6 +40,7 @@ func setup(color: Color, selection := 0, model_path_override:="") -> void:
         remove_child(model)
         model.queue_free()
     skeleton=null
+    baton_tip=null
     fx_bones.clear()
     fx_flash_age=1.0
     materials.clear()
@@ -98,9 +102,10 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
     position = Vector3(f.x, f.y, 3.0)
     # Imported +Z forward maps to gameplay +X at +90 degrees.
     rotation.y = PI * 0.5 if f.face > 0 else -PI * 0.5
-    var shake := 0.0 if reduced or not stopped else 0.025
+    var profile_owned:bool=preload("res://scripts/combat/last_service/street_motion.gd").owns(f)
+    var shake := 0.0 if reduced or not stopped or profile_owned else 0.025
     var lunge := 0.0
-    if f.state=="attack":
+    if f.state=="attack" and not profile_owned:
         var move: Dictionary = f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
         var amount := clampf(float(f.frame)/move.startup,0,1)
         if f.frame>move.startup+move.active:
@@ -114,7 +119,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         model.position.z += {"press":.12,"turn":-.06,"slip":-.18}.get(exchange_choice,0.0)
     # Authored visual deformation, kept separate from gameplay transforms.
     var stretch:=Vector3.ONE
-    if not reduced:
+    if not reduced and not profile_owned:
         if stopped:stretch=Vector3(1.06,.94,1.06)
         elif f.state=="dash":stretch=Vector3(.91,.92,1.20)
         elif f.state=="attack" and f.move in ["heavy","special","overdrive","finisher"]:
@@ -127,9 +132,9 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         var attacking: bool=f.get("rally_owner",false)
         model.rotation.x=(-.12-amount*.12 if attacking else .12) if rally_phase=="compress" else 0.0
         if rally_phase=="compress" and not reduced:stretch=Vector3(1.05,.93,1.08)
-    if f.get("air_enabled",false):stretch*=motions.air_poses.stretch(f,reduced)
+    if f.get("air_enabled",false) and not profile_owned:stretch*=motions.air_poses.stretch(f,reduced)
     model.rotation.y=0.0
-    if f.get("air_enabled",false) and not reduced and f.state=="idle" and f.air.phase=="rise" and f.air.air_ticks<=8:
+    if f.get("air_enabled",false) and not profile_owned and not reduced and f.state=="idle" and f.air.phase=="rise" and f.air.air_ticks<=8:
         model.rotation.y=TAU*float(f.air.air_ticks)/8.0
     if f.get("ko_theatre",-1.0)>=0:
         var pose_time:float=f.ko_theatre
@@ -157,7 +162,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         motions.present(f,delta,stopped)
         _present_pistol(f)
         if neon_enabled and f.health>0:preload("res://scripts/combat/neon/neon_signature_motion.gd").apply(motions,f)
-        if f.health>0 and f.get("rush_visual",false) and f.state=="attack" and f.move!="gun":
+        if not profile_owned and f.health>0 and f.get("rush_visual",false) and f.state=="attack" and f.move!="gun":
             var move: Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
             if f.frame>=move.startup-1 and f.frame<move.startup+move.active:
                 var limbs:Array=["LeftHand","RightHand"] if f.move in ["meteor","overdrive"] else ["RightFoot" if f.move in ["air_kick","air_counter"] else ("LeftHand" if f.move in ["jab","air_jab"] else "RightHand")]
@@ -169,7 +174,9 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
                         skeleton.set_bone_pose_scale(index,Vector3.ONE*2.1)
                         oversized_bones.append(index)
                 model.scale*=Vector3(1.05,.94,1.20)
-        if f.health>0:death_ground_cached=false
+        if f.health>0:
+            death_ground_cached=false
+            if character_index<4:foot_contact.apply(self,f,stopped)
         elif f.y<=.01 and f.get("ko_theatre",-1.0)<0:
             # A grounded corpse is no longer a spinning/airborne hit pose.
             model.rotation=Vector3.ZERO
@@ -243,7 +250,12 @@ func set_neon_silhouette(enabled:bool) -> void:
 func _add_signal_baton() -> void:
     var hand:int=motions.bone_index("RightHand")
     if hand<0:return
+    var grip_offset:=Vector3.ZERO
+    var knuckle:int=motions.bone_index("RightHandMiddle1")
+    if knuckle>=0:
+        grip_offset=(skeleton.get_bone_global_rest(hand).affine_inverse()*skeleton.get_bone_global_rest(knuckle).origin)*.55
     var mount:=BoneAttachment3D.new();mount.name="SignalBaton";mount.bone_name=skeleton.get_bone_name(hand);skeleton.add_child(mount)
+    baton_tip=Node3D.new();baton_tip.name="SignalBatonTip";baton_tip.position=grip_offset+Vector3(0,.145,0);mount.add_child(baton_tip)
     for spec in [[Vector3.ZERO,Vector3(.035,.25,.035),Color("10151a")],[Vector3(0,.125,0),Vector3(.05,.04,.05),Color("b8ff00")]]:
         var box:=BoxMesh.new();box.size=spec[1]
         var mat:=ShaderMaterial.new();mat.shader=preload("res://shaders/neon/neon_actor.gdshader") if neon_enabled else Toon
@@ -251,7 +263,7 @@ func _add_signal_baton() -> void:
         if neon_enabled:mat.set_shader_parameter("neon_accent",Color("b8ff00"))
         var border:=ShaderMaterial.new();border.shader=Outline;mat.next_pass=border
         box.material=mat
-        var node:=MeshInstance3D.new();node.name="SignalBatonMesh";node.mesh=box;node.position=spec[0];mount.add_child(node)
+        var node:=MeshInstance3D.new();node.name="SignalBatonMesh";node.mesh=box;node.position=spec[0]+grip_offset;mount.add_child(node)
         materials.append(mat)
 
 ## Chunky low-poly pistol (flat unshaded blocks + ink outline pass). Only shown while the gun move is playing.
@@ -277,6 +289,9 @@ func _present_pistol(f:Dictionary) -> void:
 
 ## Socket positions belong to presentation; never used as gameplay hitboxes.
 func fx_socket(label:String) -> Vector3:
+    if label=="BatonTip" and is_instance_valid(baton_tip):
+        var hand:int=motions.bone_index("RightHand")
+        if hand>=0:return skeleton.global_transform*skeleton.get_bone_global_pose(hand)*baton_tip.position
     if is_instance_valid(skeleton):
         if not fx_bones.has(label):fx_bones[label]=motions.bone_index(label)
         var index:int=fx_bones[label]

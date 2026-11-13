@@ -1,0 +1,18 @@
+{
+  "baseline_commit": "25c83ec",
+  "new_clips": 11,
+  "unchanged_heroes": [
+    {
+      "character": 2,
+      "same_samples": true
+    },
+    {
+      "character": 3,
+      "same_samples": true
+    }
+  ],
+  "fresh_baseline_trajectory_equal": true,
+  "sha256": "022cef61e6c1fea696d62c18791f77a38d82917bfdce546fa3318d15fb049c3e",
+  "scope": "Fixed-root pose samples; exact input replay at 1800 simulation ticks. Legacy demo/view-clock probes retained separately and are not an equality gate.",
+  "input_sha256": "d957008b9dd3b2b5d0255d65f1787f1496836d9bfe73521dc08131571a54f829"
+}

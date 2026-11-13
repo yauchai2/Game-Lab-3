@@ -1,0 +1,102 @@
+{
+  "passed": 851,
+  "failed": 0,
+  "suites": [
+    {
+      "suite": "integration",
+      "passed": 70,
+      "failed": 0
+    },
+    {
+      "suite": "strict",
+      "passed": 19,
+      "failed": 0
+    },
+    {
+      "suite": "fighter-style",
+      "passed": 51,
+      "failed": 0
+    },
+    {
+      "suite": "transit",
+      "passed": 216,
+      "failed": 0
+    },
+    {
+      "suite": "opening",
+      "passed": 43,
+      "failed": 0
+    },
+    {
+      "suite": "versus",
+      "passed": 68,
+      "failed": 0
+    },
+    {
+      "suite": "city",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "suite": "campaign",
+      "passed": 23,
+      "failed": 0
+    },
+    {
+      "suite": "combat",
+      "passed": 34,
+      "failed": 0
+    },
+    {
+      "suite": "cores",
+      "passed": 75,
+      "failed": 0
+    },
+    {
+      "suite": "ink-ui",
+      "passed": 10,
+      "failed": 0
+    },
+    {
+      "suite": "reference-ui",
+      "passed": 37,
+      "failed": 0
+    },
+    {
+      "suite": "squad",
+      "passed": 10,
+      "failed": 0
+    },
+    {
+      "suite": "round-flow",
+      "passed": 24,
+      "failed": 0
+    },
+    {
+      "suite": "equip",
+      "passed": 113,
+      "failed": 0
+    },
+    {
+      "suite": "arena-result",
+      "passed": 25,
+      "failed": 0
+    },
+    {
+      "suite": "rumble",
+      "passed": 11,
+      "failed": 0
+    }
+  ],
+  "gameplay": {
+    "hits": 21,
+    "input_sha256": "d957008b9dd3b2b5d0255d65f1787f1496836d9bfe73521dc08131571a54f829",
+    "presentation_mutations": 0,
+    "scope": "Identical explicit commands at 1800 fixed simulation ticks, two hero pairs; reset every 180 ticks to exercise paid moves without synthetic damage. Pure simulation compared with posed simulation each tick. Not a human match, demo-clock or performance test.",
+    "sha256": "022cef61e6c1fea696d62c18791f77a38d82917bfdce546fa3318d15fb049c3e",
+    "simulation_mismatches": 0,
+    "steps": 1800
+  },
+  "engine": "Godot 4.6.3 Linux; native Compatibility llvmpipe, Dummy audio; routing/rules also headless",
+  "scope": "Explicit fixtures and injected inputs. No human feel, physical gamepad, audible output, target Mac/GPU or paired-throw validation."
+}

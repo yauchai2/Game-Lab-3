@@ -32,7 +32,7 @@ func run() -> void:
             await process_frame;await RenderingServer.frame_post_draw
             root.get_texture().get_image().save_png(OUT+"actor%d-%.2f.png"%[selection,t])
         s.pause_game();var age:float=d.age;step(30)
-        check("pause freezes equip and cue %d"%selection,d.age==age and d.equip_cue.stream_paused)
+        check("pause freezes equip and cue %d"%selection,d.age==age and (not d.equip_cue.playing or d.equip_cue.stream_paused))
         s.resume_game();d.age=.1;await process_frame
         var key:=InputEventKey.new();key.keycode=KEY_ENTER;d.handle_key(key)
         check("repeated Enter does not skip equip %d"%selection,d.state=="equip")

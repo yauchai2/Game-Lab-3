@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "retrieved_on": "2026-11-13",
+  "sources": {
+    "ual2": {
+      "author": "Quaternius / Gonzalo Furnier",
+      "official": "https://quaternius.itch.io/universal-animation-library-2",
+      "license": "CC0-1.0",
+      "mirror": "https://github.com/richardanaya/metaverse-avatar",
+      "commit": "84fd636910bf713099010efbab7f3c84550f4bcb",
+      "path": "anims/UAL2_Standard.glb",
+      "raw_url": "https://raw.githubusercontent.com/richardanaya/metaverse-avatar/84fd636910bf713099010efbab7f3c84550f4bcb/anims/UAL2_Standard.glb",
+      "sha256": "9a0ffda4931f934f13fb584002c51673723b03f9655a581167e7e5dae744f086",
+      "bytes": 8061600
+    },
+    "kay_melee": {
+      "author": "Kay Lousberg",
+      "official": "https://kaylousberg.itch.io/kaykit-character-animations",
+      "license": "CC0-1.0",
+      "mirror": "https://github.com/PaperPrototype/KayKitDemos",
+      "commit": "4a59e976d7734f388b386d969fd94f7f826fd3c2",
+      "path": "Assets/KayKits/Animations/glTF/Rig_Medium/Rig_Medium_CombatMelee.glb",
+      "raw_url": "https://raw.githubusercontent.com/PaperPrototype/KayKitDemos/4a59e976d7734f388b386d969fd94f7f826fd3c2/Assets/KayKits/Animations/glTF/Rig_Medium/Rig_Medium_CombatMelee.glb",
+      "sha256": "c55e6ec1c79e83ae21d46fe1cd921c1b64be8b9a524a24517e51c6ba99231459",
+      "bytes": 999416
+    },
+    "kay_basic": {
+      "author": "Kay Lousberg",
+      "official": "https://kaylousberg.itch.io/kaykit-character-animations",
+      "license": "CC0-1.0",
+      "mirror": "https://github.com/PaperPrototype/KayKitDemos",
+      "commit": "4a59e976d7734f388b386d969fd94f7f826fd3c2",
+      "path": "Assets/KayKits/Animations/glTF/Rig_Medium/Rig_Medium_MovementBasic.glb",
+      "raw_url": "https://raw.githubusercontent.com/PaperPrototype/KayKitDemos/4a59e976d7734f388b386d969fd94f7f826fd3c2/Assets/KayKits/Animations/glTF/Rig_Medium/Rig_Medium_MovementBasic.glb",
+      "sha256": "11422afd50abf7e8c92ea107e2e0bc94abd38023d6d15f55ad580347efbfa29e",
+      "bytes": 689624
+    },
+    "kay_advanced": {
+      "author": "Kay Lousberg",
+      "official": "https://kaylousberg.itch.io/kaykit-character-animations",
+      "license": "CC0-1.0",
+      "mirror": "https://github.com/PaperPrototype/KayKitDemos",
+      "commit": "4a59e976d7734f388b386d969fd94f7f826fd3c2",
+      "path": "Assets/KayKits/Animations/glTF/Rig_Medium/Rig_Medium_MovementAdvanced.glb",
+      "raw_url": "https://raw.githubusercontent.com/PaperPrototype/KayKitDemos/4a59e976d7734f388b386d969fd94f7f826fd3c2/Assets/KayKits/Animations/glTF/Rig_Medium/Rig_Medium_MovementAdvanced.glb",
+      "sha256": "8b2317cf81e3f24149e4b791c27e1932bebd46cd378ed962e7d27d642fad8c56",
+      "bytes": 719628
+    }
+  },
+  "canonical_file": "godot/assets/animations/quaternius_combat.json",
+  "canonical_sha256": "60a97a63905abf1944cfe68bafe6dd47885f5c5e0417da910a1906808a3bc7bd",
+  "derived_file": "godot/assets/animations/street_library.json",
+  "derived_sha256": "5d7f3b617a4f7069e8607688031e5a75d0dfc831793e9a2ca353b23634ac3251",
+  "clips": {
+    "UAL2_Hook": {
+      "source": "Melee_Hook",
+      "limb": "DEF-hand.R",
+      "contact": 0.392857,
+      "mapped_bones": 52
+    },
+    "UAL2_Hook_Rec": {
+      "source": "Melee_Hook_Rec",
+      "limb": "DEF-hand.L",
+      "contact": 0.694444,
+      "mapped_bones": 52
+    },
+    "KK_StickChop": {
+      "source": "Melee_1H_Attack_Chop",
+      "limb": "DEF-hand.R",
+      "contact": 0.625,
+      "mapped_bones": 19
+    },
+    "KK_StickDiagonal": {
+      "source": "Melee_1H_Attack_Slice_Diagonal",
+      "limb": "DEF-hand.R",
+      "contact": 0.333333,
+      "mapped_bones": 19
+    },
+    "KK_StickSweep": {
+      "source": "Melee_1H_Attack_Slice_Horizontal",
+      "limb": "DEF-hand.R",
+      "contact": 0.146341,
+      "mapped_bones": 19
+    },
+    "KK_StickStab": {
+      "source": "Melee_1H_Attack_Stab",
+      "limb": "DEF-hand.R",
+      "contact": 0.302083,
+      "mapped_bones": 19
+    },
+    "KK_StickParry": {
+      "source": "Melee_Block_Attack",
+      "limb": "DEF-hand.R",
+      "contact": 0.25,
+      "mapped_bones": 19
+    },
+    "KK_StickBlockHit": {
+      "source": "Melee_Block_Hit",
+      "limb": "DEF-hand.R",
+      "contact": 0.125,
+      "mapped_bones": 19
+    },
+    "KK_StickGuard": {
+      "source": "Melee_Blocking",
+      "limb": "DEF-hand.R",
+      "contact": 0.5,
+      "mapped_bones": 19
+    },
+    "KK_Kick": {
+      "source": "Melee_Unarmed_Attack_Kick",
+      "limb": "DEF-foot.R",
+      "contact": 0.464286,
+      "mapped_bones": 19
+    },
+    "KK_Punch": {
+      "source": "Melee_Unarmed_Attack_Punch_A",
+      "limb": "DEF-hand.R",
+      "contact": 0.428571,
+      "mapped_bones": 19
+    },
+    "KK_Guard": {
+      "source": "Melee_Unarmed_Idle",
+      "limb": "DEF-hand.R",
+      "contact": 0.5,
+      "mapped_bones": 19
+    },
+    "KK_Run": {
+      "source": "Running_A",
+      "limb": "DEF-hand.L",
+      "contact": 0.5,
+      "mapped_bones": 19
+    },
+    "KK_Walk": {
+      "source": "Walking_A",
+      "limb": "DEF-hand.R",
+      "contact": 0.5,
+      "mapped_bones": 19
+    },
+    "KK_DodgeBack": {
+      "source": "Dodge_Backward",
+      "limb": "DEF-hand.L",
+      "contact": 0.5,
+      "mapped_bones": 19
+    },
+    "KK_DodgeForward": {
+      "source": "Dodge_Forward",
+      "limb": "DEF-hand.R",
+      "contact": 0.916667,
+      "mapped_bones": 19
+    },
+    "KK_Backstep": {
+      "source": "Walking_Backwards",
+      "limb": "DEF-hand.L",
+      "contact": 0.5,
+      "mapped_bones": 19
+    },
+    "KK_Kick_Mirror": {
+      "source": "Melee_Unarmed_Attack_Kick",
+      "limb": "DEF-foot.L",
+      "contact": 0.464286,
+      "mapped_bones": 19,
+      "derivation": "Whole-body anatomical reflection"
+    },
+    "KK_Punch_Mirror": {
+      "source": "Melee_Unarmed_Attack_Punch_A",
+      "limb": "DEF-hand.L",
+      "contact": 0.428571,
+      "mapped_bones": 19,
+      "derivation": "Whole-body anatomical reflection"
+    }
+  },
+  "derivation": "60 Hz rest-relative global rotation retarget into the retained canonical rig. Meshes omitted. Hips translations normalized by torso ratio; runtime keeps only vertical offset. KK_Kick_Mirror reflects full-body rotation deltas anatomically. No Mixamo/ActorCore/Rokoko/Fab downloads or paid assets. HUSH/LOOP extension: seven one-hand/block source clips from the same pinned KayKit melee file; KK_Punch_Mirror is the same whole-body reflection as the kick. Original eleven clip payloads unchanged.",
+  "kaykit_license": {
+    "source": "https://github.com/PaperPrototype/KayKitDemos/blob/4a59e976d7734f388b386d969fd94f7f826fd3c2/Assets/KayKits/Animations/License.txt",
+    "raw_sha256": "88ae6e8a912f0587599ca8beb49a32f217714bf33b145c81d28e34dbd9652d0b",
+    "included_file": "godot/assets/animations/LICENSE-KayKit.txt",
+    "included_sha256": "f66e44d7483e82379750f90a453cffbb6efed3f72743cf339784f0c9b4ec38dc",
+    "derivation": "Only trailing whitespace and blank ending normalized; license text retained."
+  }
+}

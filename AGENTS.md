@@ -145,3 +145,14 @@
 - 2026-11-12 本聊天使用者要求復刻確認的黑白工廈／桃紅背景回城圖並近區互動：見docs/NIGHTSHIFT_HUB.zh-TW.md。基於main6fdd3a6在codex/nightshift-hub改造正式CityHub，workshop.gd是場景／高度／障礙／尋路唯一owner；六設施保留原經濟／schema3／戰役，數字快捷走過去，不遠端花錢。四英雄原模型、原Tripo來源保持，hub instance黑白wrapper；舊safe_block保留不用，衍生GLB可重建。211回歸＋14strict；後續關係事件／Tripo精修是規劃，影片每段最多15秒。只推任務分支及draft PR，不自動發Web。
 
 - 2026-11-12 最新據點更正：NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md覆蓋上一版粗模美術。使用者要求原圖／15秒附件動畫，採固定視角投影空場材質＋3D深度／真骨架／程序光煙電動作；不是全角度建築，不冒稱角色或動畫逐幀完美。移除接線大機、戰利品牆與站位框，HUD預設收起Tab展開；現有存檔經濟維持。新影片15.000秒，原始參考15.083不改；Tripo無必需件，選配清單另存。211回歸＋15strict，歷史粗模225項不可冒稱新結果；同分支PR #19，Web不更新。
+
+
+## 2026-11-13 全分支整合來源
+
+- 完整來源紀錄：docs/integration-history/story-waves-m1/AGENTS.md
+- 完整來源紀錄：docs/integration-history/four-fighter-motion-plan/AGENTS.md
+
+
+- 2026-11-13 本聊天最新要求「用免費的資源做」並追問Mixamo，覆蓋前述付費候選建議。優先核實Shoulder Throw, Aggressor／Victim，官方FBX與同步尚未取得／驗證，不用第三方索引冒稱官方素材已到手；完整摔投仍未完成，勿自行採購。見docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md最新節。
+
+- 2026-11-13 使用者要求全合main並收尾：現況見docs/REMAINING_WORK_INTEGRATION.zh-TW.md。來源日常集中main；5主選項、P1–P3、平地兩骨接地／有界轉髖與共用基礎profile已做。showcase共用必須shared_profile明確opt-in，裝備／NPC導演取景不自動跟隨；平地IK不當任意地形或simulation root。851項最終／19 strict及1,800tick等價，非本機／真人／手柄／GPU驗收。完整Mixamo免費配對摔投仍未取得官方原檔、未實作，grab保持過渡，勿採購或使用無授權鏡像；原GLB／存檔／BGM與Web須明確要求才發佈保持。

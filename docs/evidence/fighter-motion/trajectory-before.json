@@ -1,0 +1,27 @@
+{
+  "events": {
+    "air_counter_choice": 2,
+    "air_counter_end": 2,
+    "air_counter_release": 2,
+    "air_counter_start": 2,
+    "air_counter_windup": 2,
+    "air_land": 7,
+    "air_parry_attempt": 2,
+    "arena_bounce": 2,
+    "chase_arrive": 2,
+    "counter_success": 3,
+    "dash": 3,
+    "fast_fall": 1,
+    "hit": 18,
+    "homing_chase": 2,
+    "ko": 1,
+    "node_broken": 1,
+    "node_placed": 2,
+    "parry": 3,
+    "swing": 27,
+    "wall_tech": 1
+  },
+  "scope": "Per-step gameplay trajectory, resources and event counts. Presentation is driven, but excluded from the digest.",
+  "sha256": "6de1a9657cab5320d3bffe0c1e4ff2057ee5080a0c71efee7bd82c0f4754d591",
+  "steps": 1800
+}

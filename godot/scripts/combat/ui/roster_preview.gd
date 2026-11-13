@@ -12,7 +12,7 @@ var pose_names:=["Route_Ready","Clamp_Check","Low_Guard","Patch_Cue"]
 func _ready() -> void:
     for slot in 5:
         var vp:=SubViewport.new();vp.name="RosterViewport_"+str(slot)
-        vp.size=Vector2i(336,384) if slot==4 else Vector2i(144,192)
+        vp.size=Vector2i(448,512) if slot==4 else Vector2i(192,256)
         vp.transparent_bg=true;vp.own_world_3d=true;vp.render_target_update_mode=SubViewport.UPDATE_DISABLED
         vp.msaa_3d=Viewport.MSAA_DISABLED;vp.screen_space_aa=Viewport.SCREEN_SPACE_AA_DISABLED
         add_child(vp);viewports.append(vp)
@@ -43,7 +43,7 @@ func update_preview(active:bool,choice:int,delta:float,reduced:bool) -> void:
     for slot in 5:
         var character:int=choice if slot==4 else slot
         var visual:Node3D=models[slot]
-        var pose:Dictionary={"character":character,"health":100,"state":"idle","move":"","frame":0,"x":0.0,"y":0.0,"vy":0.0,"vx":0.0,"guarding":false,"showcase":true}
+        var pose:Dictionary={"character":character,"health":100,"state":"idle","move":"","frame":0,"x":0.0,"y":0.0,"vy":0.0,"vx":0.0,"guarding":false,"showcase":true,"shared_profile":true}
         visual.motions.present(pose,1.0/15,false)
         _pose(visual,character,elapsed,confirmation if slot==4 else 0.0,reduced)
         visual.position=Vector3.ZERO;visual.rotation.y=.5

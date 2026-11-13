@@ -1,5 +1,5 @@
 extends RefCounted
-const P=preload("res://scripts/combat/last_service/profiles.gd")
+const Tokens=preload("res://scripts/combat/ui/ui_theme.gd")
 func draw(canvas:Control,s:Node) -> void:
     if not s.sim.last_service_enabled:return
     for side in 2:
@@ -9,11 +9,10 @@ func draw(canvas:Control,s:Node) -> void:
             canvas.draw_string(s.hud.font,Vector2(820,100),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,24,s.effect_color_for(side))
             continue
         var x:float=227.0 if side==0 else 820.0
-        var tint:Color=s.effect_color_for(side)
-        canvas.draw_string(s.hud.font,Vector2(x,100),P.NAMES[f.character],HORIZONTAL_ALIGNMENT_LEFT,-1,24,tint)
+        var tint:Color=Tokens.TEAL if side==0 else Tokens.MAGENTA
         var count:int=[r.routes,r.preload,1 if r.sample>0 else 0,r.nodes.size()][f.character]
         var slots:int=1 if f.character==2 else 2
-        var pip_x:float=x+108
+        var pip_x:float=x
         for pip in slots:
             canvas.draw_rect(Rect2(pip_x+pip*20,86,14,14),Color("15101f"))
             canvas.draw_rect(Rect2(pip_x+pip*20+2,88,10,10),tint if pip<count else Color(tint,.18))

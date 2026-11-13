@@ -84,7 +84,7 @@ func run() -> void:
     var hud:Control=scene.hud
     # --- Story-only start -------------------------------------------------
     check("fresh save starts with free battle locked",not scene.free_battle_unlocked() and not scene.growth.story_cleared)
-    check("main menu lists story first then locked versus",hud.art_buttons.keys()==["story","fight","roster","training","settings","demo"] and hud.art.free_locked)
+    check("main menu lists story first then locked versus",hud.art_buttons.keys()==["story","fight","roster","training","settings"] and hud.art.free_locked)
     check("story has the default focus",hud.art_buttons.story.has_focus())
     await snapshot("title-locked")
     hud.art_buttons.fight.pressed.emit();await process_frame
@@ -93,12 +93,13 @@ func run() -> void:
     check("free battle entry points refuse while locked",scene.screen=="title" and not scene.versus)
     hud.art_buttons.story.release_focus()
     await key(KEY_ENTER,true);await key(KEY_ENTER,false)
-    check("Enter on a locked title starts the story run",scene.screen=="play" and scene.run_active and scene.run_stage==1)
+    check("Enter without focus opens the current Story city",scene.screen=="city" and scene.city_campaign.active)
     scene.return_to_title()
     hud.open_page("roster");await process_frame
-    check("fighters page offers story instead of fight while locked",hud.art_buttons.roster_fight.text=="STORY")
+    check("fighters page confirms selection without a duplicate mode",hud.art_buttons.roster_fight.text=="CONFIRM")
     hud.art_buttons.roster_fight.pressed.emit();await process_frame
-    check("fighters page primary button starts the story",scene.run_active and scene.screen=="play")
+    check("fighters confirmation returns to main",scene.screen=="title" and hud.menu_page=="main")
+    scene.start_run()
     # --- Losing the last stop keeps the lock ------------------------------
     finish_stop(true);await next_stop();finish_stop(true);await next_stop()
     check("run reaches the third stop",scene.run_stage==3 and scene.screen=="play")

@@ -32,6 +32,7 @@ N = int(RATE * DURATION)
 STEP = 60.0 / 160.0 / 4.0  # one sixteenth = 0.09375 s
 BAR = STEP * 16  # 1.5 s
 MUSIC_CUT, SLAM_AT, TITLE_AT = 9.75, 16.0, 16.1  # working timeline; final = minus CUT_LEN after CUT_AT
+BUILD_AT = 10.3  # the song's second build creeps in right after the tape stop, so the stand-off is never dead air
 CUT_AT, CUT_LEN = 3.0, 0.0  # no splice: the opening is stretched to the music instead (WARP in story_opening.gd)
 SONG = ROOT / "godot/audio/user-tracks/beat_keep_rockin.ogg"
 DROP_ONE, DROP_TWO = 61.531, 140.609  # seconds into the song: its two drops (measured onsets)
@@ -404,17 +405,18 @@ for k, at in enumerate(pulse):
     kick(at, level, 0.22, 80, 43)
     add("sfx", at, march[k % len(march)][:int(0.15 * RATE)], level * 0.9, 0.5 * (-1) ** k)
     hat(at, 0.6 + 0.1 * k, which=k, pan=-0.5 * (-1) ** k)
-t = clock(4.0)
-u = t / 4.0
+DRONE_AT, DRONE_LEN = 10.0, TITLE_AT - 10.0 - 0.1
+t = clock(DRONE_LEN)
+u = t / DRONE_LEN
 drone = np.zeros(len(t))
 for freq, level in ((38.89, 0.45), (77.78, 0.8), (82.41, 0.3), (116.54, 0.4), (155.56, 0.25)):  # the song's E-flat with a minor second grinding against it
     drone += signal.sawtooth(2 * np.pi * freq * t + rng.uniform(0, 6.28)) * level
 moving = np.zeros(len(t))
 for k, cutoff in enumerate((220, 450, 900, 2000)):  # the filter opens as they come closer
     moving += lowpass(drone, cutoff) * np.clip(u * 4 - k + 0.6, 0, 1) / (k + 1)
-add("music", 12.0, moving * u ** 1.5 * np.clip((4.0 - t) / 0.008, 0, 1), 0.34, 0.0)
+add("music", DRONE_AT, moving * u ** 1.3 * np.clip((4.0 - t) / 0.008, 0, 1), 0.34, 0.0)
 air = highpass(noise(len(t)), 2500) * u ** 4
-add("music", 12.0, air * np.clip((4.0 - t) / 0.008, 0, 1), 0.16, np.linspace(-0.6, 0.6, len(t)))
+add("music", DRONE_AT, air * np.clip((4.0 - t) / 0.008, 0, 1), 0.16, np.linspace(-0.6, 0.6, len(t)))
 reverse_swell(SLAM_AT, src("gong"), 3.2, 0.5, curve=2.6)
 t = clock(0.5)
 low_stab = sum(signal.square(2 * np.pi * f * t) for f in (77.78, 78.6, 155.9)) * np.exp(-t / 0.16)
@@ -461,7 +463,7 @@ def lay(at, source, length, fade_in=0.004, fade_out=0.004):
 lay(0.0, DROP_ONE - 3.0, 3.0)  # the build, heard through a radio
 lay(3.0, DROP_ONE, 4.5)  # first drop on the cut to the garage
 lay(8.0, DROP_ONE, MUSIC_CUT - 8.0 + 0.01)  # the record is pulled back: the same drop lands with the case
-lay(12.0, DROP_TWO - (TITLE_AT - 12.0), TITLE_AT - 12.0, 0.4)  # the song's own second build under the collectors
+lay(BUILD_AT, DROP_TWO - (TITLE_AT - BUILD_AT), TITLE_AT - BUILD_AT, 0.5)  # the song's own second build under the collectors
 lay(TITLE_AT, DROP_TWO, DURATION - TITLE_AT, 0.002, 0.6)  # second drop is the title
 
 # 0-3 s: a small radio that grows until the drop at 3.0.
@@ -488,12 +490,12 @@ position = a - stop + np.cumsum(1 - u * 0.95)  # replay the last 90 ms slowing t
 held = music.copy()
 for channel in range(2):
     music[a - stop:a, channel] = np.interp(position, np.arange(N), held[:, channel]) * (1 - u) ** 1.5
-music[a:int(12.0 * RATE)] = 0.0
+music[a:int(BUILD_AT * RATE)] = 0.0
 
 # 12-16 s: the build creeps in from far away and opens up toward the lid.
-a, b = int(12.0 * RATE), int(TITLE_AT * RATE)
-u = ((t[a:b] - 12.0) / (TITLE_AT - 12.0))[:, None]
-music[a:b] = (lowpass(music[a:b], 700) * (1 - u) + music[a:b] * u) * (0.3 + 0.7 * u ** 1.5)
+a, b = int(BUILD_AT * RATE), int(TITLE_AT * RATE)
+u = ((t[a:b] - BUILD_AT) / (TITLE_AT - BUILD_AT))[:, None]
+music[a:b] = (lowpass(music[a:b], 700) * (1 - u) + music[a:b] * u) * (0.75 + 0.25 * u ** 1.5)
 music *= SONG_GAIN
 music += accents
 
@@ -554,12 +556,12 @@ cues = {
     "song": {"file": "godot/audio/user-tracks/beat_keep_rockin.ogg", "title": "Starjunk 95 - Beat Keep Rockin", "bpm": 140,
              "note": "3 s is exactly seven beats", "drops_in_song": [DROP_ONE, DROP_TWO]},
     "music": {"radio_build": [0.0, 3.0], "first_drop": 3.0, "sunk": [6.0, 7.5], "held_breath": [7.5, 8.0], "drop_again_on_collectors": 8.0,
-              "cut": MUSIC_CUT, "second_build": [12.0, TITLE_AT], "second_drop": TITLE_AT, "menu_track_returns": TITLE_AT},
+              "cut": MUSIC_CUT, "second_build": [BUILD_AT, TITLE_AT], "second_drop": TITLE_AT, "menu_track_returns": TITLE_AT},
     "cues": [
         [0.0, "tram pass, street bed, radio tuning"], [0.85, "case slides along the bench"], [1.5, "case lands"], [2.25, "latch 1"], [2.6, "latch 2"],
         [2.8, "lid swings up"], [3.0, "first drop on the open case"], [4.1, "paper"], [5.05, "magazine"], [6.0, "beat sinks under the floor"],
         [7.5, "record pulled back, snare roll, riser"], [8.0, "collectors appear: hit + beat back on the snare"], [9.75, "tape stop, tubes only"],
-        [10.08, "brass settles"], [11.25, "heartbeat"], [11.625, "heartbeat"], [12.0, "second build fades up"], [13.55, "shoes"], [13.85, "shoes"],
+        [10.08, "brass settles"], [11.25, "heartbeat"], [11.625, "heartbeat"], [BUILD_AT, "second build fades up (no dead air after the tape stop)"], [13.55, "shoes"], [13.85, "shoes"],
         [14.2, "glove"], [14.46, "glove snap"], [14.75, "pulse tightens, drone rises"], [15.0, "low stab"], [15.62, "snare roll"],
         [16.0, "lid slam"], [16.035, "held breath"], [16.1, "title hit + second drop under the main menu"]],
     "sources": ["Starjunk 95 - Beat Keep Rockin (owner-supplied, see references/audio/user-tracks/admitted.json)", "synthesis (seed 20261112)", "godot/audio/open Kenney CC0 impacts",

@@ -1,0 +1,14 @@
+{
+  "fps": 30,
+  "frames": 360,
+  "hits": 3,
+  "preload_events": [
+    1,
+    1,
+    2,
+    1,
+    2
+  ],
+  "scope": "Three reset training fixtures, normal L press/hold/release through session command path. Real hits, native rendered/mixed Movie Writer frames; not a natural human match or measured hardware FPS.",
+  "seconds": 12
+}

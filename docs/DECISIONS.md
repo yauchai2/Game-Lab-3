@@ -1,3 +1,7 @@
+## 2026-11-13：收尾與main整合
+
+使用者明確要求所有更新合main並處理未完成工作。採現有owner整合，不新增另一套玩法／時鐘。接地使用有界平地兩骨IK與視覺骨盆補正，不移動simulation root；showcase共用英雄profile須明確opt-in，保留裝備／NPC導演姿態及不露臉取景。主選單5項，正式城市STORY單一入口；舊練習／SQUAD／Legacy Run集中LABS，AI DEMO只留F12。音量0只靜音不停止transport。免費配對投技仍需官方素材，不以現有grab或付費候選充數；原GLB／存檔／Web規則保持。
+
 ## 2026-11-12 開場貼近參考影片
 
 Alan 要求開場更貼近參考影片但只做小調整：保留 18 秒結構，移除影片沒有的漫畫字／名牌，場景改暗並補雜物；對白字句沿用 Alan 的表（影片字幕不同，待決定）。
@@ -459,3 +463,13 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 使用者回報上一版差距大，要求照指定圖、移除無關物件，並給15.083秒動畫。正式入口改用reference_workshop.gd：固定鏡頭投影空場貼圖／3D深度片與可走地面、既有四英雄／Dealer骨架、活動橙色臂、掃燈／光斑／煙／電光／閘門開口與門內剪影；Loop移向機器後回位。移除接線大機／戰利品牆／站位框，天賦綁LOOP區，Tab展開HUD。這是**2.5D／3D混合固定視角方案，不是全角度實體建築**；人物外形／姿態仍有差異，不稱逐像素或逐來源幀完美。詳[NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md](NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。
 
 [15秒原生預覽與對照](evidence/nightshift-reference/README.md)：450幀／30fps，15.000秒；輸出配既有menu.ogg低音量，未用附件音軌。211回歸＋15strict通過，accepted無ERROR／SCRIPT ERROR；另有時間線採樣與六站／F2檢查。原Tripo不改、schema3／戰役經濟保持。Tripo必需0件，若做全角度／人物輪廓精修，優先Dealer與指定英雄，再DJ台／音箱／機器殼；具體規格見references/nightshift-hub/TRIPO_REQUIREMENTS.zh-TW.md。只更新codex/nightshift-hub／草稿PR #19，未發Web；Mac／真人仍待驗。
+
+
+## 2026-11-13 全分支整合來源
+
+- 完整來源紀錄：docs/integration-history/story-waves-m1/docs/DECISIONS.md
+- 完整來源紀錄：docs/integration-history/four-fighter-motion-plan/docs/DECISIONS.md
+
+## 2026-11-13：免費限制覆蓋較早付費候選建議
+
+使用者指定「用免費的資源做」並追問Mixamo，優先核實Shoulder Throw攻守配對。Adobe免費商用FAQ與第三方目錄名稱分開記錄；未有官方FBX／實測，不冒稱已取得／已配對，不採購付費包。詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)最新節。

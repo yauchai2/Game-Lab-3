@@ -41,8 +41,12 @@ const GLYPHS:={
 "info":["...kkkkkk...","..kaaaaaak..",".kaaakkaaak.",".kaaakkaaak.",".kaaaaaaaak.",".kaaakkaaak.",".kaaakkaaak.",".kaaakkaaak.",".kaaakkaaak.","..kaaaaaak..","...kkkkkk...","............"],
 "close":["............",".kk......kk.","kaak....kaak",".kaak..kaak.","..kaakkaak..","...kaaaak...","...kaaaak...","..kaakkaak..",".kaak..kaak.","kaak....kaak",".kk......kk.","............"],
 "arrow":["............",".....kk.....",".....kak....",".....kaak...","kkkkkkaaak..","kaaaaaaaaak.","kaaaaaaaaak.","kkkkkkaaak..",".....kaak...",".....kak....",".....kk.....","............"],
-"dice":["kkkkkkkkkkkk","kaaaaaaaaaak","kakkaaaakkak","kakkaaaakkak","kaaaaaaaaaak","kaaaakkaaaak","kaaaakkaaaak","kaaaaaaaaaak","kakkaaaakkak","kakkaaaakkak","kaaaaaaaaaak","kkkkkkkkkkkk"],
-"book":["............","kkkkkkkkkkk.","kaaaaakbbbk.","kakkkakbbbk.","kaaaaakbbbk.","kakkkakbbbk.","kaaaaakbbbk.","kakkkakbbbk.","kaaaaakbbbk.","kkkkkkkkkkk.","............","............"]}
+"dice":["kkkkkkkkkkkk","kaaaaaaaaaak","kawwaaaawwak","kawwaaaawwak","kaaaaaaaaaak","kaaaawwaaaak","kaaaawwaaaak","kaaaaaaaaaak","kawwaaaawwak","kawwaaaawwak","kaaaaaaaaaak","kkkkkkkkkkkk"],
+"book":["............","kkkkkkkkkkk.","kaaaaakbbbk.","kakkkakbbbk.","kaaaaakbbbk.","kakkkakbbbk.","kaaaaakbbbk.","kakkkakbbbk.","kaaaaakbbbk.","kkkkkkkkkkk.","............","............"],
+"back":["............",".....kk.....","....kak.....","...kaak.....","..kaaakkkkkk",".kaaaaaaaaak",".kaaaaaaaaak","..kaaakkkkkk","...kaak.....","....kak.....",".....kk.....","............"],
+"hammer":["....kkkkk...","...kaaaaak..","...kaaaaaak.","...kaaaaak..","....kkbkk...",".....kbk....",".....kbk....",".....kbk....",".....kbk....",".....kbk....",".....kkk....","............"],
+"flame":[".....kk.....",".....kak....","....kaak....","...kaaak.k..","..kaaaaakak.","..kaabaaaak.",".kaabbbaaak.",".kaabbbbaak.",".kaabbbbaak.","..kaabbbak..","...kkaakk...",".....kk....."],
+"trash":["...kkkkkk...","kkkkkkkkkkkk","kaaaaaaaaaak",".kkkkkkkkkk.",".kaakaakaak.",".kaakaakaak.",".kaakaakaak.",".kaakaakaak.",".kaakaakaak.",".kaaaaaaaak.",".kkkkkkkkkk.","............"]}
 static var cache:Dictionary={}
 static func texture(id:String,tint:Color=T.PAPER,second:Color=T.CORAL) -> ImageTexture:
     var key:=id+tint.to_html()+second.to_html()

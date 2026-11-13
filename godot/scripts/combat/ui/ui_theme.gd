@@ -1,6 +1,6 @@
 extends RefCounted
 ## Shared native Godot UI tokens. See DESIGN.md and UX-CONTRACT.md.
-## Logical 1280x720 coordinates scale into the shared 960x540 framebuffer.
+## Logical 1280x720 UI renders at 1:1 in the shared 1280x720 framebuffer.
 const CAPTION_SIZE:=24
 const BODY_SIZE:=28
 const ACTION_SIZE:=32
@@ -15,8 +15,9 @@ const EDGE := Color("505660")
 const MAGENTA := Color("ff008c")
 const LIME := Color("bdff00")
 const LOGO = preload("res://assets/ui/ink/logo.tres")
-const BODY = preload("res://assets/fonts/RadioPixelBodyReadable.fnt")
-const DISPLAY = preload("res://assets/fonts/RadioPixelDisplayReadable.fnt")
+## Medium 24 px glyphs add visible pixel steps while preserving letter gaps.
+const BODY = preload("res://assets/fonts/RadioBody.tres")
+const DISPLAY = preload("res://assets/fonts/RadioDisplay.tres")
 static func plate(color: Color, border := Color.TRANSPARENT, width := 0) -> StyleBoxFlat:
     var style:=StyleBoxFlat.new()
     style.bg_color=color

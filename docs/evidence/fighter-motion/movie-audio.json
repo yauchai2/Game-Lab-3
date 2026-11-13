@@ -1,0 +1,7 @@
+{
+  "sample_rate": 24000,
+  "samples": 288256,
+  "peak": 0.60516357421875,
+  "rms": 0.13763726057240014,
+  "scope": "Decoded movie waveform only, not human listening."
+}

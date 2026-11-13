@@ -1,3 +1,7 @@
+## 2026-11-13：main整合最終驗證
+
+Godot4.6.3 Linux Compatibility llvmpipe／Dummy：851項通過，包含19 strict、70新整合及其餘762項相關回歸；accepted logs無ERROR／SCRIPT ERROR。另1,800固定simulation tick、21命中，純simulation與呈現版本SHA一致、0資料修改；四角雙朝向支撐腳最大誤差約0.042m。完整逐套結果與初次失敗保留於evidence/remaining-work。震動路由為headless注入裝置測試；不是Mac4.7.2、真人／實體手柄／實聽／GPU FPS或完整配對投技驗收。詳細範圍見REMAINING_WORK_INTEGRATION.zh-TW.md。
+
 ## 2026-11-12：按原圖重做據點＋15秒動態（覆蓋粗模）
 
 使用者回報上一版差距大，要求照指定圖、移除無關物件，並給15.083秒動畫。正式入口改用reference_workshop.gd：固定鏡頭投影空場貼圖／3D深度片與可走地面、既有四英雄／Dealer骨架、活動橙色臂、掃燈／光斑／煙／電光／閘門開口與門內剪影；Loop移向機器後回位。移除接線大機／戰利品牆／站位框，天賦綁LOOP區，Tab展開HUD。這是**2.5D／3D混合固定視角方案，不是全角度實體建築**；人物外形／姿態仍有差異，不稱逐像素或逐來源幀完美。詳[NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md](NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。
@@ -765,3 +769,13 @@ Godot4.7.2 Linux Compatibility：37原生操作、10頁面／3D剪影／popup／
 ## 故事連續打波（2026-11-13）
 
 Godot 4.6.3 Linux／llvmpipe：verify_story_flow 51/51（證據 docs/evidence/story-flow）；回歸 city_campaign 50/50、city_expansion 86/86、campaign_complete 50/50、city_native 23/23、story_waves 無失敗。未驗證：真人手感、Mac、實聽、FPS。
+
+
+## 2026-11-13 全分支整合來源
+
+- 完整來源紀錄：docs/integration-history/story-waves-m1/docs/VALIDATION.md
+- 完整來源紀錄：docs/integration-history/four-fighter-motion-plan/docs/VALIDATION.md
+
+## 2026-11-13：免費Mixamo取檔仍未完成（非runtime）
+
+重新核對Adobe Mixamo FAQ與過肩摔攻守名稱索引，未取得官方FBX／配對時間證據。Browser本地工具不可用；CUA雲端瀏覽器兩次均因sandbox啟動錯誤失敗，已結束該UI流程；官網無可讀目錄，沒有官方登入會話。Tuffles直接下載網路403，SFU官方禁商用，均未錄用。僅更新免費需求與候選JSON，檢查JSON／diff，不重跑runtime或宣稱完成完整摔投。

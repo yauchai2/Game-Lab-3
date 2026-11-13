@@ -10,7 +10,7 @@ func run() -> void:
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";root.add_child(s)
     s.set_process(false);s.set_physics_process(false);s.audio.muted=true
     for i in 5:await process_frame
-    check("Shared framebuffer 960x540",root.get_texture().get_size()==Vector2(960,540),str(root.get_texture().get_size()))
+    check("Shared framebuffer 1280x720",root.get_texture().get_size()==Vector2(1280,720),str(root.get_texture().get_size()))
     check("World-only pixel filter retired",not s.pixel_pass.visible)
     s.hud.open_page("roster")
     var preview:Node=s.hud.roster_preview

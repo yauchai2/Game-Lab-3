@@ -1,0 +1,93 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: The local function parameter "name" is shadowing an already-declared property in the base class "Node". (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/story_opening/stage.gd:118)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Parse Error: The parameter "dark" is never used in the function "_garage_clutter()". If this is intended, prefix it with an underscore: "_dark". (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/story_opening/stage.gd:329)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Parse Error: The parameter "steel" is never used in the function "_street_signals()". If this is intended, prefix it with an underscore: "_steel". (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/story_opening/stage.gd:346)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Parse Error: The parameter "dark" is never used in the function "_street_signals()". If this is intended, prefix it with an underscore: "_dark". (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/story_opening/stage.gd:346)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (gdscript://-9223372010850089553.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+STRICT_WARNING res://scripts/combat/cinematic/story_opening.gd false
+STRICT_WARNING res://scripts/combat/city/campaign_visuals.gd true
+STRICT_WARNING res://scripts/combat/story/story_simulation.gd true
+STRICT_WARNING res://scripts/combat/story/body_chain.gd true
+STRICT_WARNING res://scripts/combat/story/enemy_props.gd true
+STRICT_WARNING res://scripts/combat/ink_fx/fx_recipes.gd true
+SCRIPT ERROR: Parse Error: Integer division. Decimal part will be discarded. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371991690508875.gd:27)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+STRICT_WARNING res://scripts/combat/ink_fx/world_ink_fx.gd false
+STRICT_WARNING res://scripts/combat/impact_shapes.gd true
+SCRIPT ERROR: Parse Error: The parameter "size" is never used in the function "puff()". If this is intended, prefix it with an underscore: "_size". (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/sprite_fx.gd:71)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Parse Error: The parameter "time" is never used in the function "converge()". If this is intended, prefix it with an underscore: "_time". (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/sprite_fx.gd:85)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Parse Error: Integer division. Decimal part will be discarded. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/sprite_fx.gd:48)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Parse Error: Integer division. Decimal part will be discarded. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/sprite_fx.gd:61)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Parse Error: Integer division. Decimal part will be discarded. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/sprite_fx.gd:73)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (gdscript://-9223371991136860734.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+STRICT_WARNING res://scripts/combat/fight_vfx.gd false
+STRICT_WARNING res://scripts/combat/fight_audio.gd true
+STRICT_WARNING res://scripts/combat/fight_hud.gd true
+STRICT_WARNING res://scripts/combat/combat_motions.gd true
+STRICT_WARNING res://scripts/combat/fighter_visual.gd true
+SCRIPT ERROR: Parse Error: Integer division. Decimal part will be discarded. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/ink_fx/world_ink_fx.gd:27)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Parse Error: The variable "shape" is declared below in the parent block. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/city/nightshift/reference_workshop.gd:153)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Parse Error: The variable "shape" is declared below in the parent block. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/city/nightshift/reference_workshop.gd:158)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/city/city_hub.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/city/city_campaign.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (gdscript://-9223371982932802056.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:37)
+STRICT_WARNING res://scripts/combat/fight_session.gd false
+STRICT_WARNING res://scripts/combat/fight_simulation.gd true
+STRICT_WARNING res://scripts/combat/cinematic/round_theatre.gd true
+STRICT_WARNING res://scripts/combat/cinematic/city_breaker.gd true
+STRICT_WARNING res://scripts/combat/ability_draw/dealer_rig.gd true
+STRICT_WARNING res://scripts/combat/cinematic/ability_draw.gd true

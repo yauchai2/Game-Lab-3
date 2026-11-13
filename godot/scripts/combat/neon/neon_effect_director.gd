@@ -59,23 +59,32 @@ func draw(canvas:Control,session:Node3D) -> void:
     var width:=160.0*(1.0-age/duration)
     canvas.draw_colored_polygon(PackedVector2Array([Vector2(0,130),Vector2(width,130),Vector2(0,340)]),color)
     canvas.draw_colored_polygon(PackedVector2Array([Vector2(1280,570),Vector2(1280-width,620),Vector2(1280,620)]),color)
-    if mode=="CHARGE":
-        sprites.converge(canvas,at,age,color,95.0-65.0*clampf(age/.30,0,1),6)
-    elif age<.30:
-        sprites.hit_spark(canvas,at,age/.30,color,0.0,260.0 if priority>=4 else 120.0)
+    var character:int=session.character_choices[owner]
+    var local_style:bool=character>=0 and character<4
+    if local_style and age<.30:
+        preload("res://scripts/combat/fighter_effect_style.gd").draw(canvas,at,{"character":character,"kind":"charge" if mode=="CHARGE" else "release","age":age,"life":.30,"strength":.9,"face":session.sim.fighters[owner].face,"color":color},false)
+    elif not local_style:
+        if mode=="CHARGE":sprites.converge(canvas,at,age,color,95.0-65.0*clampf(age/.30,0,1),6)
+        elif age<.30:sprites.hit_spark(canvas,at,age/.30,color,0.0,260.0 if priority>=4 else 120.0)
     # Lethal League style hit flash: two crisp paper-white frames. This director is the single fullscreen owner.
     if mode in ["RELEASE","BREAK","K.O."] and age<.045:
         canvas.draw_rect(Rect2(0,0,1280,720),Color("fff8dc",.32 if age<.02 else .14))
     # Pixel-snapped ink speed lines away from the point of impact.
     if mode in ["RELEASE","BREAK","K.O."] and age<duration*.7:
         var dir:float=1.0 if owner==0 else -1.0
-        for i in 9:
+        var line_count:int=[5,3,0,3][character] if local_style else 9
+        for i in line_count:
             var y:float=roundf((at.y+(float(i)-4.0)*30.0+float((i*37)%5)*4.0)/2.0)*2.0
             var length:float=(240.0+float((i*53)%4)*80.0)*(1.0-age/duration*.6)
             var start:float=roundf((at.x-dir*(160.0+float(i%3)*46.0))/2.0)*2.0
             var rect:=Rect2(Vector2(start if dir>0 else start-length,y),Vector2(length,6.0))
-            canvas.draw_rect(rect,ink)
-            canvas.draw_rect(Rect2(rect.position+Vector2(0,2),Vector2(rect.size.x*.7,2.0)),color if i%2==0 else Color("fff8dc"))
+            if local_style and character==3:
+                var end:=Vector2(start+dir*length*.65,y)
+                var points:=PackedVector2Array([Vector2(start,y+12),Vector2(start+dir*length*.25,y+12),Vector2(start+dir*length*.25,y),end])
+                canvas.draw_polyline(points,ink,5.0);canvas.draw_polyline(points,color,2.0)
+            else:
+                canvas.draw_rect(rect,ink)
+                canvas.draw_rect(Rect2(rect.position+Vector2(0,2),Vector2(rect.size.x*.7,2.0)),color if i%2==0 else Color("fff8dc"))
     if priority>=5:
         canvas.draw_string(session.hud.bold,Vector2(64,625),mode,HORIZONTAL_ALIGNMENT_LEFT,-1,64,Color.WHITE)
     else:

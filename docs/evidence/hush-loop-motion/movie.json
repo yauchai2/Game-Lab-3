@@ -1,0 +1,32 @@
+{
+  "expected_events": true,
+  "fps": 30,
+  "frames": 450,
+  "scope": "Three reset training fixtures, real frontal parry then sample L; two normal placements then S+L; one placement then W+L. Rival starts one legal jab. No seeded nodes/samples or injected damage; session command path and actual rules. Not human play or hardware FPS.",
+  "seconds": 15,
+  "segments": [
+    {
+      "arena_bounce": 6,
+      "hit": 1,
+      "parry": 1,
+      "sample_gained": 1,
+      "sample_spent": 1,
+      "swing": 1
+    },
+    {
+      "air_land": 1,
+      "hit": 1,
+      "node_placed": 2,
+      "node_pulse_fx": 1,
+      "swing": 3
+    },
+    {
+      "arena_bounce": 5,
+      "hit": 1,
+      "node_placed": 1,
+      "node_pulse_fx": 1,
+      "swing": 2
+    }
+  ],
+  "uninterrupted_play_frames": 450
+}

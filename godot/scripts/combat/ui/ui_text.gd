@@ -139,7 +139,7 @@ const COPY := {
 "partner":["練習對手","Training partner"],"standing":["站立 · 示範頂進","Standing / PRESS"],"guarding":["防禦 · 示範卸勢","Guarding / TURN"],"sparring":["陪練 · 輪換選擇","Sparring / MIX"],
 "audio":["聲音","Audio"],"music":["背景音樂","Music"],"sound":["遊戲音效","Sound effects"],"muted":["全部靜音 · M","Mute all / M"],"music_enable":["播放背景音樂","Play music"],
 "on":["開啟","On"],"off":["關閉","Off"],"language":["語言","Language"],"zh":["繁體中文","繁體中文"],"en":["English","English"],
-"accessibility":["畫面與輔助","Visuals & accessibility"],"reduced":["減少閃光與震動","Reduce flash & shake"],
+"accessibility":["畫面與輔助","Visuals & accessibility"],"reduced":["減少閃光與震動","Reduce flash & shake"],"rumble":["手柄震動","Gamepad rumble"],
 "scene_edges":["場景漫畫描邊","Scene outlines"],"training_details":["顯示練習數據","Training details"],
 "settings_saved":["設定儲存在此裝置。","Settings are saved on this device."],
 "local":["單人 · 鍵盤操作","SOLO / KEYBOARD"],"pause":["暫停","Pause"],"help":["招式","Moves"],

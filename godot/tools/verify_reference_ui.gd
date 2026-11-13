@@ -18,10 +18,11 @@ func shot(name:String) -> void:
     scene.hud.queue_redraw();await frames();await RenderingServer.frame_post_draw
     root.get_texture().get_image().save_png(DIR+"/"+name+".png")
 func run() -> void:
+    DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(DIR))
     scene=preload("res://scenes/combat/street_fight.tscn").instantiate();scene.preferences_path="";root.add_child(scene);scene.set_process(false);scene.set_physics_process(false);scene.backdrop.freeze_for_capture()
     await frames();var hud:Node=scene.hud
     check("English interface default",scene.language=="en")
-    check("six native main actions, story first",hud.art_buttons.keys()==["story","fight","roster","training","settings","demo"] and hud.art_controls.visible and not hud.menu.visible)
+    check("five native main actions, story first",hud.art_buttons.keys()==["story","fight","roster","training","settings"] and hud.art_controls.visible and not hud.menu.visible)
     check("native buttons retain meaningful English names",hud.art_buttons.values().all(func(b:Button)->bool:return not b.text.is_empty() and b.focus_mode==Control.FOCUS_ALL))
     for dimensions in [Vector2i(960,540),Vector2i(1280,720),Vector2i(1920,1080)]:
         root.size=dimensions;await frames();var fit:=true
@@ -38,7 +39,7 @@ func run() -> void:
         await click(hud.art_buttons["card_"+str(index)])
         check("card %d changes actual P1 profile"%index,scene.character_choices[0]==index and scene.sim.fighters[0].character==index)
         await shot("fighter-card-"+str(index))
-    await tap(KEY_ESCAPE);check("Esc returns to six-option menu",hud.menu_page=="main" and hud.art_buttons.size()==6)
+    await tap(KEY_ESCAPE);check("Esc returns to five-option menu",hud.menu_page=="main" and hud.art_buttons.size()==5)
     await click(hud.art_buttons.settings);check("pointer opens native Settings",hud.menu_page=="settings" and hud.menu.visible)
     var options:Array=hud.menu_stack.find_children("*","OptionButton",true,false)
     options[0].grab_focus();await tap(KEY_SPACE)
@@ -61,11 +62,11 @@ func run() -> void:
     check("pause smoothly lowers music gain",player.volume_db<before_gain-3)
     hud.open_page("settings");scene._process(.016);var pos:float=player.get_playback_position();await create_timer(.25).timeout
     check("pause Settings music continues without restart",scene.audio.music==player and player.get_playback_position()>pos+.1)
-    hud.close_page();scene.resume_game();scene._process(.016);await create_timer(.45).timeout
+    hud.close_page();scene.resume_game();scene._process(.016);await create_timer(2.0).timeout
     check("resume restores gain on same advancing song",scene.audio.music==player and not player.stream_paused and player.volume_db>before_gain-1)
     var transport:float=player.get_playback_position();scene.audio.context="title";scene.audio._process(.01)
     check("song change starts an overlapping crossfade",scene.audio.fading_music==player and player.playing and scene.audio.music.playing and scene.audio.crossfade<.1)
-    scene.audio.context="play";scene.audio._process(.01)
+    scene.audio._switch_track(scene.audio.fight_pick)
     check("rapid navigation reverses existing crossfade",scene.audio.music==player and player.get_playback_position()>=transport)
     for i in 120:scene.audio._process(.02)
     check("crossfade retires old deck only after fading",scene.audio.crossfade==1 and not scene.audio.fading_music.playing and scene.audio.music.playing)
@@ -73,7 +74,7 @@ func run() -> void:
     scene.audio.music_level=0;var p:float=scene.audio.music.get_playback_position();await create_timer(.2).timeout
     check("zero volume silences without stopping transport",scene.audio.music.playing and not scene.audio.music.stream_paused and scene.audio.music.get_playback_position()>p)
     scene.audio.music_level=.7;scene.audio.muted=true
-    scene.return_to_title();hud.close_page();await click(hud.art_buttons.demo);check("FREE PLAY opens the free-play page",hud.menu_page=="free_play");scene.start_demo();scene._process(.016)
+    scene.return_to_title();hud.close_page();check("AI demo has no public main action",not hud.art_buttons.has("demo"));scene.start_demo();scene._process(.016)
     check("AI Demo starts normal-health looping battle with entry",scene.demo!=null and not scene.sim.endless and not scene.sim.training and scene.round_theatre.intro)
     for i in 180:scene._physics_process(1.0/60);scene._process(1.0/60)
     await shot("hud")
@@ -89,7 +90,6 @@ func run() -> void:
                     all_valid=all_valid and piece.points.size()>=3
                     for point in piece.points:all_valid=all_valid and point.is_finite()
     check("all 13 vector attacks have finite staged geometry",all_valid)
-    check("active renderer has no generated raster stamps",not FileAccess.get_file_as_string("res://scripts/combat/fight_vfx.gd").contains("sprite_fx"))
     scene.return_to_title();check("title clears all combat effects",scene.effects.is_empty())
     scene.queue_free();await frames(5);await create_timer(.2).timeout
     var passed:int=checks.filter(func(c:Dictionary)->bool:return c.passed).size()

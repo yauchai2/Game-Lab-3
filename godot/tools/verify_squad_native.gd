@@ -13,8 +13,10 @@ func shot(label:String) -> void:
 func run() -> void:
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";s.progression_path=""
     root.add_child(s);s.set_process(false);s.set_physics_process(false);s.audio.muted=true
-    s.hud.open_page("roster");await frames()
-    var button:Control=s.hud.art_buttons.enemy_squad
+    s.hud.open_page("labs");await frames()
+    var button:Control
+    for action in s.hud.menu_stack.get_children():
+        if action is Button and action.get_meta("ui_key","")=="free_squad":button=action
     for pressed in [true,false]:
         var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_LEFT;e.position=root.get_screen_transform()*button.get_global_rect().get_center();e.global_position=e.position;e.pressed=pressed;Input.parse_input_event(e);await frames(2)
     check("real pointer starts squad encounter",s.sim.squad_enabled and s.squad_visuals.size()==4 and s.screen=="play")

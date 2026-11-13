@@ -1,3 +1,5 @@
+最新：已依「全合到main／完成剩餘工作」整合四角色動作、720p字體、完整據點UI、開場配樂與手柄震動，並完成UI P1–P3、共用角色基礎profile、有界轉髖／平地接地IK及全部19 strict。[本輪狀態與851項驗證](docs/REMAINING_WORK_INTEGRATION.zh-TW.md)。完整免費攻守配對摔投仍受官方原檔未取得所限；目標電腦／真人／實體手柄仍待驗，公開Web未更新。以下分支／待辦文字是各輪歷史，以本輪狀態為準。
+
 # Afterhours / Game-Lab-3
 
 最新：[按指定原圖重做據點與15秒動態](docs/NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。固定視角投影美術＋真3D角色／深度與特效，保留原圖佈局、刪除無關設施；[引擎影片／對照](docs/evidence/nightshift-reference/README.md)。現有角色與插畫仍有差異；211回歸＋15strict，Tripo必需0件，選配精修清單已列。下方粗模紀錄為歷史。
@@ -194,3 +196,11 @@ godot --headless --path godot --script res://verify.gd
 ```
 
 上述命令驗證匯入和場景載入，不能代替 GPU 畫面、實際遊玩或效能測試。細節見 [Godot 專案說明](godot/README.md)。
+
+
+## 2026-11-13 全分支整合來源
+
+- 完整來源紀錄：docs/integration-history/story-waves-m1/README.md
+- 完整來源紀錄：docs/integration-history/four-fighter-motion-plan/README.md
+
+最新約束：完整摔投只用免費資源，優先核實Mixamo Shoulder Throw攻守配對；官方FBX尚未取得，完整摔投未完成。詳[資源研究](docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md)。

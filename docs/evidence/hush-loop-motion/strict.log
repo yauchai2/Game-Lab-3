@@ -1,0 +1,9 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+MOTION_STRICT res://scripts/combat/combat_motions.gd PASS
+MOTION_STRICT res://scripts/combat/fighter_visual.gd PASS
+MOTION_STRICT res://scripts/combat/neon/neon_signature_motion.gd PASS
+MOTION_STRICT res://scripts/combat/last_service/rivet_motion.gd PASS
+MOTION_STRICT res://scripts/combat/last_service/street_motion.gd PASS
+MOTION_STRICT res://scripts/combat/last_service/counter_motion.gd PASS
+MOTION_STRICT res://scripts/combat/ink_fx/fx_recipes.gd PASS

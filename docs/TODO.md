@@ -1,3 +1,13 @@
+## 2026-11-13：整合後的現行待辦（覆蓋下方歷史）
+
+- [x] 所有本輪活躍來源集中main：四角地面／空中／受擊與聲光、720p字體、據點全圖像頁、開場配樂、震動路由。
+- [x] UI P1–P3：5主選項、AUTO／ALWAYS／OFF提示、模式入口整併／LABS、音訊設定、共用顏色／面板與按鈕、精簡HOW TO PLAY／LOADOUT。
+- [x] 四英雄有界轉髖、支撐腳鎖定／骨盆修正／平地兩骨IK；共用基礎profile接選角、勝出／登場、據點預覽。851項／19 strict及1,800tick等價驗證。
+- [ ] 完整免費攻守配對柔道摔投：官方Mixamo Aggressor／Victim原FBX尚未取得，原有grab只是過渡手勢；不採購付費來源或使用授權不明鏡像。
+- [ ] 本機／真人／實體手柄／目標GPU驗收；具體步驟見REMAINING_WORK_INTEGRATION.zh-TW.md。
+
+本段是現況，下方保留各輪原始待辦與出處，不代表舊的每一項仍未實作。
+
 ## 2026-11-12：按原圖重做據點＋15秒動態（覆蓋粗模）
 
 使用者回報上一版差距大，要求照指定圖、移除無關物件，並給15.083秒動畫。正式入口改用reference_workshop.gd：固定鏡頭投影空場貼圖／3D深度片與可走地面、既有四英雄／Dealer骨架、活動橙色臂、掃燈／光斑／煙／電光／閘門開口與門內剪影；Loop移向機器後回位。移除接線大機／戰利品牆／站位框，天賦綁LOOP區，Tab展開HUD。這是**2.5D／3D混合固定視角方案，不是全角度實體建築**；人物外形／姿態仍有差異，不稱逐像素或逐來源幀完美。詳[NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md](NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。
@@ -851,3 +861,15 @@ Godot4.7.2 Linux Compatibility／llvmpipe介面回歸37/37通過，三視窗尺�
 - [x] 城內 SKILLS／RADIO／DEPART 與頂部資源列圖像化（HUB_PICTURE_UI）。
 - [ ] 用同一套卡片重做 DEALER／SHOP（現在兩頁共用同一段長文字）與 CIRCUIT。
 - [ ] Alan 看過圖示後調整畫法；若要 ChatGPT 生成圖，需由使用者生成後提供。
+
+
+## 2026-11-13 全分支整合來源
+
+- 完整來源紀錄：docs/integration-history/story-waves-m1/docs/TODO.md
+- 完整來源紀錄：docs/integration-history/four-fighter-motion-plan/docs/TODO.md
+
+## 2026-11-13：免費摔投素材優先次序
+
+- [x] 記錄使用者只用免費資源，付費候選不採購。
+- [ ] 優先從Mixamo官方取得Shoulder Throw, Aggressor／Victim；目前只有索引線索，瀏覽器啟動失敗，未取得FBX。
+- [ ] 檢查兩段root／起點／時長／接觸／落地，再做完整攻守配對，不能當作已完成。

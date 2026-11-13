@@ -1,0 +1,528 @@
+{
+  "checks": [
+    {
+      "detail": 0.0149999260902405,
+      "name": "deformed skin rests on floor 0/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 0/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 0/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 0/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 0/-1/false",
+      "passed": true
+    },
+    {
+      "detail": 0.0149999260902405,
+      "name": "deformed skin rests on floor 0/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 0/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 0/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 0/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 0/-1/true",
+      "passed": true
+    },
+    {
+      "detail": 0.0149999260902405,
+      "name": "deformed skin rests on floor 0/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 0/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 0/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 0/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 0/1/false",
+      "passed": true
+    },
+    {
+      "detail": 0.0149999260902405,
+      "name": "deformed skin rests on floor 0/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 0/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 0/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 0/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 0/1/true",
+      "passed": true
+    },
+    {
+      "detail": 0.0150139331817627,
+      "name": "deformed skin rests on floor 1/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 1/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 1/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 1/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 1/-1/false",
+      "passed": true
+    },
+    {
+      "detail": 0.0150139331817627,
+      "name": "deformed skin rests on floor 1/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 1/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 1/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 1/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 1/-1/true",
+      "passed": true
+    },
+    {
+      "detail": 0.0150139331817627,
+      "name": "deformed skin rests on floor 1/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 1/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 1/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 1/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 1/1/false",
+      "passed": true
+    },
+    {
+      "detail": 0.0150139331817627,
+      "name": "deformed skin rests on floor 1/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 1/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 1/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 1/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 1/1/true",
+      "passed": true
+    },
+    {
+      "detail": 0.0150001049041748,
+      "name": "deformed skin rests on floor 2/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 2/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 2/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 2/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 2/-1/false",
+      "passed": true
+    },
+    {
+      "detail": 0.0150001049041748,
+      "name": "deformed skin rests on floor 2/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 2/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 2/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 2/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 2/-1/true",
+      "passed": true
+    },
+    {
+      "detail": 0.0150001049041748,
+      "name": "deformed skin rests on floor 2/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 2/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 2/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 2/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 2/1/false",
+      "passed": true
+    },
+    {
+      "detail": 0.0150001049041748,
+      "name": "deformed skin rests on floor 2/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 2/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 2/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 2/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 2/1/true",
+      "passed": true
+    },
+    {
+      "detail": 0.0150000154972076,
+      "name": "deformed skin rests on floor 3/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 3/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 3/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 3/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 3/-1/false",
+      "passed": true
+    },
+    {
+      "detail": 0.0150000154972076,
+      "name": "deformed skin rests on floor 3/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 3/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 3/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 3/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 3/-1/true",
+      "passed": true
+    },
+    {
+      "detail": 0.0150000154972076,
+      "name": "deformed skin rests on floor 3/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 3/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 3/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 3/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 3/1/false",
+      "passed": true
+    },
+    {
+      "detail": 0.0150000154972076,
+      "name": "deformed skin rests on floor 3/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 3/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 3/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 3/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 3/1/true",
+      "passed": true
+    },
+    {
+      "detail": 0.0150001049041748,
+      "name": "deformed skin rests on floor 4/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 4/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 4/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 4/-1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 4/-1/false",
+      "passed": true
+    },
+    {
+      "detail": 0.0150001049041748,
+      "name": "deformed skin rests on floor 4/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 4/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 4/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 4/-1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 4/-1/true",
+      "passed": true
+    },
+    {
+      "detail": 0.0150001049041748,
+      "name": "deformed skin rests on floor 4/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 4/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 4/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 4/1/false",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 4/1/false",
+      "passed": true
+    },
+    {
+      "detail": 0.0150001049041748,
+      "name": "deformed skin rests on floor 4/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "death owns attack/air/spin pose 4/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle state cannot restart or stand up corpse 4/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "presentation leaves simulation snapshot intact 4/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "living airborne pose is not grounded 4/1/true",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "squad continues after two corpses",
+      "passed": true
+    },
+    {
+      "detail": 0.0150001049041748,
+      "name": "live squad corpse rests on street 0",
+      "passed": true
+    },
+    {
+      "detail": 0.0150001049041748,
+      "name": "live squad corpse rests on street 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "all result corpses settle, including non-focus enemies",
+      "passed": true
+    }
+  ],
+  "engine": "4.6.3-stable (official)",
+  "failed": 0,
+  "passed": 104,
+  "scope": "Actual renderer-deformed mesh contact on five rigs, F2, both facings, real squad lifecycle and explicit frozen-result fixture. Linux Compatibility, not target Mac validation."
+}

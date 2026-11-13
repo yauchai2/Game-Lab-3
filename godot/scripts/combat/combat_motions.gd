@@ -1,6 +1,9 @@
 extends RefCounted
 ## Rest-relative retargeting of the CC0 Quaternius library onto the supplied rig.
+const RivetMotion=preload("res://scripts/combat/last_service/rivet_motion.gd")
+const StreetMotion=preload("res://scripts/combat/last_service/street_motion.gd")
 static var library: Dictionary = {}
+var pose_owner:="legacy"
 var skeleton: Skeleton3D
 var source_rest: Array[Quaternion] = []
 var source_global_rest: Array[Quaternion] = []
@@ -17,6 +20,8 @@ var clip_name := ""
 var clip_elapsed := 0.0
 var blend_from: Array[Quaternion] = []
 var previous_state := ""
+var previous_flash:=0.0
+var reaction_serial:=0
 var previous_y := 0.0
 var land_time := 1.0
 var air_time := 0.0
@@ -31,6 +36,9 @@ func setup(target: Skeleton3D, model: Node3D) -> void:
     model_up = (skeleton.global_basis.inverse() * model.global_basis.y).normalized()
     if library.is_empty():
         library = JSON.parse_string(FileAccess.get_file_as_string("res://assets/animations/quaternius_combat.json"))
+        var extra:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/animations/street_library.json"))
+        library.clips.merge(extra.clips)
+        library["street_markers"]=extra.markers
     for node in library.nodes:
         source_rest.append(_quat(node.rotation))
     var cache: Dictionary = {}
@@ -86,6 +94,14 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         land_time += delta
         if previous_y > 0.05 and f.y <= 0.01: land_time = 0.0
     previous_y = f.y
+    var move_spec:Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES.get(f.move,{}))
+    var profile_pose:Dictionary=f
+    if f.get("shared_profile",false) and f.get("showcase",false) and not f.has("cinematic_clip") and f.health>0:
+        profile_pose=f.duplicate(true);profile_pose.erase("showcase")
+        profile_pose["face"]=f.get("face",1);profile_pose["move_data"]={}
+    var motion:Dictionary=StreetMotion.describe(profile_pose,move_spec,library.street_markers)
+    var profile_owned:bool=not motion.is_empty()
+    pose_owner=motion.get("owner","legacy")
     var selected := "Punch_Enter"
     var loop := false
     if f.health <= 0:
@@ -115,11 +131,17 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         selected=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop","Idle_Loop"][clampi(character,0,4)];loop=true
     # Cinematic performers name a library clip directly; combat never sets this key.
     if f.has("cinematic_clip") and library.clips.has(f.cinematic_clip):selected=f.cinematic_clip;loop=true
+    if profile_owned:selected=motion.clip;loop=motion.loop
     # Death owns the pose even when an outgoing attack or idle state remains in
     # the frozen result/squad snapshot. State changes must not restart the fall.
     var dead:bool=f.health<=0
     if dead:selected="Death01";loop=false
     var state_key := "Death01/dead" if dead else selected + "/" + str(f.state) + ("/"+str(f.move) if f.state=="attack" else "")
+    if profile_owned and f.state=="attack":state_key+="/"+str(f.get("service",{}).get("serial",0))
+    if profile_owned and motion.get("transit",false):
+        if motion.get("reaction",false) and float(f.get("flash",0))>previous_flash:reaction_serial+=1
+        state_key+="/"+str(motion.get("transition",""))+"/"+str(reaction_serial if motion.get("reaction",false) else 0)
+    previous_flash=float(f.get("flash",0))
     if state_key != previous_state:
         blend_from.clear()
         for bone in skeleton.get_bone_count(): blend_from.append(skeleton.get_bone_pose_rotation(bone))
@@ -151,15 +173,42 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         sample_time = duration * clampf(air_time/0.12,0,1)
     elif selected == "Jump_Land":
         sample_time = duration * clampf(land_time / 0.22,0,1)
+    if profile_owned:
+        sample_time=fmod(clip_elapsed*float(motion.speed),duration) if motion.loop else (minf(clip_elapsed*2.5,duration) if motion.get("reaction",false) else float(motion.phase)*duration)
     var locals: Array[Quaternion] = source_rest.duplicate()
     for index in clip.tracks:
         var track: Dictionary = clip.tracks[index]
         if track.has("rotation"):
             locals[int(index)] = _sample_quat(track.rotation,sample_time)
+    if profile_owned and (motion.plant or motion.guard_arms):
+        var stance:Dictionary=library.clips[motion.get("stance_clip","Punch_Enter")]
+        var stance_time:float=stance.duration*float(motion.get("stance_phase",1.0))
+        for index in stance.tracks:
+            var label:String=library.nodes[int(index)].name
+            var masked:bool=(motion.plant and RivetMotion.planted_source(label)) or (motion.guard_arms and StreetMotion.guard_bone(label))
+            if masked and stance.tracks[index].has("rotation"):
+                locals[int(index)]=_sample_quat(stance.tracks[index].rotation,stance_time)
+    if profile_owned and motion.get("transit",false):
+        var jump:Dictionary=library.clips.Jump_Loop
+        var arm_clip:String=motion.get("arm_stance","")
+        for index in jump.tracks:
+            var label:String=library.nodes[int(index)].name
+            if StreetMotion.Transit.mask_leg(label,motion.get("air_legs","")) and jump.tracks[index].has("rotation"):
+                locals[int(index)]=_sample_quat(jump.tracks[index].rotation,jump.duration*(.35+float(f.character)*.10))
+            if arm_clip!="" and StreetMotion.guard_bone(label):
+                var arms:Dictionary=library.clips[arm_clip]
+                if arms.tracks.has(index) and arms.tracks[index].has("rotation"):
+                    locals[int(index)]=_sample_quat(arms.tracks[index].rotation,arms.duration*(1.0 if arm_clip=="Punch_Enter" else .25))
+    if profile_owned and motion.has("grip"):
+        var fist:Dictionary=library.clips.Punch_Enter
+        for index in fist.tracks:
+            var label:String=library.nodes[int(index)].name
+            if (label.begins_with("DEF-f_") or label.begins_with("DEF-thumb")) and (motion.grip=="both" or label.ends_with(".R")) and fist.tracks[index].has("rotation"):
+                locals[int(index)]=_sample_quat(fist.tracks[index].rotation,fist.duration)
     var globals: Dictionary = {}
     var desired: Array[Quaternion] = []
     desired.resize(skeleton.get_bone_count())
-    var blend := clampf(clip_elapsed/0.06,0,1)
+    var blend := clampf(clip_elapsed/(.025 if profile_owned and f.state=="attack" else .06),0,1)
     for bone in skeleton.get_bone_count():
         var parent := skeleton.get_bone_parent(bone)
         var parent_rotation := Quaternion.IDENTITY if parent<0 else desired[parent]
@@ -179,7 +228,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     # Keep horizontal root motion in simulation. Death needs the full downward
     # hip track; the standing bob clamp leaves a prone body floating at hip height.
     var hips_position := skeleton.get_bone_rest(target_hips).origin
-    if clip.tracks.has(str(source_hips)) and clip.tracks[str(source_hips)].has("translation"):
+    if (not profile_owned or not motion.plant) and clip.tracks.has(str(source_hips)) and clip.tracks[str(source_hips)].has("translation"):
         var translation: Vector3 = _sample_vector(clip.tracks[str(source_hips)].translation,sample_time)
         var source_base := _vec(library.nodes[source_hips].translation)
         var parent: int = library.nodes[source_hips].parent
@@ -189,6 +238,10 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     if dead:
         air_pose_name=""
         return # Air/stunt/guard layers must not overwrite the death clip.
+    if profile_owned:
+        StreetMotion.finish(self,f,motion,move_spec)
+        air_pose_name=pose_owner+"/"+(f.move if f.state=="attack" else f.state)
+        return # This profile owns the complete pose; no later legacy layers.
     if f.state == "attack":
         var move: Dictionary = f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
         var attack_weight := clampf(float(f.frame)/move.startup,0,1)
@@ -277,6 +330,15 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         elif active and character==3:
             _aim_limb("LeftArm","LeftForeArm",-model_forward,.95)
             _aim_limb("RightArm","RightForeArm",model_forward,1.0)
+
+func turn_hips(angle:float) -> void:
+    if absf(angle)<.0001 or target_hips<0:return
+    var pose:Transform3D=skeleton.get_bone_global_pose(target_hips)
+    var parent:int=skeleton.get_bone_parent(target_hips)
+    var parent_rotation:Quaternion=Quaternion.IDENTITY if parent<0 else skeleton.get_bone_global_pose(parent).basis.get_rotation_quaternion()
+    var rotated:Quaternion=Quaternion(model_up,angle)*pose.basis.get_rotation_quaternion()
+    skeleton.set_bone_pose_rotation(target_hips,(parent_rotation.inverse()*rotated).normalized())
+    skeleton.force_update_all_bone_transforms()
 
 func _aim_limb(bone_name: String, child_name: String, direction: Vector3, weight: float) -> void:
     var bone := bone_index(bone_name)

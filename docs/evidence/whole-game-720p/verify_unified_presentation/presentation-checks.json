@@ -1,0 +1,87 @@
+{
+  "checks": [
+    {
+      "check": "Shared framebuffer 1280x720",
+      "detail": "(1280.0, 720.0)",
+      "pass": true
+    },
+    {
+      "check": "World-only pixel filter retired",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Live hero selection 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Live hero selection 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Live hero selection 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Live hero selection 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Four different pose rotations",
+      "detail": [
+        "(-0.503727, 0.119098, 0.617635, -0.592116)",
+        "(0.721536, -0.479361, 0.498163, -0.037841)",
+        "(-0.408566, -0.100053, 0.743, -0.520591)",
+        "(-0.707343, -0.152329, 0.603557, -0.334935)"
+      ],
+      "pass": true
+    },
+    {
+      "check": "Roster viewports bounded",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hidden roster rendering disabled",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Background respects pause",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Distant car moves",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Crowd reactions rate limited",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Decoration count bounded",
+      "detail": 48,
+      "pass": true
+    },
+    {
+      "check": "Silent title recovery visible",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Recovery restores audible settings",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "renderer": "Native Compatibility / llvmpipe",
+  "scope": "Native GPU screenshots and state assertions, not human play or FPS"
+}

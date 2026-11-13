@@ -1,0 +1,6 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+{"hits":21,"input_sha256":"d957008b9dd3b2b5d0255d65f1787f1496836d9bfe73521dc08131571a54f829","presentation_mutations":0,"scope":"Identical explicit commands at 1800 fixed simulation ticks, two hero pairs; reset every 180 ticks to exercise paid moves without synthetic damage. Pure simulation compared with posed simulation each tick. Not a human match, demo-clock or performance test.","sha256":"022cef61e6c1fea696d62c18791f77a38d82917bfdce546fa3318d15fb049c3e","simulation_mismatches":0,"steps":1800}

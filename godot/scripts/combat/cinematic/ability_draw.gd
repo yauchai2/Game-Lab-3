@@ -42,8 +42,8 @@ var last_skip:=false
 var current_shot:=0
 var input_armed:=false
 var reveal_started:=false
-const INK=Color("141024")
-const CREAM=Color("f4e5c7")
+const INK=Tokens.INK
+const CREAM=Tokens.PAPER
 
 func setup(owner_session:Node3D) -> void:
     session=owner_session;name="AbilityDraw"
@@ -293,13 +293,13 @@ func draw(canvas:Control) -> void:
         if not session.reduced_effects and peak>0:
             for i in 17:
                 var a:=TAU*i/17+.11;var ray:=Vector2(cos(a),sin(a));var p:=Vector2(640,350)+ray*260
-                canvas.draw_colored_polygon(PackedVector2Array([p,Vector2(640,350)+ray*900+ray.orthogonal()*22,Vector2(640,350)+ray*900-ray.orthogonal()*22]),Color(1,.8,.18,peak))
+                canvas.draw_colored_polygon(PackedVector2Array([p,Vector2(640,350)+ray*900+ray.orthogonal()*22,Vector2(640,350)+ray*900-ray.orthogonal()*22]),Color(Tokens.TEAL,peak))
             canvas.draw_string(bold,Vector2(850,220),"WHAM!" if source_age<2 else "JACKPOT!",HORIZONTAL_ALIGNMENT_LEFT,-1,68,CREAM)
     if compact_entry and state=="arrival" and source_age<.68:
         var wipe:=smoothstep(.28,.68,source_age)
         var edge:=lerpf(1600.0,-360.0,wipe)
-        canvas.draw_colored_polygon(PackedVector2Array([Vector2(-400,0),Vector2(edge,0),Vector2(edge-260,720),Vector2(-400,720)]),Color("4f1b80"))
-        canvas.draw_line(Vector2(edge-20,0),Vector2(edge-280,720),Color("ed7827"),32)
+        canvas.draw_colored_polygon(PackedVector2Array([Vector2(-400,0),Vector2(edge,0),Vector2(edge-260,720),Vector2(-400,720)]),Tokens.NIGHT)
+        canvas.draw_line(Vector2(edge-20,0),Vector2(edge-280,720),Tokens.MAGENTA,32)
     if state in ["offer","result"]:
         var x:=920.0 if state=="offer" else 720.0
         var hint:="ENTER / SPACE"

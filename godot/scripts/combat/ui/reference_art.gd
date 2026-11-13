@@ -1,13 +1,13 @@
 extends RefCounted
 ## Approved image composition; fixed art is raster, live game state remains native.
 const T=preload("res://scripts/combat/ui/ui_theme.gd")
-const LARGE_TYPE=preload("res://assets/fonts/RadioPixelDisplay.fnt")
+const LARGE_TYPE=T.DISPLAY
 const TITLE=preload("res://assets/ui/last_service/cover-ensemble.png")
 const CITY=preload("res://assets/ui/ink/city-band.png")
 const SLASHES=preload("res://assets/ui/ink/slashes.png")
-const MAIN_RECTS=[Rect2(56,248,408,78),Rect2(56,338,408,54),Rect2(56,402,408,54),Rect2(56,466,408,54),Rect2(56,530,408,54),Rect2(56,604,282,48)]
-const MAIN_KEYS=["story","fight","roster","training","settings","demo"]
-const MAIN_LABELS=["STORY","VERSUS","FIGHTERS","TRAINING","SETTINGS","FREE PLAY"]
+const MAIN_RECTS=[Rect2(56,248,408,78),Rect2(56,338,408,54),Rect2(56,402,408,54),Rect2(56,466,408,54),Rect2(56,530,408,54)]
+const MAIN_KEYS=["story","fight","roster","training","settings"]
+const MAIN_LABELS=["STORY","VERSUS","FIGHTERS","TRAINING","SETTINGS"]
 var free_locked:=true
 var locked_flash:=0.0
 const CARD_RECTS=[Rect2(198,155,300,349),Rect2(485,159,301,345),Rect2(191,509,298,332),Rect2(491,510,304,330)]
@@ -101,9 +101,7 @@ func roster(c:Control,s:Node) -> void:
         if focused_key=="side_"+str(side):corners(c,side_rect.grow(2),T.TEAL)
     corners(c,Rect2(657,121,420,476),T.EDGE,30)
     c.draw_texture_rect(s.hud.roster_preview.hero_texture(),Rect2(662,117,420,486),false)
-    plate(c,Rect2(1094,142,140,128),T.NIGHT,10)
-    text(c,Vector2(1124,243),["Z","R","H","L","B"][choice],106,T.PAPER)
-    for label in [["SKILLS",Rect2(1094,300,140,60)],["STORY",Rect2(1094,380,140,40)],["RUN",Rect2(1094,430,140,42)]]:
+    for label in [["SKILLS",Rect2(1094,300,140,60)]]:
         plate(c,label[1],T.NIGHT,8)
         text(c,label[1].position+Vector2(12,31),label[0],28,T.PAPER)
     var enemy_rect:=Rect2(1094,486,140,86)
@@ -111,14 +109,12 @@ func roster(c:Control,s:Node) -> void:
     text(c,Vector2(1106,521),"BLACK",28,T.PAPER)
     text(c,Vector2(1106,553),"SUIT / P2",26,T.PAPER)
     if focused_key=="enemy_black_suit":corners(c,enemy_rect.grow(2),T.TEAL)
-    plate(c,Rect2(1094,588,140,48),T.TEAL if focused_key=="enemy_squad" else T.PAPER,8)
-    text(c,Vector2(1106,623),"SQUAD",28,T.INK)
-    var fight_rect:Rect2=fit(Rect2(849,773,550,100))
+    var fight_rect:=Rect2(672,658,250,46)
     plate(c,fight_rect,T.TEAL if focused_key=="roster_fight" else T.PAPER,12)
-    text(c,fight_rect.position+Vector2(54,58),"STORY" if free_locked else "FIGHT",64,T.INK)
+    text(c,fight_rect.position+Vector2(20,34),"CONFIRM",36,T.INK)
     var name:String=["ZIP / ROUTE KICKS","RIVET / PRELOAD","HUSH / SAMPLE","LOOP / PATCH NODES","BLACK SUIT / ENEMY"][choice]
-    plate(c,Rect2(672,666,250,38),T.NIGHT,8)
-    text(c,Vector2(686,697),name,26,T.PAPER)
+    plate(c,Rect2(672,606,414,38),T.NIGHT,8)
+    text(c,Vector2(686,636),name,26,T.PAPER)
     hints(c)
     if focused_key=="back":corners(c,fit(Rect2(1507,875,145,50)),T.TEAL)
 func hints(c:Control,back:=true) -> void:
@@ -174,27 +170,28 @@ func hud(c:Control,s:Node,hp_lag:Array) -> void:
     var clock_size:int=36 if clock.length()>2 else 48
     var width:float=T.DISPLAY.get_string_size(clock,HORIZONTAL_ALIGNMENT_LEFT,-1,clock_size).x
     text(c,Vector2(640-width*.5,59),clock,clock_size)
-    plate(c,Rect2(150,644,980,60),T.INK,20)
-    plate(c,Rect2(154,646,972,54),T.PAPER,20)
-    if s.versus:
-        # Two humans: show each player's own device row instead of the solo keyboard row.
-        for side in 2:
-            text(c,Vector2(176 if side==0 else 660,683),"P%d  %s"%[side+1,s.controls.short_legend(side)],24)
-    else:
-        var skill_label:String="NODE" if s.character_choices[0]==3 else ("HOLD" if s.character_choices[0]==1 else "SKILL")
-        var shortcuts:Array=[["J","RUSH",174],["K","LAUNCH",382],["L",skill_label,616],["W+L","SUPER",820]]
-        if s.sim.campaign_enabled:
-            if "launcher" not in s.sim.campaign_skills:shortcuts[1][1]="HEAVY"
-            if "overdrive" not in s.sim.campaign_skills:shortcuts[3]=["E","DODGE",820]
-        for entry in shortcuts:
-            var key_width:float=72 if entry[0]=="W+L" else 44
-            plate(c,Rect2(entry[2],655,key_width,34),T.INK,6)
-            text(c,Vector2(entry[2]+7,683),entry[0],32,T.PAPER)
-            text(c,Vector2(entry[2]+key_width+10,683),entry[1],30)
+    if s.hud.hints_visible() and s.coach==null and not s.sim.pressure_drill and not s.sim.rally.active() and not s.sim.is_aerial():
+        plate(c,Rect2(150,644,980,60),T.INK,20)
+        plate(c,Rect2(154,646,972,54),T.PAPER,20)
+        if s.versus:
+            # Two humans: show each player's own device row instead of the solo keyboard row.
+            for side in 2:
+                text(c,Vector2(176 if side==0 else 660,683),"P%d  %s"%[side+1,s.controls.short_legend(side)],24)
+        else:
+            var skill_label:String="NODE" if s.character_choices[0]==3 else ("HOLD" if s.character_choices[0]==1 else "SKILL")
+            var shortcuts:Array=[["J","RUSH",174],["K","LAUNCH",382],["L",skill_label,616],["W+L","SUPER",820]]
+            if s.sim.campaign_enabled:
+                if "launcher" not in s.sim.campaign_skills:shortcuts[1][1]="HEAVY"
+                if "overdrive" not in s.sim.campaign_skills:shortcuts[3]=["E","DODGE",820]
+            for entry in shortcuts:
+                var key_width:float=72 if entry[0]=="W+L" else 44
+                plate(c,Rect2(entry[2],655,key_width,34),T.INK,6)
+                text(c,Vector2(entry[2]+7,683),entry[0],32,T.PAPER)
+                text(c,Vector2(entry[2]+key_width+10,683),entry[1],30)
 
-    if s.character_choices[0]==3 and not s.versus:
-        plate(c,Rect2(990,606,238,32),T.INK,6)
-        text(c,Vector2(1000,631),"S+L  PULSE",24,T.LIME)
+        if s.character_choices[0]==3 and not s.versus:
+            plate(c,Rect2(990,606,238,32),T.INK,6)
+            text(c,Vector2(1000,631),"S+L  PULSE",24,T.LIME)
     if s.sim.combo_hits>=2 and s.sim.combo_owner>=0 and s.sim.fighters[1-s.sim.combo_owner].state=="stun":
         var x:float=39 if s.sim.combo_owner==0 else 1104
         plate(c,Rect2(x,146,118,49),T.PAPER,15)

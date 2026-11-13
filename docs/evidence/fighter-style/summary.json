@@ -1,0 +1,54 @@
+{
+  "programs": [],
+  "stream_groups": [],
+  "streams": [
+    {
+      "codec_name": "h264",
+      "codec_type": "video",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "codec_name": "aac",
+      "codec_type": "audio"
+    }
+  ],
+  "format": {
+    "duration": "12.000000"
+  },
+  "decoded_audio_rms": 0.12304669494493232,
+  "decoded_audio_peak": 0.588623046875,
+  "checks": {
+    "checks": {
+      "checks": 51,
+      "passed": 51
+    },
+    "counter": {
+      "checks": 122,
+      "passed": 122
+    },
+    "street": {
+      "checks": 90,
+      "passed": 90
+    },
+    "rivet": {
+      "checks": 19,
+      "passed": 19
+    },
+    "rules": {
+      "checks": 46,
+      "passed": 46
+    },
+    "death": {
+      "checks": 104,
+      "passed": 104
+    },
+    "fx": {
+      "checks": 26,
+      "passed": 26
+    }
+  },
+  "baseline_commit": "701f0c7c60787b601481f1431cf8a1a20fefdc82",
+  "source_scope": "Original deterministic PCM layers plus retained CC0 recorded impacts/smoke; no model/animation source replacement this round.",
+  "movie_sha256": "2dde368a5bad2e929e87150a6bd38aac29a5c314edbff877c9015230530961b4"
+}

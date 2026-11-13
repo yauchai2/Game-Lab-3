@@ -79,16 +79,12 @@ func run() -> void:
     await process_frame
     check("main menu buttons are back and usable",s.hud.art_controls.visible and s.hud.art_buttons.has("fight") and s.hud.art_buttons.fight.is_visible_in_tree())
     check("seen flag is saved beside progression",op.seen and FileAccess.file_exists(SAVE_DIR+"/story_opening.cfg"))
-    # Replay from FREE PLAY and skip; settings must not repeat the entry.
+    # The consolidated five-item menu keeps one replay entry in Settings.
     s.hud.open_page("settings");step(4)
-    var in_settings:=false
-    for node in s.hud.menu_stack.get_children():
-        if node is Button and node.get_meta("ui_key","")=="replay_opening":in_settings=true
-    s.hud.close_page();s.hud.open_page("free_play");step(4)
     var watch:Button=null
     for node in s.hud.menu_stack.get_children():
         if node is Button and node.get_meta("ui_key","")=="replay_opening":watch=node
-    check("FREE PLAY has WATCH OPENING and settings no longer repeats it",watch!=null and watch.text=="WATCH OPENING" and not in_settings)
+    check("Settings has the single WATCH OPENING entry",watch!=null and watch.text=="WATCH OPENING")
     var cam_pre:Transform3D=camera.transform
     watch.pressed.emit();step(20)
     check("replay starts from the title",op.active() and op.replay and s.screen=="opening")

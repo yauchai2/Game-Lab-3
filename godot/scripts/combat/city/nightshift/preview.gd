@@ -15,5 +15,5 @@ func _process(delta:float) -> void:
 func _actors(delta:float) -> void:
     for i in actors.size():
         var actor:Node3D=actors[i]
-        actor.motions.present({"character":i,"health":100,"state":"idle","move":"","frame":0,"x":0.0,"y":0.0,"vx":0.0,"vy":0.0,"face":1,"guarding":false,"showcase":true},delta,true)
+        actor.motions.present({"character":i,"health":100,"state":"idle","move":"","frame":0,"x":0.0,"y":0.0,"vx":0.0,"vy":0.0,"face":1,"guarding":false,"showcase":true,"shared_profile":true},delta,true)
         set_model.pose_actor(actor,i,false,false)

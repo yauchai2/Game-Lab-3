@@ -29,3 +29,21 @@
 通過（Godot 4.6.3，xvfb／llvmpipe）：`verify_campaign_complete_native` 23/23、`verify_city_expansion_native` 22/22、`verify_city_campaign` 50/50、`verify_nightshift_hub` 全部 true。兩個原生測試原本用英文按鈕字或地圖按鈕位置找控制項，已改用 `meta act`。
 
 未驗證：滑鼠／手柄實手感、Mac 與目標 GPU、真人讀起來是否順；圖示由我自己用文字點陣畫，是否符合 Alan 想像待他看過再改。沒有使用 ChatGPT 圖像生成（雲端環境沒有可用的圖像生成工具），改以程式內像素圖示處理。
+
+## 第二輪（DEALER／SHOP／CIRCUIT）
+
+2026-11-13，Alan：「DEALER／SHOP／CIRCUIT 頁仲係文字版，改圖像化」。沿用同一套 12×12 圖示和卡片，一樣沒有改規則、存檔或戰鬥數值。
+
+| 頁面 | 以前 | 現在 |
+|---|---|---|
+| DEALER | 和 SHOP 是同一張長文字頁（重複） | 只負責抽：核心卡（DRAW CORE／READY）、三個部位卡（手腕／鞋底／腰帶）、一個 DRAW 加價錢、保底（RARE 十格＋SIGN 能量條）、剛抽到的 NEW 卡 |
+| SHOP | 同上，外加幾十個長按鈕 | 只負責用：HEAL 卡、背包／倉庫數量、英雄三格裝備（點擊卸下）、比較卡（圖示＋屬性小標＋傷害／防禦／節能差值）、FIT／REROLL／TEMPER／SCRAP 四張卡（顯示價錢）、背包 4×2 格＋翻頁箭頭 |
+| CIRCUIT | 右邊約 10 行文字＋三個長按鈕 | 上方圖示列（英雄、等級、點數、關鍵節點）、節點圖示＋名字、一個屬性小標、傷害／防禦／節能三格（加上去後的值）、一個 CONNECT＋點數、重置／關閉圖示鈕；選中節點的一句說明放在底部；關鍵節點與起點在圖上畫圖示 |
+
+- 裝備稀有度顏色：白＝SALVAGED、青＝TUNED、綠＝RARE、粉＝SIGNATURE。屬性共用 `hub_widgets.gd` 的 `STAT_ICON`／`STAT_SHORT`。
+- 新增圖示：back、hammer、flame、trash；dice 改成看得見點數。
+- 每個按鈕帶 `meta act`：`core_draw`、`slot:n`、`draw_slot`、`heal`、`inspect:id`、`equip:id`、`recalibrate:id`、`temper:id`、`recycle:id`、`unequip:n`、`items_prev`／`items_next`、`connect`、`reset`。
+- 流程變動：抽到的裝備要去 SHOP 檢視和裝備（DEALER 的 NEW 卡一按就跳去）；以前兩頁內容一模一樣。
+- 測試：`verify_campaign_complete_native` 23/23、`verify_city_expansion_native` 22/22、`verify_city_campaign` 50/50、`verify_nightshift_hub`／`verify_nightshift_reference` 全 true。測試改用 `act` 找按鈕，工坊／比較測試改到 SHOP 頁。
+- 截圖：`docs/evidence/hub-picture-ui/deal_gear.png`、`shop_gear.png`、`shop_gear_bag.png`、`circuit.png`、`circuit_keystone.png`（`capture_hub_ui.gd --rich` 會放幾件測試裝備）。
+- 未驗證：滑鼠／手柄實手感、真機 GPU、圖示是否合 Alan 想像。

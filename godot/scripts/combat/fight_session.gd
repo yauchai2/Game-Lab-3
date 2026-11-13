@@ -94,6 +94,7 @@ var pixel_pass: ColorRect
 var language := "en"
 var character_choices := [0,1]
 var training_details := false
+var control_hints:=0
 var settings_save_clock := -1.0
 var practice := false
 var demo: RefCounted
@@ -606,7 +607,20 @@ func _count_style(event:Dictionary) -> void:
     elif event.kind=="block" and event.get("target",-1)==0:style_stats.defense+=1
     elif event.kind in ["parry","counter_success"] and event.get("target",-1)==0:style_stats.defense+=2
     elif event.kind in ["homing_chase","double_jump","air_escape","wall_bounce"] and event.get("target",-1)==0:style_stats.air+=1
+## F5: rumble per event. Heavy hits shake the attacker lightly and the victim strongly.
+const RUMBLE_HEAVY := ["heavy","finisher","launcher","meteor","special","overdrive","air_counter"]
+func _event_rumble(event: Dictionary) -> void:
+    if reduced_effects or screen!="play":return
+    var target:int=event.get("target",-1)
+    if event.kind=="hit" and target in [0,1]:
+        if event.get("move","") in RUMBLE_HEAVY:
+            controls.rumble(target,.5,.9,.22);controls.rumble(1-target,.3,.5,.12)
+        else:controls.rumble(target,.25,.1,.08)
+    elif event.kind in ["parry","counter_success"] and target in [0,1]:controls.rumble(target,.4,.6,.15)
+    elif event.kind=="ko":
+        for side in 2:controls.rumble(side,.6,1.0,.4)
 func _handle_event(event: Dictionary) -> void:
+    _event_rumble(event)
     if not practice and not versus and demo==null and not run_active:_count_style(event)
     if event.kind=="prop_break":
         _spawn_vfx("hit",Vector2(event.x,.4),.24,{"color":Color("ffd24b"),"strength":.7,"move":"heavy","face":1.0,"attacker":0});audio.play_sound("guard_break",1.0,-10)
@@ -769,7 +783,7 @@ func _handle_event(event: Dictionary) -> void:
     elif kind=="arena_bounce":
         arena_cage.react(event)
         var point:=Vector2(event.x,event.y)
-        _spawn_vfx("ground_ring" if event.surface=="floor" else "wall",point,.24,{"color":Color("c4f7ff"),"face":-signf(event.x),"move":"heavy"})
+        _spawn_vfx("ground_ring" if event.surface=="floor" else "wall",point,.24,{"color":Color("c4f7ff"),"face":-signf(event.x),"move":"heavy","owner":event.target})
         backdrop.smoke.react(Vector3(event.x,clampf(event.y,0,7),FIGHT_Z))
         trauma=maxf(trauma,.25 if event.surface in ["left","right"] else .34)
         audio.play_sound("slam",.85+event.chain*.07,-7)
@@ -779,7 +793,7 @@ func _handle_event(event: Dictionary) -> void:
         var fighter: Dictionary=sim.fighters[event.target]
         var point:=Vector2(fighter.x,fighter.y+1.0)
         if kind=="wall_bounce":
-            _spawn_vfx("wall",point,.22,{"color":Color("eebd4c"),"face":-signf(fighter.x),"move":"heavy"})
+            _spawn_vfx("wall",point,.22,{"color":Color("eebd4c"),"face":-signf(fighter.x),"move":"heavy","owner":event.target})
             trauma=maxf(trauma,.25)
             audio.play_sound("heavy",.85,-8)
         else:
@@ -811,7 +825,7 @@ func _handle_event(event: Dictionary) -> void:
         var move: String = event.get("move","jab")
         var face: float = event.get("face",sim.fighters[attacker].face)
         var point:Vector2=ink_fx.contact_point(self,event)
-        _spawn_vfx(kind,point,0.16 if kind=="hit" else .24,{"strength":strength,"color":tint,"move":move,"face":face,"attacker":attacker,"held":kind=="hit" and sim.hitstop>0})
+        _spawn_vfx(kind,point,0.16 if kind=="hit" else .24,{"strength":strength,"color":tint,"move":move,"face":face,"attacker":event.target if kind=="parry" else attacker,"held":kind=="hit" and sim.hitstop>0})
         if kind=="hit":
             if sim.arcade_enabled and move in ["meteor","special","overdrive"]:theatre.begin("cannon_hit" if move=="overdrive" else "impact",attacker)
             if sim.arcade_enabled and move=="meteor":_spawn_vfx("meteor_streak",point,.22,{"color":COLORS[attacker],"face":face})
@@ -1333,7 +1347,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
             resume_game()
     elif event.keycode==KEY_T and screen=="title":
         start_match(true)
-    elif event.keycode == KEY_ENTER:
+    elif event.keycode in [KEY_ENTER,KEY_KP_ENTER]:
         if sim.story_enabled:
             if screen=="play" and sim.story_state=="break":sim.next_story_wave();_sync_story_visuals();pending.clear();return
             if screen=="result":
@@ -1346,8 +1360,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
         if screen == "title":
             var focused:Control=get_viewport().gui_get_focus_owner()
             if focused is Button and focused.get_parent()==hud.art_controls:focused.pressed.emit()
-            elif free_battle_unlocked():start_match()
-            else:start_run()
+            else:city_campaign.open_city()
         elif screen == "result":
             if sim.squad_enabled:start_squad();return
             if run_active:advance_run();return
@@ -1409,7 +1422,9 @@ func set_language(value: String) -> void:
     hud.rebuild_menu()
 
 func set_volume(kind: String, value: float) -> void:
-    if kind=="music":audio.music_level=clampf(value,0,1)
+    if kind=="music":
+        audio.music_level=clampf(value,0,1)
+        if value>0:audio.music_muted=false
     else:
         audio.effects_level=clampf(value,0,1)
         if audio.effects_level<=0:audio.stop_all()
@@ -1539,6 +1554,7 @@ func _restore_options() -> void:
     audio.muted=options.muted
     audio.music_muted=options.music_muted
     reduced_effects=options.reduced_effects
+    controls.rumble_enabled=options.rumble
     secret_mono=options.secret_mono
     time_of_day_choice=options.time_of_day
     if backdrop!=null:backdrop.set_time_of_day(time_of_day_choice)
@@ -1546,6 +1562,7 @@ func _restore_options() -> void:
     ink_pass.visible=options.scene_edges
     language="en"
     training_details=options.training_details
+    control_hints=options.control_hints
     audio.music_level=options.music_level
     audio.effects_level=options.effects_level
     sim.difficulty=options.difficulty
@@ -1570,7 +1587,7 @@ func set_character(side:int,index:int) -> void:
     if is_instance_valid(hud) and hud.menu_page=="roster":hud.rebuild_menu()
 
 func save_options() -> void:
-    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":run_base_difficulty if run_active else sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":story_original_rival if sim.story_enabled else (run_original_rival if run_active else character_choices[1]),"p1_device":controls.wanted[0],"p2_device":controls.wanted[1],"time_of_day":time_of_day_choice,"secret_mono":secret_mono})
+    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":run_base_difficulty if run_active else sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":story_original_rival if sim.story_enabled else (run_original_rival if run_active else character_choices[1]),"p1_device":controls.wanted[0],"p2_device":controls.wanted[1],"time_of_day":time_of_day_choice,"secret_mono":secret_mono,"rumble":controls.rumble_enabled,"control_hints":control_hints})
 
 func story_opening_wanted() -> bool:
     # Only a real launch of this scene; tools that instantiate it stay on the menu.
@@ -1727,7 +1744,7 @@ func _track_service_effect(effect:Dictionary) -> void:
         effect["expired"]=true;return
     var move:Dictionary=sim.move_for(fighter,fighter.move)
     if effect.kind=="swing":
-        var socket:Vector3=visual.fx_socket(preload("res://scripts/combat/ink_fx/fx_recipes.gd").limb(fighter.move,visual.character_index))
+        var socket:Vector3=visual.fx_socket(preload("res://scripts/combat/ink_fx/fx_recipes.gd").limb(fighter.move,visual.character_index,fighter))
         effect.at=Vector2(socket.x+fighter.x-visual.position.x,socket.y+fighter.y-visual.position.y)
     else:effect.at=Vector2(fighter.x,fighter.y+visual.model_scale*.55)
     effect.face=fighter.face

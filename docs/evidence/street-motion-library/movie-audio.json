@@ -1,0 +1,7 @@
+{
+  "sample_rate": 24000,
+  "samples": 288256,
+  "peak": 0.56304931640625,
+  "rms": 0.11780115800928581,
+  "scope": "Accepted uninterrupted movie; decoded waveform only, not human listening."
+}

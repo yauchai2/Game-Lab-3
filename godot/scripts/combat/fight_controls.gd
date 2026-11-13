@@ -169,3 +169,19 @@ func legend(side: int) -> String:
 
 func short_legend(side: int) -> String:
     return SHORT.get(devices[side].kind,"")
+
+## F5: gamepad rumble. Feel only: never read by the simulation. Off when disabled or no pad.
+var rumble_enabled := true
+var rumble_log: Array = [] # Tests read this; capped.
+func rumble_devices(side: int) -> Array:
+    if mode!="versus":return pads() if side==0 else []
+    var d: Dictionary=devices[side]
+    return [d.id] if d.kind=="pad" else []
+func rumble(side: int, weak: float, strong: float, seconds: float) -> void:
+    if not rumble_enabled:return
+    for id in rumble_devices(side):
+        Input.start_joy_vibration(id,clampf(weak,0,1),clampf(strong,0,1),clampf(seconds,0.05,0.4))
+        rumble_log.append({"side":side,"device":id,"weak":weak,"strong":strong,"seconds":seconds})
+        if rumble_log.size()>32:rumble_log.pop_front()
+func stop_rumble() -> void:
+    for id in pads():Input.stop_joy_vibration(id)

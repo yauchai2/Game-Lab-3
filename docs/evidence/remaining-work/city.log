@@ -1,0 +1,28 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+EXPANSION_NATIVE actual game viewport is 1280x720 true
+EXPANSION_NATIVE nearest texture filter and AA-free toon renderer retained true
+EXPANSION_NATIVE title preview also renders at new resolution true
+EXPANSION_NATIVE main Story still opens the isometric city true
+EXPANSION_NATIVE city viewport matches upgraded whole-game resolution true
+EXPANSION_NATIVE native map pointer starts the first story encounter true
+EXPANSION_NATIVE real input still causes combat damage true
+EXPANSION_NATIVE clear banks an equipment drop and spendable talent point true
+EXPANSION_NATIVE native skill station preserves gradual unlock true
+EXPANSION_NATIVE full-screen connected talent board contains all 48 nodes true
+EXPANSION_NATIVE native node selection plus Connect spends one actual point true
+EXPANSION_NATIVE native mouse wheel zooms the tree true
+EXPANSION_NATIVE native right drag pans the connected tree true
+EXPANSION_NATIVE native dealer rolls and persists a signature affix item true
+EXPANSION_NATIVE inventory inspection shows real before-after comparison true
+EXPANSION_NATIVE equipment compare action changes the selected hero loadout true
+EXPANSION_NATIVE native contract entry consumes only its one item true
+EXPANSION_NATIVE contract tier and modifiers reach actual simulation HP true
+EXPANSION_NATIVE challenge defeat returns home with two saved attempts true
+EXPANSION_NATIVE real disk reload preserves challenge seed attempts and item balance true
+EXPANSION_NATIVE ordinary Fight restores full kit with no city stat modifiers true
+EXPANSION_NATIVE ordinary Fight overdrive does not require story unlock true
+EXPANSION_NATIVE RESULT 22/22

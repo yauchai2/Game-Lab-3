@@ -33,7 +33,7 @@ func apply(session: Node3D, side: int, seconds: float) -> Dictionary:
         # Sample a reproducible neutral pose before applying the authored limbs.
         var idle:String=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop","Idle_Loop"][id]
         m.blend_from.clear();m.previous_state=idle+"/idle";m.clip_elapsed=t
-        m.present({"character":id,"health":100,"state":"idle","move":"","frame":0,"y":0.0,"vy":0.0,"vx":0.0,"face":1,"guarding":false,"showcase":true},0.0,true)
+        m.present({"character":id,"health":100,"state":"idle","move":"","frame":0,"y":0.0,"vy":0.0,"vx":0.0,"face":1,"guarding":false,"showcase":true,"shared_profile":true},0.0,true)
         var up:Vector3=m.model_up
         var forward:Vector3=m.model_forward
         var right:Vector3=up.cross(forward).normalized()
