@@ -51,8 +51,8 @@ func run() -> void:
     check("city viewport matches upgraded whole-game resolution",h.viewport.size==Vector2i(960,540))
     await shot("city")
     await tap(KEY_5)
-    var board:Control=h.stack.get_children().filter(func(n:Node)->bool:return n.get_meta("city_board","")=="map")[0]
-    await click(board.get_child(0))
+    var first_district:Button=h.stack.find_children("*","Button",true,false).filter(func(n:Node)->bool:return n.get_meta("act","")=="sector:0")[0]
+    await click(first_district)
     check("native map pointer starts the first story encounter",s.screen=="play" and s.sim.campaign_enabled and p.data.run.room==0)
     s.sim.ai_enabled=false;s.sim.arrival_left=0;s.sim.squad_members[0].x=.9
     await tap(KEY_J)

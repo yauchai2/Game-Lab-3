@@ -26,4 +26,6 @@
 
 截圖腳本：`xvfb-run -a -s "-screen 0 1280x720x24" godot --rendering-driver opengl3 --path godot --script res://tools/capture_hub_ui.gd -- --out=/tmp/hub/ --rich`（`--rich` 給測試用的金幣／進度）。畫面在 `docs/evidence/hub-picture-ui/`。
 
+通過（Godot 4.6.3，xvfb／llvmpipe）：`verify_campaign_complete_native` 23/23、`verify_city_expansion_native` 22/22、`verify_city_campaign` 50/50、`verify_nightshift_hub` 全部 true。兩個原生測試原本用英文按鈕字或地圖按鈕位置找控制項，已改用 `meta act`。
+
 未驗證：滑鼠／手柄實手感、Mac 與目標 GPU、真人讀起來是否順；圖示由我自己用文字點陣畫，是否符合 Alan 想像待他看過再改。沒有使用 ChatGPT 圖像生成（雲端環境沒有可用的圖像生成工具），改以程式內像素圖示處理。
