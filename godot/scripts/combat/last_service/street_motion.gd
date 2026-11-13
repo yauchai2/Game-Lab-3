@@ -1,5 +1,6 @@
 extends RefCounted
 ## Data-only grounded motion selection for the four heroes. Never writes simulation.
+const Express=preload("res://scripts/combat/last_service/zip_express.gd")
 const Transit=preload("res://scripts/combat/last_service/transit_motion.gd")
 const Counter=preload("res://scripts/combat/last_service/counter_motion.gd")
 const Rivet=preload("res://scripts/combat/last_service/rivet_motion.gd")
@@ -37,7 +38,7 @@ static func describe(f:Dictionary,move:Dictionary,markers:Dictionary) -> Diction
         frame=segment.frame
         motion.clip="KK_Kick_Mirror" if mirrored else "KK_Kick"
         motion.launch_kick=f.move=="launcher"
-        motion.phase=attack_phase(frame,move,float(markers[motion.clip].contact),.75)
+        motion.phase=Express.phase(f,move,float(markers[motion.clip].contact)) if Express.owns(f) else attack_phase(frame,move,float(markers[motion.clip].contact),.75)
     elif f.move in ["heavy","finisher","overdrive"]:
         motion.clip="UAL2_Hook"
         if f.frame>=move.startup+move.active:
@@ -69,6 +70,9 @@ static func guard_bone(label:String) -> bool:
 static func finish(m:RefCounted,f:Dictionary,motion:Dictionary,move:Dictionary) -> void:
     if motion.get("transit",false):
         Transit.finish(m,f,motion,move)
+        return
+    if Express.owns(f):
+        Express.finish(m,f,move)
         return
     # Authored weight transfer rotates the complete hip chain before limb
     # corrections. The actor's root remains under simulation; ground IK then

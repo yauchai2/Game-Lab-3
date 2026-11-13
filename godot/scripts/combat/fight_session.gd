@@ -586,6 +586,9 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
         effect["attack_serial"]=sim.fighters[effect.owner].service.serial
         effect["track_attack"]=true
         if sim.squad_enabled and effect.owner==1:effect["squad_id"]=sim.fighters[1].get("squad_id",sim.squad_focus)
+    if sim.last_service_enabled and effect.character==0 and effect.get("move","")=="special":
+        effect["zip_express"]=true
+        if not effect.has("zip_second"):effect["zip_second"]=sim.fighters[clampi(actor,0,1)].service.zip_second
     effects.append(effect)
 
 func _tier_up_feedback() -> void:
@@ -672,6 +675,7 @@ func _handle_event(event: Dictionary) -> void:
         hud.skill_key="skill_loop" if event.move=="special" else "skill_loop_pulse";hud.skill_time=.5
         return
     var kind: String = event.kind
+    var zip_express_event:bool=kind in ["swing","hit"] and sim.last_service_enabled and event.get("move","")=="special" and character_choices[clampi(event.get("attacker",event.get("target",0)),0,1)]==0
     if kind in ["break_finish","ko"] and is_instance_valid(backdrop.living):backdrop.living.react()
     if sim.arcade_enabled and not reduced_effects:
         var side:int=event.get("attacker",event.get("target",0))
@@ -827,13 +831,13 @@ func _handle_event(event: Dictionary) -> void:
         var point:Vector2=ink_fx.contact_point(self,event)
         _spawn_vfx(kind,point,0.16 if kind=="hit" else .24,{"strength":strength,"color":tint,"move":move,"face":face,"attacker":event.target if kind=="parry" else attacker,"held":kind=="hit" and sim.hitstop>0})
         if kind=="hit":
-            if sim.arcade_enabled and move in ["meteor","special","overdrive"]:theatre.begin("cannon_hit" if move=="overdrive" else "impact",attacker)
+            if sim.arcade_enabled and not zip_express_event and move in ["meteor","special","overdrive"]:theatre.begin("cannon_hit" if move=="overdrive" else "impact",attacker)
             if sim.arcade_enabled and move=="meteor":_spawn_vfx("meteor_streak",point,.22,{"color":COLORS[attacker],"face":face})
             if strength>.55:
                 spectacle.trigger("contact",attacker,point,clampi(ceili(strength*4),1,4))
                 if sim.arcade_enabled:spectacle.tag_move(move)
             if impact_queue.size()>=4:impact_queue.pop_front()
-            impact_queue.append({"at":point,"strength":strength,"color":tint,"move":move,"face":face,"attacker":attacker})
+            impact_queue.append({"at":point,"strength":strength,"color":tint,"move":move,"face":face,"attacker":attacker,"zip_second":sim.fighters[attacker].service.zip_second})
             if sim.hitstop==0:_release_impacts()
         trauma = maxf(trauma,strength*0.6)
         audio.play_sound(("slam" if sim.arcade_enabled and move=="meteor" else ("launch" if sim.arcade_enabled and move=="launcher" else ("heavy" if strength>0.55 else "hit"))) if kind=="hit" else kind,1.0+sim.combo_hits*0.04,[-5.0,-3.0,-1.0][sim.exchange.tier()-1] if sim.arcade_enabled else 0.0)
@@ -859,9 +863,9 @@ func _handle_event(event: Dictionary) -> void:
             var profile:Dictionary=sim.profile_for(character_choices[event.target])
             hud.skill_key=profile.overdrive_name if event.move=="overdrive" else profile.special_name
             hud.skill_time=1.3
-            if sim.arcade_enabled:theatre.begin("overdrive" if event.move=="overdrive" else "skill",event.target)
-            spectacle.trigger("charge",event.target,Vector2(fighter.x,fighter.y+1.2),4)
-            _spawn_vfx("charge",Vector2(fighter.x,fighter.y+1.2),startup,{"color":COLORS[event.target],"owner":event.target})
+            if sim.arcade_enabled and not zip_express_event:theatre.begin("overdrive" if event.move=="overdrive" else "skill",event.target)
+            if not zip_express_event:spectacle.trigger("charge",event.target,Vector2(fighter.x,fighter.y+1.2),4)
+            _spawn_vfx("charge",Vector2(fighter.x,fighter.y+1.2),startup,{"color":COLORS[event.target],"owner":event.target,"move":event.move})
             _spawn_vfx("wave",Vector2(fighter.x+fighter.face*0.6,fighter.y+1.2),0.26,{"age":-startup,"face":fighter.face,"color":COLORS[event.target]})
             audio.play_sound("charge",1.0,-4.0)
             if event.move=="overdrive":
@@ -886,7 +890,7 @@ func _handle_event(event: Dictionary) -> void:
         hud.notice = "NEEDS %d ENERGY"%int(event.get("cost",50))
         hud.notice_time = 1.5
 
-    if neon_enabled and not reduced_effects and not (event.kind=="ko" and not final_ko()):neon.trigger(event,sim.fighters,sim.exchange.tier())
+    if neon_enabled and not reduced_effects and not zip_express_event and not (event.kind=="ko" and not final_ko()):neon.trigger(event,sim.fighters,sim.exchange.tier())
     round_theatre.trigger(event)
     if event.kind=="hit" and not reduced_effects:
         var target:int=clampi(event.get("target",0),0,1)
@@ -1145,6 +1149,15 @@ func _present(delta: float) -> void:
         target_focus.y=maxf(2.1,(bottom+top)*.5-.35)
         distance=maxf(distance,(top-bottom+.35)/(2.0*tan(deg_to_rad(24.0))*.58))
         distance=minf(distance,22.0)
+    # Express Receipt keeps both full bodies legible through its planted turn.
+    # Use the same camera owner and projection-based margins, no cutscene camera.
+    var express_framing:bool=not reduced_effects and sim.last_service_enabled and sim.fighters.any(func(f:Dictionary)->bool:return f.character==0 and f.health>0 and f.state=="attack" and f.move=="special")
+    if express_framing and not sim.squad_enabled:
+        var bottom:float=minf(sim.fighters[0].y,sim.fighters[1].y)
+        var top:float=maxf(sim.fighters[0].y,sim.fighters[1].y)+2.4
+        var aspect:float=get_viewport().get_visible_rect().size.x/maxf(1.0,get_viewport().get_visible_rect().size.y)
+        target_focus=Vector3(midpoint,(bottom+top)*.5,FIGHT_Z)
+        distance=maxf(6.2,maxf((separation+2.4)/(2.0*tan(deg_to_rad(24.0))*aspect*.78),(top-bottom+.3)/(2.0*tan(deg_to_rad(24.0))*.78)))
     if sim.campaign_enabled and sim.campaign_boss!="":
         distance=maxf(distance,17.5);target_focus.y=maxf(target_focus.y,2.6)
     var camera_height:=1.7+maxf(0,target_focus.y-2.1)*.8 if sim.is_aerial() else 1.7
@@ -1748,6 +1761,10 @@ func _track_service_effect(effect:Dictionary) -> void:
         effect.at=Vector2(socket.x+fighter.x-visual.position.x,socket.y+fighter.y-visual.position.y)
     else:effect.at=Vector2(fighter.x,fighter.y+visual.model_scale*.55)
     effect.face=fighter.face
+    if effect.kind=="swing" and effect.get("zip_express",false):
+        effect.age=maxf(0.0,float(fighter.frame-move.startup+5)/60.0)
+        effect.life=float(move.active+move.recovery+5)/60.0
+        return
     if effect.kind=="swing":
         effect.age=float(fighter.frame-move.startup)/60.0
         effect.life=float(move.active)/60.0

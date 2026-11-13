@@ -1,3 +1,9 @@
+## 2026-11-13：ZIP 急件簽收影片動作／VFX
+
+已依使用者4秒附件接正式ZIP special：兩踢之間落腳轉髖、白芯青綠尖刺、向下月牙、白色腳塵及可讀雙人鏡頭。第二踢確認延遲4→16 tick，active10→26，兩段各4 tick接觸窗；50能量／12＋10基礎傷害保持，未加必中。防守parry演出保持。見[實作／時序／限制](ZIP_EXPRESS_REFERENCE.zh-TW.md)及[8秒左右換邊預覽](evidence/zip-express/zip-express.mp4)。
+
+新23＋動作90＋角色規則46＋基本戰鬥34＋編譯13＝206項通過，accepted原生log無ERROR／SCRIPT ERROR；舊節奏suite22/29與乾淨main610411d相同七項失敗，另存對照不算通過。來源影片／SHA與12fps抽樣保留；骨架重建及遊戲節奏仍非逐幀完美，Mac／真人待驗。分支codex/zip-express-reference，未自動合main／發Web。
+
 ## 2026-11-13：使用者授權字體最新設定合入main
 
 依「好，推上main」，以main f69fc9f合併story-waves-m1 f4f0742。main原已含352c524及其他分支更新；本輪補入最後兩輪字體設定，保留5／8／100及現有main的介面／據點／開場／角色動作。只有文件衝突，兩邊歷史保持。121項最終檢查通過（整合70／Ink10／城市22／strict19），log無ERROR／SCRIPT ERROR，見[evidence/main-pixel-preset-merge](evidence/main-pixel-preset-merge/README.md)。此授權覆蓋以下舊「不合main」指示；來源同步main，公開Web不更新。既有真人／Mac／硬件及配對投技限制保持。
