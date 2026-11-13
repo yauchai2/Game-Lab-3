@@ -1,16 +1,19 @@
 extends RefCounted
-## Data-only motion selection for the first two heroes. Never writes simulation.
+## Data-only grounded motion selection for the four heroes. Never writes simulation.
+const Counter=preload("res://scripts/combat/last_service/counter_motion.gd")
 const Rivet=preload("res://scripts/combat/last_service/rivet_motion.gd")
 const ZIP_ATTACKS=["jab","cross","heavy","finisher","launcher","special","overdrive"]
 const RIVET_ATTACKS=["jab","cross","heavy","finisher","launcher","special","overdrive"]
 static func owns(f:Dictionary) -> bool:
-    if f.get("character",0) not in [0,1] or f.health<=0 or f.y>.01:return false
+    if f.get("character",0) not in [0,1,2,3] or f.health<=0 or f.y>.01:return false
     if f.get("showcase",false) or f.has("cinematic_clip") or f.get("rally_phase","")!="":return false
     if f.get("ko_theatre",-1.0)>=0 or f.has("ko_spin"):return false
     if f.get("air_enabled",false) and f.get("air",{}).get("phase","ground") in ["squat","rise","apex","stall","fall","fast","land"]:return false
+    if f.character in [2,3]:return Counter.owns(f)
     return f.state in ["idle","dash"] or (f.state=="attack" and f.move in (ZIP_ATTACKS if f.character==0 else RIVET_ATTACKS))
 static func describe(f:Dictionary,move:Dictionary,markers:Dictionary) -> Dictionary:
     if not owns(f):return {}
+    if f.character in [2,3]:return Counter.describe(f,move,markers)
     var zip:bool=f.character==0
     var motion:Dictionary={"owner":"zip_kicks" if zip else "rivet_boxing","clip":"KK_Guard" if zip else "Punch_Enter","loop":zip,"phase":1.0,"speed":1.0,"plant":not zip,"guard_arms":false,"uppercut":false,"launch_kick":false}
     if f.state=="dash":
@@ -60,7 +63,8 @@ static func zip_segment(f:Dictionary,move:Dictionary) -> Dictionary:
     return {"mirrored":mirrored,"frame":frame}
 static func striking_limb(f:Dictionary) -> String:
     if not owns(f) or f.state!="attack":return ""
-    if f.character==1:return "LeftHand" if f.move=="jab" else "RightHand"
+    if f.character==3:return "BatonTip"
+    if f.character in [1,2]:return "LeftHand" if f.move=="jab" else "RightHand"
     var move:Dictionary=f.get("move_data",{})
     if move.is_empty():return ""
     return "LeftFoot" if zip_segment(f,move).mirrored else "RightFoot"
@@ -71,6 +75,9 @@ static func attack_phase(frame:float,move:Dictionary,contact:float,release:float
 static func guard_bone(label:String) -> bool:
     return label.begins_with("DEF-shoulder") or label.begins_with("DEF-upper_arm") or label.begins_with("DEF-forearm") or label.begins_with("DEF-hand") or label.begins_with("DEF-f_") or label.begins_with("DEF-thumb")
 static func finish(m:RefCounted,f:Dictionary,motion:Dictionary,move:Dictionary) -> void:
+    if f.character in [2,3]:
+        Counter.finish(m,f,motion,move)
+        return
     # One bounded trajectory correction belongs to this same pose owner. The
     # imported full-body kick remains the base; no legacy aerial/cannon layers.
     var weight:=0.0

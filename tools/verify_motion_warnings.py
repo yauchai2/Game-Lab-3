@@ -9,7 +9,7 @@ from verify_godot_warnings import CATEGORIES
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ['combat_motions.gd', 'fighter_visual.gd', 'neon/neon_signature_motion.gd',
-           'last_service/rivet_motion.gd', 'last_service/street_motion.gd', 'ink_fx/fx_recipes.gd']
+           'last_service/rivet_motion.gd', 'last_service/street_motion.gd', 'last_service/counter_motion.gd', 'ink_fx/fx_recipes.gd']
 output = Path(sys.argv[1]).resolve()
 output.parent.mkdir(parents=True, exist_ok=True)
 with tempfile.TemporaryDirectory(prefix='street-motion-strict-') as temp:

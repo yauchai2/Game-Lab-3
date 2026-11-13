@@ -1,0 +1,19 @@
+UAL2_Hook {'source': 'Melee_Hook', 'limb': 'DEF-hand.R', 'contact': 0.392857, 'mapped_bones': 52}
+UAL2_Hook_Rec {'source': 'Melee_Hook_Rec', 'limb': 'DEF-hand.L', 'contact': 0.694444, 'mapped_bones': 52}
+KK_StickChop {'source': 'Melee_1H_Attack_Chop', 'limb': 'DEF-hand.R', 'contact': 0.625, 'mapped_bones': 19}
+KK_StickDiagonal {'source': 'Melee_1H_Attack_Slice_Diagonal', 'limb': 'DEF-hand.R', 'contact': 0.333333, 'mapped_bones': 19}
+KK_StickSweep {'source': 'Melee_1H_Attack_Slice_Horizontal', 'limb': 'DEF-hand.R', 'contact': 0.146341, 'mapped_bones': 19}
+KK_StickStab {'source': 'Melee_1H_Attack_Stab', 'limb': 'DEF-hand.R', 'contact': 0.302083, 'mapped_bones': 19}
+KK_StickParry {'source': 'Melee_Block_Attack', 'limb': 'DEF-hand.R', 'contact': 0.25, 'mapped_bones': 19}
+KK_StickBlockHit {'source': 'Melee_Block_Hit', 'limb': 'DEF-hand.R', 'contact': 0.125, 'mapped_bones': 19}
+KK_StickGuard {'source': 'Melee_Blocking', 'limb': 'DEF-hand.R', 'contact': 0.5, 'mapped_bones': 19}
+KK_Kick {'source': 'Melee_Unarmed_Attack_Kick', 'limb': 'DEF-foot.R', 'contact': 0.464286, 'mapped_bones': 19}
+KK_Punch {'source': 'Melee_Unarmed_Attack_Punch_A', 'limb': 'DEF-hand.R', 'contact': 0.428571, 'mapped_bones': 19}
+KK_Guard {'source': 'Melee_Unarmed_Idle', 'limb': 'DEF-hand.R', 'contact': 0.5, 'mapped_bones': 19}
+KK_Run {'source': 'Running_A', 'limb': 'DEF-hand.L', 'contact': 0.5, 'mapped_bones': 19}
+KK_Walk {'source': 'Walking_A', 'limb': 'DEF-hand.R', 'contact': 0.5, 'mapped_bones': 19}
+KK_DodgeBack {'source': 'Dodge_Backward', 'limb': 'DEF-hand.L', 'contact': 0.5, 'mapped_bones': 19}
+KK_DodgeForward {'source': 'Dodge_Forward', 'limb': 'DEF-hand.R', 'contact': 0.916667, 'mapped_bones': 19}
+KK_Backstep {'source': 'Walking_Backwards', 'limb': 'DEF-hand.L', 'contact': 0.5, 'mapped_bones': 19}
+SOURCE_HASHES {"ual2": "9a0ffda4931f934f13fb584002c51673723b03f9655a581167e7e5dae744f086", "kay_melee": "c55e6ec1c79e83ae21d46fe1cd921c1b64be8b9a524a24517e51c6ba99231459", "kay_basic": "11422afd50abf7e8c92ea107e2e0bc94abd38023d6d15f55ad580347efbfa29e", "kay_advanced": "8b2317cf81e3f24149e4b791c27e1932bebd46cd378ed962e7d27d642fad8c56"}
+DERIVED_SHA256 5d7f3b617a4f7069e8607688031e5a75d0dfc831793e9a2ca353b23634ac3251

@@ -1,3 +1,7 @@
+## 2026-11-13：HUSH截擊與LOOP短棍已接地面動作
+
+見[HUSH_LOOP_MOTION.zh-TW.md](HUSH_LOOP_MOTION.zh-TW.md)／[evidence/hush-loop-motion](evidence/hush-loop-motion/README.md)。同一固定KayKit CC0 melee檔新增7個單手／block片段＋Punch全身反射，擴充庫19／合計38clips，原11衍生及19原庫不變。HUSH七地面id／LOOP八id（含pulse）與idle、guard／blockstun、移動／閃有獨立owner；HUSH真撤步無假前移、parry取樣／消耗姿態；LOOP刺掃劈、近遠點指令、真pulse／encore手勢。grip手指遮罩與掌心握點、當前骨矩陣BatonTip／FX同步及換角清理；不是新短棍模型或專用eskrima mocap。122新＋285既有共407通過、七motion／recipe strict通過；全19suite仍同4處既有失敗。1800固定tick基線471b21e與新版SHA一致且0呈現改寫，ZIP／RIVET22類抽樣也相同。15秒450幀連續play，真parry→sample L、兩點S+L、一點W+L，三段各1真命中、後兩段各1真pulse，無預塞節點／sample／傷害；錄影單獨跑防失焦。原模型／判定／資源／進度／BGM／Web保持，同分支／PR #29續推。仍待完整轉髖／足部IK、空戰／成對投技、選角勝出據點及四角VFX／鏡頭音色；非四角全部完工，Mac／真人／GPU待驗。
+
 ## 2026-11-13：取得新CC0庫，ZIP踢技及RIVET擴充已接正式visual
 
 詳[STREET_MOTION_LIBRARY.zh-TW.md](STREET_MOTION_LIBRARY.zh-TW.md)／[evidence/street-motion-library](evidence/street-motion-library/README.md)。固定鏡像取得Quaternius UAL2 Standard勾拳／回收及KayKit1.1踢擊、guard、前後步、跑、閃；10來源clip＋1全身反射，60Hz轉接至既有canonical rig，原19clip／四GLB不變，manifest／授權／hash／重建器齊備。ZIP七種地面id改完整踢擊左右變體，L／W+L真確認才換腿，接觸幀保留原腳；RIVET重擊／大招新hook＋matching recovery、launcher同owner有界上勾修正；兩人真後退／閃步，RIVET行走護架。FX socket隨實際拳腳，非固定ZIP左腳／RIVET腳。RIVET攻擊腿遮罩仍保留，完整轉髖／IK未做；ZIP是同源踢擊變體，HUSH／LOOP與空戰未重製。90新＋19前輪＋46規則＋104死亡＋26FX共285通過，六motion／recipe嚴格編譯通過，全19suite仍同四處既有失敗。改用相同指令1800固定simulation ticks重播，基線25c83ec與新版hash一致且0呈現改寫；舊Demo畫面loop受其他原生視窗焦點暫停影響，不作等價證明。12秒獨立錄影需驗360幀持續play、三段真命中2/3/1；初次焦點中斷記錄另存。原判定／進度／BGM／公開Web保持，同分支／PR #29續推。Mac／真人／GPU未驗。

@@ -163,19 +163,27 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         sample_time = duration * clampf(air_time/0.12,0,1)
     elif selected == "Jump_Land":
         sample_time = duration * clampf(land_time / 0.22,0,1)
-    if profile_owned:sample_time=fmod(clip_elapsed*float(motion.speed),duration) if motion.loop else float(motion.phase)*duration
+    if profile_owned:
+        sample_time=fmod(clip_elapsed*float(motion.speed),duration) if motion.loop else (minf(clip_elapsed*2.5,duration) if motion.get("reaction",false) else float(motion.phase)*duration)
     var locals: Array[Quaternion] = source_rest.duplicate()
     for index in clip.tracks:
         var track: Dictionary = clip.tracks[index]
         if track.has("rotation"):
             locals[int(index)] = _sample_quat(track.rotation,sample_time)
     if profile_owned and (motion.plant or motion.guard_arms):
-        var stance:Dictionary=library.clips.Punch_Enter
+        var stance:Dictionary=library.clips[motion.get("stance_clip","Punch_Enter")]
+        var stance_time:float=stance.duration*float(motion.get("stance_phase",1.0))
         for index in stance.tracks:
             var label:String=library.nodes[int(index)].name
             var masked:bool=(motion.plant and RivetMotion.planted_source(label)) or (motion.guard_arms and StreetMotion.guard_bone(label))
             if masked and stance.tracks[index].has("rotation"):
-                locals[int(index)]=_sample_quat(stance.tracks[index].rotation,stance.duration)
+                locals[int(index)]=_sample_quat(stance.tracks[index].rotation,stance_time)
+    if profile_owned and motion.has("grip"):
+        var fist:Dictionary=library.clips.Punch_Enter
+        for index in fist.tracks:
+            var label:String=library.nodes[int(index)].name
+            if (label.begins_with("DEF-f_") or label.begins_with("DEF-thumb")) and (motion.grip=="both" or label.ends_with(".R")) and fist.tracks[index].has("rotation"):
+                locals[int(index)]=_sample_quat(fist.tracks[index].rotation,fist.duration)
     var globals: Dictionary = {}
     var desired: Array[Quaternion] = []
     desired.resize(skeleton.get_bone_count())

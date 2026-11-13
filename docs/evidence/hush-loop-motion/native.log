@@ -1,0 +1,127 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+COUNTER_MOTION Pose fixture started a valid attack 2/jab true <null>
+COUNTER_MOTION Full grounded pose 2/jab/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/jab/-1 true <null>
+COUNTER_MOTION Full grounded pose 2/jab/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/jab/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 2/cross true <null>
+COUNTER_MOTION Full grounded pose 2/cross/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/cross/-1 true <null>
+COUNTER_MOTION Full grounded pose 2/cross/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/cross/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 2/heavy true <null>
+COUNTER_MOTION Full grounded pose 2/heavy/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/heavy/-1 true <null>
+COUNTER_MOTION Full grounded pose 2/heavy/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/heavy/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 2/finisher true <null>
+COUNTER_MOTION Full grounded pose 2/finisher/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/finisher/-1 true <null>
+COUNTER_MOTION Full grounded pose 2/finisher/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/finisher/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 2/launcher true <null>
+COUNTER_MOTION Full grounded pose 2/launcher/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/launcher/-1 true <null>
+COUNTER_MOTION Full grounded pose 2/launcher/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/launcher/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 2/special true <null>
+COUNTER_MOTION Full grounded pose 2/special/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/special/-1 true <null>
+COUNTER_MOTION Full grounded pose 2/special/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/special/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 2/overdrive true <null>
+COUNTER_MOTION Full grounded pose 2/overdrive/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/overdrive/-1 true <null>
+COUNTER_MOTION Full grounded pose 2/overdrive/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 2/overdrive/1 true <null>
+COUNTER_MOTION Guarded locomotion 2/KK_Backstep true <null>
+COUNTER_MOTION Guarded locomotion 2/KK_Walk true <null>
+COUNTER_MOTION Guarded locomotion 2/KK_Run true <null>
+COUNTER_MOTION Distinct guard 2 true <null>
+COUNTER_MOTION Block recoil freezes with hitstop 2 true <null>
+COUNTER_MOTION Hit interruption releases pose 2 true <null>
+COUNTER_MOTION Air retains its owner 2 true <null>
+COUNTER_MOTION Landing retains its owner 2 true <null>
+COUNTER_MOTION Death retains its owner 2 true <null>
+COUNTER_MOTION Showcase retains its owner 2 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 3/jab true <null>
+COUNTER_MOTION Full grounded pose 3/jab/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/jab/-1 true <null>
+COUNTER_MOTION Baton tip follows hand jab/-1 true <null>
+COUNTER_MOTION Full grounded pose 3/jab/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/jab/1 true <null>
+COUNTER_MOTION Baton tip follows hand jab/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 3/cross true <null>
+COUNTER_MOTION Full grounded pose 3/cross/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/cross/-1 true <null>
+COUNTER_MOTION Baton tip follows hand cross/-1 true <null>
+COUNTER_MOTION Full grounded pose 3/cross/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/cross/1 true <null>
+COUNTER_MOTION Baton tip follows hand cross/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 3/heavy true <null>
+COUNTER_MOTION Full grounded pose 3/heavy/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/heavy/-1 true <null>
+COUNTER_MOTION Baton tip follows hand heavy/-1 true <null>
+COUNTER_MOTION Full grounded pose 3/heavy/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/heavy/1 true <null>
+COUNTER_MOTION Baton tip follows hand heavy/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 3/finisher true <null>
+COUNTER_MOTION Full grounded pose 3/finisher/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/finisher/-1 true <null>
+COUNTER_MOTION Baton tip follows hand finisher/-1 true <null>
+COUNTER_MOTION Full grounded pose 3/finisher/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/finisher/1 true <null>
+COUNTER_MOTION Baton tip follows hand finisher/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 3/launcher true <null>
+COUNTER_MOTION Full grounded pose 3/launcher/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/launcher/-1 true <null>
+COUNTER_MOTION Baton tip follows hand launcher/-1 true <null>
+COUNTER_MOTION Full grounded pose 3/launcher/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/launcher/1 true <null>
+COUNTER_MOTION Baton tip follows hand launcher/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 3/special true <null>
+COUNTER_MOTION Full grounded pose 3/special/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/special/-1 true <null>
+COUNTER_MOTION Baton tip follows hand special/-1 true <null>
+COUNTER_MOTION Full grounded pose 3/special/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/special/1 true <null>
+COUNTER_MOTION Baton tip follows hand special/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 3/overdrive true <null>
+COUNTER_MOTION Full grounded pose 3/overdrive/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/overdrive/-1 true <null>
+COUNTER_MOTION Baton tip follows hand overdrive/-1 true <null>
+COUNTER_MOTION Full grounded pose 3/overdrive/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/overdrive/1 true <null>
+COUNTER_MOTION Baton tip follows hand overdrive/1 true <null>
+COUNTER_MOTION Pose fixture started a valid attack 3/node_pulse true <null>
+COUNTER_MOTION Full grounded pose 3/node_pulse/-1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/node_pulse/-1 true <null>
+COUNTER_MOTION Baton tip follows hand node_pulse/-1 true <null>
+COUNTER_MOTION Full grounded pose 3/node_pulse/1 true <null>
+COUNTER_MOTION Hitstop/F2 and simulation isolation 3/node_pulse/1 true <null>
+COUNTER_MOTION Baton tip follows hand node_pulse/1 true <null>
+COUNTER_MOTION Guarded locomotion 3/KK_Backstep true <null>
+COUNTER_MOTION Guarded locomotion 3/KK_Walk true <null>
+COUNTER_MOTION Guarded locomotion 3/KK_Run true <null>
+COUNTER_MOTION Distinct guard 3 true <null>
+COUNTER_MOTION Block recoil freezes with hitstop 3 true <null>
+COUNTER_MOTION Hit interruption releases pose 3 true <null>
+COUNTER_MOTION Air retains its owner 3 true <null>
+COUNTER_MOTION Landing retains its owner 3 true <null>
+COUNTER_MOTION Death retains its owner 3 true <null>
+COUNTER_MOTION Showcase retains its owner 3 true <null>
+COUNTER_MOTION Normal frontal parry earns a real sample true { "parries": 1, "sample": 1 }
+COUNTER_MOTION Sample counter retreats and consumes once on real attack true { "minimum_x": -0.405, "spent": 1, "hits": 1 }
+COUNTER_MOTION Retreat has no opposing model lunge true <null>
+COUNTER_MOTION Two directional placements create nodes without a body hit true <null>
+COUNTER_MOTION Near/far placement gestures are different true ["(0.22656, 1.443749, 0.312683)", "(-0.027893, 1.081829, 0.268571)"]
+COUNTER_MOTION Manual pulse consumes real nodes and damages through rules true { "pulses": 1, "hp": 88 }
+COUNTER_MOTION Encore 0 uses exactly the existing node count true 0
+COUNTER_MOTION Encore 1 uses exactly the existing node count true 1
+COUNTER_MOTION Encore 2 uses exactly the existing node count true 2
+COUNTER_MOTION Rendered baton marker matches a real palm grip true <null>
+COUNTER_MOTION Character replacement clears baton marker true <null>

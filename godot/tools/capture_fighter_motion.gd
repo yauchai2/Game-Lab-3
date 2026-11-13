@@ -31,7 +31,9 @@ func run() -> void:
         pose.x=-4.5+float(character)*3.0;pose.air_enabled=true
         poses.append(pose)
     var actions:Array=ACTIONS
-    if OS.get_cmdline_user_args().size()>1:actions=["KK_Guard","KK_Kick","KK_Kick_Mirror","UAL2_Hook","KK_Walk","KK_Backstep","KK_DodgeBack","KK_DodgeForward"]
+    if OS.get_cmdline_user_args().size()>1:
+        var selection:String=OS.get_cmdline_user_args()[1]
+        actions=["KK_Guard","KK_Kick","KK_Kick_Mirror","UAL2_Hook","KK_Walk","KK_Backstep","KK_DodgeBack","KK_DodgeForward"] if selection=="sources" else Array(selection.split(","))
     for action in actions:
         var samples:Array=[]
         for character in 4:

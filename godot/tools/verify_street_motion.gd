@@ -19,7 +19,7 @@ func stable(f:Dictionary) -> void:
     for tick in 8:present(f)
 func run() -> void:
     actor=Visual.new();root.add_child(actor);actor.neon_enabled=true;actor.setup(Color.WHITE,0)
-    check("New library contains ten imported clips and one whole-body mirror",actor.motions.library.clips.size()==30 and actor.motions.library.street_markers.size()==11)
+    check("Earlier kick and hook entries remain available",["KK_Kick","KK_Kick_Mirror","KK_Punch","KK_Guard","KK_Run","KK_Walk","KK_DodgeBack","KK_DodgeForward","KK_Backstep","UAL2_Hook","UAL2_Hook_Rec"].all(func(clip:String)->bool:return actor.motions.library.clips.has(clip)))
     for character in [0,1]:
         actor.setup(Color.WHITE,character)
         var sim:RefCounted=fresh(character);var f:Dictionary=sim.fighters[0]

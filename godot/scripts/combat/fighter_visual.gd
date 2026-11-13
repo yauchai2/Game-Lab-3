@@ -4,6 +4,7 @@ const Roster = preload("res://scripts/combat/fighter_roster.gd")
 const Toon = preload("res://shaders/fighter_toon.gdshader")
 const Outline = preload("res://shaders/fighter_outline.gdshader")
 static var retired_materials:Array[ShaderMaterial]=[]
+var baton_tip:Node3D
 var core_module:Node3D
 var model: Node3D
 var skeleton: Skeleton3D
@@ -37,6 +38,7 @@ func setup(color: Color, selection := 0, model_path_override:="") -> void:
         remove_child(model)
         model.queue_free()
     skeleton=null
+    baton_tip=null
     fx_bones.clear()
     fx_flash_age=1.0
     materials.clear()
@@ -242,7 +244,12 @@ func set_neon_silhouette(enabled:bool) -> void:
 func _add_signal_baton() -> void:
     var hand:int=motions.bone_index("RightHand")
     if hand<0:return
+    var grip_offset:=Vector3.ZERO
+    var knuckle:int=motions.bone_index("RightHandMiddle1")
+    if knuckle>=0:
+        grip_offset=(skeleton.get_bone_global_rest(hand).affine_inverse()*skeleton.get_bone_global_rest(knuckle).origin)*.55
     var mount:=BoneAttachment3D.new();mount.name="SignalBaton";mount.bone_name=skeleton.get_bone_name(hand);skeleton.add_child(mount)
+    baton_tip=Node3D.new();baton_tip.name="SignalBatonTip";baton_tip.position=grip_offset+Vector3(0,.145,0);mount.add_child(baton_tip)
     for spec in [[Vector3.ZERO,Vector3(.035,.25,.035),Color("10151a")],[Vector3(0,.125,0),Vector3(.05,.04,.05),Color("b8ff00")]]:
         var box:=BoxMesh.new();box.size=spec[1]
         var mat:=ShaderMaterial.new();mat.shader=preload("res://shaders/neon/neon_actor.gdshader") if neon_enabled else Toon
@@ -250,11 +257,14 @@ func _add_signal_baton() -> void:
         if neon_enabled:mat.set_shader_parameter("neon_accent",Color("b8ff00"))
         var border:=ShaderMaterial.new();border.shader=Outline;mat.next_pass=border
         box.material=mat
-        var node:=MeshInstance3D.new();node.name="SignalBatonMesh";node.mesh=box;node.position=spec[0];mount.add_child(node)
+        var node:=MeshInstance3D.new();node.name="SignalBatonMesh";node.mesh=box;node.position=spec[0]+grip_offset;mount.add_child(node)
         materials.append(mat)
 
 ## Socket positions belong to presentation; never used as gameplay hitboxes.
 func fx_socket(label:String) -> Vector3:
+    if label=="BatonTip" and is_instance_valid(baton_tip):
+        var hand:int=motions.bone_index("RightHand")
+        if hand>=0:return skeleton.global_transform*skeleton.get_bone_global_pose(hand)*baton_tip.position
     if is_instance_valid(skeleton):
         if not fx_bones.has(label):fx_bones[label]=motions.bone_index(label)
         var index:int=fx_bones[label]

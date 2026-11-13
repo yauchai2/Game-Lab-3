@@ -1,3 +1,7 @@
+## 2026-11-13：HUSH／LOOP以單一地面owner編排，握棍與節點事件分工
+
+使用者要求下一階段；依[HUSH_LOOP_MOTION.zh-TW.md](HUSH_LOOP_MOTION.zh-TW.md)，沿已核對CC0來源擴7個單手／防守片段與一個拳擊反射。HUSH以短護架、直拳、真撤步／sample支撐姿態為主，LOOP單手刺掃劈與近遠點指令；不把適配單手武器片段稱為專用eskrima動捕。程序修正僅屬同owner內有界撥擋／上撩／手勢，Neon及舊Cannon層不覆寫。手指用既有fist遮罩，杆移掌心；BatonTip由當前骨矩陣求值避免frame lag，節點圖形／傷害仍由真事件掌管。原模型／判定／存檔／BGM／Web保持。全四角已有地面owner，不代表空戰／投技／foot IK或整份藝術計劃完成。
+
 ## 2026-11-13：採已核實CC0全身踢擊與勾拳，時間跟真確認
 
 使用者要求繼續；依[STREET_MOTION_LIBRARY.zh-TW.md](STREET_MOTION_LIBRARY.zh-TW.md)從固定可讀鏡像取得官方標示CC0的KayKit1.1及UAL2 Standard。只散佈轉接動畫曲線，保留作者／授權／來源hash，不取鏡像其他網格。ZIP用完整踢擊及全身解剖反射，RIVET用新hook／matching recovery；左右腿與FX socket共用確認進度選擇，不改命中或資源。RIVET攻擊保留固定站姿遮罩，不能當完整轉髖／IK；launcher為有界程序軌跡修正，未偽稱獨立來源uppercut。空戰／死亡／過場保原owner。測試改固定指令simulation tick比對，錄影須單獨跑並檢查不被焦點自動暫停，不能將受focus影響的Demo wall-loop當等價證明。原GLB、判定、存檔、BGM及Web保持。

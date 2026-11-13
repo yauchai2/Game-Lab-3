@@ -50,7 +50,7 @@
   "canonical_file": "godot/assets/animations/quaternius_combat.json",
   "canonical_sha256": "60a97a63905abf1944cfe68bafe6dd47885f5c5e0417da910a1906808a3bc7bd",
   "derived_file": "godot/assets/animations/street_library.json",
-  "derived_sha256": "e371a6577385f99e531bb0d2b2cacabf21a12cb4e3d16710c7c42d74cec60069",
+  "derived_sha256": "5d7f3b617a4f7069e8607688031e5a75d0dfc831793e9a2ca353b23634ac3251",
   "clips": {
     "UAL2_Hook": {
       "source": "Melee_Hook",
@@ -63,6 +63,48 @@
       "limb": "DEF-hand.L",
       "contact": 0.694444,
       "mapped_bones": 52
+    },
+    "KK_StickChop": {
+      "source": "Melee_1H_Attack_Chop",
+      "limb": "DEF-hand.R",
+      "contact": 0.625,
+      "mapped_bones": 19
+    },
+    "KK_StickDiagonal": {
+      "source": "Melee_1H_Attack_Slice_Diagonal",
+      "limb": "DEF-hand.R",
+      "contact": 0.333333,
+      "mapped_bones": 19
+    },
+    "KK_StickSweep": {
+      "source": "Melee_1H_Attack_Slice_Horizontal",
+      "limb": "DEF-hand.R",
+      "contact": 0.146341,
+      "mapped_bones": 19
+    },
+    "KK_StickStab": {
+      "source": "Melee_1H_Attack_Stab",
+      "limb": "DEF-hand.R",
+      "contact": 0.302083,
+      "mapped_bones": 19
+    },
+    "KK_StickParry": {
+      "source": "Melee_Block_Attack",
+      "limb": "DEF-hand.R",
+      "contact": 0.25,
+      "mapped_bones": 19
+    },
+    "KK_StickBlockHit": {
+      "source": "Melee_Block_Hit",
+      "limb": "DEF-hand.R",
+      "contact": 0.125,
+      "mapped_bones": 19
+    },
+    "KK_StickGuard": {
+      "source": "Melee_Blocking",
+      "limb": "DEF-hand.R",
+      "contact": 0.5,
+      "mapped_bones": 19
     },
     "KK_Kick": {
       "source": "Melee_Unarmed_Attack_Kick",
@@ -118,9 +160,16 @@
       "contact": 0.464286,
       "mapped_bones": 19,
       "derivation": "Whole-body anatomical reflection"
+    },
+    "KK_Punch_Mirror": {
+      "source": "Melee_Unarmed_Attack_Punch_A",
+      "limb": "DEF-hand.L",
+      "contact": 0.428571,
+      "mapped_bones": 19,
+      "derivation": "Whole-body anatomical reflection"
     }
   },
-  "derivation": "60 Hz rest-relative global rotation retarget into the retained canonical rig. Meshes omitted. Hips translations normalized by torso ratio; runtime keeps only vertical offset. KK_Kick_Mirror reflects full-body rotation deltas anatomically. No Mixamo/ActorCore/Rokoko/Fab downloads or paid assets.",
+  "derivation": "60 Hz rest-relative global rotation retarget into the retained canonical rig. Meshes omitted. Hips translations normalized by torso ratio; runtime keeps only vertical offset. KK_Kick_Mirror reflects full-body rotation deltas anatomically. No Mixamo/ActorCore/Rokoko/Fab downloads or paid assets. HUSH/LOOP extension: seven one-hand/block source clips from the same pinned KayKit melee file; KK_Punch_Mirror is the same whole-body reflection as the kick. Original eleven clip payloads unchanged.",
   "kaykit_license": {
     "source": "https://github.com/PaperPrototype/KayKitDemos/blob/4a59e976d7734f388b386d969fd94f7f826fd3c2/Assets/KayKits/Animations/License.txt",
     "raw_sha256": "88ae6e8a912f0587599ca8beb49a32f217714bf33b145c81d28e34dbd9652d0b",

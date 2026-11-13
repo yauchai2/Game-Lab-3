@@ -1,3 +1,14 @@
+## 2026-11-13：第三輪HUSH／LOOP地面動作狀態
+
+詳[HUSH_LOOP_MOTION.zh-TW.md](HUSH_LOOP_MOTION.zh-TW.md)：
+
+- [x] HUSH七地面招、真撤步截擊、sample取樣／消耗姿態、護架／block反應、前後步與閃。
+- [x] LOOP八地面招含node_pulse、刺／掃／劈、近／遠點手勢、encore按真節點；握姿、掌心握點與當前棍尖FX。
+- [x] 同固定CC0原檔轉7來源＋1反射，原11曲線不變；122新／總407檢查、固定輸入等價、ZIP／RIVET抽樣不變，15秒正式renderer正常規則預覽。
+- [ ] 四角完整轉髖、plant marker與地形foot IK、獨立uppercut／更多完整武術片段、步頻與停步調校。
+- [ ] 成對投技與空戰全家族；選角、登場、勝出、據點改用同一motion profile。
+- [ ] 四種VFX幾何、鏡頭與音色；正式全模式／六人群戰動態、Mac／真人／目標GPU驗收；全strict四處既有警告另整理。
+
 ## 2026-11-13：第二輪動作庫接入進度
 
 詳[STREET_MOTION_LIBRARY.zh-TW.md](STREET_MOTION_LIBRARY.zh-TW.md)，接續下方首切片：

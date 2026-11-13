@@ -80,7 +80,7 @@ for side in ('L','R'):
 
 SOURCES = [
     ('ual2',BASE,{'Melee_Hook':'UAL2_Hook','Melee_Hook_Rec':'UAL2_Hook_Rec'}),
-    ('kay_melee',KAY,{'Melee_Unarmed_Attack_Kick':'KK_Kick','Melee_Unarmed_Idle':'KK_Guard','Melee_Unarmed_Attack_Punch_A':'KK_Punch'}),
+    ('kay_melee',KAY,{'Melee_Unarmed_Attack_Kick':'KK_Kick','Melee_Unarmed_Idle':'KK_Guard','Melee_Unarmed_Attack_Punch_A':'KK_Punch','Melee_1H_Attack_Stab':'KK_StickStab','Melee_1H_Attack_Slice_Horizontal':'KK_StickSweep','Melee_1H_Attack_Chop':'KK_StickChop','Melee_1H_Attack_Slice_Diagonal':'KK_StickDiagonal','Melee_Blocking':'KK_StickGuard','Melee_Block_Hit':'KK_StickBlockHit','Melee_Block_Attack':'KK_StickParry'}),
     ('kay_basic',KAY,{'Walking_A':'KK_Walk','Running_A':'KK_Run'}),
     ('kay_advanced',KAY,{'Walking_Backwards':'KK_Backstep','Dodge_Backward':'KK_DodgeBack','Dodge_Forward':'KK_DodgeForward'})]
 result={'schema':1,'license':'CC0-1.0','canonical_nodes_sha256':hashlib.sha256(json.dumps(NODES,separators=(',',':')).encode()).hexdigest(),'clips':{},'markers':{}}
@@ -139,6 +139,7 @@ for path,(source_key,mapping,selected) in zip(sys.argv[1:],SOURCES,strict=True):
             for limb in limbs:
                 limbs[limb].append(float(np.dot(align.apply(pp[pairs[TN[limb]]]-pp[pairs[hip]]),front)))
         candidates=['DEF-foot.L','DEF-foot.R'] if 'Kick' in clip_name else ['DEF-hand.L','DEF-hand.R']
+        if clip_name.startswith('KK_Stick'):candidates=['DEF-hand.R']
         chosen=max(candidates,key=lambda key:max(limbs[key])-min(limbs[key]))
         contact=int(np.argmax(np.abs(np.array(limbs[chosen])-limbs[chosen][0])))
         result['clips'][clip_name]={'duration':round(duration,6),'tracks':tracks}
@@ -146,31 +147,34 @@ for path,(source_key,mapping,selected) in zip(sys.argv[1:],SOURCES,strict=True):
         print(clip_name,result['markers'][clip_name])
 # Reflect the entire kick across the anatomical sagittal plane, including hips.
 # Reflect rotation deltas (not raw Euler angles), then rebuild local rotations.
-original=result['clips']['KK_Kick']
-mirror=json.loads(json.dumps(original))
-reflection=TF.as_matrix()@np.diag([-1.0,1.0,1.0])@TF.as_matrix().T
-for sample in range(len(original['tracks'][str(TN['DEF-hips'])]['rotation']['times'])):
-    rotations=TR.copy()
-    for key,track in original['tracks'].items():rotations[int(key)]=R.from_quat(track['rotation']['values'][sample])
-    pose,_positions=globals_for(NODES,rotations,TT);desired={}
-    def mirrored(t):
-        if t in desired:return desired[t]
-        parent=NODES[t]['parent'];pr=mirrored(parent) if parent>=0 else I
-        if str(t) not in mirror['tracks']:
-            desired[t]=pr*TR[t]
-        else:
-            name=NODES[t]['name']
-            other=TN.get(name[:-2]+('.R' if name.endswith('.L') else '.L'),t) if name.endswith(('.L','.R')) else t
-            delta=pose[other]*TG[other].inv()
-            desired[t]=R.from_matrix(reflection@delta.as_matrix()@reflection)*TG[t]
-            mirror['tracks'][str(t)]['rotation']['values'][sample]=(pr.inv()*desired[t]).as_quat().round(6).tolist()
-        return desired[t]
-    for t in range(len(NODES)):mirrored(t)
-    hip=TN['DEF-hips'];parent=NODES[hip]['parent']
-    offset=np.array(original['tracks'][str(hip)]['translation']['values'][sample])-TT[hip]
-    mirror['tracks'][str(hip)]['translation']['values'][sample]=(TT[hip]+TG[parent].inv().apply(reflection@TG[parent].apply(offset))).round(6).tolist()
-result['clips']['KK_Kick_Mirror']=mirror
-result['markers']['KK_Kick_Mirror']=dict(result['markers']['KK_Kick'],limb='DEF-foot.L',derivation='Whole-body anatomical reflection')
+def add_mirror(clip_name, output_name, limb_name):
+    original=result['clips'][clip_name]
+    mirror=json.loads(json.dumps(original))
+    reflection=TF.as_matrix()@np.diag([-1.0,1.0,1.0])@TF.as_matrix().T
+    for sample in range(len(original['tracks'][str(TN['DEF-hips'])]['rotation']['times'])):
+        rotations=TR.copy()
+        for key,track in original['tracks'].items():rotations[int(key)]=R.from_quat(track['rotation']['values'][sample])
+        pose,_positions=globals_for(NODES,rotations,TT);desired={}
+        def mirrored(t):
+            if t in desired:return desired[t]
+            parent=NODES[t]['parent'];pr=mirrored(parent) if parent>=0 else I
+            if str(t) not in mirror['tracks']:
+                desired[t]=pr*TR[t]
+            else:
+                name=NODES[t]['name']
+                other=TN.get(name[:-2]+('.R' if name.endswith('.L') else '.L'),t) if name.endswith(('.L','.R')) else t
+                delta=pose[other]*TG[other].inv()
+                desired[t]=R.from_matrix(reflection@delta.as_matrix()@reflection)*TG[t]
+                mirror['tracks'][str(t)]['rotation']['values'][sample]=(pr.inv()*desired[t]).as_quat().round(6).tolist()
+            return desired[t]
+        for t in range(len(NODES)):mirrored(t)
+        hip=TN['DEF-hips'];parent=NODES[hip]['parent']
+        offset=np.array(original['tracks'][str(hip)]['translation']['values'][sample])-TT[hip]
+        mirror['tracks'][str(hip)]['translation']['values'][sample]=(TT[hip]+TG[parent].inv().apply(reflection@TG[parent].apply(offset))).round(6).tolist()
+    result['clips'][output_name]=mirror
+    result['markers'][output_name]=dict(result['markers'][clip_name],limb=limb_name,derivation='Whole-body anatomical reflection')
+add_mirror('KK_Kick','KK_Kick_Mirror','DEF-foot.L')
+add_mirror('KK_Punch','KK_Punch_Mirror','DEF-hand.L')
 out=ROOT/'godot/assets/animations/street_library.json'
 out.write_text(json.dumps(result,separators=(',',':'))+'\n')
 print('SOURCE_HASHES',json.dumps(raw_hashes));print('DERIVED_SHA256',hashlib.sha256(out.read_bytes()).hexdigest())

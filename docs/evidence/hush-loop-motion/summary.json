@@ -1,0 +1,16 @@
+{
+  "baseline": "471b21e",
+  "unmodified_hero_samples": [
+    {
+      "character": 0,
+      "same_samples": true
+    },
+    {
+      "character": 1,
+      "same_samples": true
+    }
+  ],
+  "fixed_input_match": true,
+  "state_sha256": "022cef61e6c1fea696d62c18791f77a38d82917bfdce546fa3318d15fb049c3e",
+  "scope": "Fixed-root four-hero pose samples and 1800 identical input simulation ticks. Not foot IK / human quality / hardware FPS proof."
+}

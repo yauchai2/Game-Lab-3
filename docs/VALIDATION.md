@@ -1,3 +1,7 @@
+## 2026-11-13：HUSH／LOOP第三輪驗證
+
+[evidence/hush-loop-motion](evidence/hush-loop-motion/README.md)：122新motion／合法起招／雙朝向／F2／hitstop／owner交還／握點棍尖／真sample／放點脈衝／明示encore變體＋90ZIP/RIVET＋19首輪＋46規則＋104死亡／群戰＋26FX，共407全通過。七motion／recipe腳本七類fatal warning通過；全19suite仍15/19，同四處基線失敗。固定1800 simulation ticks、同指令hash，471b21e與新版狀態SHA均022cef61…、21真命中、0sim差異／呈現改寫。ZIP／RIVET22類逐tick骨socket相同，原11曲線及19原庫hash不變。15秒450幀連續play實錄，真parry取得／消耗sample、正常兩點pulse、一點encore；各段1真命中、後兩段各1真pulse事件。未預塞sample／node／damage（對手首jab為明示合法起招fixture）；骨socket／握姿不等於地形IK、真人或硬體FPS驗收。accepted原生log無ERROR／SCRIPT ERROR，原GLB／判定／BGM／公開Web不變。Linux4.6.3 llvmpipe／Dummy，Mac／真人／GPU待驗。
+
 ## 2026-11-13：ZIP／RIVET新CC0庫驗證
 
 詳[evidence/street-motion-library](evidence/street-motion-library/README.md)：90新motion／真確認／socket＋19RIVET＋46角色規則＋104死亡／群戰＋26FX共285項通過。六motion／recipe腳本七類fatal-warning通過；全19script suite15/19，與前輪同四個既有失敗。相同指令hash的1800 simulation tick在25c83ec與新版狀態SHA均022cef61…，21真命中、0逐tick差異、0呈現改寫。舊Demo迴圈probe報告受並行Godot視窗搶焦點自動暫停影響，保留但不作等價證明；獨立錄影新增每幀play檢查，三段付費真命中2/3/1，初次失敗另存。四角22類抽樣，HUSH／LOOP骨socket與前輪相同；新sourcepreview與60Hz重建hash一致。原GLB／19clips／判定／BGM／Web不變。Linux4.6.3 llvmpipe／Dummy，不是Mac／真人／GPU效能／地形IK驗收。
