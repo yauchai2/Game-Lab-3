@@ -1,3 +1,13 @@
+## 2026-11-13 接續：網路已生效，官方配對與預覽已核實，待Adobe認證
+
+本次是同一設定下的新執行個體；讀取status為unrestricted／enforced且observations_current=true，已實際連通Mixamo。未帶API key的403是官方JSON「Api Key is required」，不是proxy拒絕；使用上游公開X-Api-Key後官方目錄HTTP200。核實Shoulder Throw, Aggressor（c9c7a795-b96c-11e4-a802-0aaa78deedf9）與Victim（c9c7a914-b96c-11e4-a802-0aaa78deedf9）。兩段官方GIF各6.6秒，完整時長2fps抽樣已檢視：攻方轉身俯身過肩及收招，守方離地翻轉、背部落地及地面收尾。不是雙人對齊播放，root／接觸／落地幀仍未量測；未下載FBX、未接Godot、完整摔投未完成。
+
+指定上游6170d5e／SDK1.30.0已在本機私有runtime重建，pip check、實際launcher initialize／六工具通過。未讀到token檔、環境無認證綁定；MCP auth與search明確回未認證，isError=false亦不算搜尋成功。公開目錄查證是獨立官方HTTP請求，不冒稱MCP搜尋成功。證據：[official-pair.json](evidence/mixamo-mcp/official-pair.json)。
+
+launcher新增可選MIXAMO_ACCESS_TOKEN環境秘密，只交給client建構子記憶體使用，不寫token檔、不經mixamo-auth參數；未設定時沿用同主機私有~/.mixamo_mcp_token。使用者可在環境設定的秘密欄位配置MIXAMO_ACCESS_TOKEN並套用到執行環境，勿貼聊天。實際新憑證尚未提供／驗證；佔位值本地檢查確認只入記憶體、不落檔、不連網。後續先驗真認證，再同角色／30fps／完整root與時長下載兩段到repo外量測，不以GIF當FBX或曲線來源。
+
+本次來源分支codex/four-fighter-motion-plan，基線c766a61；PR #29已合併是歷史，本次提交不在該PR內。原GLB、Godot、main與Web未改。以下網路403與舊runtime紀錄保留為歷史，由本節覆蓋目前狀態。
+
 ## 2026-11-13：指定HaD0Yun Mixamo MCP已安裝、待網路與登入
 
 使用者指定unity-mcp-mixamo，已採獨立Python Server，固定6170d5e；不需Unity，Godot可後續用FBX。雲端Codex CLI註冊mixamo-direct，實際initialize／6工具／combat keywords通過；搜尋回未認證，無token，HTTP API仍ProxyError403。首次SDK2.3.0不相容已固定1.30.0，launcher將client print轉stderr。見[MIXAMO_MCP_SETUP.zh-TW.md](MIXAMO_MCP_SETUP.zh-TW.md)最新節及direct-server.json。尚無官方FBX／完整摔投；不貼token到聊天，同主機私有token檔才可供server讀。未操作Mac、未改Godot／main／Web。

@@ -1,3 +1,7 @@
+## 2026-11-13 接續：區分官方API錯誤、公開目錄與認證下載
+
+新環境unrestricted／enforced且實際官方目錄HTTP200，不再要求重複加入網域。公開X-Api-Key沿指定上游取得目錄，不使用第三方鏡像或繞過認證；MCP本身要求token，未認證搜尋不當成功。官方GIF只作預覽候選驗證，不抽取成遊戲曲線。launcher可從環境秘密MIXAMO_ACCESS_TOKEN僅記憶體注入，保留私有檔fallback；不經記錄中的MCP參數傳憑證、不提交原始FBX或token。詳MIXAMO_MCP_SETUP最新節。
+
 ## 2026-11-13：使用指定Mixamo MCP
 
 採[HaD0Yun獨立Server](https://github.com/HaD0Yun/unity-mcp-mixamo/tree/6170d5eca609eb5cdbbbd6b1a3fc6276362f6701/Server)，不用Unity Helper。固定SDK1.30.0解決2.x破壞性API，client除錯送stderr維持stdio。Playwright作預覽備援。token只在server同主機私有檔，不經聊天／公開repo；本工具不解決proxy403。上游授權標示不一致已記錄，沒有把MCP程式授權當Mixamo素材授權。

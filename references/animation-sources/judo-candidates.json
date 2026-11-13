@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "reviewed_on": "2026-11-13",
-  "status": "listing_research_only",
+  "status": "official_catalogue_and_preview_verified_fbx_pending",
   "downloaded": false,
   "purchased": false,
   "game_integrated": false,
@@ -74,11 +74,26 @@
       "Shoulder Throw, Aggressor",
       "Shoulder Throw, Victim"
     ],
-    "status": "catalogue_names_observed_official_download_pending",
+    "status": "official_catalogue_and_preview_verified_fbx_pending",
     "official_faq": "https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html",
     "downloaded": false,
     "paired_timing_verified": false,
-    "blocker": "Official Playwright MCP installed and tested in cloud; Mixamo navigation blocked by cloud proxy (403 / ERR_TUNNEL_CONNECTION_FAILED). Adobe login not reached; official FBX files not obtained.",
-    "mcp_status": "Official @playwright/mcp 0.0.85; cloud Codex CLI registration and 25-tool initialize verified; actual browser navigation/click verified on allowed GitHub page. Local user browser not attached."
+    "blocker": "No Adobe credential on this executor; MCP search refuses unauthenticated calls even though the public catalogue is accessible.",
+    "mcp_status": "HaD0Yun standalone server 6170d5e / SDK 1.30.0 restored; launcher initialize and six tools verified; auth absent and MCP search refused.",
+    "official_products": [
+      {
+        "name": "Shoulder Throw, Aggressor",
+        "id": "c9c7a795-b96c-11e4-a802-0aaa78deedf9",
+        "preview": "https://d99n9xvb9513w.cloudfront.net/thumbnails/motions/113680901/animated.gif"
+      },
+      {
+        "name": "Shoulder Throw, Victim",
+        "id": "c9c7a914-b96c-11e4-a802-0aaa78deedf9",
+        "preview": "https://d99n9xvb9513w.cloudfront.net/thumbnails/motions/113680902/animated.gif"
+      }
+    ],
+    "preview_duration_seconds": 6.6,
+    "preview_review": "Full-duration 2 fps contact sheets inspected; source timing/root/contact not measured.",
+    "evidence": "docs/evidence/mixamo-mcp/official-pair.json"
   }
 }

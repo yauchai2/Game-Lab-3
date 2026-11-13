@@ -1,3 +1,7 @@
+## 2026-11-13 接續：網路、官方配對及安全認證入口
+
+來源c766a61，乾淨任務分支。status與本機startup policy為unrestricted，官方API無key回403000「Api Key is required」、帶上游公開key後目錄HTTP200。核實攻守產品ID與官方GIF各6.6秒，全時長2fps聯絡表目視檢查，見[evidence/mixamo-mcp/official-pair.json](evidence/mixamo-mcp/official-pair.json)。此非root／雙人同步／FBX落地量測。指定6170d5e／SDK1.30.0重建，pip check通過；改後launcher實際initialize／六工具成功，auth無token、search未認證，不因isError=false當成功。環境秘密佔位值檢查確認client只收記憶體、不寫token檔、無網路呼叫；真憑證未測。JSON解析／Python編譯／git diff --check另覆核。原GLB／Godot未改，不重跑或冒用歷史674；完整摔投未完成，main／Web未更新。
+
 ## 2026-11-13：HaD0Yun Mixamo MCP實測
 
 固定上游6170d5e，在雲端私有venv安裝；首次mcp2.3.0啟動失敗（Server無list_tools），固定mcp1.30.0後pip check通過。以實際註冊launcher完成initialize／tools/list共6工具、combat關鍵字成功；mixamo-auth顯示無token，Shoulder Throw搜尋回未認證（雖isError=false，不能算搜尋成功）。同httpx API無憑證probe仍ProxyError403。證據[evidence/mixamo-mcp/direct-server.json](evidence/mixamo-mcp/direct-server.json)。未下載FBX、未驗配對／完整摔投；無Godot修改，不重跑歷史674。未測使用者Mac／本機MCP／Web。

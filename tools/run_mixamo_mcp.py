@@ -15,7 +15,12 @@ from mixamo_mcp import client
 # Upstream debug prints otherwise corrupt the JSON-RPC stdout stream.
 client.print = functools.partial(builtins.print, file=sys.stderr)
 
-from mixamo_mcp.server import main
+from mixamo_mcp import server
+
+# Secret injection avoids sending credentials through recorded MCP arguments.
+# The constructor uses this value in memory; unlike the setter it does not save it.
+if os.environ.get("MIXAMO_ACCESS_TOKEN"):
+    server.client = client.MixamoClient(access_token=os.environ["MIXAMO_ACCESS_TOKEN"])
 
 if __name__ == "__main__":
-    main()
+    server.main()

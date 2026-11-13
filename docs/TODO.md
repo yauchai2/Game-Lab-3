@@ -1,3 +1,11 @@
+## 2026-11-13 接續狀態（覆蓋下方舊網路阻擋）
+
+- [x] 取回任務分支c766a61；新執行環境unrestricted已套用，官方目錄HTTP200。
+- [x] 官方Shoulder Throw攻守ID及兩段6.6秒GIF全時長2fps預覽核實。
+- [x] 重建指定MCP、launcher六工具驗證；新增環境秘密MIXAMO_ACCESS_TOKEN記憶體注入。
+- [ ] 使用者透過環境秘密配置Adobe認證並套用；不貼聊天。真token尚無，MCP搜尋仍未成功。
+- [ ] 認證後下載同角色／30fps／完整時長及root的兩段私有FBX，再量測配對與Godot接入；完整摔投未完成。
+
 ## 2026-11-13：指定Mixamo MCP
 
 - [x] 安裝固定6170d5e獨立Server、相容SDK1.30.0及stdio launcher，6工具／keywords實測。
