@@ -725,3 +725,7 @@ T 進無限練習、F5 重置、F7 切對手；正常對局 Enter。挑空僅在
 使用者已接受新核心，實作 pressure_exchange.gd：命中／擋格／精準防禦累積共用三階壓力，第三階地面重踢與可應對對手接觸開 24 tick 對峙。J PRESS 剋 SLIP、Shift TURN 剋 PRESS、E SLIP 剋 TURN；鎖首個選擇、固定期限、平手／超時處理。PRESS 22 傷害及強擊退、TURN 16 傷害及硬直、SLIP 無傷後撤；結算清壓並冷卻。AI 在開始前決定意圖，不窺讀選擇，有明示站姿／文字。三階表、選擇倒數、原有 VFX 和清理路徑已接上。
 
 主選單 PRESSURE DRILL 或 T→F8；先不限時看相剋提示，按 K 才開始，對峙按 J／Shift／E，F5 退出普通練習。正常對戰自然累積壓力。新核心 59、原生輸入 11，加回歸共 255 項通過；20,000 步雙實例重播有界、一致，混合戰鬥自然出現 20 次對峙。原生畫面及短 GIF 見 PRESSURE_EXCHANGE.md。只推 codex/street-combat，未部署 Web；真人對窗口、提示明顯程度、冒險回報的驗收尚待使用者。本輪未加投技／彈射牆／Tripo 模型。
+
+## 城內頁面圖像化（2026-11-13，最新）
+
+SKILLS／RADIO（故事）／DEPART 三頁與頂部資源列由文字清單改成像素圖示卡片，長說明移到面板底部單行（懸停／選中才顯示）。只改版面，規則與存檔不變。內容、檔案及驗證見 [HUB_PICTURE_UI.zh-TW.md](HUB_PICTURE_UI.zh-TW.md)。CIRCUIT、DEALER、SHOP 仍為舊文字版；故事連續多波／劇情補完由另一條工作線負責，不在此項。

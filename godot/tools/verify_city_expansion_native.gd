@@ -23,9 +23,12 @@ func click(control:Control) -> void:
     for down in [true,false]:
         var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_LEFT;e.pressed=down
         e.position=control.get_global_rect().get_center();e.global_position=e.position;root.push_input(e,true);await frames(2)
+const ACT_ALIAS={"REVIEW 06":"chapter:6","PRACTICE SIGNAL":"practice:boss_signal","EQUIP LONG ROUTE":"tech:zip_route","EQUIP SIGNED RECEIPT":"tech:zip_confirm","EQUIP EXIT PLAN":"tech:zip_dash","PRACTICE DOUBLE JUMP":"practice:double_jump","LEARN  DOUBLE":"learn:double_jump"}
 func button(parent:Node,prefix:String) -> Button:
+    var act:String=ACT_ALIAS.get(prefix,"contract:"+prefix.substr(prefix.find("#")+1) if prefix.begins_with("START CONTRACT #") else "")
     for child in parent.find_children("*","Button",true,false):
-        if child.text.begins_with(prefix):return child
+        if act!="" and child.get_meta("act","")==act:return child
+        if act=="" and child.text.begins_with(prefix):return child
     return null
 func shot(name:String) -> void:
     await frames();root.get_texture().get_image().save_png(OUT+name+".png")
