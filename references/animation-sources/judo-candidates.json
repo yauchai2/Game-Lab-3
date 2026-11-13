@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "reviewed_on": "2026-11-13",
+  "status": "listing_research_only",
+  "downloaded": false,
+  "purchased": false,
+  "game_integrated": false,
+  "user_target": "Complete paired judo-style throw: grip, unbalance, turn, lift/flip, land and recover; current grab gestures do not fulfill it.",
+  "candidates": [
+    {
+      "name": "Judo AnimSet",
+      "publisher": "wemakethegame",
+      "url": "https://www.fab.com/listings/c2a40d77-1e8f-49e1-9d02-48a597a73e22",
+      "preview": "https://www.youtube.com/watch?v=LHKp7QiC4MI",
+      "listing_verified": [
+        "47 animations + 9 poses",
+        "8 atk/hit Setmotion pairs",
+        "Unreal Engine / Unity formats"
+      ],
+      "unverified": [
+        "individual throw names",
+        "independent source FBX availability",
+        "root tracks and synchronization",
+        "preview frame quality",
+        "Godot retarget",
+        "license selected at purchase"
+      ]
+    },
+    {
+      "name": "Grab & Throw Takedown Animation Pack",
+      "publisher": "Raise Creation",
+      "url": "https://www.fab.com/listings/23c75ad8-7c73-4e5d-bb62-18d0e01e5585",
+      "listing_verified": [
+        "matching _React animations",
+        "FBX and Unreal Engine formats",
+        "HipSweep, RollFlip, RollOver, RollToss, SpinOver, TumbleLaunch"
+      ],
+      "unverified": [
+        "actual file contents",
+        "contact and root tracks",
+        "preview frame quality",
+        "Godot retarget",
+        "price and purchase license"
+      ]
+    },
+    {
+      "name": "Judo",
+      "publisher": "Player Motion",
+      "url": "https://playermotion.games/animations/judo",
+      "paired_format_reference": "https://playermotion.games/answers/two-person-fight-animations",
+      "license": "https://playermotion.games/license",
+      "listing_verified": [
+        "two-player throws in catalogue",
+        "FBX/GLB options",
+        "vendor describes one file per actor + SCENE.json",
+        "vendor describes Blender/script authored animation, not verified live mocap"
+      ],
+      "unverified": [
+        "individual animation file quality",
+        "actual contents and root tracks",
+        "catalogue count discrepancies",
+        "Godot retarget"
+      ]
+    }
+  ],
+  "distribution_note": "No paid or restricted source clips or reconstructible curves admitted to the public repository; these are candidates, not license-cleared imported assets."
+}

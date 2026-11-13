@@ -1,3 +1,7 @@
+## 2026-11-13：投技驗收改為攻守配對完整柔道翻摔
+
+使用者明確要「完整摔投、打哂圈、真係柔道投技般」。依[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)，以抓取、破壞重心、轉髖、對手離地翻身、落地受身作目標；現有grab手勢與擊退不是完成。優先評估Judo AnimSet的8組atk/hit，翻滾誇張型另看Grab & Throw，Player Motion列為待試單組候選。清單／格式核實不等於已看完影片／取得／授權散佈／Godot可用；沒有購買或下載。本公開repo只存候選與接入程式，付費原檔及可還原曲線留私有依賴。完整摔投要配對simulation root／共同時鐘與一次落地結算，不沿用站立髖高裁切假造翻摔。
+
 ## 2026-11-13：空地交接採來源遮罩與單一profile
 
 依[FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md](FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md)，沿現有Quaternius／UAL2／KayKit CC038片段，不把新程序修正或跳躍腿遮罩稱為專用空中mocap。StreetMotion優先派送Transit，骨架取樣／遮罩／有界修正後即返回，Neon不再覆寫已擁有pose；新owner不再套共用整人自轉、lunge或非等比放大。FX選肢必須可讀原sim字典，不能依賴呈現副本欄位。ZIP真確認segment共用，不複製兩套；受擊按新flash重啟，空中phase變化不重播受擊。原空反hold／ricochet／KO／過場owner保留。grab只接抓取釋放手勢與真結算，成對動捕與接觸約束明列待辦；原判定／資源／BGM／來源／存檔與Web不改。

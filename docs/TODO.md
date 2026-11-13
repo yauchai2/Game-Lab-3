@@ -1,3 +1,13 @@
+## 2026-11-13：完整柔道摔投為下一個優先目標
+
+詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)。
+
+- [x] 按使用者要求查網上完整攻守配對來源：Fab Judo AnimSet、Grab & Throw與Player Motion；記錄官方清單／格式／授權／預覽與未驗範圍。
+- [ ] 取得一組合法原始攻守動畫，確認完整轉髖／翻身、root軌跡與接觸／落地幀；未購買／下載。
+- [ ] 製作真雙人retarget／共同時間軸／對齊與落地一次結算樣板，再擴四角。
+- [ ] 驗體型差、雙朝向、牆邊、群戰、中斷、暫停／F2／死亡／重開清理；付費素材私有匯入。
+- [ ] 現有grab抓取／釋放手勢僅為過渡，不能再當完整柔道投技已完成。
+
 ## 2026-11-13：第五輪空地交接與反應
 
 詳[FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md](FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md)。

@@ -1,3 +1,7 @@
+## 2026-11-13：柔道摔投資源查核（文件，非runtime）
+
+[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)：本輪透過網上工具讀官方Fab Judo AnimSet／Grab & Throw清單、Unity同品頁、Player Motion目錄／配對／license、Adobe Mixamo FAQ、Rokoko免費fight／martial arts、Godot格式文件與Fab授權摘要；記錄候選及未驗證欄位。Judo作者FAQ站502、Mixamo首頁無可讀目錄、Player Motion個別招式URL未能讀取，沒有把搜尋索引當已取得素材。只有預覽連結，未逐幀觀看、未買／下載／測原檔／整合。文件與JSON格式檢查；不重跑runtime，前輪674通過不屬完整摔投驗收。遠端main首次503後成功讀3915c2d，未合併。
+
 ## 2026-11-13：第五輪空地交接驗證
 
 [evidence/transit-motion](evidence/transit-motion/README.md)：216新＋122counter＋90street＋19rivet＋51style＋46規則＋104死亡／群戰＋26FX＝674全通過。新增雙朝向source／FX肢、hitstop／F2矩陣凍結、無舊拉伸／自轉、八空地phase、連續受擊重啟、死亡／導演交還及四角正常launcher／chase／air與grab；pulse姿態的種子節點為明示fixture。舊motion空中／stun handoff斷言遷新owner，其餘不刪。與ec81ad9隔離來源14類4角90tick＝5040筆clip／三骨socket完全一致，非terrain IK；相同1800 simulation ticks狀態SHA022cef61…／21命中／0差異及骨架呈現改寫。12腳本七類fatal warning全過，全19suite16/19同三處既有失敗。14秒420幀空連每角真chase及air_jab／air_kick／meteor各一次，8秒240幀每角grab一次；每段100能量／固定站位、正常指令、不注入damage／空中位置／sample／node。accepted原生log無ERROR／SCRIPT ERROR；影片全長2fps抽樣覆核、音軌非靜音。Linux4.6.3 llvmpipe／Dummy，非Mac／人耳／真人／硬體FPS／成對摔投／足部IK驗收。

@@ -1,3 +1,7 @@
+## 2026-11-13：使用者更正投技為完整柔道翻摔，已完成資源研究
+
+詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)及references/animation-sources/judo-candidates.json。使用者要攻守雙人抓取→轉髖／轉肩→離地翻身→落地受身，上一輪grab手勢不算完成。已核對Fab Judo AnimSet 8組atk/hit、Grab & Throw的RollFlip／SpinOver等_React配對與FBX、Player Motion雙人目錄／FBX/GLB及限制；有官方預覽連結，但未逐幀觀看、未買／下載／匯入，Godot及root同步未驗。Mixamo／Rokoko免費頁未確認特定完整雙人柔道包，不列已取得。Judo AnimSet先評估，誇張翻圈另看Grab & Throw；Judo套件獨立FBX尚需確認。付費原檔／可還原曲線不得直接散佈於公開repo，應私有資產＋公開接入清單。下一階段是一組配對樣板與simulation共同時鐘／root／落地一次結算，不以單模轉圈代替；四角分配待來源確認。本輪純文件／候選登記，674是前輪結果，沒有新runtime驗收。main已到3915c2d未合併，任務分支保持，Web不更新。
+
 ## 2026-11-13：四角空地交接、受擊與grab手勢
 
 詳[FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md](FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md)／[evidence/transit-motion](evidence/transit-motion/README.md)。transit_motion接五空擊、空中L／OD／LOOP pulse、起跳浮空／追擊／落地、受擊及ground grab，先於地面profile派送。既有38 CC0曲線＋jump腿／護架／握指遮罩及同owner有界修正，非新取得空中mocap；移除新owner上的舊Neon／Cannon覆寫、360起跳自轉、lunge與2.1倍拳腳／身體拉伸。RIVET空擊改拳、HUSH保短踢／護架、LOOP單手棍，FxRecipes讀原sim也能選真手腳／BatonTip；ZIP確認segment單一實作。受擊新flash重啟、phase變化不重啟、停格不漂移。死亡／空反hold／ricochet／KO／過場維持原owner。grab為來源抓取／釋放手勢接一次真結算，未做攻守成對摔投；foot IK／完整轉髖仍待做。216新＋458回歸共674全過，12腳本strict通過，全suite仍16/19三處既有警告。ec81ad9隔離來源14類×4×90共5040筆ground抽樣一致；1800固定tick狀態SHA022cef61…一致、0呈現改寫。14秒420幀真launcher→付費chase→air_jab/kick/meteor各一次／角；8秒240幀真grab各一次，100能量固定近身fixture，不注入傷害／空中位置／sample／node。Linux4.6.3 llvmpipe／Dummy，Mac／真人／GPU未驗；BGM／原GLB／來源／存檔／判定／Web不變，同分支／draft PR #29續推。
