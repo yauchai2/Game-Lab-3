@@ -10,6 +10,7 @@ NAMES = {  # Tripo convert id prefix -> prop name
     "f2238f60": "traffic_light", "89988ed4": "boombox", "48fdb3c6": "wall_fan", "3cf7e913": "red_car",
     "8ff788b6": "case_open", "5441c467": "drawer_cabinet", "21aebe08": "workbench", "97673abd": "case_closed",
     "798c6930": "shelf_bottles", "b0bae194": "pegboard_tools", "531e78f0": "shop_front"}
+EXTRA = {"sofa_table_cup_bowl.glb": "sofa_set"}  # later uploads that are not named tripo_convert_*
 SIZE = 256
 root = Path(__file__).resolve().parent.parent / "godot/assets/story_opening"
 
@@ -34,6 +35,11 @@ def derive(raw: bytes) -> bytes:
     return (b"glTF" + struct.pack("<II", 2, total) + struct.pack("<I", len(js)) + b"JSON" + js +
             struct.pack("<I", len(blob)) + b"BIN\0" + blob)
 
+for f in sorted(Path(sys.argv[1]).glob("*sofa_table_cup_bowl.glb")):
+    raw = f.read_bytes()
+    shutil.copyfile(f, root / "source" / "sofa_table_cup_bowl.glb")
+    (root / "sofa_set.glb").write_bytes(derive(raw))
+    print("sofa_set", len(raw), "->", (root / "sofa_set.glb").stat().st_size)
 for f in sorted(Path(sys.argv[1]).glob("*tripo_convert_*.glb")):
     prefix = next((k for k in NAMES if f.name.split("tripo_convert_")[1].startswith(k)), None)
     if prefix is None:

@@ -258,7 +258,7 @@ func _camera_at(t:float) -> Dictionary:
 	if t<1.3:
 		# Behind the bench: ZIP waits in the doorway light and the case slides in from the left.
 		var u:=ease_io(seg(t,0.0,1.3))
-		return {"at":Vector3(.4,1.3,-6.95).lerp(Vector3(.36,1.22,-6.3),u),"look":Vector3(.3,1.4,-3.0),"fov":lerpf(54,50,u),"roll":-1.0,"fisheye":.14,"shake":.04}
+		return {"at":Vector3(.4,1.3,-7.7).lerp(Vector3(.36,1.22,-6.5),u),"look":Vector3(.3,1.4,-3.0),"fov":lerpf(68,52,u),"roll":-1.0,"fisheye":.14,"shake":.04}
 	if t<2.6:
 		# Close on the case front: RIVET's gloves work the latches.
 		var u1:=seg(t,1.3,2.6)

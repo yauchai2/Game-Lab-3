@@ -17,7 +17,6 @@ var table_props:Array[Node3D]=[]
 var table_rest:Array[Vector3]=[]
 var tubes:Array[MeshInstance3D]=[]
 var tube_material:StandardMaterial3D
-var cup:Node3D
 var walkers:Array[Dictionary]=[]
 var ledge:Node3D
 var interior_lights:Array[OmniLight3D]=[]
@@ -259,15 +258,8 @@ func _garage(concrete:Material,plaster:Material,shutter:Material,tiles:Material,
 	# Floor scraps and the sofa, as in the reference garage.
 	for i in 4:box(root,Vector3(1.0-i*.32,.03,-2.2+.2*sin(i*2.0)),Vector3(.36,.04,.05),mat([Color("e0146f"),Color("f0d94a")][i%2])).rotation_degrees.y=i*23.0
 	box(root,Vector3(.9,.2,-1.5),Vector3(.5,.4,.4),mat(Color("3a3644")))
-	var sofa:=group(root,Vector3(-4.7,0,-3.0),"Sofa");sofa.rotation_degrees.y=180.0
-	var leather:=mat(Color("7a4a34"));var patch:=mat(Color("5f3626"))
-	box(sofa,Vector3(0,.3,0),Vector3(1.1,.5,2.3),leather)
-	box(sofa,Vector3(.5,.75,0),Vector3(.3,.9,2.3),patch)
-	for z in [-1.2,1.2]:box(sofa,Vector3(0,.5,z),Vector3(1.1,.75,.28),patch)
-	box(sofa,Vector3(-.05,.57,.3),Vector3(.9,.05,.5),mat(Color("93334d")))
-	cup=group(root,Vector3(-3.55,.44,-5.5),"Cup")
-	cyl(cup,Vector3.ZERO,.045,.15,mat(Color("f3efe6")),7,.058)
-	box(cup,Vector3(.01,.13,0),Vector3(.014,.16,.014),mat(Color("e0146f")))
+	# Brown checked sofa with its side table, paper cup and bowl: one Tripo model on the camera's right.
+	prop(root,"sofa_set",Vector3(-3.2,0,-2.9),Vector3(1.05,1.0,3.0),180.0)
 	# Crates, stool and bin from the existing prop library (wrappers; GLBs untouched).
 	for spec in [["res://scenes/PROP_CRATES_A01.tscn",Vector3(5.9,0,-7.6),0.0],["res://scenes/PROP_SHOP_STOOL_A01.tscn",Vector3(1.9,0,-6.4),30.0],["res://scenes/PROP_BIN_A01.tscn",Vector3(6.3,0,-1.2),0.0],["res://scenes/PROP_CRATES_A01.tscn",Vector3(-6.3,0,-1.3),90.0]]:
 		if not ResourceLoader.exists(spec[0]):continue
@@ -306,10 +298,6 @@ func _garage_clutter(steel:Material,dark:Material) -> void:
 	prop(root,"drawer_cabinet",Vector3(-6.45,0,-3.0),Vector3(.5,1.25,.9),90.0)
 	prop(root,"boombox",Vector3(-6.45,1.25,-3.0),Vector3(.3,.35,.62),90.0)
 	prop(root,"case_closed",Vector3(-5.2,0,-1.2),Vector3(.8,.45,.6),20.0)
-	var side:=group(root,Vector3(-3.55,0,-5.5),"SideTable")
-	box(side,Vector3(0,.36,0),Vector3(.9,.06,.7),mat(Color("4a3a30")))
-	for corner in [Vector3(-.4,.18,-.3),Vector3(.4,.18,-.3),Vector3(-.4,.18,.3),Vector3(.4,.18,.3)]:box(side,corner,Vector3(.05,.36,.05),steel)
-	cyl(side,Vector3(.2,.42,.05),.1,.05,mat(Color("2a2733")),8,.14)
 	for i in 5:box(root,Vector3(-2.0+i*1.3,.012,-1.4-.9*(i%3)),Vector3(.3,.004,.22),mat(Color("e9e2d0"))).rotation_degrees.y=i*37.0
 	for i in 3:
 		var cable:=box(root,Vector3(-3.0+i*.6,.02,-8.5),Vector3(.04,.03,1.4),mat(INK));cable.rotation_degrees.y=18.0*i-12.0
