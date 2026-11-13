@@ -1,5 +1,7 @@
 # 完整柔道摔投：資源核對與接入方向
 
+最新工具進度：[MIXAMO_MCP_SETUP.zh-TW.md](MIXAMO_MCP_SETUP.zh-TW.md)。官方Playwright MCP已在雲端安裝並實測25tools／開頁／點擊；Mixamo仍被proxy403擋住，官方動畫檔未取得。以下保留前輪瀏覽器故障及資源研究歷史；完整摔投仍未完成。
+
 ## 最新約束：只用免費資源，先核實Mixamo
 
 使用者其後明確要求「用免費的資源做」，並追問Mixamo。付費候選不再是實作採購方向。優先檢查`Shoulder Throw, Aggressor`與`Shoulder Throw, Victim`：第三方目錄索引列出這組名稱，但本輪未從Mixamo官方下載／確認兩段實際同步；不能把索引當成已取得的官方資產。Adobe官方FAQ確認Adobe ID免費、允許遊戲商用；免費不等於CC0或可任意公開原檔。

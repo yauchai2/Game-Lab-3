@@ -1,3 +1,7 @@
+## 2026-11-13：官方Playwright MCP已安裝及實測，Mixamo被網路403擋住
+
+見[MIXAMO_MCP_SETUP.zh-TW.md](MIXAMO_MCP_SETUP.zh-TW.md)與[evidence/mixamo-mcp/setup.json](evidence/mixamo-mcp/setup.json)。使用者要求用MCP，已在本對話雲端安裝官方@playwright/mcp0.0.85並註冊雲端Codex CLI的playwright-mixamo；註冊命令initialize／tools/list25工具通過，實際MCP開GitHub並點擊錨點成功。不是使用者Mac已設定，也不代表此宿主對話工具自動熱載入。Mixamo導航ERR_TUNNEL_CONNECTION_FAILED，獨立HTTP proxy403；目前障礙是網路政策，未到Adobe登入，無FBX／完整摔投。需雲端允許mixamo.com及www.mixamo.com後再開登入頁；本輪沒有網路變更工具，不繞過政策。另附本機tools/setup_mixamo_mcp.sh供Codex＋Playwright Extension註冊，僅Linux語法／print驗證，未操作使用者Mac。私有profile／下載在workspace/shared內，不入repo；同profile只啟一個實例。Godot／來源動畫不改、674是歷史結果，main f69fc9f未合併、Web不更新。
+
 ## 2026-11-13：只用免費素材，Mixamo過肩摔配對優先
 
 使用者最新要求免費資源並追問Mixamo；優先核實Shoulder Throw, Aggressor／Victim，不再按付費候選採購。詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)最新節。只有目錄名稱線索與Adobe免費商用FAQ；官方FBX／配對時序／完整翻摔仍未驗。瀏覽器啟動兩次失敗，無官方會話；沒有下載第三方鏡像、購買或runtime修改。若提供官方同角色／FPS且保留root／完整時長的兩個FBX，可先做同步量測與配對接入。SFU禁商用未採用，Tuffles未核實成對且下載403未取得。完整柔道摔投仍未完成。

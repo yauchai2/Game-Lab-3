@@ -148,3 +148,5 @@
 - 2026-11-13 本聊天最新投技更正：使用者要「完整摔投、打哂圈、真係柔道投技般」，不是抓取／釋放手勢與擊退。見docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md；攻守配對、轉髖／轉肩、對手離地翻身、落地受身才是驗收目標。Judo AnimSet／Grab & Throw／Player Motion只核對產品候選，未買／下載／接入，完整摔投未完成；付費原檔與可還原曲線採私有資產，不直接上公開repo。674為前輪其他動作檢查，不可當此目標已驗收，Web不更新。
 
 - 2026-11-13 本聊天最新要求「用免費的資源做」並追問Mixamo，覆蓋前述付費候選建議。優先核實Shoulder Throw, Aggressor／Victim，官方FBX與同步尚未取得／驗證，不用第三方索引冒稱官方素材已到手；完整摔投仍未完成，勿自行採購。見docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md最新節。
+
+- 2026-11-13 使用者確認使用MCP：現docs/MIXAMO_MCP_SETUP.zh-TW.md，官方Playwright MCP0.0.85已在雲端註冊／真工具驗證，但Mixamo被網路proxy403拒絕。這不是使用者Mac已連接／Adobe已登入／官方FBX已取得，完整摔投仍未完成；不繞過政策。tools/setup_mixamo_mcp.sh供本機Codex＋Extension設定，僅Linux語法與print驗證，profile／下載不入公開repo。

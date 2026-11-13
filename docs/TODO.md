@@ -1,3 +1,11 @@
+## 2026-11-13：MCP工具已就緒，等待Mixamo網路存取
+
+- [x] 雲端安裝／註冊官方Playwright MCP0.0.85；initialize、25tools、MCP開頁／點擊驗證。
+- [x] 本機Codex用setup helper／文件與證據，不覆寫既有同名MCP；Linux語法及print驗證。
+- [ ] 雲端網路允許mixamo.com／www.mixamo.com後，再驗Adobe登入與下載；現在proxy403。
+- [ ] 若使用本機已登入Chrome，由本機客戶端執行helper及連接Extension；未在Mac執行，雲端不會自動連本機。
+- [ ] 官方Shoulder Throw攻守FBX取得、同步／接觸與完整摔投接入仍未完成。
+
 ## 2026-11-13：免費摔投素材優先次序
 
 - [x] 記錄使用者只用免費資源，付費候選不採購。

@@ -78,6 +78,7 @@
     "official_faq": "https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html",
     "downloaded": false,
     "paired_timing_verified": false,
-    "blocker": "No connected browser session; cloud browser initialization failed. No official FBX files obtained."
+    "blocker": "Official Playwright MCP installed and tested in cloud; Mixamo navigation blocked by cloud proxy (403 / ERR_TUNNEL_CONNECTION_FAILED). Adobe login not reached; official FBX files not obtained.",
+    "mcp_status": "Official @playwright/mcp 0.0.85; cloud Codex CLI registration and 25-tool initialize verified; actual browser navigation/click verified on allowed GitHub page. Local user browser not attached."
   }
 }

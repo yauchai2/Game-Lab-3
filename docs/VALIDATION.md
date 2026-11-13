@@ -1,3 +1,7 @@
+## 2026-11-13：Playwright MCP接入驗證（非遊戲runtime）
+
+[evidence/mixamo-mcp/setup.json](evidence/mixamo-mcp/setup.json)：npm官方0.0.85安裝、雲端Codex CLI註冊、從註冊命令initialize與tools/list25工具成功；真MCP開官方GitHub及點Skip to content到#start-of-content成功，但部分站點資產有console錯誤。Mixamo ERR_TUNNEL_CONNECTION_FAILED／獨立HTTP proxy403；local HTTP403、data URL被admin拒絕，未繞過。沒有Adobe登入／FBX下載／Godot接入。新增本機helper bash -n與--print、JSON／diff通過，未在Mac執行。Godot未改，不重跑674歷史檢查，不稱完整摔投完成。
+
 ## 2026-11-13：免費Mixamo取檔仍未完成（非runtime）
 
 重新核對Adobe Mixamo FAQ與過肩摔攻守名稱索引，未取得官方FBX／配對時間證據。Browser本地工具不可用；CUA雲端瀏覽器兩次均因sandbox啟動錯誤失敗，已結束該UI流程；官網無可讀目錄，沒有官方登入會話。Tuffles直接下載網路403，SFU官方禁商用，均未錄用。僅更新免費需求與候選JSON，檢查JSON／diff，不重跑runtime或宣稱完成完整摔投。

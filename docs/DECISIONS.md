@@ -1,3 +1,7 @@
+## 2026-11-13：以官方Playwright MCP完成工具接入
+
+使用者確認使用MCP，採官方@playwright/mcp固定0.0.85，不直接執行社群Mixamo MCP。雲端Codex CLI已註冊並以真JSON-RPC工具驗證；和本機Extension連線分開記錄，避免把雲端設定當成已控制使用者Chrome。現Mixamo被proxy403拒絕，沿環境設定流程處理網域，不繞過政策。私有profile／下載在repo外；新增本機helper只註冊MCP、不覆寫既有同名設定、不處理密碼。詳[MIXAMO_MCP_SETUP.zh-TW.md](MIXAMO_MCP_SETUP.zh-TW.md)。
+
 ## 2026-11-13：免費限制覆蓋較早付費候選建議
 
 使用者指定「用免費的資源做」並追問Mixamo，優先核實Shoulder Throw攻守配對。Adobe免費商用FAQ與第三方目錄名稱分開記錄；未有官方FBX／實測，不冒稱已取得／已配對，不採購付費包。詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)最新節。

@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新工具：[Mixamo MCP設定及驗證](docs/MIXAMO_MCP_SETUP.zh-TW.md)。雲端官方Playwright MCP已安裝並通過開頁／點擊；Mixamo目前被網路403拒絕，尚未登入或取得摔投FBX。另附本機Extension設定helper。
+
 最新約束：完整摔投只用免費資源，優先核實Mixamo Shoulder Throw攻守配對；官方FBX尚未取得，完整摔投未完成。詳[資源研究](docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md)。
 
 最新需求：[完整柔道摔投資源研究](docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md)。已核對攻守配對候選與格式／授權；尚未購買、下載或接入。現有grab手勢不代表完整摔投已完成。
