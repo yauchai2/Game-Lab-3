@@ -242,6 +242,7 @@ func sample(real:float) -> void:
 	_puffs_at(t,reduced)
 	var cam:Dictionary=_camera_at(t)
 	shake=0.0 if reduced else trauma_at(t)
+	_exaggerate(cam,t,reduced)
 	var camera:Camera3D=session.camera
 	var at:Vector3=cam.at
 	if shake>0:at+=Vector3(sin(t*83.0),sin(t*97.0+1.3),sin(t*71.0+.4))*shake*cam.get("shake",.09)
@@ -258,7 +259,7 @@ func _camera_at(t:float) -> Dictionary:
 	if t<1.3:
 		# Behind the bench: ZIP waits in the doorway light and the case slides in from the left.
 		var u:=ease_io(seg(t,0.0,1.3))
-		return {"at":Vector3(.4,1.3,-6.95).lerp(Vector3(.36,1.22,-6.3),u),"look":Vector3(.3,1.4,-3.0),"fov":lerpf(54,50,u),"roll":-1.0,"fisheye":.14,"shake":.04}
+		return {"at":Vector3(.4,1.3,-7.7).lerp(Vector3(.36,1.22,-6.5),u),"look":Vector3(.3,1.4,-3.0),"fov":lerpf(68,52,u),"roll":-1.0,"fisheye":.14,"shake":.04}
 	if t<2.6:
 		# Close on the case front: RIVET's gloves work the latches.
 		var u1:=seg(t,1.3,2.6)
@@ -304,6 +305,18 @@ func _camera_at(t:float) -> Dictionary:
 	var title_progress:=seg(t,TITLE_AT,DURATION)
 	return {"at":Vector3(.9,27.3,-9.7+title_progress*.35),"look":Vector3(-.35,28.7+title_progress*.08,10),"fov":40,"roll":-1.5,"fisheye":.1,"ink":1.0,"vignette":.0,"shake":.1}
 
+## Slumlordz-style punch: every authored move is pushed harder. Tilts double, the fisheye
+## deepens, hits kick the FOV in and snap the roll, and the camera never holds perfectly still.
+func _exaggerate(cam:Dictionary,t:float,reduced:bool) -> void:
+	if reduced:return
+	var hit:=trauma_at(t)
+	cam["roll"]=cam.get("roll",0.0)*2.0+sin(t*1.7)*1.6+hit*5.0*(1.0 if int(t*10.0)%2==0 else -1.0)
+	cam["fisheye"]=minf(.95,cam.get("fisheye",0.0)*1.45+.08)
+	cam["shake"]=cam.get("shake",.09)*1.7
+	cam["fov"]=cam.fov*(1.0-hit*.11)
+	cam["radial"]=maxf(cam.get("radial",0.0),minf(1.0,hit*.9))
+	cam["chroma"]=cam.get("chroma",0.0)+hit*.004
+
 func _lens_at(t:float,cam:Dictionary,reduced:bool) -> void:
 	lens.visible=running
 	var trauma:=0.0 if reduced else trauma_at(t)
@@ -320,6 +333,8 @@ func _lens_at(t:float,cam:Dictionary,reduced:bool) -> void:
 		flash=maxf(maxf(0,1-absf(t-5.01)/.07)*.3,maxf(0,1-(t-TITLE_AT)/.26) if t>=TITLE_AT else 0.0)
 		if t>=MUSIC_CUT and t<MUSIC_CUT+.08:flash=maxf(flash,.5)
 		if t>=SLAM_AT-.02 and t<SLAM_AT+.04:invert=1.0
+		for hit_at in [1.3,5.0,MUSIC_CUT,10.55,10.85]:
+			if t>=hit_at and t<hit_at+.04:invert=1.0
 	if t>=SLAM_AT and t<TITLE_AT:fade=1.0
 	if t<.25:fade=1.0-t/.25
 	if t>DURATION-.12:flash=maxf(flash,(t-(DURATION-.12))/.12*(0.0 if reduced else .6))
