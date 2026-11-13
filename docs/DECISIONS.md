@@ -1,3 +1,7 @@
+## 2026-11-13：四英雄動作先於特效，外部素材採樣後轉接（規劃）
+
+使用者要求四角招式、動作、特性與戰鬥畫面有明顯區別；依[FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md](FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)採ZIP路線踢技／RIVET預壓巨拳／HUSH留白截擊／LOOP短棍接點。保留現有核心資源與原始GLB，先完整全身motion、接地與contact，再做VFX／鏡頭／聲音。外部來源分工：Mixamo基底、AccuRIG條件式綁骨（非動作庫）、ActorCore動作、Rokoko素材／補錄、Fab完整戰鬥包；Godot格式與公開GitHub原檔／衍生授權必須合格才錄用。來源入口本輪proxy403，所有具體商品與新動作尚未錄用。文件不構成已完成動畫或新採購；不改判定／進度／BGM持續播放契約，不發Web。先RIVET正式FIGHT切片驗證管線，保留黑衣人index4相容。
+
 ## 2026-11-12 開場貼近參考影片
 
 Alan 要求開場更貼近參考影片但只做小調整：保留 18 秒結構，移除影片沒有的漫畫字／名牌，場景改暗並補雜物；對白字句沿用 Alan 的表（影片字幕不同，待決定）。

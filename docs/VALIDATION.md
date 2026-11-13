@@ -1,3 +1,7 @@
+## 2026-11-13：四英雄動作 review 與詳細方案（僅文件）
+
+基線main／origin/main均7aac2c1、工作區起始乾淨。依[FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md](FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)查閱所有動作家族的來源選片／層疊／時序／視覺變形與選角／勝出／據點路徑；四份GLB直接解析皆65 joints、0 animations；現用JSON動作庫19clips。只目視兩個歷史影片抽格（ink-fx/after第3秒、last-service-runtime/zip-rivet-demo第5秒），未聲稱當前逐招錄影或完整影片審查。以正常HTTPS讀四官方入口回Tunnel connection failed:403 Forbidden，未確認最新目錄／授權／價格及新下載。Markdown本地連結與git diff --check覆核；無runtime修改，因此未跑Godot玩法測試；未驗Mac／真人／GPU效能。所有製作門檻和工期為提案，非本輪測試結果。
+
 ## 2026-11-12：按原圖重做據點＋15秒動態（覆蓋粗模）
 
 使用者回報上一版差距大，要求照指定圖、移除無關物件，並給15.083秒動畫。正式入口改用reference_workshop.gd：固定鏡頭投影空場貼圖／3D深度片與可走地面、既有四英雄／Dealer骨架、活動橙色臂、掃燈／光斑／煙／電光／閘門開口與門內剪影；Loop移向機器後回位。移除接線大機／戰利品牆／站位框，天賦綁LOOP區，Tab展開HUD。這是**2.5D／3D混合固定視角方案，不是全角度實體建築**；人物外形／姿態仍有差異，不稱逐像素或逐來源幀完美。詳[NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md](NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。

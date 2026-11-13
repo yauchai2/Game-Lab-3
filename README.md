@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+規劃：[四英雄全動作 review、外部動畫素材與差異化戰鬥製作方案](docs/FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)。含四角逐招／步法／空戰、素材庫分工、骨架與接地管線、四種鏡頭聲音及驗收；本輪僅review與規劃，未替換runtime。
+
 最新：[按指定原圖重做據點與15秒動態](docs/NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。固定視角投影美術＋真3D角色／深度與特效，保留原圖佈局、刪除無關設施；[引擎影片／對照](docs/evidence/nightshift-reference/README.md)。現有角色與插畫仍有差異；211回歸＋15strict，Tripo必需0件，選配精修清單已列。下方粗模紀錄為歷史。
 
 最新：[夜班場可互動回城據點](docs/NIGHTSHIFT_HUB.zh-TW.md)／[實際引擎畫面與225項驗證](docs/evidence/nightshift-hub/README.md)。STORY進入黑白工廈／桃紅等距3D；WASD或點地走動、靠近E、1–6走到設施。含DJ閣樓、技能／天賦、Dealer、商店、貨梯出擊，保留既有成長與存檔；有可編修GLB與F6預覽。

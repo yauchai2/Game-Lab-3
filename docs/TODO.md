@@ -1,3 +1,14 @@
+## 2026-11-13：四英雄動作與戰鬥風格重製（規劃）
+
+詳細規格見[FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md](FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)，本輪尚未實作：
+
+- [ ] P0 四角全動作家族動態基準、特效on/off、左右朝向與鞋底／contact量測；本輪僅程式全類別review及歷史兩抽格。
+- [ ] P1 取得Mixamo／ActorCore／Rokoko／Fab候選及授權證據，解決官方入口proxy403；確認公開repo可存放範圍；四角測姿與轉接樣本。
+- [ ] P2 motion profile／分段marker／單一pose owner／foot plant；正式FIGHT先修RIVET巨拳預壓切片，移除Sword底片及重複覆寫。
+- [ ] P3 ZIP完整踢技、HUSH截擊、LOOP短棍／節點，以及所有移動、防守、空戰、投技、受擊與死亡。
+- [ ] P4 四種幾何／鏡頭／音色，真hit／block／parry／plant事件同步，沿Neon及音樂owner。
+- [ ] P5 正式1v1／故事群戰／Boss／選角／勝出／據點回歸，F2／pause／重開清理；真人及Mac目視／效能驗收。
+
 ## 2026-11-12：按原圖重做據點＋15秒動態（覆蓋粗模）
 
 使用者回報上一版差距大，要求照指定圖、移除無關物件，並給15.083秒動畫。正式入口改用reference_workshop.gd：固定鏡頭投影空場貼圖／3D深度片與可走地面、既有四英雄／Dealer骨架、活動橙色臂、掃燈／光斑／煙／電光／閘門開口與門內剪影；Loop移向機器後回位。移除接線大機／戰利品牆／站位框，天賦綁LOOP區，Tab展開HUD。這是**2.5D／3D混合固定視角方案，不是全角度實體建築**；人物外形／姿態仍有差異，不稱逐像素或逐來源幀完美。詳[NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md](NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。

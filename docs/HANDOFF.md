@@ -1,3 +1,7 @@
+## 2026-11-13：四英雄全動作 review 與素材庫製作規劃（未實作）
+
+使用者要求四人各自招式／動作／特性與明顯不同戰鬥風格，並全面review現有怪動作、採Mixamo／AccuRIG／Rokoko／Unreal Marketplace等library。完整[FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md](FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)含逐動作家族、四角編排、素材取得／公開repo授權、重定向／marker／接地／唯一pose owner、畫面聲音與17–27工作日粗估。基線main 7aac2c1，origin/main已核對；直接解析四GLB皆65 joints／0 animation，現用庫19clips。確認RIVET Sword_Attack底片、重複骨骼層、special無階段覆寫、共用contact／lunge／scale／倒播步態問題。僅抽查兩張歷史片格，未完成最新runtime全招動態／真人驗收。四官方入口均被雲端proxy 403，未核實今日商品／價格／授權或下載新素材。下一步P0全招動態量測→P1選樣→正式FIGHT RIVET完整切片，四角與既有模式相容。僅文件、原模型／runtime／存檔／Web不變；任務分支codex/four-fighter-motion-plan。
+
 ## 2026-11-12：按原圖重做據點＋15秒動態（覆蓋粗模）
 
 使用者回報上一版差距大，要求照指定圖、移除無關物件，並給15.083秒動畫。正式入口改用reference_workshop.gd：固定鏡頭投影空場貼圖／3D深度片與可走地面、既有四英雄／Dealer骨架、活動橙色臂、掃燈／光斑／煙／電光／閘門開口與門內剪影；Loop移向機器後回位。移除接線大機／戰利品牆／站位框，天賦綁LOOP區，Tab展開HUD。這是**2.5D／3D混合固定視角方案，不是全角度實體建築**；人物外形／姿態仍有差異，不稱逐像素或逐來源幀完美。詳[NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md](NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。
