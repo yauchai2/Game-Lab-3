@@ -110,11 +110,11 @@ func _starburst() -> ImageTexture:
 
 const PROPS:="res://assets/story_opening/"
 
-func prop(parent:Node3D,name:String,at:Vector3,size:Vector3,yaw:=0.0) -> Node3D:
+func prop(parent:Node3D,prop_name:String,at:Vector3,size:Vector3,yaw:=0.0) -> Node3D:
 	# Tripo prop (256 px derived texture, raw GLB kept in source/): fitted per axis to `size` in the model's own
 	# axes, bottom-centre on `at`, then yawed. Nearest filtering keeps the JSR-style crunch.
-	var path:=PROPS+name+".glb"
-	var holder:=group(parent,at,"Prop_"+name);holder.rotation_degrees.y=yaw
+	var path:=PROPS+prop_name+".glb"
+	var holder:=group(parent,at,"Prop_"+prop_name);holder.rotation_degrees.y=yaw
 	if not ResourceLoader.exists(path):return holder
 	var model:Node3D=(load(path) as PackedScene).instantiate();holder.add_child(model)
 	var box_bounds:=AABB();var first:=true
@@ -300,7 +300,7 @@ func _street_dressing(steel:Material,dark:Material) -> void:
 		var prop:Node3D=(load(spec[0]) as PackedScene).instantiate();prop.position=spec[1];prop.rotation_degrees.y=spec[2];root.add_child(prop)
 		for body in prop.find_children("*","CollisionObject3D",true,false):body.process_mode=Node.PROCESS_MODE_DISABLED
 
-func _garage_clutter(steel:Material,dark:Material) -> void:
+func _garage_clutter(steel:Material,_dark:Material) -> void:
 	# Small set dressing from the reference: bottles, boombox, drawer cabinet, cable, paper scraps, side table with bowl.
 	var root:=group(self,Vector3.ZERO,"GarageClutter")
 	prop(root,"drawer_cabinet",Vector3(-6.45,0,-3.0),Vector3(.5,1.25,.9),90.0)
@@ -317,7 +317,7 @@ func _garage_clutter(steel:Material,dark:Material) -> void:
 	for i in 6:box(root,Vector3(-.85+i*.34,.017,-1.9),Vector3(.16,.004,1.02),mat(INK))
 	prop(root,"wall_fan",Vector3(-.8,3.2,-8.9),Vector3(1.1,1.1,.5))
 
-func _street_signals(steel:Material,dark:Material) -> void:
+func _street_signals(_steel:Material,_dark:Material) -> void:
 	var root:=group(self,Vector3.ZERO,"StreetSignals")
 	for spec in [[-12.0,6.0],[-4.5,12.4],[12.0,7.0],[3.5,12.4],[-26.0,6.5]]:
 		prop(root,"traffic_light",Vector3(spec[0],0,spec[1]),Vector3(1.1,5.2,.5),180.0)

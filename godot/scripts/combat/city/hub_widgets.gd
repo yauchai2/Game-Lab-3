@@ -50,7 +50,9 @@ static func tile(hub:Node,icon:String,title:String,sub:String,tint:Color,state:S
     b.add_theme_stylebox_override("pressed",hover);b.add_theme_stylebox_override("disabled",base)
     b.disabled=state=="locked" or state=="off"
     if state=="owned" and not callback.is_valid():b.disabled=true
-    var box:BoxContainer=HBoxContainer.new() if side else VBoxContainer.new()
+    var box:BoxContainer
+    if side:box=HBoxContainer.new()
+    else:box=VBoxContainer.new()
     box.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);box.mouse_filter=Control.MOUSE_FILTER_IGNORE
     box.alignment=BoxContainer.ALIGNMENT_CENTER;box.add_theme_constant_override("separation",4 if side else 0);b.add_child(box)
     var pic:=Icons.rect("lock" if state=="locked" else icon,tint if state!="locked" else T.MUTED,T.CORAL)

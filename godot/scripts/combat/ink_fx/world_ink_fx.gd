@@ -24,6 +24,7 @@ func _ready() -> void:
     # Textured dust puffs (CC0 Kenney smoke particle pack, see assets/vfx/SOURCES.md).
     var atlas:Image=(load("res://assets/vfx/puffs.png") as Texture2D).get_image()
     for n in 6:
+        @warning_ignore("integer_division")
         puff_textures.append(ImageTexture.create_from_image(atlas.get_region(Rect2i((n%3)*48,(n/3)*48,48,48))))
     var quad:=QuadMesh.new();quad.size=Vector2(2,1);quad.center_offset=Vector3(0,.5,0)
     for i in LIMIT:

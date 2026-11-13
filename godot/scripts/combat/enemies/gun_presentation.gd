@@ -145,6 +145,7 @@ static func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) ->
                 var angle: float = (float(i) / float(spikes) - .5) * 1.7 + (0.0 if face > 0 else PI)
                 var direction := Vector2.from_angle(angle)
                 var tangent := direction.orthogonal()
+                @warning_ignore("integer_division")
                 var length: float = (70.0 if i == spikes / 2 else 38.0) * (1.0 - stage * .5)
                 var tip: Vector2 = at + direction * length
                 canvas.draw_colored_polygon(PackedVector2Array([at + tangent * 10.0, tip, at - tangent * 10.0]), INK)
