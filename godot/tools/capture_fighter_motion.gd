@@ -62,7 +62,7 @@ func run() -> void:
                 samples.append({"character":character,"tick":tick,"clip":actor.motions.clip_name,
                     "left_foot":vec(actor.fx_socket("LeftFoot")),"right_foot":vec(actor.fx_socket("RightFoot")),
                     "right_hand":vec(actor.fx_socket("RightHand"))})
-            if tick in [0,24,55] or (action in ["special","overdrive","launcher","heavy","jab"] and tick in [5,14,38]):
+            if tick in [0,24,55] or (action in ["air_jab","air_kick","air_finisher","meteor","air_counter","grab"] and tick in [8,14]) or (action in ["special","overdrive","launcher","heavy","jab"] and tick in [5,14,38]):
                 await process_frame;await RenderingServer.frame_post_draw
                 root.get_texture().get_image().save_png(output+"/"+action+"-%02d.png"%tick)
         report.append({"action":action,"samples":samples})

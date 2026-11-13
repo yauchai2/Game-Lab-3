@@ -20,6 +20,8 @@ var clip_name := ""
 var clip_elapsed := 0.0
 var blend_from: Array[Quaternion] = []
 var previous_state := ""
+var previous_flash:=0.0
+var reaction_serial:=0
 var previous_y := 0.0
 var land_time := 1.0
 var air_time := 0.0
@@ -132,6 +134,10 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     if dead:selected="Death01";loop=false
     var state_key := "Death01/dead" if dead else selected + "/" + str(f.state) + ("/"+str(f.move) if f.state=="attack" else "")
     if profile_owned and f.state=="attack":state_key+="/"+str(f.get("service",{}).get("serial",0))
+    if profile_owned and motion.get("transit",false):
+        if motion.get("reaction",false) and float(f.get("flash",0))>previous_flash:reaction_serial+=1
+        state_key+="/"+str(motion.get("transition",""))+"/"+str(reaction_serial if motion.get("reaction",false) else 0)
+    previous_flash=float(f.get("flash",0))
     if state_key != previous_state:
         blend_from.clear()
         for bone in skeleton.get_bone_count(): blend_from.append(skeleton.get_bone_pose_rotation(bone))
@@ -178,6 +184,17 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
             var masked:bool=(motion.plant and RivetMotion.planted_source(label)) or (motion.guard_arms and StreetMotion.guard_bone(label))
             if masked and stance.tracks[index].has("rotation"):
                 locals[int(index)]=_sample_quat(stance.tracks[index].rotation,stance_time)
+    if profile_owned and motion.get("transit",false):
+        var jump:Dictionary=library.clips.Jump_Loop
+        var arm_clip:String=motion.get("arm_stance","")
+        for index in jump.tracks:
+            var label:String=library.nodes[int(index)].name
+            if StreetMotion.Transit.mask_leg(label,motion.get("air_legs","")) and jump.tracks[index].has("rotation"):
+                locals[int(index)]=_sample_quat(jump.tracks[index].rotation,jump.duration*(.35+float(f.character)*.10))
+            if arm_clip!="" and StreetMotion.guard_bone(label):
+                var arms:Dictionary=library.clips[arm_clip]
+                if arms.tracks.has(index) and arms.tracks[index].has("rotation"):
+                    locals[int(index)]=_sample_quat(arms.tracks[index].rotation,arms.duration*(1.0 if arm_clip=="Punch_Enter" else .25))
     if profile_owned and motion.has("grip"):
         var fist:Dictionary=library.clips.Punch_Enter
         for index in fist.tracks:
@@ -220,7 +237,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     if profile_owned:
         StreetMotion.finish(self,f,motion,move_spec)
         air_pose_name=pose_owner+"/"+(f.move if f.state=="attack" else f.state)
-        return # This profile owns the complete grounded pose.
+        return # This profile owns the complete pose; no later legacy layers.
     if f.state == "attack":
         var move: Dictionary = f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
         var attack_weight := clampf(float(f.frame)/move.startup,0,1)

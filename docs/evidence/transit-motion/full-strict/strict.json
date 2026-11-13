@@ -1,0 +1,103 @@
+{
+  "checks": [
+    {
+      "name": "res://scripts/combat/cinematic/story_opening.gd",
+      "passed": false,
+      "reload_code": 36
+    },
+    {
+      "name": "res://scripts/combat/city/campaign_visuals.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/story/story_simulation.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/story/body_chain.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/story/enemy_props.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/ink_fx/fx_recipes.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/ink_fx/world_ink_fx.gd",
+      "passed": false,
+      "reload_code": 43
+    },
+    {
+      "name": "res://scripts/combat/impact_shapes.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/fight_vfx.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/fight_audio.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/fight_hud.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/combat_motions.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/fighter_visual.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/fight_session.gd",
+      "passed": false,
+      "reload_code": 36
+    },
+    {
+      "name": "res://scripts/combat/fight_simulation.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/cinematic/round_theatre.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/cinematic/city_breaker.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/ability_draw/dealer_rig.gd",
+      "passed": true,
+      "reload_code": 0
+    },
+    {
+      "name": "res://scripts/combat/cinematic/ability_draw.gd",
+      "passed": true,
+      "reload_code": 0
+    }
+  ],
+  "engine": "4.6.3-stable (official)",
+  "failed": 3,
+  "passed": 16,
+  "scope": "Seven screenshot warning categories treated as compile errors; no warning suppression."
+}

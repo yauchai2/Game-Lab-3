@@ -131,7 +131,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         if rally_phase=="compress" and not reduced:stretch=Vector3(1.05,.93,1.08)
     if f.get("air_enabled",false) and not profile_owned:stretch*=motions.air_poses.stretch(f,reduced)
     model.rotation.y=0.0
-    if f.get("air_enabled",false) and not reduced and f.state=="idle" and f.air.phase=="rise" and f.air.air_ticks<=8:
+    if f.get("air_enabled",false) and not profile_owned and not reduced and f.state=="idle" and f.air.phase=="rise" and f.air.air_ticks<=8:
         model.rotation.y=TAU*float(f.air.air_ticks)/8.0
     if f.get("ko_theatre",-1.0)>=0:
         var pose_time:float=f.ko_theatre

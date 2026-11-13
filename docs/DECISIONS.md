@@ -1,3 +1,7 @@
+## 2026-11-13：空地交接採來源遮罩與單一profile
+
+依[FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md](FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md)，沿現有Quaternius／UAL2／KayKit CC038片段，不把新程序修正或跳躍腿遮罩稱為專用空中mocap。StreetMotion優先派送Transit，骨架取樣／遮罩／有界修正後即返回，Neon不再覆寫已擁有pose；新owner不再套共用整人自轉、lunge或非等比放大。FX選肢必須可讀原sim字典，不能依賴呈現副本欄位。ZIP真確認segment共用，不複製兩套；受擊按新flash重啟，空中phase變化不重播受擊。原空反hold／ricochet／KO／過場owner保留。grab只接抓取釋放手勢與真結算，成對動捕與接觸約束明列待辦；原判定／資源／BGM／來源／存檔與Web不改。
+
 ## 2026-11-13：四角局部聲光profile沿原演出owner
 
 採[FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md](FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md)：用同色仍可區分的雙箭／壓印／細切／方波替代四角共用星爆；命中後release及Neon也共用profile，避免舊效果蓋住差異。鏡頭只改既有signature控制器參數與兩人界限；不另加camera／fullscreen owner。真事件掌管資源與命中，LOOP瞬態方端點不是遊戲節點。PCM原創材質層疊既有CC0實錄主體，固定種子、不用玩法全域隨機源；音樂transport與原始模型／動畫來源保持。sprite警告明確floor索引，保原圖集結果。Web不更新。

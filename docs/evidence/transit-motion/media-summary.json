@@ -1,0 +1,44 @@
+{
+  "air": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio"
+      }
+    ],
+    "format": {
+      "duration": "14.000000"
+    },
+    "decoded_audio_rms": 0.14129946743031305,
+    "sha256": "6b82ea4e8d695a7efe336a4f261f4793079af7f43fc67108bec363e9593e92c2"
+  },
+  "throw": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 960,
+        "height": 540
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio"
+      }
+    ],
+    "format": {
+      "duration": "8.000000"
+    },
+    "decoded_audio_rms": 0.08483579794687905,
+    "sha256": "c046d68a0fae17c0b3e281b01d5d0d63b0c3405969c11331ef9ad4a4ca77059c"
+  }
+}

@@ -1,3 +1,7 @@
+## 2026-11-13：第五輪空地交接驗證
+
+[evidence/transit-motion](evidence/transit-motion/README.md)：216新＋122counter＋90street＋19rivet＋51style＋46規則＋104死亡／群戰＋26FX＝674全通過。新增雙朝向source／FX肢、hitstop／F2矩陣凍結、無舊拉伸／自轉、八空地phase、連續受擊重啟、死亡／導演交還及四角正常launcher／chase／air與grab；pulse姿態的種子節點為明示fixture。舊motion空中／stun handoff斷言遷新owner，其餘不刪。與ec81ad9隔離來源14類4角90tick＝5040筆clip／三骨socket完全一致，非terrain IK；相同1800 simulation ticks狀態SHA022cef61…／21命中／0差異及骨架呈現改寫。12腳本七類fatal warning全過，全19suite16/19同三處既有失敗。14秒420幀空連每角真chase及air_jab／air_kick／meteor各一次，8秒240幀每角grab一次；每段100能量／固定站位、正常指令、不注入damage／空中位置／sample／node。accepted原生log無ERROR／SCRIPT ERROR；影片全長2fps抽樣覆核、音軌非靜音。Linux4.6.3 llvmpipe／Dummy，非Mac／人耳／真人／硬體FPS／成對摔投／足部IK驗收。
+
 ## 2026-11-13：第四輪四角聲光驗證
 
 [evidence/fighter-style](evidence/fighter-style/README.md)：51新＋122counter＋90street＋19rivet＋46規則＋104死亡／群戰＋26FX共458通過。72組距離／空中／owner鏡頭邊界，F2／暫停／靜音／音效預算及PCM四種可重建；11腳本七類fatal warning全過，全19suite16/19（sprite舊警告修正，另三處既有失敗保留）。701f0c7隔離scripts與新版相同1800 tick輸入／狀態SHA022cef61…、21命中、0差異／骨架呈現改寫；全scene另以sim快照確認新增呈現不改資料。12秒360幀連續PLAY真命中2/1/1/1、真sample及先放點encore，音軌非靜音，未預塞sample／node／damage；2fps全長畫面覆核。accepted原生log無ERROR／SCRIPT ERROR；同色輪廓圖為明示fixture。Linux4.6.3 llvmpipe／Dummy，非人耳／Mac／真人／硬體FPS驗收。

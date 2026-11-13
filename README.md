@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[四角空地交接／受擊／投技手勢](docs/FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md)／[14秒空連](docs/evidence/transit-motion/air-combat.mp4)／[8秒投技](docs/evidence/transit-motion/throws.mp4)。空中拳腳／短棍與FX同步，去除共用自轉拉伸；674項通過、12腳本strict通過。成對摔投與足部IK仍待續。
+
 最新：[四角戰鬥特效／大招鏡頭／音色](docs/FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md)／[12秒原生預覽](docs/evidence/fighter-style/four-styles.mp4)。雙箭、壓印、細切與方波；458項通過，11腳本strict通過、全suite16/19。空戰／足部IK／真人驗收仍待續。
 
 最新：[HUSH截擊／LOOP短棍地面動作](docs/HUSH_LOOP_MOTION.zh-TW.md)／[15秒原生預覽](docs/evidence/hush-loop-motion/counter-motions.mp4)。真招架取樣反擊、近遠佈點與棍尖同步，407項通過；四角空戰／接地／鏡頭音色仍待續。

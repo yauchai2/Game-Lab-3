@@ -1,10 +1,12 @@
 extends RefCounted
 ## Data-only grounded motion selection for the four heroes. Never writes simulation.
+const Transit=preload("res://scripts/combat/last_service/transit_motion.gd")
 const Counter=preload("res://scripts/combat/last_service/counter_motion.gd")
 const Rivet=preload("res://scripts/combat/last_service/rivet_motion.gd")
 const ZIP_ATTACKS=["jab","cross","heavy","finisher","launcher","special","overdrive"]
 const RIVET_ATTACKS=["jab","cross","heavy","finisher","launcher","special","overdrive"]
 static func owns(f:Dictionary) -> bool:
+    if Transit.owns(f):return true
     if f.get("character",0) not in [0,1,2,3] or f.health<=0 or f.y>.01:return false
     if f.get("showcase",false) or f.has("cinematic_clip") or f.get("rally_phase","")!="":return false
     if f.get("ko_theatre",-1.0)>=0 or f.has("ko_spin"):return false
@@ -12,6 +14,7 @@ static func owns(f:Dictionary) -> bool:
     if f.character in [2,3]:return Counter.owns(f)
     return f.state in ["idle","dash"] or (f.state=="attack" and f.move in (ZIP_ATTACKS if f.character==0 else RIVET_ATTACKS))
 static func describe(f:Dictionary,move:Dictionary,markers:Dictionary) -> Dictionary:
+    if Transit.owns(f):return Transit.describe(f,move,markers)
     if not owns(f):return {}
     if f.character in [2,3]:return Counter.describe(f,move,markers)
     var zip:bool=f.character==0
@@ -48,20 +51,9 @@ static func describe(f:Dictionary,move:Dictionary,markers:Dictionary) -> Diction
     motion.loop=false
     return motion
 static func zip_segment(f:Dictionary,move:Dictionary) -> Dictionary:
-    var frame:float=f.frame
-    var r:Dictionary=f.get("service",{})
-    var mirrored:bool=f.move in ["cross","finisher"]
-    if f.move=="special" and (r.get("zip_second",false) or (r.get("followup",0)>0 and frame>float(r.followup)-4.0)):
-        mirrored=true
-        var next_contact:float=float(r.get("followup",0)) if r.get("followup",0)>0 else float(move.startup+4)
-        frame+=float(move.startup)-next_contact
-    elif f.move=="overdrive":
-        var stage:int=2-int(r.get("flurry_left",2))
-        # Preserve the contact pose on the exact tick that confirms a hit.
-        if r.get("followup",0)>0 and frame<=float(r.followup)-5.0:stage=maxi(0,stage-1)
-        mirrored=stage==1;frame-=float(stage*5)
-    return {"mirrored":mirrored,"frame":frame}
+    return Transit.zip_segment(f,move)
 static func striking_limb(f:Dictionary) -> String:
+    if Transit.owns(f):return Transit.limb(f)
     if not owns(f) or f.state!="attack":return ""
     if f.character==3:return "BatonTip"
     if f.character in [1,2]:return "LeftHand" if f.move=="jab" else "RightHand"
@@ -75,6 +67,9 @@ static func attack_phase(frame:float,move:Dictionary,contact:float,release:float
 static func guard_bone(label:String) -> bool:
     return label.begins_with("DEF-shoulder") or label.begins_with("DEF-upper_arm") or label.begins_with("DEF-forearm") or label.begins_with("DEF-hand") or label.begins_with("DEF-f_") or label.begins_with("DEF-thumb")
 static func finish(m:RefCounted,f:Dictionary,motion:Dictionary,move:Dictionary) -> void:
+    if motion.get("transit",false):
+        Transit.finish(m,f,motion,move)
+        return
     if f.character in [2,3]:
         Counter.finish(m,f,motion,move)
         return

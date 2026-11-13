@@ -46,11 +46,11 @@ func run() -> void:
             f.state="dash";f.vx=velocity;f.frame=7;stable(f)
             check("Dash %d/%s uses step motion"%[character,str(velocity)],actor.motions.clip_name==("KK_DodgeBack" if velocity<0 else "KK_DodgeForward"))
         f.state="stun";present(f)
-        check("Interruption returns owner %d"%character,actor.motions.pose_owner=="legacy")
+        check("Interruption transfers to reaction %d"%character,actor.motions.pose_owner==("zip_reaction" if character==0 else "rivet_reaction"))
         f.state="idle";f.y=1;present(f)
-        check("Air returns owner %d"%character,actor.motions.pose_owner=="legacy")
+        check("Air transfers to hero profile %d"%character,actor.motions.pose_owner==("zip_air" if character==0 else "rivet_air"))
         f.y=0;f.air.phase="land";f.air.land=4;present(f)
-        check("Landing keeps its aerial compression %d"%character,actor.motions.pose_owner=="legacy")
+        check("Landing keeps hero profile without stretch %d"%character,actor.motions.pose_owner==("zip_air" if character==0 else "rivet_air"))
     actor.setup(Color.WHITE,0)
     for action in ["special","overdrive"]:
         var sim:RefCounted=fresh(0,false);var f:Dictionary=sim.fighters[0]

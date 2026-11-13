@@ -1,0 +1,24 @@
+{
+  "baseline": "ec81ad9",
+  "actions": [
+    "idle",
+    "walk",
+    "backward",
+    "dash",
+    "guard",
+    "jab",
+    "cross",
+    "heavy",
+    "finisher",
+    "launcher",
+    "special",
+    "overdrive",
+    "node_pulse",
+    "death"
+  ],
+  "heroes": 4,
+  "ticks_per_action": 90,
+  "socket_samples": 5040,
+  "exact_match": true,
+  "scope": "Clip name and left/right foot + right hand bone sockets at fixed roots. Excludes intended changed grab/stun/jump/air. Not terrain foot IK."
+}

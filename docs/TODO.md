@@ -1,3 +1,14 @@
+## 2026-11-13：第五輪空地交接與反應
+
+詳[FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md](FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md)。
+
+- [x] 四角五空擊、空中L／OD／pulse、起跳／追擊／落地、受擊與grab初步手勢接同一pose owner，拳腳／棍尖FX同步；去除舊自轉／拉伸／多層覆寫。
+- [x] 216新＋458回歸全過、5040筆地面抽樣不變、固定重播玩法等價、14秒空連及8秒投技真事件證據。
+- [ ] 攻守成對摔投／抱提／轉摔來源及手到對手身體接觸約束；目前grab只是抓取／釋放手勢。
+- [ ] 完整轉髖／步法、鞋底接地及足部IK；空反hold／ricochet／KO導演家族的逐角色藝術覆核。
+- [ ] 選角／登場／勝出／據點共用profile；全模式／群戰／Mac／真人／目標GPU驗收。
+- [ ] 全strict三處既有警告仍為16/19；來源BGM／判定／存檔／公開Web保持。
+
 ## 2026-11-13：第四輪四角聲光風格
 
 詳[FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md](FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md)。

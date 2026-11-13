@@ -1,3 +1,7 @@
+## 2026-11-13：四角空地交接、受擊與grab手勢
+
+詳[FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md](FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md)／[evidence/transit-motion](evidence/transit-motion/README.md)。transit_motion接五空擊、空中L／OD／LOOP pulse、起跳浮空／追擊／落地、受擊及ground grab，先於地面profile派送。既有38 CC0曲線＋jump腿／護架／握指遮罩及同owner有界修正，非新取得空中mocap；移除新owner上的舊Neon／Cannon覆寫、360起跳自轉、lunge與2.1倍拳腳／身體拉伸。RIVET空擊改拳、HUSH保短踢／護架、LOOP單手棍，FxRecipes讀原sim也能選真手腳／BatonTip；ZIP確認segment單一實作。受擊新flash重啟、phase變化不重啟、停格不漂移。死亡／空反hold／ricochet／KO／過場維持原owner。grab為來源抓取／釋放手勢接一次真結算，未做攻守成對摔投；foot IK／完整轉髖仍待做。216新＋458回歸共674全過，12腳本strict通過，全suite仍16/19三處既有警告。ec81ad9隔離來源14類×4×90共5040筆ground抽樣一致；1800固定tick狀態SHA022cef61…一致、0呈現改寫。14秒420幀真launcher→付費chase→air_jab/kick/meteor各一次／角；8秒240幀真grab各一次，100能量固定近身fixture，不注入傷害／空中位置／sample／node。Linux4.6.3 llvmpipe／Dummy，Mac／真人／GPU未驗；BGM／原GLB／來源／存檔／判定／Web不變，同分支／draft PR #29續推。
+
 ## 2026-11-13：四角聲光與大招鏡頭接入
 
 見[FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md](FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md)及[evidence/fighter-style](evidence/fighter-style/README.md)。ZIP雙箭／RIVET厚框／HUSH細切／LOOP方波共用有限局部圖形，真命中與釋放、大招Neon、招架／撞牆歸屬同步；單一全屏與鏡頭owner，大招四profile保兩人HUD邊界。保CC0打擊底層、加入四種固定PCM原創材質層與既有音效預算，BGM不改。51新＋407回歸共458全過；72鏡頭間距／空中組合、F2／暫停／靜音驗證，11腳本strict過。修sprite舊警告後全suite16/19，仍三處既有失敗。1800 tick同指令與701f0c7狀態hash一致、0呈現改寫。12秒四段連續PLAY真命中2/1/1/1，HUSH真sample與LOOP先放點encore，無預塞sample／node／damage。Linux llvmpipe／Dummy，非Mac／真人／目標GPU。空戰／投技／受擊家族、完整轉髖／foot IK及跨選角pose仍待後續；同分支codex/four-fighter-motion-plan／draft PR #29，Web不更新。
