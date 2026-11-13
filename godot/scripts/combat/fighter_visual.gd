@@ -97,10 +97,10 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
     position = Vector3(f.x, f.y, 3.0)
     # Imported +Z forward maps to gameplay +X at +90 degrees.
     rotation.y = PI * 0.5 if f.face > 0 else -PI * 0.5
-    var rivet_owned:bool=preload("res://scripts/combat/last_service/rivet_motion.gd").owns(f)
-    var shake := 0.0 if reduced or not stopped or rivet_owned else 0.025
+    var profile_owned:bool=preload("res://scripts/combat/last_service/street_motion.gd").owns(f)
+    var shake := 0.0 if reduced or not stopped or profile_owned else 0.025
     var lunge := 0.0
-    if f.state=="attack" and not rivet_owned:
+    if f.state=="attack" and not profile_owned:
         var move: Dictionary = f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
         var amount := clampf(float(f.frame)/move.startup,0,1)
         if f.frame>move.startup+move.active:
@@ -114,7 +114,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         model.position.z += {"press":.12,"turn":-.06,"slip":-.18}.get(exchange_choice,0.0)
     # Authored visual deformation, kept separate from gameplay transforms.
     var stretch:=Vector3.ONE
-    if not reduced and not rivet_owned:
+    if not reduced and not profile_owned:
         if stopped:stretch=Vector3(1.06,.94,1.06)
         elif f.state=="dash":stretch=Vector3(.91,.92,1.20)
         elif f.state=="attack" and f.move in ["heavy","special","overdrive","finisher"]:
@@ -127,7 +127,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         var attacking: bool=f.get("rally_owner",false)
         model.rotation.x=(-.12-amount*.12 if attacking else .12) if rally_phase=="compress" else 0.0
         if rally_phase=="compress" and not reduced:stretch=Vector3(1.05,.93,1.08)
-    if f.get("air_enabled",false) and not rivet_owned:stretch*=motions.air_poses.stretch(f,reduced)
+    if f.get("air_enabled",false) and not profile_owned:stretch*=motions.air_poses.stretch(f,reduced)
     model.rotation.y=0.0
     if f.get("air_enabled",false) and not reduced and f.state=="idle" and f.air.phase=="rise" and f.air.air_ticks<=8:
         model.rotation.y=TAU*float(f.air.air_ticks)/8.0
@@ -156,7 +156,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
     if skeleton:
         motions.present(f,delta,stopped)
         if neon_enabled and f.health>0:preload("res://scripts/combat/neon/neon_signature_motion.gd").apply(motions,f)
-        if not rivet_owned and f.health>0 and f.get("rush_visual",false) and f.state=="attack":
+        if not profile_owned and f.health>0 and f.get("rush_visual",false) and f.state=="attack":
             var move: Dictionary=f.get("move_data",preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move])
             if f.frame>=move.startup-1 and f.frame<move.startup+move.active:
                 var limbs:Array=["LeftHand","RightHand"] if f.move in ["meteor","overdrive"] else ["RightFoot" if f.move in ["air_kick","air_counter"] else ("LeftHand" if f.move in ["jab","air_jab"] else "RightHand")]

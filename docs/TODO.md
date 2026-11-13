@@ -1,3 +1,14 @@
+## 2026-11-13：第二輪動作庫接入進度
+
+詳[STREET_MOTION_LIBRARY.zh-TW.md](STREET_MOTION_LIBRARY.zh-TW.md)，接續下方首切片：
+
+- [x] 真正取得新CC0來源：UAL2勾拳／回收、KayKit完整踢擊／前後步／跑／閃，原始hash／固定提交／授權／60Hz重建器。
+- [x] ZIP七種地面招式id的全身踢擊／左右變體，真確認換腿與miss退出；RIVET hook／recovery／launcher與兩人移動接正式visual。
+- [x] 特效讀當前拳腳；285項／六腳本strict／固定1800 simulation tick等價及獨立原生預覽。
+- [ ] 取得更多獨立踢技與完整uppercut；RIVET完整轉髖、plant與foot IK、步頻／停步人手調校。
+- [ ] HUSH截擊與LOOP短棍專屬動作；四角空戰、成對投技、場景互動與選角／勝出共用新profile。
+- [ ] 四種VFX幾何、鏡頭與聲音風格；正式模式／六人群戰／Mac／真人驗收。Mixamo／ActorCore／Rokoko／Fab帳戶素材仍未取得。
+
 ## 2026-11-13：四角動作第一輪實作狀態
 
 詳[RIVET_MOTION_SLICE.zh-TW.md](RIVET_MOTION_SLICE.zh-TW.md)，覆蓋下段「完全未實作」的本輪進度：

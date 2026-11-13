@@ -1,3 +1,7 @@
+## 2026-11-13：取得新CC0庫，ZIP踢技及RIVET擴充已接正式visual
+
+詳[STREET_MOTION_LIBRARY.zh-TW.md](STREET_MOTION_LIBRARY.zh-TW.md)／[evidence/street-motion-library](evidence/street-motion-library/README.md)。固定鏡像取得Quaternius UAL2 Standard勾拳／回收及KayKit1.1踢擊、guard、前後步、跑、閃；10來源clip＋1全身反射，60Hz轉接至既有canonical rig，原19clip／四GLB不變，manifest／授權／hash／重建器齊備。ZIP七種地面id改完整踢擊左右變體，L／W+L真確認才換腿，接觸幀保留原腳；RIVET重擊／大招新hook＋matching recovery、launcher同owner有界上勾修正；兩人真後退／閃步，RIVET行走護架。FX socket隨實際拳腳，非固定ZIP左腳／RIVET腳。RIVET攻擊腿遮罩仍保留，完整轉髖／IK未做；ZIP是同源踢擊變體，HUSH／LOOP與空戰未重製。90新＋19前輪＋46規則＋104死亡＋26FX共285通過，六motion／recipe嚴格編譯通過，全19suite仍同四處既有失敗。改用相同指令1800固定simulation ticks重播，基線25c83ec與新版hash一致且0呈現改寫；舊Demo畫面loop受其他原生視窗焦點暫停影響，不作等價證明。12秒獨立錄影需驗360幀持續play、三段真命中2/3/1；初次焦點中斷記錄另存。原判定／進度／BGM／公開Web保持，同分支／PR #29續推。Mac／真人／GPU未驗。
+
 ## 2026-11-13：四角基準抽樣與RIVET地面動作首切片
 
 已實作，見[RIVET_MOTION_SLICE.zh-TW.md](RIVET_MOTION_SLICE.zh-TW.md)與[evidence/fighter-motion](evidence/fighter-motion/README.md)。RIVET地面靜止護架及jab／cross／heavy／finisher／special改採既有CC0拳擊、固定站姿來源遮罩、frame7/8預壓取樣與單一pose owner，繞開Sword／踢技／Neon覆寫、lunge／2.1倍膨脹。不是地形IK／新外部mocap；步法、launcher／overdrive／空戰與其餘三角仍待重製。四角22類90tick抽樣、12秒正常L按持放錄影3次真命中；19新＋46角色規則＋104死亡通過，1800步玩法SHA一致，其他三角骨socket一致。四變更runtime嚴格編譯通過；全19腳本套件基線／新版同4處既有失敗。Web工具已可查官方Mixamo／Fab拳擊67動作／Rokoko／AccuRIG／Quaternius2資料；尚無帳戶下載／採購，不能把查閱當錄用。原GLB／判定／存檔／BGM與公開Web保持；同任務分支codex/four-fighter-motion-plan，下一步完整拳擊／踢技選樣與步法、轉髖，再擴三角。雲端4.6.3 llvmpipe，Mac／真人／性能待驗。

@@ -1,3 +1,7 @@
+## 2026-11-13：ZIP／RIVET新CC0庫驗證
+
+詳[evidence/street-motion-library](evidence/street-motion-library/README.md)：90新motion／真確認／socket＋19RIVET＋46角色規則＋104死亡／群戰＋26FX共285項通過。六motion／recipe腳本七類fatal-warning通過；全19script suite15/19，與前輪同四個既有失敗。相同指令hash的1800 simulation tick在25c83ec與新版狀態SHA均022cef61…，21真命中、0逐tick差異、0呈現改寫。舊Demo迴圈probe報告受並行Godot視窗搶焦點自動暫停影響，保留但不作等價證明；獨立錄影新增每幀play檢查，三段付費真命中2/3/1，初次失敗另存。四角22類抽樣，HUSH／LOOP骨socket與前輪相同；新sourcepreview與60Hz重建hash一致。原GLB／19clips／判定／BGM／Web不變。Linux4.6.3 llvmpipe／Dummy，不是Mac／真人／GPU效能／地形IK驗收。
+
 ## 2026-11-13：RIVET地面動作切片及四角基準
 
 詳[evidence/fighter-motion](evidence/fighter-motion/README.md)：19新原生＋46角色機制＋104死亡／群戰回歸全通過；四個變更runtime七類warning當error編譯通過。全19腳本strict為15/19，未改基線同四處失敗，前後log保留；不能宣稱全套strict通過。兩組角色1800步相同玩法SHA／事件完全一致；其餘三角22類每類90tick骨socket完全相同。RIVET五地面招Foot骨tick10後位移0，屬固定source stance遮罩，不是鞋幾何／地形IK量測；hold7/8、真二階放拳、F2／hitstop／左右朝向、owner交還通過。12秒360幀正常L按／持／放三段重設練習，3次真命中，有聲錄影，約67秒錄製，非真人或硬件FPS。accepted原生log無ERROR／SCRIPT ERROR；初次缺快取已editor import後重跑。Mac／真人／逐幀全招與外部新素材待驗；本輪原GLB／判定／BGM／Web不變。

@@ -82,7 +82,7 @@ func contact_point(session:Node,event:Dictionary) -> Vector2:
     var victim:Dictionary=session.sim.fighters[target]
     var attacker:Dictionary=session.sim.fighters[side]
     var visual:Node=session.fighters[side]
-    var bone:String=Recipes.limb(event.get("move","jab"),visual.character_index)
+    var bone:String=Recipes.limb(event.get("move","jab"),visual.character_index,attacker)
     var at:Vector3=visual.fx_socket(bone)+Vector3(attacker.x-visual.position.x,attacker.y-visual.position.y,0)
     return Vector2(clampf(at.x,victim.x-.42,victim.x+.42),clampf(at.y,victim.y+.55,victim.y+session.fighters[target].model_scale*.86))
 func on_event(session:Node,event:Dictionary) -> void:
@@ -182,7 +182,7 @@ func _actor(session:Node,id:int,f:Dictionary,visual:Node,_delta:float) -> void:
     if session.reduced_effects or f.state!="attack":track.serial=-1;return
     var move:Dictionary=session.sim.move_for(f,f.move)
     var attack_serial:int=f.service.serial
-    var tip:Vector3=visual.fx_socket(Recipes.limb(f.move,visual.character_index))
+    var tip:Vector3=visual.fx_socket(Recipes.limb(f.move,visual.character_index,f))
     if track.serial!=attack_serial:track.serial=attack_serial;track.tip=tip;return
     if f.frame>=move.startup-2 and f.frame<=move.startup+move.active and session.sim.hitstop==0:
         var last:Vector3=track.tip

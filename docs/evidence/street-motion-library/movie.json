@@ -1,0 +1,14 @@
+{
+  "fps": 30,
+  "frames": 360,
+  "hits": 6,
+  "preload_events": [],
+  "scope": "Three reset training fixtures: ZIP L, ZIP W+L, RIVET W+L through session command path, normal paid contacts. Native rendered/mixed frames; not a human match or hardware FPS.",
+  "seconds": 12,
+  "segment_hits": [
+    2,
+    3,
+    1
+  ],
+  "uninterrupted_play_frames": 360
+}

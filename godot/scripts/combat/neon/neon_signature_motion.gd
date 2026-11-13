@@ -1,7 +1,7 @@
 extends RefCounted
 ## Wall-time signature poses layered on the real attack. Never changes root or hitboxes.
 static func apply(m:RefCounted,f:Dictionary) -> void:
-    if m.pose_owner=="rivet_boxing":return
+    if m.pose_owner in ["rivet_boxing","zip_kicks"]:return
     var phase:String=f.get("neon_signature_phase","")
     if f.state=="attack" and (f.move=="special" or (f.move=="node_pulse" and f.get("character",0)==3)):
         var skill_up:Vector3=m.model_up;var skill_forward:Vector3=m.model_forward

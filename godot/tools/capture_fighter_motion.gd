@@ -30,13 +30,17 @@ func run() -> void:
         var pose:Dictionary=sim.fighters[0].duplicate(true);pose.character=character
         pose.x=-4.5+float(character)*3.0;pose.air_enabled=true
         poses.append(pose)
-    for action in ACTIONS:
+    var actions:Array=ACTIONS
+    if OS.get_cmdline_user_args().size()>1:actions=["KK_Guard","KK_Kick","KK_Kick_Mirror","UAL2_Hook","KK_Walk","KK_Backstep","KK_DodgeBack","KK_DodgeForward"]
+    for action in actions:
         var samples:Array=[]
         for character in 4:
             var f:Dictionary=poses[character]
+            f.erase("cinematic_clip")
             f.state="idle";f.move="";f.frame=0;f.vx=0.0;f.y=0.0;f.vy=0.0;f.health=100;f.guarding=false
             f.service.preload=0;f.service.preload_age=0;f.air.phase="ground"
-            if Sim.MOVES.has(action):
+            if actors[character].motions.library.clips.has(action):f.cinematic_clip=action
+            elif Sim.MOVES.has(action):
                 f.state="attack";f.move=action;f.move_data=sim.move_for(f,action)
             elif action=="walk":f.vx=2.5
             elif action=="backward":f.vx=-2.5
@@ -56,7 +60,7 @@ func run() -> void:
                 samples.append({"character":character,"tick":tick,"clip":actor.motions.clip_name,
                     "left_foot":vec(actor.fx_socket("LeftFoot")),"right_foot":vec(actor.fx_socket("RightFoot")),
                     "right_hand":vec(actor.fx_socket("RightHand"))})
-            if tick in [0,24,55]:
+            if tick in [0,24,55] or (action in ["special","overdrive","launcher","heavy","jab"] and tick in [5,14,38]):
                 await process_frame;await RenderingServer.frame_post_draw
                 root.get_texture().get_image().save_png(output+"/"+action+"-%02d.png"%tick)
         report.append({"action":action,"samples":samples})

@@ -27,7 +27,10 @@ static func rank(kind:String) -> int:
     if kind in ["hit","parry","block","guard_break","rally_core","air_counter_core","grab_tell"]:return 3
     if kind in ["release","swing","charge","cannon_charge","cannon_blast","service_pulse","wave"]:return 2
     return 0
-static func limb(move:String,character:int) -> String:
+static func limb(move:String,character:int,fighter:Dictionary={}) -> String:
+    if not fighter.is_empty():
+        var selected:String=preload("res://scripts/combat/last_service/street_motion.gd").striking_limb(fighter)
+        if selected!="":return selected
     if character==0:return "LeftFoot" if move in ["jab","air_jab","special"] else "RightFoot"
     if move in ["heavy","air_kick","air_counter","meteor"]:return "RightFoot"
     return "LeftHand" if move in ["jab","air_jab"] else "RightHand"

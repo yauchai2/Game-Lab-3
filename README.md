@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新：[新CC0動畫庫：ZIP完整踢擊／RIVET勾拳與移動](docs/STREET_MOTION_LIBRARY.zh-TW.md)／[12秒原生預覽](docs/evidence/street-motion-library/street-motions.mp4)。11個衍生clip、真確認換腿、拳腳特效同步、285項通過；四角整體重製仍在進行。
+
 最新：[RIVET地面動作第一輪修正與四角抽樣](docs/RIVET_MOTION_SLICE.zh-TW.md)／[12秒原生預覽](docs/evidence/fighter-motion/rivet-motion.mp4)。站穩出拳、預壓分段及單一pose owner，169項新／機制／死亡檢查通過；仍屬首切片，未重製全四角。
 
 規劃：[四英雄全動作 review、外部動畫素材與差異化戰鬥製作方案](docs/FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)。含四角逐招／步法／空戰、素材庫分工、骨架與接地管線、四種鏡頭聲音及驗收；本輪僅review與規劃，未替換runtime。

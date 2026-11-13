@@ -1,19 +1,11 @@
 extends RefCounted
-## First grounded motion slice. Retained CC0 boxing clips, not new mocap.
-## Owns the full pose so legacy kick/cannon/signature layers cannot overwrite it.
+## Retained boxing timing and source-stance mask used by street_motion.gd.
 const ATTACKS={
     "jab":{"clip":"Punch_Jab","contact":.30,"release":.40},
     "cross":{"clip":"Punch_Cross","contact":.30,"release":.40},
     "heavy":{"clip":"Punch_Cross","contact":.30,"release":.40},
     "finisher":{"clip":"Punch_Cross","contact":.30,"release":.40},
     "special":{"clip":"Punch_Cross","contact":.30,"release":.40}}
-static func owns(f:Dictionary) -> bool:
-    if f.get("character",0)!=1 or f.health<=0 or f.y>.01:return false
-    if f.get("showcase",false) or f.has("cinematic_clip") or f.get("rally_phase","")!="":return false
-    if f.get("ko_theatre",-1.0)>=0 or f.has("ko_spin"):return false
-    return (f.state=="idle" and absf(f.vx)<.3) or (f.state=="attack" and ATTACKS.has(f.move))
-static func clip(f:Dictionary) -> String:
-    return ATTACKS[f.move].clip if f.state=="attack" else "Punch_Enter"
 static func sample(f:Dictionary,duration:float,move:Dictionary={}) -> float:
     if f.state!="attack":return duration
     var entry:Dictionary=ATTACKS[f.move]

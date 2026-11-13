@@ -1,3 +1,7 @@
+## 2026-11-13：採已核實CC0全身踢擊與勾拳，時間跟真確認
+
+使用者要求繼續；依[STREET_MOTION_LIBRARY.zh-TW.md](STREET_MOTION_LIBRARY.zh-TW.md)從固定可讀鏡像取得官方標示CC0的KayKit1.1及UAL2 Standard。只散佈轉接動畫曲線，保留作者／授權／來源hash，不取鏡像其他網格。ZIP用完整踢擊及全身解剖反射，RIVET用新hook／matching recovery；左右腿與FX socket共用確認進度選擇，不改命中或資源。RIVET攻擊保留固定站姿遮罩，不能當完整轉髖／IK；launcher為有界程序軌跡修正，未偽稱獨立來源uppercut。空戰／死亡／過場保原owner。測試改固定指令simulation tick比對，錄影須單獨跑並檢查不被焦點自動暫停，不能將受focus影響的Demo wall-loop當等價證明。原GLB、判定、存檔、BGM及Web保持。
+
 ## 2026-11-13：先以現有可散佈拳擊片段修RIVET層衝突
 
 使用者要求繼續製作；依[RIVET_MOTION_SLICE.zh-TW.md](RIVET_MOTION_SLICE.zh-TW.md)先在正式共用visual落RIVET地面五招。保留既有CC0來源，使用source stance遮罩穩住骨盆／腿，拳擊全身片段上身曲線接分段時序；明確單一pose owner，舊Neon／air／kick層不重寫。這是可替換的第一輪管線，不冒稱IK、全身mocap、四角全招完成。後續正式外部素材先核Godot與公開repo權利，完整轉髖／步法替換固定腿遮罩；玩法權威不動。原GLB、存檔、音樂及公開Web保持。

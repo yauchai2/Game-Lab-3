@@ -32,7 +32,7 @@ func run() -> void:
             if tick>5:excursion=maxf(excursion,distance(anchor,feet()))
             for bone in actor.skeleton.get_bone_count():finite=finite and actor.skeleton.get_bone_global_pose(bone).is_finite()
         check(action+" retains a planted stance and finite bones",excursion<.002 and finite,excursion)
-        check(action+" has no legacy sword/kick or active limb inflation",actor.motions.clip_name in ["Punch_Jab","Punch_Cross"] and actor.oversized_bones.is_empty() and actor.model.scale.is_equal_approx(Vector3.ONE*actor.model_scale))
+        check(action+" has no legacy sword/kick or active limb inflation",actor.motions.clip_name in ["Punch_Jab","Punch_Cross","UAL2_Hook","UAL2_Hook_Rec"] and actor.oversized_bones.is_empty() and actor.model.scale.is_equal_approx(Vector3.ONE*actor.model_scale))
     sim=fresh();sim.tick({"attack":"special","skill_held":true})
     var f:Dictionary=sim.fighters[0];var held:Array=[];var charge_reach:=0.0;var release_reach:=-INF
     for tick in 36:

@@ -1726,7 +1726,7 @@ func _track_service_effect(effect:Dictionary) -> void:
         effect["expired"]=true;return
     var move:Dictionary=sim.move_for(fighter,fighter.move)
     if effect.kind=="swing":
-        var socket:Vector3=visual.fx_socket(preload("res://scripts/combat/ink_fx/fx_recipes.gd").limb(fighter.move,visual.character_index))
+        var socket:Vector3=visual.fx_socket(preload("res://scripts/combat/ink_fx/fx_recipes.gd").limb(fighter.move,visual.character_index,fighter))
         effect.at=Vector2(socket.x+fighter.x-visual.position.x,socket.y+fighter.y-visual.position.y)
     else:effect.at=Vector2(fighter.x,fighter.y+visual.model_scale*.55)
     effect.face=fighter.face
