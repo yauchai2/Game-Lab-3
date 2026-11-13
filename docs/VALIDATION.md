@@ -1,3 +1,15 @@
+## 2026-11-13：使用者授權字體最新設定合入main
+
+依「好，推上main」，以main f69fc9f合併story-waves-m1 f4f0742。main原已含352c524及其他分支更新；本輪補入最後兩輪字體設定，保留5／8／100及現有main的介面／據點／開場／角色動作。只有文件衝突，兩邊歷史保持。121項最終檢查通過（整合70／Ink10／城市22／strict19），log無ERROR／SCRIPT ERROR，見[evidence/main-pixel-preset-merge](evidence/main-pixel-preset-merge/README.md)。此授權覆蓋以下舊「不合main」指示；來源同步main，公開Web不更新。既有真人／Mac／硬件及配對投技限制保持。
+
+## 2026-11-13：數值化字體設定5／8／100
+
+使用者接受像素強度5、邊緣硬度8、文字大小100%。設定保存在godot/assets/fonts/pixel-type-preset.json，生成器實際讀取；強度以34−2×數值映射字圖大小（5→24px），硬度8為80%二值輪廓＋20%原字形coverage，字級／布局維持原大小。保留display字距，720p／nearest與場景保持。這是本專案相對美術尺度，非客觀畫質單位或遊戲內設定滑桿；未實作任意文字百分比的自動重排。32項原生UI／城市檢查通過，最終log無ERROR／SCRIPT ERROR。畫面及驗證見[evidence/pixel-preset-5-8](evidence/pixel-preset-5-8/README.md)。仍同branch／PR #12，不合main／Web。
+
+## 2026-11-13：加強像素與清晰階梯鋸齒
+
+依使用者最新要求，文字字圖24px→20px，alpha三階→二值0／255，去除灰色柔邊；display每字多一個來源像素間距，防止粗斜字黏連。採128中性切割而非最初96加粗閾值，保留字腔。720p／nearest、字級／布局／繁中fallback與無AA toon場景保持。32項原生介面／城市檢查通過，最終log無ERROR／SCRIPT ERROR；atlas確認只有0／255透明度。來源tools/build_subtle_pixel_fonts.py及manifest可重建；畫面及檢查見[evidence/crisp-pixel-type](evidence/crisp-pixel-type/README.md)。仍同branch／PR #12，不合main／Web。
+
 ## 2026-11-13：main整合最終驗證
 
 Godot4.6.3 Linux Compatibility llvmpipe／Dummy：851項通過，包含19 strict、70新整合及其餘762項相關回歸；accepted logs無ERROR／SCRIPT ERROR。另1,800固定simulation tick、21命中，純simulation與呈現版本SHA一致、0資料修改；四角雙朝向支撐腳最大誤差約0.042m。完整逐套結果與初次失敗保留於evidence/remaining-work。震動路由為headless注入裝置測試；不是Mac4.7.2、真人／實體手柄／實聽／GPU FPS或完整配對投技驗收。詳細範圍見REMAINING_WORK_INTEGRATION.zh-TW.md。

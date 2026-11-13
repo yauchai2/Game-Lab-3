@@ -1,3 +1,15 @@
+## 2026-11-13：使用者授權字體最新設定合入main
+
+依「好，推上main」，以main f69fc9f合併story-waves-m1 f4f0742。main原已含352c524及其他分支更新；本輪補入最後兩輪字體設定，保留5／8／100及現有main的介面／據點／開場／角色動作。只有文件衝突，兩邊歷史保持。121項最終檢查通過（整合70／Ink10／城市22／strict19），log無ERROR／SCRIPT ERROR，見[evidence/main-pixel-preset-merge](evidence/main-pixel-preset-merge/README.md)。此授權覆蓋以下舊「不合main」指示；來源同步main，公開Web不更新。既有真人／Mac／硬件及配對投技限制保持。
+
+## 2026-11-13：數值化字體設定5／8／100
+
+使用者接受像素強度5、邊緣硬度8、文字大小100%。設定保存在godot/assets/fonts/pixel-type-preset.json，生成器實際讀取；強度以34−2×數值映射字圖大小（5→24px），硬度8為80%二值輪廓＋20%原字形coverage，字級／布局維持原大小。保留display字距，720p／nearest與場景保持。這是本專案相對美術尺度，非客觀畫質單位或遊戲內設定滑桿；未實作任意文字百分比的自動重排。畫面及驗證見[evidence/pixel-preset-5-8](evidence/pixel-preset-5-8/README.md)。仍同branch／PR #12，不合main／Web。
+
+## 2026-11-13：加強像素與清晰階梯鋸齒
+
+依使用者最新要求，文字字圖24px→20px，alpha三階→二值0／255，去除灰色柔邊；display每字多一個來源像素間距，防止粗斜字黏連。採128中性切割而非最初96加粗閾值，保留字腔。720p／nearest、字級／布局／繁中fallback與無AA toon場景保持。來源tools/build_subtle_pixel_fonts.py及manifest可重建；畫面及檢查見[evidence/crisp-pixel-type](evidence/crisp-pixel-type/README.md)。仍同branch／PR #12，不合main／Web。
+
 ## 2026-11-13：收尾與main整合
 
 使用者明確要求所有更新合main並處理未完成工作。採現有owner整合，不新增另一套玩法／時鐘。接地使用有界平地兩骨IK與視覺骨盆補正，不移動simulation root；showcase共用英雄profile須明確opt-in，保留裝備／NPC導演姿態及不露臉取景。主選單5項，正式城市STORY單一入口；舊練習／SQUAD／Legacy Run集中LABS，AI DEMO只留F12。音量0只靜音不停止transport。免費配對投技仍需官方素材，不以現有grab或付費候選充數；原GLB／存檔／Web規則保持。

@@ -156,3 +156,9 @@
 - 2026-11-13 本聊天最新要求「用免費的資源做」並追問Mixamo，覆蓋前述付費候選建議。優先核實Shoulder Throw, Aggressor／Victim，官方FBX與同步尚未取得／驗證，不用第三方索引冒稱官方素材已到手；完整摔投仍未完成，勿自行採購。見docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md最新節。
 
 - 2026-11-13 使用者要求全合main並收尾：現況見docs/REMAINING_WORK_INTEGRATION.zh-TW.md。來源日常集中main；5主選項、P1–P3、平地兩骨接地／有界轉髖與共用基礎profile已做。showcase共用必須shared_profile明確opt-in，裝備／NPC導演取景不自動跟隨；平地IK不當任意地形或simulation root。851項最終／19 strict及1,800tick等價，非本機／真人／手柄／GPU驗收。完整Mixamo免費配對摔投仍未取得官方原檔、未實作，grab保持過渡，勿採購或使用無授權鏡像；原GLB／存檔／BGM與Web須明確要求才發佈保持。
+
+- 2026-11-13 最新要求「再加強像素感，鋸齒要清晰」：字圖20px，alpha只0／255、128閾值；display加1來源像素字距。覆蓋24px／三階版，不恢復原14／16px及96過粗閾值。720p／nearest及無AA場景保持，繁中fallback未改。證據docs/evidence/crisp-pixel-type；同branch／PR #12，不合main／Web。
+
+- 2026-11-13 最新已接受字體像素強度5／邊緣硬度8／文字大小100%。pixel-type-preset.json為字圖生成來源，5→24px、8→80%二值＋20%coverage；保持display字距／720p／原字級，不恢復較粗20px完全硬邊。這是相對美術尺度，非遊戲內滑桿，其他文字百分比需先做UI重排。證據docs/evidence/pixel-preset-5-8；同branch／PR #12，不合main／Web。
+
+- 2026-11-13 使用者已明確要求「好，推上main」：以main f69fc9f合併story-waves-m1 f4f0742，保留main其他進度，5／8／100成為main正式字體設定。此條覆蓋本聊天先前不合main的歷史限制；公開Web仍不更新。121項整合／UI／城市／strict通過，證據docs/evidence/main-pixel-preset-merge；既有Mac／真人／實體手柄／配對投技限制保持。

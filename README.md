@@ -1,8 +1,16 @@
+最新：已依使用者要求將字體設定 **5／8／100** 合入最新main，保留既有故事、介面、據點及動作更新；[121項整合檢查及畫面](docs/evidence/main-pixel-preset-merge/README.md)。GitHub Desktop使用main Fetch／Pull；以下分支限制為歷史，公開Web未更新。
+
 最新：已依「全合到main／完成剩餘工作」整合四角色動作、720p字體、完整據點UI、開場配樂與手柄震動，並完成UI P1–P3、共用角色基礎profile、有界轉髖／平地接地IK及全部19 strict。[本輪狀態與851項驗證](docs/REMAINING_WORK_INTEGRATION.zh-TW.md)。完整免費攻守配對摔投仍受官方原檔未取得所限；目標電腦／真人／實體手柄仍待驗，公開Web未更新。以下分支／待辦文字是各輪歷史，以本輪狀態為準。
 
 # Afterhours / Game-Lab-3
 
 最新：[按指定原圖重做據點與15秒動態](docs/NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。固定視角投影美術＋真3D角色／深度與特效，保留原圖佈局、刪除無關設施；[引擎影片／對照](docs/evidence/nightshift-reference/README.md)。現有角色與插畫仍有差異；211回歸＋15strict，Tripo必需0件，選配精修清單已列。下方粗模紀錄為歷史。
+
+最新：[字體設定5／8／100](docs/evidence/pixel-preset-5-8/README.md)：像素強度5、邊緣硬度8、文字大小100%，以固定設定檔重建，方便按數字微調。
+
+最新：[更強像素及清楚階梯鋸齒](docs/evidence/crisp-pixel-type/README.md)。20px字圖／二值硬邊／較開標題字距；1280×720保持。
+
+最新：[文字像素感調強一級](docs/evidence/medium-pixel-type/README.md)。中等24px字圖／三階邊緣，保留可讀性及720p；32項原生介面／城市檢查通過。
 
 最新：[夜班場可互動回城據點](docs/NIGHTSHIFT_HUB.zh-TW.md)／[實際引擎畫面與225項驗證](docs/evidence/nightshift-hub/README.md)。STORY進入黑白工廈／桃紅等距3D；WASD或點地走動、靠近E、1–6走到設施。含DJ閣樓、技能／天賦、Dealer、商店、貨梯出擊，保留既有成長與存檔；有可編修GLB與F6預覽。
 
