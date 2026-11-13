@@ -726,6 +726,10 @@ T 進無限練習、F5 重置、F7 切對手；正常對局 Enter。挑空僅在
 
 主選單 PRESSURE DRILL 或 T→F8；先不限時看相剋提示，按 K 才開始，對峙按 J／Shift／E，F5 退出普通練習。正常對戰自然累積壓力。新核心 59、原生輸入 11，加回歸共 255 項通過；20,000 步雙實例重播有界、一致，混合戰鬥自然出現 20 次對峙。原生畫面及短 GIF 見 PRESSURE_EXCHANGE.md。只推 codex/street-combat，未部署 Web；真人對窗口、提示明顯程度、冒險回報的驗收尚待使用者。本輪未加投技／彈射牆／Tripo 模型。
 
+## 城內頁面圖像化（2026-11-13，最新）
+
+SKILLS／RADIO（故事）／DEPART 三頁與頂部資源列由文字清單改成像素圖示卡片，長說明移到面板底部單行（懸停／選中才顯示）。只改版面，規則與存檔不變。內容、檔案及驗證見 [HUB_PICTURE_UI.zh-TW.md](HUB_PICTURE_UI.zh-TW.md)。CIRCUIT、DEALER、SHOP 仍為舊文字版；故事連續多波／劇情補完由另一條工作線負責，不在此項。
+
 ## 故事連續打波與完整劇情（2026-11-13）
 
 見 [STORY_FLOW.zh-TW.md](STORY_FLOW.zh-TW.md)。真實遊玩時清場進「繼續面板」（Enter 預設能量／路線直接下一場，Esc 回城），合約可無限接龍；新增序章、六章開收尾卡、18句電台、Boss登場、四結局＋真結局。分支 claude/project-thread-ggypi3。未動 city_hub.gd 與存檔 schema。

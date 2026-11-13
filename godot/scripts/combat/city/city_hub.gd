@@ -25,7 +25,8 @@ var feet:Array[MeshInstance3D]=[]
 var view_camera:Camera3D
 var panel:PanelContainer
 var stack:VBoxContainer
-var header:Label
+var header:PanelContainer
+var header_row:HBoxContainer
 var hint:Label
 var page:=""
 var selected_slot:=0
@@ -39,6 +40,9 @@ var hero_visual:Node3D
 var town_npcs:Array[Node3D]=[]
 var speaker:=0
 var chapter_review:=-1
+var scroll:ScrollContainer
+var info:Label
+const Pages=preload("res://scripts/combat/city/hub_pages.gd")
 
 func _ready() -> void:
     layer=6
@@ -48,7 +52,8 @@ func _ready() -> void:
     viewport=SubViewport.new();viewport.size=Vector2i(960,540);viewport.own_world_3d=true;container.add_child(viewport)
     world=Node3D.new();viewport.add_child(world);_build_city()
     layout=Control.new();layout.mouse_filter=Control.MOUSE_FILTER_IGNORE;root.add_child(layout)
-    header=_label("",28,T.PAPER);header.add_theme_stylebox_override("normal",T.plate(T.INK,T.INK,1));header.position=Vector2(34,22);header.size=Vector2(1000,74);layout.add_child(header)
+    header=PanelContainer.new();header.add_theme_stylebox_override("panel",T.plate(T.INK,T.EDGE,2));header.position=Vector2(24,22);layout.add_child(header)
+    header_row=HBoxContainer.new();header_row.add_theme_constant_override("separation",18);header.add_child(header_row)
     hint=_label("",24,T.PAPER);hint.add_theme_stylebox_override("normal",T.plate(T.INK,T.INK,1));hint.position=Vector2(34,594);hint.size=Vector2(1200,38);layout.add_child(hint)
     var bar:=HBoxContainer.new();station_bar=bar;bar.position=Vector2(30,649);bar.size=Vector2(1220,48);bar.add_theme_constant_override("separation",8);layout.add_child(bar)
     for i in 7:
@@ -60,10 +65,13 @@ func _ready() -> void:
             else:campaign.leave_city())
         bar.add_child(button)
         if i<6:station_buttons.append(button)
-    panel=PanelContainer.new();panel.position=Vector2(712,112);panel.size=Vector2(536,464)
+    panel=PanelContainer.new();panel.position=Vector2(632,36);panel.size=Vector2(620,548)
     panel.add_theme_stylebox_override("panel",T.plate(Color("10121f"),T.TEAL,2));layout.add_child(panel)
-    var scroll:=ScrollContainer.new();scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;panel.add_child(scroll)
-    stack=VBoxContainer.new();stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL;stack.add_theme_constant_override("separation",10);scroll.add_child(stack)
+    var column:=VBoxContainer.new();column.add_theme_constant_override("separation",6);panel.add_child(column)
+    scroll=ScrollContainer.new();scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;column.add_child(scroll)
+    info=Label.new();info.add_theme_font_size_override("font_size",20);info.add_theme_color_override("font_color",T.MUTED);info.custom_minimum_size=Vector2(0,52)
+    info.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;info.mouse_filter=Control.MOUSE_FILTER_IGNORE;column.add_child(info)
+    stack=VBoxContainer.new();stack.size_flags_horizontal=Control.SIZE_EXPAND_FILL;stack.add_theme_constant_override("separation",6);scroll.add_child(stack)
     talent_tree=preload("res://scripts/combat/city/city_talent_tree.gd").new();layout.add_child(talent_tree)
     _upgrade_city()
     arrival_hint=_label("",28,T.INK);arrival_hint.add_theme_stylebox_override("normal",T.plate(T.PAPER,T.INK,2));arrival_hint.position=Vector2(30,550);arrival_hint.size=Vector2(640,40);layout.add_child(arrival_hint)
@@ -105,10 +113,16 @@ func hide_city() -> void:
 
 func refresh_header() -> void:
     var p=campaign.profile;var d:Dictionary=p.data
-    var progress:="NEW EXPEDITION" if d.run.is_empty() else "ROOM %d / 18   HP %d"%[int(d.run.room)+1,int(d.run.hp)]
-    header.text="NIGHTSHIFT / %s\n%d CREDITS   %d PARTS   LV%d   %d POINTS"%[progress,int(d.credits),int(d.parts),p.level(),int(d.points)]
-    if not d.run.is_empty() and d.run.get("mode","story")=="contract":
-        header.text="NIGHTSHIFT / T%d / WAVE %d OF %d / %d ATTEMPTS\n%d CREDITS / LV%d / HP %d"%[int(d.run.contract.tier),int(d.run.wave)+1,int(d.run.contract.waves),int(d.run.tries),int(d.credits),p.level(),int(d.run.hp)]
+    for child in header_row.get_children():header_row.remove_child(child);child.queue_free()
+    var W=preload("res://scripts/combat/city/hub_widgets.gd")
+    W.chip("coin",str(int(d.credits)),T.LIME,header_row);W.chip("gear",str(int(d.parts)),T.TEAL,header_row)
+    W.chip("star","LV%d"%p.level(),T.PAPER,header_row)
+    if int(d.points)>0:W.chip("circuit","+%d"%int(d.points),T.CORAL,header_row)
+    if not d.run.is_empty():
+        W.chip("heart",str(int(d.run.hp)),T.CORAL,header_row)
+        if d.run.get("mode","story")=="contract":W.chip("skull","T%d  %d/%d"%[int(d.run.contract.tier),int(d.run.wave)+1,int(d.run.contract.waves)],T.LIME,header_row)
+        else:W.chip("flag","%d/18"%(int(d.run.room)+1),T.LIME,header_row)
+    header.size=Vector2(0,0)
     workshop.progress(int(d.best))
     if p.error!="":notice=p.error
 
@@ -194,7 +208,7 @@ func act(callback:Callable,message:String) -> void:
     var result:Variant=callback.call()
     notice=message if result else "Unavailable / check cost, progress or save status."
     if campaign.profile.error!="":notice=campaign.profile.error
-    refresh_header();open_station(NAMES.find(page))
+    refresh_header();open_station(NAMES.find(page));set_info(notice)
 
 func open_station(index:int) -> void:
     if index<0 or index>=NAMES.size():return
@@ -202,45 +216,25 @@ func open_station(index:int) -> void:
     campaign.session.audio.play_sound("ui_confirm",1.0,-10)
     page=NAMES[index];panel.visible=true;header.visible=true
     for child in stack.get_children():stack.remove_child(child);child.queue_free()
-    _text(Set.TITLES[index],COLORS[index])
-    _text(["RIVET: Don't bleed on the tools.","LOOP: Plug in. Don't lick the contacts.","DEALER: One core. No refunds.","HUSH: Your footsteps are off-beat.","LAST DEPARTURE / STILL OPEN.","COUNTER: Cash first. Questions later."][index],T.MUTED)
-    _button("CLOSE / ESC",close_panel)
+    info.text=""
+    if not index in [0,3,4]:
+        _text(Set.TITLES[index],COLORS[index])
+        _button("CLOSE / ESC",close_panel)
     if campaign.profile.migration_notice!="":_text(campaign.profile.migration_notice,T.GOLD)
     if campaign.profile.error!="":
         _text(campaign.profile.error,T.GOLD)
         _button("RELOAD SAVED PROFILE",func():act(campaign.profile.retry_save,"Save reloaded"))
         return
     match index:
-        0:_skills()
+        0:Pages.skills(self)
         1:_talents()
         2:_shop()
-        3:_story()
-        4:_map()
+        3:Pages.story(self)
+        4:Pages.depart(self)
         5:_shop()
     if talent_tree.visible:return
-    for child in stack.get_children():
-        if child is Button and not child.disabled:call_deferred("_focus_station_button",weakref(child));break
-
-func _skills() -> void:
-    var p=campaign.profile
-    var hero_id:int=campaign.hero_id()
-    var rank:=int(p.data.skill_levels[hero_id])
-    _text("CLASS SKILL RANK %d / 3. Each rank: +5%% basic L damage."%rank,T.GOLD)
-    _button("UPGRADE L / 30 CREDITS + %d PARTS"%(2+rank),func():act(func():return p.upgrade_skill(hero_id),"Class skill upgraded"),rank>=3 or p.data.credits<30 or p.data.parts<2+rank)
-    _text("Permanent skills / story milestones. No random unlocks.")
-    _text("PRACTICE lessons use safe fixtures and award no loot.",T.GOLD)
-    for skill in Profile.SKILLS:
-        var id:String=skill.id
-        var owned:bool=id in p.data.skills
-        _button(("LEARNED  " if owned else "LEARN  ")+skill.name+" / CLEAR %d"%skill.at,func():act(func():return p.learn(id),"Skill learned"),owned or int(p.data.best)<skill.at)
-        if owned:_button("PRACTICE "+skill.name,func():campaign.start_lesson(id))
-    _text("CLASS TECHNIQUES / EQUIP TWO",T.TEAL)
-    for i in 3:
-        var skill:Dictionary=p.Advanced.SKILLS[hero_id][i];var id:String=skill.id
-        var owned:bool=id in p.data.advanced[hero_id]
-        _text(skill.desc)
-        _button(("UNEQUIP " if owned else "EQUIP ")+skill.name+" / CLEAR %d"%[9,12,15][i],func():act(func():return p.advanced_skill(hero_id,id),"Class technique updated"),int(p.data.best)<[9,12,15][i] or (not owned and p.data.advanced[hero_id].size()>=2))
-    _text("Movement, dodge, guard, throws and your basic class skill are available from the start.")
+    for child in stack.find_children("*","Button",true,false):
+        if not child.disabled and child.get_meta("act","")!="close":call_deferred("_focus_station_button",weakref(child));break
 
 func _talents() -> void:
     panel.visible=false;talent_tree.open(campaign.profile,campaign.hero_id())
@@ -289,86 +283,10 @@ PITY %d/10 RARE / %d/40 SIGNATURE"%[int(p.data.pity),int(p.data.unique_pity)])
     _button("PREVIOUS ITEMS",func():inventory_page-=1;open_station(shop_index),inventory_page==0)
     _button("NEXT ITEMS",func():inventory_page+=1;open_station(shop_index),(inventory_page+1)*8>=all_items.size())
 
-func _story() -> void:
-    var p=campaign.profile
-    var current:int=p.Story.chapter(int(p.data.best))
-    var chapter:int=current if chapter_review<0 else mini(current,chapter_review)
-    var entry:Dictionary=p.Story.CHAPTERS[chapter]
-    _text(entry.title,T.GOLD)
-    for i in 3:
-        var index:=i
-        _button(["KEEPER","DEALER","MECHANIC"][i],func():speaker=index;open_station(3))
-    _text(p.Story.dialogue(int(p.data.best),speaker) if chapter_review<0 else str(entry.intro))
-    _text("MISSION: "+str(entry.objective),T.TEAL)
-    if int(p.data.best)>=(chapter+1)*3:_text(entry.outro)
-    _text("TECHNIQUE JOURNAL / FIRST SUCCESS REWARDS",T.GOLD)
-    for id in p.Story.TECHNIQUES:_text(("DONE / " if id in p.data.quest_claims else "TRY / ")+str(p.Story.TECHNIQUES[id]))
-    for i in mini(6,current+1):
-        var index:=i
-        _button("REVIEW "+str(p.Story.CHAPTERS[i].title),func():chapter_review=index;open_station(3))
-    _button("CURRENT CHAPTER",func():chapter_review=-1;open_station(3))
-    _button("PRACTICE GANTRY WARDEN",func():campaign.start_lesson("boss","gantry"),p.data.best<9)
-    _button("PRACTICE SIGNAL LEVIATHAN",func():campaign.start_lesson("boss","signal"),p.data.best<15)
-    for reward in p.data.last_loot:_text(str(reward),T.GOLD)
-
-func _map() -> void:
-    var p=campaign.profile
-    var chapter:int=p.Story.chapter(int(p.data.best))
-    _text(p.Story.CHAPTERS[chapter].title,T.GOLD)
-    _button("MISSION BRIEF / STORY",func():open_station(3))
-    if not p.data.run.is_empty():
-        if p.data.run.boon_due:
-            _text("SALVAGED CURRENT / CHOOSE ONE\nActual gain shown after caps. Lost on defeat.",T.GOLD)
-            for stat in ["damage","defence","economy"]:
-                var id:String=stat
-                _button("TAKE "+stat.to_upper()+" (+%d%%)"%roundi(p.boon_gain(id)*100),func():act(func():return p.choose_boon(id),"Current absorbed"),p.boon_gain(id)<=0)
-        if p.data.run.boon_due:_button("TAKE 10 CREDITS INSTEAD",func():act(p.skip_boon,"Current exchanged"))
-        if p.data.run.get("route_due",false):
-            _text("CHOOSE NEXT ROUTE / CONTINUE DEFAULTS TO COMBAT",T.TEAL)
-            for route in p.route_options():
-                var id:String=route
-                _button({"combat":"COMBAT / NORMAL LOOT","cache":"SALVAGE / EXTRA HEAVY + EXTRA ITEM","hazard":"CHARGED STREET / DANGER +20% CREDITS","rest":"REST STOP / +20 HP ONCE"}[route],func():act(func():return p.choose_route(id),"Route committed"))
-        _text("EXPEDITION CORE: "+str(p.data.run.get("core","NONE")).to_upper())
-        var room:=int(p.data.run.room)
-        if p.data.run.get("mode","story")=="contract":
-            _text(p.Contracts.describe(p.data.run.contract),T.GOLD)
-            _text("WAVE %d / %d / ATTEMPTS %d"%[int(p.data.run.wave)+1,int(p.data.run.contract.waves),int(p.data.run.tries)])
-        else:_text("CONTINUE: %s / %d OF 3\nHP %d / METER %d"%[Profile.DISTRICTS[mini(5,floori(float(room)/3.0))],room%3+1,int(p.data.run.hp),int(p.data.run.meter)])
-        _button("DEPART / CONTINUE",campaign.depart,bool(p.data.run.boon_due))
-        _button("END EXPEDITION / KEEP BANKED LOOT",func():act(p.abandon,"Expedition ended; temporary current cleared"))
-    else:
-        _text("Choose a cleared district or push the next route. Each district has three encounters.")
-    # A schematic city map is usable even while detailed geography is placeholder.
-    var board:=Control.new();board.set_meta("city_board","map");board.custom_minimum_size=Vector2(474,198);stack.add_child(board)
-    board.draw.connect(func():
-        for i in 5:
-            board.draw_line(Vector2(34+(i%3)*165,25+floori(float(i)/3.0)*90),Vector2(34+((i+1)%3)*165,25+floori(float(i+1)/3.0)*90),T.TEAL,3))
-    for i in 6:
-        var sector:=i;var unlocked:bool=i<=mini(5,floori(float(p.data.best)/3.0))
-        var button:=Button.new();button.position=Vector2((i%3)*165,floori(float(i)/3.0)*90);button.size=Vector2(145,66)
-        button.text=str(i+1)+"\n"+Profile.DISTRICTS[i];button.add_theme_font_size_override("font_size",18)
-        button.disabled=not unlocked or not p.data.run.is_empty()
-        button.pressed.connect(func():
-            if p.start_run(campaign.hero_id(),sector):campaign.depart())
-        board.add_child(button)
-    if p.data.run.is_empty():
-        _text("HERO: "+["ZIP","RIVET","HUSH","LOOP"][campaign.hero_id()])
-        _button("CHANGE HERO",func():campaign.selected_hero=(campaign.selected_hero+1)%4;open_station(4))
-    if p.data.best>=18:
-        _text("STREET CONTRACTS / T%d UNLOCKED"%int(p.data.contract_tier),T.TEAL)
-        _text("Clear returns a same-tier contract. Two clears of a tier guarantee the next tier. Free district clears supply T1.")
-        for contract in p.data.contracts:
-            var id:=int(contract.id)
-            _text(Profile.DISTRICTS[int(contract.sector)]+" / "+p.Contracts.describe(contract))
-            if int(contract.tier)==5:_text("FINAL BOSS: "+("GANTRY WARDEN" if int(contract.sector)<4 else "SIGNAL LEVIATHAN"),T.GOLD)
-            _button("START CONTRACT #%d"%id,func():
-                if p.start_contract(campaign.hero_id(),id):campaign.depart(),not p.data.run.is_empty())
-    _text("Defeat ends the expedition; credits, gear, skills and talents stay. Cleared encounters bank rewards once. Safe returns preserve HP and current.")
-
 func _scroll_compare() -> void:
     await get_tree().process_frame
     for child in stack.get_children():
-        if child.get_meta("compare_start",false):panel.get_child(0).scroll_vertical=int(child.position.y);return
+        if child.get_meta("compare_start",false):scroll.scroll_vertical=int(child.position.y);return
 
 func _upgrade_city() -> void:
     # Same production roster as combat, never a replacement generated character.
@@ -430,3 +348,6 @@ func _unhandled_input(event:InputEvent) -> void:
     if target!=null and workshop.walkable(target):
         route=workshop.route(hero.position,target);route_station=-1
         get_viewport().set_input_as_handled()
+
+func set_info(text:String) -> void:
+    if is_instance_valid(info):info.text=text
