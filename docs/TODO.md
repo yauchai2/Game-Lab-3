@@ -1,3 +1,9 @@
+## 2026-11-13：免費摔投素材優先次序
+
+- [x] 記錄使用者只用免費資源，付費候選不採購。
+- [ ] 優先從Mixamo官方取得Shoulder Throw, Aggressor／Victim；目前只有索引線索，瀏覽器啟動失敗，未取得FBX。
+- [ ] 檢查兩段root／起點／時長／接觸／落地，再做完整攻守配對，不能當作已完成。
+
 ## 2026-11-13：完整柔道摔投為下一個優先目標
 
 詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)。

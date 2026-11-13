@@ -1,3 +1,7 @@
+## 2026-11-13：只用免費素材，Mixamo過肩摔配對優先
+
+使用者最新要求免費資源並追問Mixamo；優先核實Shoulder Throw, Aggressor／Victim，不再按付費候選採購。詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)最新節。只有目錄名稱線索與Adobe免費商用FAQ；官方FBX／配對時序／完整翻摔仍未驗。瀏覽器啟動兩次失敗，無官方會話；沒有下載第三方鏡像、購買或runtime修改。若提供官方同角色／FPS且保留root／完整時長的兩個FBX，可先做同步量測與配對接入。SFU禁商用未採用，Tuffles未核實成對且下載403未取得。完整柔道摔投仍未完成。
+
 ## 2026-11-13：使用者更正投技為完整柔道翻摔，已完成資源研究
 
 詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)及references/animation-sources/judo-candidates.json。使用者要攻守雙人抓取→轉髖／轉肩→離地翻身→落地受身，上一輪grab手勢不算完成。已核對Fab Judo AnimSet 8組atk/hit、Grab & Throw的RollFlip／SpinOver等_React配對與FBX、Player Motion雙人目錄／FBX/GLB及限制；有官方預覽連結，但未逐幀觀看、未買／下載／匯入，Godot及root同步未驗。Mixamo／Rokoko免費頁未確認特定完整雙人柔道包，不列已取得。Judo AnimSet先評估，誇張翻圈另看Grab & Throw；Judo套件獨立FBX尚需確認。付費原檔／可還原曲線不得直接散佈於公開repo，應私有資產＋公開接入清單。下一階段是一組配對樣板與simulation共同時鐘／root／落地一次結算，不以單模轉圈代替；四角分配待來源確認。本輪純文件／候選登記，674是前輪結果，沒有新runtime驗收。main已到3915c2d未合併，任務分支保持，Web不更新。

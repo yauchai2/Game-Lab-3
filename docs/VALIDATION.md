@@ -1,3 +1,7 @@
+## 2026-11-13：免費Mixamo取檔仍未完成（非runtime）
+
+重新核對Adobe Mixamo FAQ與過肩摔攻守名稱索引，未取得官方FBX／配對時間證據。Browser本地工具不可用；CUA雲端瀏覽器兩次均因sandbox啟動錯誤失敗，已結束該UI流程；官網無可讀目錄，沒有官方登入會話。Tuffles直接下載網路403，SFU官方禁商用，均未錄用。僅更新免費需求與候選JSON，檢查JSON／diff，不重跑runtime或宣稱完成完整摔投。
+
 ## 2026-11-13：柔道摔投資源查核（文件，非runtime）
 
 [FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)：本輪透過網上工具讀官方Fab Judo AnimSet／Grab & Throw清單、Unity同品頁、Player Motion目錄／配對／license、Adobe Mixamo FAQ、Rokoko免費fight／martial arts、Godot格式文件與Fab授權摘要；記錄候選及未驗證欄位。Judo作者FAQ站502、Mixamo首頁無可讀目錄、Player Motion個別招式URL未能讀取，沒有把搜尋索引當已取得素材。只有預覽連結，未逐幀觀看、未買／下載／測原檔／整合。文件與JSON格式檢查；不重跑runtime，前輪674通過不屬完整摔投驗收。遠端main首次503後成功讀3915c2d，未合併。

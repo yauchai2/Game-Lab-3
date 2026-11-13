@@ -1,3 +1,7 @@
+## 2026-11-13：免費限制覆蓋較早付費候選建議
+
+使用者指定「用免費的資源做」並追問Mixamo，優先核實Shoulder Throw攻守配對。Adobe免費商用FAQ與第三方目錄名稱分開記錄；未有官方FBX／實測，不冒稱已取得／已配對，不採購付費包。詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)最新節。
+
 ## 2026-11-13：投技驗收改為攻守配對完整柔道翻摔
 
 使用者明確要「完整摔投、打哂圈、真係柔道投技般」。依[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)，以抓取、破壞重心、轉髖、對手離地翻身、落地受身作目標；現有grab手勢與擊退不是完成。優先評估Judo AnimSet的8組atk/hit，翻滾誇張型另看Grab & Throw，Player Motion列為待試單組候選。清單／格式核實不等於已看完影片／取得／授權散佈／Godot可用；沒有購買或下載。本公開repo只存候選與接入程式，付費原檔及可還原曲線留私有依賴。完整摔投要配對simulation root／共同時鐘與一次落地結算，不沿用站立髖高裁切假造翻摔。

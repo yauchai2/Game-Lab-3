@@ -24,7 +24,8 @@
         "preview frame quality",
         "Godot retarget",
         "license selected at purchase"
-      ]
+      ],
+      "budget_status": "not_selected_free_only_requirement"
     },
     {
       "name": "Grab & Throw Takedown Animation Pack",
@@ -41,7 +42,8 @@
         "preview frame quality",
         "Godot retarget",
         "price and purchase license"
-      ]
+      ],
+      "budget_status": "not_selected_free_only_requirement"
     },
     {
       "name": "Judo",
@@ -60,8 +62,22 @@
         "actual contents and root tracks",
         "catalogue count discrepancies",
         "Godot retarget"
-      ]
+      ],
+      "budget_status": "not_selected_free_only_requirement"
     }
   ],
-  "distribution_note": "No paid or restricted source clips or reconstructible curves admitted to the public repository; these are candidates, not license-cleared imported assets."
+  "distribution_note": "No paid or restricted source clips or reconstructible curves admitted to the public repository; these are candidates, not license-cleared imported assets.",
+  "budget": "free_only",
+  "current_priority": {
+    "provider": "Mixamo",
+    "names": [
+      "Shoulder Throw, Aggressor",
+      "Shoulder Throw, Victim"
+    ],
+    "status": "catalogue_names_observed_official_download_pending",
+    "official_faq": "https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html",
+    "downloaded": false,
+    "paired_timing_verified": false,
+    "blocker": "No connected browser session; cloud browser initialization failed. No official FBX files obtained."
+  }
 }

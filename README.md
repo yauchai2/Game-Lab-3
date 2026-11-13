@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新約束：完整摔投只用免費資源，優先核實Mixamo Shoulder Throw攻守配對；官方FBX尚未取得，完整摔投未完成。詳[資源研究](docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md)。
+
 最新需求：[完整柔道摔投資源研究](docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md)。已核對攻守配對候選與格式／授權；尚未購買、下載或接入。現有grab手勢不代表完整摔投已完成。
 
 最新：[四角空地交接／受擊／投技手勢](docs/FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md)／[14秒空連](docs/evidence/transit-motion/air-combat.mp4)／[8秒投技](docs/evidence/transit-motion/throws.mp4)。空中拳腳／短棍與FX同步，去除共用自轉拉伸；674項通過、12腳本strict通過。成對摔投與足部IK仍待續。
