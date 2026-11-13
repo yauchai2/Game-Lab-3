@@ -338,6 +338,7 @@ func is_equipped(id:int) -> bool:
 func choose_route(id:String) -> bool:
     if data.run.is_empty() or not data.run.get("route_due",false) or id not in route_options():return false
     var before:=data.duplicate(true);data.run.route=id;data.run.route_due=false
+    var tally:Dictionary=data.run.get("tally",{});tally[id]=int(tally.get(id,0))+1;data.run["tally"]=tally
     if id=="rest":data.run.hp=mini(100,int(data.run.hp)+20)
     return commit(before)
 func route_options() -> Array:

@@ -398,7 +398,7 @@ func _pause_page() -> void:
 func _result_page() -> void:
     if is_instance_valid(session.city_campaign) and session.city_campaign.active:
         menu_stack.add_child(_label(session.city_campaign.result_text(),28))
-        _plain_action("RETURN TO CITY / ENTER","city_return",session.city_campaign.return_from_encounter)
+        _plain_action(session.city_campaign.result_action(),"city_return",session.city_campaign.return_from_encounter)
         if session.city_campaign.profile.error!="":
             menu_stack.add_child(_label(session.city_campaign.profile.error,24))
             _plain_action("RELOAD SAVE / RETRY RETURN","city_save_retry",func():session.city_campaign.profile.retry_save();rebuild_menu())
