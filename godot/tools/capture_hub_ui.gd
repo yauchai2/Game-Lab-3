@@ -24,6 +24,22 @@ func run() -> void:
         for i in 6:await process_frame
         await RenderingServer.frame_post_draw
         root.get_viewport().get_texture().get_image().save_png(out+key+".png")
+    # Gear fixture: a few drawn items so the DEALER result card, SHOP bag and compare card are visible.
+    p.data.inventory.clear();p.data.credits=900;p.data.parts=30;p.data.pity=6;p.data.unique_pity=17
+    for i in 10:
+        p.data.item_serial=int(p.data.item_serial)+1
+        p.data.inventory.append(p.Loot.make(int(p.data.item_serial),i%3,[0,1,2,3,1,2,0,3,1,2][i],5,p.data.skills,40+i))
+    p.equip(int(p.data.inventory[1].id));p.data.run={}
+    h.selected_item=int(p.data.inventory[3].id);h.refresh_header()
+    h.open_station(2);await for_shot("deal_gear")
+    h.open_station(5);await for_shot("shop_gear")
+    h.scroll.scroll_vertical=9999;await for_shot("shop_gear_bag")
+    h.inventory_page=1;h.open_station(5);await for_shot("shop_gear_page2")
+    h.inventory_page=0;h.close_panel()
+    p.data.points=3;p.data.talents[0]=["break_1","break_2"];h.refresh_header()
+    var tree=h.talent_tree;tree.open(p,0);tree.selected="break_3";tree._detail();await for_shot("circuit")
+    tree.selected="break_11";tree._detail();await for_shot("circuit_keystone")
+    tree.hide()
     if p.start_run(0,3):
         h.open_station(4);await for_shot("run")
         p.data.run["boon_due"]=true;h.open_station(4);await for_shot("boon")

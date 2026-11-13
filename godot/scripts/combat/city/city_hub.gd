@@ -217,7 +217,7 @@ func open_station(index:int) -> void:
     page=NAMES[index];panel.visible=true;header.visible=true
     for child in stack.get_children():stack.remove_child(child);child.queue_free()
     info.text=""
-    if not index in [0,3,4]:
+    if not index in [0,2,3,4,5]:
         _text(Set.TITLES[index],COLORS[index])
         _button("CLOSE / ESC",close_panel)
     if campaign.profile.migration_notice!="":_text(campaign.profile.migration_notice,T.GOLD)
@@ -228,60 +228,16 @@ func open_station(index:int) -> void:
     match index:
         0:Pages.skills(self)
         1:_talents()
-        2:_shop()
+        2:Pages.dealer(self)
         3:Pages.story(self)
         4:Pages.depart(self)
-        5:_shop()
+        5:Pages.shop(self)
     if talent_tree.visible:return
     for child in stack.find_children("*","Button",true,false):
         if not child.disabled and child.get_meta("act","")!="close":call_deferred("_focus_station_button",weakref(child));break
 
 func _talents() -> void:
     panel.visible=false;talent_tree.open(campaign.profile,campaign.hero_id())
-
-func _shop() -> void:
-    var p=campaign.profile;var hero_id:int=campaign.hero_id()
-    var shop_index:=5 if page=="SHOP" else 2
-    _text("GEAR CAPS: +12% direct damage / +10% defence. Total damage +50%, mitigation 20%, saving 20%. Read openings; gear does not add invulnerability.",T.GOLD)
-    _text("CORE READY: "+str(p.data.pending_core).to_upper())
-    _text("Nine equally likely cores. One slot per expedition; healing budget survives retries. Prepare here between encounters.")
-    _button("DEALER / CORE DRAW + EQUIP / 1 PART",campaign.start_core_draw,not p.can_prepare_core() or (p.data.parts<1 and p.data.core_offer.is_empty()))
-    _text("%s / 100 CREDITS"%Profile.SLOTS[selected_slot],T.GOLD)
-    _button("CHANGE SLOT > "+Profile.SLOTS[(selected_slot+1)%3],func():selected_slot=(selected_slot+1)%3;open_station(shop_index))
-    _button("DRAW SELECTED SLOT / 100 CREDITS",func():
-        var item:Dictionary=p.pull(selected_slot,hero_id)
-        notice="Received "+str(item.get("name","nothing"));refresh_header();open_station(shop_index),p.data.credits<100 or p.data.inventory.size()+p.data.stash.size()>=180)
-    _text("WHITE25 / BLUE55 / RARE19 / SIGNATURE1%%
-PITY %d/10 RARE / %d/40 SIGNATURE"%[int(p.data.pity),int(p.data.unique_pity)])
-    _button("HEAL 40 HP / 25 CREDITS",func():act(p.heal,"Recovered up to 40 HP"),p.data.run.is_empty() or p.data.credits<25 or int(p.data.run.get("hp",100))>=100)
-    var all_items:Array=p.data.inventory+p.data.stash
-    for item in all_items:
-        if int(item.id)!=selected_item:continue
-        _text("COMPARE / SELECTED",T.TEAL);stack.get_child(stack.get_child_count()-1).set_meta("compare_start",true);_text(p.Loot.describe(item))
-        var current:Dictionary=p.gear_for(hero_id)[int(item.slot)]
-        _text("CURRENT: "+p.Loot.describe(current),T.GOLD)
-        var before:Dictionary=p.stats(hero_id)
-        p.data.loadouts[hero_id][int(item.slot)]=item
-        var after:Dictionary=p.stats(hero_id);p.data.loadouts[hero_id][int(item.slot)]=current
-        _text("BUILD CHANGE: DAMAGE %+d%% / DEFENCE %+d%% / SAVING %+d%%"%[roundi((after.damage-before.damage)*100),roundi((after.defence-before.defence)*100),roundi((after.economy-before.economy)*100)])
-        var id:=int(item.id)
-        _button("EQUIP FOR THIS HERO",func():act(func():return p.equip(id,hero_id),"Equipment fitted"),not current.is_empty() and int(current.id)==id)
-        _button("RECALIBRATE FIRST AFFIX / 80 + 5 PARTS",func():act(func():return p.craft(id,"recalibrate",0),"Affix recalibrated"),item.get("affixes",[]).is_empty() or p.data.credits<80 or p.data.parts<5)
-        _button("TEMPER / REROLL / 120 + 6 / MAX RARE",func():act(func():return p.craft(id,"temper"),"Equipment tempered"),int(item.tier)>=2 or p.data.credits<120 or p.data.parts<6)
-        _button("RECYCLE / +%d PARTS"%(1+int(item.tier)),func():act(func():return p.salvage(id),"Equipment recycled"),p.is_equipped(id))
-        break
-    _text("EQUIPPED / "+["ZIP","RIVET","HUSH","LOOP"][hero_id],T.TEAL)
-    for i in 3:
-        var slot:=i;var gear:Dictionary=p.gear_for(hero_id)[i]
-        _text(p.Loot.describe(gear))
-        if not gear.is_empty():_button("UNEQUIP "+Profile.SLOTS[i],func():act(func():return p.unequip(slot,hero_id),"Slot cleared"))
-    _text("BAG %d/60 / STASH %d/120"%[p.data.inventory.size(),p.data.stash.size()],T.GOLD)
-    inventory_page=clampi(inventory_page,0,maxi(0,floori(float(all_items.size()-1)/8.0)))
-    for i in range(inventory_page*8,mini(all_items.size(),inventory_page*8+8)):
-        var item:Dictionary=all_items[i];var id:=int(item.id)
-        _button("INSPECT #%d %s"%[id,item.name],func():selected_item=id;open_station(shop_index);call_deferred("_scroll_compare"))
-    _button("PREVIOUS ITEMS",func():inventory_page-=1;open_station(shop_index),inventory_page==0)
-    _button("NEXT ITEMS",func():inventory_page+=1;open_station(shop_index),(inventory_page+1)*8>=all_items.size())
 
 func _scroll_compare() -> void:
     await get_tree().process_frame

@@ -27,9 +27,9 @@ func click(control:Control) -> void:
         parent=parent.get_parent()
     for down in [true,false]:
         var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_LEFT;e.pressed=down;e.position=control.get_global_rect().get_center();e.global_position=e.position;root.push_input(e,true);await frames(2)
-const ACT_ALIAS={"REVIEW 06":"chapter:6","PRACTICE SIGNAL":"practice:boss_signal","EQUIP LONG ROUTE":"tech:zip_route","EQUIP SIGNED RECEIPT":"tech:zip_confirm","EQUIP EXIT PLAN":"tech:zip_dash","PRACTICE DOUBLE JUMP":"practice:double_jump","LEARN  DOUBLE":"learn:double_jump"}
+const ACT_ALIAS={"REVIEW 06":"chapter:6","PRACTICE SIGNAL":"practice:boss_signal","EQUIP LONG ROUTE":"tech:zip_route","EQUIP SIGNED RECEIPT":"tech:zip_confirm","EQUIP EXIT PLAN":"tech:zip_dash","PRACTICE DOUBLE JUMP":"practice:double_jump","LEARN  DOUBLE":"learn:double_jump","DEALER / CORE DRAW":"core_draw","DRAW SELECTED":"draw_slot","CONNECT":"connect"}
 func button(parent:Node,prefix:String) -> Button:
-    var act:String=ACT_ALIAS.get(prefix,"contract:"+prefix.substr(prefix.find("#")+1) if prefix.begins_with("START CONTRACT #") else "")
+    var act:String=ACT_ALIAS.get(prefix,"contract:"+prefix.substr(prefix.find("#")+1) if prefix.begins_with("START CONTRACT #") else ("inspect:"+prefix.substr(prefix.find("#")+1) if prefix.begins_with("INSPECT #") else (prefix.substr(4) if prefix.begins_with("act=") else "")))
     for child in parent.find_children("*","Button",true,false):
         if act!="" and child.get_meta("act","")==act:return child
         if act=="" and child.text.begins_with(prefix):return child
@@ -97,8 +97,8 @@ func run() -> void:
     check("tower finale has its own distinct giant model and three-phase data",s.sim.campaign_boss=="signal" and s.sim.squad_members[0].boss.kind=="signal")
     c.show_city();p.abandon()
     var item:Dictionary=p.Loot.make(500,0,1,5,p.data.skills,91);p.data.item_serial=500;p.data.inventory.append(item);p.equip(500);p.save_data()
-    await tap(KEY_3);await click(button(h.stack,"INSPECT #500"));var parts:=int(p.data.parts);var money:=int(p.data.credits)
-    await click(button(h.stack,"RECALIBRATE FIRST"))
+    await tap(KEY_6);await click(button(h.stack,"INSPECT #500"));var parts:=int(p.data.parts);var money:=int(p.data.credits)
+    await click(button(h.stack,"act=recalibrate:500"))
     check("native workshop recalibrates and debits only the stated cost",p.data.parts==parts-5 and p.data.credits==money-80 and p.data.craft_serial==1)
     await shot("workshop")
     c.leave_city();s.start_match(false);s.round_theatre.clear();s._process(1.0/60);await frames(6)

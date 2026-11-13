@@ -23,9 +23,9 @@ func click(control:Control) -> void:
     for down in [true,false]:
         var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_LEFT;e.pressed=down
         e.position=control.get_global_rect().get_center();e.global_position=e.position;root.push_input(e,true);await frames(2)
-const ACT_ALIAS={"REVIEW 06":"chapter:6","PRACTICE SIGNAL":"practice:boss_signal","EQUIP LONG ROUTE":"tech:zip_route","EQUIP SIGNED RECEIPT":"tech:zip_confirm","EQUIP EXIT PLAN":"tech:zip_dash","PRACTICE DOUBLE JUMP":"practice:double_jump","LEARN  DOUBLE":"learn:double_jump"}
+const ACT_ALIAS={"REVIEW 06":"chapter:6","PRACTICE SIGNAL":"practice:boss_signal","EQUIP LONG ROUTE":"tech:zip_route","EQUIP SIGNED RECEIPT":"tech:zip_confirm","EQUIP EXIT PLAN":"tech:zip_dash","PRACTICE DOUBLE JUMP":"practice:double_jump","LEARN  DOUBLE":"learn:double_jump","DEALER / CORE DRAW":"core_draw","DRAW SELECTED":"draw_slot","CONNECT":"connect"}
 func button(parent:Node,prefix:String) -> Button:
-    var act:String=ACT_ALIAS.get(prefix,"contract:"+prefix.substr(prefix.find("#")+1) if prefix.begins_with("START CONTRACT #") else "")
+    var act:String=ACT_ALIAS.get(prefix,"contract:"+prefix.substr(prefix.find("#")+1) if prefix.begins_with("START CONTRACT #") else ("inspect:"+prefix.substr(prefix.find("#")+1) if prefix.begins_with("INSPECT #") else (prefix.substr(4) if prefix.begins_with("act=") else "")))
     for child in parent.find_children("*","Button",true,false):
         if act!="" and child.get_meta("act","")==act:return child
         if act=="" and child.text.begins_with(prefix):return child
@@ -84,12 +84,12 @@ func run() -> void:
     tree.open(p,0);tree.zoom=.68;tree.pan=Vector2(420,260);tree._positions();tree.selected="break_11";tree._detail();await shot("talent-tree")
     await tap(KEY_ESCAPE);await tap(KEY_3)
     p.data.credits=1000;p.data.pity=9;p.data.unique_pity=39;p.save_data();h.open_station(2)
-    await click(button(h.stack,"DRAW SELECTED"))
+    await click(button(h.stack,"DRAW SELECTED"));h.open_station(5)
     check("native dealer rolls and persists a signature affix item",p.data.credits==900 and p.data.inventory.size()==2 and p.data.inventory[-1].tier==3 and p.data.inventory[-1].affixes.size()==2)
     var selected:=int(p.data.inventory[-1].id)
     await click(button(h.stack,"INSPECT #%d"%selected));await shot("gear-comparison")
-    check("inventory inspection shows real before-after comparison",button(h.stack,"EQUIP FOR THIS HERO")!=null)
-    await click(button(h.stack,"EQUIP FOR THIS HERO"))
+    check("inventory inspection shows real before-after comparison",button(h.stack,"act=equip:%d"%selected)!=null)
+    await click(button(h.stack,"act=equip:%d"%selected))
     check("equipment compare action changes the selected hero loadout",int(p.gear_for(0)[0].id)==selected)
     p.abandon();p._contract(1,0,1147);p._contract(5,5,1555);p.save_data();h.refresh_header()
     await tap(KEY_5);await shot("contracts")

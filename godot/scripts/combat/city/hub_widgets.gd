@@ -129,3 +129,18 @@ static func cta(hub:Node,icon:String,text:String,tint:Color,callback:Callable,di
     if info!="":b.mouse_entered.connect(hub.set_info.bind(info));b.focus_entered.connect(hub.set_info.bind(info))
     hub.stack.add_child(b)
     return b
+
+## Stat vocabulary shared by gear and talent pages: one icon and one short word per stat.
+const STAT_ICON:={"damage":"swords","heavy_damage":"fist","guard_damage":"shield","finisher_damage":"finisher","launch_force":"launcher","chain_damage":"ring","aerial_damage":"double_jump","counter_damage":"swords","defence":"shield","economy":"bolt","parry_meter":"bolt","entry":"bolt","chain_meter":"bolt","chase_refund":"chase","chain_targets":"ring","splash":"ring","pile_driver":"fist","sky_commitment":"double_jump","patient_storm":"shield","broadcaster":"radio"}
+const STAT_SHORT:={"damage":"DMG","heavy_damage":"HEAVY","guard_damage":"GUARD","finisher_damage":"SLAM","launch_force":"LAUNCH","chain_damage":"CHAIN","aerial_damage":"AIR","counter_damage":"COUNTER","defence":"DEF","economy":"SAVE","parry_meter":"PARRY","entry":"START","chain_meter":"CHAIN","chase_refund":"CHASE","chain_targets":"TARGET","splash":"SPLASH"}
+const FLAT_STATS:=["entry","parry_meter","chain_targets","splash","chain_meter","chase_refund"]
+
+static func stat_text(stat:String,amount:float) -> String:
+    return "%+d"%roundi(amount) if stat in FLAT_STATS else "%+d%%"%roundi(amount*100)
+
+## Icon + value, lime when it helps, pink when it costs.
+static func stat_chip(stat:String,amount:float,parent:Node=null,with_word:=true) -> Control:
+    var tint:Color=T.LIME if amount>=0 else T.CORAL
+    var text:=stat_text(stat,amount)
+    if with_word:text=STAT_SHORT.get(stat,stat.to_upper())+" "+text
+    return chip(STAT_ICON.get(stat,"star"),text,tint,parent)
