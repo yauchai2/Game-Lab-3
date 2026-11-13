@@ -1,19 +1,22 @@
 {
-  "duration": 18.0,
-  "cuts": [
+  "duration": 16.12,
+  "cuts_real": [
     0,
-    3,
-    6,
-    9,
-    12,
-    15,
-    18
+    1.5,
+    3.0,
+    6.0,
+    8.0,
+    9.75,
+    12.0,
+    15.0,
+    16.0,
+    16.12
   ],
   "song": {
     "file": "godot/audio/user-tracks/beat_keep_rockin.ogg",
     "title": "Starjunk 95 - Beat Keep Rockin",
     "bpm": 140,
-    "note": "3 s is exactly seven beats, so every cut lands on a beat",
+    "note": "3 s is exactly seven beats",
     "drops_in_song": [
       61.531,
       140.609
@@ -33,14 +36,14 @@
       7.5,
       8.0
     ],
-    "first_drop_again": 8.0,
+    "drop_again_on_collectors": 8.0,
     "cut": 9.75,
     "second_build": [
       12.0,
       16.1
     ],
     "second_drop": 16.1,
-    "menu_track_returns": 17.6
+    "menu_track_returns": 16.1
   },
   "cues": [
     [
@@ -48,48 +51,40 @@
       "tram pass, street bed, radio tuning"
     ],
     [
-      0.75,
-      "song build through the radio"
+      0.85,
+      "case slides along the bench"
+    ],
+    [
+      1.5,
+      "case lands"
+    ],
+    [
+      2.25,
+      "latch 1"
+    ],
+    [
+      2.6,
+      "latch 2"
+    ],
+    [
+      2.8,
+      "lid swings up"
     ],
     [
       3.0,
-      "first drop"
+      "first drop on the open case"
     ],
     [
-      3.19,
-      "ratchet run"
+      4.1,
+      "paper"
     ],
     [
-      3.56,
-      "ratchet run"
+      5.05,
+      "magazine"
     ],
     [
-      3.84,
-      "impact wrench"
-    ],
-    [
-      4.125,
-      "speaker static"
-    ],
-    [
-      4.5,
-      "scratch"
-    ],
-    [
-      5.3,
-      "straw"
-    ],
-    [
-      5.625,
-      "scratch fill"
-    ],
-    [
-      6.56,
-      "giant sole"
-    ],
-    [
-      6.98,
-      "second step"
+      6.0,
+      "beat sinks under the floor"
     ],
     [
       7.5,
@@ -97,15 +92,7 @@
     ],
     [
       8.0,
-      "case slam + first drop again"
-    ],
-    [
-      9.15,
-      "latch 1"
-    ],
-    [
-      9.45,
-      "latch 2"
+      "collectors appear: hit + beat back on the snare"
     ],
     [
       9.75,
@@ -124,16 +111,8 @@
       "heartbeat"
     ],
     [
-      11.9,
-      "car in"
-    ],
-    [
-      12.34,
-      "brake"
-    ],
-    [
-      13.1,
-      "three doors"
+      12.0,
+      "second build fades up"
     ],
     [
       13.55,
@@ -146,10 +125,6 @@
     [
       14.2,
       "glove"
-    ],
-    [
-      12.0,
-      "second build fades up"
     ],
     [
       14.46,
@@ -177,7 +152,7 @@
     ],
     [
       16.1,
-      "title hit + second drop"
+      "title hit + second drop under the main menu"
     ]
   ],
   "sources": [
@@ -186,5 +161,5 @@
     "godot/audio/open Kenney CC0 impacts",
     "references/story-opening-audio BigSoundBank CC0 excerpts (provenance.json)"
   ],
-  "sha256": "7e723838c6d70153b4754d4a52648d81f31c0e71d6ee2ca0df90841fc99aedfe"
+  "sha256": "139616cca9c249a84650618340ca298b49b39750282aea266da71be837a936ab"
 }
