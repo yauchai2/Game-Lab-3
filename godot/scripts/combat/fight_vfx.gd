@@ -12,6 +12,9 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     var reduced: bool = session.reduced_effects
     var paper := Color("fff8dc")
     var ink := Color("111a32")
+    if effect.kind in ["gun_muzzle","gun_spark"]:
+        preload("res://scripts/combat/enemies/gun_presentation.gd").draw_effect(canvas,session,effect)
+        return
     match effect.kind:
         "service_pulse":
             var a:Vector2=session.project(Vector2(effect.low,.10))

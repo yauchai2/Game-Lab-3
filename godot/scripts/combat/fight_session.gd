@@ -652,6 +652,7 @@ func _handle_event(event: Dictionary) -> void:
         elif event.kind=="node_unavailable":hud.notice="PLACE A NODE / WAIT FOR PULSE";hud.notice_time=.7
     ink_fx.on_event(self,event)
     combat_event.emit(event)
+    if preload("res://scripts/combat/enemies/gun_presentation.gd").handle(self,event):return
     if event.kind=="swing" and event.get("move","") in ["special","node_pulse"] and sim.last_service_enabled and character_choices[event.target]==3:
         audio.play_sound("charge",1.15,-12)
         hud.skill_key="skill_loop" if event.move=="special" else "skill_loop_pulse";hud.skill_time=.5
