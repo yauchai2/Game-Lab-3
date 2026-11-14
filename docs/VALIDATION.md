@@ -1,3 +1,7 @@
+## 2026-11-14：Mixamo 慢速後退 Mac 驗證
+
+Godot 4.7.2／Apple M4 Compatibility。動畫測試 147/147，涵蓋四角雙向護架後退、循環接點、鞋底高度、速度門檻及 simulation 狀態；載入器 13/13。使用正式戰鬥場景與自動護架後退輸入，四角都播出新動畫。場景仍記錄既有存檔缺少 `ending` 區段的訊息。24 段私有動畫庫逐項比對，先前 23 段的曲線及接觸點一致。人手及實體控制器待驗。
+
 ## 2026-11-14：第一批Mixamo／Walking接入
 
 [完整證據](evidence/mixamo-first-batch/README.md)：新119實際四角雙向／蒙皮鞋底／owner／不寫sim／接觸骨／慢行停動＋13 optional loader拒收＝132/132，835相關回歸通過；18strict及editor import通過。另舊RIVET13/19的6失敗在基線08e3e51有完全相同值，未改斷言，不能報全回歸通過。23私有clip中20啟用、15地面attack slot；12秒720p／360幀真scene命令片每角2swing／1hit、護架行路，完整2fps抽格檢視及四張contact sheet。MovieWriter約88秒非硬體FPS；Dummy AAC峰值-4.159724dBFS不是實聽。builder重跑及反轉輸入序SHA一致；來源／曲線不進Git。KnockedOut／GetUp／AirKick僅轉換待正式owner驗收，Mac／真人待做。

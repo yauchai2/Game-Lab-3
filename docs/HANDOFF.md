@@ -1,3 +1,7 @@
+## 2026-11-14：已從 Mixamo MCP 接入四角慢速後退
+
+桌面 Godot 專案已透過 `tools/install_mixamo_motions.py` 安裝含 Unarmed Walk Back 的 24 段私有動畫庫。重建時，把官方下載檔以 `Unarmed Walk Back.fbx` 加入首批來源，再沿既有 Blender 檢查、轉換及安裝流程。來源 FBX 和衍生曲線只保存在本機。其餘動作見替換計劃。
+
 ## 2026-11-14：第一批21 FBX＋Walking正式地面接入
 
 見[MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md](MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md)及evidence/mixamo-first-batch。22來源均65骨；兩個Hurricane逐幀位置／旋轉hash相同，肩摔SHA沿用。23私有衍生clip、20啟用，四角15個地面attack slot＋待機／受擊／格擋／後閃／慢行。Boxing實為低位身擊，不能稱挑空上勾拳；Walking10.27秒原檔有前進與末幀回原點，取單步去漂移，僅向前慢行及護架行路使用，高速／後退保持原owner。來源root不改simulation；全身單一owner、contact limb、腳IK＋鞋底skin floor修正。
