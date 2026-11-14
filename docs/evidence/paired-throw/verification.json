@@ -411,7 +411,7 @@
     },
     {
       "check": "wrist grip residual 0/0/-1",
-      "detail": 0.0318710915744305,
+      "detail": 0.0219072476029396,
       "pass": true
     },
     {
@@ -425,7 +425,7 @@
     },
     {
       "check": "wrist grip residual 0/0/1",
-      "detail": 0.0318711474537849,
+      "detail": 0.0219071973115206,
       "pass": true
     },
     {
@@ -439,7 +439,7 @@
     },
     {
       "check": "wrist grip residual 0/1/-1",
-      "detail": 0.000000429815202096506,
+      "detail": 0.000000480548010273196,
       "pass": true
     },
     {
@@ -453,7 +453,7 @@
     },
     {
       "check": "wrist grip residual 0/1/1",
-      "detail": 0.000000298023223876953,
+      "detail": 0.000000376972877802473,
       "pass": true
     },
     {
@@ -467,7 +467,7 @@
     },
     {
       "check": "wrist grip residual 0/2/-1",
-      "detail": 0.0182808879762888,
+      "detail": 0.00575029477477074,
       "pass": true
     },
     {
@@ -481,7 +481,7 @@
     },
     {
       "check": "wrist grip residual 0/2/1",
-      "detail": 0.0182810463011265,
+      "detail": 0.00575032690539956,
       "pass": true
     },
     {
@@ -495,7 +495,7 @@
     },
     {
       "check": "wrist grip residual 0/3/-1",
-      "detail": 0.00441685784608126,
+      "detail": 0.000000523028631960187,
       "pass": true
     },
     {
@@ -509,7 +509,7 @@
     },
     {
       "check": "wrist grip residual 0/3/1",
-      "detail": 0.00441683037206531,
+      "detail": 0.000000536441802978516,
       "pass": true
     },
     {
@@ -523,7 +523,7 @@
     },
     {
       "check": "wrist grip residual 1/0/-1",
-      "detail": 0.00951931718736887,
+      "detail": 0.0255482215434313,
       "pass": true
     },
     {
@@ -537,7 +537,7 @@
     },
     {
       "check": "wrist grip residual 1/0/1",
-      "detail": 0.00951932743191719,
+      "detail": 0.0255481954663992,
       "pass": true
     },
     {
@@ -551,7 +551,7 @@
     },
     {
       "check": "wrist grip residual 1/1/-1",
-      "detail": 0.000000607850495271123,
+      "detail": 0.000000238418579101562,
       "pass": true
     },
     {
@@ -565,7 +565,7 @@
     },
     {
       "check": "wrist grip residual 1/1/1",
-      "detail": 0.000000599019244873489,
+      "detail": 0.000000476837158203125,
       "pass": true
     },
     {
@@ -579,7 +579,7 @@
     },
     {
       "check": "wrist grip residual 1/2/-1",
-      "detail": 0.000000559934790089756,
+      "detail": 0.00660461420193315,
       "pass": true
     },
     {
@@ -593,7 +593,7 @@
     },
     {
       "check": "wrist grip residual 1/2/1",
-      "detail": 0.000000676978629599034,
+      "detail": 0.00660470733419061,
       "pass": true
     },
     {
@@ -607,7 +607,7 @@
     },
     {
       "check": "wrist grip residual 1/3/-1",
-      "detail": 0.000000266560078898692,
+      "detail": 0.0015878570266068,
       "pass": true
     },
     {
@@ -621,7 +621,7 @@
     },
     {
       "check": "wrist grip residual 1/3/1",
-      "detail": 0.000000266560078898692,
+      "detail": 0.00158803432714194,
       "pass": true
     },
     {
@@ -635,7 +635,7 @@
     },
     {
       "check": "wrist grip residual 2/0/-1",
-      "detail": 0.00735787954181433,
+      "detail": 0.0247813276946545,
       "pass": true
     },
     {
@@ -649,7 +649,7 @@
     },
     {
       "check": "wrist grip residual 2/0/1",
-      "detail": 0.00735802995041013,
+      "detail": 0.0247811619192362,
       "pass": true
     },
     {
@@ -663,7 +663,7 @@
     },
     {
       "check": "wrist grip residual 2/1/-1",
-      "detail": 0.000000320980831247653,
+      "detail": 0.00000038165595128703,
       "pass": true
     },
     {
@@ -677,7 +677,7 @@
     },
     {
       "check": "wrist grip residual 2/1/1",
-      "detail": 0.000000523028631960187,
+      "detail": 0.00000038165595128703,
       "pass": true
     },
     {
@@ -691,7 +691,7 @@
     },
     {
       "check": "wrist grip residual 2/2/-1",
-      "detail": 0.000000342402614705861,
+      "detail": 0.00403499370440841,
       "pass": true
     },
     {
@@ -705,7 +705,7 @@
     },
     {
       "check": "wrist grip residual 2/2/1",
-      "detail": 0.000000303925247635561,
+      "detail": 0.00403488054871559,
       "pass": true
     },
     {
@@ -719,7 +719,7 @@
     },
     {
       "check": "wrist grip residual 2/3/-1",
-      "detail": 0.000000491512480493839,
+      "detail": 0.000684233382344246,
       "pass": true
     },
     {
@@ -733,7 +733,7 @@
     },
     {
       "check": "wrist grip residual 2/3/1",
-      "detail": 0.00000049957793635258,
+      "detail": 0.000684418191667646,
       "pass": true
     },
     {
@@ -747,7 +747,7 @@
     },
     {
       "check": "wrist grip residual 3/0/-1",
-      "detail": 0.00234595313668251,
+      "detail": 0.00676826201379299,
       "pass": true
     },
     {
@@ -761,7 +761,7 @@
     },
     {
       "check": "wrist grip residual 3/0/1",
-      "detail": 0.00234581367112696,
+      "detail": 0.00676820240914822,
       "pass": true
     },
     {
@@ -775,7 +775,7 @@
     },
     {
       "check": "wrist grip residual 3/1/-1",
-      "detail": 0.000000480548010273196,
+      "detail": 0.000000362560911071341,
       "pass": true
     },
     {
@@ -789,7 +789,7 @@
     },
     {
       "check": "wrist grip residual 3/1/1",
-      "detail": 0.000000484230440633837,
+      "detail": 0.000000412953085060508,
       "pass": true
     },
     {
@@ -803,7 +803,7 @@
     },
     {
       "check": "wrist grip residual 3/2/-1",
-      "detail": 0.000000337174782316652,
+      "detail": 0.000000399840104137184,
       "pass": true
     },
     {
@@ -817,7 +817,7 @@
     },
     {
       "check": "wrist grip residual 3/2/1",
-      "detail": 0.000000386282238196145,
+      "detail": 0.000000303925247635561,
       "pass": true
     },
     {
@@ -831,7 +831,7 @@
     },
     {
       "check": "wrist grip residual 3/3/-1",
-      "detail": 0.000000357627868652344,
+      "detail": 0.000000491512480493839,
       "pass": true
     },
     {
@@ -845,7 +845,7 @@
     },
     {
       "check": "wrist grip residual 3/3/1",
-      "detail": 0.000000399840104137184,
+      "detail": 0.000000376972877802473,
       "pass": true
     },
     {
@@ -867,7 +867,7 @@
   "failed": 0,
   "metrics": {
     "max_ground_error_m": 0.0000000165402889249627,
-    "max_wrist_gap_m": 0.0318711474537849,
+    "max_wrist_gap_m": 0.0255482215434313,
     "min_skin_y": 0.00999758113175631
   },
   "passed": 147

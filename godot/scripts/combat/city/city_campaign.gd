@@ -10,11 +10,13 @@ var last_result:=""
 var lesson_active:=""
 var techniques:Dictionary={}
 var dressing:Node3D
+var flow:CanvasLayer
 @export var save_path:="user://neon_lab/city_v1.json"
 
 func setup(owner_session:Node3D) -> void:
     session=owner_session;profile.path=save_path;profile.load_data()
     hub=preload("res://scripts/combat/city/city_hub.gd").new();hub.campaign=self;add_child(hub)
+    flow=preload("res://scripts/combat/city/story_flow.gd").new();flow.campaign=self;flow.cfg_path=save_path.get_base_dir().path_join("story_flow.cfg");add_child(flow)
 
 func hero_id() -> int:
     return int(profile.data.run.hero) if not profile.data.run.is_empty() else selected_hero
@@ -41,6 +43,14 @@ func depart() -> void:
     if profile.data.run.is_empty():
         if not profile.start_run(hero_id()):return
     if profile.data.run.boon_due or profile.error!="":return
+    # Story scenes (prologue, chapter and boss entrances) play once per player, only in a real session.
+    if flow.live() and not flow.busy():
+        var scenes:Array=flow.intro_cards()
+        if not scenes.is_empty():flow.play_cards(scenes,_depart_now);return
+    _depart_now()
+
+func _depart_now() -> void:
+    if profile.data.run.is_empty() or profile.data.run.boon_due or profile.error!="":return
     if profile.data.run.get("route_due",false) and not profile.choose_route("combat"):return
     techniques.clear()
     var before:Dictionary=profile.data.duplicate(true)
@@ -88,29 +98,70 @@ func depart() -> void:
     settlement_done=false;last_result=""
     _build_dressing(room)
     session.hud.rebuild_menu()
+    if flow.live() and profile.data.run.get("mode","story")=="story":flow.announce(room)
 
 func encounter_finished() -> bool:
     if not active or not session.sim.campaign_enabled:return false
     return session.sim.story_state in ["complete","failed"]
 
+func result_action() -> String:
+    if lesson_active=="" and flow.live() and session.sim.story_state=="complete":return "KEEP GOING / ENTER"
+    return "RETURN TO CITY / ENTER"
+
 func result_text() -> String:
     if lesson_active!="":return "PRACTICE COMPLETE / NO REWARDS" if session.sim.story_state=="complete" else "PRACTICE / RETURN AND RETRY"
+    if flow.live() and session.sim.story_state=="complete":return "ENCOUNTER CLEAR / CHAIN x%d"%(flow.streak+1)
     return "ENCOUNTER CLEAR / RETURN TO SAFE BLOCK" if session.sim.story_state=="complete" else "EXPEDITION ENDED / BANKED LOOT KEPT"
 
 func return_from_encounter() -> void:
     if not encounter_finished():return
     if lesson_active!="":show_city();return
+    var chained:bool=flow.live()
+    var tally:Dictionary=profile.data.run.get("tally",{}).duplicate() if not profile.data.run.is_empty() else {}
+    var contract_tier:=int(profile.data.run.contract.tier) if not profile.data.run.is_empty() and profile.data.run.get("mode","story")=="contract" else 0
+    var won:bool=session.sim.story_state=="complete"
+    var was_story:bool=true
+    var last_room:=0
+    var hero:=hero_id()
     if not settlement_done:
-        var won:bool=session.sim.story_state=="complete"
-        var was_story:bool=profile.data.run.get("mode","story")=="story"
-        var last_room:=int(profile.data.run.room)
+        was_story=profile.data.run.get("mode","story")=="story"
+        last_room=int(profile.data.run.room)
         var hp:=int(session.sim.fighters[0].health);var meter:=float(session.sim.fighters[0].meter)
         if not profile.settle(won,hp,meter,int(session.sim.fighters[0].get("draw_healed",0)),techniques):
             session.hud.notice=profile.error;session.hud.notice_time=6;return
         settlement_done=true
         last_result="Encounter banked. Choose current at DEPART; new skills may be ready." if won else "Back home. Temporary current lost; permanent progress retained."
         if won and was_story and last_room==17:last_result="Tower captain defeated. The signal is back. All six districts can be replayed."
+        if chained:
+            _chain_after_settle(won,was_story,last_room,hero,tally,contract_tier);return
     show_city()
+
+# Real sessions keep the expedition rolling: finishing a fight opens the keep-going panel instead of the city.
+func _chain_after_settle(won:bool,was_story:bool,last_room:int,hero:int,tally:Dictionary,contract_tier:int) -> void:
+    var run:Dictionary=profile.data.run
+    if won and was_story and last_room==17:
+        var true_ending:bool=profile.Story.TECHNIQUES.keys().all(func(id:String)->bool:return id in profile.data.quest_claims)
+        flow.finish_ending(flow.Lines.ending_for(tally),hero,true_ending,func():flow.streak=0;show_city());return
+    if won:
+        flow.streak+=1
+        var title:="ENCOUNTER %d / 18 CLEAR"%(last_room+1) if was_story else "WAVE CLEAR"
+        var info:Dictionary={"kind":"win","title":title}
+        if not run.is_empty() and not was_story:
+            info.title="CONTRACT WAVE %d OF %d CLEAR"%[int(run.wave),int(run.contract.waves)]
+        elif run.is_empty() and not was_story:
+            var next_id:=-1
+            for contract in profile.data.contracts:
+                if int(contract.tier)==contract_tier:next_id=int(contract.id)
+            if next_id<0:flow.streak=0;show_city();return
+            info={"kind":"contract_next","title":"CONTRACT COMPLETE / T%d"%contract_tier,"contract":next_id}
+        elif run.is_empty():flow.streak=0;show_city();return
+        var cards:Array=flow.outro_cards(last_room,hero) if was_story else []
+        flow.play_cards(cards,func():flow.open_intermission(info));return
+    # Defeat: contracts keep their remaining attempts alive, so offer the retry in one key.
+    if not run.is_empty() and run.get("mode","story")=="contract":
+        flow.streak=0
+        flow.open_intermission({"kind":"retry","title":"WAVE LOST / %d ATTEMPTS LEFT"%int(run.tries)});return
+    flow.streak=0;show_city()
 
 func clear_dressing() -> void:
     var old:Node3D=dressing;dressing=null

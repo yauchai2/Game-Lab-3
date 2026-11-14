@@ -24,7 +24,7 @@ static func cel(t:float) -> int:
         if t>=HOLDS[i]:return i
     return 0
 static func rank(kind:String) -> int:
-    if kind in ["hit","parry","block","guard_break","rally_core","air_counter_core","grab_tell"]:return 3
+    if kind in ["hit","parry","block","guard_break","rally_core","air_counter_core","grab_tell","gun_muzzle","gun_spark"]:return 3
     if kind in ["release","swing","charge","cannon_charge","cannon_blast","service_pulse","wave"]:return 2
     return 0
 static func limb(move:String,character:int,fighter:Dictionary={}) -> String:

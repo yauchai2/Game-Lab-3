@@ -1,4 +1,5 @@
 extends RefCounted
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 var sprites = preload("res://scripts/combat/sprite_fx.gd").new()
 ## Original red-stage staging. Rendering clock only, independent of gameplay.
 var mode:=""
@@ -35,7 +36,7 @@ func draw(canvas:Control,session:Node3D) -> void:
     if mode in ["skill","overdrive"]:
         var close:float=clampf(age/.25,0,1)
         canvas.draw_colored_polygon(PackedVector2Array([Vector2(0,120),Vector2(700*close,145),Vector2(610*close,224),Vector2(0,198)]),ink)
-        canvas.draw_string(session.hud.bold,Vector2(42,187),"MAX OUT" if mode=="overdrive" else "OVERDRIVE",HORIZONTAL_ALIGNMENT_LEFT,-1,40,yellow)
+        canvas.draw_string(session.hud.bold,Vector2(42,187),L10n.text("MAX OUT" if mode=="overdrive" else "OVERDRIVE"),HORIZONTAL_ALIGNMENT_LEFT,-1,40,yellow)
         for i in 4:
             var radius:float=80+i*42-age*65
             if radius>15:sprites.hit_spark(canvas,center+Vector2.from_angle(float(i)*1.7+age*3.0)*radius,fposmod(age*2.0+float(i)*.2,1.0),yellow,float(i)*1.7+PI,70.0)
@@ -56,4 +57,4 @@ func draw(canvas:Control,session:Node3D) -> void:
         canvas.draw_colored_polygon(PackedVector2Array([Vector2(0,664),Vector2(240,680),Vector2(1040,680),Vector2(1280,664),Vector2(1280,720),Vector2(0,720)]),ink)
         var word:="K.O." if mode=="ko" else "BREAK!"
         var slide:=maxf(0,.10-age)*1000
-        canvas.draw_string(session.hud.bold,Vector2(68-slide,638),word,HORIZONTAL_ALIGNMENT_LEFT,-1,94,paper)
+        canvas.draw_string(session.hud.bold,Vector2(68-slide,638),L10n.text(word),HORIZONTAL_ALIGNMENT_LEFT,-1,94,paper)

@@ -1,0 +1,28 @@
+{
+  "main_base": "f69fc9f",
+  "source_head": "f4f0742",
+  "passed": 121,
+  "failed": 0,
+  "reports": [
+    {
+      "report": "verify_city_expansion_native/native.json",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "report": "strict/strict.json",
+      "passed": 19,
+      "failed": 0
+    },
+    {
+      "report": "verify_remaining_integration/checks.json",
+      "passed": 70,
+      "failed": 0
+    },
+    {
+      "report": "verify_ink_ui/page-checks.json",
+      "passed": 10,
+      "failed": 0
+    }
+  ]
+}

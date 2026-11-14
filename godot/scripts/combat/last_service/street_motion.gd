@@ -70,6 +70,15 @@ static func finish(m:RefCounted,f:Dictionary,motion:Dictionary,move:Dictionary) 
     if motion.get("transit",false):
         Transit.finish(m,f,motion,move)
         return
+    # Authored weight transfer rotates the complete hip chain before limb
+    # corrections. The actor's root remains under simulation; ground IK then
+    # preserves the supporting foot rather than twisting a planted shoe.
+    if f.state=="attack":
+        var pivot:float=smoothstep(0.0,float(move.startup),float(f.frame))
+        if f.frame>move.startup+move.active:pivot*=1.0-smoothstep(float(move.startup+move.active),float(move.startup+move.active+move.recovery),float(f.frame))
+        var turn:float=[.12,.28,.16,.22][int(f.character)]
+        if f.move in ["heavy","finisher","overdrive"]:turn*=1.35
+        m.turn_hips(turn*pivot*(-1.0 if f.move=="jab" else 1.0))
     if f.character in [2,3]:
         Counter.finish(m,f,motion,move)
         return

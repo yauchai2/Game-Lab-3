@@ -1,4 +1,5 @@
 extends Node3D
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 ## Live-world, reversible intermission. One local timeline owns all sound and lens.
 const DEMO_DRAW_DELAY:=3.0
 const DEMO_CLAIM_DELAY:=3.5
@@ -42,8 +43,8 @@ var last_skip:=false
 var current_shot:=0
 var input_armed:=false
 var reveal_started:=false
-const INK=Color("141024")
-const CREAM=Color("f4e5c7")
+const INK=Tokens.INK
+const CREAM=Tokens.PAPER
 
 func setup(owner_session:Node3D) -> void:
     session=owner_session;name="AbilityDraw"
@@ -269,44 +270,44 @@ func draw(canvas:Control) -> void:
             for i in 14:
                 var ray:=Vector2.from_angle(TAU*i/14+.13)
                 canvas.draw_colored_polygon(PackedVector2Array([Vector2(640,360)+ray*310,Vector2(640,360)+ray*950+ray.orthogonal()*18,Vector2(640,360)+ray*950-ray.orthogonal()*18]),Color(result.color,equip_view.punch*.85))
-        if t>3.68:canvas.draw_string(bold,Vector2(820,610),"CORE EQUIPPED",HORIZONTAL_ALIGNMENT_LEFT,-1,32,result.color)
-        canvas.draw_string(font,Vector2(28,690),"SPACE  SKIP",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
+        if t>3.68:canvas.draw_string(bold,Vector2(820,610),L10n.text("CORE EQUIPPED"),HORIZONTAL_ALIGNMENT_LEFT,-1,32,result.color)
+        canvas.draw_string(font,Vector2(28,690),L10n.text("SPACE  SKIP"),HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
         return
     if state=="result":
         canvas.draw_rect(Rect2(650,120,570,420),Tokens.NIGHT)
         var color:Color=result.get("color",Tokens.TEAL)
         canvas.draw_rect(Rect2(680,154,8,330),color)
-        canvas.draw_string(font,Vector2(720,185),"NEXT ROUND",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
-        canvas.draw_string(bold,Vector2(720,264),result.get("title","CORE"),HORIZONTAL_ALIGNMENT_LEFT,-1,48,Tokens.PAPER)
+        canvas.draw_string(font,Vector2(720,185),L10n.text("NEXT ROUND"),HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
+        canvas.draw_string(bold,Vector2(720,264),L10n.text(result.get("title","CORE")),HORIZONTAL_ALIGNMENT_LEFT,-1,48,Tokens.PAPER)
         var row:=0
         for stat in str(result.get("detail","")).split(" / "):
             var split:int=stat.rfind(" ")
-            canvas.draw_string(font,Vector2(720,346+row*64),stat.substr(0,split),HORIZONTAL_ALIGNMENT_LEFT,-1,28,Tokens.MUTED)
-            canvas.draw_string(bold,Vector2(1080,346+row*64),stat.substr(split+1),HORIZONTAL_ALIGNMENT_RIGHT,120,32,color)
+            canvas.draw_string(font,Vector2(720,346+row*64),L10n.text(stat.substr(0,split)),HORIZONTAL_ALIGNMENT_LEFT,-1,28,Tokens.MUTED)
+            canvas.draw_string(bold,Vector2(1080,346+row*64),L10n.text(stat.substr(split+1)),HORIZONTAL_ALIGNMENT_RIGHT,120,32,color)
             row+=1
     else:
         canvas.draw_rect(Rect2(24,24,280,48),Tokens.NIGHT)
         canvas.draw_rect(Rect2(24,24,6,48),Tokens.MAGENTA)
-        canvas.draw_string(bold,Vector2(46,58),"THE DEALER",HORIZONTAL_ALIGNMENT_LEFT,-1,28,Tokens.PAPER)
+        canvas.draw_string(bold,Vector2(46,58),L10n.text("THE DEALER"),HORIZONTAL_ALIGNMENT_LEFT,-1,28,Tokens.PAPER)
         var peak:=maxf(maxf(0,1-absf(source_age-1.06)/.11),maxf(0,1-absf(source_age-1.42)/.12))
         if state=="spin":peak=maxf(0,1-absf(source_age-3.56)/.20) if age>=Timing.REVEAL_AT else 0.0
         if not session.reduced_effects and peak>0:
             for i in 17:
                 var a:=TAU*i/17+.11;var ray:=Vector2(cos(a),sin(a));var p:=Vector2(640,350)+ray*260
-                canvas.draw_colored_polygon(PackedVector2Array([p,Vector2(640,350)+ray*900+ray.orthogonal()*22,Vector2(640,350)+ray*900-ray.orthogonal()*22]),Color(1,.8,.18,peak))
-            canvas.draw_string(bold,Vector2(850,220),"WHAM!" if source_age<2 else "JACKPOT!",HORIZONTAL_ALIGNMENT_LEFT,-1,68,CREAM)
+                canvas.draw_colored_polygon(PackedVector2Array([p,Vector2(640,350)+ray*900+ray.orthogonal()*22,Vector2(640,350)+ray*900-ray.orthogonal()*22]),Color(Tokens.TEAL,peak))
+            canvas.draw_string(bold,Vector2(850,220),L10n.text("WHAM!" if source_age<2 else "JACKPOT!"),HORIZONTAL_ALIGNMENT_LEFT,-1,68,CREAM)
     if compact_entry and state=="arrival" and source_age<.68:
         var wipe:=smoothstep(.28,.68,source_age)
         var edge:=lerpf(1600.0,-360.0,wipe)
-        canvas.draw_colored_polygon(PackedVector2Array([Vector2(-400,0),Vector2(edge,0),Vector2(edge-260,720),Vector2(-400,720)]),Color("4f1b80"))
-        canvas.draw_line(Vector2(edge-20,0),Vector2(edge-280,720),Color("ed7827"),32)
+        canvas.draw_colored_polygon(PackedVector2Array([Vector2(-400,0),Vector2(edge,0),Vector2(edge-260,720),Vector2(-400,720)]),Tokens.NIGHT)
+        canvas.draw_line(Vector2(edge-20,0),Vector2(edge-280,720),Tokens.MAGENTA,32)
     if state in ["offer","result"]:
         var x:=920.0 if state=="offer" else 720.0
         var hint:="ENTER / SPACE"
         if session.demo!=null:hint="AUTO IN %d"%maxi(1,ceili((DEMO_DRAW_DELAY if state=="offer" else DEMO_CLAIM_DELAY)-age))
-        canvas.draw_string(font,Vector2(x,670),hint,HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
+        canvas.draw_string(font,Vector2(x,670),L10n.text(hint),HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
     elif state=="spin":
-        canvas.draw_string(font,Vector2(28,690),"SPACE  SKIP",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
+        canvas.draw_string(font,Vector2(28,690),L10n.text("SPACE  SKIP"),HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.MUTED)
 
 func clear() -> void:
     var was_active:=active()

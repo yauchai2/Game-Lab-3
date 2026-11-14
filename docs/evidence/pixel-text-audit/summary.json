@@ -1,0 +1,22 @@
+{
+  "baseline": "67b8e3a7dcac2b905f3d326a16417e64ed50bbfc",
+  "preset": {
+    "pixel_intensity": 5,
+    "edge_hardness": 8,
+    "text_size_percent": 100
+  },
+  "font_asset_changes": [],
+  "runtime_changes": [
+    "godot/scripts/combat/ui/ui_theme.gd",
+    "godot/scripts/combat/ui/localization.gd",
+    "godot/scenes/street_whitebox.tscn"
+  ],
+  "passed": 87,
+  "failed": 0,
+  "suites": {
+    "native_pages_popups_tooltip": 43,
+    "language_glyphs_persistence": 21,
+    "fatal_warnings": 23
+  },
+  "scope": "Godot 4.7.2 Linux X11 dummy display, Compatibility Mesa llvmpipe, Dummy audio; real engine windows and raster captures. Not target Mac or human playtesting."
+}

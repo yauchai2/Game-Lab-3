@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "name": "Settings have English and Traditional Chinese choices",
+      "passed": true
+    },
+    {
+      "name": "Chinese body and title share the pixel fallback",
+      "passed": true
+    },
+    {
+      "name": "Opening subtitles use the same Chinese pixel face",
+      "passed": true
+    },
+    {
+      "name": "Native popup selection switches and saves the locale",
+      "passed": true
+    },
+    {
+      "name": "Changing language does not change fighter state",
+      "passed": true
+    },
+    {
+      "name": "Localized city pages preserve the profile",
+      "passed": true
+    },
+    {
+      "name": "Chinese typewriter advances when the translated line is complete",
+      "passed": true
+    },
+    {
+      "name": "Native pause button copy is Chinese",
+      "passed": true
+    },
+    {
+      "name": "Restart restores saved Traditional Chinese",
+      "passed": true
+    },
+    {
+      "name": "English remains selectable after restart",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 10,
+  "scope": "Native click/captures with semantic PopupMenu activation; late city pages use explicit best/funding fixtures, not earned progress."
+}

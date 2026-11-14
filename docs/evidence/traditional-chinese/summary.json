@@ -1,0 +1,52 @@
+{
+  "passed": 264,
+  "failed": 0,
+  "catalog_entries": 1034,
+  "reports": [
+    {
+      "report": "native.json",
+      "passed": 8,
+      "failed": 0
+    },
+    {
+      "report": "pack.json",
+      "passed": 4,
+      "failed": 0
+    },
+    {
+      "report": "regressions/verify_ability_core_rules/core-rules.json",
+      "passed": 75,
+      "failed": 0
+    },
+    {
+      "report": "regressions/verify_city_expansion_native/native.json",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "report": "regressions/verify_combat/verification.json",
+      "passed": 34,
+      "failed": 0
+    },
+    {
+      "report": "regressions/verify_ink_ui/page-checks.json",
+      "passed": 10,
+      "failed": 0
+    },
+    {
+      "report": "regressions/verify_remaining_integration/checks.json",
+      "passed": 70,
+      "failed": 0
+    },
+    {
+      "report": "rules.json",
+      "passed": 18,
+      "failed": 0
+    },
+    {
+      "report": "strict/strict.json",
+      "passed": 23,
+      "failed": 0
+    }
+  ]
+}

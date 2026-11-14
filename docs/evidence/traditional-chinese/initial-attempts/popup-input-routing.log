@@ -1,0 +1,32 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+ZH_NATIVE Settings have English and Traditional Chinese choices true
+ZH_NATIVE Actual native language dropdown switches locale false
+ERROR: Actual native language dropdown switches locale
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_traditional_chinese_native.gd:8)
+       [1] run (res://tools/verify_traditional_chinese_native.gd:37)
+       [2] frames (res://tools/verify_traditional_chinese_native.gd:11)
+ZH_NATIVE Changing language does not change fighter state true
+ZH_NATIVE Localized city pages preserve the profile true
+ZH_NATIVE Native pause button copy is Chinese false
+ERROR: Native pause button copy is Chinese
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_traditional_chinese_native.gd:8)
+       [1] run (res://tools/verify_traditional_chinese_native.gd:54)
+       [2] shot (res://tools/verify_traditional_chinese_native.gd:24)
+       [3] frames (res://tools/verify_traditional_chinese_native.gd:11)
+ZH_NATIVE Restart restores saved Traditional Chinese false
+ERROR: Restart restores saved Traditional Chinese
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_traditional_chinese_native.gd:8)
+       [1] run (res://tools/verify_traditional_chinese_native.gd:56)
+       [2] spawn (res://tools/verify_traditional_chinese_native.gd:26)
+       [3] frames (res://tools/verify_traditional_chinese_native.gd:11)
+ZH_NATIVE English remains selectable after restart true

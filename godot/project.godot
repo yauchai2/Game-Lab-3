@@ -7,10 +7,14 @@ boot_splash/image="res://assets/ui/ink/logo-source.png"
 boot_splash/bg_color=Color(0,0,0,1)
 run/main_scene="res://scenes/combat/street_fight.tscn"
 
+[autoload]
+
+GameLocale="*res://scripts/combat/ui/localization.gd"
+
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=540
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"

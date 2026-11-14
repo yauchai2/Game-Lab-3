@@ -9,11 +9,15 @@
       "passed": true
     },
     {
-      "name": "timeline is 18 seconds in six 3-second shots",
+      "name": "timeline follows the reference video: ends on the lid slam, nine shots",
       "passed": true
     },
     {
       "name": "begin owns the frame",
+      "passed": true
+    },
+    {
+      "name": "the old bike, speaker, wrench and black car are gone from the set",
       "passed": true
     },
     {
@@ -25,7 +29,7 @@
       "passed": true
     },
     {
-      "name": "each second maps to its shot",
+      "name": "each moment maps to its shot",
       "passed": true
     },
     {
@@ -33,11 +37,15 @@
       "passed": true
     },
     {
-      "name": "ZIP carries the case in on shot three",
+      "name": "the bench starts empty with ZIP behind it",
       "passed": true
     },
     {
-      "name": "ZIP and the collectors are absent from the city shot",
+      "name": "the case slides in from the left along the bench",
+      "passed": true
+    },
+    {
+      "name": "RIVET works the latches; HUSH, LOOP and the collectors are not in shot",
       "passed": true
     },
     {
@@ -45,11 +53,27 @@
       "passed": true
     },
     {
-      "name": "overhead reveal shows the open case",
+      "name": "both latches are thrown",
+      "passed": true
+    },
+    {
+      "name": "overhead reveal shows the open case with LOOP at the manifest",
+      "passed": true
+    },
+    {
+      "name": "ZIP's face is framed close with the collectors already walking",
       "passed": true
     },
     {
       "name": "three collectors walk in step",
+      "passed": true
+    },
+    {
+      "name": "the cut to the case turns it so the lid stands clear",
+      "passed": true
+    },
+    {
+      "name": "the collectors step forward on the shoe beats",
       "passed": true
     },
     {
@@ -93,7 +117,7 @@
       "passed": true
     },
     {
-      "name": "menu music is still silent for the reveal",
+      "name": "menu music is still silent for the stand-off",
       "passed": true
     },
     {
@@ -149,7 +173,7 @@
       "passed": true
     }
   ],
-  "passed": 37,
+  "passed": 43,
   "suite": "story_opening",
-  "total": 37
+  "total": 43
 }

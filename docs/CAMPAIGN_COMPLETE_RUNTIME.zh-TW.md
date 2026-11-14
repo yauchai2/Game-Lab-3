@@ -1,3 +1,5 @@
+> 最新畫面設定：[全遊戲含UI／文字已提高至1280×720](evidence/whole-game-720p/README.md)，覆蓋下文960；玩法範圍保持。
+
 # 完整短篇故事與技巧優先成長
 
 本輪把先前列出的主要未完機制接入正式STORY：主選單→45°安全城→六區18場→回城／成長→兩種巨型Boss→章節結局。沿用960×540、nearest、toon硬邊、bitmap UI。來源為codex/story-waves-m1／草稿PR #12，未合main或部署Web。

@@ -138,6 +138,7 @@
 
 - 2026-11-12 最新使用者要求實作所有既定ideas並技巧優先：現況docs/CAMPAIGN_COMPLETE_RUNTIME.zh-TW.md，覆蓋上一輪Boss／城市核心／新場景／完整短篇未做。六區18場／六章、兩種多階段巨型Boss、有限增援／重裝干擾隊長／危險地面／破箱連鎖／分支補給休息、五技能課程／12專屬招式、九核心真DRAW→EQUIP、工坊及裝備外觀；12原創Blender低模GLB可重建（使用者本輪允許生成模型），原Tripo保持。schema3保v2樹裝及局內進度並留.v2.bak。裝備直傷12%、條件總50%／parry60%、核心減傷／省能合併上限及Boss閉甲限制；裸裝四角／全故事正常輸入測例可過，九種極端裝攻擊spam敗於最終Boss，非真人／Mac／FPS驗收。證據evidence/campaign-complete。仍只推codex/story-waves-m1／草稿PR #12，不合main／Web。
 - 2026-11-12 使用者已授權實作VFX方案：COMBAT_VFX_RUNTIME.zh-TW.md覆蓋前輪planning-only。正式FIGHT／Demo／Run／SQUAD沿原創ink cels、五角骨骼短尾與真命中提示、36世界／18裝飾／32短尾／Canvas24優先池、短材質強閃及聲畫預算。來源GLB／判定／BGM保持，不恢復退役噪聲圖集；距離腳步備援非marker／IK。420項與同輸入玩法SHA／有聲前後片；Mac／真人／GPU待驗，LLB新附件仍未讀取，Web不更新。
+- 2026-11-12 黑衣人手槍（稀少遠程招）：見docs/BLACK_SUIT_GUN.zh-TW.md；規則唯一owner為enemies/gun_shot.gd，表現gun_presentation.gd，只AI使用，玩家黑衣人無槍；非真人／Mac驗證，Web不更新。
 - 2026-11-11 使用者要求故事先行／通關解鎖自由對戰、同鍵盤雙人、雙手柄：現況見 docs/LOCAL_VERSUS.zh-TW.md，主選單 6 項（STORY 首位、VERSUS 鎖定至第三站勝出），覆蓋前述「僅5主選項」。fight_controls.gd 為唯一輸入裝置 owner，單人鍵盤原路徑與 fight_simulation.gd 不改；通關旗標在既有 progression.cfg。豐富遊戲點子 docs/GAME_ENRICHMENT_IDEAS.zh-TW.md 只屬提案，不得當成已實作或已確認設定。實體手柄／鬼鍵／雙人手感未驗證。使用者確認只鎖對戰；AI DEMO 為測試用、正式不推出（入口待移除）。雙人對戰停用只給P1的能力抽取。此項由 Claude 對話在分支 claude/project-thread-xmgtx2 完成，基線 codex/combat-escalation-next 3389fa9，草稿PR回Codex分支，未合併；Web 不更新。
 - 2026-11-11 使用者提供開場影片／六格分鏡／18秒鏡頭表：現況見docs/STORY_OPENING.zh-TW.md。啟動後、主選單前的18秒即時3D開場，cinematic/story_opening.gd為唯一導演，無狀態sample(t)，clear須還原相機／街景／lens／score／duck。只在場景為current_scene時自動播，首次啟動旗標存story_opening.cfg，設定頁可重播；音樂只調音量不停transport，音效軌由tools/build_story_opening_audio.py重建，不用參考片音軌。第一拳與黑衣人上門短動畫留待「開始故事」，尚未實作。分支claude/project-thread-frl810草稿PR指向codex/combat-escalation-next，未合併、Web不更新。
 
@@ -145,7 +146,12 @@
 
 - 2026-11-12 最新據點更正：NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md覆蓋上一版粗模美術。使用者要求原圖／15秒附件動畫，採固定視角投影空場材質＋3D深度／真骨架／程序光煙電動作；不是全角度建築，不冒稱角色或動畫逐幀完美。移除接線大機、戰利品牆與站位框，HUD預設收起Tab展開；現有存檔經濟維持。新影片15.000秒，原始參考15.083不改；Tripo無必需件，選配清單另存。211回歸＋15strict，歷史粗模225項不可冒稱新結果；同分支PR #19，Web不更新。
 
-- 2026-11-13 本聊天最新投技更正：使用者要「完整摔投、打哂圈、真係柔道投技般」，不是抓取／釋放手勢與擊退。見docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md；攻守配對、轉髖／轉肩、對手離地翻身、落地受身才是驗收目標。Judo AnimSet／Grab & Throw／Player Motion只核對產品候選，未買／下載／接入，完整摔投未完成；付費原檔與可還原曲線採私有資產，不直接上公開repo。674為前輪其他動作檢查，不可當此目標已驗收，Web不更新。
+
+## 2026-11-13 全分支整合來源
+
+- 完整來源紀錄：docs/integration-history/story-waves-m1/AGENTS.md
+- 完整來源紀錄：docs/integration-history/four-fighter-motion-plan/AGENTS.md
+
 
 - 2026-11-13 本聊天最新要求「用免費的資源做」並追問Mixamo，覆蓋前述付費候選建議。優先核實Shoulder Throw, Aggressor／Victim，官方FBX與同步尚未取得／驗證，不用第三方索引冒稱官方素材已到手；完整摔投仍未完成，勿自行採購。見docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md最新節。
 
@@ -158,3 +164,19 @@
 - 2026-11-14 最新使用者要求Mixamo找更多動作並替代全部生硬動作，下載不成可列名由使用者提供。見MIXAMO_REPLACEMENT_PLAN／FIRST_BATCH：49文字索引候選、P0首19，不是已驗官方預覽或已錄用。出招／步法／防禦／空地／受擊起身／演出均在範圍，連同blend／root／stride／支撐腳修正；LOOP來源需改編。肩摔已收到繼續retarget，不能因MCP認證停其處理；本輪未改runtime，main／Web不動。
 
 - 2026-11-14 使用者要求繼續完成肩摔：PAIRED_SHOULDER_THROW覆蓋前輪未接入。四角／普通黑衣共用真配對，61–121裁切、106落地一次傷害、腕部IK／真skin貼地與共享root、回復與中斷／群戰鎖定；巨型Boss保原規則。180新＋674回歸、16strict及12秒真session片有證據，非Mac／真人／FPS。私有JSON不進Git；使用者Pull後另執行install_mixamo_throw.py或從兩FBX重建，缺檔仍fallback，不能聲稱公開分支自帶曲線。其他49項仍待素材，main／Web不動。
+
+- 2026-11-13 使用者要求全合main並收尾：現況見docs/REMAINING_WORK_INTEGRATION.zh-TW.md。來源日常集中main；5主選項、P1–P3、平地兩骨接地／有界轉髖與共用基礎profile已做。showcase共用必須shared_profile明確opt-in，裝備／NPC導演取景不自動跟隨；平地IK不當任意地形或simulation root。851項最終／19 strict及1,800tick等價，非本機／真人／手柄／GPU驗收。完整Mixamo免費配對摔投仍未取得官方原檔、未實作，grab保持過渡，勿採購或使用無授權鏡像；原GLB／存檔／BGM與Web須明確要求才發佈保持。
+
+- 2026-11-13 最新要求「再加強像素感，鋸齒要清晰」：字圖20px，alpha只0／255、128閾值；display加1來源像素字距。覆蓋24px／三階版，不恢復原14／16px及96過粗閾值。720p／nearest及無AA場景保持，繁中fallback未改。證據docs/evidence/crisp-pixel-type；同branch／PR #12，不合main／Web。
+
+- 2026-11-13 最新已接受字體像素強度5／邊緣硬度8／文字大小100%。pixel-type-preset.json為字圖生成來源，5→24px、8→80%二值＋20%coverage；保持display字距／720p／原字級，不恢復較粗20px完全硬邊。這是相對美術尺度，非遊戲內滑桿，其他文字百分比需先做UI重排。證據docs/evidence/pixel-preset-5-8；同branch／PR #12，不合main／Web。
+
+- 2026-11-13 使用者已明確要求「好，推上main」：以main f69fc9f合併story-waves-m1 f4f0742，保留main其他進度，5／8／100成為main正式字體設定。此條覆蓋本聊天先前不合main的歷史限制；公開Web仍不更新。121項整合／UI／城市／strict通過，證據docs/evidence/main-pixel-preset-merge；既有Mac／真人／實體手柄／配對投技限制保持。
+
+- 2026-11-13 最新繁中實作：設定English／繁體中文可保存重啟，禁止再強制language=en。TranslationServer+GameLocale autoload、locale_text安全preload helper、1034條zh_TW.json處理原生及Canvas文字／量測／動態格式；不翻譯save ID／simulation。已中文名稱不可再重複翻譯，故事typewriter按中文長度；FIT VIEW為全覽、FIT為穿戴。AfterhoursUIHK補catalog字形、保留OFL與拉丁5／8／100，export必須打包raw JSON。264項見docs/evidence/traditional-chinese，品牌／按鍵／曲名及內嵌美術字樣保留。來源同步main，不部署Web；Mac／真人／硬件驗收仍不冒稱。
+
+- 2026-11-13 最新要求中文亦5／8／100：RadioChinese.tres→RadioPixelChinese.fnt為所有中文runtime fallback，正文／標題／開場與3D夜班牌共用；不要恢復AfterhoursUIHK／StoryOpeningHK向量平滑fallback。原OTF保留作建置來源。24px／硬度8、UI字級與進位寬度保持，拉丁atlas/fnt位元組不改；3D Label nearest。subset_ui_font.py自動接續build_subtle_pixel_fonts.py，新增翻譯必須補兩者，避免缺字。918非ASCII字形，72項驗證docs/evidence/chinese-pixel-preset；來源main，Web未部署。
+
+- 2026-11-14 文字清晰度覆核：ui_theme.configure_viewport由GameLocale套root及新Viewport，明確nearest、缺theme的Window補共用tokens；PopupMenu／TooltipLabel等明確BODY、popup無描邊，探索Help補BODY。值4是PARENT_NODE，不是linear；不能只看root／get_theme_font就宣稱popup render正常。字圖與5／8／100保持，87項見docs/evidence/pixel-text-audit。來源main，Web未部署；非使用者Mac驗收。
+
+- 2026-11-14 本任務肩摔PR #37保持draft，已將main f9576c5同步至任務分支解相容衝突，保留繁中／5-8-100／接地／槍械；不修改main或Web。肩摔180新與674回歸再過，私有曲線另安裝。使用者新上傳21FBX＋Walking.glb正在檢查，未全部錄用／接入，原檔只私有保存。

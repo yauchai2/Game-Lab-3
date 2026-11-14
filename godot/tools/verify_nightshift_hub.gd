@@ -62,7 +62,7 @@ func verify(h:Node) -> void:
     var before:Dictionary=h.campaign.profile.data.duplicate(true)
     h.hero.position=h.STATIONS[5];h._process(.016)
     var e:=InputEventKey.new();e.keycode=KEY_E;e.physical_keycode=KEY_E;e.pressed=true;h._input(e)
-    check("E at shop opens the real purchase and crafting interface",h.page=="SHOP" and h.panel.visible and h.stack.find_children("*","Button",true,false).any(func(b:Button)->bool:return b.text.begins_with("DRAW SELECTED")))
+    check("E at shop opens the real purchase and crafting interface",h.page=="SHOP" and h.panel.visible and h.stack.find_children("*","Button",true,false).any(func(b:Button)->bool:return b.get_meta("act","")=="heal"))
     check("visiting facilities does not award money XP or consume a core",before==h.campaign.profile.data)
     await shot("03-shop")
     h.close_panel();h.hero.position=Vector3(-7.0,.0,2.5)

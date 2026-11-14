@@ -1,5 +1,7 @@
 extends Node3D
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 ## Entry and bounded combat accents share one lens; KO has higher ownership.
+const Tokens=preload("res://scripts/combat/ui/ui_theme.gd")
 const INTRO_SECONDS:=2.8
 var session:Node3D
 var intro:=false
@@ -117,22 +119,22 @@ func sample_intro() -> void:
     lens.show()
 func draw(canvas:Control) -> void:
     if not intro:return
-    var ink:=Color("13101e");var color:=Color("c4ff00")
+    var ink:=Tokens.INK;var color:=Tokens.LIME
     canvas.draw_rect(Rect2(0,0,1280,35),ink);canvas.draw_rect(Rect2(0,650,1280,70),ink)
-    canvas.draw_string(session.hud.font,Vector2(30,695),"ENTER / SPACE  SKIP    ESC  PAUSE",HORIZONTAL_ALIGNMENT_LEFT,-1,24,Color("ded6eb"))
+    canvas.draw_string(session.hud.font,Vector2(30,695),L10n.text("ENTER / SPACE  SKIP    ESC  PAUSE"),HORIZONTAL_ALIGNMENT_LEFT,-1,24,Tokens.PAPER)
     if age<.35 or age>=1.85:
         var title:="ROUND %02d"%session.presentation_round()
-        var width:float=session.hud.bold.get_string_size(title,HORIZONTAL_ALIGNMENT_LEFT,-1,90).x
-        canvas.draw_string(session.hud.bold,Vector2(640-width*.5+5,430),title,HORIZONTAL_ALIGNMENT_LEFT,-1,90,ink)
-        canvas.draw_string(session.hud.bold,Vector2(640-width*.5,424),title,HORIZONTAL_ALIGNMENT_LEFT,-1,90,color)
-        if age<.35:canvas.draw_string(session.hud.bold,Vector2(582,520),"VS",HORIZONTAL_ALIGNMENT_LEFT,-1,68,Color("ff2789"))
+        var width:float=session.hud.bold.get_string_size(L10n.text(title),HORIZONTAL_ALIGNMENT_LEFT,-1,90).x
+        canvas.draw_string(session.hud.bold,Vector2(640-width*.5+5,430),L10n.text(title),HORIZONTAL_ALIGNMENT_LEFT,-1,90,ink)
+        canvas.draw_string(session.hud.bold,Vector2(640-width*.5,424),L10n.text(title),HORIZONTAL_ALIGNMENT_LEFT,-1,90,color)
+        if age<.35:canvas.draw_string(session.hud.bold,Vector2(582,520),L10n.text("VS"),HORIZONTAL_ALIGNMENT_LEFT,-1,68,Tokens.MAGENTA)
     else:
         var side:=0 if age<1.10 else 1
         var id:int=session.fighters[side].character_index
         var text:String="P%d / "%int(side+1)+["ZIP","RIVET","HUSH","LOOP","BLACK SUIT"][id]
-        canvas.draw_string(session.hud.bold,Vector2(62,605),text,HORIZONTAL_ALIGNMENT_LEFT,-1,74,[Color("00e9ef"),Color("ff9824"),Color("ff3d97"),Color("c4ff00"),Color("a888ff")][id])
+        canvas.draw_string(session.hud.bold,Vector2(62,605),L10n.text(text),HORIZONTAL_ALIGNMENT_LEFT,-1,74,Tokens.TEAL if side==0 else Tokens.MAGENTA)
         if side==1 and not session.intro_line.is_empty():
-            canvas.draw_string(session.hud.font,Vector2(62,642),session.intro_line,HORIZONTAL_ALIGNMENT_LEFT,1150,28,Color("ded6eb"))
+            canvas.draw_string(session.hud.font,Vector2(62,642),L10n.text(session.intro_line),HORIZONTAL_ALIGNMENT_LEFT,1150,28,Tokens.PAPER)
 
 func safe_framing() -> bool:
     if not framing.fits(session.camera,session):return false

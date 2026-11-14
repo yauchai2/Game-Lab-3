@@ -26,35 +26,33 @@ Aggressor固定為施技者，Victim為被摔者；兩段FBX已到手，不再�
 
 ## 2026-11-13：免費限制覆蓋較早付費候選建議
 
-使用者指定「用免費的資源做」並追問Mixamo，優先核實Shoulder Throw攻守配對。Adobe免費商用FAQ與第三方目錄名稱分開記錄；未有官方FBX／實測，不冒稱已取得／已配對，不採購付費包。詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)最新節。
+## 2026-11-14：選單與彈出文字清晰度覆核
 
-## 2026-11-13：投技驗收改為攻守配對完整柔道翻摔
+修正原生PopupMenu／TooltipLabel獨立Window的主題及取樣繼承：新Viewport明確nearest、Window缺主題時補共用theme，相關文字明確BODY並移除PopupMenu舊4px描邊。探索Overlay/Help亦補像素字體。5／8／100、字圖與字級保持。87項（原生43／語言21／strict23）通過，包含設定與P1/P2裝置下拉選單的embedded／獨立視窗、真hover提示框、主介面／城市六站／天賦／故事／HUD／暫停／結算。圖及限制見[evidence/pixel-text-audit](evidence/pixel-text-audit/README.md)；雲端Linux4.7.2，非使用者Mac驗收，來源同步main，Web不更新。取樣值4是繼承而非linear，不可只看root nearest便判斷popup已清晰。
 
-使用者明確要「完整摔投、打哂圈、真係柔道投技般」。依[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)，以抓取、破壞重心、轉髖、對手離地翻身、落地受身作目標；現有grab手勢與擊退不是完成。優先評估Judo AnimSet的8組atk/hit，翻滾誇張型另看Grab & Throw，Player Motion列為待試單組候選。清單／格式核實不等於已看完影片／取得／授權散佈／Godot可用；沒有購買或下載。本公開repo只存候選與接入程式，付費原檔及可還原曲線留私有依賴。完整摔投要配對simulation root／共同時鐘與一次落地結算，不沿用站立髖高裁切假造翻摔。
+## 2026-11-13：中文字體亦套用5／8／100
 
-## 2026-11-13：空地交接採來源遮罩與單一profile
+中文原本仍經向量fallback。本輪新增918字形的RadioPixelChinese／RadioChinese，正文／標題、開場字幕與3D中文字牌改用同一像素preset：24px格、80%二值＋20%coverage，原UI字級不改、繁中字元進位相同，拉丁字圖四檔不改。3D Label採nearest。subset_ui_font.py自動接續字圖生成，未來新增翻譯需一起補字。72項語言／原生／strict／英文／atlas／PCK檢查通過，見[evidence/chinese-pixel-preset](evidence/chinese-pixel-preset/README.md)。來源同步main，Web不部署。
 
-依[FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md](FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md)，沿現有Quaternius／UAL2／KayKit CC038片段，不把新程序修正或跳躍腿遮罩稱為專用空中mocap。StreetMotion優先派送Transit，骨架取樣／遮罩／有界修正後即返回，Neon不再覆寫已擁有pose；新owner不再套共用整人自轉、lunge或非等比放大。FX選肢必須可讀原sim字典，不能依賴呈現副本欄位。ZIP真確認segment共用，不複製兩套；受擊按新flash重啟，空中phase變化不重播受擊。原空反hold／ricochet／KO／過場owner保留。grab只接抓取釋放手勢與真結算，成對動捕與接觸約束明列待辦；原判定／資源／BGM／來源／存檔與Web不改。
+## 2026-11-13：繁體中文語言已加入
 
-## 2026-11-13：四角局部聲光profile沿原演出owner
+設定最上方新增English／繁體中文，選擇保存並於重啟恢復。1034條共用catalog涵蓋選單／HUD／教學、城市六站、成長／裝備／合約／核心、六章及各結局。原生控制項與Canvas繪字統一，中文字體補齊，動態數字及百分比／角色佔位符保持；故事打字按中文長度，天賦全覽與穿戴分開譯。拉丁字體5／8／100、simulation、資料ID與存檔schema保持。264項規則／原生／英文回歸／strict／PCK檢查通過，見[evidence/traditional-chinese](evidence/traditional-chinese/README.md)。品牌、按鍵、音樂名及原圖內文字保留，沒有新增配音；來源同步main，Web未部署。
 
-採[FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md](FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md)：用同色仍可區分的雙箭／壓印／細切／方波替代四角共用星爆；命中後release及Neon也共用profile，避免舊效果蓋住差異。鏡頭只改既有signature控制器參數與兩人界限；不另加camera／fullscreen owner。真事件掌管資源與命中，LOOP瞬態方端點不是遊戲節點。PCM原創材質層疊既有CC0實錄主體，固定種子、不用玩法全域隨機源；音樂transport與原始模型／動畫來源保持。sprite警告明確floor索引，保原圖集結果。Web不更新。
+## 2026-11-13：使用者授權字體最新設定合入main
 
-## 2026-11-13：HUSH／LOOP以單一地面owner編排，握棍與節點事件分工
+依「好，推上main」，以main f69fc9f合併story-waves-m1 f4f0742。main原已含352c524及其他分支更新；本輪補入最後兩輪字體設定，保留5／8／100及現有main的介面／據點／開場／角色動作。只有文件衝突，兩邊歷史保持。121項最終檢查通過（整合70／Ink10／城市22／strict19），log無ERROR／SCRIPT ERROR，見[evidence/main-pixel-preset-merge](evidence/main-pixel-preset-merge/README.md)。此授權覆蓋以下舊「不合main」指示；來源同步main，公開Web不更新。既有真人／Mac／硬件及配對投技限制保持。
 
-使用者要求下一階段；依[HUSH_LOOP_MOTION.zh-TW.md](HUSH_LOOP_MOTION.zh-TW.md)，沿已核對CC0來源擴7個單手／防守片段與一個拳擊反射。HUSH以短護架、直拳、真撤步／sample支撐姿態為主，LOOP單手刺掃劈與近遠點指令；不把適配單手武器片段稱為專用eskrima動捕。程序修正僅屬同owner內有界撥擋／上撩／手勢，Neon及舊Cannon層不覆寫。手指用既有fist遮罩，杆移掌心；BatonTip由當前骨矩陣求值避免frame lag，節點圖形／傷害仍由真事件掌管。原模型／判定／存檔／BGM／Web保持。全四角已有地面owner，不代表空戰／投技／foot IK或整份藝術計劃完成。
+## 2026-11-13：數值化字體設定5／8／100
 
-## 2026-11-13：採已核實CC0全身踢擊與勾拳，時間跟真確認
+使用者接受像素強度5、邊緣硬度8、文字大小100%。設定保存在godot/assets/fonts/pixel-type-preset.json，生成器實際讀取；強度以34−2×數值映射字圖大小（5→24px），硬度8為80%二值輪廓＋20%原字形coverage，字級／布局維持原大小。保留display字距，720p／nearest與場景保持。這是本專案相對美術尺度，非客觀畫質單位或遊戲內設定滑桿；未實作任意文字百分比的自動重排。畫面及驗證見[evidence/pixel-preset-5-8](evidence/pixel-preset-5-8/README.md)。仍同branch／PR #12，不合main／Web。
 
-使用者要求繼續；依[STREET_MOTION_LIBRARY.zh-TW.md](STREET_MOTION_LIBRARY.zh-TW.md)從固定可讀鏡像取得官方標示CC0的KayKit1.1及UAL2 Standard。只散佈轉接動畫曲線，保留作者／授權／來源hash，不取鏡像其他網格。ZIP用完整踢擊及全身解剖反射，RIVET用新hook／matching recovery；左右腿與FX socket共用確認進度選擇，不改命中或資源。RIVET攻擊保留固定站姿遮罩，不能當完整轉髖／IK；launcher為有界程序軌跡修正，未偽稱獨立來源uppercut。空戰／死亡／過場保原owner。測試改固定指令simulation tick比對，錄影須單獨跑並檢查不被焦點自動暫停，不能將受focus影響的Demo wall-loop當等價證明。原GLB、判定、存檔、BGM及Web保持。
+## 2026-11-13：加強像素與清晰階梯鋸齒
 
-## 2026-11-13：先以現有可散佈拳擊片段修RIVET層衝突
+依使用者最新要求，文字字圖24px→20px，alpha三階→二值0／255，去除灰色柔邊；display每字多一個來源像素間距，防止粗斜字黏連。採128中性切割而非最初96加粗閾值，保留字腔。720p／nearest、字級／布局／繁中fallback與無AA toon場景保持。來源tools/build_subtle_pixel_fonts.py及manifest可重建；畫面及檢查見[evidence/crisp-pixel-type](evidence/crisp-pixel-type/README.md)。仍同branch／PR #12，不合main／Web。
 
-使用者要求繼續製作；依[RIVET_MOTION_SLICE.zh-TW.md](RIVET_MOTION_SLICE.zh-TW.md)先在正式共用visual落RIVET地面五招。保留既有CC0來源，使用source stance遮罩穩住骨盆／腿，拳擊全身片段上身曲線接分段時序；明確單一pose owner，舊Neon／air／kick層不重寫。這是可替換的第一輪管線，不冒稱IK、全身mocap、四角全招完成。後續正式外部素材先核Godot與公開repo權利，完整轉髖／步法替換固定腿遮罩；玩法權威不動。原GLB、存檔、音樂及公開Web保持。
+## 2026-11-13：收尾與main整合
 
-## 2026-11-13：四英雄動作先於特效，外部素材採樣後轉接（規劃）
-
-使用者要求四角招式、動作、特性與戰鬥畫面有明顯區別；依[FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md](FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)採ZIP路線踢技／RIVET預壓巨拳／HUSH留白截擊／LOOP短棍接點。保留現有核心資源與原始GLB，先完整全身motion、接地與contact，再做VFX／鏡頭／聲音。外部來源分工：Mixamo基底、AccuRIG條件式綁骨（非動作庫）、ActorCore動作、Rokoko素材／補錄、Fab完整戰鬥包；Godot格式與公開GitHub原檔／衍生授權必須合格才錄用。來源入口本輪proxy403，所有具體商品與新動作尚未錄用。文件不構成已完成動畫或新採購；不改判定／進度／BGM持續播放契約，不發Web。先RIVET正式FIGHT切片驗證管線，保留黑衣人index4相容。
+使用者明確要求所有更新合main並處理未完成工作。採現有owner整合，不新增另一套玩法／時鐘。接地使用有界平地兩骨IK與視覺骨盆補正，不移動simulation root；showcase共用英雄profile須明確opt-in，保留裝備／NPC導演姿態及不露臉取景。主選單5項，正式城市STORY單一入口；舊練習／SQUAD／Legacy Run集中LABS，AI DEMO只留F12。音量0只靜音不停止transport。免費配對投技仍需官方素材，不以現有grab或付費候選充數；原GLB／存檔／Web規則保持。
 
 ## 2026-11-12 開場貼近參考影片
 
@@ -517,3 +515,13 @@ LOOP輕拳連段的原5／6擊退使第三段無法銜接，正式改2.8／3.4�
 使用者回報上一版差距大，要求照指定圖、移除無關物件，並給15.083秒動畫。正式入口改用reference_workshop.gd：固定鏡頭投影空場貼圖／3D深度片與可走地面、既有四英雄／Dealer骨架、活動橙色臂、掃燈／光斑／煙／電光／閘門開口與門內剪影；Loop移向機器後回位。移除接線大機／戰利品牆／站位框，天賦綁LOOP區，Tab展開HUD。這是**2.5D／3D混合固定視角方案，不是全角度實體建築**；人物外形／姿態仍有差異，不稱逐像素或逐來源幀完美。詳[NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md](NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。
 
 [15秒原生預覽與對照](evidence/nightshift-reference/README.md)：450幀／30fps，15.000秒；輸出配既有menu.ogg低音量，未用附件音軌。211回歸＋15strict通過，accepted無ERROR／SCRIPT ERROR；另有時間線採樣與六站／F2檢查。原Tripo不改、schema3／戰役經濟保持。Tripo必需0件，若做全角度／人物輪廓精修，優先Dealer與指定英雄，再DJ台／音箱／機器殼；具體規格見references/nightshift-hub/TRIPO_REQUIREMENTS.zh-TW.md。只更新codex/nightshift-hub／草稿PR #19，未發Web；Mac／真人仍待驗。
+
+
+## 2026-11-13 全分支整合來源
+
+- 完整來源紀錄：docs/integration-history/story-waves-m1/docs/DECISIONS.md
+- 完整來源紀錄：docs/integration-history/four-fighter-motion-plan/docs/DECISIONS.md
+
+## 2026-11-13：免費限制覆蓋較早付費候選建議
+
+使用者指定「用免費的資源做」並追問Mixamo，優先核實Shoulder Throw攻守配對。Adobe免費商用FAQ與第三方目錄名稱分開記錄；未有官方FBX／實測，不冒稱已取得／已配對，不採購付費包。詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)最新節。

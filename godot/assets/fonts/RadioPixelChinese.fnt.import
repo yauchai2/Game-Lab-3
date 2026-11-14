@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://c4ox5imieiyl1"
+path="res://.godot/imported/RadioPixelChinese.fnt-652c026a9fe7ff3c5a81d6e8715bb290.fontdata"
+
+[deps]
+
+source_file="res://assets/fonts/RadioPixelChinese.fnt"
+dest_files=["res://.godot/imported/RadioPixelChinese.fnt-652c026a9fe7ff3c5a81d6e8715bb290.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

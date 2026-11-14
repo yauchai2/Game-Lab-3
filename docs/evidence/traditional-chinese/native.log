@@ -1,0 +1,13 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+ZH_NATIVE Settings have English and Traditional Chinese choices true
+ZH_NATIVE Native popup selection switches and saves the locale true
+ZH_NATIVE Changing language does not change fighter state true
+ZH_NATIVE Localized city pages preserve the profile true
+ZH_NATIVE Chinese typewriter advances when the translated line is complete true
+ZH_NATIVE Native pause button copy is Chinese true
+ZH_NATIVE Restart restores saved Traditional Chinese true
+ZH_NATIVE English remains selectable after restart true

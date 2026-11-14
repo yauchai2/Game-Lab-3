@@ -1,0 +1,16 @@
+[
+  {
+    "font": "Body",
+    "alpha_levels": [
+      0,
+      255
+    ]
+  },
+  {
+    "font": "Display",
+    "alpha_levels": [
+      0,
+      255
+    ]
+  }
+]

@@ -88,3 +88,5 @@ func _stamp(s:RefCounted) -> void:
         f.x=lerpf(starts[i],anchor+p.x,clampf(float(age)/6.0,0,1))
         f.y=0.0;f.face=int(face) if i==owner else -int(face)
         f["paired_throw"]={"serial":serial,"role":role,"source_frame":frame,"age":age,"face":face,"depth":p.z,"recover":clampf(float(age-CONTACT_TICKS)/RECOVERY_TICKS,0,1),"corpse":false}
+    if age>=CONTACT_TICKS:
+        for i in 2:s.fighters[i].face=1 if s.fighters[1-i].x>=s.fighters[i].x else -1

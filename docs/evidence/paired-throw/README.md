@@ -9,8 +9,8 @@
 - 回歸：transit216、street90、counter122、fighter style51、rivet19、service rules46、grounded death104、ink FX26，合計674；各JSON在本目錄。額外squad35、black suit35。原「Throw beats RIVET armor」即時stun斷言改驗捕捉及落地後傷害，保留原裝甲被投技打破的契約。
 - [資產manifest](asset-manifest.json)只有來源／衍生SHA、裁切與私有安裝位置，不含原曲線。
 
-新四角抽樣最大手腕間距0.031872m；蒙皮最小Y約0.009998m，落地目標0.01m。原始動作在source 84起有倒轉，runtime每個角色及朝向均另驗head低於hips。這不是手指抓布、衣物零穿插、動態地形足IK、巨型Boss摔投或360°整圈翻身驗收。
+新四角抽樣最大手腕間距0.025549m；蒙皮最小Y約0.009998m，落地目標0.01m。原始動作在source 84起有倒轉，runtime每個角色及朝向均另驗head低於hips。這不是手指抓布、衣物零穿插、動態地形足IK、巨型Boss摔投或360°整圈翻身驗收。
 
 首次把需要frame_post_draw的舊視覺套件放headless會等待／出Dummy材質錯誤，已停掉並在原生顯示重跑。新增正式KO fixture最初未等首畫格便換場／退出有texture釋放錯誤；按真渲染生命週期等待首繪、逐段process及清理後33項乾淨完成，沒有把前次錯誤日誌當通過證據。
 
-Linux Godot4.6.3 Compatibility／llvmpipe，非Mac／真人／實體控制器／目標GPU性能驗收。錄製耗時約68秒／12秒影片，Movie Writer固定FPS不是即時表現；音訊經AAC解碼量測峰值約-5.41dBFS，非靜音、無削波，但未人耳聆聽。main／公開Web未更新。
+Linux Godot4.6.3 Compatibility／llvmpipe，非Mac／真人／實體控制器／目標GPU性能驗收。錄製耗時約84秒／12秒影片，Movie Writer固定FPS不是即時表現；音訊經AAC解碼量測峰值約-5.41dBFS，非靜音、無削波，但未人耳聆聽。main／公開Web未更新。

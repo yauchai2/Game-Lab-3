@@ -1,0 +1,92 @@
+{
+  "catalog_entries": 1034,
+  "checks": [
+    {
+      "name": "English interface remains unchanged",
+      "passed": true
+    },
+    {
+      "name": "Traditional Chinese menu copy",
+      "passed": true
+    },
+    {
+      "name": "Formatted encounter retains its numbers",
+      "passed": true
+    },
+    {
+      "name": "Formatted contract retains both counters",
+      "passed": true
+    },
+    {
+      "name": "Repeated printf placeholders preserve order",
+      "passed": true
+    },
+    {
+      "name": "Percent signs survive formatting",
+      "passed": true
+    },
+    {
+      "name": "Generated item quality and slot names translate",
+      "passed": true
+    },
+    {
+      "name": "Underlying item IDs and key codes stay stable",
+      "passed": true
+    },
+    {
+      "name": "Mixed story speakers and full lines translate",
+      "passed": true
+    },
+    {
+      "name": "Named story placeholders resolve after inserting the hero",
+      "passed": true
+    },
+    {
+      "name": "Native controls use the shared TranslationServer",
+      "passed": true
+    },
+    {
+      "name": "Already-localized names are not translated twice",
+      "passed": true
+    },
+    {
+      "name": "Uppercase native buttons use the same copy",
+      "passed": true
+    },
+    {
+      "name": "Bundled Chinese font covers every catalog Han character",
+      "passed": true
+    },
+    {
+      "name": "Chinese runtime fallback is bitmap rather than MSDF",
+      "passed": true
+    },
+    {
+      "name": "Chinese pixel font preserves full-size text advances",
+      "passed": true
+    },
+    {
+      "name": "All authored campaign dialogue and ending lines have full translations",
+      "passed": true
+    },
+    {
+      "name": "World text keeps the shared pixel face and nearest sampling",
+      "passed": true
+    },
+    {
+      "name": "Language choice saves and reloads",
+      "passed": true
+    },
+    {
+      "name": "English can be restored and saved",
+      "passed": true
+    },
+    {
+      "name": "Existing native controls restore English",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "missing_glyphs": [],
+  "passed": 21
+}

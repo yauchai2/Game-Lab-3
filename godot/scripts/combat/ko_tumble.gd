@@ -1,4 +1,5 @@
 extends RefCounted
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 ## Presentation-only knockout flight: freeze, launch away from the winner, mid-air
 ## backflip, hard landing, bounce and slide to rest. Single owner of the KO body
 ## path and its screen-space accents. It never touches simulation state; it only
@@ -123,5 +124,5 @@ func draw(canvas: Control, session: Node3D) -> void:
         var fade: float = clampf((1.15 - word_age) / .25, 0.0, 1.0)
         var spot := Vector2(640.0 - size * .95, 190.0)
         var shift := Vector2(7, 7)
-        canvas.draw_string(session.hud.bold, spot + shift, "K.O.", HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(ink, fade))
-        canvas.draw_string(session.hud.bold, spot, "K.O.", HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(paper, fade))
+        canvas.draw_string(session.hud.bold, spot + shift,L10n.text( "K.O."), HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(ink, fade))
+        canvas.draw_string(session.hud.bold, spot,L10n.text( "K.O."), HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(paper, fade))

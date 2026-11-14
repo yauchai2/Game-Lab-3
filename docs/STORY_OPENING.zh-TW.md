@@ -1,18 +1,51 @@
-# 開機劇情開場（18 秒六鏡，即時 3D）
+# 開機劇情開場（約 16 秒，照參考影片分鏡，即時 3D）
 
 2026-11-11，依使用者提供的參考影片、六格分鏡及 18 秒鏡頭表製作。分支 `claude/project-thread-frl810`，草稿 PR 指向 `codex/combat-escalation-next`（基線 e725c99）。未合併、未更新公開 Web。
 
 ## 流程
 
-啟動遊戲 → 18 秒開場（可跳過）→ 主選單 → 開始故事 → 第一章。
+啟動遊戲 → 約 16 秒開場（可跳過）→ 主選單 → 開始故事 → 第一章。
 
 - 只在「這個場景就是正在執行的遊戲」時自動播放（`get_tree().current_scene==self`），工具／測試自行 instantiate 場景時仍直接進主選單，既有測試不受影響。
 - 預設只在第一次啟動播放，看完或跳過後寫入 `user://neon_lab/story_opening.cfg`（與 progression.cfg 同目錄、獨立檔案，不改 XP 存檔格式，也不與 PR #8 的 `story_cleared` 衝突）。`story_opening_every_boot=true` 可改成每次啟動都播。
 - 主選單 FREE PLAY 頁的 `WATCH OPENING` 可隨時重看（原本埋在 SETTINGS 最底，已移走，不重複放）。看完回主選單。
 - Enter／Space 跳過，Esc 暫停／恢復，F2 即時切換減少特效，M 靜音。開場期間其他按鍵不會啟動任何模式。
-- 「真正第一拳」留給之後「開始故事」的黑衣人上門短動畫，本輪未做。
+- 「真正第一拳」（影片後段的打鬥）留給之後「開始故事」的黑衣人上門短動畫，本輪未做。
 
-## 六個鏡頭
+## 現行版本：約 16 秒、照參考影片分鏡（2026-11-13，v5）
+
+Alan 說開場「沒有完全 follow 03e5fa13 影片」，要求盡量完美復刻。查證後原因是：之前的 18 秒六鏡表（城市俯衝、機車、音響、黑車、漫畫字）跟影片根本是兩個不同的故事；影片是 **車房工作台 → 手提箱滑入 → 開箱 → 黑衣人上門 → 合箱 → 打起來**。v5 把導演、場景與音樂重排成影片順序，18 秒表的城市俯衝、黃昏四人生活、黑車全部拿走。
+
+| 時間 | 鏡頭（對應影片時間） | 畫面 | 聲音 |
+|---|---|---|---|
+| 0–1.3 | 工作台後的 ZIP（0.0–0.7） | 鏡頭在車房內朝街看，ZIP 站在桌後逆光；RIVET 在左緣；手提箱從左邊滑上桌面，塵煙 | 小收音機逐漸清楚，箱子拖行、落桌 |
+| 1.3–2.6 | 箱前開鎖（1.3–2.0） | 貼近箱面，RIVET 橙色手套扳開箱扣。RIVET：「吓！？」 | 兩下箱扣、箱蓋彈起 |
+| 2.6–4.5 | 開箱俯拍（2.7–4.0） | 正上方看泡棉槍位：兩把槍、消音器、橙色彈匣、文件夾板；LOOP 的手點文件、抽走。LOOP：「……我買音響喎。」 | 歌曲沉到地板下，紙張、彈匣聲 |
+| 4.5–5.0 | ZIP 抬頭（4.7） | ZIP 面部特寫，傾斜，眼神看向車房門，背景已有黑衣人走近 | 抽空半秒、刮碟倒帶、升調 |
+| 5.0–6.75 | 黑衣人上門（5.3–6.7） | ZIP 肩後越肩鏡頭，三人沿街走來、停下、領頭拉手套；LOOP 綠髮在右下角 | 硬切在 drop 上，節拍回來 |
+| 6.75–9.0 | 從箱內看出去（7.3–9.0） | 硬切到箱緣低位：箱蓋站在右緣、槍在前景、ZIP 背影、門外三人。LOOP：「開工？！」ZIP：「退貨。」 | 6.75 秒 tape stop 音樂抽走，只剩燈管閃爍與心跳 |
+| 9.0–12.0 | 逼近 | 門口貼地側拍三人、鞋踏兩下（低角）、推近領頭人墨鏡與拉手套 | 無節拍，鞋、手套變脈衝，低頻上升 |
+| 12.0–13.0 | 回到桌邊、合箱（8.7–9.3） | 桌後推近門口三人；ZIP 手按箱蓋；鏡頭轉到箱上方，蓋子壓下，蓋面現出 AFTERHOURS 字樣（遊戲自己的 logo 貼圖，不是新文字） | 脈衝越來越密，合箱重擊 |
+| 13.0–13.12 | 黑場 → 主選單 | 黑場定格，直接交給主選單（它自己有 AFTERHOURS 標題） | 標題重擊接第二次 drop 在主選單上方收尾，主選單曲淡入 |
+
+**節奏（Alan 2026-11-13：「影片有點太快」）**：影片原本約 1 秒一鏡太趕。導演仍用緊湊的「作者時間」寫鏡頭，但 `story_opening.gd` 的 `WARP` 把它拉成真實時間：0–3 秒（滑箱、開鎖）×1.15，開箱俯拍 2.6→4.5 拉成 3.0→6.0 秒（LOOP 點文件、抽彈匣慢慢做），ZIP 面部特寫 4.5→5.0 拉成 6.0→8.0 秒（對應音樂「沉底＋刮碟＋抽空」），之後每一鏡都對在音樂原本的拍點上。總長 13.12 → 16.12 秒。下表的時間是**作者時間**；真實時間對照：開箱俯拍 3.0–6.0、ZIP 面部 6.0–8.0、黑衣人上門 8.0–9.75、從箱內看出去 9.75–12.0（tape stop 靜默對白）、逼近 12.0–15.0、桌邊合箱 15.0–16.0、黑場 16.0。
+
+**結尾（Alan：「AFTERHOURS 標題直接接開始選單，重複了」）**：蓋子猛合後的黑場定格 0.12 秒就直接交給主選單（主選單本身就有 AFTERHOURS 標題），開場不再另播一次標題畫面。標題重擊與第二次 drop 的音效不切斷，在主選單上方自然收尾，主選單曲同一刻淡入。標題剪影場景程式碼仍在（掃描工具可看），但正常播放不會走到。
+
+
+**更誇張、更暴力（Alan 2026-11-13，參考 03e5fa13 與 SLUMLORDZ SANDWICH）**：`_exaggerate()` 統一加強每個鏡頭：傾斜角加倍並持續緩慢搖擺、魚眼加深（上限 0.95）、震動 ×1.7、每次撞擊把 FOV 往內擠 11% 並讓 roll 左右甩、撞擊時自動加放射速度線與色散；箱子落桌、黑衣人現身、音樂抽走、兩下踏步各有一格黑白反相。F2 減少特效時全部關閉。
+
+影片之後的第一拳與打鬥（影片 10–15 秒）不放進開場，留給「開始故事」；開場收在蓋子猛合的黑場，隨即接主選單。
+
+**拿走的東西**：城市俯衝與列車、機車與扳手、音響與喇叭、HUSH 喝飲料的一幕、巨大鞋底、黑車與車門、漫畫擬聲字。HUSH 在標題之前不出鏡（影片前半也沒有她）。
+
+**沿用**：Alan 原本的音樂剪法（歌曲兩次 drop、tape stop、第二段鋪陳）、鞋踏／拉手套／墨鏡反光的 18 秒表橋段、標題剪影。
+
+**為了貼近影片所做的場景調整**：沙發組（影片在畫面右邊）放到車房右側；層架瓶罐搬到門口左側；箱蓋印上遊戲的 AFTERHOURS 字樣；開箱後箱子在桌上轉 90°，讓打開的蓋子站在右緣、不擋 ZIP 的臉和門口。
+
+**音樂**：`score.wav` 由同一個 builder 產生，保留 Alan 原本的剪法（3.0 drop、6.0 沉底、8.0 再 drop、9.75 tape stop、12 起鋪陳、16.0 合箱、16.1 標題重擊）；刪掉車子、車門、巨大鞋底與車房小笑料（棘輪、扳手、喇叭雜訊），另加箱子拖行／落桌／箱扣／蓋子／紙張／彈匣。成品 18.4 秒（含主選單上方的收尾），`cues.json` 為真實時間。
+
+## 舊版（v1–v4）六個鏡頭，僅供歷史對照
 
 | 時間 | 鏡頭 | 畫面 | 聲音 |
 |---|---|---|---|
@@ -26,16 +59,16 @@
 ## 擁有者與檔案
 
 - `godot/scripts/combat/cinematic/story_opening.gd`：唯一導演。無狀態時間線 `sample(t)`、鏡頭、鏡頭後製、字幕／名牌／漫畫線、存檔旗標、音樂 duck。`clear()` 還原相機 transform／fov／near／far／environment、街景與人物可見性、lens、score 及 duck。
-- `godot/scripts/combat/story_opening/stage.gd`：程序化場景（街道、高架與列車、樓群、維修場、機車、音響、沙發、黑箱、黑車、路人、標題天台）。沿用既有貼圖與 PROP／VEH 包裝場景。
+- `godot/scripts/combat/story_opening/stage.gd`：程序化場景（街道、高架、樓群、維修場、沙發、黑箱、路人、標題天台；機車、音響、扳手、黑車已於 v5 移除）。沿用既有貼圖與 PROP／VEH 包裝場景。
 - `godot/scripts/combat/story_opening/actor.gd`：演出角色。包裝既有 FighterVisual（四位主角原 GLB 與修補版黑衣人，原檔不動），無狀態取樣共用 CC0 動作再疊加肢體瞄準與雙骨 IK。
 - `godot/shaders/story_opening_lens.gdshader`：魚眼、放射／橫向模糊、色散、閃白、反相、標題的黑白＋純色 ink 分級。
-- `godot/audio/story_opening/score.wav`＋`cues.json`：18 秒配樂加音效，由 `tools/build_story_opening_audio.py` 產生（seed 20261112）。音樂是使用者提供的 Starjunk 95〈Beat Keep Rockin〉（`godot/audio/user-tracks/beat_keep_rockin.ogg`，140 BPM，3 秒＝7 拍）：0–3 秒為第一次 drop 前的鋪陳經收音機濾波，3.0 第一次 drop，6.0–7.5 沉底，7.5 倒帶抽空，8.0 黑箱重砸時同一 drop 再下，9.75 tape stop 抽音，12.0–16.1 第二段鋪陳由遠而近，16.1 標題接第二次 drop。音效：合成、既有 Kenney CC0、BigSoundBank CC0 節選（`references/story-opening-audio/`）。主選單曲開場期間靜音，17.6 秒起淡入，transport 從不停止。
+- `godot/audio/story_opening/score.wav`＋`cues.json`：15 秒（v5，由 18 秒版切走 3–6 秒）配樂加音效，由 `tools/build_story_opening_audio.py` 產生（seed 20261112）。音樂是使用者提供的 Starjunk 95〈Beat Keep Rockin〉（`godot/audio/user-tracks/beat_keep_rockin.ogg`，140 BPM，3 秒＝7 拍）：0–3 秒為第一次 drop 前的鋪陳經收音機濾波，3.0 第一次 drop，6.0–7.5 沉底，7.5 倒帶抽空，8.0 黑箱重砸時同一 drop 再下，9.75 tape stop 抽音，12.0–16.1 第二段鋪陳由遠而近，16.1 標題接第二次 drop。音效：合成、既有 Kenney CC0、BigSoundBank CC0 節選（`references/story-opening-audio/`）。主選單曲開場期間靜音，v5 為 14.6 秒起淡入，transport 從不停止。
 - `godot/assets/fonts/StoryOpeningHK.otf`：字幕用 Noto Sans HK Bold 子集（OFL），`tools/subset_story_opening_font.py` 產生，來源雜湊見 `references/ui-fonts/story-opening-subset.json`。
 - 改動既有檔案：`fight_session.gd`（建立、開機判斷、輸入攔截、`replay_story_opening`）、`fight_hud.gd`（`opening` 畫面不建選單、繪製轉交、設定頁重播鍵）、`combat_motions.gd`（一行：演出角色可用 `cinematic_clip` 指定動作，戰鬥不會設定此鍵）。`fight_simulation.gd`、XP、原始 GLB 均未改。
 
 ## 驗證與限制
 
-- `godot/tools/verify_story_opening.gd`：37/37 通過（Godot 4.6.3 Linux、Compatibility／llvmpipe、Dummy 音訊），結果在 `docs/evidence/story-opening/`。
+- `godot/tools/verify_story_opening.gd`：v5 為 43/43 通過（舊版 37/37）（Godot 4.6.3 Linux、Compatibility／llvmpipe、Dummy 音訊），結果在 `docs/evidence/story-opening/`。
 - 以 Movie Maker 模式實際從啟動錄下整段開場到主選單（含混音），抽格見 `storyboard.jpg`；第二次啟動直接到主選單見 `second-launch-menu.png`。
 - 回歸：verify_reference_ui 37/37、verify_ability_draw 69、verify_black_suit 35 通過；verify_round_flow 23/24，唯一失敗項在未修改的 e725c99 上同樣失敗。
 - 未驗證：真人實聽（混音平衡、抽音與標題重擊的觀感）、使用者本機 Mac／GPU／Godot 4.7.2、4.7.2 warning-as-error 工具。對白只有字幕，沒有配音。
@@ -62,5 +95,5 @@ Alan 提供 11 個 Tripo GLB（紅綠燈、Boombox、抽風扇、紅色小車、
 - **貼圖解析度**：10 個是 2048×2048、1 個（開箱手提箱）1024×1024，每個約 920–1200 三角面，單一材質。對 Jet Set Radio 風格太清（遊戲現有貼圖是 128 px）。
 - **處理**：`tools/downscale_story_props.py` 把貼圖用 Lanczos 縮到 **256×256**（PNG），幾何不變；遊戲內以 nearest 過濾並設粗糙度 1。原檔原樣放 `godot/assets/story_opening/source/`（SHA-256 與上傳相同），衍生版放 `godot/assets/story_opening/*.glb`。
 - **接入**：`stage.gd` 的 `prop()` 依實際包圍盒逐軸縮放到目標尺寸；取代程序版工作台、手提箱本體（內含槍／彈匣／文件）、層架、洞洞板、風扇、抽屜櫃、Boombox、紅綠燈與小車；小店放在對街；合蓋手提箱當地上雜物。箱蓋與鎖扣動畫仍是程序件。
-- **未收到**：沙發與紙杯（仍是程序版）。
+- **沙發組（2026-11-13）**：Alan 後補 `sofa_table_cup_bowl.glb`（沙發＋旁桌＋紙杯＋碗，一件）。原檔存 `source/sofa_table_cup_bowl.glb`，衍生版 `sofa_set.glb`（貼圖 1024→256），取代程序沙發、旁桌與紙杯；放在車房右側（鏡頭看向街時的右邊）。開場第一鏡改廣角（fov 68）才拍得到。
 - **待實機確認**：朝向（洞洞板／層架正面）、尺寸比例、256 px 是否夠粗或太粗。

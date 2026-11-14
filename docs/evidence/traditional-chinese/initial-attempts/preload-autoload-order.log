@@ -1,0 +1,18 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+SCRIPT ERROR: Compile Error: Identifier not found: GameLocale
+          at: GDScript::reload (res://scripts/combat/fight_session.gd:1421)
+ERROR: Failed to load script "res://scripts/combat/fight_session.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Invalid assignment of property or key 'preferences_path' with value of type 'String' on a base object of type 'Node3D'.
+          at: spawn (res://tools/verify_traditional_chinese_native.gd:26)
+          GDScript backtrace (most recent call first):
+              [0] spawn (res://tools/verify_traditional_chinese_native.gd:26)
+              [1] run (res://tools/verify_traditional_chinese_native.gd:30)
+SCRIPT ERROR: Invalid call. Nonexistent function 'return_to_title' in base 'Node3D'.
+          at: run (res://tools/verify_traditional_chinese_native.gd:30)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_traditional_chinese_native.gd:30)

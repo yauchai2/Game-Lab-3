@@ -63,7 +63,8 @@ func present(visual:Node3D,f:Dictionary,delta:float,stopped:bool) -> void:
         s.set_bone_pose_rotation(i,local)
         s.set_bone_pose_position(i,s.get_bone_rest(i).origin)
         desired.append(parent_rotation*local)
-    var position:Vector3=s.get_bone_rest(m.target_hips).origin
+    # Simulation x/depth represent the hip centre; bind-pose offsets must not flip at recovery.
+    var position:=Vector3.ZERO
     position.y=Data.hip(role,p.source_frame).z*1.15/visual.model_scale
     position=entry_hip.lerp(position,entering)
     if recover>0:position=position.lerp(recovery_hip,recovering)

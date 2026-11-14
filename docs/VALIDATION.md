@@ -1,10 +1,14 @@
+## 2026-11-14：同步main f9576c5後再驗
+
+肩摔147／renderer33、原674回歸、16strict再過；槍械21／繁中18通過。保留720p／繁中及主線接地，新增入投清foot anchors／收槍、收尾面向對手及hip centre校正；最大抽樣腕距更新2.56cm。[integration.json](evidence/paired-throw/integration.json)。同步後新字體需先editor import，舊快取缺fontdata的第一次解析錯誤不是accepted結果；顯示服務曾失效已重啟再跑原生。新1280×720有聲影片12秒／360幀、完整2fps檢視，錄製約84秒。只同步任務分支，不合main／Web。
+
 ## 2026-11-14：完整雙人肩摔正式接入
 
 [evidence/paired-throw](evidence/paired-throw/README.md)：147新規則／實際骨架及33原生renderer／正式KO檢查全過；相關transit216＋street90＋counter122＋fighter style51＋rivet19＋service46＋death104＋ink FX26＝674回歸全過，另squad35／black native35全過。原Throw beats armor斷言遷至捕捉後落地時驗傷害，未刪契約。16相關腳本七類fatal warning、project import／fight_session解析過；沒有重跑全專案所有歷史strict。
 
-四角全組合／雙向／雙施技方、黑衣retarget、腕距最多3.19cm；full CPU skin最低Y約.009998m，再以獨立renderer bake驗不穿地。600步非grab同輸入資料／事件相同；freeze／F2不改幾何與simulation。正常真grab正式scene錄12.000秒360幀，每角start／land／hit／end一次、HP100→88，無damage或air位置注入；2fps完整抽格檢視，音訊AAC峰值約-5.41dBFS非靜音／無削波。來源原檔SHA及私有JSONhash見manifest，不提交曲線。
+四角全組合／雙向／雙施技方、黑衣retarget、腕距最多2.56cm；full CPU skin最低Y約.009998m，再以獨立renderer bake驗不穿地。600步非grab同輸入資料／事件相同；freeze／F2不改幾何與simulation。正常真grab正式scene錄12.000秒360幀，每角start／land／hit／end一次、HP100→88，無damage或air位置注入；2fps完整抽格檢視，音訊AAC峰值約-5.41dBFS非靜音／無削波。來源原檔SHA及私有JSONhash見manifest，不提交曲線。
 
-Linux Godot4.6.3 Compatibility／llvmpipe／Dummy；錄製約68秒，非Mac／真人／實體控制器／人耳或即時性能。初跑舊視覺套件headless等待／Dummy錯誤，改native全過；新增KO fixture首繪前換場／急退曾texture錯誤，等真首繪、逐段process／清理重跑33項accepted無ERROR／SCRIPT ERROR。保留VSync不支援warning。原GLB／存檔／BGM／main／Web不變；本機需另裝私有動畫檔，沒有曲線的公開來源仍fallback。
+Linux Godot4.6.3 Compatibility／llvmpipe／Dummy；錄製約84秒，非Mac／真人／實體控制器／人耳或即時性能。初跑舊視覺套件headless等待／Dummy錯誤，改native全過；新增KO fixture首繪前換場／急退曾texture錯誤，等真首繪、逐段process／清理重跑33項accepted無ERROR／SCRIPT ERROR。保留VSync不支援warning。原GLB／存檔／BGM／main／Web不變；本機需另裝私有動畫檔，沒有曲線的公開來源仍fallback。
 
 ## 2026-11-14：Mixamo全套替換候選查找（僅研究）
 
@@ -28,35 +32,33 @@ Linux Godot4.6.3 Compatibility／llvmpipe／Dummy；錄製約68秒，非Mac／�
 
 ## 2026-11-13：免費Mixamo取檔仍未完成（非runtime）
 
-重新核對Adobe Mixamo FAQ與過肩摔攻守名稱索引，未取得官方FBX／配對時間證據。Browser本地工具不可用；CUA雲端瀏覽器兩次均因sandbox啟動錯誤失敗，已結束該UI流程；官網無可讀目錄，沒有官方登入會話。Tuffles直接下載網路403，SFU官方禁商用，均未錄用。僅更新免費需求與候選JSON，檢查JSON／diff，不重跑runtime或宣稱完成完整摔投。
+## 2026-11-14：選單與彈出文字清晰度覆核
 
-## 2026-11-13：柔道摔投資源查核（文件，非runtime）
+修正原生PopupMenu／TooltipLabel獨立Window的主題及取樣繼承：新Viewport明確nearest、Window缺主題時補共用theme，相關文字明確BODY並移除PopupMenu舊4px描邊。探索Overlay/Help亦補像素字體。5／8／100、字圖與字級保持。87項（原生43／語言21／strict23）通過，包含設定與P1/P2裝置下拉選單的embedded／獨立視窗、真hover提示框、主介面／城市六站／天賦／故事／HUD／暫停／結算。圖及限制見[evidence/pixel-text-audit](evidence/pixel-text-audit/README.md)；雲端Linux4.7.2，非使用者Mac驗收，來源同步main，Web不更新。取樣值4是繼承而非linear，不可只看root nearest便判斷popup已清晰。
 
-[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)：本輪透過網上工具讀官方Fab Judo AnimSet／Grab & Throw清單、Unity同品頁、Player Motion目錄／配對／license、Adobe Mixamo FAQ、Rokoko免費fight／martial arts、Godot格式文件與Fab授權摘要；記錄候選及未驗證欄位。Judo作者FAQ站502、Mixamo首頁無可讀目錄、Player Motion個別招式URL未能讀取，沒有把搜尋索引當已取得素材。只有預覽連結，未逐幀觀看、未買／下載／測原檔／整合。文件與JSON格式檢查；不重跑runtime，前輪674通過不屬完整摔投驗收。遠端main首次503後成功讀3915c2d，未合併。
+## 2026-11-13：中文字體亦套用5／8／100
 
-## 2026-11-13：第五輪空地交接驗證
+中文原本仍經向量fallback。本輪新增918字形的RadioPixelChinese／RadioChinese，正文／標題、開場字幕與3D中文字牌改用同一像素preset：24px格、80%二值＋20%coverage，原UI字級不改、繁中字元進位相同，拉丁字圖四檔不改。3D Label採nearest。subset_ui_font.py自動接續字圖生成，未來新增翻譯需一起補字。72項語言／原生／strict／英文／atlas／PCK檢查通過，見[evidence/chinese-pixel-preset](evidence/chinese-pixel-preset/README.md)。來源同步main，Web不部署。
 
-[evidence/transit-motion](evidence/transit-motion/README.md)：216新＋122counter＋90street＋19rivet＋51style＋46規則＋104死亡／群戰＋26FX＝674全通過。新增雙朝向source／FX肢、hitstop／F2矩陣凍結、無舊拉伸／自轉、八空地phase、連續受擊重啟、死亡／導演交還及四角正常launcher／chase／air與grab；pulse姿態的種子節點為明示fixture。舊motion空中／stun handoff斷言遷新owner，其餘不刪。與ec81ad9隔離來源14類4角90tick＝5040筆clip／三骨socket完全一致，非terrain IK；相同1800 simulation ticks狀態SHA022cef61…／21命中／0差異及骨架呈現改寫。12腳本七類fatal warning全過，全19suite16/19同三處既有失敗。14秒420幀空連每角真chase及air_jab／air_kick／meteor各一次，8秒240幀每角grab一次；每段100能量／固定站位、正常指令、不注入damage／空中位置／sample／node。accepted原生log無ERROR／SCRIPT ERROR；影片全長2fps抽樣覆核、音軌非靜音。Linux4.6.3 llvmpipe／Dummy，非Mac／人耳／真人／硬體FPS／成對摔投／足部IK驗收。
+## 2026-11-13：繁體中文語言已加入
 
-## 2026-11-13：第四輪四角聲光驗證
+設定最上方新增English／繁體中文，選擇保存並於重啟恢復。1034條共用catalog涵蓋選單／HUD／教學、城市六站、成長／裝備／合約／核心、六章及各結局。原生控制項與Canvas繪字統一，中文字體補齊，動態數字及百分比／角色佔位符保持；故事打字按中文長度，天賦全覽與穿戴分開譯。拉丁字體5／8／100、simulation、資料ID與存檔schema保持。264項規則／原生／英文回歸／strict／PCK檢查通過，見[evidence/traditional-chinese](evidence/traditional-chinese/README.md)。品牌、按鍵、音樂名及原圖內文字保留，沒有新增配音；來源同步main，Web未部署。
 
-[evidence/fighter-style](evidence/fighter-style/README.md)：51新＋122counter＋90street＋19rivet＋46規則＋104死亡／群戰＋26FX共458通過。72組距離／空中／owner鏡頭邊界，F2／暫停／靜音／音效預算及PCM四種可重建；11腳本七類fatal warning全過，全19suite16/19（sprite舊警告修正，另三處既有失敗保留）。701f0c7隔離scripts與新版相同1800 tick輸入／狀態SHA022cef61…、21命中、0差異／骨架呈現改寫；全scene另以sim快照確認新增呈現不改資料。12秒360幀連續PLAY真命中2/1/1/1、真sample及先放點encore，音軌非靜音，未預塞sample／node／damage；2fps全長畫面覆核。accepted原生log無ERROR／SCRIPT ERROR；同色輪廓圖為明示fixture。Linux4.6.3 llvmpipe／Dummy，非人耳／Mac／真人／硬體FPS驗收。
+## 2026-11-13：使用者授權字體最新設定合入main
 
-## 2026-11-13：HUSH／LOOP第三輪驗證
+依「好，推上main」，以main f69fc9f合併story-waves-m1 f4f0742。main原已含352c524及其他分支更新；本輪補入最後兩輪字體設定，保留5／8／100及現有main的介面／據點／開場／角色動作。只有文件衝突，兩邊歷史保持。121項最終檢查通過（整合70／Ink10／城市22／strict19），log無ERROR／SCRIPT ERROR，見[evidence/main-pixel-preset-merge](evidence/main-pixel-preset-merge/README.md)。此授權覆蓋以下舊「不合main」指示；來源同步main，公開Web不更新。既有真人／Mac／硬件及配對投技限制保持。
 
-[evidence/hush-loop-motion](evidence/hush-loop-motion/README.md)：122新motion／合法起招／雙朝向／F2／hitstop／owner交還／握點棍尖／真sample／放點脈衝／明示encore變體＋90ZIP/RIVET＋19首輪＋46規則＋104死亡／群戰＋26FX，共407全通過。七motion／recipe腳本七類fatal warning通過；全19suite仍15/19，同四處基線失敗。固定1800 simulation ticks、同指令hash，471b21e與新版狀態SHA均022cef61…、21真命中、0sim差異／呈現改寫。ZIP／RIVET22類逐tick骨socket相同，原11曲線及19原庫hash不變。15秒450幀連續play實錄，真parry取得／消耗sample、正常兩點pulse、一點encore；各段1真命中、後兩段各1真pulse事件。未預塞sample／node／damage（對手首jab為明示合法起招fixture）；骨socket／握姿不等於地形IK、真人或硬體FPS驗收。accepted原生log無ERROR／SCRIPT ERROR，原GLB／判定／BGM／公開Web不變。Linux4.6.3 llvmpipe／Dummy，Mac／真人／GPU待驗。
+## 2026-11-13：數值化字體設定5／8／100
 
-## 2026-11-13：ZIP／RIVET新CC0庫驗證
+使用者接受像素強度5、邊緣硬度8、文字大小100%。設定保存在godot/assets/fonts/pixel-type-preset.json，生成器實際讀取；強度以34−2×數值映射字圖大小（5→24px），硬度8為80%二值輪廓＋20%原字形coverage，字級／布局維持原大小。保留display字距，720p／nearest與場景保持。這是本專案相對美術尺度，非客觀畫質單位或遊戲內設定滑桿；未實作任意文字百分比的自動重排。32項原生UI／城市檢查通過，最終log無ERROR／SCRIPT ERROR。畫面及驗證見[evidence/pixel-preset-5-8](evidence/pixel-preset-5-8/README.md)。仍同branch／PR #12，不合main／Web。
 
-詳[evidence/street-motion-library](evidence/street-motion-library/README.md)：90新motion／真確認／socket＋19RIVET＋46角色規則＋104死亡／群戰＋26FX共285項通過。六motion／recipe腳本七類fatal-warning通過；全19script suite15/19，與前輪同四個既有失敗。相同指令hash的1800 simulation tick在25c83ec與新版狀態SHA均022cef61…，21真命中、0逐tick差異、0呈現改寫。舊Demo迴圈probe報告受並行Godot視窗搶焦點自動暫停影響，保留但不作等價證明；獨立錄影新增每幀play檢查，三段付費真命中2/3/1，初次失敗另存。四角22類抽樣，HUSH／LOOP骨socket與前輪相同；新sourcepreview與60Hz重建hash一致。原GLB／19clips／判定／BGM／Web不變。Linux4.6.3 llvmpipe／Dummy，不是Mac／真人／GPU效能／地形IK驗收。
+## 2026-11-13：加強像素與清晰階梯鋸齒
 
-## 2026-11-13：RIVET地面動作切片及四角基準
+依使用者最新要求，文字字圖24px→20px，alpha三階→二值0／255，去除灰色柔邊；display每字多一個來源像素間距，防止粗斜字黏連。採128中性切割而非最初96加粗閾值，保留字腔。720p／nearest、字級／布局／繁中fallback與無AA toon場景保持。32項原生介面／城市檢查通過，最終log無ERROR／SCRIPT ERROR；atlas確認只有0／255透明度。來源tools/build_subtle_pixel_fonts.py及manifest可重建；畫面及檢查見[evidence/crisp-pixel-type](evidence/crisp-pixel-type/README.md)。仍同branch／PR #12，不合main／Web。
 
-詳[evidence/fighter-motion](evidence/fighter-motion/README.md)：19新原生＋46角色機制＋104死亡／群戰回歸全通過；四個變更runtime七類warning當error編譯通過。全19腳本strict為15/19，未改基線同四處失敗，前後log保留；不能宣稱全套strict通過。兩組角色1800步相同玩法SHA／事件完全一致；其餘三角22類每類90tick骨socket完全相同。RIVET五地面招Foot骨tick10後位移0，屬固定source stance遮罩，不是鞋幾何／地形IK量測；hold7/8、真二階放拳、F2／hitstop／左右朝向、owner交還通過。12秒360幀正常L按／持／放三段重設練習，3次真命中，有聲錄影，約67秒錄製，非真人或硬件FPS。accepted原生log無ERROR／SCRIPT ERROR；初次缺快取已editor import後重跑。Mac／真人／逐幀全招與外部新素材待驗；本輪原GLB／判定／BGM／Web不變。
+## 2026-11-13：main整合最終驗證
 
-## 2026-11-13：四英雄動作 review 與詳細方案（僅文件）
-
-基線main／origin/main均7aac2c1、工作區起始乾淨。依[FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md](FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)查閱所有動作家族的來源選片／層疊／時序／視覺變形與選角／勝出／據點路徑；四份GLB直接解析皆65 joints、0 animations；現用JSON動作庫19clips。只目視兩個歷史影片抽格（ink-fx/after第3秒、last-service-runtime/zip-rivet-demo第5秒），未聲稱當前逐招錄影或完整影片審查。以正常HTTPS讀四官方入口回Tunnel connection failed:403 Forbidden，未確認最新目錄／授權／價格及新下載。Markdown本地連結與git diff --check覆核；無runtime修改，因此未跑Godot玩法測試；未驗Mac／真人／GPU效能。所有製作門檻和工期為提案，非本輪測試結果。
+Godot4.6.3 Linux Compatibility llvmpipe／Dummy：851項通過，包含19 strict、70新整合及其餘762項相關回歸；accepted logs無ERROR／SCRIPT ERROR。另1,800固定simulation tick、21命中，純simulation與呈現版本SHA一致、0資料修改；四角雙朝向支撐腳最大誤差約0.042m。完整逐套結果與初次失敗保留於evidence/remaining-work。震動路由為headless注入裝置測試；不是Mac4.7.2、真人／實體手柄／實聽／GPU FPS或完整配對投技驗收。詳細範圍見REMAINING_WORK_INTEGRATION.zh-TW.md。
 
 ## 2026-11-12：按原圖重做據點＋15秒動態（覆蓋粗模）
 
@@ -821,3 +823,17 @@ Godot4.7.2 Linux Compatibility：37原生操作、10頁面／3D剪影／popup／
 通過：warnings 嚴格檢查（17 腳本）、local_versus 68/68、story_opening 35/35、round_flow 24/24、city_campaign 50/50、city_expansion 86/86、ability_draw 69/69、banter 129/129、time_of_day 12/12、flyby_event 8/8，story_waves／live_combat／ink_fx／unified_audio／black_suit／street_tags／versus_social／secret_notes／combat_sfx 無失敗項。
 失敗：reference_ui 37/38，「rapid navigation reverses existing crossfade」；在 PR #11 分支單獨同樣失敗（#11 把選單／戰鬥改成不同曲目，舊斷言過時），合併未改。reference_ui 與兩處原始碼已為合併調整：FREE PLAY 頁、`/1000`→`/1000.0`、`basis` 改名。
 未驗證：實聽、Mac、實機手柄、目標 GPU、公開 Web。
+
+## 故事連續打波（2026-11-13）
+
+Godot 4.6.3 Linux／llvmpipe：verify_story_flow 51/51（證據 docs/evidence/story-flow）；回歸 city_campaign 50/50、city_expansion 86/86、campaign_complete 50/50、city_native 23/23、story_waves 無失敗。未驗證：真人手感、Mac、實聽、FPS。
+
+
+## 2026-11-13 全分支整合來源
+
+- 完整來源紀錄：docs/integration-history/story-waves-m1/docs/VALIDATION.md
+- 完整來源紀錄：docs/integration-history/four-fighter-motion-plan/docs/VALIDATION.md
+
+## 2026-11-13：免費Mixamo取檔仍未完成（非runtime）
+
+重新核對Adobe Mixamo FAQ與過肩摔攻守名稱索引，未取得官方FBX／配對時間證據。Browser本地工具不可用；CUA雲端瀏覽器兩次均因sandbox啟動錯誤失敗，已結束該UI流程；官網無可讀目錄，沒有官方登入會話。Tuffles直接下載網路403，SFU官方禁商用，均未錄用。僅更新免費需求與候選JSON，檢查JSON／diff，不重跑runtime或宣稱完成完整摔投。

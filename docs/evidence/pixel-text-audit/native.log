@@ -1,0 +1,48 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+ZH_NATIVE Settings have English and Traditional Chinese choices true
+ZH_NATIVE language popup nearest, bitmap, no outline, embedded=true true
+ZH_NATIVE language popup nearest, bitmap, no outline, embedded=false true
+ZH_NATIVE difficulty popup nearest, bitmap, no outline, embedded=true true
+ZH_NATIVE difficulty popup nearest, bitmap, no outline, embedded=false true
+ZH_NATIVE partner popup nearest, bitmap, no outline, embedded=true true
+ZH_NATIVE partner popup nearest, bitmap, no outline, embedded=false true
+ZH_NATIVE CONTROL HINTS popup nearest, bitmap, no outline, embedded=true true
+ZH_NATIVE CONTROL HINTS popup nearest, bitmap, no outline, embedded=false true
+ZH_NATIVE Engine hover creates a TooltipLabel with bitmap and nearest window true
+ZH_NATIVE Chinese body and title share the pixel fallback true
+ZH_NATIVE Opening subtitles use the same Chinese pixel face true
+ZH_NATIVE Native popup selection switches and saves the locale true
+ZH_NATIVE Changing language does not change fighter state true
+ZH_NATIVE settings-zh live fonts and viewport sampling (67 nodes) true
+ZH_NATIVE title-zh live fonts and viewport sampling (41 nodes) true
+ZH_NATIVE help-zh live fonts and viewport sampling (45 nodes) true
+ZH_NATIVE roster-zh live fonts and viewport sampling (46 nodes) true
+ZH_NATIVE labs-zh live fonts and viewport sampling (53 nodes) true
+ZH_NATIVE skills-zh live fonts and viewport sampling (59 nodes) true
+ZH_NATIVE versus-zh live fonts and viewport sampling (59 nodes) true
+ZH_NATIVE P1 DEVICE popup nearest, bitmap, no outline, embedded=true true
+ZH_NATIVE P1 DEVICE popup nearest, bitmap, no outline, embedded=false true
+ZH_NATIVE P2 DEVICE popup nearest, bitmap, no outline, embedded=true true
+ZH_NATIVE P2 DEVICE popup nearest, bitmap, no outline, embedded=false true
+ZH_NATIVE city-zh live fonts and viewport sampling (44 nodes) true
+ZH_NATIVE station-0-zh live fonts and viewport sampling (76 nodes) true
+ZH_NATIVE station-1-zh live fonts and viewport sampling (110 nodes) true
+ZH_NATIVE station-2-zh live fonts and viewport sampling (126 nodes) true
+ZH_NATIVE station-3-zh live fonts and viewport sampling (144 nodes) true
+ZH_NATIVE station-4-zh live fonts and viewport sampling (134 nodes) true
+ZH_NATIVE station-5-zh live fonts and viewport sampling (127 nodes) true
+ZH_NATIVE talent-zh live fonts and viewport sampling (128 nodes) true
+ZH_NATIVE Localized city pages preserve the profile true
+ZH_NATIVE story-zh live fonts and viewport sampling (128 nodes) true
+ZH_NATIVE Chinese typewriter advances when the translated line is complete true
+ZH_NATIVE hud-zh live fonts and viewport sampling (128 nodes) true
+ZH_NATIVE pause-zh live fonts and viewport sampling (135 nodes) true
+ZH_NATIVE Native pause button copy is Chinese true
+ZH_NATIVE result-zh live fonts and viewport sampling (132 nodes) true
+ZH_NATIVE Restart restores saved Traditional Chinese true
+ZH_NATIVE title-en live fonts and viewport sampling (41 nodes) true
+ZH_NATIVE English remains selectable after restart true

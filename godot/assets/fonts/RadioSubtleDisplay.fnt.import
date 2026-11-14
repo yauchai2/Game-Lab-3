@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://d1r5i2d05flv8"
+path="res://.godot/imported/RadioSubtleDisplay.fnt-15958b809e0008c36058ac0616d259b0.fontdata"
+
+[deps]
+
+source_file="res://assets/fonts/RadioSubtleDisplay.fnt"
+dest_files=["res://.godot/imported/RadioSubtleDisplay.fnt-15958b809e0008c36058ac0616d259b0.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

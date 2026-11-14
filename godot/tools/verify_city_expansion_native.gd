@@ -23,9 +23,12 @@ func click(control:Control) -> void:
     for down in [true,false]:
         var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_LEFT;e.pressed=down
         e.position=control.get_global_rect().get_center();e.global_position=e.position;root.push_input(e,true);await frames(2)
+const ACT_ALIAS={"REVIEW 06":"chapter:6","PRACTICE SIGNAL":"practice:boss_signal","EQUIP LONG ROUTE":"tech:zip_route","EQUIP SIGNED RECEIPT":"tech:zip_confirm","EQUIP EXIT PLAN":"tech:zip_dash","PRACTICE DOUBLE JUMP":"practice:double_jump","LEARN  DOUBLE":"learn:double_jump","DEALER / CORE DRAW":"core_draw","DRAW SELECTED":"draw_slot","CONNECT":"connect"}
 func button(parent:Node,prefix:String) -> Button:
+    var act:String=ACT_ALIAS.get(prefix,"contract:"+prefix.substr(prefix.find("#")+1) if prefix.begins_with("START CONTRACT #") else ("inspect:"+prefix.substr(prefix.find("#")+1) if prefix.begins_with("INSPECT #") else (prefix.substr(4) if prefix.begins_with("act=") else "")))
     for child in parent.find_children("*","Button",true,false):
-        if child.text.begins_with(prefix):return child
+        if act!="" and child.get_meta("act","")==act:return child
+        if act=="" and child.text.begins_with(prefix):return child
     return null
 func shot(name:String) -> void:
     await frames();root.get_texture().get_image().save_png(OUT+name+".png")
@@ -38,24 +41,24 @@ func run() -> void:
     for suffix in ["",".bak",".tmp"]:DirAccess.remove_absolute(ProjectSettings.globalize_path(path+suffix))
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";s.city_save_path=path
     root.add_child(s);s.audio.muted=true;s.set_process(false);s.set_physics_process(false);await frames(5)
-    check("actual game viewport is 960x540",root.get_visible_rect().size==Vector2(960,540))
+    check("actual game viewport is 1280x720",root.get_visible_rect().size==Vector2(1280,720))
     check("nearest texture filter and AA-free toon renderer retained",ProjectSettings.get_setting("rendering/textures/canvas_textures/default_texture_filter")==0 and root.msaa_3d==Viewport.MSAA_DISABLED and root.screen_space_aa==Viewport.SCREEN_SPACE_AA_DISABLED)
-    check("title preview also renders at new resolution",s.hud.title_motion.viewport.size==Vector2i(960,540))
+    check("title preview also renders at new resolution",s.hud.title_motion.viewport.size==Vector2i(1280,720))
     await shot("main-menu")
     await click(s.hud.art_buttons.story)
     var c=s.city_campaign;var h=c.hub;var p=c.profile
     check("main Story still opens the isometric city",s.screen=="city" and h.visible and not s.hud.visible)
-    check("city viewport matches upgraded whole-game resolution",h.viewport.size==Vector2i(960,540))
+    check("city viewport matches upgraded whole-game resolution",h.viewport.size==Vector2i(1280,720))
     await shot("city")
     await tap(KEY_5)
-    var board:Control=h.stack.get_children().filter(func(n:Node)->bool:return n.get_meta("city_board","")=="map")[0]
-    await click(board.get_child(0))
+    var first_district:Button=h.stack.find_children("*","Button",true,false).filter(func(n:Node)->bool:return n.get_meta("act","")=="sector:0")[0]
+    await click(first_district)
     check("native map pointer starts the first story encounter",s.screen=="play" and s.sim.campaign_enabled and p.data.run.room==0)
     s.sim.ai_enabled=false;s.sim.arrival_left=0;s.sim.squad_members[0].x=.9
     await tap(KEY_J)
     for i in 18:s._combat_step();s._process(1.0/60)
     check("real input still causes combat damage",s.sim.squad_members[0].health<35)
-    await shot("battle-960")
+    await shot("battle-720p")
     await complete_fixture();await tap(KEY_ENTER)
     check("clear banks an equipment drop and spendable talent point",s.screen=="city" and p.data.inventory.size()==1 and p.data.points==1 and p.data.credits==100)
     await tap(KEY_1);await click(button(h.stack,"LEARN  DOUBLE"))
@@ -81,12 +84,12 @@ func run() -> void:
     tree.open(p,0);tree.zoom=.68;tree.pan=Vector2(420,260);tree._positions();tree.selected="break_11";tree._detail();await shot("talent-tree")
     await tap(KEY_ESCAPE);await tap(KEY_3)
     p.data.credits=1000;p.data.pity=9;p.data.unique_pity=39;p.save_data();h.open_station(2)
-    await click(button(h.stack,"DRAW SELECTED"))
+    await click(button(h.stack,"DRAW SELECTED"));h.open_station(5)
     check("native dealer rolls and persists a signature affix item",p.data.credits==900 and p.data.inventory.size()==2 and p.data.inventory[-1].tier==3 and p.data.inventory[-1].affixes.size()==2)
     var selected:=int(p.data.inventory[-1].id)
     await click(button(h.stack,"INSPECT #%d"%selected));await shot("gear-comparison")
-    check("inventory inspection shows real before-after comparison",button(h.stack,"EQUIP FOR THIS HERO")!=null)
-    await click(button(h.stack,"EQUIP FOR THIS HERO"))
+    check("inventory inspection shows real before-after comparison",button(h.stack,"act=equip:%d"%selected)!=null)
+    await click(button(h.stack,"act=equip:%d"%selected))
     check("equipment compare action changes the selected hero loadout",int(p.gear_for(0)[0].id)==selected)
     p.abandon();p._contract(1,0,1147);p._contract(5,5,1555);p.save_data();h.refresh_header()
     await tap(KEY_5);await shot("contracts")

@@ -1,4 +1,5 @@
 extends RefCounted
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 var sprites = preload("res://scripts/combat/sprite_fx.gd").new()
 ## Original comic staging. Visual clock only; never changes collision or damage.
 var impact_word := ""
@@ -82,8 +83,8 @@ func draw(canvas: Control, session: Node3D) -> void:
         canvas.draw_colored_polygon(points,ink)
         var text: String=session.hud.tr_text("draw" if session.sim.winner<0 else "finish_stamp") if session.final_ko() else "ROUND CLEAR"
         var font: Font=session.hud.bold
-        var extent:=font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,54)
-        canvas.draw_string(font,Vector2(640-extent.x*.5-offset,215),text,HORIZONTAL_ALIGNMENT_LEFT,-1,54,paper)
+        var extent:=font.get_string_size(L10n.text(text),HORIZONTAL_ALIGNMENT_LEFT,-1,54)
+        canvas.draw_string(font,Vector2(640-extent.x*.5-offset,215),L10n.text(text),HORIZONTAL_ALIGNMENT_LEFT,-1,54,paper)
         return
     if mode=="charge":
         _border(canvas,color,fade*.6)
@@ -92,7 +93,7 @@ func draw(canvas: Control, session: Node3D) -> void:
         var left:=lerpf(1320,825,slide)
         canvas.draw_colored_polygon(PackedVector2Array([Vector2(left,167),Vector2(1280,167),Vector2(1280,248),Vector2(left-35,248)]),ink)
         canvas.draw_line(Vector2(left,167),Vector2(1280,167),color,4)
-        canvas.draw_string(session.hud.bold,Vector2(left+8,215),session.hud.tr_text("overdrive_stamp"),HORIZONTAL_ALIGNMENT_LEFT,-1,35,color)
+        canvas.draw_string(session.hud.bold,Vector2(left+8,215),L10n.text(session.hud.tr_text("overdrive_stamp")),HORIZONTAL_ALIGNMENT_LEFT,-1,35,color)
     elif mode in ["burst","contact"]:
         if impact_word!="" and age<.18:
             var x:=845.0 if owner==0 else 65.0
@@ -100,7 +101,7 @@ func draw(canvas: Control, session: Node3D) -> void:
             var plate:=PackedVector2Array([Vector2(x+slide,166),Vector2(x+305+slide,166),Vector2(x+283+slide,232),Vector2(x-18+slide,232)])
             canvas.draw_colored_polygon(plate,ink)
             canvas.draw_line(plate[0],plate[1],color,4)
-            canvas.draw_string(session.hud.bold,Vector2(x+8+slide,215),impact_word,HORIZONTAL_ALIGNMENT_LEFT,-1,45,paper)
+            canvas.draw_string(session.hud.bold,Vector2(x+8+slide,215),L10n.text(impact_word),HORIZONTAL_ALIGNMENT_LEFT,-1,45,paper)
         _border(canvas,color,fade*(.4+tier*.1))
         # Lethal League style hit flash: two crisp frames of paper white over the whole screen, never on reduced FX.
         if age<.045 and tier>=3:canvas.draw_rect(Rect2(0,0,1280,720),Color(paper,.30 if age<.02 else .14))

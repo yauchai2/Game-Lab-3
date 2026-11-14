@@ -1,4 +1,5 @@
 extends Node3D
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 ## KO presentation only. Uses the live stage/roster; never writes simulation state.
 ## Closed-form paths allow frame-independent playback, capture and complete rollback.
 const BASE_DURATION := 5.0
@@ -529,13 +530,13 @@ func draw(canvas: Control) -> void:
     # Native overlay, never bake text or HUD into a video texture.
     canvas.draw_rect(Rect2(0,0,1280,28),ink)
     canvas.draw_rect(Rect2(0,692,1280,28),ink)
-    canvas.draw_string(session.hud.font,Vector2(28,710),"ENTER / SPACE  SKIP     ESC  PAUSE",HORIZONTAL_ALIGNMENT_LEFT,-1,22,Color("d9d2e5"))
+    canvas.draw_string(session.hud.font,Vector2(28,710),L10n.text("ENTER / SPACE  SKIP     ESC  PAUSE"),HORIZONTAL_ALIGNMENT_LEFT,-1,22,Color("d9d2e5"))
     if age >= 189.0/24 and playback_elapsed<BASE_DURATION:
         var enter := clampf((age-189.0/24)/.15,0,1)
         canvas.draw_set_transform(Vector2(930+(1-enter)*300,535)*canvas.size/Vector2(1280,720),-.14,canvas.size/Vector2(1280,720))
         canvas.draw_colored_polygon(PackedVector2Array([Vector2(-40,-85),Vector2(300,-115),Vector2(270,25),Vector2(-55,55)]),Color("f50091"))
-        canvas.draw_string(session.hud.bold,Vector2(8,7),"K.O.",HORIZONTAL_ALIGNMENT_LEFT,-1,140,ink)
-        canvas.draw_string(session.hud.bold,Vector2.ZERO,"K.O.",HORIZONTAL_ALIGNMENT_LEFT,-1,140,Color("c4ff00"))
+        canvas.draw_string(session.hud.bold,Vector2(8,7),L10n.text("K.O."),HORIZONTAL_ALIGNMENT_LEFT,-1,140,ink)
+        canvas.draw_string(session.hud.bold,Vector2.ZERO,L10n.text("K.O."),HORIZONTAL_ALIGNMENT_LEFT,-1,140,Color("c4ff00"))
         canvas.draw_set_transform(Vector2.ZERO,0,canvas.size/Vector2(1280,720))
 
 func clear() -> void:
@@ -637,8 +638,8 @@ func _draw_speed_ink(canvas: Control) -> void:
         var canvas_scale:Vector2=canvas.size/Vector2(1280,720)
         canvas.draw_set_transform(Vector2(62-slide,548)*canvas_scale,-.10,canvas_scale)
         var alpha:float=minf(1,(.36-dt)*7)
-        canvas.draw_string(session.hud.bold,Vector2(5,6),cue[1],HORIZONTAL_ALIGNMENT_LEFT,-1,78,Color("15101f",alpha))
-        canvas.draw_string(session.hud.bold,Vector2.ZERO,cue[1],HORIZONTAL_ALIGNMENT_LEFT,-1,78,Color("fff3a8",alpha))
+        canvas.draw_string(session.hud.bold,Vector2(5,6),L10n.text(cue[1]),HORIZONTAL_ALIGNMENT_LEFT,-1,78,Color("15101f",alpha))
+        canvas.draw_string(session.hud.bold,Vector2.ZERO,L10n.text(cue[1]),HORIZONTAL_ALIGNMENT_LEFT,-1,78,Color("fff3a8",alpha))
         canvas.draw_set_transform(Vector2.ZERO,0,canvas_scale)
 
 
@@ -688,8 +689,8 @@ func _draw_victory(canvas: Control) -> void:
         # Below ~40px the quad folds over itself and Godot cannot triangulate it.
         if width>40.0:
             canvas.draw_colored_polygon(PackedVector2Array([Vector2(0,104),Vector2(width,86),Vector2(width-36,119),Vector2(0,142)]),color)
-        canvas.draw_string(session.hud.bold,Vector2(32,652),victory_state.label,HORIZONTAL_ALIGNMENT_LEFT,-1,36,color)
-    canvas.draw_string(session.hud.font,Vector2(28,710),"ENTER / SPACE  SKIP     ESC  PAUSE",HORIZONTAL_ALIGNMENT_LEFT,-1,22,Color("d9d2e5"))
+        canvas.draw_string(session.hud.bold,Vector2(32,652),L10n.text(victory_state.label),HORIZONTAL_ALIGNMENT_LEFT,-1,36,color)
+    canvas.draw_string(session.hud.font,Vector2(28,710),L10n.text("ENTER / SPACE  SKIP     ESC  PAUSE"),HORIZONTAL_ALIGNMENT_LEFT,-1,22,Color("d9d2e5"))
     # A few broad ink cuts punctuate the gesture, then leave the slow exit clean.
     if t>.07 and t<.30:
         for i in 6:

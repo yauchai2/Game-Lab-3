@@ -1,0 +1,56 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "Shared1280x720 framebuffer",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "New logo has its own modular asset",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Real3D textured LAST SERVICE preview 0",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Real3D textured LAST SERVICE preview 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Real3D textured LAST SERVICE preview 2",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Real3D textured LAST SERVICE preview 3",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Native select popup opens",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Gameplay retains textured character materials",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Shared readable body font",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Result has real rematch action",
+      "passed": true
+    }
+  ],
+  "engine": "4.6.3-stable (official)",
+  "scope": "Native Compatibility page captures, four real3D preview silhouettes, native select popup, menu actions. Result page uses an explicit state fixture. Not a human playthrough or target Mac proof."
+}

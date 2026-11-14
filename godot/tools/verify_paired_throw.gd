@@ -41,6 +41,8 @@ func run() -> void:
                             if event.kind=="throw_start":starts+=1
                             if event.kind=="throw_end":end+=1
                         if s.paired_throw.active() and not s.paired_throw.landed:valid=valid and s.fighters[1-side].health==100
+                        if s.paired_throw.active() and s.paired_throw.age>=80:
+                            for i in 2:valid=valid and (s.fighters[1-i].x-s.fighters[i].x)*s.fighters[i].face>=0
                         for f in s.fighters:valid=valid and is_finite(f.x) and absf(f.x)<=s.EDGE and f.y==0
                     check("matrix %d/%d face %d owner %d"%[a,b,face,side],valid and hits==1 and landings==1 and starts==1 and end==1 and s.fighters[1-side].health==88 and not s.paired_throw.active())
     var trade:RefCounted=fresh()
@@ -167,7 +169,10 @@ func visual_checks() -> void:
         for tick in 132:
             command(enemy,tick)
             if not enemy.paired_throw.active() or enemy.paired_throw.age not in [8,32,52,60]:continue
+            var pistol:Node3D=actors[1].skeleton.get_node_or_null("Pistol")
+            if pistol!=null:pistol.visible=true
             for side in 2:actors[side].present(enemy.fighters[side],1.0/60.0,enemy.hitstop>0,false)
+            enemy_ok=enemy_ok and pistol!=null and not pistol.visible
             enemy_ok=enemy_ok and Motion.correct_contacts(actors[0],actors[1])<.04
             enemy_ok=enemy_ok and actors[1].lowest_skin_y()>=-.015
         check("black suit retarget, wrist and floor %d"%face,enemy_ok)

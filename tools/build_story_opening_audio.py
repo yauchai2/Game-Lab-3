@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic score and sound design for the 18 s boot story opening.
+"""Deterministic score and sound design for the 15 s boot story opening.
 
 Music: "Beat Keep Rockin" by Starjunk 95, supplied and cleared for this game by the
 project owner (references/audio/user-tracks/admitted.json), cut to the picture. At
@@ -9,8 +9,11 @@ Sound: synthesis, the CC0 Kenney impacts in godot/audio/open, and CC0 BigSoundBa
 field recordings in references/story-opening-audio (provenance.json there; fetched by
 tools/fetch_story_opening_sources.py). 48 kHz stereo PCM, noise seed 20261112.
 
-Cue times mirror story_opening.gd (IMPACTS / MUSIC_CUT / SLAM_AT / TITLE_AT). The menu
-track stays silent under this score and fades back in after the title hit.
+The score runs on the 16.1 s timeline of the music edit: radio build, drop at 3.0 (the
+case opens on it), sunk 6.0-7.5 (ZIP's face), drop again at 8.0 (the collectors appear),
+tape stop at 9.75, second build, lid slam 16.0, title hit 16.1 where the main menu takes
+over. story_opening.gd authors the shots on a tighter clock and stretches it with WARP so
+every cut lands on these cues. The menu track stays silent under this score.
 
 Run: python3 tools/build_story_opening_audio.py
 """
@@ -28,7 +31,9 @@ DURATION = 18.4
 N = int(RATE * DURATION)
 STEP = 60.0 / 160.0 / 4.0  # one sixteenth = 0.09375 s
 BAR = STEP * 16  # 1.5 s
-MUSIC_CUT, SLAM_AT, TITLE_AT = 9.75, 16.0, 16.1
+MUSIC_CUT, SLAM_AT, TITLE_AT = 9.75, 16.0, 16.1  # working timeline; final = minus CUT_LEN after CUT_AT
+BUILD_AT = 10.3  # the song's second build creeps in right after the tape stop, so the stand-off is never dead air
+CUT_AT, CUT_LEN = 3.0, 0.0  # no splice: the opening is stretched to the music instead (WARP in story_opening.gd)
 SONG = ROOT / "godot/audio/user-tracks/beat_keep_rockin.ogg"
 DROP_ONE, DROP_TWO = 61.531, 140.609  # seconds into the song: its two drops (measured onsets)
 SONG_GAIN = 2.8
@@ -331,33 +336,9 @@ add("sfx", 2.35, pitched(WHOOSH[0], 0.6), 0.4, np.linspace(-0.3, 0.3, 4000))
 
 # ================================================================== 3-6 s  Four lives
 # The drop: the full beat, with the garage playing along (ratchet, wrench, static, scratch, straw).
-ratchet = src("ratchet")
-clicks = events(ratchet, 0.07, 6)
-for k in range(5):  # two ratchet runs, each locked to the sixteenths
-    add("sfx", 3.0 + 2 * STEP + k * STEP / 2, clicks[k % len(clicks)], 0.5, -0.55)
-for k in range(4):
-    add("sfx", 3.0 + 6 * STEP + k * STEP / 2, clicks[(k + 2) % len(clicks)], 0.45, -0.5)
-wrench = src("impact_wrench")
-add("sfx", 3.0 + 9 * STEP, cut(wrench, 0.3, 0.26), 0.3, -0.45)
-for at, which in ((3.8, 2), (4.9, 3)):  # whip pans
-    add("sfx", at - 0.12, WHOOSH[which], 0.34, np.linspace(-0.8, 0.8, len(WHOOSH[which])))
-crackle = src("radio_crackle")
-add("sfx", 4.125, cut(crackle, 0.4, 0.36), 0.36, 0.3)
-scratch(4.5, 0, 0.9, length=0.42)
-scratch(4.5 + 6 * STEP, 3, 0.7, length=0.3, ratio=1.15)
-straw = src("straw_end")
-add("sfx", 5.3, cut(straw, 0.1, 0.5), 0.42, 0.6)
-scratch(6.0 - 4 * STEP, 1, 1.0, length=4 * STEP - 0.01)  # LOOP's fill into the cut
-
+# (v5: the garage gags that used to play here are gone; the drop carries the case reveal.)
 # ================================================================== 6-9 s  ZIP returns
 # The beat sinks under the floor for the giant sole, drops out, and the case brings it back.
-steps = events(src("shoe_concrete"), 0.4, 4)
-add("sfx", 6.12, steps[2], 0.4, -0.1)
-add("sfx", 6.0 + 6 * STEP, pitched(steps[0], 0.62), 0.95, 0.0)  # the giant sole, 6.56 s
-add("hits", 6.0 + 6 * STEP, faded(pitched(TOM_LOW, 0.55)[:int(0.9 * RATE)], 0.001, 0.3), 0.6, 0.0)
-kick(6.0 + 6 * STEP, 0.8, 0.5, 120, 38)
-add("sfx", 6.98, pitched(steps[1], 0.8), 0.5, 0.12)
-kick(6.98, 0.35, 0.3, 100, 42)
 # Bar 6: half a second of held breath, then the slam at 8.0 and the beat back on the snare.
 riser(8.0, 0.5, 0.7, 500, 11000)
 reverse_swell(8.0, CRASH_B, 0.55, 0.32)
@@ -377,13 +358,18 @@ scratch(7.52, 2, 0.9, length=0.4, ratio=0.9)  # LOOP pulls the record back for t
 # ================================================================== 9-12 s  Wrong delivery
 # Half a bar of full beat under the latches, then the music is ripped out on the third beat.
 latch = events(src("briefcase"), 0.22, 4)
-tail_taps = [(0.17, 0.42), (0.34, 0.22), (0.52, 0.1)]
-for at, pan, which in ((9.15, -0.35, 0), (9.45, 0.35, 1)):
+# The two latches are RIVET's; the lid swings up on the drop at 3.0.
+for at, pan, which in ((2.25, -0.35, 0), (2.6, 0.35, 1)):
     add("sfx", at, latch[which], 0.85, pan)
     add("sfx", at, pitched(METAL_LIGHT, 2.4)[:5200], 0.32, pan)
-    if at > 9.3:  # only the second latch rings into the silence
-        for delay, level in tail_taps:
-            add("sfx", at + delay, latch[which], 0.85 * level, -pan * 0.6)
+# The case slides in along the bench (0.85-1.5 s), lands, the lid swings up (2.8 s), the paper moves (4.1 s) and a magazine is pulled (5.05 s).
+drag = lowpass(noise(int(0.6 * RATE)), 1800) * faded(np.ones(int(0.6 * RATE)), 0.15, 0.12)
+add("sfx", 0.85, drag, 0.5, np.linspace(0.6, 0.0, len(drag)))
+add("sfx", 1.5, pitched(case_slide := events(src("suitcase"), 0.5, 3)[2], 0.9), 0.55, 0.0)
+add("hits", 1.5, pitched(METAL_LIGHT, 0.9)[:int(0.3 * RATE)], 0.2, 0.0)
+add("sfx", 2.8, pitched(latch[2], 0.7), 0.5, 0.0)
+add("sfx", 4.1, bandpass(noise(int(0.28 * RATE)), 2500, 7000) * faded(np.ones(int(0.28 * RATE)), 0.05, 0.12), 0.12, 0.4)  
+add("sfx", 5.05, pitched(src("cartridge"), 0.9)[:int(0.3 * RATE)], 0.3, 0.3)  
 neon = src("neon")
 t = clock(2.35)
 flicker = np.ones(len(t))
@@ -399,18 +385,9 @@ for at, level in ((11.25, 0.3), (11.625, 0.42)):  # two heartbeats before the st
 
 # ================================================================== 12-15 s  Collectors
 # No beat: the car, three doors as one, shoes and glove become the rhythm over a rising floor.
-arrival = src("car_arrival")
-t = clock(1.0)
-add("sfx", 11.9, faded(highpass(arrival[int(4.0 * RATE):int(5.0 * RATE)], 60), 0.25, 0.25), 2.2, np.linspace(0.85, -0.1, len(t)))
-tires = src("tires")
-add("sfx", 12.34, cut(tires, 1.55, 0.42, 0.01, 0.12), 0.8, np.linspace(0.5, -0.1, int(0.42 * RATE)))
-add("amb", 12.0, faded(highpass(street[int(3.4 * RATE):int(6.9 * RATE)], 200), 0.2, 0.8), 0.3, 0.0)
-add("sfx", 12.78, pitched(kenney("impactSoft_heavy_000.ogg"), 0.8), 0.3, 0.0)
-doors = events(src("car_door"), 0.6, 3)
-for k, pan in enumerate((-0.6, 0.0, 0.6)):
-    add("sfx", 13.1 + k * 0.006, doors[k], 1.1, pan)
-kick(13.1, 0.75, 0.5, 110, 40)
-sub(13.1, "Eb1", 4, 0.6)
+# Collectors: no car in the reference. Only the street bed, then the three pairs of shoes.
+street_bed = src("street_bus_stop")
+add("amb", 12.0, faded(highpass(street_bed[int(3.4 * RATE):int(6.9 * RATE)], 200), 0.2, 0.8), 0.3, 0.0)
 march = events(src("marching"), 0.3, 6)
 for n, at in enumerate((13.55, 13.85)):
     for k, pan in enumerate((-0.5, 0.0, 0.5)):
@@ -428,17 +405,18 @@ for k, at in enumerate(pulse):
     kick(at, level, 0.22, 80, 43)
     add("sfx", at, march[k % len(march)][:int(0.15 * RATE)], level * 0.9, 0.5 * (-1) ** k)
     hat(at, 0.6 + 0.1 * k, which=k, pan=-0.5 * (-1) ** k)
-t = clock(4.0)
-u = t / 4.0
+DRONE_AT, DRONE_LEN = 10.0, TITLE_AT - 10.0 - 0.1
+t = clock(DRONE_LEN)
+u = t / DRONE_LEN
 drone = np.zeros(len(t))
 for freq, level in ((38.89, 0.45), (77.78, 0.8), (82.41, 0.3), (116.54, 0.4), (155.56, 0.25)):  # the song's E-flat with a minor second grinding against it
     drone += signal.sawtooth(2 * np.pi * freq * t + rng.uniform(0, 6.28)) * level
 moving = np.zeros(len(t))
 for k, cutoff in enumerate((220, 450, 900, 2000)):  # the filter opens as they come closer
     moving += lowpass(drone, cutoff) * np.clip(u * 4 - k + 0.6, 0, 1) / (k + 1)
-add("music", 12.0, moving * u ** 1.5 * np.clip((4.0 - t) / 0.008, 0, 1), 0.34, 0.0)
+add("music", DRONE_AT, moving * u ** 1.3 * np.clip((4.0 - t) / 0.008, 0, 1), 0.34, 0.0)
 air = highpass(noise(len(t)), 2500) * u ** 4
-add("music", 12.0, air * np.clip((4.0 - t) / 0.008, 0, 1), 0.16, np.linspace(-0.6, 0.6, len(t)))
+add("music", DRONE_AT, air * np.clip((4.0 - t) / 0.008, 0, 1), 0.16, np.linspace(-0.6, 0.6, len(t)))
 reverse_swell(SLAM_AT, src("gong"), 3.2, 0.5, curve=2.6)
 t = clock(0.5)
 low_stab = sum(signal.square(2 * np.pi * f * t) for f in (77.78, 78.6, 155.9)) * np.exp(-t / 0.16)
@@ -485,7 +463,7 @@ def lay(at, source, length, fade_in=0.004, fade_out=0.004):
 lay(0.0, DROP_ONE - 3.0, 3.0)  # the build, heard through a radio
 lay(3.0, DROP_ONE, 4.5)  # first drop on the cut to the garage
 lay(8.0, DROP_ONE, MUSIC_CUT - 8.0 + 0.01)  # the record is pulled back: the same drop lands with the case
-lay(12.0, DROP_TWO - (TITLE_AT - 12.0), TITLE_AT - 12.0, 0.4)  # the song's own second build under the collectors
+lay(BUILD_AT, DROP_TWO - (TITLE_AT - BUILD_AT), TITLE_AT - BUILD_AT, 0.5)  # the song's own second build under the collectors
 lay(TITLE_AT, DROP_TWO, DURATION - TITLE_AT, 0.002, 0.6)  # second drop is the title
 
 # 0-3 s: a small radio that grows until the drop at 3.0.
@@ -512,12 +490,12 @@ position = a - stop + np.cumsum(1 - u * 0.95)  # replay the last 90 ms slowing t
 held = music.copy()
 for channel in range(2):
     music[a - stop:a, channel] = np.interp(position, np.arange(N), held[:, channel]) * (1 - u) ** 1.5
-music[a:int(12.0 * RATE)] = 0.0
+music[a:int(BUILD_AT * RATE)] = 0.0
 
 # 12-16 s: the build creeps in from far away and opens up toward the lid.
-a, b = int(12.0 * RATE), int(TITLE_AT * RATE)
-u = ((t[a:b] - 12.0) / (TITLE_AT - 12.0))[:, None]
-music[a:b] = (lowpass(music[a:b], 700) * (1 - u) + music[a:b] * u) * (0.3 + 0.7 * u ** 1.5)
+a, b = int(BUILD_AT * RATE), int(TITLE_AT * RATE)
+u = ((t[a:b] - BUILD_AT) / (TITLE_AT - BUILD_AT))[:, None]
+music[a:b] = (lowpass(music[a:b], 700) * (1 - u) + music[a:b] * u) * (0.75 + 0.25 * u ** 1.5)
 music *= SONG_GAIN
 music += accents
 
@@ -551,6 +529,15 @@ level = np.sqrt(signal.sosfilt(sos("low", 4, 2), np.mean(mix ** 2, axis=1)).clip
 reference = np.percentile(level[int(3.0 * RATE):int(6.0 * RATE)], 70)
 mix = mix / reference * 0.2
 out = drive(mix, 1.35) * 0.94
+# Cut to the reference-video edit: drop [CUT_AT, CUT_AT + CUT_LEN) with a short crossfade
+# (the fade reads the first moments of each side, so every later cue is exactly CUT_LEN earlier).
+if CUT_LEN > 0:
+    a, b, fade = int(CUT_AT * RATE), int((CUT_AT + CUT_LEN) * RATE), int(0.12 * RATE)
+    mix_down = np.linspace(1, 0, fade)[:, None]
+    joined = out[a:a + fade] * mix_down + out[b:b + fade] * (1 - mix_down)
+    out = np.concatenate([out[:a], joined, out[b + fade:]])
+FINAL = DURATION - CUT_LEN
+out = out[:int(round(FINAL * RATE))]
 peak = float(np.max(np.abs(out)))
 
 OUT.mkdir(parents=True, exist_ok=True)
@@ -560,22 +547,23 @@ with wave.open(str(OUT / "score.wav"), "wb") as handle:
     handle.setsampwidth(2)
     handle.setframerate(RATE)
     handle.writeframes(pcm.tobytes())
+
+
+
 cues = {
-    "duration": 18.0,
-    "cuts": [0, 3, 6, 9, 12, 15, 18],
+    "duration": 16.12,
+    "cuts_real": [0, 1.5, 3.0, 6.0, 8.0, 9.75, 12.0, 15.0, 16.0, 16.12],
     "song": {"file": "godot/audio/user-tracks/beat_keep_rockin.ogg", "title": "Starjunk 95 - Beat Keep Rockin", "bpm": 140,
-             "note": "3 s is exactly seven beats, so every cut lands on a beat", "drops_in_song": [DROP_ONE, DROP_TWO]},
-    "music": {"radio_build": [0.0, 3.0], "first_drop": 3.0, "sunk": [6.0, 7.5], "held_breath": [7.5, 8.0], "first_drop_again": 8.0,
-              "cut": MUSIC_CUT, "second_build": [12.0, TITLE_AT], "second_drop": TITLE_AT, "menu_track_returns": 17.6},
+             "note": "3 s is exactly seven beats", "drops_in_song": [DROP_ONE, DROP_TWO]},
+    "music": {"radio_build": [0.0, 3.0], "first_drop": 3.0, "sunk": [6.0, 7.5], "held_breath": [7.5, 8.0], "drop_again_on_collectors": 8.0,
+              "cut": MUSIC_CUT, "second_build": [BUILD_AT, TITLE_AT], "second_drop": TITLE_AT, "menu_track_returns": TITLE_AT},
     "cues": [
-        [0.0, "tram pass, street bed, radio tuning"], [0.75, "song build through the radio"], [3.0, "first drop"],
-        [3.19, "ratchet run"], [3.56, "ratchet run"], [3.84, "impact wrench"], [4.125, "speaker static"], [4.5, "scratch"],
-        [5.3, "straw"], [5.625, "scratch fill"], [6.56, "giant sole"], [6.98, "second step"], [7.5, "record pulled back, snare roll, riser"],
-        [8.0, "case slam + first drop again"], [9.15, "latch 1"], [9.45, "latch 2"],
-        [9.75, "tape stop, tubes only"], [10.08, "brass settles"], [11.25, "heartbeat"], [11.625, "heartbeat"],
-        [11.9, "car in"], [12.34, "brake"], [13.1, "three doors"], [13.55, "shoes"], [13.85, "shoes"], [14.2, "glove"],
-        [12.0, "second build fades up"], [14.46, "glove snap"], [14.75, "pulse tightens, drone rises"], [15.0, "low stab"], [15.62, "snare roll"],
-        [16.0, "lid slam"], [16.035, "held breath"], [16.1, "title hit + second drop"]],
+        [0.0, "tram pass, street bed, radio tuning"], [0.85, "case slides along the bench"], [1.5, "case lands"], [2.25, "latch 1"], [2.6, "latch 2"],
+        [2.8, "lid swings up"], [3.0, "first drop on the open case"], [4.1, "paper"], [5.05, "magazine"], [6.0, "beat sinks under the floor"],
+        [7.5, "record pulled back, snare roll, riser"], [8.0, "collectors appear: hit + beat back on the snare"], [9.75, "tape stop, tubes only"],
+        [10.08, "brass settles"], [11.25, "heartbeat"], [11.625, "heartbeat"], [BUILD_AT, "second build fades up (no dead air after the tape stop)"], [13.55, "shoes"], [13.85, "shoes"],
+        [14.2, "glove"], [14.46, "glove snap"], [14.75, "pulse tightens, drone rises"], [15.0, "low stab"], [15.62, "snare roll"],
+        [16.0, "lid slam"], [16.035, "held breath"], [16.1, "title hit + second drop under the main menu"]],
     "sources": ["Starjunk 95 - Beat Keep Rockin (owner-supplied, see references/audio/user-tracks/admitted.json)", "synthesis (seed 20261112)", "godot/audio/open Kenney CC0 impacts",
                 "references/story-opening-audio BigSoundBank CC0 excerpts (provenance.json)"],
     "sha256": hashlib.sha256(pcm.tobytes()).hexdigest(),

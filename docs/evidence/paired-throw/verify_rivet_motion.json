@@ -7,8 +7,8 @@
     },
     {
       "check": "jab retains a planted stance and finite bones",
-      "detail": 0.0,
-      "pass": true
+      "detail": 0.102952092885971,
+      "pass": false
     },
     {
       "check": "jab has no legacy sword/kick or active limb inflation",
@@ -17,8 +17,8 @@
     },
     {
       "check": "cross retains a planted stance and finite bones",
-      "detail": 0.0,
-      "pass": true
+      "detail": 0.0703675225377083,
+      "pass": false
     },
     {
       "check": "cross has no legacy sword/kick or active limb inflation",
@@ -27,8 +27,8 @@
     },
     {
       "check": "heavy retains a planted stance and finite bones",
-      "detail": 0.000000147513972592606,
-      "pass": true
+      "detail": 0.251890331506729,
+      "pass": false
     },
     {
       "check": "heavy has no legacy sword/kick or active limb inflation",
@@ -37,8 +37,8 @@
     },
     {
       "check": "finisher retains a planted stance and finite bones",
-      "detail": 0.000000147513972592606,
-      "pass": true
+      "detail": 0.219122111797333,
+      "pass": false
     },
     {
       "check": "finisher has no legacy sword/kick or active limb inflation",
@@ -47,8 +47,8 @@
     },
     {
       "check": "special retains a planted stance and finite bones",
-      "detail": 0.0,
-      "pass": true
+      "detail": 0.0930287688970566,
+      "pass": false
     },
     {
       "check": "special has no legacy sword/kick or active limb inflation",
@@ -58,15 +58,15 @@
     {
       "check": "Held attack charges tier two and releases the fist forward",
       "detail": {
-        "charge_x": 0.00732881017029285,
-        "release_x": 0.51354855298996
+        "charge_x": 0.0353216081857681,
+        "release_x": 0.619372963905334
       },
       "pass": true
     },
     {
       "check": "Charge frame 7/8 does not alternate poses",
       "detail": null,
-      "pass": true
+      "pass": false
     },
     {
       "check": "F2 and hitstop preserve the fist on facing -1",
@@ -99,7 +99,7 @@
       "pass": true
     }
   ],
-  "failed": 0,
-  "passed": 19,
+  "failed": 6,
+  "passed": 13,
   "scope": "Real rigs, valid simulation charge/release plus explicit pose fixtures; bone feet only, not terrain IK or human quality proof."
 }

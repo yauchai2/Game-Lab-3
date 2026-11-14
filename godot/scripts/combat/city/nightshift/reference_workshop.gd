@@ -150,12 +150,12 @@ func _robot() -> void:
 
 func _lights() -> void:
     for i in 3:
-        var beam:=MeshInstance3D.new();var shape:=CylinderMesh.new();shape.top_radius=.04;shape.bottom_radius=.9;shape.height=1;shape.radial_segments=12
-        beam.mesh=shape;var mat:=ShaderMaterial.new();mat.shader=preload("res://scripts/combat/city/nightshift/light.gdshader");mat.set_shader_parameter("color",Color(1,.98,.9,.08));beam.material_override=mat;add_child(beam);beams.append(beam)
+        var beam:=MeshInstance3D.new();var beam_mesh:=CylinderMesh.new();beam_mesh.top_radius=.04;beam_mesh.bottom_radius=.9;beam_mesh.height=1;beam_mesh.radial_segments=12
+        beam.mesh=beam_mesh;var mat:=ShaderMaterial.new();mat.shader=preload("res://scripts/combat/city/nightshift/light.gdshader");mat.set_shader_parameter("color",Color(1,.98,.9,.08));beam.material_override=mat;add_child(beam);beams.append(beam)
         var pool:=MeshInstance3D.new();var quad:=PlaneMesh.new();quad.size=Vector2(3,3);pool.mesh=quad
         var pool_mat:=ShaderMaterial.new();pool_mat.shader=mat.shader;pool_mat.set_shader_parameter("spot",true);pool_mat.set_shader_parameter("color",Color(1,.97,.88,.75));pool.material_override=pool_mat;add_child(pool);pools.append(pool)
     for i in 10:
-        var puff:=MeshInstance3D.new();var shape:=SphereMesh.new();shape.radius=.15;shape.height=.25;shape.radial_segments=5;shape.rings=2;puff.mesh=shape
+        var puff:=MeshInstance3D.new();var puff_mesh:=SphereMesh.new();puff_mesh.radius=.15;puff_mesh.height=.25;puff_mesh.radial_segments=5;puff_mesh.rings=2;puff.mesh=puff_mesh
         var mat:=StandardMaterial3D.new();mat.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED;mat.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA;mat.albedo_color=Color(1,1,1,.25);puff.material_override=mat;add_child(puff);smoke.append(puff)
     for i in 12:arcs.append(box(Vector3.ZERO,Vector3(.035,.25,.035),LIME))
     var portal:=QuadMesh.new();portal.size=Vector2(1.8,3.3);aperture=MeshInstance3D.new();aperture.mesh=portal;aperture.material_override=material(PINK);add_child(aperture)

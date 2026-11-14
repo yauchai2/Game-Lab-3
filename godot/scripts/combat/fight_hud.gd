@@ -1,4 +1,5 @@
 extends Control
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 ## Native game UI; the world stays visible and gameplay copy is localized centrally.
 const Tokens = preload("res://scripts/combat/ui/ui_theme.gd")
 const Copy = preload("res://scripts/combat/ui/ui_text.gd")
@@ -16,6 +17,8 @@ var art=preload("res://scripts/combat/ui/reference_art.gd").new()
 var title_motion:Node
 var roster_preview:Node
 var audio_restore:Button
+var hint_elapsed:=0.0
+var hint_round:=-1
 var art_controls:Control
 var art_buttons:Dictionary={}
 var coach_continue:Button
@@ -233,18 +236,16 @@ func rebuild_menu(requested_focus := "") -> void:
         menu.position=Vector2(52,230)
         menu.size=Vector2(450,434)
     else:
-        menu.position=Vector2(340,141)
-        menu.size=Vector2(600,500 if session.screen in ["pause","help"] else 440)
+        menu.position=Vector2(250,133)
+        menu.size=Vector2(780,510)
     menu.add_theme_stylebox_override("panel",Tokens.plate(Color.TRANSPARENT if session.screen=="title" and menu_page=="main" else Color(INK,.96),Tokens.EDGE if menu_page!="main" else Color.TRANSPARENT,2 if menu_page!="main" else 0))
     if menu_page=="skills":_skills_page()
     elif menu_page=="versus":_versus_page()
     elif menu_page=="settings":_settings_page()
     elif menu_page=="roster":_roster_page()
     elif menu_page=="help":_help_page()
-    elif menu_page=="free_play":
-        _plain_action("SQUAD","free_squad",session.start_squad)
-        _plain_action("AI DEMO","free_demo",session.start_demo)
-        _plain_action("WATCH OPENING","replay_opening",func():session.replay_story_opening())
+    elif menu_page=="labs":_labs_page()
+    elif menu_page=="free_play":_labs_page()
     elif session.screen=="title":_title_page()
     elif session.screen in ["pause","help"]:_pause_page()
     elif session.screen=="result":_result_page()
@@ -295,7 +296,7 @@ func _heading(key: String) -> void:
 
 func _action(parent: Node, key: String, shortcut: String, callback: Callable, primary := false) -> Button:
     var button:=Button.new()
-    button.text=tr_text(key)
+    button.text=tr_text(key).to_upper()
     button.alignment=HORIZONTAL_ALIGNMENT_LEFT
     button.custom_minimum_size=Vector2(0,60)
     button.mouse_default_cursor_shape=Control.CURSOR_POINTING_HAND
@@ -398,7 +399,7 @@ func _pause_page() -> void:
 func _result_page() -> void:
     if is_instance_valid(session.city_campaign) and session.city_campaign.active:
         menu_stack.add_child(_label(session.city_campaign.result_text(),28))
-        _plain_action("RETURN TO CITY / ENTER","city_return",session.city_campaign.return_from_encounter)
+        _plain_action(session.city_campaign.result_action(),"city_return",session.city_campaign.return_from_encounter)
         if session.city_campaign.profile.error!="":
             menu_stack.add_child(_label(session.city_campaign.profile.error,24))
             _plain_action("RELOAD SAVE / RETRY RETURN","city_save_retry",func():session.city_campaign.profile.retry_save();rebuild_menu())
@@ -417,7 +418,7 @@ func _result_page() -> void:
         else:
             if session.sim.winner==0 and session.free_battle_unlocked():_plain_action("FREE BATTLE","end_run_versus",func():session.return_to_title();open_page("versus"))
             _plain_action("RETURN TO FIGHTERS","end_run",func():session.return_to_title();open_page("roster"))
-        _plain_action("SKILLS / FREE RESPEC","skills",func():open_page("skills"))
+        _plain_action("LOADOUT","skills",func():open_page("skills"))
         return
     var note:String=_result_note(session.result_line)
     if not note.is_empty():menu_stack.add_child(_label(note,24))
@@ -434,7 +435,7 @@ func _result_title() -> String:
     # The page header carries the outcome, so the panel does not repeat it.
     if menu_page=="skills":return "LOADOUT"
     if is_instance_valid(session.city_campaign) and session.city_campaign.active:return "RESULT"
-    if session.sim.winner<0:return "DRAW"
+    if session.sim.winner<0:return tr_text("draw").to_upper()
     if session.versus:return "P%d WINS"%(session.sim.winner+1)
     return "YOU WIN" if session.sim.winner==0 else "RIVAL WINS"
 
@@ -492,7 +493,7 @@ func _choice(key: String, items: Array, selected: int, callback: Callable) -> vo
 
 func _toggle(key: String, enabled: bool, callback: Callable) -> void:
     var button:=CheckButton.new()
-    button.text=tr_text(key)
+    button.text=tr_text(key).to_upper()
     button.button_pressed=enabled
     button.custom_minimum_size.y=56
     button.set_meta("ui_key",key)
@@ -518,6 +519,7 @@ func _volume(key: String, value: float) -> void:
     menu_stack.add_child(slider)
 
 func _settings_page() -> void:
+    _choice("language",["English","繁體中文"],1 if session.language=="zh" else 0,func(index:int):session.set_language("zh" if index==1 else "en"))
     _choice("difficulty",["relaxed","standard","challenging"],session.run_base_difficulty if session.run_active else session.sim.difficulty,session.set_difficulty)
     _caption("difficulty_hint")
     if session.sim.is_air_lesson():_caption("air_fixed_partner")
@@ -526,18 +528,23 @@ func _settings_page() -> void:
         session.audio.muted=value
         session.audio.stop_all()
         session.save_options())
-    _toggle("music_enable",not session.audio.music_muted,func(value:bool):
-        session.audio.music_muted=not value
-        session.save_options())
-    menu_stack.add_child(_label(session.audio.music_credit,14,Tokens.MUTED))
     _volume("music",session.audio.music_level)
     _volume("sound",session.audio.effects_level)
-    menu_stack.add_child(_label(session.audio.status_text(),17,PAPER))
-    _action(menu_stack,"test_audio","",func():session.audio.play_sound("parry",1.0,0.0))
-    _action(menu_stack,"replay_intro","",func():session.audio.replay_intro())
-    _action(menu_stack,"restore_audio","",_restore_sound)
+    if session.audio.silent_settings():
+        menu_stack.add_child(_label(session.audio.status_text(),24,Tokens.MUTED))
+        var audio_row:=HBoxContainer.new();menu_stack.add_child(audio_row)
+        _action(audio_row,"test_audio","",func():session.audio.play_sound("parry",1.0,0.0))
+        _action(audio_row,"restore_audio","",_restore_sound)
+    _choice("CONTROL HINTS",["AUTO","ALWAYS","OFF"],session.control_hints,func(index:int):session.control_hints=index;session.save_options())
+    _plain_action("HOW TO PLAY","how_to_play",func():open_page("help"))
+    _plain_action("LABS","labs",func():open_page("labs"))
+    _plain_action("WATCH OPENING","replay_opening",func():session.replay_story_opening())
     _toggle("reduced",session.reduced_effects,func(value:bool):
         session.reduced_effects=value
+        session.save_options())
+    _toggle("rumble",session.controls.rumble_enabled,func(value:bool):
+        session.controls.rumble_enabled=value
+        if not value:session.controls.stop_rumble()
         session.save_options())
     _toggle("scene_edges",session.ink_pass.visible,func(value:bool):
         session.ink_pass.visible=value
@@ -547,7 +554,7 @@ func _settings_page() -> void:
         session.save_options())
     if session.free_battle_unlocked() and session.screen=="title":
         _plain_action("RELOCK FREE BATTLE / REPLAY THE UNLOCK","relock",session.relock_free_battle)
-    _caption("settings_saved")
+
 
 func _roster_page() -> void:
     _heading("roster")
@@ -573,36 +580,40 @@ func _versus_page() -> void:
         var index:int=side
         _choice("P%d DEVICE"%(side+1),["AUTO","KEYBOARD","GAMEPAD"],controls.wanted[side],func(choice:int):session.set_device(index,choice))
         menu_stack.add_child(_label("P%d / %s"%[side+1,controls.describe(side)],28,PAPER))
-        menu_stack.add_child(_label(controls.legend(side),24,Tokens.MUTED))
     menu_stack.add_child(_label("AUTO: two gamepads take both players; one gamepad goes to P2; none splits the keyboard. Unplugging a gamepad pauses and falls back to keyboard.",24,Tokens.MUTED))
     _plain_action("CHOOSE FIGHTERS / P1 AND P2","vs_roster",func():open_page("roster"))
-    _plain_action("AI DEMO / F12","vs_demo",session.start_demo)
 
 func _help_page() -> void:
-    if session.screen=="title":_plain_action("STORY WAVES / THREE-WAVE SLICE","story_slice",session.start_story)
-    menu_stack.add_child(_label("MAIN MENU > STORY: city, skills, talents, gear and contracts. Clear an encounter, then Enter returns to town. FIGHTERS > STORY WAVES keeps the original three-wave preview.",24,Tokens.MUTED))
-    _plain_action("FIRST MINUTE / C - START LESSONS","first_minute",session.start_first_minute)
-    _plain_action("SURGE LAB / B - COMPARE DECISION WINDOW","surge_lab",session.start_surge_lab)
-    for line in ["ZIP: evade a nearby strike for ROUTE. Spend it on E dash. L confirms a second kick.","RIVET: hold L to PRELOAD I / II, then release. Slow windup, strong guard pressure.","HUSH: frontal perfect guard stores SAMPLE. Cross / K / L / W+L spends it.","LOOP: L places a node (20). Move+L places farther. S+L pulses nodes (10). W+L: ENCORE.","FIGHTERS > STREET RUN: win stops for XP and skill points. Equip 2 in SKILLS. Standard FIGHT uses fixed stats."]:
-        menu_stack.add_child(_label(line,28,Tokens.TEAL))
-    for key in ["move_help","combo_help","air_help","defense_help","throw_help","wall_help","special_help","pressure_help","clash_help","air_lab_help"]:
-        var label:=_label(tr_text(key),17,PAPER)
-        menu_stack.add_child(label)
-        var spacer:=Control.new()
-        spacer.custom_minimum_size.y=8
-        menu_stack.add_child(spacer)
-    _action(menu_stack,"drill","F8",func():
-        session.start_match(true)
-        session.prime_pressure_drill())
-    for line in ["STORY: clear all 3 stops of the street run to unlock FREE BATTLE (1P VS CPU and 2P LOCAL VERSUS).","2P KEYBOARD / P1: "+session.controls.LEGEND.kb_left,"2P KEYBOARD / P2: "+session.controls.LEGEND.kb_right,"GAMEPAD: "+session.controls.LEGEND.pad]:
-        menu_stack.add_child(_label(line,24,Tokens.LIME))
+    menu_stack.add_child(_label("MOVE  WASD   /   JUMP  SPACE\nJ  COMBO   K  LAUNCH   L  SKILL\nW + L  SUPER   /   G  THROW\nSHIFT  GUARD / PARRY   E  DASH / CHASE",28,PAPER))
+    var hero:int=clampi(session.character_choices[0],0,3)
+    var tips:Array=["ZIP / evade a nearby strike for ROUTE. Spend it on E dash; L confirms a second kick.","RIVET / hold L to PRELOAD, release for guard pressure.","HUSH / perfect guard stores SAMPLE; cross, K, L and W+L spend it.","LOOP / L places a node; move+L places farther, S+L pulses, W+L triggers ENCORE."]
+    menu_stack.add_child(_label(tips[hero],28,Tokens.TEAL))
+    _plain_action("LESSONS","first_minute",session.start_first_minute)
+    _plain_action("LABS","labs",func():open_page("labs"))
+
+func _labs_page() -> void:
+    _plain_action("SQUAD","free_squad",session.start_squad)
+    _plain_action("SURGE WINDOW","surge_lab",session.start_surge_lab)
+    _plain_action("PRESSURE","pressure_lab",func():session.start_match(true);session.prime_pressure_drill())
+    _plain_action("RALLY","rally_lab",func():session.start_match(true);session.prime_rally_drill())
+    _plain_action("AERIAL","air_lab",func():session.start_match(true);session.prime_air_drill())
+    _plain_action("STORY WAVES PREVIEW","story_slice",session.start_story)
+    _plain_action("LEGACY STREET RUN","legacy_run",session.start_run)
+
+func hints_visible() -> bool:
+    if session.coach!=null:return true
+    if session.control_hints==2:return false
+    return session.practice or session.control_hints==1 or (session.sim.round_number==1 and hint_elapsed<6.0)
 
 func _process(delta: float) -> void:
+    if hint_round!=session.sim.round_number or session.sim.phase=="ready":
+        hint_round=session.sim.round_number;hint_elapsed=0.0
+    elif session.screen=="play" and session.sim.phase=="fight":hint_elapsed+=delta
     title_motion.update_stage(session.screen=="title" and menu_page=="main",delta,session.reduced_effects)
     art.advance(delta,session.reduced_effects)
-    copy.language="en"
+    copy.language=session.language
     art.free_locked=not session.free_battle_unlocked()
-    pause_button.visible=session.screen=="play"
+    pause_button.visible=session.screen=="play" and not session.result_presentation_active() and not session.ability_draw.active() and not session.round_theatre.intro
     coach_continue.visible=session.screen=="play" and session.coach!=null and session.coach.status in ["ready","passed","complete"]
     if coach_continue.visible:
         coach_continue.text="ENTER / "+{"ready":"BEGIN","passed":"NEXT LESSON","complete":"MAIN MENU"}[session.coach.status]
@@ -650,11 +661,11 @@ func _sync_choices() -> void:
             button.remove_theme_color_override("font_disabled_color")
 
 func _text(at: Vector2, value: String, point_size: int, color := PAPER, display := false) -> void:
-    draw_string(bold if display else font,at,value,HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(Tokens.CAPTION_SIZE,point_size),color)
+    draw_string(bold if display else font,at,L10n.text(value),HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(Tokens.CAPTION_SIZE,point_size),color)
 
 func _center(at: Vector2, value: String, point_size: int, color := PAPER, display := false) -> void:
     var face: Font=bold if display else font
-    _text(at-Vector2(face.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(Tokens.CAPTION_SIZE,point_size)).x*.5,0),value,point_size,color,display)
+    _text(at-Vector2(face.get_string_size(L10n.text(value),HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(Tokens.CAPTION_SIZE,point_size)).x*.5,0),value,point_size,color,display)
 
 func _plate(at: Vector2, extent: Vector2, color: Color) -> void:
     draw_colored_polygon(PackedVector2Array([at,at+Vector2(extent.x,0),at+extent,at+Vector2(0,extent.y)]),color)
@@ -696,6 +707,7 @@ func _draw() -> void:
         if not (session.theatre.active() and session.theatre.mode in ["ko","skill","overdrive"] and not session.reduced_effects):session.spectacle.draw(self,session)
     session.ink_fx.draw(self,session)
     session.ko_tumble.draw(self,session)
+    preload("res://scripts/combat/enemies/gun_presentation.gd").draw_overlay(self,session)
     for effect in session.effects:
         if effect.age>=0:vfx_renderer.draw_effect(self,session,effect)
     if not session.neon_enabled and session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
@@ -742,12 +754,12 @@ func _draw() -> void:
     else:_pressure_hud()
     if session.coach!=null:_coach_hud()
     if session.practice and session.demo==null:_practice_hud()
-    if session.demo==null and not session.sim.arcade_enabled and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
+    if hints_visible() and session.demo==null and not session.sim.arcade_enabled and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
         _text(Vector2(34,690),"J "+tr_text("light")+"   K "+tr_text("heavy")+"   G "+tr_text("throw")+"   Shift "+tr_text("guard")+"   E "+tr_text("dodge"),13,PAPER)
 
     if session.hitboxes_visible:_draw_hitboxes()
     if session.screen!="play" and not (session.demo!=null and session.screen=="result") and not session.result_presentation_active():
-        art.secondary(self,"SETTINGS" if menu_page=="settings" else ("HOW TO PLAY" if menu_page=="help" else ("PAUSED" if session.screen in ["pause","help"] else _result_title())))
+        art.secondary(self,{"settings":"SETTINGS","help":"HOW TO PLAY","labs":"LABS","versus":"VERSUS","skills":"LOADOUT"}.get(menu_page,"PAUSED" if session.screen in ["pause","help"] else _result_title()))
 
 func _draw_core_tag() -> void:
     if session.screen!="play":return
@@ -1025,7 +1037,7 @@ func _build_art_controls() -> void:
         var keys:Array=art.MAIN_KEYS
         var count:int=keys.size()
         art.free_locked=not session.free_battle_unlocked()
-        var calls:Array=[func():session.city_campaign.open_city(),_open_free_battle,func():open_page("roster"),func():session.start_match(true),func():open_page("settings"),func():open_page("free_play")]
+        var calls:Array=[func():session.city_campaign.open_city(),_open_free_battle,func():open_page("roster"),func():session.start_match(true),func():open_page("settings")]
         for i in count:_art_button(keys[i],art.MAIN_LABELS[i],art.MAIN_RECTS[i],calls[i])
         if art.free_locked:art_buttons.fight.text="FREE BATTLE LOCKED / CLEAR STORY";art_buttons.fight.tooltip_text=art_buttons.fight.text
         for i in count:
@@ -1042,17 +1054,12 @@ func _build_art_controls() -> void:
             var selected_side:int=side
             _art_button("side_"+str(side),"SELECT P%d"%(side+1),art.fit(Rect2(18,241+side*100,160,84)),func():art.roster_side=selected_side;queue_redraw())
         _art_button("skills","SKILLS",Rect2(1094,300,140,60),func():open_page("skills"))
-        _art_button("story_waves","STORY WAVES",Rect2(1094,380,140,40),session.start_story).tooltip_text="Three-wave preview / no XP"
-        _art_button("street_run","STREET RUN",Rect2(1094,430,140,42),session.start_run)
         _art_button("enemy_black_suit","BLACK SUIT / P2",Rect2(1094,486,140,86),func():
             art.roster_side=1
             focus_key="enemy_black_suit"
             session.set_character(1,session.FighterVisual.Roster.BLACK_SUIT_INDEX)
             queue_redraw())
-        _art_button("enemy_squad","SQUAD",Rect2(1094,588,140,48),session.start_squad)
-        _art_button("roster_fight","FIGHT" if session.free_battle_unlocked() else "STORY",art.fit(Rect2(849,773,550,100)),func():
-            if session.free_battle_unlocked():session.start_match(false)
-            else:session.start_run())
+        _art_button("roster_fight","CONFIRM",Rect2(672,658,250,46),close_page)
         _art_button("back","BACK",art.fit(Rect2(1507,875,145,50)),close_page)
         for i in 4:
             var button:Button=art_buttons["card_"+str(i)]
@@ -1060,15 +1067,9 @@ func _build_art_controls() -> void:
             button.focus_neighbor_right=art_buttons["card_"+str(i^1)].get_path()
             button.focus_neighbor_top=art_buttons["card_"+str((i+2)%4)].get_path()
             button.focus_neighbor_bottom=art_buttons["card_"+str(i+2)].get_path() if i<2 else art_buttons.roster_fight.get_path()
-        art_buttons.skills.focus_neighbor_bottom=art_buttons.story_waves.get_path()
-        art_buttons.story_waves.focus_neighbor_top=art_buttons.skills.get_path()
-        art_buttons.story_waves.focus_neighbor_bottom=art_buttons.street_run.get_path()
-        art_buttons.street_run.focus_neighbor_top=art_buttons.story_waves.get_path()
-        art_buttons.street_run.focus_neighbor_bottom=art_buttons.enemy_black_suit.get_path()
-        art_buttons.enemy_black_suit.focus_neighbor_top=art_buttons.street_run.get_path()
-        art_buttons.enemy_black_suit.focus_neighbor_bottom=art_buttons.enemy_squad.get_path()
-        art_buttons.enemy_squad.focus_neighbor_top=art_buttons.enemy_black_suit.get_path()
-        art_buttons.enemy_squad.focus_neighbor_bottom=art_buttons.roster_fight.get_path()
+        art_buttons.skills.focus_neighbor_bottom=art_buttons.enemy_black_suit.get_path()
+        art_buttons.enemy_black_suit.focus_neighbor_top=art_buttons.skills.get_path()
+        art_buttons.enemy_black_suit.focus_neighbor_bottom=art_buttons.roster_fight.get_path()
         art_buttons.enemy_black_suit.focus_neighbor_left=art_buttons.card_3.get_path()
         art_buttons.card_1.focus_neighbor_right=art_buttons.skills.get_path()
         art_buttons.card_3.focus_neighbor_right=art_buttons.enemy_black_suit.get_path()
@@ -1095,22 +1096,23 @@ func _skills_page() -> void:
     var growth:RefCounted=session.growth
     var record:Dictionary=growth.records[growth.Profiles.IDS[character]]
     menu_stack.add_child(_label("%s / LV %d / XP %d / POINTS %d"%[growth.Profiles.NAMES[character],growth.level(character),record.xp,growth.points(character)],32,PAPER,true))
-    menu_stack.add_child(_label("Equip 2. Skills apply to STREET RUN only. Standard FIGHT keeps fixed stats. Changes apply at the next stop.",28,Tokens.MUTED))
+    menu_stack.add_child(_label("Equip 2 for STREET RUN. Changes apply at the next stop.",28,Tokens.MUTED))
     for i in 3:
         var index:int=i;var node:Dictionary=growth.SKILLS[character][i]
         var unlocked:bool=node.id in record.unlocked;var equipped:bool=node.id in record.equipped
         var status:String="EQUIPPED" if equipped else ("EQUIP" if unlocked else "UNLOCK / 1 POINT / LV %d"%(i+1))
-        var button:Button=_plain_action(node.name+" / "+status,"skill_"+node.id,func():
+        var button:Button=_plain_action(node.name,"skill_"+node.id,func():
             if node.id in growth.records[growth.Profiles.IDS[character]].unlocked:growth.toggle(character,index)
             else:growth.unlock(character,index)
             rebuild_menu("skill_"+node.id))
         button.disabled=not unlocked and (growth.points(character)<=0 or growth.level(character)<i+1)
+        menu_stack.add_child(_label(status,24,Tokens.TEAL if equipped else Tokens.MUTED))
         menu_stack.add_child(_label(node.desc,28,Tokens.MUTED))
     _plain_action("FREE RESPEC","respec",func():growth.respec(character);rebuild_menu("respec"))
     var palette:Button=_plain_action("PALE FX / "+("ON" if record.palette else "OFF")+" / UNLOCK AT 120 XP","palette",func():growth.toggle_palette(character);rebuild_menu("palette"))
     palette.disabled=record.xp<120
     if growth.last_error!=OK:menu_stack.add_child(_label("SAVE FAILED / PROGRESS IS IN MEMORY",28,Tokens.MAGENTA))
-    if session.screen=="title":_plain_action("START 3-STOP STREET RUN","start_run",session.start_run)
+
 
 func _campaign_boss_hud() -> void:
     for boss in session.sim.squad_members:

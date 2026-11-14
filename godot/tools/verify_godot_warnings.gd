@@ -1,6 +1,10 @@
 extends SceneTree
 ## Keep the user's reported warning categories fatal in the affected runtime scripts.
 const SCRIPTS=[
+    "res://scripts/combat/ui/localization.gd",
+    "res://scripts/combat/ui/locale_text.gd",
+    "res://scripts/combat/ui/translation_catalog.gd",
+    "res://scripts/combat/city/story_flow.gd",
     "res://scripts/combat/cinematic/story_opening.gd",
     "res://scripts/combat/city/campaign_visuals.gd",
     "res://scripts/combat/story/story_simulation.gd",

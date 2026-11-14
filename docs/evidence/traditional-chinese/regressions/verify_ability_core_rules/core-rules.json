@@ -1,0 +1,318 @@
+{
+  "checks": [
+    {
+      "name": "speed has a distinct ID and valid item",
+      "passed": true
+    },
+    {
+      "name": "speed icon and matching drum texture exist",
+      "passed": true
+    },
+    {
+      "name": "speed can be applied exactly once",
+      "passed": true
+    },
+    {
+      "name": "speed leaves no modifier or healing budget on reset",
+      "passed": true
+    },
+    {
+      "name": "guard has a distinct ID and valid item",
+      "passed": true
+    },
+    {
+      "name": "guard icon and matching drum texture exist",
+      "passed": true
+    },
+    {
+      "name": "guard can be applied exactly once",
+      "passed": true
+    },
+    {
+      "name": "guard leaves no modifier or healing budget on reset",
+      "passed": true
+    },
+    {
+      "name": "charge has a distinct ID and valid item",
+      "passed": true
+    },
+    {
+      "name": "charge icon and matching drum texture exist",
+      "passed": true
+    },
+    {
+      "name": "charge can be applied exactly once",
+      "passed": true
+    },
+    {
+      "name": "charge leaves no modifier or healing budget on reset",
+      "passed": true
+    },
+    {
+      "name": "fury has a distinct ID and valid item",
+      "passed": true
+    },
+    {
+      "name": "fury icon and matching drum texture exist",
+      "passed": true
+    },
+    {
+      "name": "fury can be applied exactly once",
+      "passed": true
+    },
+    {
+      "name": "fury leaves no modifier or healing budget on reset",
+      "passed": true
+    },
+    {
+      "name": "plate has a distinct ID and valid item",
+      "passed": true
+    },
+    {
+      "name": "plate icon and matching drum texture exist",
+      "passed": true
+    },
+    {
+      "name": "plate can be applied exactly once",
+      "passed": true
+    },
+    {
+      "name": "plate leaves no modifier or healing budget on reset",
+      "passed": true
+    },
+    {
+      "name": "flow has a distinct ID and valid item",
+      "passed": true
+    },
+    {
+      "name": "flow icon and matching drum texture exist",
+      "passed": true
+    },
+    {
+      "name": "flow can be applied exactly once",
+      "passed": true
+    },
+    {
+      "name": "flow leaves no modifier or healing budget on reset",
+      "passed": true
+    },
+    {
+      "name": "eco has a distinct ID and valid item",
+      "passed": true
+    },
+    {
+      "name": "eco icon and matching drum texture exist",
+      "passed": true
+    },
+    {
+      "name": "eco can be applied exactly once",
+      "passed": true
+    },
+    {
+      "name": "eco leaves no modifier or healing budget on reset",
+      "passed": true
+    },
+    {
+      "name": "breach has a distinct ID and valid item",
+      "passed": true
+    },
+    {
+      "name": "breach icon and matching drum texture exist",
+      "passed": true
+    },
+    {
+      "name": "breach can be applied exactly once",
+      "passed": true
+    },
+    {
+      "name": "breach leaves no modifier or healing budget on reset",
+      "passed": true
+    },
+    {
+      "name": "siphon has a distinct ID and valid item",
+      "passed": true
+    },
+    {
+      "name": "siphon icon and matching drum texture exist",
+      "passed": true
+    },
+    {
+      "name": "siphon can be applied exactly once",
+      "passed": true
+    },
+    {
+      "name": "siphon leaves no modifier or healing budget on reset",
+      "passed": true
+    },
+    {
+      "name": "all nine equal-weight entries are reachable across seeds",
+      "passed": true
+    },
+    {
+      "name": "invalid IDs and recipients cannot consume a claim",
+      "passed": true
+    },
+    {
+      "name": "FURY raises real hit damage for character 0",
+      "passed": true
+    },
+    {
+      "name": "PLATE reduces actual incoming damage for character 0",
+      "passed": true
+    },
+    {
+      "name": "FLOW grants 30 percent more hit energy for character 0",
+      "passed": true
+    },
+    {
+      "name": "BREACH increases guard drain without chip health for character 0",
+      "passed": true
+    },
+    {
+      "name": "ECO exact affordability and payment 0 special",
+      "passed": true
+    },
+    {
+      "name": "ECO exact affordability and payment 0 overdrive",
+      "passed": true
+    },
+    {
+      "name": "FURY raises real hit damage for character 1",
+      "passed": true
+    },
+    {
+      "name": "PLATE reduces actual incoming damage for character 1",
+      "passed": true
+    },
+    {
+      "name": "FLOW grants 30 percent more hit energy for character 1",
+      "passed": true
+    },
+    {
+      "name": "BREACH increases guard drain without chip health for character 1",
+      "passed": true
+    },
+    {
+      "name": "ECO exact affordability and payment 1 special",
+      "passed": true
+    },
+    {
+      "name": "ECO exact affordability and payment 1 overdrive",
+      "passed": true
+    },
+    {
+      "name": "FURY raises real hit damage for character 2",
+      "passed": true
+    },
+    {
+      "name": "PLATE reduces actual incoming damage for character 2",
+      "passed": true
+    },
+    {
+      "name": "FLOW grants 30 percent more hit energy for character 2",
+      "passed": true
+    },
+    {
+      "name": "BREACH increases guard drain without chip health for character 2",
+      "passed": true
+    },
+    {
+      "name": "ECO exact affordability and payment 2 special",
+      "passed": true
+    },
+    {
+      "name": "ECO exact affordability and payment 2 overdrive",
+      "passed": true
+    },
+    {
+      "name": "FURY raises real hit damage for character 3",
+      "passed": true
+    },
+    {
+      "name": "PLATE reduces actual incoming damage for character 3",
+      "passed": true
+    },
+    {
+      "name": "FLOW grants 30 percent more hit energy for character 3",
+      "passed": true
+    },
+    {
+      "name": "BREACH increases guard drain without chip health for character 3",
+      "passed": true
+    },
+    {
+      "name": "ECO exact affordability and payment 3 special",
+      "passed": true
+    },
+    {
+      "name": "ECO exact affordability and payment 3 overdrive",
+      "passed": true
+    },
+    {
+      "name": "ECO exact affordability and payment 3 node_pulse",
+      "passed": true
+    },
+    {
+      "name": "SIPHON heals two per hit and stops at twelve per round",
+      "passed": true
+    },
+    {
+      "name": "SIPHON full health neither overheals nor spends its cap",
+      "passed": true
+    },
+    {
+      "name": "SIPHON only spends actual restored HP at health cap",
+      "passed": true
+    },
+    {
+      "name": "SIPHON cannot heal from block or parry false",
+      "passed": true
+    },
+    {
+      "name": "FLOW cannot farm energy from block or parry false",
+      "passed": true
+    },
+    {
+      "name": "SIPHON cannot heal from block or parry true",
+      "passed": true
+    },
+    {
+      "name": "FLOW cannot farm energy from block or parry true",
+      "passed": true
+    },
+    {
+      "name": "SIPHON cannot revive a KO in a trade",
+      "passed": true
+    },
+    {
+      "name": "FLOW never exceeds energy cap",
+      "passed": true
+    },
+    {
+      "name": "FURY is active through legal combat ticks",
+      "passed": true
+    },
+    {
+      "name": "ECO AI can commit a signature at the discounted threshold",
+      "passed": true
+    },
+    {
+      "name": "ECO LOOP AI can trigger an eight-energy pulse",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 75,
+  "reachable_ids": [
+    "charge",
+    "eco",
+    "guard",
+    "fury",
+    "breach",
+    "flow",
+    "speed",
+    "siphon",
+    "plate"
+  ],
+  "scope": "Deterministic actual simulation fixtures and a legal input-driven attack; not human balance or GPU proof."
+}

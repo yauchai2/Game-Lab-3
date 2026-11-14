@@ -46,84 +46,39 @@
 
 ## 2026-11-13：免費摔投素材優先次序
 
-- [x] 記錄使用者只用免費資源，付費候選不採購。
-- [ ] 優先從Mixamo官方取得Shoulder Throw, Aggressor／Victim；目前只有索引線索，瀏覽器啟動失敗，未取得FBX。
-- [ ] 檢查兩段root／起點／時長／接觸／落地，再做完整攻守配對，不能當作已完成。
+## 2026-11-14：選單與彈出文字清晰度覆核
 
-## 2026-11-13：完整柔道摔投為下一個優先目標
+修正原生PopupMenu／TooltipLabel獨立Window的主題及取樣繼承：新Viewport明確nearest、Window缺主題時補共用theme，相關文字明確BODY並移除PopupMenu舊4px描邊。探索Overlay/Help亦補像素字體。5／8／100、字圖與字級保持。87項（原生43／語言21／strict23）通過，包含設定與P1/P2裝置下拉選單的embedded／獨立視窗、真hover提示框、主介面／城市六站／天賦／故事／HUD／暫停／結算。圖及限制見[evidence/pixel-text-audit](evidence/pixel-text-audit/README.md)；雲端Linux4.7.2，非使用者Mac驗收，來源同步main，Web不更新。取樣值4是繼承而非linear，不可只看root nearest便判斷popup已清晰。
 
-詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)。
+## 2026-11-13：中文字體亦套用5／8／100
 
-- [x] 按使用者要求查網上完整攻守配對來源：Fab Judo AnimSet、Grab & Throw與Player Motion；記錄官方清單／格式／授權／預覽與未驗範圍。
-- [ ] 取得一組合法原始攻守動畫，確認完整轉髖／翻身、root軌跡與接觸／落地幀；未購買／下載。
-- [ ] 製作真雙人retarget／共同時間軸／對齊與落地一次結算樣板，再擴四角。
-- [ ] 驗體型差、雙朝向、牆邊、群戰、中斷、暫停／F2／死亡／重開清理；付費素材私有匯入。
-- [ ] 現有grab抓取／釋放手勢僅為過渡，不能再當完整柔道投技已完成。
+中文原本仍經向量fallback。本輪新增918字形的RadioPixelChinese／RadioChinese，正文／標題、開場字幕與3D中文字牌改用同一像素preset：24px格、80%二值＋20%coverage，原UI字級不改、繁中字元進位相同，拉丁字圖四檔不改。3D Label採nearest。subset_ui_font.py自動接續字圖生成，未來新增翻譯需一起補字。72項語言／原生／strict／英文／atlas／PCK檢查通過，見[evidence/chinese-pixel-preset](evidence/chinese-pixel-preset/README.md)。來源同步main，Web不部署。
 
-## 2026-11-13：第五輪空地交接與反應
+## 2026-11-13：繁體中文語言已加入
 
-詳[FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md](FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md)。
+設定最上方新增English／繁體中文，選擇保存並於重啟恢復。1034條共用catalog涵蓋選單／HUD／教學、城市六站、成長／裝備／合約／核心、六章及各結局。原生控制項與Canvas繪字統一，中文字體補齊，動態數字及百分比／角色佔位符保持；故事打字按中文長度，天賦全覽與穿戴分開譯。拉丁字體5／8／100、simulation、資料ID與存檔schema保持。264項規則／原生／英文回歸／strict／PCK檢查通過，見[evidence/traditional-chinese](evidence/traditional-chinese/README.md)。品牌、按鍵、音樂名及原圖內文字保留，沒有新增配音；來源同步main，Web未部署。
 
-- [x] 四角五空擊、空中L／OD／pulse、起跳／追擊／落地、受擊與grab初步手勢接同一pose owner，拳腳／棍尖FX同步；去除舊自轉／拉伸／多層覆寫。
-- [x] 216新＋458回歸全過、5040筆地面抽樣不變、固定重播玩法等價、14秒空連及8秒投技真事件證據。
-- [ ] 攻守成對摔投／抱提／轉摔來源及手到對手身體接觸約束；目前grab只是抓取／釋放手勢。
-- [ ] 完整轉髖／步法、鞋底接地及足部IK；空反hold／ricochet／KO導演家族的逐角色藝術覆核。
-- [ ] 選角／登場／勝出／據點共用profile；全模式／群戰／Mac／真人／目標GPU驗收。
-- [ ] 全strict三處既有警告仍為16/19；來源BGM／判定／存檔／公開Web保持。
+## 2026-11-13：使用者授權字體最新設定合入main
 
-## 2026-11-13：第四輪四角聲光風格
+依「好，推上main」，以main f69fc9f合併story-waves-m1 f4f0742。main原已含352c524及其他分支更新；本輪補入最後兩輪字體設定，保留5／8／100及現有main的介面／據點／開場／角色動作。只有文件衝突，兩邊歷史保持。121項最終檢查通過（整合70／Ink10／城市22／strict19），log無ERROR／SCRIPT ERROR，見[evidence/main-pixel-preset-merge](evidence/main-pixel-preset-merge/README.md)。此授權覆蓋以下舊「不合main」指示；來源同步main，公開Web不更新。既有真人／Mac／硬件及配對投技限制保持。
 
-詳[FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md](FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md)。
+## 2026-11-13：數值化字體設定5／8／100
 
-- [x] 四角命中／釋放／起招輪廓、招架／撞牆歸屬、大招Neon幾何與四種signature鏡頭。
-- [x] 四種原創PCM材質層，保留CC0打擊主體／音效預算／BGM；F2／暫停／靜音，458項及12秒真事件預覽。
-- [ ] 空戰／投技／受擊／倒地家族逐角色review與素材接入；完整轉髖／步法與foot IK。
-- [ ] 選角／登場／勝出／據點共用profile；全模式／六人群戰藝術驗收、Mac／真人／目標GPU。
-- [ ] 全strict剩story_opening、world_ink_fx、reference_workshop相依三處警告；目前16/19。
+使用者接受像素強度5、邊緣硬度8、文字大小100%。設定保存在godot/assets/fonts/pixel-type-preset.json，生成器實際讀取；強度以34−2×數值映射字圖大小（5→24px），硬度8為80%二值輪廓＋20%原字形coverage，字級／布局維持原大小。保留display字距，720p／nearest與場景保持。這是本專案相對美術尺度，非客觀畫質單位或遊戲內設定滑桿；未實作任意文字百分比的自動重排。畫面及驗證見[evidence/pixel-preset-5-8](evidence/pixel-preset-5-8/README.md)。仍同branch／PR #12，不合main／Web。
 
-## 2026-11-13：第三輪HUSH／LOOP地面動作狀態
+## 2026-11-13：加強像素與清晰階梯鋸齒
 
-詳[HUSH_LOOP_MOTION.zh-TW.md](HUSH_LOOP_MOTION.zh-TW.md)：
+依使用者最新要求，文字字圖24px→20px，alpha三階→二值0／255，去除灰色柔邊；display每字多一個來源像素間距，防止粗斜字黏連。採128中性切割而非最初96加粗閾值，保留字腔。720p／nearest、字級／布局／繁中fallback與無AA toon場景保持。來源tools/build_subtle_pixel_fonts.py及manifest可重建；畫面及檢查見[evidence/crisp-pixel-type](evidence/crisp-pixel-type/README.md)。仍同branch／PR #12，不合main／Web。
 
-- [x] HUSH七地面招、真撤步截擊、sample取樣／消耗姿態、護架／block反應、前後步與閃。
-- [x] LOOP八地面招含node_pulse、刺／掃／劈、近／遠點手勢、encore按真節點；握姿、掌心握點與當前棍尖FX。
-- [x] 同固定CC0原檔轉7來源＋1反射，原11曲線不變；122新／總407檢查、固定輸入等價、ZIP／RIVET抽樣不變，15秒正式renderer正常規則預覽。
-- [ ] 四角完整轉髖、plant marker與地形foot IK、獨立uppercut／更多完整武術片段、步頻與停步調校。
-- [ ] 成對投技與空戰全家族；選角、登場、勝出、據點改用同一motion profile。
-- [ ] 四種VFX幾何、鏡頭與音色；正式全模式／六人群戰動態、Mac／真人／目標GPU驗收；全strict四處既有警告另整理。
+## 2026-11-13：整合後的現行待辦（覆蓋下方歷史）
 
-## 2026-11-13：第二輪動作庫接入進度
+- [x] 所有本輪活躍來源集中main：四角地面／空中／受擊與聲光、720p字體、據點全圖像頁、開場配樂、震動路由。
+- [x] UI P1–P3：5主選項、AUTO／ALWAYS／OFF提示、模式入口整併／LABS、音訊設定、共用顏色／面板與按鈕、精簡HOW TO PLAY／LOADOUT。
+- [x] 四英雄有界轉髖、支撐腳鎖定／骨盆修正／平地兩骨IK；共用基礎profile接選角、勝出／登場、據點預覽。851項／19 strict及1,800tick等價驗證。
+- [ ] 完整免費攻守配對柔道摔投：官方Mixamo Aggressor／Victim原FBX尚未取得，原有grab只是過渡手勢；不採購付費來源或使用授權不明鏡像。
+- [ ] 本機／真人／實體手柄／目標GPU驗收；具體步驟見REMAINING_WORK_INTEGRATION.zh-TW.md。
 
-詳[STREET_MOTION_LIBRARY.zh-TW.md](STREET_MOTION_LIBRARY.zh-TW.md)，接續下方首切片：
-
-- [x] 真正取得新CC0來源：UAL2勾拳／回收、KayKit完整踢擊／前後步／跑／閃，原始hash／固定提交／授權／60Hz重建器。
-- [x] ZIP七種地面招式id的全身踢擊／左右變體，真確認換腿與miss退出；RIVET hook／recovery／launcher與兩人移動接正式visual。
-- [x] 特效讀當前拳腳；285項／六腳本strict／固定1800 simulation tick等價及獨立原生預覽。
-- [ ] 取得更多獨立踢技與完整uppercut；RIVET完整轉髖、plant與foot IK、步頻／停步人手調校。
-- [ ] HUSH截擊與LOOP短棍專屬動作；四角空戰、成對投技、場景互動與選角／勝出共用新profile。
-- [ ] 四種VFX幾何、鏡頭與聲音風格；正式模式／六人群戰／Mac／真人驗收。Mixamo／ActorCore／Rokoko／Fab帳戶素材仍未取得。
-
-## 2026-11-13：四角動作第一輪實作狀態
-
-詳[RIVET_MOTION_SLICE.zh-TW.md](RIVET_MOTION_SLICE.zh-TW.md)，覆蓋下段「完全未實作」的本輪進度：
-
-- [x] 建立四角22類固定root呈現抽樣與前後資料，非完整真人／全招動態驗收。
-- [x] RIVET五個地面move與靜止護架採CC0拳擊＋站姿遮罩／單一owner，預壓、出拳、收勢；正式共用visual接入。
-- [x] 19新／46機制／104死亡回歸、四腳本嚴格編譯、1800步玩法雜湊與三角抽樣相同；12秒原生片。
-- [ ] P1取得官方帳戶動作、授權與完整全身轉接選樣；已可透過Web工具查閱具體Fab拳擊包及官方說明，尚未下載。
-- [ ] 補RIVET完整前後步／轉髖／launcher／overdrive，替換首版固定腿遮罩；其餘三角獨立動作及VFX仍未重製。
-- [ ] 全模式／鞋底幾何接觸／成對投技／真人與Mac驗收；既有全套strict四處警告另案整理。
-
-## 2026-11-13：四英雄動作與戰鬥風格重製（規劃）
-
-詳細規格見[FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md](FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)，本輪尚未實作：
-
-- [ ] P0 四角全動作家族動態基準、特效on/off、左右朝向與鞋底／contact量測；本輪僅程式全類別review及歷史兩抽格。
-- [ ] P1 取得Mixamo／ActorCore／Rokoko／Fab候選及授權證據，解決官方入口proxy403；確認公開repo可存放範圍；四角測姿與轉接樣本。
-- [ ] P2 motion profile／分段marker／單一pose owner／foot plant；正式FIGHT先修RIVET巨拳預壓切片，移除Sword底片及重複覆寫。
-- [ ] P3 ZIP完整踢技、HUSH截擊、LOOP短棍／節點，以及所有移動、防守、空戰、投技、受擊與死亡。
-- [ ] P4 四種幾何／鏡頭／音色，真hit／block／parry／plant事件同步，沿Neon及音樂owner。
-- [ ] P5 正式1v1／故事群戰／Boss／選角／勝出／據點回歸，F2／pause／重開清理；真人及Mac目視／效能驗收。
+本段是現況，下方保留各輪原始待辦與出處，不代表舊的每一項仍未實作。
 
 ## 2026-11-12：按原圖重做據點＋15秒動態（覆蓋粗模）
 
@@ -974,3 +929,19 @@ Godot4.7.2 Linux Compatibility／llvmpipe介面回歸37/37通過，三視窗尺�
 - [x] 255 項檢查、20,000 混合步進與雙實例重播、原生畫面及短動畫。
 - [ ] 真人驗收 0.4 秒是否可讀、對峙出現頻率與風險回報、提示強度。
 - [ ] 後續評估投技及撞牆反蹬，待確認核心循環後再擴充。
+
+- [x] 城內 SKILLS／RADIO／DEPART 與頂部資源列圖像化（HUB_PICTURE_UI）。
+- [ ] 用同一套卡片重做 DEALER／SHOP（現在兩頁共用同一段長文字）與 CIRCUIT。
+- [ ] Alan 看過圖示後調整畫法；若要 ChatGPT 生成圖，需由使用者生成後提供。
+
+
+## 2026-11-13 全分支整合來源
+
+- 完整來源紀錄：docs/integration-history/story-waves-m1/docs/TODO.md
+- 完整來源紀錄：docs/integration-history/four-fighter-motion-plan/docs/TODO.md
+
+## 2026-11-13：免費摔投素材優先次序
+
+- [x] 記錄使用者只用免費資源，付費候選不採購。
+- [ ] 優先從Mixamo官方取得Shoulder Throw, Aggressor／Victim；目前只有索引線索，瀏覽器啟動失敗，未取得FBX。
+- [ ] 檢查兩段root／起點／時長／接觸／落地，再做完整攻守配對，不能當作已完成。
