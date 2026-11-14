@@ -83,10 +83,11 @@ func sample(t:float,travel:float,rolling:float,reveal:float,chassis:Node3D,trave
     var turn:=1-smoothstep(.91,1.24,t)
     model.rotation.y=travel_direction*PI*.5*turn
     var walking:=rolling>.03 and t<1.10
-    var selected:="Walk_Loop" if walking else "Idle_Loop"
+    var imported_walk:bool=walking and motions.library.clips.has("MX_Walking")
+    var selected:="MX_Walking" if imported_walk else ("Walk_Loop" if walking else "Idle_Loop")
     motions.blend_from.clear();motions.previous_state=selected+"/idle"
-    motions.clip_elapsed=absf(travel)*.42 if walking else 0.0
-    motions.present({"character":2,"health":100,"state":"idle","move":"","frame":0,"y":0.0,"vy":0.0,"vx":2.8 if walking else 0.0,"face":1,"guarding":false,"showcase":not walking},0.0,true)
+    motions.clip_elapsed=absf(travel)*(.81 if imported_walk else .42) if walking else 0.0
+    motions.present({"character":2,"health":100,"state":"idle","move":"","frame":0,"y":0.0,"vy":0.0,"vx":2.8 if walking else 0.0,"face":1,"guarding":false,"cinematic_clip":selected},0.0,true)
     motions._aim_limb("Spine","Spine1",Vector3.UP+Vector3.BACK*(rolling*.18-reveal*.12),1.0)
     var left_target:=chassis.to_global(Vector3(-1.06,1.80,-.56))
     var right_target:=chassis.to_global(Vector3(-1.06,1.60,-.56))
