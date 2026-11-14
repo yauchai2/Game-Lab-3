@@ -1,5 +1,7 @@
 # Afterhours / Game-Lab-3
 
+最新（2026-11-14）：已收到使用者Mixamo過肩摔攻守兩段FBX，完成原座標／同幀雙人骨架來源檢查。[6.70秒預覽與量測](docs/evidence/judo-source-pair/README.md)。兩段65骨／30fps／201幀；Godot四角重定向與正式摔投仍待接入。以下MCP／未取得FBX狀態為較早紀錄。
+
 最新工具：[Mixamo MCP設定及驗證](docs/MIXAMO_MCP_SETUP.zh-TW.md)。已安裝使用者指定HaD0Yun獨立Python MCP，6工具及關鍵字實測通過；尚無Adobe token；新環境網路已生效，官方攻守目錄與6.6秒預覽已核實，未取得摔投FBX。雲端設定不等於使用者Mac已連接。
 
 最新約束：完整摔投只用免費資源，優先核實Mixamo Shoulder Throw攻守配對；官方FBX尚未取得，完整摔投未完成。詳[資源研究](docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md)。

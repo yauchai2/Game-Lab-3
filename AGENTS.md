@@ -152,3 +152,5 @@
 - 2026-11-13 使用者確認使用MCP：現docs/MIXAMO_MCP_SETUP.zh-TW.md，官方Playwright MCP0.0.85已在雲端註冊／真工具驗證，但Mixamo被網路proxy403拒絕。這不是使用者Mac已連接／Adobe已登入／官方FBX已取得，完整摔投仍未完成；不繞過政策。tools/setup_mixamo_mcp.sh供本機Codex＋Extension設定，僅Linux語法與print驗證，profile／下載不入公開repo。
 
 - 2026-11-13 最新使用者指定HaD0Yun unity-mcp-mixamo：已裝獨立Python Server6170d5e／SDK1.30.0，不需Unity；雲端mixamo-direct真6工具與keywords通過。無token、Mixamo API仍proxy403，未下載FBX或完成摔投。見MIXAMO_MCP_SETUP最新節；token僅同主機私有檔，不貼聊天／公開repo，Mac／宿主熱載入未驗。
+
+- 2026-11-14 使用者直接上傳Shoulder Throw, Aggressor／Victim，角色定義為施技者／被摔者。兩個FBX65骨／30fps／1–201幀、原座標同幀骨架配對已檢查；見evidence/judo-source-pair。原檔與可還原逐幀資料repo外，公開只metadata／工具／渲染預覽。MCP登入不再阻擋這組素材處理；Godot retarget／接觸／共同時鐘／落地結算仍未做，完整摔投未完成。

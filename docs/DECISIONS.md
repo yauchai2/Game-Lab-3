@@ -1,3 +1,7 @@
+## 2026-11-14：使用者直接提供Mixamo攻守配對
+
+Aggressor固定為施技者，Victim為被摔者；兩段FBX已到手，不再以Adobe token／MCP下載作這組素材檢查的前置條件。先保持原座標與同一幀號檢查，不各自置中或各自裁剪。公開repo只存metadata／工具與渲染預覽，原FBX／可還原逐幀資料放repo外；來源非CC0。近身戰鬥共同裁切先候選46–121，接觸及四角重定向未驗前不錄用為正式招式。不改原GLB、不發Web。
+
 ## 2026-11-13 接續：區分官方API錯誤、公開目錄與認證下載
 
 新環境unrestricted／enforced且實際官方目錄HTTP200，不再要求重複加入網域。公開X-Api-Key沿指定上游取得目錄，不使用第三方鏡像或繞過認證；MCP本身要求token，未認證搜尋不當成功。官方GIF只作預覽候選驗證，不抽取成遊戲曲線。launcher可從環境秘密MIXAMO_ACCESS_TOKEN僅記憶體注入，保留私有檔fallback；不經記錄中的MCP參數傳憑證、不提交原始FBX或token。詳MIXAMO_MCP_SETUP最新節。

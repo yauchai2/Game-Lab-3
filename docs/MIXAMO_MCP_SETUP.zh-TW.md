@@ -1,3 +1,7 @@
+## 2026-11-14 接續：使用者已直接上傳攻守FBX
+
+兩段Shoulder Throw的FBX已到手，來源為使用者上傳，非本輪MCP下載。已做同座標／同幀雙人骨架檢查，詳[evidence/judo-source-pair](evidence/judo-source-pair/README.md)。處理這組素材不再等Adobe認證；MCP保留作日後其他素材搜尋／下載。Godot重定向／完整摔投仍未完成。本輪未重新驗網路或認證，以下依日期保留歷史。
+
 ## 2026-11-13 接續：網路已生效，官方配對與預覽已核實，待Adobe認證
 
 本次是同一設定下的新執行個體；讀取status為unrestricted／enforced且observations_current=true，已實際連通Mixamo。未帶API key的403是官方JSON「Api Key is required」，不是proxy拒絕；使用上游公開X-Api-Key後官方目錄HTTP200。核實Shoulder Throw, Aggressor（c9c7a795-b96c-11e4-a802-0aaa78deedf9）與Victim（c9c7a914-b96c-11e4-a802-0aaa78deedf9）。兩段官方GIF各6.6秒，完整時長2fps抽樣已檢視：攻方轉身俯身過肩及收招，守方離地翻轉、背部落地及地面收尾。不是雙人對齊播放，root／接觸／落地幀仍未量測；未下載FBX、未接Godot、完整摔投未完成。

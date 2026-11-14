@@ -1,3 +1,7 @@
+## 2026-11-14：使用者FBX雙人骨架檢查
+
+見[evidence/judo-source-pair](evidence/judo-source-pair/README.md)。Blender4.3.2讀兩個FBX，均65骨／同名同序／根Hips／30fps／1–201幀；201幀每骨world joint採樣，兩次提取metadata／樣本逐byte相同。匯入Short user property警告保留，非零警告聲稱。原座標／同幀雙視角渲染6.70秒、960×450／30fps／201畫格；ffprobe核對，12詳細與15完整時間軸抽格檢視可見過肩離地翻身與地面收尾。此為骨架source診斷，不是mesh接觸、360°整圈證明、Godot／四角retarget、傷害結算或完整摔投玩法驗收。原FBX／逐幀資料未提交公開repo。沒有Godot修改，不重跑歷史674；沒有測Mac／真人／新認證或網路。
+
 ## 2026-11-13 接續：網路、官方配對及安全認證入口
 
 來源c766a61，乾淨任務分支。status與本機startup policy為unrestricted，官方API無key回403000「Api Key is required」、帶上游公開key後目錄HTTP200。核實攻守產品ID與官方GIF各6.6秒，全時長2fps聯絡表目視檢查，見[evidence/mixamo-mcp/official-pair.json](evidence/mixamo-mcp/official-pair.json)。此非root／雙人同步／FBX落地量測。指定6170d5e／SDK1.30.0重建，pip check通過；改後launcher實際initialize／六工具成功，auth無token、search未認證，不因isError=false當成功。環境秘密佔位值檢查確認client只收記憶體、不寫token檔、無網路呼叫；真憑證未測。JSON解析／Python編譯／git diff --check另覆核。原GLB／Godot未改，不重跑或冒用歷史674；完整摔投未完成，main／Web未更新。

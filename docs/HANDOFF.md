@@ -1,3 +1,9 @@
+## 2026-11-14：已收到兩個使用者FBX，原始雙人摔投骨架同步檢查完成
+
+來源基線28986c4，先fast-forward接續另一對話的官方目錄／GIF與秘密注入工作；不覆寫其紀錄，不合main。使用者已上傳Shoulder Throw, Aggressor與Victim，均65骨／同名同序／30fps／1–201幀、6.667秒跨度，兩個root位移保留。SHA與角色定義見[evidence/judo-source-pair](evidence/judo-source-pair/README.md)。以原座標／原幀號生成6.70秒雙角度骨架診斷影片及12摔投／15完整時間軸抽格，已檢視入身、轉肩、離地倒轉、落地及地面收尾；無重定時或人工對齊。兩次提取metadata／joint資料完全相同。FBX匯入的Short user property警告有記錄。
+
+原FBX與逐幀資料在repo外（此雲端workspace/shared/judo-shoulder-throw及attachments），公開只保存程式、metadata、渲染預覽。提取／預覽CLI見tools/inspect_mixamo_throw_pair.py與render_mixamo_throw_diagnostic.py。這不是Godot接入／mesh接觸／物理驗收；不能拿前輪674當摔投通過。下一步同時裁切兩段（來源46–121只候選），先做實際四角中一組retarget與接觸／root，再共同時鐘與落地一次結算、雙朝向／邊界／中斷清理。MCP登入不再阻擋處理已上傳兩檔；本輪未做新網路／認證檢查，不聲稱MCP已下載。Godot、原GLB、main／Web不改。
+
 ## 2026-11-13 接續：網路已生效，官方配對與預覽已核實，待Adobe認證
 
 本次是同一設定下的新執行個體；讀取status為unrestricted／enforced且observations_current=true，已實際連通Mixamo。未帶API key的403是官方JSON「Api Key is required」，不是proxy拒絕；使用上游公開X-Api-Key後官方目錄HTTP200。核實Shoulder Throw, Aggressor（c9c7a795-b96c-11e4-a802-0aaa78deedf9）與Victim（c9c7a914-b96c-11e4-a802-0aaa78deedf9）。兩段官方GIF各6.6秒，完整時長2fps抽樣已檢視：攻方轉身俯身過肩及收招，守方離地翻轉、背部落地及地面收尾。不是雙人對齊播放，root／接觸／落地幀仍未量測；未下載FBX、未接Godot、完整摔投未完成。

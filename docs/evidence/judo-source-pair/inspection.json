@@ -1,0 +1,233 @@
+{
+  "provenance": "User-uploaded FBX; no Mixamo API download in this session",
+  "actors": {
+    "aggressor": {
+      "filename": "Shoulder Throw, Aggressor.fbx",
+      "bytes": 2334304,
+      "sha256": "be5f9daa7cacc8d8719d8239069233a5e212cff9a93cae16bbac12948a4c0352",
+      "bone_count": 65,
+      "bone_names": [
+        "mixamorig:Hips",
+        "mixamorig:Spine",
+        "mixamorig:Spine1",
+        "mixamorig:Spine2",
+        "mixamorig:Neck",
+        "mixamorig:Head",
+        "mixamorig:HeadTop_End",
+        "mixamorig:RightShoulder",
+        "mixamorig:RightArm",
+        "mixamorig:RightForeArm",
+        "mixamorig:RightHand",
+        "mixamorig:RightHandThumb1",
+        "mixamorig:RightHandThumb2",
+        "mixamorig:RightHandThumb3",
+        "mixamorig:RightHandThumb4",
+        "mixamorig:RightHandIndex1",
+        "mixamorig:RightHandIndex2",
+        "mixamorig:RightHandIndex3",
+        "mixamorig:RightHandIndex4",
+        "mixamorig:RightHandMiddle1",
+        "mixamorig:RightHandMiddle2",
+        "mixamorig:RightHandMiddle3",
+        "mixamorig:RightHandMiddle4",
+        "mixamorig:RightHandRing1",
+        "mixamorig:RightHandRing2",
+        "mixamorig:RightHandRing3",
+        "mixamorig:RightHandRing4",
+        "mixamorig:RightHandPinky1",
+        "mixamorig:RightHandPinky2",
+        "mixamorig:RightHandPinky3",
+        "mixamorig:RightHandPinky4",
+        "mixamorig:LeftShoulder",
+        "mixamorig:LeftArm",
+        "mixamorig:LeftForeArm",
+        "mixamorig:LeftHand",
+        "mixamorig:LeftHandThumb1",
+        "mixamorig:LeftHandThumb2",
+        "mixamorig:LeftHandThumb3",
+        "mixamorig:LeftHandThumb4",
+        "mixamorig:LeftHandIndex1",
+        "mixamorig:LeftHandIndex2",
+        "mixamorig:LeftHandIndex3",
+        "mixamorig:LeftHandIndex4",
+        "mixamorig:LeftHandMiddle1",
+        "mixamorig:LeftHandMiddle2",
+        "mixamorig:LeftHandMiddle3",
+        "mixamorig:LeftHandMiddle4",
+        "mixamorig:LeftHandRing1",
+        "mixamorig:LeftHandRing2",
+        "mixamorig:LeftHandRing3",
+        "mixamorig:LeftHandRing4",
+        "mixamorig:LeftHandPinky1",
+        "mixamorig:LeftHandPinky2",
+        "mixamorig:LeftHandPinky3",
+        "mixamorig:LeftHandPinky4",
+        "mixamorig:RightUpLeg",
+        "mixamorig:RightLeg",
+        "mixamorig:RightFoot",
+        "mixamorig:RightToeBase",
+        "mixamorig:RightToe_End",
+        "mixamorig:LeftUpLeg",
+        "mixamorig:LeftLeg",
+        "mixamorig:LeftFoot",
+        "mixamorig:LeftToeBase",
+        "mixamorig:LeftToe_End"
+      ],
+      "frame_range": [
+        1,
+        201
+      ],
+      "fps": 30.0,
+      "duration_seconds": 6.666666666666667,
+      "root": [
+        "mixamorig:Hips"
+      ],
+      "hip_samples_meters": {
+        "1": [
+          2.296508312225342,
+          -0.050921376794576645,
+          0.9271178841590881
+        ],
+        "101": [
+          -2.4050633907318115,
+          0.41469305753707886,
+          0.7321259379386902
+        ],
+        "201": [
+          -2.1163792610168457,
+          0.4473695158958435,
+          0.9377638101577759
+        ]
+      }
+    },
+    "victim": {
+      "filename": "Shoulder Throw, Victim.fbx",
+      "bytes": 2330176,
+      "sha256": "44567d47ab4176cf54206b5de9f6b9fb3377befc8cac9e7eef0dd314b802dc10",
+      "bone_count": 65,
+      "bone_names": [
+        "mixamorig:Hips",
+        "mixamorig:Spine",
+        "mixamorig:Spine1",
+        "mixamorig:Spine2",
+        "mixamorig:Neck",
+        "mixamorig:Head",
+        "mixamorig:HeadTop_End",
+        "mixamorig:RightShoulder",
+        "mixamorig:RightArm",
+        "mixamorig:RightForeArm",
+        "mixamorig:RightHand",
+        "mixamorig:RightHandThumb1",
+        "mixamorig:RightHandThumb2",
+        "mixamorig:RightHandThumb3",
+        "mixamorig:RightHandThumb4",
+        "mixamorig:RightHandIndex1",
+        "mixamorig:RightHandIndex2",
+        "mixamorig:RightHandIndex3",
+        "mixamorig:RightHandIndex4",
+        "mixamorig:RightHandMiddle1",
+        "mixamorig:RightHandMiddle2",
+        "mixamorig:RightHandMiddle3",
+        "mixamorig:RightHandMiddle4",
+        "mixamorig:RightHandRing1",
+        "mixamorig:RightHandRing2",
+        "mixamorig:RightHandRing3",
+        "mixamorig:RightHandRing4",
+        "mixamorig:RightHandPinky1",
+        "mixamorig:RightHandPinky2",
+        "mixamorig:RightHandPinky3",
+        "mixamorig:RightHandPinky4",
+        "mixamorig:LeftShoulder",
+        "mixamorig:LeftArm",
+        "mixamorig:LeftForeArm",
+        "mixamorig:LeftHand",
+        "mixamorig:LeftHandThumb1",
+        "mixamorig:LeftHandThumb2",
+        "mixamorig:LeftHandThumb3",
+        "mixamorig:LeftHandThumb4",
+        "mixamorig:LeftHandIndex1",
+        "mixamorig:LeftHandIndex2",
+        "mixamorig:LeftHandIndex3",
+        "mixamorig:LeftHandIndex4",
+        "mixamorig:LeftHandMiddle1",
+        "mixamorig:LeftHandMiddle2",
+        "mixamorig:LeftHandMiddle3",
+        "mixamorig:LeftHandMiddle4",
+        "mixamorig:LeftHandRing1",
+        "mixamorig:LeftHandRing2",
+        "mixamorig:LeftHandRing3",
+        "mixamorig:LeftHandRing4",
+        "mixamorig:LeftHandPinky1",
+        "mixamorig:LeftHandPinky2",
+        "mixamorig:LeftHandPinky3",
+        "mixamorig:LeftHandPinky4",
+        "mixamorig:RightUpLeg",
+        "mixamorig:RightLeg",
+        "mixamorig:RightFoot",
+        "mixamorig:RightToeBase",
+        "mixamorig:RightToe_End",
+        "mixamorig:LeftUpLeg",
+        "mixamorig:LeftLeg",
+        "mixamorig:LeftFoot",
+        "mixamorig:LeftToeBase",
+        "mixamorig:LeftToe_End"
+      ],
+      "frame_range": [
+        1,
+        201
+      ],
+      "fps": 30.0,
+      "duration_seconds": 6.666666666666667,
+      "root": [
+        "mixamorig:Hips"
+      ],
+      "hip_samples_meters": {
+        "1": [
+          -2.1177220344543457,
+          0.03148229792714119,
+          0.9501503705978394
+        ],
+        "101": [
+          -1.156723976135254,
+          -0.595224916934967,
+          0.3475966453552246
+        ],
+        "201": [
+          -1.0726100206375122,
+          -0.5945916771888733,
+          0.10970821976661682
+        ]
+      }
+    }
+  },
+  "same_bone_names": true,
+  "inspection_date_hk": "2026-11-14",
+  "same_frame_source_pair_review": {
+    "method": "Evaluated original FBX world-space bone heads at every integer source frame; no offsets or retiming. Two projected skeleton views.",
+    "sample_count_per_actor": 201,
+    "first_frame_hip_distance_m": 4.41505950294977,
+    "victim_inverted_frame_span": [
+      84,
+      114
+    ],
+    "inversion_definition": "Head below hips and at least one foot above hips; a diagnostic, not contact or collision proof.",
+    "observations": "Approach, turning entry, airborne victim rotation and ground finish visible; source world coordinates give a plausible matching pair.",
+    "reviewed_frames": "12 detailed frames around throw; full timeline contact sheet every 15 frames plus final frame",
+    "candidate_edit_window": {
+      "source_frames": [
+        46,
+        121
+      ],
+      "status": "proposal only; use identical shared crop for both actors, validate grip and recovery after retarget"
+    },
+    "retarget_verified": false,
+    "mesh_contact_verified": false,
+    "ground_impact_event_verified": false,
+    "runtime_integrated": false
+  },
+  "distribution": "Raw FBX and evaluated motion samples remain outside public repository; public evidence contains metadata and rendered joint previews only.",
+  "source_uploads": {
+    "aggressor": "file_00000000a8f88207863d787e61a1df4b",
+    "victim": "file_0000000037888207875c4df46d74cd39"
+  }
+}

@@ -1,3 +1,9 @@
+## 2026-11-14 最新：兩個使用者FBX已收到，原始配對可共同播放
+
+使用者已提供Aggressor（施技者）及Victim（被摔者）。兩段實測65骨、同名同序、30fps、1–201幀／6.667秒跨度，root位移保留；原座標同幀骨架預覽可見入身、轉肩、對手離地倒轉及落地。見[evidence/judo-source-pair](evidence/judo-source-pair/README.md)的6.70秒影片、詳細／完整時間軸抽格及SHA報告。沒有人工重定時或各自置中，非僅目錄推測。
+
+這是來源骨架配對檢查，不是手掌／皮膚接觸或四角Godot驗收。原片首幀髖距4.415m，含走近；需兩段共同裁切（46–121幀只候選）、近身root與身高差接觸處理，再接simulation共同時鐘／落地一次結算。原FBX與逐幀曲線不進公開repo，工具可重建私有檢查資料；本輪不需MCP登入即可處理已上傳檔。下文「未取得FBX」是歷史，由本節覆蓋。完整摔投仍未正式接入。
+
 ## 2026-11-13 接續：網路已生效，官方配對與預覽已核實，待Adobe認證
 
 本次是同一設定下的新執行個體；讀取status為unrestricted／enforced且observations_current=true，已實際連通Mixamo。未帶API key的403是官方JSON「Api Key is required」，不是proxy拒絕；使用上游公開X-Api-Key後官方目錄HTTP200。核實Shoulder Throw, Aggressor（c9c7a795-b96c-11e4-a802-0aaa78deedf9）與Victim（c9c7a914-b96c-11e4-a802-0aaa78deedf9）。兩段官方GIF各6.6秒，完整時長2fps抽樣已檢視：攻方轉身俯身過肩及收招，守方離地翻轉、背部落地及地面收尾。不是雙人對齊播放，root／接觸／落地幀仍未量測；未下載FBX、未接Godot、完整摔投未完成。
