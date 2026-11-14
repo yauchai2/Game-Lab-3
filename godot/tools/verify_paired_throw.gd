@@ -25,7 +25,7 @@ func snapshots(v:Node3D) -> Array:
     result.append(v.model.transform)
     return result
 func run() -> void:
-    if not Data.available():push_error("Private library required; build it with tools/import_mixamo_throw.py");quit(2);return
+    if not Data.available():push_error("Bundled shoulder-throw asset missing; pull assets or rebuild with tools/import_mixamo_throw.py");quit(2);return
     for a in 4:
         for b in 4:
             for face in [-1,1]:
@@ -33,7 +33,7 @@ func run() -> void:
                     var s:RefCounted=fresh(a,b,face,side)
                     var hits:=0;var landings:=0;var starts:=0;var end:=0
                     var valid:=true
-                    for tick in 160:
+                    for tick in 200:
                         command(s,tick,side,true)
                         for event in s.events:
                             if event.kind=="hit":hits+=1;valid=valid and s.paired_throw.age==60
@@ -43,17 +43,19 @@ func run() -> void:
                         if s.paired_throw.active() and not s.paired_throw.landed:valid=valid and s.fighters[1-side].health==100
                         if s.paired_throw.active() and s.paired_throw.age>=80:
                             for i in 2:valid=valid and (s.fighters[1-i].x-s.fighters[i].x)*s.fighters[i].face>=0
+                        if s.paired_throw.active() and s.paired_throw.age==143:
+                            for f in s.fighters:valid=valid and absf(f.paired_throw.depth)<.002
                         for f in s.fighters:valid=valid and is_finite(f.x) and absf(f.x)<=s.EDGE and f.y==0
                     check("matrix %d/%d face %d owner %d"%[a,b,face,side],valid and hits==1 and landings==1 and starts==1 and end==1 and s.fighters[1-side].health==88 and not s.paired_throw.active())
     var trade:RefCounted=fresh()
     for tick in 40:trade.tick({"attack":"grab"} if tick==0 else {},{"attack":"light"} if tick==6 else {})
     check("simultaneous jab interrupts capture",trade.fighters[0].health<100 and trade.fighters[1].health==100 and not trade.paired_throw.active())
     var guarding:RefCounted=fresh()
-    for tick in 140:guarding.tick({"attack":"grab"} if tick==0 else {},{"guard":true,"allow_parry":false})
+    for tick in 200:guarding.tick({"attack":"grab"} if tick==0 else {},{"guard":true,"allow_parry":false})
     check("legal throw still beats sustained guard",guarding.fighters[1].health==88 and not guarding.paired_throw.active())
     var counter_throw:RefCounted=fresh();counter_throw.fighters[0].counter_window=30
     var counter_events:=0
-    for tick in 145:
+    for tick in 200:
         command(counter_throw,tick)
         for event in counter_throw.events:
             if event.kind=="counter_success":counter_events+=1
@@ -72,20 +74,20 @@ func run() -> void:
         var wall:RefCounted=fresh(0,3,face)
         wall.fighters[0].x=7.7*face;wall.fighters[1].x=8.15*face
         var inside:=true
-        for tick in 150:
+        for tick in 200:
             command(wall,tick)
             for f in wall.fighters:inside=inside and absf(f.x)<=wall.EDGE
         check("shared root keeps wall pair in bounds %d"%face,inside and wall.fighters[1].health==88)
     var lethal:RefCounted=fresh();lethal.fighters[1].health=5
     var ko:=0;var premature:=false
-    for tick in 155:
+    for tick in 200:
         command(lethal,tick)
         if lethal.paired_throw.active() and lethal.phase!="fight":premature=true
         for event in lethal.events:
             if event.kind=="ko":ko+=1
     check("lethal landing finishes once after release",not premature and ko==1 and lethal.winner==0 and lethal.fighters[1].health==0)
     var practice:RefCounted=fresh();practice.training=true;practice.fighters[1].health=5
-    for tick in 150:command(practice,tick)
+    for tick in 200:command(practice,tick)
     check("training lethal gets up and never becomes a corpse",practice.phase=="fight" and practice.fighters[1].health>=1 and practice.fighters[1].state=="idle" and not practice.fighters[1].has("paired_throw"))
     var interrupted:RefCounted=fresh()
     for tick in 24:command(interrupted,tick)
@@ -104,7 +106,7 @@ func run() -> void:
     for f in squad.squad_members:f.x=6
     squad.squad_members[0].x=.45;squad.squad_members[0].health=5;squad.fighters[0].x=-.45
     var focus_ok:=true
-    for tick in 150:
+    for tick in 200:
         squad.tick({"attack":"grab"} if tick==0 else {})
         if squad.paired_throw.active():focus_ok=focus_ok and squad.squad_focus==0
     check("squad retains lethal victim until throw ends",focus_ok and squad.squad_members[0].health==0 and not squad.paired_throw.active() and squad.remaining_enemies()>0)
@@ -136,10 +138,10 @@ func visual_checks() -> void:
                 for side in 2:actors[side].setup(Color.WHITE,a if side==0 else b)
                 var s:RefCounted=fresh(a,b,face)
                 var floor_ok:=true;var inversion:=false;var stable:=true;var grip:=0.0
-                for tick in 133:
+                for tick in 200:
                     command(s,tick)
                     if not s.paired_throw.active():continue
-                    if s.paired_throw.age not in [0,8,20,32,44,52,60,80,96,106]:continue
+                    if s.paired_throw.age not in [0,8,20,32,44,52,60,80,96,106,120,136,143]:continue
                     for side in 2:actors[side].present(s.fighters[side],1.0/60.0,s.hitstop>0,false)
                     grip=maxf(grip,Motion.correct_contacts(actors[0],actors[1]))
                     for v in actors:
@@ -179,10 +181,10 @@ func visual_checks() -> void:
     for side in 2:actors[side].setup(Color.WHITE,side)
     var swap:RefCounted=fresh()
     var swap_ok:=true
-    for tick in 295:
-        if tick==150:
+    for tick in 400:
+        if tick==200:
             swap.fighters[0].x=-.45;swap.fighters[1].x=.45
-        swap.tick({"attack":"grab"} if tick==0 else {},{"attack":"grab"} if tick==150 else {})
+        swap.tick({"attack":"grab"} if tick==0 else {},{"attack":"grab"} if tick==200 else {})
         for side in 2:actors[side].present(swap.fighters[side],1.0/60.0,swap.hitstop>0,false)
         var residual:float=Motion.correct_contacts(actors[0],actors[1])
         swap_ok=swap_ok and residual<.04

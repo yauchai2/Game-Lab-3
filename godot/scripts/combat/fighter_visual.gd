@@ -201,7 +201,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         if f.health>0:
             death_ground_cached=false
             if character_index<4:foot_contact.apply(self,f,stopped)
-            if motions.pose_owner.begins_with("mixamo_") and f.y<=.01:
+            if profile_owned and f.y<=.01 and f.get("ricochet",{}).get("ticks",0)<=0:
                 # The oversized stylized shoes extend below ankle IK's contact point.
                 # Correct the rendered skin floor, retaining all simulation transforms.
                 model.position.y+=maxf(0.0,.01-lowest_skin_y())

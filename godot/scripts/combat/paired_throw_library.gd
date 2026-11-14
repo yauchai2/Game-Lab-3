@@ -1,6 +1,6 @@
 extends RefCounted
-## Private source curves are deliberately absent from the public repository.
-const DEFAULT_PATH="res://.godot/private_animation/mixamo_shoulder_throw.json"
+## Bundled paired source curves, shared by both participants.
+const DEFAULT_PATH="res://assets/animations/mixamo_shoulder_throw.json"
 static var data:Dictionary={}
 static var checked:=false
 static func available() -> bool:

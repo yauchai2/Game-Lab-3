@@ -2,7 +2,7 @@ extends RefCounted
 ## One simulation clock for both participants. Damage occurs once, on landing.
 const Data=preload("res://scripts/combat/paired_throw_library.gd")
 const CONTACT_TICKS=80
-const RECOVERY_TICKS=28
+const RECOVERY_TICKS=64 # Full get-up after landing; no hit/input rules change during the pair.
 const IMPACT_TICK=60 # source 106, after the airborne over-shoulder rotation
 var serial:=0
 var owner:=-1
@@ -85,8 +85,11 @@ func _stamp(s:RefCounted) -> void:
         var frame:float=minf(121,61+float(age)*.75)
         if i!=owner:frame=minf(106,frame)
         var p:Vector3=Data.offset(role,frame,face)
+        var recover:float=clampf(float(age-CONTACT_TICKS)/RECOVERY_TICKS,0,1)
         f.x=lerpf(starts[i],anchor+p.x,clampf(float(age)/6.0,0,1))
         f.y=0.0;f.face=int(face) if i==owner else -int(face)
-        f["paired_throw"]={"serial":serial,"role":role,"source_frame":frame,"age":age,"face":face,"depth":p.z,"recover":clampf(float(age-CONTACT_TICKS)/RECOVERY_TICKS,0,1),"corpse":false}
+        # Rejoin the common fighting plane during the get-up, not in one frame at release.
+        var depth:float=p.z if f.health<=0 else p.z*(1.0-smoothstep(0,1,recover))
+        f["paired_throw"]={"serial":serial,"role":role,"source_frame":frame,"age":age,"face":face,"depth":depth,"recover":recover,"corpse":false}
     if age>=CONTACT_TICKS:
         for i in 2:s.fighters[i].face=1 if s.fighters[1-i].x>=s.fighters[i].x else -1

@@ -1,3 +1,9 @@
+## 2026-11-14：使用者授權動作入GitHub，第一批全部啟用
+
+最新以[MOTION_COMPLETION.zh-TW.md](MOTION_COMPLETION.zh-TW.md)為準：game-ready兩個JSON進assets/animations，Pull後直接使用，覆蓋下方私有安裝限制；原FBX不改，main／公開Web不動。23衍生clip全部啟用，現有四角招式／狀態554項覆核通過；技能／空中按四角源片接續，KnockedOut走原死亡owner、GettingUp取75–187去padding，共同恢復28→64tick，回收時depth漸回共同平面。保留適用CC0挑空／刺棍／跑退／跳落／專用過場；49候選不是49下載。
+
+新／舊RIVET各19/19，舊6失敗已修固定下盤與程序轉髖衝突；肩摔147及65獨立renderer、119首批、13loader、18strict；其他回歸詳evidence/motion-completion。乾淨無快取副本及空專案掛PCK7項通過，兩JSON與notice均隨包。兩部12秒肩摔起身／14秒空連真輸入片及四角rig接觸表；Mac／實體輸入／真人與效能仍待驗收。
+
 ## 2026-11-14：第一批21 FBX＋Walking正式地面接入
 
 見[MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md](MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md)及evidence/mixamo-first-batch。22來源均65骨；兩個Hurricane逐幀位置／旋轉hash相同，肩摔SHA沿用。23私有衍生clip、20啟用，四角15個地面attack slot＋待機／受擊／格擋／後閃／慢行。Boxing實為低位身擊，不能稱挑空上勾拳；Walking10.27秒原檔有前進與末幀回原點，取單步去漂移，僅向前慢行及護架行路使用，高速／後退保持原owner。來源root不改simulation；全身單一owner、contact limb、腳IK＋鞋底skin floor修正。

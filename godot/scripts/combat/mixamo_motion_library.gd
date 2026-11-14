@@ -1,8 +1,8 @@
 extends RefCounted
-## Optional private curves. Public source contains only selectors and metadata.
+## Bundled user-supplied motions; environment overrides remain available for development.
 const BASE="res://assets/animations/quaternius_combat.json"
-const DEFAULT_PATH="res://.godot/private_animation/mixamo_fighters.json"
-const REQUIRED=["MX_Jab","MX_Cross","MX_Hook","MX_BodyPunch","MX_Idle","MX_HushJab","MX_HushElbow","MX_Elbow","MX_Block","MX_Dodge","MX_StickHorizontal","MX_StickDown","MX_StickBack","MX_Roundhouse","MX_Roundhouse_Mirror","MX_Hurricane","MX_Hurricane_Mirror","MX_HeadHit","MX_BodyHit","MX_Walking"]
+const DEFAULT_PATH="res://assets/animations/mixamo_fighters.json"
+const REQUIRED=["MX_AirKick","MX_KnockedOut","MX_GetUp","MX_Jab","MX_Cross","MX_Hook","MX_BodyPunch","MX_Idle","MX_HushJab","MX_HushElbow","MX_Elbow","MX_Block","MX_Dodge","MX_StickHorizontal","MX_StickDown","MX_StickBack","MX_Roundhouse","MX_Roundhouse_Mirror","MX_Hurricane","MX_Hurricane_Mirror","MX_HeadHit","MX_BodyHit","MX_Walking"]
 static var data:Dictionary={}
 static var checked:=false
 static func available() -> bool:
@@ -60,3 +60,4 @@ static func install_into(library:Dictionary) -> void:
     if not available():return
     library.clips.merge(data.clips)
     library.street_markers.merge(data.markers)
+    library.clips["Death01"]=data.clips.MX_KnockedOut

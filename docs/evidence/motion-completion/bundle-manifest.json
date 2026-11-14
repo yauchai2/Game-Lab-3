@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "user_authorized_repository_bundle": "2026-11-14",
+  "runtime_assets": [
+    {
+      "file": "mixamo_fighters.json",
+      "bytes": 2825501,
+      "sha256": "a301418a7decde696f1990d597b1cefd3a2390233f61c6ddd74c2a1d60b29eed"
+    },
+    {
+      "file": "mixamo_shoulder_throw.json",
+      "bytes": 363924,
+      "sha256": "d230882881bc45077b5506c0ad68fe42c800499dce1ba896341d5eefca22533d"
+    }
+  ],
+  "source_metadata": "docs/evidence/mixamo-first-batch/sources.json",
+  "canonical_rig_sha256": "60a97a63905abf1944cfe68bafe6dd47885f5c5e0417da910a1906808a3bc7bd"
+}

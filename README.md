@@ -1,3 +1,5 @@
+最新（2026-11-14）：[動作已隨GitHub提供，第一批全部啟用](docs/MOTION_COMPLETION.zh-TW.md)。**Pull任務分支後Godot匯入便可直接使用，不再需要手動安裝JSON。** 23衍生clip全啟用、倒地／起身／空踢及四角技能空連接續完成；現有招式／狀態554項覆核通過，舊RIVET6失敗已修。[12秒肩摔起身](docs/evidence/motion-completion/throw.mp4)／[14秒空連](docs/evidence/motion-completion/air.mp4)。以下私人安裝／未啟用敘述為先前階段，以此輪為準。
+
 最新：[修正選單／彈出文字柔化並全面覆核](docs/evidence/pixel-text-audit/README.md)，保持5／8／100，87項檢查通過。
 
 最新：[中文亦套用像素5／8／100](docs/evidence/chinese-pixel-preset/README.md)，涵蓋介面、故事字幕及3D中文字牌；72項檢查通過。

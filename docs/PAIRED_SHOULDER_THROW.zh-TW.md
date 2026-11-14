@@ -1,3 +1,5 @@
+> 此文保留前階段紀錄。最新使用者已授權動作隨GitHub提供，Pull即用、第一批23個衍生clip已全啟用，肩摔恢復已改64tick；請先看[MOTION_COMPLETION.zh-TW.md](MOTION_COMPLETION.zh-TW.md)。
+
 # 完整雙人過肩摔：正式接入
 
 2026-11-14（香港）。使用者要求繼續完成共同裁切、角色重定向、抓握及落地。基線1beceae，沿codex/four-fighter-motion-plan；不合main、不更新Web。這一組肩摔已接到實際grab流程，其他49項動作候選並未因此完成替換。

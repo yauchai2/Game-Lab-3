@@ -31,15 +31,18 @@ func present(visual:Node3D,f:Dictionary,delta:float,stopped:bool) -> void:
         var normal:Dictionary=f.duplicate(true)
         normal.erase("paired_throw");normal.state="idle";normal.move="";normal.vx=0.0;normal.vy=0.0
         normal["air_enabled"]=false;normal["motion_no_blend"]=true
-        if role=="victim":
+        var imported_getup:bool=role=="victim" and m.library.clips.has("MX_GetUp")
+        if imported_getup:
+            normal["cinematic_clip"]="MX_GetUp";normal["cinematic_phase"]=recover;normal.state="idle"
+        elif role=="victim":
             normal["cinematic_clip"]="Roll";normal.state="dash";normal.frame=9.0+5.0*recover
         m.present(normal,delta,stopped)
         for i in s.get_bone_count():recovery_rotations.append(s.get_bone_pose_rotation(i))
         recovery_hip=s.get_bone_pose_position(m.target_hips)
-        if role=="victim" and recover>.6:
-            normal.erase("cinematic_clip");normal.state="idle";normal.frame=0
+        if role=="victim" and recover>(.9 if imported_getup else .6):
+            normal.erase("cinematic_clip");normal.erase("cinematic_phase");normal.state="idle";normal.frame=0
             m.present(normal,delta,stopped)
-            var stand:float=smoothstep(.6,1,recover)
+            var stand:float=smoothstep(.9 if imported_getup else .6,1,recover)
             for i in s.get_bone_count():recovery_rotations[i]=recovery_rotations[i].slerp(s.get_bone_pose_rotation(i),stand)
             recovery_hip=recovery_hip.lerp(s.get_bone_pose_position(m.target_hips),stand)
     var sample:Dictionary=Data.sample(role,p.source_frame)
@@ -47,7 +50,7 @@ func present(visual:Node3D,f:Dictionary,delta:float,stopped:bool) -> void:
     var to_skeleton:Quaternion=(s.global_basis.inverse()*convert).get_rotation_quaternion()
     var desired:Array[Quaternion]=[]
     var entering:float=smoothstep(0,6,float(p.age))
-    var recovering:float=smoothstep(0,.6 if role=="victim" else 1.0,recover)
+    var recovering:float=smoothstep(0,.18 if role=="victim" and m.library.clips.has("MX_GetUp") else (.6 if role=="victim" else 1.0),recover)
     for i in s.get_bone_count():
         var parent:int=s.get_bone_parent(i)
         var parent_rotation:Quaternion=Quaternion.IDENTITY if parent<0 else desired[parent]

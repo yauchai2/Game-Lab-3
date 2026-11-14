@@ -1,0 +1,88 @@
+{
+  "expected_events": true,
+  "fps": 30,
+  "frames": 420,
+  "initial_meter_per_segment": 100,
+  "mode": "air",
+  "scope": "Four reset training fixtures at close standing range, normal grab commands or launcher + held J + Space presses. Real throw or paid chase and air hits; no injected damage, air state, sample or nodes. Not human play or GPU performance.",
+  "seconds": 14,
+  "segments": [
+    {
+      "events": {
+        "air_land": 2,
+        "chase_arrive": 1,
+        "double_jump": 1,
+        "ground_bounce": 1,
+        "hit": 7,
+        "homing_chase": 1,
+        "swing": 8
+      },
+      "hit_moves": {
+        "air_jab": 1,
+        "air_kick": 1,
+        "cross": 1,
+        "jab": 1,
+        "launcher": 2,
+        "meteor": 1
+      }
+    },
+    {
+      "events": {
+        "air_land": 2,
+        "chase_arrive": 1,
+        "double_jump": 1,
+        "ground_bounce": 1,
+        "hit": 7,
+        "homing_chase": 1,
+        "swing": 8
+      },
+      "hit_moves": {
+        "air_jab": 1,
+        "air_kick": 1,
+        "cross": 1,
+        "jab": 1,
+        "launcher": 2,
+        "meteor": 1
+      }
+    },
+    {
+      "events": {
+        "air_land": 2,
+        "chase_arrive": 1,
+        "double_jump": 1,
+        "ground_bounce": 1,
+        "hit": 7,
+        "homing_chase": 1,
+        "swing": 8
+      },
+      "hit_moves": {
+        "air_jab": 1,
+        "air_kick": 1,
+        "cross": 1,
+        "jab": 1,
+        "launcher": 2,
+        "meteor": 1
+      }
+    },
+    {
+      "events": {
+        "air_land": 2,
+        "chase_arrive": 1,
+        "double_jump": 1,
+        "ground_bounce": 1,
+        "hit": 7,
+        "homing_chase": 1,
+        "swing": 8
+      },
+      "hit_moves": {
+        "air_jab": 1,
+        "air_kick": 1,
+        "cross": 1,
+        "jab": 1,
+        "launcher": 2,
+        "meteor": 1
+      }
+    }
+  ],
+  "uninterrupted_play_frames": 420
+}

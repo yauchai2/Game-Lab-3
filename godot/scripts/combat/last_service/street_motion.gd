@@ -75,7 +75,7 @@ static func finish(m:RefCounted,f:Dictionary,motion:Dictionary,move:Dictionary) 
     # Authored weight transfer rotates the complete hip chain before limb
     # corrections. The actor's root remains under simulation; ground IK then
     # preserves the supporting foot rather than twisting a planted shoe.
-    if f.state=="attack":
+    if f.state=="attack" and not motion.get("plant",false):
         var pivot:float=smoothstep(0.0,float(move.startup),float(f.frame))
         if f.frame>move.startup+move.active:pivot*=1.0-smoothstep(float(move.startup+move.active),float(move.startup+move.active+move.recovery),float(f.frame))
         var turn:float=[.12,.28,.16,.22][int(f.character)]

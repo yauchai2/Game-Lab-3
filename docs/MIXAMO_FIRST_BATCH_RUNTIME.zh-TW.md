@@ -1,3 +1,5 @@
+> 此文保留前階段紀錄。最新使用者已授權動作隨GitHub提供，Pull即用、第一批23個衍生clip已全啟用，肩摔恢復已改64tick；請先看[MOTION_COMPLETION.zh-TW.md](MOTION_COMPLETION.zh-TW.md)。
+
 # 第一批 Mixamo 動作與 Walking（2026-11-14）
 
 本輪已處理使用者提供的 21 FBX＋Walking.glb，將可用的地面出招、受擊、防禦、後閃與慢行接入正式 presentation。肩摔沿用已完成的共同時鐘版本。[來源 metadata](evidence/mixamo-first-batch/sources.json)、[裁切／接觸點](evidence/mixamo-first-batch/clips.json)、[骨架診斷](evidence/mixamo-first-batch/README.md)。這不是全套 49 候選都已替換。

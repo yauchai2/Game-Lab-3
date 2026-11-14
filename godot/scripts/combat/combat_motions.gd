@@ -179,6 +179,8 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         sample_time = duration * clampf(land_time / 0.22,0,1)
     if profile_owned:
         sample_time=fmod(clip_elapsed*float(motion.speed),duration) if motion.loop else (minf(clip_elapsed*2.5,duration) if motion.get("reaction",false) else float(motion.phase)*duration)
+    if f.has("cinematic_phase"):
+        sample_time=duration*clampf(float(f.cinematic_phase),0,1)
     var locals: Array[Quaternion] = source_rest.duplicate()
     for index in clip.tracks:
         var track: Dictionary = clip.tracks[index]
@@ -237,8 +239,11 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         var translation: Vector3 = _sample_vector(clip.tracks[str(source_hips)].translation,sample_time)
         var source_base := _vec(library.nodes[source_hips].translation)
         var parent: int = library.nodes[source_hips].parent
-        var offset := alignment * (source_global_rest[parent] * (translation-source_base)) * (death_height_scale if dead else height_scale)
-        if motion.get("imported",false):
+        var offset := alignment * (source_global_rest[parent] * (translation-source_base)) * (death_height_scale if dead or selected=="MX_GetUp" else height_scale)
+        if selected=="MX_GetUp":
+            hips_position.y+=offset.y
+        elif motion.get("imported",false):
+            if f.y>.01:offset.y=clampf(offset.y,-.12,.12)
             hips_position+=offset.limit_length(.55)
         else:hips_position.y += offset.y if dead else clampf(offset.y,-0.15,0.12)
     skeleton.set_bone_pose_position(target_hips,hips_position)
@@ -246,7 +251,8 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         air_pose_name=""
         return # Air/stunt/guard layers must not overwrite the death clip.
     if profile_owned:
-        if not motion.get("imported",false):StreetMotion.finish(self,f,motion,move_spec)
+        if motion.get("imported",false):Mixamo.finish(self,f,move_spec)
+        else:StreetMotion.finish(self,f,motion,move_spec)
         air_pose_name=pose_owner+"/"+(f.move if f.state=="attack" else f.state)
         return # This profile owns the complete pose; no later legacy layers.
     if f.state == "attack":

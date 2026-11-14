@@ -1,8 +1,8 @@
-"""Build a PRIVATE paired throw library from the user's two original FBX files.
+"""Build the paired throw library from the user's two original FBX files.
 
 blender -b --python tools/import_mixamo_throw.py -- --aggressor /private/a.fbx \
     --victim /private/v.fbx --output /private/mixamo_shoulder_throw.json
-Never commit the generated library or original FBX to the public repository.
+User authorized bundled derived curves on 2026-11-14; original FBX remain untouched.
 """
 import argparse
 import hashlib
@@ -20,8 +20,8 @@ args = parser.parse_args(sys.argv[sys.argv.index('--') + 1:])
 os.umask(0o077)
 repo = Path(__file__).resolve().parents[1]
 output = args.output.resolve()
-if repo in output.parents and not (repo/'godot/.godot') in output.parents:
-    parser.error('Output must be outside the public repo, or inside ignored godot/.godot.')
+if repo in output.parents and not (repo/'godot/.godot') in output.parents and not (repo/'godot/assets/animations') in output.parents:
+    parser.error('Output must be in assets/animations, ignored godot/.godot, or outside the repository.')
 result = {'schema': 1, 'fps': 30, 'first': 61, 'last': 121, 'impact': 106, 'scale': 1.15, 'planar_scale': 1.0, 'actors': {}}
 def vector(v):
     return [round(float(x), 7) for x in v]
@@ -62,4 +62,4 @@ if [b['name'] for b in result['actors']['aggressor']['bones']] != [b['name'] for
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(json.dumps(result, separators=(',', ':'))+'\n')
 output.chmod(0o600)
-print(f'PRIVATE_LIBRARY {output.name}: 2 actors, 61 shared frames, {output.stat().st_size} bytes')
+print(f'THROW_LIBRARY {output.name}: 2 actors, 61 shared frames, {output.stat().st_size} bytes')

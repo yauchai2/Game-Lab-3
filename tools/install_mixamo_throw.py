@@ -1,7 +1,7 @@
-"""Install the user's private generated throw library into Godot's ignored cache.
+"""Install the user's generated throw library into the bundled animation directory.
 
 Usage: python3 tools/install_mixamo_throw.py ~/Downloads/mixamo_shoulder_throw.json
-Restart the game afterwards. Original FBX and public source are never overwritten.
+Restart the game afterwards. Original FBX are never overwritten.
 """
 import argparse
 import json
@@ -21,14 +21,16 @@ for role in ['aggressor', 'victim']:
     if len(actor.get('bones', [])) != 65 or len(actor.get('frames', [])) != 61:
         parser.error(f'{role}: missing expected bones/frames')
 os.umask(0o077)
-target = Path(__file__).resolve().parents[1] / 'godot/.godot/private_animation/mixamo_shoulder_throw.json'
+target = Path(__file__).resolve().parents[1] / 'godot/assets/animations/mixamo_shoulder_throw.json'
 target.parent.mkdir(parents=True, exist_ok=True)
 if source != target:
     if target.exists():
-        shutil.copyfile(target, target.with_suffix('.json.bak'))
+        backup = target.parents[2] / '.godot/animation_backups' / target.name
+        backup.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(target, backup)
     temp = target.with_suffix('.json.tmp')
     shutil.copyfile(source, temp)
     temp.chmod(0o600)
     temp.replace(target)
 target.chmod(0o600)
-print(f'Installed private throw library: {target}\nRestart Godot/game to reload it. Keep this file outside Git.')
+print(f'Installed throw library: {target}\nRestart Godot/game to reload it. The bundled game reads this file directly.')

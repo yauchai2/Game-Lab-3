@@ -44,7 +44,7 @@ func _process(_delta:float) -> bool:
         key(KEY_J,false);segments.append({"events":counts.duplicate(),"hit_moves":air_moves.duplicate()})
         var good:bool=segments.size()==4
         for segment in segments:
-            if throw_mode:good=good and segment.hit_moves.get("grab",0)==1
+            if throw_mode:good=good and segment.hit_moves.get("grab",0)==1 and segment.events.get("throw_start",0)==1 and segment.events.get("throw_land",0)==1 and segment.events.get("throw_end",0)==1
             else:good=good and segment.events.get("homing_chase",0)>0 and segment.hit_moves.get("air_jab",0)==1 and segment.hit_moves.get("air_kick",0)==1 and segment.hit_moves.get("meteor",0)==1
         FileAccess.open(OS.get_cmdline_user_args()[0],FileAccess.WRITE).store_string(JSON.stringify({"frames":frame,"fps":30,"seconds":12 if throw_mode else 14,"mode":"throw" if throw_mode else "air","uninterrupted_play_frames":frame,"initial_meter_per_segment":100,"segments":segments,"expected_events":good,"scope":"Four reset training fixtures at close standing range, normal grab commands or launcher + held J + Space presses. Real throw or paid chase and air hits; no injected damage, air state, sample or nodes. Not human play or GPU performance."},"  "))
         scene.return_to_title();scene.queue_free();scene=null;call_deferred("quit",0 if good else 1)

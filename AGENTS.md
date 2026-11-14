@@ -1,3 +1,7 @@
+## 最新覆蓋規則（2026-11-14，本聊天）
+
+使用者明示「授權允許，把它放進GitHub，繼續把全部做完」：game-ready Mixamo衍生JSON已准隨遊戲Git提交／推送，覆蓋下文舊私有曲線限制。預設讀assets/animations，Pull即用；原始FBX／GLB保留，不需另外安裝。最新實作MOTION_COMPLETION.zh-TW.md，23個衍生clip全啟用、現有招式全覆核；GetUp64tick及depth漸回平面，Mixamo不是CC0。只推同任務分支／PR #37，不自動合main或發公開Web；49候選未全部下載，Mac／真人驗收不能冒稱已做。
+
 # 共用專案協作規範
 
 ## 開始工作前

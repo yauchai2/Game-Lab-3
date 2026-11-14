@@ -1,3 +1,7 @@
+## 2026-11-14：隨Git動作庫與第一批完成驗收
+
+[evidence/motion-completion](evidence/motion-completion/README.md)：554全招／狀態矩陣、119地面／步法、13loader、147肩摔與65獨立renderer全過；新／舊RIVET各19/19，舊6失敗已修。冷副本無快取／override即讀兩個資產，13／147通過，PCK空專案7/7；18strict與import通過。12秒肩摔起身、14秒空連真命令片及全片4fps抽格、20格四角起身及另外空中／倒地接觸表已檢視；軟體GPU錄製非Mac／人手／實聽／即時FPS。完整suite及證據界線見README，不把重疊項加成唯一總數。原始來源不改，衍生JSON按最新使用者授權進Git，main／公開Web不動。
+
 ## 2026-11-14：第一批Mixamo／Walking接入
 
 [完整證據](evidence/mixamo-first-batch/README.md)：新119實際四角雙向／蒙皮鞋底／owner／不寫sim／接觸骨／慢行停動＋13 optional loader拒收＝132/132，835相關回歸通過；18strict及editor import通過。另舊RIVET13/19的6失敗在基線08e3e51有完全相同值，未改斷言，不能報全回歸通過。23私有clip中20啟用、15地面attack slot；12秒720p／360幀真scene命令片每角2swing／1hit、護架行路，完整2fps抽格檢視及四張contact sheet。MovieWriter約88秒非硬體FPS；Dummy AAC峰值-4.159724dBFS不是實聽。builder重跑及反轉輸入序SHA一致；來源／曲線不進Git。KnockedOut／GetUp／AirKick僅轉換待正式owner驗收，Mac／真人待做。

@@ -1,7 +1,7 @@
 """Blender: convert inspected private Mixamo samples to the game's canonical rig.
 
 blender -b --python tools/build_mixamo_motion_library.py -- --samples <private-dir> --output <private.json>
-Input is produced by inspect_mixamo_batch.py. No source/derived curves enter Git.
+Input is produced by inspect_mixamo_batch.py. User authorized bundled derived curves on 2026-11-14.
 Sample numbers below are one based, sampled at 30 Hz (also for the glTF source).
 """
 import argparse
@@ -18,8 +18,8 @@ parser.add_argument('--output', type=Path, required=True)
 args = parser.parse_args(sys.argv[sys.argv.index('--') + 1:])
 repo = Path(__file__).resolve().parents[1]
 output = args.output.resolve()
-if repo in output.parents and repo / 'godot/.godot' not in output.parents:
-    parser.error('Output must be private, outside Git or inside godot/.godot')
+if repo in output.parents and repo / 'godot/.godot' not in output.parents and repo / 'godot/assets/animations' not in output.parents:
+    parser.error('Output must be in assets/animations, ignored godot/.godot, or outside the repository')
 os.umask(0o077)
 base_path = repo / 'godot/assets/animations/quaternius_combat.json'
 base = json.loads(base_path.read_text())
@@ -71,8 +71,8 @@ specs = [
     ('MX_AirKick', 18, 24, 57, 42, 'LeftFoot'),
     ('MX_HeadHit', 5, 5, 30, None, ''),
     ('MX_BodyHit', 1, 4, 30, None, ''),
-    ('MX_KnockedOut', 0, 55, 100, None, ''),
-    ('MX_GetUp', 2, 150, 211, None, ''),
+    ('MX_KnockedOut', 0, 40, 121, None, ''),
+    ('MX_GetUp', 2, 75, 187, None, ''),
     ('MX_Walking', 21, 16, 47, None, ''),
 ]
 clips, markers, manifest = {}, {}, []
@@ -204,4 +204,4 @@ output.write_text(json.dumps({'schema': 1, 'kind': 'mixamo_fighters',
     'base_sha256': hashlib.sha256(base_path.read_bytes()).hexdigest(),
     'clips': clips, 'markers': markers, 'manifest': manifest}, separators=(',', ':')) + '\n')
 output.chmod(0o600)
-print(f'Built {len(clips)} private clips: {output} ({output.stat().st_size} bytes)')
+print(f'Built {len(clips)} game clips: {output} ({output.stat().st_size} bytes)')
