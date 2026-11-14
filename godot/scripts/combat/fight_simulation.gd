@@ -53,6 +53,9 @@ const MOVES := {
     "overdrive": {"startup":30,"active":8,"recovery":42,"damage":38,"reach":3.8,"stun":48,"push":18.0,"lift":7.0,"stop":26},
     "special": {"startup": 18, "active": 10, "recovery": 31, "damage": 27, "reach": 3.4, "stun": 40, "push": 14.0, "lift": 5.0, "stop": 17}
 }
+const ThrowData=preload("res://scripts/combat/paired_throw_library.gd")
+var paired_throw=preload("res://scripts/combat/paired_throw.gd").new()
+var paired_throws_enabled:=true
 var rally = preload("res://scripts/combat/kinetic_rally.gd").new()
 var rally_enabled := false
 var rally_drill := false
@@ -91,6 +94,7 @@ func _init() -> void:
     reset_round()
 
 func reset_round() -> void:
+    paired_throw.clear(self)
     rush_agent.reset()
     projectiles.clear();gun_next_ok=0
     surge_lab_enabled=false;surge_lab_fixture=false;surge_release.clear();surge_guards=[0,0]
@@ -181,6 +185,7 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
     events.clear()
     service_contacts.clear()
     tick_count += 1
+    if phase!="fight" and paired_throw.active():paired_throw.cancel(self)
     if phase == "ready":
         countdown -= 1
         if countdown <= 0:
@@ -189,6 +194,19 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         return
     if phase != "fight":
         exchange.cancel_decision();surge_release.clear()
+        return
+    if paired_throw.active():
+        for fighter in fighters:fighter.flash=maxi(0,fighter.flash-1)
+        if hitstop>0:
+            hitstop-=1
+            return
+        if not training:remaining=maxf(0.0,remaining-STEP)
+        paired_throw.tick(self)
+        if last_service_enabled:
+            for event in events.duplicate():service_rules.observe(self,event)
+        if not paired_throw.active():
+            if training:_update_training()
+            elif fighters[0].health<=0 or fighters[1].health<=0 or remaining<=0:_finish_round()
         return
     if exchange.decision_active():
         _tick_surge_decision([player,opponent])
@@ -613,6 +631,9 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
         hitstop_total=6
         exchange.contact(12)
         events.append({"kind":"throw_tech","target":1-i})
+        return
+    if move_name=="grab" and paired_throws_enabled and not paired_throw.resolving_impact and not a.has("boss") and not b.has("boss") and ThrowData.available():
+        paired_throw.begin(self,i)
         return
     if allow_exchange and _can_open_exchange(i):
         var intent: String=exchange.CHOICES[(exchange.serial+clampi(difficulty,0,2))%3]

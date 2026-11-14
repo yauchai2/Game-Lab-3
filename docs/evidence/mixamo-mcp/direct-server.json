@@ -1,0 +1,43 @@
+{
+  "upstream": "https://github.com/HaD0Yun/unity-mcp-mixamo",
+  "commit": "6170d5eca609eb5cdbbbd6b1a3fc6276362f6701",
+  "host": "cloud; not user Mac",
+  "server": {
+    "name": "mixamo-mcp",
+    "title": null,
+    "version": "1.30.0",
+    "websiteUrl": null,
+    "icons": null
+  },
+  "protocol": "2025-11-25",
+  "tools": [
+    "mixamo-config",
+    "mixamo-auth",
+    "mixamo-search",
+    "mixamo-download",
+    "mixamo-batch",
+    "mixamo-keywords"
+  ],
+  "mixamo-auth": {
+    "isError": false,
+    "text": [
+      "No token stored. Please provide an access token."
+    ]
+  },
+  "mixamo-keywords": {
+    "isError": false,
+    "text": [
+      "Animation keywords (filtered by 'combat'):\n\nCOMBAT:\n  attack, block, death, dodge, hit, kick, knockdown, punch, reload, shoot, sword, throw\n\n\nUse these keywords with mixamo-search or mixamo-batch."
+    ]
+  },
+  "mixamo-search": {
+    "isError": false,
+    "text": [
+      "Error: Not authenticated.\n\nPlease run mixamo-auth first:\n1. Go to https://www.mixamo.com and log in\n2. Open browser DevTools (F12)\n3. In Console, run: copy(localStorage.access_token)\n4. Then run: mixamo-auth accessToken=\"YOUR_TOKEN\""
+    ]
+  },
+  "unauthenticated_network_probe": {
+    "exception": "ProxyError",
+    "message": "403 Forbidden"
+  }
+}

@@ -1,0 +1,784 @@
+{
+  "checks": [
+    {
+      "name": "contact limb 0/jab/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 0/jab/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 0/jab/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 0/cross/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 0/cross/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 0/cross/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 0/heavy/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 0/heavy/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 0/heavy/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 0/finisher/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 0/finisher/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 0/finisher/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 0/jab/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 0/jab/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 0/jab/1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 0/cross/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 0/cross/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 0/cross/1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 0/heavy/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 0/heavy/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 0/heavy/1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 0/finisher/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 0/finisher/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 0/finisher/1",
+      "ok": true
+    },
+    {
+      "name": "forward walking only 0/1.0",
+      "ok": true
+    },
+    {
+      "name": "forward walking only 0/-1.0",
+      "ok": true
+    },
+    {
+      "name": "forward walking only 0/6.0",
+      "ok": true
+    },
+    {
+      "name": "guard walking keeps arms 0",
+      "ok": true
+    },
+    {
+      "name": "hitstop holds walk clock 0",
+      "ok": true
+    },
+    {
+      "name": "cinematic owns 0",
+      "ok": true
+    },
+    {
+      "name": "death owner preserved 0",
+      "ok": true
+    },
+    {
+      "name": "contact limb 1/jab/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 1/jab/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 1/jab/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 1/cross/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 1/cross/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 1/cross/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 1/heavy/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 1/heavy/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 1/heavy/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 1/finisher/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 1/finisher/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 1/finisher/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 1/jab/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 1/jab/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 1/jab/1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 1/cross/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 1/cross/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 1/cross/1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 1/heavy/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 1/heavy/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 1/heavy/1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 1/finisher/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 1/finisher/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 1/finisher/1",
+      "ok": true
+    },
+    {
+      "name": "forward walking only 1/1.0",
+      "ok": true
+    },
+    {
+      "name": "forward walking only 1/-1.0",
+      "ok": true
+    },
+    {
+      "name": "forward walking only 1/6.0",
+      "ok": true
+    },
+    {
+      "name": "guard walking keeps arms 1",
+      "ok": true
+    },
+    {
+      "name": "hitstop holds walk clock 1",
+      "ok": true
+    },
+    {
+      "name": "cinematic owns 1",
+      "ok": true
+    },
+    {
+      "name": "death owner preserved 1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 2/jab/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 2/jab/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 2/jab/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 2/cross/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 2/cross/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 2/cross/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 2/heavy/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 2/heavy/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 2/heavy/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 2/finisher/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 2/finisher/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 2/finisher/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 2/jab/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 2/jab/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 2/jab/1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 2/cross/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 2/cross/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 2/cross/1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 2/heavy/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 2/heavy/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 2/heavy/1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 2/finisher/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 2/finisher/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 2/finisher/1",
+      "ok": true
+    },
+    {
+      "name": "forward walking only 2/1.0",
+      "ok": true
+    },
+    {
+      "name": "forward walking only 2/-1.0",
+      "ok": true
+    },
+    {
+      "name": "forward walking only 2/6.0",
+      "ok": true
+    },
+    {
+      "name": "guard walking keeps arms 2",
+      "ok": true
+    },
+    {
+      "name": "hitstop holds walk clock 2",
+      "ok": true
+    },
+    {
+      "name": "cinematic owns 2",
+      "ok": true
+    },
+    {
+      "name": "death owner preserved 2",
+      "ok": true
+    },
+    {
+      "name": "contact limb 3/cross/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 3/cross/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 3/cross/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 3/heavy/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 3/heavy/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 3/heavy/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 3/finisher/-1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 3/finisher/-1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 3/finisher/-1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 3/cross/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 3/cross/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 3/cross/1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 3/heavy/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 3/heavy/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 3/heavy/1",
+      "ok": true
+    },
+    {
+      "name": "contact limb 3/finisher/1",
+      "ok": true
+    },
+    {
+      "name": "finite single owner 3/finisher/1",
+      "ok": true
+    },
+    {
+      "name": "rendered skin floor 3/finisher/1",
+      "ok": true
+    },
+    {
+      "name": "forward walking only 3/1.0",
+      "ok": true
+    },
+    {
+      "name": "forward walking only 3/-1.0",
+      "ok": true
+    },
+    {
+      "name": "forward walking only 3/6.0",
+      "ok": true
+    },
+    {
+      "name": "guard walking keeps arms 3",
+      "ok": true
+    },
+    {
+      "name": "hitstop holds walk clock 3",
+      "ok": true
+    },
+    {
+      "name": "cinematic owns 3",
+      "ok": true
+    },
+    {
+      "name": "death owner preserved 3",
+      "ok": true
+    },
+    {
+      "name": "missing data fallback",
+      "ok": true
+    }
+  ],
+  "passed": 119,
+  "rig_rows": [
+    {
+      "clip": "MX_Roundhouse",
+      "face": -1,
+      "hero": 0,
+      "limbs": [
+        "LeftFoot"
+      ],
+      "min_skin_y": 0.00999986659735441,
+      "move": "jab"
+    },
+    {
+      "clip": "MX_Roundhouse_Mirror",
+      "face": -1,
+      "hero": 0,
+      "limbs": [
+        "RightFoot"
+      ],
+      "min_skin_y": 0.00999999046325684,
+      "move": "cross"
+    },
+    {
+      "clip": "MX_Hurricane",
+      "face": -1,
+      "hero": 0,
+      "limbs": [
+        "LeftFoot"
+      ],
+      "min_skin_y": 0.00999996438622475,
+      "move": "heavy"
+    },
+    {
+      "clip": "MX_Hurricane_Mirror",
+      "face": -1,
+      "hero": 0,
+      "limbs": [
+        "RightFoot"
+      ],
+      "min_skin_y": 0.00999998673796654,
+      "move": "finisher"
+    },
+    {
+      "clip": "MX_Roundhouse",
+      "face": 1,
+      "hero": 0,
+      "limbs": [
+        "LeftFoot"
+      ],
+      "min_skin_y": 0.00999998860061169,
+      "move": "jab"
+    },
+    {
+      "clip": "MX_Roundhouse_Mirror",
+      "face": 1,
+      "hero": 0,
+      "limbs": [
+        "RightFoot"
+      ],
+      "min_skin_y": 0.00999999046325684,
+      "move": "cross"
+    },
+    {
+      "clip": "MX_Hurricane",
+      "face": 1,
+      "hero": 0,
+      "limbs": [
+        "LeftFoot"
+      ],
+      "min_skin_y": 0.00999996438622475,
+      "move": "heavy"
+    },
+    {
+      "clip": "MX_Hurricane_Mirror",
+      "face": 1,
+      "hero": 0,
+      "limbs": [
+        "RightFoot"
+      ],
+      "min_skin_y": 0.00999998953193426,
+      "move": "finisher"
+    },
+    {
+      "clip": "MX_Jab",
+      "face": -1,
+      "hero": 1,
+      "limbs": [
+        "LeftHand"
+      ],
+      "min_skin_y": 0.00999998860061169,
+      "move": "jab"
+    },
+    {
+      "clip": "MX_Cross",
+      "face": -1,
+      "hero": 1,
+      "limbs": [
+        "RightHand"
+      ],
+      "min_skin_y": 0.00999999139457941,
+      "move": "cross"
+    },
+    {
+      "clip": "MX_BodyPunch",
+      "face": -1,
+      "hero": 1,
+      "limbs": [
+        "RightHand"
+      ],
+      "min_skin_y": 0.00999998673796654,
+      "move": "heavy"
+    },
+    {
+      "clip": "MX_Hook",
+      "face": -1,
+      "hero": 1,
+      "limbs": [
+        "LeftHand"
+      ],
+      "min_skin_y": 0.00999998394399881,
+      "move": "finisher"
+    },
+    {
+      "clip": "MX_Jab",
+      "face": 1,
+      "hero": 1,
+      "limbs": [
+        "LeftHand"
+      ],
+      "min_skin_y": 0.00999999418854713,
+      "move": "jab"
+    },
+    {
+      "clip": "MX_Cross",
+      "face": 1,
+      "hero": 1,
+      "limbs": [
+        "RightHand"
+      ],
+      "min_skin_y": 0.00999998766928911,
+      "move": "cross"
+    },
+    {
+      "clip": "MX_BodyPunch",
+      "face": 1,
+      "hero": 1,
+      "limbs": [
+        "RightHand"
+      ],
+      "min_skin_y": 0.00999998115003109,
+      "move": "heavy"
+    },
+    {
+      "clip": "MX_Hook",
+      "face": 1,
+      "hero": 1,
+      "limbs": [
+        "LeftHand"
+      ],
+      "min_skin_y": 0.00999999139457941,
+      "move": "finisher"
+    },
+    {
+      "clip": "MX_HushJab",
+      "face": -1,
+      "hero": 2,
+      "limbs": [
+        "LeftHand"
+      ],
+      "min_skin_y": 0.00999998860061169,
+      "move": "jab"
+    },
+    {
+      "clip": "MX_HushElbow",
+      "face": -1,
+      "hero": 2,
+      "limbs": [
+        "RightForeArm"
+      ],
+      "min_skin_y": 0.00999998953193426,
+      "move": "cross"
+    },
+    {
+      "clip": "MX_Elbow",
+      "face": -1,
+      "hero": 2,
+      "limbs": [
+        "RightForeArm"
+      ],
+      "min_skin_y": 0.00999999232590199,
+      "move": "heavy"
+    },
+    {
+      "clip": "MX_Elbow",
+      "face": -1,
+      "hero": 2,
+      "limbs": [
+        "RightForeArm"
+      ],
+      "min_skin_y": 0.00999999046325684,
+      "move": "finisher"
+    },
+    {
+      "clip": "MX_HushJab",
+      "face": 1,
+      "hero": 2,
+      "limbs": [
+        "LeftHand"
+      ],
+      "min_skin_y": 0.00999998860061169,
+      "move": "jab"
+    },
+    {
+      "clip": "MX_HushElbow",
+      "face": 1,
+      "hero": 2,
+      "limbs": [
+        "RightForeArm"
+      ],
+      "min_skin_y": 0.00999998953193426,
+      "move": "cross"
+    },
+    {
+      "clip": "MX_Elbow",
+      "face": 1,
+      "hero": 2,
+      "limbs": [
+        "RightForeArm"
+      ],
+      "min_skin_y": 0.00999999232590199,
+      "move": "heavy"
+    },
+    {
+      "clip": "MX_Elbow",
+      "face": 1,
+      "hero": 2,
+      "limbs": [
+        "RightForeArm"
+      ],
+      "min_skin_y": 0.00999999139457941,
+      "move": "finisher"
+    },
+    {
+      "clip": "MX_StickBack",
+      "face": -1,
+      "hero": 3,
+      "limbs": [
+        "BatonTip"
+      ],
+      "min_skin_y": 0.00999976973980665,
+      "move": "cross"
+    },
+    {
+      "clip": "MX_StickHorizontal",
+      "face": -1,
+      "hero": 3,
+      "limbs": [
+        "BatonTip"
+      ],
+      "min_skin_y": 0.00999998860061169,
+      "move": "heavy"
+    },
+    {
+      "clip": "MX_StickDown",
+      "face": -1,
+      "hero": 3,
+      "limbs": [
+        "BatonTip"
+      ],
+      "min_skin_y": 0.00999998301267624,
+      "move": "finisher"
+    },
+    {
+      "clip": "MX_StickBack",
+      "face": 1,
+      "hero": 3,
+      "limbs": [
+        "BatonTip"
+      ],
+      "min_skin_y": 0.00999999418854713,
+      "move": "cross"
+    },
+    {
+      "clip": "MX_StickHorizontal",
+      "face": 1,
+      "hero": 3,
+      "limbs": [
+        "BatonTip"
+      ],
+      "min_skin_y": 0.00999998860061169,
+      "move": "heavy"
+    },
+    {
+      "clip": "MX_StickDown",
+      "face": 1,
+      "hero": 3,
+      "limbs": [
+        "BatonTip"
+      ],
+      "min_skin_y": 0.00999998766928911,
+      "move": "finisher"
+    }
+  ],
+  "total": 119
+}

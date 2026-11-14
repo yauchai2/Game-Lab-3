@@ -1,0 +1,24 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+RIVET_MOTION Idle uses the library boxing guard true <null>
+RIVET_MOTION jab retains a planted stance and finite bones true 0.0
+RIVET_MOTION jab has no legacy sword/kick or active limb inflation true <null>
+RIVET_MOTION cross retains a planted stance and finite bones true 0.0
+RIVET_MOTION cross has no legacy sword/kick or active limb inflation true <null>
+RIVET_MOTION heavy retains a planted stance and finite bones true 0.00000282057363
+RIVET_MOTION heavy has no legacy sword/kick or active limb inflation true <null>
+RIVET_MOTION finisher retains a planted stance and finite bones true 0.00000282057363
+RIVET_MOTION finisher has no legacy sword/kick or active limb inflation true <null>
+RIVET_MOTION special retains a planted stance and finite bones true 0.0
+RIVET_MOTION special has no legacy sword/kick or active limb inflation true <null>
+RIVET_MOTION Held attack charges tier two and releases the fist forward true { "charge_x": 0.00732881017029, "release_x": 0.51354855298996 }
+RIVET_MOTION Charge frame 7/8 does not alternate poses true <null>
+RIVET_MOTION F2 and hitstop preserve the fist on facing -1 true <null>
+RIVET_MOTION F2 and hitstop preserve the fist on facing 1 true <null>
+RIVET_MOTION Interruption transfers from boxing to reaction true <null>
+RIVET_MOTION Death retains its original exclusive pose true <null>
+RIVET_MOTION Air attacks use Rivet fists true <null>
+RIVET_MOTION Showcase keeps its independent director true <null>

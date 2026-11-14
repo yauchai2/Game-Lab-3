@@ -1,6 +1,7 @@
 extends RefCounted
 ## Rest-relative retargeting of the CC0 Quaternius library onto the supplied rig.
 const RivetMotion=preload("res://scripts/combat/last_service/rivet_motion.gd")
+const Mixamo=preload("res://scripts/combat/mixamo_profiles.gd")
 const StreetMotion=preload("res://scripts/combat/last_service/street_motion.gd")
 static var library: Dictionary = {}
 var pose_owner:="legacy"
@@ -18,6 +19,7 @@ var death_height_scale := 1.0
 var contact_phases := {"Punch_Jab":0.30,"Punch_Cross":0.30,"Spell_Simple_Shoot":0.42}
 var clip_name := ""
 var clip_elapsed := 0.0
+var profile_loop_elapsed := 0.0
 var blend_from: Array[Quaternion] = []
 var previous_state := ""
 var previous_flash:=0.0
@@ -39,6 +41,7 @@ func setup(target: Skeleton3D, model: Node3D) -> void:
         var extra:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/animations/street_library.json"))
         library.clips.merge(extra.clips)
         library["street_markers"]=extra.markers
+        preload("res://scripts/combat/mixamo_motion_library.gd").install_into(library)
     for node in library.nodes:
         source_rest.append(_quat(node.rotation))
     var cache: Dictionary = {}
@@ -100,6 +103,8 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         profile_pose=f.duplicate(true);profile_pose.erase("showcase")
         profile_pose["face"]=f.get("face",1);profile_pose["move_data"]={}
     var motion:Dictionary=StreetMotion.describe(profile_pose,move_spec,library.street_markers)
+    var imported:Dictionary=Mixamo.describe(profile_pose,move_spec)
+    if not imported.is_empty():motion=imported
     var profile_owned:bool=not motion.is_empty()
     pose_owner=motion.get("owner","legacy")
     var selected := "Punch_Enter"
@@ -146,6 +151,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         blend_from.clear()
         for bone in skeleton.get_bone_count(): blend_from.append(skeleton.get_bone_pose_rotation(bone))
         clip_elapsed = 0.0
+        profile_loop_elapsed = 0.0
         previous_state = state_key
     elif not stopped:
         clip_elapsed += delta
@@ -174,7 +180,14 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     elif selected == "Jump_Land":
         sample_time = duration * clampf(land_time / 0.22,0,1)
     if profile_owned:
-        sample_time=fmod(clip_elapsed*float(motion.speed),duration) if motion.loop else (minf(clip_elapsed*2.5,duration) if motion.get("reaction",false) else float(motion.phase)*duration)
+        if motion.loop and motion.get("imported",false):
+            if not stopped and clip_elapsed>0.0:
+                profile_loop_elapsed=fmod(profile_loop_elapsed+delta*float(motion.speed),duration)
+            sample_time=profile_loop_elapsed
+        else:
+            sample_time=fmod(clip_elapsed*float(motion.speed),duration) if motion.loop else (minf(clip_elapsed*2.5,duration) if motion.get("reaction",false) else float(motion.phase)*duration)
+    if f.has("cinematic_phase"):
+        sample_time=duration*clampf(float(f.cinematic_phase),0,1)
     var locals: Array[Quaternion] = source_rest.duplicate()
     for index in clip.tracks:
         var track: Dictionary = clip.tracks[index]
@@ -209,6 +222,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     var desired: Array[Quaternion] = []
     desired.resize(skeleton.get_bone_count())
     var blend := clampf(clip_elapsed/(.025 if profile_owned and f.state=="attack" else .06),0,1)
+    if f.get("motion_no_blend",false):blend=1.0
     for bone in skeleton.get_bone_count():
         var parent := skeleton.get_bone_parent(bone)
         var parent_rotation := Quaternion.IDENTITY if parent<0 else desired[parent]
@@ -232,14 +246,20 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         var translation: Vector3 = _sample_vector(clip.tracks[str(source_hips)].translation,sample_time)
         var source_base := _vec(library.nodes[source_hips].translation)
         var parent: int = library.nodes[source_hips].parent
-        var offset := alignment * (source_global_rest[parent] * (translation-source_base)) * (death_height_scale if dead else height_scale)
-        hips_position.y += offset.y if dead else clampf(offset.y,-0.15,0.12)
+        var offset := alignment * (source_global_rest[parent] * (translation-source_base)) * (death_height_scale if dead or selected=="MX_GetUp" else height_scale)
+        if selected=="MX_GetUp":
+            hips_position.y+=offset.y
+        elif motion.get("imported",false):
+            if f.y>.01:offset.y=clampf(offset.y,-.12,.12)
+            hips_position+=offset.limit_length(.55)
+        else:hips_position.y += offset.y if dead else clampf(offset.y,-0.15,0.12)
     skeleton.set_bone_pose_position(target_hips,hips_position)
     if dead:
         air_pose_name=""
         return # Air/stunt/guard layers must not overwrite the death clip.
     if profile_owned:
-        StreetMotion.finish(self,f,motion,move_spec)
+        if motion.get("imported",false):Mixamo.finish(self,f,move_spec)
+        else:StreetMotion.finish(self,f,motion,move_spec)
         air_pose_name=pose_owner+"/"+(f.move if f.state=="attack" else f.state)
         return # This profile owns the complete pose; no later legacy layers.
     if f.state == "attack":

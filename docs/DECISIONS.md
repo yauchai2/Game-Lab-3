@@ -1,3 +1,47 @@
+## 2026-11-14：依最新明確授權將game-ready動作隨GitHub提供
+
+使用者明示「授權允許，把它放進GitHub，繼續把全部做完」，覆蓋先前私有曲線安裝流程。兩份衍生JSON隨assets／PCK提供，原始FBX保留，來源條款notice明示Mixamo非CC0；loader預設讀資產，環境override僅開發用途。GetUp去padding後以64tick共同恢復取代28tick，depth漸回戰鬥平面；不改第60tick落地傷害。現有招式全覆核，23來源clip全啟用，適用CC0全身動作仍保留而非假稱49Mixamo下載。舊RIVET固定下盤不再疊轉髖，新舊模式原／新版19項均通過；詳MOTION_COMPLETION.zh-TW.md。
+
+## 2026-11-15：以原命中及接觸時鐘接入誇張動作
+
+RIVET 挑空按左手上勾、ZIP 空中收尾按右腳旋踢對齊原 hit tick。移動保持原 simulation root、按來源步速累積循環相位，既有護架及短棍手臂遮罩可疊到新步態。勝利鏡頭和離場路徑按時間取樣。範圍及來源見 [全遊戲動作覆核](WHOLE_GAME_MOTION_REVIEW.zh-TW.md)。
+
+## 2026-11-14：慢速後退採 Mixamo Unarmed Walk Back
+
+Adobe 登入後以 V1xel Mixamo MCP 從官方目錄下載 X Bot 的 Unarmed Walk Back（動作 ID 128650946，FBX 2019、30 fps、無蒙皮）。原始 FBX 的 SHA-256 為 `2096d62a1b6ea6c74003f23f9624e7b2be9a053738d80bb4aea4f25c26fa8531`。取完整 1–40 樣本循環，去除約 1.159 m 的後退位移，按來源 0.89 m/s 配速。四角在地面以 0.3–2.0 m/s 背向移動時採用，按住護架及 LOOP 持棍時沿用既有手臂遮罩。速度與位移由原 simulation 決定，舊動畫庫仍可載入。
+
+## 2026-11-14：第一批Mixamo沿canonical rig重定向，保持simulation權威
+
+來源65骨world rest／rotation私有取樣後離線轉canonical，沿既有CombatMotions→四角；新profile獨佔姿勢，contact phase／實際骨同時供FX與接地。去來源淨位移，保留有界重心，鞋底以skin最低點校正。Walking只配慢速正向步態；複合拳拆單招，Hurricane取單圈加回收，Boxing按實際低位身擊使用。原判定／傷害／物理／過場不改；不適合挑空及未驗死亡／起身owner的來源不強塞。23私有clip中20啟用，另外3個待驗；缺檔與不相容SHA透明fallback。詳MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md。
+
+## 2026-11-14：正式肩摔採雙人共同時鐘與落地結算
+
+合法grab才進paired_throw；原片共同裁61–121，來源106幀／第60 tick透過原_resolve_hit一次結算，防止立即扣血擊退或重入。骨架／手指保持角色骨長，平面共1.0、垂直參考1.15、腕部雙骨IK與每臂最多3.5cm肩胛修正；真蒙皮貼地，F2不改物理。地面回復用CC0 Roll末段接角色idle。普通群戰鎖原target到收尾，巨型Boss保原規則，致命落地不重播普通KO飛行。詳PAIRED_SHOULDER_THROW。
+
+Mixamo原檔及可還原曲線只私有安裝；公開提交loader／Blender importer／installer／metadata／影片。缺檔fallback保相容，使用者Pull不會自動取得曲線，需安裝對話私有JSON或本機自原FBX重建。原模型／存檔／音樂不改、不發Web，其他候選動作仍待來源。
+
+## 2026-11-14：完整替換生硬動作，接受官方手動下載
+
+最新使用者授權涵蓋全部動作家族；無法代理下載時列名由使用者官方取檔。49項候選按P0=19／P1=24／P2=6分批，名稱metadata不是官方預覽驗收，不採第三方動畫鏡像。LOOP斧擊是改編素材而非專用短棍mocap；同名Boxing依描述辨識。修來源選片也修blend／root／支撐腳／時序，沿原simulation與過場owner，不因換動畫改傷害／存檔／公開Web。見MIXAMO_REPLACEMENT_PLAN.zh-TW.md。
+
+## 2026-11-14：使用者直接提供Mixamo攻守配對
+
+Aggressor固定為施技者，Victim為被摔者；兩段FBX已到手，不再以Adobe token／MCP下載作這組素材檢查的前置條件。先保持原座標與同一幀號檢查，不各自置中或各自裁剪。公開repo只存metadata／工具與渲染預覽，原FBX／可還原逐幀資料放repo外；來源非CC0。近身戰鬥共同裁切先候選46–121，接觸及四角重定向未驗前不錄用為正式招式。不改原GLB、不發Web。
+
+## 2026-11-13 接續：區分官方API錯誤、公開目錄與認證下載
+
+新環境unrestricted／enforced且實際官方目錄HTTP200，不再要求重複加入網域。公開X-Api-Key沿指定上游取得目錄，不使用第三方鏡像或繞過認證；MCP本身要求token，未認證搜尋不當成功。官方GIF只作預覽候選驗證，不抽取成遊戲曲線。launcher可從環境秘密MIXAMO_ACCESS_TOKEN僅記憶體注入，保留私有檔fallback；不經記錄中的MCP參數傳憑證、不提交原始FBX或token。詳MIXAMO_MCP_SETUP最新節。
+
+## 2026-11-13：使用指定Mixamo MCP
+
+採[HaD0Yun獨立Server](https://github.com/HaD0Yun/unity-mcp-mixamo/tree/6170d5eca609eb5cdbbbd6b1a3fc6276362f6701/Server)，不用Unity Helper。固定SDK1.30.0解決2.x破壞性API，client除錯送stderr維持stdio。Playwright作預覽備援。token只在server同主機私有檔，不經聊天／公開repo；本工具不解決proxy403。上游授權標示不一致已記錄，沒有把MCP程式授權當Mixamo素材授權。
+
+## 2026-11-13：以官方Playwright MCP完成工具接入
+
+使用者確認使用MCP，採官方@playwright/mcp固定0.0.85，不直接執行社群Mixamo MCP。雲端Codex CLI已註冊並以真JSON-RPC工具驗證；和本機Extension連線分開記錄，避免把雲端設定當成已控制使用者Chrome。現Mixamo被proxy403拒絕，沿環境設定流程處理網域，不繞過政策。私有profile／下載在repo外；新增本機helper只註冊MCP、不覆寫既有同名設定、不處理密碼。詳[MIXAMO_MCP_SETUP.zh-TW.md](MIXAMO_MCP_SETUP.zh-TW.md)。
+
+## 2026-11-13：免費限制覆蓋較早付費候選建議
+
 ## 2026-11-14：選單與彈出文字清晰度覆核
 
 修正原生PopupMenu／TooltipLabel獨立Window的主題及取樣繼承：新Viewport明確nearest、Window缺主題時補共用theme，相關文字明確BODY並移除PopupMenu舊4px描邊。探索Overlay/Help亦補像素字體。5／8／100、字圖與字級保持。87項（原生43／語言21／strict23）通過，包含設定與P1/P2裝置下拉選單的embedded／獨立視窗、真hover提示框、主介面／城市六站／天賦／故事／HUD／暫停／結算。圖及限制見[evidence/pixel-text-audit](evidence/pixel-text-audit/README.md)；雲端Linux4.7.2，非使用者Mac驗收，來源同步main，Web不更新。取樣值4是繼承而非linear，不可只看root nearest便判斷popup已清晰。

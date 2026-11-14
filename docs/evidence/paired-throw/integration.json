@@ -1,0 +1,22 @@
+{
+  "runtime_commit_before_sync": "2f6e0e2",
+  "synced_main": "f9576c536775211f1a10dbed112c8bb7d8e7cd66",
+  "new_tests": [
+    147,
+    33
+  ],
+  "regression_tests": [
+    216,
+    90,
+    122,
+    51,
+    19,
+    46,
+    104,
+    26
+  ],
+  "gun_rules": 21,
+  "locale_rules": 18,
+  "targeted_strict_scripts": 16,
+  "conflicts_resolved": "Preserved both document histories and both paired-motion/foot-contact owners; capture UID uses main version. Clear foot anchors when entering throw, hide gun during throw, recover facing toward the landed opponent without a second flip. Main is not modified."
+}

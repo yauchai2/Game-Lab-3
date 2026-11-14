@@ -1,4 +1,26 @@
+## 2026-11-14 最新接入
+
+[完整肩摔已正式接入](PAIRED_SHOULDER_THROW.zh-TW.md)：兩個使用者FBX共同裁切、四角retarget與抓握／蒙皮落地、雙人時鐘及落地一次傷害；180新／674回歸通過，[正式12秒片](evidence/paired-throw/native.mp4)。本機需另安裝私有曲線，無資料仍fallback；不是所有候選投法或其他動作都完成。下方未接入內容保留為歷史。
+
+## 2026-11-14 最新：兩個使用者FBX已收到，原始配對可共同播放
+
+使用者已提供Aggressor（施技者）及Victim（被摔者）。兩段實測65骨、同名同序、30fps、1–201幀／6.667秒跨度，root位移保留；原座標同幀骨架預覽可見入身、轉肩、對手離地倒轉及落地。見[evidence/judo-source-pair](evidence/judo-source-pair/README.md)的6.70秒影片、詳細／完整時間軸抽格及SHA報告。沒有人工重定時或各自置中，非僅目錄推測。
+
+這是來源骨架配對檢查，不是手掌／皮膚接觸或四角Godot驗收。原片首幀髖距4.415m，含走近；需兩段共同裁切（46–121幀只候選）、近身root與身高差接觸處理，再接simulation共同時鐘／落地一次結算。原FBX與逐幀曲線不進公開repo，工具可重建私有檢查資料；本輪不需MCP登入即可處理已上傳檔。下文「未取得FBX」是歷史，由本節覆蓋。完整摔投仍未正式接入。
+
+## 2026-11-13 接續：網路已生效，官方配對與預覽已核實，待Adobe認證
+
+本次是同一設定下的新執行個體；讀取status為unrestricted／enforced且observations_current=true，已實際連通Mixamo。未帶API key的403是官方JSON「Api Key is required」，不是proxy拒絕；使用上游公開X-Api-Key後官方目錄HTTP200。核實Shoulder Throw, Aggressor（c9c7a795-b96c-11e4-a802-0aaa78deedf9）與Victim（c9c7a914-b96c-11e4-a802-0aaa78deedf9）。兩段官方GIF各6.6秒，完整時長2fps抽樣已檢視：攻方轉身俯身過肩及收招，守方離地翻轉、背部落地及地面收尾。不是雙人對齊播放，root／接觸／落地幀仍未量測；未下載FBX、未接Godot、完整摔投未完成。
+
+指定上游6170d5e／SDK1.30.0已在本機私有runtime重建，pip check、實際launcher initialize／六工具通過。未讀到token檔、環境無認證綁定；MCP auth與search明確回未認證，isError=false亦不算搜尋成功。公開目錄查證是獨立官方HTTP請求，不冒稱MCP搜尋成功。證據：[official-pair.json](evidence/mixamo-mcp/official-pair.json)。
+
+launcher新增可選MIXAMO_ACCESS_TOKEN環境秘密，只交給client建構子記憶體使用，不寫token檔、不經mixamo-auth參數；未設定時沿用同主機私有~/.mixamo_mcp_token。使用者可在環境設定的秘密欄位配置MIXAMO_ACCESS_TOKEN並套用到執行環境，勿貼聊天。實際新憑證尚未提供／驗證；佔位值本地檢查確認只入記憶體、不落檔、不連網。後續先驗真認證，再同角色／30fps／完整root與時長下載兩段到repo外量測，不以GIF當FBX或曲線來源。
+
+本次來源分支codex/four-fighter-motion-plan，基線c766a61；PR #29已合併是歷史，本次提交不在該PR內。原GLB、Godot、main與Web未改。以下網路403與舊runtime紀錄保留為歷史，由本節覆蓋目前狀態。
+
 # 完整柔道摔投：資源核對與接入方向
+
+最新工具進度：[MIXAMO_MCP_SETUP.zh-TW.md](MIXAMO_MCP_SETUP.zh-TW.md)。官方Playwright MCP已在雲端安裝並實測25tools／開頁／點擊；Mixamo仍被proxy403擋住，官方動畫檔未取得。以下保留前輪瀏覽器故障及資源研究歷史；完整摔投仍未完成。
 
 ## 最新約束：只用免費資源，先核實Mixamo
 

@@ -1,0 +1,1058 @@
+[
+  {
+    "filename": "Knocked Out.fbx",
+    "bytes": 2183072,
+    "sha256": "98f2ad5cd7d291a73af8f75f187be91a5e15daaad4d9a80b3d133d942533e6ec",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "77cd0e1ff273300435bd49749bed12aecabbf6942fde62d9bb1e90a87ceeb1e7",
+        "hip_path_excluding_last_step_m": 2.2166074809777303,
+        "closing_root_step_m": 5.8288834357653444e-05,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          149.0
+        ],
+        "duration_seconds": 4.933333333333334,
+        "samples_30fps": 149,
+        "world_joint_semantic_sha256": "ba93d305882856bf3036772edb3104d88205cbf1422ee2d490a6ee92f38f533d",
+        "hip_start": [
+          0.025550199672579765,
+          0.0904313176870346,
+          0.9170955419540405
+        ],
+        "hip_end": [
+          -0.9502631425857544,
+          1.2101991176605225,
+          0.14021062850952148
+        ],
+        "hip_net_distance_m": 1.6761986080189137,
+        "hip_bounds": [
+          [
+            -0.9543753862380981,
+            0.025550199672579765
+          ],
+          [
+            0.08083263039588928,
+            1.2675292491912842
+          ],
+          [
+            0.06045370548963547,
+            1.0370999574661255
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Hit To Body.fbx",
+    "bytes": 1830272,
+    "sha256": "479b19f78c7fe9c02b86cc3a66371e5d87b61c0dc43d677f65591b3bc5aaa354",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "bae3139acaaa873d4d54c15ee023f01468d3a2fac463cc9140257c95277668b9",
+        "hip_path_excluding_last_step_m": 0.5619873725026224,
+        "closing_root_step_m": 0.006698229384297942,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          36.0
+        ],
+        "duration_seconds": 1.1666666666666667,
+        "samples_30fps": 36,
+        "world_joint_semantic_sha256": "95eaf07201ea26febb4ccc70e3f2ae1ae4dc04b58fa37e07bc45f257d9771d8c",
+        "hip_start": [
+          -0.010589011944830418,
+          -0.0061914511024951935,
+          0.8818880915641785
+        ],
+        "hip_end": [
+          -0.010589035227894783,
+          -0.0061914147809147835,
+          0.8818882703781128
+        ],
+        "hip_net_distance_m": 1.839450499440733e-07,
+        "hip_bounds": [
+          [
+            -0.010589035227894783,
+            0.05994440242648125
+          ],
+          [
+            -0.0061914511024951935,
+            0.17788320779800415
+          ],
+          [
+            0.8176877498626709,
+            0.9670976996421814
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Getting Up.fbx",
+    "bytes": 2472256,
+    "sha256": "1ca8cbafadea49e55d7594ee6b4ac7881998486ea1125eb3659fc457ae4a56ae",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "068a469b0010fbc57fd9d98bd7868cbe0eb717a173670ba18d0b3941c5b0268f",
+        "hip_path_excluding_last_step_m": 1.3511720302022934,
+        "closing_root_step_m": 0.0003337623271172692,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          251.0
+        ],
+        "duration_seconds": 8.333333333333334,
+        "samples_30fps": 251,
+        "world_joint_semantic_sha256": "5a702e384d098e691be2166c1ab3e6df03eb78b51676344bad694bfa532b8feb",
+        "hip_start": [
+          0.03833493962883949,
+          0.2389632612466812,
+          0.09835866838693619
+        ],
+        "hip_end": [
+          0.07038136571645737,
+          -0.5113886594772339,
+          0.9212082028388977
+        ],
+        "hip_net_distance_m": 1.1140629850717003,
+        "hip_bounds": [
+          [
+            0.025575263425707817,
+            0.18327480554580688
+          ],
+          [
+            -0.5129655599594116,
+            0.2389632612466812
+          ],
+          [
+            0.09566023200750351,
+            0.9212082028388977
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Standing Melee Attack Backhand.fbx",
+    "bytes": 2041168,
+    "sha256": "1209b9e369742c0a61a980c6a907986930760fe2304d2b22e1d1d5b952e81503",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "42a803eab51b5ce7388b5ea7d3b5ba22abfce0be335d2a3f3d5f6d32c9522f0d",
+        "hip_path_excluding_last_step_m": 1.8790019303063636,
+        "closing_root_step_m": 0.0055452205090952555,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          96.0
+        ],
+        "duration_seconds": 3.1666666666666665,
+        "samples_30fps": 96,
+        "world_joint_semantic_sha256": "09e101ce5b71aedfd8c798de68293ac92e920c6922a8439d3ea8041a3145c8a4",
+        "hip_start": [
+          -0.013153044506907463,
+          -0.011610230430960655,
+          0.882556140422821
+        ],
+        "hip_end": [
+          -0.013153016567230225,
+          -0.011610198765993118,
+          0.8825559616088867
+        ],
+        "hip_net_distance_m": 1.8373273753609797e-07,
+        "hip_bounds": [
+          [
+            -0.06931275874376297,
+            0.1906111240386963
+          ],
+          [
+            -0.7290943264961243,
+            0.07189131528139114
+          ],
+          [
+            0.8771883249282837,
+            0.9698029160499573
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Standing Melee Attack Downward.fbx",
+    "bytes": 1957472,
+    "sha256": "b8f659d84d258435b6c7eafb0c8aa3674b5b5a781978d8fcf57e7c0e453122cc",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "c526f94c491598129f54c5d19710a43a679ce39a5a811e4656e0f124c4b64b45",
+        "hip_path_excluding_last_step_m": 0.6390690354873229,
+        "closing_root_step_m": 0.0031733905587716625,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          69.0
+        ],
+        "duration_seconds": 2.2666666666666666,
+        "samples_30fps": 69,
+        "world_joint_semantic_sha256": "5a3aa9d13747fbdded14f0927f44aa574ac41cd0aed379b8cd6a29a4019c1627",
+        "hip_start": [
+          -0.01315329410135746,
+          -0.011609897017478943,
+          0.8825562596321106
+        ],
+        "hip_end": [
+          -0.013153281062841415,
+          -0.011609939858317375,
+          0.8825562596321106
+        ],
+        "hip_net_distance_m": 4.4781026542824906e-08,
+        "hip_bounds": [
+          [
+            -0.037311337888240814,
+            0.0638115331530571
+          ],
+          [
+            -0.17427614331245422,
+            0.02608715370297432
+          ],
+          [
+            0.8813918828964233,
+            0.9522415995597839
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Head Hit.fbx",
+    "bytes": 1835680,
+    "sha256": "60cd58008146075dbf85f930f62e4ad8a9bf6fa03b26075a828ec8bff9ce7488",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "a01186c5e605e02523d42182091e0b6df32ce3f2b2d16ba78d5b7f9ceb18a4a8",
+        "hip_path_excluding_last_step_m": 0.59175261736544,
+        "closing_root_step_m": 0.0039339035219761575,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          38.0
+        ],
+        "duration_seconds": 1.2333333333333334,
+        "samples_30fps": 38,
+        "world_joint_semantic_sha256": "eb56b5635138538d14bfb8bf8e3dba057df14367360f50c00d8645be1764b2aa",
+        "hip_start": [
+          -0.010589033365249634,
+          -0.0061914329417049885,
+          0.8818880915641785
+        ],
+        "hip_end": [
+          -0.010588948614895344,
+          -0.0061915479600429535,
+          0.8818882703781128
+        ],
+        "hip_net_distance_m": 2.288804572909625e-07,
+        "hip_bounds": [
+          [
+            -0.15771439671516418,
+            -0.010588948614895344
+          ],
+          [
+            -0.10162778943777084,
+            0.09389884024858475
+          ],
+          [
+            0.8469290137290955,
+            0.9273625016212463
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Standing Melee Attack Horizontal.fbx",
+    "bytes": 1968656,
+    "sha256": "1e1e5f3bb9099ac086ace5a56d853b537279aa264307e864eaa1ee95e89bb74f",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "e45480fcce8316f56cd4885bdffb7b9c4badb94beca7579aac90cc92ceb752b8",
+        "hip_path_excluding_last_step_m": 0.7815216651895263,
+        "closing_root_step_m": 0.0009160100824904717,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          73.0
+        ],
+        "duration_seconds": 2.4,
+        "samples_30fps": 73,
+        "world_joint_semantic_sha256": "66dd92f9a0b1d72aad2509947d7eb6d041f63ad58ae55308cba9cd8bdd1c0695",
+        "hip_start": [
+          -0.01315324753522873,
+          -0.011609973385930061,
+          0.8825564384460449
+        ],
+        "hip_end": [
+          -0.01315323170274496,
+          -0.011610036715865135,
+          0.8825564384460449
+        ],
+        "hip_net_distance_m": 6.527900289325064e-08,
+        "hip_bounds": [
+          [
+            -0.030070075765252113,
+            0.14382529258728027
+          ],
+          [
+            -0.12423916161060333,
+            0.05925794318318367
+          ],
+          [
+            0.8010279536247253,
+            0.9090291857719421
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Dodging.fbx",
+    "bytes": 1916672,
+    "sha256": "7ff8dc28eb64fb08faf17e794224e30fcfb8729d26c9468871c5311be794acf1",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "118e8f5c79386118c27c51fd3abf7090b17e8c5c01895cabca703cc44c491ded",
+        "hip_path_excluding_last_step_m": 1.467859151843657,
+        "closing_root_step_m": 0.026993876249516886,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          68.0
+        ],
+        "duration_seconds": 2.2333333333333334,
+        "samples_30fps": 68,
+        "world_joint_semantic_sha256": "5b41ecba3bf0e577aff1df6e047a0a00638739a3ebc8ca6d9eb2522ee3289579",
+        "hip_start": [
+          -0.031834907829761505,
+          0.01692754030227661,
+          0.8698800206184387
+        ],
+        "hip_end": [
+          -0.0318172462284565,
+          0.5313776731491089,
+          0.8698567748069763
+        ],
+        "hip_net_distance_m": 0.5144501336751923,
+        "hip_bounds": [
+          [
+            -0.2916739284992218,
+            -0.0318172462284565
+          ],
+          [
+            0.01692754030227661,
+            0.5313776731491089
+          ],
+          [
+            0.6757631301879883,
+            0.9675400853157043
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Inward Block.fbx",
+    "bytes": 1852992,
+    "sha256": "ba21685b30771e8c9c11366c34b3767698a94b1d5c77a607ff60e1dbc25e54d5",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "5a1b53f9a9eedb6a551f8a5d073c16df48f95f6a89cf95b8a0ad364569512706",
+        "hip_path_excluding_last_step_m": 0.30521592180842855,
+        "closing_root_step_m": 0.0020935160404774176,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          45.0
+        ],
+        "duration_seconds": 1.4666666666666666,
+        "samples_30fps": 45,
+        "world_joint_semantic_sha256": "74fa3b6c409095505119fe92664c7879882171d587c7a908d92088389cb543a1",
+        "hip_start": [
+          -0.020733701065182686,
+          -0.012963091023266315,
+          0.9527422785758972
+        ],
+        "hip_end": [
+          -0.02073361538350582,
+          -0.012963080778717995,
+          0.9527422785758972
+        ],
+        "hip_net_distance_m": 8.629194933845477e-08,
+        "hip_bounds": [
+          [
+            -0.1021052822470665,
+            0.007077803369611502
+          ],
+          [
+            -0.04220206290483475,
+            0.029507162049412727
+          ],
+          [
+            0.9320401549339294,
+            0.9544192552566528
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Illegal Elbow Punch.fbx",
+    "bytes": 1919376,
+    "sha256": "1cbdef9ada0a300bf711bf67672c4a145a199762208b9c0e36926f8962cdbc83",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "b725ae857c4a8b5212789d5bf58e0631a704c5280c7552a747c6aeab359d2d9f",
+        "hip_path_excluding_last_step_m": 0.7801400291898296,
+        "closing_root_step_m": 0.007042741332394848,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          69.0
+        ],
+        "duration_seconds": 2.2666666666666666,
+        "samples_30fps": 69,
+        "world_joint_semantic_sha256": "d10a0f996e97f15f31544a8da5321585ac9a499218eb066e39cbc854ed299d3d",
+        "hip_start": [
+          -0.010463429614901543,
+          -0.006400965619832277,
+          0.8818879723548889
+        ],
+        "hip_end": [
+          -0.01046348549425602,
+          -0.006400878541171551,
+          0.881887674331665
+        ],
+        "hip_net_distance_m": 3.154727205016305e-07,
+        "hip_bounds": [
+          [
+            -0.01302229892462492,
+            0.03176981210708618
+          ],
+          [
+            -0.27110692858695984,
+            0.03649172931909561
+          ],
+          [
+            0.852329671382904,
+            0.8931148052215576
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Boxing.fbx",
+    "bytes": 1913984,
+    "sha256": "c986ecc54c1d54e66479327d37e42b0416d8eca6ba8ab3eaa3edfcfd786b8430",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "3476717024a7ffccb07c61940fa1f4ff81649f1c755e550b0daede0c48fc84d5",
+        "hip_path_excluding_last_step_m": 1.382687911165758,
+        "closing_root_step_m": 0.010240430324152892,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          67.0
+        ],
+        "duration_seconds": 2.2,
+        "samples_30fps": 67,
+        "world_joint_semantic_sha256": "c02138b4dd60aad4de48dd6ff60cf87668d6563c41ba7c818bb653edd10187aa",
+        "hip_start": [
+          -0.010356871411204338,
+          -0.013282697647809982,
+          0.9554117918014526
+        ],
+        "hip_end": [
+          -0.010356852784752846,
+          -0.013282662257552147,
+          0.9554117918014526
+        ],
+        "hip_net_distance_m": 3.999268739220479e-08,
+        "hip_bounds": [
+          [
+            -0.06632048636674881,
+            0.12772180140018463
+          ],
+          [
+            -0.5342248678207397,
+            0.05316068232059479
+          ],
+          [
+            0.8567674160003662,
+            0.9930565357208252
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Jab To Elbow Punch.fbx",
+    "bytes": 2106224,
+    "sha256": "7901fd304e10bbc70b86da0a39363db00993b177cef4602f3731c5d41e8da0d6",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "2b07a2c3e7a3c0d53f120d0487d0384da1e2de437ec4a22fe034388c00a799b9",
+        "hip_path_excluding_last_step_m": 0.9130429678702897,
+        "closing_root_step_m": 0.0020162192054110524,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          99.0
+        ],
+        "duration_seconds": 3.2666666666666666,
+        "samples_30fps": 99,
+        "world_joint_semantic_sha256": "e4cb89c3e8d6fa2664576687c64453ade1467df1c96c1aa2a340e262fac82b66",
+        "hip_start": [
+          -0.021165749058127403,
+          0.04178011417388916,
+          0.9546149373054504
+        ],
+        "hip_end": [
+          -0.0211658775806427,
+          0.04178018867969513,
+          0.9546151757240295
+        ],
+        "hip_net_distance_m": 2.809138140465594e-07,
+        "hip_bounds": [
+          [
+            -0.05272845923900604,
+            0.044831257313489914
+          ],
+          [
+            -0.15598006546497345,
+            0.049665309488773346
+          ],
+          [
+            0.8971327543258667,
+            1.0034648180007935
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Hook.fbx",
+    "bytes": 1987200,
+    "sha256": "4d4a9d8cf3f1f992396d5f02766671bc866206e14278c95cd8a15990af949615",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "243e21b354eaabdcaee8da805b5c14175b1d4109d25bb28a333190c1dd09e26d",
+        "hip_path_excluding_last_step_m": 1.5233909856611334,
+        "closing_root_step_m": 0.0015476477139113505,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          73.0
+        ],
+        "duration_seconds": 2.4,
+        "samples_30fps": 73,
+        "world_joint_semantic_sha256": "492f452484f8df5a088406e35dda6f6202a40559a622bffcce9e846171d2a925",
+        "hip_start": [
+          -0.010595262981951237,
+          -0.006187917664647102,
+          0.8818771243095398
+        ],
+        "hip_end": [
+          -0.010593142360448837,
+          -0.006194824818521738,
+          0.8818882703781128
+        ],
+        "hip_net_distance_m": 1.3283096583188294e-05,
+        "hip_bounds": [
+          [
+            -0.011589884757995605,
+            0.19349494576454163
+          ],
+          [
+            -0.6773245930671692,
+            -0.006187917664647102
+          ],
+          [
+            0.7786287069320679,
+            0.9221461415290833
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Jab Cross.fbx",
+    "bytes": 1908576,
+    "sha256": "a901d23898b70630c2c88796b7ccb2d36b89baf616e0baed46a74a7c5664c98d",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "01bdea274c0057ea4817e5b8ff75e5454580e2d88d188de9ac3cf3171d72aeae",
+        "hip_path_excluding_last_step_m": 1.433829962840672,
+        "closing_root_step_m": 0.009007319604310433,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          65.0
+        ],
+        "duration_seconds": 2.1333333333333333,
+        "samples_30fps": 65,
+        "world_joint_semantic_sha256": "c82818a5c4799602701945706774e6c78ab23d4f5db98f0c8ba25f9410bfee8a",
+        "hip_start": [
+          -0.01058899238705635,
+          -0.0061914678663015366,
+          0.8818880915641785
+        ],
+        "hip_end": [
+          -0.01058895606547594,
+          -0.006191494408994913,
+          0.8818880915641785
+        ],
+        "hip_net_distance_m": 4.498635098739886e-08,
+        "hip_bounds": [
+          [
+            -0.013810912147164345,
+            0.1189163476228714
+          ],
+          [
+            -0.583980917930603,
+            0.04596272483468056
+          ],
+          [
+            0.7990982532501221,
+            0.9403761625289917
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Idle.fbx",
+    "bytes": 2026160,
+    "sha256": "c1ed794c6d4042069cb0344b119ae3746367114154e3bb71815023511672791b",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "71c138afafb0527249d2287e75cf562dda52411d76d523b3a1be9ebac61c7df0",
+        "hip_path_excluding_last_step_m": 0.9406581653051616,
+        "closing_root_step_m": 0.011284734920045475,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          110.0
+        ],
+        "duration_seconds": 3.6333333333333333,
+        "samples_30fps": 110,
+        "world_joint_semantic_sha256": "12acdfe1fc24625a677b47320217e995b227bee79b90e4cb3b6e15baa31672e0",
+        "hip_start": [
+          -0.04127061739563942,
+          -0.01668209210038185,
+          0.8407984972000122
+        ],
+        "hip_end": [
+          -0.0412706695497036,
+          -0.016682041808962822,
+          0.8407984972000122
+        ],
+        "hip_net_distance_m": 7.245186842522294e-08,
+        "hip_bounds": [
+          [
+            -0.04753778502345085,
+            0.019299447536468506
+          ],
+          [
+            -0.03410881757736206,
+            0.04408107325434685
+          ],
+          [
+            0.807171106338501,
+            0.8649981617927551
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Hurricane Kick (1).fbx",
+    "bytes": 1842704,
+    "sha256": "ad43f0e51939be637c95e7a00dc1617cee4623192c160afe0fb36e22b9881628",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "b735f1533623b46521f8eb133bacb050ea92e3c94e33d35aa3c22fa47cf7a954",
+        "hip_path_excluding_last_step_m": 3.734001286016124,
+        "closing_root_step_m": 0.06459828972950304,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          56.0
+        ],
+        "duration_seconds": 1.8333333333333333,
+        "samples_30fps": 56,
+        "world_joint_semantic_sha256": "f466c34fce97743e197a7232fc6f6f03ab43dbbcbf446af4f4f7a8d912545bca",
+        "hip_start": [
+          0.00357492221519351,
+          0.08777491748332977,
+          1.0851420164108276
+        ],
+        "hip_end": [
+          0.003574967384338379,
+          -3.3528823852539062,
+          1.0851422548294067
+        ],
+        "hip_net_distance_m": 3.4406573027372445,
+        "hip_bounds": [
+          [
+            -0.08784104883670807,
+            0.0877588763833046
+          ],
+          [
+            -3.3528823852539062,
+            0.08777491748332977
+          ],
+          [
+            1.0851417779922485,
+            1.0851423740386963
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Roundhouse Kick.fbx",
+    "bytes": 1909920,
+    "sha256": "e371e39973953623dddf5cbb0f0070c987dfafb288308aa5320c954016ca84b6",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "d06f2faaf681141e76a72625960403566e4b5719c9582332603c2960220586fa",
+        "hip_path_excluding_last_step_m": 0.9656514515706079,
+        "closing_root_step_m": 0.001179902714964563,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          65.0
+        ],
+        "duration_seconds": 2.1333333333333333,
+        "samples_30fps": 65,
+        "world_joint_semantic_sha256": "534eeed1a7c5bed362e7e0f240ffeede5ac34740a7041ead6f5750b2d3221bab",
+        "hip_start": [
+          -0.0434400737285614,
+          0.0012878747656941414,
+          1.0060515403747559
+        ],
+        "hip_end": [
+          -0.04344005510210991,
+          -0.6510356664657593,
+          1.0060516595840454
+        ],
+        "hip_net_distance_m": 0.6523235412314646,
+        "hip_bounds": [
+          [
+            -0.0434400737285614,
+            0.04478832706809044
+          ],
+          [
+            -0.6510356664657593,
+            0.0012878747656941414
+          ],
+          [
+            0.9486754536628723,
+            1.1127843856811523
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Hurricane Kick.fbx",
+    "bytes": 1842704,
+    "sha256": "20a474f96e661bb65ba4a9f6768c9143c960ebdd331acb8a6ede7b31e408ba04",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "b735f1533623b46521f8eb133bacb050ea92e3c94e33d35aa3c22fa47cf7a954",
+        "hip_path_excluding_last_step_m": 3.734001286016124,
+        "closing_root_step_m": 0.06459828972950304,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          56.0
+        ],
+        "duration_seconds": 1.8333333333333333,
+        "samples_30fps": 56,
+        "world_joint_semantic_sha256": "f466c34fce97743e197a7232fc6f6f03ab43dbbcbf446af4f4f7a8d912545bca",
+        "hip_start": [
+          0.00357492221519351,
+          0.08777491748332977,
+          1.0851420164108276
+        ],
+        "hip_end": [
+          0.003574967384338379,
+          -3.3528823852539062,
+          1.0851422548294067
+        ],
+        "hip_net_distance_m": 3.4406573027372445,
+        "hip_bounds": [
+          [
+            -0.08784104883670807,
+            0.0877588763833046
+          ],
+          [
+            -3.3528823852539062,
+            0.08777491748332977
+          ],
+          [
+            1.0851417779922485,
+            1.0851423740386963
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Kicking.fbx",
+    "bytes": 1919376,
+    "sha256": "f7a825a20eb9d35d5451dd3699669ea09e6709232d3a64f5c13e30a09be8ee02",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "5a3af72cb8127e36c528f90c66ed572a23e6caca667d2ca14ff0dbc771ab2264",
+        "hip_path_excluding_last_step_m": 2.691973764041946,
+        "closing_root_step_m": 0.006127915304386097,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          69.0
+        ],
+        "duration_seconds": 2.2666666666666666,
+        "samples_30fps": 69,
+        "world_joint_semantic_sha256": "d7594b986bff3956974f2d95cc62fb7901b3aa3a579e765b9fc4f2c224d2ecf6",
+        "hip_start": [
+          -0.02657620795071125,
+          -0.006843692623078823,
+          1.0400232076644897
+        ],
+        "hip_end": [
+          -0.026591546833515167,
+          -1.7629743814468384,
+          1.0399342775344849
+        ],
+        "hip_net_distance_m": 1.7561306911424508,
+        "hip_bounds": [
+          [
+            -0.09827011078596115,
+            0.021774448454380035
+          ],
+          [
+            -1.975672960281372,
+            -0.006843692623078823
+          ],
+          [
+            0.9094428420066833,
+            1.428755283355713
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Shoulder Throw, Victim.fbx",
+    "bytes": 2330176,
+    "sha256": "44567d47ab4176cf54206b5de9f6b9fb3377befc8cac9e7eef0dd314b802dc10",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "2d377a37295fa8087fa6114cb9ecb970d6af83a6cf65c26838610c00da11015b",
+        "hip_path_excluding_last_step_m": 4.250319907650838,
+        "closing_root_step_m": 9.72860060003017e-05,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          201.0
+        ],
+        "duration_seconds": 6.666666666666667,
+        "samples_30fps": 201,
+        "world_joint_semantic_sha256": "f2dbc5727f914a5a81c73407f973a672060f31d22c86bceaed2263dfe8f13105",
+        "hip_start": [
+          -2.1177220344543457,
+          0.03148229792714119,
+          0.9501503705978394
+        ],
+        "hip_end": [
+          -1.0726100206375122,
+          -0.5945916771888733,
+          0.10970821976661682
+        ],
+        "hip_net_distance_m": 1.4800576855770373,
+        "hip_bounds": [
+          [
+            -2.7881312370300293,
+            -1.0613048076629639
+          ],
+          [
+            -0.6047577261924744,
+            0.06844548135995865
+          ],
+          [
+            0.10593212395906448,
+            1.380307912826538
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Shoulder Throw, Aggressor.fbx",
+    "bytes": 2334304,
+    "sha256": "be5f9daa7cacc8d8719d8239069233a5e212cff9a93cae16bbac12948a4c0352",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "9b04891f4e93a70511e00e2f2aa7f2bf196d79d918fb4bee5e3b57ac017afe5b",
+        "hip_path_excluding_last_step_m": 7.886730876572371,
+        "closing_root_step_m": 0.001484152989452144,
+        "name": "Armature|mixamo.com|Layer0",
+        "scene_fps": 30.0,
+        "frame_range": [
+          1.0,
+          201.0
+        ],
+        "duration_seconds": 6.666666666666667,
+        "samples_30fps": 201,
+        "world_joint_semantic_sha256": "9350d7e9fa25c7ab095862d77dba05c7bda0d310d95688375b8b0316b2bf5056",
+        "hip_start": [
+          2.296508312225342,
+          -0.050921376794576645,
+          0.9271178841590881
+        ],
+        "hip_end": [
+          -2.1163792610168457,
+          0.4473695158958435,
+          0.9377638101577759
+        ],
+        "hip_net_distance_m": 4.440944030671171,
+        "hip_bounds": [
+          [
+            -2.440946102142334,
+            2.3025147914886475
+          ],
+          [
+            -0.24909836053848267,
+            0.4473695158958435
+          ],
+          [
+            0.5871918201446533,
+            1.1216553449630737
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "filename": "Walking.glb",
+    "bytes": 583692,
+    "sha256": "4ee18db66d768515aa6165ce5231f9c3f9d3031d532257cc12d982a26108be8c",
+    "rigs": 1,
+    "bone_count": 65,
+    "actions": [
+      {
+        "semantic_pose_sha256": "0ab6ba027d6811d67d0b5648818a961acb988f602feaf393103f512b86ab53c5",
+        "hip_path_excluding_last_step_m": 12.86174357368633,
+        "closing_root_step_m": 12.633139733648676,
+        "name": "Walking_Armature",
+        "scene_fps": 24.0,
+        "frame_range": [
+          0.0,
+          246.39999389648438
+        ],
+        "duration_seconds": 10.266666412353516,
+        "samples_30fps": 309,
+        "world_joint_semantic_sha256": "8af6702ece2276e079787d053c33862041d7565e6ae60adfd30db0e41cfa882e",
+        "hip_start": [
+          -0.001933045219630003,
+          0.004786841105669737,
+          1.0700443983078003
+        ],
+        "hip_end": [
+          -0.001933045219630003,
+          0.004786841105669737,
+          1.0700443983078003
+        ],
+        "hip_net_distance_m": 0.0,
+        "hip_bounds": [
+          [
+            -0.010922105051577091,
+            0.011136887595057487
+          ],
+          [
+            -12.628351211547852,
+            0.004786841105669737
+          ],
+          [
+            1.0172624588012695,
+            1.0715289115905762
+          ]
+        ]
+      }
+    ]
+  }
+]

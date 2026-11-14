@@ -1,0 +1,58 @@
+[
+  {
+    "script": "verify_street_motion",
+    "installed_mixamo": false,
+    "returncode": 0,
+    "errors": false,
+    "tail": "ccents use a fist socket true <null>\nSTREET_MOTION RIVET hook has its matching recovery source true <null>\nSTREET_MOTION RIVET launcher sends a fist above its shoulder true <null>\n"
+  },
+  {
+    "script": "verify_counter_motion",
+    "installed_mixamo": false,
+    "returncode": 0,
+    "errors": false,
+    "tail": "actly the existing node count true 2\nCOUNTER_MOTION Rendered baton marker matches a real palm grip true <null>\nCOUNTER_MOTION Character replacement clears baton marker true <null>\n"
+  },
+  {
+    "script": "verify_transit_motion",
+    "installed_mixamo": false,
+    "returncode": 0,
+    "errors": false,
+    "tail": "ve owner handoff 3/ricochet true\nTRANSIT Death keeps source and clears air label 3 true\nTRANSIT Real launcher/chase/air confirmation 3 true\nTRANSIT Real throw resolves once 3 true\n"
+  },
+  {
+    "script": "verify_rivet_motion",
+    "installed_mixamo": false,
+    "returncode": 1,
+    "errors": false,
+    "tail": "_MOTION Death retains its original exclusive pose true <null>\nRIVET_MOTION Air attacks use Rivet fists true <null>\nRIVET_MOTION Showcase keeps its independent director true <null>\n"
+  },
+  {
+    "script": "verify_grounded_death",
+    "installed_mixamo": true,
+    "returncode": 0,
+    "errors": false,
+    "tail": "D_DEATH live squad corpse rests on street 0 true\nGROUNDED_DEATH live squad corpse rests on street 1 true\nGROUNDED_DEATH all result corpses settle, including non-focus enemies true\n"
+  },
+  {
+    "script": "verify_ink_fx",
+    "installed_mixamo": true,
+    "returncode": 0,
+    "errors": false,
+    "tail": "ntly true <null>\nINK_FX squad remains within fixed pools true <null>\nINK_FX fight after squad has no stale member tracks true <null>\nINK_FX material retirement drained true <null>\n"
+  },
+  {
+    "script": "verify_fighter_style",
+    "installed_mixamo": true,
+    "returncode": 0,
+    "errors": false,
+    "tail": "es simulation untouched hero 3 true\nFIGHTER_STYLE Four distinct silhouettes true\nFIGHTER_STYLE Four distinct PCM families true\nFIGHTER_STYLE Four distinct signature positions true\n"
+  },
+  {
+    "script": "verify_paired_throw_render",
+    "installed_mixamo": true,
+    "returncode": 0,
+    "errors": false,
+    "tail": "x11/gl_manager_x11.cpp:364)\nOpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)\n\nPAIRED_RENDER_RESULT 33/33\n"
+  }
+]

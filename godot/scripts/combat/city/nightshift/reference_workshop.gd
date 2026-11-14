@@ -234,7 +234,7 @@ func calibrate_actor(actor:Node3D,id:int) -> void:
     actor.scale=Vector3.ONE*target/(height*pixels_per_metre)
     actor.set_meta("ref_character",id);actor.set_meta("ref_floor",-bounds.position.y);actor_sizes[actor]=actor.scale.x
 
-func pose_actor(actor:Node3D,id:int,walking:bool,reduced:bool) -> void:
+func pose_actor(actor:Node3D,id:int,walking:bool,reduced:bool,ambient:=false) -> void:
     calibrate_actor(actor,id)
     actor.model.position.y=float(actor.get_meta("ref_floor",0.0))
     if walking:return
@@ -244,6 +244,12 @@ func pose_actor(actor:Node3D,id:int,walking:bool,reduced:bool) -> void:
     if not reduced:actor.model.rotation.z=sin(t*TAU*1.6)*.025
     match id:
         0:
+            if ambient and m.library.clips.has("MX_Wave"):
+                var greeting:float=clampf((t-.2)/1.47,0,1) if t<5.0 else clampf((t-10.25)/1.47,0,1)
+                m.present({"character":id,"health":100,"state":"idle","move":"","frame":0,"y":0.0,"vy":0.0,"vx":0.0,"face":1,"guarding":false,"cinematic_clip":"MX_Wave","cinematic_phase":greeting,"motion_no_blend":true},0.0,true)
+                actor.skeleton.force_update_all_bone_transforms()
+                actor.model.position.y+=maxf(0.0,actor.global_position.y+.01-actor.lowest_skin_y())/maxf(.01,actor.global_basis.y.length())
+                return
             var wave:float=1-smoothstep(2.4,3.4,t)+smoothstep(10,10.5,t)*(1-smoothstep(12,13,t))
             m._aim_limb("LeftArm","LeftForeArm",(-up*.65+right*.25).lerp(right*.8+up*.2,wave),1.0)
             m._aim_limb("LeftForeArm","LeftHand",(-up*.3+forward*.25).lerp(up+right*sin(t*4)*.12,wave),1.0)

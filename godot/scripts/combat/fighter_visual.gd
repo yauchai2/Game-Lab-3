@@ -20,6 +20,9 @@ var elapsed := 0.0
 var death_ground_offset:=0.0
 var death_ground_cached:=false
 var death_surfaces:Array=[]
+const PairedMotion=preload("res://scripts/combat/paired_throw_motion.gd")
+var paired_motion=PairedMotion.new()
+var paired_floor_cache:Dictionary={}
 var foot_contact:=preload("res://scripts/combat/last_service/foot_contact.gd").new()
 var motions := preload("res://scripts/combat/combat_motions.gd").new()
 
@@ -45,6 +48,8 @@ func setup(color: Color, selection := 0, model_path_override:="") -> void:
     fx_flash_age=1.0
     materials.clear()
     oversized_bones.clear()
+    paired_motion=PairedMotion.new()
+    paired_floor_cache.clear()
     motions=preload("res://scripts/combat/combat_motions.gd").new()
     elapsed=0.0
     death_ground_cached=false
@@ -96,13 +101,32 @@ static func _release_retired_materials() -> void:
     retired_materials.clear()
 
 func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent_x := INF) -> void:
+    if PairedMotion.owns(f) and skeleton!=null:
+        if not paired_motion.active_last:foot_contact.clear()
+        for bone in oversized_bones:skeleton.set_bone_pose_scale(bone,Vector3.ONE)
+        oversized_bones.clear()
+        position=Vector3(f.x,0,3.0)
+        rotation.y=PI*.5 if f.face>0 else -PI*.5
+        model.rotation=Vector3.ZERO;model.scale=Vector3.ONE*model_scale
+        model.position=basis.inverse()*Vector3(0,0,float(f.paired_throw.depth))
+        paired_motion.present(self,f,delta,stopped)
+        var key:String=str(f.paired_throw.serial)+"/"+str(f.paired_throw.role)+"/"+str(f.paired_throw.age)
+        if not paired_floor_cache.has(key):
+            paired_floor_cache.clear()
+            paired_floor_cache[key]=(.01-lowest_skin_y()) if float(f.paired_throw.recover)>0 and f.health>0 else maxf(0.0,.01-lowest_skin_y())
+        model.position.y=float(paired_floor_cache[key])
+        for mat in materials:mat.set_shader_parameter("flash",1.0 if f.flash>0 and not reduced else 0.0)
+        _present_pistol(f)
+        _present_core(f)
+        return
+    paired_motion.active_last=false
     for bone in oversized_bones:skeleton.set_bone_pose_scale(bone,Vector3.ONE)
     oversized_bones.clear()
     elapsed += delta
     position = Vector3(f.x, f.y, 3.0)
     # Imported +Z forward maps to gameplay +X at +90 degrees.
     rotation.y = PI * 0.5 if f.face > 0 else -PI * 0.5
-    var profile_owned:bool=preload("res://scripts/combat/last_service/street_motion.gd").owns(f)
+    var profile_owned:bool=preload("res://scripts/combat/last_service/street_motion.gd").owns(f) or preload("res://scripts/combat/mixamo_profiles.gd").owns(f)
     var shake := 0.0 if reduced or not stopped or profile_owned else 0.025
     var lunge := 0.0
     if f.state=="attack" and not profile_owned:
@@ -177,6 +201,10 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         if f.health>0:
             death_ground_cached=false
             if character_index<4:foot_contact.apply(self,f,stopped)
+            if profile_owned and f.y<=.01 and f.get("ricochet",{}).get("ticks",0)<=0:
+                # The oversized stylized shoes extend below ankle IK's contact point.
+                # Correct the rendered skin floor, retaining all simulation transforms.
+                model.position.y+=maxf(0.0,.01-lowest_skin_y())
         elif f.y<=.01 and f.get("ko_theatre",-1.0)<0:
             # A grounded corpse is no longer a spinning/airborne hit pose.
             model.rotation=Vector3.ZERO
@@ -306,3 +334,20 @@ func fx_advance_flash(delta:float,reduced:bool) -> void:
         for mat in materials:
             var current:float=mat.get_shader_parameter("flash")
             if current>.16:mat.set_shader_parameter("flash",0.0 if reduced else .16)
+
+func lowest_skin_y() -> float:
+    skeleton.force_update_all_bone_transforms()
+    var lowest:=INF
+    for surface in death_surfaces:
+        var transforms:Array[Transform3D]=[]
+        for bind in surface.binds:
+            transforms.append(skeleton.global_transform*skeleton.get_bone_global_pose(bind.bone)*bind.pose)
+        var slots:int=floori(float(surface.bones.size())/surface.vertices.size())
+        for vertex in surface.vertices.size():
+            var at:=Vector3.ZERO
+            for slot in slots:
+                var offset:int=vertex*slots+slot
+                var weight:float=surface.weights[offset]
+                if weight>0:at+=(transforms[surface.bones[offset]]*surface.vertices[vertex])*weight
+            lowest=minf(lowest,at.y)
+    return lowest if is_finite(lowest) else 0.0

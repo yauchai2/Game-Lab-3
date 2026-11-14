@@ -1,0 +1,104 @@
+{
+  "checked_on": "2026-11-13",
+  "source_baseline": "c766a6171c25fb67bc68bbf44c63a3730e294a5f",
+  "network": {
+    "mode": "unrestricted",
+    "state": "enforced",
+    "observations_current": true,
+    "unauthenticated_no_api_key": {
+      "http_status": 403,
+      "error_code": "403000",
+      "message": "Api Key is required"
+    },
+    "public_catalogue_with_upstream_api_key": {
+      "http_status": 200,
+      "url": "https://www.mixamo.com/api/v1/products?limit=20&page=1&type=Motion&query=Shoulder%20Throw"
+    }
+  },
+  "products": [
+    {
+      "id": "c9c7a795-b96c-11e4-a802-0aaa78deedf9",
+      "type": "Motion",
+      "description": "Throwing Opponent Over The Shoulder With A Leg Hook",
+      "category": "",
+      "character_type": "human",
+      "name": "Shoulder Throw, Aggressor",
+      "thumbnail": "https://d99n9xvb9513w.cloudfront.net/thumbnails/motions/113680901/static.png",
+      "thumbnail_animated": "https://d99n9xvb9513w.cloudfront.net/thumbnails/motions/113680901/animated.gif",
+      "motion_id": "c9c7a795-b96c-11e4-a802-0aaa78deedf9",
+      "motions": null,
+      "source": "system"
+    },
+    {
+      "id": "c9c7a914-b96c-11e4-a802-0aaa78deedf9",
+      "type": "Motion",
+      "description": "Thrown Over The Shoulder With A Leg Hook By An Aggressor",
+      "category": "",
+      "character_type": "human",
+      "name": "Shoulder Throw, Victim",
+      "thumbnail": "https://d99n9xvb9513w.cloudfront.net/thumbnails/motions/113680902/static.png",
+      "thumbnail_animated": "https://d99n9xvb9513w.cloudfront.net/thumbnails/motions/113680902/animated.gif",
+      "motion_id": "c9c7a914-b96c-11e4-a802-0aaa78deedf9",
+      "motions": null,
+      "source": "system"
+    }
+  ],
+  "preview_review": {
+    "method": "Official GIFs, full 6.6 seconds sampled at 2 fps; visual contact sheets inspected",
+    "aggressor": "Turn, bend over shoulder, follow-through and recovery visible",
+    "victim": "Lift, airborne rotation, back landing and ground recovery visible",
+    "files": [
+      {
+        "role": "aggressor",
+        "duration_seconds": 6.6,
+        "sha256": "0035406047783aee831b4a809f1f818eca616b7baf3150fed779e6f597720733"
+      },
+      {
+        "role": "victim",
+        "duration_seconds": 6.6,
+        "sha256": "653356877511764d7baeee6dd5a2e61927796d7900de2a2d5c410171122f4a54"
+      }
+    ],
+    "limitations": "Separate previews, not aligned paired playback or source FBX/root/contact measurements"
+  },
+  "mcp": {
+    "tools": [
+      "mixamo-config",
+      "mixamo-auth",
+      "mixamo-search",
+      "mixamo-download",
+      "mixamo-batch",
+      "mixamo-keywords"
+    ],
+    "mixamo-auth": {
+      "meta": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "No token stored. Please provide an access token.",
+          "annotations": null,
+          "meta": null
+        }
+      ],
+      "structuredContent": null,
+      "isError": false
+    },
+    "mixamo-search": {
+      "meta": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: Not authenticated.\n\nPlease run mixamo-auth first:\n1. Go to https://www.mixamo.com and log in\n2. Open browser DevTools (F12)\n3. In Console, run: copy(localStorage.access_token)\n4. Then run: mixamo-auth accessToken=\"YOUR_TOKEN\"",
+          "annotations": null,
+          "meta": null
+        }
+      ],
+      "structuredContent": null,
+      "isError": false
+    }
+  },
+  "source_fbx_downloaded": false,
+  "paired_timing_verified": false,
+  "godot_integrated": false,
+  "blocker": "No Adobe credential on this executor; MCP search refuses unauthenticated calls even though the public catalogue is accessible."
+}

@@ -53,6 +53,8 @@ static func describe(f:Dictionary,move:Dictionary,markers:Dictionary) -> Diction
 static func zip_segment(f:Dictionary,move:Dictionary) -> Dictionary:
     return Transit.zip_segment(f,move)
 static func striking_limb(f:Dictionary) -> String:
+    var imported:String=preload("res://scripts/combat/mixamo_profiles.gd").limb(f)
+    if imported!="":return imported
     if Transit.owns(f):return Transit.limb(f)
     if not owns(f) or f.state!="attack":return ""
     if f.character==3:return "BatonTip"
@@ -73,7 +75,7 @@ static func finish(m:RefCounted,f:Dictionary,motion:Dictionary,move:Dictionary) 
     # Authored weight transfer rotates the complete hip chain before limb
     # corrections. The actor's root remains under simulation; ground IK then
     # preserves the supporting foot rather than twisting a planted shoe.
-    if f.state=="attack":
+    if f.state=="attack" and not motion.get("plant",false):
         var pivot:float=smoothstep(0.0,float(move.startup),float(f.frame))
         if f.frame>move.startup+move.active:pivot*=1.0-smoothstep(float(move.startup+move.active),float(move.startup+move.active+move.recovery),float(f.frame))
         var turn:float=[.12,.28,.16,.22][int(f.character)]

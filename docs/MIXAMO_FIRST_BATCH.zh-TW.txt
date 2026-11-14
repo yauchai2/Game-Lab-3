@@ -1,0 +1,100 @@
+Mixamo 首批19段 — 2026-11-14
+名稱／搜尋詞候選；官方預覽尚待核對。不要重下載已提供的Shoulder Throw兩段。
+同角色、FBX Binary、30fps、None減key、完整時長、保留root；同名檔加描述避免覆寫。
+
+ZIP | 搜尋：Kicking
+辨識：Male Front Snap Kick With The Lead Foot
+用途：前腳短踢／J起手
+https://www.mixamo.com/#/?page=1&query=Kicking
+
+ZIP | 搜尋：Roundhouse Kick
+辨識：Roundhouse Kick With Front Foot Advancing
+用途：迴旋踢／連段收尾
+https://www.mixamo.com/#/?page=1&query=Roundhouse%20Kick
+
+ZIP | 搜尋：Hurricane Kick
+辨識：Flying Hurricane Kick
+用途：空中旋踢／大招素材
+https://www.mixamo.com/#/?page=1&query=Hurricane%20Kick
+
+ZIP | 搜尋：Sweep Kick
+辨識：360 Leg Sweep Kick
+用途：低掃／地面重踢
+https://www.mixamo.com/#/?page=1&query=Sweep%20Kick
+
+RIVET | 搜尋：Boxing
+辨識：Boxing Idle
+用途：穩定拳擊待機
+https://www.mixamo.com/#/?page=1&query=Boxing
+
+RIVET | 搜尋：Jab Cross
+辨識：Boxing Jab Cross Medium
+用途：直拳二連／J鏈
+https://www.mixamo.com/#/?page=1&query=Jab%20Cross
+
+RIVET | 搜尋：Hook
+辨識：Mid Hook Punch To The Body
+用途：身體勾拳／重擊；選Body版本
+https://www.mixamo.com/#/?page=1&query=Hook
+
+RIVET | 搜尋：Boxing
+辨識：Boxing Back Hand Uppercut
+用途：後手上勾／launcher；選Back Hand Uppercut
+https://www.mixamo.com/#/?page=1&query=Boxing
+
+HUSH | 搜尋：Jab To Elbow Punch
+辨識：Jab To Elbow Combo
+用途：短直拳接肘／J鏈
+https://www.mixamo.com/#/?page=1&query=Jab%20To%20Elbow%20Punch
+
+HUSH | 搜尋：Elbow Punching
+辨識：Male Elbow Punch
+用途：近身肘擊／短重擊
+https://www.mixamo.com/#/?page=1&query=Elbow%20Punching
+
+HUSH | 搜尋：Inward Block
+辨識：Inward Block
+用途：內撥格擋／parry
+https://www.mixamo.com/#/?page=1&query=Inward%20Block
+
+HUSH | 搜尋：Dodging
+辨識：Boxing Dodge Retreat
+用途：後撤閃避／E；選Retreat
+https://www.mixamo.com/#/?page=1&query=Dodging
+
+LOOP | 搜尋：Standing Melee Attack Horizontal
+辨識：Right To Left Attack With Axe
+用途：單手橫掃；來源斧擊，需短棍改編
+https://www.mixamo.com/#/?page=1&query=Standing%20Melee%20Attack%20Horizontal
+
+LOOP | 搜尋：Standing Melee Attack Downward
+辨識：Downward Attack With Axe
+用途：踏步下敲；需短棍握點改編
+https://www.mixamo.com/#/?page=1&query=Standing%20Melee%20Attack%20Downward
+
+LOOP | 搜尋：Standing Melee Attack Backhand
+辨識：Backhanded Upward Attack With Axe
+用途：反手上撩；需短棍握點改編
+https://www.mixamo.com/#/?page=1&query=Standing%20Melee%20Attack%20Backhand
+
+共用家族 | 搜尋：Head Hit
+辨識：Receiving A Medium Hit To The Head From A Left Punch
+用途：中等頭部受擊；按四角體型調校
+https://www.mixamo.com/#/?page=1&query=Head%20Hit
+
+共用家族 | 搜尋：Hit To Body
+辨識：Receiving A Body Hit By A Right Uppercut
+用途：上勾腹部受擊
+https://www.mixamo.com/#/?page=1&query=Hit%20To%20Body
+
+共用家族 | 搜尋：Getting Up
+辨識：Getting Up From Back
+用途：仰躺起身
+https://www.mixamo.com/#/?page=1&query=Getting%20Up
+
+共用家族 | 搜尋：Knocked Out
+辨識：Knocked Out Falling To Back
+用途：向後倒地／KO；落地要量測
+https://www.mixamo.com/#/?page=1&query=Knocked%20Out
+
+

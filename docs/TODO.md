@@ -1,3 +1,75 @@
+## 2026-11-14：動作隨Git交付及第一批完成
+
+- [x] 使用者明確授權game-ready動作進GitHub；兩個JSON預設從assets載入，Pull即用，不需私人安裝。
+- [x] 第一批23衍生clip全啟用；倒地／起身／空踢、技能／爆發／空中接續及既有戰鬥狀態全覆核，保留適用CC0全身動作。
+- [x] 起身64tick與漸回共同平面、落地一次傷害／群戰／屍體／中斷保持；新舊RIVET6個舊失敗已修，兩種模式19/19。
+- [x] 554矩陣／147肩摔／65蒙皮renderer、冷啟動與PCK7項、正常輸入影片及接觸表，詳MOTION_COMPLETION.zh-TW.md。
+- [ ] 使用者本機Mac／真人手感與硬體效能驗收；不冒稱已操作其電腦。
+- [ ] 後續可選來源擴充（49候選未全下載、缺Sweep Kick）與新的專用投法／動態地形；不屬已提供第一批未接入。
+
+## 2026-11-15：全遊戲動作覆核
+
+- [x] 接入四角新跑退步態、RIVET 挑空、ZIP 空中旋踢、勝利及工房新來源，替換開場黑衣人步態。
+- [ ] 完成快停／轉向／閃避、其餘專屬勝利、選角、敵人／頭目、遠景路人、工房及 Dealer 餘下互動的逐段畫面覆核，見 [覆核表](WHOLE_GAME_MOTION_REVIEW.zh-TW.md)。
+
+## 2026-11-14：第一批動作已收到及接入
+
+- [x] 21 FBX＋Walking來源SHA／65骨／秒制時間／原始root檢查；Hurricane去重、肩摔同版確認。
+- [x] 23私有clip轉換、20啟用；四角15個地面攻擊slot、受擊／blockstun／後閃／護架慢行，contact與全身owner／鞋底修正。
+- [x] 119新native檢查與12秒真scene命令影片、私有安裝／重建工具；公開只metadata／渲染。
+- [ ] 已收到Knocked Out／Getting Up／Kicking：完成正式倒地／起身／空踢owner接續驗收，不能把轉換完成當已啟用。
+- [x] Adobe 登入後以 Mixamo MCP 取得 Unarmed Walk Back，啟用四角慢速後退並在 Mac 戰鬥場景驗證。
+- [ ] 挑空、LOOP刺擊、前閃／跑步／高速後退／跳落、技能大招／演出等其餘家族；缺Sweep Kick，Hurricane重複檔不能補其用途。
+- [ ] 使用者本機安裝兩個私有JSON、Mac／人手／效能驗收。詳MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md。
+
+## 2026-11-14：肩摔已接入，接續其他素材替換
+
+- [x] 雙人共同裁切／實際四角retarget／腕部IK／蒙皮地面與共享root，正常grab離地翻身到落地。
+- [x] 一次落地傷害／起身、拆投／miss／jump／trade、雙朝向／牆邊／群戰鎖定、致命／pause／F2／中斷／reset；180新及674回歸通過。
+- [x] 12秒正式場景有聲預覽，私有動畫匯入／安裝工具與manifest；不公開曲線、不動Web。
+- [ ] 使用者本機安裝對話私有JSON後驗收手感／Mac／實體輸入；公開分支本身不帶Mixamo曲線，缺檔仍fallback。
+- [ ] 其他首批19段／後續49候選待提供及逐段驗片，再替換其餘生硬家族；肩摔完成不等於全部動作已換。
+- [ ] 更精細手指抓布／體型極差／動態地形與巨型Boss專用投技另驗，不把本組當全部投法。
+
+## 2026-11-14：全套動作替換（使用者最新要求）
+
+- [x] 49項Mixamo搜尋／描述候選及首批19段下載單；明示二級索引／未逐段官方預覽，不能當已錄用。
+- [ ] 使用者提供P0（同角色／30fps／完整／保root），驗SHA／骨架／完整回收與contact marker；同名Boxing分開存。
+- [ ] 四角地面出招＋受擊起身、已收到肩摔配對retarget與接觸；P1步法／防禦／跳落／全move id；P2演出。
+- [ ] blend／stride／foot plant／root／單一pose owner與短棍握點，一併修正生硬；真輸入四角雙朝向錄影及生命週期驗收。
+
+## 2026-11-14：兩個FBX已收到，接續雙人重定向
+
+- [x] 收到使用者Aggressor／Victim，SHA、骨架／時長／root資料與原檔保留，無MCP登入依賴。
+- [x] 同座標／同幀雙人骨架預覽，完整時間軸與摔投詳細抽格檢視，重跑提取一致。
+- [ ] 共同裁切、近身起播、實際角色retarget、手部接觸及root／地面對齊；46–121幀只是候選。
+- [ ] 正式simulation雙人共同時鐘、落地一次結算、雙朝向／牆邊／群戰／中斷／pause／F2／死亡／重開清理。
+- [ ] 原始／可還原Mixamo動作資料保持私有，提供本機可重建匯入流程；四角體型／真人驗收仍待做。
+
+## 2026-11-13 接續狀態（覆蓋下方舊網路阻擋）
+
+- [x] 取回任務分支c766a61；新執行環境unrestricted已套用，官方目錄HTTP200。
+- [x] 官方Shoulder Throw攻守ID及兩段6.6秒GIF全時長2fps預覽核實。
+- [x] 重建指定MCP、launcher六工具驗證；新增環境秘密MIXAMO_ACCESS_TOKEN記憶體注入。
+- [ ] 使用者透過環境秘密配置Adobe認證並套用；不貼聊天。真token尚無，MCP搜尋仍未成功。
+- [ ] 認證後下載同角色／30fps／完整時長及root的兩段私有FBX，再量測配對與Godot接入；完整摔投未完成。
+
+## 2026-11-13：指定Mixamo MCP
+
+- [x] 安裝固定6170d5e獨立Server、相容SDK1.30.0及stdio launcher，6工具／keywords實測。
+- [ ] 目前雲端網路規則實際生效（API仍proxy403）；同主機私有Adobe認證，勿傳聊天。
+- [ ] 官方Shoulder Throw攻守兩段搜尋／下載／同步量測／Godot完整摔投；目前未完成。
+
+## 2026-11-13：MCP工具已就緒，等待Mixamo網路存取
+
+- [x] 雲端安裝／註冊官方Playwright MCP0.0.85；initialize、25tools、MCP開頁／點擊驗證。
+- [x] 本機Codex用setup helper／文件與證據，不覆寫既有同名MCP；Linux語法及print驗證。
+- [ ] 雲端網路允許mixamo.com／www.mixamo.com後，再驗Adobe登入與下載；現在proxy403。
+- [ ] 若使用本機已登入Chrome，由本機客戶端執行helper及連接Extension；未在Mac執行，雲端不會自動連本機。
+- [ ] 官方Shoulder Throw攻守FBX取得、同步／接觸與完整摔投接入仍未完成。
+
+## 2026-11-13：免費摔投素材優先次序
+
 ## 2026-11-14：選單與彈出文字清晰度覆核
 
 修正原生PopupMenu／TooltipLabel獨立Window的主題及取樣繼承：新Viewport明確nearest、Window缺主題時補共用theme，相關文字明確BODY並移除PopupMenu舊4px描邊。探索Overlay/Help亦補像素字體。5／8／100、字圖與字級保持。87項（原生43／語言21／strict23）通過，包含設定與P1/P2裝置下拉選單的embedded／獨立視窗、真hover提示框、主介面／城市六站／天賦／故事／HUD／暫停／結算。圖及限制見[evidence/pixel-text-audit](evidence/pixel-text-audit/README.md)；雲端Linux4.7.2，非使用者Mac驗收，來源同步main，Web不更新。取樣值4是繼承而非linear，不可只看root nearest便判斷popup已清晰。

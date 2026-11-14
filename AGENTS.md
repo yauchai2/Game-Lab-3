@@ -1,3 +1,7 @@
+## 最新覆蓋規則（2026-11-14，本聊天）
+
+使用者明示「授權允許，把它放進GitHub，繼續把全部做完」：game-ready Mixamo衍生JSON已准隨遊戲Git提交／推送，覆蓋下文舊私有曲線限制。預設讀assets/animations，Pull即用；原始FBX／GLB保留，不需另外安裝。最新實作MOTION_COMPLETION.zh-TW.md，23個衍生clip全啟用、現有招式全覆核；GetUp64tick及depth漸回平面，Mixamo不是CC0。只推同任務分支／PR #37，不自動合main或發公開Web；49候選未全部下載，Mac／真人驗收不能冒稱已做。
+
 # 共用專案協作規範
 
 ## 開始工作前
@@ -155,6 +159,16 @@
 
 - 2026-11-13 本聊天最新要求「用免費的資源做」並追問Mixamo，覆蓋前述付費候選建議。優先核實Shoulder Throw, Aggressor／Victim，官方FBX與同步尚未取得／驗證，不用第三方索引冒稱官方素材已到手；完整摔投仍未完成，勿自行採購。見docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md最新節。
 
+- 2026-11-13 使用者確認使用MCP：現docs/MIXAMO_MCP_SETUP.zh-TW.md，官方Playwright MCP0.0.85已在雲端註冊／真工具驗證，但Mixamo被網路proxy403拒絕。這不是使用者Mac已連接／Adobe已登入／官方FBX已取得，完整摔投仍未完成；不繞過政策。tools/setup_mixamo_mcp.sh供本機Codex＋Extension設定，僅Linux語法與print驗證，profile／下載不入公開repo。
+
+- 2026-11-13 最新使用者指定HaD0Yun unity-mcp-mixamo：已裝獨立Python Server6170d5e／SDK1.30.0，不需Unity；雲端mixamo-direct真6工具與keywords通過。無token、Mixamo API仍proxy403，未下載FBX或完成摔投。見MIXAMO_MCP_SETUP最新節；token僅同主機私有檔，不貼聊天／公開repo，Mac／宿主熱載入未驗。
+
+- 2026-11-14 使用者直接上傳Shoulder Throw, Aggressor／Victim，角色定義為施技者／被摔者。兩個FBX65骨／30fps／1–201幀、原座標同幀骨架配對已檢查；見evidence/judo-source-pair。原檔與可還原逐幀資料repo外，公開只metadata／工具／渲染預覽。MCP登入不再阻擋這組素材處理；Godot retarget／接觸／共同時鐘／落地結算仍未做，完整摔投未完成。
+
+- 2026-11-14 最新使用者要求Mixamo找更多動作並替代全部生硬動作，下載不成可列名由使用者提供。見MIXAMO_REPLACEMENT_PLAN／FIRST_BATCH：49文字索引候選、P0首19，不是已驗官方預覽或已錄用。出招／步法／防禦／空地／受擊起身／演出均在範圍，連同blend／root／stride／支撐腳修正；LOOP來源需改編。肩摔已收到繼續retarget，不能因MCP認證停其處理；本輪未改runtime，main／Web不動。
+
+- 2026-11-14 使用者要求繼續完成肩摔：PAIRED_SHOULDER_THROW覆蓋前輪未接入。四角／普通黑衣共用真配對，61–121裁切、106落地一次傷害、腕部IK／真skin貼地與共享root、回復與中斷／群戰鎖定；巨型Boss保原規則。180新＋674回歸、16strict及12秒真session片有證據，非Mac／真人／FPS。私有JSON不進Git；使用者Pull後另執行install_mixamo_throw.py或從兩FBX重建，缺檔仍fallback，不能聲稱公開分支自帶曲線。其他49項仍待素材，main／Web不動。
+
 - 2026-11-13 使用者要求全合main並收尾：現況見docs/REMAINING_WORK_INTEGRATION.zh-TW.md。來源日常集中main；5主選項、P1–P3、平地兩骨接地／有界轉髖與共用基礎profile已做。showcase共用必須shared_profile明確opt-in，裝備／NPC導演取景不自動跟隨；平地IK不當任意地形或simulation root。851項最終／19 strict及1,800tick等價，非本機／真人／手柄／GPU驗收。完整Mixamo免費配對摔投仍未取得官方原檔、未實作，grab保持過渡，勿採購或使用無授權鏡像；原GLB／存檔／BGM與Web須明確要求才發佈保持。
 
 - 2026-11-13 最新要求「再加強像素感，鋸齒要清晰」：字圖20px，alpha只0／255、128閾值；display加1來源像素字距。覆蓋24px／三階版，不恢復原14／16px及96過粗閾值。720p／nearest及無AA場景保持，繁中fallback未改。證據docs/evidence/crisp-pixel-type；同branch／PR #12，不合main／Web。
@@ -168,3 +182,7 @@
 - 2026-11-13 最新要求中文亦5／8／100：RadioChinese.tres→RadioPixelChinese.fnt為所有中文runtime fallback，正文／標題／開場與3D夜班牌共用；不要恢復AfterhoursUIHK／StoryOpeningHK向量平滑fallback。原OTF保留作建置來源。24px／硬度8、UI字級與進位寬度保持，拉丁atlas/fnt位元組不改；3D Label nearest。subset_ui_font.py自動接續build_subtle_pixel_fonts.py，新增翻譯必須補兩者，避免缺字。918非ASCII字形，72項驗證docs/evidence/chinese-pixel-preset；來源main，Web未部署。
 
 - 2026-11-14 文字清晰度覆核：ui_theme.configure_viewport由GameLocale套root及新Viewport，明確nearest、缺theme的Window補共用tokens；PopupMenu／TooltipLabel等明確BODY、popup無描邊，探索Help補BODY。值4是PARENT_NODE，不是linear；不能只看root／get_theme_font就宣稱popup render正常。字圖與5／8／100保持，87項見docs/evidence/pixel-text-audit。來源main，Web未部署；非使用者Mac驗收。
+
+- 2026-11-14 本任務肩摔PR #37保持draft，已將main f9576c5同步至任務分支解相容衝突，保留繁中／5-8-100／接地／槍械；不修改main或Web。肩摔180新與674回歸再過，私有曲線另安裝。使用者新上傳21FBX＋Walking.glb正在檢查，未全部錄用／接入，原檔只私有保存。
+
+- 2026-11-14本聊天第一批21 FBX＋Walking已接入：見docs/MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md及evidence/mixamo-first-batch。23私有clip中20啟用、四角15地面攻擊slot＋受擊／後閃／慢行；Boxing是低位身擊，Hurricane重複來源去重，Walking去前進與結尾reset，不把慢行加速成跑步。新profile單一owner，不改simulation／原GLB／過場。另用install_mixamo_motions.py裝私有JSON，缺檔fallback；KnockedOut／GetUp／AirKick只轉換未啟用，其他家族仍待接續。132新與835相關回歸通過，舊RIVET另6項與08e3e51基線同值失敗，未放寬；不可稱所有舊測試通過。只推codex/four-fighter-motion-plan／PR #37，不合main／不發Web。
