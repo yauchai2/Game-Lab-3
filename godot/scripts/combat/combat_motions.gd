@@ -205,6 +205,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     var desired: Array[Quaternion] = []
     desired.resize(skeleton.get_bone_count())
     var blend := clampf(clip_elapsed/(.025 if profile_owned and f.state=="attack" else .06),0,1)
+    if f.get("motion_no_blend",false):blend=1.0
     for bone in skeleton.get_bone_count():
         var parent := skeleton.get_bone_parent(bone)
         var parent_rotation := Quaternion.IDENTITY if parent<0 else desired[parent]

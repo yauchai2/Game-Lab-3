@@ -1,3 +1,9 @@
+## 2026-11-14：正式肩摔採雙人共同時鐘與落地結算
+
+合法grab才進paired_throw；原片共同裁61–121，來源106幀／第60 tick透過原_resolve_hit一次結算，防止立即扣血擊退或重入。骨架／手指保持角色骨長，平面共1.0、垂直參考1.15、腕部雙骨IK與每臂最多3.5cm肩胛修正；真蒙皮貼地，F2不改物理。地面回復用CC0 Roll末段接角色idle。普通群戰鎖原target到收尾，巨型Boss保原規則，致命落地不重播普通KO飛行。詳PAIRED_SHOULDER_THROW。
+
+Mixamo原檔及可還原曲線只私有安裝；公開提交loader／Blender importer／installer／metadata／影片。缺檔fallback保相容，使用者Pull不會自動取得曲線，需安裝對話私有JSON或本機自原FBX重建。原模型／存檔／音樂不改、不發Web，其他候選動作仍待來源。
+
 ## 2026-11-14：完整替換生硬動作，接受官方手動下載
 
 最新使用者授權涵蓋全部動作家族；無法代理下載時列名由使用者官方取檔。49項候選按P0=19／P1=24／P2=6分批，名稱metadata不是官方預覽驗收，不採第三方動畫鏡像。LOOP斧擊是改編素材而非專用短棍mocap；同名Boxing依描述辨識。修來源選片也修blend／root／支撐腳／時序，沿原simulation與過場owner，不因換動畫改傷害／存檔／公開Web。見MIXAMO_REPLACEMENT_PLAN.zh-TW.md。

@@ -156,3 +156,5 @@
 - 2026-11-14 使用者直接上傳Shoulder Throw, Aggressor／Victim，角色定義為施技者／被摔者。兩個FBX65骨／30fps／1–201幀、原座標同幀骨架配對已檢查；見evidence/judo-source-pair。原檔與可還原逐幀資料repo外，公開只metadata／工具／渲染預覽。MCP登入不再阻擋這組素材處理；Godot retarget／接觸／共同時鐘／落地結算仍未做，完整摔投未完成。
 
 - 2026-11-14 最新使用者要求Mixamo找更多動作並替代全部生硬動作，下載不成可列名由使用者提供。見MIXAMO_REPLACEMENT_PLAN／FIRST_BATCH：49文字索引候選、P0首19，不是已驗官方預覽或已錄用。出招／步法／防禦／空地／受擊起身／演出均在範圍，連同blend／root／stride／支撐腳修正；LOOP來源需改編。肩摔已收到繼續retarget，不能因MCP認證停其處理；本輪未改runtime，main／Web不動。
+
+- 2026-11-14 使用者要求繼續完成肩摔：PAIRED_SHOULDER_THROW覆蓋前輪未接入。四角／普通黑衣共用真配對，61–121裁切、106落地一次傷害、腕部IK／真skin貼地與共享root、回復與中斷／群戰鎖定；巨型Boss保原規則。180新＋674回歸、16strict及12秒真session片有證據，非Mac／真人／FPS。私有JSON不進Git；使用者Pull後另執行install_mixamo_throw.py或從兩FBX重建，缺檔仍fallback，不能聲稱公開分支自帶曲線。其他49項仍待素材，main／Web不動。

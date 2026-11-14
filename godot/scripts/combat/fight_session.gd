@@ -377,7 +377,8 @@ func _combat_step() -> void:
         ko_tumble.clear()
         if not reduced_effects and not sim.squad_enabled and not (final_ko() and not reduced_effects) and sim.winner>=0 and sim.fighters[1-sim.winner].health<=0 and not (is_instance_valid(city_campaign) and city_campaign.active):
             var fallen:Dictionary=sim.fighters[1-sim.winner]
-            ko_tumble.begin(1-sim.winner,sim.fighters[sim.winner].x,fallen.x,fallen.y,fallen.face)
+            if not fallen.get("paired_throw",{}).get("corpse",false):
+                ko_tumble.begin(1-sim.winner,sim.fighters[sim.winner].x,fallen.x,fallen.y,fallen.face)
         if final_ko() and not reduced_effects:
             round_theatre.clear()
             theatre.clear(); neon.clear(); rhythm.clear(); spectacle.clear(); effects.clear(); ink_fx.clear()
@@ -1109,6 +1110,8 @@ func _present(delta: float) -> void:
         silhouettes[i].position = Vector3(fighters[i].model.global_position.x,0.03,FIGHT_Z)
         silhouettes[i].scale = Vector3.ONE * clampf(1.0 - pose.y * 0.08, 0.5, 1.0)*(fighters[i].model_scale/2.1)*1.15
         (silhouettes[i].material_override as StandardMaterial3D).albedo_color = Color(1,1,1,clampf(1.0 - pose.y * 0.22, 0.25, 1.0))
+    if sim.paired_throw.active():
+        preload("res://scripts/combat/paired_throw_motion.gd").correct_contacts(fighters[0],fighters[1])
     var shake := 0.0 if reduced_effects else trauma * trauma * 0.24
     var midpoint: float = (sim.fighters[0].x + sim.fighters[1].x) * 0.5
     var separation: float = absf(sim.fighters[0].x - sim.fighters[1].x)

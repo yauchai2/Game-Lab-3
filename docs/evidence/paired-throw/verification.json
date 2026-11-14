@@ -1,0 +1,874 @@
+{
+  "checks": [
+    {
+      "check": "matrix 0/0 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/0 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/0 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/0 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/1 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/1 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/1 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/1 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/2 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/2 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/2 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/2 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/3 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/3 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/3 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 0/3 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/0 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/0 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/0 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/0 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/1 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/1 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/1 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/1 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/2 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/2 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/2 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/2 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/3 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/3 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/3 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 1/3 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/0 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/0 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/0 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/0 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/1 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/1 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/1 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/1 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/2 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/2 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/2 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/2 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/3 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/3 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/3 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 2/3 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/0 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/0 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/0 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/0 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/1 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/1 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/1 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/1 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/2 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/2 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/2 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/2 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/3 face -1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/3 face -1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/3 face 1 owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "matrix 3/3 face 1 owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "simultaneous jab interrupts capture",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "legal throw still beats sustained guard",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "earned counter feedback survives capture and fires once on landing",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "miss does not attach or damage",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "jump before contact escapes",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "simultaneous grabs tech before capture",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "shared root keeps wall pair in bounds -1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "shared root keeps wall pair in bounds 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "lethal landing finishes once after release",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "training lethal gets up and never becomes a corpse",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "external interruption releases both without landing damage",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "round reset clears attachment and source pose",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "leaving fight for countdown cancels the pair",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "squad retains lethal victim until throw ends",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "ordinary non-grab simulation unchanged",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "missing private curves uses existing legal grab fallback",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 0/0/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 0/0/-1",
+      "detail": 0.0318710915744305,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 0/0/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 0/0/1",
+      "detail": 0.0318711474537849,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 0/1/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 0/1/-1",
+      "detail": 0.000000429815202096506,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 0/1/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 0/1/1",
+      "detail": 0.000000298023223876953,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 0/2/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 0/2/-1",
+      "detail": 0.0182808879762888,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 0/2/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 0/2/1",
+      "detail": 0.0182810463011265,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 0/3/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 0/3/-1",
+      "detail": 0.00441685784608126,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 0/3/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 0/3/1",
+      "detail": 0.00441683037206531,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 1/0/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 1/0/-1",
+      "detail": 0.00951931718736887,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 1/0/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 1/0/1",
+      "detail": 0.00951932743191719,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 1/1/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 1/1/-1",
+      "detail": 0.000000607850495271123,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 1/1/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 1/1/1",
+      "detail": 0.000000599019244873489,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 1/2/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 1/2/-1",
+      "detail": 0.000000559934790089756,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 1/2/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 1/2/1",
+      "detail": 0.000000676978629599034,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 1/3/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 1/3/-1",
+      "detail": 0.000000266560078898692,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 1/3/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 1/3/1",
+      "detail": 0.000000266560078898692,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 2/0/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 2/0/-1",
+      "detail": 0.00735787954181433,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 2/0/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 2/0/1",
+      "detail": 0.00735802995041013,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 2/1/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 2/1/-1",
+      "detail": 0.000000320980831247653,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 2/1/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 2/1/1",
+      "detail": 0.000000523028631960187,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 2/2/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 2/2/-1",
+      "detail": 0.000000342402614705861,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 2/2/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 2/2/1",
+      "detail": 0.000000303925247635561,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 2/3/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 2/3/-1",
+      "detail": 0.000000491512480493839,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 2/3/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 2/3/1",
+      "detail": 0.00000049957793635258,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 3/0/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 3/0/-1",
+      "detail": 0.00234595313668251,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 3/0/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 3/0/1",
+      "detail": 0.00234581367112696,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 3/1/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 3/1/-1",
+      "detail": 0.000000480548010273196,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 3/1/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 3/1/1",
+      "detail": 0.000000484230440633837,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 3/2/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 3/2/-1",
+      "detail": 0.000000337174782316652,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 3/2/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 3/2/1",
+      "detail": 0.000000386282238196145,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 3/3/-1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 3/3/-1",
+      "detail": 0.000000357627868652344,
+      "pass": true
+    },
+    {
+      "check": "real rigs floor/inversion/freeze/F2 3/3/1",
+      "detail": {
+        "floor": true,
+        "inversion": true,
+        "stable": true
+      },
+      "pass": true
+    },
+    {
+      "check": "wrist grip residual 3/3/1",
+      "detail": 0.000000399840104137184,
+      "pass": true
+    },
+    {
+      "check": "black suit retarget, wrist and floor -1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "black suit retarget, wrist and floor 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "same rig swaps throw roles without stale calibration or floor cache",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "failed": 0,
+  "metrics": {
+    "max_ground_error_m": 0.0000000165402889249627,
+    "max_wrist_gap_m": 0.0318711474537849,
+    "min_skin_y": 0.00999758113175631
+  },
+  "passed": 147
+}

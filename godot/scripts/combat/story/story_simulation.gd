@@ -165,6 +165,7 @@ func _advance_fighter(i:int,command:Dictionary) -> void:
     if story_enabled and i==1 and f.has("rush_charge") and f.rush_charge>0:f.face=f.rush_direction
 
 func _choose_focus(player:Dictionary) -> void:
+    if paired_throw.active():return
     if campaign_enabled:
         for f in squad_members:
             if f.has("boss") and f.health>0:squad_focus=int(f.squad_id);fighters[1]=f;return

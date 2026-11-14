@@ -1,3 +1,7 @@
+## 2026-11-14 最新接入
+
+[完整肩摔已正式接入](PAIRED_SHOULDER_THROW.zh-TW.md)：兩個使用者FBX共同裁切、四角retarget與抓握／蒙皮落地、雙人時鐘及落地一次傷害；180新／674回歸通過，[正式12秒片](evidence/paired-throw/native.mp4)。本機需另安裝私有曲線，無資料仍fallback；不是所有候選投法或其他動作都完成。下方未接入內容保留為歷史。
+
 ## 2026-11-14 最新：兩個使用者FBX已收到，原始配對可共同播放
 
 使用者已提供Aggressor（施技者）及Victim（被摔者）。兩段實測65骨、同名同序、30fps、1–201幀／6.667秒跨度，root位移保留；原座標同幀骨架預覽可見入身、轉肩、對手離地倒轉及落地。見[evidence/judo-source-pair](evidence/judo-source-pair/README.md)的6.70秒影片、詳細／完整時間軸抽格及SHA報告。沒有人工重定時或各自置中，非僅目錄推測。

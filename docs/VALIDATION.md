@@ -1,3 +1,11 @@
+## 2026-11-14：完整雙人肩摔正式接入
+
+[evidence/paired-throw](evidence/paired-throw/README.md)：147新規則／實際骨架及33原生renderer／正式KO檢查全過；相關transit216＋street90＋counter122＋fighter style51＋rivet19＋service46＋death104＋ink FX26＝674回歸全過，另squad35／black native35全過。原Throw beats armor斷言遷至捕捉後落地時驗傷害，未刪契約。16相關腳本七類fatal warning、project import／fight_session解析過；沒有重跑全專案所有歷史strict。
+
+四角全組合／雙向／雙施技方、黑衣retarget、腕距最多3.19cm；full CPU skin最低Y約.009998m，再以獨立renderer bake驗不穿地。600步非grab同輸入資料／事件相同；freeze／F2不改幾何與simulation。正常真grab正式scene錄12.000秒360幀，每角start／land／hit／end一次、HP100→88，無damage或air位置注入；2fps完整抽格檢視，音訊AAC峰值約-5.41dBFS非靜音／無削波。來源原檔SHA及私有JSONhash見manifest，不提交曲線。
+
+Linux Godot4.6.3 Compatibility／llvmpipe／Dummy；錄製約68秒，非Mac／真人／實體控制器／人耳或即時性能。初跑舊視覺套件headless等待／Dummy錯誤，改native全過；新增KO fixture首繪前換場／急退曾texture錯誤，等真首繪、逐段process／清理重跑33項accepted無ERROR／SCRIPT ERROR。保留VSync不支援warning。原GLB／存檔／BGM／main／Web不變；本機需另裝私有動畫檔，沒有曲線的公開來源仍fallback。
+
 ## 2026-11-14：Mixamo全套替換候選查找（僅研究）
 
 正常繼承proxy GET官方products（帶上游公開X-Api-Key）回Tunnel403，status restricted/enforced／allowed_hosts空；不是官方catalogue200，沒有以此聲稱查到最新官方結果。web讀Adobe FAQ／操作說明及二級名稱文字索引，49候選均記錄id／英文描述／搜尋詞／用途／P0–2與未驗狀態。19／24／6分類、JSON／文件diff覆核，未下載第三方動畫二進位，未看本清單49段官方預覽／未下載新FBX。Godot無改，不重跑歷史674、不稱全套替換已完成。肩摔兩個已提供來源的檢查結果另見evidence/judo-source-pair。

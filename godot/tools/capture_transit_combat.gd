@@ -1,5 +1,5 @@
 extends SceneTree
-## Fourteen-second legal air route or eight-second legal throw fixtures, all four heroes.
+## Fourteen-second legal air route or twelve-second legal paired throw fixtures, all four heroes.
 var scene:Node
 var frame:=0
 var throw_mode:=false
@@ -12,7 +12,7 @@ func key(code:int,pressed:bool) -> void:
     var event:=InputEventKey.new();event.physical_keycode=code;event.pressed=pressed;Input.parse_input_event(event)
 func setup() -> void:
     throw_mode=OS.get_cmdline_user_args().size()>1 and OS.get_cmdline_user_args()[1]=="throw"
-    segment_frames=60 if throw_mode else 105
+    segment_frames=90 if throw_mode else 105
     scene=preload("res://scenes/combat/street_fight.tscn").instantiate()
     scene.preferences_path="";scene.progression_path="";root.add_child(scene)
     scene.set_process(false);scene.set_physics_process(false)
@@ -46,6 +46,6 @@ func _process(_delta:float) -> bool:
         for segment in segments:
             if throw_mode:good=good and segment.hit_moves.get("grab",0)==1
             else:good=good and segment.events.get("homing_chase",0)>0 and segment.hit_moves.get("air_jab",0)==1 and segment.hit_moves.get("air_kick",0)==1 and segment.hit_moves.get("meteor",0)==1
-        FileAccess.open(OS.get_cmdline_user_args()[0],FileAccess.WRITE).store_string(JSON.stringify({"frames":frame,"fps":30,"seconds":8 if throw_mode else 14,"mode":"throw" if throw_mode else "air","uninterrupted_play_frames":frame,"initial_meter_per_segment":100,"segments":segments,"expected_events":good,"scope":"Four reset training fixtures at close standing range, normal grab commands or launcher + held J + Space presses. Real throw or paid chase and air hits; no injected damage, air state, sample or nodes. Not human play or GPU performance."},"  "))
+        FileAccess.open(OS.get_cmdline_user_args()[0],FileAccess.WRITE).store_string(JSON.stringify({"frames":frame,"fps":30,"seconds":12 if throw_mode else 14,"mode":"throw" if throw_mode else "air","uninterrupted_play_frames":frame,"initial_meter_per_segment":100,"segments":segments,"expected_events":good,"scope":"Four reset training fixtures at close standing range, normal grab commands or launcher + held J + Space presses. Real throw or paid chase and air hits; no injected damage, air state, sample or nodes. Not human play or GPU performance."},"  "))
         scene.return_to_title();scene.queue_free();scene=null;call_deferred("quit",0 if good else 1)
     return false

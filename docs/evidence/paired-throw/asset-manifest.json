@@ -1,0 +1,33 @@
+{
+  "date_hk": "2026-11-14",
+  "provenance": "Two FBX files uploaded by this user; no automated or mirrored FBX download",
+  "source_sha256": {
+    "aggressor": "be5f9daa7cacc8d8719d8239069233a5e212cff9a93cae16bbac12948a4c0352",
+    "victim": "44567d47ab4176cf54206b5de9f6b9fb3377befc8cac9e7eef0dd314b802dc10"
+  },
+  "crop": {
+    "first": 61,
+    "last": 121,
+    "source_fps": 30,
+    "shared_source_frames": 61,
+    "source_frame_per_simulation_tick": 0.75,
+    "impact_source_frame": 106,
+    "impact_tick_after_capture": 60,
+    "contact_ticks": 80,
+    "recovery_ticks": 28,
+    "planar_scale": 1.0,
+    "vertical_reference_scale": 1.15
+  },
+  "private_library": {
+    "file": "mixamo_shoulder_throw.json",
+    "bytes": 363924,
+    "sha256": "d230882881bc45077b5506c0ad68fe42c800499dce1ba896341d5eefca22533d",
+    "schema": 1,
+    "generated_with": "Blender4.3.2 tools/import_mixamo_throw.py",
+    "default_install_path": "godot/.godot/private_animation/mixamo_shoulder_throw.json",
+    "git_ignored": true,
+    "publicly_committed": false
+  },
+  "public_artifacts": "Code, metadata and rendered video only; original FBX/curves remain private",
+  "runtime_scope": "Four heroes and ordinary black suit, 1v1 and focused squad; giant bosses preserve old grab rules"
+}

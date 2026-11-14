@@ -1,3 +1,11 @@
+## 2026-11-14：完整雙人肩摔已接正式grab，私有資料本機安裝一次
+
+基線1beceae。見[PAIRED_SHOULDER_THROW.zh-TW.md](PAIRED_SHOULDER_THROW.zh-TW.md)及[evidence/paired-throw](evidence/paired-throw/README.md)。兩個使用者FBX共同裁61–121；四角與普通黑衣敵人做真骨架抓握／離地倒轉／落地／起身。paired_throw掌雙人simulation時鐘、106來源幀／第60 tick才經原傷害路徑結算一次，80接觸＋28回復tick；傷害／meter／核心／counter reward保持。抓空／tech／跳走／同時普通打擊、外部中斷／phase／reset、pause／F2有處理；平面共享路徑有牆邊限制，群戰致命後仍鎖原目標，屍體不二次tumble。巨型Boss不強套人類配對。回復接既有CC0 Roll末段＋各角待機；不宣稱360°整圈或四套不同投法。
+
+147新simulation／骨架＋33原生renderer／正式KO＝180全過，674相關回歸全過，另35squad／35black native通過，16相關腳本七類fatal warning及專案import通過。新最大四角手腕殘差3.19cm；CPU貼地另以renderer bake核對。12.000秒／360幀真session有聲片，每角一次正常grab，start／land／hit／end各一次，沒有注入damage／空中位置；完整2fps抽格已檢視。Linux4.6.3 llvmpipe／Dummy，錄製約68秒非即時FPS／Mac／真人／實聽；accepted日誌無ERROR／SCRIPT ERROR。初期headless視覺fixture與未等首繪的退出錯誤已改原生／真生命週期重跑，證據界線詳README。
+
+重要：私有曲線不入公開Git。雲端安裝在godot/.godot/private_animation/mixamo_shoulder_throw.json，外部備份workspace/shared/judo-shoulder-throw/mixamo_shoulder_throw.json；使用者Pull後須下載對話私有JSON並在repo根執行python3 tools/install_mixamo_throw.py <檔案>，再開遊戲。清Godot快取後需重裝；也可GAME_LAB_THROW_LIBRARY指repo外檔案。無資料時保留舊grab fallback，不能把這種情況稱完整投技已生效。Blender重建器與SHA已提交，原GLB／FBX不改，其他49項候選未因此完成；只推同任務分支，不合main／不發Web。
+
 ## 2026-11-14：使用者要求全套生硬動作替換，Mixamo候選及首批下載表
 
 使用者要求找更多合適Mixamo動作，繼而明確要求替代全部生硬動作；若無法下載可列名字由其官方下載。見[MIXAMO_REPLACEMENT_PLAN.zh-TW.md](MIXAMO_REPLACEMENT_PLAN.zh-TW.md)、[首批19段純文字](MIXAMO_FIRST_BATCH.zh-TW.txt)及references/animation-sources/mixamo-replacement-shortlist.json。49項文字索引候選，P0=19／P1=24／P2=6，涵蓋四角出招、步法、受擊、跳落、起身、演出，LOOP斧／單手近戰需短棍改編。並非49段已看官方預覽或可直接套用；搜尋詞／UI名稱有差別，同名版本按英文描述辨識。沒有下載第三方FBX。
