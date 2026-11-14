@@ -1,3 +1,12 @@
+## 2026-11-14：第一批動作已收到及接入
+
+- [x] 21 FBX＋Walking來源SHA／65骨／秒制時間／原始root檢查；Hurricane去重、肩摔同版確認。
+- [x] 23私有clip轉換、20啟用；四角15個地面攻擊slot、受擊／blockstun／後閃／護架慢行，contact與全身owner／鞋底修正。
+- [x] 119新native檢查與12秒真scene命令影片、私有安裝／重建工具；公開只metadata／渲染。
+- [ ] 已收到Knocked Out／Getting Up／Kicking：完成正式倒地／起身／空踢owner接續驗收，不能把轉換完成當已啟用。
+- [ ] 挑空、LOOP刺擊、前閃／跑退／跳落、技能大招／演出等其餘家族；缺Sweep Kick，Hurricane重複檔不能補其用途。
+- [ ] 使用者本機安裝兩個私有JSON、Mac／人手／效能驗收。詳MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md。
+
 ## 2026-11-14：肩摔已接入，接續其他素材替換
 
 - [x] 雙人共同裁切／實際四角retarget／腕部IK／蒙皮地面與共享root，正常grab離地翻身到落地。

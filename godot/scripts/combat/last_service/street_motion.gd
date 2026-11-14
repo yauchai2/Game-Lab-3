@@ -53,6 +53,8 @@ static func describe(f:Dictionary,move:Dictionary,markers:Dictionary) -> Diction
 static func zip_segment(f:Dictionary,move:Dictionary) -> Dictionary:
     return Transit.zip_segment(f,move)
 static func striking_limb(f:Dictionary) -> String:
+    var imported:String=preload("res://scripts/combat/mixamo_profiles.gd").limb(f)
+    if imported!="":return imported
     if Transit.owns(f):return Transit.limb(f)
     if not owns(f) or f.state!="attack":return ""
     if f.character==3:return "BatonTip"

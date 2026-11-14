@@ -1,3 +1,9 @@
+## 2026-11-14：第一批21 FBX＋Walking正式地面接入
+
+見[MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md](MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md)及evidence/mixamo-first-batch。22來源均65骨；兩個Hurricane逐幀位置／旋轉hash相同，肩摔SHA沿用。23私有衍生clip、20啟用，四角15個地面attack slot＋待機／受擊／格擋／後閃／慢行。Boxing實為低位身擊，不能稱挑空上勾拳；Walking10.27秒原檔有前進與末幀回原點，取單步去漂移，僅向前慢行及護架行路使用，高速／後退保持原owner。來源root不改simulation；全身單一owner、contact limb、腳IK＋鞋底skin floor修正。
+
+119新native檢查通過；12秒正式scene四個訓練fixture均真護架行路、heavy／light命令、每角1次hit與2次swing，並非全招連擊展示。私有JSON在workspace/shared/mixamo-first-batch/mixamo_fighters.json，安裝python3 tools/install_mixamo_motions.py <file>；肩摔仍分開安裝。KnockedOut／GetUp／AirKick只已轉換，未切換正式owner；挑空、LOOP刺擊、技能／大招與P1/P2仍待後續。只推同branch／PR #37，main／Web不動。
+
 ## 2026-11-14：肩摔草稿PR #37與最新main相容同步
 
 [PR #37](https://github.com/yauchai2/Game-Lab-3/pull/37)，runtime先提交2f6e0e2。只把最新main f9576c5同步到任務分支解衝突，沒有改main／Web。保留繁中／5-8-100字體／720p、原接地與黑衣人槍械；雙人摔投進入時清舊腳步錨點、收槍，回復時改為面向已換邊的對手，去掉bind hip平面偏移避免轉向跳動。147／33新檢查及674回歸、16strict重跑通過，另外槍械21／繁中18通過；最新片1280×720／360幀／12秒，約84秒錄製，非即時FPS。最大四角腕距2.56cm。見evidence/paired-throw/integration.json，原有更早數據屬歷史。

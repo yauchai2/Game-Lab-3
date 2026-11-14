@@ -10,6 +10,8 @@
 
 # Afterhours / Game-Lab-3
 
+最新（2026-11-14）：[第一批Mixamo＋Walking已接入](docs/MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md)／[12秒正式場景影片](docs/evidence/mixamo-first-batch/native.mp4)。四角15個地面攻擊slot、受擊／護架行路／後閃等採新來源；23個私有clip中20個啟用，起身／倒地／空踢尚待owner接續。Pull後另用`tools/install_mixamo_motions.py`安裝對話提供的私有JSON，公開Git不含曲線。
+
 最新：[完整雙人肩摔已接入](docs/PAIRED_SHOULDER_THROW.zh-TW.md)／[12秒正式戰鬥影片](docs/evidence/paired-throw/native.mp4)。四角與普通黑衣敵人可抓握、離地翻身、落地一次結算及回復；180新＋674回歸通過。**本機需另安裝對話提供的私有Mixamo JSON**，公開repo不含曲線，缺檔保留舊grab。其他候選動作未因此全部替換。
 
 最新動作需求：[Mixamo全套替換計劃／49項候選](docs/MIXAMO_REPLACEMENT_PLAN.zh-TW.md)及[首批19段下載單](docs/MIXAMO_FIRST_BATCH.zh-TW.txt)。使用者可官方手動下載；清單是名稱／描述索引候選，尚未逐段官方預覽或下載接入。替換範圍包括四角出招、步法、防禦、空地、受擊起身與演出，同時修正銜接／root／支撐腳。

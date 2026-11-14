@@ -1,3 +1,7 @@
+## 2026-11-14：第一批Mixamo／Walking接入
+
+[完整證據](evidence/mixamo-first-batch/README.md)：新119實際四角雙向／蒙皮鞋底／owner／不寫sim／接觸骨／慢行停動＋13 optional loader拒收＝132/132，835相關回歸通過；18strict及editor import通過。另舊RIVET13/19的6失敗在基線08e3e51有完全相同值，未改斷言，不能報全回歸通過。23私有clip中20啟用、15地面attack slot；12秒720p／360幀真scene命令片每角2swing／1hit、護架行路，完整2fps抽格檢視及四張contact sheet。MovieWriter約88秒非硬體FPS；Dummy AAC峰值-4.159724dBFS不是實聽。builder重跑及反轉輸入序SHA一致；來源／曲線不進Git。KnockedOut／GetUp／AirKick僅轉換待正式owner驗收，Mac／真人待做。
+
 ## 2026-11-14：同步main f9576c5後再驗
 
 肩摔147／renderer33、原674回歸、16strict再過；槍械21／繁中18通過。保留720p／繁中及主線接地，新增入投清foot anchors／收槍、收尾面向對手及hip centre校正；最大抽樣腕距更新2.56cm。[integration.json](evidence/paired-throw/integration.json)。同步後新字體需先editor import，舊快取缺fontdata的第一次解析錯誤不是accepted結果；顯示服務曾失效已重啟再跑原生。新1280×720有聲影片12秒／360幀、完整2fps檢視，錄製約84秒。只同步任務分支，不合main／Web。

@@ -8,7 +8,7 @@ sys.dont_write_bytecode = True
 from verify_godot_warnings import CATEGORIES
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPTS = ['paired_throw_library.gd', 'paired_throw.gd', 'paired_throw_motion.gd', 'fight_simulation.gd', 'combat_motions.gd', 'fighter_visual.gd', 'neon/neon_signature_motion.gd',
+SCRIPTS = ['mixamo_motion_library.gd', 'mixamo_profiles.gd', 'paired_throw_library.gd', 'paired_throw.gd', 'paired_throw_motion.gd', 'fight_simulation.gd', 'combat_motions.gd', 'fighter_visual.gd', 'neon/neon_signature_motion.gd',
            'last_service/transit_motion.gd', 'last_service/rivet_motion.gd', 'last_service/street_motion.gd', 'last_service/counter_motion.gd', 'ink_fx/fx_recipes.gd', 'fighter_effect_style.gd', 'neon/neon_signature_camera.gd', 'fight_audio.gd', 'neon/neon_effect_director.gd']
 output = Path(sys.argv[1]).resolve()
 output.parent.mkdir(parents=True, exist_ok=True)

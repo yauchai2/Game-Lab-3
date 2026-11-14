@@ -126,7 +126,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
     position = Vector3(f.x, f.y, 3.0)
     # Imported +Z forward maps to gameplay +X at +90 degrees.
     rotation.y = PI * 0.5 if f.face > 0 else -PI * 0.5
-    var profile_owned:bool=preload("res://scripts/combat/last_service/street_motion.gd").owns(f)
+    var profile_owned:bool=preload("res://scripts/combat/last_service/street_motion.gd").owns(f) or preload("res://scripts/combat/mixamo_profiles.gd").owns(f)
     var shake := 0.0 if reduced or not stopped or profile_owned else 0.025
     var lunge := 0.0
     if f.state=="attack" and not profile_owned:
@@ -201,6 +201,10 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         if f.health>0:
             death_ground_cached=false
             if character_index<4:foot_contact.apply(self,f,stopped)
+            if motions.pose_owner.begins_with("mixamo_") and f.y<=.01:
+                # The oversized stylized shoes extend below ankle IK's contact point.
+                # Correct the rendered skin floor, retaining all simulation transforms.
+                model.position.y+=maxf(0.0,.01-lowest_skin_y())
         elif f.y<=.01 and f.get("ko_theatre",-1.0)<0:
             # A grounded corpse is no longer a spinning/airborne hit pose.
             model.rotation=Vector3.ZERO

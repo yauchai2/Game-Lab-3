@@ -1,6 +1,7 @@
 extends RefCounted
 ## Rest-relative retargeting of the CC0 Quaternius library onto the supplied rig.
 const RivetMotion=preload("res://scripts/combat/last_service/rivet_motion.gd")
+const Mixamo=preload("res://scripts/combat/mixamo_profiles.gd")
 const StreetMotion=preload("res://scripts/combat/last_service/street_motion.gd")
 static var library: Dictionary = {}
 var pose_owner:="legacy"
@@ -39,6 +40,7 @@ func setup(target: Skeleton3D, model: Node3D) -> void:
         var extra:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/animations/street_library.json"))
         library.clips.merge(extra.clips)
         library["street_markers"]=extra.markers
+        preload("res://scripts/combat/mixamo_motion_library.gd").install_into(library)
     for node in library.nodes:
         source_rest.append(_quat(node.rotation))
     var cache: Dictionary = {}
@@ -100,6 +102,8 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         profile_pose=f.duplicate(true);profile_pose.erase("showcase")
         profile_pose["face"]=f.get("face",1);profile_pose["move_data"]={}
     var motion:Dictionary=StreetMotion.describe(profile_pose,move_spec,library.street_markers)
+    var imported:Dictionary=Mixamo.describe(profile_pose,move_spec)
+    if not imported.is_empty():motion=imported
     var profile_owned:bool=not motion.is_empty()
     pose_owner=motion.get("owner","legacy")
     var selected := "Punch_Enter"
@@ -234,13 +238,15 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         var source_base := _vec(library.nodes[source_hips].translation)
         var parent: int = library.nodes[source_hips].parent
         var offset := alignment * (source_global_rest[parent] * (translation-source_base)) * (death_height_scale if dead else height_scale)
-        hips_position.y += offset.y if dead else clampf(offset.y,-0.15,0.12)
+        if motion.get("imported",false):
+            hips_position+=offset.limit_length(.55)
+        else:hips_position.y += offset.y if dead else clampf(offset.y,-0.15,0.12)
     skeleton.set_bone_pose_position(target_hips,hips_position)
     if dead:
         air_pose_name=""
         return # Air/stunt/guard layers must not overwrite the death clip.
     if profile_owned:
-        StreetMotion.finish(self,f,motion,move_spec)
+        if not motion.get("imported",false):StreetMotion.finish(self,f,motion,move_spec)
         air_pose_name=pose_owner+"/"+(f.move if f.state=="attack" else f.state)
         return # This profile owns the complete pose; no later legacy layers.
     if f.state == "attack":

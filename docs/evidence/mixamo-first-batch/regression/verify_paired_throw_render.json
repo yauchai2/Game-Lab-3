@@ -1,0 +1,235 @@
+{
+  "checks": [
+    {
+      "age": 8,
+      "face": -1,
+      "hero": 0,
+      "pass": true,
+      "renderer_skin_low_y": 0.0100000202655792
+    },
+    {
+      "age": 32,
+      "face": -1,
+      "hero": 0,
+      "pass": true,
+      "renderer_skin_low_y": 0.0100000202655792
+    },
+    {
+      "age": 60,
+      "face": -1,
+      "hero": 0,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999996066093445
+    },
+    {
+      "age": 96,
+      "face": -1,
+      "hero": 0,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999999046325684
+    },
+    {
+      "age": 8,
+      "face": 1,
+      "hero": 0,
+      "pass": true,
+      "renderer_skin_low_y": 0.0100000202655792
+    },
+    {
+      "age": 32,
+      "face": 1,
+      "hero": 0,
+      "pass": true,
+      "renderer_skin_low_y": 0.0100000202655792
+    },
+    {
+      "age": 60,
+      "face": 1,
+      "hero": 0,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999996066093445
+    },
+    {
+      "age": 96,
+      "face": 1,
+      "hero": 0,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999999046325684
+    },
+    {
+      "age": 8,
+      "face": -1,
+      "hero": 1,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999999046325684
+    },
+    {
+      "age": 32,
+      "face": -1,
+      "hero": 1,
+      "pass": true,
+      "renderer_skin_low_y": 0.010000005364418
+    },
+    {
+      "age": 60,
+      "face": -1,
+      "hero": 1,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999998301267624
+    },
+    {
+      "age": 96,
+      "face": -1,
+      "hero": 1,
+      "pass": true,
+      "renderer_skin_low_y": 0.010000005364418
+    },
+    {
+      "age": 8,
+      "face": 1,
+      "hero": 1,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999999046325684
+    },
+    {
+      "age": 32,
+      "face": 1,
+      "hero": 1,
+      "pass": true,
+      "renderer_skin_low_y": 0.010000005364418
+    },
+    {
+      "age": 60,
+      "face": 1,
+      "hero": 1,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999998301267624
+    },
+    {
+      "age": 96,
+      "face": 1,
+      "hero": 1,
+      "pass": true,
+      "renderer_skin_low_y": 0.010000005364418
+    },
+    {
+      "age": 8,
+      "face": -1,
+      "hero": 2,
+      "pass": true,
+      "renderer_skin_low_y": 0.0100000109523535
+    },
+    {
+      "age": 32,
+      "face": -1,
+      "hero": 2,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999999791383743
+    },
+    {
+      "age": 60,
+      "face": -1,
+      "hero": 2,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999998301267624
+    },
+    {
+      "age": 96,
+      "face": -1,
+      "hero": 2,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999999791383743
+    },
+    {
+      "age": 8,
+      "face": 1,
+      "hero": 2,
+      "pass": true,
+      "renderer_skin_low_y": 0.0100000109523535
+    },
+    {
+      "age": 32,
+      "face": 1,
+      "hero": 2,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999999791383743
+    },
+    {
+      "age": 60,
+      "face": 1,
+      "hero": 2,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999998301267624
+    },
+    {
+      "age": 96,
+      "face": 1,
+      "hero": 2,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999999791383743
+    },
+    {
+      "age": 8,
+      "face": -1,
+      "hero": 3,
+      "pass": true,
+      "renderer_skin_low_y": 0.0100000128149986
+    },
+    {
+      "age": 32,
+      "face": -1,
+      "hero": 3,
+      "pass": true,
+      "renderer_skin_low_y": 0.0100000035017729
+    },
+    {
+      "age": 60,
+      "face": -1,
+      "hero": 3,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999999791383743
+    },
+    {
+      "age": 96,
+      "face": -1,
+      "hero": 3,
+      "pass": true,
+      "renderer_skin_low_y": 0.0100000128149986
+    },
+    {
+      "age": 8,
+      "face": 1,
+      "hero": 3,
+      "pass": true,
+      "renderer_skin_low_y": 0.0100000128149986
+    },
+    {
+      "age": 32,
+      "face": 1,
+      "hero": 3,
+      "pass": true,
+      "renderer_skin_low_y": 0.0100000035017729
+    },
+    {
+      "age": 60,
+      "face": 1,
+      "hero": 3,
+      "pass": true,
+      "renderer_skin_low_y": 0.00999999791383743
+    },
+    {
+      "age": 96,
+      "face": 1,
+      "hero": 3,
+      "pass": true,
+      "renderer_skin_low_y": 0.0100000128149986
+    },
+    {
+      "check": "landed throw KO does not replay airborne KO tumble",
+      "pass": true
+    }
+  ],
+  "failed": 0,
+  "method": "Native renderer bake of actual deformed hero mesh, independent of CPU floor calculation",
+  "passed": 33
+}

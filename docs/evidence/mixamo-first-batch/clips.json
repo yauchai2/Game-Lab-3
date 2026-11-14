@@ -1,0 +1,402 @@
+{
+  "schema": 1,
+  "kind": "mixamo_fighters",
+  "base_sha256": "60a97a63905abf1944cfe68bafe6dd47885f5c5e0417da910a1906808a3bc7bd",
+  "clips": [
+    {
+      "clip": "MX_Jab",
+      "source": "Jab Cross.fbx",
+      "source_sha256": "a901d23898b70630c2c88796b7ccb2d36b89baf616e0baed46a74a7c5664c98d",
+      "first_sample": 8,
+      "last_sample": 19,
+      "sample_rate": 30,
+      "contact_sample": 14,
+      "limb": "LeftHand",
+      "duration": 0.3666667,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Cross",
+      "source": "Jab Cross.fbx",
+      "source_sha256": "a901d23898b70630c2c88796b7ccb2d36b89baf616e0baed46a74a7c5664c98d",
+      "first_sample": 17,
+      "last_sample": 45,
+      "sample_rate": 30,
+      "contact_sample": 22,
+      "limb": "RightHand",
+      "duration": 0.9333333,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Hook",
+      "source": "Hook.fbx",
+      "source_sha256": "4d4a9d8cf3f1f992396d5f02766671bc866206e14278c95cd8a15990af949615",
+      "first_sample": 10,
+      "last_sample": 55,
+      "sample_rate": 30,
+      "contact_sample": 31,
+      "limb": "LeftHand",
+      "duration": 1.5,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_BodyPunch",
+      "source": "Boxing.fbx",
+      "source_sha256": "c986ecc54c1d54e66479327d37e42b0416d8eca6ba8ab3eaa3edfcfd786b8430",
+      "first_sample": 8,
+      "last_sample": 47,
+      "sample_rate": 30,
+      "contact_sample": 22,
+      "limb": "RightHand",
+      "duration": 1.3,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Idle",
+      "source": "Idle.fbx",
+      "source_sha256": "c1ed794c6d4042069cb0344b119ae3746367114154e3bb71815023511672791b",
+      "first_sample": 1,
+      "last_sample": 110,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 3.6333333,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_HushJab",
+      "source": "Jab To Elbow Punch.fbx",
+      "source_sha256": "7901fd304e10bbc70b86da0a39363db00993b177cef4602f3731c5d41e8da0d6",
+      "first_sample": 19,
+      "last_sample": 40,
+      "sample_rate": 30,
+      "contact_sample": 31,
+      "limb": "LeftHand",
+      "duration": 0.7,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_HushElbow",
+      "source": "Jab To Elbow Punch.fbx",
+      "source_sha256": "7901fd304e10bbc70b86da0a39363db00993b177cef4602f3731c5d41e8da0d6",
+      "first_sample": 39,
+      "last_sample": 80,
+      "sample_rate": 30,
+      "contact_sample": 49,
+      "limb": "RightForeArm",
+      "duration": 1.3666667,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Elbow",
+      "source": "Illegal Elbow Punch.fbx",
+      "source_sha256": "1cbdef9ada0a300bf711bf67672c4a145a199762208b9c0e36926f8962cdbc83",
+      "first_sample": 13,
+      "last_sample": 47,
+      "sample_rate": 30,
+      "contact_sample": 23,
+      "limb": "RightForeArm",
+      "duration": 1.1333333,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Block",
+      "source": "Inward Block.fbx",
+      "source_sha256": "ba21685b30771e8c9c11366c34b3767698a94b1d5c77a607ff60e1dbc25e54d5",
+      "first_sample": 8,
+      "last_sample": 37,
+      "sample_rate": 30,
+      "contact_sample": 18,
+      "limb": "",
+      "duration": 0.9666667,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Dodge",
+      "source": "Dodging.fbx",
+      "source_sha256": "7ff8dc28eb64fb08faf17e794224e30fcfb8729d26c9468871c5311be794acf1",
+      "first_sample": 8,
+      "last_sample": 54,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 1.5333333,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_StickHorizontal",
+      "source": "Standing Melee Attack Horizontal.fbx",
+      "source_sha256": "1e1e5f3bb9099ac086ace5a56d853b537279aa264307e864eaa1ee95e89bb74f",
+      "first_sample": 12,
+      "last_sample": 57,
+      "sample_rate": 30,
+      "contact_sample": 29,
+      "limb": "BatonTip",
+      "duration": 1.5,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_StickDown",
+      "source": "Standing Melee Attack Downward.fbx",
+      "source_sha256": "b8f659d84d258435b6c7eafb0c8aa3674b5b5a781978d8fcf57e7c0e453122cc",
+      "first_sample": 9,
+      "last_sample": 54,
+      "sample_rate": 30,
+      "contact_sample": 26,
+      "limb": "BatonTip",
+      "duration": 1.5,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_StickBack",
+      "source": "Standing Melee Attack Backhand.fbx",
+      "source_sha256": "1209b9e369742c0a61a980c6a907986930760fe2304d2b22e1d1d5b952e81503",
+      "first_sample": 12,
+      "last_sample": 69,
+      "sample_rate": 30,
+      "contact_sample": 32,
+      "limb": "BatonTip",
+      "duration": 1.9,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Roundhouse",
+      "source": "Roundhouse Kick.fbx",
+      "source_sha256": "e371e39973953623dddf5cbb0f0070c987dfafb288308aa5320c954016ca84b6",
+      "first_sample": 14,
+      "last_sample": 54,
+      "sample_rate": 30,
+      "contact_sample": 31,
+      "limb": "LeftFoot",
+      "duration": 1.3333333,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Roundhouse_Mirror",
+      "source": "Roundhouse Kick.fbx",
+      "source_sha256": "e371e39973953623dddf5cbb0f0070c987dfafb288308aa5320c954016ca84b6",
+      "first_sample": 14,
+      "last_sample": 54,
+      "sample_rate": 30,
+      "contact_sample": 31,
+      "limb": "RightFoot",
+      "duration": 1.3333333,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0,
+      "mirrored": true
+    },
+    {
+      "clip": "MX_Hurricane",
+      "source": "Hurricane Kick.fbx",
+      "source_sha256": "20a474f96e661bb65ba4a9f6768c9143c960ebdd331acb8a6ede7b31e408ba04",
+      "first_sample": 8,
+      "last_sample": 21,
+      "sample_rate": 30,
+      "contact_sample": 15,
+      "limb": "LeftFoot",
+      "duration": 0.9666667,
+      "entry_blend_samples": 6,
+      "exit_blend_samples": 10
+    },
+    {
+      "clip": "MX_Hurricane_Mirror",
+      "source": "Hurricane Kick.fbx",
+      "source_sha256": "20a474f96e661bb65ba4a9f6768c9143c960ebdd331acb8a6ede7b31e408ba04",
+      "first_sample": 8,
+      "last_sample": 21,
+      "sample_rate": 30,
+      "contact_sample": 15,
+      "limb": "RightFoot",
+      "duration": 0.9666667,
+      "entry_blend_samples": 6,
+      "exit_blend_samples": 10,
+      "mirrored": true
+    },
+    {
+      "clip": "MX_AirKick",
+      "source": "Kicking.fbx",
+      "source_sha256": "f7a825a20eb9d35d5451dd3699669ea09e6709232d3a64f5c13e30a09be8ee02",
+      "first_sample": 24,
+      "last_sample": 57,
+      "sample_rate": 30,
+      "contact_sample": 42,
+      "limb": "LeftFoot",
+      "duration": 1.1,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_HeadHit",
+      "source": "Head Hit.fbx",
+      "source_sha256": "60cd58008146075dbf85f930f62e4ad8a9bf6fa03b26075a828ec8bff9ce7488",
+      "first_sample": 5,
+      "last_sample": 30,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 0.8333333,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_BodyHit",
+      "source": "Hit To Body.fbx",
+      "source_sha256": "479b19f78c7fe9c02b86cc3a66371e5d87b61c0dc43d677f65591b3bc5aaa354",
+      "first_sample": 4,
+      "last_sample": 30,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 0.8666667,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_KnockedOut",
+      "source": "Knocked Out.fbx",
+      "source_sha256": "98f2ad5cd7d291a73af8f75f187be91a5e15daaad4d9a80b3d133d942533e6ec",
+      "first_sample": 55,
+      "last_sample": 100,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 1.5,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_GetUp",
+      "source": "Getting Up.fbx",
+      "source_sha256": "1ca8cbafadea49e55d7594ee6b4ac7881998486ea1125eb3659fc457ae4a56ae",
+      "first_sample": 150,
+      "last_sample": 211,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 2.0333333,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Walking",
+      "source": "Walking.glb",
+      "source_sha256": "4ee18db66d768515aa6165ce5231f9c3f9d3031d532257cc12d982a26108be8c",
+      "first_sample": 16,
+      "last_sample": 47,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 1.0333333,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    }
+  ],
+  "markers": {
+    "MX_Jab": {
+      "contact": 0.5454545454545454,
+      "limb": "LeftHand"
+    },
+    "MX_Cross": {
+      "contact": 0.17857142857142858,
+      "limb": "RightHand"
+    },
+    "MX_Hook": {
+      "contact": 0.4666666666666667,
+      "limb": "LeftHand"
+    },
+    "MX_BodyPunch": {
+      "contact": 0.358974358974359,
+      "limb": "RightHand"
+    },
+    "MX_Idle": {
+      "contact": 0.5,
+      "limb": ""
+    },
+    "MX_HushJab": {
+      "contact": 0.5714285714285714,
+      "limb": "LeftHand"
+    },
+    "MX_HushElbow": {
+      "contact": 0.24390243902439024,
+      "limb": "RightForeArm"
+    },
+    "MX_Elbow": {
+      "contact": 0.29411764705882354,
+      "limb": "RightForeArm"
+    },
+    "MX_Block": {
+      "contact": 0.3448275862068966,
+      "limb": ""
+    },
+    "MX_Dodge": {
+      "contact": 0.5,
+      "limb": ""
+    },
+    "MX_StickHorizontal": {
+      "contact": 0.37777777777777777,
+      "limb": "BatonTip"
+    },
+    "MX_StickDown": {
+      "contact": 0.37777777777777777,
+      "limb": "BatonTip"
+    },
+    "MX_StickBack": {
+      "contact": 0.3508771929824561,
+      "limb": "BatonTip"
+    },
+    "MX_Roundhouse": {
+      "contact": 0.425,
+      "limb": "LeftFoot"
+    },
+    "MX_Roundhouse_Mirror": {
+      "contact": 0.425,
+      "limb": "RightFoot"
+    },
+    "MX_Hurricane": {
+      "contact": 0.4482758620689655,
+      "limb": "LeftFoot"
+    },
+    "MX_Hurricane_Mirror": {
+      "contact": 0.4482758620689655,
+      "limb": "RightFoot"
+    },
+    "MX_AirKick": {
+      "contact": 0.5454545454545454,
+      "limb": "LeftFoot"
+    },
+    "MX_HeadHit": {
+      "contact": 0.5,
+      "limb": ""
+    },
+    "MX_BodyHit": {
+      "contact": 0.5,
+      "limb": ""
+    },
+    "MX_KnockedOut": {
+      "contact": 0.5,
+      "limb": ""
+    },
+    "MX_GetUp": {
+      "contact": 0.5,
+      "limb": ""
+    },
+    "MX_Walking": {
+      "contact": 0.5,
+      "limb": ""
+    }
+  }
+}

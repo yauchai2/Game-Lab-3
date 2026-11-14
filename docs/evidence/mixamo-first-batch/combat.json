@@ -1,0 +1,73 @@
+{
+  "expected_events": true,
+  "fps": 30,
+  "frames": 360,
+  "scope": "Four reset training fixtures. Forward guard walking, heavy then light commands; actual simulation and presentation. No injected damage, air state or motion pose. Linux software rendering, not human play or performance.",
+  "seconds": 12,
+  "segments": [
+    {
+      "clips": [
+        "MX_Idle",
+        "MX_Walking",
+        "MX_Hurricane",
+        "MX_HeadHit",
+        "MX_BodyHit",
+        "MX_Roundhouse"
+      ],
+      "events": {
+        "air_land": 1,
+        "hit": 1,
+        "swing": 2
+      },
+      "guard_walk_input": true,
+      "hero": 0
+    },
+    {
+      "clips": [
+        "MX_Idle",
+        "MX_Walking",
+        "MX_BodyPunch",
+        "MX_HeadHit",
+        "MX_BodyHit",
+        "MX_Jab"
+      ],
+      "events": {
+        "air_land": 1,
+        "hit": 1,
+        "swing": 2
+      },
+      "guard_walk_input": true,
+      "hero": 1
+    },
+    {
+      "clips": [
+        "MX_Idle",
+        "MX_Walking",
+        "MX_Elbow",
+        "MX_HeadHit",
+        "MX_HushJab"
+      ],
+      "events": {
+        "air_land": 1,
+        "hit": 1,
+        "swing": 2
+      },
+      "guard_walk_input": true,
+      "hero": 2
+    },
+    {
+      "clips": [
+        "MX_Walking",
+        "MX_StickHorizontal",
+        "MX_HeadHit"
+      ],
+      "events": {
+        "air_land": 1,
+        "hit": 1,
+        "swing": 2
+      },
+      "guard_walk_input": true,
+      "hero": 3
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+TRANSIT Source/contact owner 0/air_jab/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/air_jab/-1 true
+TRANSIT Source/contact owner 0/air_jab/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/air_jab/1 true
+TRANSIT Source/contact owner 0/air_kick/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/air_kick/-1 true
+TRANSIT Source/contact owner 0/air_kick/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/air_kick/1 true
+TRANSIT Source/contact owner 0/air_finisher/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/air_finisher/-1 true
+TRANSIT Source/contact owner 0/air_finisher/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/air_finisher/1 true
+TRANSIT Source/contact owner 0/meteor/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/meteor/-1 true
+TRANSIT Source/contact owner 0/meteor/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/meteor/1 true
+TRANSIT Source/contact owner 0/air_counter/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/air_counter/-1 true
+TRANSIT Source/contact owner 0/air_counter/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/air_counter/1 true
+TRANSIT Source/contact owner 0/special/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/special/-1 true
+TRANSIT Source/contact owner 0/special/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/special/1 true
+TRANSIT Source/contact owner 0/overdrive/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/overdrive/-1 true
+TRANSIT Source/contact owner 0/overdrive/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/overdrive/1 true
+TRANSIT Source/contact owner 0/grab/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/grab/-1 true
+TRANSIT Source/contact owner 0/grab/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 0/grab/1 true
+TRANSIT Lifecycle 0/squat true
+TRANSIT Lifecycle 0/rise true
+TRANSIT Lifecycle 0/apex true
+TRANSIT Lifecycle 0/stall true
+TRANSIT Lifecycle 0/fall true
+TRANSIT Lifecycle 0/fast true
+TRANSIT Lifecycle 0/land true
+TRANSIT Lifecycle 0/chase true
+TRANSIT Air reaction freezes 0 true
+TRANSIT New hit restarts reaction 0 true
+TRANSIT Return to grounded owner 0 true
+TRANSIT Exclusive owner handoff 0/showcase true
+TRANSIT Exclusive owner handoff 0/cinematic_clip true
+TRANSIT Exclusive owner handoff 0/rally_phase true
+TRANSIT Exclusive owner handoff 0/ko_theatre true
+TRANSIT Exclusive owner handoff 0/ko_spin true
+TRANSIT Exclusive owner handoff 0/air_counter_phase true
+TRANSIT Exclusive owner handoff 0/ricochet true
+TRANSIT Death keeps source and clears air label 0 true
+TRANSIT Real launcher/chase/air confirmation 0 true
+TRANSIT Real throw resolves once 0 true
+TRANSIT Source/contact owner 1/air_jab/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/air_jab/-1 true
+TRANSIT Source/contact owner 1/air_jab/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/air_jab/1 true
+TRANSIT Source/contact owner 1/air_kick/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/air_kick/-1 true
+TRANSIT Source/contact owner 1/air_kick/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/air_kick/1 true
+TRANSIT Source/contact owner 1/air_finisher/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/air_finisher/-1 true
+TRANSIT Source/contact owner 1/air_finisher/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/air_finisher/1 true
+TRANSIT Source/contact owner 1/meteor/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/meteor/-1 true
+TRANSIT Source/contact owner 1/meteor/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/meteor/1 true
+TRANSIT Source/contact owner 1/air_counter/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/air_counter/-1 true
+TRANSIT Source/contact owner 1/air_counter/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/air_counter/1 true
+TRANSIT Source/contact owner 1/special/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/special/-1 true
+TRANSIT Source/contact owner 1/special/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/special/1 true
+TRANSIT Source/contact owner 1/overdrive/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/overdrive/-1 true
+TRANSIT Source/contact owner 1/overdrive/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/overdrive/1 true
+TRANSIT Source/contact owner 1/grab/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/grab/-1 true
+TRANSIT Source/contact owner 1/grab/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 1/grab/1 true
+TRANSIT Lifecycle 1/squat true
+TRANSIT Lifecycle 1/rise true
+TRANSIT Lifecycle 1/apex true
+TRANSIT Lifecycle 1/stall true
+TRANSIT Lifecycle 1/fall true
+TRANSIT Lifecycle 1/fast true
+TRANSIT Lifecycle 1/land true
+TRANSIT Lifecycle 1/chase true
+TRANSIT Air reaction freezes 1 true
+TRANSIT New hit restarts reaction 1 true
+TRANSIT Return to grounded owner 1 true
+TRANSIT Exclusive owner handoff 1/showcase true
+TRANSIT Exclusive owner handoff 1/cinematic_clip true
+TRANSIT Exclusive owner handoff 1/rally_phase true
+TRANSIT Exclusive owner handoff 1/ko_theatre true
+TRANSIT Exclusive owner handoff 1/ko_spin true
+TRANSIT Exclusive owner handoff 1/air_counter_phase true
+TRANSIT Exclusive owner handoff 1/ricochet true
+TRANSIT Death keeps source and clears air label 1 true
+TRANSIT Real launcher/chase/air confirmation 1 true
+TRANSIT Real throw resolves once 1 true
+TRANSIT Source/contact owner 2/air_jab/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/air_jab/-1 true
+TRANSIT Source/contact owner 2/air_jab/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/air_jab/1 true
+TRANSIT Source/contact owner 2/air_kick/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/air_kick/-1 true
+TRANSIT Source/contact owner 2/air_kick/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/air_kick/1 true
+TRANSIT Source/contact owner 2/air_finisher/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/air_finisher/-1 true
+TRANSIT Source/contact owner 2/air_finisher/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/air_finisher/1 true
+TRANSIT Source/contact owner 2/meteor/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/meteor/-1 true
+TRANSIT Source/contact owner 2/meteor/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/meteor/1 true
+TRANSIT Source/contact owner 2/air_counter/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/air_counter/-1 true
+TRANSIT Source/contact owner 2/air_counter/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/air_counter/1 true
+TRANSIT Source/contact owner 2/special/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/special/-1 true
+TRANSIT Source/contact owner 2/special/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/special/1 true
+TRANSIT Source/contact owner 2/overdrive/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/overdrive/-1 true
+TRANSIT Source/contact owner 2/overdrive/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/overdrive/1 true
+TRANSIT Source/contact owner 2/grab/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/grab/-1 true
+TRANSIT Source/contact owner 2/grab/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 2/grab/1 true
+TRANSIT Lifecycle 2/squat true
+TRANSIT Lifecycle 2/rise true
+TRANSIT Lifecycle 2/apex true
+TRANSIT Lifecycle 2/stall true
+TRANSIT Lifecycle 2/fall true
+TRANSIT Lifecycle 2/fast true
+TRANSIT Lifecycle 2/land true
+TRANSIT Lifecycle 2/chase true
+TRANSIT Air reaction freezes 2 true
+TRANSIT New hit restarts reaction 2 true
+TRANSIT Return to grounded owner 2 true
+TRANSIT Exclusive owner handoff 2/showcase true
+TRANSIT Exclusive owner handoff 2/cinematic_clip true
+TRANSIT Exclusive owner handoff 2/rally_phase true
+TRANSIT Exclusive owner handoff 2/ko_theatre true
+TRANSIT Exclusive owner handoff 2/ko_spin true
+TRANSIT Exclusive owner handoff 2/air_counter_phase true
+TRANSIT Exclusive owner handoff 2/ricochet true
+TRANSIT Death keeps source and clears air label 2 true
+TRANSIT Real launcher/chase/air confirmation 2 true
+TRANSIT Real throw resolves once 2 true
+TRANSIT Source/contact owner 3/air_jab/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/air_jab/-1 true
+TRANSIT Source/contact owner 3/air_jab/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/air_jab/1 true
+TRANSIT Source/contact owner 3/air_kick/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/air_kick/-1 true
+TRANSIT Source/contact owner 3/air_kick/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/air_kick/1 true
+TRANSIT Source/contact owner 3/air_finisher/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/air_finisher/-1 true
+TRANSIT Source/contact owner 3/air_finisher/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/air_finisher/1 true
+TRANSIT Source/contact owner 3/meteor/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/meteor/-1 true
+TRANSIT Source/contact owner 3/meteor/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/meteor/1 true
+TRANSIT Source/contact owner 3/air_counter/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/air_counter/-1 true
+TRANSIT Source/contact owner 3/air_counter/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/air_counter/1 true
+TRANSIT Source/contact owner 3/special/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/special/-1 true
+TRANSIT Source/contact owner 3/special/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/special/1 true
+TRANSIT Source/contact owner 3/overdrive/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/overdrive/-1 true
+TRANSIT Source/contact owner 3/overdrive/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/overdrive/1 true
+TRANSIT Source/contact owner 3/node_pulse/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/node_pulse/-1 true
+TRANSIT Source/contact owner 3/node_pulse/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/node_pulse/1 true
+TRANSIT Source/contact owner 3/grab/-1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/grab/-1 true
+TRANSIT Source/contact owner 3/grab/1 true
+TRANSIT Frozen pose, uniform body, F2 and no sim write 3/grab/1 true
+TRANSIT Lifecycle 3/squat true
+TRANSIT Lifecycle 3/rise true
+TRANSIT Lifecycle 3/apex true
+TRANSIT Lifecycle 3/stall true
+TRANSIT Lifecycle 3/fall true
+TRANSIT Lifecycle 3/fast true
+TRANSIT Lifecycle 3/land true
+TRANSIT Lifecycle 3/chase true
+TRANSIT Air reaction freezes 3 true
+TRANSIT New hit restarts reaction 3 true
+TRANSIT Return to grounded owner 3 true
+TRANSIT Exclusive owner handoff 3/showcase true
+TRANSIT Exclusive owner handoff 3/cinematic_clip true
+TRANSIT Exclusive owner handoff 3/rally_phase true
+TRANSIT Exclusive owner handoff 3/ko_theatre true
+TRANSIT Exclusive owner handoff 3/ko_spin true
+TRANSIT Exclusive owner handoff 3/air_counter_phase true
+TRANSIT Exclusive owner handoff 3/ricochet true
+TRANSIT Death keeps source and clears air label 3 true
+TRANSIT Real launcher/chase/air confirmation 3 true
+TRANSIT Real throw resolves once 3 true

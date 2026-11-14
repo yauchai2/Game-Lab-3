@@ -1,3 +1,7 @@
+## 2026-11-14：第一批Mixamo沿canonical rig重定向，保持simulation權威
+
+來源65骨world rest／rotation私有取樣後離線轉canonical，沿既有CombatMotions→四角；新profile獨佔姿勢，contact phase／實際骨同時供FX與接地。去來源淨位移，保留有界重心，鞋底以skin最低點校正。Walking只配慢速正向步態；複合拳拆單招，Hurricane取單圈加回收，Boxing按實際低位身擊使用。原判定／傷害／物理／過場不改；不適合挑空及未驗死亡／起身owner的來源不強塞。23私有clip中20啟用，另外3個待驗；缺檔與不相容SHA透明fallback。詳MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md。
+
 ## 2026-11-14：正式肩摔採雙人共同時鐘與落地結算
 
 合法grab才進paired_throw；原片共同裁61–121，來源106幀／第60 tick透過原_resolve_hit一次結算，防止立即扣血擊退或重入。骨架／手指保持角色骨長，平面共1.0、垂直參考1.15、腕部雙骨IK與每臂最多3.5cm肩胛修正；真蒙皮貼地，F2不改物理。地面回復用CC0 Roll末段接角色idle。普通群戰鎖原target到收尾，巨型Boss保原規則，致命落地不重播普通KO飛行。詳PAIRED_SHOULDER_THROW。

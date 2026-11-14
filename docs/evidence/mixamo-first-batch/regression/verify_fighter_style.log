@@ -1,0 +1,56 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+FIGHTER_STYLE Bounded finite geometry hero 0 true
+FIGHTER_STYLE Non-silent bounded PCM hero 0 true
+FIGHTER_STYLE Deterministic PCM hero 0 true
+FIGHTER_STYLE Two bodies within HUD margins hero 0 owner 0 true
+FIGHTER_STYLE Two bodies within HUD margins hero 0 owner 1 true
+FIGHTER_STYLE Eighteen spread/air signature bounds hero 0 true
+FIGHTER_STYLE Pause freezes director hero 0 true
+FIGHTER_STYLE F2 exits signature camera hero 0 true
+FIGHTER_STYLE Intentional mute respected hero 0 true
+FIGHTER_STYLE Zero effects level respected hero 0 true
+FIGHTER_STYLE One accent per contact budget hero 0 true
+FIGHTER_STYLE Presentation leaves simulation untouched hero 0 true
+FIGHTER_STYLE Bounded finite geometry hero 1 true
+FIGHTER_STYLE Non-silent bounded PCM hero 1 true
+FIGHTER_STYLE Deterministic PCM hero 1 true
+FIGHTER_STYLE Two bodies within HUD margins hero 1 owner 0 true
+FIGHTER_STYLE Two bodies within HUD margins hero 1 owner 1 true
+FIGHTER_STYLE Eighteen spread/air signature bounds hero 1 true
+FIGHTER_STYLE Pause freezes director hero 1 true
+FIGHTER_STYLE F2 exits signature camera hero 1 true
+FIGHTER_STYLE Intentional mute respected hero 1 true
+FIGHTER_STYLE Zero effects level respected hero 1 true
+FIGHTER_STYLE One accent per contact budget hero 1 true
+FIGHTER_STYLE Presentation leaves simulation untouched hero 1 true
+FIGHTER_STYLE Bounded finite geometry hero 2 true
+FIGHTER_STYLE Non-silent bounded PCM hero 2 true
+FIGHTER_STYLE Deterministic PCM hero 2 true
+FIGHTER_STYLE Two bodies within HUD margins hero 2 owner 0 true
+FIGHTER_STYLE Two bodies within HUD margins hero 2 owner 1 true
+FIGHTER_STYLE Eighteen spread/air signature bounds hero 2 true
+FIGHTER_STYLE Pause freezes director hero 2 true
+FIGHTER_STYLE F2 exits signature camera hero 2 true
+FIGHTER_STYLE Intentional mute respected hero 2 true
+FIGHTER_STYLE Zero effects level respected hero 2 true
+FIGHTER_STYLE One accent per contact budget hero 2 true
+FIGHTER_STYLE Presentation leaves simulation untouched hero 2 true
+FIGHTER_STYLE Bounded finite geometry hero 3 true
+FIGHTER_STYLE Non-silent bounded PCM hero 3 true
+FIGHTER_STYLE Deterministic PCM hero 3 true
+FIGHTER_STYLE Two bodies within HUD margins hero 3 owner 0 true
+FIGHTER_STYLE Two bodies within HUD margins hero 3 owner 1 true
+FIGHTER_STYLE Eighteen spread/air signature bounds hero 3 true
+FIGHTER_STYLE Pause freezes director hero 3 true
+FIGHTER_STYLE F2 exits signature camera hero 3 true
+FIGHTER_STYLE Intentional mute respected hero 3 true
+FIGHTER_STYLE Zero effects level respected hero 3 true
+FIGHTER_STYLE One accent per contact budget hero 3 true
+FIGHTER_STYLE Presentation leaves simulation untouched hero 3 true
+FIGHTER_STYLE Four distinct silhouettes true
+FIGHTER_STYLE Four distinct PCM families true
+FIGHTER_STYLE Four distinct signature positions true

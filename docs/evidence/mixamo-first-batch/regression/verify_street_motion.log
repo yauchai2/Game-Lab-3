@@ -1,0 +1,95 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+STREET_MOTION Earlier kick and hook entries remain available true <null>
+STREET_MOTION Full pose owns 0/jab/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/jab/-1 true <null>
+STREET_MOTION Full pose owns 0/jab/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/jab/1 true <null>
+STREET_MOTION Full pose owns 0/cross/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/cross/-1 true <null>
+STREET_MOTION Full pose owns 0/cross/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/cross/1 true <null>
+STREET_MOTION Full pose owns 0/heavy/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/heavy/-1 true <null>
+STREET_MOTION Full pose owns 0/heavy/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/heavy/1 true <null>
+STREET_MOTION Full pose owns 0/finisher/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/finisher/-1 true <null>
+STREET_MOTION Full pose owns 0/finisher/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/finisher/1 true <null>
+STREET_MOTION Full pose owns 0/launcher/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/launcher/-1 true <null>
+STREET_MOTION Full pose owns 0/launcher/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/launcher/1 true <null>
+STREET_MOTION Full pose owns 0/special/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/special/-1 true <null>
+STREET_MOTION Full pose owns 0/special/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/special/1 true <null>
+STREET_MOTION Full pose owns 0/overdrive/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/overdrive/-1 true <null>
+STREET_MOTION Full pose owns 0/overdrive/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 0/overdrive/1 true <null>
+STREET_MOTION Locomotion 0/KK_Backstep uses a forward-playing source true <null>
+STREET_MOTION Locomotion 0/KK_Walk uses a forward-playing source true <null>
+STREET_MOTION Locomotion 0/KK_Run uses a forward-playing source true <null>
+STREET_MOTION Dash 0/-8.0 uses step motion true <null>
+STREET_MOTION Dash 0/8.0 uses step motion true <null>
+STREET_MOTION Interruption transfers to reaction 0 true <null>
+STREET_MOTION Air transfers to hero profile 0 true <null>
+STREET_MOTION Landing keeps hero profile without stretch 0 true <null>
+STREET_MOTION Full pose owns 1/jab/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/jab/-1 true <null>
+STREET_MOTION Full pose owns 1/jab/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/jab/1 true <null>
+STREET_MOTION Full pose owns 1/cross/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/cross/-1 true <null>
+STREET_MOTION Full pose owns 1/cross/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/cross/1 true <null>
+STREET_MOTION Full pose owns 1/heavy/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/heavy/-1 true <null>
+STREET_MOTION Full pose owns 1/heavy/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/heavy/1 true <null>
+STREET_MOTION Full pose owns 1/finisher/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/finisher/-1 true <null>
+STREET_MOTION Full pose owns 1/finisher/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/finisher/1 true <null>
+STREET_MOTION Full pose owns 1/launcher/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/launcher/-1 true <null>
+STREET_MOTION Full pose owns 1/launcher/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/launcher/1 true <null>
+STREET_MOTION Full pose owns 1/special/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/special/-1 true <null>
+STREET_MOTION Full pose owns 1/special/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/special/1 true <null>
+STREET_MOTION Full pose owns 1/overdrive/-1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/overdrive/-1 true <null>
+STREET_MOTION Full pose owns 1/overdrive/1 without inflation true <null>
+STREET_MOTION Hitstop and F2 preserve 1/overdrive/1 true <null>
+STREET_MOTION Locomotion 1/KK_Backstep uses a forward-playing source true <null>
+STREET_MOTION Locomotion 1/KK_Walk uses a forward-playing source true <null>
+STREET_MOTION Locomotion 1/KK_Run uses a forward-playing source true <null>
+STREET_MOTION Dash 1/-8.0 uses step motion true <null>
+STREET_MOTION Dash 1/8.0 uses step motion true <null>
+STREET_MOTION Interruption transfers to reaction 1 true <null>
+STREET_MOTION Air transfers to hero profile 1 true <null>
+STREET_MOTION Landing keeps hero profile without stretch 1 true <null>
+STREET_MOTION Real contact trail follows the current leg special/14 true <null>
+STREET_MOTION Real contact trail follows the current leg special/38 true <null>
+STREET_MOTION ZIP special still confirms its bounded actual contacts true [{ "tick": 14, "clip": "KK_Kick", "frame": 14 }, { "tick": 38, "clip": "KK_Kick_Mirror", "frame": 18 }]
+STREET_MOTION ZIP special alternates only on confirmed contacts true <null>
+STREET_MOTION ZIP special presents imported full-body kicks true 1.06644546985626
+STREET_MOTION ZIP special miss never invents a followup leg true <null>
+STREET_MOTION Real contact trail follows the current leg overdrive/24 true <null>
+STREET_MOTION Real contact trail follows the current leg overdrive/55 true <null>
+STREET_MOTION Real contact trail follows the current leg overdrive/86 true <null>
+STREET_MOTION ZIP overdrive still confirms its bounded actual contacts true [{ "tick": 24, "clip": "KK_Kick", "frame": 24 }, { "tick": 55, "clip": "KK_Kick_Mirror", "frame": 29 }, { "tick": 86, "clip": "KK_Kick", "frame": 34 }]
+STREET_MOTION ZIP overdrive alternates only on confirmed contacts true <null>
+STREET_MOTION ZIP overdrive presents imported full-body kicks true 1.06711757183075
+STREET_MOTION ZIP overdrive miss never invents a followup leg true <null>
+STREET_MOTION RIVET overdrive is the imported hook true <null>
+STREET_MOTION RIVET heavy accents use a fist socket true <null>
+STREET_MOTION RIVET hook has its matching recovery source true <null>
+STREET_MOTION RIVET launcher sends a fist above its shoulder true <null>

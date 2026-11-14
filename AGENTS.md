@@ -180,3 +180,5 @@
 - 2026-11-14 文字清晰度覆核：ui_theme.configure_viewport由GameLocale套root及新Viewport，明確nearest、缺theme的Window補共用tokens；PopupMenu／TooltipLabel等明確BODY、popup無描邊，探索Help補BODY。值4是PARENT_NODE，不是linear；不能只看root／get_theme_font就宣稱popup render正常。字圖與5／8／100保持，87項見docs/evidence/pixel-text-audit。來源main，Web未部署；非使用者Mac驗收。
 
 - 2026-11-14 本任務肩摔PR #37保持draft，已將main f9576c5同步至任務分支解相容衝突，保留繁中／5-8-100／接地／槍械；不修改main或Web。肩摔180新與674回歸再過，私有曲線另安裝。使用者新上傳21FBX＋Walking.glb正在檢查，未全部錄用／接入，原檔只私有保存。
+
+- 2026-11-14本聊天第一批21 FBX＋Walking已接入：見docs/MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md及evidence/mixamo-first-batch。23私有clip中20啟用、四角15地面攻擊slot＋受擊／後閃／慢行；Boxing是低位身擊，Hurricane重複來源去重，Walking去前進與結尾reset，不把慢行加速成跑步。新profile單一owner，不改simulation／原GLB／過場。另用install_mixamo_motions.py裝私有JSON，缺檔fallback；KnockedOut／GetUp／AirKick只轉換未啟用，其他家族仍待接續。132新與835相關回歸通過，舊RIVET另6項與08e3e51基線同值失敗，未放寬；不可稱所有舊測試通過。只推codex/four-fighter-motion-plan／PR #37，不合main／不發Web。
