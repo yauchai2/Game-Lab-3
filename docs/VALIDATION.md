@@ -1,3 +1,7 @@
+## 2026-11-14：Mixamo全套替換候選查找（僅研究）
+
+正常繼承proxy GET官方products（帶上游公開X-Api-Key）回Tunnel403，status restricted/enforced／allowed_hosts空；不是官方catalogue200，沒有以此聲稱查到最新官方結果。web讀Adobe FAQ／操作說明及二級名稱文字索引，49候選均記錄id／英文描述／搜尋詞／用途／P0–2與未驗狀態。19／24／6分類、JSON／文件diff覆核，未下載第三方動畫二進位，未看本清單49段官方預覽／未下載新FBX。Godot無改，不重跑歷史674、不稱全套替換已完成。肩摔兩個已提供來源的檢查結果另見evidence/judo-source-pair。
+
 ## 2026-11-14：使用者FBX雙人骨架檢查
 
 見[evidence/judo-source-pair](evidence/judo-source-pair/README.md)。Blender4.3.2讀兩個FBX，均65骨／同名同序／根Hips／30fps／1–201幀；201幀每骨world joint採樣，兩次提取metadata／樣本逐byte相同。匯入Short user property警告保留，非零警告聲稱。原座標／同幀雙視角渲染6.70秒、960×450／30fps／201畫格；ffprobe核對，12詳細與15完整時間軸抽格檢視可見過肩離地翻身與地面收尾。此為骨架source診斷，不是mesh接觸、360°整圈證明、Godot／四角retarget、傷害結算或完整摔投玩法驗收。原FBX／逐幀資料未提交公開repo。沒有Godot修改，不重跑歷史674；沒有測Mac／真人／新認證或網路。

@@ -1,3 +1,11 @@
+## 2026-11-14：使用者要求全套生硬動作替換，Mixamo候選及首批下載表
+
+使用者要求找更多合適Mixamo動作，繼而明確要求替代全部生硬動作；若無法下載可列名字由其官方下載。見[MIXAMO_REPLACEMENT_PLAN.zh-TW.md](MIXAMO_REPLACEMENT_PLAN.zh-TW.md)、[首批19段純文字](MIXAMO_FIRST_BATCH.zh-TW.txt)及references/animation-sources/mixamo-replacement-shortlist.json。49項文字索引候選，P0=19／P1=24／P2=6，涵蓋四角出招、步法、受擊、跳落、起身、演出，LOOP斧／單手近戰需短棍改編。並非49段已看官方預覽或可直接套用；搜尋詞／UI名稱有差別，同名版本按英文描述辨識。沒有下載第三方FBX。
+
+此執行環境status restricted/enforced、allowed_hosts=[]，正常proxy官方products＋公開X-Api-Key仍Tunnel403；另一對話已連通為不同個體歷史，不覆寫。讀了cloud-environment-runtime與Networking技能，本輪不繞過政策、不索取token。官方Adobe免費遊戲使用與搜尋／預覽流程已重新讀，名稱只由二級metadata查線索，清單明示未驗。肩摔兩檔已到手，仍可獨立接續retarget，不以認證阻擋。
+
+取得P0後按出招→接觸→回收逐角色重編，修root／stride、blend與單一pose owner，不能只換檔或把所有J套三連擊；P1覆蓋全move id／空地／防禦，再P2演出。原GLB／音樂／存檔保留，原曲線私有，正式共同時鐘摔投仍待做。本輪只有研究清單／文件，無Godot變更或新玩法驗證；來源基線a5f7157，同任務分支，main／Web不動。
+
 ## 2026-11-14：已收到兩個使用者FBX，原始雙人摔投骨架同步檢查完成
 
 來源基線28986c4，先fast-forward接續另一對話的官方目錄／GIF與秘密注入工作；不覆寫其紀錄，不合main。使用者已上傳Shoulder Throw, Aggressor與Victim，均65骨／同名同序／30fps／1–201幀、6.667秒跨度，兩個root位移保留。SHA與角色定義見[evidence/judo-source-pair](evidence/judo-source-pair/README.md)。以原座標／原幀號生成6.70秒雙角度骨架診斷影片及12摔投／15完整時間軸抽格，已檢視入身、轉肩、離地倒轉、落地及地面收尾；無重定時或人工對齊。兩次提取metadata／joint資料完全相同。FBX匯入的Short user property警告有記錄。
