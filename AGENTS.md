@@ -166,3 +166,5 @@
 - 2026-11-13 最新繁中實作：設定English／繁體中文可保存重啟，禁止再強制language=en。TranslationServer+GameLocale autoload、locale_text安全preload helper、1034條zh_TW.json處理原生及Canvas文字／量測／動態格式；不翻譯save ID／simulation。已中文名稱不可再重複翻譯，故事typewriter按中文長度；FIT VIEW為全覽、FIT為穿戴。AfterhoursUIHK補catalog字形、保留OFL與拉丁5／8／100，export必須打包raw JSON。264項見docs/evidence/traditional-chinese，品牌／按鍵／曲名及內嵌美術字樣保留。來源同步main，不部署Web；Mac／真人／硬件驗收仍不冒稱。
 
 - 2026-11-13 最新要求中文亦5／8／100：RadioChinese.tres→RadioPixelChinese.fnt為所有中文runtime fallback，正文／標題／開場與3D夜班牌共用；不要恢復AfterhoursUIHK／StoryOpeningHK向量平滑fallback。原OTF保留作建置來源。24px／硬度8、UI字級與進位寬度保持，拉丁atlas/fnt位元組不改；3D Label nearest。subset_ui_font.py自動接續build_subtle_pixel_fonts.py，新增翻譯必須補兩者，避免缺字。918非ASCII字形，72項驗證docs/evidence/chinese-pixel-preset；來源main，Web未部署。
+
+- 2026-11-14 文字清晰度覆核：ui_theme.configure_viewport由GameLocale套root及新Viewport，明確nearest、缺theme的Window補共用tokens；PopupMenu／TooltipLabel等明確BODY、popup無描邊，探索Help補BODY。值4是PARENT_NODE，不是linear；不能只看root／get_theme_font就宣稱popup render正常。字圖與5／8／100保持，87項見docs/evidence/pixel-text-audit。來源main，Web未部署；非使用者Mac驗收。

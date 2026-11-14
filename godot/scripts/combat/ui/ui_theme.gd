@@ -18,6 +18,10 @@ const LOGO = preload("res://assets/ui/ink/logo.tres")
 ## Pixel preset 5 / hardness 8 / text size 100%; see assets/fonts/pixel-type-preset.json.
 const BODY = preload("res://assets/fonts/RadioBody.tres")
 const DISPLAY = preload("res://assets/fonts/RadioDisplay.tres")
+static func configure_viewport(viewport:Viewport) -> void:
+    # Pin popup/tooltip sampling instead of relying on window inheritance.
+    viewport.canvas_item_default_texture_filter=Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
+    if viewport is Window and viewport.theme==null:viewport.theme=build()
 static func plate(color: Color, border := Color.TRANSPARENT, width := 0) -> StyleBoxFlat:
     var style:=StyleBoxFlat.new()
     style.bg_color=color
@@ -69,11 +73,15 @@ static func build() -> Theme:
     var theme:=Theme.new()
     theme.default_font=BODY
     theme.default_font_size=BODY_SIZE
+    # Explicit bindings also cover detached tooltip/popup theme lookups.
+    for type_name in ["Label","OptionButton","CheckButton","PopupMenu","TooltipLabel"]:
+        theme.set_font("font",type_name,BODY)
+        theme.set_constant("outline_size",type_name,0)
     theme.set_color("font_color","Label",PAPER)
     for type_name in ["Button","OptionButton","CheckButton","PopupMenu"]:
         theme.set_color("font_color",type_name,PAPER)
         theme.set_color("font_outline_color",type_name,INK)
-        theme.set_constant("outline_size",type_name,4)
+        theme.set_constant("outline_size",type_name,0)
         theme.set_color("font_hover_color",type_name,PAPER)
         theme.set_color("font_focus_color",type_name,PAPER)
         theme.set_color("font_disabled_color",type_name,INK)

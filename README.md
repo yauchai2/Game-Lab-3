@@ -1,3 +1,5 @@
+最新：[修正選單／彈出文字柔化並全面覆核](docs/evidence/pixel-text-audit/README.md)，保持5／8／100，87項檢查通過。
+
 最新：[中文亦套用像素5／8／100](docs/evidence/chinese-pixel-preset/README.md)，涵蓋介面、故事字幕及3D中文字牌；72項檢查通過。
 
 最新：[繁體中文語言](docs/evidence/traditional-chinese/README.md)已加入。設定→Language／語言→繁體中文，切換可保存；主介面、HUD、城市、成長及全故事已翻譯，264項檢查通過。

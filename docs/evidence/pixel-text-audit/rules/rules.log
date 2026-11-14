@@ -1,0 +1,23 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ZH English interface remains unchanged true
+ZH Traditional Chinese menu copy true
+ZH Formatted encounter retains its numbers true
+ZH Formatted contract retains both counters true
+ZH Repeated printf placeholders preserve order true
+ZH Percent signs survive formatting true
+ZH Generated item quality and slot names translate true
+ZH Underlying item IDs and key codes stay stable true
+ZH Mixed story speakers and full lines translate true
+ZH Named story placeholders resolve after inserting the hero true
+ZH Native controls use the shared TranslationServer true
+ZH Already-localized names are not translated twice true
+ZH Uppercase native buttons use the same copy true
+ZH Bundled Chinese font covers every catalog Han character true
+ZH Chinese runtime fallback is bitmap rather than MSDF true
+ZH Chinese pixel font preserves full-size text advances true
+ZH All authored campaign dialogue and ending lines have full translations true
+ZH World text keeps the shared pixel face and nearest sampling true
+ZH Language choice saves and reloads true
+ZH English can be restored and saved true
+ZH Existing native controls restore English true

@@ -1,0 +1,179 @@
+{
+  "checks": [
+    {
+      "name": "Settings have English and Traditional Chinese choices",
+      "passed": true
+    },
+    {
+      "name": "language popup nearest, bitmap, no outline, embedded=true",
+      "passed": true
+    },
+    {
+      "name": "language popup nearest, bitmap, no outline, embedded=false",
+      "passed": true
+    },
+    {
+      "name": "difficulty popup nearest, bitmap, no outline, embedded=true",
+      "passed": true
+    },
+    {
+      "name": "difficulty popup nearest, bitmap, no outline, embedded=false",
+      "passed": true
+    },
+    {
+      "name": "partner popup nearest, bitmap, no outline, embedded=true",
+      "passed": true
+    },
+    {
+      "name": "partner popup nearest, bitmap, no outline, embedded=false",
+      "passed": true
+    },
+    {
+      "name": "CONTROL HINTS popup nearest, bitmap, no outline, embedded=true",
+      "passed": true
+    },
+    {
+      "name": "CONTROL HINTS popup nearest, bitmap, no outline, embedded=false",
+      "passed": true
+    },
+    {
+      "name": "Engine hover creates a TooltipLabel with bitmap and nearest window",
+      "passed": true
+    },
+    {
+      "name": "Chinese body and title share the pixel fallback",
+      "passed": true
+    },
+    {
+      "name": "Opening subtitles use the same Chinese pixel face",
+      "passed": true
+    },
+    {
+      "name": "Native popup selection switches and saves the locale",
+      "passed": true
+    },
+    {
+      "name": "Changing language does not change fighter state",
+      "passed": true
+    },
+    {
+      "name": "settings-zh live fonts and viewport sampling (67 nodes)",
+      "passed": true
+    },
+    {
+      "name": "title-zh live fonts and viewport sampling (41 nodes)",
+      "passed": true
+    },
+    {
+      "name": "help-zh live fonts and viewport sampling (45 nodes)",
+      "passed": true
+    },
+    {
+      "name": "roster-zh live fonts and viewport sampling (46 nodes)",
+      "passed": true
+    },
+    {
+      "name": "labs-zh live fonts and viewport sampling (53 nodes)",
+      "passed": true
+    },
+    {
+      "name": "skills-zh live fonts and viewport sampling (59 nodes)",
+      "passed": true
+    },
+    {
+      "name": "versus-zh live fonts and viewport sampling (59 nodes)",
+      "passed": true
+    },
+    {
+      "name": "P1 DEVICE popup nearest, bitmap, no outline, embedded=true",
+      "passed": true
+    },
+    {
+      "name": "P1 DEVICE popup nearest, bitmap, no outline, embedded=false",
+      "passed": true
+    },
+    {
+      "name": "P2 DEVICE popup nearest, bitmap, no outline, embedded=true",
+      "passed": true
+    },
+    {
+      "name": "P2 DEVICE popup nearest, bitmap, no outline, embedded=false",
+      "passed": true
+    },
+    {
+      "name": "city-zh live fonts and viewport sampling (44 nodes)",
+      "passed": true
+    },
+    {
+      "name": "station-0-zh live fonts and viewport sampling (76 nodes)",
+      "passed": true
+    },
+    {
+      "name": "station-1-zh live fonts and viewport sampling (110 nodes)",
+      "passed": true
+    },
+    {
+      "name": "station-2-zh live fonts and viewport sampling (126 nodes)",
+      "passed": true
+    },
+    {
+      "name": "station-3-zh live fonts and viewport sampling (144 nodes)",
+      "passed": true
+    },
+    {
+      "name": "station-4-zh live fonts and viewport sampling (134 nodes)",
+      "passed": true
+    },
+    {
+      "name": "station-5-zh live fonts and viewport sampling (127 nodes)",
+      "passed": true
+    },
+    {
+      "name": "talent-zh live fonts and viewport sampling (128 nodes)",
+      "passed": true
+    },
+    {
+      "name": "Localized city pages preserve the profile",
+      "passed": true
+    },
+    {
+      "name": "story-zh live fonts and viewport sampling (128 nodes)",
+      "passed": true
+    },
+    {
+      "name": "Chinese typewriter advances when the translated line is complete",
+      "passed": true
+    },
+    {
+      "name": "hud-zh live fonts and viewport sampling (128 nodes)",
+      "passed": true
+    },
+    {
+      "name": "pause-zh live fonts and viewport sampling (135 nodes)",
+      "passed": true
+    },
+    {
+      "name": "Native pause button copy is Chinese",
+      "passed": true
+    },
+    {
+      "name": "result-zh live fonts and viewport sampling (132 nodes)",
+      "passed": true
+    },
+    {
+      "name": "Restart restores saved Traditional Chinese",
+      "passed": true
+    },
+    {
+      "name": "title-en live fonts and viewport sampling (41 nodes)",
+      "passed": true
+    },
+    {
+      "name": "English remains selectable after restart",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 43,
+  "scope": "Native click/captures with semantic PopupMenu activation; late city pages use explicit best/funding fixtures, not earned progress."
+}

@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" path="res://scenes/PROP_CRATES_A01.tscn" id="6_tvayl"]
 [ext_resource type="PackedScene" path="res://scenes/PROP_MAILBOX_A01.tscn" id="7_6duhb"]
 
+[ext_resource type="FontVariation" path="res://assets/fonts/RadioBody.tres" id="8_pixel_font"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hm701"]
 albedo_color = Color(0.5764706, 0.58431375, 0.53333336, 1)
 
@@ -2361,6 +2363,7 @@ offset_left = 18.0
 offset_top = 16.0
 offset_right = 18.0
 offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("8_pixel_font")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
