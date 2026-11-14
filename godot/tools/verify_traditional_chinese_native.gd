@@ -1,5 +1,5 @@
 extends SceneTree
-const OUT="res://../docs/evidence/traditional-chinese/"
+const OUT="res://../docs/evidence/chinese-pixel-preset/"
 var s:Node
 var checks:Array=[]
 func _initialize() -> void:call_deferred("run")
@@ -33,6 +33,8 @@ func run() -> void:
     for node in s.hud.menu_stack.get_children():
         if node is OptionButton and node.get_meta("ui_key","")=="language":option=node;break
     check("Settings have English and Traditional Chinese choices",option!=null and option.item_count==2 and option.get_item_text(1)=="繁體中文")
+    check("Chinese body and title share the pixel fallback",s.hud.font.fallbacks[0].resource_path=="res://assets/fonts/RadioChinese.tres" and s.hud.bold.fallbacks[0].resource_path=="res://assets/fonts/RadioChinese.tres")
+    check("Opening subtitles use the same Chinese pixel face",s.story_opening.subtitle_font.resource_path=="res://assets/fonts/RadioChinese.tres")
     var snapshot:Array=s.sim.fighters.duplicate(true)
     await click(option)
     # Activate the native popup item through its public signal, exercising the

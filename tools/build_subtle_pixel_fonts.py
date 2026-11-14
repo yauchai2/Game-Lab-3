@@ -4,6 +4,7 @@ Licensed bundled typefaces; no official JSR font or original atlas is modified.
 """
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
+from fontTools.ttLib import TTFont
 import hashlib, json
 root = Path(__file__).resolve().parents[1]
 out = root / 'godot/assets/fonts'
@@ -21,18 +22,27 @@ def edge_alpha(alpha):
     binary = 255 if alpha >= 128 else 0
     return round(hard_weight * binary + (1 - hard_weight) * alpha)
 profiles = [('RadioSubtleDisplay', 'BarlowCondensed-BlackItalic.ttf', glyph_size),
-            ('RadioSubtleBody', 'DejaVuSansCondensed-Bold.ttf', glyph_size)]
+            ('RadioSubtleBody', 'DejaVuSansCondensed-Bold.ttf', glyph_size),
+            ('RadioPixelChinese', 'AfterhoursUIHK.otf', glyph_size)]
 manifest = []
 for name, source, size in profiles:
     face = ImageFont.truetype(str(out / source), size)
     atlas = Image.new('RGBA', (1024, 512))
-    chars = []; x = y = 4; row = size + 16
-    for code in list(range(32, 127)) + [8734, 8592, 8594, 8593, 8595, 183, 8212, 8211]:
+    chinese = name == 'RadioPixelChinese'
+    chars = []; x = y = 4; row = size + (8 if chinese else 16)
+    if chinese:
+        with TTFont(out / source) as source_font:
+            codes = sorted(code for code in source_font.getBestCmap() if code >= 128)
+    else:
+        codes = list(range(32, 127)) + [8734, 8592, 8594, 8593, 8595, 183, 8212, 8211]
+    for code in codes:
         char = chr(code); box = face.getbbox(char, anchor='ls')
         width = max(1, box[2] - box[0]); height = max(1, box[3] - box[1])
         if x + width + 4 >= atlas.width:
             x = 4; y += row
-        assert y + height < atlas.height
+        while y + height + 4 >= atlas.height:
+            expanded = Image.new('RGBA', (atlas.width, atlas.height * 2))
+            expanded.paste(atlas, (0, 0)); atlas = expanded
         mask = Image.new('L', (width, height))
         ImageDraw.Draw(mask).text((-box[0], -box[1]), char, font=face, anchor='ls', fill=255)
         # A neutral cutoff keeps crisp steps without the old >=96 stroke expansion.
@@ -44,8 +54,8 @@ for name, source, size in profiles:
         x += width + 4
     target = out / (name + '.png'); atlas.save(target)
     (out / (name + '.fnt')).write_text(
-        f'info face="Afterhours {name}" size={size} bold=1 italic={int("Display" in name)} charset="" unicode=1 stretchH=100 smooth=0 aa=1 padding=0,0,0,0 spacing=1,1\n'
-        f'common lineHeight={size+6} base={size} scaleW=1024 scaleH=512 pages=1 packed=0\n'
+        f'info face="Afterhours {name}" size={size} bold={0 if chinese else 1} italic={int("Display" in name)} charset="" unicode=1 stretchH=100 smooth=0 aa=1 padding=0,0,0,0 spacing=1,1\n'
+        f'common lineHeight={size+6} base={size} scaleW={atlas.width} scaleH={atlas.height} pages=1 packed=0\n'
         f'page id=0 file="{name}.png"\nchars count={len(chars)}\n' + '\n'.join(chars) + '\n')
     manifest.append({'font': name, 'source': source, 'glyph_size': size,
                      'preset': preset, 'alpha_levels': sorted(set(atlas.getchannel('A').get_flattened_data())),

@@ -1,0 +1,23 @@
+{
+  "checks": [
+    {
+      "name": "Export contains raw translation JSON",
+      "passed": true
+    },
+    {
+      "name": "Packed autoload and catalog translate Chinese",
+      "passed": true
+    },
+    {
+      "name": "Packed formatting retains numbers",
+      "passed": true
+    },
+    {
+      "name": "Packed Chinese bitmap font has Traditional glyphs",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 4,
+  "scope": "Export-pack smoke check, no Web deployment or browser runtime claim."
+}

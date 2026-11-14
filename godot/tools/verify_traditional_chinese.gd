@@ -1,7 +1,7 @@
 extends SceneTree
 const Catalog=preload("res://scripts/combat/ui/translation_catalog.gd")
 const Prefs=preload("res://scripts/combat/fight_preferences.gd")
-const OUT="res://../docs/evidence/traditional-chinese/"
+const OUT="res://../docs/evidence/chinese-pixel-preset/"
 var checks:Array=[]
 func _initialize() -> void:call_deferred("run")
 func check(label:String,ok:bool) -> void:
@@ -27,12 +27,15 @@ func run() -> void:
     check("Already-localized names are not translated twice",locale.text("疾扣 ZIP")=="疾扣 ZIP")
     check("Uppercase native buttons use the same copy",locale.text("RESUME FIGHT")==locale.text("Resume fight"))
     var data:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/localization/zh_TW.json"))
-    var font=load("res://assets/fonts/AfterhoursUIHK.otf");var missing:Array=[]
+    var font=load("res://assets/fonts/RadioChinese.tres");var missing:Array=[]
     for value:String in data.values():
         for char in value:
             var code:=char.unicode_at(0)
             if code>=0x3400 and code<=0x9fff and not font.has_char(code) and char not in missing:missing.append(char)
     check("Bundled Chinese font covers every catalog Han character",missing.is_empty())
+    check("Chinese runtime fallback is bitmap rather than MSDF",font.base_font.resource_path.ends_with("RadioPixelChinese.fnt") and not font.base_font.multichannel_signed_distance_field)
+    var source_font=load("res://assets/fonts/AfterhoursUIHK.otf")
+    check("Chinese pixel font preserves full-size text advances",is_equal_approx(font.get_string_size("繁體中文",HORIZONTAL_ALIGNMENT_LEFT,-1,24).x,source_font.get_string_size("繁體中文",HORIZONTAL_ALIGNMENT_LEFT,-1,24).x))
     var lines=preload("res://scripts/combat/city/story_script.gd")
     var spoken:Array=lines.PROLOGUE.duplicate(true)
     for chapter in lines.CHAPTERS:spoken.append_array(chapter.intro);spoken.append_array(chapter.outro)
@@ -46,6 +49,9 @@ func run() -> void:
     for closing in lines.HERO_CLOSING.values():
         if not data.has(str(closing).split(": ",true,1)[1]):untranslated.append(closing)
     check("All authored campaign dialogue and ending lines have full translations",untranslated.is_empty())
+    var world_label:=Label3D.new();world_label.text="夜班";root.add_child(world_label)
+    check("World text keeps the shared pixel face and nearest sampling",world_label.font.resource_path=="res://assets/fonts/RadioBody.tres" and world_label.texture_filter==BaseMaterial3D.TEXTURE_FILTER_NEAREST)
+    world_label.queue_free()
     var p:=Prefs.new();var path:="user://traditional-chinese/preferences.cfg"
     var options:Dictionary=p.DEFAULTS.duplicate();options.language="zh"
     check("Language choice saves and reloads",p.write_options(path,options)==OK and p.read_options(path).language=="zh")

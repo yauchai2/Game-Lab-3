@@ -1,3 +1,5 @@
+最新：[中文亦套用像素5／8／100](docs/evidence/chinese-pixel-preset/README.md)，涵蓋介面、故事字幕及3D中文字牌；72項檢查通過。
+
 最新：[繁體中文語言](docs/evidence/traditional-chinese/README.md)已加入。設定→Language／語言→繁體中文，切換可保存；主介面、HUD、城市、成長及全故事已翻譯，264項檢查通過。
 
 最新：已依使用者要求將字體設定 **5／8／100** 合入最新main，保留既有故事、介面、據點及動作更新；[121項整合檢查及畫面](docs/evidence/main-pixel-preset-merge/README.md)。GitHub Desktop使用main Fetch／Pull；以下分支限制為歷史，公開Web未更新。

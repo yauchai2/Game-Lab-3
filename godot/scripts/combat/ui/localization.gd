@@ -13,6 +13,8 @@ func set_language(value:String) -> void:
 func text(value:String) -> String:
     return str(TranslationServer.translate(value)) if language=="zh" else value
 func _node_added(node:Node) -> void:
-    if node is Label3D and node.font==null:node.font=preload("res://scripts/combat/ui/ui_theme.gd").BODY
+    if node is Label3D:
+        node.texture_filter=BaseMaterial3D.TEXTURE_FILTER_NEAREST
+        if node.font==null:node.font=preload("res://scripts/combat/ui/ui_theme.gd").BODY
 func _exit_tree() -> void:
     if catalog!=null:TranslationServer.remove_translation(catalog)

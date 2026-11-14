@@ -88,7 +88,7 @@ func setup(owner_session:Node3D) -> void:
 	score=AudioStreamPlayer.new();score.name="StoryOpeningScore";score.bus="Afterhours SFX"
 	if ResourceLoader.exists("res://audio/story_opening/score.wav"):score.stream=load("res://audio/story_opening/score.wav")
 	add_child(score)
-	if ResourceLoader.exists("res://assets/fonts/StoryOpeningHK.otf"):subtitle_font=load("res://assets/fonts/StoryOpeningHK.otf")
+	subtitle_font=load("res://assets/fonts/RadioChinese.tres")
 
 func _load_seen() -> void:
 	seen=false
