@@ -1,3 +1,7 @@
+## 2026-11-14：RIVET 落鉚影片重建
+
+已將正式L改成雙拳兩階橙光、舉拳轉髖蹲身下砸、橙黃大弧／真命中白芯上噴爆光與地面碎屑；原GLB、50能量與23/28/33傷害、持鍵／perk／滿階反彈保持。無泛用紅幕長定格，沿用連續慢動作。見[RIVET實作、來源與限制](RIVET_DROP_REFERENCE.zh-TW.md)及[12秒遊戲預覽](evidence/rivet-drop/rivet-drop.mp4)。229項及19strict通過；歷史零腳位移測試基線6敗、本輪5敗另列，不冒稱全測試皆過。Linux非真人／Mac；同分支PR #36，未合main／發Web。
+
 ## 2026-11-14：全角色技能取消長定格，改連續慢動作
 
 使用者回報技能命中像當機，現正式技能／大招／節點／空中終結與反彈不設長原生hitstop，其他普通接觸最多1tick；Rhythm與Neon統一35%重音→60%→100%，不再零速hold／突然2倍追趕。位置／招式幀只在已提交狀態間插值，群戰按ID；ZIP效果同取樣，停頓中背景／鏡頭繼續郁。傷害／成本／固定判定／BGM保留，牆鐘節奏有意改變；明確暫停／KO／舊教室等待保持。見[實作與限制](CONTINUOUS_SLOW_MOTION.zh-TW.md)／[12秒前後對照](evidence/continuous-slow-motion/comparison.mp4)。

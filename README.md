@@ -1,3 +1,5 @@
+最新：RIVET落鉚已按影片接入雙階預壓與重拳下砸：[原生預覽／驗證／差異](docs/RIVET_DROP_REFERENCE.zh-TW.md)。同任務分支／PR #36，未合main／發Web。
+
 最新：已按使用者要求將全角色技能的長定格改成持續移動的慢動作，並對位置／動作幀插值：[前後對照與485項驗證](docs/CONTINUOUS_SLOW_MOTION.zh-TW.md)。來源同任務分支／草稿PR #36，尚未合main，公開Web不動。
 
 最新：ZIP兩招已依使用者影片重製：[急件簽收](docs/ZIP_EXPRESS_REFERENCE.zh-TW.md)／[末班快送](docs/ZIP_LAST_DELIVERY_REFERENCE.zh-TW.md)。含真命中連踢、鞋腿殘影、白芯青綠爆光與遊戲預覽；來源分支 `codex/zip-express-reference`／草稿PR #36，尚未合main，公開Web不動。

@@ -85,6 +85,9 @@ static func finish(m:RefCounted,f:Dictionary,motion:Dictionary,move:Dictionary) 
     if Express.owns(f):
         Express.finish(m,f,move)
         return
+    if Rivet.owns(f):
+        Rivet.finish(m,f,move)
+        return
     # Authored weight transfer rotates the complete hip chain before limb
     # corrections. The actor's root remains under simulation; ground IK then
     # preserves the supporting foot rather than twisting a planted shoe.

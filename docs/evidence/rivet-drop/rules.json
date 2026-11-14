@@ -1,0 +1,299 @@
+{
+  "checks": [
+    {
+      "check": "ZIP confirmed two-kick skill deals bounded real damage",
+      "detail": {
+        "health": 79,
+        "hits": 2
+      },
+      "pass": true
+    },
+    {
+      "check": "ZIP overdrive confirms at most three legal contacts",
+      "detail": {
+        "health": 65,
+        "hits": 3
+      },
+      "pass": true
+    },
+    {
+      "check": "ZIP whiff does not auto-track or damage",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "ZIP genuine dodge earns a route",
+      "detail": {
+        "candidate_ticks": 10,
+        "delivery_contact": 24,
+        "delivery_origin": 0.0,
+        "delivery_running": false,
+        "delivery_stage": 0,
+        "encore": [],
+        "evade_candidate": 1,
+        "evade_serial": 1,
+        "flurry_left": 0,
+        "followup": 0,
+        "node_cd": 0,
+        "nodes": [],
+        "placed": false,
+        "preload": 0,
+        "preload_age": 0,
+        "refund_serial": -1,
+        "route_ttl": 177,
+        "routes": 0,
+        "sample": 0,
+        "sample_boost": false,
+        "sample_ttl": 0,
+        "serial": 0,
+        "use_route": false,
+        "zip_second": false,
+        "zip_second_at": 0
+      },
+      "pass": true
+    },
+    {
+      "check": "Same enemy swing cannot generate repeated routes",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Route is spent on a legal dash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "RIVET hold reaches visible tier two",
+      "detail": 2,
+      "pass": true
+    },
+    {
+      "check": "RIVET tier-two strike hits with a long recovery budget",
+      "detail": 67,
+      "pass": true
+    },
+    {
+      "check": "Interrupted RIVET cannot damage during hold",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "HUSH real frontal parry stores one sample",
+      "detail": [
+        {
+          "attacker": 0,
+          "distance": 0.966666666666667,
+          "kind": "parry",
+          "move": "jab",
+          "target": 1
+        },
+        {
+          "kind": "sample_gained",
+          "target": 1
+        },
+        {
+          "kind": "sample_spent",
+          "target": 1
+        },
+        {
+          "kind": "swing",
+          "move": "special",
+          "target": 1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "check": "HUSH sample is spent on a stronger normal counter",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "HUSH is usable without first earning a sample",
+      "detail": 81,
+      "pass": true
+    },
+    {
+      "check": "LOOP placement costs20 and creates one real node without a fake hit",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Third LOOP placement replaces oldest, maximum two",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Manual LOOP pulse spends10, clears nodes and deals real damage",
+      "detail": 88,
+      "pass": true
+    },
+    {
+      "check": "LOOP pulse is blockable",
+      "detail": {
+        "guard": 68.2600000000001,
+        "health": 100
+      },
+      "pass": true
+    },
+    {
+      "check": "Opponent can destroy a LOOP node with an active strike",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "LOOP nodes expire on simulation time",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Simultaneous node pulse and ordinary jab can trade",
+      "detail": {
+        "health": [
+          94,
+          88
+        ]
+      },
+      "pass": true
+    },
+    {
+      "check": "Airborne LOOP placement has no zero-damage body hit",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "ZIP does not inherit generic full-startup armor",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "RIVET late startup armor still takes damage",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "RIVET early startup remains interruptible",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Throw beats RIVET late armor",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "HUSH can parry a remote pulse but does not sample it",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Encore keeps pending nodes visible and destructible",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Encore consumes at most two real nodes without unbounded damage",
+      "detail": {
+        "health": 67,
+        "pulses": 2
+      },
+      "pass": true
+    },
+    {
+      "check": "New player has four characters and no locked base mechanics",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "First victory grants a point once",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Skill unlock consumes a point and can equip",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "At most two skills can be equipped",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "XP, purchases, slots and cosmetic choice survive reload",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Respec returns spent points without erasing XP",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "ZIP skill point does not alter raw jab damage",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "LOOP equipped life skill extends actual placed node",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "LOOP equipped cooldown skill changes actual pulse lockout",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "RIVET equipped charge skill reaches second tier sooner",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "RIVET equipped recovery skill changes charged recovery",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "HUSH equipped memory skill extends actual parry sample",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "HUSH equipped recovery skill changes sampled move",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "ZIP equipped dash skill changes the paid route dash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "ZIP confirmed-kick refund is once per attack",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "HUSH sampled-hit refund actually grants five energy",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "LOOP pulse refund actually grants four energy",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "RIVET pressure skill adds five real guard drain",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "ZIP route skill extends a genuinely earned route",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "scope": "Fixed-step new-character mechanics and versioned local progression, not visual/performance proof."
+}

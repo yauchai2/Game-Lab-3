@@ -1,0 +1,84 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+CONTINUOUS launch / 30 fps never enters a stopped phase true
+CONTINUOUS launch / 30 fps eases back to bounded real flow true
+CONTINUOUS launch / 60 fps never enters a stopped phase true
+CONTINUOUS launch / 60 fps eases back to bounded real flow true
+CONTINUOUS launch / 120 fps never enters a stopped phase true
+CONTINUOUS launch / 120 fps eases back to bounded real flow true
+CONTINUOUS chase / 30 fps never enters a stopped phase true
+CONTINUOUS chase / 30 fps eases back to bounded real flow true
+CONTINUOUS chase / 60 fps never enters a stopped phase true
+CONTINUOUS chase / 60 fps eases back to bounded real flow true
+CONTINUOUS chase / 120 fps never enters a stopped phase true
+CONTINUOUS chase / 120 fps eases back to bounded real flow true
+CONTINUOUS parry / 30 fps never enters a stopped phase true
+CONTINUOUS parry / 30 fps eases back to bounded real flow true
+CONTINUOUS parry / 60 fps never enters a stopped phase true
+CONTINUOUS parry / 60 fps eases back to bounded real flow true
+CONTINUOUS parry / 120 fps never enters a stopped phase true
+CONTINUOUS parry / 120 fps eases back to bounded real flow true
+CONTINUOUS skill / 30 fps never enters a stopped phase true
+CONTINUOUS skill / 30 fps eases back to bounded real flow true
+CONTINUOUS skill / 60 fps never enters a stopped phase true
+CONTINUOUS skill / 60 fps eases back to bounded real flow true
+CONTINUOUS skill / 120 fps never enters a stopped phase true
+CONTINUOUS skill / 120 fps eases back to bounded real flow true
+CONTINUOUS overdrive / 30 fps never enters a stopped phase true
+CONTINUOUS overdrive / 30 fps eases back to bounded real flow true
+CONTINUOUS overdrive / 60 fps never enters a stopped phase true
+CONTINUOUS overdrive / 60 fps eases back to bounded real flow true
+CONTINUOUS overdrive / 120 fps never enters a stopped phase true
+CONTINUOUS overdrive / 120 fps eases back to bounded real flow true
+CONTINUOUS impact / 30 fps never enters a stopped phase true
+CONTINUOUS impact / 30 fps eases back to bounded real flow true
+CONTINUOUS impact / 60 fps never enters a stopped phase true
+CONTINUOUS impact / 60 fps eases back to bounded real flow true
+CONTINUOUS impact / 120 fps never enters a stopped phase true
+CONTINUOUS impact / 120 fps eases back to bounded real flow true
+CONTINUOUS break / 30 fps never enters a stopped phase true
+CONTINUOUS break / 30 fps eases back to bounded real flow true
+CONTINUOUS break / 60 fps never enters a stopped phase true
+CONTINUOUS break / 60 fps eases back to bounded real flow true
+CONTINUOUS break / 120 fps never enters a stopped phase true
+CONTINUOUS break / 120 fps eases back to bounded real flow true
+CONTINUOUS Committed pose interpolates monotonically 0.00 true
+CONTINUOUS Committed pose interpolates monotonically 0.25 true
+CONTINUOUS Committed pose interpolates monotonically 0.50 true
+CONTINUOUS Committed pose interpolates monotonically 0.75 true
+CONTINUOUS Committed pose interpolates monotonically 1.00 true
+CONTINUOUS Interpolation never edits authoritative state true
+CONTINUOUS New attack serial cannot blend backwards true
+CONTINUOUS Reset discards interpolation history true
+CONTINUOUS Squad interpolation tracks each persistent enemy ID true
+CONTINUOUS Player and squad enemy interpolation keys cannot collide true
+CONTINUOUS Hero 0 / special still hits through normal input true
+CONTINUOUS Hero 0 / special has zero native skill freeze true
+CONTINUOUS Hero 0 / special stays visibly moving after contact true
+CONTINUOUS Hero 0 / overdrive still hits through normal input true
+CONTINUOUS Hero 0 / overdrive has zero native skill freeze true
+CONTINUOUS Hero 0 / overdrive stays visibly moving after contact true
+CONTINUOUS Hero 1 / special still hits through normal input true
+CONTINUOUS Hero 1 / special has zero native skill freeze true
+CONTINUOUS Hero 1 / special stays visibly moving after contact true
+CONTINUOUS Hero 1 / overdrive still hits through normal input true
+CONTINUOUS Hero 1 / overdrive has zero native skill freeze true
+CONTINUOUS Hero 1 / overdrive stays visibly moving after contact true
+CONTINUOUS Hero 2 / special still hits through normal input true
+CONTINUOUS Hero 2 / special has zero native skill freeze true
+CONTINUOUS Hero 2 / special stays visibly moving after contact true
+CONTINUOUS Hero 2 / overdrive still hits through normal input true
+CONTINUOUS Hero 2 / overdrive has zero native skill freeze true
+CONTINUOUS Hero 2 / overdrive stays visibly moving after contact true
+CONTINUOUS Hero 3 / special still hits through normal input true
+CONTINUOUS Hero 3 / special has zero native skill freeze true
+CONTINUOUS Hero 3 / special stays visibly moving after contact true
+CONTINUOUS Hero 3 / overdrive still hits through normal input true
+CONTINUOUS Hero 3 / overdrive has zero native skill freeze true
+CONTINUOUS Hero 3 / overdrive stays visibly moving after contact true
+CONTINUOUS Explicit pause still freezes the sampled pose true
+CONTINUOUS F2 returns to ordinary realtime true
+CONTINUOUS Exit clears interpolation state true

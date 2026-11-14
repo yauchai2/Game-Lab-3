@@ -594,6 +594,9 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
     if sim.last_service_enabled and effect.character==0 and effect.get("move","")=="overdrive":
         effect["zip_delivery"]=true
         if not effect.has("delivery_stage"):effect["delivery_stage"]=sim.fighters[clampi(actor,0,1)].service.delivery_stage
+    if sim.last_service_enabled and effect.character==1 and effect.get("move","")=="special":
+        effect["rivet_drop"]=true
+        effect["preload"]=sim.fighters[clampi(actor,0,1)].service.preload
     effects.append(effect)
 
 func _tier_up_feedback() -> void:
@@ -680,7 +683,8 @@ func _handle_event(event: Dictionary) -> void:
         hud.skill_key="skill_loop" if event.move=="special" else "skill_loop_pulse";hud.skill_time=.5
         return
     var kind: String = event.kind
-    var zip_express_event:bool=kind in ["swing","hit"] and sim.last_service_enabled and event.get("move","") in ["special","overdrive"] and character_choices[clampi(event.get("attacker",event.get("target",0)),0,1)]==0
+    var event_character:int=character_choices[clampi(event.get("attacker",event.get("target",0)),0,1)]
+    var reference_skill_event:bool=kind in ["swing","hit"] and sim.last_service_enabled and ((event_character==0 and event.get("move","") in ["special","overdrive"]) or (event_character==1 and event.get("move","")=="special"))
     if kind in ["break_finish","ko"] and is_instance_valid(backdrop.living):backdrop.living.react()
     if sim.arcade_enabled and not reduced_effects:
         var side:int=event.get("attacker",event.get("target",0))
@@ -837,7 +841,7 @@ func _handle_event(event: Dictionary) -> void:
         var point:Vector2=ink_fx.contact_point(self,event)
         _spawn_vfx(kind,point,0.16 if kind=="hit" else .24,{"strength":strength,"color":tint,"move":move,"face":face,"attacker":event.target if kind=="parry" else attacker,"held":kind=="hit" and sim.hitstop>0})
         if kind=="hit":
-            if sim.arcade_enabled and not zip_express_event and move in ["meteor","special","overdrive"]:theatre.begin("cannon_hit" if move=="overdrive" else "impact",attacker)
+            if sim.arcade_enabled and not reference_skill_event and move in ["meteor","special","overdrive"]:theatre.begin("cannon_hit" if move=="overdrive" else "impact",attacker)
             if sim.arcade_enabled and move=="meteor":_spawn_vfx("meteor_streak",point,.22,{"color":COLORS[attacker],"face":face})
             if strength>.55:
                 spectacle.trigger("contact",attacker,point,clampi(ceili(strength*4),1,4))
@@ -869,8 +873,8 @@ func _handle_event(event: Dictionary) -> void:
             var profile:Dictionary=sim.profile_for(character_choices[event.target])
             hud.skill_key=profile.overdrive_name if event.move=="overdrive" else profile.special_name
             hud.skill_time=1.3
-            if sim.arcade_enabled and not zip_express_event:theatre.begin("overdrive" if event.move=="overdrive" else "skill",event.target)
-            if not zip_express_event:spectacle.trigger("charge",event.target,Vector2(fighter.x,fighter.y+1.2),4)
+            if sim.arcade_enabled and not reference_skill_event:theatre.begin("overdrive" if event.move=="overdrive" else "skill",event.target)
+            if not reference_skill_event:spectacle.trigger("charge",event.target,Vector2(fighter.x,fighter.y+1.2),4)
             _spawn_vfx("charge",Vector2(fighter.x,fighter.y+1.2),startup,{"color":COLORS[event.target],"owner":event.target,"move":event.move})
             _spawn_vfx("wave",Vector2(fighter.x+fighter.face*0.6,fighter.y+1.2),0.26,{"age":-startup,"face":fighter.face,"color":COLORS[event.target]})
             audio.play_sound("charge",1.0,-4.0)
@@ -896,7 +900,7 @@ func _handle_event(event: Dictionary) -> void:
         hud.notice = "NEEDS %d ENERGY"%int(event.get("cost",50))
         hud.notice_time = 1.5
 
-    if neon_enabled and not reduced_effects and not zip_express_event and not (event.kind=="ko" and not final_ko()):neon.trigger(event,sim.fighters,sim.exchange.tier())
+    if neon_enabled and not reduced_effects and not reference_skill_event and not (event.kind=="ko" and not final_ko()):neon.trigger(event,sim.fighters,sim.exchange.tier())
     round_theatre.trigger(event)
     if event.kind=="hit" and not reduced_effects:
         var target:int=clampi(event.get("target",0),0,1)
@@ -1775,7 +1779,7 @@ func _track_service_effect(effect:Dictionary) -> void:
         effect.at=Vector2(socket.x+fighter.x-visual.position.x,socket.y+fighter.y-visual.position.y)
     else:effect.at=Vector2(fighter.x,fighter.y+visual.model_scale*.55)
     effect.face=fighter.face
-    if effect.kind=="swing" and (effect.get("zip_express",false) or effect.get("zip_delivery",false)):
+    if effect.kind=="swing" and (effect.get("zip_express",false) or effect.get("zip_delivery",false) or effect.get("rivet_drop",false)):
         effect.age=maxf(0.0,float(fighter.frame-move.startup+5)/60.0)
         effect.life=float(move.active+move.recovery+5)/60.0
         return

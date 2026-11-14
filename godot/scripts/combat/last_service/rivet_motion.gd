@@ -25,3 +25,39 @@ static func planted_source(name:String) -> bool:
     # Freeze source pelvis and legs in the authored boxing stance. This is a
     # bounded planted clip mask, not terrain-aware foot IK or a walking solver.
     return name=="DEF-hips" or name.begins_with("DEF-thigh") or name.begins_with("DEF-shin") or name.begins_with("DEF-foot") or name.begins_with("DEF-toe")
+
+static func owns(f:Dictionary) -> bool:
+    return f.get("character",-1)==1 and f.get("state","")=="attack" and f.get("move","")=="special" and f.get("health",0)>0 and not f.get("showcase",false) and not f.has("cinematic_clip")
+
+static func finish(m:RefCounted,f:Dictionary,move:Dictionary) -> void:
+    # Raised gauntlets -> overhead windup -> one downward ground drive.
+    # Frames 7/8 share one pose; tier strength comes from real preload age.
+    var frame:float=f.frame
+    var load:float=smoothstep(0.0,7.0,frame)
+    var lift:float=smoothstep(8.0,float(move.startup)-5.0,frame)
+    var strike:float=smoothstep(float(move.startup)-5.0,float(move.startup),frame)
+    var recover:float=smoothstep(float(move.startup)+8.0,float(move.startup+move.active+move.recovery),frame)
+    var weight:float=load*(1.0-recover)
+    var up:Vector3=m.model_up
+    var forward:Vector3=m.model_forward
+    m.turn_hips(lerpf(-.24,.32,strike)*weight)
+    var crouch:float=strike*weight
+    for side in ["Left","Right"]:
+        m._aim_limb(side+"UpLeg",side+"Leg",forward*.65-up,crouch*.65)
+        m._aim_limb(side+"Leg",side+"Foot",-forward*.45-up,crouch*.65)
+    var sk:Skeleton3D=m.skeleton
+    var hips:int=m.target_hips
+    var offset:Vector3=sk.global_basis.inverse()*Vector3(0,-.32*crouch,0)
+    var parent:int=sk.get_bone_parent(hips)
+    if parent>=0:offset=sk.get_bone_global_pose(parent).basis.inverse()*offset
+    sk.set_bone_pose_position(hips,sk.get_bone_pose_position(hips)+offset)
+    sk.force_update_all_bone_transforms()
+    m._aim_limb("Spine","Spine1",up+forward*lerpf(-.12,2.4,strike),weight*.88)
+    m._aim_limb("Spine1","Spine2",up+forward*.35*strike,weight*.65)
+    var upper:Vector3=forward*lerpf(.35,.70,strike)+up*lerpf(.48,1.2,lift)
+    upper=upper.lerp(forward*.35-up,strike)
+    var lower:Vector3=(up+forward*.12).lerp(forward*.30-up,strike)
+    m._aim_limb("RightArm","RightForeArm",upper,weight*.98)
+    m._aim_limb("RightForeArm","RightHand",lower,weight*.98)
+    m._aim_limb("LeftArm","LeftForeArm",forward*.30+up*.45,weight*.80)
+    m._aim_limb("LeftForeArm","LeftHand",up-forward*.15,weight*.90)

@@ -5,6 +5,7 @@ var sprites = preload("res://scripts/combat/sprite_fx.gd").new()
 func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
     if preload("res://scripts/combat/ink_fx/zip_delivery_fx.gd").draw(canvas,session,effect):return
     if preload("res://scripts/combat/ink_fx/zip_express_fx.gd").draw(canvas,session,effect):return
+    if preload("res://scripts/combat/ink_fx/rivet_drop_fx.gd").draw(canvas,session,effect):return
     var at: Vector2 = session.project(effect.at)
     if preload("res://scripts/combat/fighter_effect_style.gd").draw(canvas,at,effect,session.reduced_effects):return
     var time: float = clampf(effect.age/effect.life,0,1)
