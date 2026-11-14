@@ -1,5 +1,5 @@
 extends RefCounted
-## Wall-time choreography around unchanged 60 Hz combat steps. Both sides share it.
+## Continuous wall-time slow motion around fixed 60 Hz combat steps. Both sides share it.
 var kind := ""
 var age := 10.0
 var owner := 0
@@ -10,14 +10,15 @@ var cooldown := 0.0
 var bank := 0.0
 var steps := 0
 var rate_now := 1.0
+# [accent seconds, slow seconds, return seconds, release speed, priority]
 const PROFILES := {
-    "launch":[.055,.14,.20,1.65,1],
-    "chase":[.025,.035,.17,1.8,1],
-    "parry":[.12,.18,.24,1.65,2],
-    "skill":[.16,.26,.32,1.8,3],
-    "overdrive":[.20,.34,.38,1.95,4],
-    "impact":[.11,.20,.30,1.85,5],
-    "break":[.18,.24,.36,2.0,6],
+    "launch":[.035,.10,.14,1.0,1],
+    "chase":[.025,.06,.12,1.0,1],
+    "parry":[.045,.12,.16,1.0,2],
+    "skill":[.045,.12,.16,1.0,3],
+    "overdrive":[.060,.18,.20,1.0,4],
+    "impact":[.055,.14,.18,1.0,5],
+    "break":[.065,.16,.20,1.0,6],
 }
 var profiles:Dictionary=PROFILES
 func clear() -> void:
@@ -28,24 +29,28 @@ func trigger(next:String,side:int,move_hint:="",surge_tier:=3) -> void:
     var profile:Array=profiles[next]
     if active() and int(profile[4])<=priority:return
     if cooldown>0 and int(profile[4])<3:return
-    intensity=[.45,.72,1.0][clampi(surge_tier-1,0,2)]
+    intensity=[.80,.90,1.0][clampi(surge_tier-1,0,2)]
     kind=next;owner=clampi(side,0,1);age=0.0;priority=profile[4]
     style=move_hint if move_hint!="" else next
     cooldown=.75
-    bank=0.0
-    rate_now=0.0
+    rate_now=rate()
 func phase() -> String:
     if not active():return "flow"
     var p:Array=profiles[kind]
-    if age<p[0]*intensity:return "hold"
+    if age<p[0]*intensity:return "accent"
     if age<(p[0]+p[1])*intensity:return "slow"
     return "release"
 func rate() -> float:
     if not active():return 1.0
+    var p:Array=profiles[kind]
     match phase():
-        "hold":return 0.0
-        "slow":return .22
-        _:return profiles[kind][3]
+        "accent":return .35
+        "slow":
+            var t:float=clampf((age-p[0]*intensity)/maxf(.001,p[1]*intensity),0,1)
+            return lerpf(.35,.60,smoothstep(0.0,1.0,t))
+        _:
+            var t:float=clampf((age-(p[0]+p[1])*intensity)/maxf(.001,p[2]),0,1)
+            return lerpf(.60,float(p[3]),smoothstep(0.0,1.0,t))
 func advance(delta:float) -> void:
     cooldown=maxf(0,cooldown-delta)
     age+=delta
@@ -61,10 +66,10 @@ func take_steps(delta:float,enabled:bool,native_stop:=false) -> int:
     var count:=floori(bank+0.00001)
     bank-=count
     if native_stop:
-        # Do not stretch contact freeze through slow motion a second time.
-        # Preserve the existing accelerated release, but always drain at least one tick.
+        # Drain the remaining one-tick ordinary contact buffer at wall speed,
+        # while animation/effects retain a strictly positive presentation rate.
         if count==0:count=1;bank=0.0
-        rate_now=0.0
+        rate_now=maxf(.35,rate_now)
     steps+=count
     return count
 func view_speed() -> float:return rate_now
@@ -73,7 +78,7 @@ func draw(canvas:Control,session:Node3D) -> void:
     var accent:Color=session.COLORS[owner]
     var stage:String=phase()
     var ink:=Color("111328")
-    if stage=="hold":
+    if stage=="accent":
         # A single graphic contact frame, then readable shutters rather than a strobe.
         if age<.025 and kind in ["impact","break","parry"]:
             canvas.draw_rect(Rect2(0,0,1280,720),Color(accent,.25))

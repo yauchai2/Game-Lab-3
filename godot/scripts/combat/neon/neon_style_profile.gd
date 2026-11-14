@@ -8,10 +8,6 @@ extends Resource
 @export var silhouette_seconds:=0.10
 @export var accent_roll_degrees:=3.0
 @export var signature_roll_degrees:=14.0
-@export var rhythm_profiles:Dictionary={
-    "launch":[.04,.09,.20,1.65,1],"chase":[.025,.035,.17,1.8,1],
-    "parry":[.07,.12,.24,1.65,2],"skill":[.14,.42,.34,1.8,3],
-    "overdrive":[.22,.78,.44,1.95,4],"impact":[.08,.14,.28,1.85,5],
-    "break":[.16,.22,.34,2.0,6]}
+@export var rhythm_profiles:Dictionary=preload("res://scripts/combat/combat_rhythm.gd").PROFILES.duplicate(true)
 func accent(index:int) -> Color:
     return Color("a888ff") if index==4 else actor_accents[clampi(index,0,3)]

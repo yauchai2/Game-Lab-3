@@ -33,6 +33,7 @@ var versus_streak_side:=-1
 var versus_streak:=0
 var signature_camera=preload("res://scripts/combat/neon/neon_signature_camera.gd").new()
 var neon_profile:Resource=preload("res://scripts/combat/neon/neon_style_profile.tres")
+var render_motion=preload("res://scripts/combat/motion_interpolation.gd").new()
 var spectacle := preload("res://scripts/combat/fight_spectacle.gd").new()
 var ko_tumble := preload("res://scripts/combat/ko_tumble.gd").new()
 var grade: ColorRect
@@ -313,7 +314,7 @@ func _physics_process(delta: float) -> void:
         if screen!="play":break
         _combat_step()
         # A new contact must be seen before spending a second accelerated step.
-        if sim.exchange.decision_active() or (rhythm.active() and rhythm.phase()=="hold"):break
+        if sim.exchange.decision_active() or (rhythm.active() and rhythm.phase()=="accent"):break
 
 func _combat_step() -> void:
     if screen != "play":
@@ -324,6 +325,7 @@ func _combat_step() -> void:
     pending_p2.clear()
     var previous_tier:int=sim.exchange.tier()
     var previous_stop := sim.hitstop
+    render_motion.remember(sim)
     if demo!=null:
         if demo.needs_setup:_prepare_demo_state()
         var commands: Array=demo.commands(sim)
@@ -685,11 +687,12 @@ func _handle_event(event: Dictionary) -> void:
         if kind=="break_finish":rhythm.trigger("break",side)
         elif kind in ["parry","air_counter_start"]:rhythm.trigger("parry",side,"",sim.exchange.tier())
         elif kind=="homing_chase":rhythm.trigger("chase",side)
+        elif kind in ["arena_bounce","ground_bounce","wall_bounce"]:rhythm.trigger("impact",side,"bounce",sim.exchange.tier())
         elif kind=="swing" and event.get("move","") in ["special","overdrive"]:rhythm.trigger("overdrive" if event.move=="overdrive" else "skill",side)
         elif kind=="hit":
-            if event.get("move","") in ["meteor","special","overdrive","air_counter"]:rhythm.trigger("impact",side,event.move,sim.exchange.tier())
+            if event.get("move","") in ["meteor","special","overdrive","air_counter","node_pulse"]:rhythm.trigger("impact",side,event.move,sim.exchange.tier())
             elif event.get("move","")=="launcher":rhythm.trigger("launch",side,"",sim.exchange.tier())
-        if rhythm.active() and rhythm.phase()=="hold":
+        if rhythm.active() and rhythm.phase()=="accent":
             effects=effects.filter(func(e:Dictionary)->bool:return e.kind not in ["echo","trail","speed"])
     if kind=="break_finish":
         theatre.begin("break",event.attacker)
@@ -900,6 +903,7 @@ func _handle_event(event: Dictionary) -> void:
         backdrop.smoke.react(Vector3(sim.fighters[target].x,sim.fighters[target].y,FIGHT_Z))
 
 func _clear_impacts() -> void:
+    render_motion.clear()
     ink_fx.clear()
     step_distance.fill(0.0)
     ability_draw.clear()
@@ -973,9 +977,10 @@ func _process(delta: float) -> void:
         effects = effects.filter(func(e: Dictionary) -> bool: return e.age < e.life and not e.get("expired",false))
         recoil_age += delta
         trauma = move_toward(trauma, 0.0, delta * 2.0)
+    if screen=="play":render_motion.alpha=clampf(rhythm.bank+Engine.get_physics_interpolation_fraction()*maxf(.35,rhythm.view_speed()),0.0,1.0)
     _advance_ko_tumble(delta)
     # Motion paths already communicate pursuit; omit opaque skeleton-stick ghosts.
-    backdrop.present(delta, screen in ["pause", "help", "result"] or (screen=="play" and rhythm.phase()=="hold"), reduced_effects)
+    backdrop.present(delta*maxf(.35,rhythm.view_speed()) if screen=="play" else delta, screen in ["pause", "help", "result"], reduced_effects)
     _present((delta*rhythm.view_speed() if screen=="play" and not reduced_effects else delta) if screen in ["play", "title", "result"] else 0.0)
     # Resolve bone-bound cels after the current pose, not the previous render.
     for effect in effects:
@@ -1072,12 +1077,18 @@ func _grade_world() -> void:
     grade_material.set_shader_parameter("strength",strength)
     grade_material.set_shader_parameter("accent",COLORS[grade_owner])
 
+func presentation_pose_for(f:Dictionary,side:int) -> Dictionary:
+    if reduced_effects or screen not in ["play","pause","help"]:return f.duplicate()
+    return render_motion.sample(f,render_motion.key_for(f,side,sim.squad_enabled))
+func presentation_pose(side:int) -> Dictionary:
+    return presentation_pose_for(sim.fighters[side],side)
+
 func _present(delta: float) -> void:
     if sim.squad_enabled:
         fighters[1]=squad_visuals[sim.squad_focus]
         for id in squad_visuals.size():
             if id==sim.squad_focus:continue
-            var pose:Dictionary=sim.squad_members[id].duplicate()
+            var pose:Dictionary=presentation_pose_for(sim.squad_members[id],1)
             if screen=="result" and pose.health<=0:
                 pose.y=maxf(0,pose.y-maxf(0,result_clock-.15)*5.0)
                 if result_clock>.18:pose.flash=0
@@ -1085,7 +1096,7 @@ func _present(delta: float) -> void:
             squad_visuals[id].present(pose,delta,sim.hitstop>0,reduced_effects,sim.fighters[0].x)
             if sim.story_enabled:preload("res://scripts/combat/story/enemy_props.gd").present(squad_visuals[id],pose)
     for i in fighters.size():
-        var pose: Dictionary=sim.fighters[i].duplicate()
+        var pose: Dictionary=presentation_pose(i)
         pose["air_enabled"]=sim.is_aerial()
         if neon_enabled and neon.signature and i==neon.owner and not reduced_effects:
             pose["neon_signature_phase"]=neon.signature_phase()

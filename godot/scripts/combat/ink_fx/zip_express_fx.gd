@@ -47,7 +47,7 @@ static func draw(canvas:Control,session:Node,effect:Dictionary) -> bool:
     if effect.kind in ["release","charge"]:return true
     if effect.kind!="swing":return false
     if session.reduced_effects:return true
-    var f:Dictionary=session.sim.fighters[effect.owner]
+    var f:Dictionary=session.presentation_pose(effect.owner)
     var move:Dictionary=session.sim.move_for(f,"special")
     var second:bool=Motion.second(f,move)
     var hit:float=Motion.second_contact(f,move) if second else float(move.startup)

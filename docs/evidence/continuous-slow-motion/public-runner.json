@@ -1,0 +1,50 @@
+{
+  "created_utc": "20261114T011531Z",
+  "source_commit": "c1b31014981ca43537e0a70ff15f58712a5e1c8e",
+  "tracked_runtime_changes": [
+    "godot/scripts/combat/combat_rhythm.gd",
+    "godot/scripts/combat/enemies/gun_presentation.gd",
+    "godot/scripts/combat/enemies/gun_shot.gd",
+    "godot/scripts/combat/fight_session.gd",
+    "godot/scripts/combat/fight_simulation.gd",
+    "godot/scripts/combat/ink_fx/zip_delivery_fx.gd",
+    "godot/scripts/combat/ink_fx/zip_express_fx.gd",
+    "godot/scripts/combat/neon/neon_style_profile.gd"
+  ],
+  "mode": "native",
+  "all_assertions_passed": true,
+  "passed": 79,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "verify_combat_rhythm",
+      "mode": "native",
+      "exit_code": 0,
+      "harness_sha256": "7c958d384c44b897697f035f2455bca6dd64f85d04789183d4035bd30d5ee208",
+      "seconds": 6.25,
+      "command": [
+        "godot",
+        "--path",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1280x720",
+        "--script",
+        "res://tools/verify_combat_rhythm.gd"
+      ],
+      "report_written": true,
+      "passed": 79,
+      "failed": 0,
+      "skipped": [],
+      "diagnostics": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      ],
+      "engine_errors": [],
+      "success": true
+    }
+  ],
+  "scope": "Automated Godot checks. Native input is injected, not a physical human playtest; inspect diagnostics separately."
+}

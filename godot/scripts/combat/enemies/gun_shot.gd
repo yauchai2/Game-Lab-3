@@ -104,7 +104,7 @@ static func _step(s: RefCounted, p: Dictionary) -> bool:
         t.meter = minf(100.0, t.meter + 18.0)
         t.guard = maxf(0.0, t.guard - 8.0)
         t.counter_window = s.COUNTER_WINDOW
-        s.hitstop = maxi(s.hitstop, 6)
+        s.hitstop = maxi(s.hitstop, 1 if s.arcade_enabled else 6)
         s.hitstop_total = s.hitstop
         var shooter: Dictionary = p.shooter
         s.events.append({"kind": "gun_deflect", "target": victim, "x": p.x, "y": p.y, "dir": p.dir})
@@ -121,7 +121,7 @@ static func _step(s: RefCounted, p: Dictionary) -> bool:
         t.state = "blockstun"
         t.stun = 8
         t.vx = p.dir * 1.8
-        s.hitstop = maxi(s.hitstop, 3)
+        s.hitstop = maxi(s.hitstop, 1 if s.arcade_enabled else 3)
         s.hitstop_total = s.hitstop
         var broken: bool = t.guard <= 0.0
         if broken:
@@ -146,7 +146,7 @@ static func _hit(s: RefCounted, p: Dictionary, t: Dictionary, victim: int) -> vo
     t.buffer_ttl = 0
     t.invuln = maxi(t.invuln, 10)
     t.meter = minf(100.0, t.meter + damage * .5)
-    s.hitstop = maxi(s.hitstop, 6)
+    s.hitstop = maxi(s.hitstop, 1 if s.arcade_enabled else 6)
     s.hitstop_total = s.hitstop
     s.events.append(_tag({"kind": "gun_hit", "target": victim, "damage": damage, "x": p.x, "y": p.y, "dir": p.dir,
         "reflected": p.reflected}, t))

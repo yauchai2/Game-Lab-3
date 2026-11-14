@@ -443,7 +443,7 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
         for contact in ArenaBox.integrate(f,EDGE):
             contact["kind"]="arena_bounce";contact["target"]=i
             events.append(contact)
-            hitstop=maxi(hitstop,4);hitstop_total=hitstop
+            hitstop=maxi(hitstop,0 if arcade_enabled else 4);hitstop_total=maxi(1,hitstop)
     else:
         if f.state != "idle" and f.state != "dash":
             f.vx = move_toward(f.vx, 0.0, STEP * 18.0)
@@ -469,8 +469,8 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
             if signal_kind!="":
                 events.append({"kind":signal_kind,"target":i,"hard":f.air.hard_land})
                 if signal_kind=="ground_bounce":
-                    hitstop=maxi(hitstop,6)
-                    hitstop_total=hitstop
+                    hitstop=maxi(hitstop,0 if arcade_enabled else 6)
+                    hitstop_total=maxi(1,hitstop)
         else:
             f.vy -= 26.0 * STEP
             var previous_y: float = f.y
@@ -615,8 +615,8 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
             fighter.buffer=""
             fighter.buffer_ttl=0
             fighter.tech_window=0
-        hitstop=6
-        hitstop_total=6
+        hitstop=1 if arcade_enabled else 6
+        hitstop_total=maxi(1,hitstop)
         exchange.contact(12)
         events.append({"kind":"throw_tech","target":1-i})
         return
@@ -655,8 +655,8 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
             a.stun = 30
             b.counter_window=COUNTER_WINDOW
             a.vx = -a.face*5.0
-            hitstop = maxi(hitstop,8)
-            hitstop_total = hitstop
+            hitstop = maxi(hitstop,1 if arcade_enabled else 8)
+            hitstop_total = maxi(1,hitstop)
             exchange.contact(16)
             events.append({"kind":"parry","target":1-i,"attacker":i,"move":move_name,"distance":absf(a.x-b.x)})
             return
@@ -666,8 +666,8 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
         b.state = "blockstun"
         b.stun = 10
         b.vx = hit_face * 2.2
-        hitstop = maxi(hitstop, 4)
-        hitstop_total = hitstop
+        hitstop = maxi(hitstop, 1 if arcade_enabled else 4)
+        hitstop_total = maxi(1,hitstop)
         exchange.contact(8)
         events.append({"kind": "block", "target": 1-i, "attacker": i})
         if b.guard <= 0:
@@ -717,7 +717,9 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
         b.air.bounce_granted=not b.air.bounce_used and b.wall_bounces==0
     if box_active() and not armor and m.get("ricochet",move_name=="overdrive") and m.push>=7:
         ArenaBox.arm(b,move_name,hit_face,m.push)
-    var stop_ticks: int={"jab":3,"cross":4,"launcher":9,"air_jab":3,"air_kick":4,"meteor":14,"special":20,"overdrive":26}.get(move_name,m.stop) if arcade_enabled else m.stop
+    # Formal combat uses moving slow motion, not 20-26 frozen simulation ticks.
+    # Legacy classroom/harness modes retain their original timing.
+    var stop_ticks:int=(0 if move_name in ["special","overdrive","node_pulse","meteor","air_finisher","air_counter"] else 1) if arcade_enabled else m.stop
     b.flash = stop_ticks + 7
     if endless:
         b.impact_load=minf(100.0,b.impact_load+damage)
@@ -737,7 +739,7 @@ func _resolve_hit(i: int, allow_exchange := true) -> void:
     a.chain = (a.chain + 1) % 3 if move_name in ["jab", "cross", "finisher","air_jab","air_kick","air_finisher"] else 0
     a.chain_ttl = 45
     hitstop = maxi(hitstop, stop_ticks)
-    hitstop_total = hitstop
+    hitstop_total = maxi(1,hitstop)
     if is_air_lesson() and move_name in ["air_finisher","air_counter"]:air_lesson_stage="review"
     events.append({"kind": "hit", "target": 1-i, "attacker": i, "damage": damage, "move": move_name, "strength": (.95 if move_name=="meteor" else .8) if is_aerial() and move_name in ["air_finisher","meteor","air_counter"] else float(m.damage) / 27.0, "counter": counter,"face":hit_face})
 

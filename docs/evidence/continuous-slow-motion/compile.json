@@ -1,0 +1,58 @@
+{
+  "checks": [
+    {
+      "file": "godot/scripts/combat/combat_rhythm.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/scripts/combat/enemies/gun_presentation.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/scripts/combat/enemies/gun_shot.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/scripts/combat/fight_session.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/scripts/combat/fight_simulation.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/scripts/combat/ink_fx/zip_delivery_fx.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/scripts/combat/ink_fx/zip_express_fx.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/scripts/combat/neon/neon_style_profile.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/tools/verify_arena_box.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/tools/verify_combat_rhythm.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/scripts/combat/motion_interpolation.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/tools/verify_continuous_motion.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/tools/capture_smooth_combat.gd",
+      "passed": true
+    }
+  ],
+  "passed": 13,
+  "failed": 0
+}

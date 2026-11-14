@@ -29,7 +29,7 @@ static func draw(canvas:Control,session:Node,effect:Dictionary) -> bool:
     if effect.kind in ["release","charge","cannon_charge"]:return true
     if effect.kind!="swing":return false
     if session.reduced_effects:return true
-    var f:Dictionary=session.sim.fighters[effect.owner]
+    var f:Dictionary=session.presentation_pose(effect.owner)
     var move:Dictionary=session.sim.move_for(f,"overdrive")
     var beat:Dictionary=Motion.segment(f,move)
     var age:float=float(f.frame)-float(beat.hit)
