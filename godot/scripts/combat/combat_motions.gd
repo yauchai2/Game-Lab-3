@@ -19,6 +19,7 @@ var death_height_scale := 1.0
 var contact_phases := {"Punch_Jab":0.30,"Punch_Cross":0.30,"Spell_Simple_Shoot":0.42}
 var clip_name := ""
 var clip_elapsed := 0.0
+var profile_loop_elapsed := 0.0
 var blend_from: Array[Quaternion] = []
 var previous_state := ""
 var previous_flash:=0.0
@@ -150,6 +151,7 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
         blend_from.clear()
         for bone in skeleton.get_bone_count(): blend_from.append(skeleton.get_bone_pose_rotation(bone))
         clip_elapsed = 0.0
+        profile_loop_elapsed = 0.0
         previous_state = state_key
     elif not stopped:
         clip_elapsed += delta
@@ -178,7 +180,12 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     elif selected == "Jump_Land":
         sample_time = duration * clampf(land_time / 0.22,0,1)
     if profile_owned:
-        sample_time=fmod(clip_elapsed*float(motion.speed),duration) if motion.loop else (minf(clip_elapsed*2.5,duration) if motion.get("reaction",false) else float(motion.phase)*duration)
+        if motion.loop and motion.get("imported",false):
+            if not stopped and clip_elapsed>0.0:
+                profile_loop_elapsed=fmod(profile_loop_elapsed+delta*float(motion.speed),duration)
+            sample_time=profile_loop_elapsed
+        else:
+            sample_time=fmod(clip_elapsed*float(motion.speed),duration) if motion.loop else (minf(clip_elapsed*2.5,duration) if motion.get("reaction",false) else float(motion.phase)*duration)
     if f.has("cinematic_phase"):
         sample_time=duration*clampf(float(f.cinematic_phase),0,1)
     var locals: Array[Quaternion] = source_rest.duplicate()

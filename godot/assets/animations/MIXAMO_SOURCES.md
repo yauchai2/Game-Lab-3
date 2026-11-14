@@ -4,6 +4,6 @@
 
 These files are Adobe Mixamo animation derivatives, not Quaternius/KayKit CC0 assets and not relicensed under a source-code license. The applicable Adobe terms remain applicable. Source information: <https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html>.
 
-Source filenames, checksums, sampling, duplicate detection and original timing are recorded in `docs/evidence/mixamo-first-batch/sources.json`; runtime bundle checksums and activation coverage are in `docs/evidence/motion-completion`. The original uploaded FBX/GLB files are preserved outside this repository. The canonical rest rig used for retargeting remains the original CC0 library with its existing notices.
+Source filenames, checksums, sampling, duplicate detection and original timing are recorded in `docs/evidence/mixamo-first-batch/sources.json`; runtime bundle checksums and clip metadata are in `docs/evidence/motion-completion`. The later Mixamo catalog IDs and game uses are listed in `docs/WHOLE_GAME_MOTION_REVIEW.zh-TW.md`. The original FBX/GLB files are preserved outside this repository. The canonical rest rig used for retargeting remains the original CC0 library with its existing notices.
 
 Build helpers: `tools/inspect_mixamo_batch.py`, `tools/build_mixamo_motion_library.py`, `tools/import_mixamo_throw.py`. `res://assets/animations` is the runtime source; `.godot` is only an import cache. `GAME_LAB_MOTION_LIBRARY` and `GAME_LAB_THROW_LIBRARY` are optional development overrides.

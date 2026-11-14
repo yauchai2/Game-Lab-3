@@ -3,6 +3,7 @@ extends RefCounted
 const Data=preload("res://scripts/combat/mixamo_motion_library.gd")
 const Transit=preload("res://scripts/combat/last_service/transit_motion.gd")
 const BACK_WALK_SPEED:=0.89
+const RUN_SPEED:=2.73
 static func describe(f:Dictionary,move:Dictionary) -> Dictionary:
     if not Data.available() or f.get("character",0) not in [0,1,2,3]:return {}
     if f.health<=0 or f.has("cinematic_clip") or f.get("showcase",false) or f.has("paired_throw"):return {}
@@ -17,7 +18,9 @@ static func describe(f:Dictionary,move:Dictionary) -> Dictionary:
     var reaction:=false
     if f.state=="attack":
         if move.is_empty():return {}
-        if f.move not in ["jab","cross","heavy","finisher","special","overdrive","node_pulse"]:return {}
+        if f.move=="launcher":
+            if f.character!=1 or not Data.data.clips.has("MX_Uppercut"):return {}
+        elif f.move not in ["jab","cross","heavy","finisher","special","overdrive","node_pulse"]:return {}
         if f.move=="node_pulse" and f.character!=3:return {}
         match int(f.character):
             0:
@@ -26,7 +29,7 @@ static func describe(f:Dictionary,move:Dictionary) -> Dictionary:
                 clip="MX_Roundhouse" if f.move in ["jab","cross","special"] else "MX_Hurricane"
                 if segment.mirrored:clip+="_Mirror"
                 phase=Transit.attack_phase(float(segment.frame),move,float(Data.data.markers[clip].contact))
-            1:clip={"jab":"MX_Jab","cross":"MX_Cross","heavy":"MX_BodyPunch","finisher":"MX_Hook","special":"MX_Cross","overdrive":"MX_Hook"}[f.move]
+            1:clip={"jab":"MX_Jab","cross":"MX_Cross","heavy":"MX_BodyPunch","finisher":"MX_Hook","special":"MX_Cross","overdrive":"MX_Hook","launcher":"MX_Uppercut"}[f.move]
             2:clip={"jab":"MX_HushJab","cross":"MX_HushElbow","heavy":"MX_Elbow","finisher":"MX_Elbow","special":"MX_Elbow","overdrive":"MX_HushElbow"}[f.move]
             3:
                 # The batch has swings, but no short-stick thrust or rising strike.
@@ -51,18 +54,22 @@ static func describe(f:Dictionary,move:Dictionary) -> Dictionary:
     elif f.state=="idle":
         var ground_speed:=absf(f.vx)
         if ground_speed>=.3:
-            if ground_speed>2.0:return {}
             var backwards:bool=f.vx*f.face<0
-            clip="MX_WalkBack" if backwards else "MX_Walking"
+            if ground_speed>2.0:
+                clip="MX_RunBack" if backwards else ("MX_Sprint" if ground_speed>4.6 else "MX_Run")
+                var stride_speed:float=3.17 if backwards else (6.36 if clip=="MX_Sprint" else RUN_SPEED)
+                speed=clampf(ground_speed/stride_speed,.7,2.8 if backwards else 1.7)
+            else:
+                clip="MX_WalkBack" if backwards else "MX_Walking"
+                speed=clampf(ground_speed/(BACK_WALK_SPEED if backwards else 1.23),.25,2.25 if backwards else 1.65)
             loop=true
-            speed=clampf(ground_speed/(BACK_WALK_SPEED if backwards else 1.23),.25,2.25 if backwards else 1.65)
         elif f.character in [1,2] and not f.guarding:
             clip="MX_Idle";loop=true;speed=.85 if f.character==1 else 1.05
         else:return {}
     else:return {}
     if not Data.data.clips.has(clip):return {}
     var result:Dictionary={"owner":"mixamo_"+str(f.character),"clip":clip,"phase":phase,"loop":loop,"speed":speed,"plant":false,"guard_arms":false,"imported":true,"reaction":reaction,"transit":true,"transition":f.state}
-    if clip in ["MX_Walking","MX_WalkBack"] and (f.guarding or f.character==3):
+    if f.state=="idle" and absf(f.vx)>=.3 and (f.guarding or f.character==3):
         result.guard_arms=true
         result["stance_clip"]="KK_StickStab" if f.character==3 else "Punch_Enter"
         result["stance_phase"]=0.0 if f.character==3 else 1.0
@@ -77,9 +84,12 @@ static func _air(f:Dictionary,move:Dictionary) -> Dictionary:
         {"air_jab":"MX_HushJab","air_kick":"MX_AirKick","air_finisher":"MX_Elbow","meteor":"MX_Elbow","air_counter":"MX_HushElbow"},
         {"air_jab":"KK_StickStab","air_kick":"MX_StickHorizontal","air_finisher":"MX_StickBack","meteor":"MX_StickDown","air_counter":"MX_StickDown"}]
     var clip:String=keys[int(f.character)][f.move]
+    if f.character==0 and f.move=="air_finisher" and Data.data.clips.has("MX_CrescentKick"):
+        clip="MX_CrescentKick"
     if not Data.data.clips.has(clip):return {} # Original CC0 stick thrust keeps its own complete profile.
     var marker:Dictionary=Data.data.markers[clip]
     var legs:String="right" if marker.limb=="LeftFoot" else ("left" if marker.limb=="RightFoot" else "both")
+    if clip=="MX_CrescentKick":legs=""
     var result:Dictionary={"owner":"mixamo_"+str(f.character),"clip":clip,"phase":Transit.attack_phase(float(f.frame),move,float(marker.contact)),"loop":false,"speed":1.0,"plant":false,"guard_arms":false,"imported":true,"reaction":false,"transit":true,"transition":"air","air_legs":legs}
     if f.character==3:result["grip"]="right"
     return result

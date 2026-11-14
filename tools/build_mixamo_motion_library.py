@@ -89,6 +89,27 @@ expected = {
 if any(row['filename'] == 'Unarmed Walk Back.fbx' for row in inspection):
     expected[22] = 'Unarmed Walk Back.fbx'
     specs.append(('MX_WalkBack', 22, 1, 40, None, ''))
+if any(row['filename'] == 'Uppercut.fbx' for row in inspection):
+    expected[23] = 'Uppercut.fbx'
+    specs.append(('MX_Uppercut', 23, 4, 38, 16, 'LeftHand'))
+if any(row['filename'] == 'Unarmed Run Forward.fbx' for row in inspection):
+    expected[24] = 'Unarmed Run Forward.fbx'
+    specs.append(('MX_Run', 24, 1, 25, None, ''))
+if any(row['filename'] == 'Boxing Victory.fbx' for row in inspection):
+    expected[25] = 'Boxing Victory.fbx'
+    specs.append(('MX_BoxingVictory', 25, 10, 111, None, ''))
+if any(row['filename'] == 'Waving Gesture.fbx' for row in inspection):
+    expected[26] = 'Waving Gesture.fbx'
+    specs.append(('MX_Wave', 26, 1, 45, None, ''))
+if any(row['filename'] == 'Inside Crescent Kick.fbx' for row in inspection):
+    expected[27] = 'Inside Crescent Kick.fbx'
+    specs.append(('MX_CrescentKick', 27, 32, 54, 42, 'RightFoot'))
+if any(row['filename'] == 'Two Cycle Sprint.fbx' for row in inspection):
+    expected[28] = 'Two Cycle Sprint.fbx'
+    specs.append(('MX_Sprint', 28, 1, 33, None, ''))
+if any(row['filename'] == 'Running Backward.fbx' for row in inspection):
+    expected[29] = 'Running Backward.fbx'
+    specs.append(('MX_RunBack', 29, 1, 20, None, ''))
 for key, number, first, last, contact, limb in specs:
     matches = [i for i, row in enumerate(inspection) if row['filename'] == expected[number]]
     if len(matches) != 1:
@@ -147,6 +168,16 @@ for key, number, first, last, contact, limb in specs:
         offset = parent_rotation.inverted() @ (align @ root * hip_ratio)
         hip_values.append([round(v, 7) for v in Vector(nodes[hip_index]['translation']) + offset])
     tracks[str(hip_index)]['translation'] = {'times': times, 'values': hip_values, 'interpolation': 'LINEAR'}
+    if key == 'MX_Sprint':
+        # Close the small pose mismatch at the end of the second stride.
+        for track in tracks.values():
+            for channel, curve in track.items():
+                first_value = curve['values'][0]
+                values = curve['values']
+                for offset, weight in [(2, .25), (1, 1.0)]:
+                    value = values[-offset]
+                    values[-offset] = (packed(quat(value).slerp(quat(first_value), weight))
+                                       if channel == 'rotation' else list(Vector(value).lerp(Vector(first_value), weight)))
     if key == 'MX_Hurricane':
         # One complete source cycle needs an explicit entry/exit; it is not a ready-to-ready clip.
         guard = clips['MX_Roundhouse']['tracks']

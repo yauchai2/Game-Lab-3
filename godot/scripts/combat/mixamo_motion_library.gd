@@ -14,7 +14,7 @@ static func available() -> bool:
     data=_read(path)
     if data.is_empty():return false
     # Preserve the separately installed Mac backwalk without replacing bundled get-up/KO.
-    if path==DEFAULT_PATH:merge_optional(data,_read(LEGACY_EXTENSION))
+    if path==DEFAULT_PATH and not data.clips.has("MX_WalkBack"):merge_optional(data,_read(LEGACY_EXTENSION))
     return true
 static func merge_optional(base:Dictionary,extension:Dictionary) -> void:
     if extension.is_empty() or not extension.clips.has("MX_WalkBack"):return

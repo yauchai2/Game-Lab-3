@@ -1,3 +1,7 @@
+## 2026-11-15：全遊戲動作覆核首輪
+
+[動作覆核表](WHOLE_GAME_MOTION_REVIEW.zh-TW.md)記錄已驗畫面及仍待逐段覆核的位置。新加入 RIVET 上勾挑空、ZIP 空中旋踢、跑步／衝刺／快退、RIVET 勝利、ZIP 工房揮手，整合慢退並在勝利和故事開場使用既有 Mixamo 步態。遊戲隨附 31 段骨架資料。
+
 ## 2026-11-14：同步遠端78cd692後退擴充
 
 保留另一對話Mac已下載／驗證的MX_WalkBack程式、builder及測試；實體24段曲線只在Mac，未取得／未隨本輪公開。Loader可唯讀從舊cache只合併BackWalk，保護本輪新版GetUp／KO；在有檔Mac可跑tools/bundle_mixamo_backwalk.py再驗證提交。詳MOTION_COMPLETION.zh-TW.md。

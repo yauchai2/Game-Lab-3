@@ -68,6 +68,28 @@ func run() -> void:
             f.vx=speed;f.face=1
             var descriptor:Dictionary=Profiles.describe(f,{})
             check("forward walking only %d/%s"%[hero,speed],(descriptor.get("clip","")=="MX_Walking")==(speed==1.0))
+        if Data.data.clips.has("MX_Run"):
+            for face in [-1,1]:
+                f.face=face
+                f.vx=3.6*face
+                var running:Dictionary=Profiles.describe(f,{})
+                var min_run_y:=INF
+                for tick in 60:
+                    actor.present(f,1.0/60.0,false,false)
+                    min_run_y=minf(min_run_y,actor.lowest_skin_y())
+                check("forward run retarget and skin floor %d/%d"%[hero,face],running.get("clip","")=="MX_Run" and running.loop and actor.motions.clip_name=="MX_Run" and min_run_y>=.008)
+                f.vx=-3.6*face
+                var reverse:Dictionary=Profiles.describe(f,{})
+                check("medium reverse keeps its own source %d/%d"%[hero,face],reverse.get("clip","")==("MX_RunBack" if Data.data.clips.has("MX_RunBack") else ""))
+        if Data.data.clips.has("MX_Sprint"):
+            for face in [-1,1]:
+                f.face=face
+                f.vx=8.0*face
+                var min_sprint_y:=INF
+                for tick in 70:
+                    actor.present(f,1.0/60.0,false,false)
+                    min_sprint_y=minf(min_sprint_y,actor.lowest_skin_y())
+                check("full-speed sprint and skin floor %d/%d"%[hero,face],actor.motions.clip_name=="MX_Sprint" and min_sprint_y>=.008)
         if Data.data.clips.has("MX_WalkBack"):
             for face in [-1,1]:
                 f.face=face
@@ -82,7 +104,15 @@ func run() -> void:
                 check("guarded backwalk %d/%d"%[hero,face],backward.get("clip","")=="MX_WalkBack" and backward.loop and backward.guard_arms and actor.motions.clip_name=="MX_WalkBack")
                 check("backwalk floor and presentation only %d/%d"%[hero,face],minimum_y>=.008 and before==JSON.stringify(f))
                 f.vx=-6.0*face
-                check("fast reverse keeps fallback %d/%d"%[hero,face],Profiles.describe(f,{}).is_empty())
+                var expected_reverse:String="MX_RunBack" if Data.data.clips.has("MX_RunBack") else ""
+                var reversed_pose:Dictionary=Profiles.describe(f,{})
+                check("fast reverse uses a separate gait %d/%d"%[hero,face],reversed_pose.get("clip","")==expected_reverse)
+                if expected_reverse!="":
+                    var min_reverse_y:=INF
+                    for tick in 45:
+                        actor.present(f,1.0/60.0,false,false)
+                        min_reverse_y=minf(min_reverse_y,actor.lowest_skin_y())
+                    check("fast reverse retarget and skin floor %d/%d"%[hero,face],actor.motions.clip_name==expected_reverse and min_reverse_y>=.008)
             var back_clip:Dictionary=Data.data.clips.MX_WalkBack
             var closes:=true
             for track in back_clip.tracks.values():

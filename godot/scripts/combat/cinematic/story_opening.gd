@@ -476,9 +476,13 @@ func _cast_at(t:float) -> void:
 		var advance:=.5*ease_io(seg(t,10.45,10.7))+.5*ease_io(seg(t,10.78,11.0))
 		if advance>0 and advance<1.0:walking=true
 		suit.place(from.lerp(mark,step)+SUIT_STEP*advance,180.0)
-		if walking:suit.clip("Walk_Loop",(t-walk_from)*1.05,1.6)
+		if walking and suit.visual.motions.library.clips.has("MX_Walking"):
+			var gait_clock:float=(minf(t,walk_to)-walk_from)*1.62+advance*.7
+			suit.clip("MX_Walking",gait_clock)
+			suit.ground(-.10)
+		elif walking:suit.clip("Walk_Loop",(t-walk_from)*1.05,1.6)
 		else:suit.clip("Idle_Loop",.3+t*.25)
-		_arms_down(suit)
+		if not walking or not suit.visual.motions.library.clips.has("MX_Walking"):_arms_down(suit)
 		if i==0 and t>=5.9 and t<TITLE_AT:
 			# Pull the left glove tight across the chest.
 			var raise:=ease_io(seg(t,5.9,6.2))

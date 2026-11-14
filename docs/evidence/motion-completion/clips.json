@@ -301,6 +301,110 @@
       "duration": 1.0333333,
       "entry_blend_samples": 0,
       "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_WalkBack",
+      "source": "Unarmed Walk Back.fbx",
+      "source_sha256": "2096d62a1b6ea6c74003f23f9624e7b2be9a053738d80bb4aea4f25c26fa8531",
+      "first_sample": 1,
+      "last_sample": 40,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 1.3,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Uppercut",
+      "source": "Uppercut.fbx",
+      "source_sha256": "fe32b87e713d50884ab505d17535332ed5b14064d4daeaaa0d055ae4e5c9ec51",
+      "first_sample": 4,
+      "last_sample": 38,
+      "sample_rate": 30,
+      "contact_sample": 16,
+      "limb": "LeftHand",
+      "duration": 1.1333333,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Run",
+      "source": "Unarmed Run Forward.fbx",
+      "source_sha256": "87a33e37ca687300909ec347532ea87ae7623a48dab933cd76810cf458fe4f9e",
+      "first_sample": 1,
+      "last_sample": 25,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 0.8,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_BoxingVictory",
+      "source": "Boxing Victory.fbx",
+      "source_sha256": "a6b5ae869064c20ec0cfc62de103f810649b0e55e49a373462d1477c4dfe63b9",
+      "first_sample": 10,
+      "last_sample": 111,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 3.3666667,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Wave",
+      "source": "Waving Gesture.fbx",
+      "source_sha256": "0e5ee6af754d540f3816db88199492ee2b1e9f4ab49ad5a8133b2c7001d0c8ef",
+      "first_sample": 1,
+      "last_sample": 45,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 1.4666667,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_CrescentKick",
+      "source": "Inside Crescent Kick.fbx",
+      "source_sha256": "7b930f2cedf08060fa761b9da1c42d7d2a2dda1eda2504060276dca17e875d2c",
+      "first_sample": 32,
+      "last_sample": 54,
+      "sample_rate": 30,
+      "contact_sample": 42,
+      "limb": "RightFoot",
+      "duration": 0.7333333,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_Sprint",
+      "source": "Two Cycle Sprint.fbx",
+      "source_sha256": "4c69e094dbebae6f594a8238b3030a913eeff9f2dde1c47b9f69a2ee3088fb49",
+      "first_sample": 1,
+      "last_sample": 33,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 1.0666667,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
+    },
+    {
+      "clip": "MX_RunBack",
+      "source": "Running Backward.fbx",
+      "source_sha256": "91669ea541634a7b1ca1917c6f4023a5b5e7e4c278dff913b83864494da595c2",
+      "first_sample": 1,
+      "last_sample": 20,
+      "sample_rate": 30,
+      "contact_sample": null,
+      "limb": "",
+      "duration": 0.6333333,
+      "entry_blend_samples": 0,
+      "exit_blend_samples": 0
     }
   ],
   "markers": {
@@ -393,6 +497,38 @@
       "limb": ""
     },
     "MX_Walking": {
+      "contact": 0.5,
+      "limb": ""
+    },
+    "MX_WalkBack": {
+      "contact": 0.5,
+      "limb": ""
+    },
+    "MX_BoxingVictory": {
+      "contact": 0.5,
+      "limb": ""
+    },
+    "MX_Run": {
+      "contact": 0.5,
+      "limb": ""
+    },
+    "MX_Uppercut": {
+      "contact": 0.35294117647058826,
+      "limb": "LeftHand"
+    },
+    "MX_Wave": {
+      "contact": 0.5,
+      "limb": ""
+    },
+    "MX_CrescentKick": {
+      "contact": 0.45454545454545453,
+      "limb": "RightFoot"
+    },
+    "MX_Sprint": {
+      "contact": 0.5,
+      "limb": ""
+    },
+    "MX_RunBack": {
       "contact": 0.5,
       "limb": ""
     }

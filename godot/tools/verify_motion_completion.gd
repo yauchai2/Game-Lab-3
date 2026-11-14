@@ -47,6 +47,10 @@ func run() -> void:
                         var before:String=JSON.stringify(f)
                         actor.present(f,1.0/60.0,false,false)
                         valid=valid and actor.motions.pose_owner!="legacy" and actor.oversized_bones.is_empty() and before==JSON.stringify(f)
+                        if hero==1 and not airborne and move=="launcher" and Data.data.clips.has("MX_Uppercut"):
+                            valid=valid and actor.motions.clip_name=="MX_Uppercut" and preload("res://scripts/combat/last_service/street_motion.gd").striking_limb(f)=="LeftHand"
+                        if hero==0 and airborne and move=="air_finisher" and Data.data.clips.has("MX_CrescentKick"):
+                            valid=valid and actor.motions.clip_name=="MX_CrescentKick" and preload("res://scripts/combat/last_service/street_motion.gd").striking_limb(f)=="RightFoot"
                         for bone in actor.skeleton.get_bone_count():valid=valid and actor.skeleton.get_bone_global_pose(bone).is_finite()
                         if not airborne:floor_ok=floor_ok and actor.lowest_skin_y()>=.008
                         var snapshot:Array=[]
@@ -55,7 +59,7 @@ func run() -> void:
                         actor.present(f,1.0/60.0,true,true)
                         for bone in actor.skeleton.get_bone_count():frozen=frozen and snapshot[bone].is_equal_approx(actor.skeleton.get_bone_global_pose(bone))
                         frozen=frozen and model_transform.is_equal_approx(actor.model.transform)
-                        if face==1 and airborne and move in ["air_jab","air_kick","meteor"] and frame==int(f.move_data.startup):
+                        if face==1 and ((airborne and move in ["air_jab","air_kick","air_finisher","meteor"]) or (hero==1 and not airborne and move=="launcher")) and frame==int(f.move_data.startup):
                             label.text="%s | %s | %s"%[["ZIP","RIVET","HUSH","LOOP"][hero],move,actor.motions.clip_name]
                             await process_frame;await RenderingServer.frame_post_draw
                             root.get_texture().get_image().save_png(out+"/%d-%s.png"%[hero,move])

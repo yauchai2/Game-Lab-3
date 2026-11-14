@@ -4,8 +4,8 @@
   "runtime_assets": [
     {
       "file": "mixamo_fighters.json",
-      "bytes": 2825501,
-      "sha256": "a301418a7decde696f1990d597b1cefd3a2390233f61c6ddd74c2a1d60b29eed"
+      "bytes": 3713049,
+      "sha256": "399f647d8bc5c52ab05e514dcfa1e59a3b367bb945b2a19fafb2d7e157a3c158"
     },
     {
       "file": "mixamo_shoulder_throw.json",
@@ -14,5 +14,15 @@
     }
   ],
   "source_metadata": "docs/evidence/mixamo-first-batch/sources.json",
-  "canonical_rig_sha256": "60a97a63905abf1944cfe68bafe6dd47885f5c5e0417da910a1906808a3bc7bd"
+  "canonical_rig_sha256": "60a97a63905abf1944cfe68bafe6dd47885f5c5e0417da910a1906808a3bc7bd",
+  "bundled_optional_extension": "MX_WalkBack",
+  "additional_motion_review_clips": [
+    "MX_BoxingVictory",
+    "MX_CrescentKick",
+    "MX_Run",
+    "MX_RunBack",
+    "MX_Sprint",
+    "MX_Uppercut",
+    "MX_Wave"
+  ]
 }
