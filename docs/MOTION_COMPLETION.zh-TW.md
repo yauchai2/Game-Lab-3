@@ -27,6 +27,14 @@ RIVET舊6項失敗已修正：舊固定下盤mask再加程序轉髖會拉動雙�
 
 預設loader直接讀上述資產，`.godot`只作快取；兩個`GAME_LAB_*_LIBRARY`仍可作開發override。舊installer可手動更新隨附檔，其備份寫入被忽略的快取。Blender builder亦允許直接重建assets/animations，原始來源不覆寫。兩份JSON及來源說明都已驗證包含在本機輸出的PCK；這個打包測試沒有上傳Web。
 
+## 與另一對話的後退動作整合
+
+推送前遠端新增78cd692：Mac已以官方Mixamo MCP取得Unarmed Walk Back（ID128650946，原FBX SHA2096d62a1b6ea6c74003f23f9624e7b2be9a053738d80bb4aea4f25c26fa8531），當時24段私有庫及Mac慢速後退測試已通過。本輪保留其程式／builder／驗證及紀錄；該第24段曲線沒有隨遠端提交，這個雲端環境無法取得Mac檔案，所以Git內仍是此對話提供的23段，不能宣稱已公開第24段。
+
+為避免Pull後丟失Mac既有後退，預設載入隨附23段後，可唯讀載入舊`.godot/private_animation/mixamo_fighters.json`的**MX_WalkBack單一擴充**；先驗完整schema／canonical SHA／曲線，絕不以舊庫覆寫新版GetUp／KnockedOut。清快取／全新clone沒有此額外檔時保留適用CC0後退，其他23段照常使用。明確環境override仍按使用者指定檔，不另合併cache。
+
+若要把額外後退亦隨Git公開，須在實際有該資料的Mac執行`python3 tools/bundle_mixamo_backwalk.py`（或上傳24段JSON／Unarmed Walk Back.fbx到本對話）；工具只併入MX_WalkBack，備份在忽略快取。需要將更新的asset及provenance驗證／提交。這是來源檔尚未到此環境，並非再次要求發布授權。此前Mac後退驗證不能代替本輪新倒地／起身／空中全套Mac驗收。
+
 ## 驗收
 
 完整證據：[evidence/motion-completion](evidence/motion-completion/README.md)。全招式／狀態矩陣554/554；前輪15個地面slot與步法119/119、loader拒收13/13；肩摔147/147、獨立renderer蒙皮／起身65/65。RIVET有／無Mixamo各19/19，其他相關回歸結果逐suite列明，不把重疊檢查加成唯一總數。

@@ -2,6 +2,10 @@
 
 使用者明示「授權允許，把它放進GitHub，繼續把全部做完」，覆蓋先前私有曲線安裝流程。兩份衍生JSON隨assets／PCK提供，原始FBX保留，來源條款notice明示Mixamo非CC0；loader預設讀資產，環境override僅開發用途。GetUp去padding後以64tick共同恢復取代28tick，depth漸回戰鬥平面；不改第60tick落地傷害。現有招式全覆核，23來源clip全啟用，適用CC0全身動作仍保留而非假稱49Mixamo下載。舊RIVET固定下盤不再疊轉髖，新舊模式原／新版19項均通過；詳MOTION_COMPLETION.zh-TW.md。
 
+## 2026-11-14：慢速後退採 Mixamo Unarmed Walk Back
+
+Adobe 登入後以 V1xel Mixamo MCP 從官方目錄下載 X Bot 的 Unarmed Walk Back（動作 ID 128650946，FBX 2019、30 fps、無蒙皮）。原始 FBX 的 SHA-256 為 `2096d62a1b6ea6c74003f23f9624e7b2be9a053738d80bb4aea4f25c26fa8531`。取完整 1–40 樣本循環，去除約 1.159 m 的後退位移，按來源 0.89 m/s 配速。四角在地面以 0.3–2.0 m/s 背向移動時採用，按住護架及 LOOP 持棍時沿用既有手臂遮罩。速度與位移由原 simulation 決定，舊動畫庫仍可載入。
+
 ## 2026-11-14：第一批Mixamo沿canonical rig重定向，保持simulation權威
 
 來源65骨world rest／rotation私有取樣後離線轉canonical，沿既有CombatMotions→四角；新profile獨佔姿勢，contact phase／實際骨同時供FX與接地。去來源淨位移，保留有界重心，鞋底以skin最低點校正。Walking只配慢速正向步態；複合拳拆單招，Hurricane取單圈加回收，Boxing按實際低位身擊使用。原判定／傷害／物理／過場不改；不適合挑空及未驗死亡／起身owner的來源不強塞。23私有clip中20啟用，另外3個待驗；缺檔與不相容SHA透明fallback。詳MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md。

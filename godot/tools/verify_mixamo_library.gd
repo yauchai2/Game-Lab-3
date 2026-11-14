@@ -26,6 +26,14 @@ func _initialize() -> void:
         var file:=FileAccess.open(path,FileAccess.WRITE);file.store_string(JSON.stringify(invalid));file.close()
         OS.set_environment("GAME_LAB_MOTION_LIBRARY",path);Data.checked=false;Data.data={}
         checks.append({"name":kind,"ok":not Data.available()})
+    # A fixture tests the extension allowlist, not the unavailable Mac mocap itself.
+    var combined:Dictionary=good.duplicate(true)
+    var extension:Dictionary=good.duplicate(true)
+    extension.clips["MX_WalkBack"]=extension.clips.MX_Walking
+    extension.markers["MX_WalkBack"]=extension.markers.MX_Walking
+    extension.clips.MX_GetUp.duration=8.0
+    Data.merge_optional(combined,extension)
+    checks.append({"name":"optional cache cannot replace bundled recovery", "ok":combined.clips.has("MX_WalkBack") and combined.clips.MX_GetUp==good.clips.MX_GetUp and combined.clips.MX_KnockedOut==good.clips.MX_KnockedOut})
     DirAccess.remove_absolute(path)
     OS.set_environment("GAME_LAB_MOTION_LIBRARY",path);Data.checked=false;Data.data={}
     checks.append({"name":"missing_file","ok":not Data.available()})

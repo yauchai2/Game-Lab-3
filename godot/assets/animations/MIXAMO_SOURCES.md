@@ -1,6 +1,6 @@
 # User-provided Mixamo motions
 
-`mixamo_fighters.json` and `mixamo_shoulder_throw.json` are game-ready derivatives of the FBX/GLB animations supplied by the repository owner in this conversation. The owner explicitly authorized bundling these files in GitHub on 2026-11-14 so a normal checkout can run the animations without a separate download.
+`mixamo_fighters.json` and `mixamo_shoulder_throw.json` are game-ready derivatives of the FBX/GLB animations supplied by the repository owner or obtained through an owner-authorized Mixamo session. The owner explicitly authorized bundling these files in GitHub on 2026-11-14 so a normal checkout can run the animations without a separate download.
 
 These files are Adobe Mixamo animation derivatives, not Quaternius/KayKit CC0 assets and not relicensed under a source-code license. The applicable Adobe terms remain applicable. Source information: <https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html>.
 

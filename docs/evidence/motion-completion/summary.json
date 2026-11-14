@@ -98,6 +98,26 @@
       "file": "rivet.json",
       "passed": 19,
       "total": 19
+    },
+    {
+      "file": "integration/library.json",
+      "passed": 14,
+      "total": 14
+    },
+    {
+      "file": "integration/batch.json",
+      "passed": 119,
+      "total": 119
+    },
+    {
+      "file": "integration/cold-library.json",
+      "passed": 14,
+      "total": 14
+    },
+    {
+      "file": "integration/bundler-fixture.json",
+      "passed": 3,
+      "total": 3
     }
   ],
   "scope": "Suite results overlap; do not add these numbers as unique tests. Source fixtures differ from normal-input gameplay videos. Linux software renderer, not Mac, human or real-time performance.",
@@ -108,5 +128,7 @@
       "total": 21
     }
   ],
-  "builder_rebuild_byte_identical": true
+  "builder_rebuild_byte_identical": true,
+  "merged_remote": "78cd6921f3355850adde5b8b156be84ad4d7f09c",
+  "optional_backwalk": "Mac-only extension preserved; actual curve unavailable here and not bundled"
 }

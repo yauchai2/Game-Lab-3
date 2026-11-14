@@ -1,8 +1,16 @@
+## 2026-11-14：同步遠端78cd692後退擴充
+
+保留另一對話Mac已下載／驗證的MX_WalkBack程式、builder及測試；實體24段曲線只在Mac，未取得／未隨本輪公開。Loader可唯讀從舊cache只合併BackWalk，保護本輪新版GetUp／KO；在有檔Mac可跑tools/bundle_mixamo_backwalk.py再驗證提交。詳MOTION_COMPLETION.zh-TW.md。
+
 ## 2026-11-14：使用者授權動作入GitHub，第一批全部啟用
 
 最新以[MOTION_COMPLETION.zh-TW.md](MOTION_COMPLETION.zh-TW.md)為準：game-ready兩個JSON進assets/animations，Pull後直接使用，覆蓋下方私有安裝限制；原FBX不改，main／公開Web不動。23衍生clip全部啟用，現有四角招式／狀態554項覆核通過；技能／空中按四角源片接續，KnockedOut走原死亡owner、GettingUp取75–187去padding，共同恢復28→64tick，回收時depth漸回共同平面。保留適用CC0挑空／刺棍／跑退／跳落／專用過場；49候選不是49下載。
 
 新／舊RIVET各19/19，舊6失敗已修固定下盤與程序轉髖衝突；肩摔147及65獨立renderer、119首批、13loader、18strict；其他回歸詳evidence/motion-completion。乾淨無快取副本及空專案掛PCK7項通過，兩JSON與notice均隨包。兩部12秒肩摔起身／14秒空連真輸入片及四角rig接觸表；Mac／實體輸入／真人與效能仍待驗收。
+
+## 2026-11-14：已從 Mixamo MCP 接入四角慢速後退
+
+桌面 Godot 專案已透過 `tools/install_mixamo_motions.py` 安裝含 Unarmed Walk Back 的 24 段私有動畫庫。重建時，把官方下載檔以 `Unarmed Walk Back.fbx` 加入首批來源，再沿既有 Blender 檢查、轉換及安裝流程。來源 FBX 和衍生曲線只保存在本機。其餘動作見替換計劃。
 
 ## 2026-11-14：第一批21 FBX＋Walking正式地面接入
 

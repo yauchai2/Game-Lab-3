@@ -1,7 +1,8 @@
 extends RefCounted
-## Single pose owner for admitted first-batch motions; simulation remains authoritative.
+## Single pose owner for imported Mixamo motions; simulation remains authoritative.
 const Data=preload("res://scripts/combat/mixamo_motion_library.gd")
 const Transit=preload("res://scripts/combat/last_service/transit_motion.gd")
+const BACK_WALK_SPEED:=0.89
 static func describe(f:Dictionary,move:Dictionary) -> Dictionary:
     if not Data.available() or f.get("character",0) not in [0,1,2,3]:return {}
     if f.health<=0 or f.has("cinematic_clip") or f.get("showcase",false) or f.has("paired_throw"):return {}
@@ -48,17 +49,20 @@ static func describe(f:Dictionary,move:Dictionary) -> Dictionary:
         if f.vx*f.face>=0:return {}
         clip="MX_Dodge";phase=clampf(float(f.frame)/14.0,0,1)
     elif f.state=="idle":
-        if absf(f.vx)>=.3:
-            # Never reverse a forward walk or speed it up into a sprint.
-            if f.vx*f.face<=0 or absf(f.vx)>2.0:return {}
-            clip="MX_Walking";loop=true;speed=clampf(absf(f.vx)/1.23,.25,1.65)
+        var ground_speed:=absf(f.vx)
+        if ground_speed>=.3:
+            if ground_speed>2.0:return {}
+            var backwards:bool=f.vx*f.face<0
+            clip="MX_WalkBack" if backwards else "MX_Walking"
+            loop=true
+            speed=clampf(ground_speed/(BACK_WALK_SPEED if backwards else 1.23),.25,2.25 if backwards else 1.65)
         elif f.character in [1,2] and not f.guarding:
             clip="MX_Idle";loop=true;speed=.85 if f.character==1 else 1.05
         else:return {}
     else:return {}
     if not Data.data.clips.has(clip):return {}
     var result:Dictionary={"owner":"mixamo_"+str(f.character),"clip":clip,"phase":phase,"loop":loop,"speed":speed,"plant":false,"guard_arms":false,"imported":true,"reaction":reaction,"transit":true,"transition":f.state}
-    if clip=="MX_Walking" and (f.guarding or f.character==3):
+    if clip in ["MX_Walking","MX_WalkBack"] and (f.guarding or f.character==3):
         result.guard_arms=true
         result["stance_clip"]="KK_StickStab" if f.character==3 else "Punch_Enter"
         result["stance_phase"]=0.0 if f.character==3 else 1.0

@@ -68,6 +68,30 @@ func run() -> void:
             f.vx=speed;f.face=1
             var descriptor:Dictionary=Profiles.describe(f,{})
             check("forward walking only %d/%s"%[hero,speed],(descriptor.get("clip","")=="MX_Walking")==(speed==1.0))
+        if Data.data.clips.has("MX_WalkBack"):
+            for face in [-1,1]:
+                f.face=face
+                f.guarding=true
+                f.vx=-1.6*face
+                var backward:Dictionary=Profiles.describe(f,{})
+                var minimum_y:=INF
+                var before:=JSON.stringify(f)
+                for tick in 105:
+                    actor.present(f,1.0/60.0,false,false)
+                    minimum_y=minf(minimum_y,actor.lowest_skin_y())
+                check("guarded backwalk %d/%d"%[hero,face],backward.get("clip","")=="MX_WalkBack" and backward.loop and backward.guard_arms and actor.motions.clip_name=="MX_WalkBack")
+                check("backwalk floor and presentation only %d/%d"%[hero,face],minimum_y>=.008 and before==JSON.stringify(f))
+                f.vx=-6.0*face
+                check("fast reverse keeps fallback %d/%d"%[hero,face],Profiles.describe(f,{}).is_empty())
+            var back_clip:Dictionary=Data.data.clips.MX_WalkBack
+            var closes:=true
+            for track in back_clip.tracks.values():
+                if track.has("rotation"):
+                    var values:Array=track.rotation.values
+                    var first:Array=values.front()
+                    var last:Array=values.back()
+                    closes=closes and Quaternion(first[0],first[1],first[2],first[3]).angle_to(Quaternion(last[0],last[1],last[2],last[3]))<.015
+            check("backwalk closes at source seam %d"%hero,closes)
         f.guarding=true;f.vx=1.4;f.face=1
         actor.present(f,1.0/60.0,false,false)
         check("guard walking keeps arms %d"%hero,Profiles.describe(f,{}).guard_arms and actor.motions.clip_name=="MX_Walking")

@@ -86,6 +86,9 @@ expected = {
     14: 'Idle.fbx', 16: 'Roundhouse Kick.fbx', 17: 'Hurricane Kick.fbx',
     18: 'Kicking.fbx', 21: 'Walking.glb',
 }
+if any(row['filename'] == 'Unarmed Walk Back.fbx' for row in inspection):
+    expected[22] = 'Unarmed Walk Back.fbx'
+    specs.append(('MX_WalkBack', 22, 1, 40, None, ''))
 for key, number, first, last, contact, limb in specs:
     matches = [i for i, row in enumerate(inspection) if row['filename'] == expected[number]]
     if len(matches) != 1:

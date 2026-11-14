@@ -48,3 +48,8 @@ godot --headless --path godot --script res://tools/verify_paired_throw.gd -- /tm
 DISPLAY=:99 godot --path godot --audio-driver Dummy --script res://tools/verify_paired_throw_render.gd -- /tmp/render.json /tmp/getup-pictures
 python3 tools/verify_motion_warnings.py /tmp/motion-strict.log
 ```
+
+
+## 遠端後退擴充整合
+
+遠端78cd692新增Mac私有MX_WalkBack及147項Mac慢速後退記錄，本輪保留全部修改。實體第24段曲線未到此雲端，隨Git仍23段。Loader唯讀從舊cache白名單合併MX_WalkBack，絕不回退新版起身／倒地；缺該檔保持CC0後退。整合後18strict、119原生、14loader（含擴充不得覆寫GetUp／KO）及無cache副本14loader通過，見integration/。bundler-fixture.json是合成fixture的3項資料保留／備份檢查，不是真後退動作驗收。真檔可在Mac用tools/bundle_mixamo_backwalk.py併入再驗證提交；本輪不冒稱已在雲端取得／公開該第24段。

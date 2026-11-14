@@ -1,6 +1,14 @@
+## 2026-11-14：同步遠端78cd692後退擴充
+
+保留另一對話Mac已下載／驗證的MX_WalkBack程式、builder及測試；實體24段曲線只在Mac，未取得／未隨本輪公開。Loader可唯讀從舊cache只合併BackWalk，保護本輪新版GetUp／KO；在有檔Mac可跑tools/bundle_mixamo_backwalk.py再驗證提交。詳MOTION_COMPLETION.zh-TW.md。
+
 ## 2026-11-14：隨Git動作庫與第一批完成驗收
 
 [evidence/motion-completion](evidence/motion-completion/README.md)：554全招／狀態矩陣、119地面／步法、13loader、147肩摔與65獨立renderer全過；新／舊RIVET各19/19，舊6失敗已修。冷副本無快取／override即讀兩個資產，13／147通過，PCK空專案7/7；18strict與import通過。12秒肩摔起身、14秒空連真命令片及全片4fps抽格、20格四角起身及另外空中／倒地接觸表已檢視；軟體GPU錄製非Mac／人手／實聽／即時FPS。完整suite及證據界線見README，不把重疊項加成唯一總數。原始來源不改，衍生JSON按最新使用者授權進Git，main／公開Web不動。
+
+## 2026-11-14：Mixamo 慢速後退 Mac 驗證
+
+Godot 4.7.2／Apple M4 Compatibility。動畫測試 147/147，涵蓋四角雙向護架後退、循環接點、鞋底高度、速度門檻及 simulation 狀態；載入器 13/13。使用正式戰鬥場景與自動護架後退輸入，四角都播出新動畫。場景仍記錄既有存檔缺少 `ending` 區段的訊息。24 段私有動畫庫逐項比對，先前 23 段的曲線及接觸點一致。人手及實體控制器待驗。
 
 ## 2026-11-14：第一批Mixamo／Walking接入
 

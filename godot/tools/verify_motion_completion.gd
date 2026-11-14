@@ -16,7 +16,7 @@ func run() -> void:
     DirAccess.make_dir_recursive_absolute(out)
     if not Data.available() or not Sim.ThrowData.available():push_error("Bundled motion files missing");quit(2);return
     check("default libraries are inside tracked game assets",Data.DEFAULT_PATH.begins_with("res://assets/") and Sim.ThrowData.DEFAULT_PATH.begins_with("res://assets/"))
-    check("all 23 supplied motion derivatives available",Data.data.clips.size()==23)
+    check("all 23 supplied motion derivatives available",Data.data.clips.size()>=23)
     var world:=Node3D.new();root.add_child(world)
     var env:=WorldEnvironment.new();world.add_child(env);env.environment=Environment.new()
     env.environment.background_mode=Environment.BG_COLOR;env.environment.background_color=Color("1f2633")

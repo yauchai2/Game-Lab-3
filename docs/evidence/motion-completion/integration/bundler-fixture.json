@@ -1,0 +1,19 @@
+{
+  "passed": 3,
+  "total": 3,
+  "checks": [
+    {
+      "name": "adds optional clip",
+      "ok": true
+    },
+    {
+      "name": "preserves all bundled curves",
+      "ok": true
+    },
+    {
+      "name": "backup in ignored cache",
+      "ok": true
+    }
+  ],
+  "scope": "Synthetic fixture only; does not validate or publish the unavailable actual Mac backwalk curve."
+}
