@@ -1,0 +1,140 @@
+{
+  "checks": [
+    {
+      "check": "Straight source facing -1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Fist drives forward from chamber facing -1",
+      "detail": {
+        "chamber": "(0.40506, 1.97849, 2.787344)",
+        "fist": "(-0.943151, 1.418015, 2.821255)"
+      },
+      "passed": true
+    },
+    {
+      "check": "Forearm travels horizontally facing -1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "F2 keeps identical punch facing -1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Finite skeleton facing -1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "No geometry inflation facing -1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Straight source facing 1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Fist drives forward from chamber facing 1",
+      "detail": {
+        "chamber": "(-0.40506, 1.97849, 3.212656)",
+        "fist": "(0.943151, 1.418015, 3.178745)"
+      },
+      "passed": true
+    },
+    {
+      "check": "Forearm travels horizontally facing 1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "F2 keeps identical punch facing 1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Finite skeleton facing 1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "No geometry inflation facing 1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "True hit emits one link",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Actual first wall emits custom blast",
+      "detail": 1,
+      "passed": true
+    },
+    {
+      "check": "Real hit damages opponent",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "No native skill freeze",
+      "detail": 0,
+      "passed": true
+    },
+    {
+      "check": "hit pause preserves effects",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "hit restart clears effects",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Whiff creates no link or wall blast",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Whiff has no damage",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "whiff pause preserves effects",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "whiff restart clears effects",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Block creates no link or wall blast",
+      "detail": {
+        "links": 0,
+        "walls": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "block pause preserves effects",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "block restart clears effects",
+      "detail": null,
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 25
+}

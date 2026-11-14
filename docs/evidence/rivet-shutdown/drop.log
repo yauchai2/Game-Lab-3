@@ -1,0 +1,19 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+RIVET_DROP Hold reaches second tier facing -1 true <null>
+RIVET_DROP Fist descends from overhead facing -1 true { "raised": "(-0.062287, 2.286439, 2.730905)", "strike": "(-0.547805, 0.652647, 2.789109)" }
+RIVET_DROP Downstroke is forward facing -1 true <null>
+RIVET_DROP F2 preserves authored strike facing -1 true <null>
+RIVET_DROP Finite full skeleton facing -1 true <null>
+RIVET_DROP Held 7/8 does not snap facing -1 true <null>
+RIVET_DROP Original size and no limb inflation facing -1 true <null>
+RIVET_DROP Hold reaches second tier facing 1 true <null>
+RIVET_DROP Fist descends from overhead facing 1 true { "raised": "(0.121937, 2.189267, 3.27511)", "strike": "(0.547805, 0.652647, 3.210891)" }
+RIVET_DROP Downstroke is forward facing 1 true <null>
+RIVET_DROP F2 preserves authored strike facing 1 true <null>
+RIVET_DROP Finite full skeleton facing 1 true <null>
+RIVET_DROP Held 7/8 does not snap facing 1 true <null>
+RIVET_DROP Original size and no limb inflation facing 1 true <null>

@@ -1,0 +1,30 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+SHUTDOWN Straight source facing -1 true <null>
+SHUTDOWN Fist drives forward from chamber facing -1 true { "chamber": "(0.40506, 1.97849, 2.787344)", "fist": "(-0.943151, 1.418015, 2.821255)" }
+SHUTDOWN Forearm travels horizontally facing -1 true <null>
+SHUTDOWN F2 keeps identical punch facing -1 true <null>
+SHUTDOWN Finite skeleton facing -1 true <null>
+SHUTDOWN No geometry inflation facing -1 true <null>
+SHUTDOWN Straight source facing 1 true <null>
+SHUTDOWN Fist drives forward from chamber facing 1 true { "chamber": "(-0.40506, 1.97849, 3.212656)", "fist": "(0.943151, 1.418015, 3.178745)" }
+SHUTDOWN Forearm travels horizontally facing 1 true <null>
+SHUTDOWN F2 keeps identical punch facing 1 true <null>
+SHUTDOWN Finite skeleton facing 1 true <null>
+SHUTDOWN No geometry inflation facing 1 true <null>
+SHUTDOWN True hit emits one link true <null>
+SHUTDOWN Actual first wall emits custom blast true 1
+SHUTDOWN Real hit damages opponent true <null>
+SHUTDOWN No native skill freeze true 0
+SHUTDOWN hit pause preserves effects true <null>
+SHUTDOWN hit restart clears effects true <null>
+SHUTDOWN Whiff creates no link or wall blast true <null>
+SHUTDOWN Whiff has no damage true <null>
+SHUTDOWN whiff pause preserves effects true <null>
+SHUTDOWN whiff restart clears effects true <null>
+SHUTDOWN Block creates no link or wall blast true { "links": 0, "walls": 0 }
+SHUTDOWN block pause preserves effects true <null>
+SHUTDOWN block restart clears effects true <null>

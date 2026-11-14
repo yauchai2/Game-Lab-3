@@ -597,6 +597,7 @@ func _spawn_vfx(kind: String, at: Vector2, life: float, options: Dictionary = {}
     if sim.last_service_enabled and effect.character==1 and effect.get("move","")=="special":
         effect["rivet_drop"]=true
         effect["preload"]=sim.fighters[clampi(actor,0,1)].service.preload
+    if sim.last_service_enabled and effect.character==1 and effect.get("move","")=="overdrive":effect["rivet_shutdown"]=true
     effects.append(effect)
 
 func _tier_up_feedback() -> void:
@@ -684,7 +685,7 @@ func _handle_event(event: Dictionary) -> void:
         return
     var kind: String = event.kind
     var event_character:int=character_choices[clampi(event.get("attacker",event.get("target",0)),0,1)]
-    var reference_skill_event:bool=kind in ["swing","hit"] and sim.last_service_enabled and ((event_character==0 and event.get("move","") in ["special","overdrive"]) or (event_character==1 and event.get("move","")=="special"))
+    var reference_skill_event:bool=kind in ["swing","hit"] and sim.last_service_enabled and ((event_character==0 and event.get("move","") in ["special","overdrive"]) or (event_character==1 and event.get("move","") in ["special","overdrive"]))
     if kind in ["break_finish","ko"] and is_instance_valid(backdrop.living):backdrop.living.react()
     if sim.arcade_enabled and not reduced_effects:
         var side:int=event.get("attacker",event.get("target",0))
@@ -797,7 +798,14 @@ func _handle_event(event: Dictionary) -> void:
     elif kind=="arena_bounce":
         arena_cage.react(event)
         var point:=Vector2(event.x,event.y)
-        _spawn_vfx("ground_ring" if event.surface=="floor" else "wall",point,.24,{"color":Color("c4f7ff"),"face":-signf(event.x),"move":"heavy","owner":event.target})
+        for link:Dictionary in effects.duplicate():
+            if link.kind!="rivet_link" or link.victim!=event.target or link.victim_id!=sim.fighters[event.target].get("squad_id",-1):continue
+            if link.get("wall_done",false) or event.surface not in ["left","right"]:continue
+            if sim.fighters[link.owner].service.serial!=link.serial:continue
+            link["wall_done"]=true
+            reference_skill_event=true
+            _spawn_vfx("rivet_wall",point,.70,{"rivet_shutdown":true,"move":"overdrive","owner":link.owner,"face":-signf(event.x)})
+        if not reference_skill_event:_spawn_vfx("ground_ring" if event.surface=="floor" else "wall",point,.24,{"color":Color("c4f7ff"),"face":-signf(event.x),"move":"heavy","owner":event.target})
         backdrop.smoke.react(Vector3(event.x,clampf(event.y,0,7),FIGHT_Z))
         trauma=maxf(trauma,.25 if event.surface in ["left","right"] else .34)
         audio.play_sound("slam",.85+event.chain*.07,-7)
@@ -841,6 +849,8 @@ func _handle_event(event: Dictionary) -> void:
         var point:Vector2=ink_fx.contact_point(self,event)
         _spawn_vfx(kind,point,0.16 if kind=="hit" else .24,{"strength":strength,"color":tint,"move":move,"face":face,"attacker":event.target if kind=="parry" else attacker,"held":kind=="hit" and sim.hitstop>0})
         if kind=="hit":
+            if sim.last_service_enabled and event_character==1 and move=="overdrive":
+                _spawn_vfx("rivet_link",point,.65,{"move":move,"owner":attacker,"attacker":attacker,"victim":event.target,"victim_id":sim.fighters[event.target].get("squad_id",-1),"serial":sim.fighters[attacker].service.serial,"face":face})
             if sim.arcade_enabled and not reference_skill_event and move in ["meteor","special","overdrive"]:theatre.begin("cannon_hit" if move=="overdrive" else "impact",attacker)
             if sim.arcade_enabled and move=="meteor":_spawn_vfx("meteor_streak",point,.22,{"color":COLORS[attacker],"face":face})
             if strength>.55:
@@ -1779,7 +1789,7 @@ func _track_service_effect(effect:Dictionary) -> void:
         effect.at=Vector2(socket.x+fighter.x-visual.position.x,socket.y+fighter.y-visual.position.y)
     else:effect.at=Vector2(fighter.x,fighter.y+visual.model_scale*.55)
     effect.face=fighter.face
-    if effect.kind=="swing" and (effect.get("zip_express",false) or effect.get("zip_delivery",false) or effect.get("rivet_drop",false)):
+    if effect.kind=="swing" and (effect.get("zip_express",false) or effect.get("zip_delivery",false) or effect.get("rivet_drop",false) or effect.get("rivet_shutdown",false)):
         effect.age=maxf(0.0,float(fighter.frame-move.startup+5)/60.0)
         effect.life=float(move.active+move.recovery+5)/60.0
         return

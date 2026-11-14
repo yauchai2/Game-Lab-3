@@ -1,0 +1,484 @@
+{
+  "checks": [
+    {
+      "check": "Earlier kick and hook entries remain available",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/jab/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/jab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/jab/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/jab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/cross/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/cross/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/cross/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/cross/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/heavy/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/heavy/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/heavy/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/heavy/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/finisher/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/finisher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/finisher/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/finisher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/launcher/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/launcher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/launcher/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/launcher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/special/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/special/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/special/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/special/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/overdrive/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/overdrive/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 0/overdrive/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 0/overdrive/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Locomotion 0/KK_Backstep uses a forward-playing source",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Locomotion 0/KK_Walk uses a forward-playing source",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Locomotion 0/KK_Run uses a forward-playing source",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Dash 0/-8.0 uses step motion",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Dash 0/8.0 uses step motion",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Interruption transfers to reaction 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Air transfers to hero profile 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Landing keeps hero profile without stretch 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/jab/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/jab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/jab/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/jab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/cross/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/cross/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/cross/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/cross/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/heavy/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/heavy/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/heavy/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/heavy/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/finisher/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/finisher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/finisher/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/finisher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/launcher/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/launcher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/launcher/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/launcher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/special/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/special/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/special/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/special/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/overdrive/-1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/overdrive/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full pose owns 1/overdrive/1 without inflation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop and F2 preserve 1/overdrive/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Locomotion 1/KK_Backstep uses a forward-playing source",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Locomotion 1/KK_Walk uses a forward-playing source",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Locomotion 1/KK_Run uses a forward-playing source",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Dash 1/-8.0 uses step motion",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Dash 1/8.0 uses step motion",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Interruption transfers to reaction 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Air transfers to hero profile 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Landing keeps hero profile without stretch 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Real contact trail follows the current leg special/14",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Real contact trail follows the current leg special/30",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "ZIP special still confirms its bounded actual contacts",
+      "detail": [
+        {
+          "clip": "KK_Kick",
+          "frame": 14,
+          "tick": 14
+        },
+        {
+          "clip": "KK_Kick_Mirror",
+          "frame": 30,
+          "tick": 30
+        }
+      ],
+      "pass": true
+    },
+    {
+      "check": "ZIP special alternates only on confirmed contacts",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "ZIP special presents imported full-body kicks",
+      "detail": 1.07300865650177,
+      "pass": true
+    },
+    {
+      "check": "ZIP special miss never invents a followup leg",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Real contact trail follows the current leg overdrive/24",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Real contact trail follows the current leg overdrive/48",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Real contact trail follows the current leg overdrive/64",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "ZIP overdrive still confirms its bounded actual contacts",
+      "detail": [
+        {
+          "clip": "KK_Kick",
+          "frame": 24,
+          "tick": 24
+        },
+        {
+          "clip": "KK_Kick_Mirror",
+          "frame": 48,
+          "tick": 48
+        },
+        {
+          "clip": "KK_Kick",
+          "frame": 64,
+          "tick": 64
+        }
+      ],
+      "pass": true
+    },
+    {
+      "check": "ZIP overdrive alternates only on confirmed contacts",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "ZIP overdrive presents imported full-body kicks",
+      "detail": 1.06812031745911,
+      "pass": true
+    },
+    {
+      "check": "ZIP overdrive miss never invents a followup leg",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "RIVET shutdown uses the straight punch source",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "RIVET heavy accents use a fist socket",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "RIVET shutdown keeps its nonloop straight recovery",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "RIVET launcher sends a fist above its shoulder",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "failed": 0,
+  "passed": 90,
+  "scope": "Real rigs, explicit pose fixtures and ordinary fixed-tick skill inputs. Not a human art-quality, shoe-floor or hardware performance test."
+}
