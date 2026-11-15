@@ -54,6 +54,7 @@ var material:ShaderMaterial
 var logo:TextureRect
 var logo_shadow:TextureRect
 var score:AudioStreamPlayer
+var music_score:AudioStreamPlayer
 var subtitle_font:Font
 var saved:Dictionary={}
 var hidden:Array[Dictionary]=[]
@@ -88,6 +89,10 @@ func setup(owner_session:Node3D) -> void:
 	score=AudioStreamPlayer.new();score.name="StoryOpeningScore";score.bus="Afterhours SFX"
 	if ResourceLoader.exists("res://audio/story_opening/score.wav"):score.stream=load("res://audio/story_opening/score.wav")
 	add_child(score)
+	music_score=AudioStreamPlayer.new();music_score.name="StoryOpeningMusic";music_score.bus="Afterhours Music"
+	music_score.stream=load("res://audio/music/opening.ogg")
+	if OS.has_feature("web"):music_score.playback_type=AudioServer.PLAYBACK_TYPE_STREAM
+	add_child(music_score)
 	subtitle_font=load("res://assets/fonts/RadioChinese.tres")
 
 func _load_seen() -> void:
@@ -122,6 +127,7 @@ func begin(as_replay:=false) -> void:
 	session.hud.rebuild_menu()
 	_sync_audio()
 	if score.stream!=null:score.play()
+	music_score.play()
 	sample(0.0)
 
 func _prepare() -> void:
@@ -172,9 +178,10 @@ func handle_key(event:InputEvent) -> bool:
 func clear(let_score_ring:=false) -> void:
 	var was_running:=running
 	running=false;paused=false
+	if is_instance_valid(music_score):music_score.stop();music_score.stream_paused=false
 	if is_instance_valid(score):
 		score.stream_paused=false
-		# On a natural end the title hit and second drop ring on under the menu.
+		# On a natural end the title impact rings out under the menu.
 		if not let_score_ring:score.stop()
 	if is_instance_valid(lens):lens.hide()
 	if is_instance_valid(logo):logo.hide();logo_shadow.hide()
@@ -194,7 +201,9 @@ func _sync_audio() -> void:
 	var audio:Node=session.audio
 	score.stream_paused=paused
 	score.volume_db=-80.0 if audio.muted or audio.effects_level<=0 else -1.0+linear_to_db(maxf(.001,audio.effects_level))
-	# The baked score carries its own beat, so the menu track stays silent under it
+	music_score.stream_paused=paused
+	music_score.volume_db=-80.0 if audio.muted or audio.music_muted or audio.music_level<=0 else -3.0+linear_to_db(maxf(.001,audio.music_level))
+	# The opening music has its own timeline, so the menu track stays silent under it
 	# and fades back in once the title has hit. The transport itself never stops.
 	var silent:=authored(age)<MENU_MUSIC_AT
 	audio.cinematic_duck=10.0 if silent else (1.5 if paused else 0.0)

@@ -1,3 +1,7 @@
+## 2026-11-15 全遊戲配樂重剪
+
+配樂位於 `godot/audio/music`，含選單、工房、練習、戰鬥慢段與三首快段、Dealer、結算、故事開場和決勝 KO。原 MP3 及各段的來源時間和雜湊由 `music.json` 對應。重建用 `python3 tools/build_playlist_music.py <原 MP3>`。戰鬥用兩個播放軌交叉淡入淡出，熱度 0.66 升速、低於 0.23 回慢。一般暫停降低配樂，開場和 KO 過場則暫停並在跳過時收掉獨立 cue。
+
 ## 2026-11-15：DEADSHIFT 及空中受擊
 
 自由遊玩清單內的 DEADSHIFT / STORY WAVES 依次加入 KNUCKLE、BULK／SKID／TETHER＋SNAP、FOREMAN／STATIC。首波後抽取並裝備核心，第三波 STATIC 有地面預警。主故事城市遭遇按原角色類型使用同一套敵人模型，大型機械頭目繼續走既有場景。六名人形接入由 Mixamo MCP 取得並已隨專案提供的角色動作。資產雜湊在 `godot/assets/characters/deadshift/sources.json`。

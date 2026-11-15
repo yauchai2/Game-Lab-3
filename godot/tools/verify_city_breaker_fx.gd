@@ -33,6 +33,8 @@ func run() -> void:
     check("time mapping has no reversal and covers five seconds",monotonic and is_equal_approx(c.source_time(5),10))
     check("main airburst retains a deliberate slow accent",c.source_time(3.72)-c.source_time(3.55)<.17)
     check("real KO owns lens and synchronized score",c.active() and c.lens.visible and c.score_player.playing)
+    s._process(0.0);s.audio._process(0.0)
+    check("real KO uses the separate playlist cue",s.audio.current_track==s.audio.KO_TRACK and not s.audio.music.stream.loop and c.score_player.bus=="Afterhours SFX")
     var bus:=AudioServer.get_bus_index("Afterhours SFX")
     capture=AudioEffectCapture.new();capture.buffer_length=2.0
     var capture_index:=AudioServer.get_bus_effect_count(bus);AudioServer.add_bus_effect(bus,capture)
@@ -50,16 +52,17 @@ func run() -> void:
     s.resume_game();s._process(0.0)
     check("resume unpauses existing score without starting combat",not c.score_player.stream_paused and s.screen=="result")
     s.audio.muted=true;c.advance(0.0,false)
-    await create_timer(.06).timeout
+    await create_timer(.18).timeout
     var muted:Dictionary=await pcm(.14)
     check("global mute silences KO bus",muted.peak<.0001,muted)
     s.audio.muted=false;s.audio.effects_level=0;c.advance(0.0,false)
+    await create_timer(.18).timeout
     var zero:Dictionary=await pcm(.14)
     check("zero SFX level silences dedicated score",zero.peak<.0001,zero)
     s.audio.effects_level=.85;c.advance(0.0,false)
     check("sound setting changes preserve playback instance",c.score_player.playing and c.score_player.volume_db> -30)
     s.skip_city_breaker()
-    check("skip clears postprocessing / sound / music duck",not c.lens.visible and not c.score_player.playing and s.audio.cinematic_duck==0 and c.blur_strength==0)
+    check("skip clears postprocessing, effects and the KO cue",not c.lens.visible and not c.score_player.playing and not s.audio.music.playing and s.audio.cinematic_duck==0 and c.blur_strength==0)
     await create_timer(.08).timeout
     var skipped:Dictionary=await pcm(.12)
     check("no score tail leaks after skip",skipped.peak<.0001,skipped)

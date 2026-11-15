@@ -12,38 +12,10 @@
     16.0,
     16.12
   ],
-  "song": {
-    "file": "godot/audio/user-tracks/beat_keep_rockin.ogg",
-    "title": "Starjunk 95 - Beat Keep Rockin",
-    "bpm": 140,
-    "note": "3 s is exactly seven beats",
-    "drops_in_song": [
-      61.531,
-      140.609
-    ]
-  },
   "music": {
-    "radio_build": [
-      0.0,
-      3.0
-    ],
-    "first_drop": 3.0,
-    "sunk": [
-      6.0,
-      7.5
-    ],
-    "held_breath": [
-      7.5,
-      8.0
-    ],
-    "drop_again_on_collectors": 8.0,
-    "cut": 9.75,
-    "second_build": [
-      10.3,
-      16.1
-    ],
-    "second_drop": 16.1,
-    "menu_track_returns": 16.1
+    "file": "godot/audio/music/opening.ogg",
+    "metadata": "godot/audio/music/music.json",
+    "separate_music_bus": true
   },
   "cues": [
     [
@@ -72,7 +44,7 @@
     ],
     [
       3.0,
-      "first drop on the open case"
+      "open case"
     ],
     [
       4.1,
@@ -84,19 +56,19 @@
     ],
     [
       6.0,
-      "beat sinks under the floor"
+      "quieter street shot"
     ],
     [
       7.5,
-      "record pulled back, snare roll, riser"
+      "transition gap"
     ],
     [
       8.0,
-      "collectors appear: hit + beat back on the snare"
+      "collectors appear"
     ],
     [
       9.75,
-      "tape stop, tubes only"
+      "tubes and room tone"
     ],
     [
       10.08,
@@ -112,7 +84,7 @@
     ],
     [
       10.3,
-      "second build fades up (no dead air after the tape stop)"
+      "tension rises"
     ],
     [
       13.55,
@@ -152,14 +124,13 @@
     ],
     [
       16.1,
-      "title hit + second drop under the main menu"
+      "title hit under the menu fade"
     ]
   ],
   "sources": [
-    "Starjunk 95 - Beat Keep Rockin (owner-supplied, see references/audio/user-tracks/admitted.json)",
     "synthesis (seed 20261112)",
     "godot/audio/open Kenney CC0 impacts",
     "references/story-opening-audio BigSoundBank CC0 excerpts (provenance.json)"
   ],
-  "sha256": "c46f95d16af95b7f05c6d3b6174c77c7e9bf812c53b7537139ae410a91709932"
+  "sha256": "461b3972b02b85bd6d72f521f1b3f578d3c993a396be8bb10b82fb8eb4a96ca7"
 }

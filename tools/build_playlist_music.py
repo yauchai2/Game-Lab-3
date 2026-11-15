@@ -1,24 +1,28 @@
 #!/usr/bin/env python3
 """Cut the game's music loops from the playlist mp3 Alan supplied ("High-Energy Hip Hop Breakbeat Playlist ... Jet Set Radio").
 
-Usage: python3 tools/build_playlist_music.py "<playlist.mp3>"        (needs numpy, scipy, soundfile, ffmpeg)
-The playlist is ~80 min: the first ~40 min repeat once, so only 0-2430 s is used. Tempo/grid/section analysis (16 s windows,
-beat-grid fit at 0.01 BPM, per-bar mel similarity to find sections that repeat after N bars) produced the cut table below.
+Usage: python3 tools/build_playlist_music.py "<playlist.mp3>"        (needs numpy, scipy, ffmpeg)
+The playlist is ~80 min: the first ~40 min repeat once, so the cuts use the first pass.
 Each file = optional intro + a bar-aligned loop; Godot loops from `loop_offset` (intro length), so the intro plays only once.
 Loop seam: 12 ms equal-power blend with the audio just before the loop start. Output: godot/audio/music/*.ogg + music.json.
 """
-import sys, json, subprocess, pathlib, numpy as np, soundfile as sf
+import argparse, hashlib, json, pathlib, subprocess
+import numpy as np
 from scipy import signal
 
 SR = 44100; SEAM = .012
 OUT = pathlib.Path(__file__).resolve().parent.parent / "godot" / "audio" / "music"
-# name: (bpm, loop_start_s, loop_bars, intro_start_s or None, intro_bars, role)
+# BPM, source start, bars, intro start, intro bars, LUFS-I, low-pass Hz, role
 CUTS = {
-    "menu":    (116.00, 39.375, 16, 0.06, 4, "main menu: track 1 build-up (4 bars, plays once) then its first full groove"),
-    "fight_a": (130.01, 1989.916, 16, None, 0, "fight deck: 130 BPM track, strongest sustained section"),
-    "fight_b": (131.51, 1912.055, 16, None, 0, "fight deck: 131.5 BPM track"),
-    "fight_c": (112.99, 661.966, 16, None, 0, "fight deck: 113 BPM track, loudest stable section"),
-    "result":  (110.01, 857.013, 16, None, 0, "result screen: steadier, lower-energy 110 BPM section"),
+    "menu":      (110.01, 878.829, 16, 870.102, 4, -24, 8200, "restrained menu groove"),
+    "city":      (100.00, 2207.700, 16, None, 0, -28, 4700, "night workshop"),
+    "training":  (103.00, 1586.440, 16, None, 0, -26, 6600, "light rehearsal pulse"),
+    "fight_low": (100.00, 2316.900, 16, None, 0, -24, 7200, "room between exchanges"),
+    "fight_a":   (112.99, 780.910, 16, None, 0, -21, 11000, "active fight 1"),
+    "fight_b":   (120.00, 290.480, 16, None, 0, -21, 9500, "active fight 2"),
+    "fight_c":   (130.01, 2080.372, 16, None, 0, -20, 11000, "active fight 3"),
+    "result":    (112.99, 752.350, 8, None, 0, -29, 3300, "sparse result bed"),
+    "draw":      (107.00, 1480.540, 8, None, 0, -28, 4800, "Dealer intermission"),
 }
 
 def region(src, t0, t1):
@@ -47,28 +51,79 @@ def build_one(src, name, bpm, start, bars, istart, ibars):
         xi = region(src, max(0, istart - .05), istart + ibars * bar + .1)
         o = int(round(snap(xi, .05 if istart > .05 else .0 + .05) * SR)); intro = xi[o:o + int(round(ibars * bar * SR))].copy()
         f = int(.006 * SR); intro[-f:] *= np.linspace(1, 0, f)[:, None]
-        loop[:f] *= np.linspace(0, 1, f)[:, None] * 0 + 1
     return intro, loop, s - M
 
-def encode(path, audio):
-    wav = path.with_suffix(".tmp.wav"); sf.write(wav, audio, SR, subtype="FLOAT")
-    r = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(wav), "-af", "loudnorm=I=-17:TP=-2:LRA=9:print_format=json", "-f", "null", "-"], capture_output=True, text=True).stderr
-    m = json.loads(r[r.rindex("{"):r.rindex("}") + 1])
-    flt = (f"loudnorm=I=-17:TP=-2:LRA=9:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:"
-           f"measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true")
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(wav), "-af", flt, "-ar", str(SR), "-c:a", "libvorbis", "-q:a", "5", "-map_metadata", "-1", str(path)], check=True)
-    wav.unlink()
+def encode(path, audio, loudness, cutoff):
+    audio = signal.sosfiltfilt(signal.butter(2, cutoff, fs=SR, output="sos"), audio, axis=0)
+    pcm = audio.astype("<f4").tobytes()
+    input_args = ["-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "pipe:0"]
+    result = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", *input_args,
+                             "-af", f"loudnorm=I={loudness}:TP=-4:LRA=9:print_format=json", "-f", "null", "-"],
+                            input=pcm, capture_output=True, check=True)
+    report = result.stderr.decode()
+    measured = json.loads(report[report.rindex("{"):report.rindex("}") + 1])
+    normalize = (f"loudnorm=I={loudness}:TP=-4:LRA=9:measured_I={measured['input_i']}:"
+                 f"measured_TP={measured['input_tp']}:measured_LRA={measured['input_lra']}:"
+                 f"measured_thresh={measured['input_thresh']}:offset={measured['target_offset']}:linear=true")
+    encoders = subprocess.check_output(["ffmpeg", "-hide_banner", "-encoders"], text=True)
+    codec = ["-c:a", "libvorbis"] if " libvorbis " in encoders else ["-c:a", "vorbis", "-strict", "-2"]
+    pending = path.with_suffix(".tmp.ogg")
+    filters = f"{normalize},aresample={SR},atrim=end_sample={len(audio)}"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", *input_args, "-af", filters,
+                    "-ar", str(SR), *codec, "-q:a", "5", "-map_metadata", "-1", str(pending)],
+                   input=pcm, check=True)
+    pending.replace(path)
+
+
+def cue(src, total, edits):
+    score = np.zeros((round(total * SR), 2))
+    for at, start, length, gain, fade_in, fade_out in edits:
+        clip = region(src, start, start + length)
+        n = min(len(clip), len(score) - round(at * SR))
+        clip = clip[:n].copy()
+        front, back = min(n, round(fade_in * SR)), min(n, round(fade_out * SR))
+        if front:
+            clip[:front] *= np.linspace(0, 1, front)[:, None]
+        if back:
+            clip[-back:] *= np.linspace(1, 0, back)[:, None]
+        offset = round(at * SR)
+        score[offset:offset+n] += clip * gain
+    return score
+
 
 def main():
-    src = sys.argv[1]; OUT.mkdir(parents=True, exist_ok=True); meta = {}
-    for name, (bpm, start, bars, istart, ibars, role) in CUTS.items():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("playlist", type=pathlib.Path)
+    src = str(parser.parse_args().playlist)
+    OUT.mkdir(parents=True, exist_ok=True)
+    meta = {}
+    for name, (bpm, start, bars, istart, ibars, level, cutoff, role) in CUTS.items():
         intro, loop, snapped = build_one(src, name, bpm, start, bars, istart, ibars)
-        audio = np.concatenate([intro, loop]) if len(intro) else loop
-        encode(OUT / f"{name}.ogg", audio)
-        meta[name] = {"file": f"{name}.ogg", "bpm": bpm, "bar_seconds": round(240 / bpm, 5), "intro_seconds": round(len(intro) / SR, 5),
-                      "loop_seconds": round(len(loop) / SR, 5), "source_loop_start_s": round(start + snapped, 3), "role": role}
-        print(name, meta[name])
+        encode(OUT / f"{name}.ogg", np.concatenate([intro, loop]), level, cutoff)
+        meta[name] = {"file": f"{name}.ogg", "bpm": bpm, "bar_seconds": round(240 / bpm, 5),
+                      "intro_seconds": round(len(intro) / SR, 5), "loop_seconds": round(len(loop) / SR, 5),
+                      "source_loop_start_s": round(start + snapped, 3), "target_lufs": level, "role": role}
+    # Timed openings leave holes for the case, footsteps, impacts and reveal.
+    cues = {
+        "opening": (16.12, -26, 6300, [(0.70, 752.35, 6.6, .58, .9, .8),
+                    (8.0, 878.829, 1.95, .47, .08, .55),
+                    (10.7, 761.1, 4.5, .52, .55, .85),
+                    (15.85, 780.91, .27, .64, .04, .21)]),
+        "ko": (8.2, -25, 7600, [(0.0, 781.2, 4.45, .70, .45, .75),
+               (5.0, 753.5, 3.2, .78, .35, .9)]),
+    }
+    for name, (length, level, cutoff, edits) in cues.items():
+        encode(OUT / f"{name}.ogg", cue(src, length, edits), level, cutoff)
+        meta[name] = {"file": f"{name}.ogg", "duration": length, "target_lufs": level,
+                      "edits": [{"at_s": e[0], "source_s": e[1], "length_s": e[2]} for e in edits]}
+    digest = hashlib.sha256()
+    with open(src, "rb") as original:
+        for chunk in iter(lambda: original.read(1024 * 1024), b""):
+            digest.update(chunk)
+    meta["source"] = {"title": "High-Energy Hip Hop Breakbeat Playlist — Music Inspired by Jet Set Radio",
+                      "sha256": digest.hexdigest(), "source": "Owner-supplied MP3"}
     (OUT / "music.json").write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n")
+
 
 if __name__ == "__main__":
     main()

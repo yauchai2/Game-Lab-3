@@ -19,6 +19,11 @@ const SFX := "res://audio/sfx/"
 const MUSIC_DIR:="res://audio/music/"
 const MENU_TRACK:="res://audio/music/menu.ogg"
 const FIGHT_POOL:Array[String]=["res://audio/music/fight_a.ogg","res://audio/music/fight_b.ogg","res://audio/music/fight_c.ogg"]
+const CITY_TRACK:=MUSIC_DIR+"city.ogg"
+const TRAINING_TRACK:=MUSIC_DIR+"training.ogg"
+const QUIET_FIGHT_TRACK:=MUSIC_DIR+"fight_low.ogg"
+const DRAW_TRACK:=MUSIC_DIR+"draw.ogg"
+const KO_TRACK:=MUSIC_DIR+"ko.ogg"
 const RESULT_TRACK:="res://audio/music/result.ogg"
 const MUSIC_STATE_PATH:="user://neon_lab/music.cfg"
 var music_meta:Dictionary={}
@@ -26,6 +31,8 @@ var intro_seen:=false # the menu build-up plays only until it has been heard onc
 var fight_index:=0
 var fight_pick:String=FIGHT_POOL[0]
 var last_context:="title"
+var intensive_fight:=false
+var practice_music:=false
 var match_over:=false # set by the session when a result screen ends the whole match (not just a round)
 var ui_last:Dictionary={}
 const IMPACT_KINDS:=["hit","heavy","slam","ko","launch","release","guard_break","block","parry"]
@@ -33,9 +40,8 @@ const BIG_KINDS:=["heavy","slam","ko","release","guard_break"]
 # Pacing: "heat" rises with impacts and cools while nothing lands. A cool fight sits back (darker, quieter) and a hot one opens up.
 const HEAT_BUMP:={"block":.05,"hit":.10,"parry":.14,"launch":.2,"heavy":.22,"guard_break":.3,"slam":.34,"release":.4,"ko":.5}
 const HEAT_COOL_PER_SECOND:=.085
-const CALM_CUTOFF_HZ:=1500.0
+const CALM_CUTOFF_HZ:=3800.0
 const OPEN_CUTOFF_HZ:=20000.0
-const CALM_GAIN_DB:=-7.0 # calm sits this far under the hot level (round 3: wider swing)
 const MENU_CUTOFF_HZ:=7500.0
 const RESULT_CUTOFF_HZ:=5200.0
 const PAUSE_CUTOFF_HZ:=1400.0
@@ -111,7 +117,7 @@ func _ready() -> void:
     add_child(fading_music)
 
 func credit_for(path:String) -> String:
-    if path.begins_with(MUSIC_DIR):return "Breakbeat playlist (supplied) / "+path.get_file().get_basename().replace("_"," ")
+    if path.begins_with(MUSIC_DIR):return "Breakbeat playlist / "+str(_meta(path).get("role",path.get_file().get_basename().replace("_"," ")))
     if path==BERLIN:return "Berlin"
     if path==GROOVE:return "Starjunk 95 / Groove District"
     return "Juhani Junkala / Level 1 (CC0)"
@@ -159,7 +165,7 @@ func music_stream(path: String) -> AudioStreamOggVorbis:
     music_trim_db=0.0
     music_credit=credit_for(selected)
     var track: AudioStreamOggVorbis=source.duplicate(true)
-    track.loop=true
+    track.loop=path!=KO_TRACK
     var info:=_meta(selected)
     if not info.is_empty():track.loop_offset=float(info.get("intro_seconds",0.0))
     return track
@@ -168,21 +174,42 @@ func _process(delta: float) -> void:
     contact_budget=maxf(0.0,contact_budget-delta)
     duck_time = maxf(0.0,duck_time-delta)
     if not is_instance_valid(music): return
-    # Keep a fight track across pause/settings; switch only when entering title/play.
-    # A new match (title/result -> play) advances through the fight pool; pause/help/rounds keep the track.
-    if context=="play" and (last_context=="title" or (last_context=="result" and match_over)):
-        fight_pick=FIGHT_POOL[fight_index%FIGHT_POOL.size()];fight_index+=1;match_over=false
-    if context=="play" and last_context!="play" and last_context!="pause" and last_context!="help":heat=.2 # every new fight starts on a breather
+    # Start each bout with room to breathe. The two thresholds keep clusters
+    # of hits from switching songs back and forth near the boundary.
+    if context=="play":
+        if last_context in ["title","city"] or (last_context in ["result","ko"] and match_over):
+            fight_pick=FIGHT_POOL[fight_index%FIGHT_POOL.size()]
+            fight_index+=1
+            match_over=false
+            intensive_fight=false
+            heat=.18
+        elif last_context=="draw":
+            intensive_fight=false
+            heat=.18
+        heat=maxf(0.0,heat-HEAT_COOL_PER_SECOND*delta)
+        intensive_fight=heat>=.23 if intensive_fight else heat>=.66
     last_context=context
-    if context=="play":heat=maxf(0.0,heat-HEAT_COOL_PER_SECOND*delta)
-    var desired:String=fight_pick if context=="play" else (MENU_TRACK if context=="title" else (RESULT_TRACK if context=="result" and match_over else current_track))
+    var desired:=current_track
+    match context:
+        "title":desired=MENU_TRACK
+        "city":desired=CITY_TRACK
+        "draw":desired=DRAW_TRACK
+        "ko":desired=KO_TRACK
+        "play":
+            desired=TRAINING_TRACK if practice_music else (fight_pick if intensive_fight else QUIET_FIGHT_TRACK)
+        "result":
+            if match_over:desired=RESULT_TRACK
     if desired!=current_track:_switch_track(desired)
     # Navigation never pauses the transport. Explicit mute/zero volume silence it.
-    if not music.playing:music.play(start_position(current_track))
-    music.stream_paused=false
-    fading_music.stream_paused=false
+    if not music.playing and current_track!=KO_TRACK:music.play(start_position(current_track))
+    var cinematic_pause:bool=context in ["pause","help"]
+    music.stream_paused=cinematic_pause and current_track==KO_TRACK
+    fading_music.stream_paused=cinematic_pause and fading_track==KO_TRACK
     var calm:=1.0-smoothstep(.05,.55,heat)
-    var base_db:float=-3.0+CALM_GAIN_DB*calm if context=="play" else (-15.0 if context in ["pause","help"] else (-8.5 if context=="title" else -8.0))
+    var base_db:float={"title":-5.5,"city":-4.0,"result":-5.0,"draw":-4.5,
+        "ko":-4.0,"pause":-17.0,"help":-17.0}.get(context,-7.0)
+    if context=="play":
+        base_db=-7.0 if practice_music else lerpf(-8.5,-4.5,1.0-calm)
     var target_db:float=base_db-(duck_db if duck_time>0 else 0.0)-cinematic_duck*8.0
     if muted or music_muted or music_level<=0:target_db=-80.0
     else:target_db+=linear_to_db(maxf(.001,music_level))
@@ -195,7 +222,8 @@ func _process(delta: float) -> void:
 
 ## Calm stretches roll the highs off the music bus; heat opens them again. Menus sit in between, pause is muffled.
 func _update_music_filter(calm:float,delta:float) -> void:
-    var wanted:float=lerpf(OPEN_CUTOFF_HZ,CALM_CUTOFF_HZ,calm) if context=="play" else (PAUSE_CUTOFF_HZ if context in ["pause","help"] else (MENU_CUTOFF_HZ if context=="title" else RESULT_CUTOFF_HZ))
+    var wanted:float=lerpf(OPEN_CUTOFF_HZ,CALM_CUTOFF_HZ,calm) if context=="play" else (PAUSE_CUTOFF_HZ if context in ["pause","help"] else (MENU_CUTOFF_HZ if context in ["title","ko"] else RESULT_CUTOFF_HZ))
+    if context=="play" and practice_music:wanted=6500.0
     var rate:=(3.0 if wanted>music_cutoff_hz else 1.4)*delta # opens quickly on action, closes slowly during a lull
     music_cutoff_hz=exp(lerpf(log(music_cutoff_hz),log(wanted),clampf(rate,0.0,1.0)))
     var bus:int=AudioServer.get_bus_index("Afterhours Music")
@@ -246,6 +274,10 @@ func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
 
 func stop_all() -> void:
     for voice in voices: voice.stop()
+
+func stop_ko_music() -> void:
+    if current_track==KO_TRACK and is_instance_valid(music):music.stop()
+    if fading_track==KO_TRACK and is_instance_valid(fading_music):fading_music.stop()
 
 func _exit_tree() -> void:
     for voice in voices:

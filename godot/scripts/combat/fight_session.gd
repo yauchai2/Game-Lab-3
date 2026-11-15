@@ -357,6 +357,7 @@ func _combat_step() -> void:
             return
     if is_instance_valid(city_campaign) and city_campaign.active:city_campaign.observe()
     if is_instance_valid(city_campaign) and city_campaign.encounter_finished():
+        audio.match_over=true
         screen="result";result_clock=0;finish_menu_open=false;pending.clear()
         hud.rebuild_menu();return
     if sim.phase in ["round_over", "match_over"]:
@@ -996,7 +997,7 @@ func _release_impacts(with_audio := true) -> void:
 
 func _process(delta: float) -> void:
     if screen=="city":
-        audio.context="title"
+        audio.context="city"
         if settings_save_clock>=0:
             settings_save_clock-=delta
             if settings_save_clock<0:save_options()
@@ -1009,7 +1010,11 @@ func _process(delta: float) -> void:
     if neon_enabled:neon.advance(delta,screen in ["pause","help"],reduced_effects)
     spectacle.advance(delta,screen in ["pause","help"])
     theatre.advance(delta,screen in ["pause","help"])
-    audio.context = screen
+    audio.practice_music=practice
+    audio.context=screen
+    if screen=="result":
+        if ability_draw.active():audio.context="draw"
+        elif city_breaker.active():audio.context="ko"
     if screen != "pause" and screen != "help":
         elapsed += delta
         for effect in effects:
