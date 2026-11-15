@@ -1,7 +1,10 @@
 extends RefCounted
 ## Data-only grounded motion selection for the four heroes. Never writes simulation.
+const Delivery=preload("res://scripts/combat/last_service/zip_delivery.gd")
+const Express=preload("res://scripts/combat/last_service/zip_express.gd")
 const Transit=preload("res://scripts/combat/last_service/transit_motion.gd")
 const Counter=preload("res://scripts/combat/last_service/counter_motion.gd")
+const Shutdown=preload("res://scripts/combat/last_service/rivet_shutdown.gd")
 const Rivet=preload("res://scripts/combat/last_service/rivet_motion.gd")
 const ZIP_ATTACKS=["jab","cross","heavy","finisher","launcher","special","overdrive"]
 const RIVET_ATTACKS=["jab","cross","heavy","finisher","launcher","special","overdrive"]
@@ -37,7 +40,17 @@ static func describe(f:Dictionary,move:Dictionary,markers:Dictionary) -> Diction
         frame=segment.frame
         motion.clip="KK_Kick_Mirror" if mirrored else "KK_Kick"
         motion.launch_kick=f.move=="launcher"
-        motion.phase=attack_phase(frame,move,float(markers[motion.clip].contact),.75)
+        if Delivery.owns(f):
+            motion.loop=false
+            if f.frame<Delivery.RUN_END and f.y<=.01:
+                motion.clip="KK_Run" if Delivery.running(f) else "KK_Guard"
+                motion.phase=fposmod(Delivery.run_distance(f)/Delivery.RUN_STRIDE,1.0) if Delivery.running(f) else .25
+            else:motion.phase=Delivery.phase(f,move,float(markers[motion.clip].contact))
+            return motion
+        motion.phase=Express.phase(f,move,float(markers[motion.clip].contact)) if Express.owns(f) else attack_phase(frame,move,float(markers[motion.clip].contact),.75)
+    elif Shutdown.owns(f):
+        motion.clip="Punch_Cross"
+        motion.phase=Shutdown.phase(f,move)
     elif f.move in ["heavy","finisher","overdrive"]:
         motion.clip="UAL2_Hook"
         if f.frame>=move.startup+move.active:
@@ -71,6 +84,18 @@ static func guard_bone(label:String) -> bool:
 static func finish(m:RefCounted,f:Dictionary,motion:Dictionary,move:Dictionary) -> void:
     if motion.get("transit",false):
         Transit.finish(m,f,motion,move)
+        return
+    if Delivery.owns(f):
+        Delivery.finish(m,f,move)
+        return
+    if Express.owns(f):
+        Express.finish(m,f,move)
+        return
+    if Shutdown.owns(f):
+        Shutdown.finish(m,f,move)
+        return
+    if Rivet.owns(f):
+        Rivet.finish(m,f,move)
         return
     # Authored weight transfer rotates the complete hip chain before limb
     # corrections. The actor's root remains under simulation; ground IK then

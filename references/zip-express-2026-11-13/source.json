@@ -1,0 +1,13 @@
+{
+  "original_filename": "1｜ZIP：急件簽收.mp4",
+  "source": "User-uploaded reference, 2026-11-13",
+  "sha256": "b8f658e26602cef0ed14552e93c541704393e58a0764ff647d9cfa4246452594",
+  "duration_seconds": 4.017008,
+  "video_fps": 24,
+  "video_size": [
+    1344,
+    768
+  ],
+  "inspection": "Full-duration 12 fps contact sheet (48 samples), plus larger selected frames; not a claim of every source frame watched.",
+  "runtime_use": "Reference only. Motion is sampled from retained CC0 kick clips plus authored skeleton corrections; VFX is newly authored projected geometry. Source video and its soundtrack are not played inside the game."
+}

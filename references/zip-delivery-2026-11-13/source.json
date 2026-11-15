@@ -1,0 +1,15 @@
+{
+  "original_filename": "ed8e5218-0132-4164-a479-9cb966dc006f.mp4",
+  "user_label": "02｜ZIP：末班快送——三段極速連踢",
+  "source": "User-uploaded reference, 2026-11-13",
+  "sha256": "e41f27e2d00de89d7d652f8c21410b245ec28cf5a48b230bfc9019f435deeeda",
+  "duration_seconds": 6.583333,
+  "video_fps": 24,
+  "video_frames": 158,
+  "video_size": [
+    1344,
+    768
+  ],
+  "inspection": "Full-duration 6fps overview and 12fps contact sheet (79 samples), plus larger representative gameplay/source frames. Not a claim of every source frame viewed.",
+  "runtime_use": "Reference only; retained CC0 kick/run sources plus authored poses and projected VFX. Source clip and soundtrack are not runtime playback."
+}

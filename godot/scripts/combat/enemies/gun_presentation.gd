@@ -24,6 +24,7 @@ static func handle(session: Node, event: Dictionary) -> bool:
             session.audio.play_sound("gun_shot", 1.0, -1.0)
             session.trauma = maxf(session.trauma, .28)
         "gun_hit":
+            if sim.arcade_enabled and not session.reduced_effects:session.rhythm.trigger("impact",1-int(event.target),"gun",sim.exchange.tier())
             var shooter: int = 1 - int(event.target)
             session._spawn_vfx("hit", at, .16, {"strength": .5, "color": REFLECT if event.get("reflected", false) else HOT, "move": "jab", "face": dir, "attacker": shooter})
             session._spawn_vfx("gun_spark", at, .22, {"face": dir, "color": PAPER, "attacker": shooter})

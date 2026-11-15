@@ -1,0 +1,21 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+STRICT_WARNING res://scripts/combat/cinematic/story_opening.gd true
+STRICT_WARNING res://scripts/combat/city/campaign_visuals.gd true
+STRICT_WARNING res://scripts/combat/story/story_simulation.gd true
+STRICT_WARNING res://scripts/combat/story/body_chain.gd true
+STRICT_WARNING res://scripts/combat/story/enemy_props.gd true
+STRICT_WARNING res://scripts/combat/ink_fx/fx_recipes.gd true
+STRICT_WARNING res://scripts/combat/ink_fx/world_ink_fx.gd true
+STRICT_WARNING res://scripts/combat/impact_shapes.gd true
+STRICT_WARNING res://scripts/combat/fight_vfx.gd true
+STRICT_WARNING res://scripts/combat/fight_audio.gd true
+STRICT_WARNING res://scripts/combat/fight_hud.gd true
+STRICT_WARNING res://scripts/combat/combat_motions.gd true
+STRICT_WARNING res://scripts/combat/fighter_visual.gd true
+STRICT_WARNING res://scripts/combat/fight_session.gd true
+STRICT_WARNING res://scripts/combat/fight_simulation.gd true
+STRICT_WARNING res://scripts/combat/cinematic/round_theatre.gd true
+STRICT_WARNING res://scripts/combat/cinematic/city_breaker.gd true
+STRICT_WARNING res://scripts/combat/ability_draw/dealer_rig.gd true
+STRICT_WARNING res://scripts/combat/cinematic/ability_draw.gd true

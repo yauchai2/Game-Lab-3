@@ -1,0 +1,82 @@
+{
+  "checks": [
+    {
+      "check": "Hold reaches second tier facing -1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Fist descends from overhead facing -1",
+      "detail": {
+        "raised": "(-0.062287, 2.286439, 2.730905)",
+        "strike": "(-0.547805, 0.652647, 2.789109)"
+      },
+      "passed": true
+    },
+    {
+      "check": "Downstroke is forward facing -1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "F2 preserves authored strike facing -1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Finite full skeleton facing -1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Held 7/8 does not snap facing -1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Original size and no limb inflation facing -1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Hold reaches second tier facing 1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Fist descends from overhead facing 1",
+      "detail": {
+        "raised": "(0.121937, 2.189267, 3.27511)",
+        "strike": "(0.547805, 0.652647, 3.210891)"
+      },
+      "passed": true
+    },
+    {
+      "check": "Downstroke is forward facing 1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "F2 preserves authored strike facing 1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Finite full skeleton facing 1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Held 7/8 does not snap facing 1",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Original size and no limb inflation facing 1",
+      "detail": null,
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 14
+}

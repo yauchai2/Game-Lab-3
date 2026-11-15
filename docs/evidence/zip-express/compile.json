@@ -1,0 +1,71 @@
+{
+  "checks": [
+    {
+      "file": "godot/scripts/combat/cinematic/round_theatre.gd",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "file": "godot/scripts/combat/fight_session.gd",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "file": "godot/scripts/combat/fight_simulation.gd",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "file": "godot/scripts/combat/fight_vfx.gd",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "file": "godot/scripts/combat/ink_fx/world_ink_fx.gd",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "file": "godot/scripts/combat/last_service/profiles.gd",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "file": "godot/scripts/combat/last_service/rules.gd",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "file": "godot/scripts/combat/last_service/street_motion.gd",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "file": "godot/scripts/combat/last_service/transit_motion.gd",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "file": "godot/scripts/combat/last_service/zip_express.gd",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "file": "godot/scripts/combat/ink_fx/zip_express_fx.gd",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "file": "godot/tools/verify_zip_express.gd",
+      "passed": true,
+      "exit_code": 0
+    },
+    {
+      "file": "godot/tools/capture_zip_express.gd",
+      "passed": true,
+      "exit_code": 0
+    }
+  ],
+  "passed": 13,
+  "failed": 0
+}

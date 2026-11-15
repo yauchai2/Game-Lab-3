@@ -1,0 +1,44 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: RHYTHM FAIL: goggle fighter is only slightly shorter
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_combat_rhythm.gd:8)
+       [1] run (res://tools/verify_combat_rhythm.gd:28)
+ERROR: RHYTHM FAIL: paid skill opens a full second red cut and hold
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_combat_rhythm.gd:8)
+       [1] run (res://tools/verify_combat_rhythm.gd:31)
+ERROR: RHYTHM FAIL: hold really stops both fighters and the simulation clock
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_combat_rhythm.gd:8)
+       [1] run (res://tools/verify_combat_rhythm.gd:36)
+ERROR: RHYTHM FAIL: input received during the hold stays pending
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_combat_rhythm.gd:8)
+       [1] run (res://tools/verify_combat_rhythm.gd:37)
+ERROR: RHYTHM FAIL: live scene actually slows and accelerates
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_combat_rhythm.gd:8)
+       [1] run (res://tools/verify_combat_rhythm.gd:50)
+ERROR: RHYTHM FAIL: cinematic camera performs visible bounded rotation
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_combat_rhythm.gd:8)
+       [1] run (res://tools/verify_combat_rhythm.gd:51)
+ERROR: RHYTHM FAIL: slow-motion demo stays alive and both sides hit
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/verify_combat_rhythm.gd:8)
+       [1] run (res://tools/verify_combat_rhythm.gd:65)
+ERROR: Parameter "material" is null.
+   at: material_get_instance_shader_parameters (servers/rendering/dummy/storage/material_storage.cpp:265)
+RHYTHM_CHECKS 22/29
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)

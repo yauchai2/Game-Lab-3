@@ -1,0 +1,160 @@
+{
+  "checks": [
+    {
+      "detail": [
+        0.0,
+        -0.115,
+        -0.23,
+        -0.345,
+        -0.46,
+        -0.575,
+        -0.69,
+        -0.805,
+        -0.92,
+        -1.035,
+        -1.15,
+        -1.265,
+        -1.38,
+        -1.495,
+        -1.61,
+        -1.725,
+        -1.84,
+        -1.955,
+        -2.07,
+        -2.07,
+        -2.07
+      ],
+      "name": "Visible world-space running displacement -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Run never passes through the opponent -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Run creates no free invulnerability -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Transition brakes before first kick -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Near opponent skips in-place running -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Blocked run uses a planted guard pose -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Render-only frames cannot move feet or actor -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Run gait follows actual travelled distance -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Arena boundary remains solid -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Hitstop freezes real run displacement -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Airborne overdrive keeps existing horizontal momentum -1",
+      "passed": true
+    },
+    {
+      "detail": [
+        0.0,
+        0.115,
+        0.23,
+        0.345,
+        0.46,
+        0.575,
+        0.69,
+        0.805,
+        0.92,
+        1.035,
+        1.15,
+        1.265,
+        1.38,
+        1.495,
+        1.61,
+        1.725,
+        1.84,
+        1.955,
+        2.07,
+        2.07,
+        2.07
+      ],
+      "name": "Visible world-space running displacement 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Run never passes through the opponent 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Run creates no free invulnerability 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Transition brakes before first kick 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Near opponent skips in-place running 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Blocked run uses a planted guard pose 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Render-only frames cannot move feet or actor 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Run gait follows actual travelled distance 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Arena boundary remains solid 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Hitstop freezes real run displacement 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Airborne overdrive keeps existing horizontal momentum 1",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 22
+}

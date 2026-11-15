@@ -1,0 +1,66 @@
+{
+  "baseline": "c1b3101",
+  "comparison": [
+    {
+      "hero": "ZIP",
+      "before": {
+        "minimum_presentation_rate": 0.0,
+        "longest_unchanged_attack_pose_sample_seconds": 0.3,
+        "native_skill_stop_ticks": 26,
+        "true_contacts": 3
+      },
+      "after": {
+        "minimum_presentation_rate": 0.35,
+        "longest_unchanged_attack_pose_sample_seconds": 0.0,
+        "native_skill_stop_ticks": 0,
+        "true_contacts": 3
+      }
+    },
+    {
+      "hero": "RIVET",
+      "before": {
+        "minimum_presentation_rate": 0.0,
+        "longest_unchanged_attack_pose_sample_seconds": 0.3,
+        "native_skill_stop_ticks": 26,
+        "true_contacts": 1
+      },
+      "after": {
+        "minimum_presentation_rate": 0.35,
+        "longest_unchanged_attack_pose_sample_seconds": 0.0,
+        "native_skill_stop_ticks": 0,
+        "true_contacts": 1
+      }
+    },
+    {
+      "hero": "HUSH",
+      "before": {
+        "minimum_presentation_rate": 0.0,
+        "longest_unchanged_attack_pose_sample_seconds": 0.3,
+        "native_skill_stop_ticks": 26,
+        "true_contacts": 1
+      },
+      "after": {
+        "minimum_presentation_rate": 0.35,
+        "longest_unchanged_attack_pose_sample_seconds": 0.0,
+        "native_skill_stop_ticks": 0,
+        "true_contacts": 1
+      }
+    },
+    {
+      "hero": "LOOP",
+      "before": {
+        "minimum_presentation_rate": 0.0,
+        "longest_unchanged_attack_pose_sample_seconds": 0.3,
+        "native_skill_stop_ticks": 26,
+        "true_contacts": 1
+      },
+      "after": {
+        "minimum_presentation_rate": 0.35,
+        "longest_unchanged_attack_pose_sample_seconds": 0.0,
+        "native_skill_stop_ticks": 0,
+        "true_contacts": 1
+      }
+    }
+  ],
+  "scope": "30fps Movie Writer, same normal session inputs. Pose counter sample repetition is not GPU frame-time measurement."
+}

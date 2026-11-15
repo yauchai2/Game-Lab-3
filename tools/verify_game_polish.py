@@ -38,7 +38,7 @@ CASES = [
     ("verify_reference_ui", "ui-replica/checks.json", "native"),
     ("verify_cannon_input", "charged-cannon/input.json", "native"),
     ("verify_charged_cannon", "charged-cannon/rules.json", "headless"),
-    ("verify_combat_rhythm", "combat-rhythm/verification.json", "native"),
+    ("verify_combat_rhythm", "continuous-slow-motion/verification.json", "native"),
     ("verify_red_theatre", "rush-rework/red-theatre.json", "native"),
     ("verify_rush_arcade", "rush-rework/arcade-rules.json", "headless"),
     ("verify_friendly_input", "friendly-defense/input.json", "native"),

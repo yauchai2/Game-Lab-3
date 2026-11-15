@@ -1,0 +1,28 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+ZIP_REFERENCE Two real contacts facing -1 true
+ZIP_REFERENCE Plant and pivot separate contacts facing -1 true
+ZIP_REFERENCE Normal cost and bounded damage facing -1 true
+ZIP_REFERENCE Whiff never invents contact or second kick -1 true
+ZIP_REFERENCE Block prevents hit-confirm followup -1 true
+ZIP_REFERENCE Interruption stops confirmed followup -1 true
+ZIP_REFERENCE Second kick still checks distance -1 true
+ZIP_REFERENCE Two real contacts facing 1 true
+ZIP_REFERENCE Plant and pivot separate contacts facing 1 true
+ZIP_REFERENCE Normal cost and bounded damage facing 1 true
+ZIP_REFERENCE Whiff never invents contact or second kick 1 true
+ZIP_REFERENCE Block prevents hit-confirm followup 1 true
+ZIP_REFERENCE Interruption stops confirmed followup 1 true
+ZIP_REFERENCE Second kick still checks distance 1 true
+ZIP_REFERENCE Late first contact keeps its actual second-contact frame true
+ZIP_REFERENCE Entering during the planted turn cannot hit invisibly true
+ZIP_REFERENCE True hit uses ZIP-specific burst true
+ZIP_REFERENCE Reference skill avoids generic charge stage true
+ZIP_REFERENCE Pose rendering does not write simulation true
+ZIP_REFERENCE Pause freezes effect phases true
+ZIP_REFERENCE F2 clears decorative dust and ribbons true
+ZIP_REFERENCE Exit clears attack effects and trails true
+ZIP_REFERENCE Parrying ZIP retains the defender's PARRY presentation true

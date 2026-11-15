@@ -1,0 +1,34 @@
+{
+  "checks": [
+    {
+      "file": "godot/scripts/combat/ink_fx/world_ink_fx.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/scripts/combat/last_service/rules.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/scripts/combat/last_service/street_motion.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/scripts/combat/last_service/zip_delivery.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/tools/verify_zip_delivery.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/tools/verify_zip_run.gd",
+      "passed": true
+    },
+    {
+      "file": "godot/tools/capture_zip_run.gd",
+      "passed": true
+    }
+  ],
+  "passed": 7,
+  "failed": 0
+}

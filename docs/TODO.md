@@ -81,6 +81,37 @@
 ## 2026-11-13：繁體中文語言已加入
 
 設定最上方新增English／繁體中文，選擇保存並於重啟恢復。1034條共用catalog涵蓋選單／HUD／教學、城市六站、成長／裝備／合約／核心、六章及各結局。原生控制項與Canvas繪字統一，中文字體補齊，動態數字及百分比／角色佔位符保持；故事打字按中文長度，天賦全覽與穿戴分開譯。拉丁字體5／8／100、simulation、資料ID與存檔schema保持。264項規則／原生／英文回歸／strict／PCK檢查通過，見[evidence/traditional-chinese](evidence/traditional-chinese/README.md)。品牌、按鍵、音樂名及原圖內文字保留，沒有新增配音；來源同步main，Web未部署。
+## 2026-11-14：RIVET 停工通知影片重建
+
+正式↑＋L改成收拳轉髖直線貫出、橙光預熱／橙白雙圓盤／真hit追蹤光痕／第一次實際側牆爆光及有限裂紋。保留75能量、46傷害、38/8/52時序、reach2.9與既有反彈；普通重拳Hook及上一招落鉚不改。連續慢動作、F2／pause／清理保持，砸空／格擋無假光束炸牆。見[實作與來源差異](RIVET_SHUTDOWN_REFERENCE.zh-TW.md)及[12秒原生預覽](evidence/rivet-shutdown/rivet-shutdown.mp4)。319項及19strict通過；原模型、向上多面反彈與來源巨拳／水平貼牆不完全相同，非逐幀完美／真人Mac驗收。同分支PR #36，未合main／發Web。
+
+## 2026-11-14：RIVET 落鉚影片重建
+
+已將正式L改成雙拳兩階橙光、舉拳轉髖蹲身下砸、橙黃大弧／真命中白芯上噴爆光與地面碎屑；原GLB、50能量與23/28/33傷害、持鍵／perk／滿階反彈保持。無泛用紅幕長定格，沿用連續慢動作。見[RIVET實作、來源與限制](RIVET_DROP_REFERENCE.zh-TW.md)及[12秒遊戲預覽](evidence/rivet-drop/rivet-drop.mp4)。229項及19strict通過；歷史零腳位移測試基線6敗、本輪5敗另列，不冒稱全測試皆過。Linux非真人／Mac；同分支PR #36，未合main／發Web。
+
+## 2026-11-14：全角色技能取消長定格，改連續慢動作
+
+使用者回報技能命中像當機，現正式技能／大招／節點／空中終結與反彈不設長原生hitstop，其他普通接觸最多1tick；Rhythm與Neon統一35%重音→60%→100%，不再零速hold／突然2倍追趕。位置／招式幀只在已提交狀態間插值，群戰按ID；ZIP效果同取樣，停頓中背景／鏡頭繼續郁。傷害／成本／固定判定／BGM保留，牆鐘節奏有意改變；明確暫停／KO／舊教室等待保持。見[實作與限制](CONTINUOUS_SLOW_MOTION.zh-TW.md)／[12秒前後對照](evidence/continuous-slow-motion/comparison.mp4)。
+
+新79＋核心34＋資源46＋反彈65＋群戰35/10＋防守25＋槍擊21＋ZIP44/23＋動作90＋編譯13＝485項通過，另19個嚴格警告編譯全過；公開runner79/79。accepted log無ERROR／SCRIPT ERROR。舊Rhythm入口轉新連續動作驗證；反彈ZIP fixture補實際delivery_stage欄位而非改判定。基線c1b3101、同輸入四角必殺原生停頓26→0，錄像pose計數不再長時間停住；非GPU效能／Mac真人驗收。同分支／PR #36，未合main／發Web。
+
+## 2026-11-13：末班快送起跑改為明顯真位移
+
+依使用者回報「原地跑」，前版短衝約0.6世界單位且腳步按時間播放，現改起手0–17 tick實際前進，速度上限7.2／總距離上限2.2；距離對手1.15前煞停、守場邊，無額外無敵／自動轉向追蹤。跑姿與腳塵依實際位移，受阻時用站穩護架，不再跑步踏空；空中原水平慣性保持。75能量、三段傷害與真命中確認不改。
+
+[6秒遊戲錄像／位移證據](evidence/zip-run/README.md)：正常指令、站樁對手、起始相距3.4，第一踢前root從−1.7移到0.37，真位移2.07，不含鏡頭／模型偏移；3真命中。22新＋44必殺＋23前招＋90動作＋46規則＋34基本＋7編譯＝266項通過，accepted log無ERROR／SCRIPT ERROR。Linux llvmpipe非Mac／真人；同分支／PR #36，未合main／發Web。
+
+## 2026-11-13：ZIP 末班快送影片動作／VFX
+
+接續急件簽收，新增末班快送的有界短衝、低位連踢抽動、換腿踢、最後側踹、白灰鞋腿長殘影與白芯青綠前向爆光。三次真命中才逐段接續，前兩段不開反彈；75能量／13＋13＋15基礎傷害保持，後續延遲5／5→24／16 tick、active17→52，各段4tick接觸。動作非循環、按招式幀取樣，修正停頓仍微移的首版問題。見[實作／來源／限制](ZIP_LAST_DELIVERY_REFERENCE.zh-TW.md)及[12秒左右預覽](evidence/zip-delivery/zip-last-delivery.mp4)。
+
+新44＋急件簽收23＋既有動作90＋角色規則46＋基本戰鬥34＋編譯13＝250項通過；accepted原生log無ERROR／SCRIPT ERROR。原片6.583秒／158幀及12fps抽樣保存；影片額外微踢／閃光整合為三個真攻擊重音，不增假傷害。Mac／真人／逐幀美術驗收待使用者看；同分支codex/zip-express-reference／draft PR #36，未合main／發Web。
+
+## 2026-11-13：ZIP 急件簽收影片動作／VFX
+
+已依使用者4秒附件接正式ZIP special：兩踢之間落腳轉髖、白芯青綠尖刺、向下月牙、白色腳塵及可讀雙人鏡頭。第二踢確認延遲4→16 tick，active10→26，兩段各4 tick接觸窗；50能量／12＋10基礎傷害保持，未加必中。防守parry演出保持。見[實作／時序／限制](ZIP_EXPRESS_REFERENCE.zh-TW.md)及[8秒左右換邊預覽](evidence/zip-express/zip-express.mp4)。
+
+新23＋動作90＋角色規則46＋基本戰鬥34＋編譯13＝206項通過，accepted原生log無ERROR／SCRIPT ERROR；舊節奏suite22/29與乾淨main610411d相同七項失敗，另存對照不算通過。來源影片／SHA與12fps抽樣保留；骨架重建及遊戲節奏仍非逐幀完美，Mac／真人待驗。分支codex/zip-express-reference，未自動合main／發Web。
 
 ## 2026-11-13：使用者授權字體最新設定合入main
 

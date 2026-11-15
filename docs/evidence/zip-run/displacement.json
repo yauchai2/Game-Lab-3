@@ -1,0 +1,8 @@
+{
+  "capture_seconds": 6,
+  "start_x": -1.7,
+  "first_contact_x": 0.37,
+  "true_world_displacement": 2.07,
+  "hits": 3,
+  "scope": "Actual simulation positions from normal session input; camera motion and model offsets excluded."
+}

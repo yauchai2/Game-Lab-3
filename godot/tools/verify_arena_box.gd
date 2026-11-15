@@ -61,7 +61,7 @@ func run() -> void:
             check("ordinary %d/%s never arms multi-bounce"%[character,name],not Box.active(target))
     for character in 4:
         s=fixture();s.character_choices=[character,0];s.restart_match();s.phase="fight"
-        var a:Dictionary=s.fighters[0];a.service.flurry_left=0
+        var a:Dictionary=s.fighters[0];a.service.flurry_left=0;a.service.delivery_stage=2
         check("character %d overdrive final impact opts in"%character,s.move_for(a,"overdrive").ricochet)
     s=fixture();s.character_choices=[1,0];s.restart_match();s.fighters[0].service.preload=1
     check("partial RIVET charge remains ordinary",not s.move_for(s.fighters[0],"special").ricochet)

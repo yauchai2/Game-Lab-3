@@ -1,0 +1,562 @@
+{
+  "checks": [
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "launch / 30 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 113,
+      "name": "launch / 30 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "launch / 60 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 114,
+      "name": "launch / 60 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "launch / 120 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 113,
+      "name": "launch / 120 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.363128000685871
+      },
+      "name": "chase / 30 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 115,
+      "name": "chase / 30 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "chase / 60 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 116,
+      "name": "chase / 60 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "chase / 120 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 115,
+      "name": "chase / 120 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "parry / 30 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 112,
+      "name": "parry / 30 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "parry / 60 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 112,
+      "name": "parry / 60 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "parry / 120 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 112,
+      "name": "parry / 120 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "skill / 30 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 112,
+      "name": "skill / 30 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "skill / 60 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 112,
+      "name": "skill / 60 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "skill / 120 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 112,
+      "name": "skill / 120 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "overdrive / 30 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 109,
+      "name": "overdrive / 30 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "overdrive / 60 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 109,
+      "name": "overdrive / 60 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "overdrive / 120 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 109,
+      "name": "overdrive / 120 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "impact / 30 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 110,
+      "name": "impact / 30 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "impact / 60 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 111,
+      "name": "impact / 60 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "impact / 120 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 111,
+      "name": "impact / 120 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "break / 30 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 109,
+      "name": "break / 30 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "break / 60 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 110,
+      "name": "break / 60 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "max": 1.0,
+        "min": 0.35
+      },
+      "name": "break / 120 fps never enters a stopped phase",
+      "passed": true
+    },
+    {
+      "detail": 110,
+      "name": "break / 120 fps eases back to bounded real flow",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Committed pose interpolates monotonically 0.00",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Committed pose interpolates monotonically 0.25",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Committed pose interpolates monotonically 0.50",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Committed pose interpolates monotonically 0.75",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Committed pose interpolates monotonically 1.00",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Interpolation never edits authoritative state",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "New attack serial cannot blend backwards",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Reset discards interpolation history",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Squad interpolation tracks each persistent enemy ID",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Player and squad enemy interpolation keys cannot collide",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "damage": 12,
+          "move": "special",
+          "stop": 0,
+          "wall": 22
+        },
+        {
+          "damage": 9,
+          "move": "special",
+          "stop": 0,
+          "wall": 45
+        }
+      ],
+      "name": "Hero 0 / special still hits through normal input",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Hero 0 / special has zero native skill freeze",
+      "passed": true
+    },
+    {
+      "detail": {
+        "min_rate": 0.35,
+        "same_pose_frames": 0
+      },
+      "name": "Hero 0 / special stays visibly moving after contact",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "damage": 13,
+          "move": "overdrive",
+          "stop": 0,
+          "wall": 35
+        },
+        {
+          "damage": 11,
+          "move": "overdrive",
+          "stop": 0,
+          "wall": 66
+        },
+        {
+          "damage": 11,
+          "move": "overdrive",
+          "stop": 0,
+          "wall": 89
+        }
+      ],
+      "name": "Hero 0 / overdrive still hits through normal input",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Hero 0 / overdrive has zero native skill freeze",
+      "passed": true
+    },
+    {
+      "detail": {
+        "min_rate": 0.35,
+        "same_pose_frames": 0
+      },
+      "name": "Hero 0 / overdrive stays visibly moving after contact",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "damage": 28,
+          "move": "special",
+          "stop": 0,
+          "wall": 32
+        }
+      ],
+      "name": "Hero 1 / special still hits through normal input",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Hero 1 / special has zero native skill freeze",
+      "passed": true
+    },
+    {
+      "detail": {
+        "min_rate": 0.35,
+        "same_pose_frames": 0
+      },
+      "name": "Hero 1 / special stays visibly moving after contact",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "damage": 46,
+          "move": "overdrive",
+          "stop": 0,
+          "wall": 49
+        }
+      ],
+      "name": "Hero 1 / overdrive still hits through normal input",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Hero 1 / overdrive has zero native skill freeze",
+      "passed": true
+    },
+    {
+      "detail": {
+        "min_rate": 0.35,
+        "same_pose_frames": 0
+      },
+      "name": "Hero 1 / overdrive stays visibly moving after contact",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "damage": 19,
+          "move": "special",
+          "stop": 0,
+          "wall": 19
+        }
+      ],
+      "name": "Hero 2 / special still hits through normal input",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Hero 2 / special has zero native skill freeze",
+      "passed": true
+    },
+    {
+      "detail": {
+        "min_rate": 0.35,
+        "same_pose_frames": 0
+      },
+      "name": "Hero 2 / special stays visibly moving after contact",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "damage": 35,
+          "move": "overdrive",
+          "stop": 0,
+          "wall": 33
+        }
+      ],
+      "name": "Hero 2 / overdrive still hits through normal input",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Hero 2 / overdrive has zero native skill freeze",
+      "passed": true
+    },
+    {
+      "detail": {
+        "min_rate": 0.35,
+        "same_pose_frames": 0
+      },
+      "name": "Hero 2 / overdrive stays visibly moving after contact",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "damage": 12,
+          "move": "node_pulse",
+          "stop": 0,
+          "wall": 58
+        }
+      ],
+      "name": "Hero 3 / special still hits through normal input",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Hero 3 / special has zero native skill freeze",
+      "passed": true
+    },
+    {
+      "detail": {
+        "min_rate": 0.35,
+        "same_pose_frames": 0
+      },
+      "name": "Hero 3 / special stays visibly moving after contact",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "damage": 24,
+          "move": "overdrive",
+          "stop": 0,
+          "wall": 89
+        }
+      ],
+      "name": "Hero 3 / overdrive still hits through normal input",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Hero 3 / overdrive has zero native skill freeze",
+      "passed": true
+    },
+    {
+      "detail": {
+        "min_rate": 0.35,
+        "same_pose_frames": 0
+      },
+      "name": "Hero 3 / overdrive stays visibly moving after contact",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Explicit pause still freezes the sampled pose",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "F2 returns to ordinary realtime",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Exit clears interpolation state",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 79
+}

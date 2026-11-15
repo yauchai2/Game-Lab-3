@@ -1,0 +1,23 @@
+{
+  "baseline": "610411d",
+  "baseline_failures": [
+    "goggle fighter is only slightly shorter",
+    "paid skill opens a full second red cut and hold",
+    "hold really stops both fighters and the simulation clock",
+    "input received during the hold stays pending",
+    "live scene actually slows and accelerates",
+    "cinematic camera performs visible bounded rotation",
+    "slow-motion demo stays alive and both sides hit"
+  ],
+  "branch_failures": [
+    "goggle fighter is only slightly shorter",
+    "paid skill opens a full second red cut and hold",
+    "hold really stops both fighters and the simulation clock",
+    "input received during the hold stays pending",
+    "live scene actually slows and accelerates",
+    "cinematic camera performs visible bounded rotation",
+    "slow-motion demo stays alive and both sides hit"
+  ],
+  "same_failed_assertions": true,
+  "note": "Legacy historical roster and red-stage assumptions; both runs also have headless resource cleanup errors. Not accepted as a passing suite."
+}

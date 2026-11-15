@@ -77,10 +77,10 @@ func run() -> void:
     actor.setup(Color.WHITE,1)
     var sim:RefCounted=fresh(1);var f:Dictionary=sim.fighters[0]
     sim._start_attack(0,"overdrive");f.move_data=sim.move_for(f,"overdrive");f.frame=f.move_data.startup;stable(f)
-    check("RIVET overdrive is the imported hook",actor.motions.clip_name=="UAL2_Hook")
+    check("RIVET shutdown uses the straight punch source",actor.motions.clip_name=="Punch_Cross")
     check("RIVET heavy accents use a fist socket",preload("res://scripts/combat/ink_fx/fx_recipes.gd").limb("overdrive",1,f)=="RightHand")
     f.frame=f.move_data.startup+f.move_data.active+4;stable(f)
-    check("RIVET hook has its matching recovery source",actor.motions.clip_name=="UAL2_Hook_Rec")
+    check("RIVET shutdown keeps its nonloop straight recovery",actor.motions.clip_name=="Punch_Cross")
     sim=fresh(1);f=sim.fighters[0];sim._start_attack(0,"launcher");f.move_data=sim.move_for(f,"launcher");f.frame=f.move_data.startup;stable(f)
     check("RIVET launcher sends a fist above its shoulder",actor.fx_socket("RightHand").y>actor.fx_socket("RightArm").y+.1)
     var failed:int=checks.filter(func(c:Dictionary)->bool:return not c.pass).size()

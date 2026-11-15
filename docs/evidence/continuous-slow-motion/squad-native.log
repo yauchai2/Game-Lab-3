@@ -1,0 +1,15 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+SQUAD_NATIVE real pointer starts squad encounter true
+SQUAD_NATIVE squad keeps multiplayer view without duel intro or ability draw true
+SQUAD_NATIVE all black suit enemies have valid shared rigs and materials true
+SQUAD_NATIVE pause freezes the whole squad true
+SQUAD_NATIVE no squad action grants hero mastery true
+SQUAD_NATIVE restart recreates exactly one squad true
+SQUAD_NATIVE return to menu removes group visuals and simulation true
+SQUAD_NATIVE demo keeps original two-person simulation true
+SQUAD_NATIVE ordinary fight clears the group true
+SQUAD_NATIVE materials retire after group teardown true

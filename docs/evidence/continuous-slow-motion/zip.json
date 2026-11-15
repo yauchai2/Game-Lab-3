@@ -1,0 +1,264 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "One normal 75-energy payment",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "damage": 13,
+          "frame": 24,
+          "ricochet": false,
+          "stage": 0
+        },
+        {
+          "damage": 11,
+          "frame": 48,
+          "ricochet": false,
+          "stage": 1
+        },
+        {
+          "damage": 11,
+          "frame": 64,
+          "ricochet": true,
+          "stage": 2
+        }
+      ],
+      "name": "Three real ordered hits facing -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Two independent confirmation delays facing -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Only final heel drive opens ricochet -1",
+      "passed": true
+    },
+    {
+      "detail": 65,
+      "name": "Original bounded three-hit damage -1",
+      "passed": true
+    },
+    {
+      "detail": -1.045,
+      "name": "Approach is bounded and has no free invulnerability -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "One normal 75-energy payment",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Out-of-range run never homes or invents hits -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "One normal 75-energy payment",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Blocking prevents confirmed followups -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "One normal 75-energy payment",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Interruption cancels remaining kicks -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "One normal 75-energy payment",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Second whiff never arms the final kick -1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "One normal 75-energy payment",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "damage": 13,
+          "frame": 24,
+          "ricochet": false,
+          "stage": 0
+        },
+        {
+          "damage": 11,
+          "frame": 48,
+          "ricochet": false,
+          "stage": 1
+        },
+        {
+          "damage": 11,
+          "frame": 64,
+          "ricochet": true,
+          "stage": 2
+        }
+      ],
+      "name": "Three real ordered hits facing 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Two independent confirmation delays facing 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Only final heel drive opens ricochet 1",
+      "passed": true
+    },
+    {
+      "detail": 65,
+      "name": "Original bounded three-hit damage 1",
+      "passed": true
+    },
+    {
+      "detail": 1.045,
+      "name": "Approach is bounded and has no free invulnerability 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "One normal 75-energy payment",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Out-of-range run never homes or invents hits 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "One normal 75-energy payment",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Blocking prevents confirmed followups 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "One normal 75-energy payment",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Interruption cancels remaining kicks 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "One normal 75-energy payment",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Second whiff never arms the final kick 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Run and recovery do not contain invisible hitboxes",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Startup uses full-body running source",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Contact limb matches stage 0",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Finite stable F2/hitstop pose 0",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Contact limb matches stage 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Finite stable F2/hitstop pose 1",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Contact limb matches stage 2",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Finite stable F2/hitstop pose 2",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Rendering does not modify simulation",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Normal session routes the overdrive to dedicated VFX",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Reference choreography avoids generic red stage and cannon",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Pause freezes the run and attack effects",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Final fan comes from a genuine stage-two contact",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Interruption removes active shoe smears and windups",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "F2 clears decorative smoke and trails",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "Exit clears delivery effects",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 44
+}
