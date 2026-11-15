@@ -43,7 +43,9 @@ func run() -> void:
     for id in range(1,6):s.squad_members[id].x=7
     s.squad_members[0].x=.7;s.squad_members[0].face=-1
     var thrown:=false;s.tick({"attack":"grab"})
-    for i in 30:
+    # The synchronized shoulder throw deals damage on its authored landing frame.
+    var throw_ticks:int=30+preload("res://scripts/combat/paired_throw.gd").IMPACT_TICK
+    for i in throw_ticks:
         s.tick()
         for e in s.events:
             if e.kind=="hit" and e.get("move","")=="grab":thrown=true
