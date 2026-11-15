@@ -12,11 +12,17 @@ var materials: Array[ShaderMaterial] = []
 var team := Color("66e5db")
 var neon_enabled:=false
 var character_index := 0
+var deadshift_id:=""
 var model_scale := 2.1
 var oversized_bones: Array[int]=[]
 var fx_flash_age:=1.0
 var fx_bones:Dictionary={}
 var elapsed := 0.0
+var reaction_age:=1.0
+var reaction_duration:=0.0
+var reaction_direction:=1.0
+var reaction_pitch:=0.0
+var reaction_airborne:=false
 var death_ground_offset:=0.0
 var death_ground_cached:=false
 var death_surfaces:Array=[]
@@ -26,7 +32,10 @@ var paired_floor_cache:Dictionary={}
 var foot_contact:=preload("res://scripts/combat/last_service/foot_contact.gd").new()
 var motions := preload("res://scripts/combat/combat_motions.gd").new()
 
-func setup(color: Color, selection := 0, model_path_override:="") -> void:
+func setup(color: Color, selection := 0, model_path_override:="", height_override:=0.0) -> void:
+    var snap:=get_node_or_null("DeadshiftSnap")
+    if snap!=null:remove_child(snap);snap.queue_free()
+    deadshift_id=""
     if core_module!=null:core_module.queue_free();core_module=null
     foot_contact=preload("res://scripts/combat/last_service/foot_contact.gd").new()
     team = color
@@ -46,6 +55,7 @@ func setup(color: Color, selection := 0, model_path_override:="") -> void:
     baton_tip=null
     fx_bones.clear()
     fx_flash_age=1.0
+    clear_impact_reaction()
     materials.clear()
     oversized_bones.clear()
     paired_motion=PairedMotion.new()
@@ -55,7 +65,7 @@ func setup(color: Color, selection := 0, model_path_override:="") -> void:
     death_ground_cached=false
     death_ground_offset=0.0
     death_surfaces.clear()
-    model_scale=entry.scale
+    model_scale=height_override if height_override>0.0 else entry.scale
     model = (load(entry.path if model_path_override.is_empty() else model_path_override) as PackedScene).instantiate()
     model.scale = Vector3.ONE * model_scale
     add_child(model)
@@ -95,12 +105,52 @@ func setup(color: Color, selection := 0, model_path_override:="") -> void:
                 if arrays[Mesh.ARRAY_BONES]==null or arrays[Mesh.ARRAY_WEIGHTS]==null:continue
                 death_surfaces.append({"vertices":arrays[Mesh.ARRAY_VERTEX],"bones":arrays[Mesh.ARRAY_BONES],"weights":arrays[Mesh.ARRAY_WEIGHTS],"binds":binds})
         if character_index==3:_add_signal_baton()
-        if character_index==Roster.BLACK_SUIT_INDEX:_add_pistol()
+        if character_index==Roster.BLACK_SUIT_INDEX and model_path_override.is_empty():_add_pistol()
 
 static func _release_retired_materials() -> void:
     retired_materials.clear()
 
+func clear_impact_reaction() -> void:
+    reaction_duration=0.0
+
+func impact_reaction(kind:String,move:String,direction:float,airborne:bool,strength:float) -> void:
+    reaction_age=0.0
+    reaction_direction=direction
+    reaction_airborne=airborne
+    var weight:=clampf(strength,0.2,1.0)
+    reaction_duration=lerpf(.12,.22,weight) if airborne else .11
+    reaction_pitch=lerpf(.24,.55,weight) if airborne else lerpf(.09,.19,weight)
+    if move in ["meteor","air_counter"]:reaction_pitch=-.66
+    elif move=="launcher":reaction_pitch=.57
+    elif move=="air_kick":reaction_pitch=maxf(.42,reaction_pitch)
+    if kind in ["air_land","ground_bounce"]:
+        reaction_duration=.13
+        reaction_pitch=-.33
+    elif kind=="block":
+        reaction_duration=.085
+        reaction_pitch=.095
+    elif kind=="arena_bounce":
+        reaction_duration=.16
+        reaction_pitch=-.46
+
+func _pose_impact_limbs(f:Dictionary,weight:float) -> void:
+    var up:Vector3=motions.model_up
+    var forward:Vector3=motions.model_forward
+    var right:Vector3=up.cross(forward).normalized()
+    var away:Vector3=forward*reaction_direction*float(f.face)
+    var folding:=reaction_pitch<0.0
+    for side in ["Left","Right"]:
+        var spread:Vector3=right*(-1.0 if side=="Left" else 1.0)
+        var accent:float=weight*(1.0 if side=="Left" else .72)
+        motions._aim_limb(side+"Arm",side+"ForeArm",spread*.62-up*.30-away*(.42 if folding else .25),accent*.7)
+        motions._aim_limb(side+"ForeArm",side+"Hand",spread*.30+up*.38-away*.32,accent*.6)
+        motions._aim_limb(side+"UpLeg",side+"Leg",-up*.65+away*(.22 if folding else -.38)+spread*.16,accent*.8)
+        motions._aim_limb(side+"Leg",side+"Foot",-up*.6+away*(.64 if folding else .44),accent*.75)
+
 func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent_x := INF) -> void:
+    if deadshift_id!="":
+        f=f.duplicate()
+        f["deadshift_id"]=deadshift_id
     if PairedMotion.owns(f) and skeleton!=null:
         if not paired_motion.active_last:foot_contact.clear()
         for bone in oversized_bones:skeleton.set_bone_pose_scale(bone,Vector3.ONE)
@@ -120,13 +170,15 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         _present_core(f)
         return
     paired_motion.active_last=false
+    var snap:=get_node_or_null("DeadshiftSnap")
+    if snap!=null:snap.present(f,delta,stopped)
     for bone in oversized_bones:skeleton.set_bone_pose_scale(bone,Vector3.ONE)
     oversized_bones.clear()
     elapsed += delta
     position = Vector3(f.x, f.y, 3.0)
     # Imported +Z forward maps to gameplay +X at +90 degrees.
     rotation.y = PI * 0.5 if f.face > 0 else -PI * 0.5
-    var profile_owned:bool=preload("res://scripts/combat/last_service/street_motion.gd").owns(f) or preload("res://scripts/combat/mixamo_profiles.gd").owns(f)
+    var profile_owned:bool=preload("res://scripts/combat/last_service/street_motion.gd").owns(f) or preload("res://scripts/combat/mixamo_profiles.gd").owns(f) or deadshift_id!=""
     var shake := 0.0 if reduced or not stopped or profile_owned else 0.025
     var lunge := 0.0
     if f.state=="attack" and not profile_owned:
@@ -179,11 +231,29 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         model.position.y+=1.1*(1-cos(tumble));model.position.z-=1.1*sin(tumble)
         var squash:float=f.get("ko_squash",0.0)
         stretch*=Vector3(1.0+squash*.12,1.0-squash*.16,1.0+squash*.12)
+    var reaction_weight:=0.0
+    var ricochet_live:bool=f.get("ricochet",{}).get("ticks",0)>0
+    var can_react:bool=f.health>0 and not f.has("cinematic_clip") and not f.get("showcase",false) and not f.has("ko_spin") and f.get("ko_theatre",-1.0)<0 and rally_phase=="" and exchange_choice=="" and f.get("air_counter_phase","")!="hold"
+    if reaction_duration>0.0 and can_react and f.state in ["stun","blockstun","landing","idle"]:
+        reaction_weight=1.0-smoothstep(0.015,reaction_duration,reaction_age)
+        if not stopped:reaction_age+=delta
+        if reaction_age>=reaction_duration:clear_impact_reaction()
+        var pitch:float=reaction_pitch*reaction_direction*float(f.face)*reaction_weight*(.58 if reduced else 1.0)
+        if not ricochet_live or reduced:
+            model.rotation.x+=pitch
+            if reaction_airborne:
+                var pivot:=.95
+                model.position.y+=pivot*(1.0-cos(pitch))
+                model.position.z-=pivot*sin(pitch)
+    elif reaction_duration>0.0:
+        clear_impact_reaction()
     model.scale=Vector3.ONE*model_scale*stretch
     for mat in materials:
         mat.set_shader_parameter("flash", (1.0 if fx_flash_age<.045 else .16) if f.flash > 0 and not reduced else 0.0)
     if skeleton:
         motions.present(f,delta,stopped)
+        if reaction_weight>0.0 and reaction_airborne and f.y>.01:
+            _pose_impact_limbs(f,reaction_weight*(.65 if reduced else 1.0))
         _present_pistol(f)
         if neon_enabled and f.health>0:preload("res://scripts/combat/neon/neon_signature_motion.gd").apply(motions,f)
         if not profile_owned and f.health>0 and f.get("rush_visual",false) and f.state=="attack" and f.move!="gun":
@@ -201,7 +271,7 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         if f.health>0:
             death_ground_cached=false
             if character_index<4:foot_contact.apply(self,f,stopped)
-            if profile_owned and f.y<=.01 and f.get("ricochet",{}).get("ticks",0)<=0:
+            if (profile_owned or reaction_weight>0.0) and f.y<=.01 and not ricochet_live:
                 # The oversized stylized shoes extend below ankle IK's contact point.
                 # Correct the rendered skin floor, retaining all simulation transforms.
                 model.position.y+=maxf(0.0,.01-lowest_skin_y())

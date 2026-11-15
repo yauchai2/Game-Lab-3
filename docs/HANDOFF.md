@@ -1,3 +1,9 @@
+## 2026-11-15：DEADSHIFT 及空中受擊
+
+自由遊玩清單內的 DEADSHIFT / STORY WAVES 依次加入 KNUCKLE、BULK／SKID／TETHER＋SNAP、FOREMAN／STATIC。首波後抽取並裝備核心，第三波 STATIC 有地面預警。主故事城市遭遇按原角色類型使用同一套敵人模型，大型機械頭目繼續走既有場景。六名人形接入由 Mixamo MCP 取得並已隨專案提供的角色動作。資產雜湊在 `godot/assets/characters/deadshift/sources.json`。
+
+輕空擊後仰、空踢加強反衝、重砸向下折身，落地與格擋另有短反應。見 VALIDATION 的 Mac 實測紀錄。
+
 ## 2026-11-15：全部合適分支整合
 
 已依使用者授權整合全部合適來源：四角色31段Mixamo／配對肩摔、ZIP／RIVET影片技能與連續慢動作、屋頂細節及2男2女設定紀錄。修正通用Mixamo覆蓋四招專用owner，保留繁中與5／8／100。全部34個遠端原始碼分支（含main）均納入，gh-pages排除；21個suite最終通過，各suite有重疊。完整來源、結果與環境診斷見[整合紀錄](BRANCH_MERGE_2026-11-15.zh-TW.md)及[evidence](evidence/branch-merge-2026-11-15/README.md)。下方不合main／舊安裝限制屬歷史，現行來源使用main；公開Web不更新，Mac／真人／實體輸入仍待本機驗收。

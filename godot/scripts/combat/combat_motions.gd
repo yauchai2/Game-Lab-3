@@ -1,6 +1,7 @@
 extends RefCounted
 ## Rest-relative retargeting of the CC0 Quaternius library onto the supplied rig.
 const RivetMotion=preload("res://scripts/combat/last_service/rivet_motion.gd")
+const Deadshift=preload("res://scripts/combat/story/deadshift.gd")
 const Mixamo=preload("res://scripts/combat/mixamo_profiles.gd")
 const StreetMotion=preload("res://scripts/combat/last_service/street_motion.gd")
 static var library: Dictionary = {}
@@ -105,6 +106,8 @@ func present(f: Dictionary, delta: float, stopped: bool) -> void:
     var motion:Dictionary=StreetMotion.describe(profile_pose,move_spec,library.street_markers)
     var imported:Dictionary=Mixamo.describe(profile_pose,move_spec)
     if not imported.is_empty():motion=imported
+    var enemy_motion:Dictionary=Deadshift.motion(f,move_spec,library)
+    if not enemy_motion.is_empty():motion=enemy_motion
     var profile_owned:bool=not motion.is_empty()
     pose_owner=motion.get("owner","legacy")
     var selected := "Punch_Enter"
