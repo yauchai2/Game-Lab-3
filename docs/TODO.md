@@ -1025,3 +1025,12 @@ Godot4.7.2 Linux Compatibility／llvmpipe介面回歸37/37通過，三視窗尺�
 - [ ] 使用者 Pull 後在 Mac 驗收提示份量、按鍵手感和清場回城升級流程。
 
 詳見 [STORY_ONBOARDING.zh-TW.md](STORY_ONBOARDING.zh-TW.md)。
+
+
+## 2026-11-15：技能與構築深度提案
+
+- [x] 依目前四角、程式及六章劇本，整理新增技能、變體、配裝和製作路線。
+- [ ] 後續實作候選A：RIVET衝鉚彈／返工震線、兩戰術槽與真實投射物樣板。
+- [ ] 後續候選B–D：四角首八招、支援與構築閉環，再依試玩需求擴內容。
+
+以上未開始實作；見 [SKILL_BUILD_DEPTH_PLAN.zh-TW.md](SKILL_BUILD_DEPTH_PLAN.zh-TW.md)。

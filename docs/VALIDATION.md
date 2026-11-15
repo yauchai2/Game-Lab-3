@@ -907,3 +907,8 @@ Godot 4.6.3 Linux／llvmpipe：verify_story_flow 51/51（證據 docs/evidence/st
 ## 2026-11-15：故事開局招式與引導
 
 已完成：全部基本動作開局可用、三代舊檔自動補齊、H 故事指南與實際尋路、據點下一步、技能／裝備／天賦說明及真實費用的戰鬥提示。進階技巧及成長仍保留；詳細見 [STORY_ONBOARDING.zh-TW.md](STORY_ONBOARDING.zh-TW.md)。新 54 項、城市 86 項、戰役 50 項、原生城市 23 項、嚴格編譯 23 項及繁中 21 項通過。Linux 4.6.3／llvmpipe，不冒稱 Mac／真人驗收，Web 未更新。
+
+
+## 2026-11-15：技能深度策劃文件覆核
+
+核對現有city_profile／city_builds／city_loot、last_service/progression／profiles、story_script及角色設定，區分已存在機制與新增提案。確認新增24招為每角6、首批8為每角2，章節／技能表對應、Markdown連結和git diff格式。此次只改文件，沒有執行或宣稱新技能／平衡／真人測試；先前runtime驗證不可當作新技能已通過。
