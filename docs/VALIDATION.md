@@ -890,3 +890,6 @@ Godot 4.6.3 Linux／llvmpipe：verify_story_flow 51/51（證據 docs/evidence/st
 ## 2026-11-13：免費Mixamo取檔仍未完成（非runtime）
 
 重新核對Adobe Mixamo FAQ與過肩摔攻守名稱索引，未取得官方FBX／配對時間證據。Browser本地工具不可用；CUA雲端瀏覽器兩次均因sandbox啟動錯誤失敗，已結束該UI流程；官網無可讀目錄，沒有官方登入會話。Tuffles直接下載網路403，SFU官方禁商用，均未錄用。僅更新免費需求與候選JSON，檢查JSON／diff，不重跑runtime或宣稱完成完整摔投。
+## 屋頂設備剪影（2026-11-10）
+
+街景與遊走 headless 回歸通過；1280×720 圖片以 Godot Compatibility／llvmpipe 軟體渲染，截圖及日誌見 [rooftops](evidence/rooftops/)。未測真人操作、硬體 GPU 或 FPS。

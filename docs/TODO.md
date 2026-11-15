@@ -1000,3 +1000,4 @@ Godot4.7.2 Linux Compatibility／llvmpipe介面回歸37/37通過，三視窗尺�
 - [x] 記錄使用者只用免費資源，付費候選不採購。
 - [ ] 優先從Mixamo官方取得Shoulder Throw, Aggressor／Victim；目前只有索引線索，瀏覽器啟動失敗，未取得FBX。
 - [ ] 檢查兩段root／起點／時長／接觸／落地，再做完整攻守配對，不能當作已完成。
+- [x] 舊樓屋頂增加水箱及通風箱剪影；整體視覺和目標硬體驗收仍待處理。

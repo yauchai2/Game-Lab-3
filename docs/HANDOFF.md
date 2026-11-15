@@ -880,3 +880,6 @@ SKILLS／RADIO（故事）／DEPART 三頁與頂部資源列由文字清單改�
 ## 2026-11-13：只用免費素材，Mixamo過肩摔配對優先
 
 使用者最新要求免費資源並追問Mixamo；優先核實Shoulder Throw, Aggressor／Victim，不再按付費候選採購。詳[FULL_JUDO_THROW_RESOURCES.zh-TW.md](FULL_JUDO_THROW_RESOURCES.zh-TW.md)最新節。只有目錄名稱線索與Adobe免費商用FAQ；官方FBX／配對時序／完整翻摔仍未驗。瀏覽器啟動兩次失敗，無官方會話；沒有下載第三方鏡像、購買或runtime修改。若提供官方同角色／FPS且保留root／完整時長的兩個FBX，可先做同步量測與配對接入。SFU禁商用未採用，Tuffles未核實成對且下載403未取得。完整柔道摔投仍未完成。
+## 屋頂設備剪影（2026-11-10）
+
+遊走場景四處舊樓加入簡化水箱、底座及管線，三處加入通風箱；沿用現有 MultiMesh 分組及非碰撞裝飾，不改 S1 或原 GLB。Godot Compatibility／llvmpipe [屋頂仰視](evidence/rooftops/01_rooftops.png)及 headless 街景／遊走回歸見 `evidence/rooftops/`。此為局部細節，目標硬體、人工遊玩和整體風格仍待驗收。
