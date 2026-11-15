@@ -11,6 +11,9 @@ static func describe(f:Dictionary,move:Dictionary) -> Dictionary:
     if f.get("ricochet",{}).get("ticks",0)>0 or f.get("air_counter_phase","")=="hold":return {}
     if f.y>.01:return _air(f,move)
     if f.get("air",{}).get("phase","ground")!="ground":return {}
+    # Video-authored ZIP / RIVET skills own their staged contacts, run-up and
+    # strike trajectory. Keep imported locomotion and ordinary attacks separate.
+    if f.state=="attack" and f.character in [0,1] and f.move in ["special","overdrive"]:return {}
     var clip:=""
     var loop:=false
     var phase:=0.0

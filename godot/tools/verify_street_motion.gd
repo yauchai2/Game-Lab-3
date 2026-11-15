@@ -2,6 +2,7 @@ extends SceneTree
 const Sim=preload("res://scripts/combat/fight_simulation.gd")
 const Visual=preload("res://scripts/combat/fighter_visual.gd")
 const Motion=preload("res://scripts/combat/last_service/street_motion.gd")
+const Data=preload("res://scripts/combat/mixamo_motion_library.gd")
 var checks:Array=[]
 var actor:Node3D
 func _initialize() -> void:call_deferred("run")
@@ -31,6 +32,7 @@ func run() -> void:
                 var finite:=true
                 for bone in actor.skeleton.get_bone_count():finite=finite and actor.skeleton.get_bone_global_pose(bone).is_finite()
                 var owner:String="zip_kicks" if character==0 else "rivet_boxing"
+                if Data.available() and (action in ["jab","cross","heavy","finisher"] or (character==1 and action=="launcher" and Data.data.clips.has("MX_Uppercut"))):owner="mixamo_"+str(character)
                 check("Full pose owns %d/%s/%d without inflation"%[character,action,face],finite and actor.motions.pose_owner==owner and actor.oversized_bones.is_empty())
                 var socket:String="LeftFoot" if character==0 and action in ["cross","finisher"] else ("RightFoot" if character==0 else "RightHand")
                 var before:Vector3=actor.fx_socket(socket);present(f,true);present(f,false,true)
@@ -39,14 +41,17 @@ func run() -> void:
         for velocity in [-2.5,2.5,5.0]:
             f.vx=velocity;stable(f)
             var expected:String="KK_Backstep" if velocity<0 else ("KK_Run" if velocity>4 else "KK_Walk")
+            if Data.available():expected="MX_RunBack" if velocity<0 else ("MX_Sprint" if velocity>4.6 else "MX_Run")
             var before_time:float=actor.motions.clip_elapsed
             present(f)
             check("Locomotion %d/%s uses a forward-playing source"%[character,expected],actor.motions.clip_name==expected and actor.motions.clip_elapsed>before_time)
         for velocity in [-8.0,8.0]:
             f.state="dash";f.vx=velocity;f.frame=7;stable(f)
-            check("Dash %d/%s uses step motion"%[character,str(velocity)],actor.motions.clip_name==("KK_DodgeBack" if velocity<0 else "KK_DodgeForward"))
+            var expected:String=("MX_Dodge" if Data.available() else "KK_DodgeBack") if velocity<0 else "KK_DodgeForward"
+            check("Dash %d/%s uses step motion"%[character,str(velocity)],actor.motions.clip_name==expected)
         f.state="stun";present(f)
-        check("Interruption transfers to reaction %d"%character,actor.motions.pose_owner==("zip_reaction" if character==0 else "rivet_reaction"))
+        var reaction:String="mixamo_"+str(character) if Data.available() else ("zip_reaction" if character==0 else "rivet_reaction")
+        check("Interruption transfers to reaction %d"%character,actor.motions.pose_owner==reaction)
         f.state="idle";f.y=1;present(f)
         check("Air transfers to hero profile %d"%character,actor.motions.pose_owner==("zip_air" if character==0 else "rivet_air"))
         f.y=0;f.air.phase="land";f.air.land=4;present(f)
@@ -82,7 +87,8 @@ func run() -> void:
     f.frame=f.move_data.startup+f.move_data.active+4;stable(f)
     check("RIVET shutdown keeps its nonloop straight recovery",actor.motions.clip_name=="Punch_Cross")
     sim=fresh(1);f=sim.fighters[0];sim._start_attack(0,"launcher");f.move_data=sim.move_for(f,"launcher");f.frame=f.move_data.startup;stable(f)
-    check("RIVET launcher sends a fist above its shoulder",actor.fx_socket("RightHand").y>actor.fx_socket("RightArm").y+.1)
+    var arm:String="Left" if Data.available() and Data.data.clips.has("MX_Uppercut") else "Right"
+    check("RIVET launcher sends its striking fist above its shoulder",actor.fx_socket(arm+"Hand").y>actor.fx_socket(arm+"Arm").y+.1 and Motion.striking_limb(f)==arm+"Hand")
     var failed:int=checks.filter(func(c:Dictionary)->bool:return not c.pass).size()
     var output:String=OS.get_cmdline_user_args()[0]
     FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"failed":failed,"passed":checks.size()-failed,"scope":"Real rigs, explicit pose fixtures and ordinary fixed-tick skill inputs. Not a human art-quality, shoe-floor or hardware performance test."},"  "))

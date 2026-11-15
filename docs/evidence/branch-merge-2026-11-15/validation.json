@@ -1,0 +1,112 @@
+{
+  "date": "2026-11-15",
+  "base": "f9576c536775211f1a10dbed112c8bb7d8e7cd66",
+  "suites": [
+    {
+      "suite": "verify_rivet_drop",
+      "passed": 14,
+      "log": "verify_rivet_drop.log"
+    },
+    {
+      "suite": "verify_rivet_shutdown",
+      "passed": 25,
+      "log": "verify_rivet_shutdown.log"
+    },
+    {
+      "suite": "verify_zip_delivery",
+      "passed": 44,
+      "log": "verify_zip_delivery.log"
+    },
+    {
+      "suite": "verify_zip_express",
+      "passed": 23,
+      "log": "verify_zip_express.log"
+    },
+    {
+      "suite": "verify_zip_run",
+      "passed": 22,
+      "log": "verify_zip_run.log"
+    },
+    {
+      "suite": "verify_continuous_motion",
+      "passed": 79,
+      "log": "verify_continuous_motion.log"
+    },
+    {
+      "suite": "verify_rivet_motion",
+      "passed": 19,
+      "log": "verify_rivet_motion.log"
+    },
+    {
+      "suite": "verify_street_motion",
+      "passed": 90,
+      "log": "verify_street_motion.log"
+    },
+    {
+      "suite": "verify_transit_motion",
+      "passed": 216,
+      "log": "verify_transit_motion.log"
+    },
+    {
+      "suite": "verify_motion_completion",
+      "passed": 554,
+      "log": "verify_motion_completion.log"
+    },
+    {
+      "suite": "verify_paired_throw",
+      "passed": 147,
+      "log": "verify_paired_throw.log"
+    },
+    {
+      "suite": "verify_paired_throw_render",
+      "passed": 65,
+      "log": "verify_paired_throw_render.log"
+    },
+    {
+      "suite": "verify_mixamo_batch",
+      "passed": 179,
+      "log": "verify_mixamo_batch.log"
+    },
+    {
+      "suite": "verify_mixamo_library",
+      "passed": 14,
+      "log": "verify_mixamo_library.log"
+    },
+    {
+      "suite": "verify_gun_shot",
+      "passed": 21,
+      "log": "verify_gun_shot.log"
+    },
+    {
+      "suite": "verify_last_service_rules",
+      "passed": 46,
+      "log": "verify_last_service_rules.log"
+    },
+    {
+      "suite": "verify_traditional_chinese",
+      "passed": 21,
+      "log": "verify_traditional_chinese.log"
+    },
+    {
+      "suite": "combat",
+      "passed": 34,
+      "log": "combat-headless.log"
+    },
+    {
+      "suite": "dressing",
+      "passed": 13,
+      "log": "dressing-rerun.log"
+    },
+    {
+      "suite": "motion-strict",
+      "passed": 18,
+      "log": "motion-strict.log"
+    },
+    {
+      "suite": "godot-strict",
+      "passed": 23,
+      "log": "godot-strict.log"
+    }
+  ],
+  "note": "Suite counts overlap; do not sum as unique cases. Linux Godot 4.6.3 llvmpipe/Dummy; not user Mac or human playtesting."
+}

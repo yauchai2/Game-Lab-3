@@ -3,6 +3,7 @@ const Sim=preload("res://scripts/combat/fight_simulation.gd")
 const Visual=preload("res://scripts/combat/fighter_visual.gd")
 const Transit=preload("res://scripts/combat/last_service/transit_motion.gd")
 const Recipes=preload("res://scripts/combat/ink_fx/fx_recipes.gd")
+const Data=preload("res://scripts/combat/mixamo_motion_library.gd")
 var actor:Node3D
 var checks:Array=[]
 func _initialize() -> void:call_deferred("run")
@@ -42,6 +43,14 @@ func run() -> void:
                 var expected_limb:String="BatonTip" if hero==3 else ("LeftHand" if move=="air_jab" else "RightHand")
                 if hero==0:expected_limb="LeftHand" if move=="grab" else ("LeftFoot" if move in ["air_jab","air_finisher"] else "RightFoot")
                 if hero==2 and move=="air_kick":expected_limb="RightFoot"
+                if Data.available() and move in Transit.AIR_ATTACKS and not (hero==3 and move=="air_jab"):
+                    expected="mixamo_"+str(hero)
+                    var limbs:Array=[
+                        ["LeftFoot","LeftFoot","RightFoot","LeftFoot","LeftFoot"],
+                        ["LeftHand","RightHand","LeftHand","RightHand","LeftHand"],
+                        ["LeftHand","LeftFoot","RightForeArm","RightForeArm","RightForeArm"],
+                        ["BatonTip","BatonTip","BatonTip","BatonTip","BatonTip"]]
+                    expected_limb=limbs[hero][Transit.AIR_ATTACKS.find(move)]
                 check("Source/contact owner %d/%s/%d"%[hero,move,face],finite and actor.motions.pose_owner==expected and limb==expected_limb and actor.fx_socket(limb).is_finite(),{"clip":actor.motions.clip_name,"limb":limb})
                 var before:Array=matrices()
                 for tick in 12:present(f,true,tick%2==0)
@@ -60,7 +69,8 @@ func run() -> void:
         f.flash=2;present(f);f.flash=8;present(f)
         check("New hit restarts reaction %d"%hero,actor.motions.clip_elapsed==0)
         f.y=0;f.vy=0;f.air.phase="ground";f.state="idle";stable(f)
-        check("Return to grounded owner %d"%hero,actor.motions.pose_owner==["zip_kicks","rivet_boxing","hush_intercept","loop_baton"][hero])
+        var ground_owner:String="mixamo_"+str(hero) if Data.available() and hero in [1,2] else ["zip_kicks","rivet_boxing","hush_intercept","loop_baton"][hero]
+        check("Return to grounded owner %d"%hero,actor.motions.pose_owner==ground_owner)
         f.y=1;f.state="stun"
         for exclusion in ["showcase","cinematic_clip","rally_phase","ko_theatre","ko_spin","air_counter_phase","ricochet"]:
             var pose:Dictionary=f.duplicate(true)

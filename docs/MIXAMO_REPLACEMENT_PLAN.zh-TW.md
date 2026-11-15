@@ -100,4 +100,3 @@ P0＝首批19段；P1＝完整覆蓋第二批24項；P2＝演出或研究6項。
 - 官方法規／使用流程：上述Adobe FAQ及操作說明。
 - 名稱／描述候選：[文字metadata索引](https://github.com/Teethree89/mixamo-downloader-macos-2026/blob/main/src/mixamo_anims.json)；[名稱／描述對照](https://huggingface.co/datasets/Linzhan/Mixamo-Animations-Characters/viewer/animations/train)、[補充名稱索引](https://huggingface.co/datasets/tanish434/Mixamo-Animations-Characters/viewer/animations/train)。僅作找名線索，不用其動畫檔，不宣稱Adobe官方維護或授權已核實。
 - [機器可讀清單](../references/animation-sources/mixamo-replacement-shortlist.json)保存motion id、描述及查核限制。UI標題／別名可能不同，以使用者官方頁預覽與實際FBX為準。
-

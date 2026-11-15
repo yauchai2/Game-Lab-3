@@ -1,3 +1,7 @@
+## 2026-11-15：全部合適分支整合
+
+已依使用者授權整合全部合適來源：四角色31段Mixamo／配對肩摔、ZIP／RIVET影片技能與連續慢動作、屋頂細節及2男2女設定紀錄。修正通用Mixamo覆蓋四招專用owner，保留繁中與5／8／100。全部34個遠端原始碼分支（含main）均納入，gh-pages排除；21個suite最終通過，各suite有重疊。完整來源、結果與環境診斷見[整合紀錄](BRANCH_MERGE_2026-11-15.zh-TW.md)及[evidence](evidence/branch-merge-2026-11-15/README.md)。下方不合main／舊安裝限制屬歷史，現行來源使用main；公開Web不更新，Mac／真人／實體輸入仍待本機驗收。
+
 ## 2026-11-14：依最新明確授權將game-ready動作隨GitHub提供
 
 使用者明示「授權允許，把它放進GitHub，繼續把全部做完」，覆蓋先前私有曲線安裝流程。兩份衍生JSON隨assets／PCK提供，原始FBX保留，來源條款notice明示Mixamo非CC0；loader預設讀資產，環境override僅開發用途。GetUp去padding後以64tick共同恢復取代28tick，depth漸回戰鬥平面；不改第60tick落地傷害。現有招式全覆核，23來源clip全啟用，適用CC0全身動作仍保留而非假稱49Mixamo下載。舊RIVET固定下盤不再疊轉髖，新舊模式原／新版19項均通過；詳MOTION_COMPLETION.zh-TW.md。

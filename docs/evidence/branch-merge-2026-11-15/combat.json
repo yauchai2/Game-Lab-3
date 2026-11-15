@@ -1,0 +1,144 @@
+{
+  "checks": [
+    {
+      "name": "ready transitions into fight after 72 ticks",
+      "passed": true
+    },
+    {
+      "name": "jab startup cannot deal early damage",
+      "passed": true
+    },
+    {
+      "name": "jab deals damage on its active frame",
+      "passed": true
+    },
+    {
+      "name": "hitstop freezes displacement attack and round clocks",
+      "passed": true
+    },
+    {
+      "name": "input can be buffered during hitstop",
+      "passed": true
+    },
+    {
+      "name": "confirmed light cancels into second chain attack",
+      "passed": true
+    },
+    {
+      "name": "second chain hit connects and applies combo scaling",
+      "passed": true
+    },
+    {
+      "name": "full confirmed three-hit chain reaches finisher",
+      "passed": true
+    },
+    {
+      "name": "dash invulnerability avoids an active strike",
+      "passed": true
+    },
+    {
+      "name": "simultaneous active hits trade fairly",
+      "passed": true
+    },
+    {
+      "name": "one swing cannot hit multiple times",
+      "passed": true
+    },
+    {
+      "name": "out of range attacks whiff",
+      "passed": true
+    },
+    {
+      "name": "attack does not hit behind the fighter",
+      "passed": true
+    },
+    {
+      "name": "guard prevents health damage and spends guard",
+      "passed": true
+    },
+    {
+      "name": "guard break causes a punishable stun",
+      "passed": true
+    },
+    {
+      "name": "special rejects insufficient energy",
+      "passed": true
+    },
+    {
+      "name": "special spends exactly 50 energy",
+      "passed": true
+    },
+    {
+      "name": "launcher creates airborne hitstun",
+      "passed": true
+    },
+    {
+      "name": "heavy has a longer hitstop than jab",
+      "passed": true
+    },
+    {
+      "name": "jump leaves ground",
+      "passed": true
+    },
+    {
+      "name": "gravity returns fighter to ground",
+      "passed": true
+    },
+    {
+      "name": "dash grants startup invulnerability and cooldown",
+      "passed": true
+    },
+    {
+      "name": "arena boundary contains fighter",
+      "passed": true
+    },
+    {
+      "name": "KO finishes round and awards point",
+      "passed": true
+    },
+    {
+      "name": "next round resets fighters and retains wins",
+      "passed": true
+    },
+    {
+      "name": "second round victory completes best of three",
+      "passed": true
+    },
+    {
+      "name": "rematch clears scores and round",
+      "passed": true
+    },
+    {
+      "name": "tied timeout awards no point",
+      "passed": true
+    },
+    {
+      "name": "height separation prevents a ground hit",
+      "passed": true
+    },
+    {
+      "name": "AI engages and damages player",
+      "passed": true
+    },
+    {
+      "name": "pause clears pending input and preserves phase",
+      "passed": true
+    },
+    {
+      "name": "paused session cannot advance gameplay",
+      "passed": true
+    },
+    {
+      "name": "resume returns to play",
+      "passed": true
+    },
+    {
+      "name": "reduced effects and mute are configurable",
+      "passed": true
+    }
+  ],
+  "engine": "4.6.3-stable (official)",
+  "evidence": "headless gameplay and scene checks; not human playtesting or hardware GPU validation",
+  "failed": 0,
+  "passed": 34
+}

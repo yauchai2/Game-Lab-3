@@ -1,0 +1,247 @@
+[
+  {
+    "branch": "claude/black-suit-raw-glb",
+    "sha": "af340fb8565eaa4c9ce6cc6aa6069410f6a3b699",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/opening-fidelity",
+    "sha": "35b73917e6556c44fadbcc8a3110c07aaac9920f",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/opening-fidelity-2",
+    "sha": "4e599d120dbfe81e71c6d625b48cc578251c8f9c",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/opening-music-flow",
+    "sha": "fff9fe2661cceb87dcd1194aea7fa9651364a361",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-826461",
+    "sha": "d3a6b48928d10ef99aa3e72b1c34c5c347a65408",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-a9wwri",
+    "sha": "3e1bee63a8d3d2b2828ce9842cbd2d7a798966a5",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-d0hir7",
+    "sha": "b37a0e42250e93b2edbe2c0356d0685180957a9e",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-etild5",
+    "sha": "6d834bdb25573797fb8e5a6175d542e4aed4ceb6",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-frl810",
+    "sha": "4abfbba9cc51b4e3a1e2c031fcd2c83f44965fb7",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-ggypi3",
+    "sha": "f0b4b47de3c1971226e0c0fea0ed79081059e34a",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-gjffky",
+    "sha": "38f8766b70a4301a4fe9da30c61246610067cb05",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-gw0yhr",
+    "sha": "8fad9e09b0045a6062793db17b57806427ea33eb",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-hv07k1",
+    "sha": "f460230686f1f20816e89642b95bd30729fe5144",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-jeg1hf",
+    "sha": "49346b50cacfbf5e12085334e1aebb963c0bb5a8",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-ojl8fc",
+    "sha": "094e86f07fe90a69c537136be9c217974c90cebd",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-oo92do",
+    "sha": "ba8a8864f8cdba2b368e612301f1f222db9d9cf6",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-pib75q",
+    "sha": "14c07e5926d819e7a415666839b5b084edffc0a3",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-xap8u7",
+    "sha": "edde605c7d4b0eba50ddbc809e2b070708396af5",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/project-thread-xmgtx2",
+    "sha": "e89ce76f4207fce16c76dd319745c0fd176e56d4",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "claude/watch-opening-main",
+    "sha": "d3ce367a8ff456b972c1b0a42912280fdb87d34b",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "codex/chinese-pixel-preset",
+    "sha": "67b8e3a7dcac2b905f3d326a16417e64ed50bbfc",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "codex/combat-vfx-quality-plan",
+    "sha": "f82bd9f8c5e3c63ab9380fe9531b32a4798af90b",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "codex/fix-opening-polygons",
+    "sha": "9e891b1c5ef2a0253723733572f88168636a7c98",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "codex/flight-street-handoff",
+    "sha": "7e0b245bb1eb12a82e47fa452d25f4065d505f7d",
+    "already_in_main": false,
+    "included": true,
+    "reason": "merged in this task"
+  },
+  {
+    "branch": "codex/four-fighter-motion-plan",
+    "sha": "6ad88f80ccc325b7a17deb709bbdd3f8f69baa79",
+    "already_in_main": false,
+    "included": true,
+    "reason": "merged in this task"
+  },
+  {
+    "branch": "codex/last-service-character-record",
+    "sha": "0871bde86f98d2a936793a2d397da190f7c2af60",
+    "already_in_main": false,
+    "included": true,
+    "reason": "merged in this task"
+  },
+  {
+    "branch": "codex/last-service-roster-revision",
+    "sha": "87c2c4fd3070006ab4927047bb4bd650cde1f864",
+    "already_in_main": false,
+    "included": true,
+    "reason": "merged in this task"
+  },
+  {
+    "branch": "codex/nightshift-hub",
+    "sha": "49184aaf543b6c4ea74ae1b31969dc3941454560",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "codex/pixel-text-audit",
+    "sha": "f9576c536775211f1a10dbed112c8bb7d8e7cd66",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "codex/story-waves-m1",
+    "sha": "f4f07425b1b61c156b83f10b1f55a2590a7cf8b7",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "codex/street-combat",
+    "sha": "e4329e9cf34295c60f68506297da96b50bac7ef9",
+    "already_in_main": false,
+    "included": true,
+    "reason": "merged in this task"
+  },
+  {
+    "branch": "codex/traditional-chinese",
+    "sha": "c1ea021a60ac8a501391b50aeda3fd738b59d027",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  },
+  {
+    "branch": "codex/zip-express-reference",
+    "sha": "879846b225d5e14865301d6262eaa03abf345497",
+    "already_in_main": false,
+    "included": true,
+    "reason": "merged in this task"
+  },
+  {
+    "branch": "gh-pages",
+    "sha": "aca71ca6ee479744d577bd3a1af6434cae1f5959",
+    "already_in_main": false,
+    "included": false,
+    "reason": "deployment branch; excluded"
+  },
+  {
+    "branch": "main",
+    "sha": "f9576c536775211f1a10dbed112c8bb7d8e7cd66",
+    "already_in_main": true,
+    "included": true,
+    "reason": "already integrated"
+  }
+]

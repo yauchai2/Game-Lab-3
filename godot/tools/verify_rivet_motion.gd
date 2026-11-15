@@ -39,7 +39,9 @@ func run() -> void:
             if tick>5:excursion=maxf(excursion,distance(anchor,feet()))
             for bone in actor.skeleton.get_bone_count():finite=finite and actor.skeleton.get_bone_global_pose(bone).is_finite()
         check(action+(" has grounded authored weight transfer without simulation writes" if bundled else " retains a planted stance and finite bones"),finite and unchanged and (grounded if bundled else excursion<.002),excursion)
-        check(action+" has no legacy sword/kick or active limb inflation",actor.motions.clip_name in (["MX_Jab","MX_Cross","MX_BodyPunch","MX_Hook"] if bundled else ["Punch_Jab","Punch_Cross","UAL2_Hook","UAL2_Hook_Rec"]) and actor.oversized_bones.is_empty() and actor.model.scale.is_equal_approx(Vector3.ONE*actor.model_scale))
+        var valid_clip:bool=actor.motions.clip_name in (["MX_Jab","MX_Cross","MX_BodyPunch","MX_Hook"] if bundled else ["Punch_Jab","Punch_Cross","UAL2_Hook","UAL2_Hook_Rec"])
+        if action=="special":valid_clip=actor.motions.clip_name=="Punch_Cross" and actor.motions.pose_owner=="rivet_boxing"
+        check(action+" has no legacy sword/kick or active limb inflation",valid_clip and actor.oversized_bones.is_empty() and actor.model.scale.is_equal_approx(Vector3.ONE*actor.model_scale))
     sim=fresh();sim.tick({"attack":"special","skill_held":true})
     var f:Dictionary=sim.fighters[0];var held:Array=[];var charge_reach:=0.0;var release_reach:=-INF
     for tick in 36:
