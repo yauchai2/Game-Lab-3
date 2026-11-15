@@ -1,5 +1,9 @@
 # LAST SERVICE：四角色圖片與來源
 
+## 修訂前圖片：尚未依新設定重畫
+
+最新陣容為ZIP／HUSH女性、RIVET／LOOP男性，詳見 [2男2女造型修訂](../../docs/LAST_SERVICE_ROSTER_REVISION.zh-TW.md)。本輪使用者要求暫不生圖；以下「最新」是本圖像歸檔批次內的版本，不代表已完成最新造型修訂，LOOP原圖也未重畫。原檔及雜湊保留。
+
 2026-11-10。完整人設、技能提案、遊戲現況界線與建模待辦見 [角色設計紀錄](../../docs/LAST_SERVICE_CHARACTERS.zh-TW.md)。[manifest.json](manifest.json) 保存每件檔案的原名、狀態、尺寸及 SHA-256。
 
 ## 最新人物三視圖

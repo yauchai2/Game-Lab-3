@@ -141,6 +141,9 @@
 最新：[大招長動作／近鏡旋轉](docs/NEON_SIGNATURE.zh-TW.md)／[藝術風格與全部可取得參考素材總庫](references/style-library/README.md)／[RPG與技能解鎖提案（未實作）](docs/RPG_PROGRESSION_PLAN.zh-TW.md)。
 
 **本分支已接入Neon Facets M1可玩風格切片。** [功能／試玩方式](docs/NEON_FACETS_RUNTIME.zh-TW.md)／[30秒自由AI影片及畫面](docs/evidence/neon-facets/README.md)／[完整計劃](docs/NEON_FACETS_PLAN.zh-TW.md)。M2–M6待續；穩定分支及公開Web不變。
+最新角色修訂：[2男2女陣容與造型計劃](docs/LAST_SERVICE_ROSTER_REVISION.zh-TW.md)：ZIP／HUSH女性，RIVET／LOOP男性。暫不生圖；既有圖與模型尚未更新。
+
+角色設計紀錄：[LAST SERVICE 四角色人設／技能提案](docs/LAST_SERVICE_CHARACTERS.zh-TW.md)／[人物及裝備三視圖](references/last-service-2026-11-10/README.md)。本輪僅歸檔設計，尚未生成新 GLB 或替換遊戲角色。
 
 最新：[新封面／Logo與全套Ink UI](docs/INK_UI.zh-TW.md)／[各頁實機](docs/evidence/ink-ui/README.md)／[拆件素材](godot/assets/ui/ink/README.md)。
 

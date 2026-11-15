@@ -484,6 +484,11 @@ Godot4.7.2 Linux Compatibility／llvmpipe介面回歸37/37通過，三視窗尺�
 本worktree屬 `codex/neon-street-lab`，由885f1c1另開，主線及公開Web不變。使用者要求整個遊戲轉新附TR3B參考風格並詳細規劃；六片80.200s以2fps抽樣、10張contact sheets已檢視。具體方案在 [NEON_FACETS_PLAN.zh-TW.md](NEON_FACETS_PLAN.zh-TW.md)：常態切面材質／色塊人物，格擋／蓄力／重擊才短剪影；含地圖、4人、FX、鏡頭、三時鐘、音訊、背景director及M1–M6驗收。
 
 **本輪只建立規劃分支與來源研究，godot runtime檔案未變；不是已完成風格版試玩。** 下一包是M1代表切片（雙樓／道路／2人＋parry/charge/release＋30s A/B），實作時保留F2／4.7.2材質退休機制與原始GLB。
+## 2026-11-10：2男2女陣容與造型修訂（僅計劃）
+
+使用者回饋原三位女角缺乏女性味，其後指定2男2女、LOOP改男。最新為ZIP女22、HUSH女24、RIVET男26、LOOP男23；詳見 [修訂計劃](LAST_SERVICE_ROSTER_REVISION.zh-TW.md)。ZIP俏皮靈巧、HUSH冷艷精準，LOOP精瘦古怪電子技師；覆蓋先前LOOP女性化建議。此輪不生圖，已存圖片／表情與GLB均未更新，下一步待生圖指示後先定頭部再做比例／三視圖／表情。
+
+## 2026-11-10：LAST SERVICE 四角色設計與圖片歸檔
 
 
 ## 2026-11-10：新封面、Logo及全套Ink UI

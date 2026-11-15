@@ -893,3 +893,8 @@ Godot 4.6.3 Linux／llvmpipe：verify_story_flow 51/51（證據 docs/evidence/st
 ## 屋頂設備剪影（2026-11-10）
 
 街景與遊走 headless 回歸通過；1280×720 圖片以 Godot Compatibility／llvmpipe 軟體渲染，截圖及日誌見 [rooftops](evidence/rooftops/)。未測真人操作、硬體 GPU 或 FPS。
+歸檔14張PNG與6段MP4，PNG可解碼，逐件原始位元組複製及SHA-256核對；manifest與Markdown連結檢查結果見 references/last-service-2026-11-10/validation.json。僅圖片／文件／來源保存，未跑遊戲回歸、生成3D或驗證目標硬體。三視圖存在需人工校正的幾何／左右／配件差異，不宣稱工程精度。原遊戲模型及runtime未改，公開Web未更新。
+
+## 2026-11-10：陣容與造型計劃文件
+
+本輪檢查最新陣容、LOOP男性稱謂、Markdown修訂連結、diff whitespace與僅文件變更。更新8份Markdown，不新增圖片，不更動manifest／PNG／影片／GLB或runtime。新頭部、比例、三視圖、表情、UV與遊戲畫面均未驗證；後續條件見 [修訂計劃](LAST_SERVICE_ROSTER_REVISION.zh-TW.md)。
