@@ -1,0 +1,33 @@
+{
+  "checked_on": "2026-11-13",
+  "package": "@playwright/mcp",
+  "package_version": "0.0.85",
+  "scope": "This cloud execution workspace; not the user Mac/Chrome",
+  "registered_codex_cli_server": "playwright-mixamo",
+  "registered_command_initialize": true,
+  "server_info": {
+    "name": "Playwright",
+    "version": "1.66.0-alpha-2026-11-09"
+  },
+  "protocol": "2024-11-05",
+  "tool_count": 25,
+  "mcp_browser_checks": {
+    "navigate_approved_github_page": true,
+    "click_skip_to_content_link": true,
+    "result_url": "https://github.com/microsoft/playwright-mcp#start-of-content",
+    "mixamo_navigation": false,
+    "mixamo_error": "net::ERR_TUNNEL_CONNECTION_FAILED",
+    "independent_http_probe": "Tunnel connection failed: 403 Forbidden",
+    "local_http_test": "403 via proxy",
+    "data_url_test": "ERR_BLOCKED_BY_ADMINISTRATOR; no bypass attempted"
+  },
+  "adobe_authenticated": false,
+  "local_browser_extension_connected": false,
+  "animation_downloaded": false,
+  "judo_game_integrated": false,
+  "portable_helper_checks": [
+    "bash -n PASS",
+    "--print PASS (no registration or directory creation)"
+  ],
+  "limits": "GitHub page loaded but some assets generated console errors under the cloud network policy. Browser tests used actual tools/call through the official MCP JSON-RPC server. Registration does not hot-load tools into the hosting chat or modify a user computer. No runtime game tests run."
+}

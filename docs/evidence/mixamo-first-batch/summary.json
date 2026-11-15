@@ -1,0 +1,88 @@
+{
+  "baseline_commit": "08e3e518ff4716a75bede103796f3dcfd7aa17cf",
+  "native_new": 119,
+  "library_rejection_new": 13,
+  "new_passed": 132,
+  "regressions_passed": 835,
+  "regressions": [
+    {
+      "suite": "verify_street_motion",
+      "passed": 90,
+      "total": 90,
+      "motion_library": "fallback"
+    },
+    {
+      "suite": "verify_counter_motion",
+      "passed": 122,
+      "total": 122,
+      "motion_library": "fallback"
+    },
+    {
+      "suite": "verify_transit_motion",
+      "passed": 216,
+      "total": 216,
+      "motion_library": "fallback"
+    },
+    {
+      "suite": "verify_paired_throw",
+      "passed": 147,
+      "total": 147,
+      "motion_library": "installed"
+    },
+    {
+      "suite": "verify_paired_throw_render",
+      "passed": 33,
+      "total": 33,
+      "motion_library": "installed"
+    },
+    {
+      "suite": "verify_fighter_style",
+      "passed": 51,
+      "total": 51,
+      "motion_library": "installed"
+    },
+    {
+      "suite": "grounded-death",
+      "passed": 104,
+      "total": 104,
+      "motion_library": "installed"
+    },
+    {
+      "suite": "ink-fx",
+      "passed": 26,
+      "total": 26,
+      "motion_library": "installed"
+    },
+    {
+      "suite": "last-service",
+      "passed": 46,
+      "total": 46,
+      "motion_library": "installed"
+    }
+  ],
+  "existing_failure": {
+    "suite": "verify_rivet_motion",
+    "passed": 13,
+    "failed": 6,
+    "identical_on_baseline": true,
+    "detail": "Five old fixed-foot assertions and one frame-7/8 charge assertion fail with exactly the same metrics on baseline08e3e51. Not caused or waived by this batch; root cause remains open."
+  },
+  "strict_scripts": 18,
+  "source_files": 22,
+  "derived_clips": 23,
+  "activated_clips": 20,
+  "ground_attack_slots": 15,
+  "builder_repeat_sha256": "5b1097e5d05042f4368083ff83b0c2fa714e6f96ee98ece28c34dd0380dd8b1e",
+  "reordered_input_identical": true,
+  "media": {
+    "seconds": 12,
+    "frames": 360,
+    "fps": 30,
+    "width": 1280,
+    "height": 720,
+    "aac_peak_dbfs": -4.159724,
+    "recording_seconds": 88,
+    "review": "entire12s sampled2fps plus four hero contact sheets",
+    "scope": "MovieWriter Linux llvmpipe / Dummy, not human / Mac / hearing / real-time performance"
+  }
+}

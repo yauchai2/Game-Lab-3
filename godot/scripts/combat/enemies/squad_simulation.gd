@@ -112,6 +112,7 @@ func _resolve_hit(side:int,allow_exchange:=true) -> void:
             fighters[0].invuln=maxi(fighters[0].invuln,[36,30,24][squad_level])
 
 func _choose_focus(player:Dictionary) -> void:
+    if paired_throw.active():return
     if squad_members.is_empty():return
     var current:Dictionary=squad_members[squad_focus]
     if current.health>0:

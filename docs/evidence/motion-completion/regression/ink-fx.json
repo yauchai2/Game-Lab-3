@@ -1,0 +1,140 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "five characters and both facings have finite bounded bone sockets",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "idle never emits movement smoke",
+      "passed": true
+    },
+    {
+      "detail": 4,
+      "name": "actual grounded movement emits pooled foot dust",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "render-only frames cannot invent new footsteps",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "jump fixture actually left the ground",
+      "passed": true
+    },
+    {
+      "detail": {
+        "after": 10,
+        "before": 10,
+        "height": 1.79833333333333
+      },
+      "name": "airborne movement has no repeated ground dust",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "true hit produces a contact accent",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "hitstop cannot restart contact flash",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "contact remains within victim body region",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "whiff has no contact flash or impact puff",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "formal aerial landing event emits world-space smoke",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "launcher keeps a finite directional accent",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "pause freezes all world cels",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "F2 clears smoke ribbons and camera accent",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "decorative pool is capped with reserved space",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "important smoke survives decorative saturation",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "canvas decoration cannot evict parry",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "all authored move cels triangulate in both directions",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "four hero normal effects have distinct shape language",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "simultaneous contacts share one audio accent budget",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "new contact layers contain PCM",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "menu transition drains all effects",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "squad tracks each visual independently",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "squad remains within fixed pools",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "fight after squad has no stale member tracks",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "material retirement drained",
+      "passed": true
+    }
+  ],
+  "engine": "4.6.3-stable (official)",
+  "scope": "Native Linux Compatibility llvmpipe, fixed input and explicit pressure fixtures; not target hardware performance or a human playtest."
+}

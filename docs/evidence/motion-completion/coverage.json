@@ -1,0 +1,3536 @@
+{
+  "checks": [
+    {
+      "name": "default libraries are inside tracked game assets",
+      "ok": true
+    },
+    {
+      "name": "all 23 supplied motion derivatives available",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/false/special",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/false/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/false/special",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/-1/true/special",
+      "ok": true
+    },
+    {
+      "name": "floor 0/-1/true/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/-1/true/special",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/-1/idle",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/-1/dash",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/-1/stun",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/-1/blockstun",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/-1/jump_squat",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/-1/landing",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/-1/chase",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/false/special",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/false/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/false/special",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 0/1/true/special",
+      "ok": true
+    },
+    {
+      "name": "floor 0/1/true/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 0/1/true/special",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/1/idle",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/1/dash",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/1/stun",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/1/blockstun",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/1/jump_squat",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/1/landing",
+      "ok": true
+    },
+    {
+      "name": "state owner 0/1/chase",
+      "ok": true
+    },
+    {
+      "name": "authored KO settles 0",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/false/special",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/false/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/false/special",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/-1/true/special",
+      "ok": true
+    },
+    {
+      "name": "floor 1/-1/true/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/-1/true/special",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/-1/idle",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/-1/dash",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/-1/stun",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/-1/blockstun",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/-1/jump_squat",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/-1/landing",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/-1/chase",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/false/special",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/false/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/false/special",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 1/1/true/special",
+      "ok": true
+    },
+    {
+      "name": "floor 1/1/true/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 1/1/true/special",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/1/idle",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/1/dash",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/1/stun",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/1/blockstun",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/1/jump_squat",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/1/landing",
+      "ok": true
+    },
+    {
+      "name": "state owner 1/1/chase",
+      "ok": true
+    },
+    {
+      "name": "authored KO settles 1",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/false/special",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/false/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/false/special",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/-1/true/special",
+      "ok": true
+    },
+    {
+      "name": "floor 2/-1/true/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/-1/true/special",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/-1/idle",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/-1/dash",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/-1/stun",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/-1/blockstun",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/-1/jump_squat",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/-1/landing",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/-1/chase",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/false/special",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/false/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/false/special",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 2/1/true/special",
+      "ok": true
+    },
+    {
+      "name": "floor 2/1/true/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 2/1/true/special",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/1/idle",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/1/dash",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/1/stun",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/1/blockstun",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/1/jump_squat",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/1/landing",
+      "ok": true
+    },
+    {
+      "name": "state owner 2/1/chase",
+      "ok": true
+    },
+    {
+      "name": "authored KO settles 2",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/false/node_pulse",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/false/node_pulse",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/false/node_pulse",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/false/special",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/false/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/false/special",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/node_pulse",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/node_pulse",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/node_pulse",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/-1/true/special",
+      "ok": true
+    },
+    {
+      "name": "floor 3/-1/true/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/-1/true/special",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/-1/idle",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/-1/dash",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/-1/stun",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/-1/blockstun",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/-1/jump_squat",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/-1/landing",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/-1/chase",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/false/node_pulse",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/false/node_pulse",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/false/node_pulse",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/false/grab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/false/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/false/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/false/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/false/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/false/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/false/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/false/special",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/false/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/false/special",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/node_pulse",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/node_pulse",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/node_pulse",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/air_counter",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/air_jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/air_kick",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/air_finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/meteor",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/jab",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/cross",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/finisher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/heavy",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/launcher",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/overdrive",
+      "ok": true
+    },
+    {
+      "name": "finite exclusive owner and no simulation writes 3/1/true/special",
+      "ok": true
+    },
+    {
+      "name": "floor 3/1/true/special",
+      "ok": true
+    },
+    {
+      "name": "F2 and hitstop 3/1/true/special",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/1/idle",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/1/dash",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/1/stun",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/1/blockstun",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/1/jump_squat",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/1/landing",
+      "ok": true
+    },
+    {
+      "name": "state owner 3/1/chase",
+      "ok": true
+    },
+    {
+      "name": "authored KO settles 3",
+      "ok": true
+    }
+  ],
+  "coverage": [
+    {
+      "airborne": false,
+      "clip": "KK_Punch_Mirror",
+      "face": -1,
+      "hero": 0,
+      "move": "grab",
+      "owner": "zip_throw"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Roundhouse",
+      "face": -1,
+      "hero": 0,
+      "move": "jab",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Roundhouse_Mirror",
+      "face": -1,
+      "hero": 0,
+      "move": "cross",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Hurricane_Mirror",
+      "face": -1,
+      "hero": 0,
+      "move": "finisher",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Hurricane",
+      "face": -1,
+      "hero": 0,
+      "move": "heavy",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_Kick",
+      "face": -1,
+      "hero": 0,
+      "move": "launcher",
+      "owner": "zip_kicks"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Hurricane",
+      "face": -1,
+      "hero": 0,
+      "move": "overdrive",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Roundhouse",
+      "face": -1,
+      "hero": 0,
+      "move": "special",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_AirKick",
+      "face": -1,
+      "hero": 0,
+      "move": "air_counter",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Roundhouse",
+      "face": -1,
+      "hero": 0,
+      "move": "air_jab",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_AirKick",
+      "face": -1,
+      "hero": 0,
+      "move": "air_kick",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Hurricane",
+      "face": -1,
+      "hero": 0,
+      "move": "air_finisher",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_AirKick",
+      "face": -1,
+      "hero": 0,
+      "move": "meteor",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick",
+      "face": -1,
+      "hero": 0,
+      "move": "jab",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick_Mirror",
+      "face": -1,
+      "hero": 0,
+      "move": "cross",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick_Mirror",
+      "face": -1,
+      "hero": 0,
+      "move": "finisher",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick",
+      "face": -1,
+      "hero": 0,
+      "move": "heavy",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick",
+      "face": -1,
+      "hero": 0,
+      "move": "launcher",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick",
+      "face": -1,
+      "hero": 0,
+      "move": "overdrive",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick",
+      "face": -1,
+      "hero": 0,
+      "move": "special",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_Punch_Mirror",
+      "face": 1,
+      "hero": 0,
+      "move": "grab",
+      "owner": "zip_throw"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Roundhouse",
+      "face": 1,
+      "hero": 0,
+      "move": "jab",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Roundhouse_Mirror",
+      "face": 1,
+      "hero": 0,
+      "move": "cross",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Hurricane_Mirror",
+      "face": 1,
+      "hero": 0,
+      "move": "finisher",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Hurricane",
+      "face": 1,
+      "hero": 0,
+      "move": "heavy",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_Kick",
+      "face": 1,
+      "hero": 0,
+      "move": "launcher",
+      "owner": "zip_kicks"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Hurricane",
+      "face": 1,
+      "hero": 0,
+      "move": "overdrive",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Roundhouse",
+      "face": 1,
+      "hero": 0,
+      "move": "special",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_AirKick",
+      "face": 1,
+      "hero": 0,
+      "move": "air_counter",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Roundhouse",
+      "face": 1,
+      "hero": 0,
+      "move": "air_jab",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_AirKick",
+      "face": 1,
+      "hero": 0,
+      "move": "air_kick",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Hurricane",
+      "face": 1,
+      "hero": 0,
+      "move": "air_finisher",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_AirKick",
+      "face": 1,
+      "hero": 0,
+      "move": "meteor",
+      "owner": "mixamo_0"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick",
+      "face": 1,
+      "hero": 0,
+      "move": "jab",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick_Mirror",
+      "face": 1,
+      "hero": 0,
+      "move": "cross",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick_Mirror",
+      "face": 1,
+      "hero": 0,
+      "move": "finisher",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick",
+      "face": 1,
+      "hero": 0,
+      "move": "heavy",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick",
+      "face": 1,
+      "hero": 0,
+      "move": "launcher",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick",
+      "face": 1,
+      "hero": 0,
+      "move": "overdrive",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Kick",
+      "face": 1,
+      "hero": 0,
+      "move": "special",
+      "owner": "zip_air"
+    },
+    {
+      "airborne": false,
+      "clip": "UAL2_Hook",
+      "face": -1,
+      "hero": 1,
+      "move": "grab",
+      "owner": "rivet_throw"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Jab",
+      "face": -1,
+      "hero": 1,
+      "move": "jab",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Cross",
+      "face": -1,
+      "hero": 1,
+      "move": "cross",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Hook",
+      "face": -1,
+      "hero": 1,
+      "move": "finisher",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_BodyPunch",
+      "face": -1,
+      "hero": 1,
+      "move": "heavy",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": false,
+      "clip": "Punch_Cross",
+      "face": -1,
+      "hero": 1,
+      "move": "launcher",
+      "owner": "rivet_boxing"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Hook",
+      "face": -1,
+      "hero": 1,
+      "move": "overdrive",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Cross",
+      "face": -1,
+      "hero": 1,
+      "move": "special",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Hook",
+      "face": -1,
+      "hero": 1,
+      "move": "air_counter",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Jab",
+      "face": -1,
+      "hero": 1,
+      "move": "air_jab",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Cross",
+      "face": -1,
+      "hero": 1,
+      "move": "air_kick",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Hook",
+      "face": -1,
+      "hero": 1,
+      "move": "air_finisher",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_BodyPunch",
+      "face": -1,
+      "hero": 1,
+      "move": "meteor",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": true,
+      "clip": "Punch_Jab",
+      "face": -1,
+      "hero": 1,
+      "move": "jab",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": true,
+      "clip": "Punch_Cross",
+      "face": -1,
+      "hero": 1,
+      "move": "cross",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": true,
+      "clip": "UAL2_Hook",
+      "face": -1,
+      "hero": 1,
+      "move": "finisher",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": true,
+      "clip": "UAL2_Hook",
+      "face": -1,
+      "hero": 1,
+      "move": "heavy",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": true,
+      "clip": "Punch_Cross",
+      "face": -1,
+      "hero": 1,
+      "move": "launcher",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": true,
+      "clip": "UAL2_Hook",
+      "face": -1,
+      "hero": 1,
+      "move": "overdrive",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": true,
+      "clip": "Punch_Cross",
+      "face": -1,
+      "hero": 1,
+      "move": "special",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": false,
+      "clip": "UAL2_Hook",
+      "face": 1,
+      "hero": 1,
+      "move": "grab",
+      "owner": "rivet_throw"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Jab",
+      "face": 1,
+      "hero": 1,
+      "move": "jab",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Cross",
+      "face": 1,
+      "hero": 1,
+      "move": "cross",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Hook",
+      "face": 1,
+      "hero": 1,
+      "move": "finisher",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_BodyPunch",
+      "face": 1,
+      "hero": 1,
+      "move": "heavy",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": false,
+      "clip": "Punch_Cross",
+      "face": 1,
+      "hero": 1,
+      "move": "launcher",
+      "owner": "rivet_boxing"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Hook",
+      "face": 1,
+      "hero": 1,
+      "move": "overdrive",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Cross",
+      "face": 1,
+      "hero": 1,
+      "move": "special",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Hook",
+      "face": 1,
+      "hero": 1,
+      "move": "air_counter",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Jab",
+      "face": 1,
+      "hero": 1,
+      "move": "air_jab",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Cross",
+      "face": 1,
+      "hero": 1,
+      "move": "air_kick",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Hook",
+      "face": 1,
+      "hero": 1,
+      "move": "air_finisher",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_BodyPunch",
+      "face": 1,
+      "hero": 1,
+      "move": "meteor",
+      "owner": "mixamo_1"
+    },
+    {
+      "airborne": true,
+      "clip": "Punch_Jab",
+      "face": 1,
+      "hero": 1,
+      "move": "jab",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": true,
+      "clip": "Punch_Cross",
+      "face": 1,
+      "hero": 1,
+      "move": "cross",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": true,
+      "clip": "UAL2_Hook",
+      "face": 1,
+      "hero": 1,
+      "move": "finisher",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": true,
+      "clip": "UAL2_Hook",
+      "face": 1,
+      "hero": 1,
+      "move": "heavy",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": true,
+      "clip": "Punch_Cross",
+      "face": 1,
+      "hero": 1,
+      "move": "launcher",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": true,
+      "clip": "UAL2_Hook",
+      "face": 1,
+      "hero": 1,
+      "move": "overdrive",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": true,
+      "clip": "Punch_Cross",
+      "face": 1,
+      "hero": 1,
+      "move": "special",
+      "owner": "rivet_air"
+    },
+    {
+      "airborne": false,
+      "clip": "Punch_Cross",
+      "face": -1,
+      "hero": 2,
+      "move": "grab",
+      "owner": "hush_throw"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_HushJab",
+      "face": -1,
+      "hero": 2,
+      "move": "jab",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_HushElbow",
+      "face": -1,
+      "hero": 2,
+      "move": "cross",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Elbow",
+      "face": -1,
+      "hero": 2,
+      "move": "finisher",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Elbow",
+      "face": -1,
+      "hero": 2,
+      "move": "heavy",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_Punch",
+      "face": -1,
+      "hero": 2,
+      "move": "launcher",
+      "owner": "hush_intercept"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_HushElbow",
+      "face": -1,
+      "hero": 2,
+      "move": "overdrive",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Elbow",
+      "face": -1,
+      "hero": 2,
+      "move": "special",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_HushElbow",
+      "face": -1,
+      "hero": 2,
+      "move": "air_counter",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_HushJab",
+      "face": -1,
+      "hero": 2,
+      "move": "air_jab",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_AirKick",
+      "face": -1,
+      "hero": 2,
+      "move": "air_kick",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Elbow",
+      "face": -1,
+      "hero": 2,
+      "move": "air_finisher",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Elbow",
+      "face": -1,
+      "hero": 2,
+      "move": "meteor",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch_Mirror",
+      "face": -1,
+      "hero": 2,
+      "move": "jab",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch",
+      "face": -1,
+      "hero": 2,
+      "move": "cross",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch",
+      "face": -1,
+      "hero": 2,
+      "move": "finisher",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch",
+      "face": -1,
+      "hero": 2,
+      "move": "heavy",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch",
+      "face": -1,
+      "hero": 2,
+      "move": "launcher",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch",
+      "face": -1,
+      "hero": 2,
+      "move": "overdrive",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch",
+      "face": -1,
+      "hero": 2,
+      "move": "special",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": false,
+      "clip": "Punch_Cross",
+      "face": 1,
+      "hero": 2,
+      "move": "grab",
+      "owner": "hush_throw"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_HushJab",
+      "face": 1,
+      "hero": 2,
+      "move": "jab",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_HushElbow",
+      "face": 1,
+      "hero": 2,
+      "move": "cross",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Elbow",
+      "face": 1,
+      "hero": 2,
+      "move": "finisher",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Elbow",
+      "face": 1,
+      "hero": 2,
+      "move": "heavy",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_Punch",
+      "face": 1,
+      "hero": 2,
+      "move": "launcher",
+      "owner": "hush_intercept"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_HushElbow",
+      "face": 1,
+      "hero": 2,
+      "move": "overdrive",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_Elbow",
+      "face": 1,
+      "hero": 2,
+      "move": "special",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_HushElbow",
+      "face": 1,
+      "hero": 2,
+      "move": "air_counter",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_HushJab",
+      "face": 1,
+      "hero": 2,
+      "move": "air_jab",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_AirKick",
+      "face": 1,
+      "hero": 2,
+      "move": "air_kick",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Elbow",
+      "face": 1,
+      "hero": 2,
+      "move": "air_finisher",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_Elbow",
+      "face": 1,
+      "hero": 2,
+      "move": "meteor",
+      "owner": "mixamo_2"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch_Mirror",
+      "face": 1,
+      "hero": 2,
+      "move": "jab",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch",
+      "face": 1,
+      "hero": 2,
+      "move": "cross",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch",
+      "face": 1,
+      "hero": 2,
+      "move": "finisher",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch",
+      "face": 1,
+      "hero": 2,
+      "move": "heavy",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch",
+      "face": 1,
+      "hero": 2,
+      "move": "launcher",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch",
+      "face": 1,
+      "hero": 2,
+      "move": "overdrive",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_Punch",
+      "face": 1,
+      "hero": 2,
+      "move": "special",
+      "owner": "hush_air"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_StickDown",
+      "face": -1,
+      "hero": 3,
+      "move": "node_pulse",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_StickSweep",
+      "face": -1,
+      "hero": 3,
+      "move": "grab",
+      "owner": "loop_throw"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_StickStab",
+      "face": -1,
+      "hero": 3,
+      "move": "jab",
+      "owner": "loop_baton"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_StickBack",
+      "face": -1,
+      "hero": 3,
+      "move": "cross",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_StickDown",
+      "face": -1,
+      "hero": 3,
+      "move": "finisher",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_StickHorizontal",
+      "face": -1,
+      "hero": 3,
+      "move": "heavy",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_StickDiagonal",
+      "face": -1,
+      "hero": 3,
+      "move": "launcher",
+      "owner": "loop_baton"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_StickHorizontal",
+      "face": -1,
+      "hero": 3,
+      "move": "overdrive",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_StickStab",
+      "face": -1,
+      "hero": 3,
+      "move": "special",
+      "owner": "loop_baton"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickChop",
+      "face": -1,
+      "hero": 3,
+      "move": "node_pulse",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_StickDown",
+      "face": -1,
+      "hero": 3,
+      "move": "air_counter",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickStab",
+      "face": -1,
+      "hero": 3,
+      "move": "air_jab",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_StickHorizontal",
+      "face": -1,
+      "hero": 3,
+      "move": "air_kick",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_StickBack",
+      "face": -1,
+      "hero": 3,
+      "move": "air_finisher",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_StickDown",
+      "face": -1,
+      "hero": 3,
+      "move": "meteor",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickStab",
+      "face": -1,
+      "hero": 3,
+      "move": "jab",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickSweep",
+      "face": -1,
+      "hero": 3,
+      "move": "cross",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickChop",
+      "face": -1,
+      "hero": 3,
+      "move": "finisher",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickChop",
+      "face": -1,
+      "hero": 3,
+      "move": "heavy",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickDiagonal",
+      "face": -1,
+      "hero": 3,
+      "move": "launcher",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickSweep",
+      "face": -1,
+      "hero": 3,
+      "move": "overdrive",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickStab",
+      "face": -1,
+      "hero": 3,
+      "move": "special",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_StickDown",
+      "face": 1,
+      "hero": 3,
+      "move": "node_pulse",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_StickSweep",
+      "face": 1,
+      "hero": 3,
+      "move": "grab",
+      "owner": "loop_throw"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_StickStab",
+      "face": 1,
+      "hero": 3,
+      "move": "jab",
+      "owner": "loop_baton"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_StickBack",
+      "face": 1,
+      "hero": 3,
+      "move": "cross",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_StickDown",
+      "face": 1,
+      "hero": 3,
+      "move": "finisher",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_StickHorizontal",
+      "face": 1,
+      "hero": 3,
+      "move": "heavy",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_StickDiagonal",
+      "face": 1,
+      "hero": 3,
+      "move": "launcher",
+      "owner": "loop_baton"
+    },
+    {
+      "airborne": false,
+      "clip": "MX_StickHorizontal",
+      "face": 1,
+      "hero": 3,
+      "move": "overdrive",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": false,
+      "clip": "KK_StickStab",
+      "face": 1,
+      "hero": 3,
+      "move": "special",
+      "owner": "loop_baton"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickChop",
+      "face": 1,
+      "hero": 3,
+      "move": "node_pulse",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_StickDown",
+      "face": 1,
+      "hero": 3,
+      "move": "air_counter",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickStab",
+      "face": 1,
+      "hero": 3,
+      "move": "air_jab",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_StickHorizontal",
+      "face": 1,
+      "hero": 3,
+      "move": "air_kick",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_StickBack",
+      "face": 1,
+      "hero": 3,
+      "move": "air_finisher",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": true,
+      "clip": "MX_StickDown",
+      "face": 1,
+      "hero": 3,
+      "move": "meteor",
+      "owner": "mixamo_3"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickStab",
+      "face": 1,
+      "hero": 3,
+      "move": "jab",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickSweep",
+      "face": 1,
+      "hero": 3,
+      "move": "cross",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickChop",
+      "face": 1,
+      "hero": 3,
+      "move": "finisher",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickChop",
+      "face": 1,
+      "hero": 3,
+      "move": "heavy",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickDiagonal",
+      "face": 1,
+      "hero": 3,
+      "move": "launcher",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickSweep",
+      "face": 1,
+      "hero": 3,
+      "move": "overdrive",
+      "owner": "loop_air"
+    },
+    {
+      "airborne": true,
+      "clip": "KK_StickStab",
+      "face": 1,
+      "hero": 3,
+      "move": "special",
+      "owner": "loop_air"
+    }
+  ],
+  "passed": 554,
+  "total": 554
+}

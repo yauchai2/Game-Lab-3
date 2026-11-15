@@ -49,7 +49,7 @@ func run() -> void:
     await click(s.hud.art_buttons.enemy_black_suit)
     s.hud.roster_preview.update_preview(true,4,.2,false);await frames()
     check("enemy button selects P2 with preview",s.hud.art.roster_side==1 and s.character_choices[1]==4 and s.hud.roster_preview.models[4].character_index==4)
-    check("keyboard navigation reaches enemy button",s.hud.art_buttons.street_run.focus_neighbor_bottom==s.hud.art_buttons.enemy_black_suit.get_path() and s.hud.art_buttons.enemy_black_suit.focus_neighbor_left==s.hud.art_buttons.card_3.get_path())
+    check("keyboard navigation reaches enemy button",s.hud.art_buttons.skills.focus_neighbor_bottom==s.hud.art_buttons.enemy_black_suit.get_path() and s.hud.art_buttons.enemy_black_suit.focus_neighbor_left==s.hud.art_buttons.card_3.get_path())
     await shot("enemy-selection")
     for viewport_size in [Vector2i(960,540),Vector2i(1280,720),Vector2i(1600,900)]:
         root.size=viewport_size;await frames()

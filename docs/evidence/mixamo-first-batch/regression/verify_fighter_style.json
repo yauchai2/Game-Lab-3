@@ -1,0 +1,222 @@
+{
+  "checks": [
+    {
+      "name": "Bounded finite geometry hero 0",
+      "passed": true
+    },
+    {
+      "name": "Non-silent bounded PCM hero 0",
+      "passed": true
+    },
+    {
+      "name": "Deterministic PCM hero 0",
+      "passed": true
+    },
+    {
+      "name": "Two bodies within HUD margins hero 0 owner 0",
+      "passed": true
+    },
+    {
+      "name": "Two bodies within HUD margins hero 0 owner 1",
+      "passed": true
+    },
+    {
+      "name": "Eighteen spread/air signature bounds hero 0",
+      "passed": true
+    },
+    {
+      "name": "Pause freezes director hero 0",
+      "passed": true
+    },
+    {
+      "name": "F2 exits signature camera hero 0",
+      "passed": true
+    },
+    {
+      "name": "Intentional mute respected hero 0",
+      "passed": true
+    },
+    {
+      "name": "Zero effects level respected hero 0",
+      "passed": true
+    },
+    {
+      "name": "One accent per contact budget hero 0",
+      "passed": true
+    },
+    {
+      "name": "Presentation leaves simulation untouched hero 0",
+      "passed": true
+    },
+    {
+      "name": "Bounded finite geometry hero 1",
+      "passed": true
+    },
+    {
+      "name": "Non-silent bounded PCM hero 1",
+      "passed": true
+    },
+    {
+      "name": "Deterministic PCM hero 1",
+      "passed": true
+    },
+    {
+      "name": "Two bodies within HUD margins hero 1 owner 0",
+      "passed": true
+    },
+    {
+      "name": "Two bodies within HUD margins hero 1 owner 1",
+      "passed": true
+    },
+    {
+      "name": "Eighteen spread/air signature bounds hero 1",
+      "passed": true
+    },
+    {
+      "name": "Pause freezes director hero 1",
+      "passed": true
+    },
+    {
+      "name": "F2 exits signature camera hero 1",
+      "passed": true
+    },
+    {
+      "name": "Intentional mute respected hero 1",
+      "passed": true
+    },
+    {
+      "name": "Zero effects level respected hero 1",
+      "passed": true
+    },
+    {
+      "name": "One accent per contact budget hero 1",
+      "passed": true
+    },
+    {
+      "name": "Presentation leaves simulation untouched hero 1",
+      "passed": true
+    },
+    {
+      "name": "Bounded finite geometry hero 2",
+      "passed": true
+    },
+    {
+      "name": "Non-silent bounded PCM hero 2",
+      "passed": true
+    },
+    {
+      "name": "Deterministic PCM hero 2",
+      "passed": true
+    },
+    {
+      "name": "Two bodies within HUD margins hero 2 owner 0",
+      "passed": true
+    },
+    {
+      "name": "Two bodies within HUD margins hero 2 owner 1",
+      "passed": true
+    },
+    {
+      "name": "Eighteen spread/air signature bounds hero 2",
+      "passed": true
+    },
+    {
+      "name": "Pause freezes director hero 2",
+      "passed": true
+    },
+    {
+      "name": "F2 exits signature camera hero 2",
+      "passed": true
+    },
+    {
+      "name": "Intentional mute respected hero 2",
+      "passed": true
+    },
+    {
+      "name": "Zero effects level respected hero 2",
+      "passed": true
+    },
+    {
+      "name": "One accent per contact budget hero 2",
+      "passed": true
+    },
+    {
+      "name": "Presentation leaves simulation untouched hero 2",
+      "passed": true
+    },
+    {
+      "name": "Bounded finite geometry hero 3",
+      "passed": true
+    },
+    {
+      "name": "Non-silent bounded PCM hero 3",
+      "passed": true
+    },
+    {
+      "name": "Deterministic PCM hero 3",
+      "passed": true
+    },
+    {
+      "name": "Two bodies within HUD margins hero 3 owner 0",
+      "passed": true
+    },
+    {
+      "name": "Two bodies within HUD margins hero 3 owner 1",
+      "passed": true
+    },
+    {
+      "name": "Eighteen spread/air signature bounds hero 3",
+      "passed": true
+    },
+    {
+      "name": "Pause freezes director hero 3",
+      "passed": true
+    },
+    {
+      "name": "F2 exits signature camera hero 3",
+      "passed": true
+    },
+    {
+      "name": "Intentional mute respected hero 3",
+      "passed": true
+    },
+    {
+      "name": "Zero effects level respected hero 3",
+      "passed": true
+    },
+    {
+      "name": "One accent per contact budget hero 3",
+      "passed": true
+    },
+    {
+      "name": "Presentation leaves simulation untouched hero 3",
+      "passed": true
+    },
+    {
+      "name": "Four distinct silhouettes",
+      "passed": true
+    },
+    {
+      "name": "Four distinct PCM families",
+      "passed": true
+    },
+    {
+      "name": "Four distinct signature positions",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 51,
+  "pcm_sha256": [
+    "1557019faa657517ee9ad6d8c51d55392dcfd3ea9a4ac416cc4dfad6bfad032a",
+    "8e5efb2b2c62ae17767e5a5e71d594f59e7f9151c5e1e71b7099d0267aacf643",
+    "7681843b5936cc1d1aa79abf1531061595722ef4a2ae16d82928a79b69059ec6",
+    "9a8a29d839348fff642ba280e2b7103270e8d20924d40576661577c653ed006e"
+  ],
+  "shape_sha256": [
+    "dd6fd8676542701958f634723851756ff5fbf7f352c4371cceeed93508b11152",
+    "7746a695927fdd719c0a0f150216b1701af0bbaefc1f4c26d0eb7c511e084995",
+    "7e8b6a465a0b4735108cca9ae41bf8d29003fe662231644d39e83223543866d3",
+    "28f3c522a7537969cdcdc80cd463861c84d0dbab484ec318591345c47ae6a2c0"
+  ]
+}

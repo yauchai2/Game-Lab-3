@@ -45,7 +45,7 @@ func run() -> void:
                 check("Source/contact owner %d/%s/%d"%[hero,move,face],finite and actor.motions.pose_owner==expected and limb==expected_limb and actor.fx_socket(limb).is_finite(),{"clip":actor.motions.clip_name,"limb":limb})
                 var before:Array=matrices()
                 for tick in 12:present(f,true,tick%2==0)
-                check("Frozen pose, uniform body, F2 and no sim write %d/%s/%d"%[hero,move,face],before==matrices() and actor.oversized_bones.is_empty() and actor.model.scale.is_equal_approx(Vector3.ONE*actor.model_scale) and actor.model.rotation.y==0 and actor.model.position==Vector3.ZERO and snapshot==JSON.stringify(sim.fighters))
+                check("Frozen pose, uniform body, F2 and no sim write %d/%s/%d"%[hero,move,face],before==matrices() and actor.oversized_bones.is_empty() and actor.model.scale.is_equal_approx(Vector3.ONE*actor.model_scale) and actor.model.rotation.y==0 and actor.model.position.x==0 and actor.model.position.z==0 and actor.model.position.y>=0 and (f.y>.01 or actor.lowest_skin_y()>=.008) and snapshot==JSON.stringify(sim.fighters))
         var sim:RefCounted=fresh(hero);var f:Dictionary=sim.fighters[0]
         for phase in ["squat","rise","apex","stall","fall","fast","land","chase"]:
             f.state="chase" if phase=="chase" else ("jump_squat" if phase=="squat" else ("landing" if phase=="land" else "idle"))

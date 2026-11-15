@@ -48,7 +48,10 @@ func run() -> void:
     smp(2.4);check("both latches are thrown",op.stage.case_latches[0].rotation.x<-1.0 and op.stage.case_latches[1].rotation.x<-1.0)
     smp(3.5);check("overhead reveal shows the open case with LOOP at the manifest",op.stage.case_lid.rotation.x>1.5 and op.cast[3].visible and not op.cast[1].visible)
     smp(4.7);check("ZIP's face is framed close with the collectors already walking",op.cast[0].visible and op.suits[0].visible and op.cast[0].point("Head").distance_to(camera.global_position)<1.6)
-    smp(5.3);check("three collectors walk in step",op.suits[0].visible and op.suits[1].visible and op.suits[2].visible and op.suits[0].visual.motions.clip_elapsed==op.suits[1].visual.motions.clip_elapsed and op.suits[1].visual.motions.clip_elapsed==op.suits[2].visual.motions.clip_elapsed and op.suits[0].visual.motions.clip_name=="Walk_Loop")
+    smp(5.3)
+    var lead_motion=op.suits[0].visual.motions
+    var gait:String="MX_Walking" if lead_motion.library.clips.has("MX_Walking") else "Walk_Loop"
+    check("three collectors walk in step",op.suits.all(func(suit):return suit.visible and suit.visual.motions.clip_name==gait and is_equal_approx(suit.visual.motions.clip_elapsed,lead_motion.clip_elapsed)))
     smp(8.0);check("the cut to the case turns it so the lid stands clear",op.stage.case_root.rotation.y<-1.4 and op.stage.case_lid.rotation.x>1.5 and op.cast[0].visible and not op.cast[3].visible)
     smp(10.7);check("the collectors step forward on the shoe beats",op.suits[0].global_position.z<op.SUIT_MARKS[0].z+op.ORIGIN.z-.4)
     smp(12.6);var lid_open:float=op.stage.case_lid.rotation.x;smp(13.0);check("lid is driven shut for the slam frame",lid_open>1.5 and op.stage.case_lid.rotation.x<.01 and op.stage.case_print.visible)

@@ -1,0 +1,22 @@
+{
+  "initial_godot_cache": false,
+  "environment_overrides": false,
+  "bundled_assets": true,
+  "steps": [
+    {
+      "step": 0,
+      "exit_code": 0,
+      "error": false
+    },
+    {
+      "step": 1,
+      "exit_code": 0,
+      "error": false
+    },
+    {
+      "step": 2,
+      "exit_code": 0,
+      "error": false
+    }
+  ]
+}

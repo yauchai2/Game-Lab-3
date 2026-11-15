@@ -273,7 +273,7 @@ func _avatar(delta:float,movement:Vector2) -> void:
             var old:Transform3D=npc.transform
             var idle_pose:Dictionary=pose.duplicate(true);idle_pose.character=npc.character_index;idle_pose.vx=0;idle_pose.draw_core=""
             npc.present(idle_pose,npc_sample,false,true);npc.transform=old
-            workshop.pose_actor(npc,npc.character_index,false,campaign.session.reduced_effects)
+            workshop.pose_actor(npc,npc.character_index,false,campaign.session.reduced_effects,true)
             var job:int=[-1,0,3,1][npc.character_index]
             if workshop.action_station==job and workshop.action_age<.85:
                 var weight:float=sin(workshop.action_age/.85*PI)

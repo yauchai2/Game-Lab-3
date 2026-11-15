@@ -1,0 +1,60 @@
+{
+  "expected_events": true,
+  "fps": 30,
+  "frames": 360,
+  "initial_meter_per_segment": 100,
+  "mode": "throw",
+  "scope": "Four reset training fixtures at close standing range, normal grab commands or launcher + held J + Space presses. Real throw or paid chase and air hits; no injected damage, air state, sample or nodes. Not human play or GPU performance.",
+  "seconds": 12,
+  "segments": [
+    {
+      "events": {
+        "hit": 1,
+        "swing": 1,
+        "throw_end": 1,
+        "throw_land": 1,
+        "throw_start": 1
+      },
+      "hit_moves": {
+        "grab": 1
+      }
+    },
+    {
+      "events": {
+        "hit": 1,
+        "swing": 1,
+        "throw_end": 1,
+        "throw_land": 1,
+        "throw_start": 1
+      },
+      "hit_moves": {
+        "grab": 1
+      }
+    },
+    {
+      "events": {
+        "hit": 1,
+        "swing": 1,
+        "throw_end": 1,
+        "throw_land": 1,
+        "throw_start": 1
+      },
+      "hit_moves": {
+        "grab": 1
+      }
+    },
+    {
+      "events": {
+        "hit": 1,
+        "swing": 1,
+        "throw_end": 1,
+        "throw_land": 1,
+        "throw_start": 1
+      },
+      "hit_moves": {
+        "grab": 1
+      }
+    }
+  ],
+  "uninterrupted_play_frames": 360
+}

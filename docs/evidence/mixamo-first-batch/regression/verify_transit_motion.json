@@ -1,0 +1,1317 @@
+{
+  "checks": [
+    {
+      "check": "Source/contact owner 0/air_jab/-1",
+      "detail": {
+        "clip": "KK_Kick_Mirror",
+        "limb": "LeftFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/air_jab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/air_jab/1",
+      "detail": {
+        "clip": "KK_Kick_Mirror",
+        "limb": "LeftFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/air_jab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/air_kick/-1",
+      "detail": {
+        "clip": "KK_Kick",
+        "limb": "RightFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/air_kick/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/air_kick/1",
+      "detail": {
+        "clip": "KK_Kick",
+        "limb": "RightFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/air_kick/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/air_finisher/-1",
+      "detail": {
+        "clip": "KK_Kick_Mirror",
+        "limb": "LeftFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/air_finisher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/air_finisher/1",
+      "detail": {
+        "clip": "KK_Kick_Mirror",
+        "limb": "LeftFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/air_finisher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/meteor/-1",
+      "detail": {
+        "clip": "KK_Kick",
+        "limb": "RightFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/meteor/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/meteor/1",
+      "detail": {
+        "clip": "KK_Kick",
+        "limb": "RightFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/meteor/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/air_counter/-1",
+      "detail": {
+        "clip": "KK_Kick",
+        "limb": "RightFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/air_counter/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/air_counter/1",
+      "detail": {
+        "clip": "KK_Kick",
+        "limb": "RightFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/air_counter/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/special/-1",
+      "detail": {
+        "clip": "KK_Kick",
+        "limb": "RightFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/special/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/special/1",
+      "detail": {
+        "clip": "KK_Kick",
+        "limb": "RightFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/special/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/overdrive/-1",
+      "detail": {
+        "clip": "KK_Kick",
+        "limb": "RightFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/overdrive/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/overdrive/1",
+      "detail": {
+        "clip": "KK_Kick",
+        "limb": "RightFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/overdrive/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/grab/-1",
+      "detail": {
+        "clip": "KK_Punch_Mirror",
+        "limb": "LeftHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/grab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 0/grab/1",
+      "detail": {
+        "clip": "KK_Punch_Mirror",
+        "limb": "LeftHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 0/grab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 0/squat",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 0/rise",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 0/apex",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 0/stall",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 0/fall",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 0/fast",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 0/land",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 0/chase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Air reaction freezes 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "New hit restarts reaction 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Return to grounded owner 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 0/showcase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 0/cinematic_clip",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 0/rally_phase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 0/ko_theatre",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 0/ko_spin",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 0/air_counter_phase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 0/ricochet",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Death keeps source and clears air label 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Real launcher/chase/air confirmation 0",
+      "detail": {
+        "air_land": 2,
+        "chase_arrive": 1,
+        "double_jump": 1,
+        "ground_bounce": 1,
+        "hit": 6,
+        "homing_chase": 1,
+        "swing": 7
+      },
+      "pass": true
+    },
+    {
+      "check": "Real throw resolves once 0",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/air_jab/-1",
+      "detail": {
+        "clip": "Punch_Jab",
+        "limb": "LeftHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/air_jab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/air_jab/1",
+      "detail": {
+        "clip": "Punch_Jab",
+        "limb": "LeftHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/air_jab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/air_kick/-1",
+      "detail": {
+        "clip": "Punch_Cross",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/air_kick/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/air_kick/1",
+      "detail": {
+        "clip": "Punch_Cross",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/air_kick/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/air_finisher/-1",
+      "detail": {
+        "clip": "UAL2_Hook",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/air_finisher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/air_finisher/1",
+      "detail": {
+        "clip": "UAL2_Hook",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/air_finisher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/meteor/-1",
+      "detail": {
+        "clip": "Punch_Cross",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/meteor/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/meteor/1",
+      "detail": {
+        "clip": "Punch_Cross",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/meteor/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/air_counter/-1",
+      "detail": {
+        "clip": "Punch_Cross",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/air_counter/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/air_counter/1",
+      "detail": {
+        "clip": "Punch_Cross",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/air_counter/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/special/-1",
+      "detail": {
+        "clip": "Punch_Cross",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/special/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/special/1",
+      "detail": {
+        "clip": "Punch_Cross",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/special/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/overdrive/-1",
+      "detail": {
+        "clip": "UAL2_Hook",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/overdrive/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/overdrive/1",
+      "detail": {
+        "clip": "UAL2_Hook",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/overdrive/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/grab/-1",
+      "detail": {
+        "clip": "UAL2_Hook",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/grab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 1/grab/1",
+      "detail": {
+        "clip": "UAL2_Hook",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 1/grab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 1/squat",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 1/rise",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 1/apex",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 1/stall",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 1/fall",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 1/fast",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 1/land",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 1/chase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Air reaction freezes 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "New hit restarts reaction 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Return to grounded owner 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 1/showcase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 1/cinematic_clip",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 1/rally_phase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 1/ko_theatre",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 1/ko_spin",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 1/air_counter_phase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 1/ricochet",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Death keeps source and clears air label 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Real launcher/chase/air confirmation 1",
+      "detail": {
+        "air_land": 2,
+        "chase_arrive": 1,
+        "double_jump": 1,
+        "ground_bounce": 1,
+        "hit": 6,
+        "homing_chase": 1,
+        "swing": 7
+      },
+      "pass": true
+    },
+    {
+      "check": "Real throw resolves once 1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/air_jab/-1",
+      "detail": {
+        "clip": "KK_Punch_Mirror",
+        "limb": "LeftHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/air_jab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/air_jab/1",
+      "detail": {
+        "clip": "KK_Punch_Mirror",
+        "limb": "LeftHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/air_jab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/air_kick/-1",
+      "detail": {
+        "clip": "KK_Kick",
+        "limb": "RightFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/air_kick/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/air_kick/1",
+      "detail": {
+        "clip": "KK_Kick",
+        "limb": "RightFoot"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/air_kick/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/air_finisher/-1",
+      "detail": {
+        "clip": "KK_Punch",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/air_finisher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/air_finisher/1",
+      "detail": {
+        "clip": "KK_Punch",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/air_finisher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/meteor/-1",
+      "detail": {
+        "clip": "KK_Punch",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/meteor/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/meteor/1",
+      "detail": {
+        "clip": "KK_Punch",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/meteor/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/air_counter/-1",
+      "detail": {
+        "clip": "KK_Punch",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/air_counter/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/air_counter/1",
+      "detail": {
+        "clip": "KK_Punch",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/air_counter/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/special/-1",
+      "detail": {
+        "clip": "KK_Punch",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/special/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/special/1",
+      "detail": {
+        "clip": "KK_Punch",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/special/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/overdrive/-1",
+      "detail": {
+        "clip": "KK_Punch",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/overdrive/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/overdrive/1",
+      "detail": {
+        "clip": "KK_Punch",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/overdrive/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/grab/-1",
+      "detail": {
+        "clip": "Punch_Cross",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/grab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 2/grab/1",
+      "detail": {
+        "clip": "Punch_Cross",
+        "limb": "RightHand"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 2/grab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 2/squat",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 2/rise",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 2/apex",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 2/stall",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 2/fall",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 2/fast",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 2/land",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 2/chase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Air reaction freezes 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "New hit restarts reaction 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Return to grounded owner 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 2/showcase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 2/cinematic_clip",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 2/rally_phase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 2/ko_theatre",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 2/ko_spin",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 2/air_counter_phase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 2/ricochet",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Death keeps source and clears air label 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Real launcher/chase/air confirmation 2",
+      "detail": {
+        "air_land": 2,
+        "chase_arrive": 1,
+        "double_jump": 1,
+        "ground_bounce": 1,
+        "hit": 6,
+        "homing_chase": 1,
+        "swing": 7
+      },
+      "pass": true
+    },
+    {
+      "check": "Real throw resolves once 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/air_jab/-1",
+      "detail": {
+        "clip": "KK_StickStab",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/air_jab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/air_jab/1",
+      "detail": {
+        "clip": "KK_StickStab",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/air_jab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/air_kick/-1",
+      "detail": {
+        "clip": "KK_StickSweep",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/air_kick/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/air_kick/1",
+      "detail": {
+        "clip": "KK_StickSweep",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/air_kick/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/air_finisher/-1",
+      "detail": {
+        "clip": "KK_StickDiagonal",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/air_finisher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/air_finisher/1",
+      "detail": {
+        "clip": "KK_StickDiagonal",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/air_finisher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/meteor/-1",
+      "detail": {
+        "clip": "KK_StickChop",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/meteor/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/meteor/1",
+      "detail": {
+        "clip": "KK_StickChop",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/meteor/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/air_counter/-1",
+      "detail": {
+        "clip": "KK_StickParry",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/air_counter/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/air_counter/1",
+      "detail": {
+        "clip": "KK_StickParry",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/air_counter/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/special/-1",
+      "detail": {
+        "clip": "KK_StickStab",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/special/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/special/1",
+      "detail": {
+        "clip": "KK_StickStab",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/special/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/overdrive/-1",
+      "detail": {
+        "clip": "KK_StickSweep",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/overdrive/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/overdrive/1",
+      "detail": {
+        "clip": "KK_StickSweep",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/overdrive/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/node_pulse/-1",
+      "detail": {
+        "clip": "KK_StickChop",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/node_pulse/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/node_pulse/1",
+      "detail": {
+        "clip": "KK_StickChop",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/node_pulse/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/grab/-1",
+      "detail": {
+        "clip": "KK_StickSweep",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/grab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Source/contact owner 3/grab/1",
+      "detail": {
+        "clip": "KK_StickSweep",
+        "limb": "BatonTip"
+      },
+      "pass": true
+    },
+    {
+      "check": "Frozen pose, uniform body, F2 and no sim write 3/grab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 3/squat",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 3/rise",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 3/apex",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 3/stall",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 3/fall",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 3/fast",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 3/land",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Lifecycle 3/chase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Air reaction freezes 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "New hit restarts reaction 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Return to grounded owner 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 3/showcase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 3/cinematic_clip",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 3/rally_phase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 3/ko_theatre",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 3/ko_spin",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 3/air_counter_phase",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Exclusive owner handoff 3/ricochet",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Death keeps source and clears air label 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Real launcher/chase/air confirmation 3",
+      "detail": {
+        "air_land": 2,
+        "chase_arrive": 1,
+        "double_jump": 1,
+        "ground_bounce": 1,
+        "hit": 6,
+        "homing_chase": 1,
+        "swing": 7
+      },
+      "pass": true
+    },
+    {
+      "check": "Real throw resolves once 3",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "failed": 0,
+  "passed": 216,
+  "scope": "Four real rigs, explicit source/face/hold fixtures including one seeded node for pulse pose only; separate normal-input launcher/chase/air and throw flows without seeded damage. Not terrain foot IK, paired throw mocap, human or hardware FPS validation."
+}

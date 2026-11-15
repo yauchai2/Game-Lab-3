@@ -1,3 +1,5 @@
+最新（2026-11-14）：[動作已隨GitHub提供，第一批全部啟用](docs/MOTION_COMPLETION.zh-TW.md)。**Pull任務分支後Godot匯入便可直接使用，不再需要手動安裝JSON。** 23衍生clip全啟用、倒地／起身／空踢及四角技能空連接續完成；現有招式／狀態554項覆核通過，舊RIVET6失敗已修。[12秒肩摔起身](docs/evidence/motion-completion/throw.mp4)／[14秒空連](docs/evidence/motion-completion/air.mp4)。以下私人安裝／未啟用敘述為先前階段，以此輪為準。
+
 最新：[修正選單／彈出文字柔化並全面覆核](docs/evidence/pixel-text-audit/README.md)，保持5／8／100，87項檢查通過。
 
 最新：[中文亦套用像素5／8／100](docs/evidence/chinese-pixel-preset/README.md)，涵蓋介面、故事字幕及3D中文字牌；72項檢查通過。
@@ -9,6 +11,33 @@
 最新：已依「全合到main／完成剩餘工作」整合四角色動作、720p字體、完整據點UI、開場配樂與手柄震動，並完成UI P1–P3、共用角色基礎profile、有界轉髖／平地接地IK及全部19 strict。[本輪狀態與851項驗證](docs/REMAINING_WORK_INTEGRATION.zh-TW.md)。完整免費攻守配對摔投仍受官方原檔未取得所限；目標電腦／真人／實體手柄仍待驗，公開Web未更新。以下分支／待辦文字是各輪歷史，以本輪狀態為準。
 
 # Afterhours / Game-Lab-3
+
+最新（2026-11-14）：[第一批Mixamo＋Walking已接入](docs/MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md)／[12秒正式場景影片](docs/evidence/mixamo-first-batch/native.mp4)。四角15個地面攻擊slot、受擊／護架行路／後閃等採新來源；23個私有clip中20個啟用，起身／倒地／空踢尚待owner接續。Pull後另用`tools/install_mixamo_motions.py`安裝對話提供的私有JSON，公開Git不含曲線。
+
+最新：[完整雙人肩摔已接入](docs/PAIRED_SHOULDER_THROW.zh-TW.md)／[12秒正式戰鬥影片](docs/evidence/paired-throw/native.mp4)。四角與普通黑衣敵人可抓握、離地翻身、落地一次結算及回復；180新＋674回歸通過。**本機需另安裝對話提供的私有Mixamo JSON**，公開repo不含曲線，缺檔保留舊grab。其他候選動作未因此全部替換。
+
+最新動作需求：[Mixamo全套替換計劃／49項候選](docs/MIXAMO_REPLACEMENT_PLAN.zh-TW.md)及[首批19段下載單](docs/MIXAMO_FIRST_BATCH.zh-TW.txt)。使用者可官方手動下載；清單是名稱／描述索引候選，尚未逐段官方預覽或下載接入。替換範圍包括四角出招、步法、防禦、空地、受擊起身與演出，同時修正銜接／root／支撐腳。
+
+最新（2026-11-14）：已收到使用者Mixamo過肩摔攻守兩段FBX，完成原座標／同幀雙人骨架來源檢查。[6.70秒預覽與量測](docs/evidence/judo-source-pair/README.md)。兩段65骨／30fps／201幀；Godot四角重定向與正式摔投仍待接入。以下MCP／未取得FBX狀態為較早紀錄。
+
+最新工具：[Mixamo MCP設定及驗證](docs/MIXAMO_MCP_SETUP.zh-TW.md)。已安裝使用者指定HaD0Yun獨立Python MCP，6工具及關鍵字實測通過；尚無Adobe token；新環境網路已生效，官方攻守目錄與6.6秒預覽已核實，未取得摔投FBX。雲端設定不等於使用者Mac已連接。
+
+最新約束：完整摔投只用免費資源，優先核實Mixamo Shoulder Throw攻守配對；官方FBX尚未取得，完整摔投未完成。詳[資源研究](docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md)。
+
+最新需求：[完整柔道摔投資源研究](docs/FULL_JUDO_THROW_RESOURCES.zh-TW.md)。已核對攻守配對候選與格式／授權；尚未購買、下載或接入。現有grab手勢不代表完整摔投已完成。
+
+最新：[四角空地交接／受擊／投技手勢](docs/FOUR_FIGHTER_TRANSIT_MOTION.zh-TW.md)／[14秒空連](docs/evidence/transit-motion/air-combat.mp4)／[8秒投技](docs/evidence/transit-motion/throws.mp4)。空中拳腳／短棍與FX同步，去除共用自轉拉伸；674項通過、12腳本strict通過。成對摔投與足部IK仍待續。
+
+最新：[四角戰鬥特效／大招鏡頭／音色](docs/FOUR_FIGHTER_EFFECT_STYLE.zh-TW.md)／[12秒原生預覽](docs/evidence/fighter-style/four-styles.mp4)。雙箭、壓印、細切與方波；458項通過，11腳本strict通過、全suite16/19。空戰／足部IK／真人驗收仍待續。
+
+最新：[HUSH截擊／LOOP短棍地面動作](docs/HUSH_LOOP_MOTION.zh-TW.md)／[15秒原生預覽](docs/evidence/hush-loop-motion/counter-motions.mp4)。真招架取樣反擊、近遠佈點與棍尖同步，407項通過；四角空戰／接地／鏡頭音色仍待續。
+
+最新：[新CC0動畫庫：ZIP完整踢擊／RIVET勾拳與移動](docs/STREET_MOTION_LIBRARY.zh-TW.md)／[12秒原生預覽](docs/evidence/street-motion-library/street-motions.mp4)。11個衍生clip、真確認換腿、拳腳特效同步、285項通過；四角整體重製仍在進行。
+
+最新：[RIVET地面動作第一輪修正與四角抽樣](docs/RIVET_MOTION_SLICE.zh-TW.md)／[12秒原生預覽](docs/evidence/fighter-motion/rivet-motion.mp4)。站穩出拳、預壓分段及單一pose owner，169項新／機制／死亡檢查通過；仍屬首切片，未重製全四角。
+
+規劃：[四英雄全動作 review、外部動畫素材與差異化戰鬥製作方案](docs/FOUR_FIGHTER_MOTION_REVIEW_PLAN.zh-TW.md)。含四角逐招／步法／空戰、素材庫分工、骨架與接地管線、四種鏡頭聲音及驗收；本輪僅review與規劃，未替換runtime。
+
 
 最新：[按指定原圖重做據點與15秒動態](docs/NIGHTSHIFT_REFERENCE_REBUILD.zh-TW.md)。固定視角投影美術＋真3D角色／深度與特效，保留原圖佈局、刪除無關設施；[引擎影片／對照](docs/evidence/nightshift-reference/README.md)。現有角色與插畫仍有差異；211回歸＋15strict，Tripo必需0件，選配精修清單已列。下方粗模紀錄為歷史。
 

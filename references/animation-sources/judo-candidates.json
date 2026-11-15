@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "reviewed_on": "2026-11-13",
-  "status": "listing_research_only",
+  "reviewed_on": "2026-11-14",
+  "status": "paired_shoulder_throw_runtime_integrated_private_library_required",
   "downloaded": false,
   "purchased": false,
-  "game_integrated": false,
+  "game_integrated": true,
   "user_target": "Complete paired judo-style throw: grip, unbalance, turn, lift/flip, land and recover; current grab gestures do not fulfill it.",
   "candidates": [
     {
@@ -74,10 +74,33 @@
       "Shoulder Throw, Aggressor",
       "Shoulder Throw, Victim"
     ],
-    "status": "catalogue_names_observed_official_download_pending",
+    "status": "runtime_integrated_private_library_required",
     "official_faq": "https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html",
     "downloaded": false,
-    "paired_timing_verified": false,
-    "blocker": "No connected browser session; cloud browser initialization failed. No official FBX files obtained."
-  }
+    "paired_timing_verified": true,
+    "blocker": "No cloud implementation blocker. User local install of private library and human/Mac validation remain; giant boss throws and other motion families are outside this paired clip.",
+    "mcp_status": "HaD0Yun standalone server 6170d5e / SDK 1.30.0 restored; launcher initialize and six tools verified; auth absent and MCP search refused.",
+    "official_products": [
+      {
+        "name": "Shoulder Throw, Aggressor",
+        "id": "c9c7a795-b96c-11e4-a802-0aaa78deedf9",
+        "preview": "https://d99n9xvb9513w.cloudfront.net/thumbnails/motions/113680901/animated.gif"
+      },
+      {
+        "name": "Shoulder Throw, Victim",
+        "id": "c9c7a914-b96c-11e4-a802-0aaa78deedf9",
+        "preview": "https://d99n9xvb9513w.cloudfront.net/thumbnails/motions/113680902/animated.gif"
+      }
+    ],
+    "preview_duration_seconds": 6.6,
+    "preview_review": "Full-duration 2 fps contact sheets inspected; source timing/root/contact not measured.",
+    "evidence": "docs/evidence/mixamo-mcp/official-pair.json",
+    "source_fbx_received": true,
+    "source": "User uploads; not an MCP download in this session",
+    "source_inspection": "docs/evidence/judo-source-pair/inspection.json",
+    "paired_source_world_space_playback_verified": true,
+    "game_integrated": true,
+    "runtime_evidence": "docs/evidence/paired-throw/README.md"
+  },
+  "source_fbx_received": true
 }

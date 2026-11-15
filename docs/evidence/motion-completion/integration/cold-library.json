@@ -1,0 +1,62 @@
+{
+  "checks": [
+    {
+      "name": "schema",
+      "ok": true
+    },
+    {
+      "name": "base",
+      "ok": true
+    },
+    {
+      "name": "missing_clip",
+      "ok": true
+    },
+    {
+      "name": "missing_marker",
+      "ok": true
+    },
+    {
+      "name": "zero_duration",
+      "ok": true
+    },
+    {
+      "name": "empty_tracks",
+      "ok": true
+    },
+    {
+      "name": "index",
+      "ok": true
+    },
+    {
+      "name": "times",
+      "ok": true
+    },
+    {
+      "name": "values",
+      "ok": true
+    },
+    {
+      "name": "nan",
+      "ok": true
+    },
+    {
+      "name": "quaternion",
+      "ok": true
+    },
+    {
+      "name": "optional cache cannot replace bundled recovery",
+      "ok": true
+    },
+    {
+      "name": "missing_file",
+      "ok": true
+    },
+    {
+      "name": "valid_reload",
+      "ok": true
+    }
+  ],
+  "passed": 14,
+  "total": 14
+}

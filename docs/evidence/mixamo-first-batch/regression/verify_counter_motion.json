@@ -1,0 +1,630 @@
+{
+  "checks": [
+    {
+      "check": "Pose fixture started a valid attack 2/jab",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/jab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/jab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/jab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/jab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 2/cross",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/cross/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/cross/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/cross/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/cross/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 2/heavy",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/heavy/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/heavy/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/heavy/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/heavy/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 2/finisher",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/finisher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/finisher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/finisher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/finisher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 2/launcher",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/launcher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/launcher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/launcher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/launcher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 2/special",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/special/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/special/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/special/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/special/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 2/overdrive",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/overdrive/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/overdrive/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 2/overdrive/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 2/overdrive/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Guarded locomotion 2/KK_Backstep",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Guarded locomotion 2/KK_Walk",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Guarded locomotion 2/KK_Run",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Distinct guard 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Block recoil freezes with hitstop 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hit interruption transfers to reaction 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Air transfers to hero profile 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Landing remains in hero air profile 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Death retains its owner 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Showcase retains its owner 2",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 3/jab",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/jab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/jab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand jab/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/jab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/jab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand jab/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 3/cross",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/cross/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/cross/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand cross/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/cross/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/cross/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand cross/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 3/heavy",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/heavy/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/heavy/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand heavy/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/heavy/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/heavy/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand heavy/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 3/finisher",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/finisher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/finisher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand finisher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/finisher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/finisher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand finisher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 3/launcher",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/launcher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/launcher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand launcher/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/launcher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/launcher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand launcher/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 3/special",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/special/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/special/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand special/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/special/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/special/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand special/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 3/overdrive",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/overdrive/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/overdrive/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand overdrive/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/overdrive/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/overdrive/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand overdrive/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Pose fixture started a valid attack 3/node_pulse",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/node_pulse/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/node_pulse/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand node_pulse/-1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Full grounded pose 3/node_pulse/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hitstop/F2 and simulation isolation 3/node_pulse/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Baton tip follows hand node_pulse/1",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Guarded locomotion 3/KK_Backstep",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Guarded locomotion 3/KK_Walk",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Guarded locomotion 3/KK_Run",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Distinct guard 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Block recoil freezes with hitstop 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Hit interruption transfers to reaction 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Air transfers to hero profile 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Landing remains in hero air profile 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Death retains its owner 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Showcase retains its owner 3",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Normal frontal parry earns a real sample",
+      "detail": {
+        "parries": 1,
+        "sample": 1
+      },
+      "pass": true
+    },
+    {
+      "check": "Sample counter retreats and consumes once on real attack",
+      "detail": {
+        "hits": 1,
+        "minimum_x": -0.405,
+        "spent": 1
+      },
+      "pass": true
+    },
+    {
+      "check": "Retreat has no opposing model lunge",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Two directional placements create nodes without a body hit",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Near/far placement gestures are different",
+      "detail": [
+        "(0.28265, 1.467759, 0.335714)",
+        "(0.033948, 1.112026, 0.302042)"
+      ],
+      "pass": true
+    },
+    {
+      "check": "Manual pulse consumes real nodes and damages through rules",
+      "detail": {
+        "hp": 88,
+        "pulses": 1
+      },
+      "pass": true
+    },
+    {
+      "check": "Encore 0 uses exactly the existing node count",
+      "detail": 0,
+      "pass": true
+    },
+    {
+      "check": "Encore 1 uses exactly the existing node count",
+      "detail": 1,
+      "pass": true
+    },
+    {
+      "check": "Encore 2 uses exactly the existing node count",
+      "detail": 2,
+      "pass": true
+    },
+    {
+      "check": "Rendered baton marker matches a real palm grip",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "Character replacement clears baton marker",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "failed": 0,
+  "passed": 122,
+  "scope": "Two real rigs, explicit pose/encore fixtures and normal input parry/placement/pulse rules. Neither human art approval nor terrain foot IK validation."
+}

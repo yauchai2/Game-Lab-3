@@ -12,6 +12,7 @@ func apply(session: Node3D, side: int, seconds: float) -> Dictionary:
     var direction:float=-1.0 if id in [0,2] else 1.0
     var stride:float=sin(maxf(0,t-1.18)*TAU/[.66,.86,.92,.72,.82][id])
     var gesture:float=smoothstep(.04,.2,t)*(1.0-smoothstep(.85,1.35,t))
+    var boxing_victory:bool=id==1 and session.screen=="result" and hero.motions.library.clips.has("MX_BoxingVictory")
     var turn:float=smoothstep(.92,1.48,t)
     var bob:float=absf(stride)*.035*smoothstep(1.18,1.45,t)
     hero.visible=true
@@ -30,21 +31,28 @@ func apply(session: Node3D, side: int, seconds: float) -> Dictionary:
         material.set_shader_parameter("flash",0.0)
     var m=hero.motions
     if is_instance_valid(hero.skeleton):
-        # Sample a reproducible neutral pose before applying the authored limbs.
         var idle:String=["Idle_Loop","Dance_Loop","Idle_Loop","Idle_Loop","Idle_Loop"][id]
+        var pose:Dictionary={"character":id,"health":100,"state":"idle","move":"","frame":0,"y":0.0,"vy":0.0,"vx":0.0,"face":1,"guarding":false,"showcase":true,"shared_profile":true}
+        if boxing_victory:
+            idle="MX_BoxingVictory"
+            # Spend most of the closeup in the raised-fists pose, then finish the release on the turn.
+            pose["cinematic_phase"]=lerpf(0.0,.36,smoothstep(0,.45,t)) if t<.78 else lerpf(.36,1.0,smoothstep(.78,1.46,t))
+            pose["cinematic_clip"]=idle
         m.blend_from.clear();m.previous_state=idle+"/idle";m.clip_elapsed=t
-        m.present({"character":id,"health":100,"state":"idle","move":"","frame":0,"y":0.0,"vy":0.0,"vx":0.0,"face":1,"guarding":false,"showcase":true,"shared_profile":true},0.0,true)
+        m.present(pose,0.0,true)
         var up:Vector3=m.model_up
         var forward:Vector3=m.model_forward
         var right:Vector3=up.cross(forward).normalized()
         var walk:float=smoothstep(1.18,1.45,t)
+        var has_walk:bool=id!=0 and m.library.clips.has("MX_Walking")
+        var stride_weight:float=walk if boxing_victory else 1.0
         for label in ["Left","Right"]:
             var sign_side:float=-1.0 if label=="Left" else 1.0
-            var swing:float=stride*sign_side*walk
-            m._aim_limb(label+"Arm",label+"ForeArm",-up+forward*swing*.32,1.0)
-            m._aim_limb(label+"ForeArm",label+"Hand",-up*.85+forward*(.22+swing*.16),1.0)
-            m._aim_limb(label+"UpLeg",label+"Leg",-up+forward*swing*.42,1.0)
-            m._aim_limb(label+"Leg",label+"Foot",-up+forward*maxf(0,-swing)*.68,1.0)
+            var swing:float=stride*sign_side*walk if not has_walk else 0.0
+            m._aim_limb(label+"Arm",label+"ForeArm",-up+forward*swing*.32,stride_weight)
+            m._aim_limb(label+"ForeArm",label+"Hand",-up*.85+forward*(.22+swing*.16),stride_weight)
+            m._aim_limb(label+"UpLeg",label+"Leg",-up+forward*swing*.42,stride_weight)
+            m._aim_limb(label+"Leg",label+"Foot",-up+forward*maxf(0,-swing)*.68,stride_weight)
         match id:
             0:
                 # Close finger-point/fist flick; then a sideways heel slide.
@@ -57,10 +65,11 @@ func apply(session: Node3D, side: int, seconds: float) -> Dictionary:
                     m._aim_limb("LeftUpLeg","LeftLeg",-up-forward*.18*stride,walk)
             1:
                 # Both knuckles toward camera, drop heavy shoulders, stomp away.
-                for label in ["Left","Right"]:
-                    m._aim_limb(label+"Arm",label+"ForeArm",-up*.6+forward*.55,gesture)
-                    var side_push:float=-1.0 if label=="Left" else 1.0
-                    m._aim_limb(label+"ForeArm",label+"Hand",up*(.4+.18*sin(t*TAU))+forward*.7+right*side_push*.55,gesture)
+                if not boxing_victory:
+                    for label in ["Left","Right"]:
+                        m._aim_limb(label+"Arm",label+"ForeArm",-up*.6+forward*.55,gesture)
+                        var side_push:float=-1.0 if label=="Left" else 1.0
+                        m._aim_limb(label+"ForeArm",label+"Hand",up*(.4+.18*sin(t*TAU))+forward*.7+right*side_push*.55,gesture)
                 hero.model.rotation.x=.10*gesture
                 hero.position.y+=maxf(0,sin(t*PI/0.55))*.045*(1.0-turn)
             2:
@@ -78,7 +87,21 @@ func apply(session: Node3D, side: int, seconds: float) -> Dictionary:
                 m._aim_limb("LeftArm","LeftForeArm",-up+right*.2,gesture)
                 m._aim_limb("LeftForeArm","LeftHand",forward*.5-up*.7,gesture)
                 hero.model.rotation.z+=sin(t*TAU)*.035*gesture
+        if has_walk and walk>0.0:
+            var gesture_pose:Array[Quaternion]=[]
+            for bone in hero.skeleton.get_bone_count():
+                gesture_pose.append(hero.skeleton.get_bone_pose_rotation(bone))
+            pose["cinematic_clip"]="MX_Walking"
+            pose.erase("cinematic_phase")
+            m.previous_state="MX_Walking/idle"
+            m.clip_elapsed=maxf(0.0,t-1.18)*[1.0,1.45,1.12,1.32,1.2][id]
+            m.present(pose,0.0,true)
+            for bone in hero.skeleton.get_bone_count():
+                var authored:Quaternion=hero.skeleton.get_bone_pose_rotation(bone)
+                hero.skeleton.set_bone_pose_rotation(bone,gesture_pose[bone].slerp(authored,walk))
         hero.skeleton.force_update_all_bone_transforms()
+        if has_walk and walk>0.0:
+            hero.model.position.y+=maxf(0.0,.01-hero.lowest_skin_y())
     var close:float=1.0-smoothstep(.68,1.45,t)
     var camera:Camera3D=session.camera
     camera.near=.035
@@ -88,7 +111,9 @@ func apply(session: Node3D, side: int, seconds: float) -> Dictionary:
     if head_index>=0:
         head_relative=hero.skeleton.global_transform*hero.skeleton.get_bone_global_pose(head_index).origin-hero.position
     var focus:=Vector3(head_relative.x*close,lerpf(1.45,head_relative.y-.10,close),head_relative.z*close)
-    camera.position=focus+Vector3(.04*direction,0,lerpf(1.10,.60,close))
+    var raised_fists:float=smoothstep(.28,.50,t)*(1.0-smoothstep(.83,1.24,t)) if boxing_victory else 0.0
+    focus.y+=.20*raised_fists
+    camera.position=focus+Vector3(.04*direction,0,lerpf(1.10,.60,close)+.45*raised_fists)
     camera.look_at(focus)
     var accent:float=exp(-maxf(0,t-.10)*17) if t>=.10 else 0.0
     camera.position.x+=sin(t*125)*accent*.025

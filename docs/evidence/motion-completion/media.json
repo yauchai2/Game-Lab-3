@@ -1,0 +1,60 @@
+[
+  {
+    "file": "throw.mp4",
+    "sha256": "2eb063b9ec6bcad50729f1c34d9d4bec8fdf8c1f14ac45dded5db8b155ab22a5",
+    "seconds": 12,
+    "frames": 360,
+    "fps": 30,
+    "recording_seconds": 98,
+    "aac_peak_dbfs": -5.264435,
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720,
+          "nb_frames": "360"
+        },
+        {
+          "codec_name": "aac",
+          "sample_rate": "48000",
+          "nb_frames": "564"
+        }
+      ],
+      "format": {
+        "duration": "12.000000"
+      }
+    }
+  },
+  {
+    "file": "air.mp4",
+    "sha256": "bfbf5b1158afeca8364821419771078b4e0a2d9114953be4a9d09c705f4bc6f6",
+    "seconds": 14,
+    "frames": 420,
+    "fps": 30,
+    "recording_seconds": 123,
+    "aac_peak_dbfs": -2.541018,
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720,
+          "nb_frames": "420"
+        },
+        {
+          "codec_name": "aac",
+          "sample_rate": "48000",
+          "nb_frames": "658"
+        }
+      ],
+      "format": {
+        "duration": "14.000000"
+      }
+    }
+  }
+]

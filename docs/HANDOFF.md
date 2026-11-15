@@ -1,3 +1,75 @@
+## 2026-11-15：全遊戲動作覆核首輪
+
+[動作覆核表](WHOLE_GAME_MOTION_REVIEW.zh-TW.md)記錄已驗畫面及仍待逐段覆核的位置。新加入 RIVET 上勾挑空、ZIP 空中旋踢、跑步／衝刺／快退、RIVET 勝利、ZIP 工房揮手，整合慢退並在勝利和故事開場使用既有 Mixamo 步態。遊戲隨附 31 段骨架資料。
+
+## 2026-11-14：同步遠端78cd692後退擴充
+
+保留另一對話Mac已下載／驗證的MX_WalkBack程式、builder及測試；實體24段曲線只在Mac，未取得／未隨本輪公開。Loader可唯讀從舊cache只合併BackWalk，保護本輪新版GetUp／KO；在有檔Mac可跑tools/bundle_mixamo_backwalk.py再驗證提交。詳MOTION_COMPLETION.zh-TW.md。
+
+## 2026-11-14：使用者授權動作入GitHub，第一批全部啟用
+
+最新以[MOTION_COMPLETION.zh-TW.md](MOTION_COMPLETION.zh-TW.md)為準：game-ready兩個JSON進assets/animations，Pull後直接使用，覆蓋下方私有安裝限制；原FBX不改，main／公開Web不動。23衍生clip全部啟用，現有四角招式／狀態554項覆核通過；技能／空中按四角源片接續，KnockedOut走原死亡owner、GettingUp取75–187去padding，共同恢復28→64tick，回收時depth漸回共同平面。保留適用CC0挑空／刺棍／跑退／跳落／專用過場；49候選不是49下載。
+
+新／舊RIVET各19/19，舊6失敗已修固定下盤與程序轉髖衝突；肩摔147及65獨立renderer、119首批、13loader、18strict；其他回歸詳evidence/motion-completion。乾淨無快取副本及空專案掛PCK7項通過，兩JSON與notice均隨包。兩部12秒肩摔起身／14秒空連真輸入片及四角rig接觸表；Mac／實體輸入／真人與效能仍待驗收。
+
+## 2026-11-14：已從 Mixamo MCP 接入四角慢速後退
+
+桌面 Godot 專案已透過 `tools/install_mixamo_motions.py` 安裝含 Unarmed Walk Back 的 24 段私有動畫庫。重建時，把官方下載檔以 `Unarmed Walk Back.fbx` 加入首批來源，再沿既有 Blender 檢查、轉換及安裝流程。來源 FBX 和衍生曲線只保存在本機。其餘動作見替換計劃。
+
+## 2026-11-14：第一批21 FBX＋Walking正式地面接入
+
+見[MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md](MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md)及evidence/mixamo-first-batch。22來源均65骨；兩個Hurricane逐幀位置／旋轉hash相同，肩摔SHA沿用。23私有衍生clip、20啟用，四角15個地面attack slot＋待機／受擊／格擋／後閃／慢行。Boxing實為低位身擊，不能稱挑空上勾拳；Walking10.27秒原檔有前進與末幀回原點，取單步去漂移，僅向前慢行及護架行路使用，高速／後退保持原owner。來源root不改simulation；全身單一owner、contact limb、腳IK＋鞋底skin floor修正。
+
+119新native檢查通過；12秒正式scene四個訓練fixture均真護架行路、heavy／light命令、每角1次hit與2次swing，並非全招連擊展示。私有JSON在workspace/shared/mixamo-first-batch/mixamo_fighters.json，安裝python3 tools/install_mixamo_motions.py <file>；肩摔仍分開安裝。KnockedOut／GetUp／AirKick只已轉換，未切換正式owner；挑空、LOOP刺擊、技能／大招與P1/P2仍待後續。只推同branch／PR #37，main／Web不動。
+
+## 2026-11-14：肩摔草稿PR #37與最新main相容同步
+
+[PR #37](https://github.com/yauchai2/Game-Lab-3/pull/37)，runtime先提交2f6e0e2。只把最新main f9576c5同步到任務分支解衝突，沒有改main／Web。保留繁中／5-8-100字體／720p、原接地與黑衣人槍械；雙人摔投進入時清舊腳步錨點、收槍，回復時改為面向已換邊的對手，去掉bind hip平面偏移避免轉向跳動。147／33新檢查及674回歸、16strict重跑通過，另外槍械21／繁中18通過；最新片1280×720／360幀／12秒，約84秒錄製，非即時FPS。最大四角腕距2.56cm。見evidence/paired-throw/integration.json，原有更早數據屬歷史。
+
+使用者其後上傳第一批21個FBX及Walking.glb，原檔已私有下載到attachments，清單及檢查進行中（workspace/shared/mixamo-first-batch）；這不代表全部新動作已接入。先維持本組肩摔的私有安裝流程，再核實同名／變體後替換其他家族。
+
+## 2026-11-14：完整雙人肩摔已接正式grab，私有資料本機安裝一次
+
+基線1beceae。見[PAIRED_SHOULDER_THROW.zh-TW.md](PAIRED_SHOULDER_THROW.zh-TW.md)及[evidence/paired-throw](evidence/paired-throw/README.md)。兩個使用者FBX共同裁61–121；四角與普通黑衣敵人做真骨架抓握／離地倒轉／落地／起身。paired_throw掌雙人simulation時鐘、106來源幀／第60 tick才經原傷害路徑結算一次，80接觸＋28回復tick；傷害／meter／核心／counter reward保持。抓空／tech／跳走／同時普通打擊、外部中斷／phase／reset、pause／F2有處理；平面共享路徑有牆邊限制，群戰致命後仍鎖原目標，屍體不二次tumble。巨型Boss不強套人類配對。回復接既有CC0 Roll末段＋各角待機；不宣稱360°整圈或四套不同投法。
+
+147新simulation／骨架＋33原生renderer／正式KO＝180全過，674相關回歸全過，另35squad／35black native通過，16相關腳本七類fatal warning及專案import通過。新最大四角手腕殘差2.56cm；CPU貼地另以renderer bake核對。12.000秒／360幀真session有聲片，每角一次正常grab，start／land／hit／end各一次，沒有注入damage／空中位置；完整2fps抽格已檢視。Linux4.6.3 llvmpipe／Dummy，錄製約84秒非即時FPS／Mac／真人／實聽；accepted日誌無ERROR／SCRIPT ERROR。初期headless視覺fixture與未等首繪的退出錯誤已改原生／真生命週期重跑，證據界線詳README。
+
+重要：私有曲線不入公開Git。雲端安裝在godot/.godot/private_animation/mixamo_shoulder_throw.json，外部備份workspace/shared/judo-shoulder-throw/mixamo_shoulder_throw.json；使用者Pull後須下載對話私有JSON並在repo根執行python3 tools/install_mixamo_throw.py <檔案>，再開遊戲。清Godot快取後需重裝；也可GAME_LAB_THROW_LIBRARY指repo外檔案。無資料時保留舊grab fallback，不能把這種情況稱完整投技已生效。Blender重建器與SHA已提交，原GLB／FBX不改，其他49項候選未因此完成；只推同任務分支，不合main／不發Web。
+
+## 2026-11-14：使用者要求全套生硬動作替換，Mixamo候選及首批下載表
+
+使用者要求找更多合適Mixamo動作，繼而明確要求替代全部生硬動作；若無法下載可列名字由其官方下載。見[MIXAMO_REPLACEMENT_PLAN.zh-TW.md](MIXAMO_REPLACEMENT_PLAN.zh-TW.md)、[首批19段純文字](MIXAMO_FIRST_BATCH.zh-TW.txt)及references/animation-sources/mixamo-replacement-shortlist.json。49項文字索引候選，P0=19／P1=24／P2=6，涵蓋四角出招、步法、受擊、跳落、起身、演出，LOOP斧／單手近戰需短棍改編。並非49段已看官方預覽或可直接套用；搜尋詞／UI名稱有差別，同名版本按英文描述辨識。沒有下載第三方FBX。
+
+此執行環境status restricted/enforced、allowed_hosts=[]，正常proxy官方products＋公開X-Api-Key仍Tunnel403；另一對話已連通為不同個體歷史，不覆寫。讀了cloud-environment-runtime與Networking技能，本輪不繞過政策、不索取token。官方Adobe免費遊戲使用與搜尋／預覽流程已重新讀，名稱只由二級metadata查線索，清單明示未驗。肩摔兩檔已到手，仍可獨立接續retarget，不以認證阻擋。
+
+取得P0後按出招→接觸→回收逐角色重編，修root／stride、blend與單一pose owner，不能只換檔或把所有J套三連擊；P1覆蓋全move id／空地／防禦，再P2演出。原GLB／音樂／存檔保留，原曲線私有，正式共同時鐘摔投仍待做。本輪只有研究清單／文件，無Godot變更或新玩法驗證；來源基線a5f7157，同任務分支，main／Web不動。
+
+## 2026-11-14：已收到兩個使用者FBX，原始雙人摔投骨架同步檢查完成
+
+來源基線28986c4，先fast-forward接續另一對話的官方目錄／GIF與秘密注入工作；不覆寫其紀錄，不合main。使用者已上傳Shoulder Throw, Aggressor與Victim，均65骨／同名同序／30fps／1–201幀、6.667秒跨度，兩個root位移保留。SHA與角色定義見[evidence/judo-source-pair](evidence/judo-source-pair/README.md)。以原座標／原幀號生成6.70秒雙角度骨架診斷影片及12摔投／15完整時間軸抽格，已檢視入身、轉肩、離地倒轉、落地及地面收尾；無重定時或人工對齊。兩次提取metadata／joint資料完全相同。FBX匯入的Short user property警告有記錄。
+
+原FBX與逐幀資料在repo外（此雲端workspace/shared/judo-shoulder-throw及attachments），公開只保存程式、metadata、渲染預覽。提取／預覽CLI見tools/inspect_mixamo_throw_pair.py與render_mixamo_throw_diagnostic.py。這不是Godot接入／mesh接觸／物理驗收；不能拿前輪674當摔投通過。下一步同時裁切兩段（來源46–121只候選），先做實際四角中一組retarget與接觸／root，再共同時鐘與落地一次結算、雙朝向／邊界／中斷清理。MCP登入不再阻擋處理已上傳兩檔；本輪未做新網路／認證檢查，不聲稱MCP已下載。Godot、原GLB、main／Web不改。
+
+## 2026-11-13 接續：網路已生效，官方配對與預覽已核實，待Adobe認證
+
+本次是同一設定下的新執行個體；讀取status為unrestricted／enforced且observations_current=true，已實際連通Mixamo。未帶API key的403是官方JSON「Api Key is required」，不是proxy拒絕；使用上游公開X-Api-Key後官方目錄HTTP200。核實Shoulder Throw, Aggressor（c9c7a795-b96c-11e4-a802-0aaa78deedf9）與Victim（c9c7a914-b96c-11e4-a802-0aaa78deedf9）。兩段官方GIF各6.6秒，完整時長2fps抽樣已檢視：攻方轉身俯身過肩及收招，守方離地翻轉、背部落地及地面收尾。不是雙人對齊播放，root／接觸／落地幀仍未量測；未下載FBX、未接Godot、完整摔投未完成。
+
+指定上游6170d5e／SDK1.30.0已在本機私有runtime重建，pip check、實際launcher initialize／六工具通過。未讀到token檔、環境無認證綁定；MCP auth與search明確回未認證，isError=false亦不算搜尋成功。公開目錄查證是獨立官方HTTP請求，不冒稱MCP搜尋成功。證據：[official-pair.json](evidence/mixamo-mcp/official-pair.json)。
+
+launcher新增可選MIXAMO_ACCESS_TOKEN環境秘密，只交給client建構子記憶體使用，不寫token檔、不經mixamo-auth參數；未設定時沿用同主機私有~/.mixamo_mcp_token。使用者可在環境設定的秘密欄位配置MIXAMO_ACCESS_TOKEN並套用到執行環境，勿貼聊天。實際新憑證尚未提供／驗證；佔位值本地檢查確認只入記憶體、不落檔、不連網。後續先驗真認證，再同角色／30fps／完整root與時長下載兩段到repo外量測，不以GIF當FBX或曲線來源。
+
+本次來源分支codex/four-fighter-motion-plan，基線c766a61；PR #29已合併是歷史，本次提交不在該PR內。原GLB、Godot、main與Web未改。以下網路403與舊runtime紀錄保留為歷史，由本節覆蓋目前狀態。
+
+## 2026-11-13：指定HaD0Yun Mixamo MCP已安裝、待網路與登入
+
+使用者指定unity-mcp-mixamo，已採獨立Python Server，固定6170d5e；不需Unity，Godot可後續用FBX。雲端Codex CLI註冊mixamo-direct，實際initialize／6工具／combat keywords通過；搜尋回未認證，無token，HTTP API仍ProxyError403。首次SDK2.3.0不相容已固定1.30.0，launcher將client print轉stderr。見[MIXAMO_MCP_SETUP.zh-TW.md](MIXAMO_MCP_SETUP.zh-TW.md)最新節及direct-server.json。尚無官方FBX／完整摔投；不貼token到聊天，同主機私有token檔才可供server讀。未操作Mac、未改Godot／main／Web。
+
+## 2026-11-13：官方Playwright MCP已安裝及實測，Mixamo被網路403擋住
+
+見[MIXAMO_MCP_SETUP.zh-TW.md](MIXAMO_MCP_SETUP.zh-TW.md)與[evidence/mixamo-mcp/setup.json](evidence/mixamo-mcp/setup.json)。使用者要求用MCP，已在本對話雲端安裝官方@playwright/mcp0.0.85並註冊雲端Codex CLI的playwright-mixamo；註冊命令initialize／tools/list25工具通過，實際MCP開GitHub並點擊錨點成功。不是使用者Mac已設定，也不代表此宿主對話工具自動熱載入。Mixamo導航ERR_TUNNEL_CONNECTION_FAILED，獨立HTTP proxy403；目前障礙是網路政策，未到Adobe登入，無FBX／完整摔投。需雲端允許mixamo.com及www.mixamo.com後再開登入頁；本輪沒有網路變更工具，不繞過政策。另附本機tools/setup_mixamo_mcp.sh供Codex＋Playwright Extension註冊，僅Linux語法／print驗證，未操作使用者Mac。私有profile／下載在workspace/shared內，不入repo；同profile只啟一個實例。Godot／來源動畫不改、674是歷史結果，main f69fc9f未合併、Web不更新。
+
+## 2026-11-13：只用免費素材，Mixamo過肩摔配對優先
+
 ## 2026-11-14：選單與彈出文字清晰度覆核
 
 修正原生PopupMenu／TooltipLabel獨立Window的主題及取樣繼承：新Viewport明確nearest、Window缺主題時補共用theme，相關文字明確BODY並移除PopupMenu舊4px描邊。探索Overlay/Help亦補像素字體。5／8／100、字圖與字級保持。87項（原生43／語言21／strict23）通過，包含設定與P1/P2裝置下拉選單的embedded／獨立視窗、真hover提示框、主介面／城市六站／天賦／故事／HUD／暫停／結算。圖及限制見[evidence/pixel-text-audit](evidence/pixel-text-audit/README.md)；雲端Linux4.7.2，非使用者Mac驗收，來源同步main，Web不更新。取樣值4是繼承而非linear，不可只看root nearest便判斷popup已清晰。

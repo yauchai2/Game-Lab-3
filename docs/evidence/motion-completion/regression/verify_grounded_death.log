@@ -1,0 +1,109 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+GROUNDED_DEATH deformed skin rests on floor 0/-1/false true
+GROUNDED_DEATH death owns attack/air/spin pose 0/-1/false true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 0/-1/false true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 0/-1/false true
+GROUNDED_DEATH living airborne pose is not grounded 0/-1/false true
+GROUNDED_DEATH deformed skin rests on floor 0/-1/true true
+GROUNDED_DEATH death owns attack/air/spin pose 0/-1/true true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 0/-1/true true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 0/-1/true true
+GROUNDED_DEATH living airborne pose is not grounded 0/-1/true true
+GROUNDED_DEATH deformed skin rests on floor 0/1/false true
+GROUNDED_DEATH death owns attack/air/spin pose 0/1/false true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 0/1/false true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 0/1/false true
+GROUNDED_DEATH living airborne pose is not grounded 0/1/false true
+GROUNDED_DEATH deformed skin rests on floor 0/1/true true
+GROUNDED_DEATH death owns attack/air/spin pose 0/1/true true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 0/1/true true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 0/1/true true
+GROUNDED_DEATH living airborne pose is not grounded 0/1/true true
+GROUNDED_DEATH deformed skin rests on floor 1/-1/false true
+GROUNDED_DEATH death owns attack/air/spin pose 1/-1/false true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 1/-1/false true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 1/-1/false true
+GROUNDED_DEATH living airborne pose is not grounded 1/-1/false true
+GROUNDED_DEATH deformed skin rests on floor 1/-1/true true
+GROUNDED_DEATH death owns attack/air/spin pose 1/-1/true true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 1/-1/true true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 1/-1/true true
+GROUNDED_DEATH living airborne pose is not grounded 1/-1/true true
+GROUNDED_DEATH deformed skin rests on floor 1/1/false true
+GROUNDED_DEATH death owns attack/air/spin pose 1/1/false true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 1/1/false true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 1/1/false true
+GROUNDED_DEATH living airborne pose is not grounded 1/1/false true
+GROUNDED_DEATH deformed skin rests on floor 1/1/true true
+GROUNDED_DEATH death owns attack/air/spin pose 1/1/true true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 1/1/true true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 1/1/true true
+GROUNDED_DEATH living airborne pose is not grounded 1/1/true true
+GROUNDED_DEATH deformed skin rests on floor 2/-1/false true
+GROUNDED_DEATH death owns attack/air/spin pose 2/-1/false true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 2/-1/false true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 2/-1/false true
+GROUNDED_DEATH living airborne pose is not grounded 2/-1/false true
+GROUNDED_DEATH deformed skin rests on floor 2/-1/true true
+GROUNDED_DEATH death owns attack/air/spin pose 2/-1/true true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 2/-1/true true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 2/-1/true true
+GROUNDED_DEATH living airborne pose is not grounded 2/-1/true true
+GROUNDED_DEATH deformed skin rests on floor 2/1/false true
+GROUNDED_DEATH death owns attack/air/spin pose 2/1/false true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 2/1/false true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 2/1/false true
+GROUNDED_DEATH living airborne pose is not grounded 2/1/false true
+GROUNDED_DEATH deformed skin rests on floor 2/1/true true
+GROUNDED_DEATH death owns attack/air/spin pose 2/1/true true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 2/1/true true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 2/1/true true
+GROUNDED_DEATH living airborne pose is not grounded 2/1/true true
+GROUNDED_DEATH deformed skin rests on floor 3/-1/false true
+GROUNDED_DEATH death owns attack/air/spin pose 3/-1/false true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 3/-1/false true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 3/-1/false true
+GROUNDED_DEATH living airborne pose is not grounded 3/-1/false true
+GROUNDED_DEATH deformed skin rests on floor 3/-1/true true
+GROUNDED_DEATH death owns attack/air/spin pose 3/-1/true true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 3/-1/true true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 3/-1/true true
+GROUNDED_DEATH living airborne pose is not grounded 3/-1/true true
+GROUNDED_DEATH deformed skin rests on floor 3/1/false true
+GROUNDED_DEATH death owns attack/air/spin pose 3/1/false true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 3/1/false true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 3/1/false true
+GROUNDED_DEATH living airborne pose is not grounded 3/1/false true
+GROUNDED_DEATH deformed skin rests on floor 3/1/true true
+GROUNDED_DEATH death owns attack/air/spin pose 3/1/true true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 3/1/true true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 3/1/true true
+GROUNDED_DEATH living airborne pose is not grounded 3/1/true true
+GROUNDED_DEATH deformed skin rests on floor 4/-1/false true
+GROUNDED_DEATH death owns attack/air/spin pose 4/-1/false true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 4/-1/false true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 4/-1/false true
+GROUNDED_DEATH living airborne pose is not grounded 4/-1/false true
+GROUNDED_DEATH deformed skin rests on floor 4/-1/true true
+GROUNDED_DEATH death owns attack/air/spin pose 4/-1/true true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 4/-1/true true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 4/-1/true true
+GROUNDED_DEATH living airborne pose is not grounded 4/-1/true true
+GROUNDED_DEATH deformed skin rests on floor 4/1/false true
+GROUNDED_DEATH death owns attack/air/spin pose 4/1/false true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 4/1/false true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 4/1/false true
+GROUNDED_DEATH living airborne pose is not grounded 4/1/false true
+GROUNDED_DEATH deformed skin rests on floor 4/1/true true
+GROUNDED_DEATH death owns attack/air/spin pose 4/1/true true
+GROUNDED_DEATH idle state cannot restart or stand up corpse 4/1/true true
+GROUNDED_DEATH presentation leaves simulation snapshot intact 4/1/true true
+GROUNDED_DEATH living airborne pose is not grounded 4/1/true true
+GROUNDED_DEATH squad continues after two corpses true
+GROUNDED_DEATH live squad corpse rests on street 0 true
+GROUNDED_DEATH live squad corpse rests on street 1 true
+GROUNDED_DEATH all result corpses settle, including non-focus enemies true

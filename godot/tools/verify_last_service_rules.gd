@@ -88,7 +88,12 @@ func run() -> void:
     s=fresh(1,0);s._start_attack(0,"overdrive");s.fighters[0].frame=10;s._start_attack(1,"jab");s.fighters[1].frame=4;s.tick()
     check("RIVET early startup remains interruptible",s.fighters[0].state=="stun")
     s=fresh(1,0);s._start_attack(0,"overdrive");s.fighters[0].frame=32;s._start_attack(1,"grab");s.fighters[1].frame=10;s.tick()
-    check("Throw beats RIVET late armor",s.fighters[0].state=="stun")
+    var armor_thrown:bool=s.fighters[0].state=="stun"
+    if s.paired_throw.active():
+        armor_thrown=s.fighters[0].state=="throw" and s.fighters[0].health==100
+        step(s,75)
+        armor_thrown=armor_thrown and s.paired_throw.landed and s.fighters[0].health<100
+    check("Throw beats RIVET late armor; paired damage waits for landing",armor_thrown)
     s=fresh(3,2);s.fighters[0].service.nodes=[{"x":.5,"life":300,"id":1}];s.tick({"attack":"node_pulse"},{"guard":true,"guard_pressed":true});step(s,12,{}, {"guard":true})
     check("HUSH can parry a remote pulse but does not sample it",s.fighters[1].health==100 and s.fighters[1].service.sample==0)
     s=fresh(3,0);s.fighters[0].service.nodes=[{"x":.5,"life":300,"id":1},{"x":1.0,"life":300,"id":2}];s.tick({"attack":"overdrive"})
