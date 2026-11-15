@@ -902,3 +902,8 @@ Godot 4.6.3 Linux／llvmpipe：verify_story_flow 51/51（證據 docs/evidence/st
 ## 2026-11-10：陣容與造型計劃文件
 
 本輪檢查最新陣容、LOOP男性稱謂、Markdown修訂連結、diff whitespace與僅文件變更。更新8份Markdown，不新增圖片，不更動manifest／PNG／影片／GLB或runtime。新頭部、比例、三視圖、表情、UV與遊戲畫面均未驗證；後續條件見 [修訂計劃](LAST_SERVICE_ROSTER_REVISION.zh-TW.md)。
+
+
+## 2026-11-15：故事開局招式與引導
+
+已完成：全部基本動作開局可用、三代舊檔自動補齊、H 故事指南與實際尋路、據點下一步、技能／裝備／天賦說明及真實費用的戰鬥提示。進階技巧及成長仍保留；詳細見 [STORY_ONBOARDING.zh-TW.md](STORY_ONBOARDING.zh-TW.md)。新 54 項、城市 86 項、戰役 50 項、原生城市 23 項、嚴格編譯 23 項及繁中 21 項通過。Linux 4.6.3／llvmpipe，不冒稱 Mac／真人驗收，Web 未更新。

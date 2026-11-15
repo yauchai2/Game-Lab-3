@@ -150,10 +150,6 @@ func _advance_fighter(i:int,command:Dictionary) -> void:
         elif f.rush_follow and f.state=="attack":f.rush_follow=false
         if f.story_role in ["guard","heavy","captain"] and f.state=="idle" and f.y<=.01 and f.guard>22 and squad_clock%150<95 and absf(f.x-fighters[0].x)<2.7:
             command={"guard":true,"allow_parry":false};f.buffer="";f.buffer_ttl=0
-    if campaign_enabled and i==0:
-        if "double_jump" not in campaign_skills and f.y>.01:f.jump_buffer=0
-        if "chase" not in campaign_skills:
-            f.air.chase_window=0;f.air.chase_buffer=0
     super._advance_fighter(i,command)
     if campaign_enabled and i==1 and f.health>0 and f.get("story_role","")!="captain" and squad_members.any(func(member:Dictionary)->bool:return member.health>0 and member.get("story_role","")=="captain"):
         f.guard=minf(100,f.guard+.15)
@@ -220,19 +216,7 @@ func _finish_round() -> void:
             story_state="break";break_left=180
             events.append({"kind":"story_wave_clear","wave":wave_index+1})
 
-# Campaign ability permissions are enforced at the move owner, including held-J
-# and buffered/automatic routes. Existing M1 and all standard modes delegate.
-func _start_attack(i:int,requested:String) -> void:
-    if not campaign_enabled or i!=0:super._start_attack(i,requested);return
-    var f:Dictionary=fighters[i]
-    var resolved:=requested
-    if requested=="light":
-        resolved=(["air_jab","air_kick","meteor"] if f.y>.01 else ["jab","cross","launcher"])[mini(f.chain,2)]
-    if resolved=="launcher" and "launcher" not in campaign_skills:requested="finisher"
-    if resolved in ["meteor","air_finisher"] and "finisher" not in campaign_skills:requested="air_kick"
-    if resolved=="overdrive" and "overdrive" not in campaign_skills:requested="special"
-    super._start_attack(i,requested)
-
+# Basic moves are available from the first encounter; progression strengthens them.
 func move_for(fighter:Dictionary,name:String) -> Dictionary:
     var move:Dictionary=super.move_for(fighter,name)
     if not campaign_enabled:return move

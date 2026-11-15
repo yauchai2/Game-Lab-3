@@ -1,0 +1,222 @@
+{
+  "checks": [
+    {
+      "name": "fresh profile grants the full kit without money or story progress",
+      "passed": true
+    },
+    {
+      "name": "hero 0 opening ground chain reaches launcher",
+      "passed": true
+    },
+    {
+      "name": "hero 0 opening air chain reaches finisher",
+      "passed": true
+    },
+    {
+      "name": "hero 0 opening overdrive pays the normal cost",
+      "passed": true
+    },
+    {
+      "name": "hero 0 still cannot use overdrive without energy",
+      "passed": true
+    },
+    {
+      "name": "hero 0 opening double jump is a real event",
+      "passed": true
+    },
+    {
+      "name": "hero 0 opening chase really spends energy",
+      "passed": true
+    },
+    {
+      "name": "hero 1 opening ground chain reaches launcher",
+      "passed": true
+    },
+    {
+      "name": "hero 1 opening air chain reaches finisher",
+      "passed": true
+    },
+    {
+      "name": "hero 1 opening overdrive pays the normal cost",
+      "passed": true
+    },
+    {
+      "name": "hero 1 still cannot use overdrive without energy",
+      "passed": true
+    },
+    {
+      "name": "hero 1 opening double jump is a real event",
+      "passed": true
+    },
+    {
+      "name": "hero 1 opening chase really spends energy",
+      "passed": true
+    },
+    {
+      "name": "hero 2 opening ground chain reaches launcher",
+      "passed": true
+    },
+    {
+      "name": "hero 2 opening air chain reaches finisher",
+      "passed": true
+    },
+    {
+      "name": "hero 2 opening overdrive pays the normal cost",
+      "passed": true
+    },
+    {
+      "name": "hero 2 still cannot use overdrive without energy",
+      "passed": true
+    },
+    {
+      "name": "hero 2 opening double jump is a real event",
+      "passed": true
+    },
+    {
+      "name": "hero 2 opening chase really spends energy",
+      "passed": true
+    },
+    {
+      "name": "hero 3 opening ground chain reaches launcher",
+      "passed": true
+    },
+    {
+      "name": "hero 3 opening air chain reaches finisher",
+      "passed": true
+    },
+    {
+      "name": "hero 3 opening overdrive pays the normal cost",
+      "passed": true
+    },
+    {
+      "name": "hero 3 still cannot use overdrive without energy",
+      "passed": true
+    },
+    {
+      "name": "hero 3 opening double jump is a real event",
+      "passed": true
+    },
+    {
+      "name": "hero 3 opening chase really spends energy",
+      "passed": true
+    },
+    {
+      "name": "schema1 grants basics without erasing money rank or progress",
+      "passed": true
+    },
+    {
+      "name": "schema1 read preserves original save bytes",
+      "passed": true
+    },
+    {
+      "name": "schema1 next save and reload retain every basic move",
+      "passed": true
+    },
+    {
+      "name": "schema2 grants basics without erasing money rank or progress",
+      "passed": true
+    },
+    {
+      "name": "schema2 read preserves original save bytes",
+      "passed": true
+    },
+    {
+      "name": "schema2 next save and reload retain every basic move",
+      "passed": true
+    },
+    {
+      "name": "schema3 grants basics without erasing money rank or progress",
+      "passed": true
+    },
+    {
+      "name": "schema3 read preserves original save bytes",
+      "passed": true
+    },
+    {
+      "name": "schema3 next save and reload retain every basic move",
+      "passed": true
+    },
+    {
+      "name": "first visit explains story without altering the profile",
+      "passed": true
+    },
+    {
+      "name": "guide scroll reaches equipment navigation",
+      "passed": true
+    },
+    {
+      "name": "H closes guide and leaves compact guidance visible",
+      "passed": true
+    },
+    {
+      "name": "requested guide control exists",
+      "passed": true
+    },
+    {
+      "name": "visible guide button reopens the guide",
+      "passed": true
+    },
+    {
+      "name": "requested guide control exists",
+      "passed": true
+    },
+    {
+      "name": "next-step button walks to the physical station",
+      "passed": true
+    },
+    {
+      "name": "guided walk reaches DEPART without spending or starting a run",
+      "passed": true
+    },
+    {
+      "name": "fresh native practice is enabled for double_jump",
+      "passed": true
+    },
+    {
+      "name": "fresh native practice is enabled for launcher",
+      "passed": true
+    },
+    {
+      "name": "fresh native practice is enabled for chase",
+      "passed": true
+    },
+    {
+      "name": "fresh native practice is enabled for finisher",
+      "passed": true
+    },
+    {
+      "name": "fresh native practice is enabled for overdrive",
+      "passed": true
+    },
+    {
+      "name": "requested guide control exists",
+      "passed": true
+    },
+    {
+      "name": "practice starts with the real kit and leaves progression alone",
+      "passed": true
+    },
+    {
+      "name": "actual K input completes launcher practice",
+      "passed": true
+    },
+    {
+      "name": "first real encounter carries the full kit",
+      "passed": true
+    },
+    {
+      "name": "combat advice uses discounted real skill costs",
+      "passed": true
+    },
+    {
+      "name": "unspent talent point suggests the real circuit",
+      "passed": true
+    },
+    {
+      "name": "pending current takes priority over spending",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 54
+}

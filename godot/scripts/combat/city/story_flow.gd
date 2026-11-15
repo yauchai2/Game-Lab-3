@@ -203,7 +203,7 @@ func _build_inter() -> void:
             _row_button(row,"%d  %s"%[key,{"combat":"COMBAT\nnormal loot","cache":"SALVAGE\n+1 item, heavy foe","hazard":"CHARGED\n+20% credits","rest":"REST\n+20 HP once"}[route]],func():_pick_route(id));key+=1
     var go:String={"win":"NEXT ENCOUNTER","retry":"RETRY THE WAVE","contract_next":"NEXT CONTRACT"}[kind]
     var main:=_inter_button(go+" / ENTER",_continue)
-    _inter_button("RETURN TO SAFE BLOCK / ESC",_home)
+    _inter_button("RETURN HOME / UPGRADES / ESC",_home)
     main.grab_focus()
     hint_label.text="CHAIN x%d    ENTER: KEEP GOING    ESC: GO HOME"%streak
 

@@ -722,6 +722,9 @@ func _draw() -> void:
         _plate(Vector2(190,548),Vector2(900,62),INK)
         _center(Vector2(640,575),session.city_campaign.profile.Story.LESSONS.get(session.city_campaign.lesson_active,"PRACTICE"),24,Tokens.TEAL)
         _center(Vector2(640,601),"PRACTICE / FULL ENERGY FIXTURE / NO REWARDS",24,PAPER)
+    if session.sim.campaign_enabled and session.city_campaign.lesson_active=="" and session.screen=="play" and session.sim.phase=="fight":
+        _plate(Vector2(120,648),Vector2(1040,38),INK)
+        _center(Vector2(640,675),preload("res://scripts/combat/city/story_guide.gd").combat_tip(session.sim.fighters[0],session.sim.skill_cost(session.sim.fighters[0],"special"),session.sim.skill_cost(session.sim.fighters[0],"overdrive")),24,Tokens.TEAL)
     _draw_core_tag()
     if session.sim.campaign_enabled and session.sim.campaign_boss!="":_campaign_boss_hud()
     elif session.sim.arcade_enabled:_surge_hud()

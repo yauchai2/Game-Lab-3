@@ -44,7 +44,7 @@ func run() -> void:
     check("first clear banks enough for a pull and actual equipment",p.settle(true,80,42) and p.data.credits==100 and p.data.inventory.size()==1 and p.data.points==1 and p.level()==2)
     var loot_id:=int(p.data.inventory[0].id)
     check("repeat settlement cannot duplicate money loot or XP",not p.settle(true,80,42) and p.data.inventory.size()==1 and p.data.xp==100)
-    check("first-clear double jump remains free and deterministic",p.learn("double_jump") and not p.learn("overdrive"))
+    check("first-clear keeps the full free basic kit without duplicate learning",p.data.skills==P.BASIC_SKILLS and not p.learn("double_jump") and not p.learn("overdrive"))
     check("unlearned skill affixes cannot appear in generated gear",not p.Loot.make(10,0,3,5,[],42).affixes.any(func(a:Dictionary)->bool:return a.has("skill")))
     p.data.credits=1000;p.data.pity=9;p.data.unique_pity=39
     var item:Dictionary=p.pull(1,0)
@@ -93,9 +93,9 @@ func run() -> void:
     DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(p.path.get_base_dir()))
     var legacy:={"version":1,"credits":234,"parts":9,"best":8,"points":8,"skills":["double_jump","launcher"],"skill_levels":[1,0,0,0],"talents":[["break_1","break_2"],[],[],[]],"gear":[{},{},{}],"inventory":[],"pulls":4,"pity":4,"unique_pity":4,"serial":2,"attempts":2,"dialogue":1,"claims":[],"run":{}}
     var file:=FileAccess.open(p.path,FileAccess.WRITE);var original:=JSON.stringify(legacy);file.store_string(original);file.close();p.load_data()
-    check("legacy migration retains abilities money and point budget",p.error=="" and p.data.version==3 and p.data.points==8 and p.data.credits==234 and p.data.skills==legacy.skills and p.data.skill_levels[0]==1)
+    check("legacy migration retains abilities money and point budget",p.error=="" and p.data.version==3 and p.data.points==8 and p.data.credits==234 and p.data.skills==P.BASIC_SKILLS and p.data.skill_levels[0]==1)
     check("expanded tree refunds old allocations without overwriting original",p.data.talents[0].is_empty() and FileAccess.get_file_as_string(p.path)==original)
-    p.learn("chase")
+    p.save_data()
     check("first migrated transaction preserves immutable v1 backup",FileAccess.get_file_as_string(p.path+".v1.bak")==original)
     var reloaded=P.new();reloaded.path=p.path;reloaded.load_data()
     check("version2 profile reloads without further migration",reloaded.error=="" and reloaded.data.skills.has("chase") and reloaded.migration_notice=="")
@@ -182,14 +182,14 @@ func run() -> void:
     check("two bad saves retain original bytes and disable transactions",corrupt.error!="" and not corrupt.start_run(0) and FileAccess.get_file_as_string(corrupt.path)=="broken")
     var gates=sim();gates.campaign_enabled=true;gates.campaign_skills=[];gates.campaign_stats={}
     gates.fighters[0].chain=2;gates._start_attack(0,"light")
-    check("held-J cannot bypass the locked launcher",gates.fighters[0].move=="finisher")
+    check("held-J reaches launcher even with an old empty permission array",gates.fighters[0].move=="launcher")
     gates.fighters[0].state="idle";gates.fighters[0].meter=100;gates._start_attack(0,"overdrive")
-    check("locked overdrive resolves to the legal basic class skill",gates.fighters[0].move=="special")
+    check("opening overdrive is the actual paid overdrive",gates.fighters[0].move=="overdrive" and gates.fighters[0].meter==25)
     gates.fighters[0].y=2;gates.fighters[0].chain=2;gates._start_attack(0,"light")
-    check("held air combo cannot bypass the locked finisher",gates.fighters[0].move=="air_kick")
-    gates.fighters[0].state="idle";gates.fighters[0].jump_buffer=8;gates.fighters[0].air.chase_window=30;gates.fighters[0].air.chase_buffer=8
+    check("opening air combo reaches its actual finisher",gates.fighters[0].move=="meteor")
+    gates.fighters[0].state="idle";gates.fighters[0].air.double_used=false;gates.fighters[0].jump_buffer=8
     gates._advance_fighter(0,{"jump":true})
-    check("second jump and auto-chase buffers respect permissions",gates.fighters[0].jump_buffer==0 and gates.fighters[0].air.chase_buffer==0 and gates.fighters[0].air.chase_window==0)
+    check("second jump is usable without a milestone permission",gates.events.any(func(e:Dictionary)->bool:return e.kind=="double_jump"))
     var failed:int=checks.filter(func(c:Dictionary)->bool:return not c.passed).size()
     file=FileAccess.open(OUT+"rules.json",FileAccess.WRITE);file.store_string(JSON.stringify({"passed":checks.size()-failed,"failed":failed,"checks":checks},"  "));file.close()
     print("EXPANSION RESULT ",checks.size()-failed,"/",checks.size());quit(1 if failed else 0)

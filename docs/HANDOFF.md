@@ -892,3 +892,8 @@ SKILLS／RADIO（故事）／DEPART 三頁與頂部資源列由文字清單改�
 ## 屋頂設備剪影（2026-11-10）
 
 遊走場景四處舊樓加入簡化水箱、底座及管線，三處加入通風箱；沿用現有 MultiMesh 分組及非碰撞裝飾，不改 S1 或原 GLB。Godot Compatibility／llvmpipe [屋頂仰視](evidence/rooftops/01_rooftops.png)及 headless 街景／遊走回歸見 `evidence/rooftops/`。此為局部細節，目標硬體、人工遊玩和整體風格仍待驗收。
+
+
+## 2026-11-15：故事開局招式與引導
+
+已完成：全部基本動作開局可用、三代舊檔自動補齊、H 故事指南與實際尋路、據點下一步、技能／裝備／天賦說明及真實費用的戰鬥提示。進階技巧及成長仍保留；詳細見 [STORY_ONBOARDING.zh-TW.md](STORY_ONBOARDING.zh-TW.md)。新 54 項、城市 86 項、戰役 50 項、原生城市 23 項、嚴格編譯 23 項及繁中 21 項通過。Linux 4.6.3／llvmpipe，不冒稱 Mac／真人驗收，Web 未更新。

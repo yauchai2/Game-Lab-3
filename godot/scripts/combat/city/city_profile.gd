@@ -8,7 +8,8 @@ const Builds=preload("res://scripts/combat/city/city_builds.gd")
 const Loot=preload("res://scripts/combat/city/city_loot.gd")
 const Contracts=preload("res://scripts/combat/city/city_contracts.gd")
 const DISTRICTS=["NEON ALLEY","GATE STREET","UNDERPASS","FREIGHT YARD","LOCKDOWN AVE","CORE TOWER"]
-const SKILLS=[{"id":"double_jump","name":"DOUBLE JUMP","at":1},{"id":"launcher","name":"LAUNCHER","at":3},{"id":"chase","name":"AIR CHASE","at":4},{"id":"finisher","name":"AIR FINISHER","at":6},{"id":"overdrive","name":"OVERDRIVE","at":7}]
+const SKILLS=[{"id":"double_jump","name":"DOUBLE JUMP","at":0},{"id":"launcher","name":"LAUNCHER","at":0},{"id":"chase","name":"AIR CHASE","at":0},{"id":"finisher","name":"AIR FINISHER","at":0},{"id":"overdrive","name":"OVERDRIVE","at":0}]
+const BASIC_SKILLS=["double_jump","launcher","chase","finisher","overdrive"]
 const SLOTS=Loot.SLOTS
 var path:="user://neon_lab/city_v1.json"
 var data:Dictionary={}
@@ -21,7 +22,7 @@ var rng:=RandomNumberGenerator.new()
 
 func _init() -> void:rng.randomize();data=fresh()
 func fresh() -> Dictionary:
-    return {"version":3,"advanced":[[],[],[],[]],"quest_claims":[],"core_offer":{},"pending_core":"","core_serial":0,"craft_serial":0,"credits":0,"parts":0,"best":0,"points":0,"xp":0,"skills":[],"skill_levels":[0,0,0,0],"talents":[[],[],[],[]],"gear":[{},{},{}],"loadouts":[[{},{},{}],[{},{},{}],[{},{},{}],[{},{},{}]],"inventory":[],"stash":[],"pulls":0,"pity":0,"unique_pity":0,"item_serial":0,"serial":0,"attempts":0,"dialogue":0,"claims":[],"run":{},"contracts":[],"contract_serial":0,"contract_tier":1,"contract_wins":[0,0,0,0,0],"last_loot":[]}
+    return {"version":3,"advanced":[[],[],[],[]],"quest_claims":[],"core_offer":{},"pending_core":"","core_serial":0,"craft_serial":0,"credits":0,"parts":0,"best":0,"points":0,"xp":0,"skills":BASIC_SKILLS.duplicate(),"skill_levels":[0,0,0,0],"talents":[[],[],[],[]],"gear":[{},{},{}],"loadouts":[[{},{},{}],[{},{},{}],[{},{},{}],[{},{},{}]],"inventory":[],"stash":[],"pulls":0,"pity":0,"unique_pity":0,"item_serial":0,"serial":0,"attempts":0,"dialogue":0,"claims":[],"run":{},"contracts":[],"contract_serial":0,"contract_tier":1,"contract_wins":[0,0,0,0,0],"last_loot":[]}
 func level() -> int:return mini(20,1+floori(float(data.xp)/100.0))
 func _points() -> void:data.points=mini(25,level()-1+floori(float(data.best)/3.0))
 
@@ -144,6 +145,10 @@ func load_data() -> void:
             candidate=migrate(candidate)
         elif old_version==2:candidate=expand(candidate)
         if not valid(candidate):continue
+        # Grant the complete basic kit to existing saves without resetting progress.
+        # Persist with the next normal transaction; loading never overwrites a backup.
+        for id in BASIC_SKILLS:
+            if id not in candidate.skills:candidate.skills.append(id)
         data=candidate;loaded_backup=source.ends_with(".bak")
         if legacy:
             migration_source=source;migration_version=old_version;migration_notice="Circuit expanded. Old allocations refunded; skills, gear and point budget preserved." if old_version==1 else "Campaign expanded. Your skills, talent paths and equipment are preserved."

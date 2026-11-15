@@ -35,6 +35,9 @@ var walk_clock:=0.0
 var talent_tree:Control
 var inventory_page:=0
 var selected_item:=-1
+var guide_introduced:=false
+var guide_button:Button
+var next_hint:Label
 var nearest:=-1
 var hero_visual:Node3D
 var town_npcs:Array[Node3D]=[]
@@ -42,6 +45,7 @@ var speaker:=0
 var chapter_review:=-1
 var scroll:ScrollContainer
 var info:Label
+const Guide=preload("res://scripts/combat/city/story_guide.gd")
 const Pages=preload("res://scripts/combat/city/hub_pages.gd")
 
 func _ready() -> void:
@@ -75,6 +79,10 @@ func _ready() -> void:
     talent_tree=preload("res://scripts/combat/city/city_talent_tree.gd").new();layout.add_child(talent_tree)
     _upgrade_city()
     arrival_hint=_label("",28,T.INK);arrival_hint.add_theme_stylebox_override("normal",T.plate(T.PAPER,T.INK,2));arrival_hint.position=Vector2(30,550);arrival_hint.size=Vector2(640,40);layout.add_child(arrival_hint)
+    guide_button=Button.new();guide_button.text="H / STORY GUIDE";guide_button.position=Vector2(980,22);guide_button.size=Vector2(270,48)
+    guide_button.add_theme_font_size_override("font_size",24);guide_button.pressed.connect(open_guide);guide_button.set_meta("act","story_guide");layout.add_child(guide_button)
+    next_hint=_label("",24,T.PAPER);next_hint.position=Vector2(30,108);next_hint.size=Vector2(540,0)
+    next_hint.add_theme_stylebox_override("normal",T.plate(T.INK,T.TEAL,2));next_hint.mouse_filter=Control.MOUSE_FILTER_IGNORE;layout.add_child(next_hint)
     root.resized.connect(_resize);_resize();hide_city()
 
 func _resize() -> void:
@@ -103,6 +111,8 @@ func show_city() -> void:
     hero.position=workshop.spawns[campaign.hero_id()];route.clear();route_station=-1;page="";panel.visible=false;refresh_header()
     notice=""
     header.visible=hud_expanded;hint.visible=hud_expanded;station_bar.visible=hud_expanded
+    if not guide_introduced and campaign.flow.live() and int(campaign.profile.data.attempts)==0:
+        guide_introduced=true;open_guide()
 
 func hide_city() -> void:
     visible=false
@@ -128,6 +138,11 @@ func refresh_header() -> void:
 
 func _process(delta:float) -> void:
     if not visible:return
+    guide_button.visible=not talent_tree.visible and not panel.visible
+    next_hint.visible=not panel.visible and not talent_tree.visible
+    if next_hint.visible:
+        next_hint.text=Guide.next_step(campaign.profile,campaign.hero_id()).text
+        next_hint.size.y=0
     var movement:=Vector2.ZERO
     if not panel.visible and not talent_tree.visible:
         movement=Vector2(float(Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT))-float(Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT)),float(Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN))-float(Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP))).normalized()
@@ -171,6 +186,10 @@ func request_station(index:int) -> void:
 
 func _input(event:InputEvent) -> void:
     if not visible or not event is InputEventKey or not event.pressed or event.echo:return
+    if event.keycode==KEY_H:
+        if page=="GUIDE" and panel.visible:close_panel()
+        else:open_guide()
+        get_viewport().set_input_as_handled();return
     if event.keycode==KEY_TAB:
         hud_expanded=not hud_expanded;header.visible=hud_expanded;hint.visible=hud_expanded;station_bar.visible=hud_expanded
         get_viewport().set_input_as_handled();return
@@ -216,7 +235,7 @@ func open_station(index:int) -> void:
     campaign.session.audio.play_sound("ui_confirm",1.0,-10)
     page=NAMES[index];panel.visible=true;header.visible=true
     for child in stack.get_children():stack.remove_child(child);child.queue_free()
-    info.text=""
+    info.text="";scroll.scroll_vertical=0
     if not index in [0,2,3,4,5]:
         _text(Set.TITLES[index],COLORS[index])
         _button("CLOSE / ESC",close_panel)
@@ -307,3 +326,12 @@ func _unhandled_input(event:InputEvent) -> void:
 
 func set_info(text:String) -> void:
     if is_instance_valid(info):info.text=text
+
+func open_guide() -> void:
+    if talent_tree.visible:talent_tree.hide()
+    route.clear();route_station=-1;page="GUIDE";panel.visible=true;header.visible=true
+    for child in stack.get_children():stack.remove_child(child);child.queue_free()
+    info.text="";scroll.scroll_vertical=0
+    Guide.page(self)
+    for button in stack.find_children("*","Button",true,false):
+        if button.get_meta("act","")=="guide_next":call_deferred("_focus_station_button",weakref(button));break

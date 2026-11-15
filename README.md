@@ -1,3 +1,5 @@
+最新（2026-11-15）：[故事開局全部基本招式及新手引導](docs/STORY_ONBOARDING.zh-TW.md)。新舊存檔直接可用二段跳／挑空／追擊／空中終結／大招；據點 H 開故事指南，技能及裝備頁加入直接說明，戰鬥有操作提示。
+
 最新（2026-11-15）：[全部合適分支已整合至main](docs/BRANCH_MERGE_2026-11-15.zh-TW.md)。31段Mixamo／完整肩摔、ZIP／RIVET影片技能及連續慢動作、屋頂細節與角色設定紀錄集中；21組相關驗證通過。GitHub Desktop選main Fetch／Pull，公開Web未更新。下方舊分支／安裝限制為歷史。
 
 最新（2026-11-14）：[動作已隨GitHub提供，第一批全部啟用](docs/MOTION_COMPLETION.zh-TW.md)。**Pull任務分支後Godot匯入便可直接使用，不再需要手動安裝JSON。** 23衍生clip全啟用、倒地／起身／空踢及四角技能空連接續完成；現有招式／狀態554項覆核通過，舊RIVET6失敗已修。[12秒肩摔起身](docs/evidence/motion-completion/throw.mp4)／[14秒空連](docs/evidence/motion-completion/air.mp4)。以下私人安裝／未啟用敘述為先前階段，以此輪為準。
