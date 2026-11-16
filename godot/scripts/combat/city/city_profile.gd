@@ -1,6 +1,6 @@
 extends RefCounted
 ## Versioned, atomic account progress. Standard modes never consume this profile.
-const SCHEMA=6
+const SCHEMA=7
 const Tactics=preload("res://scripts/combat/tactics/skills.gd")
 const Advanced=preload("res://scripts/combat/last_service/progression.gd")
 const Story=preload("res://scripts/combat/city/city_story.gd")
@@ -149,12 +149,12 @@ func load_data() -> void:
         if parser.parse(FileAccess.get_file_as_string(source))!=OK or not parser.data is Dictionary:continue
         var candidate:Dictionary=parser.data
         var old_version:=int(candidate.get("version",0))
-        var legacy:bool=old_version in [1,2,3,4,5]
+        var legacy:bool=old_version in [1,2,3,4,5,6]
         if old_version==1:
             if not candidate.has("gear") or not candidate.has("inventory") or not candidate.has("best") or not candidate.has("points"):continue
             candidate=migrate(candidate)
-        elif old_version in [2,3,4,5]:
-            if old_version in [3,4,5]:
+        elif old_version in [2,3,4,5,6]:
+            if old_version in [3,4,5,6]:
                 var complete:=true
                 for key in fresh():
                     if key not in (["tactics","build_presets"] if old_version==3 else (["build_presets"] if old_version==4 else [])) and not candidate.has(key):complete=false
@@ -168,12 +168,12 @@ func load_data() -> void:
                 if not configurations_ok:continue
             if candidate.get("tactics") is Array:
                 for configuration in candidate.tactics:
-                    if configuration is Dictionary and not configuration.has("attachments"):configuration["attachments"]=[0,0,0,0,0,0]
+                    if old_version<=5 and configuration is Dictionary and not configuration.has("attachments"):configuration["attachments"]=[0,0,0,0,0,0]
             if candidate.get("build_presets") is Array:
                 for presets in candidate.build_presets:
                     if not presets is Array:continue
                     for preset in presets:
-                        if preset is Dictionary and preset.get("tactics") is Dictionary and not preset.tactics.has("attachments"):preset.tactics["attachments"]=[0,0,0,0,0,0]
+                        if old_version<=5 and preset is Dictionary and preset.get("tactics") is Dictionary and not preset.tactics.has("attachments"):preset.tactics["attachments"]=[0,0,0,0,0,0]
         if not valid(candidate):continue
         for configuration in candidate.tactics:
             for field in ["skills","variants","supports","attachments"]:
@@ -314,7 +314,7 @@ func respec(hero:int) -> bool:
     var before:=data.duplicate(true);data.talents[hero]=[];return commit(before)
 func gear_for(hero:int) -> Array:return data.loadouts[hero]
 func configure_tactic(hero:int,id:int,field:String,value:int) -> bool:
-    if hero<0 or hero>3 or id<0 or id>5 or field not in ["variants","supports","skills","attachments"] or value<0 or value>(2 if field=="attachments" else 1):return false
+    if hero<0 or hero>3 or id<0 or id>5 or field not in ["variants","supports","skills","attachments"] or value<0 or value>(3 if field=="attachments" else 1):return false
     var before:=data.duplicate(true)
     if field=="skills":data.tactics[hero].skills.reverse()
     else:data.tactics[hero][field][id]=value

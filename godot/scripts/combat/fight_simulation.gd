@@ -445,6 +445,7 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
         f.frame += 1
         if f.frame >= 14:
             f.state = "idle"
+    tactics.landing_recovery(self,i)
     if f.state == "idle":
         f.face = 1 if other.x >= f.x else -1
         if command.get("dash", false) and f.dash_cd == 0:

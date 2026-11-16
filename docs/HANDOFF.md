@@ -1,3 +1,11 @@
+## 2026-11-16：空投支援與落地承諾
+
+[玩法／相容／邊界](TACTICAL_AIRDROP.zh-TW.md)／[證據](evidence/airdrop-module/README.md)。第二支援ID3空投適用ZIP0／LOOP0，真斜向飛行／標記／同兩點網路，空中標記傷害-20%；地面原用法保持。起手消耗本跳fast_used，不重置二段跳／追擊／空反／滯空預算；原恢復後再付8tick落地承諾，跳躍／攻擊可排隊但不能取消。受擊／格擋硬直中斷時清尚未兌現的追加恢復，不退費或空中預算，避免晚到的第二次鎖定。
+
+CityProfile schema7支援ID3及舊1–6原檔／預設遷移；schema6既有attachments必填，不靜默補無。59新規則／17新原生，模組83／擴充111／首批106含schema7覆蓋、就緒53／反應42／服務46／城市86／戰役50／槍21／繁中21，以及Rush22／live45／squad35、既有模組8／擴充39／反應8／就緒14原生與22strict通過。suite重疊，Linux4.6.3／llvmpipe／Dummy非真人／Mac／手柄／FPS。
+
+額外共用規則回歸發現舊Rush測試要求摔技起手立即扣血；完整9b13331隔離worktree同樣20/21。只修測試為真配對起手中斷、落地一次12傷害及無提前傷害，22/22，保留baseline證據，沒有改摔技runtime。原資產／BGM／Web保持，來源同分支PR #38。更多模組／自然遭遇／專用動作與真人驗收仍待續。
+
 ## 2026-11-16：正式敵人回應預告與入場後比較
 
 [規則／比較界線](TACTICAL_ENEMY_RESPONSE.zh-TW.md)／[證據](evidence/module-counterplay/README.md)。輕裝空閒時普通走位，盾衛／隊長普通架防且禁自動招架，重裝／Boss原職責保持。至少8tick可見預告後按18／12／8tick節奏讀取，方向固定、最多20指令tick、180tick冷卻；受擊打斷不退冷卻，hitstop／pause凍結。只回應玩家尚未爆發zone，原移動／碰撞／格擋裁決保持，等待隊員亦可反應但不加進攻名額。

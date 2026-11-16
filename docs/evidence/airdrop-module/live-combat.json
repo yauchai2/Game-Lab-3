@@ -1,0 +1,188 @@
+{
+  "checks": [
+    {
+      "name": "close held-J ground chain reaches launcher for 0 at 1.2",
+      "passed": true
+    },
+    {
+      "name": "close held-J ground chain reaches launcher for 0 at 1.5",
+      "passed": true
+    },
+    {
+      "name": "close held-J ground chain reaches launcher for 1 at 1.2",
+      "passed": true
+    },
+    {
+      "name": "close held-J ground chain reaches launcher for 1 at 1.5",
+      "passed": true
+    },
+    {
+      "name": "close held-J ground chain reaches launcher for 2 at 1.2",
+      "passed": true
+    },
+    {
+      "name": "close held-J ground chain reaches launcher for 2 at 1.5",
+      "passed": true
+    },
+    {
+      "name": "close held-J ground chain reaches launcher for 3 at 1.2",
+      "passed": true
+    },
+    {
+      "name": "close held-J ground chain reaches launcher for 3 at 1.5",
+      "passed": true
+    },
+    {
+      "name": "LOOP regression was reproduced before tuning",
+      "passed": true
+    },
+    {
+      "name": "normal AI punishes held guard with actual throw starts 0/0",
+      "passed": true
+    },
+    {
+      "name": "normal AI punishes held guard with actual throw starts 0/1",
+      "passed": true
+    },
+    {
+      "name": "normal AI punishes held guard with actual throw starts 0/2",
+      "passed": true
+    },
+    {
+      "name": "normal AI punishes held guard with actual throw starts 1/0",
+      "passed": true
+    },
+    {
+      "name": "normal AI punishes held guard with actual throw starts 1/1",
+      "passed": true
+    },
+    {
+      "name": "normal AI punishes held guard with actual throw starts 1/2",
+      "passed": true
+    },
+    {
+      "name": "normal AI punishes held guard with actual throw starts 2/0",
+      "passed": true
+    },
+    {
+      "name": "normal AI punishes held guard with actual throw starts 2/1",
+      "passed": true
+    },
+    {
+      "name": "normal AI punishes held guard with actual throw starts 2/2",
+      "passed": true
+    },
+    {
+      "name": "normal AI punishes held guard with actual throw starts 3/0",
+      "passed": true
+    },
+    {
+      "name": "normal AI punishes held guard with actual throw starts 3/1",
+      "passed": true
+    },
+    {
+      "name": "normal AI punishes held guard with actual throw starts 3/2",
+      "passed": true
+    },
+    {
+      "name": "old guard policy had no throw attempts in all twelve scenarios",
+      "passed": true
+    },
+    {
+      "name": "unfunded character 0 closes and fights instead of idling",
+      "passed": true
+    },
+    {
+      "name": "unfunded character 1 closes and fights instead of idling",
+      "passed": true
+    },
+    {
+      "name": "unfunded character 2 closes and fights instead of idling",
+      "passed": true
+    },
+    {
+      "name": "unfunded character 3 closes and fights instead of idling",
+      "passed": true
+    },
+    {
+      "name": "held guard creates a committed legal throw",
+      "passed": true
+    },
+    {
+      "name": "opponent change cannot replace a committed plan",
+      "passed": true
+    },
+    {
+      "name": "hidden buffered player intent cannot change AI choice",
+      "passed": true
+    },
+    {
+      "name": "AI holds guard continuously through contact freeze",
+      "passed": true
+    },
+    {
+      "name": "blockstun cannot silently release an existing guard plan",
+      "passed": true
+    },
+    {
+      "name": "CPU throw damages a real guarding opponent",
+      "passed": true
+    },
+    {
+      "name": "jump still avoids the committed throw by position",
+      "passed": true
+    },
+    {
+      "name": "whiff recovery is met with a normal punish input",
+      "passed": true
+    },
+    {
+      "name": "new rounds clear AI commitments and burst history",
+      "passed": true
+    },
+    {
+      "name": "air counter choices vary by exchange instead of locking to a global beat",
+      "passed": true
+    },
+    {
+      "name": "low guard retreats with a legal dash rather than defending to break",
+      "passed": true
+    },
+    {
+      "name": "native freeze drains without slow-motion double stretching",
+      "passed": true
+    },
+    {
+      "name": "contact resumes earlier for launcher at SURGE 0",
+      "passed": true
+    },
+    {
+      "name": "contact resumes earlier for parry at SURGE 0",
+      "passed": true
+    },
+    {
+      "name": "contact resumes earlier for overdrive at SURGE 0",
+      "passed": true
+    },
+    {
+      "name": "contact resumes earlier for launcher at SURGE 60",
+      "passed": true
+    },
+    {
+      "name": "contact resumes earlier for parry at SURGE 60",
+      "passed": true
+    },
+    {
+      "name": "contact resumes earlier for overdrive at SURGE 60",
+      "passed": true
+    },
+    {
+      "name": "twelve thousand competitive-policy steps replay identically",
+      "passed": true
+    }
+  ],
+  "engine": "4.6.3-stable (official)",
+  "passed": 45,
+  "scope": "Normal FIGHT policy and rules, deterministic controlled-input scenarios plus explicit unit fixtures. Not human fun validation.",
+  "total": 45
+}

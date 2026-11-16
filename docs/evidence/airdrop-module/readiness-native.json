@@ -1,0 +1,61 @@
+{
+  "checks": [
+    {
+      "name": "en enlarged tactical names fit both HUD cards",
+      "passed": true
+    },
+    {
+      "name": "en enlarged actionable hints fit both HUD cards",
+      "passed": true
+    },
+    {
+      "name": "zh enlarged tactical names fit both HUD cards",
+      "passed": true
+    },
+    {
+      "name": "zh enlarged actionable hints fit both HUD cards",
+      "passed": true
+    },
+    {
+      "name": "skill page displays modified cooldown instead of base seven seconds",
+      "passed": true
+    },
+    {
+      "name": "actual expedition uses the expected role and equipped mechanism",
+      "passed": true
+    },
+    {
+      "name": "empty network is visibly unavailable in Chinese",
+      "passed": true
+    },
+    {
+      "name": "unavailable real Q input cannot charge a fee",
+      "passed": true
+    },
+    {
+      "name": "actual L placement updates the node requirement",
+      "passed": true
+    },
+    {
+      "name": "two actual L placements make the emitter cast ready",
+      "passed": true
+    },
+    {
+      "name": "actual supported cast starts the quoted cooldown",
+      "passed": true
+    },
+    {
+      "name": "actual paid setup becomes a bright free emitter followup",
+      "passed": true
+    },
+    {
+      "name": "real highlighted followup fires once for zero additional fee",
+      "passed": true
+    },
+    {
+      "name": "spent emitter returns to real remaining cooldown",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

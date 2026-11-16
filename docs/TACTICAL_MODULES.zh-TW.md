@@ -1,3 +1,5 @@
+最新空中路線：[空投支援／schema7](TACTICAL_AIRDROP.zh-TW.md)已接入，適用ZIP回郵標與LOOP甩線器，第二支援現有回收、延時、空投三種。以下兩模組描述為原批次範圍。
+
 最新交戰改善：[地面預告的普通敵人反應與入場後構築比較](TACTICAL_ENEMY_RESPONSE.zh-TW.md)已接入，以下控制fixture與舊版本描述保留原驗證範圍。
 
 # 第二支援槽：回收與延時

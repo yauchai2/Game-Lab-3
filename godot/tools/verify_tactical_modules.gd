@@ -76,7 +76,7 @@ func _initialize() -> void:
     check("save validator rejects a module on an incompatible skill",not p.valid(corrupt))
     corrupt=p.data.duplicate(true);corrupt.tactics[0].erase("attachments")
     check("current schema requires its support-slot record",not p.valid(corrupt))
-    for version in [4,5,6]:migration(version)
+    for version in [4,5,6,7]:migration(version)
     var failed:int=checks.filter(func(c:Dictionary)->bool:return not c.passed).size()
     FileAccess.open(OUT+"rules.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"failed":failed},"  "));quit(1 if failed else 0)
 func migration(version:int) -> void:
@@ -92,7 +92,7 @@ func migration(version:int) -> void:
         old.erase("build_presets")
         for cfg in old.tactics:cfg.variants=cfg.variants.slice(0,2);cfg.supports=cfg.supports.slice(0,2)
     var bytes:String=JSON.stringify(old);FileAccess.open(p.path,FileAccess.WRITE).store_string(bytes);p.load_data()
-    check("schema%d preserves old save bytes and choices"%version,p.error=="" and p.valid(p.data) and p.data.version==6 and p.data.credits==777 and p.data.tactics[1].variants[0]==1 and FileAccess.get_file_as_string(p.path)==bytes)
+    check("schema%d preserves old save bytes and choices"%version,p.error=="" and p.valid(p.data) and p.data.version==P.SCHEMA and p.data.credits==777 and p.data.tactics[1].variants[0]==1 and FileAccess.get_file_as_string(p.path)==bytes)
     if version>=5:check("schema%d upgrades nested preset support slots"%version,p.load_build(1,0) and p.data.tactics[1].attachments==[0,0,0,0,0,0])
     p.configure_tactic(1,0,"attachments",1);p.store_build(1,1);p.save_data();var reloaded=P.new();reloaded.path=p.path;reloaded.load_data()
     check("schema%d migrated module preset survives integer normalization and reload"%version,reloaded.error=="" and reloaded.load_build(1,1) and reloaded.data.tactics[1].attachments[0]==1)

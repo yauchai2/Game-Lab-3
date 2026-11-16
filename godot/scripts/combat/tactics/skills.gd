@@ -15,14 +15,14 @@ var shots:Array[Dictionary]=[]
 var serial:=0
 
 static func defaults() -> Dictionary:return {"skills":[0,1],"variants":[0,0,0,0,0,0],"supports":[0,0,0,0,0,0],"attachments":[0,0,0,0,0,0]}
-static func fresh() -> Dictionary:return {"cd":[0,0],"cd_total":[0,0],"charge":-1,"slot":-1,"full":false,"fired":false,"spent":0,"mark":-1,"mark_ttl":0,"sample_window":0,"return_ready":0,"relay":0,"relay_budget":0,"chain_stage":0,"chain_target":-1,"follow_left":0,"follow_window":0}
+static func fresh() -> Dictionary:return {"cd":[0,0],"cd_total":[0,0],"charge":-1,"slot":-1,"full":false,"fired":false,"spent":0,"mark":-1,"mark_ttl":0,"sample_window":0,"return_ready":0,"relay":0,"relay_budget":0,"chain_stage":0,"chain_target":-1,"follow_left":0,"follow_window":0,"air_cast":false,"air_debt":0}
 static func is_move(name:String) -> bool:return name in MOVE_NAMES
 static func valid_config(value:Variant,hero:=-1) -> bool:
     if not value is Dictionary:return false
     for key in ["skills","variants","supports","attachments"]:
         if not value.get(key) is Array or value[key].size()!=(2 if key=="skills" else 6):return false
         for item in value[key]:
-            if not (item is int or item is float) or item!=floorf(item) or item<0 or item>(5 if key=="skills" else (2 if key=="attachments" else 1)):return false
+            if not (item is int or item is float) or item!=floorf(item) or item<0 or item>(5 if key=="skills" else (3 if key=="attachments" else 1)):return false
     if hero>=0:
         for id in 6:
             if not Modules.compatible(hero,id,int(value.attachments[id]),int(value.supports[id])):return false
@@ -56,7 +56,9 @@ func quote(s:RefCounted,side:int,slot:int,credit:=0) -> Dictionary:
     elif not Modules.compatible(f.character,id,attachment(side,id),support(side,id)):reason="These support modules cannot be combined."
     elif t.cd[slot]>0 and not follow and not returning:reason="Tactic is cooling down."
     elif id>=2:reason=Expanded.reason(s,side,id,follow)
-    elif f.y>.01:reason="This tactic needs solid ground."
+    elif f.y>.01:
+        if attachment(side,id)!=3:reason="This tactic needs solid ground."
+        elif f.air.fast_used:reason="Land before another air drop."
     elif f.character==3 and id==1 and f.service.nodes.is_empty():reason="Place a node first."
     if reason=="" and f.meter+credit<price:reason="Not enough energy for this tactic."
     if reason=="" and shots.size()>8:reason="Wait for active tactics to finish."
@@ -124,6 +126,8 @@ func begin(s:RefCounted,side:int,name:String) -> bool:
     if not offer.ready:reject(s,side,offer.reason);return false
     var follow:bool=offer.follow;var returning:bool=offer.returning;var price:int=offer.price
     t["cast_skill"]=id
+    t.air_cast=attachment(side,id)==3 and f.y>.01
+    if t.air_cast:f.air.fast_used=true;t.air_debt=8
     f.meter-=price;t.spent=price;t.slot=slot;t.full=false;t.fired=false
     if not returning and not follow:
         t.cd[slot]=cooldown_ticks(f.character,id,support(side,id),f.get("tactic_anchor",false));t.cd_total[slot]=t.cd[slot]
@@ -136,6 +140,15 @@ func begin(s:RefCounted,side:int,name:String) -> bool:
     if id>=2:Expanded.begin(s,side,id,follow)
     s.events.append({"kind":"tactic_start","target":side,"skill":id,"slot":slot})
     return true
+func landing_recovery(s:RefCounted,side:int) -> void:
+    var f:Dictionary=s.fighters[side]
+    if not active(s,side) or f.tactical.air_debt<=0:return
+    if f.state in ["stun","blockstun"]:f.tactical.air_debt=0;return
+    if f.state!="idle" or f.y>.01:return
+    f.air.land=maxi(f.air.land,int(f.tactical.air_debt));f.air.phase="land";f.state="landing";f.tactical.air_debt=0
+    if f.jump_buffer>0:f.jump_buffer=maxi(f.jump_buffer,f.air.land+1)
+    if f.buffer_ttl>0:f.buffer_ttl=maxi(f.buffer_ttl,f.air.land+1)
+    s.events.append({"kind":"tactic_landing","target":side})
 func cancel(s:RefCounted,side:int) -> void:
     var f:Dictionary=s.fighters[side]
     if not f.has("tactical"):return
@@ -233,10 +246,11 @@ func step_shot(s:RefCounted,p:Dictionary) -> bool:
     if p.kind=="arc" and p.age==p.get("turn_at",8):p.dir=-p.dir
     if p.kind=="return" and p.leg==0 and p.age>=p.turn_at:p.dir=-p.dir;p.leg=1
     p.previous=p.x;p.x+=p.dir*p.speed
+    if p.get("airdrop",false):p.y=maxf(.15,p.y-p.fall_speed)
     if p.kind=="return" and p.leg==0 and absf(p.x)>s.EDGE+.25:p.x=clampf(p.x,-s.EDGE-.25,s.EDGE+.25);p.dir=-p.dir;p.leg=1
     if absf(p.x)>s.EDGE+.6:return false
     if p.kind=="connector":
-        if p.age>=p.life:
+        if p.age>=p.life or (p.get("airdrop",false) and p.y<=.15):
             var f:Dictionary=p.fighter
             if f.service.nodes.size()>=2:f.service.nodes.pop_front()
             f.service.nodes.append({"x":clampf(p.x,-s.EDGE,s.EDGE),"life":180 if p.variant==1 else (405 if p.fighter.get("tactic_anchor",false) else 300),"id":100000+p.id})
@@ -258,7 +272,7 @@ func step_shot(s:RefCounted,p:Dictionary) -> bool:
         p.hit.append(target)
         impact(s,p,target)
         if p.hit.size()>=p.limit:return false
-    return p.age<p.life
+    return p.age<p.life and not (p.get("airdrop",false) and p.y<=.15)
 
 func impact(s:RefCounted,p:Dictionary,target:Dictionary) -> void:
     var owner:int=p.owner;var f:Dictionary=p.fighter

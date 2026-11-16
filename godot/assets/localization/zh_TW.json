@@ -1237,5 +1237,11 @@
   "DELAY needs GROUND LINE or REMOTE MIX.": "延時只適用於返工震線或遙控混音。",
   "Unknown support module.": "無法識別此支援模組。",
   "BRACING": "架防中",
-  "MOVING": "走位中"
+  "MOVING": "走位中",
+  "AIR DROP / LANDING COMMITMENT": "空投／落地承諾",
+  "Throw a tag or connector diagonally from the air. Spends this jump's fast-fall budget; aerial tag damage -20%, landing recovery +8 ticks. Ground casts keep their original behavior.": "在空中斜向投標或投點，消耗本次跳躍的快速下墜資源；空中投標傷害減20%，落地恢復加8刻。地面施放維持原用法。",
+  "AIR DROP needs RETURN TAG or LINE THROW.": "空投只適用於回郵標或甩線器。",
+  "Land before another air drop.": "本次空中資源已用，先落地再空投。",
+  "AIR DROP USED / LAND FIRST": "空投資源已用／先落地",
+  "AIR DROP / %d ENERGY": "空投／%d 能量"
 }

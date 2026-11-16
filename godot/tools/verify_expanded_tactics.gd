@@ -76,7 +76,7 @@ func _initialize() -> void:
     quit(1 if failed else 0)
 
 func additional() -> void:
-    for version in [3,4,5,6]:
+    for version in [3,4,5,6,7]:
         var p=P.new();p.path="user://expanded-tactics/v%d.json"%version
         DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(p.path.get_base_dir()))
         var old:Dictionary=p.fresh();old.version=version;old.credits=432;old.parts=19;old.best=12

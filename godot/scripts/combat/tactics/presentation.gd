@@ -25,6 +25,7 @@ static func slot_view(sim:RefCounted,slot:int) -> Dictionary:
             "Jump before using this diving tactic.":view.text=L10n.text("JUMP TO DIVE")
             "This jump has already spent its diving tactic.":view.text=L10n.text("DIVE USED / LAND FIRST")
             "This tactic needs solid ground.":view.text=L10n.text("LAND TO CAST")
+            "Land before another air drop.":view.text=L10n.text("AIR DROP USED / LAND FIRST")
             "Earn two routes before a two-stop delivery.":view.text=L10n.text("DODGE / ROUTES %d/2")%f.service.routes
             "No second legal target on this route.":view.text=L10n.text("NEED ANOTHER TARGET")
             "Charge L first to store preload.":view.text=L10n.text("HOLD L TO PRELOAD")
@@ -45,6 +46,7 @@ static func slot_view(sim:RefCounted,slot:int) -> Dictionary:
         view.text=L10n.text("EMITTER READY / FIRE" if f.character==3 and id==4 else "FOLLOW / 0 ENERGY")
         if not (f.character==3 and id==4):view.progress=clampf(float(t.follow_window)/(30.0 if f.character==0 else 24.0),0,1)
     elif offer.returning:view.text=L10n.text("RETURN / 0 ENERGY");view.progress=float(t.return_ready)/90.0
+    elif sim.tactics.attachment(0,id)==3 and f.y>.01:view.text=L10n.text("AIR DROP / %d ENERGY")%offer.price
     else:view.text=L10n.text("%d ENERGY")%offer.price
     return view
 static func draw_overlay(canvas:Control,session:Node3D) -> void:
@@ -55,8 +57,11 @@ static func draw_overlay(canvas:Control,session:Node3D) -> void:
     var ink:=Color("10121f");var tint:Color=COLORS[clampi(f.character,0,3)]
     for p in sim.tactics.shots:
         var at:Vector2=session.project(Vector2(p.x,p.y))
-        var trail:Vector2=session.project(Vector2(p.x-p.dir*.4,p.y))
-        if p.kind=="zone":
+        var trail:Vector2=session.project(Vector2(p.x-p.dir*.4,p.y+(.2 if p.get("airdrop",false) else 0.0)))
+        if p.get("airdrop",false):
+            canvas.draw_line(trail,at,ink,10);canvas.draw_line(trail,at,tint,5)
+            canvas.draw_circle(at,6,Color.WHITE);canvas.draw_circle(at,3,tint)
+        elif p.kind=="zone":
             var left:Vector2=session.project(Vector2(p.x-p.radius,.05));var right:Vector2=session.project(Vector2(p.x+p.radius,.05))
             canvas.draw_line(left,right,ink,14);canvas.draw_line(left,right,tint,4)
             var ratio:float=minf(1,float(p.age)/maxf(1,float(p.get("delay",30))))

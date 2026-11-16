@@ -1,0 +1,44 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+EXPANDED_NATIVE native skill selectors expose six learned options true
+EXPANDED_NATIVE actual preset button stores a complete build true
+EXPANDED_NATIVE actual native picker selects a later-chapter skill true
+EXPANDED_NATIVE actual load button restores both skill slots true
+EXPANDED_NATIVE hero0 skill2 real story actor true
+EXPANDED_NATIVE hero0 skill2 real key starts paid action true
+EXPANDED_NATIVE hero0 skill3 real story actor true
+EXPANDED_NATIVE hero0 skill3 real key starts paid action true
+EXPANDED_NATIVE hero0 skill4 real story actor true
+EXPANDED_NATIVE hero0 skill4 real key starts paid action true
+EXPANDED_NATIVE hero0 skill5 real story actor true
+EXPANDED_NATIVE hero0 skill5 real key starts paid action true
+EXPANDED_NATIVE hero1 skill2 real story actor true
+EXPANDED_NATIVE hero1 skill2 real key starts paid action true
+EXPANDED_NATIVE hero1 skill3 real story actor true
+EXPANDED_NATIVE hero1 skill3 real key starts paid action true
+EXPANDED_NATIVE equipped economy path reaches real story costs and HUD true
+EXPANDED_NATIVE hero1 skill4 real story actor true
+EXPANDED_NATIVE real L input builds preload before native fan conversion true
+EXPANDED_NATIVE hero1 skill4 real key starts paid action true
+EXPANDED_NATIVE hero1 skill5 real story actor true
+EXPANDED_NATIVE hero1 skill5 real key starts paid action true
+EXPANDED_NATIVE ground seal's real detonation reaches native effects true
+EXPANDED_NATIVE hero2 skill2 real story actor true
+EXPANDED_NATIVE hero2 skill2 real key starts paid action true
+EXPANDED_NATIVE hero2 skill3 real story actor true
+EXPANDED_NATIVE hero2 skill3 real key starts paid action true
+EXPANDED_NATIVE hero2 skill4 real story actor true
+EXPANDED_NATIVE hero2 skill4 real key starts paid action true
+EXPANDED_NATIVE hero2 skill5 real story actor true
+EXPANDED_NATIVE hero2 skill5 real key starts paid action true
+EXPANDED_NATIVE hero3 skill2 real story actor true
+EXPANDED_NATIVE hero3 skill2 real key starts paid action true
+EXPANDED_NATIVE hero3 skill3 real story actor true
+EXPANDED_NATIVE hero3 skill3 real key starts paid action true
+EXPANDED_NATIVE hero3 skill4 real story actor true
+EXPANDED_NATIVE hero3 skill4 real key starts paid action true
+EXPANDED_NATIVE hero3 skill5 real story actor true
+EXPANDED_NATIVE hero3 skill5 real key starts paid action true

@@ -1,0 +1,10 @@
+{
+  "commit": "9b13331cc7e40d0e14211ba783df66ae940479df",
+  "command": "godot --headless --path godot --script res://tools/verify_rush_arcade.gd",
+  "checkout": "isolated detached worktree, complete HEAD sources, shared imported cache",
+  "passed": 20,
+  "total": 21,
+  "failure": "throw remains a real answer to burst startup",
+  "reason": "historical assertion expected immediate health88/stun; current paired throw defers one12 damage until landing",
+  "current_test": "preserves exact12 damage, proves no early damage, one hit, one landing and burst interruption"
+}

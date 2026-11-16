@@ -363,7 +363,7 @@ static func tactical_page(hub:Node) -> void:
             selector.item_selected.connect(func(value:int):hub.act(func():return p.configure_tactic(hero,selected_id,selected_field,value),"Tactical build updated"))
             row.add_child(selector)
         var module_select:=OptionButton.new();module_select.fit_to_longest_item=false;module_select.clip_text=true;module_select.custom_minimum_size.y=48
-        for module in 3:
+        for module in tactics.Modules.LABELS.size():
             module_select.add_item(L10n.text(tactics.Modules.LABELS[module]))
             module_select.set_item_disabled(module,not tactics.Modules.compatible(hero,id,module,int(cfg.supports[id])))
             var reason:String=tactics.Modules.reason(hero,id,module,int(cfg.supports[id]))
