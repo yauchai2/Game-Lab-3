@@ -102,3 +102,6 @@ static func draw_overlay(canvas:Control,session:Node3D) -> void:
         if target.get("tactic_silence",0)>0:
             var at:Vector2=session.project(Vector2(target.x,target.y+2.5))
             canvas.draw_string(session.hud.font,at-Vector2(24,0),L10n.text("JAMMED"),HORIZONTAL_ALIGNMENT_LEFT,-1,14,tint)
+        elif target.get("tactic_response_left",0)>0:
+            var at:Vector2=session.project(Vector2(target.x,target.y+2.5))
+            canvas.draw_string(session.hud.font,at-Vector2(35,0),L10n.text("BRACING" if target.get("tactic_response_guard",false) else "MOVING"),HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color.WHITE)

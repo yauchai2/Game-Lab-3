@@ -1,3 +1,5 @@
+最新交戰改善：[地面預告的普通敵人反應與入場後構築比較](TACTICAL_ENEMY_RESPONSE.zh-TW.md)已接入，以下控制fixture與舊版本描述保留原驗證範圍。
+
 # 第二支援槽：回收與延時
 
 2026-11-16，接續d26f537的[就緒提示](TACTICAL_USABILITY.zh-TW.md)與[24招選擇池](TACTICAL_EXPANSION.zh-TW.md)。本輪接入**每招可選的第二支援槽**，先提供兩種有明確適用範圍的行為模組；沒有將原八種候選全部當作完成。

@@ -1,0 +1,23 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ENCOUNTERS quick_pierce ["guard", "grunt", "rusher"] respects finite resources true
+ENCOUNTERS quick_pierce ["guard", "grunt", "rusher"] is deterministic under live AI true
+ENCOUNTER_RESULT {"boss":"","braces":0,"build":"quick_pierce","casts":2,"damage":127,"difficulty":1,"enemies_left":0,"energy_max":100.0,"energy_min":15.0,"full_tiers":0,"health":100,"meter":100.0,"module":0,"module_hits":0,"module_live_ticks":0,"recipe":["guard","grunt","rusher"],"relays":0,"state":"complete","steps_out":0,"tactical_blocks":2,"tactical_hits":1,"taken":0,"ticks":366,"wide_ground":false}
+ENCOUNTERS charged_relay ["guard", "grunt", "rusher"] respects finite resources true
+ENCOUNTERS charged_relay ["guard", "grunt", "rusher"] is deterministic under live AI true
+ENCOUNTER_RESULT {"boss":"","braces":0,"build":"charged_relay","casts":2,"damage":122,"difficulty":1,"enemies_left":0,"energy_max":100.0,"energy_min":5.0,"full_tiers":1,"health":100,"meter":100.0,"module":0,"module_hits":0,"module_live_ticks":0,"recipe":["guard","grunt","rusher"],"relays":1,"state":"complete","steps_out":0,"tactical_blocks":1,"tactical_hits":1,"taken":0,"ticks":567,"wide_ground":false}
+ENCOUNTERS quick_pierce ["grunt", "grunt", "captain"] respects finite resources true
+ENCOUNTERS quick_pierce ["grunt", "grunt", "captain"] is deterministic under live AI true
+ENCOUNTER_RESULT {"boss":"","braces":0,"build":"quick_pierce","casts":2,"damage":148,"difficulty":1,"enemies_left":0,"energy_max":100.0,"energy_min":15.0,"full_tiers":0,"health":100,"meter":100.0,"module":0,"module_hits":0,"module_live_ticks":0,"recipe":["grunt","grunt","captain"],"relays":1,"state":"complete","steps_out":0,"tactical_blocks":0,"tactical_hits":3,"taken":0,"ticks":341,"wide_ground":false}
+ENCOUNTERS charged_relay ["grunt", "grunt", "captain"] respects finite resources true
+ENCOUNTERS charged_relay ["grunt", "grunt", "captain"] is deterministic under live AI true
+ENCOUNTER_RESULT {"boss":"","braces":0,"build":"charged_relay","casts":1,"damage":152,"difficulty":1,"enemies_left":0,"energy_max":100.0,"energy_min":30.0,"full_tiers":1,"health":100,"meter":100.0,"module":0,"module_hits":0,"module_live_ticks":0,"recipe":["grunt","grunt","captain"],"relays":1,"state":"complete","steps_out":0,"tactical_blocks":0,"tactical_hits":1,"taken":0,"ticks":337,"wide_ground":false}
+ENCOUNTERS quick_pierce ["heavy", "rusher", "jammer"] respects finite resources true
+ENCOUNTERS quick_pierce ["heavy", "rusher", "jammer"] is deterministic under live AI true
+ENCOUNTER_RESULT {"boss":"","braces":0,"build":"quick_pierce","casts":2,"damage":134,"difficulty":1,"enemies_left":0,"energy_max":100.0,"energy_min":15.0,"full_tiers":0,"health":100,"meter":100.0,"module":0,"module_hits":0,"module_live_ticks":0,"recipe":["heavy","rusher","jammer"],"relays":0,"state":"complete","steps_out":0,"tactical_blocks":2,"tactical_hits":1,"taken":0,"ticks":700,"wide_ground":false}
+ENCOUNTERS charged_relay ["heavy", "rusher", "jammer"] respects finite resources true
+ENCOUNTERS charged_relay ["heavy", "rusher", "jammer"] is deterministic under live AI true
+ENCOUNTER_RESULT {"boss":"","braces":0,"build":"charged_relay","casts":2,"damage":124,"difficulty":1,"enemies_left":0,"energy_max":100.0,"energy_min":5.0,"full_tiers":1,"health":100,"meter":84.18,"module":0,"module_hits":0,"module_live_ticks":0,"recipe":["heavy","rusher","jammer"],"relays":1,"state":"complete","steps_out":0,"tactical_blocks":1,"tactical_hits":1,"taken":0,"ticks":448,"wide_ground":false}
+ENCOUNTERS quick configuration produces real tactical contacts true
+ENCOUNTERS charged configuration produces real full-tier contacts true
+ENCOUNTERS same pilot produces measurably different build outcomes true

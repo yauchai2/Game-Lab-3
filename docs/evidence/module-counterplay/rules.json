@@ -1,0 +1,173 @@
+{
+  "checks": [
+    {
+      "name": "grunt follows its published reaction role",
+      "passed": true
+    },
+    {
+      "name": "grunt reaction never grants dodge, jump or invulnerability",
+      "passed": true
+    },
+    {
+      "name": "grunt reaction cue preserves actual identity",
+      "passed": true
+    },
+    {
+      "name": "rusher follows its published reaction role",
+      "passed": true
+    },
+    {
+      "name": "rusher reaction never grants dodge, jump or invulnerability",
+      "passed": true
+    },
+    {
+      "name": "rusher reaction cue preserves actual identity",
+      "passed": true
+    },
+    {
+      "name": "jammer follows its published reaction role",
+      "passed": true
+    },
+    {
+      "name": "jammer reaction never grants dodge, jump or invulnerability",
+      "passed": true
+    },
+    {
+      "name": "jammer reaction cue preserves actual identity",
+      "passed": true
+    },
+    {
+      "name": "guard follows its published reaction role",
+      "passed": true
+    },
+    {
+      "name": "guard reaction never grants dodge, jump or invulnerability",
+      "passed": true
+    },
+    {
+      "name": "guard reaction cue preserves actual identity",
+      "passed": true
+    },
+    {
+      "name": "guard reaction cannot auto-parry",
+      "passed": true
+    },
+    {
+      "name": "captain follows its published reaction role",
+      "passed": true
+    },
+    {
+      "name": "captain reaction never grants dodge, jump or invulnerability",
+      "passed": true
+    },
+    {
+      "name": "captain reaction cue preserves actual identity",
+      "passed": true
+    },
+    {
+      "name": "captain reaction cannot auto-parry",
+      "passed": true
+    },
+    {
+      "name": "heavy follows its published reaction role",
+      "passed": true
+    },
+    {
+      "name": "heavy reaction never grants dodge, jump or invulnerability",
+      "passed": true
+    },
+    {
+      "name": "unseen never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "late never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "airborne never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "stun never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "attack never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "rush never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "cooldown never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "off_cadence never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "other_owner never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "distant never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "no_ai never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "standard never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "arrival never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "boss never starts a new zone response",
+      "passed": true
+    },
+    {
+      "name": "a committed step does not steer toward the live warning every frame",
+      "passed": true
+    },
+    {
+      "name": "one response starts a three-second cooldown",
+      "passed": true
+    },
+    {
+      "name": "taking a hit interrupts the response without refunding cooldown",
+      "passed": true
+    },
+    {
+      "name": "hitstop freezes reaction duration and cooldown",
+      "passed": true
+    },
+    {
+      "name": "an edge-trapped step chooses the only inward route",
+      "passed": true
+    },
+    {
+      "name": "exhausted guards cannot magically brace",
+      "passed": true
+    },
+    {
+      "name": "a step has at most twenty command ticks and no immediate repeat",
+      "passed": true
+    },
+    {
+      "name": "deciding a response cannot move a body or decide damage",
+      "passed": true
+    },
+    {
+      "name": "real delayed cast reaches a real walking response",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

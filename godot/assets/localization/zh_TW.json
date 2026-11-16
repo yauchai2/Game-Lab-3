@@ -1235,5 +1235,7 @@
   "RETURN needs a straight tag, rivet or pulse.": "回收只適用於直線投標、鉚彈或脈衝。",
   "Remove PIERCE before fitting RETURN.": "先卸下穿透，才能裝上回收。",
   "DELAY needs GROUND LINE or REMOTE MIX.": "延時只適用於返工震線或遙控混音。",
-  "Unknown support module.": "無法識別此支援模組。"
+  "Unknown support module.": "無法識別此支援模組。",
+  "BRACING": "架防中",
+  "MOVING": "走位中"
 }

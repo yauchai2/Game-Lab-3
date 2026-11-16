@@ -1,0 +1,19 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+READINESS_NATIVE en enlarged tactical names fit both HUD cards true
+READINESS_NATIVE en enlarged actionable hints fit both HUD cards true
+READINESS_NATIVE zh enlarged tactical names fit both HUD cards true
+READINESS_NATIVE zh enlarged actionable hints fit both HUD cards true
+READINESS_NATIVE skill page displays modified cooldown instead of base seven seconds true
+READINESS_NATIVE actual expedition uses the expected role and equipped mechanism true
+READINESS_NATIVE empty network is visibly unavailable in Chinese true
+READINESS_NATIVE unavailable real Q input cannot charge a fee true
+READINESS_NATIVE actual L placement updates the node requirement true
+READINESS_NATIVE two actual L placements make the emitter cast ready true
+READINESS_NATIVE actual supported cast starts the quoted cooldown true
+READINESS_NATIVE actual paid setup becomes a bright free emitter followup true
+READINESS_NATIVE real highlighted followup fires once for zero additional fee true
+READINESS_NATIVE spent emitter returns to real remaining cooldown true

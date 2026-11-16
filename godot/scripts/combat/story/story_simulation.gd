@@ -2,6 +2,7 @@ extends "res://scripts/combat/enemies/squad_simulation.gd"
 ## M1: a finite three-wave story encounter, isolated from existing modes.
 const CampaignRules=preload("res://scripts/combat/story/campaign_rules.gd")
 const Balance=preload("res://scripts/combat/city/city_balance.gd")
+const TacticResponse=preload("res://scripts/combat/tactics/enemy_response.gd")
 const WAVES=[["grunt","grunt","grunt"],["grunt","rusher","grunt","rusher"],["guard","grunt","rusher","grunt","guard","grunt"]]
 const SPAWNS=[2.8,4.6,-3.7,-5.6,7.0,-7.0]
 var campaign_enabled:=false
@@ -157,6 +158,8 @@ func _advance_fighter(i:int,command:Dictionary) -> void:
         elif f.rush_follow and f.state=="attack":f.rush_follow=false
         if f.story_role in ["guard","heavy","captain"] and f.state=="idle" and f.y<=.01 and f.guard>22 and squad_clock%150<95 and absf(f.x-fighters[0].x)<2.7:
             command={"guard":true,"allow_parry":false};f.buffer="";f.buffer_ttl=0
+        var response:Dictionary=TacticResponse.command(self,f)
+        if not response.is_empty():command=response
     super._advance_fighter(i,command)
     if campaign_enabled and i==1 and f.health>0 and f.get("story_role","")!="captain" and squad_members.any(func(member:Dictionary)->bool:return member.health>0 and member.get("story_role","")=="captain"):
         f.guard=minf(100,f.guard+.15)
