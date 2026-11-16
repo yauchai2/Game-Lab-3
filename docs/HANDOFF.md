@@ -1,3 +1,7 @@
+## 2026-11-16：技能輸入與蓄力詳細規劃
+
+使用者要求接續技能深度策劃，評估持鍵蓄力、方向JKL、H誤觸及Q用途。見[續訂](SKILL_INPUT_CHARGE_PLAN.zh-TW.md)：Q／I兩槽起測，H解除改Esc指南，J持鍵連段及原K／L保留；RIVET現有L已有蓄力，先新Q快／蓄雙用途，不普及全角傷害蓄力。LOOP下L／水平L、P2 I及F1設定衝突已記錄。P0輸入→RIVET正式遭遇→首八招→構築→按缺口擴內容；手柄預設及真人門檻待驗。僅文件，runtime／main／Web未改。
+
 ## 2026-11-15：全部合適分支整合
 
 已依使用者授權整合全部合適來源：四角色31段Mixamo／配對肩摔、ZIP／RIVET影片技能與連續慢動作、屋頂細節及2男2女設定紀錄。修正通用Mixamo覆蓋四招專用owner，保留繁中與5／8／100。全部34個遠端原始碼分支（含main）均納入，gh-pages排除；21個suite最終通過，各suite有重疊。完整來源、結果與環境診斷見[整合紀錄](BRANCH_MERGE_2026-11-15.zh-TW.md)及[evidence](evidence/branch-merge-2026-11-15/README.md)。下方不合main／舊安裝限制屬歷史，現行來源使用main；公開Web不更新，Mac／真人／實體輸入仍待本機驗收。

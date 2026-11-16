@@ -1,3 +1,7 @@
+## 2026-11-16：技能操作續訂文件驗證
+
+本輪只有規劃。對照基線9336bed的fight_session、fight_controls、fight_hud、city_hub、last_service/rules及現有技能文件，核對RIVET蓄力12／30／36tick、J持鍵、K正式挑空、上L大招、LOOP下L／水平L、H說明、Q標題秘密碼、P2 I閃避及F1設定。新Q15／36／54tick是起測提案，非現有值。文件連結與git diff --check通過；未執行Godot或真人測試，未宣稱新方案手感驗證。[新方案及驗收規格](SKILL_INPUT_CHARGE_PLAN.zh-TW.md)。
+
 ## 2026-11-15：全部合適分支整合
 
 已依使用者授權整合全部合適來源：四角色31段Mixamo／配對肩摔、ZIP／RIVET影片技能與連續慢動作、屋頂細節及2男2女設定紀錄。修正通用Mixamo覆蓋四招專用owner，保留繁中與5／8／100。全部34個遠端原始碼分支（含main）均納入，gh-pages排除；21個suite最終通過，各suite有重疊。完整來源、結果與環境診斷見[整合紀錄](BRANCH_MERGE_2026-11-15.zh-TW.md)及[evidence](evidence/branch-merge-2026-11-15/README.md)。下方不合main／舊安裝限制屬歷史，現行來源使用main；公開Web不更新，Mac／真人／實體輸入仍待本機驗收。
