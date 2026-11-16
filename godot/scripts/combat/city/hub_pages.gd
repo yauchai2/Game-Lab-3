@@ -347,7 +347,9 @@ static func tactical_page(hub:Node) -> void:
         var target_slot:int=slot
         skills_select.item_selected.connect(func(ability:int):hub.act(func():return p.equip_tactic(hero,target_slot,ability),"Tactical build updated"))
         hub.stack.add_child(skills_select)
-        W.guide(hub,L10n.text(tactics.description(hero,id))+" "+(L10n.text("%d ENERGY / %.1fs")%[tactics.adjusted_cost(tactics.COSTS[hero][id],float(p.stats(hero).economy)),tactics.COOLDOWNS[hero][id]/60.0] if open else L10n.text("Clear encounter %d to learn.")%tactics.UNLOCKS[id]))
+        var build:Dictionary=p.stats(hero)
+        var seconds:float=tactics.cooldown_ticks(hero,id,int(cfg.supports[id]),float(build.tactic_anchor)>0)/60.0
+        W.guide(hub,L10n.text(tactics.description(hero,id))+" "+(L10n.text("%d ENERGY / %.1fs")%[tactics.adjusted_cost(tactics.COSTS[hero][id],float(build.economy)),seconds] if open else L10n.text("Clear encounter %d to learn.")%tactics.UNLOCKS[id]))
         var row:=HBoxContainer.new();hub.stack.add_child(row)
         for field in ["variants","supports"]:
             var selector:=OptionButton.new();selector.fit_to_longest_item=false;selector.clip_text=true;selector.custom_minimum_size=Vector2(0,50);selector.size_flags_horizontal=Control.SIZE_EXPAND_FILL

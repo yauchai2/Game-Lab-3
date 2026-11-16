@@ -76,6 +76,7 @@ static func begin(s:RefCounted,side:int,id:int,follow:bool) -> void:
 static func emitter(f:Dictionary) -> bool:
     return f.service.nodes.size()==2 and f.service.nodes.all(func(n:Dictionary)->bool:return n.get("emitter",false))
 static func follow_ready(f:Dictionary,id:int) -> bool:
+    if f.health<=0 or f.state in ["stun","blockstun"]:return false
     if f.character==3 and id==4:return emitter(f)
     return f.tactical.follow_window>0 and f.tactical.follow_left>0 and int(f.tactical.get("cast_skill",-1))==id
 
@@ -87,8 +88,8 @@ static func before(s:RefCounted,side:int,command:Dictionary) -> void:
         var requested:String=command.get("attack","")
         if s.TacticalSkills.is_move(requested):
             var slot:int=s.TacticalSkills.MOVE_NAMES.find(requested)
-            var credit:int=int(f.get("service_skill_paid",0))
-            if s.tactics.skill(side,slot)==4 and int(f.get("tactic_unlocked",0))>4 and t.cd[slot]<=0 and credit>0 and f.meter+credit>=s.tactics.cost(f,4) and s.tactics.shots.size()<=8 and f.y<=.01 and not command.get("guard",false) and not command.get("dash",false) and not command.get("jump",false) and f.jump_buffer<=0:
+            var credit:int=s.tactics.conversion_credit(s,side,s.tactics.skill(side,slot))
+            if credit>0 and s.tactics.quote(s,side,slot,credit).ready and not command.get("guard",false) and not command.get("dash",false) and not command.get("jump",false) and f.jump_buffer<=0:
                 # Transfer the paid L commitment once; the replacement then pays its own cost.
                 f.meter=minf(100,f.meter+credit);f.service_skill_paid=0;f.state="idle";f.buffer="";f.buffer_ttl=0
     if f.state!="attack" or not s.TacticalSkills.is_move(f.move):return

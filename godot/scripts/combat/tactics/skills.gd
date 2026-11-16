@@ -14,7 +14,7 @@ var shots:Array[Dictionary]=[]
 var serial:=0
 
 static func defaults() -> Dictionary:return {"skills":[0,1],"variants":[0,0,0,0,0,0],"supports":[0,0,0,0,0,0]}
-static func fresh() -> Dictionary:return {"cd":[0,0],"charge":-1,"slot":-1,"full":false,"fired":false,"spent":0,"mark":-1,"mark_ttl":0,"sample_window":0,"return_ready":0,"relay":0,"relay_budget":0,"chain_stage":0,"chain_target":-1,"follow_left":0,"follow_window":0}
+static func fresh() -> Dictionary:return {"cd":[0,0],"cd_total":[0,0],"charge":-1,"slot":-1,"full":false,"fired":false,"spent":0,"mark":-1,"mark_ttl":0,"sample_window":0,"return_ready":0,"relay":0,"relay_budget":0,"chain_stage":0,"chain_target":-1,"follow_left":0,"follow_window":0}
 static func is_move(name:String) -> bool:return name in MOVE_NAMES
 static func valid_config(value:Variant) -> bool:
     if not value is Dictionary:return false
@@ -33,6 +33,28 @@ func support(side:int,id:int) -> int:return int(settings(side).supports[id])
 func reject(s:RefCounted,side:int,reason:String) -> void:s.events.append({"kind":"tactic_unavailable","target":side,"reason":reason})
 static func adjusted_cost(base:int,economy:float) -> int:return maxi(1,ceili(base*clampf(1.0-economy,.8,1.2)))
 func cost(f:Dictionary,id:int) -> int:return adjusted_cost(COSTS[f.character][id],float(f.get("tactic_economy",0)))
+static func cooldown_ticks(hero:int,id:int,module:int,anchor:bool,full:=false) -> int:
+    var ticks:int=360 if full and hero==1 and id==0 else COOLDOWNS[hero][id]
+    if module==1 and not (hero in [1,2] and id==0):ticks=roundi(ticks*.75)
+    return ceili(float(ticks)*1.25) if anchor else ticks
+func conversion_credit(s:RefCounted,side:int,id:int) -> int:
+    var f:Dictionary=s.fighters[side]
+    if f.character==1 and id==4 and f.state=="attack" and f.move=="special" and f.frame<s.move_for(f,"special").startup and f.service.preload>0 and not f.service.get("preload_spent",false):return int(f.get("service_skill_paid",0))
+    return 0
+func quote(s:RefCounted,side:int,slot:int,credit:=0) -> Dictionary:
+    var f:Dictionary=s.fighters[side];var t:Dictionary=f.tactical;var id:int=skill(side,slot)
+    var follow:bool=id>=2 and Expanded.follow_ready(f,id)
+    var returning:bool=f.character==2 and id==1 and t.return_ready>0 and f.service.sample>0
+    var price:int=0 if follow or returning else cost(f,id)
+    var reason:=""
+    if not active(s,side) or id>=int(f.get("tactic_unlocked",0)):reason="Clear the next story milestone to learn this tactic."
+    elif t.cd[slot]>0 and not follow and not returning:reason="Tactic is cooling down."
+    elif id>=2:reason=Expanded.reason(s,side,id,follow)
+    elif f.y>.01:reason="This tactic needs solid ground."
+    elif f.character==3 and id==1 and f.service.nodes.is_empty():reason="Place a node first."
+    if reason=="" and f.meter+credit<price:reason="Not enough energy for this tactic."
+    if reason=="" and shots.size()>8:reason="Wait for active tactics to finish."
+    return {"ready":reason=="","reason":reason,"price":price,"follow":follow,"returning":returning}
 func move(f:Dictionary,name:String) -> Dictionary:
     if f.has("tactic_impact"):return f.tactic_impact.duplicate()
     var slot:int=MOVE_NAMES.find(name)
@@ -79,7 +101,7 @@ func before(s:RefCounted,side:int,command:Dictionary) -> void:
         t.charge+=1
         var extra:int=adjusted_cost(10,float(f.get("tactic_economy",0)))
         if t.charge==36 and f.meter>=extra:
-            f.meter-=extra;t.spent+=extra;t.full=true;t.cd[t.slot]=450 if f.get("tactic_anchor",false) else 360
+            f.meter-=extra;t.spent+=extra;t.full=true;t.cd[t.slot]=cooldown_ticks(f.character,0,support(side,0),f.get("tactic_anchor",false),true);t.cd_total[t.slot]=t.cd[t.slot]
             s.events.append({"kind":"tactic_tier","target":side})
         var held:bool=command.get("tactic_a_held",false) if t.slot==0 else command.get("tactic_b_held",false)
         if held and t.charge<54:f.frame=3
@@ -92,24 +114,14 @@ func begin(s:RefCounted,side:int,name:String) -> bool:
     if not active(s,side):return false
     var f:Dictionary=s.fighters[side];var t:Dictionary=f.tactical
     var slot:int=MOVE_NAMES.find(name);var id:int=skill(side,slot)
-    var unlocked:int=int(f.get("tactic_unlocked",0))
-    var follow:bool=id>=2 and Expanded.follow_ready(f,id)
-    var reason:=""
-    if id>=unlocked:reason="Clear the next story milestone to learn this tactic."
-    elif t.cd[slot]>0 and not follow and not (f.character==2 and id==1 and t.return_ready>0 and f.service.sample>0):reason="Tactic is cooling down."
-    elif id>=2:reason=Expanded.reason(s,side,id,follow)
-    elif id<2 and f.y>.01:reason="This tactic needs solid ground."
-    elif f.character==3 and id==1 and f.service.nodes.is_empty():reason="Place a node first."
-    if reason=="" and f.meter<cost(f,id) and not follow and not (f.character==2 and id==1 and t.return_ready>0 and f.service.sample>0):reason="Not enough energy for this tactic."
-    if reason=="" and shots.size()>8:reason="Wait for active tactics to finish."
-    if reason!="":reject(s,side,reason);return false
-    var returning:bool=f.character==2 and id==1 and t.return_ready>0 and f.service.sample>0
-    var price:int=0 if returning or follow else cost(f,id)
+    var offer:Dictionary=quote(s,side,slot)
+    if not offer.ready:reject(s,side,offer.reason);return false
+    var follow:bool=offer.follow;var returning:bool=offer.returning;var price:int=offer.price
     t["cast_skill"]=id
     f.meter-=price;t.spent=price;t.slot=slot;t.full=false;t.fired=false
-    if not returning and not follow:t.cd[slot]=roundi(COOLDOWNS[f.character][id]*(.75 if support(side,id)==1 and not (f.character in [1,2] and id==0) else 1.0))
+    if not returning and not follow:
+        t.cd[slot]=cooldown_ticks(f.character,id,support(side,id),f.get("tactic_anchor",false));t.cd_total[slot]=t.cd[slot]
     t.charge=0 if f.character==1 and id==0 else -1
-    if f.get("tactic_anchor",false) and not returning and not follow:t.cd[slot]=ceili(float(t.cd[slot])*1.25)
     # One sample is either received or sent, never duplicated by a second press.
     if f.character==2 and id==1:
         t["send_sample"]=f.service.sample>0

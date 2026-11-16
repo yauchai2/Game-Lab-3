@@ -1,0 +1,25 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+TACTIC_NATIVE H cannot interrupt the hub true
+TACTIC_NATIVE tactics selectors are real native controls true
+TACTIC_NATIVE native dropdown selection updates the build true
+TACTIC_NATIVE H cannot open combat help true
+TACTIC_NATIVE physical Q holds the actual story charge true
+TACTIC_NATIVE physical release spawns a real travelling rivet true
+TACTIC_NATIVE pause exposes controls without an H shortcut true
+TACTIC_NATIVE guide remains reachable from pause true
+TACTIC_NATIVE rebind changes actual semantic key true
+TACTIC_NATIVE duplicate rebind swaps instead of colliding true
+TACTIC_NATIVE simultaneous input has stable priority true
+TACTIC_NATIVE hero0 departure uses the saved expedition identity true
+TACTIC_NATIVE hero0 slot0 native intent starts true
+TACTIC_NATIVE hero0 slot1 native intent starts true
+TACTIC_NATIVE hero2 departure uses the saved expedition identity true
+TACTIC_NATIVE hero2 slot0 native intent starts true
+TACTIC_NATIVE hero2 slot1 native intent starts true
+TACTIC_NATIVE hero3 departure uses the saved expedition identity true
+TACTIC_NATIVE hero3 slot0 native intent starts true
+TACTIC_NATIVE hero3 slot1 native intent starts true

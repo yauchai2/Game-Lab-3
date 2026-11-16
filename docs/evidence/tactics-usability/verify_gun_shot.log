@@ -1,0 +1,24 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+GUN non-Black-Suit fighters cannot use the gun true <null>
+GUN fire frame equals the 30-tick telegraph (+1 start tick) true { "ticks": 31 }
+GUN bullet leaves the muzzle in front of the shooter and travels toward the hero true <null>
+GUN bullet speed is about 15 units/s true <null>
+GUN unguarded hero is hit for the move damage and stunned true { "hp": 90 }
+GUN projectile is removed after the hit true <null>
+GUN dash dodges the bullet (no damage, +6 energy) true { "kind": "gun_dodge", "target": 0, "how": "dash", "x": -0.4, "y": 1.0 }
+GUN jump passes over the bullet true { "kind": "gun_dodge", "target": 0, "how": "jump", "x": -4.0, "y": 1.0 }
+GUN held guard blocks (guard chips, health intact) true { "guard": 80.0 }
+GUN timed guard deflects true { "kind": "gun_deflect", "target": 0, "x": -1.15, "y": 1.0, "dir": -1.0 }
+GUN deflected bullet is reflected toward the shooter true <null>
+GUN reflected bullet hurts the shooter true { "hp": 86 }
+GUN hit during the telegraph cancels the shot true <null>
+GUN AI uses the gun, but rarely (60 s: 1-8 shots) true { "shots": 6 }
+GUN gap between shots respects the 6 s normal cooldown true { "min_gap": 586 }
+GUN no shots at melee range true { "shots": 0 }
+GUN squad 0: gun events valid and bounded true { "bad": 0, "fires": 0 }
+GUN squad 1: gun events valid and bounded true { "bad": 0, "fires": 0 }
+GUN squad 2: gun events valid and bounded true { "bad": 0, "fires": 0 }
+GUN melee-only story roles are excluded true <null>
+GUN deterministic: identical runs give identical shots true { "a": "gun_fire@300,gun_hit@314,gun_fire@886,gun_hit@900,gun_fire@1517,gun_hit@1531" }
+GUN SUMMARY 21/21

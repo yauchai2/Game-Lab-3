@@ -1,0 +1,217 @@
+{
+  "checks": [
+    {
+      "name": "missing nodes explain the prerequisite before a wasted key",
+      "passed": true
+    },
+    {
+      "name": "HUD and rejected cast use the same condition",
+      "passed": true
+    },
+    {
+      "name": "route0 readiness shows the actual bank",
+      "passed": true
+    },
+    {
+      "name": "route1 readiness shows the actual bank",
+      "passed": true
+    },
+    {
+      "name": "two routes enable the paid cast",
+      "passed": true
+    },
+    {
+      "name": "dive tells grounded players to jump",
+      "passed": true
+    },
+    {
+      "name": "spent air budget asks for a landing",
+      "passed": true
+    },
+    {
+      "name": "legal air dive reports its fee",
+      "passed": true
+    },
+    {
+      "name": "energy shortage displays actual required fee",
+      "passed": true
+    },
+    {
+      "name": "readiness fee respects equipped economy",
+      "passed": true
+    },
+    {
+      "name": "locked slot gives its specific milestone",
+      "passed": true
+    },
+    {
+      "name": "ground-only cast explains landing",
+      "passed": true
+    },
+    {
+      "name": "vent prompts the real L preparation",
+      "passed": true
+    },
+    {
+      "name": "vent readiness includes exactly the paid L credit",
+      "passed": true
+    },
+    {
+      "name": "quoted L credit transfers into one fee",
+      "passed": true
+    },
+    {
+      "name": "charge displays the discounted optional surcharge",
+      "passed": true
+    },
+    {
+      "name": "charge never promises an unaffordable full tier",
+      "passed": true
+    },
+    {
+      "name": "sample return is bright and free despite cooldown and empty meter",
+      "passed": true
+    },
+    {
+      "name": "free sample quote matches actual zero-fee cast",
+      "passed": true
+    },
+    {
+      "name": "emitter readiness bypasses original fee and cooldown",
+      "passed": true
+    },
+    {
+      "name": "interrupted emitter cannot advertise a free immediate action",
+      "passed": true
+    },
+    {
+      "name": "confirmed chain is shown as a free actionable followup",
+      "passed": true
+    },
+    {
+      "name": "highlighted followup actually advances without a second fee",
+      "passed": true
+    },
+    {
+      "name": "interruption closes confirmed chain readiness immediately",
+      "passed": true
+    },
+    {
+      "name": "running skill advertises manual braking despite cooldown",
+      "passed": true
+    },
+    {
+      "name": "held guard does not falsely advertise a cast",
+      "passed": true
+    },
+    {
+      "name": "recovery gives a distinct non-resource hint",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill0 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill1 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill2 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill3 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill4 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill5 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill0 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill1 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill2 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill3 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill4 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill5 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill0 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill1 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill2 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill3 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill4 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill5 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill0 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill1 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill2 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill3 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill4 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill5 page cooldown matches actual support and equipment",
+      "passed": true
+    },
+    {
+      "name": "cooldown progress advances without wall-clock guessing",
+      "passed": true
+    },
+    {
+      "name": "HUD reads never mutate simulation",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

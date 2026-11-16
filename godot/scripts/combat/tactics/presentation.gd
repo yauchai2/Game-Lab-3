@@ -2,6 +2,50 @@ extends RefCounted
 const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 const Skills=preload("res://scripts/combat/tactics/skills.gd")
 const COLORS=[Color("00d6e7"),Color("ff921c"),Color("ff459d"),Color("b8ff00")]
+static func slot_view(sim:RefCounted,slot:int) -> Dictionary:
+    var f:Dictionary=sim.fighters[0];var t:Dictionary=f.tactical;var id:int=sim.tactics.skill(0,slot)
+    var credit:int=sim.tactics.conversion_credit(sim,0,id)
+    var offer:Dictionary=sim.tactics.quote(sim,0,slot,credit)
+    var view:={"ready":false,"text":"","progress":0.0}
+    if t.charge>=0 and t.slot==slot:
+        var extra:int=Skills.adjusted_cost(10,float(f.get("tactic_economy",0)))
+        view.text=L10n.text("READY / RELEASE") if t.full else (L10n.text("HOLD / +%d ENERGY")%extra if f.meter>=extra else L10n.text("RELEASE / QUICK SHOT"))
+        view.progress=minf(1,float(t.charge)/36.0);return view
+    if f.character==0 and id==5 and f.state=="attack" and f.move==Skills.MOVE_NAMES[slot] and f.frame>=6 and not t.fired:
+        view.ready=true;view.text=L10n.text("PRESS AGAIN TO STOP");return view
+    if f.character==2 and id==1 and t.sample_window>0 and not offer.returning:
+        view.text=L10n.text("RECEIVING / ONE ROUND");view.progress=float(t.sample_window)/24.0;return view
+    if not offer.ready:
+        match str(offer.reason):
+            "Clear the next story milestone to learn this tactic.":view.text=L10n.text("LEARN / CLEAR %d")%Skills.UNLOCKS[id]
+            "Tactic is cooling down.":
+                view.text=L10n.text("%.1fs")%(t.cd[slot]/60.0)
+                view.progress=1.0-clampf(float(t.cd[slot])/maxf(1,float(t.cd_total[slot])),0,1)
+            "Not enough energy for this tactic.":view.text=L10n.text("NEED %d ENERGY")%offer.price
+            "Jump before using this diving tactic.":view.text=L10n.text("JUMP TO DIVE")
+            "This jump has already spent its diving tactic.":view.text=L10n.text("DIVE USED / LAND FIRST")
+            "This tactic needs solid ground.":view.text=L10n.text("LAND TO CAST")
+            "Earn two routes before a two-stop delivery.":view.text=L10n.text("DODGE / ROUTES %d/2")%f.service.routes
+            "No second legal target on this route.":view.text=L10n.text("NEED ANOTHER TARGET")
+            "Charge L first to store preload.":view.text=L10n.text("HOLD L TO PRELOAD")
+            "Place two nodes first.":view.text=L10n.text("PLACE NODES %d/2")%f.service.nodes.size()
+            "Place a node first.":view.text=L10n.text("PLACE ONE NODE")
+            _:view.text=L10n.text("WAIT FOR ACTIVE TACTICS")
+        return view
+    if credit>0:
+        view.ready=true;view.text=L10n.text("CONVERT L / %d ENERGY")%offer.price;return view
+    var follow_action:bool=offer.follow and f.state=="attack" and f.move==Skills.MOVE_NAMES[slot]
+    var light_cancel:bool=f.state=="attack" and f.move in ["jab","cross"] and f.hit_confirmed and f.frame>=sim.move_for(f,f.move).startup+sim.move_for(f,f.move).active
+    if f.guarding:view.text=L10n.text("RELEASE GUARD TO CAST");return view
+    if f.health<=0 or f.state not in ["idle"] and not follow_action and not light_cancel:
+        view.text=L10n.text("RECOVERING");return view
+    view.ready=true
+    if offer.follow:
+        view.text=L10n.text("EMITTER READY / FIRE" if f.character==3 and id==4 else "FOLLOW / 0 ENERGY")
+        if not (f.character==3 and id==4):view.progress=clampf(float(t.follow_window)/(30.0 if f.character==0 else 24.0),0,1)
+    elif offer.returning:view.text=L10n.text("RETURN / 0 ENERGY");view.progress=float(t.return_ready)/90.0
+    else:view.text=L10n.text("%d ENERGY")%offer.price
+    return view
 static func draw_overlay(canvas:Control,session:Node3D) -> void:
     var sim:RefCounted=session.sim
     if not sim.tactics.enabled or session.screen not in ["play","pause"]:return
@@ -34,18 +78,13 @@ static func draw_overlay(canvas:Control,session:Node3D) -> void:
     var keys:Array=session.controls.tactic_keys
     for slot in 2:
         var id:int=sim.tactics.skill(0,slot)
-        var rect:=Rect2(378+slot*264,594,252,44)
+        var rect:=Rect2(324+slot*316,572,304,66)
         canvas.draw_rect(rect,Color("10121fe8"))
-        var available:bool=id<int(f.get("tactic_unlocked",0))
-        var cooldown:int=f.tactical.cd[slot]
+        var view:Dictionary=slot_view(sim,slot)
         var label:String=OS.get_keycode_string(keys[slot])+"  "+L10n.text(str(Skills.NAMES[f.character][id]))
-        var suffix:String=L10n.text("LEARN IN STORY") if not available else (L10n.text("%.1fs")%(cooldown/60.0) if cooldown>0 else L10n.text("%d ENERGY")%sim.tactics.cost(f,id))
-        if id>=2 and sim.tactics.Expanded.follow_ready(f,id):suffix=L10n.text("EMITTER READY / FIRE" if f.character==3 and id==4 else "HIT / PRESS TO FOLLOW")
-        elif id>=2 and f.character==0 and id==5 and f.state=="attack" and not f.tactical.fired:suffix=L10n.text("PRESS AGAIN TO STOP")
-        elif f.character==2 and id==1 and f.tactical.return_ready>0:suffix=L10n.text("SAMPLE / PRESS TO RETURN")
-        elif f.character==2 and id==1 and f.tactical.sample_window>0:suffix=L10n.text("RECEIVING / ONE ROUND")
-        canvas.draw_string(session.hud.font,rect.position+Vector2(8,17),label,HORIZONTAL_ALIGNMENT_LEFT,240,13,tint if available and cooldown==0 else Color("9299aa"))
-        canvas.draw_string(session.hud.font,rect.position+Vector2(8,36),suffix,HORIZONTAL_ALIGNMENT_LEFT,240,12,Color("9299aa"))
+        canvas.draw_string(session.hud.font,rect.position+Vector2(8,23),label,HORIZONTAL_ALIGNMENT_LEFT,288,20,tint if view.ready else Color("9299aa"))
+        canvas.draw_string(session.hud.font,rect.position+Vector2(8,49),view.text,HORIZONTAL_ALIGNMENT_LEFT,288,18,tint if view.ready else Color("9299aa"))
+        if view.progress>0:canvas.draw_rect(Rect2(rect.position+Vector2(8,62),Vector2(288*clampf(view.progress,0,1),2)),tint)
     if f.tactical.charge>=0:
         var at:Vector2=session.project(Vector2(f.x,2.4))
         canvas.draw_rect(Rect2(at-Vector2(45,4),Vector2(90,8)),ink)

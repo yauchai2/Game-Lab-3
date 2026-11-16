@@ -1,9 +1,13 @@
 """Compile tactical integration under the project's seven fatal warning categories."""
 from pathlib import Path
+import argparse
 import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
+parser = argparse.ArgumentParser()
+parser.add_argument('--output', type=Path, default=ROOT / 'docs/evidence/tactics-expanded/changed-strict.log')
+args = parser.parse_args()
 FILES = [
     'tactics/skills', 'tactics/expanded', 'tactics/presentation', 'last_service/presentation', 'last_service/rules', 'fight_simulation', 'fight_session',
     'fight_controls', 'fight_hud', 'fight_preferences', 'fighter_visual',
@@ -32,7 +36,7 @@ with tempfile.TemporaryDirectory(prefix='tactics-strict-') as folder:
     result = subprocess.run(['godot', '--headless', '--path', folder, '--script',
                              'res://tactics-check.gd'], stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT, text=True, timeout=90)
-output = ROOT / 'docs/evidence/tactics-expanded/changed-strict.log'
+output = args.output
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(result.stdout)
 print(result.stdout)

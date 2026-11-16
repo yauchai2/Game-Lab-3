@@ -1,0 +1,413 @@
+{
+  "checks": [
+    {
+      "name": "hero0 slot0 starts and pays once",
+      "passed": true
+    },
+    {
+      "name": "hero0 slot0 has real travel contact or bounded melee",
+      "passed": true
+    },
+    {
+      "name": "cooldown remains after action",
+      "passed": true
+    },
+    {
+      "name": "cooldown rejects without double spend",
+      "passed": true
+    },
+    {
+      "name": "hero0 slot1 starts and pays once",
+      "passed": true
+    },
+    {
+      "name": "hero0 slot1 has real travel contact or bounded melee",
+      "passed": true
+    },
+    {
+      "name": "cooldown remains after action",
+      "passed": true
+    },
+    {
+      "name": "cooldown rejects without double spend",
+      "passed": true
+    },
+    {
+      "name": "hero1 slot0 starts and pays once",
+      "passed": true
+    },
+    {
+      "name": "hero1 slot0 has real travel contact or bounded melee",
+      "passed": true
+    },
+    {
+      "name": "cooldown remains after action",
+      "passed": true
+    },
+    {
+      "name": "cooldown rejects without double spend",
+      "passed": true
+    },
+    {
+      "name": "hero1 slot1 starts and pays once",
+      "passed": true
+    },
+    {
+      "name": "hero1 slot1 has real travel contact or bounded melee",
+      "passed": true
+    },
+    {
+      "name": "cooldown remains after action",
+      "passed": true
+    },
+    {
+      "name": "cooldown rejects without double spend",
+      "passed": true
+    },
+    {
+      "name": "hero2 slot0 starts and pays once",
+      "passed": true
+    },
+    {
+      "name": "hero2 slot0 has real travel contact or bounded melee",
+      "passed": true
+    },
+    {
+      "name": "cooldown remains after action",
+      "passed": true
+    },
+    {
+      "name": "cooldown rejects without double spend",
+      "passed": true
+    },
+    {
+      "name": "hero2 slot1 starts and pays once",
+      "passed": true
+    },
+    {
+      "name": "receive without a bullet does not invent sample",
+      "passed": true
+    },
+    {
+      "name": "cooldown remains after action",
+      "passed": true
+    },
+    {
+      "name": "cooldown rejects without double spend",
+      "passed": true
+    },
+    {
+      "name": "hero3 slot0 starts and pays once",
+      "passed": true
+    },
+    {
+      "name": "connector shares real node budget",
+      "passed": true
+    },
+    {
+      "name": "cooldown remains after action",
+      "passed": true
+    },
+    {
+      "name": "cooldown rejects without double spend",
+      "passed": true
+    },
+    {
+      "name": "hero3 slot1 starts and pays once",
+      "passed": true
+    },
+    {
+      "name": "hero3 slot1 has real travel contact or bounded melee",
+      "passed": true
+    },
+    {
+      "name": "cooldown remains after action",
+      "passed": true
+    },
+    {
+      "name": "cooldown rejects without double spend",
+      "passed": true
+    },
+    {
+      "name": "held rivet reaches paid full charge",
+      "passed": true
+    },
+    {
+      "name": "release resolves a real full-charge contact",
+      "passed": true
+    },
+    {
+      "name": "guard cancels charge without refund or shot",
+      "passed": true
+    },
+    {
+      "name": "pause/focus suspension cannot ghost release",
+      "passed": true
+    },
+    {
+      "name": "insufficient energy gives reason without starting",
+      "passed": true
+    },
+    {
+      "name": "story unlock gate is real",
+      "passed": true
+    },
+    {
+      "name": "standard modes do not consume story tactics",
+      "passed": true
+    },
+    {
+      "name": "profile and free configuration valid",
+      "passed": true
+    },
+    {
+      "name": "slot swap preserves variants",
+      "passed": true
+    },
+    {
+      "name": "Q emits one semantic edge",
+      "passed": true
+    },
+    {
+      "name": "key repeat cannot recast",
+      "passed": true
+    },
+    {
+      "name": "suspension clears held keys",
+      "passed": true
+    },
+    {
+      "name": "hero0 variant0 support0 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero0 variant0 support1 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero0 variant1 support0 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero0 variant1 support1 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero1 variant0 support0 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero1 variant0 support1 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero1 variant1 support0 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero1 variant1 support1 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero2 variant0 support0 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero2 variant0 support1 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero2 variant1 support0 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero2 variant1 support1 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero3 variant0 support0 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero3 variant0 support1 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero3 variant1 support0 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "hero3 variant1 support1 stays bounded",
+      "passed": true
+    },
+    {
+      "name": "max hold automatically releases once",
+      "passed": true
+    },
+    {
+      "name": "unfunded full tier never borrows meter",
+      "passed": true
+    },
+    {
+      "name": "hitstop cannot advance charge",
+      "passed": true
+    },
+    {
+      "name": "interrupted charge cannot emit",
+      "passed": true
+    },
+    {
+      "name": "airborne ground line fails without cost",
+      "passed": true
+    },
+    {
+      "name": "ground line does not hit an elevated target",
+      "passed": true
+    },
+    {
+      "name": "guarded=true uses normal health/guard authority",
+      "passed": true
+    },
+    {
+      "name": "remote hit cannot refund its own cost",
+      "passed": true
+    },
+    {
+      "name": "guarded=false uses normal health/guard authority",
+      "passed": true
+    },
+    {
+      "name": "remote hit cannot refund its own cost",
+      "passed": true
+    },
+    {
+      "name": "old projectile cannot confirm a new unrelated jab",
+      "passed": true
+    },
+    {
+      "name": "sample receives exactly one actual pistol round",
+      "passed": true
+    },
+    {
+      "name": "received sample can be sent during cooldown without double fee",
+      "passed": true
+    },
+    {
+      "name": "sample follow-up cannot be repeated",
+      "passed": true
+    },
+    {
+      "name": "empty node cast does not spend",
+      "passed": true
+    },
+    {
+      "name": "schema1 migration preserves progress and original bytes",
+      "passed": true
+    },
+    {
+      "name": "schema1 next save reloads tactical defaults",
+      "passed": true
+    },
+    {
+      "name": "schema2 migration preserves progress and original bytes",
+      "passed": true
+    },
+    {
+      "name": "schema2 next save reloads tactical defaults",
+      "passed": true
+    },
+    {
+      "name": "schema3 migration preserves progress and original bytes",
+      "passed": true
+    },
+    {
+      "name": "schema3 next save reloads tactical defaults",
+      "passed": true
+    },
+    {
+      "name": "schema4 migration preserves progress and original bytes",
+      "passed": true
+    },
+    {
+      "name": "schema4 next save reloads tactical defaults",
+      "passed": true
+    },
+    {
+      "name": "schema5 migration preserves progress and original bytes",
+      "passed": true
+    },
+    {
+      "name": "schema5 next save reloads tactical defaults",
+      "passed": true
+    },
+    {
+      "name": "deterministic recipe creates valid equipment tactic_relay",
+      "passed": true
+    },
+    {
+      "name": "deterministic recipe creates valid equipment tactic_anchor",
+      "passed": true
+    },
+    {
+      "name": "two recipe mechanics cannot silently stack",
+      "passed": true
+    },
+    {
+      "name": "corrupt duplicate-slot config is rejected",
+      "passed": true
+    },
+    {
+      "name": "closed boss armour caps tactical damage",
+      "passed": true
+    },
+    {
+      "name": "unfunded recipe is atomic",
+      "passed": true
+    },
+    {
+      "name": "save rejection rolls recipe back",
+      "passed": true
+    },
+    {
+      "name": "split keyboard retains P2 I dodge",
+      "passed": true
+    },
+    {
+      "name": "controller semantic tactic route preserves held state",
+      "passed": true
+    },
+    {
+      "name": "controller release clears tactical hold",
+      "passed": true
+    },
+    {
+      "name": "incomplete schema3 cannot silently reset missing progress",
+      "passed": true
+    },
+    {
+      "name": "wide variant trades travel and damage for coverage",
+      "passed": true
+    },
+    {
+      "name": "pierce support changes target budget with lower damage",
+      "passed": true
+    },
+    {
+      "name": "relay returns energy only once after the next real melee",
+      "passed": true
+    },
+    {
+      "name": "anchor equipment pays a longer cooldown",
+      "passed": true
+    },
+    {
+      "name": "first actual encounter guarantees a learned tactic receipt",
+      "passed": true
+    },
+    {
+      "name": "district completion guarantees second tactic and recipes",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}
