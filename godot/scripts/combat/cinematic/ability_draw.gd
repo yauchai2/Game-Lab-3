@@ -96,7 +96,11 @@ func begin(id:String,next_kind:String,random_seed:int,profile:Resource=null) -> 
     if compact_entry:entry_offset=Vector3.ZERO
     saved={"transform":session.camera.transform,"fov":session.camera.fov,"near":session.camera.near,"far":session.camera.far,"environment":session.camera.environment,"duck":session.audio.cinematic_duck,"backdrop":session.backdrop.visible,"living":session.backdrop.living.visible}
     saved_actors.clear();saved_shadows.clear()
-    for actor in session.fighters:saved_actors.append({"node":actor,"visible":actor.visible});actor.hide()
+    var cast:Array=session.fighters.duplicate()
+    if next_kind=="deadshift_wave":
+        for actor in session.squad_visuals:
+            if actor not in cast:cast.append(actor)
+    for actor in cast:saved_actors.append({"node":actor,"visible":actor.visible});actor.hide()
     for shadow in session.silhouettes:saved_shadows.append({"node":shadow,"visible":shadow.visible});shadow.hide()
     session.backdrop.living.hide()
     for puff in actors.dust:

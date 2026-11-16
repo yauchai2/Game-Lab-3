@@ -347,8 +347,17 @@ func _combat_step() -> void:
             sim.fighters[1]=sim.squad_members[id];fighters[1]=squad_visuals[id]
         _handle_event(event)
     sim.fighters[1]=focused;fighters[1]=focused_visual
+    if sim.story_enabled and not sim.campaign_enabled and sim.story_state=="break" and sim.wave_index==0:
+        var boundary:="deadshift:%d/first_wave"%draw_match_serial
+        if not draw_rewards.claimed.has(boundary):
+            _clear_impacts();effects.clear();pending.clear()
+            screen="result";result_clock=0.0
+            ability_draw.begin(boundary,"deadshift_wave",draw_seed+draw_match_serial,ability_draw_stage)
+            hud.rebuild_menu()
+            return
     if is_instance_valid(city_campaign) and city_campaign.active:city_campaign.observe()
     if is_instance_valid(city_campaign) and city_campaign.encounter_finished():
+        audio.match_over=true
         screen="result";result_clock=0;finish_menu_open=false;pending.clear()
         hud.rebuild_menu();return
     if sim.phase in ["round_over", "match_over"]:
@@ -697,6 +706,8 @@ func _handle_event(event: Dictionary) -> void:
         elif event.kind=="node_unavailable":hud.notice="PLACE A NODE / WAIT FOR PULSE";hud.notice_time=.7
     ink_fx.on_event(self,event)
     combat_event.emit(event)
+    if event.kind in ["hit","block","guard_break","wall_bounce","arena_bounce","ground_bounce","air_land","story_chain_hit","gun_hit","gun_block"]:
+        _pose_contact_reaction(event)
     if preload("res://scripts/combat/enemies/gun_presentation.gd").handle(self,event):return
     if event.kind=="swing" and event.get("move","") in ["special","node_pulse"] and sim.last_service_enabled and character_choices[event.target]==3:
         audio.play_sound("charge",1.15,-12)
@@ -935,6 +946,22 @@ func _handle_event(event: Dictionary) -> void:
         var target:int=clampi(event.get("target",0),0,1)
         backdrop.smoke.react(Vector3(sim.fighters[target].x,sim.fighters[target].y,FIGHT_Z))
 
+func _pose_contact_reaction(event:Dictionary) -> void:
+    var kind:String=event.kind
+    var move:String=event.get("move","")
+    if move=="grab" or (kind=="air_land" and not event.get("hard",false)):return
+    var target:int=event.get("target",1)
+    var fighter:Dictionary=sim.fighters[target]
+    if fighter.health<=0 or fighter.has("paired_throw"):return
+    if kind=="gun_block":kind="guard_break" if event.get("broken",false) else "block"
+    var airborne:bool=fighter.y>.01 or move=="launcher" or kind in ["ground_bounce","arena_bounce","wall_bounce"]
+    var direction:float=event.get("face",event.get("dir",float(sim.fighters[1-target].face)))
+    if is_zero_approx(direction):direction=-float(fighter.face)
+    if kind in ["wall_bounce","arena_bounce"]:
+        direction=signf(fighter.vx) if absf(fighter.vx)>.1 else -float(fighter.face)
+    var strength:float=event.get("strength",.65)
+    fighters[target].impact_reaction(kind,move,direction,airborne,strength)
+
 func _clear_impacts() -> void:
     render_motion.clear()
     ink_fx.clear()
@@ -953,6 +980,7 @@ func _clear_impacts() -> void:
     neon.clear()
     for fighter in fighters+squad_visuals:
         fighter.set_neon_silhouette(false);fighter.fx_flash_age=1.0
+        fighter.clear_impact_reaction()
     rhythm.clear()
     if is_instance_valid(backdrop):backdrop.visible=true
     if is_instance_valid(camera):camera.environment=null
@@ -987,7 +1015,7 @@ func _release_impacts(with_audio := true) -> void:
 
 func _process(delta: float) -> void:
     if screen=="city":
-        audio.context="title"
+        audio.context="city"
         if settings_save_clock>=0:
             settings_save_clock-=delta
             if settings_save_clock<0:save_options()
@@ -1000,7 +1028,11 @@ func _process(delta: float) -> void:
     if neon_enabled:neon.advance(delta,screen in ["pause","help"],reduced_effects)
     spectacle.advance(delta,screen in ["pause","help"])
     theatre.advance(delta,screen in ["pause","help"])
-    audio.context = screen
+    audio.practice_music=practice
+    audio.context=screen
+    if screen=="result":
+        if ability_draw.active():audio.context="draw"
+        elif city_breaker.active():audio.context="ko"
     if screen != "pause" and screen != "help":
         elapsed += delta
         for effect in effects:
@@ -1741,11 +1773,22 @@ func _sync_story_visuals() -> void:
         for id in range(1,squad_visuals.size()):squad_visuals[id].queue_free()
     var old_boss:Node=fighters[1].get_node_or_null("CampaignBoss")
     if old_boss!=null:fighters[1].remove_child(old_boss);old_boss.queue_free()
-    fighters[1].setup(COLORS[1],4);squad_visuals=[fighters[1]]
-    for id in range(1,sim.squad_members.size()):
-        var visual:=FighterVisual.new();visual.neon_enabled=neon_enabled
-        add_child(visual);visual.setup(COLORS[1],4);squad_visuals.append(visual)
-    for id in squad_visuals.size():preload("res://scripts/combat/story/enemy_props.gd").decorate(squad_visuals[id],sim.squad_members[id].story_role)
+    const Team=preload("res://scripts/combat/story/deadshift.gd")
+    squad_visuals=[fighters[1]]
+    for id in sim.squad_members.size():
+        if id>0:
+            var newcomer:=FighterVisual.new()
+            newcomer.neon_enabled=neon_enabled
+            add_child(newcomer);squad_visuals.append(newcomer)
+        var visual:Node3D=squad_visuals[id]
+        var member:Dictionary=sim.squad_members[id]
+        var entry:Dictionary=Team.select(member,sim.wave_index,sim.campaign_enabled)
+        if entry.is_empty():
+            visual.setup(COLORS[1],4)
+        else:
+            visual.setup(COLORS[1],4,Team.ROOT+entry.id+".glb",entry.height)
+            visual.deadshift_id=entry.id
+            Team.setup(visual)
     fighters[1]=squad_visuals[sim.squad_focus];story_visual_revision=sim.wave_revision
     effects.clear();pending.clear();_clear_impacts()
 
@@ -1944,6 +1987,13 @@ func _begin_ability_draw(next_kind:String) -> bool:
     return true
 
 func complete_ability_draw(item:Dictionary,next_kind:String) -> void:
+    if next_kind=="deadshift_wave":
+        sim.next_story_wave();_sync_story_visuals()
+        screen="play";finish_menu_open=false;pending.clear()
+        if draw_rewards.apply_once(sim,item):
+            hud.notice=item.title+" / NEXT WAVE";hud.notice_time=2.0
+        hud.rebuild_menu()
+        return
     if next_kind=="city_core":
         city_campaign.profile.claim_core();city_campaign.show_city();return
     # Reset the next round first: its fighter dictionaries must exist before a

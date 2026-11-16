@@ -7,6 +7,8 @@ import json, subprocess, wave
 import numpy as np
 ROOT=Path(__file__).resolve().parents[1]
 RATE=48000
+encoders=subprocess.check_output(['ffmpeg','-hide_banner','-encoders'],text=True)
+vorbis=['-c:a','libvorbis'] if ' libvorbis ' in encoders else ['-c:a','vorbis','-strict','-2']
 TIMING=json.loads((ROOT/"godot/audio/city_breaker/timing.json").read_text())
 DURATION=TIMING["duration"]
 def playback(t):return float(np.interp(t,TIMING["source"],TIMING["playback"]))
@@ -69,11 +71,6 @@ add(playback(5.18),engine*np.sin(np.pi*t/engine_duration)**2,.095,np.linspace(-.
 for i in range(10):
     duration=.22+rng.random()*.22;t=np.arange(int(RATE*duration))/RATE
     add(playback(7.25+i*.17),low_noise(len(t),1800+rng.random()*3000)*np.exp(-t/.09)*fade(t,duration),.022,(-1 if i%2 else 1)*.8)
-# KO punctuation: descending arcade chord, rather than a synthetic spoken voice.
-for at,f,gain in [(7.91,146.83,.12),(8.04,110,.11),(8.18,73.42,.13)]:
-    t=np.arange(int(RATE*.6))/RATE
-    tone=sum(np.sin(2*np.pi*f*k*t)/k for k in [1,2,3])
-    add(playback(at),tone*np.exp(-t/.17)*fade(t,.6),gain,0)
 # Gentle saturation and a documented fixed peak leave room for in-game BGM.
 peak=float(np.max(np.abs(mix)))
 mix=np.tanh(mix/max(peak,.001)*1.15)
@@ -84,36 +81,28 @@ out=ROOT/'godot/audio/city_breaker'
 out.mkdir(parents=True,exist_ok=True)
 wav=Path('/tmp/city-breaker-score.wav')
 with wave.open(str(wav),'wb') as f:f.setnchannels(2);f.setsampwidth(2);f.setframerate(RATE);f.writeframes(pcm.tobytes())
-subprocess.run(['ffmpeg','-v','error','-i',str(wav),'-c:a','libvorbis','-q:a','5',str(out/'score.ogg'),'-y'],check=True)
-(out/'provenance.json').write_text(json.dumps({'source':'Original procedural synthesis; no external samples','generator':'tools/build_city_breaker_audio.py','seed':20261111,'duration_seconds':DURATION,'sample_rate':RATE,'channels':2,'peak_dbfs_before_vorbis':-2,'impact_seconds':[playback(c[0]) for c in CUES],'authored_impact_seconds':[c[0] for c in CUES],'timing_profile':'godot/audio/city_breaker/timing.json'},indent=2)+'\n')
+subprocess.run(['ffmpeg','-v','error','-i',str(wav),*vorbis,'-q:a','5',str(out/'score.ogg'),'-y'],check=True)
+(out/'provenance.json').write_text(json.dumps({'source':'Original procedural synthesis; no external samples','generator':'tools/build_city_breaker_audio.py','seed':20261111,'duration_seconds':DURATION,'sample_rate':RATE,'channels':2,'peak_dbfs_before_vorbis':-2,'score_bed':'res://audio/music/ko.ogg','impact_seconds':[playback(c[0]) for c in CUES],'authored_impact_seconds':[c[0] for c in CUES],'timing_profile':'godot/audio/city_breaker/timing.json'},indent=2)+'\n')
 print(out/'score.ogg')
 
-# Four original 3.2-second victory signatures and footstep patterns.
+# Four original 3.2-second exit effect tracks. Music plays separately.
 for character in ['zip','rivet','hush','loop']:
     DURATION=3.2
     mix=np.zeros((int(RATE*DURATION),2),dtype=np.float64)
-    def tone(at,f,duration,gain,pan=0):
-        t=np.arange(int(RATE*duration))/RATE
-        signal=(np.sin(2*np.pi*f*t)+.22*np.sin(2*np.pi*f*2.01*t))*np.exp(-t/.12)*fade(t,duration)
-        add(at,signal,gain,pan)
     t=np.arange(int(RATE*.28))/RATE
     add(.02,low_noise(len(t),2800)*np.sin(np.pi*t/.28)**2,.12,-.3)
     if character=='zip':
-        for i,f in enumerate([880,1320,1760]):tone(.10+i*.075,f,.23,.09,-.3+i*.3)
         impact(.12,.25,0)
         steps=[1.48,2.10,2.73]
     elif character=='rivet':
         impact(.10,.8,0)
-        for i,f in enumerate([230,347,491]):tone(.22+i*.07,f,.32,.07,(-1 if i%2 else 1)*.4)
         steps=[1.47,2.25,2.96]
     elif character=='hush':
-        tone(.12,680,.22,.055,.3)
         for at in [.32,.58]:
             t=np.arange(int(RATE*.10))/RATE
             add(at,low_noise(len(t),6500)*np.exp(-t/.009)*fade(t,.1),.12,-.2)
         steps=[1.53,2.35,2.98]
     else:
-        for i,f in enumerate([330,495,660,990]):tone(.10+i*.085,f,.26,.095,(-1 if i%2 else 1)*.55)
         steps=[1.49,2.14,2.81]
     for i,at in enumerate(steps):
         if character=='rivet':impact(at,.23,.35)
@@ -127,22 +116,21 @@ for character in ['zip','rivet','hush','loop']:
     mix[-int(.15*RATE):]*=np.linspace(1,0,int(.15*RATE))[:,None]
     wav=Path('/tmp/exit_'+character+'.wav')
     with wave.open(str(wav),'wb') as f:f.setnchannels(2);f.setsampwidth(2);f.setframerate(RATE);f.writeframes((mix*32767).astype('<i2').tobytes())
-    subprocess.run(['ffmpeg','-v','error','-i',str(wav),'-c:a','libvorbis','-q:a','5',str(out/('exit_'+character+'.ogg')),'-y'],check=True)
+    subprocess.run(['ffmpeg','-v','error','-i',str(wav),*vorbis,'-q:a','5',str(out/('exit_'+character+'.ogg')),'-y'],check=True)
 (out/'exit-provenance.json').write_text(json.dumps({'source':'Original procedural synthesis, no external samples','duration':3.2,'characters':['zip','rivet','hush','loop'],'sample_rate':RATE,'channels':2,'generator':'tools/build_city_breaker_audio.py'},indent=2)+'\n')
 
 # Entry sequence: city reveal, both portrait cuts, round title.
 DURATION=2.8
 mix=np.zeros((int(RATE*DURATION),2),dtype=np.float64)
-for at,f,pan in [(0.04,82,0),(.36,440,-.65),(.50,660,-.45),(1.11,550,.65),(1.25,825,.45),(1.88,110,0),(2.15,165,0)]:tone(at,f,.35,.10,pan)
 for at,pan in [(.30,-.7),(1.05,.7),(1.82,0)]:
     t=np.arange(int(RATE*.24))/RATE
     add(at,low_noise(len(t),2600)*np.sin(np.pi*t/.24)**2,.11,pan)
 impact(1.88,.25,0)
 mix=np.tanh(mix);mix*=10**(-3/20)/max(.001,np.max(np.abs(mix)))
 mix[-int(.15*RATE):]*=np.linspace(1,0,int(.15*RATE))[:,None]
-wav=Path('/tmp/round-intro.wav')
+wav=out/'intro.wav'
 with wave.open(str(wav),'wb') as f:f.setnchannels(2);f.setsampwidth(2);f.setframerate(RATE);f.writeframes((mix*32767).astype('<i2').tobytes())
-subprocess.run(['ffmpeg','-v','error','-i',str(wav),'-c:a','libvorbis','-q:a','5',str(out/'intro.ogg'),'-y'],check=True)
+subprocess.run(['ffmpeg','-v','error','-i',str(wav),*vorbis,'-q:a','5',str(out/'intro.ogg'),'-y'],check=True)
 import hashlib
 decoded=np.frombuffer(subprocess.check_output(['ffmpeg','-v','error','-i',str(out/'intro.ogg'),'-f','f32le','pipe:1']),dtype='<f4')
 (out/'intro-provenance.json').write_text(json.dumps({'source':'Original procedural synthesis; no external samples','generator':'tools/build_city_breaker_audio.py','duration_seconds':len(decoded)/(RATE*2),'sample_rate':RATE,'channels':2,'peak_dbfs_decoded':float(20*np.log10(np.max(np.abs(decoded)))),'rms_dbfs_decoded':float(20*np.log10(np.sqrt(np.mean(decoded*decoded)))),'sha256':hashlib.sha256((out/'intro.ogg').read_bytes()).hexdigest(),'cues_seconds':[0,.36,1.11,1.88,2.15]},indent=2)+'\n')

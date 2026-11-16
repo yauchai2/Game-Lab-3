@@ -1,0 +1,113 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+EXPANDED hero0 skill2 starts for its exact cost true
+EXPANDED hero0 skill2 emits within bounded life true
+EXPANDED hero0 skill2 has real blockable contact true
+EXPANDED hero0 skill3 starts for its exact cost true
+EXPANDED hero0 skill3 emits within bounded life true
+EXPANDED hero0 skill3 has real blockable contact true
+EXPANDED hero0 skill4 starts for its exact cost true
+EXPANDED hero0 skill4 emits within bounded life true
+EXPANDED hero0 skill4 has real blockable contact true
+EXPANDED hero0 skill5 starts for its exact cost true
+EXPANDED hero0 skill5 emits within bounded life true
+EXPANDED hero0 skill5 has real blockable contact true
+EXPANDED hero1 skill2 starts for its exact cost true
+EXPANDED hero1 skill2 emits within bounded life true
+EXPANDED hero1 skill2 has real blockable contact true
+EXPANDED hero1 skill3 starts for its exact cost true
+EXPANDED hero1 skill3 emits within bounded life true
+EXPANDED hero1 skill3 has real blockable contact true
+EXPANDED hero1 skill4 starts for its exact cost true
+EXPANDED hero1 skill4 emits within bounded life true
+EXPANDED hero1 skill4 has real blockable contact true
+EXPANDED hero1 skill5 starts for its exact cost true
+EXPANDED hero1 skill5 emits within bounded life true
+EXPANDED hero1 skill5 has real blockable contact true
+EXPANDED hero2 skill2 starts for its exact cost true
+EXPANDED hero2 skill2 emits within bounded life true
+EXPANDED hero2 skill2 has real blockable contact true
+EXPANDED hero2 skill3 starts for its exact cost true
+EXPANDED hero2 skill3 emits within bounded life true
+EXPANDED hero2 skill3 has real blockable contact true
+EXPANDED hero2 skill4 starts for its exact cost true
+EXPANDED hero2 skill4 emits within bounded life true
+EXPANDED hero2 skill5 starts for its exact cost true
+EXPANDED hero2 skill5 emits within bounded life true
+EXPANDED hero2 skill5 has real blockable contact true
+EXPANDED hero3 skill2 starts for its exact cost true
+EXPANDED hero3 skill2 emits within bounded life true
+EXPANDED hero3 skill2 has real blockable contact true
+EXPANDED hero3 skill3 starts for its exact cost true
+EXPANDED hero3 skill3 emits within bounded life true
+EXPANDED hero3 skill3 has real blockable contact true
+EXPANDED hero3 skill4 starts for its exact cost true
+EXPANDED hero3 skill4 emits within bounded life true
+EXPANDED hero3 skill5 starts for its exact cost true
+EXPANDED hero3 skill5 emits within bounded life true
+EXPANDED hero3 skill5 has real blockable contact true
+EXPANDED diving tactic requires a real jump true
+EXPANDED dive never refills jumps or pursuit true
+EXPANDED pressure vent rejects absent preload true
+EXPANDED pressure vent consumes the original preload once true
+EXPANDED cut-three does not autoplay stages true
+EXPANDED confirmed manual stage is funded by the original cast true
+EXPANDED whiff cannot open a free follow-up true
+EXPANDED floating emitter reserves both destructible nodes true
+EXPANDED emitter is fired once without a second fee true
+EXPANDED silence delays ordinary preparation only true
+EXPANDED ground seal warns before it can hit true
+EXPANDED ground seal detonation has one real area cue true
+EXPANDED six learned skills are individually equippable true
+EXPANDED duplicate skill selection swaps the other slot true
+EXPANDED full build can be stored for free true
+EXPANDED saved gear cannot be accidentally scrapped true
+EXPANDED build restores gear and six-skill configuration true
+EXPANDED build restores its allocated talent path true
+EXPANDED build restores equipped advanced techniques true
+EXPANDED clearing preset releases only its references true
+EXPANDED preset load never changes money true
+EXPANDED schema3 preserves old save bytes and progression true
+EXPANDED schema3 new save reloads with six-choice records true
+EXPANDED schema4 preserves old save bytes and progression true
+EXPANDED schema4 pads new choices without losing the old build true
+EXPANDED schema4 new save reloads with six-choice records true
+EXPANDED schema5 preserves old save bytes and progression true
+EXPANDED schema5 new save reloads with six-choice records true
+EXPANDED schema6 preserves old save bytes and progression true
+EXPANDED schema6 new save reloads with six-choice records true
+EXPANDED schema7 preserves old save bytes and progression true
+EXPANDED schema7 new save reloads with six-choice records true
+EXPANDED progress0 unlocks exactly0 tools true
+EXPANDED progress1 unlocks exactly1 tools true
+EXPANDED progress3 unlocks exactly2 tools true
+EXPANDED progress6 unlocks exactly3 tools true
+EXPANDED progress9 unlocks exactly4 tools true
+EXPANDED progress12 unlocks exactly5 tools true
+EXPANDED progress15 unlocks exactly6 tools true
+EXPANDED progress18 unlocks exactly6 tools true
+EXPANDED ground tactic cannot hit arbitrarily high flyers true
+EXPANDED cable never moves a giant boss true
+EXPANDED interruption clears the manual chain window true
+EXPANDED breaking half an emitter releases both reserved points true
+EXPANDED broadcast segments share one victim budget true
+EXPANDED failed preset load is an atomic rollback true
+EXPANDED missing preset equipment cannot invent gear or partially apply true
+EXPANDED unaffordable saved allocation cannot apply true
+EXPANDED two-stop delivery selects and actually hits a different body true
+EXPANDED blocked chain cannot grant free manual continuation true
+EXPANDED silence never deletes a pistol round already in flight true
+EXPANDED silence does not suppress a nearby giant boss true
+EXPANDED nonempty preset survives atomic save/reload with gear and talents true
+EXPANDED reloaded preset still protects its item identity true
+EXPANDED economy build affects both fast fee and full-charge surcharge true
+EXPANDED tactical energy discounts retain the common twenty-percent cap true
+EXPANDED route-banking build earns route1 from a legal dodge true
+EXPANDED route-banking build earns route2 from a legal dodge true
+EXPANDED normal L charge genuinely builds a fan conversion opportunity true
+EXPANDED L-to-vent conversion commits only the replacement fee true
+EXPANDED resolved charged punch cannot spend its visual tier again true
+EXPANDED cooldown conversion cannot refund the L commitment true
+EXPANDED guard conversion cannot refund the L commitment true
+EXPANDED jump conversion cannot refund the L commitment true
+EXPANDED interrupted conversion cannot refund the L commitment true

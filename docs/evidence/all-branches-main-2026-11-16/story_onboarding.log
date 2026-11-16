@@ -1,0 +1,60 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+ONBOARDING fresh profile grants the full kit without money or story progress true
+ONBOARDING hero 0 opening ground chain reaches launcher true
+ONBOARDING hero 0 opening air chain reaches finisher true
+ONBOARDING hero 0 opening overdrive pays the normal cost true
+ONBOARDING hero 0 still cannot use overdrive without energy true
+ONBOARDING hero 0 opening double jump is a real event true
+ONBOARDING hero 0 opening chase really spends energy true
+ONBOARDING hero 1 opening ground chain reaches launcher true
+ONBOARDING hero 1 opening air chain reaches finisher true
+ONBOARDING hero 1 opening overdrive pays the normal cost true
+ONBOARDING hero 1 still cannot use overdrive without energy true
+ONBOARDING hero 1 opening double jump is a real event true
+ONBOARDING hero 1 opening chase really spends energy true
+ONBOARDING hero 2 opening ground chain reaches launcher true
+ONBOARDING hero 2 opening air chain reaches finisher true
+ONBOARDING hero 2 opening overdrive pays the normal cost true
+ONBOARDING hero 2 still cannot use overdrive without energy true
+ONBOARDING hero 2 opening double jump is a real event true
+ONBOARDING hero 2 opening chase really spends energy true
+ONBOARDING hero 3 opening ground chain reaches launcher true
+ONBOARDING hero 3 opening air chain reaches finisher true
+ONBOARDING hero 3 opening overdrive pays the normal cost true
+ONBOARDING hero 3 still cannot use overdrive without energy true
+ONBOARDING hero 3 opening double jump is a real event true
+ONBOARDING hero 3 opening chase really spends energy true
+ONBOARDING schema1 grants basics without erasing money rank or progress true
+ONBOARDING schema1 read preserves original save bytes true
+ONBOARDING schema1 next save and reload retain every basic move true
+ONBOARDING schema2 grants basics without erasing money rank or progress true
+ONBOARDING schema2 read preserves original save bytes true
+ONBOARDING schema2 next save and reload retain every basic move true
+ONBOARDING schema3 grants basics without erasing money rank or progress true
+ONBOARDING schema3 read preserves original save bytes true
+ONBOARDING schema3 next save and reload retain every basic move true
+ONBOARDING first visit explains story without altering the profile true
+ONBOARDING guide scroll reaches equipment navigation true
+ONBOARDING Esc closes guide and leaves compact guidance visible true
+ONBOARDING requested guide control exists true
+ONBOARDING visible guide button reopens the guide true
+ONBOARDING requested guide control exists true
+ONBOARDING next-step button walks to the physical station true
+ONBOARDING guided walk reaches DEPART without spending or starting a run true
+ONBOARDING fresh native practice is enabled for double_jump true
+ONBOARDING fresh native practice is enabled for launcher true
+ONBOARDING fresh native practice is enabled for chase true
+ONBOARDING fresh native practice is enabled for finisher true
+ONBOARDING fresh native practice is enabled for overdrive true
+ONBOARDING requested guide control exists true
+ONBOARDING practice starts with the real kit and leaves progression alone true
+ONBOARDING actual K input completes launcher practice true
+ONBOARDING first real encounter carries the full kit true
+ONBOARDING combat advice uses discounted real skill costs true
+ONBOARDING unspent talent point suggests the real circuit true
+ONBOARDING pending current takes priority over spending true
+ONBOARDING RESULT 54/54

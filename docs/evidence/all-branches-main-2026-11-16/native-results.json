@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "deadshift",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "DEADSHIFT Mixamo hit pose static true",
+      "DEADSHIFT air hit readable during freeze static true",
+      "DEADSHIFT STATIC projects a third-wave warned zone true",
+      "DEADSHIFT leave story restores regular roster true",
+      "DEADSHIFT_RESULT 24/24"
+    ]
+  },
+  {
+    "suite": "story_onboarding",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "ONBOARDING first real encounter carries the full kit true",
+      "ONBOARDING combat advice uses discounted real skill costs true",
+      "ONBOARDING unspent talent point suggests the real circuit true",
+      "ONBOARDING pending current takes priority over spending true",
+      "ONBOARDING RESULT 54/54"
+    ]
+  },
+  {
+    "suite": "enemy_response_native",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "RESPONSE_NATIVE heavy keeps its role without a new free response true",
+      "RESPONSE_NATIVE stepping uses actual body movement with no invulnerability true",
+      "RESPONSE_NATIVE responses cannot refund the player's paid area true",
+      "RESPONSE_NATIVE pause freezes the enemy reaction cooldown true",
+      "RESPONSE_NATIVE leaving story clears live tactical effects true"
+    ]
+  }
+]

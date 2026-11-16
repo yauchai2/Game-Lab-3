@@ -1,3 +1,5 @@
+最新全分支核對（2026-11-16）：已抓取GitHub全部38分支，補入最後未合併的DEADSHIFT敵人／空中受擊與全遊戲配樂重剪；37個原始碼分支（含main）全部集中main，gh-pages保留獨立。[來源快照與本輪驗證](docs/evidence/all-branches-main-2026-11-16/README.md)。GitHub Desktop選main Fetch／Pull；Web未更新。
+
 最新整合（2026-11-16）：已按「全部推到 GitHub main」完整合併 [PR #38](https://github.com/yauchai2/Game-Lab-3/pull/38)，包含故事開局／教學、24招戰術／構築預設／支援／空投，以及受阻步態修正。GitHub Desktop 選 **main → Fetch／Pull** 即可；[整合紀錄與驗證界線](docs/MAIN_INTEGRATION_2026-11-16.zh-TW.md)。下方分支、草稿與未實作描述是各階段歷史，以最新紀錄為準；公開Web未更新。
 
 最新動作覆核（2026-11-16）：[急停／前後步／閃避與受阻步態](docs/GROUND_MOTION_REVIEW.zh-TW.md)。修正角色被場邊／身體擋住仍原地跑；四角同指令324個受阻抽樣由全在行跑變0，F2一致，權威位移／狀態不變。完整覆核表仍有勝利、選角、NPC／Boss及180°換邊待續。

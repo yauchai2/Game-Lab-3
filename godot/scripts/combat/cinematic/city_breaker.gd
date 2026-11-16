@@ -549,7 +549,9 @@ func clear() -> void:
         score_player.stream_paused=false
         score_player.stop()
     if is_instance_valid(lens):lens.hide()
-    if is_instance_valid(session) and is_instance_valid(session.audio):session.audio.cinematic_duck=0.0
+    if is_instance_valid(session) and is_instance_valid(session.audio):
+        session.audio.cinematic_duck=0.0
+        session.audio.stop_ko_music()
     if is_instance_valid(container): container.hide()
     for source in hidden_sources:
         if is_instance_valid(source.node): source.node.visible = source.visible
@@ -613,7 +615,7 @@ func _sync_audio(paused: bool) -> void:
     if not is_instance_valid(score_player):return
     score_player.stream_paused=paused
     var level:float=session.audio.effects_level
-    score_player.volume_db=-80.0 if session.audio.muted or level<=0 else -7.0+linear_to_db(maxf(.001,level))
+    score_player.volume_db=-100.0 if session.audio.muted or level<=0 else -7.0+linear_to_db(maxf(.001,level))
     session.audio.cinematic_duck=0.0 if paused else (.5+_impact_at(age)*.5)
 
 func _draw_speed_ink(canvas: Control) -> void:

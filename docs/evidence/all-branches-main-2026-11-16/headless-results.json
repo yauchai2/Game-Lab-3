@@ -1,0 +1,133 @@
+[
+  {
+    "suite": "story_waves",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "STORY hero 2 clears Easy through ordinary inputs without reset true",
+      "STORY hero 2 encounter respects one attack slot true",
+      "STORY hero 3 clears Easy through ordinary inputs without reset true",
+      "STORY hero 3 encounter respects one attack slot true"
+    ]
+  },
+  {
+    "suite": "campaign_complete",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "COMPLETE hero 1 legally clears all eighteen encounters with earned loot and paid healing true",
+      "COMPLETE hero 2 legally clears all eighteen encounters with earned loot and paid healing true",
+      "COMPLETE hero 3 legally clears all eighteen encounters with earned loot and paid healing true",
+      "COMPLETE RESULT 50/50"
+    ]
+  },
+  {
+    "suite": "expanded_tactics",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "EXPANDED cooldown conversion cannot refund the L commitment true",
+      "EXPANDED guard conversion cannot refund the L commitment true",
+      "EXPANDED jump conversion cannot refund the L commitment true",
+      "EXPANDED interrupted conversion cannot refund the L commitment true"
+    ]
+  },
+  {
+    "suite": "tactical_modules",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "MODULES schema6 migrated module preset survives integer normalization and reload true",
+      "MODULES schema7 preserves old save bytes and choices true",
+      "MODULES schema7 upgrades nested preset support slots true",
+      "MODULES schema7 migrated module preset survives integer normalization and reload true"
+    ]
+  },
+  {
+    "suite": "airdrop_module",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "AIRDROP schema6 air-drop preset survives reload with integer module ID true",
+      "AIRDROP schema7 preserves original bytes, money and old module preset true",
+      "AIRDROP schema7 air-drop preset survives reload with integer module ID true",
+      "AIRDROP migration rejects a schema6 save missing its mandatory module record true"
+    ]
+  },
+  {
+    "suite": "observed_locomotion",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "OBSERVED_MOTION hero0 actual wall commands preserve physics and stop the gait true",
+      "OBSERVED_MOTION hero1 actual wall commands preserve physics and stop the gait true",
+      "OBSERVED_MOTION hero2 actual wall commands preserve physics and stop the gait true",
+      "OBSERVED_MOTION hero3 actual wall commands preserve physics and stop the gait true"
+    ]
+  },
+  {
+    "suite": "rush_arcade",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org",
+      "",
+      "RUSH_ARCADE_CHECKS 22/22"
+    ]
+  },
+  {
+    "suite": "paired_throw",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "PAIRED black suit retarget, wrist and floor -1 true ",
+      "PAIRED black suit retarget, wrist and floor 1 true ",
+      "PAIRED same rig swaps throw roles without stale calibration or floor cache true ",
+      "PAIRED_RESULT 147/147 { \"max_wrist_gap_m\": 0.02554822154343, \"min_skin_y\": 0.00999679695815, \"max_ground_error_m\": 0.00000001654029 }"
+    ]
+  },
+  {
+    "suite": "continuous_motion",
+    "exit": -15,
+    "errors": [],
+    "tail": [
+      "CONTINUOUS New attack serial cannot blend backwards true",
+      "CONTINUOUS Reset discards interpolation history true",
+      "CONTINUOUS Squad interpolation tracks each persistent enemy ID true",
+      "CONTINUOUS Player and squad enemy interpolation keys cannot collide true"
+    ]
+  },
+  {
+    "suite": "combat_sfx",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "SFX KO music pauses with the director true <null>",
+      "SFX KO music resumes without a new track true <null>",
+      "SFX music bus owns one low-pass filter true <null>",
+      "COMBAT_SFX_CHECKS 66/66"
+    ]
+  },
+  {
+    "suite": "story_opening",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "STORY_OPENING leaving the scene mid-opening clears it true",
+      "STORY_OPENING the next launch remembers it was seen true",
+      "STORY_OPENING without being the running game it still never autoplays true",
+      "STORY_OPENING_RESULT 44/44"
+    ]
+  },
+  {
+    "suite": "city_breaker_fx",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "KO_FX no score tail leaks after skip true",
+      "KO_FX F2 clears lens and sound together true",
+      "KO_FX title exit releases all FX ownership true",
+      "KO_FX_CHECKS 21/21"
+    ]
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "knuckle": {
+    "file": "tripo_convert_2c850b13-aa99-4fe1-93ed-969de8bd4158.glb",
+    "sha256": "be2f02037675580514d507036fed8d7e1d804562ffdf332a63f60ad057342572",
+    "joints": 65
+  },
+  "bulk": {
+    "file": "tripo_convert_869704e5-a302-40ec-8fa2-31c4905a7ae5.glb",
+    "sha256": "89f31cb8d9b54cb2bb95f70a8974acf373aaa3398b6abee770ea3dcf11baa12c",
+    "joints": 65
+  },
+  "skid": {
+    "file": "tripo_convert_a7d2a13e-0138-4830-88b5-0fa3ab6898db.glb",
+    "sha256": "a35af9cbc32c765ccf3e955470659d7068554135391cb02b70198c74fbc68129",
+    "joints": 65
+  },
+  "static": {
+    "file": "tripo_convert_ffa7f9a3-df2d-4ec2-84fe-c439f92e2834.glb",
+    "sha256": "f0a0402afe8b7e926a1ebbbfa86f11f22c0cf7a561b106c5d5ae1d980f3ddde6",
+    "joints": 65
+  },
+  "tether": {
+    "file": "tripo_convert_85abefd9-51aa-4eb3-92fe-bd9059bee4a5.glb",
+    "sha256": "8d5fe859bccb68b7ca4e1b6f58138d3781943cc0b4c5515c8ef6ccfa24bd7613",
+    "joints": 65
+  },
+  "foreman": {
+    "file": "tripo_convert_eef1ef4e-90f3-491d-af8e-dfb73ec49f4e.glb",
+    "sha256": "3c256efc3f5952b63364730241a82f1e5fe88cec73643f0cfd6fdd35205f7e5c",
+    "joints": 65
+  },
+  "snap": {
+    "file": "tripo_convert_9535f746-e7ce-440f-8038-2710e9feba45.glb",
+    "sha256": "f15b9556f5cdac80ccade144b651843bddd687de71e14ef41939f5d7b817e955",
+    "joints": 33
+  },
+  "shield": {
+    "file": "tripo_convert_be505ce4-21d9-4cf1-948c-c70962b99b81.glb",
+    "sha256": "2f032093f1741a35ce80235372fb6dd8e9d1de0fd2e08b3ab0cc0f1dfde361b1",
+    "joints": 0
+  },
+  "signal": {
+    "file": "tripo_convert_d06212f8-1d14-4353-b00b-d63a2de5ac70.glb",
+    "sha256": "0a50d68117efd1fe77ef20c2dd5bcc27466cfbae0f16f0cef2f3bbc7aa096ff4",
+    "joints": 0
+  }
+}

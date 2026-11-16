@@ -34,7 +34,7 @@ func show_city() -> void:
     hub.show_city()
     if profile.migration_notice!="":hub.notice=profile.migration_notice
     elif last_result!="":hub.notice=last_result
-    session.audio.context="title"
+    session.audio.context="city"
 
 func leave_city() -> void:
     hub.hide_city();active=false;session.hud.visible=true;session.return_to_title()

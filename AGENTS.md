@@ -1,3 +1,7 @@
+## 2026-11-16：全部遠端來源分支集中main
+
+使用者再次要求所有分支更新推main：明確fetch所有38遠端分支，補合codex/deadshift-integration6397f57的3提交，37原始碼分支（含main）皆納入，gh-pages僅部署產物排除。DEADSHIFT模型／空中受擊／動態配樂加入，保留PR #38技能／schema7／jammer沉默及步態；docs/evidence/all-branches-main-2026-11-16。全數分支保留，日常main；本輪無Web部署、無真人／Mac／實聽／FPS認證。
+
 ## 最新覆蓋規則（2026-11-16：全部推到 GitHub main）
 
 使用者明確要求「全部推到 GitHub main」：已完整合併 PR #38，合併提交4829efa，包含故事教學、24招／配裝／支援／空投與地面步態修正。日常來源及後續紀錄同步改用main；覆蓋下方歷史的同任務分支／草稿限制及未回答合併範圍紀錄。保留來源分支及原始資產；公開Web仍須明確要求才更新。詳docs/MAIN_INTEGRATION_2026-11-16.zh-TW.md。

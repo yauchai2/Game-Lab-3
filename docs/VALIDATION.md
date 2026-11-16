@@ -1,3 +1,7 @@
+## 2026-11-16：所有分支整合回歸
+
+[證據／全38分支SHA](evidence/all-branches-main-2026-11-16/README.md)：tactical23／motion18 strict、原生DEADSHIFT24／教學54／預告反應8／連續動作79；波次37／戰役50／擴充111／模組83／空投59／步態21／Rush22／肩摔147／配樂66／開場44／KO21均通過。9個資產hash相符，原中文首戰截圖已檢視。headless連續動作因等待frame_post_draw終止，保留診斷，改正常Compatibility後79/79；不當headless通過。Linux軟體GPU／Dummy、VSync及既有缺UID警告另列，沒有ERROR／SCRIPT ERROR；不是Mac／真人／實聽／FPS驗收。37來源分支含main皆整合，gh-pages不部署。
+
 ## 2026-11-16：PR #38 完整 main 合併驗證
 
 GitHub確認PR #38為MERGED、非草稿，merge4829efa；父提交為原main5bd1c48與已驗證來源62a01e3。兩者來源／合併tree均為590efafcb04b445940924d3e6221eb9f0fad586a，沒有合併衝突或額外runtime修改。沿用下文故事54/54、步態21規則／三組原生各33／3比較及相關回歸證據；本次只改整合狀態文件，未宣稱重跑全部測試。GitHub無check／review結果不能代替實測；Linux驗證仍非Mac／真人／實體手柄／硬件效能。詳[整合紀錄](MAIN_INTEGRATION_2026-11-16.zh-TW.md)。Web未部署。
@@ -47,6 +51,14 @@ GitHub確認PR #38為MERGED、非草稿，merge4829efa；父提交為原main5bd1
 ## 2026-11-16：技能操作續訂文件驗證
 
 本輪只有規劃。對照基線9336bed的fight_session、fight_controls、fight_hud、city_hub、last_service/rules及現有技能文件，核對RIVET蓄力12／30／36tick、J持鍵、K正式挑空、上L大招、LOOP下L／水平L、H說明、Q標題秘密碼、P2 I閃避及F1設定。新Q15／36／54tick是起測提案，非現有值。文件連結與git diff --check通過；未執行Godot或真人測試，未宣稱新方案手感驗證。[新方案及驗收規格](SKILL_INPUT_CHARGE_PLAN.zh-TW.md)。
+
+## 2026-11-15 全遊戲配樂重剪
+
+Mac Godot 4.7.2，headless Dummy mixer。戰鬥配樂及聲效 66/66、故事開場 44/44、KO 21/21、DEADSHIFT 24/24，另有 Master PCM 驗證 6/6，驗到音樂靜音時仍有聲效，戰鬥樣本沒有削波。部份 fixture 在引擎退出時回報資源未釋放。11 段 OGG 都可解碼，實測約 −29 至 −20 LUFS。耳機／揚聲器試玩尚未驗收。
+
+## 2026-11-15：DEADSHIFT 及空中受擊 Mac 驗證
+
+Godot 4.7.2／Apple M4 Compatibility。DEADSHIFT 新測例 24/24，包括六名角色、原生四足骨架與步態、附件、Dealer 真抽取／裝備／套用核心、STATIC 預警、敵人空中受擊及退出。首波清場、試射／受擊姿勢與 STATIC 部署觸發是顯式測試情境。另有故事波次 37/37、空反 57/57、雙人肩摔 147/147。故事原測例改等到既有肩摔落地，仍檢查盾衛確實因摔投受傷。在更早的動作分支，正式訓練場四條輸入路線各觸發空拳、踢擊與重砸，合計 12 次空中命中有即時反應，F2、雙方向及骨架凍結專項 100/100。人手、手掣和長時間效能仍待驗。
 
 ## 2026-11-15：全部合適分支整合
 

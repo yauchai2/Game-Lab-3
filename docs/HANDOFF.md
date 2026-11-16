@@ -1,3 +1,7 @@
+## 2026-11-16：所有遠端來源分支整合完成
+
+全量fetch及GitHub API交叉核對38分支，最後未納入的codex/deadshift-integration6397f57（3提交）已整合；37來源分支含main均納入，gh-pages獨立。保留PR #38全功能，加入新敵人模型／波次抽核心／空中受擊與配樂重剪。衝突保留TacticResponse、沉默限制、戰術展示和DEADSHIFT標記。新舊相關原生／規則與兩組strict通過，詳[證據](evidence/all-branches-main-2026-11-16/README.md)。Web與所有來源分支保持，日常main Fetch／Pull；完整動作餘項及真人驗收仍待續。
+
 ## 2026-11-16：整個 PR #38 已合併 main
 
 使用者兩次明示「全部推到 GitHub main」，合併範圍已確認。PR #38 已由草稿轉正式並合併，提交4829efa；教學、24招與構築、支援／空投、敵人預告反應及步態修正全部保留。合併樹與已驗證分支62a01e3完全一致，見[整合紀錄](MAIN_INTEGRATION_2026-11-16.zh-TW.md)。日常Fetch／Pull改用main，後文待選範圍／PR草稿為歷史。Web未更新；完整動作餘項、其餘模組及真人／Mac驗收仍待做。
@@ -57,6 +61,16 @@ GitHub核對Pages最新仍11月10日失敗，PR #38仍草稿；只推原分支�
 ## 2026-11-16：技能輸入與蓄力詳細規劃
 
 使用者要求接續技能深度策劃，評估持鍵蓄力、方向JKL、H誤觸及Q用途。見[續訂](SKILL_INPUT_CHARGE_PLAN.zh-TW.md)：Q／I兩槽起測，H解除改Esc指南，J持鍵連段及原K／L保留；RIVET現有L已有蓄力，先新Q快／蓄雙用途，不普及全角傷害蓄力。LOOP下L／水平L、P2 I及F1設定衝突已記錄。P0輸入→RIVET正式遭遇→首八招→構築→按缺口擴內容；手柄預設及真人門檻待驗。僅文件，runtime／main／Web未改。
+
+## 2026-11-15 全遊戲配樂重剪
+
+配樂位於 `godot/audio/music`，含選單、工房、練習、戰鬥慢段與三首快段、Dealer、結算、故事開場和決勝 KO。原 MP3 及各段的來源時間和雜湊由 `music.json` 對應。重建用 `python3 tools/build_playlist_music.py <原 MP3>`。戰鬥用兩個播放軌交叉淡入淡出，熱度 0.66 升速、低於 0.23 回慢。一般暫停降低配樂，開場和 KO 過場則暫停並在跳過時收掉獨立 cue。
+
+## 2026-11-15：DEADSHIFT 及空中受擊
+
+自由遊玩清單內的 DEADSHIFT / STORY WAVES 依次加入 KNUCKLE、BULK／SKID／TETHER＋SNAP、FOREMAN／STATIC。首波後抽取並裝備核心，第三波 STATIC 有地面預警。主故事城市遭遇按原角色類型使用同一套敵人模型，大型機械頭目繼續走既有場景。六名人形接入由 Mixamo MCP 取得並已隨專案提供的角色動作。資產雜湊在 `godot/assets/characters/deadshift/sources.json`。
+
+輕空擊後仰、空踢加強反衝、重砸向下折身，落地與格擋另有短反應。見 VALIDATION 的 Mac 實測紀錄。
 
 ## 2026-11-15：全部合適分支整合
 

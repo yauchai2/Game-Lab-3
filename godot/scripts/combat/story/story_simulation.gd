@@ -3,7 +3,7 @@ extends "res://scripts/combat/enemies/squad_simulation.gd"
 const CampaignRules=preload("res://scripts/combat/story/campaign_rules.gd")
 const Balance=preload("res://scripts/combat/city/city_balance.gd")
 const TacticResponse=preload("res://scripts/combat/tactics/enemy_response.gd")
-const WAVES=[["grunt","grunt","grunt"],["grunt","rusher","grunt","rusher"],["guard","grunt","rusher","grunt","guard","grunt"]]
+const WAVES=[["grunt","grunt","grunt"],["guard","rusher","grunt","rusher"],["guard","jammer","rusher","captain","guard","grunt"]]
 const SPAWNS=[2.8,4.6,-3.7,-5.6,7.0,-7.0]
 var campaign_enabled:=false
 var campaign_skills:Array=[]
@@ -109,8 +109,13 @@ func tick(player:Dictionary={},opponent:Dictionary={}) -> void:
     if ai_tick>clock:
         arrival_left=maxi(0,arrival_left-1)
         body_chain.advance(self,previous)
+        if not campaign_enabled and wave_index==2 and arrival_left==0 and squad_clock%150==0:
+            for member in squad_members:
+                if member.story_role=="jammer" and member.health>0 and member.state=="idle":
+                    campaign_hazards.append({"kind":"jammer","x":float(fighters[0].x),"half":1.3,"warn":60,"active":6,"age":0,"source":member.squad_id,"boss":false,"face":member.face,"struck":false})
+                    break
+        if campaign_enabled or wave_index==2:CampaignRules.hazards(self)
         if campaign_enabled:
-            CampaignRules.hazards(self)
             if story_state=="combat":CampaignRules.props(self,previous)
             _reinforce()
         _finish_round()
@@ -120,8 +125,8 @@ func ai_command() -> Dictionary:
     var f:Dictionary=fighters[1]
     if f.has("boss"):return {}
     if arrival_left>0 or (campaign_enabled and int(f.get("arrival",0))>0):return {"axis":signf(fighters[0].x-f.x)*.25,"allow_parry":false}
-    if f.story_role=="jammer" and int(f.get("tactic_silence",0))==0 and f.state=="idle" and squad_clock>=next_attack_at:
-        if squad_clock%150==0 and campaign_hazards.size()<3:
+    if f.story_role=="jammer" and int(f.get("tactic_silence",0))==0 and (campaign_enabled or wave_index==2) and f.state=="idle" and squad_clock>=next_attack_at:
+        if campaign_enabled and squad_clock%150==0 and campaign_hazards.size()<3:
             campaign_hazards.append({"kind":"jammer","x":float(fighters[0].x),"half":1.3,"warn":60,"active":6,"age":0,"source":f.squad_id,"boss":false,"face":f.face,"struck":false})
             next_attack_at=squad_clock+90
         if absf(f.x-fighters[0].x)>3:return {"axis":-signf(fighters[0].x-f.x)*.15,"allow_parry":false}

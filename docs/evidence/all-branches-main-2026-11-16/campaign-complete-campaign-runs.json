@@ -1,0 +1,470 @@
+[
+  {
+    "complete": true,
+    "credits": 1780,
+    "heals": 2,
+    "hero": 0,
+    "rooms": [
+      {
+        "hp": 97,
+        "room": 0,
+        "state": "complete",
+        "ticks": 314
+      },
+      {
+        "hp": 94,
+        "room": 1,
+        "state": "complete",
+        "ticks": 399
+      },
+      {
+        "hp": 87,
+        "room": 2,
+        "state": "complete",
+        "ticks": 799
+      },
+      {
+        "hp": 87,
+        "room": 3,
+        "state": "complete",
+        "ticks": 242
+      },
+      {
+        "hp": 87,
+        "room": 4,
+        "state": "complete",
+        "ticks": 283
+      },
+      {
+        "hp": 87,
+        "room": 5,
+        "state": "complete",
+        "ticks": 880
+      },
+      {
+        "hp": 87,
+        "room": 6,
+        "state": "complete",
+        "ticks": 318
+      },
+      {
+        "hp": 84,
+        "room": 7,
+        "state": "complete",
+        "ticks": 626
+      },
+      {
+        "hp": 72,
+        "room": 8,
+        "state": "complete",
+        "ticks": 1469
+      },
+      {
+        "hp": 100,
+        "room": 9,
+        "state": "complete",
+        "ticks": 726
+      },
+      {
+        "hp": 100,
+        "room": 10,
+        "state": "complete",
+        "ticks": 877
+      },
+      {
+        "hp": 86,
+        "room": 11,
+        "state": "complete",
+        "ticks": 1189
+      },
+      {
+        "hp": 80,
+        "room": 12,
+        "state": "complete",
+        "ticks": 893
+      },
+      {
+        "hp": 68,
+        "room": 13,
+        "state": "complete",
+        "ticks": 1684
+      },
+      {
+        "hp": 81,
+        "room": 14,
+        "state": "complete",
+        "ticks": 1782
+      },
+      {
+        "hp": 78,
+        "room": 15,
+        "state": "complete",
+        "ticks": 635
+      },
+      {
+        "hp": 78,
+        "room": 16,
+        "state": "complete",
+        "ticks": 1399
+      },
+      {
+        "hp": 50,
+        "room": 17,
+        "state": "complete",
+        "ticks": 1219
+      }
+    ],
+    "xp": 1400
+  },
+  {
+    "complete": true,
+    "credits": 1780,
+    "heals": 2,
+    "hero": 1,
+    "rooms": [
+      {
+        "hp": 100,
+        "room": 0,
+        "state": "complete",
+        "ticks": 284
+      },
+      {
+        "hp": 100,
+        "room": 1,
+        "state": "complete",
+        "ticks": 284
+      },
+      {
+        "hp": 97,
+        "room": 2,
+        "state": "complete",
+        "ticks": 780
+      },
+      {
+        "hp": 97,
+        "room": 3,
+        "state": "complete",
+        "ticks": 284
+      },
+      {
+        "hp": 97,
+        "room": 4,
+        "state": "complete",
+        "ticks": 284
+      },
+      {
+        "hp": 94,
+        "room": 5,
+        "state": "complete",
+        "ticks": 901
+      },
+      {
+        "hp": 94,
+        "room": 6,
+        "state": "complete",
+        "ticks": 321
+      },
+      {
+        "hp": 91,
+        "room": 7,
+        "state": "complete",
+        "ticks": 493
+      },
+      {
+        "hp": 82,
+        "room": 8,
+        "state": "complete",
+        "ticks": 1401
+      },
+      {
+        "hp": 82,
+        "room": 9,
+        "state": "complete",
+        "ticks": 386
+      },
+      {
+        "hp": 82,
+        "room": 10,
+        "state": "complete",
+        "ticks": 615
+      },
+      {
+        "hp": 68,
+        "room": 11,
+        "state": "complete",
+        "ticks": 814
+      },
+      {
+        "hp": 100,
+        "room": 12,
+        "state": "complete",
+        "ticks": 565
+      },
+      {
+        "hp": 78,
+        "room": 13,
+        "state": "complete",
+        "ticks": 2540
+      },
+      {
+        "hp": 56,
+        "room": 14,
+        "state": "complete",
+        "ticks": 2636
+      },
+      {
+        "hp": 96,
+        "room": 15,
+        "state": "complete",
+        "ticks": 630
+      },
+      {
+        "hp": 96,
+        "room": 16,
+        "state": "complete",
+        "ticks": 1213
+      },
+      {
+        "hp": 68,
+        "room": 17,
+        "state": "complete",
+        "ticks": 1361
+      }
+    ],
+    "xp": 1400
+  },
+  {
+    "complete": true,
+    "credits": 1770,
+    "heals": 2,
+    "hero": 2,
+    "rooms": [
+      {
+        "hp": 100,
+        "room": 0,
+        "state": "complete",
+        "ticks": 243
+      },
+      {
+        "hp": 100,
+        "room": 1,
+        "state": "complete",
+        "ticks": 347
+      },
+      {
+        "hp": 90,
+        "room": 2,
+        "state": "complete",
+        "ticks": 847
+      },
+      {
+        "hp": 90,
+        "room": 3,
+        "state": "complete",
+        "ticks": 231
+      },
+      {
+        "hp": 90,
+        "room": 4,
+        "state": "complete",
+        "ticks": 283
+      },
+      {
+        "hp": 81,
+        "room": 5,
+        "state": "complete",
+        "ticks": 865
+      },
+      {
+        "hp": 81,
+        "room": 6,
+        "state": "complete",
+        "ticks": 346
+      },
+      {
+        "hp": 78,
+        "room": 7,
+        "state": "complete",
+        "ticks": 626
+      },
+      {
+        "hp": 72,
+        "room": 8,
+        "state": "complete",
+        "ticks": 1276
+      },
+      {
+        "hp": 100,
+        "room": 9,
+        "state": "complete",
+        "ticks": 365
+      },
+      {
+        "hp": 100,
+        "room": 10,
+        "state": "complete",
+        "ticks": 464
+      },
+      {
+        "hp": 67,
+        "room": 11,
+        "state": "complete",
+        "ticks": 910
+      },
+      {
+        "hp": 97,
+        "room": 12,
+        "state": "complete",
+        "ticks": 636
+      },
+      {
+        "hp": 91,
+        "room": 13,
+        "state": "complete",
+        "ticks": 1804
+      },
+      {
+        "hp": 86,
+        "room": 14,
+        "state": "complete",
+        "ticks": 2183
+      },
+      {
+        "hp": 83,
+        "room": 15,
+        "state": "complete",
+        "ticks": 636
+      },
+      {
+        "hp": 80,
+        "room": 16,
+        "state": "complete",
+        "ticks": 1492
+      },
+      {
+        "hp": 66,
+        "room": 17,
+        "state": "complete",
+        "ticks": 1240
+      }
+    ],
+    "xp": 1400
+  },
+  {
+    "complete": true,
+    "credits": 1770,
+    "heals": 2,
+    "hero": 3,
+    "rooms": [
+      {
+        "hp": 100,
+        "room": 0,
+        "state": "complete",
+        "ticks": 243
+      },
+      {
+        "hp": 100,
+        "room": 1,
+        "state": "complete",
+        "ticks": 283
+      },
+      {
+        "hp": 97,
+        "room": 2,
+        "state": "complete",
+        "ticks": 730
+      },
+      {
+        "hp": 97,
+        "room": 3,
+        "state": "complete",
+        "ticks": 231
+      },
+      {
+        "hp": 97,
+        "room": 4,
+        "state": "complete",
+        "ticks": 283
+      },
+      {
+        "hp": 94,
+        "room": 5,
+        "state": "complete",
+        "ticks": 730
+      },
+      {
+        "hp": 94,
+        "room": 6,
+        "state": "complete",
+        "ticks": 358
+      },
+      {
+        "hp": 91,
+        "room": 7,
+        "state": "complete",
+        "ticks": 626
+      },
+      {
+        "hp": 85,
+        "room": 8,
+        "state": "complete",
+        "ticks": 1276
+      },
+      {
+        "hp": 85,
+        "room": 9,
+        "state": "complete",
+        "ticks": 396
+      },
+      {
+        "hp": 85,
+        "room": 10,
+        "state": "complete",
+        "ticks": 509
+      },
+      {
+        "hp": 52,
+        "room": 11,
+        "state": "complete",
+        "ticks": 910
+      },
+      {
+        "hp": 89,
+        "room": 12,
+        "state": "complete",
+        "ticks": 636
+      },
+      {
+        "hp": 81,
+        "room": 13,
+        "state": "complete",
+        "ticks": 1867
+      },
+      {
+        "hp": 62,
+        "room": 14,
+        "state": "complete",
+        "ticks": 1910
+      },
+      {
+        "hp": 97,
+        "room": 15,
+        "state": "complete",
+        "ticks": 636
+      },
+      {
+        "hp": 91,
+        "room": 16,
+        "state": "complete",
+        "ticks": 1209
+      },
+      {
+        "hp": 77,
+        "room": 17,
+        "state": "complete",
+        "ticks": 1240
+      }
+    ],
+    "xp": 1400
+  }
+]

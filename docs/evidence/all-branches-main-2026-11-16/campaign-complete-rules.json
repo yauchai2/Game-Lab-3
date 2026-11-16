@@ -1,0 +1,832 @@
+{
+  "checks": [
+    {
+      "detail": {
+        "active": 1,
+        "boss": "gantry",
+        "hero": 0,
+        "hits": 0,
+        "hp": 100,
+        "parries": 2,
+        "phases": 2,
+        "state": "complete",
+        "ticks": 1005
+      },
+      "name": "bare hero 0 defeats gantry via ordinary timed commands",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "gantry shows its genuine phases for hero0",
+      "passed": true
+    },
+    {
+      "detail": {
+        "active": 1,
+        "boss": "gantry",
+        "hero": 1,
+        "hits": 1,
+        "hp": 78,
+        "parries": 2,
+        "phases": 2,
+        "state": "complete",
+        "ticks": 952
+      },
+      "name": "bare hero 1 defeats gantry via ordinary timed commands",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "gantry shows its genuine phases for hero1",
+      "passed": true
+    },
+    {
+      "detail": {
+        "active": 1,
+        "boss": "gantry",
+        "hero": 2,
+        "hits": 1,
+        "hp": 78,
+        "parries": 2,
+        "phases": 2,
+        "state": "complete",
+        "ticks": 964
+      },
+      "name": "bare hero 2 defeats gantry via ordinary timed commands",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "gantry shows its genuine phases for hero2",
+      "passed": true
+    },
+    {
+      "detail": {
+        "active": 1,
+        "boss": "gantry",
+        "hero": 3,
+        "hits": 1,
+        "hp": 78,
+        "parries": 2,
+        "phases": 2,
+        "state": "complete",
+        "ticks": 948
+      },
+      "name": "bare hero 3 defeats gantry via ordinary timed commands",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "gantry shows its genuine phases for hero3",
+      "passed": true
+    },
+    {
+      "detail": {
+        "active": 1,
+        "boss": "signal",
+        "hero": 0,
+        "hits": 0,
+        "hp": 100,
+        "parries": 3,
+        "phases": 3,
+        "state": "complete",
+        "ticks": 1411
+      },
+      "name": "bare hero 0 defeats signal via ordinary timed commands",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "signal shows its genuine phases for hero0",
+      "passed": true
+    },
+    {
+      "detail": {
+        "active": 1,
+        "boss": "signal",
+        "hero": 1,
+        "hits": 2,
+        "hp": 56,
+        "parries": 3,
+        "phases": 3,
+        "state": "complete",
+        "ticks": 1294
+      },
+      "name": "bare hero 1 defeats signal via ordinary timed commands",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "signal shows its genuine phases for hero1",
+      "passed": true
+    },
+    {
+      "detail": {
+        "active": 1,
+        "boss": "signal",
+        "hero": 2,
+        "hits": 2,
+        "hp": 56,
+        "parries": 3,
+        "phases": 3,
+        "state": "complete",
+        "ticks": 1335
+      },
+      "name": "bare hero 2 defeats signal via ordinary timed commands",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "signal shows its genuine phases for hero2",
+      "passed": true
+    },
+    {
+      "detail": {
+        "active": 1,
+        "boss": "signal",
+        "hero": 3,
+        "hits": 2,
+        "hp": 56,
+        "parries": 2,
+        "phases": 3,
+        "state": "complete",
+        "ticks": 1288
+      },
+      "name": "bare hero 3 defeats signal via ordinary timed commands",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "signal shows its genuine phases for hero3",
+      "passed": true
+    },
+    {
+      "detail": {
+        "aerial_damage": 0.2,
+        "chain_damage": 0.3,
+        "chain_meter": 0.0,
+        "chain_targets": -0.2,
+        "chase_refund": 5.0,
+        "counter_damage": 0.23,
+        "damage": 0.18,
+        "defence": 0.13,
+        "economy": 0.11,
+        "entry": 0.0,
+        "finisher_damage": 0.3,
+        "guard_damage": 0.2,
+        "heavy_damage": 0.2,
+        "launch_force": 0.08,
+        "parry_meter": 8.0,
+        "skill_damage": 0.0,
+        "splash": 1.0,
+        "tactic_anchor": 0.0,
+        "tactic_relay": 0.0,
+        "tactic_unlocked": 6
+      },
+      "name": "equipment direct damage and defence remain bounded under extreme items",
+      "passed": true
+    },
+    {
+      "detail": {
+        "failed": 9,
+        "tested": 9
+      },
+      "name": "top-gear attack spam fails final Boss across nine core choices",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "equipment and overdrive cannot bypass sealed core armour",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "armour chips do not award full raw damage energy",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "exposed upper core rewards a real aerial punish with bounded damage",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "visible tell does not damage before its active tick",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "jumping actually avoids a low sweep",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "arrival queue preserves ten total enemies but only six rigs",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "scheduled arrival prevents false clear and spawns with grace",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "new support heavy and captain roles have distinct simulation state",
+      "passed": true
+    },
+    {
+      "detail": {
+        "active": 6,
+        "hits": 0,
+        "hp": 100,
+        "parries": 0,
+        "phases": 0,
+        "state": "complete",
+        "ticks": 1919
+      },
+      "name": "mixed new roles remain beatable by bare ordinary inputs",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "core token is debited once and cancelled offer remains stable",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "claim installs one prepared core without duplicate claim",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "prepared core belongs to one expedition and is consumed once",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "heal budget and first-skill rewards bank with the wave",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "technique quest cannot be farmed on later encounters",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "ending an expedition clears temporary core but retains skills and loot",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "tempering has a rare ceiling and charges a real transaction",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "recalibration changes the requested affix and updates equipped copies",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "rest route heals once without a reusable free-heal button",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "schema2 expansion preserves exact talent inventory and run state",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "original M1 enemies still leave arrival grace and attack",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "useless capped boons are refused instead of claiming fake power",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "a capped build can take currency once and continue",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "advanced class techniques cannot skip their story milestones",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "each hero has three advanced options but only two equipped",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "one attack cannot repeatedly damage the same prop",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "second real heavy breaks prop and produces bounded enemy damage",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "destroyed prop cannot repeatedly explode",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "safe mid-expedition core install is allowed and charge applies once",
+      "passed": true
+    },
+    {
+      "detail": {
+        "complete": true,
+        "credits": 1780,
+        "heals": 2,
+        "hero": 0,
+        "rooms": [
+          {
+            "hp": 97,
+            "room": 0,
+            "state": "complete",
+            "ticks": 314
+          },
+          {
+            "hp": 94,
+            "room": 1,
+            "state": "complete",
+            "ticks": 399
+          },
+          {
+            "hp": 87,
+            "room": 2,
+            "state": "complete",
+            "ticks": 799
+          },
+          {
+            "hp": 87,
+            "room": 3,
+            "state": "complete",
+            "ticks": 242
+          },
+          {
+            "hp": 87,
+            "room": 4,
+            "state": "complete",
+            "ticks": 283
+          },
+          {
+            "hp": 87,
+            "room": 5,
+            "state": "complete",
+            "ticks": 880
+          },
+          {
+            "hp": 87,
+            "room": 6,
+            "state": "complete",
+            "ticks": 318
+          },
+          {
+            "hp": 84,
+            "room": 7,
+            "state": "complete",
+            "ticks": 626
+          },
+          {
+            "hp": 72,
+            "room": 8,
+            "state": "complete",
+            "ticks": 1469
+          },
+          {
+            "hp": 100,
+            "room": 9,
+            "state": "complete",
+            "ticks": 726
+          },
+          {
+            "hp": 100,
+            "room": 10,
+            "state": "complete",
+            "ticks": 877
+          },
+          {
+            "hp": 86,
+            "room": 11,
+            "state": "complete",
+            "ticks": 1189
+          },
+          {
+            "hp": 80,
+            "room": 12,
+            "state": "complete",
+            "ticks": 893
+          },
+          {
+            "hp": 68,
+            "room": 13,
+            "state": "complete",
+            "ticks": 1684
+          },
+          {
+            "hp": 81,
+            "room": 14,
+            "state": "complete",
+            "ticks": 1782
+          },
+          {
+            "hp": 78,
+            "room": 15,
+            "state": "complete",
+            "ticks": 635
+          },
+          {
+            "hp": 78,
+            "room": 16,
+            "state": "complete",
+            "ticks": 1399
+          },
+          {
+            "hp": 50,
+            "room": 17,
+            "state": "complete",
+            "ticks": 1219
+          }
+        ],
+        "xp": 1400
+      },
+      "name": "hero 0 legally clears all eighteen encounters with earned loot and paid healing",
+      "passed": true
+    },
+    {
+      "detail": {
+        "complete": true,
+        "credits": 1780,
+        "heals": 2,
+        "hero": 1,
+        "rooms": [
+          {
+            "hp": 100,
+            "room": 0,
+            "state": "complete",
+            "ticks": 284
+          },
+          {
+            "hp": 100,
+            "room": 1,
+            "state": "complete",
+            "ticks": 284
+          },
+          {
+            "hp": 97,
+            "room": 2,
+            "state": "complete",
+            "ticks": 780
+          },
+          {
+            "hp": 97,
+            "room": 3,
+            "state": "complete",
+            "ticks": 284
+          },
+          {
+            "hp": 97,
+            "room": 4,
+            "state": "complete",
+            "ticks": 284
+          },
+          {
+            "hp": 94,
+            "room": 5,
+            "state": "complete",
+            "ticks": 901
+          },
+          {
+            "hp": 94,
+            "room": 6,
+            "state": "complete",
+            "ticks": 321
+          },
+          {
+            "hp": 91,
+            "room": 7,
+            "state": "complete",
+            "ticks": 493
+          },
+          {
+            "hp": 82,
+            "room": 8,
+            "state": "complete",
+            "ticks": 1401
+          },
+          {
+            "hp": 82,
+            "room": 9,
+            "state": "complete",
+            "ticks": 386
+          },
+          {
+            "hp": 82,
+            "room": 10,
+            "state": "complete",
+            "ticks": 615
+          },
+          {
+            "hp": 68,
+            "room": 11,
+            "state": "complete",
+            "ticks": 814
+          },
+          {
+            "hp": 100,
+            "room": 12,
+            "state": "complete",
+            "ticks": 565
+          },
+          {
+            "hp": 78,
+            "room": 13,
+            "state": "complete",
+            "ticks": 2540
+          },
+          {
+            "hp": 56,
+            "room": 14,
+            "state": "complete",
+            "ticks": 2636
+          },
+          {
+            "hp": 96,
+            "room": 15,
+            "state": "complete",
+            "ticks": 630
+          },
+          {
+            "hp": 96,
+            "room": 16,
+            "state": "complete",
+            "ticks": 1213
+          },
+          {
+            "hp": 68,
+            "room": 17,
+            "state": "complete",
+            "ticks": 1361
+          }
+        ],
+        "xp": 1400
+      },
+      "name": "hero 1 legally clears all eighteen encounters with earned loot and paid healing",
+      "passed": true
+    },
+    {
+      "detail": {
+        "complete": true,
+        "credits": 1770,
+        "heals": 2,
+        "hero": 2,
+        "rooms": [
+          {
+            "hp": 100,
+            "room": 0,
+            "state": "complete",
+            "ticks": 243
+          },
+          {
+            "hp": 100,
+            "room": 1,
+            "state": "complete",
+            "ticks": 347
+          },
+          {
+            "hp": 90,
+            "room": 2,
+            "state": "complete",
+            "ticks": 847
+          },
+          {
+            "hp": 90,
+            "room": 3,
+            "state": "complete",
+            "ticks": 231
+          },
+          {
+            "hp": 90,
+            "room": 4,
+            "state": "complete",
+            "ticks": 283
+          },
+          {
+            "hp": 81,
+            "room": 5,
+            "state": "complete",
+            "ticks": 865
+          },
+          {
+            "hp": 81,
+            "room": 6,
+            "state": "complete",
+            "ticks": 346
+          },
+          {
+            "hp": 78,
+            "room": 7,
+            "state": "complete",
+            "ticks": 626
+          },
+          {
+            "hp": 72,
+            "room": 8,
+            "state": "complete",
+            "ticks": 1276
+          },
+          {
+            "hp": 100,
+            "room": 9,
+            "state": "complete",
+            "ticks": 365
+          },
+          {
+            "hp": 100,
+            "room": 10,
+            "state": "complete",
+            "ticks": 464
+          },
+          {
+            "hp": 67,
+            "room": 11,
+            "state": "complete",
+            "ticks": 910
+          },
+          {
+            "hp": 97,
+            "room": 12,
+            "state": "complete",
+            "ticks": 636
+          },
+          {
+            "hp": 91,
+            "room": 13,
+            "state": "complete",
+            "ticks": 1804
+          },
+          {
+            "hp": 86,
+            "room": 14,
+            "state": "complete",
+            "ticks": 2183
+          },
+          {
+            "hp": 83,
+            "room": 15,
+            "state": "complete",
+            "ticks": 636
+          },
+          {
+            "hp": 80,
+            "room": 16,
+            "state": "complete",
+            "ticks": 1492
+          },
+          {
+            "hp": 66,
+            "room": 17,
+            "state": "complete",
+            "ticks": 1240
+          }
+        ],
+        "xp": 1400
+      },
+      "name": "hero 2 legally clears all eighteen encounters with earned loot and paid healing",
+      "passed": true
+    },
+    {
+      "detail": {
+        "complete": true,
+        "credits": 1770,
+        "heals": 2,
+        "hero": 3,
+        "rooms": [
+          {
+            "hp": 100,
+            "room": 0,
+            "state": "complete",
+            "ticks": 243
+          },
+          {
+            "hp": 100,
+            "room": 1,
+            "state": "complete",
+            "ticks": 283
+          },
+          {
+            "hp": 97,
+            "room": 2,
+            "state": "complete",
+            "ticks": 730
+          },
+          {
+            "hp": 97,
+            "room": 3,
+            "state": "complete",
+            "ticks": 231
+          },
+          {
+            "hp": 97,
+            "room": 4,
+            "state": "complete",
+            "ticks": 283
+          },
+          {
+            "hp": 94,
+            "room": 5,
+            "state": "complete",
+            "ticks": 730
+          },
+          {
+            "hp": 94,
+            "room": 6,
+            "state": "complete",
+            "ticks": 358
+          },
+          {
+            "hp": 91,
+            "room": 7,
+            "state": "complete",
+            "ticks": 626
+          },
+          {
+            "hp": 85,
+            "room": 8,
+            "state": "complete",
+            "ticks": 1276
+          },
+          {
+            "hp": 85,
+            "room": 9,
+            "state": "complete",
+            "ticks": 396
+          },
+          {
+            "hp": 85,
+            "room": 10,
+            "state": "complete",
+            "ticks": 509
+          },
+          {
+            "hp": 52,
+            "room": 11,
+            "state": "complete",
+            "ticks": 910
+          },
+          {
+            "hp": 89,
+            "room": 12,
+            "state": "complete",
+            "ticks": 636
+          },
+          {
+            "hp": 81,
+            "room": 13,
+            "state": "complete",
+            "ticks": 1867
+          },
+          {
+            "hp": 62,
+            "room": 14,
+            "state": "complete",
+            "ticks": 1910
+          },
+          {
+            "hp": 97,
+            "room": 15,
+            "state": "complete",
+            "ticks": 636
+          },
+          {
+            "hp": 91,
+            "room": 16,
+            "state": "complete",
+            "ticks": 1209
+          },
+          {
+            "hp": 77,
+            "room": 17,
+            "state": "complete",
+            "ticks": 1240
+          }
+        ],
+        "xp": 1400
+      },
+      "name": "hero 3 legally clears all eighteen encounters with earned loot and paid healing",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 50
+}

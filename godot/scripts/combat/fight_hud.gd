@@ -597,7 +597,7 @@ func _labs_page() -> void:
     _plain_action("PRESSURE","pressure_lab",func():session.start_match(true);session.prime_pressure_drill())
     _plain_action("RALLY","rally_lab",func():session.start_match(true);session.prime_rally_drill())
     _plain_action("AERIAL","air_lab",func():session.start_match(true);session.prime_air_drill())
-    _plain_action("STORY WAVES PREVIEW","story_slice",session.start_story)
+    _plain_action("DEADSHIFT / STORY WAVES","story_slice",session.start_story)
     _plain_action("LEGACY STREET RUN","legacy_run",session.start_run)
 
 func hints_visible() -> bool:
@@ -737,9 +737,17 @@ func _draw() -> void:
         _center(Vector2(640,280),tr_text("round")+" %d"%session.sim.round_number,40)
         _center(Vector2(640,316),"準備" if session.language=="zh" else "GET READY",22,Tokens.GOLD)
     if notice_time>0 and notice_visible() and session.demo==null and not session.sim.exchange.decision_active() and not session.sim.exchange.active() and not session.sim.pressure_drill and not session.sim.rally.active():
-        var notice_y:float=596 if notice.begins_with("RICOCHET") else 196
+        var notice_y:float=596 if notice.begins_with("RICOCHET") or notice in ["CHASE","AIR ESCAPE"] else 196
         _plate(Vector2(426,notice_y),Vector2(428,40),INK)
         _center(Vector2(640,notice_y+29),copy.notice(notice),19,Tokens.GOLD)
+    if session.screen=="play" and session.sim.story_enabled and not session.sim.campaign_enabled:
+        for zone in session.sim.campaign_hazards:
+            var left:Vector2=session.project(Vector2(zone.x-zone.half,.05))
+            var right:Vector2=session.project(Vector2(zone.x+zone.half,.05))
+            var active:bool=zone.age>=zone.warn
+            var tint:=Color("ff4587") if active else Color("ffe15b")
+            draw_line(left,right,tint,6.0 if active else 3.0)
+            _center((left+right)*.5+Vector2(0,-14),tr_text("MOVE"),17,tint)
     var player: Dictionary=session.sim.fighters[0]
     if session.demo==null and not session.versus and player.wall_tech_window>0 and player.state=="stun" and player.meter>=20:
         var at: Vector2=session.project(Vector2(player.x,player.y+2.3))

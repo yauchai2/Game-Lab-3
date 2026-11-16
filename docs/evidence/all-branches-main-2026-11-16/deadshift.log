@@ -1,0 +1,30 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+DEADSHIFT opening wave casts knuckle true
+DEADSHIFT wave 1 starts Dealer intermission true
+DEADSHIFT all story actors hidden during draw true
+DEADSHIFT Dealer actually draws a core true
+DEADSHIFT draw has a real equip phase true
+DEADSHIFT draw returns to wave 2 with usable core true
+DEADSHIFT second wave roles true
+DEADSHIFT shield attached true
+DEADSHIFT SNAP uses original 33-joint dog rig true
+DEADSHIFT SNAP animates when handler moves true
+DEADSHIFT humanoid Tripo rig bulk true
+DEADSHIFT humanoid Tripo rig skid true
+DEADSHIFT humanoid Tripo rig knuckle true
+DEADSHIFT humanoid Tripo rig tether true
+DEADSHIFT third wave named specialists true
+DEADSHIFT signal case attached true
+DEADSHIFT Mixamo locomotion foreman true
+DEADSHIFT Mixamo hit pose foreman true
+DEADSHIFT air hit readable during freeze foreman true
+DEADSHIFT Mixamo locomotion static true
+DEADSHIFT Mixamo hit pose static true
+DEADSHIFT air hit readable during freeze static true
+DEADSHIFT STATIC projects a third-wave warned zone true
+DEADSHIFT leave story restores regular roster true
+DEADSHIFT_RESULT 24/24

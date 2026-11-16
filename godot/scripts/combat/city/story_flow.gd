@@ -72,8 +72,10 @@ func _load_seen() -> void:
     seen={}
     var cfg:=ConfigFile.new()
     if cfg.load(cfg_path)!=OK:return
-    for key in cfg.get_section_keys("seen"):seen[key]=true
-    for key in cfg.get_section_keys("ending"):seen["ending_"+key]=true
+    if cfg.has_section("seen"):
+        for key in cfg.get_section_keys("seen"):seen[key]=true
+    if cfg.has_section("ending"):
+        for key in cfg.get_section_keys("ending"):seen["ending_"+key]=true
 
 func _save_seen() -> void:
     var cfg:=ConfigFile.new()

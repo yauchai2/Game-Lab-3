@@ -1,47 +1,141 @@
 {
   "menu": {
     "file": "menu.ogg",
-    "bpm": 116.0,
-    "bar_seconds": 2.06897,
-    "intro_seconds": 8.27587,
-    "loop_seconds": 33.10345,
-    "source_loop_start_s": 39.401,
-    "role": "main menu: track 1 build-up (4 bars, plays once) then its first full groove"
+    "bpm": 110.01,
+    "bar_seconds": 2.18162,
+    "intro_seconds": 8.72649,
+    "loop_seconds": 34.90592,
+    "source_loop_start_s": 878.802,
+    "target_lufs": -24,
+    "role": "restrained menu groove"
+  },
+  "city": {
+    "file": "city.ogg",
+    "bpm": 100.0,
+    "bar_seconds": 2.4,
+    "intro_seconds": 0.0,
+    "loop_seconds": 38.4,
+    "source_loop_start_s": 2207.738,
+    "target_lufs": -28,
+    "role": "night workshop"
+  },
+  "training": {
+    "file": "training.ogg",
+    "bpm": 103.0,
+    "bar_seconds": 2.3301,
+    "intro_seconds": 0.0,
+    "loop_seconds": 37.28156,
+    "source_loop_start_s": 1586.466,
+    "target_lufs": -26,
+    "role": "light rehearsal pulse"
+  },
+  "fight_low": {
+    "file": "fight_low.ogg",
+    "bpm": 100.0,
+    "bar_seconds": 2.4,
+    "intro_seconds": 0.0,
+    "loop_seconds": 38.4,
+    "source_loop_start_s": 2316.938,
+    "target_lufs": -24,
+    "role": "room between exchanges"
   },
   "fight_a": {
     "file": "fight_a.ogg",
-    "bpm": 130.01,
-    "bar_seconds": 1.84601,
-    "intro_seconds": 0.0,
-    "loop_seconds": 29.53619,
-    "source_loop_start_s": 1989.916,
-    "role": "fight deck: 130 BPM track, strongest sustained section"
-  },
-  "fight_b": {
-    "file": "fight_b.ogg",
-    "bpm": 131.51,
-    "bar_seconds": 1.82496,
-    "intro_seconds": 0.0,
-    "loop_seconds": 29.1993,
-    "source_loop_start_s": 1912.062,
-    "role": "fight deck: 131.5 BPM track"
-  },
-  "fight_c": {
-    "file": "fight_c.ogg",
     "bpm": 112.99,
     "bar_seconds": 2.12408,
     "intro_seconds": 0.0,
     "loop_seconds": 33.98531,
-    "source_loop_start_s": 661.959,
-    "role": "fight deck: 113 BPM track, loudest stable section"
+    "source_loop_start_s": 780.875,
+    "target_lufs": -21,
+    "role": "active fight 1"
+  },
+  "fight_b": {
+    "file": "fight_b.ogg",
+    "bpm": 120.0,
+    "bar_seconds": 2.0,
+    "intro_seconds": 0.0,
+    "loop_seconds": 32.0,
+    "source_loop_start_s": 290.464,
+    "target_lufs": -21,
+    "role": "active fight 2"
+  },
+  "fight_c": {
+    "file": "fight_c.ogg",
+    "bpm": 130.01,
+    "bar_seconds": 1.84601,
+    "intro_seconds": 0.0,
+    "loop_seconds": 29.53619,
+    "source_loop_start_s": 2080.371,
+    "target_lufs": -20,
+    "role": "active fight 3"
   },
   "result": {
     "file": "result.ogg",
-    "bpm": 110.01,
-    "bar_seconds": 2.18162,
+    "bpm": 112.99,
+    "bar_seconds": 2.12408,
     "intro_seconds": 0.0,
-    "loop_seconds": 34.90592,
-    "source_loop_start_s": 856.979,
-    "role": "result screen: steadier, lower-energy 110 BPM section"
+    "loop_seconds": 16.99265,
+    "source_loop_start_s": 752.333,
+    "target_lufs": -29,
+    "role": "sparse result bed"
+  },
+  "draw": {
+    "file": "draw.ogg",
+    "bpm": 107.0,
+    "bar_seconds": 2.24299,
+    "intro_seconds": 0.0,
+    "loop_seconds": 17.94392,
+    "source_loop_start_s": 1480.534,
+    "target_lufs": -28,
+    "role": "Dealer intermission"
+  },
+  "opening": {
+    "file": "opening.ogg",
+    "duration": 16.12,
+    "target_lufs": -26,
+    "edits": [
+      {
+        "at_s": 0.7,
+        "source_s": 752.35,
+        "length_s": 6.6
+      },
+      {
+        "at_s": 8.0,
+        "source_s": 878.829,
+        "length_s": 1.95
+      },
+      {
+        "at_s": 10.7,
+        "source_s": 761.1,
+        "length_s": 4.5
+      },
+      {
+        "at_s": 15.85,
+        "source_s": 780.91,
+        "length_s": 0.27
+      }
+    ]
+  },
+  "ko": {
+    "file": "ko.ogg",
+    "duration": 8.2,
+    "target_lufs": -25,
+    "edits": [
+      {
+        "at_s": 0.0,
+        "source_s": 781.2,
+        "length_s": 4.45
+      },
+      {
+        "at_s": 5.0,
+        "source_s": 753.5,
+        "length_s": 3.2
+      }
+    ]
+  },
+  "source": {
+    "title": "High-Energy Hip Hop Breakbeat Playlist — Music Inspired by Jet Set Radio",
+    "sha256": "38a880fa678f30666d3d099619dc28122ef32a650b00f027afa515289d60f2da",
+    "source": "Owner-supplied MP3"
   }
 }
