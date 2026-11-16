@@ -357,9 +357,23 @@ static func tactical_page(hub:Node) -> void:
             if field=="supports" and not (hero in [1,2] and id==0):
                 selector.set_item_text(1,L10n.text("LIGHTWEIGHT / SHORTER COOLDOWN"))
             selector.select(cfg[field][id]);selector.disabled=not open;selector.set_meta("act","tactic:%d:%s"%[slot,field])
+            if field=="supports" and not tactics.Modules.compatible(hero,id,int(cfg.attachments[id]),1):
+                selector.set_item_disabled(1,true);selector.get_popup().set_item_tooltip(1,L10n.text("Remove RETURN before fitting PIERCE."))
             var selected_field:String=field;var selected_id:int=id
             selector.item_selected.connect(func(value:int):hub.act(func():return p.configure_tactic(hero,selected_id,selected_field,value),"Tactical build updated"))
             row.add_child(selector)
+        var module_select:=OptionButton.new();module_select.fit_to_longest_item=false;module_select.clip_text=true;module_select.custom_minimum_size.y=48
+        for module in 3:
+            module_select.add_item(L10n.text(tactics.Modules.LABELS[module]))
+            module_select.set_item_disabled(module,not tactics.Modules.compatible(hero,id,module,int(cfg.supports[id])))
+            var reason:String=tactics.Modules.reason(hero,id,module,int(cfg.supports[id]))
+            module_select.get_popup().set_item_tooltip(module,L10n.text(tactics.Modules.INFO[module] if reason=="" else reason))
+        module_select.select(int(cfg.attachments[id]));module_select.disabled=not open;module_select.set_meta("act","tactic:%d:attachments"%slot)
+        var module_skill:int=id
+        module_select.item_selected.connect(func(value:int):hub.act(func():return p.configure_tactic(hero,module_skill,"attachments",value),"Tactical build updated"))
+        hub.stack.add_child(module_select)
+        W.guide(hub,tactics.Modules.INFO[int(cfg.attachments[id])])
+        hub.stack.get_child(-1).set_meta("act","tactic:%d:module_info"%slot)
     build_presets(hub)
     W.guide(hub,"Presets save tactics, talents, techniques and equipped item identities. Preset gear is protected from scrapping; clear the preset to release it.")
     W.cta(hub,"arrow","SWAP TACTICAL SLOTS",T.TEAL,func():hub.act(func():return p.configure_tactic(hero,0,"skills",0),"Tactical slots swapped"),false,"tactic:swap")

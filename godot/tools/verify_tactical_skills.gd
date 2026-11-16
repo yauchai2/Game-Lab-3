@@ -105,7 +105,7 @@ func extended() -> void:
     check("sample follow-up cannot be repeated",s.fighters[0].state=="idle" and s.fighters[0].meter==paid)
     s=sim(3);s._start_attack(0,"tactic_b")
     check("empty node cast does not spend",s.fighters[0].meter==100 and s.fighters[0].state=="idle")
-    for version in [1,2,3,4,5]:
+    for version in [1,2,3,4,5,6]:
         var p=P.new();p.path="user://tactics-test/v%d.json"%version
         DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(p.path.get_base_dir()))
         var old:Dictionary=p.fresh();old.version=version;old.credits=321;old.parts=17;old.best=7

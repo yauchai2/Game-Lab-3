@@ -30,6 +30,7 @@ static func slot_view(sim:RefCounted,slot:int) -> Dictionary:
             "Charge L first to store preload.":view.text=L10n.text("HOLD L TO PRELOAD")
             "Place two nodes first.":view.text=L10n.text("PLACE NODES %d/2")%f.service.nodes.size()
             "Place a node first.":view.text=L10n.text("PLACE ONE NODE")
+            "These support modules cannot be combined.":view.text=L10n.text("CHECK SUPPORT MODULES")
             _:view.text=L10n.text("WAIT FOR ACTIVE TACTICS")
         return view
     if credit>0:
@@ -63,8 +64,9 @@ static func draw_overlay(canvas:Control,session:Node3D) -> void:
         elif p.kind=="cable":
             var anchor:Vector2=session.project(Vector2(p.fighter.x,p.fighter.y+.9))
             canvas.draw_line(anchor,at,ink,7);canvas.draw_line(anchor,at,tint,3);canvas.draw_circle(at,5,Color.WHITE)
-        elif p.kind=="arc":
+        elif p.kind in ["arc","return"]:
             canvas.draw_arc(at,10,-PI*.7,PI*.7,8,ink,8);canvas.draw_arc(at,10,-PI*.7,PI*.7,8,tint,4)
+            if p.kind=="return":canvas.draw_line(at,at+Vector2(p.dir*12,-6),Color.WHITE,3)
         elif p.kind=="elevated":
             canvas.draw_line(trail,at,ink,10);canvas.draw_line(trail,at,Color.WHITE,5);canvas.draw_circle(at,5,tint)
         elif p.kind=="connector":

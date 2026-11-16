@@ -1,0 +1,106 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+TACTICS hero0 slot0 starts and pays once true
+TACTICS hero0 slot0 has real travel contact or bounded melee true
+TACTICS cooldown remains after action true
+TACTICS cooldown rejects without double spend true
+TACTICS hero0 slot1 starts and pays once true
+TACTICS hero0 slot1 has real travel contact or bounded melee true
+TACTICS cooldown remains after action true
+TACTICS cooldown rejects without double spend true
+TACTICS hero1 slot0 starts and pays once true
+TACTICS hero1 slot0 has real travel contact or bounded melee true
+TACTICS cooldown remains after action true
+TACTICS cooldown rejects without double spend true
+TACTICS hero1 slot1 starts and pays once true
+TACTICS hero1 slot1 has real travel contact or bounded melee true
+TACTICS cooldown remains after action true
+TACTICS cooldown rejects without double spend true
+TACTICS hero2 slot0 starts and pays once true
+TACTICS hero2 slot0 has real travel contact or bounded melee true
+TACTICS cooldown remains after action true
+TACTICS cooldown rejects without double spend true
+TACTICS hero2 slot1 starts and pays once true
+TACTICS receive without a bullet does not invent sample true
+TACTICS cooldown remains after action true
+TACTICS cooldown rejects without double spend true
+TACTICS hero3 slot0 starts and pays once true
+TACTICS connector shares real node budget true
+TACTICS cooldown remains after action true
+TACTICS cooldown rejects without double spend true
+TACTICS hero3 slot1 starts and pays once true
+TACTICS hero3 slot1 has real travel contact or bounded melee true
+TACTICS cooldown remains after action true
+TACTICS cooldown rejects without double spend true
+TACTICS held rivet reaches paid full charge true
+TACTICS release resolves a real full-charge contact true
+TACTICS guard cancels charge without refund or shot true
+TACTICS pause/focus suspension cannot ghost release true
+TACTICS insufficient energy gives reason without starting true
+TACTICS story unlock gate is real true
+TACTICS standard modes do not consume story tactics true
+TACTICS profile and free configuration valid true
+TACTICS slot swap preserves variants true
+TACTICS Q emits one semantic edge true
+TACTICS key repeat cannot recast true
+TACTICS suspension clears held keys true
+TACTICS hero0 variant0 support0 stays bounded true
+TACTICS hero0 variant0 support1 stays bounded true
+TACTICS hero0 variant1 support0 stays bounded true
+TACTICS hero0 variant1 support1 stays bounded true
+TACTICS hero1 variant0 support0 stays bounded true
+TACTICS hero1 variant0 support1 stays bounded true
+TACTICS hero1 variant1 support0 stays bounded true
+TACTICS hero1 variant1 support1 stays bounded true
+TACTICS hero2 variant0 support0 stays bounded true
+TACTICS hero2 variant0 support1 stays bounded true
+TACTICS hero2 variant1 support0 stays bounded true
+TACTICS hero2 variant1 support1 stays bounded true
+TACTICS hero3 variant0 support0 stays bounded true
+TACTICS hero3 variant0 support1 stays bounded true
+TACTICS hero3 variant1 support0 stays bounded true
+TACTICS hero3 variant1 support1 stays bounded true
+TACTICS max hold automatically releases once true
+TACTICS unfunded full tier never borrows meter true
+TACTICS hitstop cannot advance charge true
+TACTICS interrupted charge cannot emit true
+TACTICS airborne ground line fails without cost true
+TACTICS ground line does not hit an elevated target true
+TACTICS guarded=true uses normal health/guard authority true
+TACTICS remote hit cannot refund its own cost true
+TACTICS guarded=false uses normal health/guard authority true
+TACTICS remote hit cannot refund its own cost true
+TACTICS old projectile cannot confirm a new unrelated jab true
+TACTICS sample receives exactly one actual pistol round true
+TACTICS received sample can be sent during cooldown without double fee true
+TACTICS sample follow-up cannot be repeated true
+TACTICS empty node cast does not spend true
+TACTICS schema1 migration preserves progress and original bytes true
+TACTICS schema1 next save reloads tactical defaults true
+TACTICS schema2 migration preserves progress and original bytes true
+TACTICS schema2 next save reloads tactical defaults true
+TACTICS schema3 migration preserves progress and original bytes true
+TACTICS schema3 next save reloads tactical defaults true
+TACTICS schema4 migration preserves progress and original bytes true
+TACTICS schema4 next save reloads tactical defaults true
+TACTICS schema5 migration preserves progress and original bytes true
+TACTICS schema5 next save reloads tactical defaults true
+TACTICS schema6 migration preserves progress and original bytes true
+TACTICS schema6 next save reloads tactical defaults true
+TACTICS deterministic recipe creates valid equipment tactic_relay true
+TACTICS deterministic recipe creates valid equipment tactic_anchor true
+TACTICS two recipe mechanics cannot silently stack true
+TACTICS corrupt duplicate-slot config is rejected true
+TACTICS closed boss armour caps tactical damage true
+TACTICS unfunded recipe is atomic true
+TACTICS save rejection rolls recipe back true
+TACTICS split keyboard retains P2 I dodge true
+TACTICS controller semantic tactic route preserves held state true
+TACTICS controller release clears tactical hold true
+TACTICS incomplete schema3 cannot silently reset missing progress true
+TACTICS wide variant trades travel and damage for coverage true
+TACTICS pierce support changes target budget with lower damage true
+TACTICS relay returns energy only once after the next real melee true
+TACTICS anchor equipment pays a longer cooldown true
+TACTICS first actual encounter guarantees a learned tactic receipt true
+TACTICS district completion guarantees second tactic and recipes true

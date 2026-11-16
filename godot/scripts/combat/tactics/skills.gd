@@ -2,6 +2,7 @@ extends RefCounted
 ## Story tactics: fixed-tick costs, charge, swept projectiles and contacts.
 ## Every impact uses the ordinary block/parry/armour/campaign damage authority.
 const Expanded=preload("res://scripts/combat/tactics/expanded.gd")
+const Modules=preload("res://scripts/combat/tactics/modules.gd")
 const NAMES=[["RETURN TAG", "CORNER KICK", "HIGHWAY DELIVERY", "RETURN SPIN", "TWO-STOP DELIVERY", "STREET EXPRESS"], ["RIVET SHOT", "GROUND LINE", "GATE CRASH", "DISMANTLE LINE", "PRESSURE VENT", "WORKSITE SEAL"], ["BREAKBEAT", "RETURN SAMPLE", "NEGATIVE SPACE", "CUT THREE", "SILENCE WINDOW", "ORIGINAL RETURN"], ["LINE THROW", "REMOTE MIX", "CROSS WIRE", "RETURN MONITOR", "FLOATING TEST", "CITY BROADCAST"]]
 const INFO=[["Mark a target, then close in. The first enemy can intercept the tag.","A committed step kick. A live mark extends the approach."],["Tap for a quick rivet; hold for shield pressure. Guard or dodge cancels at a cost.","A ground-only shock line. Jumping enemies escape it."],["A narrow pulse catches recovery; it cannot silence a boss.","Briefly receive one pistol round. Press again to send the sample."],["Throw a connector into the shared two-node network.","Detonate existing nodes after a readable delay. No nodes, no cast."]]
 const COSTS=[[15, 20, 20, 20, 30, 30], [20, 25, 20, 25, 20, 30], [20, 15, 15, 25, 25, 30], [15, 20, 25, 20, 25, 35]]
@@ -13,15 +14,18 @@ var config:Array=[{},{}]
 var shots:Array[Dictionary]=[]
 var serial:=0
 
-static func defaults() -> Dictionary:return {"skills":[0,1],"variants":[0,0,0,0,0,0],"supports":[0,0,0,0,0,0]}
+static func defaults() -> Dictionary:return {"skills":[0,1],"variants":[0,0,0,0,0,0],"supports":[0,0,0,0,0,0],"attachments":[0,0,0,0,0,0]}
 static func fresh() -> Dictionary:return {"cd":[0,0],"cd_total":[0,0],"charge":-1,"slot":-1,"full":false,"fired":false,"spent":0,"mark":-1,"mark_ttl":0,"sample_window":0,"return_ready":0,"relay":0,"relay_budget":0,"chain_stage":0,"chain_target":-1,"follow_left":0,"follow_window":0}
 static func is_move(name:String) -> bool:return name in MOVE_NAMES
-static func valid_config(value:Variant) -> bool:
+static func valid_config(value:Variant,hero:=-1) -> bool:
     if not value is Dictionary:return false
-    for key in ["skills","variants","supports"]:
+    for key in ["skills","variants","supports","attachments"]:
         if not value.get(key) is Array or value[key].size()!=(2 if key=="skills" else 6):return false
         for item in value[key]:
-            if not (item is int or item is float) or item!=floorf(item) or item<0 or item>(5 if key=="skills" else 1):return false
+            if not (item is int or item is float) or item!=floorf(item) or item<0 or item>(5 if key=="skills" else (2 if key=="attachments" else 1)):return false
+    if hero>=0:
+        for id in 6:
+            if not Modules.compatible(hero,id,int(value.attachments[id]),int(value.supports[id])):return false
     return value.skills[0]!=value.skills[1]
 func clear() -> void:shots.clear();serial=0
 func setup_fighter(f:Dictionary) -> void:f["tactical"]=fresh()
@@ -30,6 +34,7 @@ func settings(side:int) -> Dictionary:return config[side] if valid_config(config
 func skill(side:int,slot:int) -> int:return int(settings(side).skills[slot])
 func variant(side:int,id:int) -> int:return int(settings(side).variants[id])
 func support(side:int,id:int) -> int:return int(settings(side).supports[id])
+func attachment(side:int,id:int) -> int:return int(settings(side).attachments[id])
 func reject(s:RefCounted,side:int,reason:String) -> void:s.events.append({"kind":"tactic_unavailable","target":side,"reason":reason})
 static func adjusted_cost(base:int,economy:float) -> int:return maxi(1,ceili(base*clampf(1.0-economy,.8,1.2)))
 func cost(f:Dictionary,id:int) -> int:return adjusted_cost(COSTS[f.character][id],float(f.get("tactic_economy",0)))
@@ -48,6 +53,7 @@ func quote(s:RefCounted,side:int,slot:int,credit:=0) -> Dictionary:
     var price:int=0 if follow or returning else cost(f,id)
     var reason:=""
     if not active(s,side) or id>=int(f.get("tactic_unlocked",0)):reason="Clear the next story milestone to learn this tactic."
+    elif not Modules.compatible(f.character,id,attachment(side,id),support(side,id)):reason="These support modules cannot be combined."
     elif t.cd[slot]>0 and not follow and not returning:reason="Tactic is cooling down."
     elif id>=2:reason=Expanded.reason(s,side,id,follow)
     elif f.y>.01:reason="This tactic needs solid ground."
@@ -204,7 +210,7 @@ func emit(s:RefCounted,side:int,id:int,m:Dictionary) -> void:
                 var copy:Dictionary=m.duplicate()
                 var radius_at:float=(1.2 if variant(side,id)==1 else .85)+(.25 if f.get("tactic_anchor",false) else 0.0)
                 add_shot(f,side,id,"pulse",float(node.x),0,0,1,radius_at,1,copy)
-                s.events.append({"kind":"tactic_pulse","target":side,"x":node.x,"low":node.x-radius_at,"high":node.x+radius_at})
+                if attachment(side,id)!=2:s.events.append({"kind":"tactic_pulse","target":side,"x":node.x,"low":node.x-radius_at,"high":node.x+radius_at})
             f.service.nodes.clear();return
     if variant(side,id)==1:
         radius*=1.8;life=mini(life,20)
@@ -217,14 +223,17 @@ func emit(s:RefCounted,side:int,id:int,m:Dictionary) -> void:
     s.events.append({"kind":"tactic_fire","target":side,"skill":id,"x":f.x,"y":f.y+.9})
 
 func add_shot(f:Dictionary,side:int,id:int,kind:String,x:float,dir:float,speed:float,life:int,radius:float,limit:int,data:Dictionary) -> void:
-    shots.append({"id":serial,"move":f.move,"swing":f.service.serial,"owner":side,"fighter":f,"skill":id,"kind":kind,"x":x,"previous":x,"y":.9 if kind not in ["ground","pulse"] else .15,"dir":dir,"speed":speed,"life":life,"age":0,"radius":radius,"limit":limit,"hit":[],"data":data,"variant":variant(side,id),"support":support(side,id),"counter":f.counter_attack,"aim":f.tactical.get("aim",-1)})
+    var shot:={"id":serial,"move":f.move,"swing":f.service.serial,"owner":side,"fighter":f,"skill":id,"kind":kind,"x":x,"previous":x,"y":.9 if kind not in ["ground","pulse"] else .15,"dir":dir,"speed":speed,"life":life,"age":0,"radius":radius,"limit":limit,"hit":[],"data":data,"variant":variant(side,id),"support":support(side,id),"counter":f.counter_attack,"aim":f.tactical.get("aim",-1)}
+    Modules.apply(shot,attachment(side,id),8.2);shots.append(shot)
 func step_shot(s:RefCounted,p:Dictionary) -> bool:
     p.age+=1
     if p.fighter.health<=0:return false
     if p.get("delay",0)>p.age:return true
     if p.kind=="zone" and p.age==p.get("delay",30):s.events.append({"kind":"tactic_pulse","target":p.owner,"x":p.x,"low":p.x-p.radius,"high":p.x+p.radius})
     if p.kind=="arc" and p.age==p.get("turn_at",8):p.dir=-p.dir
+    if p.kind=="return" and p.leg==0 and p.age>=p.turn_at:p.dir=-p.dir;p.leg=1
     p.previous=p.x;p.x+=p.dir*p.speed
+    if p.kind=="return" and p.leg==0 and absf(p.x)>s.EDGE+.25:p.x=clampf(p.x,-s.EDGE-.25,s.EDGE+.25);p.dir=-p.dir;p.leg=1
     if absf(p.x)>s.EDGE+.6:return false
     if p.kind=="connector":
         if p.age>=p.life:
@@ -237,6 +246,7 @@ func step_shot(s:RefCounted,p:Dictionary) -> bool:
             return false
         return true
     for target in targets(s,p.owner):
+        if p.kind=="return" and p.leg==0 and p.hit.size()>=1:break
         if target.health<=0 or target in p.hit or target.invuln>0:continue
         if p.fighter.character==0 and p.skill==4 and int(target.get("squad_id",0))!=int(p.aim):continue
         if p.kind in ["ground","pulse","wire","zone"] and target.y>.35:continue
@@ -274,7 +284,8 @@ func impact(s:RefCounted,p:Dictionary,target:Dictionary) -> void:
     f.meter=minf(f.meter,meter)
     if hit:
         if f.character==0 and p.skill==0:f.tactical.mark=int(target.get("squad_id",0));f.tactical.mark_ttl=90 if p.variant==1 else (240 if f.get("tactic_anchor",false) else 180)
-        if p.support==0:f.tactical.relay=120;f.tactical.relay_budget=1
+        if p.support==0 and (p.get("module",0)!=1 or not p.get("relay_armed",false)):
+            f.tactical.relay=120;f.tactical.relay_budget=1;p["relay_armed"]=true
         Expanded.hit(s,p,target)
     f.erase("tactic_impact");f.erase("pulse_origin");f.move=saved_move;f.connected=connected;f.hit_confirmed=confirmed or (hit and f.state=="attack" and saved_move==p.move and f.service.serial==p.swing)
     f.face=saved_face;f.chain=chain;f.chain_ttl=chain_ttl;f.counter_attack=counter_attack

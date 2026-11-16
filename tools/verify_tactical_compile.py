@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--output', type=Path, default=ROOT / 'docs/evidence/tactics-expanded/changed-strict.log')
 args = parser.parse_args()
 FILES = [
-    'tactics/skills', 'tactics/expanded', 'tactics/presentation', 'last_service/presentation', 'last_service/rules', 'fight_simulation', 'fight_session',
+    'tactics/skills', 'tactics/modules', 'tactics/expanded', 'tactics/presentation', 'last_service/presentation', 'last_service/rules', 'fight_simulation', 'fight_session',
     'fight_controls', 'fight_hud', 'fight_preferences', 'fighter_visual',
     'city/city_profile', 'city/city_campaign', 'city/city_hub', 'city/hub_pages',
     'city/story_guide', 'city/story_flow', 'city/city_loot', 'story/story_simulation', 'enemies/gun_shot',

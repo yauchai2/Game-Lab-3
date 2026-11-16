@@ -1,6 +1,6 @@
 extends RefCounted
 ## Versioned, atomic account progress. Standard modes never consume this profile.
-const SCHEMA=5
+const SCHEMA=6
 const Tactics=preload("res://scripts/combat/tactics/skills.gd")
 const Advanced=preload("res://scripts/combat/last_service/progression.gd")
 const Story=preload("res://scripts/combat/city/city_story.gd")
@@ -42,8 +42,8 @@ func valid(item:Variant) -> bool:
         for preset in item.build_presets[hero]:
             if not _valid_preset(preset,hero):return false
     if item.tactics.size()!=4:return false
-    for value in item.tactics:
-        if not Tactics.valid_config(value):return false
+    for hero in 4:
+        if not Tactics.valid_config(item.tactics[hero],hero):return false
     if item.advanced.size()!=4:return false
     for hero in 4:
         if not item.advanced[hero] is Array or item.advanced[hero].size()>2:return false
@@ -149,15 +149,15 @@ func load_data() -> void:
         if parser.parse(FileAccess.get_file_as_string(source))!=OK or not parser.data is Dictionary:continue
         var candidate:Dictionary=parser.data
         var old_version:=int(candidate.get("version",0))
-        var legacy:bool=old_version in [1,2,3,4]
+        var legacy:bool=old_version in [1,2,3,4,5]
         if old_version==1:
             if not candidate.has("gear") or not candidate.has("inventory") or not candidate.has("best") or not candidate.has("points"):continue
             candidate=migrate(candidate)
-        elif old_version in [2,3,4]:
-            if old_version in [3,4]:
+        elif old_version in [2,3,4,5]:
+            if old_version in [3,4,5]:
                 var complete:=true
                 for key in fresh():
-                    if key not in (["tactics","build_presets"] if old_version==3 else ["build_presets"]) and not candidate.has(key):complete=false
+                    if key not in (["tactics","build_presets"] if old_version==3 else (["build_presets"] if old_version==4 else [])) and not candidate.has(key):complete=false
                 if not complete:continue
             candidate=expand(candidate)
             if old_version==4:
@@ -166,15 +166,23 @@ func load_data() -> void:
                 for configuration in candidate.tactics:
                     if not configuration is Dictionary or not _upgrade_tactic(configuration):configurations_ok=false
                 if not configurations_ok:continue
+            if candidate.get("tactics") is Array:
+                for configuration in candidate.tactics:
+                    if configuration is Dictionary and not configuration.has("attachments"):configuration["attachments"]=[0,0,0,0,0,0]
+            if candidate.get("build_presets") is Array:
+                for presets in candidate.build_presets:
+                    if not presets is Array:continue
+                    for preset in presets:
+                        if preset is Dictionary and preset.get("tactics") is Dictionary and not preset.tactics.has("attachments"):preset.tactics["attachments"]=[0,0,0,0,0,0]
         if not valid(candidate):continue
         for configuration in candidate.tactics:
-            for field in ["skills","variants","supports"]:
+            for field in ["skills","variants","supports","attachments"]:
                 for index in configuration[field].size():configuration[field][index]=int(configuration[field][index])
         for presets in candidate.build_presets:
             for preset in presets:
                 if preset.is_empty():continue
                 for slot in 3:preset.gear[slot]=int(preset.gear[slot])
-                for field in ["skills","variants","supports"]:
+                for field in ["skills","variants","supports","attachments"]:
                     for index in preset.tactics[field].size():preset.tactics[field][index]=int(preset.tactics[field][index])
         # Grant the complete basic kit to existing saves without resetting progress.
         # Persist with the next normal transaction; loading never overwrites a backup.
@@ -306,10 +314,11 @@ func respec(hero:int) -> bool:
     var before:=data.duplicate(true);data.talents[hero]=[];return commit(before)
 func gear_for(hero:int) -> Array:return data.loadouts[hero]
 func configure_tactic(hero:int,id:int,field:String,value:int) -> bool:
-    if hero<0 or hero>3 or id<0 or id>5 or field not in ["variants","supports","skills"] or value not in [0,1]:return false
+    if hero<0 or hero>3 or id<0 or id>5 or field not in ["variants","supports","skills","attachments"] or value<0 or value>(2 if field=="attachments" else 1):return false
     var before:=data.duplicate(true)
     if field=="skills":data.tactics[hero].skills.reverse()
     else:data.tactics[hero][field][id]=value
+    if not Tactics.valid_config(data.tactics[hero],hero):data=before;return false
     return commit(before)
 func craft_tactic_gear(hero:int,kind:String) -> bool:
     if hero<0 or hero>3 or kind not in ["tactic_relay","tactic_anchor"] or data.best<3 or data.credits<30 or data.parts<3 or data.inventory.size()>=60:return false
@@ -485,7 +494,7 @@ func equip_tactic(hero:int,slot:int,id:int) -> bool:
 func _valid_preset(value:Variant,hero:int) -> bool:
     if not value is Dictionary:return false
     if value.is_empty():return true
-    if not Tactics.valid_config(value.get("tactics")):return false
+    if not Tactics.valid_config(value.get("tactics"),hero):return false
     if not value.get("talents") is Array or value.talents.size()>25:return false
     var seen:Array=[];var keystones:=0
     for id in value.talents:

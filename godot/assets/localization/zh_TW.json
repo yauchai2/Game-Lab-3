@@ -1222,5 +1222,18 @@
   "RECOVERING": "恢復動作中",
   "FOLLOW / 0 ENERGY": "再按追加／免費",
   "RETURN / 0 ENERGY": "再按返送／免費",
-  "RELEASE GUARD TO CAST": "放開防守後施放"
+  "RELEASE GUARD TO CAST": "放開防守後施放",
+  "SECOND SUPPORT / NONE": "第二支援／不裝模組",
+  "RETURN / TWO LEGS": "回收／一去一返",
+  "DELAY / WARNED AREA": "延時／預告區域",
+  "Optional second support. Incompatible choices are disabled; no module is required.": "第二支援可留空；不相容的選項會停用，不必為了配裝硬塞模組。",
+  "One outward hit and one different returning target. Damage -30%, guard pressure -20%, half outward travel. Cannot combine with PIERCE.": "去程命中一人，返程可命中另一人；傷害減30%、破盾壓力減20%、單程射程減半。不與穿透並用。",
+  "A fixed ground area warns for 24 ticks, then bursts once. Damage -15%; wider coverage, no moving projectile.": "固定地面區預告24刻後爆發一次；傷害減15%，範圍較闊，失去移動投射。",
+  "Remove RETURN before fitting PIERCE.": "先卸下回收，才能裝上穿透。",
+  "These support modules cannot be combined.": "這兩個支援模組不能並用。",
+  "CHECK SUPPORT MODULES": "檢查支援模組組合",
+  "RETURN needs a straight tag, rivet or pulse.": "回收只適用於直線投標、鉚彈或脈衝。",
+  "Remove PIERCE before fitting RETURN.": "先卸下穿透，才能裝上回收。",
+  "DELAY needs GROUND LINE or REMOTE MIX.": "延時只適用於返工震線或遙控混音。",
+  "Unknown support module.": "無法識別此支援模組。"
 }

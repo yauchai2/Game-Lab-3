@@ -23,7 +23,7 @@ func run() -> void:
     hub.close_panel();await key(KEY_H,true);await key(KEY_H,false)
     check("H cannot interrupt the hub",not hub.panel.visible)
     hub.open_station(0);await frames()
-    check("tactics selectors are real native controls",hub.stack.find_children("*","OptionButton",true,false).size()==7)
+    check("tactics selectors are real native controls",hub.stack.find_children("*","OptionButton",true,false).size()==9)
     var first_selector=hub.stack.find_children("*","OptionButton",true,false).filter(func(control:Node)->bool:return control.get_meta("act","")=="tactic:0:variants")[0]
     hub.scroll.ensure_control_visible(first_selector);await frames()
     session.set_language("zh");await frames();await shot("build-zh")
