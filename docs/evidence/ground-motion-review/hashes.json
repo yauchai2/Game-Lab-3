@@ -1,7 +1,7 @@
 {
   "method": "SHA256 of native logs, telemetry, captures and video; not a game-dev sealed run",
   "files": {
-    "README.md": "07c235bb6ee4073038aea7a38e1d233b9d35c7beee5dc6328c4c83588170c8d1",
+    "README.md": "ea856d6baa1d08316d9ce3de772bc786f874c57fd399364abc3c79fc16ff3cc2",
     "after/audit.json": "ef73f056e816d72af6c44fdf2657b7e0667ddedef60b74fd664f9d18a970924a",
     "after/audit.log": "f05de9b44038a4d370b1a4808e5a83ab37f76c7d1853ce41a7493cc18db8b10d",
     "after/hero0-body_block.png": "0628b31d8f8966b3a37c31d326250718927916873f52dc988eda1af241730b84",
@@ -46,9 +46,9 @@
     "before.mp4": "0748b7fc7cb08b8cbd6f245f43f901ded98d6561de8f5c0b4b63e380c4f7a290",
     "blocked-rigs.jpg": "66624aa7dc9ae6425a6b6265d937a3b18dcd6443714519e9057e93251500da13",
     "capture-after.json": "8aca4327994da5c9a6e60ad9484729a99f06058a2388aaedd9f5e62f6c7bfd11",
-    "capture-after.log": "ca6a6076d56c50cdb8141aa8fd840714831fbd8df31d377235fe4ba3b3147c8e",
+    "capture-after.log": "36e36669428facd74332657f763307565fdcc6c6a86f05c8c8ed999dffced574",
     "capture-before.json": "dd74c76fd6860d328adf5bbe0dddf6b5472458d9750a659a49dfdd50a495c150",
-    "capture-before.log": "ca6a6076d56c50cdb8141aa8fd840714831fbd8df31d377235fe4ba3b3147c8e",
+    "capture-before.log": "36e36669428facd74332657f763307565fdcc6c6a86f05c8c8ed999dffced574",
     "capture-contract.json": "168b071af0dea91e2df548a824bf05ad98bfcddc9f3177d592a7548ec6739006",
     "changed-strict.log": "53dc9ca4debcb0be8f3c98626bb77eb4f60a68fb6ecc788ad253bdfd40f61fad",
     "comparison.json": "72ecc2da8b4d33ce30f8663afb6169011d8082ff6554c7deea461ceb32bed74c",

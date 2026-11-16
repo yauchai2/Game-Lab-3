@@ -12,7 +12,7 @@
 
 [Before six-second clip](before.mp4) / [after six-second clip](after.mp4), each180 frames at30fps, same neutral diagnostic floor/camera/light and original rigs. [Before capture trace](capture-before.json) / [after capture trace](capture-after.json). Before retains eight matched blocked-motion street snapshots; after/reduced also retain intermediate stop/reversal/dash review snapshots. Nonblocked stills are not paired raster comparisons. All authoritative trace samples are matched. These use diagnostic framing, not a changed gameplay camera.
 
-Environment: Godot4.6.3 Compatibility/Mesa llvmpipe,1280×720, Dummy audio. Baseline5ba39a4 was also checked out separately for the short clip with the exact same capture script and imported assets. Nonfatal V-Sync warning and baseline-audit shutdown ObjectDB warning are retained; no accepted engine/script errors. Not human timing, Mac, controller or hardware FPS certification.
+Environment: Godot4.6.3 Compatibility/Mesa llvmpipe,1280×720, Dummy audio. Baseline5ba39a4 was also checked out separately for the short clip with the exact same capture script and imported assets. Capture header logs normalize trailing blank lines to one final newline. Nonfatal V-Sync warning and baseline-audit shutdown ObjectDB warning are retained; no accepted engine/script errors. Not human timing, Mac, controller or hardware FPS certification.
 
 ```sh
 python tools/verify_tactical_compile.py --output docs/evidence/ground-motion-review/changed-strict.log
