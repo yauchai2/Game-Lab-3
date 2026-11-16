@@ -1,0 +1,44 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+RESPONSE grunt follows its published reaction role true
+RESPONSE grunt reaction never grants dodge, jump or invulnerability true
+RESPONSE grunt reaction cue preserves actual identity true
+RESPONSE rusher follows its published reaction role true
+RESPONSE rusher reaction never grants dodge, jump or invulnerability true
+RESPONSE rusher reaction cue preserves actual identity true
+RESPONSE jammer follows its published reaction role true
+RESPONSE jammer reaction never grants dodge, jump or invulnerability true
+RESPONSE jammer reaction cue preserves actual identity true
+RESPONSE guard follows its published reaction role true
+RESPONSE guard reaction never grants dodge, jump or invulnerability true
+RESPONSE guard reaction cue preserves actual identity true
+RESPONSE guard reaction cannot auto-parry true
+RESPONSE captain follows its published reaction role true
+RESPONSE captain reaction never grants dodge, jump or invulnerability true
+RESPONSE captain reaction cue preserves actual identity true
+RESPONSE captain reaction cannot auto-parry true
+RESPONSE heavy follows its published reaction role true
+RESPONSE heavy reaction never grants dodge, jump or invulnerability true
+RESPONSE unseen never starts a new zone response true
+RESPONSE late never starts a new zone response true
+RESPONSE airborne never starts a new zone response true
+RESPONSE stun never starts a new zone response true
+RESPONSE attack never starts a new zone response true
+RESPONSE rush never starts a new zone response true
+RESPONSE cooldown never starts a new zone response true
+RESPONSE off_cadence never starts a new zone response true
+RESPONSE other_owner never starts a new zone response true
+RESPONSE distant never starts a new zone response true
+RESPONSE no_ai never starts a new zone response true
+RESPONSE standard never starts a new zone response true
+RESPONSE arrival never starts a new zone response true
+RESPONSE boss never starts a new zone response true
+RESPONSE a committed step does not steer toward the live warning every frame true
+RESPONSE one response starts a three-second cooldown true
+RESPONSE taking a hit interrupts the response without refunding cooldown true
+RESPONSE hitstop freezes reaction duration and cooldown true
+RESPONSE an edge-trapped step chooses the only inward route true
+RESPONSE exhausted guards cannot magically brace true
+RESPONSE a step has at most twenty command ticks and no immediate repeat true
+RESPONSE deciding a response cannot move a body or decide damage true
+RESPONSE real delayed cast reaches a real walking response true

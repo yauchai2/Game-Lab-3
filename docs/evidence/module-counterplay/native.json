@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "name": "actual I creates a paid warning before enemy response",
+      "passed": true
+    },
+    {
+      "name": "live native grunt and guard publish distinct reaction events",
+      "passed": true
+    },
+    {
+      "name": "guard reaction uses ordinary guarding without a perfect parry",
+      "passed": true
+    },
+    {
+      "name": "heavy keeps its role without a new free response",
+      "passed": true
+    },
+    {
+      "name": "stepping uses actual body movement with no invulnerability",
+      "passed": true
+    },
+    {
+      "name": "responses cannot refund the player's paid area",
+      "passed": true
+    },
+    {
+      "name": "pause freezes the enemy reaction cooldown",
+      "passed": true
+    },
+    {
+      "name": "leaving story clears live tactical effects",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

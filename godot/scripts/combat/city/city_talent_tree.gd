@@ -116,7 +116,7 @@ func _detail() -> void:
     reset.tooltip_text="FREE RESET";reset.set_meta("act","reset");reset.pressed.connect(func():profile.respec(hero);_rebuild());reset.mouse_entered.connect(set_info.bind("Free reset: take back every point for this hero."));tools.add_child(reset)
     var close:=Button.new();close.icon=Icons.texture("close",T.PAPER,T.CORAL);close.expand_icon=true;close.custom_minimum_size=Vector2(0,52);close.size_flags_horizontal=Control.SIZE_EXPAND_FILL
     close.tooltip_text="ESC";close.set_meta("act","close");close.pressed.connect(hide);tools.add_child(close)
-    var text:=("Free gateway. Choose connected paths." if node.kind=="hub" else Builds.describe(node))
+    var text:=("Select a connected node, then CONNECT. Earn points by clearing encounters and levelling up. FREE RESET returns every point." if node.kind=="hub" else Builds.describe(node))
     if profile.error!="":text=profile.error
     set_info(text)
 func _board_input(event:InputEvent) -> void:

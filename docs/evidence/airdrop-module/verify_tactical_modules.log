@@ -1,0 +1,85 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+MODULES hero0 skill0 module1 compatibility is transactional true
+MODULES hero0 skill0 module2 compatibility is transactional true
+MODULES hero0 skill1 module1 compatibility is transactional true
+MODULES hero0 skill1 module2 compatibility is transactional true
+MODULES hero0 skill2 module1 compatibility is transactional true
+MODULES hero0 skill2 module2 compatibility is transactional true
+MODULES hero0 skill3 module1 compatibility is transactional true
+MODULES hero0 skill3 module2 compatibility is transactional true
+MODULES hero0 skill4 module1 compatibility is transactional true
+MODULES hero0 skill4 module2 compatibility is transactional true
+MODULES hero0 skill5 module1 compatibility is transactional true
+MODULES hero0 skill5 module2 compatibility is transactional true
+MODULES hero1 skill0 module1 compatibility is transactional true
+MODULES hero1 skill0 module2 compatibility is transactional true
+MODULES hero1 skill1 module1 compatibility is transactional true
+MODULES hero1 skill1 module2 compatibility is transactional true
+MODULES hero1 skill2 module1 compatibility is transactional true
+MODULES hero1 skill2 module2 compatibility is transactional true
+MODULES hero1 skill3 module1 compatibility is transactional true
+MODULES hero1 skill3 module2 compatibility is transactional true
+MODULES hero1 skill4 module1 compatibility is transactional true
+MODULES hero1 skill4 module2 compatibility is transactional true
+MODULES hero1 skill5 module1 compatibility is transactional true
+MODULES hero1 skill5 module2 compatibility is transactional true
+MODULES hero2 skill0 module1 compatibility is transactional true
+MODULES hero2 skill0 module2 compatibility is transactional true
+MODULES hero2 skill1 module1 compatibility is transactional true
+MODULES hero2 skill1 module2 compatibility is transactional true
+MODULES hero2 skill2 module1 compatibility is transactional true
+MODULES hero2 skill2 module2 compatibility is transactional true
+MODULES hero2 skill3 module1 compatibility is transactional true
+MODULES hero2 skill3 module2 compatibility is transactional true
+MODULES hero2 skill4 module1 compatibility is transactional true
+MODULES hero2 skill4 module2 compatibility is transactional true
+MODULES hero2 skill5 module1 compatibility is transactional true
+MODULES hero2 skill5 module2 compatibility is transactional true
+MODULES hero3 skill0 module1 compatibility is transactional true
+MODULES hero3 skill0 module2 compatibility is transactional true
+MODULES hero3 skill1 module1 compatibility is transactional true
+MODULES hero3 skill1 module2 compatibility is transactional true
+MODULES hero3 skill2 module1 compatibility is transactional true
+MODULES hero3 skill2 module2 compatibility is transactional true
+MODULES hero3 skill3 module1 compatibility is transactional true
+MODULES hero3 skill3 module2 compatibility is transactional true
+MODULES hero3 skill4 module1 compatibility is transactional true
+MODULES hero3 skill4 module2 compatibility is transactional true
+MODULES hero3 skill5 module1 compatibility is transactional true
+MODULES hero3 skill5 module2 compatibility is transactional true
+MODULES return rejects piercing without silently ejecting it true
+MODULES piercing rejects return in either fitting order true
+MODULES combat boundary also rejects incompatible injected config true
+MODULES hero0 return cannot hit the same body twice true
+MODULES hero0 return never refunds its ranged fee true
+MODULES hero1 return cannot hit the same body twice true
+MODULES hero1 return never refunds its ranged fee true
+MODULES hero2 return cannot hit the same body twice true
+MODULES hero2 return never refunds its ranged fee true
+MODULES return actually contacts a different target on its returning leg true
+MODULES return cannot rearm an already consumed next-melee refund true
+MODULES return damage and guard tradeoffs are real true
+MODULES return reverses once at the arena boundary instead of escaping true
+MODULES hero1 delayed area warns before its single real contact true
+MODULES hero1 delayed explosion produces one cue at detonation true
+MODULES hero3 delayed area warns before its single real contact true
+MODULES hero3 delayed explosion produces one cue at detonation true
+MODULES delayed pulse consumes its original node once true
+MODULES walking out of a warning avoids actual damage true
+MODULES delayed warning freezes with simulation hitstop true
+MODULES wide variant and anchor retain real coverage on delayed ground line true
+MODULES jumping above a delayed ground zone avoids contact true
+MODULES save validator rejects a module on an incompatible skill true
+MODULES current schema requires its support-slot record true
+MODULES schema4 preserves old save bytes and choices true
+MODULES schema4 migrated module preset survives integer normalization and reload true
+MODULES schema5 preserves old save bytes and choices true
+MODULES schema5 upgrades nested preset support slots true
+MODULES schema5 migrated module preset survives integer normalization and reload true
+MODULES schema6 preserves old save bytes and choices true
+MODULES schema6 upgrades nested preset support slots true
+MODULES schema6 migrated module preset survives integer normalization and reload true
+MODULES schema7 preserves old save bytes and choices true
+MODULES schema7 upgrades nested preset support slots true
+MODULES schema7 migrated module preset survives integer normalization and reload true

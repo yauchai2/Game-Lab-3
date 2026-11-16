@@ -366,7 +366,7 @@ func _title_page() -> void:
     menu_stack.add_child(row)
     for key in ["roster","controls","settings"]:
         var page: String="help" if key=="controls" else key
-        var shortcut:String={"controls":"H","settings":"F1"}.get(key,"")
+        var shortcut:String={"controls":"","settings":"F1"}.get(key,"")
         var button:=_action(row,key,shortcut,func():open_page(page))
         button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
         button.add_theme_font_size_override("font_size",15)
@@ -393,7 +393,7 @@ func _pause_page() -> void:
         elif session.run_active:session.start_run()
         else:session.restart_current())
     _action(menu_stack,"settings","F1",func():open_page("settings"))
-    _action(menu_stack,"controls","H",func():open_page("help"))
+    _action(menu_stack,"controls","",func():open_page("help"))
     _action(menu_stack,"main_menu","",func():session.return_to_title())
 
 func _result_page() -> void:
@@ -474,9 +474,6 @@ func handle_shortcut(event: InputEvent) -> bool:
     if event.keycode==KEY_F1:
         open_page("settings")
         return true
-    if event.keycode==KEY_H:
-        open_page("help")
-        return true
     return false
 
 func _choice(key: String, items: Array, selected: int, callback: Callable) -> void:
@@ -535,6 +532,9 @@ func _settings_page() -> void:
         var audio_row:=HBoxContainer.new();menu_stack.add_child(audio_row)
         _action(audio_row,"test_audio","",func():session.audio.play_sound("parry",1.0,0.0))
         _action(audio_row,"restore_audio","",_restore_sound)
+    _choice("TACTIC A KEY",["Q","I","U","V",",","."],[KEY_Q,KEY_I,KEY_U,KEY_V,KEY_COMMA,KEY_PERIOD].find(session.controls.tactic_keys[0]),func(index:int):session.set_tactic_key(0,index))
+    _choice("TACTIC B KEY",["Q","I","U","V",",","."],[KEY_Q,KEY_I,KEY_U,KEY_V,KEY_COMMA,KEY_PERIOD].find(session.controls.tactic_keys[1]),func(index:int):session.set_tactic_key(1,index))
+    _caption("TACTICS: keyboard keys above / gamepad R3 and L3. H is unbound; use Pause > Controls.")
     _choice("CONTROL HINTS",["AUTO","ALWAYS","OFF"],session.control_hints,func(index:int):session.control_hints=index;session.save_options())
     _plain_action("HOW TO PLAY","how_to_play",func():open_page("help"))
     _plain_action("LABS","labs",func():open_page("labs"))
@@ -708,6 +708,7 @@ func _draw() -> void:
     session.ink_fx.draw(self,session)
     session.ko_tumble.draw(self,session)
     preload("res://scripts/combat/enemies/gun_presentation.gd").draw_overlay(self,session)
+    preload("res://scripts/combat/tactics/presentation.gd").draw_overlay(self,session)
     for effect in session.effects:
         if effect.age>=0:vfx_renderer.draw_effect(self,session,effect)
     if not session.neon_enabled and session.theatre.active() and session.theatre.mode=="ko" and not session.reduced_effects:return
@@ -722,6 +723,9 @@ func _draw() -> void:
         _plate(Vector2(190,548),Vector2(900,62),INK)
         _center(Vector2(640,575),session.city_campaign.profile.Story.LESSONS.get(session.city_campaign.lesson_active,"PRACTICE"),24,Tokens.TEAL)
         _center(Vector2(640,601),"PRACTICE / FULL ENERGY FIXTURE / NO REWARDS",24,PAPER)
+    if session.sim.campaign_enabled and session.city_campaign.lesson_active=="" and session.screen=="play" and session.sim.phase=="fight":
+        _plate(Vector2(120,648),Vector2(1040,38),INK)
+        _center(Vector2(640,675),preload("res://scripts/combat/city/story_guide.gd").combat_tip(session.sim.fighters[0],session.sim.skill_cost(session.sim.fighters[0],"special"),session.sim.skill_cost(session.sim.fighters[0],"overdrive")),24,Tokens.TEAL)
     _draw_core_tag()
     if session.sim.campaign_enabled and session.sim.campaign_boss!="":_campaign_boss_hud()
     elif session.sim.arcade_enabled:_surge_hud()

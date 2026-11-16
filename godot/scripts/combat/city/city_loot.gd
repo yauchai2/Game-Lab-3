@@ -33,4 +33,6 @@ static func describe(item:Dictionary) -> String:
     for stat in effects(item):
         var amount:float=effects(item)[stat]
         lines+="%s %+d%s\n"%[str(stat).replace("_"," "),roundi(amount if stat in ["entry","parry_meter","chain_targets","splash"] else amount*100),"" if stat in ["entry","parry_meter","chain_targets","splash"] else "%"]
+    if item.get("special","")=="tactic_relay":lines+="Tactics -20% damage; next melee returns 6 energy.\n"
+    elif item.get("special","")=="tactic_anchor":lines+="Longer tactic travel/node life; cooldown +25%.\n"
     return lines.strip_edges()

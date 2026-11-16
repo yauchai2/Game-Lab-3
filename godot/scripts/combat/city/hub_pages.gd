@@ -1,6 +1,7 @@
 extends RefCounted
 ## Picture-first station pages (SKILLS, RADIO/story, DEPART). The hub still owns state and save calls;
 ## these functions only lay out what it already knows, and every button carries meta "act" for tests.
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 const T=preload("res://scripts/combat/ui/ui_theme.gd")
 const W=preload("res://scripts/combat/city/hub_widgets.gd")
 const Icons=preload("res://scripts/combat/city/ui_icons.gd")
@@ -8,7 +9,7 @@ const Profile=preload("res://scripts/combat/city/city_profile.gd")
 const HEROES=["ZIP","RIVET","HUSH","LOOP"]
 const HERO_TINT=[Color("00d6e7"),Color("ff8a00"),Color("bdff00"),Color("ff008c")]
 const BASIC_ICONS={"double_jump":"double_jump","launcher":"launcher","chase":"chase","finisher":"finisher","overdrive":"overdrive"}
-const BASIC_INFO={"double_jump":"Jump twice before landing.","launcher":"Hit up: launch the enemy.","chase":"Spend energy to chase a launched enemy.","finisher":"Slam down from the air.","overdrive":"W + L big move."}
+const BASIC_INFO={"double_jump":"Space: jump; release and press again before landing.","launcher":"K on the ground launches an enemy. Hold J also chains into a launcher.","chase":"After a launcher hits, press J or E to chase. Costs 20 energy.","finisher":"K in the air slams down. J also chains into an aerial finisher.","overdrive":"W + L: overdrive. Costs 75 energy; ordinary L costs 50."}
 const BASIC_SHORT={"double_jump":"2x JUMP","launcher":"LAUNCH","chase":"CHASE","finisher":"SLAM","overdrive":"BURST"}
 const TECH_ICONS=["fist","kick","ring"]
 const TECH_STAGE=[9,12,15]
@@ -22,6 +23,8 @@ static func skills(hub:Node) -> void:
     var hero_id:int=hub.campaign.hero_id()
     var tint:Color=HERO_TINT[hero_id]
     W.head(hub,"fist",HEROES[hero_id]+" SKILLS",tint)
+    W.guide(hub,"All basic moves are ready. TRY opens a safe practice; upgrades strengthen your L skill.")
+    tactical_page(hub)
     var rank:=int(p.data.skill_levels[hero_id])
     # L skill rank: one line with pips, price chips and the upgrade button.
     var card:=PanelContainer.new();card.add_theme_stylebox_override("panel",T.plate(Color("10121f"),tint,2));hub.stack.add_child(card)
@@ -31,18 +34,14 @@ static func skills(hub:Node) -> void:
     W.pips(hub,states,tint,line)
     var spacer:=Control.new();spacer.size_flags_horizontal=Control.SIZE_EXPAND_FILL;line.add_child(spacer)
     W.chip("coin","30",T.LIME,line);W.chip("gear",str(2+rank),T.TEAL,line)
-    var up:=W.cta(hub,"arrow","UP",tint,func():hub.act(func():return p.upgrade_skill(hero_id),"Class skill upgraded"),rank>=3 or p.data.credits<30 or p.data.parts<2+rank,"upgrade_l","L skill rank up: +5% basic L damage.")
-    up.get_parent().remove_child(up);line.add_child(up);up.custom_minimum_size=Vector2(120,52)
+    W.guide(hub,"Skill upgrade: 30 credits + parts. Each rank adds 5% L damage, up to 3 ranks. Earn resources by clearing encounters.")
+    var up:=W.cta(hub,"arrow","MAX" if rank>=3 else "UPGRADE",tint,func():hub.act(func():return p.upgrade_skill(hero_id),"Class skill upgraded"),rank>=3 or p.data.credits<30 or p.data.parts<2+rank,"upgrade_l","L skill rank up: +5% basic L damage.")
+    up.get_parent().remove_child(up);line.add_child(up);up.custom_minimum_size=Vector2(150,52)
     W.section(hub,"star","BASICS")
     var g:=W.grid(hub,5)
     for skill in Profile.SKILLS:
         var id:String=skill.id
-        var owned:bool=id in p.data.skills
-        var open:bool=int(p.data.best)>=int(skill.at)
-        var state:="owned" if owned else ("ready" if open else "locked")
-        var sub:="TRY" if owned else ("LEARN" if open else "STAGE %d"%int(skill.at))
-        var cb:Callable=(func():hub.campaign.start_lesson(id)) if owned else (func():hub.act(func():return p.learn(id),"Skill learned"))
-        var t:=W.tile(hub,BASIC_ICONS[id],BASIC_SHORT[id],sub,tint,state,cb,str(skill.name)+": "+BASIC_INFO[id]+(" Tap to practice." if owned else ""),("practice:" if owned else "learn:")+id)
+        var t:=W.tile(hub,BASIC_ICONS[id],BASIC_SHORT[id],"TRY",tint,"ready",func():hub.campaign.start_lesson(id),str(skill.name)+": "+BASIC_INFO[id]+" Tap to practice.","practice:"+id)
         W.into(g,t)
     W.section(hub,"ring","TECHNIQUES %d / 2"%p.data.advanced[hero_id].size())
     var g2:=W.grid(hub,3)
@@ -111,6 +110,7 @@ static func depart(hub:Node) -> void:
     var p=hub.campaign.profile
     var chapter:int=p.Story.chapter(int(p.data.best))
     W.head(hub,"arrow","DEPART",hub.COLORS[4])
+    W.guide(hub,"GO starts or resumes your expedition. After a clear: choose a current and route, or return home to upgrade. Defeat keeps banked credits and gear.")
     var d:Dictionary=p.data
     if not d.run.is_empty():
         var run:Dictionary=d.run
@@ -212,6 +212,7 @@ static func dealer(hub:Node) -> void:
     var hero_id:int=hub.campaign.hero_id()
     var tint:Color=hub.COLORS[2]
     W.head(hub,"dealer","DEALER",tint)
+    W.guide(hub,"Optional: draw gear for 100 credits, then compare and FIT at SHOP. A core costs 1 part and lasts for one expedition.")
     W.section(hub,"core","CORE",tint)
     var offer_open:bool=not p.data.core_offer.is_empty()
     var ready:String=str(p.data.pending_core)
@@ -256,6 +257,7 @@ static func shop(hub:Node) -> void:
     var hero_id:int=hub.campaign.hero_id()
     var tint:Color=hub.COLORS[5]
     W.head(hub,"gear","SHOP",tint)
+    W.guide(hub,"Select a bag item, check the stat change, then FIT. Gear is saved per hero. Clearing encounters also drops gear; empty slots fill automatically.")
     var top:=W.row(hub)
     var heal_off:bool=p.data.run.is_empty() or p.data.credits<25 or int(p.data.run.get("hp",100))>=100
     var heal:=W.tile(hub,"heart","HEAL","25",T.CORAL,"off" if heal_off else "ready",func():hub.act(func():return p.heal(),"Recovered up to 40 HP"),"Heal 40 HP for 25 credits during an expedition.","heal",Vector2(0,76),true)
@@ -322,5 +324,80 @@ static func _compare(hub:Node,p,hero_id:int,item:Dictionary,_tint:Color) -> void
         W.tile(hub,"check","FIT","ON" if equipped else "",T.TEAL,"owned" if equipped else "ready",func():hub.act(func():return p.equip(id,hero_id),"Equipment fitted"),"Fit this piece on "+HEROES[hero_id]+".","equip:%d"%id,Vector2(0,98)),
         W.tile(hub,"hammer","REROLL","80+5",T.LIME,"off" if item.get("affixes",[]).is_empty() or p.data.credits<80 or p.data.parts<5 else "ready",func():hub.act(func():return p.craft(id,"recalibrate",0),"Affix recalibrated"),"Recalibrate the first affix. 80 credits, 5 parts.","recalibrate:%d"%id,Vector2(0,98)),
         W.tile(hub,"flame","TEMPER","120+6",T.CORAL,"off" if int(item.tier)>=2 or p.data.credits<120 or p.data.parts<6 else "ready",func():hub.act(func():return p.craft(id,"temper"),"Equipment tempered"),"Reroll up to RARE. 120 credits, 6 parts.","temper:%d"%id,Vector2(0,98)),
-        W.tile(hub,"trash","SCRAP","+%d"%(1+int(item.tier)),T.PAPER,"off" if p.is_equipped(id) else "ready",func():hub.act(func():return p.salvage(id),"Equipment recycled"),"Recycle for parts. Fitted gear cannot be scrapped.","recycle:%d"%id,Vector2(0,98))]
+        W.tile(hub,"trash","SCRAP","+%d"%(1+int(item.tier)),T.PAPER,"off" if p.is_equipped(id) else "ready",func():hub.act(func():return p.salvage(id),"Equipment recycled"),"Recycle for parts. Fitted or preset gear cannot be scrapped.","recycle:%d"%id,Vector2(0,98))]
     for t in tiles:W.into(acts,t)
+
+static func tactical_page(hub:Node) -> void:
+    var p=hub.campaign.profile
+    var hero:int=hub.campaign.hero_id()
+    var tactics=p.Tactics
+    var cfg:Dictionary=p.data.tactics[hero]
+    W.section(hub,"bolt","TACTICAL SKILLS")
+    W.guide(hub,"Choose two of six tactics. Story milestones unlock new tools; variants, supports and three build presets are free to change here.")
+    for slot in 2:
+        var id:int=cfg.skills[slot]
+        var open:bool=id<p.tactics_unlocked()
+        var key:String=OS.get_keycode_string(hub.campaign.session.controls.tactic_keys[slot])
+        W.section(hub,"fist",key+" / "+L10n.text(str(tactics.NAMES[hero][id])))
+        var skills_select:=OptionButton.new();skills_select.fit_to_longest_item=false;skills_select.clip_text=true;skills_select.custom_minimum_size.y=48
+        for ability in 6:
+            skills_select.add_item(L10n.text(str(tactics.NAMES[hero][ability])))
+            skills_select.set_item_disabled(ability,ability>=p.tactics_unlocked())
+        skills_select.select(id);skills_select.set_meta("act","tactic:%d:ability"%slot)
+        var target_slot:int=slot
+        skills_select.item_selected.connect(func(ability:int):hub.act(func():return p.equip_tactic(hero,target_slot,ability),"Tactical build updated"))
+        hub.stack.add_child(skills_select)
+        var build:Dictionary=p.stats(hero)
+        var seconds:float=tactics.cooldown_ticks(hero,id,int(cfg.supports[id]),float(build.tactic_anchor)>0)/60.0
+        W.guide(hub,L10n.text(tactics.description(hero,id))+" "+(L10n.text("%d ENERGY / %.1fs")%[tactics.adjusted_cost(tactics.COSTS[hero][id],float(build.economy)),seconds] if open else L10n.text("Clear encounter %d to learn.")%tactics.UNLOCKS[id]))
+        var row:=HBoxContainer.new();hub.stack.add_child(row)
+        for field in ["variants","supports"]:
+            var selector:=OptionButton.new();selector.fit_to_longest_item=false;selector.clip_text=true;selector.custom_minimum_size=Vector2(0,50);selector.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+            for title in (tactics.variant_labels(hero,id) if field=="variants" else ["RELAY / +4 ON NEXT MELEE","PIERCE / LOWER DAMAGE"]):selector.add_item(L10n.text(title))
+            if field=="supports" and not (hero in [1,2] and id==0):
+                selector.set_item_text(1,L10n.text("LIGHTWEIGHT / SHORTER COOLDOWN"))
+            selector.select(cfg[field][id]);selector.disabled=not open;selector.set_meta("act","tactic:%d:%s"%[slot,field])
+            if field=="supports" and not tactics.Modules.compatible(hero,id,int(cfg.attachments[id]),1):
+                selector.set_item_disabled(1,true);selector.get_popup().set_item_tooltip(1,L10n.text("Remove RETURN before fitting PIERCE."))
+            var selected_field:String=field;var selected_id:int=id
+            selector.item_selected.connect(func(value:int):hub.act(func():return p.configure_tactic(hero,selected_id,selected_field,value),"Tactical build updated"))
+            row.add_child(selector)
+        var module_select:=OptionButton.new();module_select.fit_to_longest_item=false;module_select.clip_text=true;module_select.custom_minimum_size.y=48
+        for module in tactics.Modules.LABELS.size():
+            module_select.add_item(L10n.text(tactics.Modules.LABELS[module]))
+            module_select.set_item_disabled(module,not tactics.Modules.compatible(hero,id,module,int(cfg.supports[id])))
+            var reason:String=tactics.Modules.reason(hero,id,module,int(cfg.supports[id]))
+            module_select.get_popup().set_item_tooltip(module,L10n.text(tactics.Modules.INFO[module] if reason=="" else reason))
+        module_select.select(int(cfg.attachments[id]));module_select.disabled=not open;module_select.set_meta("act","tactic:%d:attachments"%slot)
+        var module_skill:int=id
+        module_select.item_selected.connect(func(value:int):hub.act(func():return p.configure_tactic(hero,module_skill,"attachments",value),"Tactical build updated"))
+        hub.stack.add_child(module_select)
+        W.guide(hub,tactics.Modules.INFO[int(cfg.attachments[id])])
+        hub.stack.get_child(-1).set_meta("act","tactic:%d:module_info"%slot)
+    build_presets(hub)
+    W.guide(hub,"Presets save tactics, talents, techniques and equipped item identities. Preset gear is protected from scrapping; clear the preset to release it.")
+    W.cta(hub,"arrow","SWAP TACTICAL SLOTS",T.TEAL,func():hub.act(func():return p.configure_tactic(hero,0,"skills",0),"Tactical slots swapped"),false,"tactic:swap")
+
+    W.section(hub,"gear","TACTICAL GEAR / 30 CREDITS + 3 PARTS")
+    W.guide(hub,"RELAY CELL: tactics deal 20% less damage, but the next melee returns 6 energy. ANCHOR WRIST: longer travel and node life, but 25% longer cooldowns. Relay takes priority if both are worn.")
+    for kind in ["tactic_relay","tactic_anchor"]:
+        var recipe:String=kind
+        W.cta(hub,"gear","CRAFT RELAY CELL" if kind=="tactic_relay" else "CRAFT ANCHOR WRIST",T.TEAL,func():hub.act(func():return p.craft_tactic_gear(hero,recipe),"Gear crafted. Equip it at SHOP."),p.data.best<3 or p.data.credits<30 or p.data.parts<3,"craft:"+kind)
+
+static func build_presets(hub:Node) -> void:
+    var p=hub.campaign.profile;var hero:int=hub.campaign.hero_id()
+    W.section(hub,"book","BUILD PRESETS")
+    var picker:=OptionButton.new();picker.fit_to_longest_item=false;picker.clip_text=true;picker.custom_minimum_size.y=48;picker.set_meta("act","build:select")
+    for index in 3:
+        var saved:Dictionary=p.data.build_presets[hero][index]
+        var summary:String=L10n.text("EMPTY") if saved.is_empty() else L10n.text(str(p.Tactics.NAMES[hero][saved.tactics.skills[0]]))+" + "+L10n.text(str(p.Tactics.NAMES[hero][saved.tactics.skills[1]]))
+        picker.add_item(str(index+1)+" / "+summary)
+    picker.select(hub.build_selection);picker.item_selected.connect(hub.select_build);hub.stack.add_child(picker)
+    var selected:int=hub.build_selection;var stored:bool=not p.data.build_presets[hero][selected].is_empty()
+    var row:=HBoxContainer.new();hub.stack.add_child(row)
+    for action in ["SAVE","LOAD","CLEAR"]:
+        var button:=Button.new();button.size_flags_horizontal=Control.SIZE_EXPAND_FILL;button.custom_minimum_size.y=46;button.text=L10n.text(action)
+        button.disabled=action!="SAVE" and not stored;button.set_meta("act","build:%d:%s"%[selected,action])
+        var operation:String=action
+        button.pressed.connect(func():hub.act(func():return p.store_build(hero,selected) if operation=="SAVE" else (p.load_build(hero,selected) if operation=="LOAD" else p.clear_build(hero,selected)),"Build preset updated"))
+        row.add_child(button)

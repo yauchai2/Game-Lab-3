@@ -188,3 +188,24 @@
 - 2026-11-14本聊天第一批21 FBX＋Walking已接入：見docs/MIXAMO_FIRST_BATCH_RUNTIME.zh-TW.md及evidence/mixamo-first-batch。23私有clip中20啟用、四角15地面攻擊slot＋受擊／後閃／慢行；Boxing是低位身擊，Hurricane重複來源去重，Walking去前進與結尾reset，不把慢行加速成跑步。新profile單一owner，不改simulation／原GLB／過場。另用install_mixamo_motions.py裝私有JSON，缺檔fallback；KnockedOut／GetUp／AirKick只轉換未啟用，其他家族仍待接續。132新與835相關回歸通過，舊RIVET另6項與08e3e51基線同值失敗，未放寬；不可稱所有舊測試通過。只推codex/four-fighter-motion-plan／PR #37，不合main／不發Web。
 
 - 2026-11-15 使用者明確要求全部合適分支合main：現況見docs/BRANCH_MERGE_2026-11-15.zh-TW.md。全部原始碼來源集中main，gh-pages保持；覆蓋本檔先前各輪不合main的歷史限制。31段隨附Mixamo、完整肩摔與空中／步法保留；ZIP／RIVET地面special／overdrive交由影片專用owner，不能再被通用Mixamo覆蓋。21個suite通過，各suite重疊；環境／原生退出診斷另列，不冒稱Mac／真人／完整原生編輯器匯入已驗收。
+
+
+- 2026-11-15 最新故事開局要求：見 docs/STORY_ONBOARDING.zh-TW.md。全部基本動作第一場可用，五種能力新檔預設／舊檔載入補齊，故事模擬不再以 campaign_skills 限基本出招；能量、空中條件、進階技巧及成長仍照原規則。H 指南／實際走到設施／下一步／戰鬥真費用與繁中字圖已加入。54 新＋86 城市＋50 戰役＋23 原生城市＋23 strict＋21 繁中通過（各組重疊）；Linux4.6.3非Mac／真人，Web未更新。
+
+- 2026-11-16技能策劃續訂：docs/SKILL_INPUT_CHARGE_PLAN.zh-TW.md。Q／I兩槽候選、H解除改Esc指南、保留J持鍵與原K／L方向語義；先RIVET有限蓄力及正式遭遇，後八招及構築。僅規劃，沒有改鍵／新runtime；手柄鍵位及真人測試待驗，不把候選數字當已平衡。
+
+- 2026-11-16戰術技能實作：docs/TACTICAL_SKILLS_RUNTIME.zh-TW.md。首八招接正式STORY，解鎖1／3場、Q／I安全重綁、RIVET有限蓄力、變體／支援與兩件配方，CityProfile schema4；H戰鬥／據點解除，指南保留。city出擊套遠征角色，不再只接受title。tactics模組唯一判定owner，經原_resolve_hit／Boss結算；不要再把新招當未實作，也不可當全24招／真人平衡已完成。原GLB／BGM／標準模式保持；同分支／PR #38，Web不更新。
+
+- 2026-11-16續作：docs/TACTICAL_EXPANSION.zh-TW.md。24招第一可玩版、六選二／三套完整構築預設／schema5已實作；覆蓋首批「16招與預設未做」。保持兩槽鍵位，手動追加須真確認，靜音不刪在飛子彈／Boss，牽引不拉Boss，浮空發射器保留兩點、線段共用預算。預設引用裝備不可分解，舊檔及失敗回滾保留；戰術省能最多20%並顯示真費用。只推codex/story-onboarding／PR #38，Web不更新。真人平衡、第二支援槽與精製動作未完成，不冒稱遊戲最終好玩已驗收。
+
+- 本輪資源補正：ZIP裝雙址時E保留路線；RIVET預壓洩放在L蓄壓途中轉招，只付替代技費用，已出拳／被打斷不可再花預壓；冷卻／防禦／跳躍拒絕轉招不得退款。107擴充規則、39新增原生與20strict通過，詳本輪evidence。
+
+- 2026-11-16操作續作：docs/TACTICAL_USABILITY.zh-TW.md。quote為共用前置／費用檢查，冷卻helper供SKILLS與施放／滿壓；HUD讀取不改權威，304×66兩卡名稱20／狀態18、5／8／100保持。免費追加不被舊冷卻遮住，缺路線／節點／地空及恢復需可讀。53規則／15固定策略遭遇／14新增原生通過；比較非真人／完整章節平衡，第二支援槽與精製動作仍待續。同分支PR #38，Web不更新。
+
+- 2026-11-16第二支援：docs/TACTICAL_MODULES.zh-TW.md。可留空第二槽、回收／延時兩行為／五招相容、雙向衝突拒絕；回收同身體一次、整發一次近戰回能，延時固定24tick預告單次接觸，原budget／Boss保持。schema6保存六格attachments及完整預設，舊檔補無並保留原檔／版本備份。80規則／8新原生及21strict通過；覆蓋舊第二支援未做，不代表八種全完。同分支PR #38，Web不更新；Mac／真人與全動作精修仍待續。
+
+- 2026-11-16交戰續作：docs/TACTICAL_ENEMY_RESPONSE.zh-TW.md。正式故事普通敵人讀玩家zone：輕裝普通走位，盾衛／隊長架防禁自動招架，重裝／Boss保留。至少8tick可見、18／12／8採樣、最多20指令tick、180冷卻；承諾／受擊／碰撞與原傷害owner保持，AI關閉／標準模式隔離。42規則／60入場後比較／8新原生及22strict通過，頭目失敗與零命中保留，不宣稱真人平衡。同分支PR #38，不發Web。
+
+- 2026-11-16空投：docs/TACTICAL_AIRDROP.zh-TW.md。第二支援ID3只ZIP0／LOOP0，空中fast_used共用、斜線飛行、原標記／兩點與費用、空中標記-20%；原恢復後8tick落地承諾可排隊但不能取消，受擊硬直中斷不再疊晚到鎖定。schema7保存新ID，保留1–6與巢狀預設，真schema6缺attachments拒絕。59規則／17原生及22strict通過；舊Rush瞬時扣血斷言經9b基線同敗後改真配對落地12傷害22/22。不是真人／Mac驗收，同分支PR #38不發Web。
+
+- 2026-11-16地面覆核：GROUND_MOTION_REVIEW.zh-TW.md。MotionInterpolation展示vx依已提交位移限速，僅同角色ground idle、F2仍套、freeze不換clip，不寫simulation；21規則／各33原生／3比較、324→0，79／216／90與1800tick零差異、23strict。使用者指出故事PR未合併，已重驗54並詢問整PR或教學子集；未答不改main，Web保持。

@@ -30,7 +30,8 @@ func draw(canvas:Control,s:Node) -> void:
             canvas.draw_rect(Rect2(position,Vector2(146,3)),Color("08090d"))
             canvas.draw_rect(Rect2(position,Vector2(146*clampf(duration/capacity,0,1),3)),s.effect_color_for(side))
         for node in r.nodes:
-            var at:Vector2=s.project(Vector2(node.x,.10))
+            if node.get("hidden",false):continue
+            var at:Vector2=s.project(Vector2(node.x,1.8 if node.get("emitter",false) else .10))
             var points:=PackedVector2Array([at+Vector2(-14,0),at+Vector2(0,-9),at+Vector2(14,0),at+Vector2(0,9)])
             canvas.draw_colored_polygon(points,s.effect_color_for(side));canvas.draw_polyline(PackedVector2Array([points[0],points[1],points[2],points[3],points[0]]),Color.WHITE,2)
             canvas.draw_rect(Rect2(at+Vector2(-15,9),Vector2(38,22)),Color("08090d"))

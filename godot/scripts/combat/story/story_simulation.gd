@@ -2,6 +2,7 @@ extends "res://scripts/combat/enemies/squad_simulation.gd"
 ## M1: a finite three-wave story encounter, isolated from existing modes.
 const CampaignRules=preload("res://scripts/combat/story/campaign_rules.gd")
 const Balance=preload("res://scripts/combat/city/city_balance.gd")
+const TacticResponse=preload("res://scripts/combat/tactics/enemy_response.gd")
 const WAVES=[["grunt","grunt","grunt"],["grunt","rusher","grunt","rusher"],["guard","grunt","rusher","grunt","guard","grunt"]]
 const SPAWNS=[2.8,4.6,-3.7,-5.6,7.0,-7.0]
 var campaign_enabled:=false
@@ -38,6 +39,7 @@ func begin_story() -> void:
 func end_squad() -> void:
     campaign_boss="";campaign_route="combat";campaign_lesson="";campaign_hazards.clear();campaign_props.clear();reinforcements.clear()
     campaign_tier=0;campaign_captain=false;campaign_caption="";campaign_counter=""
+    tactics.enabled=false;tactics.clear()
     campaign_enabled=false;campaign_skills.clear();campaign_stats.clear();wave_recipes=WAVES.duplicate(true)
     story_enabled=false;story_state="";checkpoint.clear();body_chain.clear()
     super.end_squad()
@@ -68,6 +70,11 @@ func _load_wave(index:int,hp:int,meter:float) -> void:
         f["rush_charge"]=0;f["rush_cd"]=0;f["rush_follow"]=false;f["rush_direction"]=f.face
         squad_members.append(f)
     fighters[0].x=0.0;fighters[0].health=hp;fighters[0].meter=clampf(meter,0,100);fighters[1]=squad_members[0]
+    if campaign_enabled:
+        fighters[0]["tactic_unlocked"]=int(campaign_stats.get("tactic_unlocked",0))
+        fighters[0]["tactic_economy"]=float(campaign_stats.get("economy",0))
+        fighters[0]["tactic_relay"]=float(campaign_stats.get("tactic_relay",0))>0
+        fighters[0]["tactic_anchor"]=float(campaign_stats.get("tactic_anchor",0))>0
     checkpoint={"health":hp,"meter":meter}
     story_state="combat";arrival_left=75;break_left=0
     events=[{"kind":"story_wave_start","wave":index+1}]
@@ -113,7 +120,7 @@ func ai_command() -> Dictionary:
     var f:Dictionary=fighters[1]
     if f.has("boss"):return {}
     if arrival_left>0 or (campaign_enabled and int(f.get("arrival",0))>0):return {"axis":signf(fighters[0].x-f.x)*.25,"allow_parry":false}
-    if f.story_role=="jammer" and f.state=="idle" and squad_clock>=next_attack_at:
+    if f.story_role=="jammer" and int(f.get("tactic_silence",0))==0 and f.state=="idle" and squad_clock>=next_attack_at:
         if squad_clock%150==0 and campaign_hazards.size()<3:
             campaign_hazards.append({"kind":"jammer","x":float(fighters[0].x),"half":1.3,"warn":60,"active":6,"age":0,"source":f.squad_id,"boss":false,"face":f.face,"struck":false})
             next_attack_at=squad_clock+90
@@ -129,6 +136,7 @@ func _advance_fighter(i:int,command:Dictionary) -> void:
     var f:Dictionary=fighters[i]
     var event_start:=events.size()
     if campaign_enabled and i==1:
+        f["tactic_silence"]=maxi(0,int(f.get("tactic_silence",0))-1)
         f["arrival"]=maxi(0,int(f.get("arrival",0))-1)
         if f.health<=0:f["dead_age"]=int(f.get("dead_age",0))+1
         if f.has("boss") and f.health>0:
@@ -150,10 +158,8 @@ func _advance_fighter(i:int,command:Dictionary) -> void:
         elif f.rush_follow and f.state=="attack":f.rush_follow=false
         if f.story_role in ["guard","heavy","captain"] and f.state=="idle" and f.y<=.01 and f.guard>22 and squad_clock%150<95 and absf(f.x-fighters[0].x)<2.7:
             command={"guard":true,"allow_parry":false};f.buffer="";f.buffer_ttl=0
-    if campaign_enabled and i==0:
-        if "double_jump" not in campaign_skills and f.y>.01:f.jump_buffer=0
-        if "chase" not in campaign_skills:
-            f.air.chase_window=0;f.air.chase_buffer=0
+        var response:Dictionary=TacticResponse.command(self,f)
+        if not response.is_empty():command=response
     super._advance_fighter(i,command)
     if campaign_enabled and i==1 and f.health>0 and f.get("story_role","")!="captain" and squad_members.any(func(member:Dictionary)->bool:return member.health>0 and member.get("story_role","")=="captain"):
         f.guard=minf(100,f.guard+.15)
@@ -175,6 +181,7 @@ func _choose_focus(player:Dictionary) -> void:
     super._choose_focus(player)
 
 func _can_hit(i:int) -> bool:
+    if TacticalSkills.is_move(fighters[i].move):return false
     if story_enabled and (fighters[i].health<=0 or fighters[1-i].health<=0):return false
     if campaign_enabled and i==0 and fighters[1].has("boss"):
         var a:Dictionary=fighters[0]
@@ -220,19 +227,7 @@ func _finish_round() -> void:
             story_state="break";break_left=180
             events.append({"kind":"story_wave_clear","wave":wave_index+1})
 
-# Campaign ability permissions are enforced at the move owner, including held-J
-# and buffered/automatic routes. Existing M1 and all standard modes delegate.
-func _start_attack(i:int,requested:String) -> void:
-    if not campaign_enabled or i!=0:super._start_attack(i,requested);return
-    var f:Dictionary=fighters[i]
-    var resolved:=requested
-    if requested=="light":
-        resolved=(["air_jab","air_kick","meteor"] if f.y>.01 else ["jab","cross","launcher"])[mini(f.chain,2)]
-    if resolved=="launcher" and "launcher" not in campaign_skills:requested="finisher"
-    if resolved in ["meteor","air_finisher"] and "finisher" not in campaign_skills:requested="air_kick"
-    if resolved=="overdrive" and "overdrive" not in campaign_skills:requested="special"
-    super._start_attack(i,requested)
-
+# Basic moves are available from the first encounter; progression strengthens them.
 func move_for(fighter:Dictionary,name:String) -> Dictionary:
     var move:Dictionary=super.move_for(fighter,name)
     if not campaign_enabled:return move
@@ -243,13 +238,13 @@ func move_for(fighter:Dictionary,name:String) -> Dictionary:
         move.damage=maxi(1,roundi(float(move.damage)*(1.0+float(campaign_stats.get("enemy_damage",0)))*(1.0-defence)))
     else:
         var bonus:float=float(campaign_stats.get("damage",0))
-        if name=="special":bonus+=float(campaign_stats.get("skill_damage",0))
+        if name in ["special","tactic_a","tactic_b"]:bonus+=float(campaign_stats.get("skill_damage",0))
         if fighter.y>.01:bonus+=float(campaign_stats.get("aerial_damage",0))
         else:bonus+=float(campaign_stats.get("ground_penalty",0))
         if name in ["heavy","finisher"]:bonus+=float(campaign_stats.get("heavy_damage",0))
         if name in ["meteor","air_finisher"]:bonus+=float(campaign_stats.get("finisher_damage",0))
         if int(fighter.get("city_counter",0))>0:bonus+=minf(.6,float(campaign_stats.get("counter_damage",0)))
-        move["guard_multiplier"]=1.0+minf(.4,float(campaign_stats.get("guard_damage",0)))
+        move["guard_multiplier"]=float(move.get("guard_multiplier",1.0))*(1.0+minf(.4,float(campaign_stats.get("guard_damage",0))))
         if name in ["heavy","grab","meteor","air_finisher","overdrive"]:move.push*=1.0+minf(.3,float(campaign_stats.get("launch_force",0)))
         bonus=Balance.attack_bonus(bonus,int(fighter.get("city_counter",0))>0)
         var total_cap:float=1.60 if int(fighter.get("city_counter",0))>0 else 1.50

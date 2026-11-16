@@ -1,0 +1,200 @@
+{
+  "checks": [
+    {
+      "name": "quick_pierce [\"guard\", \"grunt\", \"rusher\"] respects finite resources",
+      "passed": true
+    },
+    {
+      "name": "quick_pierce [\"guard\", \"grunt\", \"rusher\"] is deterministic under live AI",
+      "passed": true
+    },
+    {
+      "name": "charged_relay [\"guard\", \"grunt\", \"rusher\"] respects finite resources",
+      "passed": true
+    },
+    {
+      "name": "charged_relay [\"guard\", \"grunt\", \"rusher\"] is deterministic under live AI",
+      "passed": true
+    },
+    {
+      "name": "quick_pierce [\"grunt\", \"grunt\", \"captain\"] respects finite resources",
+      "passed": true
+    },
+    {
+      "name": "quick_pierce [\"grunt\", \"grunt\", \"captain\"] is deterministic under live AI",
+      "passed": true
+    },
+    {
+      "name": "charged_relay [\"grunt\", \"grunt\", \"captain\"] respects finite resources",
+      "passed": true
+    },
+    {
+      "name": "charged_relay [\"grunt\", \"grunt\", \"captain\"] is deterministic under live AI",
+      "passed": true
+    },
+    {
+      "name": "quick_pierce [\"heavy\", \"rusher\", \"jammer\"] respects finite resources",
+      "passed": true
+    },
+    {
+      "name": "quick_pierce [\"heavy\", \"rusher\", \"jammer\"] is deterministic under live AI",
+      "passed": true
+    },
+    {
+      "name": "charged_relay [\"heavy\", \"rusher\", \"jammer\"] respects finite resources",
+      "passed": true
+    },
+    {
+      "name": "charged_relay [\"heavy\", \"rusher\", \"jammer\"] is deterministic under live AI",
+      "passed": true
+    },
+    {
+      "name": "quick configuration produces real tactical contacts",
+      "passed": true
+    },
+    {
+      "name": "charged configuration produces real full-tier contacts",
+      "passed": true
+    },
+    {
+      "name": "same pilot produces measurably different build outcomes",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "policy": "same reactive command policy, Normal AI, 1800-tick cap, initial100 HP/60 energy, no resource injections, authored three role recipes; not human balance validation",
+  "runs": [
+    {
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 127,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 15.0,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 100.0,
+      "recipe": [
+        "guard",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 0,
+      "state": "complete",
+      "tactical_blocks": 2,
+      "tactical_hits": 1,
+      "taken": 0,
+      "ticks": 366
+    },
+    {
+      "build": "charged_relay",
+      "casts": 2,
+      "damage": 122,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 5.0,
+      "full_tiers": 1,
+      "health": 100,
+      "meter": 100.0,
+      "recipe": [
+        "guard",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "tactical_blocks": 1,
+      "tactical_hits": 1,
+      "taken": 0,
+      "ticks": 567
+    },
+    {
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 148,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 15.0,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 100.0,
+      "recipe": [
+        "grunt",
+        "grunt",
+        "captain"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "tactical_blocks": 0,
+      "tactical_hits": 3,
+      "taken": 0,
+      "ticks": 341
+    },
+    {
+      "build": "charged_relay",
+      "casts": 1,
+      "damage": 152,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 30.0,
+      "full_tiers": 1,
+      "health": 100,
+      "meter": 100.0,
+      "recipe": [
+        "grunt",
+        "grunt",
+        "captain"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "tactical_blocks": 0,
+      "tactical_hits": 1,
+      "taken": 0,
+      "ticks": 337
+    },
+    {
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 134,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 15.0,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 100.0,
+      "recipe": [
+        "heavy",
+        "rusher",
+        "jammer"
+      ],
+      "relays": 0,
+      "state": "complete",
+      "tactical_blocks": 2,
+      "tactical_hits": 1,
+      "taken": 0,
+      "ticks": 700
+    },
+    {
+      "build": "charged_relay",
+      "casts": 2,
+      "damage": 124,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 5.0,
+      "full_tiers": 1,
+      "health": 100,
+      "meter": 84.18,
+      "recipe": [
+        "heavy",
+        "rusher",
+        "jammer"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "tactical_blocks": 1,
+      "tactical_hits": 1,
+      "taken": 0,
+      "ticks": 448
+    }
+  ]
+}

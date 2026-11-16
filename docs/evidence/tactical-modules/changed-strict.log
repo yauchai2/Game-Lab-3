@@ -1,0 +1,23 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+TACTICS_STRICT res://scripts/combat/tactics/skills.gd true
+TACTICS_STRICT res://scripts/combat/tactics/modules.gd true
+TACTICS_STRICT res://scripts/combat/tactics/expanded.gd true
+TACTICS_STRICT res://scripts/combat/tactics/presentation.gd true
+TACTICS_STRICT res://scripts/combat/last_service/presentation.gd true
+TACTICS_STRICT res://scripts/combat/last_service/rules.gd true
+TACTICS_STRICT res://scripts/combat/fight_simulation.gd true
+TACTICS_STRICT res://scripts/combat/fight_session.gd true
+TACTICS_STRICT res://scripts/combat/fight_controls.gd true
+TACTICS_STRICT res://scripts/combat/fight_hud.gd true
+TACTICS_STRICT res://scripts/combat/fight_preferences.gd true
+TACTICS_STRICT res://scripts/combat/fighter_visual.gd true
+TACTICS_STRICT res://scripts/combat/city/city_profile.gd true
+TACTICS_STRICT res://scripts/combat/city/city_campaign.gd true
+TACTICS_STRICT res://scripts/combat/city/city_hub.gd true
+TACTICS_STRICT res://scripts/combat/city/hub_pages.gd true
+TACTICS_STRICT res://scripts/combat/city/story_guide.gd true
+TACTICS_STRICT res://scripts/combat/city/story_flow.gd true
+TACTICS_STRICT res://scripts/combat/city/city_loot.gd true
+TACTICS_STRICT res://scripts/combat/story/story_simulation.gd true
+TACTICS_STRICT res://scripts/combat/enemies/gun_shot.gd true

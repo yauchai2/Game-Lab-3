@@ -1,0 +1,68 @@
+[
+  {
+    "suite": "verify_enemy_tactic_response",
+    "exit": 0,
+    "errors": [],
+    "passed": 42
+  },
+  {
+    "suite": "verify_tactical_modules",
+    "exit": 0,
+    "errors": [],
+    "passed": 80
+  },
+  {
+    "suite": "verify_expanded_tactics",
+    "exit": 0,
+    "errors": [],
+    "passed": 109
+  },
+  {
+    "suite": "verify_tactical_skills",
+    "exit": 0,
+    "errors": [],
+    "passed": 104
+  },
+  {
+    "suite": "verify_tactic_readiness",
+    "exit": 0,
+    "errors": [],
+    "passed": 53
+  },
+  {
+    "suite": "verify_tactic_encounters",
+    "exit": 0,
+    "errors": [],
+    "passed": 15
+  },
+  {
+    "suite": "verify_last_service_rules",
+    "exit": 0,
+    "errors": [],
+    "passed": 46
+  },
+  {
+    "suite": "verify_city_expansion",
+    "exit": 0,
+    "errors": [],
+    "passed": 86
+  },
+  {
+    "suite": "verify_campaign_complete",
+    "exit": 0,
+    "errors": [],
+    "passed": 50
+  },
+  {
+    "suite": "verify_gun_shot",
+    "exit": 0,
+    "errors": [],
+    "passed": 21
+  },
+  {
+    "suite": "verify_traditional_chinese",
+    "exit": 0,
+    "errors": [],
+    "passed": 21
+  }
+]

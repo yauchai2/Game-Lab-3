@@ -1,0 +1,73 @@
+{
+  "checks": [
+    {
+      "name": "hero0 second support exposes the compatible air drop",
+      "passed": true
+    },
+    {
+      "name": "hero0 actual dropdown fits air drop",
+      "passed": true
+    },
+    {
+      "name": "hero0 actual preset buttons restore its aerial module",
+      "passed": true
+    },
+    {
+      "name": "hero0 real Space opens a paid aerial option",
+      "passed": true
+    },
+    {
+      "name": "hero0 real Q spends one fee and the shared air budget",
+      "passed": true
+    },
+    {
+      "name": "hero0 native projectile actually descends",
+      "passed": true
+    },
+    {
+      "name": "hero0 native landing serves the extra recovery",
+      "passed": true
+    },
+    {
+      "name": "ZIP aerial tag makes a real hit and live mark",
+      "passed": true
+    },
+    {
+      "name": "hero3 second support exposes the compatible air drop",
+      "passed": true
+    },
+    {
+      "name": "hero3 actual dropdown fits air drop",
+      "passed": true
+    },
+    {
+      "name": "hero3 actual preset buttons restore its aerial module",
+      "passed": true
+    },
+    {
+      "name": "hero3 real Space opens a paid aerial option",
+      "passed": true
+    },
+    {
+      "name": "hero3 real Q spends one fee and the shared air budget",
+      "passed": true
+    },
+    {
+      "name": "hero3 native projectile actually descends",
+      "passed": true
+    },
+    {
+      "name": "hero3 native landing serves the extra recovery",
+      "passed": true
+    },
+    {
+      "name": "LOOP aerial setup keeps one ground node and normal energy",
+      "passed": true
+    },
+    {
+      "name": "exiting story clears airborne effects",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

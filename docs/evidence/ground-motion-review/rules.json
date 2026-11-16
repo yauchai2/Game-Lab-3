@@ -1,0 +1,89 @@
+{
+  "checks": [
+    {
+      "name": "stationary edge shows no locomotion despite a movement command",
+      "passed": true
+    },
+    {
+      "name": "F2 keeps the same blocked-movement correction",
+      "passed": true
+    },
+    {
+      "name": "motion sampling never changes physical velocity or state",
+      "passed": true
+    },
+    {
+      "name": "partial body movement slows animation to the observed speed",
+      "passed": true
+    },
+    {
+      "name": "position interpolation keeps its old fraction",
+      "passed": true
+    },
+    {
+      "name": "F2 skips positional smoothing while retaining actual motion",
+      "passed": true
+    },
+    {
+      "name": "collision correction cannot accelerate the requested gait",
+      "passed": true
+    },
+    {
+      "name": "a pushed idle body does not invent walking input",
+      "passed": true
+    },
+    {
+      "name": "opposite collision displacement keeps a braced pose",
+      "passed": true
+    },
+    {
+      "name": "backward movement preserves actual direction and speed",
+      "passed": true
+    },
+    {
+      "name": "hitstop preserves the frozen gait rather than changing to idle",
+      "passed": true
+    },
+    {
+      "name": "a one-shot dash keeps its authored fourteen-tick pose",
+      "passed": true
+    },
+    {
+      "name": "attacks never inherit the neutral movement filter",
+      "passed": true
+    },
+    {
+      "name": "air motion keeps its existing velocity contract",
+      "passed": true
+    },
+    {
+      "name": "teleports are not mistaken for gait motion",
+      "passed": true
+    },
+    {
+      "name": "a role change rejects the old position history",
+      "passed": true
+    },
+    {
+      "name": "reset removes stale movement history",
+      "passed": true
+    },
+    {
+      "name": "hero0 actual wall commands preserve physics and stop the gait",
+      "passed": true
+    },
+    {
+      "name": "hero1 actual wall commands preserve physics and stop the gait",
+      "passed": true
+    },
+    {
+      "name": "hero2 actual wall commands preserve physics and stop the gait",
+      "passed": true
+    },
+    {
+      "name": "hero3 actual wall commands preserve physics and stop the gait",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

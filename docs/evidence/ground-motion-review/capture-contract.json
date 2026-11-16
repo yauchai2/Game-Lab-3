@@ -1,0 +1,32 @@
+{
+  "baseline_commit": "5ba39a451d7af2ecd9269afaa90bedafbda0f7f0",
+  "engine": "Godot4.6.3 Compatibility Mesa llvmpipe",
+  "viewport": [
+    1280,
+    720
+  ],
+  "animation_assets_and_hero_sources": {
+    "godot/assets/animations/mixamo_fighters.json": "399f647d8bc5c52ab05e514dcfa1e59a3b367bb945b2a19fafb2d7e157a3c158",
+    "godot/assets/animations/quaternius_combat.json": "60a97a63905abf1944cfe68bafe6dd47885f5c5e0417da910a1906808a3bc7bd",
+    "godot/assets/animations/street_library.json": "5d7f3b617a4f7069e8607688031e5a75d0dfc831793e9a2ca353b23634ac3251",
+    "godot/assets/characters/last_service/source/tripo_convert_99c7d390-686e-4266-8ab4-9a4945bc8c0e.glb": "7cbdc19dce4c7e3ec58d792c5143502717f9ac04816778fbb3431754a70a389b",
+    "godot/assets/characters/last_service/source/tripo_convert_eba86dd1-7407-406c-8cd4-c30a60170283.glb": "e842af0e27edcff84ce4b66a6688b6201361e584e8f2a924f8d2996cb8600cde",
+    "godot/assets/characters/last_service/source/tripo_convert_966f11dc-0f0f-4749-89e3-3ce3dac4b3ed.glb": "0869b295395c067bb033bf039547ffa701bb443a0b33991e7fdb6d90092bf186",
+    "godot/assets/characters/last_service/source/tripo_convert_0a7a6724-6fde-4347-9257-cd31c2d34e36.glb": "f6ca02d419c40dab34fd0922d71edb44d749f3108cb248686eb8dde645dc7b86"
+  },
+  "clip_camera": "orthographic3.8, actor+(3.8,1.7,5), target actor+(0,.85,0)",
+  "clip_lighting": "ambient.7, directional(-50,-35,0)",
+  "capture_script_sha256": "db189e306f7f045afc3b47b0b7a1801fc201e191d9ee0203b426d504c781f440",
+  "motion_rules": "60Hz ordinary semantic movement; four heroes90ticks each; no human inputs or hardware timing",
+  "adapter": "none; native Godot capture, not game-dev sealed run",
+  "runtime_sources": {
+    "godot/scripts/combat/motion_interpolation.gd": {
+      "baseline_sha256": "f320e3375c5aac56934593c3d8aa478747e85cc323552d78c6b3ef74d8320bae",
+      "candidate_sha256": "56b651bcf10e429d9d903e53d5877f288cd34950a1110d2dbeda17370dbc4e11"
+    },
+    "godot/scripts/combat/fight_session.gd": {
+      "baseline_sha256": "7e4a0c4f7696e5c28ca7661d5790f205bffd2fc145abd579b45c33f8657bf146",
+      "candidate_sha256": "c68268aab122d3d3d16cdd202ed93c3b61a187397cb420ae6ec1b5b4954430db"
+    }
+  }
+}

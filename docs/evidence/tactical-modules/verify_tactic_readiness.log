@@ -1,0 +1,55 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+READINESS missing nodes explain the prerequisite before a wasted key true
+READINESS HUD and rejected cast use the same condition true
+READINESS route0 readiness shows the actual bank true
+READINESS route1 readiness shows the actual bank true
+READINESS two routes enable the paid cast true
+READINESS dive tells grounded players to jump true
+READINESS spent air budget asks for a landing true
+READINESS legal air dive reports its fee true
+READINESS energy shortage displays actual required fee true
+READINESS readiness fee respects equipped economy true
+READINESS locked slot gives its specific milestone true
+READINESS ground-only cast explains landing true
+READINESS vent prompts the real L preparation true
+READINESS vent readiness includes exactly the paid L credit true
+READINESS quoted L credit transfers into one fee true
+READINESS charge displays the discounted optional surcharge true
+READINESS charge never promises an unaffordable full tier true
+READINESS sample return is bright and free despite cooldown and empty meter true
+READINESS free sample quote matches actual zero-fee cast true
+READINESS emitter readiness bypasses original fee and cooldown true
+READINESS interrupted emitter cannot advertise a free immediate action true
+READINESS confirmed chain is shown as a free actionable followup true
+READINESS highlighted followup actually advances without a second fee true
+READINESS interruption closes confirmed chain readiness immediately true
+READINESS running skill advertises manual braking despite cooldown true
+READINESS held guard does not falsely advertise a cast true
+READINESS recovery gives a distinct non-resource hint true
+READINESS hero0 skill0 page cooldown matches actual support and equipment true
+READINESS hero0 skill1 page cooldown matches actual support and equipment true
+READINESS hero0 skill2 page cooldown matches actual support and equipment true
+READINESS hero0 skill3 page cooldown matches actual support and equipment true
+READINESS hero0 skill4 page cooldown matches actual support and equipment true
+READINESS hero0 skill5 page cooldown matches actual support and equipment true
+READINESS hero1 skill0 page cooldown matches actual support and equipment true
+READINESS hero1 skill1 page cooldown matches actual support and equipment true
+READINESS hero1 skill2 page cooldown matches actual support and equipment true
+READINESS hero1 skill3 page cooldown matches actual support and equipment true
+READINESS hero1 skill4 page cooldown matches actual support and equipment true
+READINESS hero1 skill5 page cooldown matches actual support and equipment true
+READINESS hero2 skill0 page cooldown matches actual support and equipment true
+READINESS hero2 skill1 page cooldown matches actual support and equipment true
+READINESS hero2 skill2 page cooldown matches actual support and equipment true
+READINESS hero2 skill3 page cooldown matches actual support and equipment true
+READINESS hero2 skill4 page cooldown matches actual support and equipment true
+READINESS hero2 skill5 page cooldown matches actual support and equipment true
+READINESS hero3 skill0 page cooldown matches actual support and equipment true
+READINESS hero3 skill1 page cooldown matches actual support and equipment true
+READINESS hero3 skill2 page cooldown matches actual support and equipment true
+READINESS hero3 skill3 page cooldown matches actual support and equipment true
+READINESS hero3 skill4 page cooldown matches actual support and equipment true
+READINESS hero3 skill5 page cooldown matches actual support and equipment true
+READINESS cooldown progress advances without wall-clock guessing true
+READINESS HUD reads never mutate simulation true

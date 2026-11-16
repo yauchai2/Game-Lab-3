@@ -1,3 +1,49 @@
+## 2026-11-16：地面步態與故事整合前重驗
+
+[動作證據](evidence/ground-motion-review/README.md)：21專門規則、四角7情境，修前／修後／F2各33原生檢查與3比較通過，受阻行跑324→0／F2為0；權威trace位置／速度／狀態逐列一致。連續79、Transit216、Street90與1800tick雙路simulation mismatch0／presentation mutation0，23腳本七類fatal warning通過。兩部6秒／180格原生片與抽格已檢視，非硬件FPS或整張全遊戲動作表已完。
+
+[故事整合前證據](evidence/story-merge-readiness/README.md)：目前分支原生54/54，fresh帳號／舊檔原位元組／真付費追擊／指南／實體設施導航／第一場完整操作與真費用。PR #38仍draft、clean且無GitHub check／review decision；範圍含技能配裝，待使用者選整PR或教學子集後再整合。Linux4.6.3／llvmpipe／Dummy，非Mac／真人／手柄。
+
+## 2026-11-16：空投／落地／輸入緩衝
+
+[證據](evidence/airdrop-module/README.md)：59新規則與17新增原生（真選擇器／預設按鈕／Space→Q、真向下飛行、標記／單點、原費用、落地承諾與退出），schema7含舊檔原位元組／巢狀預設／整數ID／缺欄拒絕；8實際額外tick、排隊跳／攻擊、受擊中斷不再鎖第二次及標準模式隔離通過。模組83／擴充111／首批106／就緒53／反應42／服務46／城市86／戰役50／槍21／繁中21、Rush22／live45／squad35及既有原生8／39／8／14、22腳本七類fatal warning通過，各suite重疊。
+
+舊Rush初測20/21，完整9b13331隔離checkout同敗，因測試仍要求摔技起手扣12；更新為檢查配對確實中斷爆發、未落地不扣血、落地僅一次12，保留原傷害要求，當前22/22。baseline預期失敗log另存，接受log無ERROR／SCRIPT ERROR。觀察fixture best18／100能量／靜止移位500HP敵人，不當自然章節或真人平衡。Linux4.6.3／llvmpipe／Dummy非Mac／實體輸入／喇叭／硬件FPS。
+
+## 2026-11-16：預告反應與正式交戰矩陣
+
+[本輪證據](evidence/module-counterplay/README.md)：42反應規則、60遭遇檢查／28場各重播、8新增原生；模組80／擴充109／首批104／就緒53／舊比較15／服務46／城市86／戰役50／槍21／繁中21與模組8／擴充39／就緒14原生、22腳本七類fatal warning通過。接受log無ERROR／SCRIPT ERROR，suite重疊。新原生真I建預告、真普通移動與架防、重裝無新反應、原費用／pause／退出清理，截圖已檢視。
+
+矩陣入場結束才交戰，兩邊同寬幅返工震線／相同指令策略，正常100HP／60能量、不補給或改敵位置。保留零戰術施放／零模組命中與Signal頭目失敗；部分tick差異可能只因時序改變。原生觀察fixture為best18、100能量、移位500HP角色、暫緩攻擊以看清同場反應。舊:99已停止，恢復Xvfb:100後接受原生結果；Linux4.6.3／llvmpipe／Dummy，非真人、Mac、實體手柄或硬件FPS。
+
+## 2026-11-16：第二支援模組驗證
+
+[證據](evidence/tactical-modules/README.md)：80新規則、8新增原生；擴充109／首批104含新增schema6覆蓋、就緒53、服務46／城市86／戰役50／槍21／繁中21，既有原生20／39／14與21腳本七類fatal warning通過。接受log無ERROR／SCRIPT ERROR，suite有重疊。規則含24招×兩模組相容、兩裝配順序回滾、不同身體返程／不重設已消耗接力收益、邊界、預告單次判定／離開／跳過／hitstop、變體及錨定範圍、schema4–6原檔／巢狀預設／重讀與不合法配置。
+
+原生透過真下拉按鍵與Q／I施放，回收一次扣費、真返程、單體不重複，固定警告後才扣敵血；中英模組代價與禁用tooltip截圖已檢視。fixture用best18、100能量、移位500HP靜止敵人；不是自然遭遇或真人平衡。Linux4.6.3／llvmpipe／Dummy，非Mac、實體手柄、喇叭或硬件FPS。
+
+## 2026-11-16：戰術可用性與構築比較
+
+[本輪證據](evidence/tactics-usability/README.md)：53就緒／施放一致性、15遭遇比較、14原生輸入／布局；原107擴充、102首八招、角色46、城市86、槍彈21、繁中21，以及原生首批20／擴充39回歸與20腳本七類fatal warning通過。各組重疊，接受log無ERROR／SCRIPT ERROR。新增原生包含英／繁中名稱與狀態實際字寬、394tick裝備後冷卻、兩次真L放點後Q建立／免費發射及拒絕時不扣費，截圖已檢視。
+
+六組比較各重播，正常100生命／60初始能量、Normal真AI、同一自動指令策略，三組角色配方而非完整戰役；不補資源／改敵人位置。全部無受傷是策略理想化的限制，不作真人難度／樂趣證明。Linux4.6.3／llvmpipe／Dummy非Mac、實體輸入、喇叭或硬件效能驗收。
+
+## 2026-11-16續作：擴充技能與完整預設驗證
+
+[本輪證據](evidence/tactics-expanded/README.md)：107擴充規則檢查、102首批戰術回歸（含schema5）、39新原生及20舊原生、角色46／城市86／戰役50／槍彈21／繁中21／引導54，20改動腳本七類fatal warning通過。各組重疊，不加總宣稱唯一覆蓋。新增全16招按鍵路徑與角色身分、六選二下拉、真預設儲存／套用、真延遲地面爆發、實際故事費用傳遞；規則包含人工續招／格擋拒絕、兩個不同身體、空中預算／高低限制、Boss牽引與靜音邊界、在飛子彈保留、預設重讀／裝備ID保護及失敗回滾。
+
+原生測試best18／100能量與角色對應前置資源是明示fixture，不是正常通關／真人學習。Linux Godot4.6.3 Compatibility／llvmpipe／Dummy，不宣稱Mac、喇叭、實體控制器或即時硬件FPS。畫面已檢視技能頁優先布局、空中斜落、延遲區及浮空發射器；不是24套新動捕或真人手感認證。
+
+## 2026-11-16：戰術技能實作驗證
+
+[新證據](evidence/tactical-skills/README.md)：100規則檢查含蓄力／中斷／boss護甲／反射取樣／舊檔原位元組／失敗交易回滾與多裝置語義；20真窗口檢查含下拉選單、Q按住與鬆開、H、重綁及四角實際角色身分。原服務46、城市86、戰役50、槍彈21、繁中21、故事引導54皆過；17個改動腳本七類fatal warning與既有23 strict通過。數目跨suite有重疊，不相加成唯一測試數。schema3硬寫版本的兩個既有測試隨schema4更新，所有原進度／裝備／天賦斷言保持；H關指南測試改為Esc。
+
+初版UI曾被選單最小寬度撐出視窗、技能HUD被舊提示遮住，已修正並實際重拍。初版native角色切換指令在play被忽略，後補真身分斷言並修city出擊角色套用，接受證據只取重跑後結果。資產冷啟動匯入已完成。Linux4.6.3 Compatibility／llvmpipe／Dummy；未測Mac／實體手柄／真人樂趣／喇叭／即時硬件FPS，不宣稱全24招已完成。
+
+## 2026-11-16：技能操作續訂文件驗證
+
+本輪只有規劃。對照基線9336bed的fight_session、fight_controls、fight_hud、city_hub、last_service/rules及現有技能文件，核對RIVET蓄力12／30／36tick、J持鍵、K正式挑空、上L大招、LOOP下L／水平L、H說明、Q標題秘密碼、P2 I閃避及F1設定。新Q15／36／54tick是起測提案，非現有值。文件連結與git diff --check通過；未執行Godot或真人測試，未宣稱新方案手感驗證。[新方案及驗收規格](SKILL_INPUT_CHARGE_PLAN.zh-TW.md)。
+
 ## 2026-11-15：全部合適分支整合
 
 已依使用者授權整合全部合適來源：四角色31段Mixamo／配對肩摔、ZIP／RIVET影片技能與連續慢動作、屋頂細節及2男2女設定紀錄。修正通用Mixamo覆蓋四招專用owner，保留繁中與5／8／100。全部34個遠端原始碼分支（含main）均納入，gh-pages排除；21個suite最終通過，各suite有重疊。完整來源、結果與環境診斷見[整合紀錄](BRANCH_MERGE_2026-11-15.zh-TW.md)及[evidence](evidence/branch-merge-2026-11-15/README.md)。下方不合main／舊安裝限制屬歷史，現行來源使用main；公開Web不更新，Mac／真人／實體輸入仍待本機驗收。
@@ -902,3 +948,13 @@ Godot 4.6.3 Linux／llvmpipe：verify_story_flow 51/51（證據 docs/evidence/st
 ## 2026-11-10：陣容與造型計劃文件
 
 本輪檢查最新陣容、LOOP男性稱謂、Markdown修訂連結、diff whitespace與僅文件變更。更新8份Markdown，不新增圖片，不更動manifest／PNG／影片／GLB或runtime。新頭部、比例、三視圖、表情、UV與遊戲畫面均未驗證；後續條件見 [修訂計劃](LAST_SERVICE_ROSTER_REVISION.zh-TW.md)。
+
+
+## 2026-11-15：故事開局招式與引導
+
+已完成：全部基本動作開局可用、三代舊檔自動補齊、H 故事指南與實際尋路、據點下一步、技能／裝備／天賦說明及真實費用的戰鬥提示。進階技巧及成長仍保留；詳細見 [STORY_ONBOARDING.zh-TW.md](STORY_ONBOARDING.zh-TW.md)。新 54 項、城市 86 項、戰役 50 項、原生城市 23 項、嚴格編譯 23 項及繁中 21 項通過。Linux 4.6.3／llvmpipe，不冒稱 Mac／真人驗收，Web 未更新。
+
+
+## 2026-11-15：技能深度策劃文件覆核
+
+核對現有city_profile／city_builds／city_loot、last_service/progression／profiles、story_script及角色設定，區分已存在機制與新增提案。確認新增24招為每角6、首批8為每角2，章節／技能表對應、Markdown連結和git diff格式。此次只改文件，沒有執行或宣稱新技能／平衡／真人測試；先前runtime驗證不可當作新技能已通過。

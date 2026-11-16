@@ -7,7 +7,7 @@
   "license": "SIL OFL 1.1",
   "generator": "tools/subset_ui_font.py",
   "output": "godot/assets/fonts/AfterhoursUIHK.otf",
-  "output_sha256": "83fd38e7655aa2d0d712cc9b6a12997c8b7fb4f76a1b60207598e388776f80a1",
-  "characters_requested": 1016,
-  "bytes": 533932
+  "output_sha256": "9c5d9b4608a7ca5ee0c7cad6a623227afe1357c792e339c20019a76ec720a4a9",
+  "characters_requested": 1101,
+  "bytes": 588904
 }

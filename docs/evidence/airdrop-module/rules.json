@@ -1,0 +1,241 @@
+{
+  "checks": [
+    {
+      "name": "hero0 skill0 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill1 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill2 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill3 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill4 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill5 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill0 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill1 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill2 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill3 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill4 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill5 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill0 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill1 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill2 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill3 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill4 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill5 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill0 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill1 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill2 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill3 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill4 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill5 airdrop compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 airborne HUD advertises a genuinely legal paid cast",
+      "passed": true
+    },
+    {
+      "name": "hero0 air cast spends normal fee and shared fast-fall budget",
+      "passed": true
+    },
+    {
+      "name": "hero0 air cast preserves spent jump and chase resources",
+      "passed": true
+    },
+    {
+      "name": "hero0 projectile follows a real downward path",
+      "passed": true
+    },
+    {
+      "name": "hero0 landing pays its recovery commitment once",
+      "passed": true
+    },
+    {
+      "name": "hero0 air effect has a finite life",
+      "passed": true
+    },
+    {
+      "name": "hero0 spent fast fall rejects without borrowing energy",
+      "passed": true
+    },
+    {
+      "name": "hero0 ground casts retain ordinary behavior",
+      "passed": true
+    },
+    {
+      "name": "hero3 airborne HUD advertises a genuinely legal paid cast",
+      "passed": true
+    },
+    {
+      "name": "hero3 air cast spends normal fee and shared fast-fall budget",
+      "passed": true
+    },
+    {
+      "name": "hero3 air cast preserves spent jump and chase resources",
+      "passed": true
+    },
+    {
+      "name": "hero3 projectile follows a real downward path",
+      "passed": true
+    },
+    {
+      "name": "hero3 landing pays its recovery commitment once",
+      "passed": true
+    },
+    {
+      "name": "hero3 air effect has a finite life",
+      "passed": true
+    },
+    {
+      "name": "air connector creates exactly one real ground node",
+      "passed": true
+    },
+    {
+      "name": "hero3 spent fast fall rejects without borrowing energy",
+      "passed": true
+    },
+    {
+      "name": "hero3 ground casts retain ordinary behavior",
+      "passed": true
+    },
+    {
+      "name": "aerial tag can make one real grounded contact and mark",
+      "passed": true
+    },
+    {
+      "name": "airborne tag actually pays its damage tradeoff",
+      "passed": true
+    },
+    {
+      "name": "air drop cannot also buy ZIP's diving tactic in the same jump",
+      "passed": true
+    },
+    {
+      "name": "landing commitment adds eight real ticks after attack recovery",
+      "passed": true
+    },
+    {
+      "name": "queued jump cannot cancel landing commitment",
+      "passed": true
+    },
+    {
+      "name": "queued jump survives the extra recovery instead of being eaten",
+      "passed": true
+    },
+    {
+      "name": "queued attack waits through the landing commitment",
+      "passed": true
+    },
+    {
+      "name": "queued attack starts after recovery",
+      "passed": true
+    },
+    {
+      "name": "disabled story tactics never impose their debt on standard modes",
+      "passed": true
+    },
+    {
+      "name": "hitstop cannot advance or discard landing debt",
+      "passed": true
+    },
+    {
+      "name": "a hurt landing serves actual hitstun instead of adding hidden debt",
+      "passed": true
+    },
+    {
+      "name": "recovering from a hurt landing cannot trigger a late second lockout",
+      "passed": true
+    },
+    {
+      "name": "an airborne interruption clears the future debt without erasing hitstun",
+      "passed": true
+    },
+    {
+      "name": "schema6 preserves original bytes, money and old module preset",
+      "passed": true
+    },
+    {
+      "name": "schema6 air-drop preset survives reload with integer module ID",
+      "passed": true
+    },
+    {
+      "name": "schema7 preserves original bytes, money and old module preset",
+      "passed": true
+    },
+    {
+      "name": "schema7 air-drop preset survives reload with integer module ID",
+      "passed": true
+    },
+    {
+      "name": "migration rejects a schema6 save missing its mandatory module record",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

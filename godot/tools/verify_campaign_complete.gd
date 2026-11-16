@@ -95,7 +95,7 @@ func run() -> void:
     var saved:Dictionary=p.data.duplicate(true);saved.version=2
     for key in ["quest_claims","core_offer","pending_core","core_serial","craft_serial"]:saved.erase(key)
     var expanded:Dictionary=p.expand(saved)
-    check("schema2 expansion preserves exact talent inventory and run state",expanded.version==3 and expanded.run==saved.run and expanded.talents==saved.talents and p.valid(expanded))
+    check("schema2 expansion preserves exact talent inventory and run state",expanded.version==P.SCHEMA and expanded.run==saved.run and expanded.talents==saved.talents and p.valid(expanded))
     var old_mode=S.new();old_mode.last_service_enabled=true;old_mode.character_choices=[0,4];old_mode.difficulty=0;old_mode.begin_story()
     var old_attacks:=0
     for tick in 600:

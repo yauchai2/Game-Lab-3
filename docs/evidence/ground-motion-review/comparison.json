@@ -1,0 +1,23 @@
+{
+  "checks": [
+    {
+      "name": "all authoritative motion samples match baseline",
+      "passed": true
+    },
+    {
+      "name": "all original rig and freeze checks pass",
+      "passed": true
+    },
+    {
+      "name": "blocked locomotion is eliminated in normal and reduced modes",
+      "passed": true
+    }
+  ],
+  "baseline_commit": "5ba39a451d7af2ecd9269afaa90bedafbda0f7f0",
+  "before_blocked": 324,
+  "before_moving": 324,
+  "after_blocked": 324,
+  "after_moving": 0,
+  "reduced_moving": 0,
+  "scope": "matched semantic motion traces, same original rig assets; no claim of game-dev sealed harness or hardware FPS"
+}

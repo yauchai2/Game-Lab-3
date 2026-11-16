@@ -1,0 +1,337 @@
+{
+  "checks": [
+    {
+      "name": "hero0 skill0 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill0 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill1 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill1 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill2 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill2 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill3 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill3 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill4 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill4 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill5 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill5 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill0 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill0 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill1 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill1 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill2 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill2 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill3 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill3 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill4 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill4 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill5 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill5 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill0 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill0 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill1 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill1 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill2 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill2 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill3 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill3 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill4 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill4 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill5 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill5 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill0 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill0 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill1 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill1 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill2 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill2 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill3 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill3 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill4 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill4 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill5 module1 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill5 module2 compatibility is transactional",
+      "passed": true
+    },
+    {
+      "name": "return rejects piercing without silently ejecting it",
+      "passed": true
+    },
+    {
+      "name": "piercing rejects return in either fitting order",
+      "passed": true
+    },
+    {
+      "name": "combat boundary also rejects incompatible injected config",
+      "passed": true
+    },
+    {
+      "name": "hero0 return cannot hit the same body twice",
+      "passed": true
+    },
+    {
+      "name": "hero0 return never refunds its ranged fee",
+      "passed": true
+    },
+    {
+      "name": "hero1 return cannot hit the same body twice",
+      "passed": true
+    },
+    {
+      "name": "hero1 return never refunds its ranged fee",
+      "passed": true
+    },
+    {
+      "name": "hero2 return cannot hit the same body twice",
+      "passed": true
+    },
+    {
+      "name": "hero2 return never refunds its ranged fee",
+      "passed": true
+    },
+    {
+      "name": "return actually contacts a different target on its returning leg",
+      "passed": true
+    },
+    {
+      "name": "return cannot rearm an already consumed next-melee refund",
+      "passed": true
+    },
+    {
+      "name": "return damage and guard tradeoffs are real",
+      "passed": true
+    },
+    {
+      "name": "return reverses once at the arena boundary instead of escaping",
+      "passed": true
+    },
+    {
+      "name": "hero1 delayed area warns before its single real contact",
+      "passed": true
+    },
+    {
+      "name": "hero1 delayed explosion produces one cue at detonation",
+      "passed": true
+    },
+    {
+      "name": "hero3 delayed area warns before its single real contact",
+      "passed": true
+    },
+    {
+      "name": "hero3 delayed explosion produces one cue at detonation",
+      "passed": true
+    },
+    {
+      "name": "delayed pulse consumes its original node once",
+      "passed": true
+    },
+    {
+      "name": "walking out of a warning avoids actual damage",
+      "passed": true
+    },
+    {
+      "name": "delayed warning freezes with simulation hitstop",
+      "passed": true
+    },
+    {
+      "name": "wide variant and anchor retain real coverage on delayed ground line",
+      "passed": true
+    },
+    {
+      "name": "jumping above a delayed ground zone avoids contact",
+      "passed": true
+    },
+    {
+      "name": "save validator rejects a module on an incompatible skill",
+      "passed": true
+    },
+    {
+      "name": "current schema requires its support-slot record",
+      "passed": true
+    },
+    {
+      "name": "schema4 preserves old save bytes and choices",
+      "passed": true
+    },
+    {
+      "name": "schema4 migrated module preset survives integer normalization and reload",
+      "passed": true
+    },
+    {
+      "name": "schema5 preserves old save bytes and choices",
+      "passed": true
+    },
+    {
+      "name": "schema5 upgrades nested preset support slots",
+      "passed": true
+    },
+    {
+      "name": "schema5 migrated module preset survives integer normalization and reload",
+      "passed": true
+    },
+    {
+      "name": "schema6 preserves old save bytes and choices",
+      "passed": true
+    },
+    {
+      "name": "schema6 upgrades nested preset support slots",
+      "passed": true
+    },
+    {
+      "name": "schema6 migrated module preset survives integer normalization and reload",
+      "passed": true
+    },
+    {
+      "name": "schema7 preserves old save bytes and choices",
+      "passed": true
+    },
+    {
+      "name": "schema7 upgrades nested preset support slots",
+      "passed": true
+    },
+    {
+      "name": "schema7 migrated module preset survives integer normalization and reload",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

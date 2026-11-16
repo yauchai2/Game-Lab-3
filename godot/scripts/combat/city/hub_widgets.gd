@@ -146,3 +146,9 @@ static func stat_chip(stat:String,amount:float,parent:Node=null,with_word:=true)
     var text:=stat_text(stat,amount)
     if with_word:text=STAT_SHORT.get(stat,stat.to_upper())+" "+text
     return chip(STAT_ICON.get(stat,"star"),text,tint,parent)
+
+## Visible, wrapped instructions; essential guidance must not depend on hover.
+static func guide(hub:Node,text:String) -> void:
+    var copy:=label(text,24,T.PAPER)
+    copy.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+    hub.stack.add_child(copy)

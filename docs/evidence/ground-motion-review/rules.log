@@ -1,0 +1,23 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+OBSERVED_MOTION stationary edge shows no locomotion despite a movement command true
+OBSERVED_MOTION F2 keeps the same blocked-movement correction true
+OBSERVED_MOTION motion sampling never changes physical velocity or state true
+OBSERVED_MOTION partial body movement slows animation to the observed speed true
+OBSERVED_MOTION position interpolation keeps its old fraction true
+OBSERVED_MOTION F2 skips positional smoothing while retaining actual motion true
+OBSERVED_MOTION collision correction cannot accelerate the requested gait true
+OBSERVED_MOTION a pushed idle body does not invent walking input true
+OBSERVED_MOTION opposite collision displacement keeps a braced pose true
+OBSERVED_MOTION backward movement preserves actual direction and speed true
+OBSERVED_MOTION hitstop preserves the frozen gait rather than changing to idle true
+OBSERVED_MOTION a one-shot dash keeps its authored fourteen-tick pose true
+OBSERVED_MOTION attacks never inherit the neutral movement filter true
+OBSERVED_MOTION air motion keeps its existing velocity contract true
+OBSERVED_MOTION teleports are not mistaken for gait motion true
+OBSERVED_MOTION a role change rejects the old position history true
+OBSERVED_MOTION reset removes stale movement history true
+OBSERVED_MOTION hero0 actual wall commands preserve physics and stop the gait true
+OBSERVED_MOTION hero1 actual wall commands preserve physics and stop the gait true
+OBSERVED_MOTION hero2 actual wall commands preserve physics and stop the gait true
+OBSERVED_MOTION hero3 actual wall commands preserve physics and stop the gait true

@@ -63,6 +63,7 @@ func _depart_now() -> void:
     active=true
     var sim=session.sim
     sim.campaign_enabled=true;sim.campaign_skills=profile.data.skills.duplicate()
+    sim.tactics.enabled=true;sim.tactics.config=[profile.data.tactics[hero_id()].duplicate(true),{}]
     sim.service_perks=[profile.data.advanced[hero_id()].duplicate(),[]]
     sim.campaign_stats=profile.stats(hero_id());sim.campaign_room=room
     var challenge:bool=profile.data.run.get("mode","story")=="contract"
@@ -130,7 +131,7 @@ func return_from_encounter() -> void:
         if not profile.settle(won,hp,meter,int(session.sim.fighters[0].get("draw_healed",0)),techniques):
             session.hud.notice=profile.error;session.hud.notice_time=6;return
         settlement_done=true
-        last_result="Encounter banked. Choose current at DEPART; new skills may be ready." if won else "Back home. Temporary current lost; permanent progress retained."
+        last_result="Encounter banked. Choose a current at DEPART; visit SKILLS, CIRCUIT or SHOP to strengthen your build." if won else "Back home. Temporary current lost; permanent progress retained."
         if won and was_story and last_room==17:last_result="Tower captain defeated. The signal is back. All six districts can be replayed."
         if chained:
             _chain_after_settle(won,was_story,last_room,hero,tally,contract_tier);return

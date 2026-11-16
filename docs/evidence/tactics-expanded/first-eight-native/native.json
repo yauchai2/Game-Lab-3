@@ -1,0 +1,85 @@
+{
+  "checks": [
+    {
+      "name": "H cannot interrupt the hub",
+      "passed": true
+    },
+    {
+      "name": "tactics selectors are real native controls",
+      "passed": true
+    },
+    {
+      "name": "native dropdown selection updates the build",
+      "passed": true
+    },
+    {
+      "name": "H cannot open combat help",
+      "passed": true
+    },
+    {
+      "name": "physical Q holds the actual story charge",
+      "passed": true
+    },
+    {
+      "name": "physical release spawns a real travelling rivet",
+      "passed": true
+    },
+    {
+      "name": "pause exposes controls without an H shortcut",
+      "passed": true
+    },
+    {
+      "name": "guide remains reachable from pause",
+      "passed": true
+    },
+    {
+      "name": "rebind changes actual semantic key",
+      "passed": true
+    },
+    {
+      "name": "duplicate rebind swaps instead of colliding",
+      "passed": true
+    },
+    {
+      "name": "simultaneous input has stable priority",
+      "passed": true
+    },
+    {
+      "name": "hero0 departure uses the saved expedition identity",
+      "passed": true
+    },
+    {
+      "name": "hero0 slot0 native intent starts",
+      "passed": true
+    },
+    {
+      "name": "hero0 slot1 native intent starts",
+      "passed": true
+    },
+    {
+      "name": "hero2 departure uses the saved expedition identity",
+      "passed": true
+    },
+    {
+      "name": "hero2 slot0 native intent starts",
+      "passed": true
+    },
+    {
+      "name": "hero2 slot1 native intent starts",
+      "passed": true
+    },
+    {
+      "name": "hero3 departure uses the saved expedition identity",
+      "passed": true
+    },
+    {
+      "name": "hero3 slot0 native intent starts",
+      "passed": true
+    },
+    {
+      "name": "hero3 slot1 native intent starts",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

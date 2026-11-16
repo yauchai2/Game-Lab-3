@@ -1,0 +1,433 @@
+{
+  "checks": [
+    {
+      "name": "hero0 skill2 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill2 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill2 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill3 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill3 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill3 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill4 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill4 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill4 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill5 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill5 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill5 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill2 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill2 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill2 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill3 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill3 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill3 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill4 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill4 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill4 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill5 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill5 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill5 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill2 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill2 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill2 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill3 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill3 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill3 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill4 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill4 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill5 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill5 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill5 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill2 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill2 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill2 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill3 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill3 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill3 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill4 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill4 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill5 starts for its exact cost",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill5 emits within bounded life",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill5 has real blockable contact",
+      "passed": true
+    },
+    {
+      "name": "diving tactic requires a real jump",
+      "passed": true
+    },
+    {
+      "name": "dive never refills jumps or pursuit",
+      "passed": true
+    },
+    {
+      "name": "pressure vent rejects absent preload",
+      "passed": true
+    },
+    {
+      "name": "pressure vent consumes the original preload once",
+      "passed": true
+    },
+    {
+      "name": "cut-three does not autoplay stages",
+      "passed": true
+    },
+    {
+      "name": "confirmed manual stage is funded by the original cast",
+      "passed": true
+    },
+    {
+      "name": "whiff cannot open a free follow-up",
+      "passed": true
+    },
+    {
+      "name": "floating emitter reserves both destructible nodes",
+      "passed": true
+    },
+    {
+      "name": "emitter is fired once without a second fee",
+      "passed": true
+    },
+    {
+      "name": "silence delays ordinary preparation only",
+      "passed": true
+    },
+    {
+      "name": "ground seal warns before it can hit",
+      "passed": true
+    },
+    {
+      "name": "ground seal detonation has one real area cue",
+      "passed": true
+    },
+    {
+      "name": "six learned skills are individually equippable",
+      "passed": true
+    },
+    {
+      "name": "duplicate skill selection swaps the other slot",
+      "passed": true
+    },
+    {
+      "name": "full build can be stored for free",
+      "passed": true
+    },
+    {
+      "name": "saved gear cannot be accidentally scrapped",
+      "passed": true
+    },
+    {
+      "name": "build restores gear and six-skill configuration",
+      "passed": true
+    },
+    {
+      "name": "build restores its allocated talent path",
+      "passed": true
+    },
+    {
+      "name": "build restores equipped advanced techniques",
+      "passed": true
+    },
+    {
+      "name": "clearing preset releases only its references",
+      "passed": true
+    },
+    {
+      "name": "preset load never changes money",
+      "passed": true
+    },
+    {
+      "name": "schema3 preserves old save bytes and progression",
+      "passed": true
+    },
+    {
+      "name": "schema3 new save reloads with six-choice records",
+      "passed": true
+    },
+    {
+      "name": "schema4 preserves old save bytes and progression",
+      "passed": true
+    },
+    {
+      "name": "schema4 pads new choices without losing the old build",
+      "passed": true
+    },
+    {
+      "name": "schema4 new save reloads with six-choice records",
+      "passed": true
+    },
+    {
+      "name": "schema5 preserves old save bytes and progression",
+      "passed": true
+    },
+    {
+      "name": "schema5 new save reloads with six-choice records",
+      "passed": true
+    },
+    {
+      "name": "progress0 unlocks exactly0 tools",
+      "passed": true
+    },
+    {
+      "name": "progress1 unlocks exactly1 tools",
+      "passed": true
+    },
+    {
+      "name": "progress3 unlocks exactly2 tools",
+      "passed": true
+    },
+    {
+      "name": "progress6 unlocks exactly3 tools",
+      "passed": true
+    },
+    {
+      "name": "progress9 unlocks exactly4 tools",
+      "passed": true
+    },
+    {
+      "name": "progress12 unlocks exactly5 tools",
+      "passed": true
+    },
+    {
+      "name": "progress15 unlocks exactly6 tools",
+      "passed": true
+    },
+    {
+      "name": "progress18 unlocks exactly6 tools",
+      "passed": true
+    },
+    {
+      "name": "ground tactic cannot hit arbitrarily high flyers",
+      "passed": true
+    },
+    {
+      "name": "cable never moves a giant boss",
+      "passed": true
+    },
+    {
+      "name": "interruption clears the manual chain window",
+      "passed": true
+    },
+    {
+      "name": "breaking half an emitter releases both reserved points",
+      "passed": true
+    },
+    {
+      "name": "broadcast segments share one victim budget",
+      "passed": true
+    },
+    {
+      "name": "failed preset load is an atomic rollback",
+      "passed": true
+    },
+    {
+      "name": "missing preset equipment cannot invent gear or partially apply",
+      "passed": true
+    },
+    {
+      "name": "unaffordable saved allocation cannot apply",
+      "passed": true
+    },
+    {
+      "name": "two-stop delivery selects and actually hits a different body",
+      "passed": true
+    },
+    {
+      "name": "blocked chain cannot grant free manual continuation",
+      "passed": true
+    },
+    {
+      "name": "silence never deletes a pistol round already in flight",
+      "passed": true
+    },
+    {
+      "name": "silence does not suppress a nearby giant boss",
+      "passed": true
+    },
+    {
+      "name": "nonempty preset survives atomic save/reload with gear and talents",
+      "passed": true
+    },
+    {
+      "name": "reloaded preset still protects its item identity",
+      "passed": true
+    },
+    {
+      "name": "economy build affects both fast fee and full-charge surcharge",
+      "passed": true
+    },
+    {
+      "name": "tactical energy discounts retain the common twenty-percent cap",
+      "passed": true
+    },
+    {
+      "name": "route-banking build earns route1 from a legal dodge",
+      "passed": true
+    },
+    {
+      "name": "route-banking build earns route2 from a legal dodge",
+      "passed": true
+    },
+    {
+      "name": "normal L charge genuinely builds a fan conversion opportunity",
+      "passed": true
+    },
+    {
+      "name": "L-to-vent conversion commits only the replacement fee",
+      "passed": true
+    },
+    {
+      "name": "resolved charged punch cannot spend its visual tier again",
+      "passed": true
+    },
+    {
+      "name": "cooldown conversion cannot refund the L commitment",
+      "passed": true
+    },
+    {
+      "name": "guard conversion cannot refund the L commitment",
+      "passed": true
+    },
+    {
+      "name": "jump conversion cannot refund the L commitment",
+      "passed": true
+    },
+    {
+      "name": "interrupted conversion cannot refund the L commitment",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

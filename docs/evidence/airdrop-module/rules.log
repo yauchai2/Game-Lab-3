@@ -1,0 +1,61 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+AIRDROP hero0 skill0 airdrop compatibility is transactional true
+AIRDROP hero0 skill1 airdrop compatibility is transactional true
+AIRDROP hero0 skill2 airdrop compatibility is transactional true
+AIRDROP hero0 skill3 airdrop compatibility is transactional true
+AIRDROP hero0 skill4 airdrop compatibility is transactional true
+AIRDROP hero0 skill5 airdrop compatibility is transactional true
+AIRDROP hero1 skill0 airdrop compatibility is transactional true
+AIRDROP hero1 skill1 airdrop compatibility is transactional true
+AIRDROP hero1 skill2 airdrop compatibility is transactional true
+AIRDROP hero1 skill3 airdrop compatibility is transactional true
+AIRDROP hero1 skill4 airdrop compatibility is transactional true
+AIRDROP hero1 skill5 airdrop compatibility is transactional true
+AIRDROP hero2 skill0 airdrop compatibility is transactional true
+AIRDROP hero2 skill1 airdrop compatibility is transactional true
+AIRDROP hero2 skill2 airdrop compatibility is transactional true
+AIRDROP hero2 skill3 airdrop compatibility is transactional true
+AIRDROP hero2 skill4 airdrop compatibility is transactional true
+AIRDROP hero2 skill5 airdrop compatibility is transactional true
+AIRDROP hero3 skill0 airdrop compatibility is transactional true
+AIRDROP hero3 skill1 airdrop compatibility is transactional true
+AIRDROP hero3 skill2 airdrop compatibility is transactional true
+AIRDROP hero3 skill3 airdrop compatibility is transactional true
+AIRDROP hero3 skill4 airdrop compatibility is transactional true
+AIRDROP hero3 skill5 airdrop compatibility is transactional true
+AIRDROP hero0 airborne HUD advertises a genuinely legal paid cast true
+AIRDROP hero0 air cast spends normal fee and shared fast-fall budget true
+AIRDROP hero0 air cast preserves spent jump and chase resources true
+AIRDROP hero0 projectile follows a real downward path true
+AIRDROP hero0 landing pays its recovery commitment once true
+AIRDROP hero0 air effect has a finite life true
+AIRDROP hero0 spent fast fall rejects without borrowing energy true
+AIRDROP hero0 ground casts retain ordinary behavior true
+AIRDROP hero3 airborne HUD advertises a genuinely legal paid cast true
+AIRDROP hero3 air cast spends normal fee and shared fast-fall budget true
+AIRDROP hero3 air cast preserves spent jump and chase resources true
+AIRDROP hero3 projectile follows a real downward path true
+AIRDROP hero3 landing pays its recovery commitment once true
+AIRDROP hero3 air effect has a finite life true
+AIRDROP air connector creates exactly one real ground node true
+AIRDROP hero3 spent fast fall rejects without borrowing energy true
+AIRDROP hero3 ground casts retain ordinary behavior true
+AIRDROP aerial tag can make one real grounded contact and mark true
+AIRDROP airborne tag actually pays its damage tradeoff true
+AIRDROP air drop cannot also buy ZIP's diving tactic in the same jump true
+AIRDROP landing commitment adds eight real ticks after attack recovery true
+AIRDROP queued jump cannot cancel landing commitment true
+AIRDROP queued jump survives the extra recovery instead of being eaten true
+AIRDROP queued attack waits through the landing commitment true
+AIRDROP queued attack starts after recovery true
+AIRDROP disabled story tactics never impose their debt on standard modes true
+AIRDROP hitstop cannot advance or discard landing debt true
+AIRDROP a hurt landing serves actual hitstun instead of adding hidden debt true
+AIRDROP recovering from a hurt landing cannot trigger a late second lockout true
+AIRDROP an airborne interruption clears the future debt without erasing hitstun true
+AIRDROP schema6 preserves original bytes, money and old module preset true
+AIRDROP schema6 air-drop preset survives reload with integer module ID true
+AIRDROP schema7 preserves original bytes, money and old module preset true
+AIRDROP schema7 air-drop preset survives reload with integer module ID true
+AIRDROP migration rejects a schema6 save missing its mandatory module record true

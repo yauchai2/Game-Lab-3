@@ -1,0 +1,161 @@
+{
+  "checks": [
+    {
+      "name": "native skill selectors expose six learned options",
+      "passed": true
+    },
+    {
+      "name": "actual preset button stores a complete build",
+      "passed": true
+    },
+    {
+      "name": "actual native picker selects a later-chapter skill",
+      "passed": true
+    },
+    {
+      "name": "actual load button restores both skill slots",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill2 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill2 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill3 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill3 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill4 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill4 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill5 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero0 skill5 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill2 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill2 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill3 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill3 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "equipped economy path reaches real story costs and HUD",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill4 real story actor",
+      "passed": true
+    },
+    {
+      "name": "real L input builds preload before native fan conversion",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill4 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill5 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero1 skill5 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "ground seal's real detonation reaches native effects",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill2 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill2 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill3 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill3 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill4 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill4 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill5 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero2 skill5 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill2 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill2 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill3 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill3 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill4 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill4 real key starts paid action",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill5 real story actor",
+      "passed": true
+    },
+    {
+      "name": "hero3 skill5 real key starts paid action",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

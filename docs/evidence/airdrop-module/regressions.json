@@ -1,0 +1,86 @@
+[
+  {
+    "suite": "verify_airdrop_module",
+    "exit": 0,
+    "errors": [],
+    "passed": 59
+  },
+  {
+    "suite": "verify_tactical_modules",
+    "exit": 0,
+    "errors": [],
+    "passed": 83
+  },
+  {
+    "suite": "verify_expanded_tactics",
+    "exit": 0,
+    "errors": [],
+    "passed": 111
+  },
+  {
+    "suite": "verify_tactical_skills",
+    "exit": 0,
+    "errors": [],
+    "passed": 106
+  },
+  {
+    "suite": "verify_tactic_readiness",
+    "exit": 0,
+    "errors": [],
+    "passed": 53
+  },
+  {
+    "suite": "verify_enemy_tactic_response",
+    "exit": 0,
+    "errors": [],
+    "passed": 42
+  },
+  {
+    "suite": "verify_last_service_rules",
+    "exit": 0,
+    "errors": [],
+    "passed": 46
+  },
+  {
+    "suite": "verify_city_expansion",
+    "exit": 0,
+    "errors": [],
+    "passed": 86
+  },
+  {
+    "suite": "verify_campaign_complete",
+    "exit": 0,
+    "errors": [],
+    "passed": 50
+  },
+  {
+    "suite": "verify_gun_shot",
+    "exit": 0,
+    "errors": [],
+    "passed": 21
+  },
+  {
+    "suite": "verify_rush_arcade",
+    "exit": 0,
+    "errors": [],
+    "passed": 22
+  },
+  {
+    "suite": "verify_live_combat",
+    "exit": 0,
+    "errors": [],
+    "passed": 45
+  },
+  {
+    "suite": "verify_squad_rules",
+    "exit": 0,
+    "errors": [],
+    "passed": 35
+  },
+  {
+    "suite": "verify_traditional_chinese",
+    "exit": 0,
+    "errors": [],
+    "passed": 21
+  }
+]

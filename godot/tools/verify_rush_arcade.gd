@@ -60,7 +60,17 @@ func run() -> void:
     s.tick({"attack":"special"})
     s.fighters[1].state="attack";s.fighters[1].move="grab";s.fighters[1].frame=10
     s.tick()
-    check("throw remains a real answer to burst startup",s.fighters[0].health==88 and s.fighters[0].state=="stun")
+    if s.paired_throw.active():
+        check("throw interrupts burst startup and commits the real paired action",s.paired_throw.owner==1 and s.fighters[0].state=="throw" and s.fighters[0].health==100)
+        var early_damage:=false;var hits:=0;var landings:=0
+        for tick in 150:
+            s.tick()
+            if s.paired_throw.active() and not s.paired_throw.landed and s.fighters[0].health!=100:early_damage=true
+            for event in s.events:
+                if event.kind=="hit" and event.get("attacker",-1)==1 and event.get("move","")=="grab":hits+=1
+                if event.kind=="throw_land":landings+=1
+        check("paired throw deals the original twelve damage once at landing",not early_damage and hits==1 and landings==1 and s.fighters[0].health==88 and not s.paired_throw.active())
+    else:check("fallback throw remains a real answer to burst startup",s.fighters[0].health==88 and s.fighters[0].state=="stun")
     FileAccess.open("res://../docs/evidence/rush-rework/arcade-rules.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"opening_first_hit":first,"opening_combo":max_combo},"  "))
     var passed:=checks.filter(func(c:Dictionary)->bool:return c.passed).size()
     print("RUSH_ARCADE_CHECKS ",passed,"/",checks.size());quit(0 if passed==checks.size() else 1)

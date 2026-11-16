@@ -1,0 +1,1088 @@
+{
+  "checks": [
+    {
+      "name": "live encounter obeys finite resources 1",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 1",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 2",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 2",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 3",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 3",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 4",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 4",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 5",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 5",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 6",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 6",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 7",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 7",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 8",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 8",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 9",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 9",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 10",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 10",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 11",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 11",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 12",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 12",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 13",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 13",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 14",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 14",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 15",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 15",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 16",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 16",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 17",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 17",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 18",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 18",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 19",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 19",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 20",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 20",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 21",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 21",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 22",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 22",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 23",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 23",
+      "passed": true
+    },
+    {
+      "name": "live encounter obeys finite resources 24",
+      "passed": true
+    },
+    {
+      "name": "live encounter replay matches 24",
+      "passed": true
+    },
+    {
+      "name": "boss encounter retains finite resources gantry0",
+      "passed": true
+    },
+    {
+      "name": "boss encounter replay matches gantry0",
+      "passed": true
+    },
+    {
+      "name": "boss encounter retains finite resources gantry2",
+      "passed": true
+    },
+    {
+      "name": "boss encounter replay matches gantry2",
+      "passed": true
+    },
+    {
+      "name": "boss encounter retains finite resources signal0",
+      "passed": true
+    },
+    {
+      "name": "boss encounter replay matches signal0",
+      "passed": true
+    },
+    {
+      "name": "boss encounter retains finite resources signal2",
+      "passed": true
+    },
+    {
+      "name": "boss encounter replay matches signal2",
+      "passed": true
+    },
+    {
+      "name": "return module makes real contacts under live AI",
+      "passed": true
+    },
+    {
+      "name": "delay module makes real contacts under live AI",
+      "passed": true
+    },
+    {
+      "name": "live AI actually steps out of published warning zones",
+      "passed": true
+    },
+    {
+      "name": "live AI actually braces against published warning zones",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "policy": "28 cases with deterministic replay, live AI Normal/Hard and two Normal bosses; same RIVET command policy waits until arrival finishes and uses a wide ground line at close openings; initial100 HP/60 energy, no resource or position grants during play, 1800-input-tick cap; automated defense is idealized and is not human balance evidence",
+  "runs": [
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 3,
+      "damage": 117,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 77.52,
+      "energy_min": 32.52,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 62.5,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "guard",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 2,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 1,
+      "tactical_hits": 2,
+      "taken": 0,
+      "ticks": 534,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 1,
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 116,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 92,
+      "meter": 85.27,
+      "module": 2,
+      "module_hits": 1,
+      "module_live_ticks": 47,
+      "recipe": [
+        "guard",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 1,
+      "taken": 8,
+      "ticks": 588,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "charged_relay",
+      "casts": 2,
+      "damage": 115,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 82.87,
+      "energy_min": 35.0,
+      "full_tiers": 1,
+      "health": 100,
+      "meter": 67.05,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "guard",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 2,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 2,
+      "taken": 0,
+      "ticks": 499,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "charged_relay",
+      "casts": 2,
+      "damage": 114,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 82.87,
+      "energy_min": 35.0,
+      "full_tiers": 1,
+      "health": 100,
+      "meter": 71.23,
+      "module": 1,
+      "module_hits": 1,
+      "module_live_ticks": 38,
+      "recipe": [
+        "guard",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 2,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 2,
+      "taken": 0,
+      "ticks": 511,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 140,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 55.0,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 74.675,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "grunt",
+        "grunt",
+        "captain"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 2,
+      "taken": 0,
+      "ticks": 526,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 1,
+      "build": "quick_pierce",
+      "casts": 1,
+      "damage": 139,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 60.0,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 100.0,
+      "module": 2,
+      "module_hits": 0,
+      "module_live_ticks": 23,
+      "recipe": [
+        "grunt",
+        "grunt",
+        "captain"
+      ],
+      "relays": 0,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 0,
+      "taken": 0,
+      "ticks": 583,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "charged_relay",
+      "casts": 2,
+      "damage": 147,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 45.0,
+      "full_tiers": 1,
+      "health": 88,
+      "meter": 85.305,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "grunt",
+        "grunt",
+        "captain"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 1,
+      "taken": 12,
+      "ticks": 619,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "charged_relay",
+      "casts": 2,
+      "damage": 147,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 45.0,
+      "full_tiers": 1,
+      "health": 88,
+      "meter": 85.305,
+      "module": 1,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "grunt",
+        "grunt",
+        "captain"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 1,
+      "taken": 12,
+      "ticks": 619,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 1,
+      "damage": 121,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 90,
+      "meter": 84.18,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "heavy",
+        "rusher",
+        "jammer"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 1,
+      "taken": 10,
+      "ticks": 521,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 1,
+      "damage": 123,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 92,
+      "meter": 84.18,
+      "module": 2,
+      "module_hits": 0,
+      "module_live_ticks": 24,
+      "recipe": [
+        "heavy",
+        "rusher",
+        "jammer"
+      ],
+      "relays": 0,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 0,
+      "taken": 8,
+      "ticks": 447,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "charged_relay",
+      "casts": 1,
+      "damage": 121,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 90,
+      "meter": 84.18,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "heavy",
+        "rusher",
+        "jammer"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 1,
+      "taken": 10,
+      "ticks": 521,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "charged_relay",
+      "casts": 1,
+      "damage": 121,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 90,
+      "meter": 84.18,
+      "module": 1,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "heavy",
+        "rusher",
+        "jammer"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 1,
+      "taken": 10,
+      "ticks": 521,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 121,
+      "difficulty": 2,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 74.675,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "guard",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 2,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 2,
+      "taken": 0,
+      "ticks": 753,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 117,
+      "difficulty": 2,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 91,
+      "meter": 100.0,
+      "module": 2,
+      "module_hits": 0,
+      "module_live_ticks": 24,
+      "recipe": [
+        "guard",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 0,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 1,
+      "tactical_hits": 0,
+      "taken": 9,
+      "ticks": 497,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "charged_relay",
+      "casts": 2,
+      "damage": 121,
+      "difficulty": 2,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 74.675,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "guard",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 2,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 2,
+      "taken": 0,
+      "ticks": 753,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "charged_relay",
+      "casts": 2,
+      "damage": 121,
+      "difficulty": 2,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 74.675,
+      "module": 1,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "guard",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 2,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 2,
+      "taken": 0,
+      "ticks": 753,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 0,
+      "damage": 146,
+      "difficulty": 2,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 60.0,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 100.0,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "grunt",
+        "grunt",
+        "captain"
+      ],
+      "relays": 0,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 0,
+      "taken": 0,
+      "ticks": 417,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 0,
+      "damage": 146,
+      "difficulty": 2,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 60.0,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 100.0,
+      "module": 2,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "grunt",
+        "grunt",
+        "captain"
+      ],
+      "relays": 0,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 0,
+      "taken": 0,
+      "ticks": 417,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "charged_relay",
+      "casts": 0,
+      "damage": 146,
+      "difficulty": 2,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 60.0,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 100.0,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "grunt",
+        "grunt",
+        "captain"
+      ],
+      "relays": 0,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 0,
+      "taken": 0,
+      "ticks": 417,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "charged_relay",
+      "casts": 0,
+      "damage": 146,
+      "difficulty": 2,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 60.0,
+      "full_tiers": 0,
+      "health": 100,
+      "meter": 100.0,
+      "module": 1,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "grunt",
+        "grunt",
+        "captain"
+      ],
+      "relays": 0,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 0,
+      "taken": 0,
+      "ticks": 417,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 126,
+      "difficulty": 2,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 90,
+      "meter": 74.855,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "heavy",
+        "rusher",
+        "jammer"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 1,
+      "tactical_hits": 1,
+      "taken": 10,
+      "ticks": 804,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 127,
+      "difficulty": 2,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 91,
+      "meter": 88.495,
+      "module": 2,
+      "module_hits": 1,
+      "module_live_ticks": 48,
+      "recipe": [
+        "heavy",
+        "rusher",
+        "jammer"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 1,
+      "taken": 9,
+      "ticks": 634,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "charged_relay",
+      "casts": 2,
+      "damage": 126,
+      "difficulty": 2,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 90,
+      "meter": 74.855,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "heavy",
+        "rusher",
+        "jammer"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 1,
+      "tactical_hits": 1,
+      "taken": 10,
+      "ticks": 804,
+      "wide_ground": true
+    },
+    {
+      "boss": "",
+      "braces": 0,
+      "build": "charged_relay",
+      "casts": 2,
+      "damage": 126,
+      "difficulty": 2,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 35.0,
+      "full_tiers": 0,
+      "health": 90,
+      "meter": 74.855,
+      "module": 1,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "heavy",
+        "rusher",
+        "jammer"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 1,
+      "tactical_hits": 1,
+      "taken": 10,
+      "ticks": 804,
+      "wide_ground": true
+    },
+    {
+      "boss": "gantry",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 245,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 15.0,
+      "full_tiers": 0,
+      "health": 8,
+      "meter": 100.0,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "boss",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 2,
+      "taken": 92,
+      "ticks": 940,
+      "wide_ground": true
+    },
+    {
+      "boss": "gantry",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 257,
+      "difficulty": 1,
+      "enemies_left": 0,
+      "energy_max": 100.0,
+      "energy_min": 15.0,
+      "full_tiers": 0,
+      "health": 8,
+      "meter": 100.0,
+      "module": 2,
+      "module_hits": 1,
+      "module_live_ticks": 23,
+      "recipe": [
+        "boss",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 1,
+      "state": "complete",
+      "steps_out": 1,
+      "tactical_blocks": 0,
+      "tactical_hits": 2,
+      "taken": 92,
+      "ticks": 952,
+      "wide_ground": true
+    },
+    {
+      "boss": "signal",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 272,
+      "difficulty": 1,
+      "enemies_left": 2,
+      "energy_max": 100.0,
+      "energy_min": 15.0,
+      "full_tiers": 0,
+      "health": 0,
+      "meter": 100.0,
+      "module": 0,
+      "module_hits": 0,
+      "module_live_ticks": 0,
+      "recipe": [
+        "boss",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 1,
+      "state": "failed",
+      "steps_out": 0,
+      "tactical_blocks": 0,
+      "tactical_hits": 2,
+      "taken": 108,
+      "ticks": 1072,
+      "wide_ground": true
+    },
+    {
+      "boss": "signal",
+      "braces": 0,
+      "build": "quick_pierce",
+      "casts": 2,
+      "damage": 218,
+      "difficulty": 1,
+      "enemies_left": 2,
+      "energy_max": 100.0,
+      "energy_min": 15.0,
+      "full_tiers": 0,
+      "health": 0,
+      "meter": 100.0,
+      "module": 2,
+      "module_hits": 1,
+      "module_live_ticks": 23,
+      "recipe": [
+        "boss",
+        "grunt",
+        "rusher"
+      ],
+      "relays": 1,
+      "state": "failed",
+      "steps_out": 1,
+      "tactical_blocks": 0,
+      "tactical_hits": 2,
+      "taken": 108,
+      "ticks": 984,
+      "wide_ground": true
+    }
+  ]
+}

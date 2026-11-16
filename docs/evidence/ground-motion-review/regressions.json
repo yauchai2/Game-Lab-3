@@ -1,0 +1,22 @@
+[
+  {
+    "suite": "verify_continuous_motion",
+    "exit": 0,
+    "errors": []
+  },
+  {
+    "suite": "verify_motion_gameplay",
+    "exit": 0,
+    "errors": []
+  },
+  {
+    "suite": "verify_transit_motion",
+    "exit": 0,
+    "errors": []
+  },
+  {
+    "suite": "verify_street_motion",
+    "exit": 0,
+    "errors": []
+  }
+]

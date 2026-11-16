@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "name": "second support is a real selector on both equipped skills",
+      "passed": true
+    },
+    {
+      "name": "RIVET shot enables return and disables area conversion",
+      "passed": true
+    },
+    {
+      "name": "actual dropdown fits return module",
+      "passed": true
+    },
+    {
+      "name": "pierce is disabled with a readable incompatibility tooltip",
+      "passed": true
+    },
+    {
+      "name": "real Q return reverses and cannot hit its first body twice",
+      "passed": true
+    },
+    {
+      "name": "actual compatible picker skips the disabled return choice",
+      "passed": true
+    },
+    {
+      "name": "real I leaves a visible fixed warning with no early damage",
+      "passed": true
+    },
+    {
+      "name": "warning becomes one actual paid damage event",
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

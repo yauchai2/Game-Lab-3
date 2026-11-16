@@ -1,5 +1,7 @@
 extends RefCounted
 ## Versioned, atomic account progress. Standard modes never consume this profile.
+const SCHEMA=7
+const Tactics=preload("res://scripts/combat/tactics/skills.gd")
 const Advanced=preload("res://scripts/combat/last_service/progression.gd")
 const Story=preload("res://scripts/combat/city/city_story.gd")
 const Cores=preload("res://scripts/combat/ability_draw/rewards.gd")
@@ -8,7 +10,8 @@ const Builds=preload("res://scripts/combat/city/city_builds.gd")
 const Loot=preload("res://scripts/combat/city/city_loot.gd")
 const Contracts=preload("res://scripts/combat/city/city_contracts.gd")
 const DISTRICTS=["NEON ALLEY","GATE STREET","UNDERPASS","FREIGHT YARD","LOCKDOWN AVE","CORE TOWER"]
-const SKILLS=[{"id":"double_jump","name":"DOUBLE JUMP","at":1},{"id":"launcher","name":"LAUNCHER","at":3},{"id":"chase","name":"AIR CHASE","at":4},{"id":"finisher","name":"AIR FINISHER","at":6},{"id":"overdrive","name":"OVERDRIVE","at":7}]
+const SKILLS=[{"id":"double_jump","name":"DOUBLE JUMP","at":0},{"id":"launcher","name":"LAUNCHER","at":0},{"id":"chase","name":"AIR CHASE","at":0},{"id":"finisher","name":"AIR FINISHER","at":0},{"id":"overdrive","name":"OVERDRIVE","at":0}]
+const BASIC_SKILLS=["double_jump","launcher","chase","finisher","overdrive"]
 const SLOTS=Loot.SLOTS
 var path:="user://neon_lab/city_v1.json"
 var data:Dictionary={}
@@ -21,18 +24,26 @@ var rng:=RandomNumberGenerator.new()
 
 func _init() -> void:rng.randomize();data=fresh()
 func fresh() -> Dictionary:
-    return {"version":3,"advanced":[[],[],[],[]],"quest_claims":[],"core_offer":{},"pending_core":"","core_serial":0,"craft_serial":0,"credits":0,"parts":0,"best":0,"points":0,"xp":0,"skills":[],"skill_levels":[0,0,0,0],"talents":[[],[],[],[]],"gear":[{},{},{}],"loadouts":[[{},{},{}],[{},{},{}],[{},{},{}],[{},{},{}]],"inventory":[],"stash":[],"pulls":0,"pity":0,"unique_pity":0,"item_serial":0,"serial":0,"attempts":0,"dialogue":0,"claims":[],"run":{},"contracts":[],"contract_serial":0,"contract_tier":1,"contract_wins":[0,0,0,0,0],"last_loot":[]}
+    return {"version":SCHEMA,"build_presets":[[{},{},{}],[{},{},{}],[{},{},{}],[{},{},{}]],"tactics":[Tactics.defaults(),Tactics.defaults(),Tactics.defaults(),Tactics.defaults()],"advanced":[[],[],[],[]],"quest_claims":[],"core_offer":{},"pending_core":"","core_serial":0,"craft_serial":0,"credits":0,"parts":0,"best":0,"points":0,"xp":0,"skills":BASIC_SKILLS.duplicate(),"skill_levels":[0,0,0,0],"talents":[[],[],[],[]],"gear":[{},{},{}],"loadouts":[[{},{},{}],[{},{},{}],[{},{},{}],[{},{},{}]],"inventory":[],"stash":[],"pulls":0,"pity":0,"unique_pity":0,"item_serial":0,"serial":0,"attempts":0,"dialogue":0,"claims":[],"run":{},"contracts":[],"contract_serial":0,"contract_tier":1,"contract_wins":[0,0,0,0,0],"last_loot":[]}
 func level() -> int:return mini(20,1+floori(float(data.xp)/100.0))
 func _points() -> void:data.points=mini(25,level()-1+floori(float(data.best)/3.0))
 
 func valid(item:Variant) -> bool:
-    if not item is Dictionary or int(item.get("version",0))!=3:return false
+    if not item is Dictionary or int(item.get("version",0))!=SCHEMA:return false
     for key in fresh():
         if not item.has(key):return false
         if typeof(item[key])!=typeof(fresh()[key]) and not (fresh()[key] is int and item[key] is float):return false
     for key in ["credits","parts","best","points","xp","pulls","pity","unique_pity","item_serial","serial","attempts","dialogue","contract_serial"]:
         if item[key]<0:return false
     if item.best>18 or item.points>25 or item.xp>1900 or item.contract_tier<1 or item.contract_tier>5:return false
+    if item.build_presets.size()!=4:return false
+    for hero in 4:
+        if not item.build_presets[hero] is Array or item.build_presets[hero].size()!=3:return false
+        for preset in item.build_presets[hero]:
+            if not _valid_preset(preset,hero):return false
+    if item.tactics.size()!=4:return false
+    for hero in 4:
+        if not Tactics.valid_config(item.tactics[hero],hero):return false
     if item.advanced.size()!=4:return false
     for hero in 4:
         if not item.advanced[hero] is Array or item.advanced[hero].size()>2:return false
@@ -98,7 +109,7 @@ func _valid_gear(item:Variant) -> bool:
         if not affix is Dictionary or not affix.has("stat") or not affix.has("amount"):return false
         if not Loot.AFFIXES.any(func(a:Dictionary)->bool:return a.stat==affix.stat):return false
         if not (affix.amount is float or affix.amount is int) or affix.amount<0 or affix.amount>.2:return false
-    return item.get("special","") in ["","relay_brace","anchor_brace","counter_cell","broadcast_cell"]
+    return item.get("special","") in ["","relay_brace","anchor_brace","counter_cell","broadcast_cell","tactic_relay","tactic_anchor"]
 
 func _valid_contract(item:Variant) -> bool:
     if not item is Dictionary:return false
@@ -138,12 +149,45 @@ func load_data() -> void:
         if parser.parse(FileAccess.get_file_as_string(source))!=OK or not parser.data is Dictionary:continue
         var candidate:Dictionary=parser.data
         var old_version:=int(candidate.get("version",0))
-        var legacy:bool=old_version in [1,2]
+        var legacy:bool=old_version in [1,2,3,4,5,6]
         if old_version==1:
             if not candidate.has("gear") or not candidate.has("inventory") or not candidate.has("best") or not candidate.has("points"):continue
             candidate=migrate(candidate)
-        elif old_version==2:candidate=expand(candidate)
+        elif old_version in [2,3,4,5,6]:
+            if old_version in [3,4,5,6]:
+                var complete:=true
+                for key in fresh():
+                    if key not in (["tactics","build_presets"] if old_version==3 else (["build_presets"] if old_version==4 else [])) and not candidate.has(key):complete=false
+                if not complete:continue
+            candidate=expand(candidate)
+            if old_version==4:
+                if not candidate.tactics is Array or candidate.tactics.size()!=4:continue
+                var configurations_ok:=true
+                for configuration in candidate.tactics:
+                    if not configuration is Dictionary or not _upgrade_tactic(configuration):configurations_ok=false
+                if not configurations_ok:continue
+            if candidate.get("tactics") is Array:
+                for configuration in candidate.tactics:
+                    if old_version<=5 and configuration is Dictionary and not configuration.has("attachments"):configuration["attachments"]=[0,0,0,0,0,0]
+            if candidate.get("build_presets") is Array:
+                for presets in candidate.build_presets:
+                    if not presets is Array:continue
+                    for preset in presets:
+                        if old_version<=5 and preset is Dictionary and preset.get("tactics") is Dictionary and not preset.tactics.has("attachments"):preset.tactics["attachments"]=[0,0,0,0,0,0]
         if not valid(candidate):continue
+        for configuration in candidate.tactics:
+            for field in ["skills","variants","supports","attachments"]:
+                for index in configuration[field].size():configuration[field][index]=int(configuration[field][index])
+        for presets in candidate.build_presets:
+            for preset in presets:
+                if preset.is_empty():continue
+                for slot in 3:preset.gear[slot]=int(preset.gear[slot])
+                for field in ["skills","variants","supports","attachments"]:
+                    for index in preset.tactics[field].size():preset.tactics[field][index]=int(preset.tactics[field][index])
+        # Grant the complete basic kit to existing saves without resetting progress.
+        # Persist with the next normal transaction; loading never overwrites a backup.
+        for id in BASIC_SKILLS:
+            if id not in candidate.skills:candidate.skills.append(id)
         data=candidate;loaded_backup=source.ends_with(".bak")
         if legacy:
             migration_source=source;migration_version=old_version;migration_notice="Circuit expanded. Old allocations refunded; skills, gear and point budget preserved." if old_version==1 else "Campaign expanded. Your skills, talent paths and equipment are preserved."
@@ -223,6 +267,10 @@ func settle(won:bool,hp:int,meter:float,healed:=-1,techniques:Dictionary={}) -> 
         data.xp=mini(1900,int(data.xp)+(100 if data.best==0 and not challenge else 50+sector*10+tier*10))
         if not challenge:data.best=maxi(int(data.best),room+1)
         _points()
+        if not challenge and previous_best<1 and data.best>=1:data.last_loot.append("FIRST TACTIC LEARNED / SEE SKILLS")
+        if not challenge and previous_best<3 and data.best>=3:data.last_loot.append("SECOND TACTIC + GEAR RECIPES / SEE SKILLS")
+        for milestone in [6,9,12,15]:
+            if not challenge and previous_best<milestone and data.best>=milestone:data.last_loot.append("NEW TACTIC LEARNED / SEE SKILLS")
         var seed_value:=int(run.get("seed",run.id))+wave*997
         var quality:=1 if posmod(seed_value,10)<7 else 2
         var final:bool=wave==int(run.contract.waves)-1 if challenge else room==17
@@ -265,8 +313,27 @@ func respec(hero:int) -> bool:
     if hero<0 or hero>3:return false
     var before:=data.duplicate(true);data.talents[hero]=[];return commit(before)
 func gear_for(hero:int) -> Array:return data.loadouts[hero]
+func configure_tactic(hero:int,id:int,field:String,value:int) -> bool:
+    if hero<0 or hero>3 or id<0 or id>5 or field not in ["variants","supports","skills","attachments"] or value<0 or value>(3 if field=="attachments" else 1):return false
+    var before:=data.duplicate(true)
+    if field=="skills":data.tactics[hero].skills.reverse()
+    else:data.tactics[hero][field][id]=value
+    if not Tactics.valid_config(data.tactics[hero],hero):data=before;return false
+    return commit(before)
+func craft_tactic_gear(hero:int,kind:String) -> bool:
+    if hero<0 or hero>3 or kind not in ["tactic_relay","tactic_anchor"] or data.best<3 or data.credits<30 or data.parts<3 or data.inventory.size()>=60:return false
+    var before:=data.duplicate(true);data.credits-=30;data.parts-=3;data.item_serial+=1
+    var item:Dictionary=Loot.make(int(data.item_serial),0 if kind=="tactic_anchor" else 2,2,2,data.skills,17+int(data.item_serial))
+    item.special=kind;item.name="RELAY CELL" if kind=="tactic_relay" else "ANCHOR WRIST"
+    data.inventory.append(item)
+    return commit(before)
+func tactics_unlocked() -> int:
+    var count:=0
+    for milestone in Tactics.UNLOCKS:
+        if int(data.best)>=milestone:count+=1
+    return count
 func stats(hero:int) -> Dictionary:
-    var result:={"damage":0.0,"defence":0.0,"economy":0.0,"entry":0.0,"skill_damage":float(data.skill_levels[hero])*.05,"heavy_damage":0.0,"aerial_damage":0.0,"finisher_damage":0.0,"guard_damage":0.0,"launch_force":0.0,"chain_damage":0.0,"chain_targets":0.0,"chain_meter":0.0,"splash":0.0,"parry_meter":0.0,"chase_refund":0.0,"counter_damage":0.0}
+    var result:={"tactic_unlocked":tactics_unlocked(),"tactic_relay":0.0,"tactic_anchor":0.0,"damage":0.0,"defence":0.0,"economy":0.0,"entry":0.0,"skill_damage":float(data.skill_levels[hero])*.05,"heavy_damage":0.0,"aerial_damage":0.0,"finisher_damage":0.0,"guard_damage":0.0,"launch_force":0.0,"chain_damage":0.0,"chain_targets":0.0,"chain_meter":0.0,"splash":0.0,"parry_meter":0.0,"chase_refund":0.0,"counter_damage":0.0}
     for id in data.talents[hero]:
         var node:Dictionary=Builds.by_id(id)
         match str(node.stat):
@@ -277,11 +344,14 @@ func stats(hero:int) -> Dictionary:
             _:result[node.stat]+=node.amount
     var equipment_stats:Dictionary={}
     for item in gear_for(hero):
+        if item.get("special","")=="tactic_relay":result.tactic_relay=1.0
+        elif item.get("special","")=="tactic_anchor":result.tactic_anchor=1.0
         var effects:Dictionary=Loot.effects(item)
         for stat in effects:equipment_stats[stat]=float(equipment_stats.get(stat,0))+float(effects[stat])
     for stat in Balance.equipment(equipment_stats):result[stat]=float(result.get(stat,0))+float(Balance.equipment(equipment_stats)[stat])
     if not data.run.is_empty():
         for stat in data.run.boons:result[stat]+=float(data.run.boons[stat])
+    if result.tactic_relay>0:result.tactic_anchor=0.0
     result=Balance.cap(result)
     return result
 func heal() -> bool:
@@ -306,6 +376,7 @@ func equip(id:int,hero:=0) -> bool:
         var before:=data.duplicate(true);data.loadouts[hero][int(item.slot)]=item.duplicate(true);data.gear=data.loadouts[0].duplicate(true);return commit(before)
     return false
 func salvage(id:int) -> bool:
+    if preset_uses(id):return false
     for loadout in data.loadouts:
         for item in loadout:
             if not item.is_empty() and int(item.id)==id:return false
@@ -330,6 +401,7 @@ func unequip(slot:int,hero:int) -> bool:
     if slot<0 or slot>2 or hero<0 or hero>3:return false
     var before:=data.duplicate(true);data.loadouts[hero][slot]={};data.gear=data.loadouts[0].duplicate(true);return commit(before)
 func is_equipped(id:int) -> bool:
+    if preset_uses(id):return true
     for loadout in data.loadouts:
         for item in loadout:
             if not item.is_empty() and int(item.id)==id:return true
@@ -407,3 +479,66 @@ func skip_boon() -> bool:
 
 func can_prepare_core() -> bool:
     return data.pending_core=="" and (data.run.is_empty() or (data.run.get("core","")=="" and not data.run.get("in_flight",false)))
+
+func _upgrade_tactic(configuration:Dictionary) -> bool:
+    for field in ["variants","supports"]:
+        if not configuration.get(field) is Array or configuration[field].size() not in [2,6]:return false
+        while configuration[field].size()<6:configuration[field].append(0)
+    return true
+func equip_tactic(hero:int,slot:int,id:int) -> bool:
+    if hero not in range(4) or slot not in [0,1] or id<0 or id>=tactics_unlocked():return false
+    var before:=data.duplicate(true);var current:int=data.tactics[hero].skills[slot]
+    if data.tactics[hero].skills[1-slot]==id:data.tactics[hero].skills[1-slot]=current
+    data.tactics[hero].skills[slot]=id
+    return commit(before)
+func _valid_preset(value:Variant,hero:int) -> bool:
+    if not value is Dictionary:return false
+    if value.is_empty():return true
+    if not Tactics.valid_config(value.get("tactics"),hero):return false
+    if not value.get("talents") is Array or value.talents.size()>25:return false
+    var seen:Array=[];var keystones:=0
+    for id in value.talents:
+        if not id is String or id in seen or not Builds.connected(hero,id,seen):return false
+        seen.append(id)
+        if Builds.by_id(id).kind=="keystone":keystones+=1
+    if keystones>1:return false
+    if not value.get("advanced") is Array or value.advanced.size()>2:return false
+    for id in value.advanced:
+        if not Advanced.SKILLS[hero].any(func(skill:Dictionary)->bool:return skill.id==id):return false
+    if not value.get("gear") is Array or value.gear.size()!=3:return false
+    for id in value.gear:
+        if not (id is int or id is float) or id!=floorf(id) or id< -1:return false
+    return true
+func store_build(hero:int,index:int) -> bool:
+    if hero not in range(4) or index not in range(3):return false
+    var before:=data.duplicate(true);var gear:Array=[]
+    for item in data.loadouts[hero]:gear.append(int(item.get("id",-1)))
+    data.build_presets[hero][index]={"tactics":data.tactics[hero].duplicate(true),"talents":data.talents[hero].duplicate(),"advanced":data.advanced[hero].duplicate(),"gear":gear}
+    return commit(before)
+func load_build(hero:int,index:int) -> bool:
+    if hero not in range(4) or index not in range(3):return false
+    var preset:Dictionary=data.build_presets[hero][index]
+    if preset.is_empty() or not _valid_preset(preset,hero) or preset.talents.size()>int(data.points):return false
+    for id in preset.tactics.skills:
+        if int(id)>=tactics_unlocked():return false
+    var all_gear:Array=data.inventory+data.stash
+    for loadout in data.loadouts:all_gear+=loadout
+    var gear:Array=[]
+    for slot in 3:
+        var id:int=preset.gear[slot]
+        if id== -1:gear.append({});continue
+        var found:Array=all_gear.filter(func(item:Dictionary)->bool:return int(item.get("id",-1))==id and int(item.get("slot",-1))==slot)
+        if found.is_empty():return false
+        gear.append(found[0].duplicate(true))
+    var before:=data.duplicate(true)
+    data.tactics[hero]=preset.tactics.duplicate(true);data.talents[hero]=preset.talents.duplicate();data.advanced[hero]=preset.advanced.duplicate();data.loadouts[hero]=gear
+    data.gear=data.loadouts[0].duplicate(true)
+    return commit(before)
+func clear_build(hero:int,index:int) -> bool:
+    if hero not in range(4) or index not in range(3):return false
+    var before:=data.duplicate(true);data.build_presets[hero][index]={};return commit(before)
+func preset_uses(id:int) -> bool:
+    for presets in data.build_presets:
+        for preset in presets:
+            if not preset.is_empty() and id in preset.gear:return true
+    return false
