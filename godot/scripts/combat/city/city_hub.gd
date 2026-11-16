@@ -79,7 +79,7 @@ func _ready() -> void:
     talent_tree=preload("res://scripts/combat/city/city_talent_tree.gd").new();layout.add_child(talent_tree)
     _upgrade_city()
     arrival_hint=_label("",28,T.INK);arrival_hint.add_theme_stylebox_override("normal",T.plate(T.PAPER,T.INK,2));arrival_hint.position=Vector2(30,550);arrival_hint.size=Vector2(640,40);layout.add_child(arrival_hint)
-    guide_button=Button.new();guide_button.text="H / STORY GUIDE";guide_button.position=Vector2(980,22);guide_button.size=Vector2(270,48)
+    guide_button=Button.new();guide_button.text="STORY GUIDE";guide_button.position=Vector2(980,22);guide_button.size=Vector2(270,48)
     guide_button.add_theme_font_size_override("font_size",24);guide_button.pressed.connect(open_guide);guide_button.set_meta("act","story_guide");layout.add_child(guide_button)
     next_hint=_label("",24,T.PAPER);next_hint.position=Vector2(30,108);next_hint.size=Vector2(540,0)
     next_hint.add_theme_stylebox_override("normal",T.plate(T.INK,T.TEAL,2));next_hint.mouse_filter=Control.MOUSE_FILTER_IGNORE;layout.add_child(next_hint)
@@ -186,10 +186,6 @@ func request_station(index:int) -> void:
 
 func _input(event:InputEvent) -> void:
     if not visible or not event is InputEventKey or not event.pressed or event.echo:return
-    if event.keycode==KEY_H:
-        if page=="GUIDE" and panel.visible:close_panel()
-        else:open_guide()
-        get_viewport().set_input_as_handled();return
     if event.keycode==KEY_TAB:
         hud_expanded=not hud_expanded;header.visible=hud_expanded;hint.visible=hud_expanded;station_bar.visible=hud_expanded
         get_viewport().set_input_as_handled();return

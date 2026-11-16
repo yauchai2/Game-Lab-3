@@ -1,5 +1,6 @@
 extends RefCounted
 ## Versioned, atomic account progress. Standard modes never consume this profile.
+const Tactics=preload("res://scripts/combat/tactics/skills.gd")
 const Advanced=preload("res://scripts/combat/last_service/progression.gd")
 const Story=preload("res://scripts/combat/city/city_story.gd")
 const Cores=preload("res://scripts/combat/ability_draw/rewards.gd")
@@ -22,18 +23,21 @@ var rng:=RandomNumberGenerator.new()
 
 func _init() -> void:rng.randomize();data=fresh()
 func fresh() -> Dictionary:
-    return {"version":3,"advanced":[[],[],[],[]],"quest_claims":[],"core_offer":{},"pending_core":"","core_serial":0,"craft_serial":0,"credits":0,"parts":0,"best":0,"points":0,"xp":0,"skills":BASIC_SKILLS.duplicate(),"skill_levels":[0,0,0,0],"talents":[[],[],[],[]],"gear":[{},{},{}],"loadouts":[[{},{},{}],[{},{},{}],[{},{},{}],[{},{},{}]],"inventory":[],"stash":[],"pulls":0,"pity":0,"unique_pity":0,"item_serial":0,"serial":0,"attempts":0,"dialogue":0,"claims":[],"run":{},"contracts":[],"contract_serial":0,"contract_tier":1,"contract_wins":[0,0,0,0,0],"last_loot":[]}
+    return {"version":4,"tactics":[Tactics.defaults(),Tactics.defaults(),Tactics.defaults(),Tactics.defaults()],"advanced":[[],[],[],[]],"quest_claims":[],"core_offer":{},"pending_core":"","core_serial":0,"craft_serial":0,"credits":0,"parts":0,"best":0,"points":0,"xp":0,"skills":BASIC_SKILLS.duplicate(),"skill_levels":[0,0,0,0],"talents":[[],[],[],[]],"gear":[{},{},{}],"loadouts":[[{},{},{}],[{},{},{}],[{},{},{}],[{},{},{}]],"inventory":[],"stash":[],"pulls":0,"pity":0,"unique_pity":0,"item_serial":0,"serial":0,"attempts":0,"dialogue":0,"claims":[],"run":{},"contracts":[],"contract_serial":0,"contract_tier":1,"contract_wins":[0,0,0,0,0],"last_loot":[]}
 func level() -> int:return mini(20,1+floori(float(data.xp)/100.0))
 func _points() -> void:data.points=mini(25,level()-1+floori(float(data.best)/3.0))
 
 func valid(item:Variant) -> bool:
-    if not item is Dictionary or int(item.get("version",0))!=3:return false
+    if not item is Dictionary or int(item.get("version",0))!=4:return false
     for key in fresh():
         if not item.has(key):return false
         if typeof(item[key])!=typeof(fresh()[key]) and not (fresh()[key] is int and item[key] is float):return false
     for key in ["credits","parts","best","points","xp","pulls","pity","unique_pity","item_serial","serial","attempts","dialogue","contract_serial"]:
         if item[key]<0:return false
     if item.best>18 or item.points>25 or item.xp>1900 or item.contract_tier<1 or item.contract_tier>5:return false
+    if item.tactics.size()!=4:return false
+    for value in item.tactics:
+        if not Tactics.valid_config(value):return false
     if item.advanced.size()!=4:return false
     for hero in 4:
         if not item.advanced[hero] is Array or item.advanced[hero].size()>2:return false
@@ -99,7 +103,7 @@ func _valid_gear(item:Variant) -> bool:
         if not affix is Dictionary or not affix.has("stat") or not affix.has("amount"):return false
         if not Loot.AFFIXES.any(func(a:Dictionary)->bool:return a.stat==affix.stat):return false
         if not (affix.amount is float or affix.amount is int) or affix.amount<0 or affix.amount>.2:return false
-    return item.get("special","") in ["","relay_brace","anchor_brace","counter_cell","broadcast_cell"]
+    return item.get("special","") in ["","relay_brace","anchor_brace","counter_cell","broadcast_cell","tactic_relay","tactic_anchor"]
 
 func _valid_contract(item:Variant) -> bool:
     if not item is Dictionary:return false
@@ -139,12 +143,21 @@ func load_data() -> void:
         if parser.parse(FileAccess.get_file_as_string(source))!=OK or not parser.data is Dictionary:continue
         var candidate:Dictionary=parser.data
         var old_version:=int(candidate.get("version",0))
-        var legacy:bool=old_version in [1,2]
+        var legacy:bool=old_version in [1,2,3]
         if old_version==1:
             if not candidate.has("gear") or not candidate.has("inventory") or not candidate.has("best") or not candidate.has("points"):continue
             candidate=migrate(candidate)
-        elif old_version==2:candidate=expand(candidate)
+        elif old_version in [2,3]:
+            if old_version==3:
+                var complete:=true
+                for key in fresh():
+                    if key!="tactics" and not candidate.has(key):complete=false
+                if not complete:continue
+            candidate=expand(candidate)
         if not valid(candidate):continue
+        for configuration in candidate.tactics:
+            for field in ["skills","variants","supports"]:
+                for index in 2:configuration[field][index]=int(configuration[field][index])
         # Grant the complete basic kit to existing saves without resetting progress.
         # Persist with the next normal transaction; loading never overwrites a backup.
         for id in BASIC_SKILLS:
@@ -228,6 +241,8 @@ func settle(won:bool,hp:int,meter:float,healed:=-1,techniques:Dictionary={}) -> 
         data.xp=mini(1900,int(data.xp)+(100 if data.best==0 and not challenge else 50+sector*10+tier*10))
         if not challenge:data.best=maxi(int(data.best),room+1)
         _points()
+        if not challenge and previous_best<1 and data.best>=1:data.last_loot.append("FIRST TACTIC LEARNED / SEE SKILLS")
+        if not challenge and previous_best<3 and data.best>=3:data.last_loot.append("SECOND TACTIC + GEAR RECIPES / SEE SKILLS")
         var seed_value:=int(run.get("seed",run.id))+wave*997
         var quality:=1 if posmod(seed_value,10)<7 else 2
         var final:bool=wave==int(run.contract.waves)-1 if challenge else room==17
@@ -270,8 +285,22 @@ func respec(hero:int) -> bool:
     if hero<0 or hero>3:return false
     var before:=data.duplicate(true);data.talents[hero]=[];return commit(before)
 func gear_for(hero:int) -> Array:return data.loadouts[hero]
+func configure_tactic(hero:int,id:int,field:String,value:int) -> bool:
+    if hero<0 or hero>3 or id<0 or id>1 or field not in ["variants","supports","skills"] or value not in [0,1]:return false
+    var before:=data.duplicate(true)
+    if field=="skills":data.tactics[hero].skills.reverse()
+    else:data.tactics[hero][field][id]=value
+    return commit(before)
+func craft_tactic_gear(hero:int,kind:String) -> bool:
+    if hero<0 or hero>3 or kind not in ["tactic_relay","tactic_anchor"] or data.best<3 or data.credits<30 or data.parts<3 or data.inventory.size()>=60:return false
+    var before:=data.duplicate(true);data.credits-=30;data.parts-=3;data.item_serial+=1
+    var item:Dictionary=Loot.make(int(data.item_serial),0 if kind=="tactic_anchor" else 2,2,2,data.skills,17+int(data.item_serial))
+    item.special=kind;item.name="RELAY CELL" if kind=="tactic_relay" else "ANCHOR WRIST"
+    data.inventory.append(item)
+    return commit(before)
+func tactics_unlocked() -> int:return 2 if int(data.best)>=3 else (1 if int(data.best)>=1 else 0)
 func stats(hero:int) -> Dictionary:
-    var result:={"damage":0.0,"defence":0.0,"economy":0.0,"entry":0.0,"skill_damage":float(data.skill_levels[hero])*.05,"heavy_damage":0.0,"aerial_damage":0.0,"finisher_damage":0.0,"guard_damage":0.0,"launch_force":0.0,"chain_damage":0.0,"chain_targets":0.0,"chain_meter":0.0,"splash":0.0,"parry_meter":0.0,"chase_refund":0.0,"counter_damage":0.0}
+    var result:={"tactic_unlocked":tactics_unlocked(),"tactic_relay":0.0,"tactic_anchor":0.0,"damage":0.0,"defence":0.0,"economy":0.0,"entry":0.0,"skill_damage":float(data.skill_levels[hero])*.05,"heavy_damage":0.0,"aerial_damage":0.0,"finisher_damage":0.0,"guard_damage":0.0,"launch_force":0.0,"chain_damage":0.0,"chain_targets":0.0,"chain_meter":0.0,"splash":0.0,"parry_meter":0.0,"chase_refund":0.0,"counter_damage":0.0}
     for id in data.talents[hero]:
         var node:Dictionary=Builds.by_id(id)
         match str(node.stat):
@@ -282,11 +311,14 @@ func stats(hero:int) -> Dictionary:
             _:result[node.stat]+=node.amount
     var equipment_stats:Dictionary={}
     for item in gear_for(hero):
+        if item.get("special","")=="tactic_relay":result.tactic_relay=1.0
+        elif item.get("special","")=="tactic_anchor":result.tactic_anchor=1.0
         var effects:Dictionary=Loot.effects(item)
         for stat in effects:equipment_stats[stat]=float(equipment_stats.get(stat,0))+float(effects[stat])
     for stat in Balance.equipment(equipment_stats):result[stat]=float(result.get(stat,0))+float(Balance.equipment(equipment_stats)[stat])
     if not data.run.is_empty():
         for stat in data.run.boons:result[stat]+=float(data.run.boons[stat])
+    if result.tactic_relay>0:result.tactic_anchor=0.0
     result=Balance.cap(result)
     return result
 func heal() -> bool:

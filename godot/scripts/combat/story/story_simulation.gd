@@ -38,6 +38,7 @@ func begin_story() -> void:
 func end_squad() -> void:
     campaign_boss="";campaign_route="combat";campaign_lesson="";campaign_hazards.clear();campaign_props.clear();reinforcements.clear()
     campaign_tier=0;campaign_captain=false;campaign_caption="";campaign_counter=""
+    tactics.enabled=false;tactics.clear()
     campaign_enabled=false;campaign_skills.clear();campaign_stats.clear();wave_recipes=WAVES.duplicate(true)
     story_enabled=false;story_state="";checkpoint.clear();body_chain.clear()
     super.end_squad()
@@ -68,6 +69,10 @@ func _load_wave(index:int,hp:int,meter:float) -> void:
         f["rush_charge"]=0;f["rush_cd"]=0;f["rush_follow"]=false;f["rush_direction"]=f.face
         squad_members.append(f)
     fighters[0].x=0.0;fighters[0].health=hp;fighters[0].meter=clampf(meter,0,100);fighters[1]=squad_members[0]
+    if campaign_enabled:
+        fighters[0]["tactic_unlocked"]=int(campaign_stats.get("tactic_unlocked",0))
+        fighters[0]["tactic_relay"]=float(campaign_stats.get("tactic_relay",0))>0
+        fighters[0]["tactic_anchor"]=float(campaign_stats.get("tactic_anchor",0))>0
     checkpoint={"health":hp,"meter":meter}
     story_state="combat";arrival_left=75;break_left=0
     events=[{"kind":"story_wave_start","wave":index+1}]
@@ -171,6 +176,7 @@ func _choose_focus(player:Dictionary) -> void:
     super._choose_focus(player)
 
 func _can_hit(i:int) -> bool:
+    if TacticalSkills.is_move(fighters[i].move):return false
     if story_enabled and (fighters[i].health<=0 or fighters[1-i].health<=0):return false
     if campaign_enabled and i==0 and fighters[1].has("boss"):
         var a:Dictionary=fighters[0]
@@ -227,13 +233,13 @@ func move_for(fighter:Dictionary,name:String) -> Dictionary:
         move.damage=maxi(1,roundi(float(move.damage)*(1.0+float(campaign_stats.get("enemy_damage",0)))*(1.0-defence)))
     else:
         var bonus:float=float(campaign_stats.get("damage",0))
-        if name=="special":bonus+=float(campaign_stats.get("skill_damage",0))
+        if name in ["special","tactic_a","tactic_b"]:bonus+=float(campaign_stats.get("skill_damage",0))
         if fighter.y>.01:bonus+=float(campaign_stats.get("aerial_damage",0))
         else:bonus+=float(campaign_stats.get("ground_penalty",0))
         if name in ["heavy","finisher"]:bonus+=float(campaign_stats.get("heavy_damage",0))
         if name in ["meteor","air_finisher"]:bonus+=float(campaign_stats.get("finisher_damage",0))
         if int(fighter.get("city_counter",0))>0:bonus+=minf(.6,float(campaign_stats.get("counter_damage",0)))
-        move["guard_multiplier"]=1.0+minf(.4,float(campaign_stats.get("guard_damage",0)))
+        move["guard_multiplier"]=float(move.get("guard_multiplier",1.0))*(1.0+minf(.4,float(campaign_stats.get("guard_damage",0))))
         if name in ["heavy","grab","meteor","air_finisher","overdrive"]:move.push*=1.0+minf(.3,float(campaign_stats.get("launch_force",0)))
         bonus=Balance.attack_bonus(bonus,int(fighter.get("city_counter",0))>0)
         var total_cap:float=1.60 if int(fighter.get("city_counter",0))>0 else 1.50

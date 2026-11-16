@@ -98,6 +98,10 @@ static func _step(s: RefCounted, p: Dictionary) -> bool:
         s.events.append({"kind": "gun_dodge", "target": victim, "how": how, "x": p.x, "y": p.y})
         p.passed = true
         return true
+    if s.tactics.enabled and victim==0 and t.character==2 and t.get("tactical",{}).get("sample_window",0)>0 and t.face==-int(p.dir) and not p.reflected:
+        t.tactical.sample_window=0;t.tactical.return_ready=90;t.service.sample=1;t.service.sample_ttl=240
+        s.events.append({"kind":"sample_gained","target":victim})
+        return false
     var facing_shooter: bool = t.face == -int(p.dir) and t.guarding and t.y <= .01
     if facing_shooter and t.parry_allowed and t.guard_frames <= s.PARRY_WINDOW and t.parry_cd == 0 and t.guard >= 25.0 and not p.reflected:
         t.parry_cd = 60

@@ -396,6 +396,8 @@ func _player_command() -> Dictionary:
     var input := pending.duplicate()
     pending.clear()
     input["axis"] = float(Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT)) - float(Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT))
+    input["tactic_a_held"]=controls.tactic_held(0)
+    input["tactic_b_held"]=controls.tactic_held(1)
     input["skill_held"]=Input.is_physical_key_pressed(KEY_L)
     input["guard_pressed"] = input.get("guard_pressed",false)
     input["guard"] = Input.is_physical_key_pressed(KEY_SHIFT)
@@ -456,19 +458,22 @@ func _press(side: int, action: String) -> void:
     var lifted: bool = held.up or (side==0 and not versus and (Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)))
     var lowered: bool = held.down or (side==0 and not versus and (Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN)))
     match action:
+        "tactic_a","tactic_b":
+            if sim.tactics.enabled:_offer_attack(queued,action)
         "down":queued["down_pressed"]=true
         "guard":queued["guard_pressed"]=true
-        "light":queued["attack"]="light"
+        "light":_offer_attack(queued,"light")
         "heavy":
-            queued["attack"]="heavy"
+            _offer_attack(queued,"heavy")
             queued["up"]=lifted
             queued["down"]=lowered
-        "skill":queued["attack"]="overdrive" if sim.arcade_enabled and lifted else "special"
-        "grab":queued["attack"]="grab"
+        "skill":_offer_attack(queued,"overdrive" if sim.arcade_enabled and lifted else "special")
+        "grab":_offer_attack(queued,"grab")
         "jump":queued["jump"]=true
         "dash":queued["dash"]=true
 
 func _input(event: InputEvent) -> void:
+    controls.tactics_enabled=sim.tactics.enabled and screen=="play" and demo==null
     var presses: Array = controls.feed(event)
     # During play a pad button is a combat input, never a click on a focused UI control.
     if screen=="play" and (event is InputEventJoypadButton or event is InputEventJoypadMotion):get_viewport().set_input_as_handled()
@@ -637,6 +642,19 @@ func _handle_event(event: Dictionary) -> void:
     if not practice and not versus and demo==null and not run_active:_count_style(event)
     if event.kind=="prop_break":
         _spawn_vfx("hit",Vector2(event.x,.4),.24,{"color":Color("ffd24b"),"strength":.7,"move":"heavy","face":1.0,"attacker":0});audio.play_sound("guard_break",1.0,-10)
+    if event.kind=="tactic_start":
+        audio.play_sound("swing",1.0,-10)
+    elif event.kind=="tactic_fire":
+        audio.play_sound("release",1.1,-12)
+    elif event.kind=="tactic_pulse":
+        _spawn_vfx("service_pulse",Vector2(event.x,.35),.30,{"owner":event.target,"low":event.low,"high":event.high})
+        audio.play_sound("rally",1.15,-12)
+    elif event.kind=="tactic_relay":
+        audio.play_sound("charge",1.25,-14)
+    elif event.kind=="tactic_tier":
+        audio.play_sound("charge",1.2,-8)
+    elif event.kind=="tactic_unavailable":
+        hud.notice=preload("res://scripts/combat/ui/locale_text.gd").text(str(event.reason));hud.notice_time=1.3
     if event.kind=="boss_cue":audio.play_sound("charge",.75,-12)
     elif event.kind=="boss_attack":audio.play_sound("release",.8,-9)
     elif event.kind=="boss_phase":audio.play_sound("rally",.8,-10)
@@ -1262,6 +1280,7 @@ func project(point: Vector2) -> Vector2:
 
 func pause_game() -> void:
     if screen == "play" or (screen == "result" and (city_breaker.active() or ability_draw.active())):
+        sim.tactics.suspend(sim);pending.clear();pending_p2.clear();controls.clear_tactic_keys()
         pause_resume_screen = screen
         screen = "pause"
         audio.stop_all()
@@ -1269,6 +1288,7 @@ func pause_game() -> void:
         hud.rebuild_menu()
 
 func resume_game() -> void:
+    controls.clear_tactic_keys()
     screen = pause_resume_screen
     pause_resume_screen = "play"
     hud.rebuild_menu()
@@ -1442,13 +1462,13 @@ func _unhandled_key_input(event: InputEvent) -> void:
         match event.physical_keycode:
             KEY_S,KEY_DOWN: pending["down_pressed"] = true
             KEY_SHIFT: pending["guard_pressed"] = true
-            KEY_J: pending["attack"] = "light"
+            KEY_J: _offer_attack(pending,"light")
             KEY_K:
-                pending["attack"] = "heavy"
+                _offer_attack(pending,"heavy")
                 pending["up"] = Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)
                 pending["down"] = Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN)
-            KEY_L: pending["attack"] = "overdrive" if sim.arcade_enabled and (Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)) else "special"
-            KEY_G: pending["attack"] = "grab"
+            KEY_L: _offer_attack(pending,"overdrive" if sim.arcade_enabled and (Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)) else "special")
+            KEY_G: _offer_attack(pending,"grab")
             KEY_SPACE: pending["jump"] = true
             KEY_E: pending["dash"] = true
 
@@ -1609,6 +1629,8 @@ func _restore_options() -> void:
     get_node("/root/GameLocale").set_language(language)
     training_details=options.training_details
     control_hints=options.control_hints
+    var tactic_choices:Array=[KEY_Q,KEY_I,KEY_U,KEY_V,KEY_COMMA,KEY_PERIOD]
+    controls.tactic_keys=[tactic_choices[options.tactic_key_a],tactic_choices[options.tactic_key_b]]
     audio.music_level=options.music_level
     audio.effects_level=options.effects_level
     sim.difficulty=options.difficulty
@@ -1622,7 +1644,7 @@ func _restore_options() -> void:
         if fighters[i].character_index!=character_choices[i]:fighters[i].setup(COLORS[i],character_choices[i])
 
 func set_character(side:int,index:int) -> void:
-    if screen!="title" or side not in [0,1]:return
+    if screen not in ["title","city"] or side not in [0,1]:return
     var selected:=clampi(index,0,FighterVisual.Roster.BLACK_SUIT_INDEX if side==1 else FighterVisual.Roster.ENTRIES.size()-1)
     if character_choices[side]==selected:return
     character_choices[side]=selected
@@ -1633,7 +1655,7 @@ func set_character(side:int,index:int) -> void:
     if is_instance_valid(hud) and hud.menu_page=="roster":hud.rebuild_menu()
 
 func save_options() -> void:
-    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":run_base_difficulty if run_active else sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":story_original_rival if sim.story_enabled else (run_original_rival if run_active else character_choices[1]),"p1_device":controls.wanted[0],"p2_device":controls.wanted[1],"time_of_day":time_of_day_choice,"secret_mono":secret_mono,"rumble":controls.rumble_enabled,"control_hints":control_hints})
+    preferences.write_options(preferences_path,{"muted":audio.muted,"music_muted":audio.music_muted,"reduced_effects":reduced_effects,"retro_pixels":retro_pixels,"scene_edges":ink_pass.visible,"difficulty":run_base_difficulty if run_active else sim.difficulty,"partner_mode":demo_partner if demo!=null else sim.partner_mode,"language":language,"training_details":training_details,"music_level":audio.music_level,"effects_level":audio.effects_level,"player_character":character_choices[0],"rival_character":story_original_rival if sim.story_enabled else (run_original_rival if run_active else character_choices[1]),"p1_device":controls.wanted[0],"p2_device":controls.wanted[1],"time_of_day":time_of_day_choice,"secret_mono":secret_mono,"rumble":controls.rumble_enabled,"control_hints":control_hints,"tactic_key_a":[KEY_Q,KEY_I,KEY_U,KEY_V,KEY_COMMA,KEY_PERIOD].find(controls.tactic_keys[0]),"tactic_key_b":[KEY_Q,KEY_I,KEY_U,KEY_V,KEY_COMMA,KEY_PERIOD].find(controls.tactic_keys[1])})
 
 func story_opening_wanted() -> bool:
     # Only a real launch of this scene; tools that instantiate it stay on the menu.
@@ -1934,3 +1956,16 @@ func complete_ability_draw(item:Dictionary,next_kind:String) -> void:
     if draw_rewards.apply_once(sim,item):
         hud.notice=item.title+" / NEXT ROUND";hud.notice_time=2.0
     pending.clear()
+
+func set_tactic_key(slot:int,index:int) -> void:
+    var choices:Array=[KEY_Q,KEY_I,KEY_U,KEY_V,KEY_COMMA,KEY_PERIOD]
+    if slot not in [0,1] or index<0 or index>=choices.size():return
+    var previous:int=controls.tactic_keys[slot]
+    controls.clear_tactic_keys()
+    if controls.tactic_keys[1-slot]==choices[index]:controls.tactic_keys[1-slot]=previous
+    controls.tactic_keys[slot]=choices[index]
+    save_options();hud.rebuild_menu()
+
+func _offer_attack(queued:Dictionary,move_name:String) -> void:
+    var priority:Dictionary={"overdrive":4,"tactic_a":3,"tactic_b":2}
+    if int(priority.get(move_name,1))>int(priority.get(queued.get("attack",""),0)) or not queued.has("attack"):queued["attack"]=move_name

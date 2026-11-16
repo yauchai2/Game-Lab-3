@@ -11,6 +11,8 @@ const KB_LEFT := {KEY_A:"left",KEY_D:"right",KEY_W:"up",KEY_S:"down",KEY_F:"ligh
 const KB_RIGHT := {KEY_LEFT:"left",KEY_RIGHT:"right",KEY_UP:"up",KEY_DOWN:"down",KEY_K:"light",KEY_L:"heavy",KEY_O:"skill",KEY_P:"grab",KEY_SEMICOLON:"jump",KEY_I:"dash",RSHIFT:"guard",KEY_KP_1:"light",KEY_KP_2:"heavy",KEY_KP_3:"skill",KEY_KP_4:"grab",KEY_KP_0:"jump",KEY_KP_6:"dash",KEY_KP_5:"guard"}
 const LAYOUTS := {"kb_solo":KB_SOLO,"kb_left":KB_LEFT,"kb_right":KB_RIGHT}
 const PAD_BUTTONS := {JOY_BUTTON_X:"light",JOY_BUTTON_Y:"heavy",JOY_BUTTON_B:"skill",JOY_BUTTON_A:"jump",JOY_BUTTON_RIGHT_SHOULDER:"dash",JOY_BUTTON_LEFT_SHOULDER:"grab",JOY_BUTTON_DPAD_LEFT:"left",JOY_BUTTON_DPAD_RIGHT:"right",JOY_BUTTON_DPAD_UP:"up",JOY_BUTTON_DPAD_DOWN:"down",JOY_BUTTON_START:"start"}
+var tactic_keys:Array=[KEY_Q,KEY_I]
+var tactics_enabled:=false
 const STICK_DEADZONE := .35
 const STICK_MODIFIER := .55
 const TRIGGER_POINT := .5
@@ -97,6 +99,8 @@ func feed(event: InputEvent) -> Array:
         var id := key_id(event)
         if event.pressed:keys[id]=true
         else:keys.erase(id)
+        if mode!="versus" and tactics_enabled and event.pressed and not event.echo and id in tactic_keys:
+            presses.append({"side":0,"action":"tactic_a" if id==tactic_keys[0] else "tactic_b","pad":false})
         if mode=="versus" and event.pressed and not event.echo:
             for side in 2:
                 var layout: Dictionary = LAYOUTS.get(devices[side].kind,{})
@@ -107,6 +111,8 @@ func feed(event: InputEvent) -> Array:
         if event.pressed:pad_buttons[event.device][event.button_index]=true
         else:pad_buttons[event.device].erase(event.button_index)
         var side := side_for_pad(event.device)
+        if tactics_enabled and mode!="versus" and event.pressed and not was and side==0 and event.button_index in [JOY_BUTTON_RIGHT_STICK,JOY_BUTTON_LEFT_STICK]:
+            presses.append({"side":0,"action":"tactic_a" if event.button_index==JOY_BUTTON_RIGHT_STICK else "tactic_b","pad":true})
         if event.pressed and not was and side>=0 and PAD_BUTTONS.has(event.button_index):
             presses.append({"side":side,"action":PAD_BUTTONS[event.button_index],"pad":true})
     elif event is InputEventJoypadMotion:
@@ -185,3 +191,14 @@ func rumble(side: int, weak: float, strong: float, seconds: float) -> void:
         if rumble_log.size()>32:rumble_log.pop_front()
 func stop_rumble() -> void:
     for id in pads():Input.stop_joy_vibration(id)
+
+func tactic_held(slot:int) -> bool:
+    if not tactics_enabled or mode=="versus":return false
+    if keys.has(tactic_keys[slot]):return true
+    for device in pads():
+        if pad_buttons.get(device,{}).get(JOY_BUTTON_RIGHT_STICK if slot==0 else JOY_BUTTON_LEFT_STICK,false):return true
+    return false
+func clear_tactic_keys() -> void:
+    for code in tactic_keys:keys.erase(code)
+    for device in pad_buttons:
+        pad_buttons[device].erase(JOY_BUTTON_RIGHT_STICK);pad_buttons[device].erase(JOY_BUTTON_LEFT_STICK)

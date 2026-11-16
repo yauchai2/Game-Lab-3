@@ -101,6 +101,17 @@ static func _release_retired_materials() -> void:
     retired_materials.clear()
 
 func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent_x := INF) -> void:
+    # Retimed existing whole-body clips provide one pose owner for the new tactical casts.
+    # The copied presentation state never changes simulation move ids or hit clocks.
+    if f.state=="attack" and f.move in ["tactic_a","tactic_b"]:
+        f=f.duplicate(true)
+        var timing:Dictionary=f.move_data
+        f.move="heavy" if f.character==1 else ("cross" if f.character==2 else "special")
+        if f.character==0:f.move="cross"
+        var base:Dictionary=preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
+        var authored:Dictionary=preload("res://scripts/combat/last_service/profiles.gd").move(base,f.character,f.move,f)
+        f.frame=roundi(float(f.frame)*float(authored.startup)/float(timing.startup)) if f.frame<=timing.startup else int(authored.startup)+int(f.frame)-int(timing.startup)
+        f.move_data=authored
     if PairedMotion.owns(f) and skeleton!=null:
         if not paired_motion.active_last:foot_contact.clear()
         for bone in oversized_bones:skeleton.set_bone_pose_scale(bone,Vector3.ONE)

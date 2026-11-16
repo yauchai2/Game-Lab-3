@@ -193,3 +193,5 @@
 - 2026-11-15 最新故事開局要求：見 docs/STORY_ONBOARDING.zh-TW.md。全部基本動作第一場可用，五種能力新檔預設／舊檔載入補齊，故事模擬不再以 campaign_skills 限基本出招；能量、空中條件、進階技巧及成長仍照原規則。H 指南／實際走到設施／下一步／戰鬥真費用與繁中字圖已加入。54 新＋86 城市＋50 戰役＋23 原生城市＋23 strict＋21 繁中通過（各組重疊）；Linux4.6.3非Mac／真人，Web未更新。
 
 - 2026-11-16技能策劃續訂：docs/SKILL_INPUT_CHARGE_PLAN.zh-TW.md。Q／I兩槽候選、H解除改Esc指南、保留J持鍵與原K／L方向語義；先RIVET有限蓄力及正式遭遇，後八招及構築。僅規劃，沒有改鍵／新runtime；手柄鍵位及真人測試待驗，不把候選數字當已平衡。
+
+- 2026-11-16戰術技能實作：docs/TACTICAL_SKILLS_RUNTIME.zh-TW.md。首八招接正式STORY，解鎖1／3場、Q／I安全重綁、RIVET有限蓄力、變體／支援與兩件配方，CityProfile schema4；H戰鬥／據點解除，指南保留。city出擊套遠征角色，不再只接受title。tactics模組唯一判定owner，經原_resolve_hit／Boss結算；不要再把新招當未實作，也不可當全24招／真人平衡已完成。原GLB／BGM／標準模式保持；同分支／PR #38，Web不更新。

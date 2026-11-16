@@ -93,7 +93,7 @@ func run() -> void:
     DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(p.path.get_base_dir()))
     var legacy:={"version":1,"credits":234,"parts":9,"best":8,"points":8,"skills":["double_jump","launcher"],"skill_levels":[1,0,0,0],"talents":[["break_1","break_2"],[],[],[]],"gear":[{},{},{}],"inventory":[],"pulls":4,"pity":4,"unique_pity":4,"serial":2,"attempts":2,"dialogue":1,"claims":[],"run":{}}
     var file:=FileAccess.open(p.path,FileAccess.WRITE);var original:=JSON.stringify(legacy);file.store_string(original);file.close();p.load_data()
-    check("legacy migration retains abilities money and point budget",p.error=="" and p.data.version==3 and p.data.points==8 and p.data.credits==234 and p.data.skills==P.BASIC_SKILLS and p.data.skill_levels[0]==1)
+    check("legacy migration retains abilities money and point budget",p.error=="" and p.data.version==4 and p.data.points==8 and p.data.credits==234 and p.data.skills==P.BASIC_SKILLS and p.data.skill_levels[0]==1)
     check("expanded tree refunds old allocations without overwriting original",p.data.talents[0].is_empty() and FileAccess.get_file_as_string(p.path)==original)
     p.save_data()
     check("first migrated transaction preserves immutable v1 backup",FileAccess.get_file_as_string(p.path+".v1.bak")==original)

@@ -17,6 +17,8 @@ var service_contacts:Array=[]
 const ServiceProfiles=preload("res://scripts/combat/last_service/profiles.gd")
 const ServiceRules=preload("res://scripts/combat/last_service/rules.gd")
 var service_rules=ServiceRules.new()
+const TacticalSkills=preload("res://scripts/combat/tactics/skills.gd")
+var tactics=TacticalSkills.new()
 func skill_cost(f:Dictionary,name:String) -> int:
     return DrawRewards.skill_cost(f,name,last_service_enabled)
 
@@ -37,6 +39,8 @@ const GunShot=preload("res://scripts/combat/enemies/gun_shot.gd")
 var projectiles:Array[Dictionary]=[]
 var gun_next_ok:=0
 const MOVES := {
+    "tactic_a":{"startup":12,"active":1,"recovery":24,"damage":8,"reach":0.0,"stun":14,"push":2.0,"lift":0.0,"stop":0},
+    "tactic_b":{"startup":12,"active":1,"recovery":24,"damage":8,"reach":0.0,"stun":14,"push":2.0,"lift":0.0,"stop":0},
     "gun":{"startup":30,"active":1,"recovery":34,"damage":10,"reach":0.0,"stun":16,"push":3.0,"lift":0.0,"stop":6},
     "node_pulse":{"startup":8,"active":1,"recovery":32,"damage":12,"reach":0.0,"stun":18,"push":5.0,"lift":2.0,"stop":7},
     "air_counter":{"startup":14,"active":4,"recovery":22,"damage":18,"reach":2.3,"stun":28,"push":7.0,"lift":-10.0,"stop":10},
@@ -95,6 +99,7 @@ func _init() -> void:
 
 func reset_round() -> void:
     paired_throw.clear(self)
+    tactics.clear()
     rush_agent.reset()
     projectiles.clear();gun_next_ok=0
     surge_lab_enabled=false;surge_lab_fixture=false;surge_release.clear();surge_guards=[0,0]
@@ -119,6 +124,7 @@ func reset_round() -> void:
             "invuln": 0, "flash": 0, "guarding": false, "guard_frames": 0, "parry_cd": 0, "parry_allowed": true, "entry_parry_window":0, "counter_window":0, "counter_attack":false, "break_lock":0, "impact_load":0.0, "jump_buffer":0, "juggle":0, "hit_confirmed":false,"throw_cd":0,"tech_window":0,"wall_bounces":0,"wall_tech_window":0,"wall_tech_buffer":0})
     for i in 2:
         fighters[i]["service"]=ServiceRules.fresh()
+        tactics.setup_fighter(fighters[i])
         fighters[i]["perks"]=service_perks[i].duplicate()
     phase = "ready"
     countdown = 72
@@ -269,10 +275,11 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
                 commands[side].merge(queued,true)
             # Held rush is normal chaining, never a fresh continuation decision.
             if not continuation.slots[side].is_empty() and continuation.slots[side].choice!="" and not continuation.slots[side].spent:commands[side].erase("rush")
+    for i in 2:tactics.before(self,i,commands[i])
     if arcade_enabled:
         for i in 2:
             var f: Dictionary=fighters[i]
-            if commands[i].get("rush",false) and not commands[i].has("attack") and not (f.buffer_ttl>0 and f.buffer in ["special","overdrive","launcher","heavy","meteor","grab"]):commands[i]["attack"]="light"
+            if commands[i].get("rush",false) and not commands[i].has("attack") and not (f.buffer_ttl>0 and f.buffer in ["special","overdrive","launcher","heavy","meteor","grab","tactic_a","tactic_b"]):commands[i]["attack"]="light"
             if commands[i].get("attack","")=="light" and f.air.chase_window>0 and not f.air.chase_used and fighters[1-i].state=="stun":commands[i]["dash"]=true
     if is_air_lesson() and air_lesson_stage=="attack" and not air_counter.active():commands[0].erase("attack")
     if is_aerial() and not air_counter.active():
@@ -311,7 +318,7 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         if commands[i].get("dash",false) and f.state=="stun":f.wall_tech_buffer=8
         if commands[i].has("attack"):
             f.buffer = "meteor" if is_aerial() and fighters[i].y>.01 and commands[i].attack=="heavy" and commands[i].get("down",false) else ("launcher" if commands[i].attack == "heavy" and commands[i].get("up", false) else commands[i].attack)
-            f.buffer_ttl = INPUT_BUFFER
+            f.buffer_ttl = 6 if TacticalSkills.is_move(f.buffer) else INPUT_BUFFER
             if commands[i].attack=="grab":f.tech_window=7
     if hitstop > 0:
         hitstop -= 1
@@ -324,6 +331,7 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         _advance_fighter(i, commands[i])
     _separate_bodies()
     if last_service_enabled:service_rules.advance(self)
+    tactics.advance(self)
     GunShot.advance(self)
     # Resolve simultaneous active attacks from the same frame; trades are allowed.
     var contacts: Array[int] = []
@@ -348,6 +356,7 @@ func tick(player: Dictionary = {}, opponent: Dictionary = {}) -> void:
         for i in contacts:_resolve_hit(i,false)
     if last_service_enabled:
         for event in events.duplicate():service_rules.observe(self,event)
+    for event in events.duplicate():tactics.observe(self,event)
     if arcade_enabled:
         for event in events:
             if event.kind=="hit":
@@ -421,6 +430,8 @@ func _advance_fighter(i: int, command: Dictionary) -> void:
                 f.jump_buffer = 0
                 events.append({"kind":"jump","target":i})
             events.append({"kind":"air_chase","target":i})
+        if f.hit_confirmed and f.move in ["jab","cross"] and f.frame>=move.startup+move.active and f.buffer_ttl>0 and TacticalSkills.is_move(f.buffer):
+            _start_attack(i,f.buffer)
         # Confirmed light attacks cancel into the next light during recovery.
         if arcade_enabled and f.hit_confirmed and f.buffer_ttl>0 and f.buffer in ["special","overdrive","launcher","meteor"] and f.frame>=move.startup+move.active:
             _start_attack(i,f.buffer)
@@ -519,6 +530,9 @@ func _start_attack(i: int, requested: String) -> void:
         return
     if not MOVES.has(name):
         return
+    if TacticalSkills.is_move(name) and not tactics.begin(self,i,name):
+        f.buffer="";f.buffer_ttl=0
+        return
     if name=="grab":
         if f.throw_cd>0 or f.y>.01:
             f.buffer=""
@@ -570,6 +584,7 @@ func _can_hit(i: int) -> bool:
     var b: Dictionary = fighters[1-i]
     if a.state != "attack" or a.connected or b.invuln > 0 or (b.y>0.1 and b.juggle>=3):
         return false
+    if TacticalSkills.is_move(a.move):return false
     if a.move=="gun":return false # ranged: resolved by GunShot, never by a melee hitbox
     var m: Dictionary = move_for(a,a.move)
     if last_service_enabled and a.character==3 and a.move in ["special","node_pulse"]:return false
@@ -1105,6 +1120,7 @@ func _end_air_counter(why: String) -> void:
     events.append({"kind":"air_counter_end","reason":why,"owner":air_counter.owner})
 
 func move_for(fighter:Dictionary,name:String) -> Dictionary:
+    if TacticalSkills.is_move(name):return tactics.move(fighter,name)
     if last_service_enabled:return ServiceProfiles.move(MOVES[name],fighter.get("character",0),name,fighter)
     return Profiles.move(MOVES[name],fighter.get("character",0),name)
 

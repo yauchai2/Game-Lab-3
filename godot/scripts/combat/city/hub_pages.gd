@@ -1,6 +1,7 @@
 extends RefCounted
 ## Picture-first station pages (SKILLS, RADIO/story, DEPART). The hub still owns state and save calls;
 ## these functions only lay out what it already knows, and every button carries meta "act" for tests.
+const L10n=preload("res://scripts/combat/ui/locale_text.gd")
 const T=preload("res://scripts/combat/ui/ui_theme.gd")
 const W=preload("res://scripts/combat/city/hub_widgets.gd")
 const Icons=preload("res://scripts/combat/city/ui_icons.gd")
@@ -23,6 +24,7 @@ static func skills(hub:Node) -> void:
     var tint:Color=HERO_TINT[hero_id]
     W.head(hub,"fist",HEROES[hero_id]+" SKILLS",tint)
     W.guide(hub,"All basic moves are ready. TRY opens a safe practice; upgrades strengthen your L skill.")
+    tactical_page(hub)
     var rank:=int(p.data.skill_levels[hero_id])
     # L skill rank: one line with pips, price chips and the upgrade button.
     var card:=PanelContainer.new();card.add_theme_stylebox_override("panel",T.plate(Color("10121f"),tint,2));hub.stack.add_child(card)
@@ -324,3 +326,34 @@ static func _compare(hub:Node,p,hero_id:int,item:Dictionary,_tint:Color) -> void
         W.tile(hub,"flame","TEMPER","120+6",T.CORAL,"off" if int(item.tier)>=2 or p.data.credits<120 or p.data.parts<6 else "ready",func():hub.act(func():return p.craft(id,"temper"),"Equipment tempered"),"Reroll up to RARE. 120 credits, 6 parts.","temper:%d"%id,Vector2(0,98)),
         W.tile(hub,"trash","SCRAP","+%d"%(1+int(item.tier)),T.PAPER,"off" if p.is_equipped(id) else "ready",func():hub.act(func():return p.salvage(id),"Equipment recycled"),"Recycle for parts. Fitted gear cannot be scrapped.","recycle:%d"%id,Vector2(0,98))]
     for t in tiles:W.into(acts,t)
+
+static func tactical_page(hub:Node) -> void:
+    var p=hub.campaign.profile
+    var hero:int=hub.campaign.hero_id()
+    var tactics=p.Tactics
+    var cfg:Dictionary=p.data.tactics[hero]
+    W.section(hub,"bolt","TACTICAL SKILLS")
+    W.guide(hub,"Two tactics: first clear unlocks one; clear district one for both. Change variants and supports here for free.")
+    for slot in 2:
+        var id:int=cfg.skills[slot]
+        var open:bool=id<p.tactics_unlocked()
+        var key:String=OS.get_keycode_string(hub.campaign.session.controls.tactic_keys[slot])
+        W.section(hub,"fist",key+" / "+L10n.text(str(tactics.NAMES[hero][id])))
+        W.guide(hub,L10n.text(str(tactics.INFO[hero][id]))+" "+(L10n.text("%d ENERGY / %.1fs")%[tactics.COSTS[hero][id],tactics.COOLDOWNS[hero][id]/60.0] if open else L10n.text("Clear encounter %d to learn.")%tactics.UNLOCKS[id]))
+        var row:=HBoxContainer.new();hub.stack.add_child(row)
+        for field in ["variants","supports"]:
+            var selector:=OptionButton.new();selector.fit_to_longest_item=false;selector.clip_text=true;selector.custom_minimum_size=Vector2(0,50);selector.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+            for title in (tactics.variant_labels(hero,id) if field=="variants" else ["RELAY / +4 ON NEXT MELEE","PIERCE / LOWER DAMAGE"]):selector.add_item(L10n.text(title))
+            if field=="supports" and not (hero in [1,2] and id==0):
+                selector.set_item_text(1,L10n.text("LIGHTWEIGHT / SHORTER COOLDOWN"))
+            selector.select(cfg[field][id]);selector.disabled=not open;selector.set_meta("act","tactic:%d:%s"%[slot,field])
+            var selected_field:String=field;var selected_id:int=id
+            selector.item_selected.connect(func(value:int):hub.act(func():return p.configure_tactic(hero,selected_id,selected_field,value),"Tactical build updated"))
+            row.add_child(selector)
+    W.cta(hub,"arrow","SWAP TACTICAL SLOTS",T.TEAL,func():hub.act(func():return p.configure_tactic(hero,0,"skills",0),"Tactical slots swapped"),false,"tactic:swap")
+
+    W.section(hub,"gear","TACTICAL GEAR / 30 CREDITS + 3 PARTS")
+    W.guide(hub,"RELAY CELL: tactics deal 20% less damage, but the next melee returns 6 energy. ANCHOR WRIST: longer travel and node life, but 25% longer cooldowns. Relay takes priority if both are worn.")
+    for kind in ["tactic_relay","tactic_anchor"]:
+        var recipe:String=kind
+        W.cta(hub,"gear","CRAFT RELAY CELL" if kind=="tactic_relay" else "CRAFT ANCHOR WRIST",T.TEAL,func():hub.act(func():return p.craft_tactic_gear(hero,recipe),"Gear crafted. Equip it at SHOP."),p.data.best<3 or p.data.credits<30 or p.data.parts<3,"craft:"+kind)

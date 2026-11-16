@@ -1,3 +1,9 @@
+## 2026-11-16：戰術技能實作驗證
+
+[新證據](evidence/tactical-skills/README.md)：100規則檢查含蓄力／中斷／boss護甲／反射取樣／舊檔原位元組／失敗交易回滾與多裝置語義；20真窗口檢查含下拉選單、Q按住與鬆開、H、重綁及四角實際角色身分。原服務46、城市86、戰役50、槍彈21、繁中21、故事引導54皆過；17個改動腳本七類fatal warning與既有23 strict通過。數目跨suite有重疊，不相加成唯一測試數。schema3硬寫版本的兩個既有測試隨schema4更新，所有原進度／裝備／天賦斷言保持；H關指南測試改為Esc。
+
+初版UI曾被選單最小寬度撐出視窗、技能HUD被舊提示遮住，已修正並實際重拍。初版native角色切換指令在play被忽略，後補真身分斷言並修city出擊角色套用，接受證據只取重跑後結果。資產冷啟動匯入已完成。Linux4.6.3 Compatibility／llvmpipe／Dummy；未測Mac／實體手柄／真人樂趣／喇叭／即時硬件FPS，不宣稱全24招已完成。
+
 ## 2026-11-16：技能操作續訂文件驗證
 
 本輪只有規劃。對照基線9336bed的fight_session、fight_controls、fight_hud、city_hub、last_service/rules及現有技能文件，核對RIVET蓄力12／30／36tick、J持鍵、K正式挑空、上L大招、LOOP下L／水平L、H說明、Q標題秘密碼、P2 I閃避及F1設定。新Q15／36／54tick是起測提案，非現有值。文件連結與git diff --check通過；未執行Godot或真人測試，未宣稱新方案手感驗證。[新方案及驗收規格](SKILL_INPUT_CHARGE_PLAN.zh-TW.md)。

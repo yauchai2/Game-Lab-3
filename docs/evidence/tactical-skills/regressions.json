@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "verify_tactical_skills",
+    "exit_code": 0,
+    "errors": [],
+    "passed_lines": 100
+  },
+  {
+    "suite": "verify_last_service_rules",
+    "exit_code": 0,
+    "errors": [],
+    "passed_lines": 46
+  },
+  {
+    "suite": "verify_city_expansion",
+    "exit_code": 0,
+    "errors": [],
+    "passed_lines": 86
+  },
+  {
+    "suite": "verify_campaign_complete",
+    "exit_code": 0,
+    "errors": [],
+    "passed_lines": 50
+  },
+  {
+    "suite": "verify_gun_shot",
+    "exit_code": 0,
+    "errors": [],
+    "passed_lines": 21
+  },
+  {
+    "suite": "verify_traditional_chinese",
+    "exit_code": 0,
+    "errors": [],
+    "passed_lines": 21
+  }
+]

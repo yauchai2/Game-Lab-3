@@ -63,6 +63,7 @@ func _depart_now() -> void:
     active=true
     var sim=session.sim
     sim.campaign_enabled=true;sim.campaign_skills=profile.data.skills.duplicate()
+    sim.tactics.enabled=true;sim.tactics.config=[profile.data.tactics[hero_id()].duplicate(true),{}]
     sim.service_perks=[profile.data.advanced[hero_id()].duplicate(),[]]
     sim.campaign_stats=profile.stats(hero_id());sim.campaign_room=room
     var challenge:bool=profile.data.run.get("mode","story")=="contract"
