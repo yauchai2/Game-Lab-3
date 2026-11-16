@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "name": "real PCM remains audible without clipping res://audio/music/fight_a.ogg",
+      "passed": true
+    },
+    {
+      "name": "real PCM remains audible without clipping res://audio/music/fight_b.ogg",
+      "passed": true
+    },
+    {
+      "name": "real PCM remains audible without clipping res://audio/music/fight_c.ogg",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "metrics": {
+    "fight_a.ogg": {
+      "deck_db": -7.00064277648926,
+      "frames": 40960,
+      "peak": 0.106284819543362,
+      "rms": 0.0335883397326994
+    },
+    "fight_b.ogg": {
+      "deck_db": -6.99877500534058,
+      "frames": 45056,
+      "peak": 0.121198251843452,
+      "rms": 0.0371519757494825
+    },
+    "fight_c.ogg": {
+      "deck_db": -6.99877452850342,
+      "frames": 45056,
+      "peak": 0.135336145758629,
+      "rms": 0.0342472652723928
+    }
+  }
+}

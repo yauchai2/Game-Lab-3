@@ -1,3 +1,7 @@
+## 2026-11-17：整體聲音節奏與編排
+
+使用者授權音樂音效可大改：fight_audio追加熱曲−3／−3／−4dB per-deck trim、6秒交戰hold／按metadata小節換曲／保存loop小節位置，敘事入口即時優先。fade保留瞬時權重與主導deck，能量有界、仍兩播放器。SFX25–90ms同種合併、voice優先級／細碎聲下調、1.5／3.5dB獨立duck包絡；不動權威事件及前輪−10dB／開場低音量。26新＋66／44／21／12／6及33strict通過，原來源保持；詳docs/evidence/audio-direction-2026-11-17。21秒為排程試聽非人手實玩，無Mac／真人實聽／Web驗收。
+
 ## 2026-11-17：開場／全遊戲音效降音量
 
 使用者回報效果超大：fight_audio的Afterhours SFX在dynamics之後單一AudioEffectAmplify−10dB，compressor.gain=0、開場score基準−5取代−1；不改音樂／原素材／已存滑桿。恢復聲音不可繞過trim，重複初始化不疊加；舊探索引擎接SFX或無bus時−10fallback。12真PCM／設定檢查、33strict、66／44／21通過，固定取樣RMS下降11.55–13dB，非真人／Mac實聽。見docs/evidence/quieter-sfx-2026-11-17；來源main、Web保持。

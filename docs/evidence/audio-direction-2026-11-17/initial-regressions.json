@@ -1,0 +1,54 @@
+[
+  {
+    "suite": "combat_sfx",
+    "exit": 0,
+    "errors": [
+      "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+    ],
+    "tail": [
+      "   at: cleanup (core/object/object.cpp:2663)",
+      "ERROR: 2 resources still in use at exit (run with --verbose for details).",
+      "   at: clear (core/io/resource.cpp:810)"
+    ]
+  },
+  {
+    "suite": "story_opening",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "STORY_OPENING the next launch remembers it was seen true",
+      "STORY_OPENING without being the running game it still never autoplays true",
+      "STORY_OPENING_RESULT 44/44"
+    ]
+  },
+  {
+    "suite": "city_breaker_fx",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "KO_FX F2 clears lens and sound together true",
+      "KO_FX title exit releases all FX ownership true",
+      "KO_FX_CHECKS 21/21"
+    ]
+  },
+  {
+    "suite": "quieter_sfx",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "QUIETER_SFX opening still respects effects mute true",
+      "QUIETER_SFX saved low effects slider remains low true",
+      "QUIETER_SFX Restore Sound keeps mix calibration true"
+    ]
+  },
+  {
+    "suite": "unified_audio",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "AUDIO Restore recovers zero levels and muted Master true { \"frames\": 16384, \"peak\": 0.06937965005636, \"rms\": 0.02039740936396, \"clipped\": 0 }",
+      "AUDIO Pause keeps music transport advancing true { \"before\": 1.48897957801819, \"after\": 1.95337867736816 }",
+      "AUDIO Fight mix stays nonzero without clipping true { \"frames\": 12288, \"peak\": 0.11649771779776, \"rms\": 0.04661800289841, \"clipped\": 0 }"
+    ]
+  }
+]

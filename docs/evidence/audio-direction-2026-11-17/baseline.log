@@ -1,0 +1,5 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+AUDIO_DIRECTION real PCM remains audible without clipping res://audio/music/fight_a.ogg true
+AUDIO_DIRECTION real PCM remains audible without clipping res://audio/music/fight_b.ogg true
+AUDIO_DIRECTION real PCM remains audible without clipping res://audio/music/fight_c.ogg true

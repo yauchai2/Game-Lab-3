@@ -1,0 +1,75 @@
+{
+  "checks": [
+    {
+      "name": "repeated setup does not stack bus effects",
+      "passed": true
+    },
+    {
+      "name": "compressor adds no makeup gain",
+      "passed": true
+    },
+    {
+      "name": "shared trim is last and lowers every saved SFX setting",
+      "passed": true
+    },
+    {
+      "name": "one shared mix calibration",
+      "passed": true
+    },
+    {
+      "name": "heavy produces real non-clipping PCM",
+      "passed": true
+    },
+    {
+      "name": "ten_overlapping_impacts produces real non-clipping PCM",
+      "passed": true
+    },
+    {
+      "name": "ui_confirm produces real non-clipping PCM",
+      "passed": true
+    },
+    {
+      "name": "opening_case_landing produces real non-clipping PCM",
+      "passed": true
+    },
+    {
+      "name": "opening uses lower cue gain and the shared SFX bus",
+      "passed": true
+    },
+    {
+      "name": "opening still respects effects mute",
+      "passed": true
+    },
+    {
+      "name": "saved low effects slider remains low",
+      "passed": true
+    },
+    {
+      "name": "Restore Sound keeps mix calibration",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "measurements": {
+    "heavy": {
+      "frames": 45056,
+      "peak": 0.0951957032084465,
+      "rms": 0.0168595883511885
+    },
+    "opening_case_landing": {
+      "frames": 45056,
+      "peak": 0.157690241932869,
+      "rms": 0.0579987797522976
+    },
+    "ten_overlapping_impacts": {
+      "frames": 45056,
+      "peak": 0.094310000538826,
+      "rms": 0.0183071207214265
+    },
+    "ui_confirm": {
+      "frames": 45056,
+      "peak": 0.0532866902649403,
+      "rms": 0.00588553503773659
+    }
+  }
+}

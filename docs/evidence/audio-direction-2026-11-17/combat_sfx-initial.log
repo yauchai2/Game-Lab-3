@@ -1,0 +1,73 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SFX sound 'hit' loaded from the new set true <null>
+SFX sound 'heavy' loaded from the new set true <null>
+SFX sound 'block' loaded from the new set true <null>
+SFX sound 'parry' loaded from the new set true <null>
+SFX sound 'guard_break' loaded from the new set true <null>
+SFX sound 'swing' loaded from the new set true <null>
+SFX sound 'dash' loaded from the new set true <null>
+SFX sound 'step' loaded from the new set true <null>
+SFX sound 'land' loaded from the new set true <null>
+SFX sound 'jump' loaded from the new set true <null>
+SFX sound 'release' loaded from the new set true <null>
+SFX sound 'ko' loaded from the new set true <null>
+SFX sound 'charge' loaded from the new set true <null>
+SFX sound 'slam' loaded from the new set true <null>
+SFX sound 'launch' loaded from the new set true <null>
+SFX sound 'chase' loaded from the new set true <null>
+SFX sound 'rally' loaded from the new set true <null>
+SFX sound 'sub' loaded from the new set true <null>
+SFX sound 'ui_move' loaded from the new set true <null>
+SFX sound 'ui_confirm' loaded from the new set true <null>
+SFX sound 'ui_back' loaded from the new set true <null>
+SFX sound 'ui_toggle' loaded from the new set true <null>
+SFX sound 'ui_pause' loaded from the new set true <null>
+SFX music loop loads: res://audio/music/fight_a.ogg true 33.9853057861328
+SFX music loop loads: res://audio/music/fight_b.ogg true 32.0
+SFX music loop loads: res://audio/music/fight_c.ogg true 29.5372333526611
+SFX music loop loads: res://audio/music/result.ogg true 16.9926528930664
+SFX music loop loads: res://audio/music/city.ogg true 38.4000015258789
+SFX music loop loads: res://audio/music/training.ogg true 37.2825393676758
+SFX music loop loads: res://audio/music/fight_low.ogg true 38.4000015258789
+SFX music loop loads: res://audio/music/draw.ogg true 17.9446716308594
+SFX pause keeps the fight track #0 true <null>
+SFX result switches to the result loop #0 true <null>
+SFX pause keeps the fight track #1 true <null>
+SFX result switches to the result loop #1 true <null>
+SFX pause keeps the fight track #2 true <null>
+SFX result switches to the result loop #2 true <null>
+SFX pause keeps the fight track #3 true <null>
+SFX result switches to the result loop #3 true <null>
+SFX fights rotate through the pool true ["res://audio/music/fight_a.ogg", "res://audio/music/fight_b.ogg", "res://audio/music/fight_c.ogg", "res://audio/music/fight_a.ogg"]
+SFX deck stream matches current track credit true <null>
+SFX round result keeps the fight track true <null>
+SFX next round keeps the same fight track true <null>
+SFX match end switches to the result loop true <null>
+SFX rematch advances the pool and starts on quiet music true <null>
+SFX ui sounds are throttled true <null>
+SFX music.json describes the menu track true <null>
+SFX menu loop_offset equals the intro length true [8.72649, 43.6331977844238]
+SFX first launch starts at the intro true <null>
+SFX later launches start inside the loop on a bar line true [41.45079, 19.63459, 39.26917, 32.72431]
+SFX fight tracks never start mid-loop true <null>
+SFX replay_intro away from the menu re-arms the build-up true <null>
+SFX intro flag persisted true <null>
+SFX a new fight starts on a breather true 0.1783
+SFX quiet stretch darkens and lowers the music true [0.0, 3800.00000000177, -10.998774732166]
+SFX a flurry of impacts opens and raises the music true [0.745, 19998.0660560339, -7.00421620431619]
+SFX it cools back down without new hits true [0.0, 3800.00002500133]
+SFX pause is muffled true 1404.21480465347
+SFX resuming from pause keeps the current heat true 0.0
+SFX workshop uses its own low-key loop true <null>
+SFX training uses a steady track true <null>
+SFX Dealer uses its own quiet bed true <null>
+SFX KO bed plays once at the director's length true <null>
+SFX KO music pauses with the director true <null>
+SFX KO music resumes without a new track true <null>
+SFX music bus owns one low-pass filter true <null>
+COMBAT_SFX_CHECKS 66/66
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)

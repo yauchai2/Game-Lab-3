@@ -1,0 +1,28 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+AUDIO_DIRECTION louder battle masters are attenuated, sparse beds are preserved true
+AUDIO_DIRECTION fresh bouts keep a minimum quiet phrase true
+AUDIO_DIRECTION heat change schedules the next bar instead of cutting mid-phrase true
+AUDIO_DIRECTION pause does not advance combat hold or pause normal music true
+AUDIO_DIRECTION scheduled battle transition uses a short beat fade true
+AUDIO_DIRECTION returning combat loop resumes on a saved bar true
+AUDIO_DIRECTION cooling schedules a return true
+AUDIO_DIRECTION renewed action cancels stale cooling true
+AUDIO_DIRECTION Dealer bypasses adaptive waiting true
+AUDIO_DIRECTION KO music starts promptly and remains one-shot true
+AUDIO_DIRECTION match result settles with a longer fade true
+AUDIO_DIRECTION training retains its steady bed true
+AUDIO_DIRECTION same-frame heavy pile-up becomes one clear accent true
+AUDIO_DIRECTION a later heavy remains audible true
+AUDIO_DIRECTION footsteps cannot steal a critical cue true
+AUDIO_DIRECTION a parry can replace a busy critical slot true
+AUDIO_DIRECTION small movement sounds sit below the main contact true
+AUDIO_DIRECTION music duck attacks quickly within its smaller budget true
+AUDIO_DIRECTION reset clears ducking and repeat gates true
+AUDIO_DIRECTION reversing a fade preserves both instantaneous deck gains true
+AUDIO_DIRECTION reversing does not restart the returning song true
+AUDIO_DIRECTION a third destination preserves the dominant outgoing gain true
+AUDIO_DIRECTION interrupted fade never exceeds unit energy true
+AUDIO_DIRECTION real PCM remains audible without clipping res://audio/music/fight_a.ogg true
+AUDIO_DIRECTION real PCM remains audible without clipping res://audio/music/fight_b.ogg true
+AUDIO_DIRECTION real PCM remains audible without clipping res://audio/music/fight_c.ogg true

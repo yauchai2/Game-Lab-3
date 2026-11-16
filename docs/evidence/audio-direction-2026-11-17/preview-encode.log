@@ -1,0 +1,15 @@
+[aist#0:0/pcm_s16le @ 0x562529a98400] Guessed Channel Layout: stereo
+Input #0, wav, from '/tmp/audio-direction/mix-preview.wav':
+  Duration: 00:00:20.90, bitrate: 1411 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, stereo, s16, 1411 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16le (native) -> vorbis (libvorbis))
+Press [q] to stop, [?] for help
+Output #0, ogg, to 'docs/evidence/audio-direction-2026-11-17/mix-preview.ogg':
+  Metadata:
+    encoder         : Lavf61.7.103
+  Stream #0:0: Audio: vorbis, 44100 Hz, stereo, fltp
+      Metadata:
+        encoder         : Lavc61.19.101 libvorbis
+[out#0/ogg @ 0x562529a985c0] video:0KiB audio:331KiB subtitle:0KiB other streams:0KiB global headers:4KiB muxing overhead: 2.198328%
+size=     338KiB time=00:00:20.89 bitrate= 132.4kbits/s speed=86.1x

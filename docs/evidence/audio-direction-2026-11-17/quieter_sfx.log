@@ -1,0 +1,14 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+QUIETER_SFX repeated setup does not stack bus effects true
+QUIETER_SFX compressor adds no makeup gain true
+QUIETER_SFX shared trim is last and lowers every saved SFX setting true
+QUIETER_SFX one shared mix calibration true
+QUIETER_SFX heavy produces real non-clipping PCM true
+QUIETER_SFX ten_overlapping_impacts produces real non-clipping PCM true
+QUIETER_SFX ui_confirm produces real non-clipping PCM true
+QUIETER_SFX opening_case_landing produces real non-clipping PCM true
+QUIETER_SFX opening uses lower cue gain and the shared SFX bus true
+QUIETER_SFX opening still respects effects mute true
+QUIETER_SFX saved low effects slider remains low true
+QUIETER_SFX Restore Sound keeps mix calibration true

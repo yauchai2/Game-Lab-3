@@ -1,0 +1,129 @@
+{
+  "checks": [
+    {
+      "name": "louder battle masters are attenuated, sparse beds are preserved",
+      "passed": true
+    },
+    {
+      "name": "fresh bouts keep a minimum quiet phrase",
+      "passed": true
+    },
+    {
+      "name": "heat change schedules the next bar instead of cutting mid-phrase",
+      "passed": true
+    },
+    {
+      "name": "pause does not advance combat hold or pause normal music",
+      "passed": true
+    },
+    {
+      "name": "scheduled battle transition uses a short beat fade",
+      "passed": true
+    },
+    {
+      "name": "returning combat loop resumes on a saved bar",
+      "passed": true
+    },
+    {
+      "name": "cooling schedules a return",
+      "passed": true
+    },
+    {
+      "name": "renewed action cancels stale cooling",
+      "passed": true
+    },
+    {
+      "name": "Dealer bypasses adaptive waiting",
+      "passed": true
+    },
+    {
+      "name": "KO music starts promptly and remains one-shot",
+      "passed": true
+    },
+    {
+      "name": "match result settles with a longer fade",
+      "passed": true
+    },
+    {
+      "name": "training retains its steady bed",
+      "passed": true
+    },
+    {
+      "name": "same-frame heavy pile-up becomes one clear accent",
+      "passed": true
+    },
+    {
+      "name": "a later heavy remains audible",
+      "passed": true
+    },
+    {
+      "name": "footsteps cannot steal a critical cue",
+      "passed": true
+    },
+    {
+      "name": "a parry can replace a busy critical slot",
+      "passed": true
+    },
+    {
+      "name": "small movement sounds sit below the main contact",
+      "passed": true
+    },
+    {
+      "name": "music duck attacks quickly within its smaller budget",
+      "passed": true
+    },
+    {
+      "name": "reset clears ducking and repeat gates",
+      "passed": true
+    },
+    {
+      "name": "reversing a fade preserves both instantaneous deck gains",
+      "passed": true
+    },
+    {
+      "name": "reversing does not restart the returning song",
+      "passed": true
+    },
+    {
+      "name": "a third destination preserves the dominant outgoing gain",
+      "passed": true
+    },
+    {
+      "name": "interrupted fade never exceeds unit energy",
+      "passed": true
+    },
+    {
+      "name": "real PCM remains audible without clipping res://audio/music/fight_a.ogg",
+      "passed": true
+    },
+    {
+      "name": "real PCM remains audible without clipping res://audio/music/fight_b.ogg",
+      "passed": true
+    },
+    {
+      "name": "real PCM remains audible without clipping res://audio/music/fight_c.ogg",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "metrics": {
+    "fight_a.ogg": {
+      "deck_db": -9.99883365631104,
+      "frames": 40960,
+      "peak": 0.0752595886588097,
+      "rms": 0.0237836791033002
+    },
+    "fight_b.ogg": {
+      "deck_db": -9.99877452850342,
+      "frames": 45056,
+      "peak": 0.08580182492733,
+      "rms": 0.0263015865248267
+    },
+    "fight_c.ogg": {
+      "deck_db": -10.9987745285034,
+      "frames": 45056,
+      "peak": 0.0853913351893425,
+      "rms": 0.0216085631061331
+    }
+  }
+}

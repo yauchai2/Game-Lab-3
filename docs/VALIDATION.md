@@ -1,3 +1,7 @@
+## 2026-11-17：整體音訊節奏／轉場回歸
+
+[證據](evidence/audio-direction-2026-11-17/README.md)：26新檢查與前後Master PCM，熱曲a／b／c−3／−3／−4dB；11曲EBU R128／true peak與原檔hash保存。33腳本10類fatal、既有音效66／開場44／KO21／低音量12／Master PCM6通過；初次combat_sfx退出ObjectDB／2resources診斷保留，接受重跑無ERROR。21秒排程試聽921600frame、peak.162、clipped0，小節轉段約45ms量化差；非真人玩法／Mac／實體耳機喇叭實聽。Web未部署。
+
 ## 2026-11-17：音效降音量與前後PCM
 
 [證據](evidence/quieter-sfx-2026-11-17/README.md)：完整af6fcb8基線／候選相同85%音效、音樂關閉、每例45056非零PCM frame；重擊RMS−12.95dB、十次疊加−13、UI−13、開場落箱−11.55，候選peak .053–.197、無削波。12新檢查含舊滑桿／靜音／恢復聲音／單一trim通過，33腳本10類fatal及音效66／開場44／KO21回歸通過；航空腳本check-only通過。Linux4.6.3 Dummy確有混音樣本，非Mac4.7.2／耳機揚聲器真人實聽；Web未部署。

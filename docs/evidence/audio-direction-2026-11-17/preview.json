@@ -1,0 +1,44 @@
+{
+  "clipped": 0,
+  "frames": 921600,
+  "peak": 0.161767706274986,
+  "scope": "Scheduled runtime mixer audition, not human gameplay or hardware listening.",
+  "transitions": [
+    {
+      "context": "city",
+      "from": "res://audio/music/menu.ogg",
+      "outgoing_position": 43.4970283508301,
+      "to": "res://audio/music/city.ogg"
+    },
+    {
+      "context": "play",
+      "from": "res://audio/music/city.ogg",
+      "outgoing_position": 1.95337867736816,
+      "to": "res://audio/music/fight_low.ogg"
+    },
+    {
+      "context": "play",
+      "from": "res://audio/music/fight_low.ogg",
+      "outgoing_position": 7.1546483039856,
+      "to": "res://audio/music/fight_a.ogg"
+    },
+    {
+      "context": "draw",
+      "from": "res://audio/music/fight_a.ogg",
+      "outgoing_position": 4.8326530456543,
+      "to": "res://audio/music/draw.ogg"
+    },
+    {
+      "context": "ko",
+      "from": "res://audio/music/draw.ogg",
+      "outgoing_position": 1.48897957801819,
+      "to": "res://audio/music/ko.ogg"
+    },
+    {
+      "context": "result",
+      "from": "res://audio/music/ko.ogg",
+      "outgoing_position": 2.04625844955444,
+      "to": "res://audio/music/result.ogg"
+    }
+  ]
+}

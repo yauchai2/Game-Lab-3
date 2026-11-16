@@ -7,6 +7,11 @@ var effects_level := 0.85
 var voices: Array[AudioStreamPlayer] = []
 var sounds: Dictionary = {}
 var voice_index := 0
+var voice_priorities:Array[int]=[]
+var sfx_clock:=0.0
+var sfx_last:Dictionary={}
+const SFX_GAPS={"hit":.025,"heavy":.04,"step":.09,"swing":.06,"land":.07,"dash":.06,"gun_shot":.035}
+const SFX_TRIMS={"step":-5.0,"land":-3.0,"swing":-3.0,"ink_snap":-3.0,"ink_scrape":-3.0,"gun_shot":-2.0}
 var music: AudioStreamPlayer
 var context := "title"
 var contact_budget := 0.0
@@ -57,6 +62,15 @@ var fading_track := ""
 var crossfade := 1.0
 var music_gain_db := -19.0
 const CROSSFADE_SECONDS := 1.2
+const COMBAT_MUSIC_HOLD:=6.0
+var fade_seconds:=CROSSFADE_SECONDS
+var music_start_gain:=0.0
+var fading_start_gain:=1.0
+var adaptive_hold:=0.0
+var pending_track:=""
+var pending_music_wait:=0.0
+var combat_resume_positions:Dictionary={}
+var duck_gain_db:=0.0
 const WEV := "res://audio/wev/family_ties_game.ogg"
 var music_credit := ""
 var music_trim_db := 0.0
@@ -96,7 +110,7 @@ func _ready() -> void:
         add_child(voice)
         voice.bus="Afterhours SFX"
         voice.volume_db = -3.0
-        voices.append(voice)
+        voices.append(voice);voice_priorities.append(0)
     music = AudioStreamPlayer.new()
     music.name = "BackgroundMusic"
     # Long tracks must stream on Web instead of decoding entire 192kHz songs as samples.
@@ -172,6 +186,7 @@ func music_stream(path: String) -> AudioStreamOggVorbis:
     return track
 
 func _process(delta: float) -> void:
+    sfx_clock+=delta
     contact_budget=maxf(0.0,contact_budget-delta)
     duck_time = maxf(0.0,duck_time-delta)
     if not is_instance_valid(music): return
@@ -184,9 +199,11 @@ func _process(delta: float) -> void:
             match_over=false
             intensive_fight=false
             heat=.18
+            combat_resume_positions.clear();pending_track="";adaptive_hold=COMBAT_MUSIC_HOLD
         elif last_context=="draw":
             intensive_fight=false
             heat=.18
+        adaptive_hold=maxf(0.0,adaptive_hold-delta)
         heat=maxf(0.0,heat-HEAT_COOL_PER_SECOND*delta)
         intensive_fight=heat>=.23 if intensive_fight else heat>=.66
     last_context=context
@@ -200,7 +217,7 @@ func _process(delta: float) -> void:
             desired=TRAINING_TRACK if practice_music else (fight_pick if intensive_fight else QUIET_FIGHT_TRACK)
         "result":
             if match_over:desired=RESULT_TRACK
-    if desired!=current_track:_switch_track(desired)
+    _arrange_track(desired,delta)
     # Navigation never pauses the transport. Explicit mute/zero volume silence it.
     if not music.playing and current_track!=KO_TRACK:music.play(start_position(current_track))
     var cinematic_pause:bool=context in ["pause","help"]
@@ -211,14 +228,17 @@ func _process(delta: float) -> void:
         "ko":-4.0,"pause":-17.0,"help":-17.0}.get(context,-7.0)
     if context=="play":
         base_db=-7.0 if practice_music else lerpf(-8.5,-4.5,1.0-calm)
-    var target_db:float=base_db-(duck_db if duck_time>0 else 0.0)-cinematic_duck*8.0
+    var duck_target:float=duck_db if duck_time>0 else 0.0
+    duck_gain_db=lerpf(duck_gain_db,duck_target,1.0-exp(-delta*(40.0 if duck_target>duck_gain_db else 4.0)))
+    var target_db:float=base_db-cinematic_duck*8.0
     if muted or music_muted or music_level<=0:target_db=-80.0
     else:target_db+=linear_to_db(maxf(.001,music_level))
     music_gain_db=lerpf(music_gain_db,target_db,1.0-exp(-delta*(7.0 if context!="play" else 2.2)))
     _update_music_filter(calm,delta)
-    crossfade=minf(1.0,crossfade+delta/CROSSFADE_SECONDS)
-    music.volume_db=music_gain_db+linear_to_db(maxf(.0001,sin(crossfade*PI*.5)))
-    fading_music.volume_db=music_gain_db+linear_to_db(maxf(.0001,cos(crossfade*PI*.5)))
+    crossfade=minf(1.0,crossfade+delta/fade_seconds)
+    var weights:=_deck_weights()
+    music.volume_db=music_gain_db-duck_gain_db+track_mix_trim_db(current_track)+linear_to_db(maxf(.0001,weights.x))
+    fading_music.volume_db=music_gain_db-duck_gain_db+track_mix_trim_db(fading_track)+linear_to_db(maxf(.0001,weights.y))
     if crossfade>=1.0 and fading_music.playing:fading_music.stop()
 
 ## Calm stretches roll the highs off the music bus; heat opens them again. Menus sit in between, pause is muffled.
@@ -233,15 +253,66 @@ func _update_music_filter(calm:float,delta:float) -> void:
         var effect:=AudioServer.get_bus_effect(bus,i)
         if effect is AudioEffectLowPassFilter:(effect as AudioEffectLowPassFilter).cutoff_hz=music_cutoff_hz
 
+func track_mix_trim_db(path:String) -> float:
+    # Only attenuate louder masters; keep the deliberately sparse city/result beds.
+    return -clampf(float(_meta(path).get("target_lufs",-24.0))+24.0,0.0,6.0)
+
+func _combat_loop(path:String) -> bool:
+    return path==QUIET_FIGHT_TRACK or path in FIGHT_POOL
+
+func _arrange_track(desired:String,delta:float) -> void:
+    if desired==current_track:
+        pending_track=""
+        return
+    var adaptive:bool=context=="play" and not practice_music and _combat_loop(current_track) and _combat_loop(desired)
+    if not adaptive:
+        pending_track="";_switch_track(desired)
+        return
+    if adaptive_hold>0 or crossfade<1.0:return
+    if pending_track!=desired:
+        pending_track=desired
+        var bar:float=maxf(.1,float(_meta(current_track).get("bar_seconds",2.4)))
+        var position:float=music.get_playback_position()+AudioServer.get_time_since_last_mix()
+        var phase:float=fposmod(position-float(_meta(current_track).get("intro_seconds",0.0)),bar)
+        pending_music_wait=0.0 if phase<.025 else bar-phase
+    pending_music_wait=maxf(0.0,pending_music_wait-delta)
+    if pending_music_wait<=0:
+        pending_track="";_switch_track(desired)
+
+func _combat_start_position(path:String) -> float:
+    if not combat_resume_positions.has(path):return start_position(path)
+    var info:=_meta(path)
+    var bar:float=maxf(.1,float(info.get("bar_seconds",2.4)))
+    var offset:float=float(info.get("intro_seconds",0.0))
+    var span:float=maxf(bar,float(info.get("loop_seconds",bar)))
+    return offset+floorf(fposmod(float(combat_resume_positions[path])-offset,span)/bar)*bar
+
+func _deck_weights() -> Vector2:
+    var weights:=Vector2(lerpf(music_start_gain,1.0,sin(crossfade*PI*.5)),fading_start_gain*cos(crossfade*PI*.5))
+    return weights/maxf(1.0,weights.length())
+
 func _switch_track(path:String) -> void:
+    var adaptive:bool=context=="play" and _combat_loop(current_track) and _combat_loop(path)
+    if _combat_loop(current_track):combat_resume_positions[current_track]=music.get_playback_position()
+    fade_seconds=clampf(float(_meta(current_track).get("bar_seconds",2.4))*.25,.35,.65) if adaptive else {"ko":.12,"draw":.45,"result":1.5,"play":.75}.get(context,CROSSFADE_SECONDS)
+    if context=="play":adaptive_hold=COMBAT_MUSIC_HOLD
+    var weights:=_deck_weights()
     if fading_music.playing and path==fading_track:
         var reversal_deck:AudioStreamPlayer=music
         music=fading_music;fading_music=reversal_deck
         var old:String=current_track;current_track=fading_track;fading_track=old
-        crossfade=1.0-crossfade
+        music_start_gain=weights.y;fading_start_gain=weights.x
+        crossfade=0.0
         music_credit=credit_for(current_track)
         return
-    fading_music.stop() # Already silent when starting a new two-song transition.
+    # Keep the louder deck at its actual weight when navigation interrupts a fade.
+    if fading_music.playing and weights.y>weights.x:
+        var dominant_deck:AudioStreamPlayer=music
+        music=fading_music;fading_music=dominant_deck
+        var dominant_path:String=current_track;current_track=fading_track;fading_track=dominant_path
+        weights=Vector2(weights.y,weights.x)
+    fading_start_gain=weights.x;music_start_gain=0.0
+    fading_music.stop()
     var swap:AudioStreamPlayer=music
     music=fading_music;fading_music=swap
     fading_track=current_track;current_track=path
@@ -249,7 +320,7 @@ func _switch_track(path:String) -> void:
     music.stream=music_stream(path)
     music_credit=credit_for(path)
     music.volume_db=-80.0
-    music.play(start_position(path))
+    music.play(_combat_start_position(path) if context=="play" and _combat_loop(path) else start_position(path))
     crossfade=0.0
 
 func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
@@ -259,22 +330,42 @@ func play_sound(kind: String, pitch := 1.0, level_db := 0.0) -> void:
         var now:=Time.get_ticks_msec()
         if now-int(ui_last.get(kind,-1000))<55: return
         ui_last[kind]=now
-    var voice: AudioStreamPlayer = voices[voice_index % voices.size()]
+    if SFX_GAPS.has(kind) and sfx_clock-float(sfx_last.get(kind,-1000.0))<float(SFX_GAPS[kind]):return
+    var priority:int=sound_priority(kind)
+    var slot:int=_voice_slot(priority)
+    if slot<0:return
+    sfx_last[kind]=sfx_clock
+    var voice: AudioStreamPlayer = voices[slot]
+    voice_priorities[slot]=priority
     var variants: Array = sounds[kind]
     voice.stop()
     voice.stream = variants[voice_index % variants.size()]
     voice_index += 1
     # Impacts keep most of their level: call sites ask for -6..-12 dB, which made hits sit under the music.
     var impact:bool=kind in IMPACT_KINDS
-    voice.volume_db = (-2.0 if impact else -3.0)+minf(0.0,level_db*(.6 if impact else 1.0))+linear_to_db(maxf(.001,effects_level))
+    voice.volume_db = (-2.0 if impact else -3.0)+minf(0.0,level_db*(.6 if impact else 1.0))+linear_to_db(maxf(.001,effects_level))+float(SFX_TRIMS.get(kind,-3.0 if kind.begins_with("fighter_") else 0.0))
     voice.pitch_scale = clampf(pitch,0.65,1.55)
     voice.play()
     if kind in ["hit","heavy","parry","guard_break","rally","release","slam","ko","launch"]:
         duck_time = 0.34 if kind in BIG_KINDS else 0.18
-        duck_db = 7.0 if kind in BIG_KINDS else 4.0
+        duck_db = 3.5 if kind in BIG_KINDS else 1.5
+
+func sound_priority(kind:String) -> int:
+    if kind in ["ko","parry","guard_break","release","slam"]:return 3
+    if kind in IMPACT_KINDS or kind.begins_with("ui_"):return 2
+    return 0 if kind=="step" or kind.begins_with("fighter_") or kind.begins_with("ink_") else 1
+
+func _voice_slot(priority:int) -> int:
+    var cheapest:=-1
+    for offset in voices.size():
+        var index:int=(voice_index+offset)%voices.size()
+        if not voices[index].playing:return index
+        if cheapest<0 or voice_priorities[index]<voice_priorities[cheapest]:cheapest=index
+    return cheapest if cheapest>=0 and priority>=voice_priorities[cheapest] else -1
 
 func stop_all() -> void:
     for voice in voices: voice.stop()
+    sfx_last.clear();contact_budget=0.0;duck_time=0.0;duck_gain_db=0.0
 
 func stop_ko_music() -> void:
     if current_track==KO_TRACK and is_instance_valid(music):music.stop()
