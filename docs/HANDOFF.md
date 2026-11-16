@@ -1,3 +1,11 @@
+## 2026-11-16：轉做地面動作覆核與故事整合前檢查
+
+[動作切片](GROUND_MOTION_REVIEW.zh-TW.md)／[證據](evidence/ground-motion-review/README.md)。renderer原按vx要求速度選行跑，受阻時物理x已停但vx仍非零。MotionInterpolation展示副本改讀同tick實際朝要求方向移動的部分、不超要求速度；push／攻擊／dash／air／傳送／角色替換不誤判，hitstop保持凍結步態，F2只跳過位置插值仍保留此修正。simulation／素材／攻防不變。
+
+21規則、四角×7情境，before／after／F2各33項，3項匹配比較通過；324停住行跑抽樣→0、F2亦0，權威位置／速度／狀態逐列相同。連續79／Transit216／Street90、1800tick展示與規則零差異／零展示修改，23strict通過。6秒前後短片及原生抽格有hash。沒有game-dev adapter或CLI，沿Godot原生流程，不當sealed run／真人／Mac／硬件FPS驗收。
+
+使用者其後特別指出故事開局／教學PR未合併。已核對PR #38 clean且draft，包含教學＋24招／支援／空投，main為祖先、無GitHub checks／review decision；目前故事原生54/54重跑通過，H／schema文件更新。已詢問合併整PR或只教學，尚未取得範圍回答前不改main；Web保持。
+
 ## 2026-11-16：空投支援與落地承諾
 
 [玩法／相容／邊界](TACTICAL_AIRDROP.zh-TW.md)／[證據](evidence/airdrop-module/README.md)。第二支援ID3空投適用ZIP0／LOOP0，真斜向飛行／標記／同兩點網路，空中標記傷害-20%；地面原用法保持。起手消耗本跳fast_used，不重置二段跳／追擊／空反／滯空預算；原恢復後再付8tick落地承諾，跳躍／攻擊可排隊但不能取消。受擊／格擋硬直中斷時清尚未兌現的追加恢復，不退費或空中預算，避免晚到的第二次鎖定。

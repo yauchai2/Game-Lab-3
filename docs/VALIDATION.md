@@ -1,3 +1,9 @@
+## 2026-11-16：地面步態與故事整合前重驗
+
+[動作證據](evidence/ground-motion-review/README.md)：21專門規則、四角7情境，修前／修後／F2各33原生檢查與3比較通過，受阻行跑324→0／F2為0；權威trace位置／速度／狀態逐列一致。連續79、Transit216、Street90與1800tick雙路simulation mismatch0／presentation mutation0，23腳本七類fatal warning通過。兩部6秒／180格原生片與抽格已檢視，非硬件FPS或整張全遊戲動作表已完。
+
+[故事整合前證據](evidence/story-merge-readiness/README.md)：目前分支原生54/54，fresh帳號／舊檔原位元組／真付費追擊／指南／實體設施導航／第一場完整操作與真費用。PR #38仍draft、clean且無GitHub check／review decision；範圍含技能配裝，待使用者選整PR或教學子集後再整合。Linux4.6.3／llvmpipe／Dummy，非Mac／真人／手柄。
+
 ## 2026-11-16：空投／落地／輸入緩衝
 
 [證據](evidence/airdrop-module/README.md)：59新規則與17新增原生（真選擇器／預設按鈕／Space→Q、真向下飛行、標記／單點、原費用、落地承諾與退出），schema7含舊檔原位元組／巢狀預設／整數ID／缺欄拒絕；8實際額外tick、排隊跳／攻擊、受擊中斷不再鎖第二次及標準模式隔離通過。模組83／擴充111／首批106／就緒53／反應42／服務46／城市86／戰役50／槍21／繁中21、Rush22／live45／squad35及既有原生8／39／8／14、22腳本七類fatal warning通過，各suite重疊。

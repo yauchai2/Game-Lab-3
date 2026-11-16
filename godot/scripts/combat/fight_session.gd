@@ -1111,8 +1111,8 @@ func _grade_world() -> void:
     grade_material.set_shader_parameter("accent",COLORS[grade_owner])
 
 func presentation_pose_for(f:Dictionary,side:int) -> Dictionary:
-    if reduced_effects or screen not in ["play","pause","help"]:return f.duplicate()
-    return render_motion.sample(f,render_motion.key_for(f,side,sim.squad_enabled))
+    if screen not in ["play","pause","help"]:return f.duplicate()
+    return render_motion.sample(f,render_motion.key_for(f,side,sim.squad_enabled),not reduced_effects)
 func presentation_pose(side:int) -> Dictionary:
     return presentation_pose_for(sim.fighters[side],side)
 

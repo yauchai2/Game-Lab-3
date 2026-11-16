@@ -207,3 +207,5 @@
 - 2026-11-16交戰續作：docs/TACTICAL_ENEMY_RESPONSE.zh-TW.md。正式故事普通敵人讀玩家zone：輕裝普通走位，盾衛／隊長架防禁自動招架，重裝／Boss保留。至少8tick可見、18／12／8採樣、最多20指令tick、180冷卻；承諾／受擊／碰撞與原傷害owner保持，AI關閉／標準模式隔離。42規則／60入場後比較／8新原生及22strict通過，頭目失敗與零命中保留，不宣稱真人平衡。同分支PR #38，不發Web。
 
 - 2026-11-16空投：docs/TACTICAL_AIRDROP.zh-TW.md。第二支援ID3只ZIP0／LOOP0，空中fast_used共用、斜線飛行、原標記／兩點與費用、空中標記-20%；原恢復後8tick落地承諾可排隊但不能取消，受擊硬直中斷不再疊晚到鎖定。schema7保存新ID，保留1–6與巢狀預設，真schema6缺attachments拒絕。59規則／17原生及22strict通過；舊Rush瞬時扣血斷言經9b基線同敗後改真配對落地12傷害22/22。不是真人／Mac驗收，同分支PR #38不發Web。
+
+- 2026-11-16地面覆核：GROUND_MOTION_REVIEW.zh-TW.md。MotionInterpolation展示vx依已提交位移限速，僅同角色ground idle、F2仍套、freeze不換clip，不寫simulation；21規則／各33原生／3比較、324→0，79／216／90與1800tick零差異、23strict。使用者指出故事PR未合併，已重驗54並詢問整PR或教學子集；未答不改main，Web保持。
