@@ -14,7 +14,8 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 CATEGORIES = ("static_called_on_instance", "incompatible_ternary",
               "shadowed_variable_base_class", "integer_division",
-              "confusable_local_declaration", "unused_parameter", "standalone_ternary")
+              "confusable_local_declaration", "unused_parameter", "standalone_ternary",
+              "shadowed_global_identifier", "shadowed_variable", "unused_variable")
 
 
 def main():
@@ -44,7 +45,7 @@ def main():
     (output / "strict.log").write_text(log)
     errors = re.findall(r"^(?:ERROR|SCRIPT ERROR):.*", log, re.M)
     data = json.loads(report.read_text()) if report.exists() else {}
-    success = (result.returncode == 0 and data.get("passed") == 23
+    success = (result.returncode == 0 and data.get("passed") == 33
                and data.get("failed") == 0 and not errors)
     print(log, end="")
     print("FATAL_WARNING_CHECK:", "PASS" if success else "FAIL")

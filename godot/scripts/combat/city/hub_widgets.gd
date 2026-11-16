@@ -15,17 +15,17 @@ static func _style(state:String,tint:Color) -> StyleBoxFlat:
     s.content_margin_left=6;s.content_margin_right=6;s.content_margin_top=6;s.content_margin_bottom=6
     return s
 
-static func label(text:String,size:int=20,tint:Color=T.PAPER,center:=false,wrap:=true) -> Label:
+static func label(text:String,size:int=20,tint:Color=T.PAPER,center:=false,wrap_text:=true) -> Label:
     var l:=Label.new();l.text=text;l.add_theme_font_size_override("font_size",size);l.add_theme_color_override("font_color",tint)
-    l.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART if wrap else TextServer.AUTOWRAP_OFF;l.mouse_filter=Control.MOUSE_FILTER_IGNORE
+    l.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART if wrap_text else TextServer.AUTOWRAP_OFF;l.mouse_filter=Control.MOUSE_FILTER_IGNORE
     if center:l.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
     return l
 
 static func section(hub:Node,icon:String,text:String,tint:Color=T.TEAL) -> void:
-    var row:=HBoxContainer.new();row.add_theme_constant_override("separation",8)
-    row.add_child(_small(icon,tint))
-    var l:=label(text,22,tint);l.autowrap_mode=TextServer.AUTOWRAP_OFF;row.add_child(l)
-    hub.stack.add_child(row)
+    var line:=HBoxContainer.new();line.add_theme_constant_override("separation",8)
+    line.add_child(_small(icon,tint))
+    var l:=label(text,22,tint);l.autowrap_mode=TextServer.AUTOWRAP_OFF;line.add_child(l)
+    hub.stack.add_child(line)
 
 static func head_title(hub:Node,text:String,tint:Color) -> void:
     var l:=label(text,28,tint);hub.stack.add_child(l)
@@ -34,12 +34,12 @@ static func _small(icon:String,tint:Color) -> TextureRect:
     var r:=Icons.rect(icon,tint,T.CORAL);r.custom_minimum_size=Vector2(28,28);return r
 
 static func head(hub:Node,icon:String,title:String,tint:Color) -> void:
-    var row:=HBoxContainer.new();row.add_theme_constant_override("separation",10)
-    row.add_child(Icons.rect(icon,tint,T.CORAL))
-    var l:=label(title,32,tint);l.autowrap_mode=TextServer.AUTOWRAP_OFF;l.size_flags_horizontal=Control.SIZE_EXPAND_FILL;l.vertical_alignment=VERTICAL_ALIGNMENT_CENTER;row.add_child(l)
+    var line:=HBoxContainer.new();line.add_theme_constant_override("separation",10)
+    line.add_child(Icons.rect(icon,tint,T.CORAL))
+    var l:=label(title,32,tint);l.autowrap_mode=TextServer.AUTOWRAP_OFF;l.size_flags_horizontal=Control.SIZE_EXPAND_FILL;l.vertical_alignment=VERTICAL_ALIGNMENT_CENTER;line.add_child(l)
     var close:=Button.new();close.custom_minimum_size=Vector2(52,52);close.icon=Icons.texture("close",T.PAPER,T.CORAL);close.expand_icon=true
-    close.tooltip_text="ESC";close.pressed.connect(hub.close_panel);close.set_meta("act","close");row.add_child(close)
-    hub.stack.add_child(row)
+    close.tooltip_text="ESC";close.pressed.connect(hub.close_panel);close.set_meta("act","close");line.add_child(close)
+    hub.stack.add_child(line)
 
 ## One card = button with children. state: ready (can act), owned (done), locked, active (selected), plain.
 static func tile(hub:Node,icon:String,title:String,sub:String,tint:Color,state:String,callback:Callable,info:="",act:="",size:=Vector2(0,104),side:=false) -> Button:

@@ -229,8 +229,8 @@ func _lift() -> void:
     blocker(Rect2(6.85,2.3,2.7,2.1))
 
 func _details() -> void:
-    var sign:=Label3D.new();sign.name="NightshiftDoorPlate";sign.text="夜班";sign.font=load("res://assets/fonts/RadioChinese.tres");sign.font_size=72;sign.pixel_size=.009;sign.modulate=PAPER;sign.outline_size=0
-    add_child(sign);sign.position=Vector3(8.8,2.7,-5.1)
+    var door_plate:=Label3D.new();door_plate.name="NightshiftDoorPlate";door_plate.text="夜班";door_plate.font=load("res://assets/fonts/RadioChinese.tres");door_plate.font_size=72;door_plate.pixel_size=.009;door_plate.modulate=PAPER;door_plate.outline_size=0
+    add_child(door_plate);door_plate.position=Vector3(8.8,2.7,-5.1)
     for z in [-.6,.0,.6]:box(Vector3(9.4,.045,z),Vector3(.15,.025,.38),INK)
     # A lone plastic stool and takeaway cup: Hong Kong is a small material detail.
     box(Vector3(-5,.45,4.5),Vector3(.7,.1,.7),PINK)

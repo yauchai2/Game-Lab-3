@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "traditional_chinese",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "ZH English can be restored and saved true",
+      "ZH Existing native controls restore English true"
+    ]
+  },
+  {
+    "suite": "gun_shot",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "GUN deterministic: identical runs give identical shots true { \"a\": \"gun_fire@300,gun_hit@314,gun_fire@886,gun_hit@900,gun_fire@1517,gun_hit@1531\" }",
+      "GUN SUMMARY 21/21"
+    ]
+  },
+  {
+    "suite": "paired_throw",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "PAIRED same rig swaps throw roles without stale calibration or floor cache true ",
+      "PAIRED_RESULT 147/147 { \"max_wrist_gap_m\": 0.02554822154343, \"min_skin_y\": 0.00999679695815, \"max_ground_error_m\": 0.00000001654029 }"
+    ]
+  },
+  {
+    "suite": "story_opening",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "STORY_OPENING without being the running game it still never autoplays true",
+      "STORY_OPENING_RESULT 44/44"
+    ]
+  }
+]

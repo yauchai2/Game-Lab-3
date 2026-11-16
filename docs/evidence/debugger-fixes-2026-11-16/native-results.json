@@ -1,0 +1,34 @@
+[
+  {
+    "suite": "rivet_motion",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "RIVET_MOTION Death retains its original exclusive pose true <null>",
+      "RIVET_MOTION Air attacks use Rivet fists true <null>",
+      "RIVET_MOTION Showcase keeps its independent director true <null>"
+    ]
+  },
+  {
+    "suite": "rivet_shutdown",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "SHUTDOWN block restart clears effects true <null>",
+      "WARNING: ObjectDB instances leaked at exit (run with --verbose for details).",
+      "   at: cleanup (core/object/object.cpp:2663)"
+    ]
+  },
+  {
+    "suite": "nightshift_hub",
+    "exit": 1,
+    "errors": [
+      "ERROR: formal Story uses the new workshop in its isolated 960 viewport"
+    ],
+    "tail": [
+      "NIGHTSHIFT departure starts existing campaign with hub renderer off true",
+      "NIGHTSHIFT safe return restores new hub with expedition snapshot true",
+      "NIGHTSHIFT leaving hub disables its renderer and restores title true"
+    ]
+  }
+]

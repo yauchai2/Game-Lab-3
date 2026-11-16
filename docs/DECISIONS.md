@@ -1,3 +1,7 @@
+## 2026-11-16：保留建構副作用並在提交前驗殘影幾何
+
+命名清理不刪建立rug／END RUN按鈕等操作，只移除未用的值或改名；嚴格檢查增加截圖三類warning，不靜音。3D路徑有效不代表投影quad有效，故投影後驗有限值／寬度／距離／面積／三角化，再交給canvas。現有1280×720據點保持，舊測試經隔離main重現同敗才改正斷言。[證據](evidence/debugger-fixes-2026-11-16/README.md)。
+
 ## 2026-11-16：全量遠端分支核對後補合DEADSHIFT
 
 本機fetch只追main，不能以初次branch列表判定所有分支已合併；明確fetch refs/heads/*並核對GitHub API。補合唯一未入main的來源codex/deadshift-integration；gh-pages為部署產物保持獨立，不混入Godot來源。新敵人及動態配樂保留，同時保留戰術展示／沉默及受阻步態；文件兩側歷史保留，後續main集中。詳[證據](evidence/all-branches-main-2026-11-16/README.md)。

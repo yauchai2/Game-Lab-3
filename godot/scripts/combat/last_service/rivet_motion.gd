@@ -14,9 +14,9 @@ static func sample(f:Dictionary,duration:float,move:Dictionary={}) -> float:
         if f.move=="special":
             # The simulation repeats frames 7/8 while holding. Both map to one
             # load pose; release then advances toward the real contact tick.
-            var load:float=.12+.015*float(f.get("service",{}).get("preload",0))
-            if frame<=8:return duration*load*smoothstep(0.0,7.0,frame)
-            return duration*lerpf(load,entry.contact,smoothstep(8.0,float(move.startup),frame))
+            var load_weight:float=.12+.015*float(f.get("service",{}).get("preload",0))
+            if frame<=8:return duration*load_weight*smoothstep(0.0,7.0,frame)
+            return duration*lerpf(load_weight,entry.contact,smoothstep(8.0,float(move.startup),frame))
         return duration*float(entry.contact)*smoothstep(0.0,float(move.startup),frame)
     if frame<float(move.startup+move.active):
         return duration*lerpf(entry.contact,entry.release,(frame-move.startup)/float(move.active))
@@ -33,11 +33,11 @@ static func finish(m:RefCounted,f:Dictionary,move:Dictionary) -> void:
     # Raised gauntlets -> overhead windup -> one downward ground drive.
     # Frames 7/8 share one pose; tier strength comes from real preload age.
     var frame:float=f.frame
-    var load:float=smoothstep(0.0,7.0,frame)
+    var load_weight:float=smoothstep(0.0,7.0,frame)
     var lift:float=smoothstep(8.0,float(move.startup)-5.0,frame)
     var strike:float=smoothstep(float(move.startup)-5.0,float(move.startup),frame)
     var recover:float=smoothstep(float(move.startup)+8.0,float(move.startup+move.active+move.recovery),frame)
-    var weight:float=load*(1.0-recover)
+    var weight:float=load_weight*(1.0-recover)
     var up:Vector3=m.model_up
     var forward:Vector3=m.model_forward
     m.turn_hips(lerpf(-.24,.32,strike)*weight)

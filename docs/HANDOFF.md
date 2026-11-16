@@ -1,3 +1,7 @@
+## 2026-11-16：使用者Debugger截圖修正
+
+22項命名／未使用變數警告逐項清理，場景／UI建構副作用保持；33腳本／10類fatal通過。殘影投影後檢查有限值、距離／寬度／面積及三角化，鏡頭後端點跳過，正常殘影保持；14原生測試與中文／槍械／肩摔／開場／RIVET／據點回歸通過。[證據與版本界線](evidence/debugger-fixes-2026-11-16/README.md)：4.6.3未輸出4.7.2截圖同句渲染錯誤，Pull後需實機重驗；RIVET原生退出資源警告保留。舊據點960測試在隔離main同敗，僅更新明確1280×720斷言後30/30。來源main，Web保持。
+
 ## 2026-11-16：所有遠端來源分支整合完成
 
 全量fetch及GitHub API交叉核對38分支，最後未納入的codex/deadshift-integration6397f57（3提交）已整合；37來源分支含main均納入，gh-pages獨立。保留PR #38全功能，加入新敵人模型／波次抽核心／空中受擊與配樂重剪。衝突保留TacticResponse、沉默限制、戰術展示和DEADSHIFT標記。新舊相關原生／規則與兩組strict通過，詳[證據](evidence/all-branches-main-2026-11-16/README.md)。Web與所有來源分支保持，日常main Fetch／Pull；完整動作餘項及真人驗收仍待續。

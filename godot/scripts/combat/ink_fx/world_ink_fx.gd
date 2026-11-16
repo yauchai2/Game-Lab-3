@@ -214,15 +214,30 @@ func _actor(session:Node,id:int,f:Dictionary,visual:Node,_delta:float) -> void:
             if traces.size()>=32:traces.pop_front()
             traces.append({"a":last,"b":tip,"age":0.0,"color":session.neon_profile.accent(visual.character_index),"character":visual.character_index,"gain":.65 if id>1 else 1.0})
     track.tip=tip
+static func trace_polygon(a:Vector2,b:Vector2,width:float) -> PackedVector2Array:
+    # A moving 3D limb may project to one pixel, or its last trace may have zero width.
+    # Submit only finite, non-degenerate quads that the canvas can triangulate.
+    if not a.is_finite() or not b.is_finite() or not is_finite(width) or width<=.001 or a.distance_squared_to(b)<=.0001:
+        return PackedVector2Array()
+    var side:Vector2=(b-a).normalized().orthogonal()*width
+    var polygon:=PackedVector2Array([a-side*.2,b-side,b+side,a+side*.2])
+    for point in polygon:
+        if not point.is_finite():return PackedVector2Array()
+    var area:float=absf((polygon[1]-polygon[0]).cross(polygon[2]-polygon[0]))+absf((polygon[2]-polygon[0]).cross(polygon[3]-polygon[0]))
+    if area<=.000001 or Geometry2D.triangulate_polygon(polygon).is_empty():return PackedVector2Array()
+    return polygon
+
 func draw(canvas:Control,session:Node) -> void:
     if not visible or session.reduced_effects or session.screen not in ["play","pause","help"]:return
     var viewport:Vector2=session.get_viewport().get_visible_rect().size
     for trace in traces:
+        if session.camera.is_position_behind(trace.a) or session.camera.is_position_behind(trace.b):continue
         var a:Vector2=session.camera.unproject_position(trace.a)*Vector2(1280,720)/viewport
         var b:Vector2=session.camera.unproject_position(trace.b)*Vector2(1280,720)/viewport
         var width:float=(1.0-trace.age/.14)*trace.gain*(8 if trace.character==1 else 4)
-        var side:Vector2=(b-a).normalized().orthogonal()*width
-        canvas.draw_colored_polygon(PackedVector2Array([a-side*.2,b-side,b+side,a+side*.2]),trace.color)
+        var polygon:=trace_polygon(a,b,width)
+        if polygon.is_empty():continue
+        canvas.draw_colored_polygon(polygon,trace.color)
         if trace.age<.045:canvas.draw_line(a,b,Recipes.PAPER,1)
     if contact_age<.065 and session.screen=="play":
         var at:Vector2=session.camera.unproject_position(contact_at)*Vector2(1280,720)/viewport

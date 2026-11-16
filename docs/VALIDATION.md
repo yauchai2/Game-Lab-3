@@ -1,3 +1,7 @@
+## 2026-11-16：Debugger截圖回歸
+
+[證據](evidence/debugger-fixes-2026-11-16/README.md)：33腳本10類fatal通過、殘影14原生含144正常方向／寬度；繁中21／槍21／肩摔147／開場44／RIVET原生19及25／據點原生30通過。據點初次29/30、完整隔離main9e79b09同敗舊960斷言，更新測試為現行1280×720後30/30。接受log無ERROR／SCRIPT ERROR，VSync與RIVET退出ObjectDB警告保留；4.6.3未重現4.7.2同句三角化錯誤，屬防護及幾何／原生回歸，非使用者Mac實機驗收。
+
 ## 2026-11-16：所有分支整合回歸
 
 [證據／全38分支SHA](evidence/all-branches-main-2026-11-16/README.md)：tactical23／motion18 strict、原生DEADSHIFT24／教學54／預告反應8／連續動作79；波次37／戰役50／擴充111／模組83／空投59／步態21／Rush22／肩摔147／配樂66／開場44／KO21均通過。9個資產hash相符，原中文首戰截圖已檢視。headless連續動作因等待frame_post_draw終止，保留診斷，改正常Compatibility後79/79；不當headless通過。Linux軟體GPU／Dummy、VSync及既有缺UID警告另列，沒有ERROR／SCRIPT ERROR；不是Mac／真人／實聽／FPS驗收。37來源分支含main皆整合，gh-pages不部署。

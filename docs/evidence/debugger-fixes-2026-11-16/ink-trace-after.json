@@ -1,0 +1,62 @@
+{
+  "checks": [
+    {
+      "name": "coincident projected tips are discarded",
+      "passed": true
+    },
+    {
+      "name": "subpixel collapsed trace is discarded",
+      "passed": true
+    },
+    {
+      "name": "expired width is discarded",
+      "passed": true
+    },
+    {
+      "name": "negative width is discarded",
+      "passed": true
+    },
+    {
+      "name": "nonfinite projection is discarded",
+      "passed": true
+    },
+    {
+      "name": "nonfinite width is discarded",
+      "passed": true
+    },
+    {
+      "name": "finite projection with lost width is discarded",
+      "passed": true
+    },
+    {
+      "name": "144 ordinary trail orientations retain valid quads",
+      "passed": true
+    },
+    {
+      "name": "trace fixture uses visible play with effects enabled",
+      "passed": true
+    },
+    {
+      "name": "canvas issued the world trace draw call",
+      "passed": true
+    },
+    {
+      "name": "actual HUD renders collapsed, expired, behind-camera and valid traces",
+      "passed": true
+    },
+    {
+      "name": "pause redraw keeps traces safe",
+      "passed": true
+    },
+    {
+      "name": "reduced effects retains the opt-out",
+      "passed": true
+    },
+    {
+      "name": "exit clears trail state",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 14
+}

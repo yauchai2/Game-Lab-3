@@ -482,11 +482,11 @@ func _cast_at(t:float) -> void:
 		var step:=seg(t,walk_from,walk_to)
 		var from:=Vector3(mark.x,0,mark.z+4.8)
 		var walking:=step<1.0
-		var advance:=.5*ease_io(seg(t,10.45,10.7))+.5*ease_io(seg(t,10.78,11.0))
-		if advance>0 and advance<1.0:walking=true
-		suit.place(from.lerp(mark,step)+SUIT_STEP*advance,180.0)
+		var step_progress:=.5*ease_io(seg(t,10.45,10.7))+.5*ease_io(seg(t,10.78,11.0))
+		if step_progress>0 and step_progress<1.0:walking=true
+		suit.place(from.lerp(mark,step)+SUIT_STEP*step_progress,180.0)
 		if walking and suit.visual.motions.library.clips.has("MX_Walking"):
-			var gait_clock:float=(minf(t,walk_to)-walk_from)*1.62+advance*.7
+			var gait_clock:float=(minf(t,walk_to)-walk_from)*1.62+step_progress*.7
 			suit.clip("MX_Walking",gait_clock)
 			suit.ground(-.10)
 		elif walking:suit.clip("Walk_Loop",(t-walk_from)*1.05,1.6)

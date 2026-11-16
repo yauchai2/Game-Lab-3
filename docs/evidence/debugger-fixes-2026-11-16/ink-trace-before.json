@@ -1,0 +1,14 @@
+{
+  "checks": [
+    {
+      "name": "canvas issued the world trace draw call",
+      "passed": true
+    },
+    {
+      "name": "actual HUD renders collapsed, expired, behind-camera and valid traces",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "passed": 2
+}

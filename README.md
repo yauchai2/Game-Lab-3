@@ -1,3 +1,5 @@
+最新修正（2026-11-16）：[Debugger截圖的22項警告與殘影多邊形防護](docs/evidence/debugger-fixes-2026-11-16/README.md)。33腳本以10類warning fatal通過，殘影14項渲染與相關回歸通過；保留正常殘影／按鈕／場景物件。雲端4.6.3未重現4.7.2同句錯誤，需Pull後停止舊遊戲、清除Debugger再F5確認。來源main，Web未更新。
+
 最新全分支核對（2026-11-16）：已抓取GitHub全部38分支，補入最後未合併的DEADSHIFT敵人／空中受擊與全遊戲配樂重剪；37個原始碼分支（含main）全部集中main，gh-pages保留獨立。[來源快照與本輪驗證](docs/evidence/all-branches-main-2026-11-16/README.md)。GitHub Desktop選main Fetch／Pull；Web未更新。
 
 最新整合（2026-11-16）：已按「全部推到 GitHub main」完整合併 [PR #38](https://github.com/yauchai2/Game-Lab-3/pull/38)，包含故事開局／教學、24招戰術／構築預設／支援／空投，以及受阻步態修正。GitHub Desktop 選 **main → Fetch／Pull** 即可；[整合紀錄與驗證界線](docs/MAIN_INTEGRATION_2026-11-16.zh-TW.md)。下方分支、草稿與未實作描述是各階段歷史，以最新紀錄為準；公開Web未更新。

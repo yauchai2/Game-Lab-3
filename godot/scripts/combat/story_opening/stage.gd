@@ -263,8 +263,8 @@ func _garage(concrete:Material,plaster:Material,shutter:Material,tiles:Material,
 	# Crates, stool and bin from the existing prop library (wrappers; GLBs untouched).
 	for spec in [["res://scenes/PROP_CRATES_A01.tscn",Vector3(5.9,0,-7.6),0.0],["res://scenes/PROP_SHOP_STOOL_A01.tscn",Vector3(1.9,0,-6.4),30.0],["res://scenes/PROP_BIN_A01.tscn",Vector3(6.3,0,-1.2),0.0],["res://scenes/PROP_CRATES_A01.tscn",Vector3(-6.3,0,-1.3),90.0]]:
 		if not ResourceLoader.exists(spec[0]):continue
-		var prop:Node3D=(load(spec[0]) as PackedScene).instantiate();prop.position=spec[1];prop.rotation_degrees.y=spec[2];root.add_child(prop)
-		for body in prop.find_children("*","CollisionObject3D",true,false):body.process_mode=Node.PROCESS_MODE_DISABLED
+		var scene_prop:Node3D=(load(spec[0]) as PackedScene).instantiate();scene_prop.position=spec[1];scene_prop.rotation_degrees.y=spec[2];root.add_child(scene_prop)
+		for body in scene_prop.find_children("*","CollisionObject3D",true,false):body.process_mode=Node.PROCESS_MODE_DISABLED
 
 func _street_dressing(steel:Material,dark:Material) -> void:
 	var root:=group(self,Vector3.ZERO,"StreetDressing")
@@ -289,8 +289,8 @@ func _street_dressing(steel:Material,dark:Material) -> void:
 		box(root,spec[0],spec[1],mat(spec[2],true))
 	for spec in [["res://scenes/VEH_CAR_A01.tscn",Vector3(-21,0,4.6),90.0],["res://scenes/VEH_VAN_A01.tscn",Vector3(30,0,13.2),-90.0],["res://scenes/PROP_HYDRANT_A01.tscn",Vector3(7.6,0,2.4),0.0],["res://scenes/PROP_MAILBOX_A01.tscn",Vector3(-8.2,0,1.0),180.0]]:
 		if not ResourceLoader.exists(spec[0]):continue
-		var prop:Node3D=(load(spec[0]) as PackedScene).instantiate();prop.position=spec[1];prop.rotation_degrees.y=spec[2];root.add_child(prop)
-		for body in prop.find_children("*","CollisionObject3D",true,false):body.process_mode=Node.PROCESS_MODE_DISABLED
+		var scene_prop:Node3D=(load(spec[0]) as PackedScene).instantiate();scene_prop.position=spec[1];scene_prop.rotation_degrees.y=spec[2];root.add_child(scene_prop)
+		for body in scene_prop.find_children("*","CollisionObject3D",true,false):body.process_mode=Node.PROCESS_MODE_DISABLED
 
 func _garage_clutter(_steel:Material,_dark:Material) -> void:
 	# Small set dressing from the reference: bottles, boombox, drawer cabinet, cable, paper scraps, side table with bowl.
@@ -301,7 +301,7 @@ func _garage_clutter(_steel:Material,_dark:Material) -> void:
 	for i in 5:box(root,Vector3(-2.0+i*1.3,.012,-1.4-.9*(i%3)),Vector3(.3,.004,.22),mat(Color("e9e2d0"))).rotation_degrees.y=i*37.0
 	for i in 3:
 		var cable:=box(root,Vector3(-3.0+i*.6,.02,-8.5),Vector3(.04,.03,1.4),mat(INK));cable.rotation_degrees.y=18.0*i-12.0
-	var rug:=box(root,Vector3(.2,.01,-1.9),Vector3(2.4,.012,1.0),mat(Color("c7b46a")))
+	var _rug:=box(root,Vector3(.2,.01,-1.9),Vector3(2.4,.012,1.0),mat(Color("c7b46a")))
 	for i in 6:box(root,Vector3(-.85+i*.34,.017,-1.9),Vector3(.16,.004,1.02),mat(INK))
 	prop(root,"wall_fan",Vector3(-.8,3.2,-8.9),Vector3(1.1,1.1,.5))
 
@@ -331,8 +331,8 @@ func _case() -> void:
 	var print_material:=StandardMaterial3D.new();print_material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
 	print_material.albedo_texture=mark;print_material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA;print_material.blend_mode=BaseMaterial3D.BLEND_MODE_ADD
 	print_material.albedo_color=Color(.85,.85,.85,1)
-	var print:=MeshInstance3D.new();var quad:=QuadMesh.new();quad.size=Vector2(.9,.9*286.0/1990.0);print.mesh=quad
-	print.material_override=print_material;print.position=Vector3(0,.1215,-.39);print.rotation_degrees=Vector3(-90,0,0);case_lid.add_child(print);case_print=print
+	var lid_print:=MeshInstance3D.new();var quad:=QuadMesh.new();quad.size=Vector2(.9,.9*286.0/1990.0);lid_print.mesh=quad
+	lid_print.material_override=print_material;lid_print.position=Vector3(0,.1215,-.39);lid_print.rotation_degrees=Vector3(-90,0,0);case_lid.add_child(lid_print);case_print=lid_print
 	box(case_lid,Vector3(0,.125,-.7),Vector3(.5,.02,.04),trim)
 	for x in [-.45,.45]:
 		var latch:=group(case_root,Vector3(x,.17,-.4),"Latch")

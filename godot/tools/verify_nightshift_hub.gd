@@ -16,7 +16,7 @@ func run() -> void:
     s=preload("res://scenes/combat/street_fight.tscn").instantiate();s.preferences_path="";s.city_save_path="user://nightshift-test/reference-profile.json"
     root.add_child(s);s.audio.muted=true;s.set_process(false);s.set_physics_process(false);await frames(6)
     s.city_campaign.open_city();var h=s.city_campaign.hub;await frames(5)
-    check("formal Story uses the new workshop in its isolated 960 viewport",s.screen=="city" and h.workshop.name=="NightshiftWorkshop" and h.viewport.size==Vector2i(960,540))
+    check("formal Story uses the new workshop in its isolated 1280x720 viewport",s.screen=="city" and h.workshop.name=="NightshiftWorkshop" and h.viewport.size==Vector2i(1280,720))
     await shot("01-in-game")
     h.viewport.get_texture().get_image().save_png(OUT+"02-map.png")
     if "--preview" not in OS.get_cmdline_user_args():await verify(h)

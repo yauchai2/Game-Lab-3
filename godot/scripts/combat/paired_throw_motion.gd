@@ -46,8 +46,8 @@ func present(visual:Node3D,f:Dictionary,delta:float,stopped:bool) -> void:
             for i in s.get_bone_count():recovery_rotations[i]=recovery_rotations[i].slerp(s.get_bone_pose_rotation(i),stand)
             recovery_hip=recovery_hip.lerp(s.get_bone_pose_position(m.target_hips),stand)
     var sample:Dictionary=Data.sample(role,p.source_frame)
-    var convert:=Basis(Vector3(-float(p.face),0,0),Vector3(0,0,float(p.face)),Vector3.UP)
-    var to_skeleton:Quaternion=(s.global_basis.inverse()*convert).get_rotation_quaternion()
+    var pose_basis:=Basis(Vector3(-float(p.face),0,0),Vector3(0,0,float(p.face)),Vector3.UP)
+    var to_skeleton:Quaternion=(s.global_basis.inverse()*pose_basis).get_rotation_quaternion()
     var desired:Array[Quaternion]=[]
     var entering:float=smoothstep(0,6,float(p.age))
     var recovering:float=smoothstep(0,.18 if role=="victim" and m.library.clips.has("MX_GetUp") else (.6 if role=="victim" else 1.0),recover)

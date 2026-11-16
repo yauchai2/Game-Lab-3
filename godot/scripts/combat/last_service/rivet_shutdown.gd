@@ -9,10 +9,10 @@ static func phase(f:Dictionary,move:Dictionary) -> float:
     return lerpf(.30,1.0,smoothstep(float(move.startup)+12.0,float(move.startup+move.active+move.recovery),frame))
 static func finish(m:RefCounted,f:Dictionary,move:Dictionary) -> void:
     var frame:float=f.frame
-    var load:float=smoothstep(0.0,10.0,frame)
+    var load_weight:float=smoothstep(0.0,10.0,frame)
     var strike:float=smoothstep(float(move.startup)-7.0,float(move.startup),frame)
     var return_pose:float=smoothstep(float(move.startup)+12.0,float(move.startup+move.active+move.recovery),frame)
-    var weight:float=load*(1.0-return_pose)
+    var weight:float=load_weight*(1.0-return_pose)
     var up:Vector3=m.model_up
     var forward:Vector3=m.model_forward
     m.turn_hips(lerpf(-.40,.48,strike)*weight)

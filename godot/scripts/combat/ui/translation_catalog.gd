@@ -40,8 +40,8 @@ func load_catalog() -> void:
             if regex.compile(left+escape_regex(key)+right)==OK:fragments.append({"regex":regex,"text":str(entries[key])})
 func escape_regex(value:String) -> String:
     var result:=""
-    for char in value.replace("%%","%"):
-        result+=("\\" if char in "\\.^$|?*+()[]{}" else "")+char
+    for character in value.replace("%%","%"):
+        result+=("\\" if character in "\\.^$|?*+()[]{}" else "")+character
     return result
 func translated(value:String) -> String:
     if value.is_empty() or han.search(value)!=null or latin.search(value)==null:return value

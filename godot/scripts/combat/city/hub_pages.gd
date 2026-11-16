@@ -90,7 +90,6 @@ static func story(hub:Node) -> void:
     W.section(hub,"book","MOVES")
     var journal:=HBoxContainer.new();journal.add_theme_constant_override("separation",6);hub.stack.add_child(journal)
     var jicon={"parry":"shield","chain":"swords","chase":"chase","finisher":"finisher","boss":"skull"}
-    var jname={"parry":"PARRY","chain":"CHAIN","chase":"CHASE","finisher":"SLAM","boss":"BOSS"}
     for id in p.Story.TECHNIQUES:
         var done:bool=id in p.data.quest_claims
         var t:=W.tile(hub,"check" if done else jicon[id],"","",T.TEAL,"owned" if done else "plain",Callable(),str(p.Story.TECHNIQUES[id]),"move:"+str(id),Vector2(64,64))
@@ -108,7 +107,6 @@ static func story(hub:Node) -> void:
 
 static func depart(hub:Node) -> void:
     var p=hub.campaign.profile
-    var chapter:int=p.Story.chapter(int(p.data.best))
     W.head(hub,"arrow","DEPART",hub.COLORS[4])
     W.guide(hub,"GO starts or resumes your expedition. After a clear: choose a current and route, or return home to upgrade. Defeat keeps banked credits and gear.")
     var d:Dictionary=p.data
@@ -150,7 +148,7 @@ static func depart(hub:Node) -> void:
                 var id:String=route
                 W.into(rg,W.tile(hub,ROUTE_ICON[route],ROUTE_NAME[route],"",T.TEAL,"ready",func():hub.act(func():return p.choose_route(id),"Route committed"),ROUTE_INFO[route],"route:"+id,Vector2(0,104)))
         W.cta(hub,"play","GO",T.LIME,hub.campaign.depart,bool(run.boon_due),"depart","Continue the expedition.")
-        var end:=W.tile(hub,"close","END RUN","",T.CORAL,"ready",func():hub.act(p.abandon,"Expedition ended; temporary current cleared"),"Ends this expedition. Credits, gear, skills and talents stay.","end_run",Vector2(0,56),true)
+        W.tile(hub,"close","END RUN","",T.CORAL,"ready",func():hub.act(p.abandon,"Expedition ended; temporary current cleared"),"Ends this expedition. Credits, gear, skills and talents stay.","end_run",Vector2(0,56),true)
     else:
         W.section(hub,"flag","DISTRICT",T.TEAL)
         var g:=W.grid(hub,3)
@@ -178,7 +176,6 @@ static func depart(hub:Node) -> void:
             var cg:=W.grid(hub,2)
             for contract in d.contracts:
                 var id:=int(contract.id)
-                var stars:String="*".repeat(int(contract.tier))
                 var t:=W.tile(hub,"skull" if int(contract.tier)==5 else "swords","T%d  %s"%[int(contract.tier),DISTRICT_SHORT[int(contract.sector)]],"%d WAVES"%int(contract.waves),T.LIME,"ready",func():
                     if p.start_contract(hub.campaign.hero_id(),id):hub.campaign.depart(),p.Contracts.describe(contract),"contract:%d"%id,Vector2(0,104))
                 W.into(cg,t)

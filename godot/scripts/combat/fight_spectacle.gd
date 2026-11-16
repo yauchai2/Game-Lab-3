@@ -106,15 +106,15 @@ func draw(canvas: Control, session: Node3D) -> void:
         # Lethal League style hit flash: two crisp frames of paper white over the whole screen, never on reduced FX.
         if age<.045 and tier>=3:canvas.draw_rect(Rect2(0,0,1280,720),Color(paper,.30 if age<.02 else .14))
         # Pixel-snapped ink speed lines trailing away from the hit, parallel to the strike.
-        var sign:float=1.0 if owner==0 else -1.0
+        var strike_direction:float=1.0 if owner==0 else -1.0
         var grow:=1.0-clampf(age/maxf(duration,.05),0,1)*.6
         for i in (7 if tier<3 else 11):
             var y:float=roundf((at.y+(float(i)-float(7 if tier<3 else 11)*.5)*30.0+float((i*37)%5)*4.0)/2.0)*2.0
             var length:float=(240.0+float((i*53)%4)*80.0)*grow
-            var start:float=roundf((at.x-sign*(150.0+float(i%3)*46.0))/2.0)*2.0
-            var rect:=Rect2(Vector2(start if sign>0 else start-length,y),Vector2(length,6.0))
+            var start:float=roundf((at.x-strike_direction*(150.0+float(i%3)*46.0))/2.0)*2.0
+            var rect:=Rect2(Vector2(start if strike_direction>0 else start-length,y),Vector2(length,6.0))
             canvas.draw_rect(rect,Color(ink,.9))
-            canvas.draw_rect(Rect2(rect.position+Vector2(0,2),Vector2(rect.size.x*.7 if sign>0 else rect.size.x*.7,2.0)),Color(color if i%2==0 else paper,1.0))
+            canvas.draw_rect(Rect2(rect.position+Vector2(0,2),Vector2(rect.size.x*.7 if strike_direction>0 else rect.size.x*.7,2.0)),Color(color if i%2==0 else paper,1.0))
         if mode=="burst" and age<.30:sprites.hit_spark(canvas,at,age/.30,paper,-0.6,250.0+tier*40.0)
 
 func _wedge(canvas: Control, base: Vector2, tip: Vector2, width: float, color: Color) -> void:

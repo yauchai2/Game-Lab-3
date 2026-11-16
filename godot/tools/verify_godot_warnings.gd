@@ -23,14 +23,24 @@ const SCRIPTS=[
     "res://scripts/combat/cinematic/round_theatre.gd",
     "res://scripts/combat/cinematic/city_breaker.gd",
     "res://scripts/combat/ability_draw/dealer_rig.gd",
-    "res://scripts/combat/cinematic/ability_draw.gd"]
+    "res://scripts/combat/cinematic/ability_draw.gd",
+    "res://scripts/combat/enemies/gun_shot.gd",
+    "res://scripts/combat/last_service/rivet_motion.gd",
+    "res://scripts/combat/mixamo_profiles.gd",
+    "res://scripts/combat/last_service/rivet_shutdown.gd",
+    "res://scripts/combat/paired_throw_motion.gd",
+    "res://scripts/combat/city/hub_widgets.gd",
+    "res://scripts/combat/fight_spectacle.gd",
+    "res://scripts/combat/story_opening/stage.gd",
+    "res://scripts/combat/city/nightshift/workshop.gd",
+    "res://scripts/combat/city/hub_pages.gd"]
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
     var checks:Array=[]
     # Godot caches warning levels before loading the main script. The Python
     # runner supplies override.cfg at process startup; changing settings here
     # would silently miss the warnings we are meant to detect.
-    for category in ["static_called_on_instance","incompatible_ternary","shadowed_variable_base_class","integer_division","confusable_local_declaration","unused_parameter","standalone_ternary"]:
+    for category in ["static_called_on_instance","incompatible_ternary","shadowed_variable_base_class","integer_division","confusable_local_declaration","unused_parameter","standalone_ternary","shadowed_global_identifier","shadowed_variable","unused_variable"]:
         if ProjectSettings.get_setting("debug/gdscript/warnings/"+category)!=2:
             push_error("Run tools/verify_godot_warnings.py so warning levels are set at startup")
             quit(2)
@@ -45,5 +55,5 @@ func run() -> void:
     var args:=OS.get_cmdline_user_args()
     var output:String=args[0] if not args.is_empty() else "res://../docs/evidence/godot-warnings/strict.json"
     DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(output.get_base_dir()))
-    FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify({"engine":Engine.get_version_info().string,"checks":checks,"failed":failed,"passed":checks.size()-failed,"scope":"Seven screenshot warning categories treated as compile errors; no warning suppression."},"  "))
+    FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify({"engine":Engine.get_version_info().string,"checks":checks,"failed":failed,"passed":checks.size()-failed,"scope":"Ten warning categories including the November 16 screenshots treated as compile errors; no warning suppression."},"  "))
     quit(1 if failed else 0)

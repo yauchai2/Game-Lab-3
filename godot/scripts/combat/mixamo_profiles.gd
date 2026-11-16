@@ -43,8 +43,8 @@ static func describe(f:Dictionary,move:Dictionary) -> Dictionary:
             phase=Transit.attack_phase(float(f.frame),move,contact)
             if f.character==1 and f.move=="special" and f.frame<move.startup:
                 # Held charge repeats simulation frames 7/8: both must sample one load pose.
-                var load:float=contact*.35
-                phase=load*smoothstep(0,7,float(f.frame)) if f.frame<=8 else lerpf(load,contact,smoothstep(8,float(move.startup),float(f.frame)))
+                var load_phase:float=contact*.35
+                phase=load_phase*smoothstep(0,7,float(f.frame)) if f.frame<=8 else lerpf(load_phase,contact,smoothstep(8,float(move.startup),float(f.frame)))
     elif f.state=="stun":
         clip="MX_HeadHit" if f.character in [0,3] or f.vy>2.0 else "MX_BodyHit"
         reaction=true

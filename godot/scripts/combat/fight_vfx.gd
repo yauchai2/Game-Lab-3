@@ -125,7 +125,6 @@ func draw_effect(canvas: Control, session: Node3D, effect: Dictionary) -> void:
                 canvas.draw_colored_polygon(PackedVector2Array([at+Vector2(0,-height*0.4),tip,at+Vector2(0,height*0.4)]),paper)
         "block","parry":
             var perfect:bool=effect.kind=="parry"
-            var radius:float=(24.0 if not perfect else 34.0)*(1.0+minf(time*2,.5))*(.75 if reduced else 1.0)
             if perfect:
                 sprites.hit_spark(canvas,at,time,tint,-0.6,(120.0 if reduced else 190.0)*(1.0+time*.3))
             else:

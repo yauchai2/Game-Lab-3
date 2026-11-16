@@ -1,0 +1,257 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: The "for" iterator variable "char" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/ui/translation_catalog.gd:43)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/ui/localization.gd:0)
+ERROR: Failed to load script "res://scripts/combat/ui/localization.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript.cpp:2907)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+          at: _ready (res://scripts/combat/ui/localization.gd:7)
+          GDScript backtrace (most recent call first):
+              [0] _ready (res://scripts/combat/ui/localization.gd:7)
+STRICT_WARNING res://scripts/combat/ui/localization.gd true
+STRICT_WARNING res://scripts/combat/ui/locale_text.gd true
+SCRIPT ERROR: Parse Error: The "for" iterator variable "char" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372007897299530.gd:43)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/ui/translation_catalog.gd false
+STRICT_WARNING res://scripts/combat/city/story_flow.gd true
+SCRIPT ERROR: Parse Error: The local variable "advance" is shadowing an already-declared function at line 146 in the current class. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223372007091993142.gd:485)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/cinematic/story_opening.gd false
+STRICT_WARNING res://scripts/combat/city/campaign_visuals.gd true
+SCRIPT ERROR: Parse Error: The local variable "at" is declared but never used in the block. If this is intended, prefix it with an underscore: "_at". (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/enemies/gun_shot.gd:94)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/fight_simulation.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/enemies/squad_simulation.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (gdscript://-9223372005682706995.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/story/story_simulation.gd false
+STRICT_WARNING res://scripts/combat/story/body_chain.gd true
+STRICT_WARNING res://scripts/combat/story/enemy_props.gd true
+SCRIPT ERROR: Parse Error: The variable "load" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/last_service/rivet_motion.gd:17)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The variable "load" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/last_service/rivet_motion.gd:36)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/last_service/transit_motion.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The variable "load" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/last_service/rivet_shutdown.gd:12)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The variable "load" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/mixamo_profiles.gd:46)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/last_service/street_motion.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (gdscript://-9223371996102916651.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/ink_fx/fx_recipes.gd false
+STRICT_WARNING res://scripts/combat/ink_fx/world_ink_fx.gd true
+STRICT_WARNING res://scripts/combat/impact_shapes.gd true
+SCRIPT ERROR: Parse Error: The local variable "radius" is declared but never used in the block. If this is intended, prefix it with an underscore: "_radius". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371992395151903.gd:128)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/fight_vfx.gd false
+STRICT_WARNING res://scripts/combat/fight_audio.gd true
+SCRIPT ERROR: Parse Error: The local variable "radius" is declared but never used in the block. If this is intended, prefix it with an underscore: "_radius". (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/fight_vfx.gd:128)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The variable "convert" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/paired_throw_motion.gd:49)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/fighter_visual.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/ui/title_motion.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The function parameter "wrap" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/city/hub_widgets.gd:18)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "row" is shadowing an already-declared function at line 83 in the current class. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/city/hub_widgets.gd:25)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "row" is shadowing an already-declared function at line 83 in the current class. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/city/hub_widgets.gd:37)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/city/story_guide.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (gdscript://-9223371990029564435.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/fight_hud.gd false
+STRICT_WARNING res://scripts/combat/combat_motions.gd true
+STRICT_WARNING res://scripts/combat/fighter_visual.gd true
+SCRIPT ERROR: Parse Error: The variable "sign" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/fight_spectacle.gd:109)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "advance" is shadowing an already-declared function at line 146 in the current class. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/cinematic/story_opening.gd:485)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The variable "sign" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/city/nightshift/workshop.gd:232)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/city/nightshift/reference_workshop.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "jname" is declared but never used in the block. If this is intended, prefix it with an underscore: "_jname". (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/city/hub_pages.gd:93)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "chapter" is declared but never used in the block. If this is intended, prefix it with an underscore: "_chapter". (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/city/hub_pages.gd:111)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "end" is declared but never used in the block. If this is intended, prefix it with an underscore: "_end". (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/city/hub_pages.gd:153)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "stars" is declared but never used in the block. If this is intended, prefix it with an underscore: "_stars". (Warning treated as error.)
+          at: GDScript::reload (res://scripts/combat/city/hub_pages.gd:181)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/city/city_hub.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/combat/city/city_campaign.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (gdscript://-9223371969024489981.gd:0)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/fight_session.gd false
+STRICT_WARNING res://scripts/combat/fight_simulation.gd true
+STRICT_WARNING res://scripts/combat/cinematic/round_theatre.gd true
+STRICT_WARNING res://scripts/combat/cinematic/city_breaker.gd true
+STRICT_WARNING res://scripts/combat/ability_draw/dealer_rig.gd true
+STRICT_WARNING res://scripts/combat/cinematic/ability_draw.gd true
+SCRIPT ERROR: Parse Error: The local variable "at" is declared but never used in the block. If this is intended, prefix it with an underscore: "_at". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371916880902522.gd:94)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/enemies/gun_shot.gd false
+SCRIPT ERROR: Parse Error: The variable "load" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371916830570873.gd:17)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The variable "load" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371916830570873.gd:36)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/last_service/rivet_motion.gd false
+SCRIPT ERROR: Parse Error: The variable "load" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371916763462006.gd:46)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/mixamo_profiles.gd false
+SCRIPT ERROR: Parse Error: The variable "load" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371916478249363.gd:12)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/last_service/rivet_shutdown.gd false
+SCRIPT ERROR: Parse Error: The variable "convert" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371916427917679.gd:49)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/paired_throw_motion.gd false
+SCRIPT ERROR: Parse Error: The function parameter "wrap" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371916260145518.gd:18)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "row" is shadowing an already-declared function at line 83 in the current class. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371916260145518.gd:25)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "row" is shadowing an already-declared function at line 83 in the current class. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371916260145518.gd:37)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/city/hub_widgets.gd false
+SCRIPT ERROR: Parse Error: The variable "sign" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371915907823981.gd:109)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/fight_spectacle.gd false
+SCRIPT ERROR: Parse Error: The local variable "prop" is shadowing an already-declared function at line 112 in the current class. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371915622611308.gd:266)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "prop" is shadowing an already-declared function at line 112 in the current class. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371915622611308.gd:292)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "rug" is declared but never used in the block. If this is intended, prefix it with an underscore: "_rug". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371915622611308.gd:304)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The variable "print" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371915622611308.gd:334)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/story_opening/stage.gd false
+SCRIPT ERROR: Parse Error: The variable "sign" has the same name as a built-in function. (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371914750196074.gd:232)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/city/nightshift/workshop.gd false
+SCRIPT ERROR: Parse Error: The local variable "jname" is declared but never used in the block. If this is intended, prefix it with an underscore: "_jname". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371914666310133.gd:93)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "chapter" is declared but never used in the block. If this is intended, prefix it with an underscore: "_chapter". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371914666310133.gd:111)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "end" is declared but never used in the block. If this is intended, prefix it with an underscore: "_end". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371914666310133.gd:153)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+SCRIPT ERROR: Parse Error: The local variable "stars" is declared but never used in the block. If this is intended, prefix it with an underscore: "_stars". (Warning treated as error.)
+          at: GDScript::reload (gdscript://-9223371914666310133.gd:181)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tools/verify_godot_warnings.gd:51)
+STRICT_WARNING res://scripts/combat/city/hub_pages.gd false

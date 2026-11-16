@@ -1,0 +1,21 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+INK_TRACE coincident projected tips are discarded true
+INK_TRACE subpixel collapsed trace is discarded true
+INK_TRACE expired width is discarded true
+INK_TRACE negative width is discarded true
+INK_TRACE nonfinite projection is discarded true
+INK_TRACE nonfinite width is discarded true
+INK_TRACE finite projection with lost width is discarded true
+INK_TRACE 144 ordinary trail orientations retain valid quads true
+INK_TRACE trace fixture uses visible play with effects enabled true
+INK_TRACE canvas issued the world trace draw call true
+INK_TRACE actual HUD renders collapsed, expired, behind-camera and valid traces true
+INK_TRACE pause redraw keeps traces safe true
+INK_TRACE reduced effects retains the opt-out true
+INK_TRACE exit clears trail state true
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)

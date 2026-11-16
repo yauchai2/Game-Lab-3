@@ -91,7 +91,6 @@ static func _step(s: RefCounted, p: Dictionary) -> bool:
         p.passed = true
         return true
     var victim: int = 1 - int(p.owner)
-    var at := {"x": p.x, "y": p.y, "dir": p.dir, "reflected": p.reflected}
     if t.invuln > 0 or t.y > JUMP_CLEAR:
         # i-frames (dash) or a jump: the bullet flies on. A dash dodge pays a little energy back.
         var how: String = "dash" if t.state == "dash" else ("jump" if t.y > JUMP_CLEAR else "invuln")
