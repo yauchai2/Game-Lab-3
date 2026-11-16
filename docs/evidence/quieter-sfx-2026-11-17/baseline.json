@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "name": "repeated setup does not stack bus effects",
+      "passed": true
+    },
+    {
+      "name": "heavy produces real non-clipping PCM",
+      "passed": true
+    },
+    {
+      "name": "ten_overlapping_impacts produces real non-clipping PCM",
+      "passed": true
+    },
+    {
+      "name": "ui_confirm produces real non-clipping PCM",
+      "passed": true
+    },
+    {
+      "name": "opening_case_landing produces real non-clipping PCM",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "measurements": {
+    "heavy": {
+      "frames": 45056,
+      "peak": 0.425223588943481,
+      "rms": 0.0748752048397443
+    },
+    "opening_case_landing": {
+      "frames": 45056,
+      "peak": 0.794328212738037,
+      "rms": 0.219144664886613
+    },
+    "ten_overlapping_impacts": {
+      "frames": 45056,
+      "peak": 0.794328212738037,
+      "rms": 0.135293055071369
+    },
+    "ui_confirm": {
+      "frames": 45056,
+      "peak": 0.237882971763611,
+      "rms": 0.026277659086904
+    }
+  }
+}

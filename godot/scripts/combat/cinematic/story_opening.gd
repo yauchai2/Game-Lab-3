@@ -200,7 +200,7 @@ func clear(let_score_ring:=false) -> void:
 func _sync_audio() -> void:
 	var audio:Node=session.audio
 	score.stream_paused=paused
-	score.volume_db=-80.0 if audio.muted or audio.effects_level<=0 else -1.0+linear_to_db(maxf(.001,audio.effects_level))
+	score.volume_db=-80.0 if audio.muted or audio.effects_level<=0 else -5.0+linear_to_db(maxf(.001,audio.effects_level))
 	music_score.stream_paused=paused
 	music_score.volume_db=-80.0 if audio.muted or audio.music_muted or audio.music_level<=0 else -3.0+linear_to_db(maxf(.001,audio.music_level))
 	# The opening music has its own timeline, so the menu track stays silent under it

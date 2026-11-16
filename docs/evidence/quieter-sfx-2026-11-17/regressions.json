@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "combat_sfx",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "SFX KO music resumes without a new track true <null>",
+      "SFX music bus owns one low-pass filter true <null>",
+      "COMBAT_SFX_CHECKS 66/66"
+    ]
+  },
+  {
+    "suite": "story_opening",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "STORY_OPENING the next launch remembers it was seen true",
+      "STORY_OPENING without being the running game it still never autoplays true",
+      "STORY_OPENING_RESULT 44/44"
+    ]
+  },
+  {
+    "suite": "city_breaker_fx",
+    "exit": 0,
+    "errors": [],
+    "tail": [
+      "KO_FX F2 clears lens and sound together true",
+      "KO_FX title exit releases all FX ownership true",
+      "KO_FX_CHECKS 21/21"
+    ]
+  }
+]

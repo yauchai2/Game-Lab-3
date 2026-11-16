@@ -13,6 +13,7 @@ var contact_budget := 0.0
 var contact_layers_played := 0
 var duck_time := 0.0
 var cinematic_duck := 0.0
+const SFX_MIX_TRIM_DB := -10.0
 const OPEN := "res://audio/open/"
 const SFX := "res://audio/sfx/"
 # All music is cut from one supplied playlist (tools/build_playlist_music.py). music.json has each file's intro/loop timing.
@@ -334,18 +335,30 @@ func _ensure_buses() -> void:
     var has_limiter:=false
     for i in AudioServer.get_bus_effect_count(sfx_bus):
         if AudioServer.get_bus_effect(sfx_bus,i) is AudioEffectLimiter:has_limiter=true
-    var has_compressor:=false
+    var compressor:AudioEffectCompressor
     for i in AudioServer.get_bus_effect_count(sfx_bus):
-        if AudioServer.get_bus_effect(sfx_bus,i) is AudioEffectCompressor:has_compressor=true
-    if not has_compressor:
-        var compressor:=AudioEffectCompressor.new()
-        compressor.threshold=-12.0;compressor.ratio=3.0;compressor.attack_us=1500.0;compressor.release_ms=120.0;compressor.gain=3.0
+        if AudioServer.get_bus_effect(sfx_bus,i) is AudioEffectCompressor:compressor=AudioServer.get_bus_effect(sfx_bus,i)
+    if compressor==null:
+        compressor=AudioEffectCompressor.new()
+        compressor.threshold=-12.0;compressor.ratio=3.0;compressor.attack_us=1500.0;compressor.release_ms=120.0
         AudioServer.add_bus_effect(sfx_bus,compressor,0)
+    # Do not add makeup gain to already normalized impacts and cinematic cues.
+    compressor.gain=0.0
     if not has_limiter:
         var limiter:=AudioEffectLimiter.new()
         limiter.ceiling_db=-2.0
         limiter.threshold_db=-3.0
         AudioServer.add_bus_effect(sfx_bus,limiter)
+    # A post-dynamics trim covers every SFX player, including independent directors
+    # and existing saved sliders. Restore Sound must not bypass this mix calibration.
+    var trim:AudioEffectAmplify
+    for i in AudioServer.get_bus_effect_count(sfx_bus):
+        var effect:AudioEffect=AudioServer.get_bus_effect(sfx_bus,i)
+        if effect is AudioEffectAmplify and effect.resource_name=="Afterhours SFX Mix Trim":trim=effect
+    if trim==null:
+        trim=AudioEffectAmplify.new();trim.resource_name="Afterhours SFX Mix Trim"
+        AudioServer.add_bus_effect(sfx_bus,trim)
+    trim.volume_db=SFX_MIX_TRIM_DB
 
 func silent_settings() -> bool:
     for label in ["Afterhours Music","Afterhours SFX"]:

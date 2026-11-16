@@ -1,3 +1,9 @@
+## 2026-11-17：音效過大回報
+
+- [x] 共用SFX末端衰減10dB、去壓縮器補償、開場cue再收低4dB，舊存檔及Restore Sound保持校準；音樂／來源素材不變。
+- [x] 12真PCM／設定檢查、隔離main取樣比較、33strict與66／44／21回歸，詳[證據](evidence/quieter-sfx-2026-11-17/README.md)。
+- [ ] 使用者Mac／4.7.2以耳機或揚聲器實玩確認整體舒適度；Dummy PCM量測不是人耳驗收。
+
 ## 2026-11-16：Debugger截圖修正
 
 - [x] 22項命名／unused警告、33腳本／10類fatal覆核。

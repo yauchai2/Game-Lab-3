@@ -1,3 +1,7 @@
+## 2026-11-17：開場／全遊戲音效降音量
+
+使用者回報效果超大：fight_audio的Afterhours SFX在dynamics之後單一AudioEffectAmplify−10dB，compressor.gain=0、開場score基準−5取代−1；不改音樂／原素材／已存滑桿。恢復聲音不可繞過trim，重複初始化不疊加；舊探索引擎接SFX或無bus時−10fallback。12真PCM／設定檢查、33strict、66／44／21通過，固定取樣RMS下降11.55–13dB，非真人／Mac實聽。見docs/evidence/quieter-sfx-2026-11-17；來源main、Web保持。
+
 ## 2026-11-16：Debugger截圖警告與殘影幾何
 
 見docs/evidence/debugger-fixes-2026-11-16：22項shadowed_global_identifier／shadowed_variable／unused_variable修正，保留UI建構副作用；verify_godot_warnings擴至33腳本／10類fatal。WorldInkFX.trace_polygon拒非有限／退化／零面積與無法三角化quad，鏡頭後端點不投影繪製。14原生與相關回歸通過，舊據點960斷言經完整main同敗後改明確1280×720、30/30；不改viewport。4.6.3未重現截圖4.7.2同句錯誤，不宣稱Mac實機驗收，Web保持。

@@ -35,6 +35,7 @@ func _ready() -> void:
     _add_detail()
     sound = AudioStreamPlayer3D.new()
     sound.name = "PlaceholderEngine"
+    sound.bus = "Afterhours SFX" if AudioServer.get_bus_index("Afterhours SFX")>=0 else "Master"
     var stream: AudioStreamWAV = load("res://audio/engine_placeholder.wav").duplicate()
     stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
     stream.loop_begin = 0
@@ -75,7 +76,7 @@ func _process(delta: float) -> void:
     if active:
         elapsed = minf(DURATION,elapsed+delta)
         _place(elapsed / DURATION)
-        sound.volume_db = linear_to_db(maxf(.001,minf(1.0,minf(elapsed/2.0,(DURATION-elapsed)/2.0))*effects_level))
+        sound.volume_db = linear_to_db(maxf(.001,minf(1.0,minf(elapsed/2.0,(DURATION-elapsed)/2.0))*effects_level)) + (-10.0 if sound.bus=="Master" else 0.0)
         if elapsed >= DURATION:
             active = false
             cooldown = COOLDOWN

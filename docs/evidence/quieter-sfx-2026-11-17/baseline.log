@@ -1,0 +1,7 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+QUIETER_SFX repeated setup does not stack bus effects true
+QUIETER_SFX heavy produces real non-clipping PCM true
+QUIETER_SFX ten_overlapping_impacts produces real non-clipping PCM true
+QUIETER_SFX ui_confirm produces real non-clipping PCM true
+QUIETER_SFX opening_case_landing produces real non-clipping PCM true
