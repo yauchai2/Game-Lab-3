@@ -324,7 +324,7 @@ static func _compare(hub:Node,p,hero_id:int,item:Dictionary,_tint:Color) -> void
         W.tile(hub,"check","FIT","ON" if equipped else "",T.TEAL,"owned" if equipped else "ready",func():hub.act(func():return p.equip(id,hero_id),"Equipment fitted"),"Fit this piece on "+HEROES[hero_id]+".","equip:%d"%id,Vector2(0,98)),
         W.tile(hub,"hammer","REROLL","80+5",T.LIME,"off" if item.get("affixes",[]).is_empty() or p.data.credits<80 or p.data.parts<5 else "ready",func():hub.act(func():return p.craft(id,"recalibrate",0),"Affix recalibrated"),"Recalibrate the first affix. 80 credits, 5 parts.","recalibrate:%d"%id,Vector2(0,98)),
         W.tile(hub,"flame","TEMPER","120+6",T.CORAL,"off" if int(item.tier)>=2 or p.data.credits<120 or p.data.parts<6 else "ready",func():hub.act(func():return p.craft(id,"temper"),"Equipment tempered"),"Reroll up to RARE. 120 credits, 6 parts.","temper:%d"%id,Vector2(0,98)),
-        W.tile(hub,"trash","SCRAP","+%d"%(1+int(item.tier)),T.PAPER,"off" if p.is_equipped(id) else "ready",func():hub.act(func():return p.salvage(id),"Equipment recycled"),"Recycle for parts. Fitted gear cannot be scrapped.","recycle:%d"%id,Vector2(0,98))]
+        W.tile(hub,"trash","SCRAP","+%d"%(1+int(item.tier)),T.PAPER,"off" if p.is_equipped(id) else "ready",func():hub.act(func():return p.salvage(id),"Equipment recycled"),"Recycle for parts. Fitted or preset gear cannot be scrapped.","recycle:%d"%id,Vector2(0,98))]
     for t in tiles:W.into(acts,t)
 
 static func tactical_page(hub:Node) -> void:
@@ -333,13 +333,21 @@ static func tactical_page(hub:Node) -> void:
     var tactics=p.Tactics
     var cfg:Dictionary=p.data.tactics[hero]
     W.section(hub,"bolt","TACTICAL SKILLS")
-    W.guide(hub,"Two tactics: first clear unlocks one; clear district one for both. Change variants and supports here for free.")
+    W.guide(hub,"Choose two of six tactics. Story milestones unlock new tools; variants, supports and three build presets are free to change here.")
     for slot in 2:
         var id:int=cfg.skills[slot]
         var open:bool=id<p.tactics_unlocked()
         var key:String=OS.get_keycode_string(hub.campaign.session.controls.tactic_keys[slot])
         W.section(hub,"fist",key+" / "+L10n.text(str(tactics.NAMES[hero][id])))
-        W.guide(hub,L10n.text(str(tactics.INFO[hero][id]))+" "+(L10n.text("%d ENERGY / %.1fs")%[tactics.COSTS[hero][id],tactics.COOLDOWNS[hero][id]/60.0] if open else L10n.text("Clear encounter %d to learn.")%tactics.UNLOCKS[id]))
+        var skills_select:=OptionButton.new();skills_select.fit_to_longest_item=false;skills_select.clip_text=true;skills_select.custom_minimum_size.y=48
+        for ability in 6:
+            skills_select.add_item(L10n.text(str(tactics.NAMES[hero][ability])))
+            skills_select.set_item_disabled(ability,ability>=p.tactics_unlocked())
+        skills_select.select(id);skills_select.set_meta("act","tactic:%d:ability"%slot)
+        var target_slot:int=slot
+        skills_select.item_selected.connect(func(ability:int):hub.act(func():return p.equip_tactic(hero,target_slot,ability),"Tactical build updated"))
+        hub.stack.add_child(skills_select)
+        W.guide(hub,L10n.text(tactics.description(hero,id))+" "+(L10n.text("%d ENERGY / %.1fs")%[tactics.adjusted_cost(tactics.COSTS[hero][id],float(p.stats(hero).economy)),tactics.COOLDOWNS[hero][id]/60.0] if open else L10n.text("Clear encounter %d to learn.")%tactics.UNLOCKS[id]))
         var row:=HBoxContainer.new();hub.stack.add_child(row)
         for field in ["variants","supports"]:
             var selector:=OptionButton.new();selector.fit_to_longest_item=false;selector.clip_text=true;selector.custom_minimum_size=Vector2(0,50);selector.size_flags_horizontal=Control.SIZE_EXPAND_FILL
@@ -350,6 +358,8 @@ static func tactical_page(hub:Node) -> void:
             var selected_field:String=field;var selected_id:int=id
             selector.item_selected.connect(func(value:int):hub.act(func():return p.configure_tactic(hero,selected_id,selected_field,value),"Tactical build updated"))
             row.add_child(selector)
+    build_presets(hub)
+    W.guide(hub,"Presets save tactics, talents, techniques and equipped item identities. Preset gear is protected from scrapping; clear the preset to release it.")
     W.cta(hub,"arrow","SWAP TACTICAL SLOTS",T.TEAL,func():hub.act(func():return p.configure_tactic(hero,0,"skills",0),"Tactical slots swapped"),false,"tactic:swap")
 
     W.section(hub,"gear","TACTICAL GEAR / 30 CREDITS + 3 PARTS")
@@ -357,3 +367,21 @@ static func tactical_page(hub:Node) -> void:
     for kind in ["tactic_relay","tactic_anchor"]:
         var recipe:String=kind
         W.cta(hub,"gear","CRAFT RELAY CELL" if kind=="tactic_relay" else "CRAFT ANCHOR WRIST",T.TEAL,func():hub.act(func():return p.craft_tactic_gear(hero,recipe),"Gear crafted. Equip it at SHOP."),p.data.best<3 or p.data.credits<30 or p.data.parts<3,"craft:"+kind)
+
+static func build_presets(hub:Node) -> void:
+    var p=hub.campaign.profile;var hero:int=hub.campaign.hero_id()
+    W.section(hub,"book","BUILD PRESETS")
+    var picker:=OptionButton.new();picker.fit_to_longest_item=false;picker.clip_text=true;picker.custom_minimum_size.y=48;picker.set_meta("act","build:select")
+    for index in 3:
+        var saved:Dictionary=p.data.build_presets[hero][index]
+        var summary:String=L10n.text("EMPTY") if saved.is_empty() else L10n.text(str(p.Tactics.NAMES[hero][saved.tactics.skills[0]]))+" + "+L10n.text(str(p.Tactics.NAMES[hero][saved.tactics.skills[1]]))
+        picker.add_item(str(index+1)+" / "+summary)
+    picker.select(hub.build_selection);picker.item_selected.connect(hub.select_build);hub.stack.add_child(picker)
+    var selected:int=hub.build_selection;var stored:bool=not p.data.build_presets[hero][selected].is_empty()
+    var row:=HBoxContainer.new();hub.stack.add_child(row)
+    for action in ["SAVE","LOAD","CLEAR"]:
+        var button:=Button.new();button.size_flags_horizontal=Control.SIZE_EXPAND_FILL;button.custom_minimum_size.y=46;button.text=L10n.text(action)
+        button.disabled=action!="SAVE" and not stored;button.set_meta("act","build:%d:%s"%[selected,action])
+        var operation:String=action
+        button.pressed.connect(func():hub.act(func():return p.store_build(hero,selected) if operation=="SAVE" else (p.load_build(hero,selected) if operation=="LOAD" else p.clear_build(hero,selected)),"Build preset updated"))
+        row.add_child(button)

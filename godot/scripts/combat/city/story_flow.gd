@@ -201,7 +201,7 @@ func _build_inter() -> void:
         for route in p.route_options():
             var id:String=route
             _row_button(row,"%d  %s"%[key,{"combat":"COMBAT\nnormal loot","cache":"SALVAGE\n+1 item, heavy foe","hazard":"CHARGED\n+20% credits","rest":"REST\n+20 HP once"}[route]],func():_pick_route(id));key+=1
-    if d.last_loot.has("FIRST TACTIC LEARNED / SEE SKILLS") or d.last_loot.has("SECOND TACTIC + GEAR RECIPES / SEE SKILLS"):
+    if d.last_loot.has("NEW TACTIC LEARNED / SEE SKILLS") or d.last_loot.has("FIRST TACTIC LEARNED / SEE SKILLS") or d.last_loot.has("SECOND TACTIC + GEAR RECIPES / SEE SKILLS"):
         _inter_button("NEW TACTICS / VISIT SKILLS",func():_home();campaign.hub.request_station(0))
     var go:String={"win":"NEXT ENCOUNTER","retry":"RETRY THE WAVE","contract_next":"NEXT CONTRACT"}[kind]
     var main:=_inter_button(go+" / ENTER",_continue)

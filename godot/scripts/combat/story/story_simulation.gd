@@ -71,6 +71,7 @@ func _load_wave(index:int,hp:int,meter:float) -> void:
     fighters[0].x=0.0;fighters[0].health=hp;fighters[0].meter=clampf(meter,0,100);fighters[1]=squad_members[0]
     if campaign_enabled:
         fighters[0]["tactic_unlocked"]=int(campaign_stats.get("tactic_unlocked",0))
+        fighters[0]["tactic_economy"]=float(campaign_stats.get("economy",0))
         fighters[0]["tactic_relay"]=float(campaign_stats.get("tactic_relay",0))>0
         fighters[0]["tactic_anchor"]=float(campaign_stats.get("tactic_anchor",0))>0
     checkpoint={"health":hp,"meter":meter}
@@ -118,7 +119,7 @@ func ai_command() -> Dictionary:
     var f:Dictionary=fighters[1]
     if f.has("boss"):return {}
     if arrival_left>0 or (campaign_enabled and int(f.get("arrival",0))>0):return {"axis":signf(fighters[0].x-f.x)*.25,"allow_parry":false}
-    if f.story_role=="jammer" and f.state=="idle" and squad_clock>=next_attack_at:
+    if f.story_role=="jammer" and int(f.get("tactic_silence",0))==0 and f.state=="idle" and squad_clock>=next_attack_at:
         if squad_clock%150==0 and campaign_hazards.size()<3:
             campaign_hazards.append({"kind":"jammer","x":float(fighters[0].x),"half":1.3,"warn":60,"active":6,"age":0,"source":f.squad_id,"boss":false,"face":f.face,"struck":false})
             next_attack_at=squad_clock+90
@@ -134,6 +135,7 @@ func _advance_fighter(i:int,command:Dictionary) -> void:
     var f:Dictionary=fighters[i]
     var event_start:=events.size()
     if campaign_enabled and i==1:
+        f["tactic_silence"]=maxi(0,int(f.get("tactic_silence",0))-1)
         f["arrival"]=maxi(0,int(f.get("arrival",0))-1)
         if f.health<=0:f["dead_age"]=int(f.get("dead_age",0))+1
         if f.has("boss") and f.health>0:

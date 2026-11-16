@@ -1,5 +1,5 @@
 extends SceneTree
-const OUT="res://../docs/evidence/tactical-skills/"
+const OUT="res://../docs/evidence/tactics-expanded/first-eight-native/"
 var checks:Array=[]
 var session:Node
 func check(label:String,ok:bool) -> void:
@@ -14,6 +14,7 @@ func shot(name:String) -> void:
     await frames();root.get_texture().get_image().save_png(OUT+name+".png")
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
+    DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUT))
     session=preload("res://scenes/combat/street_fight.tscn").instantiate();session.preferences_path="";session.city_save_path="";root.add_child(session)
     session.set_process(false);session.set_physics_process(false);session.audio.muted=true
     await frames(8)
@@ -22,12 +23,12 @@ func run() -> void:
     hub.close_panel();await key(KEY_H,true);await key(KEY_H,false)
     check("H cannot interrupt the hub",not hub.panel.visible)
     hub.open_station(0);await frames()
-    check("tactics selectors are real native controls",hub.stack.find_children("*","OptionButton",true,false).size()==4)
-    var first_selector=hub.stack.find_children("*","OptionButton",true,false)[0]
+    check("tactics selectors are real native controls",hub.stack.find_children("*","OptionButton",true,false).size()==7)
+    var first_selector=hub.stack.find_children("*","OptionButton",true,false).filter(func(control:Node)->bool:return control.get_meta("act","")=="tactic:0:variants")[0]
     hub.scroll.ensure_control_visible(first_selector);await frames()
     session.set_language("zh");await frames();await shot("build-zh")
     session.set_language("en");await frames();await shot("build-en")
-    first_selector=hub.stack.find_children("*","OptionButton",true,false)[0]
+    first_selector=hub.stack.find_children("*","OptionButton",true,false).filter(func(control:Node)->bool:return control.get_meta("act","")=="tactic:0:variants")[0]
     hub.scroll.ensure_control_visible(first_selector);await frames();first_selector.grab_focus()
     await key(KEY_SPACE,true);await key(KEY_SPACE,false);await key(KEY_DOWN,true);await key(KEY_DOWN,false);await key(KEY_ENTER,true);await key(KEY_ENTER,false)
     check("native dropdown selection updates the build",campaign.profile.data.tactics[1].variants[0]==1)

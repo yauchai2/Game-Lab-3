@@ -108,6 +108,9 @@ func present(f: Dictionary, delta: float, stopped: bool, reduced: bool, opponent
         var timing:Dictionary=f.move_data
         f.move="heavy" if f.character==1 else ("cross" if f.character==2 else "special")
         if f.character==0:f.move="cross"
+        var tactical_id:int=int(f.tactical.get("cast_skill",-1))
+        if tactical_id>=2:
+            f.move=[["meteor","heavy","special","overdrive"],["heavy","jab","overdrive","special"],["cross","special","special","overdrive"],["special","cross","special","overdrive"]][int(f.character)][tactical_id-2]
         var base:Dictionary=preload("res://scripts/combat/fight_simulation.gd").MOVES[f.move]
         var authored:Dictionary=preload("res://scripts/combat/last_service/profiles.gd").move(base,f.character,f.move,f)
         f.frame=roundi(float(f.frame)*float(authored.startup)/float(timing.startup)) if f.frame<=timing.startup else int(authored.startup)+int(f.frame)-int(timing.startup)

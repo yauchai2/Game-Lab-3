@@ -11,7 +11,19 @@ static func draw_overlay(canvas:Control,session:Node3D) -> void:
     for p in sim.tactics.shots:
         var at:Vector2=session.project(Vector2(p.x,p.y))
         var trail:Vector2=session.project(Vector2(p.x-p.dir*.4,p.y))
-        if p.kind=="connector":
+        if p.kind=="zone":
+            var left:Vector2=session.project(Vector2(p.x-p.radius,.05));var right:Vector2=session.project(Vector2(p.x+p.radius,.05))
+            canvas.draw_line(left,right,ink,14);canvas.draw_line(left,right,tint,4)
+            var ratio:float=minf(1,float(p.age)/maxf(1,float(p.get("delay",30))))
+            canvas.draw_line(left,left.lerp(right,ratio),Color.WHITE,7)
+        elif p.kind=="cable":
+            var anchor:Vector2=session.project(Vector2(p.fighter.x,p.fighter.y+.9))
+            canvas.draw_line(anchor,at,ink,7);canvas.draw_line(anchor,at,tint,3);canvas.draw_circle(at,5,Color.WHITE)
+        elif p.kind=="arc":
+            canvas.draw_arc(at,10,-PI*.7,PI*.7,8,ink,8);canvas.draw_arc(at,10,-PI*.7,PI*.7,8,tint,4)
+        elif p.kind=="elevated":
+            canvas.draw_line(trail,at,ink,10);canvas.draw_line(trail,at,Color.WHITE,5);canvas.draw_circle(at,5,tint)
+        elif p.kind=="connector":
             canvas.draw_line(at-Vector2(10,0),at+Vector2(10,0),ink,10);canvas.draw_line(at-Vector2(8,0),at+Vector2(8,0),tint,5)
         elif p.kind in ["pulse","ground"]:
             var edge:Vector2=session.project(Vector2(p.x+p.radius,.15))
@@ -27,8 +39,10 @@ static func draw_overlay(canvas:Control,session:Node3D) -> void:
         var available:bool=id<int(f.get("tactic_unlocked",0))
         var cooldown:int=f.tactical.cd[slot]
         var label:String=OS.get_keycode_string(keys[slot])+"  "+L10n.text(str(Skills.NAMES[f.character][id]))
-        var suffix:String=L10n.text("LEARN IN STORY") if not available else (L10n.text("%.1fs")%(cooldown/60.0) if cooldown>0 else L10n.text("%d ENERGY")%Skills.COSTS[f.character][id])
-        if f.character==2 and id==1 and f.tactical.return_ready>0:suffix=L10n.text("SAMPLE / PRESS TO RETURN")
+        var suffix:String=L10n.text("LEARN IN STORY") if not available else (L10n.text("%.1fs")%(cooldown/60.0) if cooldown>0 else L10n.text("%d ENERGY")%sim.tactics.cost(f,id))
+        if id>=2 and sim.tactics.Expanded.follow_ready(f,id):suffix=L10n.text("EMITTER READY / FIRE" if f.character==3 and id==4 else "HIT / PRESS TO FOLLOW")
+        elif id>=2 and f.character==0 and id==5 and f.state=="attack" and not f.tactical.fired:suffix=L10n.text("PRESS AGAIN TO STOP")
+        elif f.character==2 and id==1 and f.tactical.return_ready>0:suffix=L10n.text("SAMPLE / PRESS TO RETURN")
         elif f.character==2 and id==1 and f.tactical.sample_window>0:suffix=L10n.text("RECEIVING / ONE ROUND")
         canvas.draw_string(session.hud.font,rect.position+Vector2(8,17),label,HORIZONTAL_ALIGNMENT_LEFT,240,13,tint if available and cooldown==0 else Color("9299aa"))
         canvas.draw_string(session.hud.font,rect.position+Vector2(8,36),suffix,HORIZONTAL_ALIGNMENT_LEFT,240,12,Color("9299aa"))
@@ -42,3 +56,8 @@ static func draw_overlay(canvas:Control,session:Node3D) -> void:
             if int(target.get("squad_id",0))==f.tactical.mark and target.health>0:
                 var at:Vector2=session.project(Vector2(target.x,target.y+2.3))
                 canvas.draw_line(at-Vector2(8,6),at,Color.WHITE,4);canvas.draw_line(at,at+Vector2(8,-6),tint,4)
+
+    for target in sim.tactics.targets(sim,0):
+        if target.get("tactic_silence",0)>0:
+            var at:Vector2=session.project(Vector2(target.x,target.y+2.5))
+            canvas.draw_string(session.hud.font,at-Vector2(24,0),L10n.text("JAMMED"),HORIZONTAL_ALIGNMENT_LEFT,-1,14,tint)

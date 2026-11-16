@@ -1,12 +1,13 @@
 extends RefCounted
 ## Fixed-tick character resources and real, blockable contact. No presentation authority.
 static func fresh() -> Dictionary:
-    return {"routes":0,"route_ttl":0,"evade_serial":-1,"evade_candidate":-1,"candidate_ticks":0,"preload":0,"preload_age":0,"sample":0,"sample_ttl":0,"sample_boost":false,"nodes":[],"node_cd":0,"serial":0,"placed":false,"zip_second":false,"zip_second_at":0,"followup":0,"delivery_origin":0.0,"delivery_running":false,"delivery_stage":0,"delivery_contact":24,"flurry_left":0,"encore":[],"refund_serial":-1}
+    return {"routes":0,"route_ttl":0,"evade_serial":-1,"evade_candidate":-1,"candidate_ticks":0,"preload":0,"preload_age":0,"preload_spent":false,"sample":0,"sample_ttl":0,"sample_boost":false,"nodes":[],"node_cd":0,"serial":0,"placed":false,"zip_second":false,"zip_second_at":0,"followup":0,"delivery_origin":0.0,"delivery_running":false,"delivery_stage":0,"delivery_contact":24,"flurry_left":0,"encore":[],"refund_serial":-1}
 static func perk(f:Dictionary,id:String) -> bool:return id in f.get("perks",[])
 func before(s:RefCounted,i:int,command:Dictionary) -> void:
     var f:Dictionary=s.fighters[i];var r:Dictionary=f.service
     if f.character==3 and command.get("attack","")=="special" and command.get("down",false):command.attack="node_pulse"
     if command.get("attack","")=="special":f["node_far"]=absf(command.get("axis",0.0))>.1
+    if f.character==1 and f.move=="special" and (f.state in ["stun","blockstun"] or (f.state=="attack" and f.frame>=s.move_for(f,"special").startup+s.move_for(f,"special").active)):r.preload_spent=true
     if s.hitstop>0:return
     if f.character==0 and f.state=="attack" and f.move=="overdrive" and f.frame<24 and f.y<=.01:
         var delivery=preload("res://scripts/combat/last_service/zip_delivery.gd")
@@ -18,7 +19,7 @@ func before(s:RefCounted,i:int,command:Dictionary) -> void:
     var enemy:Dictionary=s.fighters[1-i]
     if command.get("dash",false) and f.character==0 and f.state=="idle" and f.dash_cd==0 and enemy.state=="attack" and absf(f.x-enemy.x)<=s.move_for(enemy,enemy.move).reach+.5 and (f.x-enemy.x)*enemy.face>0:
         r.evade_candidate=enemy.service.serial;r.candidate_ticks=14
-    r["use_route"]=command.get("dash",false) and f.state=="idle" and f.dash_cd==0 and r.routes>0
+    r["use_route"]=not command.get("bank_routes",false) and command.get("dash",false) and f.state=="idle" and f.dash_cd==0 and r.routes>0
     if f.character==2 and f.state=="attack" and f.move=="special" and f.frame<5:f.vx=-f.face*3.0
     # This runs before the normal input buffer is collected.
     if f.character==1 and f.state=="attack" and f.move=="special" and f.frame>=8 and f.frame<24:
@@ -30,7 +31,7 @@ func before(s:RefCounted,i:int,command:Dictionary) -> void:
 func started(s:RefCounted,i:int,name:String) -> void:
     var f:Dictionary=s.fighters[i];var r:Dictionary=f.service
     r.serial+=1;r.placed=false;r.zip_second=false;r.zip_second_at=0;r.followup=0;r.flurry_left=2;r.delivery_stage=0;r.delivery_origin=f.x;r.delivery_running=false;r.delivery_contact=int(s.move_for(f,name).startup) if name=="overdrive" else 24
-    r.preload=0;r.preload_age=0;r.sample_boost=false
+    r.preload=0;r.preload_age=0;r.preload_spent=false;r.sample_boost=false
     if f.character==2 and r.sample>0 and name in ["cross","heavy","launcher","special","overdrive"]:
         r.sample=0;r.sample_ttl=0;r.sample_boost=true
         s.events.append({"kind":"sample_spent","target":i})
@@ -89,6 +90,9 @@ func resolve_pulse(s:RefCounted,i:int,origin:float) -> void:
     if saved_data!=null:f.move_data=saved_data
 func observe(s:RefCounted,event:Dictionary) -> void:
     var kind:String=event.kind
+    if kind in ["hit","block","parry"] and event.get("attacker",-1) in [0,1]:
+        var attacker:Dictionary=s.fighters[event.attacker]
+        if attacker.character==1 and attacker.move=="special":attacker.service.preload_spent=true
     if kind=="parry":
         var f:Dictionary=s.fighters[event.target]
         if f.character==2 and event.get("move","")!="node_pulse" and event.get("distance",0.0)<=3.0:

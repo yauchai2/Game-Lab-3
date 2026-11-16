@@ -195,3 +195,7 @@
 - 2026-11-16技能策劃續訂：docs/SKILL_INPUT_CHARGE_PLAN.zh-TW.md。Q／I兩槽候選、H解除改Esc指南、保留J持鍵與原K／L方向語義；先RIVET有限蓄力及正式遭遇，後八招及構築。僅規劃，沒有改鍵／新runtime；手柄鍵位及真人測試待驗，不把候選數字當已平衡。
 
 - 2026-11-16戰術技能實作：docs/TACTICAL_SKILLS_RUNTIME.zh-TW.md。首八招接正式STORY，解鎖1／3場、Q／I安全重綁、RIVET有限蓄力、變體／支援與兩件配方，CityProfile schema4；H戰鬥／據點解除，指南保留。city出擊套遠征角色，不再只接受title。tactics模組唯一判定owner，經原_resolve_hit／Boss結算；不要再把新招當未實作，也不可當全24招／真人平衡已完成。原GLB／BGM／標準模式保持；同分支／PR #38，Web不更新。
+
+- 2026-11-16續作：docs/TACTICAL_EXPANSION.zh-TW.md。24招第一可玩版、六選二／三套完整構築預設／schema5已實作；覆蓋首批「16招與預設未做」。保持兩槽鍵位，手動追加須真確認，靜音不刪在飛子彈／Boss，牽引不拉Boss，浮空發射器保留兩點、線段共用預算。預設引用裝備不可分解，舊檔及失敗回滾保留；戰術省能最多20%並顯示真費用。只推codex/story-onboarding／PR #38，Web不更新。真人平衡、第二支援槽與精製動作未完成，不冒稱遊戲最終好玩已驗收。
+
+- 本輪資源補正：ZIP裝雙址時E保留路線；RIVET預壓洩放在L蓄壓途中轉招，只付替代技費用，已出拳／被打斷不可再花預壓；冷卻／防禦／跳躍拒絕轉招不得退款。107擴充規則、39新增原生與20strict通過，詳本輪evidence。

@@ -5,7 +5,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 FILES = [
-    'tactics/skills', 'tactics/presentation', 'fight_simulation', 'fight_session',
+    'tactics/skills', 'tactics/expanded', 'tactics/presentation', 'last_service/presentation', 'last_service/rules', 'fight_simulation', 'fight_session',
     'fight_controls', 'fight_hud', 'fight_preferences', 'fighter_visual',
     'city/city_profile', 'city/city_campaign', 'city/city_hub', 'city/hub_pages',
     'city/story_guide', 'city/story_flow', 'city/city_loot', 'story/story_simulation', 'enemies/gun_shot',
@@ -32,7 +32,7 @@ with tempfile.TemporaryDirectory(prefix='tactics-strict-') as folder:
     result = subprocess.run(['godot', '--headless', '--path', folder, '--script',
                              'res://tactics-check.gd'], stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT, text=True, timeout=90)
-output = ROOT / 'docs/evidence/tactical-skills/changed-strict.log'
+output = ROOT / 'docs/evidence/tactics-expanded/changed-strict.log'
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(result.stdout)
 print(result.stdout)

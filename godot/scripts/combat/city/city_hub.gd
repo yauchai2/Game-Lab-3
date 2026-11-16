@@ -15,6 +15,7 @@ var station_bar:HBoxContainer
 var hud_expanded:=false
 var arrival_hint:Label
 var npc_sample:=0.0
+var build_selection:=0
 var campaign:Node
 var root:Control
 var layout:Control
@@ -220,10 +221,12 @@ func _button(text:String,callback:Callable,disabled:=false) -> Button:
     return button
 
 func act(callback:Callable,message:String) -> void:
+    var previous_scroll:int=scroll.scroll_vertical
     var result:Variant=callback.call()
     notice=message if result else "Unavailable / check cost, progress or save status."
     if campaign.profile.error!="":notice=campaign.profile.error
     refresh_header();open_station(NAMES.find(page));set_info(notice)
+    scroll.set_deferred("scroll_vertical",previous_scroll)
 
 func open_station(index:int) -> void:
     if index<0 or index>=NAMES.size():return
@@ -331,3 +334,8 @@ func open_guide() -> void:
     Guide.page(self)
     for button in stack.find_children("*","Button",true,false):
         if button.get_meta("act","")=="guide_next":call_deferred("_focus_station_button",weakref(button));break
+
+func select_build(index:int) -> void:
+    build_selection=clampi(index,0,2)
+    var previous_scroll:int=scroll.scroll_vertical
+    open_station(0);scroll.set_deferred("scroll_vertical",previous_scroll)

@@ -27,6 +27,7 @@ static func cooldown(difficulty: int) -> int:
 static func wants(s: RefCounted, side: int, clock: int, level: int) -> bool:
     var f: Dictionary = s.fighters[side]
     var o: Dictionary = s.fighters[1 - side]
+    if int(f.get("tactic_silence",0))>0:return false
     if int(f.get("character", 0)) != 4 or f.get("story_role", "") in MELEE_ONLY_ROLES:return false
     if not f.has("gun_cd"):
         f["gun_cd"] = OPENING_DELAY + int(f.get("squad_id", 0)) * 40

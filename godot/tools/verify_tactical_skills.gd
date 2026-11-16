@@ -48,7 +48,7 @@ func _initialize() -> void:
     check("standard modes do not consume story tactics",s.fighters[0].meter==100 and s.tactics.shots.is_empty())
     var p=P.new();p.path="";p.data.best=3;p.data.credits=77;p.data.parts=5
     check("profile and free configuration valid",p.valid(p.data) and p.configure_tactic(1,0,"variants",1) and p.data.credits==77 and p.data.parts==5)
-    check("slot swap preserves variants",p.configure_tactic(1,0,"skills",0) and p.data.tactics[1].skills==[1,0] and p.data.tactics[1].variants==[1,0])
+    check("slot swap preserves variants",p.configure_tactic(1,0,"skills",0) and p.data.tactics[1].skills==[1,0] and p.data.tactics[1].variants==[1,0,0,0,0,0])
     var c=C.new();c.tactics_enabled=true
     var key:=InputEventKey.new();key.physical_keycode=KEY_Q;key.keycode=KEY_Q;key.pressed=true
     check("Q emits one semantic edge",c.feed(key).size()==1 and c.tactic_held(0))
@@ -56,7 +56,7 @@ func _initialize() -> void:
     c.clear_tactic_keys();check("suspension clears held keys",not c.tactic_held(0))
     extended()
     var failed:=checks.filter(func(c:Dictionary)->bool:return not c.passed).size()
-    var out:=FileAccess.open("res://../docs/evidence/tactical-skills/checks.json",FileAccess.WRITE)
+    var out:=FileAccess.open("res://../docs/evidence/tactics-expanded/first-eight.json",FileAccess.WRITE)
     if out:out.store_string(JSON.stringify({"checks":checks,"failed":failed},"  "))
     quit(1 if failed else 0)
 
@@ -64,7 +64,7 @@ func extended() -> void:
     for hero in 4:
         for variant in 2:
             for support in 2:
-                var s=sim(hero);s.tactics.config[0].variants=[variant,variant];s.tactics.config[0].supports=[support,support]
+                var s=sim(hero);s.tactics.config[0].variants=[variant,variant,0,0,0,0];s.tactics.config[0].supports=[support,support,0,0,0,0]
                 s.tick({"attack":"tactic_a"});ticks(s,100)
                 check("hero%d variant%d support%d stays bounded"%[hero,variant,support],s.fighters[0].meter>=0 and s.fighters[0].meter<=100 and s.tactics.shots.size()<=12)
     var s=sim(1);s.squad_members.resize(1);s.fighters[1].x=7
@@ -105,7 +105,7 @@ func extended() -> void:
     check("sample follow-up cannot be repeated",s.fighters[0].state=="idle" and s.fighters[0].meter==paid)
     s=sim(3);s._start_attack(0,"tactic_b")
     check("empty node cast does not spend",s.fighters[0].meter==100 and s.fighters[0].state=="idle")
-    for version in [1,2,3,4]:
+    for version in [1,2,3,4,5]:
         var p=P.new();p.path="user://tactics-test/v%d.json"%version
         DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(p.path.get_base_dir()))
         var old:Dictionary=p.fresh();old.version=version;old.credits=321;old.parts=17;old.best=7
@@ -148,11 +148,11 @@ func extended() -> void:
     var corrupt_file:=FileAccess.open(p.path,FileAccess.WRITE);corrupt_file.store_string(JSON.stringify(corrupt));corrupt_file.close();p.load_data()
     check("incomplete schema3 cannot silently reset missing progress",p.error!="")
 
-    var focused=sim(1);var wide=sim(1);wide.tactics.config[0].variants=[1,0]
+    var focused=sim(1);var wide=sim(1);wide.tactics.config[0].variants=[1,0,0,0,0,0]
     focused._start_attack(0,"tactic_a");wide._start_attack(0,"tactic_a")
     focused.tactics.emit(focused,0,0,focused.tactics.move(focused.fighters[0],"tactic_a"));wide.tactics.emit(wide,0,0,wide.tactics.move(wide.fighters[0],"tactic_a"))
     check("wide variant trades travel and damage for coverage",wide.tactics.shots[0].life<focused.tactics.shots[0].life and wide.tactics.shots[0].radius>focused.tactics.shots[0].radius and wide.tactics.shots[0].data.damage<focused.tactics.shots[0].data.damage)
-    var pierced=sim(1);pierced.tactics.config[0].supports=[1,0];pierced._start_attack(0,"tactic_a");pierced.tactics.emit(pierced,0,0,pierced.tactics.move(pierced.fighters[0],"tactic_a"))
+    var pierced=sim(1);pierced.tactics.config[0].supports=[1,0,0,0,0,0];pierced._start_attack(0,"tactic_a");pierced.tactics.emit(pierced,0,0,pierced.tactics.move(pierced.fighters[0],"tactic_a"))
     check("pierce support changes target budget with lower damage",pierced.tactics.shots[0].limit==2 and pierced.tactics.shots[0].data.damage<focused.tactics.shots[0].data.damage)
     focused.fighters[0].tactical.relay=120;focused.fighters[0].tactical.relay_budget=1;focused.fighters[0].meter=10
     var melee_event:={"kind":"hit","attacker":0,"move":"jab"}

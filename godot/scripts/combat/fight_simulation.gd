@@ -553,6 +553,7 @@ func _start_attack(i: int, requested: String) -> void:
             events.append({"kind": "no_meter", "target": i,"cost":cost})
             return
         f.meter -= cost
+        if last_service_enabled and f.character==1 and name=="special":f["service_skill_paid"]=cost
     if is_aerial():air_motion.attack_stall(f)
     f.counter_attack=f.counter_window>0
     f.counter_window=0
