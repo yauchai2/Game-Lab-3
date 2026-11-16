@@ -1,3 +1,7 @@
+## 2026-11-16：整個 PR #38 已合併 main
+
+使用者兩次明示「全部推到 GitHub main」，合併範圍已確認。PR #38 已由草稿轉正式並合併，提交4829efa；教學、24招與構築、支援／空投、敵人預告反應及步態修正全部保留。合併樹與已驗證分支62a01e3完全一致，見[整合紀錄](MAIN_INTEGRATION_2026-11-16.zh-TW.md)。日常Fetch／Pull改用main，後文待選範圍／PR草稿為歷史。Web未更新；完整動作餘項、其餘模組及真人／Mac驗收仍待做。
+
 ## 2026-11-16：轉做地面動作覆核與故事整合前檢查
 
 [動作切片](GROUND_MOTION_REVIEW.zh-TW.md)／[證據](evidence/ground-motion-review/README.md)。renderer原按vx要求速度選行跑，受阻時物理x已停但vx仍非零。MotionInterpolation展示副本改讀同tick實際朝要求方向移動的部分、不超要求速度；push／攻擊／dash／air／傳送／角色替換不誤判，hitstop保持凍結步態，F2只跳過位置插值仍保留此修正。simulation／素材／攻防不變。

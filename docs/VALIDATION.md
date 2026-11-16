@@ -1,3 +1,7 @@
+## 2026-11-16：PR #38 完整 main 合併驗證
+
+GitHub確認PR #38為MERGED、非草稿，merge4829efa；父提交為原main5bd1c48與已驗證來源62a01e3。兩者來源／合併tree均為590efafcb04b445940924d3e6221eb9f0fad586a，沒有合併衝突或額外runtime修改。沿用下文故事54/54、步態21規則／三組原生各33／3比較及相關回歸證據；本次只改整合狀態文件，未宣稱重跑全部測試。GitHub無check／review結果不能代替實測；Linux驗證仍非Mac／真人／實體手柄／硬件效能。詳[整合紀錄](MAIN_INTEGRATION_2026-11-16.zh-TW.md)。Web未部署。
+
 ## 2026-11-16：地面步態與故事整合前重驗
 
 [動作證據](evidence/ground-motion-review/README.md)：21專門規則、四角7情境，修前／修後／F2各33原生檢查與3比較通過，受阻行跑324→0／F2為0；權威trace位置／速度／狀態逐列一致。連續79、Transit216、Street90與1800tick雙路simulation mismatch0／presentation mutation0，23腳本七類fatal warning通過。兩部6秒／180格原生片與抽格已檢視，非硬件FPS或整張全遊戲動作表已完。

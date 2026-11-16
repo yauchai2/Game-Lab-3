@@ -1,3 +1,5 @@
+最新整合（2026-11-16）：已按「全部推到 GitHub main」完整合併 [PR #38](https://github.com/yauchai2/Game-Lab-3/pull/38)，包含故事開局／教學、24招戰術／構築預設／支援／空投，以及受阻步態修正。GitHub Desktop 選 **main → Fetch／Pull** 即可；[整合紀錄與驗證界線](docs/MAIN_INTEGRATION_2026-11-16.zh-TW.md)。下方分支、草稿與未實作描述是各階段歷史，以最新紀錄為準；公開Web未更新。
+
 最新動作覆核（2026-11-16）：[急停／前後步／閃避與受阻步態](docs/GROUND_MOTION_REVIEW.zh-TW.md)。修正角色被場邊／身體擋住仍原地跑；四角同指令324個受阻抽樣由全在行跑變0，F2一致，權威位移／狀態不變。完整覆核表仍有勝利、選角、NPC／Boss及180°換邊待續。
 
 最新空中配裝（2026-11-16）：[空投支援](docs/TACTICAL_AIRDROP.zh-TW.md)讓ZIP回郵標／LOOP甩線器可在空中斜向施放，共用快速下墜資源並增加8tick落地恢復；保留排隊輸入與受擊恢復。schema7保留舊配置／預設。59新規則、17新增原生與相關回歸通過，同分支PR #38，Web未更新。
